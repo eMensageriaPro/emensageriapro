@@ -67,18 +67,18 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s1210deps(SoftDeletionModel):
 
-    s1210_evtpgtos = models.ForeignKey('esocial.s1210evtPgtos', 
+    s1210_evtpgtos = models.ForeignKey('esocial.s1210evtPgtos',
         related_name='%(class)s_s1210_evtpgtos', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1210_evtpgtos.evento()
     vrdeddep = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1210_evtpgtos), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -86,24 +86,24 @@ class s1210deps(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de dependentes do beneficiário do pagamento'
-        db_table = r's1210_deps'       
+        db_table = r's1210_deps'
         managed = True # s1210_deps #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1210deps", u"Pode ver listagem do modelo S1210DEPS"),
             ("can_see_data_s1210deps", u"Pode visualizar o conteúdo do modelo S1210DEPS"),
             ("can_see_menu_s1210deps", u"Pode visualizar no menu o modelo S1210DEPS"),
             ("can_print_list_s1210deps", u"Pode imprimir listagem do modelo S1210DEPS"),
             ("can_print_data_s1210deps", u"Pode imprimir o conteúdo do modelo S1210DEPS"), )
-            
+
         ordering = [
             's1210_evtpgtos',
             'vrdeddep',]
@@ -113,28 +113,28 @@ class s1210deps(SoftDeletionModel):
 class s1210depsSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1210deps
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoAnt(SoftDeletionModel):
 
-    s1210_infopgto = models.ForeignKey('s1210.s1210infoPgto', 
+    s1210_infopgto = models.ForeignKey('s1210.s1210infoPgto',
         related_name='%(class)s_s1210_infopgto', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1210_infopgto.evento()
     codcateg = models.IntegerField(null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1210_infopgto), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -142,24 +142,24 @@ class s1210detPgtoAnt(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Pagamento relativo a competências anteriores ao início de obrigatoriedade do eSocial'
-        db_table = r's1210_detpgtoant'       
+        db_table = r's1210_detpgtoant'
         managed = True # s1210_detpgtoant #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1210detPgtoAnt", u"Pode ver listagem do modelo S1210DETPGTOANT"),
             ("can_see_data_s1210detPgtoAnt", u"Pode visualizar o conteúdo do modelo S1210DETPGTOANT"),
             ("can_see_menu_s1210detPgtoAnt", u"Pode visualizar no menu o modelo S1210DETPGTOANT"),
             ("can_print_list_s1210detPgtoAnt", u"Pode imprimir listagem do modelo S1210DETPGTOANT"),
             ("can_print_data_s1210detPgtoAnt", u"Pode imprimir o conteúdo do modelo S1210DETPGTOANT"), )
-            
+
         ordering = [
             's1210_infopgto',
             'codcateg',]
@@ -169,29 +169,29 @@ class s1210detPgtoAnt(SoftDeletionModel):
 class s1210detPgtoAntSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1210detPgtoAnt
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoAntinfoPgtoAnt(SoftDeletionModel):
 
-    s1210_detpgtoant = models.ForeignKey('s1210.s1210detPgtoAnt', 
+    s1210_detpgtoant = models.ForeignKey('s1210.s1210detPgtoAnt',
         related_name='%(class)s_s1210_detpgtoant', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1210_detpgtoant.evento()
     tpbcirrf = models.TextField(null=True, )
     vrbcirrf = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1210_detpgtoant), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -199,24 +199,24 @@ class s1210detPgtoAntinfoPgtoAnt(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento do pagamento'
-        db_table = r's1210_detpgtoant_infopgtoant'       
+        db_table = r's1210_detpgtoant_infopgtoant'
         managed = True # s1210_detpgtoant_infopgtoant #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1210detPgtoAntinfoPgtoAnt", u"Pode ver listagem do modelo S1210DETPGTOANTINFOPGTOANT"),
             ("can_see_data_s1210detPgtoAntinfoPgtoAnt", u"Pode visualizar o conteúdo do modelo S1210DETPGTOANTINFOPGTOANT"),
             ("can_see_menu_s1210detPgtoAntinfoPgtoAnt", u"Pode visualizar no menu o modelo S1210DETPGTOANTINFOPGTOANT"),
             ("can_print_list_s1210detPgtoAntinfoPgtoAnt", u"Pode imprimir listagem do modelo S1210DETPGTOANTINFOPGTOANT"),
             ("can_print_data_s1210detPgtoAntinfoPgtoAnt", u"Pode imprimir o conteúdo do modelo S1210DETPGTOANTINFOPGTOANT"), )
-            
+
         ordering = [
             's1210_detpgtoant',
             'tpbcirrf',
@@ -227,31 +227,31 @@ class s1210detPgtoAntinfoPgtoAnt(SoftDeletionModel):
 class s1210detPgtoAntinfoPgtoAntSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1210detPgtoAntinfoPgtoAnt
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoBenPr(SoftDeletionModel):
 
-    s1210_infopgto = models.ForeignKey('s1210.s1210infoPgto', 
+    s1210_infopgto = models.ForeignKey('s1210.s1210infoPgto',
         related_name='%(class)s_s1210_infopgto', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1210_infopgto.evento()
     perref = models.CharField(max_length=7, null=True, )
     idedmdev = models.CharField(max_length=30, null=True, )
     indpgtott = models.CharField(choices=CHOICES_S1210_INDPGTOTT_DETPGTOBENPR, max_length=1, null=True, )
     vrliq = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1210_infopgto), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -259,24 +259,24 @@ class s1210detPgtoBenPr(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento de pagamentos relativos a benefícios previdenciários'
-        db_table = r's1210_detpgtobenpr'       
+        db_table = r's1210_detpgtobenpr'
         managed = True # s1210_detpgtobenpr #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1210detPgtoBenPr", u"Pode ver listagem do modelo S1210DETPGTOBENPR"),
             ("can_see_data_s1210detPgtoBenPr", u"Pode visualizar o conteúdo do modelo S1210DETPGTOBENPR"),
             ("can_see_menu_s1210detPgtoBenPr", u"Pode visualizar no menu o modelo S1210DETPGTOBENPR"),
             ("can_print_list_s1210detPgtoBenPr", u"Pode imprimir listagem do modelo S1210DETPGTOBENPR"),
             ("can_print_data_s1210detPgtoBenPr", u"Pode imprimir o conteúdo do modelo S1210DETPGTOBENPR"), )
-            
+
         ordering = [
             's1210_infopgto',
             'perref',
@@ -289,20 +289,20 @@ class s1210detPgtoBenPr(SoftDeletionModel):
 class s1210detPgtoBenPrSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1210detPgtoBenPr
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoBenPrinfoPgtoParc(SoftDeletionModel):
 
-    s1210_detpgtobenpr = models.ForeignKey('s1210.s1210detPgtoBenPr', 
+    s1210_detpgtobenpr = models.ForeignKey('s1210.s1210detPgtoBenPr',
         related_name='%(class)s_s1210_detpgtobenpr', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1210_detpgtobenpr.evento()
     codrubr = models.CharField(max_length=30, null=True, )
     idetabrubr = models.CharField(max_length=8, null=True, )
@@ -310,12 +310,12 @@ class s1210detPgtoBenPrinfoPgtoParc(SoftDeletionModel):
     fatorrubr = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1210_detpgtobenpr), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -323,24 +323,24 @@ class s1210detPgtoBenPrinfoPgtoParc(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo.'
-        db_table = r's1210_detpgtobenpr_infopgtoparc'       
+        db_table = r's1210_detpgtobenpr_infopgtoparc'
         managed = True # s1210_detpgtobenpr_infopgtoparc #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1210detPgtoBenPrinfoPgtoParc", u"Pode ver listagem do modelo S1210DETPGTOBENPRINFOPGTOPARC"),
             ("can_see_data_s1210detPgtoBenPrinfoPgtoParc", u"Pode visualizar o conteúdo do modelo S1210DETPGTOBENPRINFOPGTOPARC"),
             ("can_see_menu_s1210detPgtoBenPrinfoPgtoParc", u"Pode visualizar no menu o modelo S1210DETPGTOBENPRINFOPGTOPARC"),
             ("can_print_list_s1210detPgtoBenPrinfoPgtoParc", u"Pode imprimir listagem do modelo S1210DETPGTOBENPRINFOPGTOPARC"),
             ("can_print_data_s1210detPgtoBenPrinfoPgtoParc", u"Pode imprimir o conteúdo do modelo S1210DETPGTOBENPRINFOPGTOPARC"), )
-            
+
         ordering = [
             's1210_detpgtobenpr',
             'codrubr',
@@ -352,20 +352,20 @@ class s1210detPgtoBenPrinfoPgtoParc(SoftDeletionModel):
 class s1210detPgtoBenPrinfoPgtoParcSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1210detPgtoBenPrinfoPgtoParc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoBenPrretPgtoTot(SoftDeletionModel):
 
-    s1210_detpgtobenpr = models.ForeignKey('s1210.s1210detPgtoBenPr', 
+    s1210_detpgtobenpr = models.ForeignKey('s1210.s1210detPgtoBenPr',
         related_name='%(class)s_s1210_detpgtobenpr', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1210_detpgtobenpr.evento()
     codrubr = models.CharField(max_length=30, null=True, )
     idetabrubr = models.CharField(max_length=8, null=True, )
@@ -373,12 +373,12 @@ class s1210detPgtoBenPrretPgtoTot(SoftDeletionModel):
     fatorrubr = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1210_detpgtobenpr), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -386,24 +386,24 @@ class s1210detPgtoBenPrretPgtoTot(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.'
-        db_table = r's1210_detpgtobenpr_retpgtotot'       
+        db_table = r's1210_detpgtobenpr_retpgtotot'
         managed = True # s1210_detpgtobenpr_retpgtotot #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1210detPgtoBenPrretPgtoTot", u"Pode ver listagem do modelo S1210DETPGTOBENPRRETPGTOTOT"),
             ("can_see_data_s1210detPgtoBenPrretPgtoTot", u"Pode visualizar o conteúdo do modelo S1210DETPGTOBENPRRETPGTOTOT"),
             ("can_see_menu_s1210detPgtoBenPrretPgtoTot", u"Pode visualizar no menu o modelo S1210DETPGTOBENPRRETPGTOTOT"),
             ("can_print_list_s1210detPgtoBenPrretPgtoTot", u"Pode imprimir listagem do modelo S1210DETPGTOBENPRRETPGTOTOT"),
             ("can_print_data_s1210detPgtoBenPrretPgtoTot", u"Pode imprimir o conteúdo do modelo S1210DETPGTOBENPRRETPGTOTOT"), )
-            
+
         ordering = [
             's1210_detpgtobenpr',
             'codrubr',
@@ -415,32 +415,32 @@ class s1210detPgtoBenPrretPgtoTot(SoftDeletionModel):
 class s1210detPgtoBenPrretPgtoTotSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1210detPgtoBenPrretPgtoTot
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoFer(SoftDeletionModel):
 
-    s1210_infopgto = models.ForeignKey('s1210.s1210infoPgto', 
+    s1210_infopgto = models.ForeignKey('s1210.s1210infoPgto',
         related_name='%(class)s_s1210_infopgto', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1210_infopgto.evento()
     codcateg = models.IntegerField(null=True, )
     matricula = models.CharField(max_length=30, blank=True, null=True, )
     dtinigoz = models.DateField(null=True, )
     qtdias = models.IntegerField(null=True, )
     vrliq = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1210_infopgto), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -448,24 +448,24 @@ class s1210detPgtoFer(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento dos pagamentos efetuados relativos a férias'
-        db_table = r's1210_detpgtofer'       
+        db_table = r's1210_detpgtofer'
         managed = True # s1210_detpgtofer #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1210detPgtoFer", u"Pode ver listagem do modelo S1210DETPGTOFER"),
             ("can_see_data_s1210detPgtoFer", u"Pode visualizar o conteúdo do modelo S1210DETPGTOFER"),
             ("can_see_menu_s1210detPgtoFer", u"Pode visualizar no menu o modelo S1210DETPGTOFER"),
             ("can_print_list_s1210detPgtoFer", u"Pode imprimir listagem do modelo S1210DETPGTOFER"),
             ("can_print_data_s1210detPgtoFer", u"Pode imprimir o conteúdo do modelo S1210DETPGTOFER"), )
-            
+
         ordering = [
             's1210_infopgto',
             'codcateg',
@@ -478,20 +478,20 @@ class s1210detPgtoFer(SoftDeletionModel):
 class s1210detPgtoFerSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1210detPgtoFer
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoFerdetRubrFer(SoftDeletionModel):
 
-    s1210_detpgtofer = models.ForeignKey('s1210.s1210detPgtoFer', 
+    s1210_detpgtofer = models.ForeignKey('s1210.s1210detPgtoFer',
         related_name='%(class)s_s1210_detpgtofer', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1210_detpgtofer.evento()
     codrubr = models.CharField(max_length=30, null=True, )
     idetabrubr = models.CharField(max_length=8, null=True, )
@@ -499,12 +499,12 @@ class s1210detPgtoFerdetRubrFer(SoftDeletionModel):
     fatorrubr = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1210_detpgtofer), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -512,24 +512,24 @@ class s1210detPgtoFerdetRubrFer(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento das rubricas do Recibo Antecipado de Férias'
-        db_table = r's1210_detpgtofer_detrubrfer'       
+        db_table = r's1210_detpgtofer_detrubrfer'
         managed = True # s1210_detpgtofer_detrubrfer #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1210detPgtoFerdetRubrFer", u"Pode ver listagem do modelo S1210DETPGTOFERDETRUBRFER"),
             ("can_see_data_s1210detPgtoFerdetRubrFer", u"Pode visualizar o conteúdo do modelo S1210DETPGTOFERDETRUBRFER"),
             ("can_see_menu_s1210detPgtoFerdetRubrFer", u"Pode visualizar no menu o modelo S1210DETPGTOFERDETRUBRFER"),
             ("can_print_list_s1210detPgtoFerdetRubrFer", u"Pode imprimir listagem do modelo S1210DETPGTOFERDETRUBRFER"),
             ("can_print_data_s1210detPgtoFerdetRubrFer", u"Pode imprimir o conteúdo do modelo S1210DETPGTOFERDETRUBRFER"), )
-            
+
         ordering = [
             's1210_detpgtofer',
             'codrubr',
@@ -541,31 +541,31 @@ class s1210detPgtoFerdetRubrFer(SoftDeletionModel):
 class s1210detPgtoFerdetRubrFerSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1210detPgtoFerdetRubrFer
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoFerpenAlim(SoftDeletionModel):
 
-    s1210_detpgtofer_detrubrfer = models.ForeignKey('s1210.s1210detPgtoFerdetRubrFer', 
+    s1210_detpgtofer_detrubrfer = models.ForeignKey('s1210.s1210detPgtoFerdetRubrFer',
         related_name='%(class)s_s1210_detpgtofer_detrubrfer', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1210_detpgtofer_detrubrfer.evento()
     cpfbenef = models.CharField(max_length=11, null=True, )
     dtnasctobenef = models.DateField(blank=True, null=True, )
     nmbenefic = models.CharField(max_length=70, null=True, )
     vlrpensao = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1210_detpgtofer_detrubrfer), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -573,24 +573,24 @@ class s1210detPgtoFerpenAlim(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações sobre beneficiários de pensão alimentícia.'
-        db_table = r's1210_detpgtofer_penalim'       
+        db_table = r's1210_detpgtofer_penalim'
         managed = True # s1210_detpgtofer_penalim #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1210detPgtoFerpenAlim", u"Pode ver listagem do modelo S1210DETPGTOFERPENALIM"),
             ("can_see_data_s1210detPgtoFerpenAlim", u"Pode visualizar o conteúdo do modelo S1210DETPGTOFERPENALIM"),
             ("can_see_menu_s1210detPgtoFerpenAlim", u"Pode visualizar no menu o modelo S1210DETPGTOFERPENALIM"),
             ("can_print_list_s1210detPgtoFerpenAlim", u"Pode imprimir listagem do modelo S1210DETPGTOFERPENALIM"),
             ("can_print_data_s1210detPgtoFerpenAlim", u"Pode imprimir o conteúdo do modelo S1210DETPGTOFERPENALIM"), )
-            
+
         ordering = [
             's1210_detpgtofer_detrubrfer',
             'cpfbenef',
@@ -602,32 +602,32 @@ class s1210detPgtoFerpenAlim(SoftDeletionModel):
 class s1210detPgtoFerpenAlimSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1210detPgtoFerpenAlim
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoFl(SoftDeletionModel):
 
-    s1210_infopgto = models.ForeignKey('s1210.s1210infoPgto', 
+    s1210_infopgto = models.ForeignKey('s1210.s1210infoPgto',
         related_name='%(class)s_s1210_infopgto', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1210_infopgto.evento()
     perref = models.CharField(max_length=7, blank=True, null=True, )
     idedmdev = models.CharField(max_length=30, null=True, )
     indpgtott = models.CharField(choices=CHOICES_S1210_INDPGTOTT_DETPGTOFL, max_length=1, null=True, )
     vrliq = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     nrrecarq = models.CharField(max_length=40, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1210_infopgto), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -635,24 +635,24 @@ class s1210detPgtoFl(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399'
-        db_table = r's1210_detpgtofl'       
+        db_table = r's1210_detpgtofl'
         managed = True # s1210_detpgtofl #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1210detPgtoFl", u"Pode ver listagem do modelo S1210DETPGTOFL"),
             ("can_see_data_s1210detPgtoFl", u"Pode visualizar o conteúdo do modelo S1210DETPGTOFL"),
             ("can_see_menu_s1210detPgtoFl", u"Pode visualizar no menu o modelo S1210DETPGTOFL"),
             ("can_print_list_s1210detPgtoFl", u"Pode imprimir listagem do modelo S1210DETPGTOFL"),
             ("can_print_data_s1210detPgtoFl", u"Pode imprimir o conteúdo do modelo S1210DETPGTOFL"), )
-            
+
         ordering = [
             's1210_infopgto',
             'idedmdev',
@@ -664,20 +664,20 @@ class s1210detPgtoFl(SoftDeletionModel):
 class s1210detPgtoFlSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1210detPgtoFl
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoFlinfoPgtoParc(SoftDeletionModel):
 
-    s1210_detpgtofl = models.ForeignKey('s1210.s1210detPgtoFl', 
+    s1210_detpgtofl = models.ForeignKey('s1210.s1210detPgtoFl',
         related_name='%(class)s_s1210_detpgtofl', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1210_detpgtofl.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True, )
     codrubr = models.CharField(max_length=30, null=True, )
@@ -686,12 +686,12 @@ class s1210detPgtoFlinfoPgtoParc(SoftDeletionModel):
     fatorrubr = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1210_detpgtofl), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -699,24 +699,24 @@ class s1210detPgtoFlinfoPgtoParc(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo.'
-        db_table = r's1210_detpgtofl_infopgtoparc'       
+        db_table = r's1210_detpgtofl_infopgtoparc'
         managed = True # s1210_detpgtofl_infopgtoparc #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1210detPgtoFlinfoPgtoParc", u"Pode ver listagem do modelo S1210DETPGTOFLINFOPGTOPARC"),
             ("can_see_data_s1210detPgtoFlinfoPgtoParc", u"Pode visualizar o conteúdo do modelo S1210DETPGTOFLINFOPGTOPARC"),
             ("can_see_menu_s1210detPgtoFlinfoPgtoParc", u"Pode visualizar no menu o modelo S1210DETPGTOFLINFOPGTOPARC"),
             ("can_print_list_s1210detPgtoFlinfoPgtoParc", u"Pode imprimir listagem do modelo S1210DETPGTOFLINFOPGTOPARC"),
             ("can_print_data_s1210detPgtoFlinfoPgtoParc", u"Pode imprimir o conteúdo do modelo S1210DETPGTOFLINFOPGTOPARC"), )
-            
+
         ordering = [
             's1210_detpgtofl',
             'codrubr',
@@ -728,31 +728,31 @@ class s1210detPgtoFlinfoPgtoParc(SoftDeletionModel):
 class s1210detPgtoFlinfoPgtoParcSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1210detPgtoFlinfoPgtoParc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoFlpenAlim(SoftDeletionModel):
 
-    s1210_detpgtofl_retpgtotot = models.ForeignKey('s1210.s1210detPgtoFlretPgtoTot', 
+    s1210_detpgtofl_retpgtotot = models.ForeignKey('s1210.s1210detPgtoFlretPgtoTot',
         related_name='%(class)s_s1210_detpgtofl_retpgtotot', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1210_detpgtofl_retpgtotot.evento()
     cpfbenef = models.CharField(max_length=11, null=True, )
     dtnasctobenef = models.DateField(blank=True, null=True, )
     nmbenefic = models.CharField(max_length=70, null=True, )
     vlrpensao = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1210_detpgtofl_retpgtotot), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -760,24 +760,24 @@ class s1210detPgtoFlpenAlim(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações sobre beneficiários de pensão alimentícia.'
-        db_table = r's1210_detpgtofl_penalim'       
+        db_table = r's1210_detpgtofl_penalim'
         managed = True # s1210_detpgtofl_penalim #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1210detPgtoFlpenAlim", u"Pode ver listagem do modelo S1210DETPGTOFLPENALIM"),
             ("can_see_data_s1210detPgtoFlpenAlim", u"Pode visualizar o conteúdo do modelo S1210DETPGTOFLPENALIM"),
             ("can_see_menu_s1210detPgtoFlpenAlim", u"Pode visualizar no menu o modelo S1210DETPGTOFLPENALIM"),
             ("can_print_list_s1210detPgtoFlpenAlim", u"Pode imprimir listagem do modelo S1210DETPGTOFLPENALIM"),
             ("can_print_data_s1210detPgtoFlpenAlim", u"Pode imprimir o conteúdo do modelo S1210DETPGTOFLPENALIM"), )
-            
+
         ordering = [
             's1210_detpgtofl_retpgtotot',
             'cpfbenef',
@@ -789,20 +789,20 @@ class s1210detPgtoFlpenAlim(SoftDeletionModel):
 class s1210detPgtoFlpenAlimSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1210detPgtoFlpenAlim
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoFlretPgtoTot(SoftDeletionModel):
 
-    s1210_detpgtofl = models.ForeignKey('s1210.s1210detPgtoFl', 
+    s1210_detpgtofl = models.ForeignKey('s1210.s1210detPgtoFl',
         related_name='%(class)s_s1210_detpgtofl', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1210_detpgtofl.evento()
     codrubr = models.CharField(max_length=30, null=True, )
     idetabrubr = models.CharField(max_length=8, null=True, )
@@ -810,12 +810,12 @@ class s1210detPgtoFlretPgtoTot(SoftDeletionModel):
     fatorrubr = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1210_detpgtofl), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -823,24 +823,24 @@ class s1210detPgtoFlretPgtoTot(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.'
-        db_table = r's1210_detpgtofl_retpgtotot'       
+        db_table = r's1210_detpgtofl_retpgtotot'
         managed = True # s1210_detpgtofl_retpgtotot #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1210detPgtoFlretPgtoTot", u"Pode ver listagem do modelo S1210DETPGTOFLRETPGTOTOT"),
             ("can_see_data_s1210detPgtoFlretPgtoTot", u"Pode visualizar o conteúdo do modelo S1210DETPGTOFLRETPGTOTOT"),
             ("can_see_menu_s1210detPgtoFlretPgtoTot", u"Pode visualizar no menu o modelo S1210DETPGTOFLRETPGTOTOT"),
             ("can_print_list_s1210detPgtoFlretPgtoTot", u"Pode imprimir listagem do modelo S1210DETPGTOFLRETPGTOTOT"),
             ("can_print_data_s1210detPgtoFlretPgtoTot", u"Pode imprimir o conteúdo do modelo S1210DETPGTOFLRETPGTOTOT"), )
-            
+
         ordering = [
             's1210_detpgtofl',
             'codrubr',
@@ -852,20 +852,20 @@ class s1210detPgtoFlretPgtoTot(SoftDeletionModel):
 class s1210detPgtoFlretPgtoTotSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1210detPgtoFlretPgtoTot
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210idePgtoExt(SoftDeletionModel):
 
-    s1210_infopgto = models.ForeignKey('s1210.s1210infoPgto', 
+    s1210_infopgto = models.ForeignKey('s1210.s1210infoPgto',
         related_name='%(class)s_s1210_infopgto', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1210_infopgto.evento()
     codpais = models.TextField(null=True, )
     indnif = models.IntegerField(choices=CHOICES_S1210_INDNIF_IDEPGTOEXT, null=True, )
@@ -876,12 +876,12 @@ class s1210idePgtoExt(SoftDeletionModel):
     bairro = models.CharField(max_length=90, blank=True, null=True, )
     nmcid = models.CharField(max_length=50, null=True, )
     codpostal = models.CharField(max_length=12, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1210_infopgto), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -889,24 +889,24 @@ class s1210idePgtoExt(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.'
-        db_table = r's1210_idepgtoext'       
+        db_table = r's1210_idepgtoext'
         managed = True # s1210_idepgtoext #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1210idePgtoExt", u"Pode ver listagem do modelo S1210IDEPGTOEXT"),
             ("can_see_data_s1210idePgtoExt", u"Pode visualizar o conteúdo do modelo S1210IDEPGTOEXT"),
             ("can_see_menu_s1210idePgtoExt", u"Pode visualizar no menu o modelo S1210IDEPGTOEXT"),
             ("can_print_list_s1210idePgtoExt", u"Pode imprimir listagem do modelo S1210IDEPGTOEXT"),
             ("can_print_data_s1210idePgtoExt", u"Pode imprimir o conteúdo do modelo S1210IDEPGTOEXT"), )
-            
+
         ordering = [
             's1210_infopgto',
             'codpais',
@@ -919,30 +919,30 @@ class s1210idePgtoExt(SoftDeletionModel):
 class s1210idePgtoExtSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1210idePgtoExt
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210infoPgto(SoftDeletionModel):
 
-    s1210_evtpgtos = models.ForeignKey('esocial.s1210evtPgtos', 
+    s1210_evtpgtos = models.ForeignKey('esocial.s1210evtPgtos',
         related_name='%(class)s_s1210_evtpgtos', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1210_evtpgtos.evento()
     dtpgto = models.DateField(null=True, )
     tppgto = models.IntegerField(choices=CHOICES_S1210_TPPGTO, null=True, )
     indresbr = models.CharField(choices=CHOICES_S1210_INDRESBR, max_length=1, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1210_evtpgtos), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -950,24 +950,24 @@ class s1210infoPgto(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações dos pagamentos efetuados'
-        db_table = r's1210_infopgto'       
+        db_table = r's1210_infopgto'
         managed = True # s1210_infopgto #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1210infoPgto", u"Pode ver listagem do modelo S1210INFOPGTO"),
             ("can_see_data_s1210infoPgto", u"Pode visualizar o conteúdo do modelo S1210INFOPGTO"),
             ("can_see_menu_s1210infoPgto", u"Pode visualizar no menu o modelo S1210INFOPGTO"),
             ("can_print_list_s1210infoPgto", u"Pode imprimir listagem do modelo S1210INFOPGTO"),
             ("can_print_data_s1210infoPgto", u"Pode imprimir o conteúdo do modelo S1210INFOPGTO"), )
-            
+
         ordering = [
             's1210_evtpgtos',
             'dtpgto',
@@ -979,9 +979,9 @@ class s1210infoPgto(SoftDeletionModel):
 class s1210infoPgtoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1210infoPgto
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

@@ -67,20 +67,20 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s2250cancAvPrevio(SoftDeletionModel):
 
-    s2250_evtavprevio = models.ForeignKey('esocial.s2250evtAvPrevio', 
+    s2250_evtavprevio = models.ForeignKey('esocial.s2250evtAvPrevio',
         related_name='%(class)s_s2250_evtavprevio', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2250_evtavprevio.evento()
     dtcancavprv = models.DateField(null=True, )
     observacao = models.CharField(max_length=255, blank=True, null=True, )
     mtvcancavprevio = models.IntegerField(choices=CHOICES_S2250_MTVCANCAVPREVIO, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2250_evtavprevio), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -88,24 +88,24 @@ class s2250cancAvPrevio(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Cancelamento do Aviso Prévio'
-        db_table = r's2250_cancavprevio'       
+        db_table = r's2250_cancavprevio'
         managed = True # s2250_cancavprevio #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2250cancAvPrevio", u"Pode ver listagem do modelo S2250CANCAVPREVIO"),
             ("can_see_data_s2250cancAvPrevio", u"Pode visualizar o conteúdo do modelo S2250CANCAVPREVIO"),
             ("can_see_menu_s2250cancAvPrevio", u"Pode visualizar no menu o modelo S2250CANCAVPREVIO"),
             ("can_print_list_s2250cancAvPrevio", u"Pode imprimir listagem do modelo S2250CANCAVPREVIO"),
             ("can_print_data_s2250cancAvPrevio", u"Pode imprimir o conteúdo do modelo S2250CANCAVPREVIO"), )
-            
+
         ordering = [
             's2250_evtavprevio',
             'dtcancavprv',
@@ -116,31 +116,31 @@ class s2250cancAvPrevio(SoftDeletionModel):
 class s2250cancAvPrevioSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2250cancAvPrevio
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2250detAvPrevio(SoftDeletionModel):
 
-    s2250_evtavprevio = models.ForeignKey('esocial.s2250evtAvPrevio', 
+    s2250_evtavprevio = models.ForeignKey('esocial.s2250evtAvPrevio',
         related_name='%(class)s_s2250_evtavprevio', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2250_evtavprevio.evento()
     dtavprv = models.DateField(null=True, )
     dtprevdeslig = models.DateField(null=True, )
     tpavprevio = models.IntegerField(choices=CHOICES_S2250_TPAVPREVIO, null=True, )
     observacao = models.CharField(max_length=255, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2250_evtavprevio), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -148,24 +148,24 @@ class s2250detAvPrevio(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalha as informações do evento trabalhista'
-        db_table = r's2250_detavprevio'       
+        db_table = r's2250_detavprevio'
         managed = True # s2250_detavprevio #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2250detAvPrevio", u"Pode ver listagem do modelo S2250DETAVPREVIO"),
             ("can_see_data_s2250detAvPrevio", u"Pode visualizar o conteúdo do modelo S2250DETAVPREVIO"),
             ("can_see_menu_s2250detAvPrevio", u"Pode visualizar no menu o modelo S2250DETAVPREVIO"),
             ("can_print_list_s2250detAvPrevio", u"Pode imprimir listagem do modelo S2250DETAVPREVIO"),
             ("can_print_data_s2250detAvPrevio", u"Pode imprimir o conteúdo do modelo S2250DETAVPREVIO"), )
-            
+
         ordering = [
             's2250_evtavprevio',
             'dtavprv',
@@ -177,9 +177,9 @@ class s2250detAvPrevio(SoftDeletionModel):
 class s2250detAvPrevioSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2250detAvPrevio
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

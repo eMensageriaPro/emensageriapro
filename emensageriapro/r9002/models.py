@@ -67,20 +67,20 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class r9002infoTotal(SoftDeletionModel):
 
-    r9002_evtret = models.ForeignKey('efdreinf.r9002evtRet', 
+    r9002_evtret = models.ForeignKey('efdreinf.r9002evtRet',
         related_name='%(class)s_r9002_evtret', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r9002_evtret.evento()
     nrrecarqbase = models.CharField(max_length=52, blank=True, null=True, )
     tpinsc = models.IntegerField(null=True, )
     nrinsc = models.CharField(max_length=14, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r9002_evtret), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -88,24 +88,24 @@ class r9002infoTotal(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações relativas a totalizadores de bases e tributos'
-        db_table = r'r9002_infototal'       
+        db_table = r'r9002_infototal'
         managed = True # r9002_infototal #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9002infoTotal", u"Pode ver listagem do modelo R9002INFOTOTAL"),
             ("can_see_data_r9002infoTotal", u"Pode visualizar o conteúdo do modelo R9002INFOTOTAL"),
             ("can_see_menu_r9002infoTotal", u"Pode visualizar no menu o modelo R9002INFOTOTAL"),
             ("can_print_list_r9002infoTotal", u"Pode imprimir listagem do modelo R9002INFOTOTAL"),
             ("can_print_data_r9002infoTotal", u"Pode imprimir o conteúdo do modelo R9002INFOTOTAL"), )
-            
+
         ordering = [
             'r9002_evtret',
             'tpinsc',
@@ -116,28 +116,28 @@ class r9002infoTotal(SoftDeletionModel):
 class r9002infoTotalSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9002infoTotal
         fields = '__all__'
 
 
 class r9002regOcorrs(SoftDeletionModel):
 
-    r9002_evtret = models.ForeignKey('efdreinf.r9002evtRet', 
+    r9002_evtret = models.ForeignKey('efdreinf.r9002evtRet',
         related_name='%(class)s_r9002_evtret', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r9002_evtret.evento()
     tpocorr = models.IntegerField(choices=CHOICES_R9002_TPOCORR, null=True, )
     localerroaviso = models.CharField(max_length=200, null=True, )
     codresp = models.CharField(max_length=6, null=True, )
     dscresp = models.CharField(max_length=999, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r9002_evtret), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -145,24 +145,24 @@ class r9002regOcorrs(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de ocorrências registradas'
-        db_table = r'r9002_regocorrs'       
+        db_table = r'r9002_regocorrs'
         managed = True # r9002_regocorrs #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9002regOcorrs", u"Pode ver listagem do modelo R9002REGOCORRS"),
             ("can_see_data_r9002regOcorrs", u"Pode visualizar o conteúdo do modelo R9002REGOCORRS"),
             ("can_see_menu_r9002regOcorrs", u"Pode visualizar no menu o modelo R9002REGOCORRS"),
             ("can_print_list_r9002regOcorrs", u"Pode imprimir listagem do modelo R9002REGOCORRS"),
             ("can_print_data_r9002regOcorrs", u"Pode imprimir o conteúdo do modelo R9002REGOCORRS"), )
-            
+
         ordering = [
             'r9002_evtret',
             'tpocorr',
@@ -175,17 +175,17 @@ class r9002regOcorrs(SoftDeletionModel):
 class r9002regOcorrsSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9002regOcorrs
         fields = '__all__'
 
 
 class r9002totApurDec(SoftDeletionModel):
 
-    r9002_infototal = models.ForeignKey('r9002.r9002infoTotal', 
+    r9002_infototal = models.ForeignKey('r9002.r9002infoTotal',
         related_name='%(class)s_r9002_infototal', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r9002_infototal.evento()
     perapurdec = models.IntegerField(choices=CHOICES_R9002_PERAPURDEC, null=True, )
     crdec = models.CharField(max_length=6, null=True, )
@@ -193,12 +193,12 @@ class r9002totApurDec(SoftDeletionModel):
     vlrcrdec = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrbasecrdecsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrcrdecsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r9002_infototal), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -206,24 +206,24 @@ class r9002totApurDec(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial'
-        db_table = r'r9002_totapurdec'       
+        db_table = r'r9002_totapurdec'
         managed = True # r9002_totapurdec #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9002totApurDec", u"Pode ver listagem do modelo R9002TOTAPURDEC"),
             ("can_see_data_r9002totApurDec", u"Pode visualizar o conteúdo do modelo R9002TOTAPURDEC"),
             ("can_see_menu_r9002totApurDec", u"Pode visualizar no menu o modelo R9002TOTAPURDEC"),
             ("can_print_list_r9002totApurDec", u"Pode imprimir listagem do modelo R9002TOTAPURDEC"),
             ("can_print_data_r9002totApurDec", u"Pode imprimir o conteúdo do modelo R9002TOTAPURDEC"), )
-            
+
         ordering = [
             'r9002_infototal',
             'perapurdec',
@@ -236,17 +236,17 @@ class r9002totApurDec(SoftDeletionModel):
 class r9002totApurDecSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9002totApurDec
         fields = '__all__'
 
 
 class r9002totApurDia(SoftDeletionModel):
 
-    r9002_infototal = models.ForeignKey('r9002.r9002infoTotal', 
+    r9002_infototal = models.ForeignKey('r9002.r9002infoTotal',
         related_name='%(class)s_r9002_infototal', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r9002_infototal.evento()
     perapurdia = models.IntegerField(null=True, )
     crdia = models.CharField(max_length=6, null=True, )
@@ -254,12 +254,12 @@ class r9002totApurDia(SoftDeletionModel):
     vlrcrdia = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrbasecrdiasusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrcrdiasusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r9002_infototal), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -267,24 +267,24 @@ class r9002totApurDia(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador das bases de cálculo e das retenções dos tributos com período de apuração diário'
-        db_table = r'r9002_totapurdia'       
+        db_table = r'r9002_totapurdia'
         managed = True # r9002_totapurdia #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9002totApurDia", u"Pode ver listagem do modelo R9002TOTAPURDIA"),
             ("can_see_data_r9002totApurDia", u"Pode visualizar o conteúdo do modelo R9002TOTAPURDIA"),
             ("can_see_menu_r9002totApurDia", u"Pode visualizar no menu o modelo R9002TOTAPURDIA"),
             ("can_print_list_r9002totApurDia", u"Pode imprimir listagem do modelo R9002TOTAPURDIA"),
             ("can_print_data_r9002totApurDia", u"Pode imprimir o conteúdo do modelo R9002TOTAPURDIA"), )
-            
+
         ordering = [
             'r9002_infototal',
             'perapurdia',
@@ -297,29 +297,29 @@ class r9002totApurDia(SoftDeletionModel):
 class r9002totApurDiaSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9002totApurDia
         fields = '__all__'
 
 
 class r9002totApurMen(SoftDeletionModel):
 
-    r9002_infototal = models.ForeignKey('r9002.r9002infoTotal', 
+    r9002_infototal = models.ForeignKey('r9002.r9002infoTotal',
         related_name='%(class)s_r9002_infototal', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r9002_infototal.evento()
     crmen = models.CharField(max_length=6, null=True, )
     vlrbasecrmen = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcrmen = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrbasecrmensusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrcrmensusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r9002_infototal), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -327,24 +327,24 @@ class r9002totApurMen(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador das bases de cálculo e das retenções dos tributos com período de apuração mensal'
-        db_table = r'r9002_totapurmen'       
+        db_table = r'r9002_totapurmen'
         managed = True # r9002_totapurmen #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9002totApurMen", u"Pode ver listagem do modelo R9002TOTAPURMEN"),
             ("can_see_data_r9002totApurMen", u"Pode visualizar o conteúdo do modelo R9002TOTAPURMEN"),
             ("can_see_menu_r9002totApurMen", u"Pode visualizar no menu o modelo R9002TOTAPURMEN"),
             ("can_print_list_r9002totApurMen", u"Pode imprimir listagem do modelo R9002TOTAPURMEN"),
             ("can_print_data_r9002totApurMen", u"Pode imprimir o conteúdo do modelo R9002TOTAPURMEN"), )
-            
+
         ordering = [
             'r9002_infototal',
             'crmen',
@@ -356,17 +356,17 @@ class r9002totApurMen(SoftDeletionModel):
 class r9002totApurMenSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9002totApurMen
         fields = '__all__'
 
 
 class r9002totApurQui(SoftDeletionModel):
 
-    r9002_infototal = models.ForeignKey('r9002.r9002infoTotal', 
+    r9002_infototal = models.ForeignKey('r9002.r9002infoTotal',
         related_name='%(class)s_r9002_infototal', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r9002_infototal.evento()
     perapurqui = models.IntegerField(choices=CHOICES_R9002_PERAPURQUI, null=True, )
     crqui = models.CharField(max_length=6, null=True, )
@@ -374,12 +374,12 @@ class r9002totApurQui(SoftDeletionModel):
     vlrcrqui = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrbasecrquisusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrcrquisusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r9002_infototal), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -387,24 +387,24 @@ class r9002totApurQui(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal'
-        db_table = r'r9002_totapurqui'       
+        db_table = r'r9002_totapurqui'
         managed = True # r9002_totapurqui #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9002totApurQui", u"Pode ver listagem do modelo R9002TOTAPURQUI"),
             ("can_see_data_r9002totApurQui", u"Pode visualizar o conteúdo do modelo R9002TOTAPURQUI"),
             ("can_see_menu_r9002totApurQui", u"Pode visualizar no menu o modelo R9002TOTAPURQUI"),
             ("can_print_list_r9002totApurQui", u"Pode imprimir listagem do modelo R9002TOTAPURQUI"),
             ("can_print_data_r9002totApurQui", u"Pode imprimir o conteúdo do modelo R9002TOTAPURQUI"), )
-            
+
         ordering = [
             'r9002_infototal',
             'perapurqui',
@@ -417,17 +417,17 @@ class r9002totApurQui(SoftDeletionModel):
 class r9002totApurQuiSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9002totApurQui
         fields = '__all__'
 
 
 class r9002totApurSem(SoftDeletionModel):
 
-    r9002_infototal = models.ForeignKey('r9002.r9002infoTotal', 
+    r9002_infototal = models.ForeignKey('r9002.r9002infoTotal',
         related_name='%(class)s_r9002_infototal', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r9002_infototal.evento()
     perapursem = models.IntegerField(null=True, )
     crsem = models.CharField(max_length=6, null=True, )
@@ -435,12 +435,12 @@ class r9002totApurSem(SoftDeletionModel):
     vlrcrsem = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrbasecrsemsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrcrsemsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r9002_infototal), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -448,24 +448,24 @@ class r9002totApurSem(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal'
-        db_table = r'r9002_totapursem'       
+        db_table = r'r9002_totapursem'
         managed = True # r9002_totapursem #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9002totApurSem", u"Pode ver listagem do modelo R9002TOTAPURSEM"),
             ("can_see_data_r9002totApurSem", u"Pode visualizar o conteúdo do modelo R9002TOTAPURSEM"),
             ("can_see_menu_r9002totApurSem", u"Pode visualizar no menu o modelo R9002TOTAPURSEM"),
             ("can_print_list_r9002totApurSem", u"Pode imprimir listagem do modelo R9002TOTAPURSEM"),
             ("can_print_data_r9002totApurSem", u"Pode imprimir o conteúdo do modelo R9002TOTAPURSEM"), )
-            
+
         ordering = [
             'r9002_infototal',
             'perapursem',
@@ -478,6 +478,6 @@ class r9002totApurSem(SoftDeletionModel):
 class r9002totApurSemSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9002totApurSem
         fields = '__all__'

@@ -67,18 +67,18 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s2416homologTC(SoftDeletionModel):
 
-    s2416_evtcdbenalt = models.ForeignKey('esocial.s2416evtCdBenAlt', 
+    s2416_evtcdbenalt = models.ForeignKey('esocial.s2416evtCdBenAlt',
         related_name='%(class)s_s2416_evtcdbenalt', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2416_evtcdbenalt.evento()
     nratolegal = models.CharField(max_length=20, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2416_evtcdbenalt), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -86,24 +86,24 @@ class s2416homologTC(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas'
-        db_table = r's2416_homologtc'       
+        db_table = r's2416_homologtc'
         managed = True # s2416_homologtc #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2416homologTC", u"Pode ver listagem do modelo S2416HOMOLOGTC"),
             ("can_see_data_s2416homologTC", u"Pode visualizar o conteúdo do modelo S2416HOMOLOGTC"),
             ("can_see_menu_s2416homologTC", u"Pode visualizar no menu o modelo S2416HOMOLOGTC"),
             ("can_print_list_s2416homologTC", u"Pode imprimir listagem do modelo S2416HOMOLOGTC"),
             ("can_print_data_s2416homologTC", u"Pode imprimir o conteúdo do modelo S2416HOMOLOGTC"), )
-            
+
         ordering = [
             's2416_evtcdbenalt',
             'nratolegal',]
@@ -113,28 +113,28 @@ class s2416homologTC(SoftDeletionModel):
 class s2416homologTCSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2416homologTC
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2416infoPenMorte(SoftDeletionModel):
 
-    s2416_evtcdbenalt = models.ForeignKey('esocial.s2416evtCdBenAlt', 
+    s2416_evtcdbenalt = models.ForeignKey('esocial.s2416evtCdBenAlt',
         related_name='%(class)s_s2416_evtcdbenalt', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2416_evtcdbenalt.evento()
     tppenmorte = models.IntegerField(choices=CHOICES_S2416_TPPENMORTE, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2416_evtcdbenalt), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -142,24 +142,24 @@ class s2416infoPenMorte(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações relativas a pensão por morte'
-        db_table = r's2416_infopenmorte'       
+        db_table = r's2416_infopenmorte'
         managed = True # s2416_infopenmorte #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2416infoPenMorte", u"Pode ver listagem do modelo S2416INFOPENMORTE"),
             ("can_see_data_s2416infoPenMorte", u"Pode visualizar o conteúdo do modelo S2416INFOPENMORTE"),
             ("can_see_menu_s2416infoPenMorte", u"Pode visualizar no menu o modelo S2416INFOPENMORTE"),
             ("can_print_list_s2416infoPenMorte", u"Pode imprimir listagem do modelo S2416INFOPENMORTE"),
             ("can_print_data_s2416infoPenMorte", u"Pode imprimir o conteúdo do modelo S2416INFOPENMORTE"), )
-            
+
         ordering = [
             's2416_evtcdbenalt',
             'tppenmorte',]
@@ -169,29 +169,29 @@ class s2416infoPenMorte(SoftDeletionModel):
 class s2416infoPenMorteSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2416infoPenMorte
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2416suspensao(SoftDeletionModel):
 
-    s2416_evtcdbenalt = models.ForeignKey('esocial.s2416evtCdBenAlt', 
+    s2416_evtcdbenalt = models.ForeignKey('esocial.s2416evtCdBenAlt',
         related_name='%(class)s_s2416_evtcdbenalt', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2416_evtcdbenalt.evento()
     mtvsuspensao = models.CharField(choices=CHOICES_S2416_MTVSUSPENSAO, max_length=2, null=True, )
     dscsuspensao = models.CharField(max_length=255, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2416_evtcdbenalt), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -199,24 +199,24 @@ class s2416suspensao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações referentes à suspensão do benefício'
-        db_table = r's2416_suspensao'       
+        db_table = r's2416_suspensao'
         managed = True # s2416_suspensao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2416suspensao", u"Pode ver listagem do modelo S2416SUSPENSAO"),
             ("can_see_data_s2416suspensao", u"Pode visualizar o conteúdo do modelo S2416SUSPENSAO"),
             ("can_see_menu_s2416suspensao", u"Pode visualizar no menu o modelo S2416SUSPENSAO"),
             ("can_print_list_s2416suspensao", u"Pode imprimir listagem do modelo S2416SUSPENSAO"),
             ("can_print_data_s2416suspensao", u"Pode imprimir o conteúdo do modelo S2416SUSPENSAO"), )
-            
+
         ordering = [
             's2416_evtcdbenalt',
             'mtvsuspensao',]
@@ -226,9 +226,9 @@ class s2416suspensao(SoftDeletionModel):
 class s2416suspensaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2416suspensao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

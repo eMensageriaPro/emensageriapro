@@ -67,10 +67,10 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s1060alteracao(SoftDeletionModel):
 
-    s1060_evttabambiente = models.ForeignKey('esocial.s1060evtTabAmbiente', 
+    s1060_evttabambiente = models.ForeignKey('esocial.s1060evtTabAmbiente',
         related_name='%(class)s_s1060_evttabambiente', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1060_evttabambiente.evento()
     codamb = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
@@ -81,12 +81,12 @@ class s1060alteracao(SoftDeletionModel):
     tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, blank=True, null=True, )
     nrinsc = models.CharField(max_length=15, blank=True, null=True, )
     codlotacao = models.CharField(max_length=30, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1060_evttabambiente), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -94,24 +94,24 @@ class s1060alteracao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Alteração das informações'
-        db_table = r's1060_alteracao'       
+        db_table = r's1060_alteracao'
         managed = True # s1060_alteracao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1060alteracao", u"Pode ver listagem do modelo S1060ALTERACAO"),
             ("can_see_data_s1060alteracao", u"Pode visualizar o conteúdo do modelo S1060ALTERACAO"),
             ("can_see_menu_s1060alteracao", u"Pode visualizar no menu o modelo S1060ALTERACAO"),
             ("can_print_list_s1060alteracao", u"Pode imprimir listagem do modelo S1060ALTERACAO"),
             ("can_print_data_s1060alteracao", u"Pode imprimir o conteúdo do modelo S1060ALTERACAO"), )
-            
+
         ordering = [
             's1060_evttabambiente',
             'codamb',
@@ -125,29 +125,29 @@ class s1060alteracao(SoftDeletionModel):
 class s1060alteracaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1060alteracao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1060alteracaonovaValidade(SoftDeletionModel):
 
-    s1060_alteracao = models.ForeignKey('s1060.s1060alteracao', 
+    s1060_alteracao = models.ForeignKey('s1060.s1060alteracao',
         related_name='%(class)s_s1060_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1060_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1060_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -155,24 +155,24 @@ class s1060alteracaonovaValidade(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
-        db_table = r's1060_alteracao_novavalidade'       
+        db_table = r's1060_alteracao_novavalidade'
         managed = True # s1060_alteracao_novavalidade #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1060alteracaonovaValidade", u"Pode ver listagem do modelo S1060ALTERACAONOVAVALIDADE"),
             ("can_see_data_s1060alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1060ALTERACAONOVAVALIDADE"),
             ("can_see_menu_s1060alteracaonovaValidade", u"Pode visualizar no menu o modelo S1060ALTERACAONOVAVALIDADE"),
             ("can_print_list_s1060alteracaonovaValidade", u"Pode imprimir listagem do modelo S1060ALTERACAONOVAVALIDADE"),
             ("can_print_data_s1060alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1060ALTERACAONOVAVALIDADE"), )
-            
+
         ordering = [
             's1060_alteracao',
             'inivalid',]
@@ -182,30 +182,30 @@ class s1060alteracaonovaValidade(SoftDeletionModel):
 class s1060alteracaonovaValidadeSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1060alteracaonovaValidade
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1060exclusao(SoftDeletionModel):
 
-    s1060_evttabambiente = models.ForeignKey('esocial.s1060evtTabAmbiente', 
+    s1060_evttabambiente = models.ForeignKey('esocial.s1060evtTabAmbiente',
         related_name='%(class)s_s1060_evttabambiente', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1060_evttabambiente.evento()
     codamb = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1060_evttabambiente), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -213,24 +213,24 @@ class s1060exclusao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Exclusão das informações'
-        db_table = r's1060_exclusao'       
+        db_table = r's1060_exclusao'
         managed = True # s1060_exclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1060exclusao", u"Pode ver listagem do modelo S1060EXCLUSAO"),
             ("can_see_data_s1060exclusao", u"Pode visualizar o conteúdo do modelo S1060EXCLUSAO"),
             ("can_see_menu_s1060exclusao", u"Pode visualizar no menu o modelo S1060EXCLUSAO"),
             ("can_print_list_s1060exclusao", u"Pode imprimir listagem do modelo S1060EXCLUSAO"),
             ("can_print_data_s1060exclusao", u"Pode imprimir o conteúdo do modelo S1060EXCLUSAO"), )
-            
+
         ordering = [
             's1060_evttabambiente',
             'codamb',
@@ -241,20 +241,20 @@ class s1060exclusao(SoftDeletionModel):
 class s1060exclusaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1060exclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1060inclusao(SoftDeletionModel):
 
-    s1060_evttabambiente = models.ForeignKey('esocial.s1060evtTabAmbiente', 
+    s1060_evttabambiente = models.ForeignKey('esocial.s1060evtTabAmbiente',
         related_name='%(class)s_s1060_evttabambiente', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1060_evttabambiente.evento()
     codamb = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
@@ -265,12 +265,12 @@ class s1060inclusao(SoftDeletionModel):
     tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, blank=True, null=True, )
     nrinsc = models.CharField(max_length=15, blank=True, null=True, )
     codlotacao = models.CharField(max_length=30, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1060_evttabambiente), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -278,24 +278,24 @@ class s1060inclusao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Inclusão de novas informações'
-        db_table = r's1060_inclusao'       
+        db_table = r's1060_inclusao'
         managed = True # s1060_inclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1060inclusao", u"Pode ver listagem do modelo S1060INCLUSAO"),
             ("can_see_data_s1060inclusao", u"Pode visualizar o conteúdo do modelo S1060INCLUSAO"),
             ("can_see_menu_s1060inclusao", u"Pode visualizar no menu o modelo S1060INCLUSAO"),
             ("can_print_list_s1060inclusao", u"Pode imprimir listagem do modelo S1060INCLUSAO"),
             ("can_print_data_s1060inclusao", u"Pode imprimir o conteúdo do modelo S1060INCLUSAO"), )
-            
+
         ordering = [
             's1060_evttabambiente',
             'codamb',
@@ -309,9 +309,9 @@ class s1060inclusao(SoftDeletionModel):
 class s1060inclusaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1060inclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

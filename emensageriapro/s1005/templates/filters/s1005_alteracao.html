@@ -157,11 +157,32 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>CNAE preponderante</label>
-    <div name="cnaeprep" class="input-group" style="width: 100%;">
-      <input type="text" name="cnaeprep" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'cnaeprep' }}">
-    </div>
+    <input type="text" id="txt_cnaeprep" name="txt_cnaeprep" class="form-control" value="{{ dict_fields|get_value_from_dict:'cnaeprep' }}">
+    <input type="hidden" id="id_cnaeprep" name="cnaeprep" value="{{ dict_fields|get_value_from_dict:'cnaeprep'|valor }}">
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_cnaeprep').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/82/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_cnaeprep').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
 <!-- fim__s1005_alteracao__cnaeprep -->
 
 <!-- inicio__s1005_alteracao__aliqgilrat -->

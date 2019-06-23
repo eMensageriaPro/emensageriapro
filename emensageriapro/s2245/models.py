@@ -67,23 +67,23 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s2245ideProfResp(SoftDeletionModel):
 
-    s2245_evttreicap = models.ForeignKey('esocial.s2245evtTreiCap', 
+    s2245_evttreicap = models.ForeignKey('esocial.s2245evtTreiCap',
         related_name='%(class)s_s2245_evttreicap', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2245_evttreicap.evento()
     cpfprof = models.CharField(max_length=11, blank=True, null=True, )
     nmprof = models.CharField(max_length=70, null=True, )
     tpprof = models.IntegerField(choices=CHOICES_S2245_TPPROF, null=True, )
     formprof = models.CharField(max_length=255, null=True, )
-    codcbo = models.CharField(max_length=6, null=True, )
+    codcbo = models.TextField(null=True, )
     nacprof = models.IntegerField(choices=CHOICES_S2245_NACPROF, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2245_evttreicap), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -91,24 +91,24 @@ class s2245ideProfResp(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações relativas ao profissional responsável pelo treinamento/capacitação'
-        db_table = r's2245_ideprofresp'       
+        db_table = r's2245_ideprofresp'
         managed = True # s2245_ideprofresp #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2245ideProfResp", u"Pode ver listagem do modelo S2245IDEPROFRESP"),
             ("can_see_data_s2245ideProfResp", u"Pode visualizar o conteúdo do modelo S2245IDEPROFRESP"),
             ("can_see_menu_s2245ideProfResp", u"Pode visualizar no menu o modelo S2245IDEPROFRESP"),
             ("can_print_list_s2245ideProfResp", u"Pode imprimir listagem do modelo S2245IDEPROFRESP"),
             ("can_print_data_s2245ideProfResp", u"Pode imprimir o conteúdo do modelo S2245IDEPROFRESP"), )
-            
+
         ordering = [
             's2245_evttreicap',
             'nmprof',
@@ -122,9 +122,9 @@ class s2245ideProfResp(SoftDeletionModel):
 class s2245ideProfRespSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2245ideProfResp
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

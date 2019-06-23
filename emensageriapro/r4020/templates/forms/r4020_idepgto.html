@@ -51,7 +51,7 @@
         <input type="text" 
                id="txt_natrend" 
                name="txt_natrend" class="form-control" 
-               value="{% if r4020_idepgto.natrend %}{{ r4020_idepgto.natrend|get_opcoes_titulo:682 }}{% endif %}" 
+               value="{% if r4020_idepgto.natrend %}{{ r4020_idepgto.natrend|get_opcoes_titulo:685 }}{% endif %}" 
                {% if r4020_idepgto_form.natrend.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if r4020_idepgto_form.natrend.field.widget.attrs.required %} required="required"{% endif %}
                {% if r4020_idepgto_form.natrend.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -65,7 +65,7 @@
   $(document).ready(function(e){
     $('#txt_natrend').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/682/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/685/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -115,7 +115,7 @@
         <input type="text" 
                id="txt_paisresid" 
                name="txt_paisresid" class="form-control" 
-               value="{% if r4020_idepgto.paisresid %}{{ r4020_idepgto.paisresid|get_opcoes_titulo:645 }}{% endif %}" 
+               value="{% if r4020_idepgto.paisresid %}{{ r4020_idepgto.paisresid|get_opcoes_titulo:648 }}{% endif %}" 
                {% if r4020_idepgto_form.paisresid.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if r4020_idepgto_form.paisresid.field.widget.attrs.required %} required="required"{% endif %}
                {% if r4020_idepgto_form.paisresid.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -129,7 +129,7 @@
   $(document).ready(function(e){
     $('#txt_paisresid').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/645/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/648/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,

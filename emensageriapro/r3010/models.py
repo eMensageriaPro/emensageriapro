@@ -67,10 +67,10 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class r3010boletim(SoftDeletionModel):
 
-    r3010_evtespdesportivo = models.ForeignKey('efdreinf.r3010evtEspDesportivo', 
+    r3010_evtespdesportivo = models.ForeignKey('efdreinf.r3010evtEspDesportivo',
         related_name='%(class)s_r3010_evtespdesportivo', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r3010_evtespdesportivo.evento()
     nrboletim = models.CharField(max_length=4, null=True, )
     tpcompeticao = models.IntegerField(choices=CHOICES_R3010_TPCOMPETICAO, null=True, )
@@ -81,16 +81,16 @@ class r3010boletim(SoftDeletionModel):
     cnpjvisitante = models.CharField(max_length=14, blank=True, null=True, )
     nomevisitante = models.CharField(max_length=80, blank=True, null=True, )
     pracadesportiva = models.CharField(max_length=100, null=True, )
-    codmunic = models.TextField(blank=True, null=True, )
+    codmunic = models.IntegerField(blank=True, null=True, )
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
     qtdepagantes = models.IntegerField(null=True, )
     qtdenaopagantes = models.IntegerField(null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r3010_evtespdesportivo), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -98,24 +98,24 @@ class r3010boletim(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Boletim do Espetáculo Desportivo'
-        db_table = r'r3010_boletim'       
+        db_table = r'r3010_boletim'
         managed = True # r3010_boletim #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r3010boletim", u"Pode ver listagem do modelo R3010BOLETIM"),
             ("can_see_data_r3010boletim", u"Pode visualizar o conteúdo do modelo R3010BOLETIM"),
             ("can_see_menu_r3010boletim", u"Pode visualizar no menu o modelo R3010BOLETIM"),
             ("can_print_list_r3010boletim", u"Pode imprimir listagem do modelo R3010BOLETIM"),
             ("can_print_data_r3010boletim", u"Pode imprimir o conteúdo do modelo R3010BOLETIM"), )
-            
+
         ordering = [
             'r3010_evtespdesportivo',
             'nrboletim',
@@ -134,31 +134,31 @@ class r3010boletim(SoftDeletionModel):
 class r3010boletimSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r3010boletim
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r3010infoProc(SoftDeletionModel):
 
-    r3010_evtespdesportivo = models.ForeignKey('efdreinf.r3010evtEspDesportivo', 
+    r3010_evtespdesportivo = models.ForeignKey('efdreinf.r3010evtEspDesportivo',
         related_name='%(class)s_r3010_evtespdesportivo', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r3010_evtespdesportivo.evento()
     tpproc = models.IntegerField(choices=CHOICES_R3010_TPPROC, null=True, )
     nrproc = models.CharField(max_length=21, null=True, )
     codsusp = models.IntegerField(blank=True, null=True, )
     vlrcpsusp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r3010_evtespdesportivo), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -166,24 +166,24 @@ class r3010infoProc(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de processos relacionados a não retenção de contribuição previdenciária'
-        db_table = r'r3010_infoproc'       
+        db_table = r'r3010_infoproc'
         managed = True # r3010_infoproc #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r3010infoProc", u"Pode ver listagem do modelo R3010INFOPROC"),
             ("can_see_data_r3010infoProc", u"Pode visualizar o conteúdo do modelo R3010INFOPROC"),
             ("can_see_menu_r3010infoProc", u"Pode visualizar no menu o modelo R3010INFOPROC"),
             ("can_print_list_r3010infoProc", u"Pode imprimir listagem do modelo R3010INFOPROC"),
             ("can_print_data_r3010infoProc", u"Pode imprimir o conteúdo do modelo R3010INFOPROC"), )
-            
+
         ordering = [
             'r3010_evtespdesportivo',
             'tpproc',
@@ -195,30 +195,30 @@ class r3010infoProc(SoftDeletionModel):
 class r3010infoProcSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r3010infoProc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r3010outrasReceitas(SoftDeletionModel):
 
-    r3010_boletim = models.ForeignKey('r3010.r3010boletim', 
+    r3010_boletim = models.ForeignKey('r3010.r3010boletim',
         related_name='%(class)s_r3010_boletim', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r3010_boletim.evento()
     tpreceita = models.IntegerField(choices=CHOICES_R3010_TPRECEITA, null=True, )
     vlrreceita = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     descreceita = models.CharField(max_length=20, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r3010_boletim), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -226,24 +226,24 @@ class r3010outrasReceitas(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Outras receitas do espetáculo'
-        db_table = r'r3010_outrasreceitas'       
+        db_table = r'r3010_outrasreceitas'
         managed = True # r3010_outrasreceitas #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r3010outrasReceitas", u"Pode ver listagem do modelo R3010OUTRASRECEITAS"),
             ("can_see_data_r3010outrasReceitas", u"Pode visualizar o conteúdo do modelo R3010OUTRASRECEITAS"),
             ("can_see_menu_r3010outrasReceitas", u"Pode visualizar no menu o modelo R3010OUTRASRECEITAS"),
             ("can_print_list_r3010outrasReceitas", u"Pode imprimir listagem do modelo R3010OUTRASRECEITAS"),
             ("can_print_data_r3010outrasReceitas", u"Pode imprimir o conteúdo do modelo R3010OUTRASRECEITAS"), )
-            
+
         ordering = [
             'r3010_boletim',
             'tpreceita',
@@ -255,20 +255,20 @@ class r3010outrasReceitas(SoftDeletionModel):
 class r3010outrasReceitasSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r3010outrasReceitas
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r3010receitaIngressos(SoftDeletionModel):
 
-    r3010_boletim = models.ForeignKey('r3010.r3010boletim', 
+    r3010_boletim = models.ForeignKey('r3010.r3010boletim',
         related_name='%(class)s_r3010_boletim', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r3010_boletim.evento()
     tpingresso = models.IntegerField(choices=CHOICES_R3010_TPINGRESSO, null=True, )
     descingr = models.CharField(max_length=30, null=True, )
@@ -277,12 +277,12 @@ class r3010receitaIngressos(SoftDeletionModel):
     qtdeingrdev = models.IntegerField(null=True, )
     precoindiv = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrtotal = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r3010_boletim), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -290,24 +290,24 @@ class r3010receitaIngressos(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Receita da Venda de Ingressos'
-        db_table = r'r3010_receitaingressos'       
+        db_table = r'r3010_receitaingressos'
         managed = True # r3010_receitaingressos #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r3010receitaIngressos", u"Pode ver listagem do modelo R3010RECEITAINGRESSOS"),
             ("can_see_data_r3010receitaIngressos", u"Pode visualizar o conteúdo do modelo R3010RECEITAINGRESSOS"),
             ("can_see_menu_r3010receitaIngressos", u"Pode visualizar no menu o modelo R3010RECEITAINGRESSOS"),
             ("can_print_list_r3010receitaIngressos", u"Pode imprimir listagem do modelo R3010RECEITAINGRESSOS"),
             ("can_print_data_r3010receitaIngressos", u"Pode imprimir o conteúdo do modelo R3010RECEITAINGRESSOS"), )
-            
+
         ordering = [
             'r3010_boletim',
             'tpingresso',
@@ -323,9 +323,9 @@ class r3010receitaIngressos(SoftDeletionModel):
 class r3010receitaIngressosSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r3010receitaIngressos
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

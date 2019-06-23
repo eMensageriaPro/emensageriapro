@@ -67,22 +67,22 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s1040alteracao(SoftDeletionModel):
 
-    s1040_evttabfuncao = models.ForeignKey('esocial.s1040evtTabFuncao', 
+    s1040_evttabfuncao = models.ForeignKey('esocial.s1040evtTabFuncao',
         related_name='%(class)s_s1040_evttabfuncao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1040_evttabfuncao.evento()
     codfuncao = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     dscfuncao = models.CharField(max_length=100, null=True, )
-    codcbo = models.CharField(max_length=6, null=True, )
-    
+    codcbo = models.TextField(null=True, )
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1040_evttabfuncao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -90,24 +90,24 @@ class s1040alteracao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Alteração das informações'
-        db_table = r's1040_alteracao'       
+        db_table = r's1040_alteracao'
         managed = True # s1040_alteracao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1040alteracao", u"Pode ver listagem do modelo S1040ALTERACAO"),
             ("can_see_data_s1040alteracao", u"Pode visualizar o conteúdo do modelo S1040ALTERACAO"),
             ("can_see_menu_s1040alteracao", u"Pode visualizar no menu o modelo S1040ALTERACAO"),
             ("can_print_list_s1040alteracao", u"Pode imprimir listagem do modelo S1040ALTERACAO"),
             ("can_print_data_s1040alteracao", u"Pode imprimir o conteúdo do modelo S1040ALTERACAO"), )
-            
+
         ordering = [
             's1040_evttabfuncao',
             'codfuncao',
@@ -120,29 +120,29 @@ class s1040alteracao(SoftDeletionModel):
 class s1040alteracaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1040alteracao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1040alteracaonovaValidade(SoftDeletionModel):
 
-    s1040_alteracao = models.ForeignKey('s1040.s1040alteracao', 
+    s1040_alteracao = models.ForeignKey('s1040.s1040alteracao',
         related_name='%(class)s_s1040_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1040_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1040_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -150,24 +150,24 @@ class s1040alteracaonovaValidade(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
-        db_table = r's1040_alteracao_novavalidade'       
+        db_table = r's1040_alteracao_novavalidade'
         managed = True # s1040_alteracao_novavalidade #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1040alteracaonovaValidade", u"Pode ver listagem do modelo S1040ALTERACAONOVAVALIDADE"),
             ("can_see_data_s1040alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1040ALTERACAONOVAVALIDADE"),
             ("can_see_menu_s1040alteracaonovaValidade", u"Pode visualizar no menu o modelo S1040ALTERACAONOVAVALIDADE"),
             ("can_print_list_s1040alteracaonovaValidade", u"Pode imprimir listagem do modelo S1040ALTERACAONOVAVALIDADE"),
             ("can_print_data_s1040alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1040ALTERACAONOVAVALIDADE"), )
-            
+
         ordering = [
             's1040_alteracao',
             'inivalid',]
@@ -177,30 +177,30 @@ class s1040alteracaonovaValidade(SoftDeletionModel):
 class s1040alteracaonovaValidadeSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1040alteracaonovaValidade
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1040exclusao(SoftDeletionModel):
 
-    s1040_evttabfuncao = models.ForeignKey('esocial.s1040evtTabFuncao', 
+    s1040_evttabfuncao = models.ForeignKey('esocial.s1040evtTabFuncao',
         related_name='%(class)s_s1040_evttabfuncao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1040_evttabfuncao.evento()
     codfuncao = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1040_evttabfuncao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -208,24 +208,24 @@ class s1040exclusao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Exclusão das informações'
-        db_table = r's1040_exclusao'       
+        db_table = r's1040_exclusao'
         managed = True # s1040_exclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1040exclusao", u"Pode ver listagem do modelo S1040EXCLUSAO"),
             ("can_see_data_s1040exclusao", u"Pode visualizar o conteúdo do modelo S1040EXCLUSAO"),
             ("can_see_menu_s1040exclusao", u"Pode visualizar no menu o modelo S1040EXCLUSAO"),
             ("can_print_list_s1040exclusao", u"Pode imprimir listagem do modelo S1040EXCLUSAO"),
             ("can_print_data_s1040exclusao", u"Pode imprimir o conteúdo do modelo S1040EXCLUSAO"), )
-            
+
         ordering = [
             's1040_evttabfuncao',
             'codfuncao',
@@ -236,32 +236,32 @@ class s1040exclusao(SoftDeletionModel):
 class s1040exclusaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1040exclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1040inclusao(SoftDeletionModel):
 
-    s1040_evttabfuncao = models.ForeignKey('esocial.s1040evtTabFuncao', 
+    s1040_evttabfuncao = models.ForeignKey('esocial.s1040evtTabFuncao',
         related_name='%(class)s_s1040_evttabfuncao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1040_evttabfuncao.evento()
     codfuncao = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     dscfuncao = models.CharField(max_length=100, null=True, )
-    codcbo = models.CharField(max_length=6, null=True, )
-    
+    codcbo = models.TextField(null=True, )
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1040_evttabfuncao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -269,24 +269,24 @@ class s1040inclusao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Inclusão de novas informações'
-        db_table = r's1040_inclusao'       
+        db_table = r's1040_inclusao'
         managed = True # s1040_inclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1040inclusao", u"Pode ver listagem do modelo S1040INCLUSAO"),
             ("can_see_data_s1040inclusao", u"Pode visualizar o conteúdo do modelo S1040INCLUSAO"),
             ("can_see_menu_s1040inclusao", u"Pode visualizar no menu o modelo S1040INCLUSAO"),
             ("can_print_list_s1040inclusao", u"Pode imprimir listagem do modelo S1040INCLUSAO"),
             ("can_print_data_s1040inclusao", u"Pode imprimir o conteúdo do modelo S1040INCLUSAO"), )
-            
+
         ordering = [
             's1040_evttabfuncao',
             'codfuncao',
@@ -299,9 +299,9 @@ class s1040inclusao(SoftDeletionModel):
 class s1040inclusaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1040inclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

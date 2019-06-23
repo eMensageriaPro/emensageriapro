@@ -67,22 +67,22 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class r4020CSLL(SoftDeletionModel):
 
-    r4020_infopgto = models.ForeignKey('r4020.r4020infoPgto', 
+    r4020_infopgto = models.ForeignKey('r4020.r4020infoPgto',
         related_name='%(class)s_r4020_infopgto', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4020_infopgto.evento()
     vlrbasecsll = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcsll = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrbasencsll = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrncsll = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrdepcsll = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4020_infopgto), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -90,24 +90,24 @@ class r4020CSLL(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações relativas à CSLL'
-        db_table = r'r4020_csll'       
+        db_table = r'r4020_csll'
         managed = True # r4020_csll #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4020CSLL", u"Pode ver listagem do modelo R4020CSLL"),
             ("can_see_data_r4020CSLL", u"Pode visualizar o conteúdo do modelo R4020CSLL"),
             ("can_see_menu_r4020CSLL", u"Pode visualizar no menu o modelo R4020CSLL"),
             ("can_print_list_r4020CSLL", u"Pode imprimir listagem do modelo R4020CSLL"),
             ("can_print_data_r4020CSLL", u"Pode imprimir o conteúdo do modelo R4020CSLL"), )
-            
+
         ordering = [
             'r4020_infopgto',
             'vlrbasecsll',
@@ -118,32 +118,32 @@ class r4020CSLL(SoftDeletionModel):
 class r4020CSLLSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4020CSLL
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020Cofins(SoftDeletionModel):
 
-    r4020_infopgto = models.ForeignKey('r4020.r4020infoPgto', 
+    r4020_infopgto = models.ForeignKey('r4020.r4020infoPgto',
         related_name='%(class)s_r4020_infopgto', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4020_infopgto.evento()
     vlrbasecofins = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcofins = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrbasencofins = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrncofins = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrdepcofins = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4020_infopgto), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -151,24 +151,24 @@ class r4020Cofins(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações relativas à Cofins'
-        db_table = r'r4020_cofins'       
+        db_table = r'r4020_cofins'
         managed = True # r4020_cofins #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4020Cofins", u"Pode ver listagem do modelo R4020COFINS"),
             ("can_see_data_r4020Cofins", u"Pode visualizar o conteúdo do modelo R4020COFINS"),
             ("can_see_menu_r4020Cofins", u"Pode visualizar no menu o modelo R4020COFINS"),
             ("can_print_list_r4020Cofins", u"Pode imprimir listagem do modelo R4020COFINS"),
             ("can_print_data_r4020Cofins", u"Pode imprimir o conteúdo do modelo R4020COFINS"), )
-            
+
         ordering = [
             'r4020_infopgto',
             'vlrbasecofins',
@@ -179,28 +179,28 @@ class r4020Cofins(SoftDeletionModel):
 class r4020CofinsSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4020Cofins
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020FCI(SoftDeletionModel):
 
-    r4020_infopgto = models.ForeignKey('r4020.r4020infoPgto', 
+    r4020_infopgto = models.ForeignKey('r4020.r4020infoPgto',
         related_name='%(class)s_r4020_infopgto', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4020_infopgto.evento()
     nrinscfci = models.CharField(max_length=14, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4020_infopgto), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -208,24 +208,24 @@ class r4020FCI(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante'
-        db_table = r'r4020_fci'       
+        db_table = r'r4020_fci'
         managed = True # r4020_fci #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4020FCI", u"Pode ver listagem do modelo R4020FCI"),
             ("can_see_data_r4020FCI", u"Pode visualizar o conteúdo do modelo R4020FCI"),
             ("can_see_menu_r4020FCI", u"Pode visualizar no menu o modelo R4020FCI"),
             ("can_print_list_r4020FCI", u"Pode imprimir listagem do modelo R4020FCI"),
             ("can_print_data_r4020FCI", u"Pode imprimir o conteúdo do modelo R4020FCI"), )
-            
+
         ordering = [
             'r4020_infopgto',
             'nrinscfci',]
@@ -235,32 +235,32 @@ class r4020FCI(SoftDeletionModel):
 class r4020FCISerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4020FCI
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020IR(SoftDeletionModel):
 
-    r4020_infopgto = models.ForeignKey('r4020.r4020infoPgto', 
+    r4020_infopgto = models.ForeignKey('r4020.r4020infoPgto',
         related_name='%(class)s_r4020_infopgto', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4020_infopgto.evento()
     vlrbaseir = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrir = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrbasenir = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrnir = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrdepir = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4020_infopgto), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -268,24 +268,24 @@ class r4020IR(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações relativas ao Imposto de Renda'
-        db_table = r'r4020_ir'       
+        db_table = r'r4020_ir'
         managed = True # r4020_ir #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4020IR", u"Pode ver listagem do modelo R4020IR"),
             ("can_see_data_r4020IR", u"Pode visualizar o conteúdo do modelo R4020IR"),
             ("can_see_menu_r4020IR", u"Pode visualizar no menu o modelo R4020IR"),
             ("can_print_list_r4020IR", u"Pode imprimir listagem do modelo R4020IR"),
             ("can_print_data_r4020IR", u"Pode imprimir o conteúdo do modelo R4020IR"), )
-            
+
         ordering = [
             'r4020_infopgto',
             'vlrbaseir',
@@ -296,32 +296,32 @@ class r4020IR(SoftDeletionModel):
 class r4020IRSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4020IR
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020PP(SoftDeletionModel):
 
-    r4020_infopgto = models.ForeignKey('r4020.r4020infoPgto', 
+    r4020_infopgto = models.ForeignKey('r4020.r4020infoPgto',
         related_name='%(class)s_r4020_infopgto', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4020_infopgto.evento()
     vlrbasepp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrpp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrbasenpp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrnpp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrdeppp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4020_infopgto), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -329,24 +329,24 @@ class r4020PP(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações relativas ao PIS/PASEP'
-        db_table = r'r4020_pp'       
+        db_table = r'r4020_pp'
         managed = True # r4020_pp #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4020PP", u"Pode ver listagem do modelo R4020PP"),
             ("can_see_data_r4020PP", u"Pode visualizar o conteúdo do modelo R4020PP"),
             ("can_see_menu_r4020PP", u"Pode visualizar no menu o modelo R4020PP"),
             ("can_print_list_r4020PP", u"Pode imprimir listagem do modelo R4020PP"),
             ("can_print_data_r4020PP", u"Pode imprimir o conteúdo do modelo R4020PP"), )
-            
+
         ordering = [
             'r4020_infopgto',
             'vlrbasepp',
@@ -357,29 +357,29 @@ class r4020PP(SoftDeletionModel):
 class r4020PPSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4020PP
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020SCP(SoftDeletionModel):
 
-    r4020_infopgto = models.ForeignKey('r4020.r4020infoPgto', 
+    r4020_infopgto = models.ForeignKey('r4020.r4020infoPgto',
         related_name='%(class)s_r4020_infopgto', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4020_infopgto.evento()
     nrinscscp = models.CharField(max_length=14, null=True, )
     percscp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4020_infopgto), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -387,24 +387,24 @@ class r4020SCP(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo'
-        db_table = r'r4020_scp'       
+        db_table = r'r4020_scp'
         managed = True # r4020_scp #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4020SCP", u"Pode ver listagem do modelo R4020SCP"),
             ("can_see_data_r4020SCP", u"Pode visualizar o conteúdo do modelo R4020SCP"),
             ("can_see_menu_r4020SCP", u"Pode visualizar no menu o modelo R4020SCP"),
             ("can_print_list_r4020SCP", u"Pode imprimir listagem do modelo R4020SCP"),
             ("can_print_data_r4020SCP", u"Pode imprimir o conteúdo do modelo R4020SCP"), )
-            
+
         ordering = [
             'r4020_infopgto',
             'nrinscscp',
@@ -415,29 +415,29 @@ class r4020SCP(SoftDeletionModel):
 class r4020SCPSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4020SCP
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020despProcJud(SoftDeletionModel):
 
-    r4020_infoprocjud = models.ForeignKey('r4020.r4020infoProcJud', 
+    r4020_infoprocjud = models.ForeignKey('r4020.r4020infoProcJud',
         related_name='%(class)s_r4020_infoprocjud', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4020_infoprocjud.evento()
     vlrdespcustas = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrdespadvogados = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4020_infoprocjud), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -445,24 +445,24 @@ class r4020despProcJud(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento das despesas de processo judicial'
-        db_table = r'r4020_despprocjud'       
+        db_table = r'r4020_despprocjud'
         managed = True # r4020_despprocjud #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4020despProcJud", u"Pode ver listagem do modelo R4020DESPPROCJUD"),
             ("can_see_data_r4020despProcJud", u"Pode visualizar o conteúdo do modelo R4020DESPPROCJUD"),
             ("can_see_menu_r4020despProcJud", u"Pode visualizar no menu o modelo R4020DESPPROCJUD"),
             ("can_print_list_r4020despProcJud", u"Pode imprimir listagem do modelo R4020DESPPROCJUD"),
             ("can_print_data_r4020despProcJud", u"Pode imprimir o conteúdo do modelo R4020DESPPROCJUD"), )
-            
+
         ordering = [
             'r4020_infoprocjud',
             'vlrdespcustas',
@@ -473,30 +473,30 @@ class r4020despProcJud(SoftDeletionModel):
 class r4020despProcJudSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4020despProcJud
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020ideAdv(SoftDeletionModel):
 
-    r4020_despprocjud = models.ForeignKey('r4020.r4020despProcJud', 
+    r4020_despprocjud = models.ForeignKey('r4020.r4020despProcJud',
         related_name='%(class)s_r4020_despprocjud', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4020_despprocjud.evento()
     tpinscadv = models.IntegerField(choices=CHOICES_R4020_TPINSCADV, null=True, )
     nrinscadv = models.CharField(max_length=14, null=True, )
     vlradv = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4020_despprocjud), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -504,24 +504,24 @@ class r4020ideAdv(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Identificação do advogado'
-        db_table = r'r4020_ideadv'       
+        db_table = r'r4020_ideadv'
         managed = True # r4020_ideadv #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4020ideAdv", u"Pode ver listagem do modelo R4020IDEADV"),
             ("can_see_data_r4020ideAdv", u"Pode visualizar o conteúdo do modelo R4020IDEADV"),
             ("can_see_menu_r4020ideAdv", u"Pode visualizar no menu o modelo R4020IDEADV"),
             ("can_print_list_r4020ideAdv", u"Pode imprimir listagem do modelo R4020IDEADV"),
             ("can_print_data_r4020ideAdv", u"Pode imprimir o conteúdo do modelo R4020IDEADV"), )
-            
+
         ordering = [
             'r4020_despprocjud',
             'tpinscadv',
@@ -533,30 +533,30 @@ class r4020ideAdv(SoftDeletionModel):
 class r4020ideAdvSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4020ideAdv
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020idePgto(SoftDeletionModel):
 
-    r4020_evtretpj = models.ForeignKey('efdreinf.r4020evtRetPJ', 
+    r4020_evtretpj = models.ForeignKey('efdreinf.r4020evtRetPJ',
         related_name='%(class)s_r4020_evtretpj', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4020_evtretpj.evento()
     natrend = models.TextField(null=True, )
     paisresid = models.TextField(null=True, )
     observ = models.CharField(max_length=200, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4020_evtretpj), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -564,24 +564,24 @@ class r4020idePgto(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Identificação do rendimento'
-        db_table = r'r4020_idepgto'       
+        db_table = r'r4020_idepgto'
         managed = True # r4020_idepgto #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4020idePgto", u"Pode ver listagem do modelo R4020IDEPGTO"),
             ("can_see_data_r4020idePgto", u"Pode visualizar o conteúdo do modelo R4020IDEPGTO"),
             ("can_see_menu_r4020idePgto", u"Pode visualizar no menu o modelo R4020IDEPGTO"),
             ("can_print_list_r4020idePgto", u"Pode imprimir listagem do modelo R4020IDEPGTO"),
             ("can_print_data_r4020idePgto", u"Pode imprimir o conteúdo do modelo R4020IDEPGTO"), )
-            
+
         ordering = [
             'r4020_evtretpj',
             'natrend',
@@ -592,30 +592,30 @@ class r4020idePgto(SoftDeletionModel):
 class r4020idePgtoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4020idePgto
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020infoPgto(SoftDeletionModel):
 
-    r4020_idepgto = models.ForeignKey('r4020.r4020idePgto', 
+    r4020_idepgto = models.ForeignKey('r4020.r4020idePgto',
         related_name='%(class)s_r4020_idepgto', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4020_idepgto.evento()
     dtfg = models.DateField(null=True, )
     vlrtotalpag = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrtotalcred = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4020_idepgto), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -623,24 +623,24 @@ class r4020infoPgto(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações do Pagamento'
-        db_table = r'r4020_infopgto'       
+        db_table = r'r4020_infopgto'
         managed = True # r4020_infopgto #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4020infoPgto", u"Pode ver listagem do modelo R4020INFOPGTO"),
             ("can_see_data_r4020infoPgto", u"Pode visualizar o conteúdo do modelo R4020INFOPGTO"),
             ("can_see_menu_r4020infoPgto", u"Pode visualizar no menu o modelo R4020INFOPGTO"),
             ("can_print_list_r4020infoPgto", u"Pode imprimir listagem do modelo R4020INFOPGTO"),
             ("can_print_data_r4020infoPgto", u"Pode imprimir o conteúdo do modelo R4020INFOPGTO"), )
-            
+
         ordering = [
             'r4020_idepgto',
             'dtfg',
@@ -652,20 +652,20 @@ class r4020infoPgto(SoftDeletionModel):
 class r4020infoPgtoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4020infoPgto
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020infoPgtoExt(SoftDeletionModel):
 
-    r4020_idepgto = models.ForeignKey('r4020.r4020idePgto', 
+    r4020_idepgto = models.ForeignKey('r4020.r4020idePgto',
         related_name='%(class)s_r4020_idepgto', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4020_idepgto.evento()
     dsclograd = models.CharField(max_length=80, null=True, )
     nrlograd = models.CharField(max_length=10, blank=True, null=True, )
@@ -679,12 +679,12 @@ class r4020infoPgtoExt(SoftDeletionModel):
     nifbenef = models.CharField(max_length=20, blank=True, null=True, )
     relfontpg = models.IntegerField(choices=CHOICES_EFDREINFINFORMACOESBENEFICIARIOSEXTERIOR, null=True, )
     frmtribut = models.CharField(choices=CHOICES_EFDREINFRENDIMENTOSBENEFICIARIOSEXTERIORTRIBUTACAO, max_length=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4020_idepgto), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -692,24 +692,24 @@ class r4020infoPgtoExt(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações complementares relativas a pagamentos a residente fiscal no Exterior'
-        db_table = r'r4020_infopgtoext'       
+        db_table = r'r4020_infopgtoext'
         managed = True # r4020_infopgtoext #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4020infoPgtoExt", u"Pode ver listagem do modelo R4020INFOPGTOEXT"),
             ("can_see_data_r4020infoPgtoExt", u"Pode visualizar o conteúdo do modelo R4020INFOPGTOEXT"),
             ("can_see_menu_r4020infoPgtoExt", u"Pode visualizar no menu o modelo R4020INFOPGTOEXT"),
             ("can_print_list_r4020infoPgtoExt", u"Pode imprimir listagem do modelo R4020INFOPGTOEXT"),
             ("can_print_data_r4020infoPgtoExt", u"Pode imprimir o conteúdo do modelo R4020INFOPGTOEXT"), )
-            
+
         ordering = [
             'r4020_idepgto',
             'dsclograd',
@@ -722,30 +722,30 @@ class r4020infoPgtoExt(SoftDeletionModel):
 class r4020infoPgtoExtSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4020infoPgtoExt
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020infoProcJud(SoftDeletionModel):
 
-    r4020_infopgto = models.ForeignKey('r4020.r4020infoPgto', 
+    r4020_infopgto = models.ForeignKey('r4020.r4020infoPgto',
         related_name='%(class)s_r4020_infopgto', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4020_infopgto.evento()
     nrproc = models.CharField(max_length=21, null=True, )
     indorigemrecursos = models.IntegerField(choices=CHOICES_R4020_INDORIGEMRECURSOS, null=True, )
     desc = models.CharField(max_length=50, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4020_infopgto), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -753,24 +753,24 @@ class r4020infoProcJud(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial'
-        db_table = r'r4020_infoprocjud'       
+        db_table = r'r4020_infoprocjud'
         managed = True # r4020_infoprocjud #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4020infoProcJud", u"Pode ver listagem do modelo R4020INFOPROCJUD"),
             ("can_see_data_r4020infoProcJud", u"Pode visualizar o conteúdo do modelo R4020INFOPROCJUD"),
             ("can_see_menu_r4020infoProcJud", u"Pode visualizar no menu o modelo R4020INFOPROCJUD"),
             ("can_print_list_r4020infoProcJud", u"Pode imprimir listagem do modelo R4020INFOPROCJUD"),
             ("can_print_data_r4020infoProcJud", u"Pode imprimir o conteúdo do modelo R4020INFOPROCJUD"), )
-            
+
         ordering = [
             'r4020_infopgto',
             'nrproc',
@@ -781,20 +781,20 @@ class r4020infoProcJud(SoftDeletionModel):
 class r4020infoProcJudSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4020infoProcJud
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020infoProcRet(SoftDeletionModel):
 
-    r4020_infopgto = models.ForeignKey('r4020.r4020infoPgto', 
+    r4020_infopgto = models.ForeignKey('r4020.r4020infoPgto',
         related_name='%(class)s_r4020_infopgto', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4020_infopgto.evento()
     tpprocret = models.IntegerField(choices=CHOICES_R4020_TPPROCRET, null=True, )
     nrprocret = models.CharField(max_length=21, null=True, )
@@ -807,12 +807,12 @@ class r4020infoProcRet(SoftDeletionModel):
     depcofins = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     npp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     deppp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4020_infopgto), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -820,24 +820,24 @@ class r4020infoProcRet(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de processos relacionados a não retenção de tributos ou depósitos judiciais'
-        db_table = r'r4020_infoprocret'       
+        db_table = r'r4020_infoprocret'
         managed = True # r4020_infoprocret #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4020infoProcRet", u"Pode ver listagem do modelo R4020INFOPROCRET"),
             ("can_see_data_r4020infoProcRet", u"Pode visualizar o conteúdo do modelo R4020INFOPROCRET"),
             ("can_see_menu_r4020infoProcRet", u"Pode visualizar no menu o modelo R4020INFOPROCRET"),
             ("can_print_list_r4020infoProcRet", u"Pode imprimir listagem do modelo R4020INFOPROCRET"),
             ("can_print_data_r4020infoProcRet", u"Pode imprimir o conteúdo do modelo R4020INFOPROCRET"), )
-            
+
         ordering = [
             'r4020_infopgto',
             'tpprocret',
@@ -848,28 +848,28 @@ class r4020infoProcRet(SoftDeletionModel):
 class r4020infoProcRetSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4020infoProcRet
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020origemRec(SoftDeletionModel):
 
-    r4020_infoprocjud = models.ForeignKey('r4020.r4020infoProcJud', 
+    r4020_infoprocjud = models.ForeignKey('r4020.r4020infoProcJud',
         related_name='%(class)s_r4020_infoprocjud', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4020_infoprocjud.evento()
     cnpjorigrecurso = models.CharField(max_length=14, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4020_infoprocjud), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -877,24 +877,24 @@ class r4020origemRec(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações sobre a origem dos recursos'
-        db_table = r'r4020_origemrec'       
+        db_table = r'r4020_origemrec'
         managed = True # r4020_origemrec #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4020origemRec", u"Pode ver listagem do modelo R4020ORIGEMREC"),
             ("can_see_data_r4020origemRec", u"Pode visualizar o conteúdo do modelo R4020ORIGEMREC"),
             ("can_see_menu_r4020origemRec", u"Pode visualizar no menu o modelo R4020ORIGEMREC"),
             ("can_print_list_r4020origemRec", u"Pode imprimir listagem do modelo R4020ORIGEMREC"),
             ("can_print_data_r4020origemRec", u"Pode imprimir o conteúdo do modelo R4020ORIGEMREC"), )
-            
+
         ordering = [
             'r4020_infoprocjud',
             'cnpjorigrecurso',]
@@ -904,9 +904,9 @@ class r4020origemRec(SoftDeletionModel):
 class r4020origemRecSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4020origemRec
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

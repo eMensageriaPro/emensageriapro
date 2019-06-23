@@ -67,10 +67,10 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s1035alteracao(SoftDeletionModel):
 
-    s1035_evttabcarreira = models.ForeignKey('esocial.s1035evtTabCarreira', 
+    s1035_evttabcarreira = models.ForeignKey('esocial.s1035evtTabCarreira',
         related_name='%(class)s_s1035_evttabcarreira', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1035_evttabcarreira.evento()
     codcarreira = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
@@ -79,12 +79,12 @@ class s1035alteracao(SoftDeletionModel):
     leicarr = models.CharField(max_length=12, blank=True, null=True, )
     dtleicarr = models.DateField(null=True, )
     sitcarr = models.IntegerField(choices=CHOICES_S1035_SITCARR_ALTERACAO, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1035_evttabcarreira), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -92,24 +92,24 @@ class s1035alteracao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Alteração das informações'
-        db_table = r's1035_alteracao'       
+        db_table = r's1035_alteracao'
         managed = True # s1035_alteracao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1035alteracao", u"Pode ver listagem do modelo S1035ALTERACAO"),
             ("can_see_data_s1035alteracao", u"Pode visualizar o conteúdo do modelo S1035ALTERACAO"),
             ("can_see_menu_s1035alteracao", u"Pode visualizar no menu o modelo S1035ALTERACAO"),
             ("can_print_list_s1035alteracao", u"Pode imprimir listagem do modelo S1035ALTERACAO"),
             ("can_print_data_s1035alteracao", u"Pode imprimir o conteúdo do modelo S1035ALTERACAO"), )
-            
+
         ordering = [
             's1035_evttabcarreira',
             'codcarreira',
@@ -123,29 +123,29 @@ class s1035alteracao(SoftDeletionModel):
 class s1035alteracaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1035alteracao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1035alteracaonovaValidade(SoftDeletionModel):
 
-    s1035_alteracao = models.ForeignKey('s1035.s1035alteracao', 
+    s1035_alteracao = models.ForeignKey('s1035.s1035alteracao',
         related_name='%(class)s_s1035_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1035_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1035_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -153,24 +153,24 @@ class s1035alteracaonovaValidade(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
-        db_table = r's1035_alteracao_novavalidade'       
+        db_table = r's1035_alteracao_novavalidade'
         managed = True # s1035_alteracao_novavalidade #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1035alteracaonovaValidade", u"Pode ver listagem do modelo S1035ALTERACAONOVAVALIDADE"),
             ("can_see_data_s1035alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1035ALTERACAONOVAVALIDADE"),
             ("can_see_menu_s1035alteracaonovaValidade", u"Pode visualizar no menu o modelo S1035ALTERACAONOVAVALIDADE"),
             ("can_print_list_s1035alteracaonovaValidade", u"Pode imprimir listagem do modelo S1035ALTERACAONOVAVALIDADE"),
             ("can_print_data_s1035alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1035ALTERACAONOVAVALIDADE"), )
-            
+
         ordering = [
             's1035_alteracao',
             'inivalid',]
@@ -180,30 +180,30 @@ class s1035alteracaonovaValidade(SoftDeletionModel):
 class s1035alteracaonovaValidadeSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1035alteracaonovaValidade
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1035exclusao(SoftDeletionModel):
 
-    s1035_evttabcarreira = models.ForeignKey('esocial.s1035evtTabCarreira', 
+    s1035_evttabcarreira = models.ForeignKey('esocial.s1035evtTabCarreira',
         related_name='%(class)s_s1035_evttabcarreira', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1035_evttabcarreira.evento()
     codcarreira = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1035_evttabcarreira), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -211,24 +211,24 @@ class s1035exclusao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Exclusão das informações'
-        db_table = r's1035_exclusao'       
+        db_table = r's1035_exclusao'
         managed = True # s1035_exclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1035exclusao", u"Pode ver listagem do modelo S1035EXCLUSAO"),
             ("can_see_data_s1035exclusao", u"Pode visualizar o conteúdo do modelo S1035EXCLUSAO"),
             ("can_see_menu_s1035exclusao", u"Pode visualizar no menu o modelo S1035EXCLUSAO"),
             ("can_print_list_s1035exclusao", u"Pode imprimir listagem do modelo S1035EXCLUSAO"),
             ("can_print_data_s1035exclusao", u"Pode imprimir o conteúdo do modelo S1035EXCLUSAO"), )
-            
+
         ordering = [
             's1035_evttabcarreira',
             'codcarreira',
@@ -239,20 +239,20 @@ class s1035exclusao(SoftDeletionModel):
 class s1035exclusaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1035exclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1035inclusao(SoftDeletionModel):
 
-    s1035_evttabcarreira = models.ForeignKey('esocial.s1035evtTabCarreira', 
+    s1035_evttabcarreira = models.ForeignKey('esocial.s1035evtTabCarreira',
         related_name='%(class)s_s1035_evttabcarreira', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1035_evttabcarreira.evento()
     codcarreira = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
@@ -261,12 +261,12 @@ class s1035inclusao(SoftDeletionModel):
     leicarr = models.CharField(max_length=12, blank=True, null=True, )
     dtleicarr = models.DateField(null=True, )
     sitcarr = models.IntegerField(choices=CHOICES_S1035_SITCARR_INCLUSAO, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1035_evttabcarreira), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -274,24 +274,24 @@ class s1035inclusao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Inclusão de novas informações'
-        db_table = r's1035_inclusao'       
+        db_table = r's1035_inclusao'
         managed = True # s1035_inclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1035inclusao", u"Pode ver listagem do modelo S1035INCLUSAO"),
             ("can_see_data_s1035inclusao", u"Pode visualizar o conteúdo do modelo S1035INCLUSAO"),
             ("can_see_menu_s1035inclusao", u"Pode visualizar no menu o modelo S1035INCLUSAO"),
             ("can_print_list_s1035inclusao", u"Pode imprimir listagem do modelo S1035INCLUSAO"),
             ("can_print_data_s1035inclusao", u"Pode imprimir o conteúdo do modelo S1035INCLUSAO"), )
-            
+
         ordering = [
             's1035_evttabcarreira',
             'codcarreira',
@@ -305,9 +305,9 @@ class s1035inclusao(SoftDeletionModel):
 class s1035inclusaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1035inclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

@@ -67,21 +67,21 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class r2010infoProcRetAd(SoftDeletionModel):
 
-    r2010_evtservtom = models.ForeignKey('efdreinf.r2010evtServTom', 
+    r2010_evtservtom = models.ForeignKey('efdreinf.r2010evtServTom',
         related_name='%(class)s_r2010_evtservtom', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2010_evtservtom.evento()
     tpprocretadic = models.IntegerField(choices=CHOICES_R2010_TPPROCRETADIC, null=True, )
     nrprocretadic = models.CharField(max_length=21, null=True, )
     codsuspadic = models.IntegerField(blank=True, null=True, )
     valoradic = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2010_evtservtom), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -89,24 +89,24 @@ class r2010infoProcRetAd(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de processos relacionados a não retenção de contribuição previdenciária adicional'
-        db_table = r'r2010_infoprocretad'       
+        db_table = r'r2010_infoprocretad'
         managed = True # r2010_infoprocretad #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2010infoProcRetAd", u"Pode ver listagem do modelo R2010INFOPROCRETAD"),
             ("can_see_data_r2010infoProcRetAd", u"Pode visualizar o conteúdo do modelo R2010INFOPROCRETAD"),
             ("can_see_menu_r2010infoProcRetAd", u"Pode visualizar no menu o modelo R2010INFOPROCRETAD"),
             ("can_print_list_r2010infoProcRetAd", u"Pode imprimir listagem do modelo R2010INFOPROCRETAD"),
             ("can_print_data_r2010infoProcRetAd", u"Pode imprimir o conteúdo do modelo R2010INFOPROCRETAD"), )
-            
+
         ordering = [
             'r2010_evtservtom',
             'tpprocretadic',
@@ -118,31 +118,31 @@ class r2010infoProcRetAd(SoftDeletionModel):
 class r2010infoProcRetAdSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2010infoProcRetAd
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2010infoProcRetPr(SoftDeletionModel):
 
-    r2010_evtservtom = models.ForeignKey('efdreinf.r2010evtServTom', 
+    r2010_evtservtom = models.ForeignKey('efdreinf.r2010evtServTom',
         related_name='%(class)s_r2010_evtservtom', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2010_evtservtom.evento()
     tpprocretprinc = models.IntegerField(choices=CHOICES_R2010_TPPROCRETPRINC, null=True, )
     nrprocretprinc = models.CharField(max_length=21, null=True, )
     codsuspprinc = models.IntegerField(blank=True, null=True, )
     valorprinc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2010_evtservtom), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -150,24 +150,24 @@ class r2010infoProcRetPr(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de processos relacionados a não retenção de contribuição previdenciária'
-        db_table = r'r2010_infoprocretpr'       
+        db_table = r'r2010_infoprocretpr'
         managed = True # r2010_infoprocretpr #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2010infoProcRetPr", u"Pode ver listagem do modelo R2010INFOPROCRETPR"),
             ("can_see_data_r2010infoProcRetPr", u"Pode visualizar o conteúdo do modelo R2010INFOPROCRETPR"),
             ("can_see_menu_r2010infoProcRetPr", u"Pode visualizar no menu o modelo R2010INFOPROCRETPR"),
             ("can_print_list_r2010infoProcRetPr", u"Pode imprimir listagem do modelo R2010INFOPROCRETPR"),
             ("can_print_data_r2010infoProcRetPr", u"Pode imprimir o conteúdo do modelo R2010INFOPROCRETPR"), )
-            
+
         ordering = [
             'r2010_evtservtom',
             'tpprocretprinc',
@@ -179,20 +179,20 @@ class r2010infoProcRetPr(SoftDeletionModel):
 class r2010infoProcRetPrSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2010infoProcRetPr
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2010infoTpServ(SoftDeletionModel):
 
-    r2010_nfs = models.ForeignKey('r2010.r2010nfs', 
+    r2010_nfs = models.ForeignKey('r2010.r2010nfs',
         related_name='%(class)s_r2010_nfs', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2010_nfs.evento()
     tpservico = models.IntegerField(null=True, )
     vlrbaseret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
@@ -204,12 +204,12 @@ class r2010infoTpServ(SoftDeletionModel):
     vlrservicos25 = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlradicional = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrnretadic = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2010_nfs), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -217,24 +217,24 @@ class r2010infoTpServ(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações sobre os tipos de Serviços constantes da Nota Fiscal'
-        db_table = r'r2010_infotpserv'       
+        db_table = r'r2010_infotpserv'
         managed = True # r2010_infotpserv #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2010infoTpServ", u"Pode ver listagem do modelo R2010INFOTPSERV"),
             ("can_see_data_r2010infoTpServ", u"Pode visualizar o conteúdo do modelo R2010INFOTPSERV"),
             ("can_see_menu_r2010infoTpServ", u"Pode visualizar no menu o modelo R2010INFOTPSERV"),
             ("can_print_list_r2010infoTpServ", u"Pode imprimir listagem do modelo R2010INFOTPSERV"),
             ("can_print_data_r2010infoTpServ", u"Pode imprimir o conteúdo do modelo R2010INFOTPSERV"), )
-            
+
         ordering = [
             'r2010_nfs',
             'tpservico',
@@ -246,32 +246,32 @@ class r2010infoTpServ(SoftDeletionModel):
 class r2010infoTpServSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2010infoTpServ
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2010nfs(SoftDeletionModel):
 
-    r2010_evtservtom = models.ForeignKey('efdreinf.r2010evtServTom', 
+    r2010_evtservtom = models.ForeignKey('efdreinf.r2010evtServTom',
         related_name='%(class)s_r2010_evtservtom', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2010_evtservtom.evento()
     serie = models.CharField(max_length=5, null=True, )
     numdocto = models.CharField(max_length=15, null=True, )
     dtemissaonf = models.DateField(null=True, )
     vlrbruto = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     obs = models.CharField(max_length=250, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2010_evtservtom), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -279,24 +279,24 @@ class r2010nfs(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior'
-        db_table = r'r2010_nfs'       
+        db_table = r'r2010_nfs'
         managed = True # r2010_nfs #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2010nfs", u"Pode ver listagem do modelo R2010NFS"),
             ("can_see_data_r2010nfs", u"Pode visualizar o conteúdo do modelo R2010NFS"),
             ("can_see_menu_r2010nfs", u"Pode visualizar no menu o modelo R2010NFS"),
             ("can_print_list_r2010nfs", u"Pode imprimir listagem do modelo R2010NFS"),
             ("can_print_data_r2010nfs", u"Pode imprimir o conteúdo do modelo R2010NFS"), )
-            
+
         ordering = [
             'r2010_evtservtom',
             'serie',
@@ -309,9 +309,9 @@ class r2010nfs(SoftDeletionModel):
 class r2010nfsSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2010nfs
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

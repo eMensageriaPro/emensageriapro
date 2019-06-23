@@ -100,30 +100,30 @@ class s1000evtInfoEmpregador(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1000_evtinfoempregador_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1000 - Informações do Empregador/Contribuinte/Órgão Público'
-        db_table = r's1000_evtinfoempregador'       
+        db_table = r's1000_evtinfoempregador'
         managed = True  # s1000_evtinfoempregador #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1000evtInfoEmpregador", u"Pode ver listagem do modelo S1000EVTINFOEMPREGADOR"),
             ("can_see_data_s1000evtInfoEmpregador", u"Pode visualizar o conteúdo do modelo S1000EVTINFOEMPREGADOR"),
@@ -133,13 +133,13 @@ class s1000evtInfoEmpregador(SoftDeletionModel):
             ("can_open_s1000evtInfoEmpregador", u"Pode abrir o evento S1000EVTINFOEMPREGADOR para edição"),
             ("can_duplicate_s1000evtInfoEmpregador", u"Pode duplicar o evento S1000EVTINFOEMPREGADOR"),
             ("can_create_change_s1000evtInfoEmpregador", u"Pode criar evento de alteração do evento S1000EVTINFOEMPREGADOR com base em evento existente"),
-            ("can_create_delete_s1000evtInfoEmpregador", u"Pode criar evento de exclusão do evento S1000EVTINFOEMPREGADOR com base em evento existente"), 
+            ("can_create_delete_s1000evtInfoEmpregador", u"Pode criar evento de exclusão do evento S1000EVTINFOEMPREGADOR com base em evento existente"),
             ("can_validate_s1000evtInfoEmpregador", u"Pode validar o evento S1000EVTINFOEMPREGADOR"),
             ("can_change_identity_s1000evtInfoEmpregador", u"Pode alterar identidade do evento S1000EVTINFOEMPREGADOR"),
             ("can_see_layout_s1000evtInfoEmpregador", u"Pode ver layout do evento S1000EVTINFOEMPREGADOR"),
             ("can_see_receipt_s1000evtInfoEmpregador", u"Pode ver recibo do evento S1000EVTINFOEMPREGADOR"),
             ("can_see_xml_s1000evtInfoEmpregador", u"Pode ver xml do evento S1000EVTINFOEMPREGADOR"),)
-            
+
         ordering = [
             'identidade',
             'tpamb',
@@ -164,7 +164,7 @@ class s1000evtInfoEmpregadorSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1000evtInfoEmpregador
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -174,7 +174,7 @@ class s1000evtInfoEmpregadorSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -199,30 +199,30 @@ class s1005evtTabEstab(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1005_evttabestab_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos'
-        db_table = r's1005_evttabestab'       
+        db_table = r's1005_evttabestab'
         managed = True  # s1005_evttabestab #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1005evtTabEstab", u"Pode ver listagem do modelo S1005EVTTABESTAB"),
             ("can_see_data_s1005evtTabEstab", u"Pode visualizar o conteúdo do modelo S1005EVTTABESTAB"),
@@ -232,13 +232,13 @@ class s1005evtTabEstab(SoftDeletionModel):
             ("can_open_s1005evtTabEstab", u"Pode abrir o evento S1005EVTTABESTAB para edição"),
             ("can_duplicate_s1005evtTabEstab", u"Pode duplicar o evento S1005EVTTABESTAB"),
             ("can_create_change_s1005evtTabEstab", u"Pode criar evento de alteração do evento S1005EVTTABESTAB com base em evento existente"),
-            ("can_create_delete_s1005evtTabEstab", u"Pode criar evento de exclusão do evento S1005EVTTABESTAB com base em evento existente"), 
+            ("can_create_delete_s1005evtTabEstab", u"Pode criar evento de exclusão do evento S1005EVTTABESTAB com base em evento existente"),
             ("can_validate_s1005evtTabEstab", u"Pode validar o evento S1005EVTTABESTAB"),
             ("can_change_identity_s1005evtTabEstab", u"Pode alterar identidade do evento S1005EVTTABESTAB"),
             ("can_see_layout_s1005evtTabEstab", u"Pode ver layout do evento S1005EVTTABESTAB"),
             ("can_see_receipt_s1005evtTabEstab", u"Pode ver recibo do evento S1005EVTTABESTAB"),
             ("can_see_xml_s1005evtTabEstab", u"Pode ver xml do evento S1005EVTTABESTAB"),)
-            
+
         ordering = [
             'identidade',
             'tpamb',
@@ -263,7 +263,7 @@ class s1005evtTabEstabSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1005evtTabEstab
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -273,7 +273,7 @@ class s1005evtTabEstabSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -298,30 +298,30 @@ class s1010evtTabRubrica(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1010_evttabrubrica_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1010 - Tabela de Rubricas'
-        db_table = r's1010_evttabrubrica'       
+        db_table = r's1010_evttabrubrica'
         managed = True  # s1010_evttabrubrica #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1010evtTabRubrica", u"Pode ver listagem do modelo S1010EVTTABRUBRICA"),
             ("can_see_data_s1010evtTabRubrica", u"Pode visualizar o conteúdo do modelo S1010EVTTABRUBRICA"),
@@ -331,13 +331,13 @@ class s1010evtTabRubrica(SoftDeletionModel):
             ("can_open_s1010evtTabRubrica", u"Pode abrir o evento S1010EVTTABRUBRICA para edição"),
             ("can_duplicate_s1010evtTabRubrica", u"Pode duplicar o evento S1010EVTTABRUBRICA"),
             ("can_create_change_s1010evtTabRubrica", u"Pode criar evento de alteração do evento S1010EVTTABRUBRICA com base em evento existente"),
-            ("can_create_delete_s1010evtTabRubrica", u"Pode criar evento de exclusão do evento S1010EVTTABRUBRICA com base em evento existente"), 
+            ("can_create_delete_s1010evtTabRubrica", u"Pode criar evento de exclusão do evento S1010EVTTABRUBRICA com base em evento existente"),
             ("can_validate_s1010evtTabRubrica", u"Pode validar o evento S1010EVTTABRUBRICA"),
             ("can_change_identity_s1010evtTabRubrica", u"Pode alterar identidade do evento S1010EVTTABRUBRICA"),
             ("can_see_layout_s1010evtTabRubrica", u"Pode ver layout do evento S1010EVTTABRUBRICA"),
             ("can_see_receipt_s1010evtTabRubrica", u"Pode ver recibo do evento S1010EVTTABRUBRICA"),
             ("can_see_xml_s1010evtTabRubrica", u"Pode ver xml do evento S1010EVTTABRUBRICA"),)
-            
+
         ordering = [
             'identidade',
             'tpamb',
@@ -362,7 +362,7 @@ class s1010evtTabRubricaSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1010evtTabRubrica
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -372,7 +372,7 @@ class s1010evtTabRubricaSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -397,30 +397,30 @@ class s1020evtTabLotacao(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1020_evttablotacao_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1020 - Tabela de Lotações Tributárias'
-        db_table = r's1020_evttablotacao'       
+        db_table = r's1020_evttablotacao'
         managed = True  # s1020_evttablotacao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1020evtTabLotacao", u"Pode ver listagem do modelo S1020EVTTABLOTACAO"),
             ("can_see_data_s1020evtTabLotacao", u"Pode visualizar o conteúdo do modelo S1020EVTTABLOTACAO"),
@@ -430,13 +430,13 @@ class s1020evtTabLotacao(SoftDeletionModel):
             ("can_open_s1020evtTabLotacao", u"Pode abrir o evento S1020EVTTABLOTACAO para edição"),
             ("can_duplicate_s1020evtTabLotacao", u"Pode duplicar o evento S1020EVTTABLOTACAO"),
             ("can_create_change_s1020evtTabLotacao", u"Pode criar evento de alteração do evento S1020EVTTABLOTACAO com base em evento existente"),
-            ("can_create_delete_s1020evtTabLotacao", u"Pode criar evento de exclusão do evento S1020EVTTABLOTACAO com base em evento existente"), 
+            ("can_create_delete_s1020evtTabLotacao", u"Pode criar evento de exclusão do evento S1020EVTTABLOTACAO com base em evento existente"),
             ("can_validate_s1020evtTabLotacao", u"Pode validar o evento S1020EVTTABLOTACAO"),
             ("can_change_identity_s1020evtTabLotacao", u"Pode alterar identidade do evento S1020EVTTABLOTACAO"),
             ("can_see_layout_s1020evtTabLotacao", u"Pode ver layout do evento S1020EVTTABLOTACAO"),
             ("can_see_receipt_s1020evtTabLotacao", u"Pode ver recibo do evento S1020EVTTABLOTACAO"),
             ("can_see_xml_s1020evtTabLotacao", u"Pode ver xml do evento S1020EVTTABLOTACAO"),)
-            
+
         ordering = [
             'identidade',
             'tpamb',
@@ -461,7 +461,7 @@ class s1020evtTabLotacaoSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1020evtTabLotacao
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -471,7 +471,7 @@ class s1020evtTabLotacaoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -496,30 +496,30 @@ class s1030evtTabCargo(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1030_evttabcargo_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1030 - Tabela de Cargos/Empregos Públicos'
-        db_table = r's1030_evttabcargo'       
+        db_table = r's1030_evttabcargo'
         managed = True  # s1030_evttabcargo #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1030evtTabCargo", u"Pode ver listagem do modelo S1030EVTTABCARGO"),
             ("can_see_data_s1030evtTabCargo", u"Pode visualizar o conteúdo do modelo S1030EVTTABCARGO"),
@@ -529,13 +529,13 @@ class s1030evtTabCargo(SoftDeletionModel):
             ("can_open_s1030evtTabCargo", u"Pode abrir o evento S1030EVTTABCARGO para edição"),
             ("can_duplicate_s1030evtTabCargo", u"Pode duplicar o evento S1030EVTTABCARGO"),
             ("can_create_change_s1030evtTabCargo", u"Pode criar evento de alteração do evento S1030EVTTABCARGO com base em evento existente"),
-            ("can_create_delete_s1030evtTabCargo", u"Pode criar evento de exclusão do evento S1030EVTTABCARGO com base em evento existente"), 
+            ("can_create_delete_s1030evtTabCargo", u"Pode criar evento de exclusão do evento S1030EVTTABCARGO com base em evento existente"),
             ("can_validate_s1030evtTabCargo", u"Pode validar o evento S1030EVTTABCARGO"),
             ("can_change_identity_s1030evtTabCargo", u"Pode alterar identidade do evento S1030EVTTABCARGO"),
             ("can_see_layout_s1030evtTabCargo", u"Pode ver layout do evento S1030EVTTABCARGO"),
             ("can_see_receipt_s1030evtTabCargo", u"Pode ver recibo do evento S1030EVTTABCARGO"),
             ("can_see_xml_s1030evtTabCargo", u"Pode ver xml do evento S1030EVTTABCARGO"),)
-            
+
         ordering = [
             'identidade',
             'tpamb',
@@ -560,7 +560,7 @@ class s1030evtTabCargoSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1030evtTabCargo
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -570,7 +570,7 @@ class s1030evtTabCargoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -595,30 +595,30 @@ class s1035evtTabCarreira(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1035_evttabcarreira_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1035 - Tabela de Carreiras Públicas'
-        db_table = r's1035_evttabcarreira'       
+        db_table = r's1035_evttabcarreira'
         managed = True  # s1035_evttabcarreira #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1035evtTabCarreira", u"Pode ver listagem do modelo S1035EVTTABCARREIRA"),
             ("can_see_data_s1035evtTabCarreira", u"Pode visualizar o conteúdo do modelo S1035EVTTABCARREIRA"),
@@ -628,13 +628,13 @@ class s1035evtTabCarreira(SoftDeletionModel):
             ("can_open_s1035evtTabCarreira", u"Pode abrir o evento S1035EVTTABCARREIRA para edição"),
             ("can_duplicate_s1035evtTabCarreira", u"Pode duplicar o evento S1035EVTTABCARREIRA"),
             ("can_create_change_s1035evtTabCarreira", u"Pode criar evento de alteração do evento S1035EVTTABCARREIRA com base em evento existente"),
-            ("can_create_delete_s1035evtTabCarreira", u"Pode criar evento de exclusão do evento S1035EVTTABCARREIRA com base em evento existente"), 
+            ("can_create_delete_s1035evtTabCarreira", u"Pode criar evento de exclusão do evento S1035EVTTABCARREIRA com base em evento existente"),
             ("can_validate_s1035evtTabCarreira", u"Pode validar o evento S1035EVTTABCARREIRA"),
             ("can_change_identity_s1035evtTabCarreira", u"Pode alterar identidade do evento S1035EVTTABCARREIRA"),
             ("can_see_layout_s1035evtTabCarreira", u"Pode ver layout do evento S1035EVTTABCARREIRA"),
             ("can_see_receipt_s1035evtTabCarreira", u"Pode ver recibo do evento S1035EVTTABCARREIRA"),
             ("can_see_xml_s1035evtTabCarreira", u"Pode ver xml do evento S1035EVTTABCARREIRA"),)
-            
+
         ordering = [
             'identidade',
             'tpamb',
@@ -659,7 +659,7 @@ class s1035evtTabCarreiraSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1035evtTabCarreira
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -669,7 +669,7 @@ class s1035evtTabCarreiraSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -694,30 +694,30 @@ class s1040evtTabFuncao(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1040_evttabfuncao_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1040 - Tabela de Funções/Cargos em Comissão'
-        db_table = r's1040_evttabfuncao'       
+        db_table = r's1040_evttabfuncao'
         managed = True  # s1040_evttabfuncao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1040evtTabFuncao", u"Pode ver listagem do modelo S1040EVTTABFUNCAO"),
             ("can_see_data_s1040evtTabFuncao", u"Pode visualizar o conteúdo do modelo S1040EVTTABFUNCAO"),
@@ -727,13 +727,13 @@ class s1040evtTabFuncao(SoftDeletionModel):
             ("can_open_s1040evtTabFuncao", u"Pode abrir o evento S1040EVTTABFUNCAO para edição"),
             ("can_duplicate_s1040evtTabFuncao", u"Pode duplicar o evento S1040EVTTABFUNCAO"),
             ("can_create_change_s1040evtTabFuncao", u"Pode criar evento de alteração do evento S1040EVTTABFUNCAO com base em evento existente"),
-            ("can_create_delete_s1040evtTabFuncao", u"Pode criar evento de exclusão do evento S1040EVTTABFUNCAO com base em evento existente"), 
+            ("can_create_delete_s1040evtTabFuncao", u"Pode criar evento de exclusão do evento S1040EVTTABFUNCAO com base em evento existente"),
             ("can_validate_s1040evtTabFuncao", u"Pode validar o evento S1040EVTTABFUNCAO"),
             ("can_change_identity_s1040evtTabFuncao", u"Pode alterar identidade do evento S1040EVTTABFUNCAO"),
             ("can_see_layout_s1040evtTabFuncao", u"Pode ver layout do evento S1040EVTTABFUNCAO"),
             ("can_see_receipt_s1040evtTabFuncao", u"Pode ver recibo do evento S1040EVTTABFUNCAO"),
             ("can_see_xml_s1040evtTabFuncao", u"Pode ver xml do evento S1040EVTTABFUNCAO"),)
-            
+
         ordering = [
             'identidade',
             'tpamb',
@@ -758,7 +758,7 @@ class s1040evtTabFuncaoSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1040evtTabFuncao
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -768,7 +768,7 @@ class s1040evtTabFuncaoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -793,30 +793,30 @@ class s1050evtTabHorTur(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1050_evttabhortur_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1050 - Tabela de Horários/Turnos de Trabalho'
-        db_table = r's1050_evttabhortur'       
+        db_table = r's1050_evttabhortur'
         managed = True  # s1050_evttabhortur #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1050evtTabHorTur", u"Pode ver listagem do modelo S1050EVTTABHORTUR"),
             ("can_see_data_s1050evtTabHorTur", u"Pode visualizar o conteúdo do modelo S1050EVTTABHORTUR"),
@@ -826,13 +826,13 @@ class s1050evtTabHorTur(SoftDeletionModel):
             ("can_open_s1050evtTabHorTur", u"Pode abrir o evento S1050EVTTABHORTUR para edição"),
             ("can_duplicate_s1050evtTabHorTur", u"Pode duplicar o evento S1050EVTTABHORTUR"),
             ("can_create_change_s1050evtTabHorTur", u"Pode criar evento de alteração do evento S1050EVTTABHORTUR com base em evento existente"),
-            ("can_create_delete_s1050evtTabHorTur", u"Pode criar evento de exclusão do evento S1050EVTTABHORTUR com base em evento existente"), 
+            ("can_create_delete_s1050evtTabHorTur", u"Pode criar evento de exclusão do evento S1050EVTTABHORTUR com base em evento existente"),
             ("can_validate_s1050evtTabHorTur", u"Pode validar o evento S1050EVTTABHORTUR"),
             ("can_change_identity_s1050evtTabHorTur", u"Pode alterar identidade do evento S1050EVTTABHORTUR"),
             ("can_see_layout_s1050evtTabHorTur", u"Pode ver layout do evento S1050EVTTABHORTUR"),
             ("can_see_receipt_s1050evtTabHorTur", u"Pode ver recibo do evento S1050EVTTABHORTUR"),
             ("can_see_xml_s1050evtTabHorTur", u"Pode ver xml do evento S1050EVTTABHORTUR"),)
-            
+
         ordering = [
             'identidade',
             'tpamb',
@@ -857,7 +857,7 @@ class s1050evtTabHorTurSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1050evtTabHorTur
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -867,7 +867,7 @@ class s1050evtTabHorTurSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -892,30 +892,30 @@ class s1060evtTabAmbiente(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1060_evttabambiente_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1060 - Tabela de Ambientes de Trabalho'
-        db_table = r's1060_evttabambiente'       
+        db_table = r's1060_evttabambiente'
         managed = True  # s1060_evttabambiente #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1060evtTabAmbiente", u"Pode ver listagem do modelo S1060EVTTABAMBIENTE"),
             ("can_see_data_s1060evtTabAmbiente", u"Pode visualizar o conteúdo do modelo S1060EVTTABAMBIENTE"),
@@ -925,13 +925,13 @@ class s1060evtTabAmbiente(SoftDeletionModel):
             ("can_open_s1060evtTabAmbiente", u"Pode abrir o evento S1060EVTTABAMBIENTE para edição"),
             ("can_duplicate_s1060evtTabAmbiente", u"Pode duplicar o evento S1060EVTTABAMBIENTE"),
             ("can_create_change_s1060evtTabAmbiente", u"Pode criar evento de alteração do evento S1060EVTTABAMBIENTE com base em evento existente"),
-            ("can_create_delete_s1060evtTabAmbiente", u"Pode criar evento de exclusão do evento S1060EVTTABAMBIENTE com base em evento existente"), 
+            ("can_create_delete_s1060evtTabAmbiente", u"Pode criar evento de exclusão do evento S1060EVTTABAMBIENTE com base em evento existente"),
             ("can_validate_s1060evtTabAmbiente", u"Pode validar o evento S1060EVTTABAMBIENTE"),
             ("can_change_identity_s1060evtTabAmbiente", u"Pode alterar identidade do evento S1060EVTTABAMBIENTE"),
             ("can_see_layout_s1060evtTabAmbiente", u"Pode ver layout do evento S1060EVTTABAMBIENTE"),
             ("can_see_receipt_s1060evtTabAmbiente", u"Pode ver recibo do evento S1060EVTTABAMBIENTE"),
             ("can_see_xml_s1060evtTabAmbiente", u"Pode ver xml do evento S1060EVTTABAMBIENTE"),)
-            
+
         ordering = [
             'identidade',
             'tpamb',
@@ -956,7 +956,7 @@ class s1060evtTabAmbienteSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1060evtTabAmbiente
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -966,7 +966,7 @@ class s1060evtTabAmbienteSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -991,30 +991,30 @@ class s1070evtTabProcesso(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1070_evttabprocesso_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1070 - Tabela de Processos Administrativos/Judiciais'
-        db_table = r's1070_evttabprocesso'       
+        db_table = r's1070_evttabprocesso'
         managed = True  # s1070_evttabprocesso #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1070evtTabProcesso", u"Pode ver listagem do modelo S1070EVTTABPROCESSO"),
             ("can_see_data_s1070evtTabProcesso", u"Pode visualizar o conteúdo do modelo S1070EVTTABPROCESSO"),
@@ -1024,13 +1024,13 @@ class s1070evtTabProcesso(SoftDeletionModel):
             ("can_open_s1070evtTabProcesso", u"Pode abrir o evento S1070EVTTABPROCESSO para edição"),
             ("can_duplicate_s1070evtTabProcesso", u"Pode duplicar o evento S1070EVTTABPROCESSO"),
             ("can_create_change_s1070evtTabProcesso", u"Pode criar evento de alteração do evento S1070EVTTABPROCESSO com base em evento existente"),
-            ("can_create_delete_s1070evtTabProcesso", u"Pode criar evento de exclusão do evento S1070EVTTABPROCESSO com base em evento existente"), 
+            ("can_create_delete_s1070evtTabProcesso", u"Pode criar evento de exclusão do evento S1070EVTTABPROCESSO com base em evento existente"),
             ("can_validate_s1070evtTabProcesso", u"Pode validar o evento S1070EVTTABPROCESSO"),
             ("can_change_identity_s1070evtTabProcesso", u"Pode alterar identidade do evento S1070EVTTABPROCESSO"),
             ("can_see_layout_s1070evtTabProcesso", u"Pode ver layout do evento S1070EVTTABPROCESSO"),
             ("can_see_receipt_s1070evtTabProcesso", u"Pode ver recibo do evento S1070EVTTABPROCESSO"),
             ("can_see_xml_s1070evtTabProcesso", u"Pode ver xml do evento S1070EVTTABPROCESSO"),)
-            
+
         ordering = [
             'identidade',
             'tpamb',
@@ -1055,7 +1055,7 @@ class s1070evtTabProcessoSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1070evtTabProcesso
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1065,7 +1065,7 @@ class s1070evtTabProcessoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1090,30 +1090,30 @@ class s1080evtTabOperPort(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1080_evttaboperport_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1080 - Tabela de Operadores Portuários'
-        db_table = r's1080_evttaboperport'       
+        db_table = r's1080_evttaboperport'
         managed = True  # s1080_evttaboperport #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1080evtTabOperPort", u"Pode ver listagem do modelo S1080EVTTABOPERPORT"),
             ("can_see_data_s1080evtTabOperPort", u"Pode visualizar o conteúdo do modelo S1080EVTTABOPERPORT"),
@@ -1123,13 +1123,13 @@ class s1080evtTabOperPort(SoftDeletionModel):
             ("can_open_s1080evtTabOperPort", u"Pode abrir o evento S1080EVTTABOPERPORT para edição"),
             ("can_duplicate_s1080evtTabOperPort", u"Pode duplicar o evento S1080EVTTABOPERPORT"),
             ("can_create_change_s1080evtTabOperPort", u"Pode criar evento de alteração do evento S1080EVTTABOPERPORT com base em evento existente"),
-            ("can_create_delete_s1080evtTabOperPort", u"Pode criar evento de exclusão do evento S1080EVTTABOPERPORT com base em evento existente"), 
+            ("can_create_delete_s1080evtTabOperPort", u"Pode criar evento de exclusão do evento S1080EVTTABOPERPORT com base em evento existente"),
             ("can_validate_s1080evtTabOperPort", u"Pode validar o evento S1080EVTTABOPERPORT"),
             ("can_change_identity_s1080evtTabOperPort", u"Pode alterar identidade do evento S1080EVTTABOPERPORT"),
             ("can_see_layout_s1080evtTabOperPort", u"Pode ver layout do evento S1080EVTTABOPERPORT"),
             ("can_see_receipt_s1080evtTabOperPort", u"Pode ver recibo do evento S1080EVTTABOPERPORT"),
             ("can_see_xml_s1080evtTabOperPort", u"Pode ver xml do evento S1080EVTTABOPERPORT"),)
-            
+
         ordering = [
             'identidade',
             'tpamb',
@@ -1154,7 +1154,7 @@ class s1080evtTabOperPortSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1080evtTabOperPort
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1164,7 +1164,7 @@ class s1080evtTabOperPortSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1194,30 +1194,30 @@ class s1200evtRemun(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1200_evtremun_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social'
-        db_table = r's1200_evtremun'       
+        db_table = r's1200_evtremun'
         managed = True  # s1200_evtremun #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1200evtRemun", u"Pode ver listagem do modelo S1200EVTREMUN"),
             ("can_see_data_s1200evtRemun", u"Pode visualizar o conteúdo do modelo S1200EVTREMUN"),
@@ -1231,7 +1231,7 @@ class s1200evtRemun(SoftDeletionModel):
             ("can_see_layout_s1200evtRemun", u"Pode ver layout do evento S1200EVTREMUN"),
             ("can_see_receipt_s1200evtRemun", u"Pode ver recibo do evento S1200EVTREMUN"),
             ("can_see_xml_s1200evtRemun", u"Pode ver xml do evento S1200EVTREMUN"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -1260,7 +1260,7 @@ class s1200evtRemunSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1200evtRemun
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1270,7 +1270,7 @@ class s1200evtRemunSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1301,30 +1301,30 @@ class s1202evtRmnRPPS(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1202_evtrmnrpps_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social'
-        db_table = r's1202_evtrmnrpps'       
+        db_table = r's1202_evtrmnrpps'
         managed = True  # s1202_evtrmnrpps #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1202evtRmnRPPS", u"Pode ver listagem do modelo S1202EVTRMNRPPS"),
             ("can_see_data_s1202evtRmnRPPS", u"Pode visualizar o conteúdo do modelo S1202EVTRMNRPPS"),
@@ -1338,7 +1338,7 @@ class s1202evtRmnRPPS(SoftDeletionModel):
             ("can_see_layout_s1202evtRmnRPPS", u"Pode ver layout do evento S1202EVTRMNRPPS"),
             ("can_see_receipt_s1202evtRmnRPPS", u"Pode ver recibo do evento S1202EVTRMNRPPS"),
             ("can_see_xml_s1202evtRmnRPPS", u"Pode ver xml do evento S1202EVTRMNRPPS"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -1367,7 +1367,7 @@ class s1202evtRmnRPPSSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1202evtRmnRPPS
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1377,7 +1377,7 @@ class s1202evtRmnRPPSSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1406,30 +1406,30 @@ class s1207evtBenPrRP(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1207_evtbenprrp_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1207 - Benefícios previdenciários - RPPS'
-        db_table = r's1207_evtbenprrp'       
+        db_table = r's1207_evtbenprrp'
         managed = True  # s1207_evtbenprrp #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1207evtBenPrRP", u"Pode ver listagem do modelo S1207EVTBENPRRP"),
             ("can_see_data_s1207evtBenPrRP", u"Pode visualizar o conteúdo do modelo S1207EVTBENPRRP"),
@@ -1443,7 +1443,7 @@ class s1207evtBenPrRP(SoftDeletionModel):
             ("can_see_layout_s1207evtBenPrRP", u"Pode ver layout do evento S1207EVTBENPRRP"),
             ("can_see_receipt_s1207evtBenPrRP", u"Pode ver recibo do evento S1207EVTBENPRRP"),
             ("can_see_xml_s1207evtBenPrRP", u"Pode ver xml do evento S1207EVTBENPRRP"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -1472,7 +1472,7 @@ class s1207evtBenPrRPSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1207evtBenPrRP
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1482,7 +1482,7 @@ class s1207evtBenPrRPSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1511,30 +1511,30 @@ class s1210evtPgtos(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1210_evtpgtos_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1210 - Pagamentos de Rendimentos do Trabalho'
-        db_table = r's1210_evtpgtos'       
+        db_table = r's1210_evtpgtos'
         managed = True  # s1210_evtpgtos #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1210evtPgtos", u"Pode ver listagem do modelo S1210EVTPGTOS"),
             ("can_see_data_s1210evtPgtos", u"Pode visualizar o conteúdo do modelo S1210EVTPGTOS"),
@@ -1548,7 +1548,7 @@ class s1210evtPgtos(SoftDeletionModel):
             ("can_see_layout_s1210evtPgtos", u"Pode ver layout do evento S1210EVTPGTOS"),
             ("can_see_receipt_s1210evtPgtos", u"Pode ver recibo do evento S1210EVTPGTOS"),
             ("can_see_xml_s1210evtPgtos", u"Pode ver xml do evento S1210EVTPGTOS"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -1577,7 +1577,7 @@ class s1210evtPgtosSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1210evtPgtos
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1587,7 +1587,7 @@ class s1210evtPgtosSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1617,30 +1617,30 @@ class s1250evtAqProd(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1250_evtaqprod_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1250 - Aquisição de Produção Rural'
-        db_table = r's1250_evtaqprod'       
+        db_table = r's1250_evtaqprod'
         managed = True  # s1250_evtaqprod #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1250evtAqProd", u"Pode ver listagem do modelo S1250EVTAQPROD"),
             ("can_see_data_s1250evtAqProd", u"Pode visualizar o conteúdo do modelo S1250EVTAQPROD"),
@@ -1654,7 +1654,7 @@ class s1250evtAqProd(SoftDeletionModel):
             ("can_see_layout_s1250evtAqProd", u"Pode ver layout do evento S1250EVTAQPROD"),
             ("can_see_receipt_s1250evtAqProd", u"Pode ver recibo do evento S1250EVTAQPROD"),
             ("can_see_xml_s1250evtAqProd", u"Pode ver xml do evento S1250EVTAQPROD"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -1684,7 +1684,7 @@ class s1250evtAqProdSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1250evtAqProd
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1694,7 +1694,7 @@ class s1250evtAqProdSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1723,30 +1723,30 @@ class s1260evtComProd(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1260_evtcomprod_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1260 - Comercialização da Produção Rural Pessoa Física'
-        db_table = r's1260_evtcomprod'       
+        db_table = r's1260_evtcomprod'
         managed = True  # s1260_evtcomprod #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1260evtComProd", u"Pode ver listagem do modelo S1260EVTCOMPROD"),
             ("can_see_data_s1260evtComProd", u"Pode visualizar o conteúdo do modelo S1260EVTCOMPROD"),
@@ -1760,7 +1760,7 @@ class s1260evtComProd(SoftDeletionModel):
             ("can_see_layout_s1260evtComProd", u"Pode ver layout do evento S1260EVTCOMPROD"),
             ("can_see_receipt_s1260evtComProd", u"Pode ver recibo do evento S1260EVTCOMPROD"),
             ("can_see_xml_s1260evtComProd", u"Pode ver xml do evento S1260EVTCOMPROD"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -1789,7 +1789,7 @@ class s1260evtComProdSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1260evtComProd
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1799,7 +1799,7 @@ class s1260evtComProdSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1827,30 +1827,30 @@ class s1270evtContratAvNP(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1270_evtcontratavnp_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1270 - Contratação de Trabalhadores Avulsos Não Portuários'
-        db_table = r's1270_evtcontratavnp'       
+        db_table = r's1270_evtcontratavnp'
         managed = True  # s1270_evtcontratavnp #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1270evtContratAvNP", u"Pode ver listagem do modelo S1270EVTCONTRATAVNP"),
             ("can_see_data_s1270evtContratAvNP", u"Pode visualizar o conteúdo do modelo S1270EVTCONTRATAVNP"),
@@ -1864,7 +1864,7 @@ class s1270evtContratAvNP(SoftDeletionModel):
             ("can_see_layout_s1270evtContratAvNP", u"Pode ver layout do evento S1270EVTCONTRATAVNP"),
             ("can_see_receipt_s1270evtContratAvNP", u"Pode ver recibo do evento S1270EVTCONTRATAVNP"),
             ("can_see_xml_s1270evtContratAvNP", u"Pode ver xml do evento S1270EVTCONTRATAVNP"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -1892,7 +1892,7 @@ class s1270evtContratAvNPSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1270evtContratAvNP
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1902,7 +1902,7 @@ class s1270evtContratAvNPSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1930,30 +1930,30 @@ class s1280evtInfoComplPer(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1280_evtinfocomplper_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1280 - Informações Complementares aos Eventos Periódicos'
-        db_table = r's1280_evtinfocomplper'       
+        db_table = r's1280_evtinfocomplper'
         managed = True  # s1280_evtinfocomplper #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1280evtInfoComplPer", u"Pode ver listagem do modelo S1280EVTINFOCOMPLPER"),
             ("can_see_data_s1280evtInfoComplPer", u"Pode visualizar o conteúdo do modelo S1280EVTINFOCOMPLPER"),
@@ -1967,7 +1967,7 @@ class s1280evtInfoComplPer(SoftDeletionModel):
             ("can_see_layout_s1280evtInfoComplPer", u"Pode ver layout do evento S1280EVTINFOCOMPLPER"),
             ("can_see_receipt_s1280evtInfoComplPer", u"Pode ver recibo do evento S1280EVTINFOCOMPLPER"),
             ("can_see_xml_s1280evtInfoComplPer", u"Pode ver xml do evento S1280EVTINFOCOMPLPER"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -1995,7 +1995,7 @@ class s1280evtInfoComplPerSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1280evtInfoComplPer
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -2005,7 +2005,7 @@ class s1280evtInfoComplPerSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -2031,30 +2031,30 @@ class s1295evtTotConting(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1295_evttotconting_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1295 - Solicitação de Totalização para Pagamento em Contingência'
-        db_table = r's1295_evttotconting'       
+        db_table = r's1295_evttotconting'
         managed = True  # s1295_evttotconting #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1295evtTotConting", u"Pode ver listagem do modelo S1295EVTTOTCONTING"),
             ("can_see_data_s1295evtTotConting", u"Pode visualizar o conteúdo do modelo S1295EVTTOTCONTING"),
@@ -2068,7 +2068,7 @@ class s1295evtTotConting(SoftDeletionModel):
             ("can_see_layout_s1295evtTotConting", u"Pode ver layout do evento S1295EVTTOTCONTING"),
             ("can_see_receipt_s1295evtTotConting", u"Pode ver recibo do evento S1295EVTTOTCONTING"),
             ("can_see_xml_s1295evtTotConting", u"Pode ver xml do evento S1295EVTTOTCONTING"),)
-            
+
         ordering = [
             'identidade',
             'indapuracao',
@@ -2095,7 +2095,7 @@ class s1295evtTotContingSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1295evtTotConting
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -2105,7 +2105,7 @@ class s1295evtTotContingSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -2131,30 +2131,30 @@ class s1298evtReabreEvPer(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1298_evtreabreevper_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1298 - Reabertura dos Eventos Periódicos'
-        db_table = r's1298_evtreabreevper'       
+        db_table = r's1298_evtreabreevper'
         managed = True  # s1298_evtreabreevper #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1298evtReabreEvPer", u"Pode ver listagem do modelo S1298EVTREABREEVPER"),
             ("can_see_data_s1298evtReabreEvPer", u"Pode visualizar o conteúdo do modelo S1298EVTREABREEVPER"),
@@ -2168,7 +2168,7 @@ class s1298evtReabreEvPer(SoftDeletionModel):
             ("can_see_layout_s1298evtReabreEvPer", u"Pode ver layout do evento S1298EVTREABREEVPER"),
             ("can_see_receipt_s1298evtReabreEvPer", u"Pode ver recibo do evento S1298EVTREABREEVPER"),
             ("can_see_xml_s1298evtReabreEvPer", u"Pode ver xml do evento S1298EVTREABREEVPER"),)
-            
+
         ordering = [
             'identidade',
             'indapuracao',
@@ -2195,7 +2195,7 @@ class s1298evtReabreEvPerSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1298evtReabreEvPer
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -2205,7 +2205,7 @@ class s1298evtReabreEvPerSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -2238,30 +2238,30 @@ class s1299evtFechaEvPer(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1299_evtfechaevper_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1299 - Fechamento dos Eventos Periódicos'
-        db_table = r's1299_evtfechaevper'       
+        db_table = r's1299_evtfechaevper'
         managed = True  # s1299_evtfechaevper #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1299evtFechaEvPer", u"Pode ver listagem do modelo S1299EVTFECHAEVPER"),
             ("can_see_data_s1299evtFechaEvPer", u"Pode visualizar o conteúdo do modelo S1299EVTFECHAEVPER"),
@@ -2275,7 +2275,7 @@ class s1299evtFechaEvPer(SoftDeletionModel):
             ("can_see_layout_s1299evtFechaEvPer", u"Pode ver layout do evento S1299EVTFECHAEVPER"),
             ("can_see_receipt_s1299evtFechaEvPer", u"Pode ver recibo do evento S1299EVTFECHAEVPER"),
             ("can_see_xml_s1299evtFechaEvPer", u"Pode ver xml do evento S1299EVTFECHAEVPER"),)
-            
+
         ordering = [
             'identidade',
             'indapuracao',
@@ -2308,7 +2308,7 @@ class s1299evtFechaEvPerSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1299evtFechaEvPer
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -2318,7 +2318,7 @@ class s1299evtFechaEvPerSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -2346,30 +2346,30 @@ class s1300evtContrSindPatr(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s1300_evtcontrsindpatr_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-1300 - Contribuição Sindical Patronal'
-        db_table = r's1300_evtcontrsindpatr'       
+        db_table = r's1300_evtcontrsindpatr'
         managed = True  # s1300_evtcontrsindpatr #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1300evtContrSindPatr", u"Pode ver listagem do modelo S1300EVTCONTRSINDPATR"),
             ("can_see_data_s1300evtContrSindPatr", u"Pode visualizar o conteúdo do modelo S1300EVTCONTRSINDPATR"),
@@ -2383,7 +2383,7 @@ class s1300evtContrSindPatr(SoftDeletionModel):
             ("can_see_layout_s1300evtContrSindPatr", u"Pode ver layout do evento S1300EVTCONTRSINDPATR"),
             ("can_see_receipt_s1300evtContrSindPatr", u"Pode ver recibo do evento S1300EVTCONTRSINDPATR"),
             ("can_see_xml_s1300evtContrSindPatr", u"Pode ver xml do evento S1300EVTCONTRSINDPATR"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -2411,7 +2411,7 @@ class s1300evtContrSindPatrSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s1300evtContrSindPatr
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -2421,7 +2421,7 @@ class s1300evtContrSindPatrSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -2448,30 +2448,30 @@ class s2190evtAdmPrelim(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2190_evtadmprelim_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2190 - Admissão de Trabalhador - Registro Preliminar'
-        db_table = r's2190_evtadmprelim'       
+        db_table = r's2190_evtadmprelim'
         managed = True  # s2190_evtadmprelim #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2190evtAdmPrelim", u"Pode ver listagem do modelo S2190EVTADMPRELIM"),
             ("can_see_data_s2190evtAdmPrelim", u"Pode visualizar o conteúdo do modelo S2190EVTADMPRELIM"),
@@ -2485,7 +2485,7 @@ class s2190evtAdmPrelim(SoftDeletionModel):
             ("can_see_layout_s2190evtAdmPrelim", u"Pode ver layout do evento S2190EVTADMPRELIM"),
             ("can_see_receipt_s2190evtAdmPrelim", u"Pode ver recibo do evento S2190EVTADMPRELIM"),
             ("can_see_xml_s2190evtAdmPrelim", u"Pode ver xml do evento S2190EVTADMPRELIM"),)
-            
+
         ordering = [
             'identidade',
             'tpamb',
@@ -2513,7 +2513,7 @@ class s2190evtAdmPrelimSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2190evtAdmPrelim
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -2523,7 +2523,7 @@ class s2190evtAdmPrelimSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -2548,7 +2548,7 @@ class s2200evtAdmissao(SoftDeletionModel):
     indpriempr = models.CharField(choices=CHOICES_S2200_INDPRIEMPR, max_length=1, blank=True, null=True, )
     nmsoc = models.CharField(max_length=70, blank=True, null=True, )
     dtnascto = models.DateField(null=True, )
-    codmunic = models.TextField(blank=True, null=True, )
+    codmunic = models.IntegerField(blank=True, null=True, )
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
     paisnascto = models.TextField(null=True, )
     paisnac = models.TextField(null=True, )
@@ -2583,30 +2583,30 @@ class s2200evtAdmissao(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2200_evtadmissao_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador'
-        db_table = r's2200_evtadmissao'       
+        db_table = r's2200_evtadmissao'
         managed = True  # s2200_evtadmissao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2200evtAdmissao", u"Pode ver listagem do modelo S2200EVTADMISSAO"),
             ("can_see_data_s2200evtAdmissao", u"Pode visualizar o conteúdo do modelo S2200EVTADMISSAO"),
@@ -2620,7 +2620,7 @@ class s2200evtAdmissao(SoftDeletionModel):
             ("can_see_layout_s2200evtAdmissao", u"Pode ver layout do evento S2200EVTADMISSAO"),
             ("can_see_receipt_s2200evtAdmissao", u"Pode ver recibo do evento S2200EVTADMISSAO"),
             ("can_see_xml_s2200evtAdmissao", u"Pode ver xml do evento S2200EVTADMISSAO"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -2663,7 +2663,7 @@ class s2200evtAdmissaoSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2200evtAdmissao
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -2673,7 +2673,7 @@ class s2200evtAdmissaoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -2698,7 +2698,7 @@ class s2205evtAltCadastral(SoftDeletionModel):
     grauinstr = models.CharField(choices=CHOICES_S2205_GRAUINSTR, max_length=2, null=True, )
     nmsoc = models.CharField(max_length=70, blank=True, null=True, )
     dtnascto = models.DateField(null=True, )
-    codmunic = models.TextField(blank=True, null=True, )
+    codmunic = models.IntegerField(blank=True, null=True, )
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
     paisnascto = models.TextField(null=True, )
     paisnac = models.TextField(null=True, )
@@ -2715,30 +2715,30 @@ class s2205evtAltCadastral(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2205_evtaltcadastral_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2205 - Alteração de Dados Cadastrais do Trabalhador'
-        db_table = r's2205_evtaltcadastral'       
+        db_table = r's2205_evtaltcadastral'
         managed = True  # s2205_evtaltcadastral #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2205evtAltCadastral", u"Pode ver listagem do modelo S2205EVTALTCADASTRAL"),
             ("can_see_data_s2205evtAltCadastral", u"Pode visualizar o conteúdo do modelo S2205EVTALTCADASTRAL"),
@@ -2752,7 +2752,7 @@ class s2205evtAltCadastral(SoftDeletionModel):
             ("can_see_layout_s2205evtAltCadastral", u"Pode ver layout do evento S2205EVTALTCADASTRAL"),
             ("can_see_receipt_s2205evtAltCadastral", u"Pode ver recibo do evento S2205EVTALTCADASTRAL"),
             ("can_see_xml_s2205evtAltCadastral", u"Pode ver xml do evento S2205EVTALTCADASTRAL"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -2787,7 +2787,7 @@ class s2205evtAltCadastralSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2205evtAltCadastral
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -2797,7 +2797,7 @@ class s2205evtAltCadastralSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -2841,30 +2841,30 @@ class s2206evtAltContratual(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2206_evtaltcontratual_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2206 - Alteração de Contrato de Trabalho'
-        db_table = r's2206_evtaltcontratual'       
+        db_table = r's2206_evtaltcontratual'
         managed = True  # s2206_evtaltcontratual #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2206evtAltContratual", u"Pode ver listagem do modelo S2206EVTALTCONTRATUAL"),
             ("can_see_data_s2206evtAltContratual", u"Pode visualizar o conteúdo do modelo S2206EVTALTCONTRATUAL"),
@@ -2878,7 +2878,7 @@ class s2206evtAltContratual(SoftDeletionModel):
             ("can_see_layout_s2206evtAltContratual", u"Pode ver layout do evento S2206EVTALTCONTRATUAL"),
             ("can_see_receipt_s2206evtAltContratual", u"Pode ver recibo do evento S2206EVTALTCONTRATUAL"),
             ("can_see_xml_s2206evtAltContratual", u"Pode ver xml do evento S2206EVTALTCONTRATUAL"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -2913,7 +2913,7 @@ class s2206evtAltContratualSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2206evtAltContratual
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -2923,7 +2923,7 @@ class s2206evtAltContratualSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -2963,7 +2963,7 @@ class s2210evtCAT(SoftDeletionModel):
     complemento = models.CharField(max_length=30, blank=True, null=True, )
     bairro = models.CharField(max_length=90, blank=True, null=True, )
     cep = models.CharField(max_length=8, blank=True, null=True, )
-    codmunic = models.TextField(blank=True, null=True, )
+    codmunic = models.IntegerField(blank=True, null=True, )
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
     pais = models.TextField(blank=True, null=True, )
     codpostal = models.CharField(max_length=12, blank=True, null=True, )
@@ -2978,30 +2978,30 @@ class s2210evtCAT(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2210_evtcat_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2210 - Comunicação de Acidente de Trabalho'
-        db_table = r's2210_evtcat'       
+        db_table = r's2210_evtcat'
         managed = True  # s2210_evtcat #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2210evtCAT", u"Pode ver listagem do modelo S2210EVTCAT"),
             ("can_see_data_s2210evtCAT", u"Pode visualizar o conteúdo do modelo S2210EVTCAT"),
@@ -3015,7 +3015,7 @@ class s2210evtCAT(SoftDeletionModel):
             ("can_see_layout_s2210evtCAT", u"Pode ver layout do evento S2210EVTCAT"),
             ("can_see_receipt_s2210evtCAT", u"Pode ver recibo do evento S2210EVTCAT"),
             ("can_see_xml_s2210evtCAT", u"Pode ver xml do evento S2210EVTCAT"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -3054,7 +3054,7 @@ class s2210evtCATSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2210evtCAT
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -3064,7 +3064,7 @@ class s2210evtCATSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -3110,30 +3110,30 @@ class s2220evtMonit(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2220_evtmonit_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2220 - Monitoramento da Saúde do Trabalhador'
-        db_table = r's2220_evtmonit'       
+        db_table = r's2220_evtmonit'
         managed = True  # s2220_evtmonit #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2220evtMonit", u"Pode ver listagem do modelo S2220EVTMONIT"),
             ("can_see_data_s2220evtMonit", u"Pode visualizar o conteúdo do modelo S2220EVTMONIT"),
@@ -3147,7 +3147,7 @@ class s2220evtMonit(SoftDeletionModel):
             ("can_see_layout_s2220evtMonit", u"Pode ver layout do evento S2220EVTMONIT"),
             ("can_see_receipt_s2220evtMonit", u"Pode ver recibo do evento S2220EVTMONIT"),
             ("can_see_xml_s2220evtMonit", u"Pode ver xml do evento S2220EVTMONIT"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -3186,7 +3186,7 @@ class s2220evtMonitSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2220evtMonit
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -3196,7 +3196,7 @@ class s2220evtMonitSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -3233,30 +3233,30 @@ class s2221evtToxic(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2221_evttoxic_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2221 - Exame Toxicológico do Motorista Profissional'
-        db_table = r's2221_evttoxic'       
+        db_table = r's2221_evttoxic'
         managed = True  # s2221_evttoxic #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2221evtToxic", u"Pode ver listagem do modelo S2221EVTTOXIC"),
             ("can_see_data_s2221evtToxic", u"Pode visualizar o conteúdo do modelo S2221EVTTOXIC"),
@@ -3270,7 +3270,7 @@ class s2221evtToxic(SoftDeletionModel):
             ("can_see_layout_s2221evtToxic", u"Pode ver layout do evento S2221EVTTOXIC"),
             ("can_see_receipt_s2221evtToxic", u"Pode ver recibo do evento S2221EVTTOXIC"),
             ("can_see_xml_s2221evtToxic", u"Pode ver xml do evento S2221EVTTOXIC"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -3299,7 +3299,7 @@ class s2221evtToxicSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2221evtToxic
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -3309,7 +3309,7 @@ class s2221evtToxicSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -3339,30 +3339,30 @@ class s2230evtAfastTemp(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2230_evtafasttemp_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2230 - Afastamento Temporário'
-        db_table = r's2230_evtafasttemp'       
+        db_table = r's2230_evtafasttemp'
         managed = True  # s2230_evtafasttemp #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2230evtAfastTemp", u"Pode ver listagem do modelo S2230EVTAFASTTEMP"),
             ("can_see_data_s2230evtAfastTemp", u"Pode visualizar o conteúdo do modelo S2230EVTAFASTTEMP"),
@@ -3376,7 +3376,7 @@ class s2230evtAfastTemp(SoftDeletionModel):
             ("can_see_layout_s2230evtAfastTemp", u"Pode ver layout do evento S2230EVTAFASTTEMP"),
             ("can_see_receipt_s2230evtAfastTemp", u"Pode ver recibo do evento S2230EVTAFASTTEMP"),
             ("can_see_xml_s2230evtAfastTemp", u"Pode ver xml do evento S2230EVTAFASTTEMP"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -3403,7 +3403,7 @@ class s2230evtAfastTempSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2230evtAfastTemp
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -3413,7 +3413,7 @@ class s2230evtAfastTempSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -3442,30 +3442,30 @@ class s2231evtCessao(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2231_evtcessao_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2231 - Cessão/Exercício em Outro Órgão'
-        db_table = r's2231_evtcessao'       
+        db_table = r's2231_evtcessao'
         managed = True  # s2231_evtcessao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2231evtCessao", u"Pode ver listagem do modelo S2231EVTCESSAO"),
             ("can_see_data_s2231evtCessao", u"Pode visualizar o conteúdo do modelo S2231EVTCESSAO"),
@@ -3479,7 +3479,7 @@ class s2231evtCessao(SoftDeletionModel):
             ("can_see_layout_s2231evtCessao", u"Pode ver layout do evento S2231EVTCESSAO"),
             ("can_see_receipt_s2231evtCessao", u"Pode ver recibo do evento S2231EVTCESSAO"),
             ("can_see_xml_s2231evtCessao", u"Pode ver xml do evento S2231EVTCESSAO"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -3508,7 +3508,7 @@ class s2231evtCessaoSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2231evtCessao
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -3518,7 +3518,7 @@ class s2231evtCessaoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -3550,30 +3550,30 @@ class s2240evtExpRisco(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2240_evtexprisco_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2240 - Condições Ambientais do Trabalho - Fatores de Risco'
-        db_table = r's2240_evtexprisco'       
+        db_table = r's2240_evtexprisco'
         managed = True  # s2240_evtexprisco #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2240evtExpRisco", u"Pode ver listagem do modelo S2240EVTEXPRISCO"),
             ("can_see_data_s2240evtExpRisco", u"Pode visualizar o conteúdo do modelo S2240EVTEXPRISCO"),
@@ -3587,7 +3587,7 @@ class s2240evtExpRisco(SoftDeletionModel):
             ("can_see_layout_s2240evtExpRisco", u"Pode ver layout do evento S2240EVTEXPRISCO"),
             ("can_see_receipt_s2240evtExpRisco", u"Pode ver recibo do evento S2240EVTEXPRISCO"),
             ("can_see_xml_s2240evtExpRisco", u"Pode ver xml do evento S2240EVTEXPRISCO"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -3616,7 +3616,7 @@ class s2240evtExpRiscoSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2240evtExpRisco
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -3626,7 +3626,7 @@ class s2240evtExpRiscoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -3655,30 +3655,30 @@ class s2241evtInsApo(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2241_evtinsapo_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial'
-        db_table = r's2241_evtinsapo'       
+        db_table = r's2241_evtinsapo'
         managed = True  # s2241_evtinsapo #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2241evtInsApo", u"Pode ver listagem do modelo S2241EVTINSAPO"),
             ("can_see_data_s2241evtInsApo", u"Pode visualizar o conteúdo do modelo S2241EVTINSAPO"),
@@ -3692,7 +3692,7 @@ class s2241evtInsApo(SoftDeletionModel):
             ("can_see_layout_s2241evtInsApo", u"Pode ver layout do evento S2241EVTINSAPO"),
             ("can_see_receipt_s2241evtInsApo", u"Pode ver recibo do evento S2241EVTINSAPO"),
             ("can_see_xml_s2241evtInsApo", u"Pode ver xml do evento S2241EVTINSAPO"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -3719,7 +3719,7 @@ class s2241evtInsApoSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2241evtInsApo
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -3729,7 +3729,7 @@ class s2241evtInsApoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -3767,30 +3767,30 @@ class s2245evtTreiCap(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2245_evttreicap_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2245 - Treinamentos, Capacitações e Exercícios Simulados'
-        db_table = r's2245_evttreicap'       
+        db_table = r's2245_evttreicap'
         managed = True  # s2245_evttreicap #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2245evtTreiCap", u"Pode ver listagem do modelo S2245EVTTREICAP"),
             ("can_see_data_s2245evtTreiCap", u"Pode visualizar o conteúdo do modelo S2245EVTTREICAP"),
@@ -3804,7 +3804,7 @@ class s2245evtTreiCap(SoftDeletionModel):
             ("can_see_layout_s2245evtTreiCap", u"Pode ver layout do evento S2245EVTTREICAP"),
             ("can_see_receipt_s2245evtTreiCap", u"Pode ver recibo do evento S2245EVTTREICAP"),
             ("can_see_xml_s2245evtTreiCap", u"Pode ver xml do evento S2245EVTTREICAP"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -3834,7 +3834,7 @@ class s2245evtTreiCapSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2245evtTreiCap
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -3844,7 +3844,7 @@ class s2245evtTreiCapSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -3873,30 +3873,30 @@ class s2250evtAvPrevio(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2250_evtavprevio_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2250 - Aviso Prévio'
-        db_table = r's2250_evtavprevio'       
+        db_table = r's2250_evtavprevio'
         managed = True  # s2250_evtavprevio #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2250evtAvPrevio", u"Pode ver listagem do modelo S2250EVTAVPREVIO"),
             ("can_see_data_s2250evtAvPrevio", u"Pode visualizar o conteúdo do modelo S2250EVTAVPREVIO"),
@@ -3910,7 +3910,7 @@ class s2250evtAvPrevio(SoftDeletionModel):
             ("can_see_layout_s2250evtAvPrevio", u"Pode ver layout do evento S2250EVTAVPREVIO"),
             ("can_see_receipt_s2250evtAvPrevio", u"Pode ver recibo do evento S2250EVTAVPREVIO"),
             ("can_see_xml_s2250evtAvPrevio", u"Pode ver xml do evento S2250EVTAVPREVIO"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -3939,7 +3939,7 @@ class s2250evtAvPrevioSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2250evtAvPrevio
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -3949,7 +3949,7 @@ class s2250evtAvPrevioSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -3985,30 +3985,30 @@ class s2260evtConvInterm(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2260_evtconvinterm_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2260 - Convocação para Trabalho Intermitente'
-        db_table = r's2260_evtconvinterm'       
+        db_table = r's2260_evtconvinterm'
         managed = True  # s2260_evtconvinterm #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2260evtConvInterm", u"Pode ver listagem do modelo S2260EVTCONVINTERM"),
             ("can_see_data_s2260evtConvInterm", u"Pode visualizar o conteúdo do modelo S2260EVTCONVINTERM"),
@@ -4022,7 +4022,7 @@ class s2260evtConvInterm(SoftDeletionModel):
             ("can_see_layout_s2260evtConvInterm", u"Pode ver layout do evento S2260EVTCONVINTERM"),
             ("can_see_receipt_s2260evtConvInterm", u"Pode ver recibo do evento S2260EVTCONVINTERM"),
             ("can_see_xml_s2260evtConvInterm", u"Pode ver xml do evento S2260EVTCONVINTERM"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -4056,7 +4056,7 @@ class s2260evtConvIntermSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2260evtConvInterm
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -4066,7 +4066,7 @@ class s2260evtConvIntermSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -4101,30 +4101,30 @@ class s2298evtReintegr(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2298_evtreintegr_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2298 - Reintegração'
-        db_table = r's2298_evtreintegr'       
+        db_table = r's2298_evtreintegr'
         managed = True  # s2298_evtreintegr #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2298evtReintegr", u"Pode ver listagem do modelo S2298EVTREINTEGR"),
             ("can_see_data_s2298evtReintegr", u"Pode visualizar o conteúdo do modelo S2298EVTREINTEGR"),
@@ -4138,7 +4138,7 @@ class s2298evtReintegr(SoftDeletionModel):
             ("can_see_layout_s2298evtReintegr", u"Pode ver layout do evento S2298EVTREINTEGR"),
             ("can_see_receipt_s2298evtReintegr", u"Pode ver recibo do evento S2298EVTREINTEGR"),
             ("can_see_xml_s2298evtReintegr", u"Pode ver xml do evento S2298EVTREINTEGR"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -4171,7 +4171,7 @@ class s2298evtReintegrSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2298evtReintegr
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -4181,7 +4181,7 @@ class s2298evtReintegrSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -4221,30 +4221,30 @@ class s2299evtDeslig(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2299_evtdeslig_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2299 - Desligamento'
-        db_table = r's2299_evtdeslig'       
+        db_table = r's2299_evtdeslig'
         managed = True  # s2299_evtdeslig #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2299evtDeslig", u"Pode ver listagem do modelo S2299EVTDESLIG"),
             ("can_see_data_s2299evtDeslig", u"Pode visualizar o conteúdo do modelo S2299EVTDESLIG"),
@@ -4258,7 +4258,7 @@ class s2299evtDeslig(SoftDeletionModel):
             ("can_see_layout_s2299evtDeslig", u"Pode ver layout do evento S2299EVTDESLIG"),
             ("can_see_receipt_s2299evtDeslig", u"Pode ver recibo do evento S2299EVTDESLIG"),
             ("can_see_xml_s2299evtDeslig", u"Pode ver xml do evento S2299EVTDESLIG"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -4292,7 +4292,7 @@ class s2299evtDesligSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2299evtDeslig
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -4302,7 +4302,7 @@ class s2299evtDesligSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -4326,7 +4326,7 @@ class s2300evtTSVInicio(SoftDeletionModel):
     grauinstr = models.CharField(choices=CHOICES_S2300_GRAUINSTR, max_length=2, null=True, )
     nmsoc = models.CharField(max_length=70, blank=True, null=True, )
     dtnascto = models.DateField(null=True, )
-    codmunic = models.TextField(blank=True, null=True, )
+    codmunic = models.IntegerField(blank=True, null=True, )
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
     paisnascto = models.TextField(null=True, )
     paisnac = models.TextField(null=True, )
@@ -4347,30 +4347,30 @@ class s2300evtTSVInicio(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2300_evttsvinicio_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início'
-        db_table = r's2300_evttsvinicio'       
+        db_table = r's2300_evttsvinicio'
         managed = True  # s2300_evttsvinicio #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2300evtTSVInicio", u"Pode ver listagem do modelo S2300EVTTSVINICIO"),
             ("can_see_data_s2300evtTSVInicio", u"Pode visualizar o conteúdo do modelo S2300EVTTSVINICIO"),
@@ -4384,7 +4384,7 @@ class s2300evtTSVInicio(SoftDeletionModel):
             ("can_see_layout_s2300evtTSVInicio", u"Pode ver layout do evento S2300EVTTSVINICIO"),
             ("can_see_receipt_s2300evtTSVInicio", u"Pode ver recibo do evento S2300EVTTSVINICIO"),
             ("can_see_xml_s2300evtTSVInicio", u"Pode ver xml do evento S2300EVTTSVINICIO"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -4421,7 +4421,7 @@ class s2300evtTSVInicioSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2300evtTSVInicio
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -4431,7 +4431,7 @@ class s2300evtTSVInicioSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -4462,30 +4462,30 @@ class s2306evtTSVAltContr(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2306_evttsvaltcontr_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual'
-        db_table = r's2306_evttsvaltcontr'       
+        db_table = r's2306_evttsvaltcontr'
         managed = True  # s2306_evttsvaltcontr #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2306evtTSVAltContr", u"Pode ver listagem do modelo S2306EVTTSVALTCONTR"),
             ("can_see_data_s2306evtTSVAltContr", u"Pode visualizar o conteúdo do modelo S2306EVTTSVALTCONTR"),
@@ -4499,7 +4499,7 @@ class s2306evtTSVAltContr(SoftDeletionModel):
             ("can_see_layout_s2306evtTSVAltContr", u"Pode ver layout do evento S2306EVTTSVALTCONTR"),
             ("can_see_receipt_s2306evtTSVAltContr", u"Pode ver recibo do evento S2306EVTTSVALTCONTR"),
             ("can_see_xml_s2306evtTSVAltContr", u"Pode ver xml do evento S2306EVTTSVALTCONTR"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -4528,7 +4528,7 @@ class s2306evtTSVAltContrSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2306evtTSVAltContr
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -4538,7 +4538,7 @@ class s2306evtTSVAltContrSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -4572,30 +4572,30 @@ class s2399evtTSVTermino(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2399_evttsvtermino_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término'
-        db_table = r's2399_evttsvtermino'       
+        db_table = r's2399_evttsvtermino'
         managed = True  # s2399_evttsvtermino #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2399evtTSVTermino", u"Pode ver listagem do modelo S2399EVTTSVTERMINO"),
             ("can_see_data_s2399evtTSVTermino", u"Pode visualizar o conteúdo do modelo S2399EVTTSVTERMINO"),
@@ -4609,7 +4609,7 @@ class s2399evtTSVTermino(SoftDeletionModel):
             ("can_see_layout_s2399evtTSVTermino", u"Pode ver layout do evento S2399EVTTSVTERMINO"),
             ("can_see_receipt_s2399evtTSVTermino", u"Pode ver recibo do evento S2399EVTTSVTERMINO"),
             ("can_see_xml_s2399evtTSVTermino", u"Pode ver xml do evento S2399EVTTSVTERMINO"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -4638,7 +4638,7 @@ class s2399evtTSVTerminoSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2399evtTSVTermino
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -4648,7 +4648,7 @@ class s2399evtTSVTerminoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -4673,7 +4673,7 @@ class s2400evtCdBenefIn(SoftDeletionModel):
     incfismen = models.CharField(choices=CHOICES_S2400_INCFISMEN, max_length=1, null=True, )
     dtincfismen = models.DateField(blank=True, null=True, )
     dtnascto = models.DateField(null=True, )
-    codmunic = models.TextField(blank=True, null=True, )
+    codmunic = models.IntegerField(blank=True, null=True, )
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
     paisnascto = models.TextField(blank=True, null=True, )
     paisnac = models.TextField(null=True, )
@@ -4690,30 +4690,30 @@ class s2400evtCdBenefIn(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2400_evtcdbenefin_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2400 - Cadastro de Beneficiários - Entes Públicos - Início'
-        db_table = r's2400_evtcdbenefin'       
+        db_table = r's2400_evtcdbenefin'
         managed = True  # s2400_evtcdbenefin #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2400evtCdBenefIn", u"Pode ver listagem do modelo S2400EVTCDBENEFIN"),
             ("can_see_data_s2400evtCdBenefIn", u"Pode visualizar o conteúdo do modelo S2400EVTCDBENEFIN"),
@@ -4727,7 +4727,7 @@ class s2400evtCdBenefIn(SoftDeletionModel):
             ("can_see_layout_s2400evtCdBenefIn", u"Pode ver layout do evento S2400EVTCDBENEFIN"),
             ("can_see_receipt_s2400evtCdBenefIn", u"Pode ver recibo do evento S2400EVTCDBENEFIN"),
             ("can_see_xml_s2400evtCdBenefIn", u"Pode ver xml do evento S2400EVTCDBENEFIN"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -4761,7 +4761,7 @@ class s2400evtCdBenefInSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2400evtCdBenefIn
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -4771,7 +4771,7 @@ class s2400evtCdBenefInSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -4809,30 +4809,30 @@ class s2405evtCdBenefAlt(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2405_evtcdbenefalt_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2405 - Cadastro de Beneficiários - Entes Públicos - Alteração'
-        db_table = r's2405_evtcdbenefalt'       
+        db_table = r's2405_evtcdbenefalt'
         managed = True  # s2405_evtcdbenefalt #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2405evtCdBenefAlt", u"Pode ver listagem do modelo S2405EVTCDBENEFALT"),
             ("can_see_data_s2405evtCdBenefAlt", u"Pode visualizar o conteúdo do modelo S2405EVTCDBENEFALT"),
@@ -4846,7 +4846,7 @@ class s2405evtCdBenefAlt(SoftDeletionModel):
             ("can_see_layout_s2405evtCdBenefAlt", u"Pode ver layout do evento S2405EVTCDBENEFALT"),
             ("can_see_receipt_s2405evtCdBenefAlt", u"Pode ver recibo do evento S2405EVTCDBENEFALT"),
             ("can_see_xml_s2405evtCdBenefAlt", u"Pode ver xml do evento S2405EVTCDBENEFALT"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -4879,7 +4879,7 @@ class s2405evtCdBenefAltSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2405evtCdBenefAlt
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -4889,7 +4889,7 @@ class s2405evtCdBenefAltSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -4927,30 +4927,30 @@ class s2410evtCdBenIn(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2410_evtcdbenin_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2410 - Cadastro de Benefícios - Entes Públicos - Início'
-        db_table = r's2410_evtcdbenin'       
+        db_table = r's2410_evtcdbenin'
         managed = True  # s2410_evtcdbenin #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2410evtCdBenIn", u"Pode ver listagem do modelo S2410EVTCDBENIN"),
             ("can_see_data_s2410evtCdBenIn", u"Pode visualizar o conteúdo do modelo S2410EVTCDBENIN"),
@@ -4964,7 +4964,7 @@ class s2410evtCdBenIn(SoftDeletionModel):
             ("can_see_layout_s2410evtCdBenIn", u"Pode ver layout do evento S2410EVTCDBENIN"),
             ("can_see_receipt_s2410evtCdBenIn", u"Pode ver recibo do evento S2410EVTCDBENIN"),
             ("can_see_xml_s2410evtCdBenIn", u"Pode ver xml do evento S2410EVTCDBENIN"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -4999,7 +4999,7 @@ class s2410evtCdBenInSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2410evtCdBenIn
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -5009,7 +5009,7 @@ class s2410evtCdBenInSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -5044,30 +5044,30 @@ class s2416evtCdBenAlt(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2416_evtcdbenalt_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2416 - Cadastro de Benefícios - Entes Públicos - Alteração'
-        db_table = r's2416_evtcdbenalt'       
+        db_table = r's2416_evtcdbenalt'
         managed = True  # s2416_evtcdbenalt #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2416evtCdBenAlt", u"Pode ver listagem do modelo S2416EVTCDBENALT"),
             ("can_see_data_s2416evtCdBenAlt", u"Pode visualizar o conteúdo do modelo S2416EVTCDBENALT"),
@@ -5081,7 +5081,7 @@ class s2416evtCdBenAlt(SoftDeletionModel):
             ("can_see_layout_s2416evtCdBenAlt", u"Pode ver layout do evento S2416EVTCDBENALT"),
             ("can_see_receipt_s2416evtCdBenAlt", u"Pode ver recibo do evento S2416EVTCDBENALT"),
             ("can_see_xml_s2416evtCdBenAlt", u"Pode ver xml do evento S2416EVTCDBENALT"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -5115,7 +5115,7 @@ class s2416evtCdBenAltSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2416evtCdBenAlt
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -5125,7 +5125,7 @@ class s2416evtCdBenAltSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -5155,30 +5155,30 @@ class s2420evtCdBenTerm(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s2420_evtcdbenterm_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-2420 - Cadastro de Benefícios - Entes Públicos - Término'
-        db_table = r's2420_evtcdbenterm'       
+        db_table = r's2420_evtcdbenterm'
         managed = True  # s2420_evtcdbenterm #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2420evtCdBenTerm", u"Pode ver listagem do modelo S2420EVTCDBENTERM"),
             ("can_see_data_s2420evtCdBenTerm", u"Pode visualizar o conteúdo do modelo S2420EVTCDBENTERM"),
@@ -5192,7 +5192,7 @@ class s2420evtCdBenTerm(SoftDeletionModel):
             ("can_see_layout_s2420evtCdBenTerm", u"Pode ver layout do evento S2420EVTCDBENTERM"),
             ("can_see_receipt_s2420evtCdBenTerm", u"Pode ver recibo do evento S2420EVTCDBENTERM"),
             ("can_see_xml_s2420evtCdBenTerm", u"Pode ver xml do evento S2420EVTCDBENTERM"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -5222,7 +5222,7 @@ class s2420evtCdBenTermSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s2420evtCdBenTerm
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -5232,7 +5232,7 @@ class s2420evtCdBenTermSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -5258,30 +5258,30 @@ class s3000evtExclusao(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.esocial.views.s3000_evtexclusao_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-3000 - Exclusão de eventos'
-        db_table = r's3000_evtexclusao'       
+        db_table = r's3000_evtexclusao'
         managed = True  # s3000_evtexclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s3000evtExclusao", u"Pode ver listagem do modelo S3000EVTEXCLUSAO"),
             ("can_see_data_s3000evtExclusao", u"Pode visualizar o conteúdo do modelo S3000EVTEXCLUSAO"),
@@ -5295,7 +5295,7 @@ class s3000evtExclusao(SoftDeletionModel):
             ("can_see_layout_s3000evtExclusao", u"Pode ver layout do evento S3000EVTEXCLUSAO"),
             ("can_see_receipt_s3000evtExclusao", u"Pode ver recibo do evento S3000EVTEXCLUSAO"),
             ("can_see_xml_s3000evtExclusao", u"Pode ver xml do evento S3000EVTEXCLUSAO"),)
-            
+
         ordering = [
             'identidade',
             'tpamb',
@@ -5322,7 +5322,7 @@ class s3000evtExclusaoSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = s3000evtExclusao
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -5332,7 +5332,7 @@ class s3000evtExclusaoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -5355,26 +5355,26 @@ class s5001evtBasesTrab(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-5001 - Informações das contribuições sociais por trabalhador'
-        db_table = r's5001_evtbasestrab'       
+        db_table = r's5001_evtbasestrab'
         managed = True  # s5001_evtbasestrab #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5001evtBasesTrab", u"Pode ver listagem do modelo S5001EVTBASESTRAB"),
             ("can_see_receipt_s5001evtBasesTrab", u"Pode ver recibo do evento S5001EVTBASESTRAB"),
         )
-            
+
         ordering = [
             'identidade',
             'nrrecarqbase',
@@ -5389,7 +5389,7 @@ class s5001evtBasesTrab(SoftDeletionModel):
 class s5001evtBasesTrabSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5001evtBasesTrab
         fields = '__all__'
 
@@ -5411,26 +5411,26 @@ class s5002evtIrrfBenef(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-5002 - Imposto de Renda Retido na Fonte'
-        db_table = r's5002_evtirrfbenef'       
+        db_table = r's5002_evtirrfbenef'
         managed = True  # s5002_evtirrfbenef #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5002evtIrrfBenef", u"Pode ver listagem do modelo S5002EVTIRRFBENEF"),
             ("can_see_receipt_s5002evtIrrfBenef", u"Pode ver recibo do evento S5002EVTIRRFBENEF"),
         )
-            
+
         ordering = [
             'identidade',
             'nrrecarqbase',
@@ -5444,7 +5444,7 @@ class s5002evtIrrfBenef(SoftDeletionModel):
 class s5002evtIrrfBenefSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5002evtIrrfBenef
         fields = '__all__'
 
@@ -5468,26 +5468,26 @@ class s5003evtBasesFGTS(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-5003 - Informações do FGTS por Trabalhador'
-        db_table = r's5003_evtbasesfgts'       
+        db_table = r's5003_evtbasesfgts'
         managed = True  # s5003_evtbasesfgts #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5003evtBasesFGTS", u"Pode ver listagem do modelo S5003EVTBASESFGTS"),
             ("can_see_receipt_s5003evtBasesFGTS", u"Pode ver recibo do evento S5003EVTBASESFGTS"),
         )
-            
+
         ordering = [
             'identidade',
             'nrrecarqbase',
@@ -5501,7 +5501,7 @@ class s5003evtBasesFGTS(SoftDeletionModel):
 class s5003evtBasesFGTSSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5003evtBasesFGTS
         fields = '__all__'
 
@@ -5525,26 +5525,26 @@ class s5011evtCS(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-5011 - Informações das contribuições sociais consolidadas por contribuinte'
-        db_table = r's5011_evtcs'       
+        db_table = r's5011_evtcs'
         managed = True  # s5011_evtcs #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011evtCS", u"Pode ver listagem do modelo S5011EVTCS"),
             ("can_see_receipt_s5011evtCS", u"Pode ver recibo do evento S5011EVTCS"),
         )
-            
+
         ordering = [
             'identidade',
             'indapuracao',
@@ -5560,7 +5560,7 @@ class s5011evtCS(SoftDeletionModel):
 class s5011evtCSSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011evtCS
         fields = '__all__'
 
@@ -5582,26 +5582,26 @@ class s5012evtIrrf(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-5012 - Informações do IRRF consolidadas por contribuinte'
-        db_table = r's5012_evtirrf'       
+        db_table = r's5012_evtirrf'
         managed = True  # s5012_evtirrf #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5012evtIrrf", u"Pode ver listagem do modelo S5012EVTIRRF"),
             ("can_see_receipt_s5012evtIrrf", u"Pode ver recibo do evento S5012EVTIRRF"),
         )
-            
+
         ordering = [
             'identidade',
             'perapur',
@@ -5615,7 +5615,7 @@ class s5012evtIrrf(SoftDeletionModel):
 class s5012evtIrrfSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5012evtIrrf
         fields = '__all__'
 
@@ -5637,26 +5637,26 @@ class s5013evtFGTS(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
-        
+
     class Meta:
-    
+
         # verbose_name = u'S-5013 - Informações do FGTS consolidadas por contribuinte'
-        db_table = r's5013_evtfgts'       
+        db_table = r's5013_evtfgts'
         managed = True  # s5013_evtfgts #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5013evtFGTS", u"Pode ver listagem do modelo S5013EVTFGTS"),
             ("can_see_receipt_s5013evtFGTS", u"Pode ver recibo do evento S5013EVTFGTS"),
         )
-            
+
         ordering = [
             'identidade',
             'perapur',
@@ -5670,6 +5670,6 @@ class s5013evtFGTS(SoftDeletionModel):
 class s5013evtFGTSSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5013evtFGTS
         fields = '__all__'

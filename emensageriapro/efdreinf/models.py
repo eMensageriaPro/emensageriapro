@@ -106,30 +106,30 @@ class r1000evtInfoContri(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r1000_evtinfocontri_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-1000 - Informações do Contribuinte'
-        db_table = r'r1000_evtinfocontri'       
+        db_table = r'r1000_evtinfocontri'
         managed = True  # r1000_evtinfocontri #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r1000evtInfoContri", u"Pode ver listagem do modelo R1000EVTINFOCONTRI"),
             ("can_see_data_r1000evtInfoContri", u"Pode visualizar o conteúdo do modelo R1000EVTINFOCONTRI"),
@@ -139,13 +139,13 @@ class r1000evtInfoContri(SoftDeletionModel):
             ("can_open_r1000evtInfoContri", u"Pode abrir o evento R1000EVTINFOCONTRI para edição"),
             ("can_duplicate_r1000evtInfoContri", u"Pode duplicar o evento R1000EVTINFOCONTRI"),
             ("can_create_change_r1000evtInfoContri", u"Pode criar evento de alteração do evento R1000EVTINFOCONTRI com base em evento existente"),
-            ("can_create_delete_r1000evtInfoContri", u"Pode criar evento de exclusão do evento R1000EVTINFOCONTRI com base em evento existente"), 
+            ("can_create_delete_r1000evtInfoContri", u"Pode criar evento de exclusão do evento R1000EVTINFOCONTRI com base em evento existente"),
             ("can_validate_r1000evtInfoContri", u"Pode validar o evento R1000EVTINFOCONTRI"),
             ("can_change_identity_r1000evtInfoContri", u"Pode alterar identidade do evento R1000EVTINFOCONTRI"),
             ("can_see_layout_r1000evtInfoContri", u"Pode ver layout do evento R1000EVTINFOCONTRI"),
             ("can_see_receipt_r1000evtInfoContri", u"Pode ver recibo do evento R1000EVTINFOCONTRI"),
             ("can_see_xml_r1000evtInfoContri", u"Pode ver xml do evento R1000EVTINFOCONTRI"),)
-            
+
         ordering = [
             'identidade',
             'tpamb',
@@ -170,7 +170,7 @@ class r1000evtInfoContriSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r1000evtInfoContri
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -180,7 +180,7 @@ class r1000evtInfoContriSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -218,30 +218,30 @@ class r1070evtTabProcesso(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r1070_evttabprocesso_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-1070 - Tabela de Processos Administrativos/Judiciais'
-        db_table = r'r1070_evttabprocesso'       
+        db_table = r'r1070_evttabprocesso'
         managed = True  # r1070_evttabprocesso #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r1070evtTabProcesso", u"Pode ver listagem do modelo R1070EVTTABPROCESSO"),
             ("can_see_data_r1070evtTabProcesso", u"Pode visualizar o conteúdo do modelo R1070EVTTABPROCESSO"),
@@ -251,13 +251,13 @@ class r1070evtTabProcesso(SoftDeletionModel):
             ("can_open_r1070evtTabProcesso", u"Pode abrir o evento R1070EVTTABPROCESSO para edição"),
             ("can_duplicate_r1070evtTabProcesso", u"Pode duplicar o evento R1070EVTTABPROCESSO"),
             ("can_create_change_r1070evtTabProcesso", u"Pode criar evento de alteração do evento R1070EVTTABPROCESSO com base em evento existente"),
-            ("can_create_delete_r1070evtTabProcesso", u"Pode criar evento de exclusão do evento R1070EVTTABPROCESSO com base em evento existente"), 
+            ("can_create_delete_r1070evtTabProcesso", u"Pode criar evento de exclusão do evento R1070EVTTABPROCESSO com base em evento existente"),
             ("can_validate_r1070evtTabProcesso", u"Pode validar o evento R1070EVTTABPROCESSO"),
             ("can_change_identity_r1070evtTabProcesso", u"Pode alterar identidade do evento R1070EVTTABPROCESSO"),
             ("can_see_layout_r1070evtTabProcesso", u"Pode ver layout do evento R1070EVTTABPROCESSO"),
             ("can_see_receipt_r1070evtTabProcesso", u"Pode ver recibo do evento R1070EVTTABPROCESSO"),
             ("can_see_xml_r1070evtTabProcesso", u"Pode ver xml do evento R1070EVTTABPROCESSO"),)
-            
+
         ordering = [
             'identidade',
             'tpamb',
@@ -282,7 +282,7 @@ class r1070evtTabProcessoSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r1070evtTabProcesso
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -292,7 +292,7 @@ class r1070evtTabProcessoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -343,30 +343,30 @@ class r2010evtServTom(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r2010_evtservtom_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-2010 - Retenção Contribuição Previdenciária - Serviços Tomados'
-        db_table = r'r2010_evtservtom'       
+        db_table = r'r2010_evtservtom'
         managed = True  # r2010_evtservtom #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2010evtServTom", u"Pode ver listagem do modelo R2010EVTSERVTOM"),
             ("can_see_data_r2010evtServTom", u"Pode visualizar o conteúdo do modelo R2010EVTSERVTOM"),
@@ -380,7 +380,7 @@ class r2010evtServTom(SoftDeletionModel):
             ("can_see_layout_r2010evtServTom", u"Pode ver layout do evento R2010EVTSERVTOM"),
             ("can_see_receipt_r2010evtServTom", u"Pode ver recibo do evento R2010EVTSERVTOM"),
             ("can_see_xml_r2010evtServTom", u"Pode ver xml do evento R2010EVTSERVTOM"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -415,7 +415,7 @@ class r2010evtServTomSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r2010evtServTom
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -425,7 +425,7 @@ class r2010evtServTomSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -476,30 +476,30 @@ class r2020evtServPrest(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r2020_evtservprest_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados'
-        db_table = r'r2020_evtservprest'       
+        db_table = r'r2020_evtservprest'
         managed = True  # r2020_evtservprest #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2020evtServPrest", u"Pode ver listagem do modelo R2020EVTSERVPREST"),
             ("can_see_data_r2020evtServPrest", u"Pode visualizar o conteúdo do modelo R2020EVTSERVPREST"),
@@ -513,7 +513,7 @@ class r2020evtServPrest(SoftDeletionModel):
             ("can_see_layout_r2020evtServPrest", u"Pode ver layout do evento R2020EVTSERVPREST"),
             ("can_see_receipt_r2020evtServPrest", u"Pode ver recibo do evento R2020EVTSERVPREST"),
             ("can_see_xml_r2020evtServPrest", u"Pode ver xml do evento R2020EVTSERVPREST"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -548,7 +548,7 @@ class r2020evtServPrestSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r2020evtServPrest
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -558,7 +558,7 @@ class r2020evtServPrestSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -600,30 +600,30 @@ class r2030evtAssocDespRec(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r2030_evtassocdesprec_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-2030 - Recursos Recebidos por Associação Desportiva'
-        db_table = r'r2030_evtassocdesprec'       
+        db_table = r'r2030_evtassocdesprec'
         managed = True  # r2030_evtassocdesprec #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2030evtAssocDespRec", u"Pode ver listagem do modelo R2030EVTASSOCDESPREC"),
             ("can_see_data_r2030evtAssocDespRec", u"Pode visualizar o conteúdo do modelo R2030EVTASSOCDESPREC"),
@@ -637,7 +637,7 @@ class r2030evtAssocDespRec(SoftDeletionModel):
             ("can_see_layout_r2030evtAssocDespRec", u"Pode ver layout do evento R2030EVTASSOCDESPREC"),
             ("can_see_receipt_r2030evtAssocDespRec", u"Pode ver recibo do evento R2030EVTASSOCDESPREC"),
             ("can_see_xml_r2030evtAssocDespRec", u"Pode ver xml do evento R2030EVTASSOCDESPREC"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -666,7 +666,7 @@ class r2030evtAssocDespRecSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r2030evtAssocDespRec
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -676,7 +676,7 @@ class r2030evtAssocDespRecSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -718,30 +718,30 @@ class r2040evtAssocDespRep(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r2040_evtassocdesprep_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-2040 - Recursos Repassados para Associação Desportiva'
-        db_table = r'r2040_evtassocdesprep'       
+        db_table = r'r2040_evtassocdesprep'
         managed = True  # r2040_evtassocdesprep #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2040evtAssocDespRep", u"Pode ver listagem do modelo R2040EVTASSOCDESPREP"),
             ("can_see_data_r2040evtAssocDespRep", u"Pode visualizar o conteúdo do modelo R2040EVTASSOCDESPREP"),
@@ -755,7 +755,7 @@ class r2040evtAssocDespRep(SoftDeletionModel):
             ("can_see_layout_r2040evtAssocDespRep", u"Pode ver layout do evento R2040EVTASSOCDESPREP"),
             ("can_see_receipt_r2040evtAssocDespRep", u"Pode ver recibo do evento R2040EVTASSOCDESPREP"),
             ("can_see_xml_r2040evtAssocDespRep", u"Pode ver xml do evento R2040EVTASSOCDESPREP"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -784,7 +784,7 @@ class r2040evtAssocDespRepSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r2040evtAssocDespRep
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -794,7 +794,7 @@ class r2040evtAssocDespRepSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -843,30 +843,30 @@ class r2050evtComProd(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r2050_evtcomprod_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-2050 - Comercialização da Produção por Produtor Rural PJ/Agroindústria'
-        db_table = r'r2050_evtcomprod'       
+        db_table = r'r2050_evtcomprod'
         managed = True  # r2050_evtcomprod #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2050evtComProd", u"Pode ver listagem do modelo R2050EVTCOMPROD"),
             ("can_see_data_r2050evtComProd", u"Pode visualizar o conteúdo do modelo R2050EVTCOMPROD"),
@@ -880,7 +880,7 @@ class r2050evtComProd(SoftDeletionModel):
             ("can_see_layout_r2050evtComProd", u"Pode ver layout do evento R2050EVTCOMPROD"),
             ("can_see_receipt_r2050evtComProd", u"Pode ver recibo do evento R2050EVTCOMPROD"),
             ("can_see_xml_r2050evtComProd", u"Pode ver xml do evento R2050EVTCOMPROD"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -913,7 +913,7 @@ class r2050evtComProdSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r2050evtComProd
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -923,7 +923,7 @@ class r2050evtComProdSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -968,30 +968,30 @@ class r2060evtCPRB(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r2060_evtcprb_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB'
-        db_table = r'r2060_evtcprb'       
+        db_table = r'r2060_evtcprb'
         managed = True  # r2060_evtcprb #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2060evtCPRB", u"Pode ver listagem do modelo R2060EVTCPRB"),
             ("can_see_data_r2060evtCPRB", u"Pode visualizar o conteúdo do modelo R2060EVTCPRB"),
@@ -1005,7 +1005,7 @@ class r2060evtCPRB(SoftDeletionModel):
             ("can_see_layout_r2060evtCPRB", u"Pode ver layout do evento R2060EVTCPRB"),
             ("can_see_receipt_r2060evtCPRB", u"Pode ver recibo do evento R2060EVTCPRB"),
             ("can_see_xml_r2060evtCPRB", u"Pode ver xml do evento R2060EVTCPRB"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -1036,7 +1036,7 @@ class r2060evtCPRBSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r2060evtCPRB
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1046,7 +1046,7 @@ class r2060evtCPRBSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1090,30 +1090,30 @@ class r2070evtPgtosDivs(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r2070_evtpgtosdivs_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP'
-        db_table = r'r2070_evtpgtosdivs'       
+        db_table = r'r2070_evtpgtosdivs'
         managed = True  # r2070_evtpgtosdivs #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070evtPgtosDivs", u"Pode ver listagem do modelo R2070EVTPGTOSDIVS"),
             ("can_see_data_r2070evtPgtosDivs", u"Pode visualizar o conteúdo do modelo R2070EVTPGTOSDIVS"),
@@ -1127,7 +1127,7 @@ class r2070evtPgtosDivs(SoftDeletionModel):
             ("can_see_layout_r2070evtPgtosDivs", u"Pode ver layout do evento R2070EVTPGTOSDIVS"),
             ("can_see_receipt_r2070evtPgtosDivs", u"Pode ver recibo do evento R2070EVTPGTOSDIVS"),
             ("can_see_xml_r2070evtPgtosDivs", u"Pode ver xml do evento R2070EVTPGTOSDIVS"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -1156,7 +1156,7 @@ class r2070evtPgtosDivsSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r2070evtPgtosDivs
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1166,7 +1166,7 @@ class r2070evtPgtosDivsSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1204,30 +1204,30 @@ class r2098evtReabreEvPer(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r2098_evtreabreevper_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-2098 - Reabertura dos Eventos Periódicos'
-        db_table = r'r2098_evtreabreevper'       
+        db_table = r'r2098_evtreabreevper'
         managed = True  # r2098_evtreabreevper #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2098evtReabreEvPer", u"Pode ver listagem do modelo R2098EVTREABREEVPER"),
             ("can_see_data_r2098evtReabreEvPer", u"Pode visualizar o conteúdo do modelo R2098EVTREABREEVPER"),
@@ -1241,7 +1241,7 @@ class r2098evtReabreEvPer(SoftDeletionModel):
             ("can_see_layout_r2098evtReabreEvPer", u"Pode ver layout do evento R2098EVTREABREEVPER"),
             ("can_see_receipt_r2098evtReabreEvPer", u"Pode ver recibo do evento R2098EVTREABREEVPER"),
             ("can_see_xml_r2098evtReabreEvPer", u"Pode ver xml do evento R2098EVTREABREEVPER"),)
-            
+
         ordering = [
             'identidade',
             'perapur',
@@ -1267,7 +1267,7 @@ class r2098evtReabreEvPerSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r2098evtReabreEvPer
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1277,7 +1277,7 @@ class r2098evtReabreEvPerSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1323,30 +1323,30 @@ class r2099evtFechaEvPer(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r2099_evtfechaevper_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-2099 - Fechamento dos Eventos Periódicos'
-        db_table = r'r2099_evtfechaevper'       
+        db_table = r'r2099_evtfechaevper'
         managed = True  # r2099_evtfechaevper #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2099evtFechaEvPer", u"Pode ver listagem do modelo R2099EVTFECHAEVPER"),
             ("can_see_data_r2099evtFechaEvPer", u"Pode visualizar o conteúdo do modelo R2099EVTFECHAEVPER"),
@@ -1360,7 +1360,7 @@ class r2099evtFechaEvPer(SoftDeletionModel):
             ("can_see_layout_r2099evtFechaEvPer", u"Pode ver layout do evento R2099EVTFECHAEVPER"),
             ("can_see_receipt_r2099evtFechaEvPer", u"Pode ver recibo do evento R2099EVTFECHAEVPER"),
             ("can_see_xml_r2099evtFechaEvPer", u"Pode ver xml do evento R2099EVTFECHAEVPER"),)
-            
+
         ordering = [
             'identidade',
             'perapur',
@@ -1392,7 +1392,7 @@ class r2099evtFechaEvPerSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r2099evtFechaEvPer
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1402,7 +1402,7 @@ class r2099evtFechaEvPerSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1449,30 +1449,30 @@ class r3010evtEspDesportivo(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r3010_evtespdesportivo_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-3010 - Receita de Espetáculo Desportivo'
-        db_table = r'r3010_evtespdesportivo'       
+        db_table = r'r3010_evtespdesportivo'
         managed = True  # r3010_evtespdesportivo #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r3010evtEspDesportivo", u"Pode ver listagem do modelo R3010EVTESPDESPORTIVO"),
             ("can_see_data_r3010evtEspDesportivo", u"Pode visualizar o conteúdo do modelo R3010EVTESPDESPORTIVO"),
@@ -1486,7 +1486,7 @@ class r3010evtEspDesportivo(SoftDeletionModel):
             ("can_see_layout_r3010evtEspDesportivo", u"Pode ver layout do evento R3010EVTESPDESPORTIVO"),
             ("can_see_receipt_r3010evtEspDesportivo", u"Pode ver recibo do evento R3010EVTESPDESPORTIVO"),
             ("can_see_xml_r3010evtEspDesportivo", u"Pode ver xml do evento R3010EVTESPDESPORTIVO"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -1519,7 +1519,7 @@ class r3010evtEspDesportivoSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r3010evtEspDesportivo
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1529,7 +1529,7 @@ class r3010evtEspDesportivoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1573,30 +1573,30 @@ class r4010evtRetPF(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r4010_evtretpf_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-4010 - Retenções na Fonte - Pessoa Física'
-        db_table = r'r4010_evtretpf'       
+        db_table = r'r4010_evtretpf'
         managed = True  # r4010_evtretpf #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4010evtRetPF", u"Pode ver listagem do modelo R4010EVTRETPF"),
             ("can_see_data_r4010evtRetPF", u"Pode visualizar o conteúdo do modelo R4010EVTRETPF"),
@@ -1610,7 +1610,7 @@ class r4010evtRetPF(SoftDeletionModel):
             ("can_see_layout_r4010evtRetPF", u"Pode ver layout do evento R4010EVTRETPF"),
             ("can_see_receipt_r4010evtRetPF", u"Pode ver recibo do evento R4010EVTRETPF"),
             ("can_see_xml_r4010evtRetPF", u"Pode ver xml do evento R4010EVTRETPF"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -1639,7 +1639,7 @@ class r4010evtRetPFSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r4010evtRetPF
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1649,7 +1649,7 @@ class r4010evtRetPFSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1694,30 +1694,30 @@ class r4020evtRetPJ(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r4020_evtretpj_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-4020 - Retenções na Fonte - Pessoa Jurídica'
-        db_table = r'r4020_evtretpj'       
+        db_table = r'r4020_evtretpj'
         managed = True  # r4020_evtretpj #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4020evtRetPJ", u"Pode ver listagem do modelo R4020EVTRETPJ"),
             ("can_see_data_r4020evtRetPJ", u"Pode visualizar o conteúdo do modelo R4020EVTRETPJ"),
@@ -1731,7 +1731,7 @@ class r4020evtRetPJ(SoftDeletionModel):
             ("can_see_layout_r4020evtRetPJ", u"Pode ver layout do evento R4020EVTRETPJ"),
             ("can_see_receipt_r4020evtRetPJ", u"Pode ver recibo do evento R4020EVTRETPJ"),
             ("can_see_xml_r4020evtRetPJ", u"Pode ver xml do evento R4020EVTRETPJ"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -1761,7 +1761,7 @@ class r4020evtRetPJSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r4020evtRetPJ
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1771,7 +1771,7 @@ class r4020evtRetPJSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1813,30 +1813,30 @@ class r4040evtBenefNId(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r4040_evtbenefnid_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-4040 - Retenções na Fonte - Beneficiários não identificados'
-        db_table = r'r4040_evtbenefnid'       
+        db_table = r'r4040_evtbenefnid'
         managed = True  # r4040_evtbenefnid #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4040evtBenefNId", u"Pode ver listagem do modelo R4040EVTBENEFNID"),
             ("can_see_data_r4040evtBenefNId", u"Pode visualizar o conteúdo do modelo R4040EVTBENEFNID"),
@@ -1850,7 +1850,7 @@ class r4040evtBenefNId(SoftDeletionModel):
             ("can_see_layout_r4040evtBenefNId", u"Pode ver layout do evento R4040EVTBENEFNID"),
             ("can_see_receipt_r4040evtBenefNId", u"Pode ver recibo do evento R4040EVTBENEFNID"),
             ("can_see_xml_r4040evtBenefNId", u"Pode ver xml do evento R4040EVTBENEFNID"),)
-            
+
         ordering = [
             'identidade',
             'indretif',
@@ -1879,7 +1879,7 @@ class r4040evtBenefNIdSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r4040evtBenefNId
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -1889,7 +1889,7 @@ class r4040evtBenefNIdSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1927,30 +1927,30 @@ class r4098evtReab(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r4098_evtreab_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-4098 - Reabertura dos Eventos Periódicos Série R-4000'
-        db_table = r'r4098_evtreab'       
+        db_table = r'r4098_evtreab'
         managed = True  # r4098_evtreab #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4098evtReab", u"Pode ver listagem do modelo R4098EVTREAB"),
             ("can_see_data_r4098evtReab", u"Pode visualizar o conteúdo do modelo R4098EVTREAB"),
@@ -1964,7 +1964,7 @@ class r4098evtReab(SoftDeletionModel):
             ("can_see_layout_r4098evtReab", u"Pode ver layout do evento R4098EVTREAB"),
             ("can_see_receipt_r4098evtReab", u"Pode ver recibo do evento R4098EVTREAB"),
             ("can_see_xml_r4098evtReab", u"Pode ver xml do evento R4098EVTREAB"),)
-            
+
         ordering = [
             'identidade',
             'perapur',
@@ -1990,7 +1990,7 @@ class r4098evtReabSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r4098evtReab
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -2000,7 +2000,7 @@ class r4098evtReabSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -2041,30 +2041,30 @@ class r4099evtFech(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r4099_evtfech_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-4099 - Fechamento dos Eventos Periódicos Série R-4000'
-        db_table = r'r4099_evtfech'       
+        db_table = r'r4099_evtfech'
         managed = True  # r4099_evtfech #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4099evtFech", u"Pode ver listagem do modelo R4099EVTFECH"),
             ("can_see_data_r4099evtFech", u"Pode visualizar o conteúdo do modelo R4099EVTFECH"),
@@ -2078,7 +2078,7 @@ class r4099evtFech(SoftDeletionModel):
             ("can_see_layout_r4099evtFech", u"Pode ver layout do evento R4099EVTFECH"),
             ("can_see_receipt_r4099evtFech", u"Pode ver recibo do evento R4099EVTFECH"),
             ("can_see_xml_r4099evtFech", u"Pode ver xml do evento R4099EVTFECH"),)
-            
+
         ordering = [
             'identidade',
             'perapur',
@@ -2104,7 +2104,7 @@ class r4099evtFechSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r4099evtFech
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -2114,7 +2114,7 @@ class r4099evtFechSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -2144,26 +2144,26 @@ class r5001evtTotal(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-5001 - Informações de bases e tributos por evento'
-        db_table = r'r5001_evttotal'       
+        db_table = r'r5001_evttotal'
         managed = True  # r5001_evttotal #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r5001evtTotal", u"Pode ver listagem do modelo R5001EVTTOTAL"),
             ("can_see_receipt_r5001evtTotal", u"Pode ver recibo do evento R5001EVTTOTAL"),
         )
-            
+
         ordering = [
             'identidade',
             'perapur',
@@ -2181,7 +2181,7 @@ class r5001evtTotal(SoftDeletionModel):
 class r5001evtTotalSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r5001evtTotal
         fields = '__all__'
 
@@ -2211,26 +2211,26 @@ class r5011evtTotalContrib(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-5011 - Informações de bases e tributos consolidadas por período de apuração'
-        db_table = r'r5011_evttotalcontrib'       
+        db_table = r'r5011_evttotalcontrib'
         managed = True  # r5011_evttotalcontrib #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r5011evtTotalContrib", u"Pode ver listagem do modelo R5011EVTTOTALCONTRIB"),
             ("can_see_receipt_r5011evtTotalContrib", u"Pode ver recibo do evento R5011EVTTOTALCONTRIB"),
         )
-            
+
         ordering = [
             'identidade',
             'perapur',
@@ -2249,7 +2249,7 @@ class r5011evtTotalContrib(SoftDeletionModel):
 class r5011evtTotalContribSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r5011evtTotalContrib
         fields = '__all__'
 
@@ -2289,30 +2289,30 @@ class r9000evtExclusao(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
 
-    def evento(self): 
-    
+    def evento(self):
+
         return self.__dict__
-        
+
     def validar(self, request):
-    
+
         from emensageriapro.efdreinf.views.r9000_evtexclusao_validar_evento import validar_evento_funcao
         validar_evento_funcao(request, self.id)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-9000 - Exclusão de Eventos'
-        db_table = r'r9000_evtexclusao'       
+        db_table = r'r9000_evtexclusao'
         managed = True  # r9000_evtexclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9000evtExclusao", u"Pode ver listagem do modelo R9000EVTEXCLUSAO"),
             ("can_see_data_r9000evtExclusao", u"Pode visualizar o conteúdo do modelo R9000EVTEXCLUSAO"),
@@ -2326,7 +2326,7 @@ class r9000evtExclusao(SoftDeletionModel):
             ("can_see_layout_r9000evtExclusao", u"Pode ver layout do evento R9000EVTEXCLUSAO"),
             ("can_see_receipt_r9000evtExclusao", u"Pode ver recibo do evento R9000EVTEXCLUSAO"),
             ("can_see_xml_r9000evtExclusao", u"Pode ver xml do evento R9000EVTEXCLUSAO"),)
-            
+
         ordering = [
             'identidade',
             'tpamb',
@@ -2354,7 +2354,7 @@ class r9000evtExclusaoSerializer(ModelSerializer):
     status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
-    
+
         model = r9000evtExclusao
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
@@ -2364,7 +2364,7 @@ class r9000evtExclusaoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
+                            'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -2394,26 +2394,26 @@ class r9001evtTotal(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-9001 - Informações de bases e tributos por evento - Contrib. Previdenc.'
-        db_table = r'r9001_evttotal'       
+        db_table = r'r9001_evttotal'
         managed = True  # r9001_evttotal #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9001evtTotal", u"Pode ver listagem do modelo R9001EVTTOTAL"),
             ("can_see_receipt_r9001evtTotal", u"Pode ver recibo do evento R9001EVTTOTAL"),
         )
-            
+
         ordering = [
             'identidade',
             'perapur',
@@ -2431,7 +2431,7 @@ class r9001evtTotal(SoftDeletionModel):
 class r9001evtTotalSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9001evtTotal
         fields = '__all__'
 
@@ -2461,26 +2461,26 @@ class r9002evtRet(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-9002 - Informações de bases e tributos por evento - Retenções na fonte'
-        db_table = r'r9002_evtret'       
+        db_table = r'r9002_evtret'
         managed = True  # r9002_evtret #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9002evtRet", u"Pode ver listagem do modelo R9002EVTRET"),
             ("can_see_receipt_r9002evtRet", u"Pode ver recibo do evento R9002EVTRET"),
         )
-            
+
         ordering = [
             'identidade',
             'perref',
@@ -2498,7 +2498,7 @@ class r9002evtRet(SoftDeletionModel):
 class r9002evtRetSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9002evtRet
         fields = '__all__'
 
@@ -2528,26 +2528,26 @@ class r9011evtTotalContrib(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-9011 - Informações consolidadas de bases e tributos - Contrib. Previdenciária'
-        db_table = r'r9011_evttotalcontrib'       
+        db_table = r'r9011_evttotalcontrib'
         managed = True  # r9011_evttotalcontrib #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9011evtTotalContrib", u"Pode ver listagem do modelo R9011EVTTOTALCONTRIB"),
             ("can_see_receipt_r9011evtTotalContrib", u"Pode ver recibo do evento R9011EVTTOTALCONTRIB"),
         )
-            
+
         ordering = [
             'identidade',
             'perapur',
@@ -2566,7 +2566,7 @@ class r9011evtTotalContrib(SoftDeletionModel):
 class r9011evtTotalContribSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9011evtTotalContrib
         fields = '__all__'
 
@@ -2596,26 +2596,26 @@ class r9012evtRetCons(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         return unicode(self.identidade)
-        
+
     class Meta:
-    
+
         # verbose_name = u'R-9012 - Informações consolidadas de bases e tributos - Retenções na fonte'
-        db_table = r'r9012_evtretcons'       
+        db_table = r'r9012_evtretcons'
         managed = True  # r9012_evtretcons #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9012evtRetCons", u"Pode ver listagem do modelo R9012EVTRETCONS"),
             ("can_see_receipt_r9012evtRetCons", u"Pode ver recibo do evento R9012EVTRETCONS"),
         )
-            
+
         ordering = [
             'identidade',
             'perapur',
@@ -2634,6 +2634,6 @@ class r9012evtRetCons(SoftDeletionModel):
 class r9012evtRetConsSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9012evtRetCons
         fields = '__all__'

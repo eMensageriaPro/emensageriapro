@@ -9,7 +9,7 @@
             </span>
         </a>
         <ul class="treeview-menu">
-        
+
             {% if perms.mapa_processamento.can_view_menu_VisaoGeral %}
                 <li>
                     <a href="{% url 'visao_geral' %}">
@@ -53,7 +53,7 @@
             </span>
         </a>
         <ul class="treeview-menu">
-        
+
             {% if perms.esocial.can_view_menu_s1000evtInfoEmpregador %}
                 <li>
                     <a href="{% url 's1000_evtinfoempregador' %}">
@@ -438,54 +438,6 @@
                     </a>
                 </li>
             {% endif %}
-            {% if perms.esocial.can_view_menu_s5001evtBasesTrab %}
-                <li>
-                    <a href="{% url 's5001_evtbasestrab' %}">
-                        <i class="fa fa-circle-o"></i>
-                        S-5001 - Informações das contribuições sociais por trabalhador
-                    </a>
-                </li>
-            {% endif %}
-            {% if perms.esocial.can_view_menu_s5002evtIrrfBenef %}
-                <li>
-                    <a href="{% url 's5002_evtirrfbenef' %}">
-                        <i class="fa fa-circle-o"></i>
-                        S-5002 - Imposto de Renda Retido na Fonte
-                    </a>
-                </li>
-            {% endif %}
-            {% if perms.esocial.can_view_menu_s5003evtBasesFGTS %}
-                <li>
-                    <a href="{% url 's5003_evtbasesfgts' %}">
-                        <i class="fa fa-circle-o"></i>
-                        S-5003 - Informações do FGTS por Trabalhador
-                    </a>
-                </li>
-            {% endif %}
-            {% if perms.esocial.can_view_menu_s5011evtCS %}
-                <li>
-                    <a href="{% url 's5011_evtcs' %}">
-                        <i class="fa fa-circle-o"></i>
-                        S-5011 - Informações das contribuições sociais consolidadas por contribuinte
-                    </a>
-                </li>
-            {% endif %}
-            {% if perms.esocial.can_view_menu_s5012evtIrrf %}
-                <li>
-                    <a href="{% url 's5012_evtirrf' %}">
-                        <i class="fa fa-circle-o"></i>
-                        S-5012 - Informações do IRRF consolidadas por contribuinte
-                    </a>
-                </li>
-            {% endif %}
-            {% if perms.esocial.can_view_menu_s5013evtFGTS %}
-                <li>
-                    <a href="{% url 's5013_evtfgts' %}">
-                        <i class="fa fa-circle-o"></i>
-                        S-5013 - Informações do FGTS consolidadas por contribuinte
-                    </a>
-                </li>
-            {% endif %}
         </ul>
     </li>
     <li id="modulo_efdreinf" class="{% if 'efdreinf' in modulos %}active {% endif %}treeview">
@@ -497,7 +449,7 @@
             </span>
         </a>
         <ul class="treeview-menu">
-        
+
             {% if perms.efdreinf.can_view_menu_r1000evtInfoContri %}
                 <li>
                     <a href="{% url 'r1000_evtinfocontri' %}">
@@ -634,59 +586,11 @@
                     </a>
                 </li>
             {% endif %}
-            {% if perms.efdreinf.can_view_menu_r5001evtTotal %}
-                <li>
-                    <a href="{% url 'r5001_evttotal' %}">
-                        <i class="fa fa-circle-o"></i>
-                        R-5001 - Informações de bases e tributos por evento
-                    </a>
-                </li>
-            {% endif %}
-            {% if perms.efdreinf.can_view_menu_r5011evtTotalContrib %}
-                <li>
-                    <a href="{% url 'r5011_evttotalcontrib' %}">
-                        <i class="fa fa-circle-o"></i>
-                        R-5011 - Informações de bases e tributos consolidadas por período de apuração
-                    </a>
-                </li>
-            {% endif %}
             {% if perms.efdreinf.can_view_menu_r9000evtExclusao %}
                 <li>
                     <a href="{% url 'r9000_evtexclusao' %}">
                         <i class="fa fa-circle-o"></i>
                         R-9000 - Exclusão de Eventos
-                    </a>
-                </li>
-            {% endif %}
-            {% if perms.efdreinf.can_view_menu_r9001evtTotal %}
-                <li>
-                    <a href="{% url 'r9001_evttotal' %}">
-                        <i class="fa fa-circle-o"></i>
-                        R-9001 - Informações de bases e tributos por evento - Contrib. Previdenc.
-                    </a>
-                </li>
-            {% endif %}
-            {% if perms.efdreinf.can_view_menu_r9002evtRet %}
-                <li>
-                    <a href="{% url 'r9002_evtret' %}">
-                        <i class="fa fa-circle-o"></i>
-                        R-9002 - Informações de bases e tributos por evento - Retenções na fonte
-                    </a>
-                </li>
-            {% endif %}
-            {% if perms.efdreinf.can_view_menu_r9011evtTotalContrib %}
-                <li>
-                    <a href="{% url 'r9011_evttotalcontrib' %}">
-                        <i class="fa fa-circle-o"></i>
-                        R-9011 - Informações consolidadas de bases e tributos - Contrib. Previdenciária
-                    </a>
-                </li>
-            {% endif %}
-            {% if perms.efdreinf.can_view_menu_r9012evtRetCons %}
-                <li>
-                    <a href="{% url 'r9012_evtretcons' %}">
-                        <i class="fa fa-circle-o"></i>
-                        R-9012 - Informações consolidadas de bases e tributos - Retenções na fonte
                     </a>
                 </li>
             {% endif %}
@@ -701,7 +605,7 @@
             </span>
         </a>
         <ul class="treeview-menu">
-        
+
             {% if perms.mensageiro.can_view_menu_Importacoes %}
                 <li>
                     <a href="{% url 'importacoes' %}">
@@ -769,7 +673,7 @@
             </span>
         </a>
         <ul class="treeview-menu">
-        
+
             {% if perms.controle_de_acesso.can_view_menu_Usuarios %}
                 <li>
                     <a href="{% url 'usuarios' %}">
@@ -780,8 +684,9 @@
             {% endif %}
         </ul>
     </li>
+
 {% if config.SYSTEM_MANUAL_SHOW_IN_MENU %}
-    <li id="modulo_controle_de_acesso" class="{% if 'controle_de_acesso' in modulos %}active {% endif %}treeview">
+    <li id="modulo_controle_de_acesso" class="treeview">
         <a href="{{ config.SYSTEM_MANUAL_LINK }}" target="_blank">
             <i class="fa fa-question-circle"></i>
             <span>Manual</span>

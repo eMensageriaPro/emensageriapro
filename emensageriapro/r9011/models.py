@@ -67,20 +67,20 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class r9011RCPRB(SoftDeletionModel):
 
-    r9011_infototalcontrib = models.ForeignKey('r9011.r9011infoTotalContrib', 
+    r9011_infototalcontrib = models.ForeignKey('r9011.r9011infoTotalContrib',
         related_name='%(class)s_r9011_infototalcontrib', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r9011_infototalcontrib.evento()
     crcprb = models.IntegerField(null=True, )
     vlrcrcprb = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcrcprbsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r9011_infototalcontrib), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -88,24 +88,24 @@ class r9011RCPRB(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060'
-        db_table = r'r9011_rcprb'       
+        db_table = r'r9011_rcprb'
         managed = True # r9011_rcprb #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9011RCPRB", u"Pode ver listagem do modelo R9011RCPRB"),
             ("can_see_data_r9011RCPRB", u"Pode visualizar o conteúdo do modelo R9011RCPRB"),
             ("can_see_menu_r9011RCPRB", u"Pode visualizar no menu o modelo R9011RCPRB"),
             ("can_print_list_r9011RCPRB", u"Pode imprimir listagem do modelo R9011RCPRB"),
             ("can_print_data_r9011RCPRB", u"Pode imprimir o conteúdo do modelo R9011RCPRB"), )
-            
+
         ordering = [
             'r9011_infototalcontrib',
             'crcprb',
@@ -116,27 +116,27 @@ class r9011RCPRB(SoftDeletionModel):
 class r9011RCPRBSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9011RCPRB
         fields = '__all__'
 
 
 class r9011RComl(SoftDeletionModel):
 
-    r9011_infototalcontrib = models.ForeignKey('r9011.r9011infoTotalContrib', 
+    r9011_infototalcontrib = models.ForeignKey('r9011.r9011infoTotalContrib',
         related_name='%(class)s_r9011_infototalcontrib', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r9011_infototalcontrib.evento()
     crcoml = models.IntegerField(null=True, )
     vlrcrcoml = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcrcomlsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r9011_infototalcontrib), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -144,24 +144,24 @@ class r9011RComl(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050'
-        db_table = r'r9011_rcoml'       
+        db_table = r'r9011_rcoml'
         managed = True # r9011_rcoml #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9011RComl", u"Pode ver listagem do modelo R9011RCOML"),
             ("can_see_data_r9011RComl", u"Pode visualizar o conteúdo do modelo R9011RCOML"),
             ("can_see_menu_r9011RComl", u"Pode visualizar no menu o modelo R9011RCOML"),
             ("can_print_list_r9011RComl", u"Pode imprimir listagem do modelo R9011RCOML"),
             ("can_print_data_r9011RComl", u"Pode imprimir o conteúdo do modelo R9011RCOML"), )
-            
+
         ordering = [
             'r9011_infototalcontrib',
             'crcoml',
@@ -172,17 +172,17 @@ class r9011RComl(SoftDeletionModel):
 class r9011RComlSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9011RComl
         fields = '__all__'
 
 
 class r9011RPrest(SoftDeletionModel):
 
-    r9011_infototalcontrib = models.ForeignKey('r9011.r9011infoTotalContrib', 
+    r9011_infototalcontrib = models.ForeignKey('r9011.r9011infoTotalContrib',
         related_name='%(class)s_r9011_infototalcontrib', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r9011_infototalcontrib.evento()
     tpinsctomador = models.IntegerField(null=True, )
     nrinsctomador = models.CharField(max_length=14, null=True, )
@@ -191,12 +191,12 @@ class r9011RPrest(SoftDeletionModel):
     vlrtotalretadic = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrtotalnretprinc = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrtotalnretadic = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r9011_infototalcontrib), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -204,24 +204,24 @@ class r9011RPrest(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020'
-        db_table = r'r9011_rprest'       
+        db_table = r'r9011_rprest'
         managed = True # r9011_rprest #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9011RPrest", u"Pode ver listagem do modelo R9011RPREST"),
             ("can_see_data_r9011RPrest", u"Pode visualizar o conteúdo do modelo R9011RPREST"),
             ("can_see_menu_r9011RPrest", u"Pode visualizar no menu o modelo R9011RPREST"),
             ("can_print_list_r9011RPrest", u"Pode imprimir listagem do modelo R9011RPREST"),
             ("can_print_data_r9011RPrest", u"Pode imprimir o conteúdo do modelo R9011RPREST"), )
-            
+
         ordering = [
             'r9011_infototalcontrib',
             'tpinsctomador',
@@ -234,27 +234,27 @@ class r9011RPrest(SoftDeletionModel):
 class r9011RPrestSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9011RPrest
         fields = '__all__'
 
 
 class r9011RRecRepAD(SoftDeletionModel):
 
-    r9011_infototalcontrib = models.ForeignKey('r9011.r9011infoTotalContrib', 
+    r9011_infototalcontrib = models.ForeignKey('r9011.r9011infoTotalContrib',
         related_name='%(class)s_r9011_infototalcontrib', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r9011_infototalcontrib.evento()
     crrecrepad = models.IntegerField(null=True, )
     vlrcrrecrepad = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcrrecrepadsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r9011_infototalcontrib), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -262,24 +262,24 @@ class r9011RRecRepAD(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040'
-        db_table = r'r9011_rrecrepad'       
+        db_table = r'r9011_rrecrepad'
         managed = True # r9011_rrecrepad #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9011RRecRepAD", u"Pode ver listagem do modelo R9011RRECREPAD"),
             ("can_see_data_r9011RRecRepAD", u"Pode visualizar o conteúdo do modelo R9011RRECREPAD"),
             ("can_see_menu_r9011RRecRepAD", u"Pode visualizar no menu o modelo R9011RRECREPAD"),
             ("can_print_list_r9011RRecRepAD", u"Pode imprimir listagem do modelo R9011RRECREPAD"),
             ("can_print_data_r9011RRecRepAD", u"Pode imprimir o conteúdo do modelo R9011RRECREPAD"), )
-            
+
         ordering = [
             'r9011_infototalcontrib',
             'crrecrepad',
@@ -290,27 +290,27 @@ class r9011RRecRepAD(SoftDeletionModel):
 class r9011RRecRepADSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9011RRecRepAD
         fields = '__all__'
 
 
 class r9011RTom(SoftDeletionModel):
 
-    r9011_infototalcontrib = models.ForeignKey('r9011.r9011infoTotalContrib', 
+    r9011_infototalcontrib = models.ForeignKey('r9011.r9011infoTotalContrib',
         related_name='%(class)s_r9011_infototalcontrib', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r9011_infototalcontrib.evento()
     cnpjprestador = models.CharField(max_length=14, null=True, )
     cno = models.CharField(max_length=12, blank=True, null=True, )
     vlrtotalbaseret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r9011_infototalcontrib), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -318,24 +318,24 @@ class r9011RTom(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010'
-        db_table = r'r9011_rtom'       
+        db_table = r'r9011_rtom'
         managed = True # r9011_rtom #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9011RTom", u"Pode ver listagem do modelo R9011RTOM"),
             ("can_see_data_r9011RTom", u"Pode visualizar o conteúdo do modelo R9011RTOM"),
             ("can_see_menu_r9011RTom", u"Pode visualizar no menu o modelo R9011RTOM"),
             ("can_print_list_r9011RTom", u"Pode imprimir listagem do modelo R9011RTOM"),
             ("can_print_data_r9011RTom", u"Pode imprimir o conteúdo do modelo R9011RTOM"), )
-            
+
         ordering = [
             'r9011_infototalcontrib',
             'cnpjprestador',
@@ -346,27 +346,27 @@ class r9011RTom(SoftDeletionModel):
 class r9011RTomSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9011RTom
         fields = '__all__'
 
 
 class r9011infoCRTom(SoftDeletionModel):
 
-    r9011_rtom = models.ForeignKey('r9011.r9011RTom', 
+    r9011_rtom = models.ForeignKey('r9011.r9011RTom',
         related_name='%(class)s_r9011_rtom', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r9011_rtom.evento()
     crtom = models.IntegerField(null=True, )
     vlrcrtom = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrcrtomsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r9011_rtom), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -374,24 +374,24 @@ class r9011infoCRTom(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador das retenções de contribuição previdenciária sobre serviços tomados'
-        db_table = r'r9011_infocrtom'       
+        db_table = r'r9011_infocrtom'
         managed = True # r9011_infocrtom #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9011infoCRTom", u"Pode ver listagem do modelo R9011INFOCRTOM"),
             ("can_see_data_r9011infoCRTom", u"Pode visualizar o conteúdo do modelo R9011INFOCRTOM"),
             ("can_see_menu_r9011infoCRTom", u"Pode visualizar no menu o modelo R9011INFOCRTOM"),
             ("can_print_list_r9011infoCRTom", u"Pode imprimir listagem do modelo R9011INFOCRTOM"),
             ("can_print_data_r9011infoCRTom", u"Pode imprimir o conteúdo do modelo R9011INFOCRTOM"), )
-            
+
         ordering = [
             'r9011_rtom',
             'crtom',]
@@ -401,26 +401,26 @@ class r9011infoCRTom(SoftDeletionModel):
 class r9011infoCRTomSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9011infoCRTom
         fields = '__all__'
 
 
 class r9011infoTotalContrib(SoftDeletionModel):
 
-    r9011_evttotalcontrib = models.ForeignKey('efdreinf.r9011evtTotalContrib', 
+    r9011_evttotalcontrib = models.ForeignKey('efdreinf.r9011evtTotalContrib',
         related_name='%(class)s_r9011_evttotalcontrib', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r9011_evttotalcontrib.evento()
     nrrecarqbase = models.CharField(max_length=52, blank=True, null=True, )
     indexistinfo = models.IntegerField(choices=CHOICES_R9011_INDEXISTINFO, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r9011_evttotalcontrib), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -428,24 +428,24 @@ class r9011infoTotalContrib(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos'
-        db_table = r'r9011_infototalcontrib'       
+        db_table = r'r9011_infototalcontrib'
         managed = True # r9011_infototalcontrib #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9011infoTotalContrib", u"Pode ver listagem do modelo R9011INFOTOTALCONTRIB"),
             ("can_see_data_r9011infoTotalContrib", u"Pode visualizar o conteúdo do modelo R9011INFOTOTALCONTRIB"),
             ("can_see_menu_r9011infoTotalContrib", u"Pode visualizar no menu o modelo R9011INFOTOTALCONTRIB"),
             ("can_print_list_r9011infoTotalContrib", u"Pode imprimir listagem do modelo R9011INFOTOTALCONTRIB"),
             ("can_print_data_r9011infoTotalContrib", u"Pode imprimir o conteúdo do modelo R9011INFOTOTALCONTRIB"), )
-            
+
         ordering = [
             'r9011_evttotalcontrib',
             'indexistinfo',]
@@ -455,28 +455,28 @@ class r9011infoTotalContrib(SoftDeletionModel):
 class r9011infoTotalContribSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9011infoTotalContrib
         fields = '__all__'
 
 
 class r9011regOcorrs(SoftDeletionModel):
 
-    r9011_evttotalcontrib = models.ForeignKey('efdreinf.r9011evtTotalContrib', 
+    r9011_evttotalcontrib = models.ForeignKey('efdreinf.r9011evtTotalContrib',
         related_name='%(class)s_r9011_evttotalcontrib', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r9011_evttotalcontrib.evento()
     tpocorr = models.IntegerField(choices=CHOICES_R9011_TPOCORR, null=True, )
     localerroaviso = models.CharField(max_length=200, null=True, )
     codresp = models.CharField(max_length=6, null=True, )
     dscresp = models.CharField(max_length=999, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r9011_evttotalcontrib), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -484,24 +484,24 @@ class r9011regOcorrs(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de ocorrências registradas'
-        db_table = r'r9011_regocorrs'       
+        db_table = r'r9011_regocorrs'
         managed = True # r9011_regocorrs #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r9011regOcorrs", u"Pode ver listagem do modelo R9011REGOCORRS"),
             ("can_see_data_r9011regOcorrs", u"Pode visualizar o conteúdo do modelo R9011REGOCORRS"),
             ("can_see_menu_r9011regOcorrs", u"Pode visualizar no menu o modelo R9011REGOCORRS"),
             ("can_print_list_r9011regOcorrs", u"Pode imprimir listagem do modelo R9011REGOCORRS"),
             ("can_print_data_r9011regOcorrs", u"Pode imprimir o conteúdo do modelo R9011REGOCORRS"), )
-            
+
         ordering = [
             'r9011_evttotalcontrib',
             'tpocorr',
@@ -514,6 +514,6 @@ class r9011regOcorrs(SoftDeletionModel):
 class r9011regOcorrsSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r9011regOcorrs
         fields = '__all__'

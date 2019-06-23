@@ -67,21 +67,21 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class r2030infoProc(SoftDeletionModel):
 
-    r2030_recursosrec = models.ForeignKey('r2030.r2030recursosRec', 
+    r2030_recursosrec = models.ForeignKey('r2030.r2030recursosRec',
         related_name='%(class)s_r2030_recursosrec', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2030_recursosrec.evento()
     tpproc = models.IntegerField(choices=CHOICES_R2030_TPPROC, null=True, )
     nrproc = models.CharField(max_length=21, null=True, )
     codsusp = models.IntegerField(blank=True, null=True, )
     vlrnret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2030_recursosrec), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -89,24 +89,24 @@ class r2030infoProc(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de processos relacionados a não retenção de contribuição previdenciária'
-        db_table = r'r2030_infoproc'       
+        db_table = r'r2030_infoproc'
         managed = True # r2030_infoproc #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2030infoProc", u"Pode ver listagem do modelo R2030INFOPROC"),
             ("can_see_data_r2030infoProc", u"Pode visualizar o conteúdo do modelo R2030INFOPROC"),
             ("can_see_menu_r2030infoProc", u"Pode visualizar no menu o modelo R2030INFOPROC"),
             ("can_print_list_r2030infoProc", u"Pode imprimir listagem do modelo R2030INFOPROC"),
             ("can_print_data_r2030infoProc", u"Pode imprimir o conteúdo do modelo R2030INFOPROC"), )
-            
+
         ordering = [
             'r2030_recursosrec',
             'tpproc',
@@ -118,31 +118,31 @@ class r2030infoProc(SoftDeletionModel):
 class r2030infoProcSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2030infoProc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2030infoRecurso(SoftDeletionModel):
 
-    r2030_recursosrec = models.ForeignKey('r2030.r2030recursosRec', 
+    r2030_recursosrec = models.ForeignKey('r2030.r2030recursosRec',
         related_name='%(class)s_r2030_recursosrec', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2030_recursosrec.evento()
     tprepasse = models.IntegerField(choices=CHOICES_R2030_TPREPASSE, null=True, )
     descrecurso = models.CharField(max_length=20, null=True, )
     vlrbruto = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrretapur = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2030_recursosrec), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -150,24 +150,24 @@ class r2030infoRecurso(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento dos recursos recebidos.'
-        db_table = r'r2030_inforecurso'       
+        db_table = r'r2030_inforecurso'
         managed = True # r2030_inforecurso #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2030infoRecurso", u"Pode ver listagem do modelo R2030INFORECURSO"),
             ("can_see_data_r2030infoRecurso", u"Pode visualizar o conteúdo do modelo R2030INFORECURSO"),
             ("can_see_menu_r2030infoRecurso", u"Pode visualizar no menu o modelo R2030INFORECURSO"),
             ("can_print_list_r2030infoRecurso", u"Pode imprimir listagem do modelo R2030INFORECURSO"),
             ("can_print_data_r2030infoRecurso", u"Pode imprimir o conteúdo do modelo R2030INFORECURSO"), )
-            
+
         ordering = [
             'r2030_recursosrec',
             'tprepasse',
@@ -180,31 +180,31 @@ class r2030infoRecurso(SoftDeletionModel):
 class r2030infoRecursoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2030infoRecurso
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2030recursosRec(SoftDeletionModel):
 
-    r2030_evtassocdesprec = models.ForeignKey('efdreinf.r2030evtAssocDespRec', 
+    r2030_evtassocdesprec = models.ForeignKey('efdreinf.r2030evtAssocDespRec',
         related_name='%(class)s_r2030_evtassocdesprec', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2030_evtassocdesprec.evento()
     cnpjorigrecurso = models.CharField(max_length=14, null=True, )
     vlrtotalrec = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrtotalret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrtotalnret = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2030_evtassocdesprec), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -212,24 +212,24 @@ class r2030recursosRec(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro preenchido exclusivamente por associação desportiva que mantenha equipe de futebol profissional, quando receber repasse de outras empresas a título de patrocínio, publicidade, licenciamento, etc'
-        db_table = r'r2030_recursosrec'       
+        db_table = r'r2030_recursosrec'
         managed = True # r2030_recursosrec #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2030recursosRec", u"Pode ver listagem do modelo R2030RECURSOSREC"),
             ("can_see_data_r2030recursosRec", u"Pode visualizar o conteúdo do modelo R2030RECURSOSREC"),
             ("can_see_menu_r2030recursosRec", u"Pode visualizar no menu o modelo R2030RECURSOSREC"),
             ("can_print_list_r2030recursosRec", u"Pode imprimir listagem do modelo R2030RECURSOSREC"),
             ("can_print_data_r2030recursosRec", u"Pode imprimir o conteúdo do modelo R2030RECURSOSREC"), )
-            
+
         ordering = [
             'r2030_evtassocdesprec',
             'cnpjorigrecurso',
@@ -241,9 +241,9 @@ class r2030recursosRec(SoftDeletionModel):
 class r2030recursosRecSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2030recursosRec
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

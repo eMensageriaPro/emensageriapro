@@ -1,6 +1,6 @@
 -- View: public.vw_transmissor_eventos_esocial
 
-DROP VIEW public.vw_transmissor_eventos_esocial;
+DROP VIEW IF EXISTS public.vw_transmissor_eventos_esocial;
 
 CREATE OR REPLACE VIEW public.vw_transmissor_eventos_esocial AS SELECT s1000_evtinfoempregador.id,
     's1000'::text AS evento,

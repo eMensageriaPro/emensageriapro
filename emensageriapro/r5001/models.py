@@ -67,20 +67,20 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class r5001RCPRB(SoftDeletionModel):
 
-    r5001_infototal = models.ForeignKey('r5001.r5001infoTotal', 
+    r5001_infototal = models.ForeignKey('r5001.r5001infoTotal',
         related_name='%(class)s_r5001_infototal', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r5001_infototal.evento()
     crcprb = models.IntegerField(null=True, )
     vlrcrcprb = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcrcprbsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r5001_infototal), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -88,24 +88,24 @@ class r5001RCPRB(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060'
-        db_table = r'r5001_rcprb'       
+        db_table = r'r5001_rcprb'
         managed = True # r5001_rcprb #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r5001RCPRB", u"Pode ver listagem do modelo R5001RCPRB"),
             ("can_see_data_r5001RCPRB", u"Pode visualizar o conteúdo do modelo R5001RCPRB"),
             ("can_see_menu_r5001RCPRB", u"Pode visualizar no menu o modelo R5001RCPRB"),
             ("can_print_list_r5001RCPRB", u"Pode imprimir listagem do modelo R5001RCPRB"),
             ("can_print_data_r5001RCPRB", u"Pode imprimir o conteúdo do modelo R5001RCPRB"), )
-            
+
         ordering = [
             'r5001_infototal',
             'crcprb',
@@ -116,27 +116,27 @@ class r5001RCPRB(SoftDeletionModel):
 class r5001RCPRBSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r5001RCPRB
         fields = '__all__'
 
 
 class r5001RComl(SoftDeletionModel):
 
-    r5001_infototal = models.ForeignKey('r5001.r5001infoTotal', 
+    r5001_infototal = models.ForeignKey('r5001.r5001infoTotal',
         related_name='%(class)s_r5001_infototal', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r5001_infototal.evento()
     crcoml = models.IntegerField(null=True, )
     vlrcrcoml = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcrcomlsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r5001_infototal), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -144,24 +144,24 @@ class r5001RComl(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050'
-        db_table = r'r5001_rcoml'       
+        db_table = r'r5001_rcoml'
         managed = True # r5001_rcoml #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r5001RComl", u"Pode ver listagem do modelo R5001RCOML"),
             ("can_see_data_r5001RComl", u"Pode visualizar o conteúdo do modelo R5001RCOML"),
             ("can_see_menu_r5001RComl", u"Pode visualizar no menu o modelo R5001RCOML"),
             ("can_print_list_r5001RComl", u"Pode imprimir listagem do modelo R5001RCOML"),
             ("can_print_data_r5001RComl", u"Pode imprimir o conteúdo do modelo R5001RCOML"), )
-            
+
         ordering = [
             'r5001_infototal',
             'crcoml',
@@ -172,17 +172,17 @@ class r5001RComl(SoftDeletionModel):
 class r5001RComlSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r5001RComl
         fields = '__all__'
 
 
 class r5001RPrest(SoftDeletionModel):
 
-    r5001_infototal = models.ForeignKey('r5001.r5001infoTotal', 
+    r5001_infototal = models.ForeignKey('r5001.r5001infoTotal',
         related_name='%(class)s_r5001_infototal', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r5001_infototal.evento()
     tpinsctomador = models.IntegerField(null=True, )
     nrinsctomador = models.CharField(max_length=14, null=True, )
@@ -191,12 +191,12 @@ class r5001RPrest(SoftDeletionModel):
     vlrtotalretadic = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrtotalnretprinc = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrtotalnretadic = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r5001_infototal), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -204,24 +204,24 @@ class r5001RPrest(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020'
-        db_table = r'r5001_rprest'       
+        db_table = r'r5001_rprest'
         managed = True # r5001_rprest #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r5001RPrest", u"Pode ver listagem do modelo R5001RPREST"),
             ("can_see_data_r5001RPrest", u"Pode visualizar o conteúdo do modelo R5001RPREST"),
             ("can_see_menu_r5001RPrest", u"Pode visualizar no menu o modelo R5001RPREST"),
             ("can_print_list_r5001RPrest", u"Pode imprimir listagem do modelo R5001RPREST"),
             ("can_print_data_r5001RPrest", u"Pode imprimir o conteúdo do modelo R5001RPREST"), )
-            
+
         ordering = [
             'r5001_infototal',
             'tpinsctomador',
@@ -234,28 +234,28 @@ class r5001RPrest(SoftDeletionModel):
 class r5001RPrestSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r5001RPrest
         fields = '__all__'
 
 
 class r5001RRecEspetDesp(SoftDeletionModel):
 
-    r5001_infototal = models.ForeignKey('r5001.r5001infoTotal', 
+    r5001_infototal = models.ForeignKey('r5001.r5001infoTotal',
         related_name='%(class)s_r5001_infototal', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r5001_infototal.evento()
     crrecespetdesp = models.IntegerField(null=True, )
     vlrreceitatotal = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcrrecespetdesp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcrrecespetdespsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r5001_infototal), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -263,24 +263,24 @@ class r5001RRecEspetDesp(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador da contribuição previdenciária incidente sobre Receitas de Espetáculos Desportivos, apuradas no evento R-3010.'
-        db_table = r'r5001_rrecespetdesp'       
+        db_table = r'r5001_rrecespetdesp'
         managed = True # r5001_rrecespetdesp #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r5001RRecEspetDesp", u"Pode ver listagem do modelo R5001RRECESPETDESP"),
             ("can_see_data_r5001RRecEspetDesp", u"Pode visualizar o conteúdo do modelo R5001RRECESPETDESP"),
             ("can_see_menu_r5001RRecEspetDesp", u"Pode visualizar no menu o modelo R5001RRECESPETDESP"),
             ("can_print_list_r5001RRecEspetDesp", u"Pode imprimir listagem do modelo R5001RRECESPETDESP"),
             ("can_print_data_r5001RRecEspetDesp", u"Pode imprimir o conteúdo do modelo R5001RRECESPETDESP"), )
-            
+
         ordering = [
             'r5001_infototal',
             'crrecespetdesp',
@@ -292,29 +292,29 @@ class r5001RRecEspetDesp(SoftDeletionModel):
 class r5001RRecEspetDespSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r5001RRecEspetDesp
         fields = '__all__'
 
 
 class r5001RRecRepAD(SoftDeletionModel):
 
-    r5001_infototal = models.ForeignKey('r5001.r5001infoTotal', 
+    r5001_infototal = models.ForeignKey('r5001.r5001infoTotal',
         related_name='%(class)s_r5001_infototal', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r5001_infototal.evento()
     cnpjassocdesp = models.CharField(max_length=14, null=True, )
     vlrtotalrep = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     crrecrepad = models.IntegerField(null=True, )
     vlrcrrecrepad = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcrrecrepadsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r5001_infototal), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -322,24 +322,24 @@ class r5001RRecRepAD(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040'
-        db_table = r'r5001_rrecrepad'       
+        db_table = r'r5001_rrecrepad'
         managed = True # r5001_rrecrepad #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r5001RRecRepAD", u"Pode ver listagem do modelo R5001RRECREPAD"),
             ("can_see_data_r5001RRecRepAD", u"Pode visualizar o conteúdo do modelo R5001RRECREPAD"),
             ("can_see_menu_r5001RRecRepAD", u"Pode visualizar no menu o modelo R5001RRECREPAD"),
             ("can_print_list_r5001RRecRepAD", u"Pode imprimir listagem do modelo R5001RRECREPAD"),
             ("can_print_data_r5001RRecRepAD", u"Pode imprimir o conteúdo do modelo R5001RRECREPAD"), )
-            
+
         ordering = [
             'r5001_infototal',
             'cnpjassocdesp',
@@ -352,27 +352,27 @@ class r5001RRecRepAD(SoftDeletionModel):
 class r5001RRecRepADSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r5001RRecRepAD
         fields = '__all__'
 
 
 class r5001RTom(SoftDeletionModel):
 
-    r5001_infototal = models.ForeignKey('r5001.r5001infoTotal', 
+    r5001_infototal = models.ForeignKey('r5001.r5001infoTotal',
         related_name='%(class)s_r5001_infototal', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r5001_infototal.evento()
     cnpjprestador = models.CharField(max_length=14, null=True, )
     cno = models.CharField(max_length=12, blank=True, null=True, )
     vlrtotalbaseret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r5001_infototal), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -380,24 +380,24 @@ class r5001RTom(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010'
-        db_table = r'r5001_rtom'       
+        db_table = r'r5001_rtom'
         managed = True # r5001_rtom #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r5001RTom", u"Pode ver listagem do modelo R5001RTOM"),
             ("can_see_data_r5001RTom", u"Pode visualizar o conteúdo do modelo R5001RTOM"),
             ("can_see_menu_r5001RTom", u"Pode visualizar no menu o modelo R5001RTOM"),
             ("can_print_list_r5001RTom", u"Pode imprimir listagem do modelo R5001RTOM"),
             ("can_print_data_r5001RTom", u"Pode imprimir o conteúdo do modelo R5001RTOM"), )
-            
+
         ordering = [
             'r5001_infototal',
             'cnpjprestador',
@@ -408,27 +408,27 @@ class r5001RTom(SoftDeletionModel):
 class r5001RTomSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r5001RTom
         fields = '__all__'
 
 
 class r5001infoCRTom(SoftDeletionModel):
 
-    r5001_rtom = models.ForeignKey('r5001.r5001RTom', 
+    r5001_rtom = models.ForeignKey('r5001.r5001RTom',
         related_name='%(class)s_r5001_rtom', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r5001_rtom.evento()
     crtom = models.IntegerField(null=True, )
     vlrcrtom = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrcrtomsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r5001_rtom), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -436,24 +436,24 @@ class r5001infoCRTom(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Totalizador das retenções de contribuição previdenciária sobre serviços tomados'
-        db_table = r'r5001_infocrtom'       
+        db_table = r'r5001_infocrtom'
         managed = True # r5001_infocrtom #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r5001infoCRTom", u"Pode ver listagem do modelo R5001INFOCRTOM"),
             ("can_see_data_r5001infoCRTom", u"Pode visualizar o conteúdo do modelo R5001INFOCRTOM"),
             ("can_see_menu_r5001infoCRTom", u"Pode visualizar no menu o modelo R5001INFOCRTOM"),
             ("can_print_list_r5001infoCRTom", u"Pode imprimir listagem do modelo R5001INFOCRTOM"),
             ("can_print_data_r5001infoCRTom", u"Pode imprimir o conteúdo do modelo R5001INFOCRTOM"), )
-            
+
         ordering = [
             'r5001_rtom',
             'crtom',]
@@ -463,27 +463,27 @@ class r5001infoCRTom(SoftDeletionModel):
 class r5001infoCRTomSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r5001infoCRTom
         fields = '__all__'
 
 
 class r5001infoTotal(SoftDeletionModel):
 
-    r5001_evttotal = models.ForeignKey('efdreinf.r5001evtTotal', 
+    r5001_evttotal = models.ForeignKey('efdreinf.r5001evtTotal',
         related_name='%(class)s_r5001_evttotal', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r5001_evttotal.evento()
     nrrecarqbase = models.CharField(max_length=52, blank=True, null=True, )
     tpinsc = models.IntegerField(null=True, )
     nrinsc = models.CharField(max_length=14, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r5001_evttotal), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -491,24 +491,24 @@ class r5001infoTotal(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações relativas a totalizadores de bases e tributos'
-        db_table = r'r5001_infototal'       
+        db_table = r'r5001_infototal'
         managed = True # r5001_infototal #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r5001infoTotal", u"Pode ver listagem do modelo R5001INFOTOTAL"),
             ("can_see_data_r5001infoTotal", u"Pode visualizar o conteúdo do modelo R5001INFOTOTAL"),
             ("can_see_menu_r5001infoTotal", u"Pode visualizar no menu o modelo R5001INFOTOTAL"),
             ("can_print_list_r5001infoTotal", u"Pode imprimir listagem do modelo R5001INFOTOTAL"),
             ("can_print_data_r5001infoTotal", u"Pode imprimir o conteúdo do modelo R5001INFOTOTAL"), )
-            
+
         ordering = [
             'r5001_evttotal',
             'tpinsc',
@@ -519,28 +519,28 @@ class r5001infoTotal(SoftDeletionModel):
 class r5001infoTotalSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r5001infoTotal
         fields = '__all__'
 
 
 class r5001regOcorrs(SoftDeletionModel):
 
-    r5001_evttotal = models.ForeignKey('efdreinf.r5001evtTotal', 
+    r5001_evttotal = models.ForeignKey('efdreinf.r5001evtTotal',
         related_name='%(class)s_r5001_evttotal', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r5001_evttotal.evento()
     tpocorr = models.IntegerField(choices=CHOICES_R5001_TPOCORR, null=True, )
     localerroaviso = models.CharField(max_length=200, null=True, )
     codresp = models.CharField(max_length=6, null=True, )
     dscresp = models.CharField(max_length=999, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r5001_evttotal), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -548,24 +548,24 @@ class r5001regOcorrs(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de ocorrências registradas'
-        db_table = r'r5001_regocorrs'       
+        db_table = r'r5001_regocorrs'
         managed = True # r5001_regocorrs #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r5001regOcorrs", u"Pode ver listagem do modelo R5001REGOCORRS"),
             ("can_see_data_r5001regOcorrs", u"Pode visualizar o conteúdo do modelo R5001REGOCORRS"),
             ("can_see_menu_r5001regOcorrs", u"Pode visualizar no menu o modelo R5001REGOCORRS"),
             ("can_print_list_r5001regOcorrs", u"Pode imprimir listagem do modelo R5001REGOCORRS"),
             ("can_print_data_r5001regOcorrs", u"Pode imprimir o conteúdo do modelo R5001REGOCORRS"), )
-            
+
         ordering = [
             'r5001_evttotal',
             'tpocorr',
@@ -578,6 +578,6 @@ class r5001regOcorrs(SoftDeletionModel):
 class r5001regOcorrsSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r5001regOcorrs
         fields = '__all__'

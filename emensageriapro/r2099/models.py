@@ -67,21 +67,21 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class r2099ideRespInf(SoftDeletionModel):
 
-    r2099_evtfechaevper = models.ForeignKey('efdreinf.r2099evtFechaEvPer', 
+    r2099_evtfechaevper = models.ForeignKey('efdreinf.r2099evtFechaEvPer',
         related_name='%(class)s_r2099_evtfechaevper', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2099_evtfechaevper.evento()
     nmresp = models.CharField(max_length=70, null=True, )
     cpfresp = models.CharField(max_length=11, null=True, )
     telefone = models.CharField(max_length=13, blank=True, null=True, )
     email = models.CharField(max_length=60, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2099_evtfechaevper), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -89,24 +89,24 @@ class r2099ideRespInf(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Responsável pelas informações'
-        db_table = r'r2099_iderespinf'       
+        db_table = r'r2099_iderespinf'
         managed = True # r2099_iderespinf #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2099ideRespInf", u"Pode ver listagem do modelo R2099IDERESPINF"),
             ("can_see_data_r2099ideRespInf", u"Pode visualizar o conteúdo do modelo R2099IDERESPINF"),
             ("can_see_menu_r2099ideRespInf", u"Pode visualizar no menu o modelo R2099IDERESPINF"),
             ("can_print_list_r2099ideRespInf", u"Pode imprimir listagem do modelo R2099IDERESPINF"),
             ("can_print_data_r2099ideRespInf", u"Pode imprimir o conteúdo do modelo R2099IDERESPINF"), )
-            
+
         ordering = [
             'r2099_evtfechaevper',
             'nmresp',
@@ -117,9 +117,9 @@ class r2099ideRespInf(SoftDeletionModel):
 class r2099ideRespInfSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2099ideRespInf
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

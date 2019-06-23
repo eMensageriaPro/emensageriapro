@@ -67,10 +67,10 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s5011basesAquis(SoftDeletionModel):
 
-    s5011_ideestab = models.ForeignKey('s5011.s5011ideEstab', 
+    s5011_ideestab = models.ForeignKey('s5011.s5011ideEstab',
         related_name='%(class)s_s5011_ideestab', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_ideestab.evento()
     indaquis = models.IntegerField(choices=CHOICES_S5011_INDAQUIS, null=True, )
     vlraquis = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
@@ -83,12 +83,12 @@ class s5011basesAquis(SoftDeletionModel):
     vrratcalcpr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrsenardesc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrsenarcalc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_ideestab), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -96,24 +96,24 @@ class s5011basesAquis(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de bases de cálculo relativas a aquisição de produção rural'
-        db_table = r's5011_basesaquis'       
+        db_table = r's5011_basesaquis'
         managed = True # s5011_basesaquis #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011basesAquis", u"Pode ver listagem do modelo S5011BASESAQUIS"),
             ("can_see_data_s5011basesAquis", u"Pode visualizar o conteúdo do modelo S5011BASESAQUIS"),
             ("can_see_menu_s5011basesAquis", u"Pode visualizar no menu o modelo S5011BASESAQUIS"),
             ("can_print_list_s5011basesAquis", u"Pode imprimir listagem do modelo S5011BASESAQUIS"),
             ("can_print_data_s5011basesAquis", u"Pode imprimir o conteúdo do modelo S5011BASESAQUIS"), )
-            
+
         ordering = [
             's5011_ideestab',
             'indaquis',
@@ -133,17 +133,17 @@ class s5011basesAquis(SoftDeletionModel):
 class s5011basesAquisSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011basesAquis
         fields = '__all__'
 
 
 class s5011basesAvNPort(SoftDeletionModel):
 
-    s5011_idelotacao = models.ForeignKey('s5011.s5011ideLotacao', 
+    s5011_idelotacao = models.ForeignKey('s5011.s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_idelotacao.evento()
     vrbccp00 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrbccp15 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
@@ -152,12 +152,12 @@ class s5011basesAvNPort(SoftDeletionModel):
     vrbccp13 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrbcfgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrdesccp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_idelotacao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -165,24 +165,24 @@ class s5011basesAvNPort(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários'
-        db_table = r's5011_basesavnport'       
+        db_table = r's5011_basesavnport'
         managed = True # s5011_basesavnport #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011basesAvNPort", u"Pode ver listagem do modelo S5011BASESAVNPORT"),
             ("can_see_data_s5011basesAvNPort", u"Pode visualizar o conteúdo do modelo S5011BASESAVNPORT"),
             ("can_see_menu_s5011basesAvNPort", u"Pode visualizar no menu o modelo S5011BASESAVNPORT"),
             ("can_print_list_s5011basesAvNPort", u"Pode imprimir listagem do modelo S5011BASESAVNPORT"),
             ("can_print_data_s5011basesAvNPort", u"Pode imprimir o conteúdo do modelo S5011BASESAVNPORT"), )
-            
+
         ordering = [
             's5011_idelotacao',
             'vrbccp00',
@@ -198,29 +198,29 @@ class s5011basesAvNPort(SoftDeletionModel):
 class s5011basesAvNPortSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011basesAvNPort
         fields = '__all__'
 
 
 class s5011basesComerc(SoftDeletionModel):
 
-    s5011_ideestab = models.ForeignKey('s5011.s5011ideEstab', 
+    s5011_ideestab = models.ForeignKey('s5011.s5011ideEstab',
         related_name='%(class)s_s5011_ideestab', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_ideestab.evento()
     indcomerc = models.IntegerField(choices=CHOICES_S5011_INDCOMERC, null=True, )
     vrbccompr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrcpsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrratsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrsenarsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_ideestab), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -228,24 +228,24 @@ class s5011basesComerc(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de bases de cálculo relativas à comercialização da produção rural da Pessoa Física. Informações desse grupo conforme informado pelo contribuinte em S-1260.'
-        db_table = r's5011_basescomerc'       
+        db_table = r's5011_basescomerc'
         managed = True # s5011_basescomerc #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011basesComerc", u"Pode ver listagem do modelo S5011BASESCOMERC"),
             ("can_see_data_s5011basesComerc", u"Pode visualizar o conteúdo do modelo S5011BASESCOMERC"),
             ("can_see_menu_s5011basesComerc", u"Pode visualizar no menu o modelo S5011BASESCOMERC"),
             ("can_print_list_s5011basesComerc", u"Pode imprimir listagem do modelo S5011BASESCOMERC"),
             ("can_print_data_s5011basesComerc", u"Pode imprimir o conteúdo do modelo S5011BASESCOMERC"), )
-            
+
         ordering = [
             's5011_ideestab',
             'indcomerc',
@@ -256,17 +256,17 @@ class s5011basesComerc(SoftDeletionModel):
 class s5011basesComercSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011basesComerc
         fields = '__all__'
 
 
 class s5011basesRemun(SoftDeletionModel):
 
-    s5011_idelotacao = models.ForeignKey('s5011.s5011ideLotacao', 
+    s5011_idelotacao = models.ForeignKey('s5011.s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_idelotacao.evento()
     indincid = models.IntegerField(choices=CHOICES_S5011_INDINCID, null=True, )
     codcateg = models.IntegerField(null=True, )
@@ -284,12 +284,12 @@ class s5011basesRemun(SoftDeletionModel):
     vrcalcsenat = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrsalfam = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrsalmat = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_idelotacao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -297,24 +297,24 @@ class s5011basesRemun(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Bases de cálculo da contribuição previdenciária incidente sobre remunerações, por categoria.'
-        db_table = r's5011_basesremun'       
+        db_table = r's5011_basesremun'
         managed = True # s5011_basesremun #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011basesRemun", u"Pode ver listagem do modelo S5011BASESREMUN"),
             ("can_see_data_s5011basesRemun", u"Pode visualizar o conteúdo do modelo S5011BASESREMUN"),
             ("can_see_menu_s5011basesRemun", u"Pode visualizar no menu o modelo S5011BASESREMUN"),
             ("can_print_list_s5011basesRemun", u"Pode imprimir listagem do modelo S5011BASESREMUN"),
             ("can_print_data_s5011basesRemun", u"Pode imprimir o conteúdo do modelo S5011BASESREMUN"), )
-            
+
         ordering = [
             's5011_idelotacao',
             'indincid',
@@ -339,28 +339,28 @@ class s5011basesRemun(SoftDeletionModel):
 class s5011basesRemunSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011basesRemun
         fields = '__all__'
 
 
 class s5011dadosOpPort(SoftDeletionModel):
 
-    s5011_idelotacao = models.ForeignKey('s5011.s5011ideLotacao', 
+    s5011_idelotacao = models.ForeignKey('s5011.s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_idelotacao.evento()
     cnpjopportuario = models.CharField(max_length=14, null=True, )
     aliqrat = models.IntegerField(choices=CHOICES_S5011_ALIQRAT, null=True, )
     fap = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     aliqratajust = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_idelotacao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -368,24 +368,24 @@ class s5011dadosOpPort(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).'
-        db_table = r's5011_dadosopport'       
+        db_table = r's5011_dadosopport'
         managed = True # s5011_dadosopport #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011dadosOpPort", u"Pode ver listagem do modelo S5011DADOSOPPORT"),
             ("can_see_data_s5011dadosOpPort", u"Pode visualizar o conteúdo do modelo S5011DADOSOPPORT"),
             ("can_see_menu_s5011dadosOpPort", u"Pode visualizar no menu o modelo S5011DADOSOPPORT"),
             ("can_print_list_s5011dadosOpPort", u"Pode imprimir listagem do modelo S5011DADOSOPPORT"),
             ("can_print_data_s5011dadosOpPort", u"Pode imprimir o conteúdo do modelo S5011DADOSOPPORT"), )
-            
+
         ordering = [
             's5011_idelotacao',
             'cnpjopportuario',
@@ -398,26 +398,26 @@ class s5011dadosOpPort(SoftDeletionModel):
 class s5011dadosOpPortSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011dadosOpPort
         fields = '__all__'
 
 
 class s5011ideEstab(SoftDeletionModel):
 
-    s5011_evtcs = models.ForeignKey('esocial.s5011evtCS', 
+    s5011_evtcs = models.ForeignKey('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_evtcs.evento()
     tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_evtcs), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -425,24 +425,24 @@ class s5011ideEstab(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas'
-        db_table = r's5011_ideestab'       
+        db_table = r's5011_ideestab'
         managed = True # s5011_ideestab #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011ideEstab", u"Pode ver listagem do modelo S5011IDEESTAB"),
             ("can_see_data_s5011ideEstab", u"Pode visualizar o conteúdo do modelo S5011IDEESTAB"),
             ("can_see_menu_s5011ideEstab", u"Pode visualizar no menu o modelo S5011IDEESTAB"),
             ("can_print_list_s5011ideEstab", u"Pode imprimir listagem do modelo S5011IDEESTAB"),
             ("can_print_data_s5011ideEstab", u"Pode imprimir o conteúdo do modelo S5011IDEESTAB"), )
-            
+
         ordering = [
             's5011_evtcs',
             'tpinsc',
@@ -453,28 +453,28 @@ class s5011ideEstab(SoftDeletionModel):
 class s5011ideEstabSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011ideEstab
         fields = '__all__'
 
 
 class s5011ideLotacao(SoftDeletionModel):
 
-    s5011_ideestab = models.ForeignKey('s5011.s5011ideEstab', 
+    s5011_ideestab = models.ForeignKey('s5011.s5011ideEstab',
         related_name='%(class)s_s5011_ideestab', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_ideestab.evento()
     codlotacao = models.CharField(max_length=30, null=True, )
     fpas = models.IntegerField(null=True, )
     codtercs = models.TextField(null=True, )
     codtercssusp = models.TextField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_ideestab), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -482,24 +482,24 @@ class s5011ideLotacao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de identificação da lotação e validade das informações que estão sendo incluídas'
-        db_table = r's5011_idelotacao'       
+        db_table = r's5011_idelotacao'
         managed = True # s5011_idelotacao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011ideLotacao", u"Pode ver listagem do modelo S5011IDELOTACAO"),
             ("can_see_data_s5011ideLotacao", u"Pode visualizar o conteúdo do modelo S5011IDELOTACAO"),
             ("can_see_menu_s5011ideLotacao", u"Pode visualizar no menu o modelo S5011IDELOTACAO"),
             ("can_print_list_s5011ideLotacao", u"Pode imprimir listagem do modelo S5011IDELOTACAO"),
             ("can_print_data_s5011ideLotacao", u"Pode imprimir o conteúdo do modelo S5011IDELOTACAO"), )
-            
+
         ordering = [
             's5011_ideestab',
             'codlotacao',
@@ -511,26 +511,26 @@ class s5011ideLotacao(SoftDeletionModel):
 class s5011ideLotacaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011ideLotacao
         fields = '__all__'
 
 
 class s5011infoAtConc(SoftDeletionModel):
 
-    s5011_infopj = models.ForeignKey('s5011.s5011infoPJ', 
+    s5011_infopj = models.ForeignKey('s5011.s5011infoPJ',
         related_name='%(class)s_s5011_infopj', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_infopj.evento()
     fatormes = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     fator13 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_infopj), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -538,24 +538,24 @@ class s5011infoAtConc(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações prestadas por empresa enquadrada no Regime de Tributação Simples Nacional com tributação previdenciária substituída e não substituída.'
-        db_table = r's5011_infoatconc'       
+        db_table = r's5011_infoatconc'
         managed = True # s5011_infoatconc #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011infoAtConc", u"Pode ver listagem do modelo S5011INFOATCONC"),
             ("can_see_data_s5011infoAtConc", u"Pode visualizar o conteúdo do modelo S5011INFOATCONC"),
             ("can_see_menu_s5011infoAtConc", u"Pode visualizar no menu o modelo S5011INFOATCONC"),
             ("can_print_list_s5011infoAtConc", u"Pode imprimir listagem do modelo S5011INFOATCONC"),
             ("can_print_data_s5011infoAtConc", u"Pode imprimir o conteúdo do modelo S5011INFOATCONC"), )
-            
+
         ordering = [
             's5011_infopj',
             'fatormes',
@@ -566,26 +566,26 @@ class s5011infoAtConc(SoftDeletionModel):
 class s5011infoAtConcSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011infoAtConc
         fields = '__all__'
 
 
 class s5011infoCPSeg(SoftDeletionModel):
 
-    s5011_evtcs = models.ForeignKey('esocial.s5011evtCS', 
+    s5011_evtcs = models.ForeignKey('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_evtcs.evento()
     vrdesccp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrcpseg = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_evtcs), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -593,24 +593,24 @@ class s5011infoCPSeg(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de contribuição previdenciária do Segurado'
-        db_table = r's5011_infocpseg'       
+        db_table = r's5011_infocpseg'
         managed = True # s5011_infocpseg #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011infoCPSeg", u"Pode ver listagem do modelo S5011INFOCPSEG"),
             ("can_see_data_s5011infoCPSeg", u"Pode visualizar o conteúdo do modelo S5011INFOCPSEG"),
             ("can_see_menu_s5011infoCPSeg", u"Pode visualizar no menu o modelo S5011INFOCPSEG"),
             ("can_print_list_s5011infoCPSeg", u"Pode imprimir listagem do modelo S5011INFOCPSEG"),
             ("can_print_data_s5011infoCPSeg", u"Pode imprimir o conteúdo do modelo S5011INFOCPSEG"), )
-            
+
         ordering = [
             's5011_evtcs',
             'vrdesccp',
@@ -621,27 +621,27 @@ class s5011infoCPSeg(SoftDeletionModel):
 class s5011infoCPSegSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011infoCPSeg
         fields = '__all__'
 
 
 class s5011infoCRContrib(SoftDeletionModel):
 
-    s5011_evtcs = models.ForeignKey('esocial.s5011evtCS', 
+    s5011_evtcs = models.ForeignKey('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_evtcs.evento()
     tpcr = models.CharField(max_length=6, null=True, )
     vrcr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrcrsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_evtcs), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -649,24 +649,24 @@ class s5011infoCRContrib(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.'
-        db_table = r's5011_infocrcontrib'       
+        db_table = r's5011_infocrcontrib'
         managed = True # s5011_infocrcontrib #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011infoCRContrib", u"Pode ver listagem do modelo S5011INFOCRCONTRIB"),
             ("can_see_data_s5011infoCRContrib", u"Pode visualizar o conteúdo do modelo S5011INFOCRCONTRIB"),
             ("can_see_menu_s5011infoCRContrib", u"Pode visualizar no menu o modelo S5011INFOCRCONTRIB"),
             ("can_print_list_s5011infoCRContrib", u"Pode imprimir listagem do modelo S5011INFOCRCONTRIB"),
             ("can_print_data_s5011infoCRContrib", u"Pode imprimir o conteúdo do modelo S5011INFOCRCONTRIB"), )
-            
+
         ordering = [
             's5011_evtcs',
             'tpcr',
@@ -677,27 +677,27 @@ class s5011infoCRContrib(SoftDeletionModel):
 class s5011infoCRContribSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011infoCRContrib
         fields = '__all__'
 
 
 class s5011infoCREstab(SoftDeletionModel):
 
-    s5011_ideestab = models.ForeignKey('s5011.s5011ideEstab', 
+    s5011_ideestab = models.ForeignKey('s5011.s5011ideEstab',
         related_name='%(class)s_s5011_ideestab', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_ideestab.evento()
     tpcr = models.CharField(max_length=6, null=True, )
     vrcr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrsuspcr = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_ideestab), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -705,24 +705,24 @@ class s5011infoCREstab(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, consolidadas por estabelecimento e por código de Receita - CR.'
-        db_table = r's5011_infocrestab'       
+        db_table = r's5011_infocrestab'
         managed = True # s5011_infocrestab #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011infoCREstab", u"Pode ver listagem do modelo S5011INFOCRESTAB"),
             ("can_see_data_s5011infoCREstab", u"Pode visualizar o conteúdo do modelo S5011INFOCRESTAB"),
             ("can_see_menu_s5011infoCREstab", u"Pode visualizar no menu o modelo S5011INFOCRESTAB"),
             ("can_print_list_s5011infoCREstab", u"Pode imprimir listagem do modelo S5011INFOCRESTAB"),
             ("can_print_data_s5011infoCREstab", u"Pode imprimir o conteúdo do modelo S5011INFOCRESTAB"), )
-            
+
         ordering = [
             's5011_ideestab',
             'tpcr',
@@ -733,25 +733,25 @@ class s5011infoCREstab(SoftDeletionModel):
 class s5011infoCREstabSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011infoCREstab
         fields = '__all__'
 
 
 class s5011infoComplObra(SoftDeletionModel):
 
-    s5011_infoestab = models.ForeignKey('s5011.s5011infoEstab', 
+    s5011_infoestab = models.ForeignKey('s5011.s5011infoEstab',
         related_name='%(class)s_s5011_infoestab', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_infoestab.evento()
     indsubstpatrobra = models.IntegerField(choices=CHOICES_S5011_INDSUBSTPATROBRA, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_infoestab), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -759,24 +759,24 @@ class s5011infoComplObra(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações complementares relativas a obras de construção civil'
-        db_table = r's5011_infocomplobra'       
+        db_table = r's5011_infocomplobra'
         managed = True # s5011_infocomplobra #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011infoComplObra", u"Pode ver listagem do modelo S5011INFOCOMPLOBRA"),
             ("can_see_data_s5011infoComplObra", u"Pode visualizar o conteúdo do modelo S5011INFOCOMPLOBRA"),
             ("can_see_menu_s5011infoComplObra", u"Pode visualizar no menu o modelo S5011INFOCOMPLOBRA"),
             ("can_print_list_s5011infoComplObra", u"Pode imprimir listagem do modelo S5011INFOCOMPLOBRA"),
             ("can_print_data_s5011infoComplObra", u"Pode imprimir o conteúdo do modelo S5011INFOCOMPLOBRA"), )
-            
+
         ordering = [
             's5011_infoestab',
             'indsubstpatrobra',]
@@ -786,29 +786,29 @@ class s5011infoComplObra(SoftDeletionModel):
 class s5011infoComplObraSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011infoComplObra
         fields = '__all__'
 
 
 class s5011infoEmprParcial(SoftDeletionModel):
 
-    s5011_idelotacao = models.ForeignKey('s5011.s5011ideLotacao', 
+    s5011_idelotacao = models.ForeignKey('s5011.s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_idelotacao.evento()
     tpinsccontrat = models.IntegerField(choices=CHOICES_S5011_TPINSCCONTRAT, null=True, )
     nrinsccontrat = models.CharField(max_length=14, null=True, )
     tpinscprop = models.IntegerField(null=True, )
     nrinscprop = models.CharField(max_length=14, null=True, )
     cnoobra = models.CharField(max_length=12, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_idelotacao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -816,24 +816,24 @@ class s5011infoEmprParcial(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada'
-        db_table = r's5011_infoemprparcial'       
+        db_table = r's5011_infoemprparcial'
         managed = True # s5011_infoemprparcial #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011infoEmprParcial", u"Pode ver listagem do modelo S5011INFOEMPRPARCIAL"),
             ("can_see_data_s5011infoEmprParcial", u"Pode visualizar o conteúdo do modelo S5011INFOEMPRPARCIAL"),
             ("can_see_menu_s5011infoEmprParcial", u"Pode visualizar no menu o modelo S5011INFOEMPRPARCIAL"),
             ("can_print_list_s5011infoEmprParcial", u"Pode imprimir listagem do modelo S5011INFOEMPRPARCIAL"),
             ("can_print_data_s5011infoEmprParcial", u"Pode imprimir o conteúdo do modelo S5011INFOEMPRPARCIAL"), )
-            
+
         ordering = [
             's5011_idelotacao',
             'tpinsccontrat',
@@ -847,28 +847,28 @@ class s5011infoEmprParcial(SoftDeletionModel):
 class s5011infoEmprParcialSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011infoEmprParcial
         fields = '__all__'
 
 
 class s5011infoEstab(SoftDeletionModel):
 
-    s5011_ideestab = models.ForeignKey('s5011.s5011ideEstab', 
+    s5011_ideestab = models.ForeignKey('s5011.s5011ideEstab',
         related_name='%(class)s_s5011_ideestab', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_ideestab.evento()
     cnaeprep = models.IntegerField(null=True, )
     aliqrat = models.IntegerField(choices=CHOICES_S5011_ALIQRAT, null=True, )
     fap = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     aliqratajust = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_ideestab), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -876,24 +876,24 @@ class s5011infoEstab(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações do Estabelecimento ou obra'
-        db_table = r's5011_infoestab'       
+        db_table = r's5011_infoestab'
         managed = True # s5011_infoestab #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011infoEstab", u"Pode ver listagem do modelo S5011INFOESTAB"),
             ("can_see_data_s5011infoEstab", u"Pode visualizar o conteúdo do modelo S5011INFOESTAB"),
             ("can_see_menu_s5011infoEstab", u"Pode visualizar no menu o modelo S5011INFOESTAB"),
             ("can_print_list_s5011infoEstab", u"Pode imprimir listagem do modelo S5011INFOESTAB"),
             ("can_print_data_s5011infoEstab", u"Pode imprimir o conteúdo do modelo S5011INFOESTAB"), )
-            
+
         ordering = [
             's5011_ideestab',
             'cnaeprep',
@@ -906,28 +906,28 @@ class s5011infoEstab(SoftDeletionModel):
 class s5011infoEstabSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011infoEstab
         fields = '__all__'
 
 
 class s5011infoPJ(SoftDeletionModel):
 
-    s5011_evtcs = models.ForeignKey('esocial.s5011evtCS', 
+    s5011_evtcs = models.ForeignKey('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_evtcs.evento()
     indcoop = models.IntegerField(choices=CHOICES_S5011_INDCOOP, blank=True, null=True, )
     indconstr = models.IntegerField(choices=CHOICES_S5011_INDCONSTR, null=True, )
     indsubstpatr = models.IntegerField(choices=CHOICES_S5011_INDSUBSTPATR, blank=True, null=True, )
     percredcontrib = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_evtcs), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -935,24 +935,24 @@ class s5011infoPJ(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações complementares, exclusivas da Pessoa Jurídica.'
-        db_table = r's5011_infopj'       
+        db_table = r's5011_infopj'
         managed = True # s5011_infopj #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011infoPJ", u"Pode ver listagem do modelo S5011INFOPJ"),
             ("can_see_data_s5011infoPJ", u"Pode visualizar o conteúdo do modelo S5011INFOPJ"),
             ("can_see_menu_s5011infoPJ", u"Pode visualizar no menu o modelo S5011INFOPJ"),
             ("can_print_list_s5011infoPJ", u"Pode imprimir listagem do modelo S5011INFOPJ"),
             ("can_print_data_s5011infoPJ", u"Pode imprimir o conteúdo do modelo S5011INFOPJ"), )
-            
+
         ordering = [
             's5011_evtcs',
             'indconstr',]
@@ -962,25 +962,25 @@ class s5011infoPJ(SoftDeletionModel):
 class s5011infoPJSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011infoPJ
         fields = '__all__'
 
 
 class s5011infoSubstPatrOpPort(SoftDeletionModel):
 
-    s5011_idelotacao = models.ForeignKey('s5011.s5011ideLotacao', 
+    s5011_idelotacao = models.ForeignKey('s5011.s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_idelotacao.evento()
     cnpjopportuario = models.CharField(max_length=14, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_idelotacao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -988,24 +988,24 @@ class s5011infoSubstPatrOpPort(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.'
-        db_table = r's5011_infosubstpatropport'       
+        db_table = r's5011_infosubstpatropport'
         managed = True # s5011_infosubstpatropport #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011infoSubstPatrOpPort", u"Pode ver listagem do modelo S5011INFOSUBSTPATROPPORT"),
             ("can_see_data_s5011infoSubstPatrOpPort", u"Pode visualizar o conteúdo do modelo S5011INFOSUBSTPATROPPORT"),
             ("can_see_menu_s5011infoSubstPatrOpPort", u"Pode visualizar no menu o modelo S5011INFOSUBSTPATROPPORT"),
             ("can_print_list_s5011infoSubstPatrOpPort", u"Pode imprimir listagem do modelo S5011INFOSUBSTPATROPPORT"),
             ("can_print_data_s5011infoSubstPatrOpPort", u"Pode imprimir o conteúdo do modelo S5011INFOSUBSTPATROPPORT"), )
-            
+
         ordering = [
             's5011_idelotacao',
             'cnpjopportuario',]
@@ -1015,25 +1015,25 @@ class s5011infoSubstPatrOpPort(SoftDeletionModel):
 class s5011infoSubstPatrOpPortSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011infoSubstPatrOpPort
         fields = '__all__'
 
 
 class s5011infoTercSusp(SoftDeletionModel):
 
-    s5011_idelotacao = models.ForeignKey('s5011.s5011ideLotacao', 
+    s5011_idelotacao = models.ForeignKey('s5011.s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5011_idelotacao.evento()
     codterc = models.TextField(null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5011_idelotacao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -1041,24 +1041,24 @@ class s5011infoTercSusp(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros).'
-        db_table = r's5011_infotercsusp'       
+        db_table = r's5011_infotercsusp'
         managed = True # s5011_infotercsusp #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5011infoTercSusp", u"Pode ver listagem do modelo S5011INFOTERCSUSP"),
             ("can_see_data_s5011infoTercSusp", u"Pode visualizar o conteúdo do modelo S5011INFOTERCSUSP"),
             ("can_see_menu_s5011infoTercSusp", u"Pode visualizar no menu o modelo S5011INFOTERCSUSP"),
             ("can_print_list_s5011infoTercSusp", u"Pode imprimir listagem do modelo S5011INFOTERCSUSP"),
             ("can_print_data_s5011infoTercSusp", u"Pode imprimir o conteúdo do modelo S5011INFOTERCSUSP"), )
-            
+
         ordering = [
             's5011_idelotacao',
             'codterc',]
@@ -1068,6 +1068,6 @@ class s5011infoTercSusp(SoftDeletionModel):
 class s5011infoTercSuspSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5011infoTercSusp
         fields = '__all__'

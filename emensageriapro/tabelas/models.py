@@ -74,47 +74,47 @@ class Opcoes(SoftDeletionModel):
     descricao = models.TextField(blank=True, null=True, )
     data_inicio = models.DateField(blank=True, null=True, )
     data_termino = models.DateField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.opcoes_slug),
             unicode(self.codigo),
             unicode(self.titulo),]
-            
+
         if lista:
             return ' - '.join(lista)
-            
+
         else:
             return self.id
 
     class Meta:
-    
+
         verbose_name = u'Opção'
         verbose_name_plural = u'Opções'
-        db_table = r'opcoes'       
+        db_table = r'opcoes'
         managed = True # opcoes #
-        
+
         unique_together = ()
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_view_opcoes", "Can view opcoes"), )
-        
+
         ordering = [
             'opcoes_slug',
             'codigo',
             'titulo',]
-            
-            
- 
+
+
+
 class OpcoesSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = Opcoes
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

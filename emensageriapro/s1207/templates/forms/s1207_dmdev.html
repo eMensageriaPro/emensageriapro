@@ -51,7 +51,7 @@
         <input type="text" 
                id="txt_tpbenef" 
                name="txt_tpbenef" class="form-control" 
-               value="{% if s1207_dmdev.tpbenef %}{{ s1207_dmdev.tpbenef|get_opcoes_titulo:193 }}{% endif %}" 
+               value="{% if s1207_dmdev.tpbenef %}{{ s1207_dmdev.tpbenef|get_opcoes_titulo:196 }}{% endif %}" 
                {% if s1207_dmdev_form.tpbenef.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1207_dmdev_form.tpbenef.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1207_dmdev_form.tpbenef.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -65,7 +65,7 @@
   $(document).ready(function(e){
     $('#txt_tpbenef').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/193/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/196/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,

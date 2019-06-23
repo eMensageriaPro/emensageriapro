@@ -67,10 +67,10 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s2260localTrabInterm(SoftDeletionModel):
 
-    s2260_evtconvinterm = models.ForeignKey('esocial.s2260evtConvInterm', 
+    s2260_evtconvinterm = models.ForeignKey('esocial.s2260evtConvInterm',
         related_name='%(class)s_s2260_evtconvinterm', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2260_evtconvinterm.evento()
     tplograd = models.TextField(null=True, )
     dsclograd = models.CharField(max_length=100, null=True, )
@@ -78,14 +78,14 @@ class s2260localTrabInterm(SoftDeletionModel):
     complem = models.CharField(max_length=30, blank=True, null=True, )
     bairro = models.CharField(max_length=90, blank=True, null=True, )
     cep = models.CharField(max_length=8, null=True, )
-    codmunic = models.TextField(null=True, )
+    codmunic = models.IntegerField(null=True, )
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2260_evtconvinterm), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -93,24 +93,24 @@ class s2260localTrabInterm(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações do local de trabalho intermitente, quando prestado em apenas um local e fora do estabelecimento do empregador cadastrado no S-2200/S-2206'
-        db_table = r's2260_localtrabinterm'       
+        db_table = r's2260_localtrabinterm'
         managed = True # s2260_localtrabinterm #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2260localTrabInterm", u"Pode ver listagem do modelo S2260LOCALTRABINTERM"),
             ("can_see_data_s2260localTrabInterm", u"Pode visualizar o conteúdo do modelo S2260LOCALTRABINTERM"),
             ("can_see_menu_s2260localTrabInterm", u"Pode visualizar no menu o modelo S2260LOCALTRABINTERM"),
             ("can_print_list_s2260localTrabInterm", u"Pode imprimir listagem do modelo S2260LOCALTRABINTERM"),
             ("can_print_data_s2260localTrabInterm", u"Pode imprimir o conteúdo do modelo S2260LOCALTRABINTERM"), )
-            
+
         ordering = [
             's2260_evtconvinterm',
             'tplograd',
@@ -125,9 +125,9 @@ class s2260localTrabInterm(SoftDeletionModel):
 class s2260localTrabIntermSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2260localTrabInterm
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

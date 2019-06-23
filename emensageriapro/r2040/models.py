@@ -67,21 +67,21 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class r2040infoProc(SoftDeletionModel):
 
-    r2040_recursosrep = models.ForeignKey('r2040.r2040recursosRep', 
+    r2040_recursosrep = models.ForeignKey('r2040.r2040recursosRep',
         related_name='%(class)s_r2040_recursosrep', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2040_recursosrep.evento()
     tpproc = models.IntegerField(choices=CHOICES_R2040_TPPROC, null=True, )
     nrproc = models.CharField(max_length=21, null=True, )
     codsusp = models.IntegerField(blank=True, null=True, )
     vlrnret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2040_recursosrep), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -89,24 +89,24 @@ class r2040infoProc(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de processos relacionados a não retenção de contribuição previdenciária'
-        db_table = r'r2040_infoproc'       
+        db_table = r'r2040_infoproc'
         managed = True # r2040_infoproc #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2040infoProc", u"Pode ver listagem do modelo R2040INFOPROC"),
             ("can_see_data_r2040infoProc", u"Pode visualizar o conteúdo do modelo R2040INFOPROC"),
             ("can_see_menu_r2040infoProc", u"Pode visualizar no menu o modelo R2040INFOPROC"),
             ("can_print_list_r2040infoProc", u"Pode imprimir listagem do modelo R2040INFOPROC"),
             ("can_print_data_r2040infoProc", u"Pode imprimir o conteúdo do modelo R2040INFOPROC"), )
-            
+
         ordering = [
             'r2040_recursosrep',
             'tpproc',
@@ -118,31 +118,31 @@ class r2040infoProc(SoftDeletionModel):
 class r2040infoProcSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2040infoProc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2040infoRecurso(SoftDeletionModel):
 
-    r2040_recursosrep = models.ForeignKey('r2040.r2040recursosRep', 
+    r2040_recursosrep = models.ForeignKey('r2040.r2040recursosRep',
         related_name='%(class)s_r2040_recursosrep', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2040_recursosrep.evento()
     tprepasse = models.IntegerField(choices=CHOICES_R2040_TPREPASSE, null=True, )
     descrecurso = models.CharField(max_length=20, null=True, )
     vlrbruto = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrretapur = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2040_recursosrep), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -150,24 +150,24 @@ class r2040infoRecurso(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento dos recursos recebidos.'
-        db_table = r'r2040_inforecurso'       
+        db_table = r'r2040_inforecurso'
         managed = True # r2040_inforecurso #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2040infoRecurso", u"Pode ver listagem do modelo R2040INFORECURSO"),
             ("can_see_data_r2040infoRecurso", u"Pode visualizar o conteúdo do modelo R2040INFORECURSO"),
             ("can_see_menu_r2040infoRecurso", u"Pode visualizar no menu o modelo R2040INFORECURSO"),
             ("can_print_list_r2040infoRecurso", u"Pode imprimir listagem do modelo R2040INFORECURSO"),
             ("can_print_data_r2040infoRecurso", u"Pode imprimir o conteúdo do modelo R2040INFORECURSO"), )
-            
+
         ordering = [
             'r2040_recursosrep',
             'tprepasse',
@@ -180,31 +180,31 @@ class r2040infoRecurso(SoftDeletionModel):
 class r2040infoRecursoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2040infoRecurso
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2040recursosRep(SoftDeletionModel):
 
-    r2040_evtassocdesprep = models.ForeignKey('efdreinf.r2040evtAssocDespRep', 
+    r2040_evtassocdesprep = models.ForeignKey('efdreinf.r2040evtAssocDespRep',
         related_name='%(class)s_r2040_evtassocdesprep', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2040_evtassocdesprep.evento()
     cnpjassocdesp = models.CharField(max_length=14, null=True, )
     vlrtotalrep = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrtotalret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrtotalnret = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2040_evtassocdesprep), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -212,24 +212,24 @@ class r2040recursosRep(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento dos repasses efetuados pelo estabelecimento indicado em {ideEstab} a Associação Desportiva que mantenha equipe de futebol profissional.'
-        db_table = r'r2040_recursosrep'       
+        db_table = r'r2040_recursosrep'
         managed = True # r2040_recursosrep #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2040recursosRep", u"Pode ver listagem do modelo R2040RECURSOSREP"),
             ("can_see_data_r2040recursosRep", u"Pode visualizar o conteúdo do modelo R2040RECURSOSREP"),
             ("can_see_menu_r2040recursosRep", u"Pode visualizar no menu o modelo R2040RECURSOSREP"),
             ("can_print_list_r2040recursosRep", u"Pode imprimir listagem do modelo R2040RECURSOSREP"),
             ("can_print_data_r2040recursosRep", u"Pode imprimir o conteúdo do modelo R2040RECURSOSREP"), )
-            
+
         ordering = [
             'r2040_evtassocdesprep',
             'cnpjassocdesp',
@@ -241,9 +241,9 @@ class r2040recursosRep(SoftDeletionModel):
 class r2040recursosRepSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2040recursosRep
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

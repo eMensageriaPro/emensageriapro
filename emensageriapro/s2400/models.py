@@ -67,10 +67,10 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s2400brasil(SoftDeletionModel):
 
-    s2400_endereco = models.ForeignKey('s2400.s2400endereco', 
+    s2400_endereco = models.ForeignKey('s2400.s2400endereco',
         related_name='%(class)s_s2400_endereco', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2400_endereco.evento()
     tplograd = models.TextField(null=True, )
     dsclograd = models.CharField(max_length=80, null=True, )
@@ -78,14 +78,14 @@ class s2400brasil(SoftDeletionModel):
     complemento = models.CharField(max_length=30, blank=True, null=True, )
     bairro = models.CharField(max_length=60, blank=True, null=True, )
     cep = models.CharField(max_length=8, null=True, )
-    codmunic = models.TextField(null=True, )
+    codmunic = models.IntegerField(null=True, )
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2400_endereco), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -93,24 +93,24 @@ class s2400brasil(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Preenchimento obrigatório para trabalhador residente no Brasil.'
-        db_table = r's2400_brasil'       
+        db_table = r's2400_brasil'
         managed = True # s2400_brasil #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2400brasil", u"Pode ver listagem do modelo S2400BRASIL"),
             ("can_see_data_s2400brasil", u"Pode visualizar o conteúdo do modelo S2400BRASIL"),
             ("can_see_menu_s2400brasil", u"Pode visualizar no menu o modelo S2400BRASIL"),
             ("can_print_list_s2400brasil", u"Pode imprimir listagem do modelo S2400BRASIL"),
             ("can_print_data_s2400brasil", u"Pode imprimir o conteúdo do modelo S2400BRASIL"), )
-            
+
         ordering = [
             's2400_endereco',
             'tplograd',
@@ -125,20 +125,20 @@ class s2400brasil(SoftDeletionModel):
 class s2400brasilSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2400brasil
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2400dependente(SoftDeletionModel):
 
-    s2400_evtcdbenefin = models.ForeignKey('esocial.s2400evtCdBenefIn', 
+    s2400_evtcdbenefin = models.ForeignKey('esocial.s2400evtCdBenefIn',
         related_name='%(class)s_s2400_evtcdbenefin', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2400_evtcdbenefin.evento()
     tpdep = models.CharField(choices=CHOICES_ESOCIALDEPENDENTESTIPOS, max_length=2, null=True, )
     nmdep = models.CharField(max_length=70, null=True, )
@@ -148,12 +148,12 @@ class s2400dependente(SoftDeletionModel):
     depirrf = models.CharField(choices=CHOICES_S2400_DEPIRRF, max_length=1, null=True, )
     incfismen = models.CharField(choices=CHOICES_S2400_INCFISMEN, max_length=1, null=True, )
     depfinsprev = models.CharField(choices=CHOICES_S2400_DEPFINSPREV, max_length=1, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2400_evtcdbenefin), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -161,24 +161,24 @@ class s2400dependente(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações dos dependentes'
-        db_table = r's2400_dependente'       
+        db_table = r's2400_dependente'
         managed = True # s2400_dependente #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2400dependente", u"Pode ver listagem do modelo S2400DEPENDENTE"),
             ("can_see_data_s2400dependente", u"Pode visualizar o conteúdo do modelo S2400DEPENDENTE"),
             ("can_see_menu_s2400dependente", u"Pode visualizar no menu o modelo S2400DEPENDENTE"),
             ("can_print_list_s2400dependente", u"Pode imprimir listagem do modelo S2400DEPENDENTE"),
             ("can_print_data_s2400dependente", u"Pode imprimir o conteúdo do modelo S2400DEPENDENTE"), )
-            
+
         ordering = [
             's2400_evtcdbenefin',
             'tpdep',
@@ -194,27 +194,27 @@ class s2400dependente(SoftDeletionModel):
 class s2400dependenteSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2400dependente
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2400endereco(SoftDeletionModel):
 
-    s2400_evtcdbenefin = models.ForeignKey('esocial.s2400evtCdBenefIn', 
+    s2400_evtcdbenefin = models.ForeignKey('esocial.s2400evtCdBenefIn',
         related_name='%(class)s_s2400_evtcdbenefin', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2400_evtcdbenefin.evento()
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2400_evtcdbenefin), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -222,24 +222,24 @@ class s2400endereco(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Grupo de informações do endereço do Trabalhador'
-        db_table = r's2400_endereco'       
+        db_table = r's2400_endereco'
         managed = True # s2400_endereco #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2400endereco", u"Pode ver listagem do modelo S2400ENDERECO"),
             ("can_see_data_s2400endereco", u"Pode visualizar o conteúdo do modelo S2400ENDERECO"),
             ("can_see_menu_s2400endereco", u"Pode visualizar no menu o modelo S2400ENDERECO"),
             ("can_print_list_s2400endereco", u"Pode imprimir listagem do modelo S2400ENDERECO"),
             ("can_print_data_s2400endereco", u"Pode imprimir o conteúdo do modelo S2400ENDERECO"), )
-            
+
         ordering = [
             's2400_evtcdbenefin',]
 
@@ -248,20 +248,20 @@ class s2400endereco(SoftDeletionModel):
 class s2400enderecoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2400endereco
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2400exterior(SoftDeletionModel):
 
-    s2400_endereco = models.ForeignKey('s2400.s2400endereco', 
+    s2400_endereco = models.ForeignKey('s2400.s2400endereco',
         related_name='%(class)s_s2400_endereco', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2400_endereco.evento()
     paisresid = models.TextField(null=True, )
     dsclograd = models.CharField(max_length=80, null=True, )
@@ -270,12 +270,12 @@ class s2400exterior(SoftDeletionModel):
     bairro = models.CharField(max_length=60, blank=True, null=True, )
     nmcid = models.CharField(max_length=50, null=True, )
     codpostal = models.CharField(max_length=12, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2400_endereco), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -283,24 +283,24 @@ class s2400exterior(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Preenchido em caso de trabalhador residente no exterior.'
-        db_table = r's2400_exterior'       
+        db_table = r's2400_exterior'
         managed = True # s2400_exterior #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2400exterior", u"Pode ver listagem do modelo S2400EXTERIOR"),
             ("can_see_data_s2400exterior", u"Pode visualizar o conteúdo do modelo S2400EXTERIOR"),
             ("can_see_menu_s2400exterior", u"Pode visualizar no menu o modelo S2400EXTERIOR"),
             ("can_print_list_s2400exterior", u"Pode imprimir listagem do modelo S2400EXTERIOR"),
             ("can_print_data_s2400exterior", u"Pode imprimir o conteúdo do modelo S2400EXTERIOR"), )
-            
+
         ordering = [
             's2400_endereco',
             'paisresid',
@@ -313,9 +313,9 @@ class s2400exterior(SoftDeletionModel):
 class s2400exteriorSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2400exterior
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

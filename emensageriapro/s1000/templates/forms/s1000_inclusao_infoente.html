@@ -70,7 +70,7 @@
 <!-- fim__s1000_inclusao_infoente__uf -->
 <!-- inicio__s1000_inclusao_infoente__codmunic -->
 {% if perms..add_ or perms..change_ %}
-  <div class="col-md-12" id="s1000_inclusao_infoente__codmunic__div">
+  <div class="col-md-6" id="s1000_inclusao_infoente__codmunic__div">
     <div class="form-group">
       <label id="s1000_inclusao_infoente__codmunic__label">Código do Município</label>
         {% if s1000_inclusao_infoente_form.codmunic.errors %}
@@ -78,17 +78,25 @@
             {{ s1000_inclusao_infoente_form.codmunic.errors }}
           </div>
         {% endif %}
-        <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if s1000_inclusao_infoente.codmunic %}{{ s1000_inclusao_infoente.codmunic }}{% endif %}" 
-        {% if s1000_inclusao_infoente_form.codmunic.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s1000_inclusao_infoente_form.codmunic.field.widget.attrs.required %} required="required"{% endif %}{% if s1000_inclusao_infoente_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" id="id_codmunic" name="codmunic" value="{% if s1000_inclusao_infoente.codmunic %}{{ s1000_inclusao_infoente_form.codmunic.value|valor }}{% endif %}">
+        <input type="text" 
+               id="txt_codmunic" 
+               name="txt_codmunic" class="form-control" 
+               value="{% if s1000_inclusao_infoente.codmunic %}{{ s1000_inclusao_infoente.codmunic|get_opcoes_titulo:58 }}{% endif %}" 
+               {% if s1000_inclusao_infoente_form.codmunic.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if s1000_inclusao_infoente_form.codmunic.field.widget.attrs.required %} required="required"{% endif %}
+               {% if s1000_inclusao_infoente_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_codmunic" 
+               name="codmunic" 
+               value="{% if s1000_inclusao_infoente.codmunic %}{{ s1000_inclusao_infoente_form.codmunic.value|valor }}{% endif %}" >
     </div>
   </div>
   <script type="text/javascript">
   $(document).ready(function(e){
     $('#txt_codmunic').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas//json-search/" + request.term + "/", function (data) {
-          response($.map(data., function (value, key) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/58/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
               value: value.key
@@ -116,14 +124,9 @@
   });
   </script>
   {% else %}
-  <div class="col-md-12" id="s1000_inclusao_infoente__codmunic__div">
+  <div class="col-md-6" id="s1000_inclusao_infoente__codmunic__div">
     <div class="form-group">
       <label id="s1000_inclusao_infoente__codmunic__label">Código do Município</label>
-        {% if not for_print %}{% if s1000_inclusao_infoente_form.codmunic.value %}
-            <a id="s1000_inclusao_infoente__codmunic__div_acessar" href="{% url '_salvar' hash='{}'|json_id:s1000_inclusao_infoente_form.codmunic.value|json_print:0|base64_encode_me %}">
-                [Acessar]
-            </a>
-        {% endif %} {% endif %}
         <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if s1000_inclusao_infoente.codmunic %}{{ s1000_inclusao_infoente.codmunic }}{% endif %}" disabled="disabled">
     </div>
   </div>

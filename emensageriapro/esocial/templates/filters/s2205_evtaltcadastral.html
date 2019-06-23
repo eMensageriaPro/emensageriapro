@@ -304,7 +304,7 @@
 <!-- fim__s2205_evtaltcadastral__dtnascto -->
 
 <!-- inicio__s2205_evtaltcadastral__codmunic -->
-<div class="col-md-12">
+<div class="col-md-6">
   <div class="form-group">
     <label>Código do Município</label>
     <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{{ dict_fields|get_value_from_dict:'codmunic' }}">
@@ -315,8 +315,8 @@
 $(document).ready(function(e){
   $('#txt_codmunic').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas//json-search/" + request.term + "/", function (data) {
-      response($.map(data., function (value, key) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/58/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
           value: value.key
@@ -387,7 +387,7 @@ $(document).ready(function(e){
 $(document).ready(function(e){
   $('#txt_paisnascto').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/204/" + request.term + "/", function (data) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/207/" + request.term + "/", function (data) {
       response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
@@ -419,7 +419,7 @@ $(document).ready(function(e){
 $(document).ready(function(e){
   $('#txt_paisnac').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/204/" + request.term + "/", function (data) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/207/" + request.term + "/", function (data) {
       response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,

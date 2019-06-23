@@ -380,7 +380,7 @@
 <!-- fim__s2200_evtadmissao__dtnascto -->
 <!-- inicio__s2200_evtadmissao__codmunic -->
 {% if perms..add_ or perms..change_ %}
-  <div class="col-md-12" id="s2200_evtadmissao__codmunic__div">
+  <div class="col-md-6" id="s2200_evtadmissao__codmunic__div">
     <div class="form-group">
       <label id="s2200_evtadmissao__codmunic__label">Código do Município</label>
         {% if s2200_evtadmissao_form.codmunic.errors %}
@@ -388,17 +388,25 @@
             {{ s2200_evtadmissao_form.codmunic.errors }}
           </div>
         {% endif %}
-        <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if s2200_evtadmissao.codmunic %}{{ s2200_evtadmissao.codmunic }}{% endif %}" 
-        {% if s2200_evtadmissao_form.codmunic.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s2200_evtadmissao_form.codmunic.field.widget.attrs.required %} required="required"{% endif %}{% if s2200_evtadmissao_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" id="id_codmunic" name="codmunic" value="{% if s2200_evtadmissao.codmunic %}{{ s2200_evtadmissao_form.codmunic.value|valor }}{% endif %}">
+        <input type="text" 
+               id="txt_codmunic" 
+               name="txt_codmunic" class="form-control" 
+               value="{% if s2200_evtadmissao.codmunic %}{{ s2200_evtadmissao.codmunic|get_opcoes_titulo:58 }}{% endif %}" 
+               {% if s2200_evtadmissao_form.codmunic.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if s2200_evtadmissao_form.codmunic.field.widget.attrs.required %} required="required"{% endif %}
+               {% if s2200_evtadmissao_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_codmunic" 
+               name="codmunic" 
+               value="{% if s2200_evtadmissao.codmunic %}{{ s2200_evtadmissao_form.codmunic.value|valor }}{% endif %}" >
     </div>
   </div>
   <script type="text/javascript">
   $(document).ready(function(e){
     $('#txt_codmunic').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas//json-search/" + request.term + "/", function (data) {
-          response($.map(data., function (value, key) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/58/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
               value: value.key
@@ -426,14 +434,9 @@
   });
   </script>
   {% else %}
-  <div class="col-md-12" id="s2200_evtadmissao__codmunic__div">
+  <div class="col-md-6" id="s2200_evtadmissao__codmunic__div">
     <div class="form-group">
       <label id="s2200_evtadmissao__codmunic__label">Código do Município</label>
-        {% if not for_print %}{% if s2200_evtadmissao_form.codmunic.value %}
-            <a id="s2200_evtadmissao__codmunic__div_acessar" href="{% url '_salvar' hash='{}'|json_id:s2200_evtadmissao_form.codmunic.value|json_print:0|base64_encode_me %}">
-                [Acessar]
-            </a>
-        {% endif %} {% endif %}
         <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if s2200_evtadmissao.codmunic %}{{ s2200_evtadmissao.codmunic }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -476,7 +479,7 @@
         <input type="text" 
                id="txt_paisnascto" 
                name="txt_paisnascto" class="form-control" 
-               value="{% if s2200_evtadmissao.paisnascto %}{{ s2200_evtadmissao.paisnascto|get_opcoes_titulo:204 }}{% endif %}" 
+               value="{% if s2200_evtadmissao.paisnascto %}{{ s2200_evtadmissao.paisnascto|get_opcoes_titulo:207 }}{% endif %}" 
                {% if s2200_evtadmissao_form.paisnascto.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2200_evtadmissao_form.paisnascto.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2200_evtadmissao_form.paisnascto.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -490,7 +493,7 @@
   $(document).ready(function(e){
     $('#txt_paisnascto').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/204/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/207/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -540,7 +543,7 @@
         <input type="text" 
                id="txt_paisnac" 
                name="txt_paisnac" class="form-control" 
-               value="{% if s2200_evtadmissao.paisnac %}{{ s2200_evtadmissao.paisnac|get_opcoes_titulo:204 }}{% endif %}" 
+               value="{% if s2200_evtadmissao.paisnac %}{{ s2200_evtadmissao.paisnac|get_opcoes_titulo:207 }}{% endif %}" 
                {% if s2200_evtadmissao_form.paisnac.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2200_evtadmissao_form.paisnac.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2200_evtadmissao_form.paisnac.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -554,7 +557,7 @@
   $(document).ready(function(e){
     $('#txt_paisnac').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/204/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/207/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -801,7 +804,7 @@
         <input type="text" 
                id="txt_codcateg" 
                name="txt_codcateg" class="form-control" 
-               value="{% if s2200_evtadmissao.codcateg %}{{ s2200_evtadmissao.codcateg|get_opcoes_titulo:172 }}{% endif %}" 
+               value="{% if s2200_evtadmissao.codcateg %}{{ s2200_evtadmissao.codcateg|get_opcoes_titulo:175 }}{% endif %}" 
                {% if s2200_evtadmissao_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2200_evtadmissao_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2200_evtadmissao_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -815,7 +818,7 @@
   $(document).ready(function(e){
     $('#txt_codcateg').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/172/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/175/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,

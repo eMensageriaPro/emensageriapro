@@ -67,22 +67,22 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class r1070alteracao(SoftDeletionModel):
 
-    r1070_evttabprocesso = models.ForeignKey('efdreinf.r1070evtTabProcesso', 
+    r1070_evttabprocesso = models.ForeignKey('efdreinf.r1070evtTabProcesso',
         related_name='%(class)s_r1070_evttabprocesso', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r1070_evttabprocesso.evento()
     tpproc = models.IntegerField(choices=CHOICES_R1070_TPPROC_ALTERACAO, null=True, )
     nrproc = models.CharField(max_length=21, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     indautoria = models.IntegerField(choices=CHOICES_R1070_INDAUTORIA_ALTERACAO, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r1070_evttabprocesso), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -90,24 +90,24 @@ class r1070alteracao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Alteração das informações'
-        db_table = r'r1070_alteracao'       
+        db_table = r'r1070_alteracao'
         managed = True # r1070_alteracao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r1070alteracao", u"Pode ver listagem do modelo R1070ALTERACAO"),
             ("can_see_data_r1070alteracao", u"Pode visualizar o conteúdo do modelo R1070ALTERACAO"),
             ("can_see_menu_r1070alteracao", u"Pode visualizar no menu o modelo R1070ALTERACAO"),
             ("can_print_list_r1070alteracao", u"Pode imprimir listagem do modelo R1070ALTERACAO"),
             ("can_print_data_r1070alteracao", u"Pode imprimir o conteúdo do modelo R1070ALTERACAO"), )
-            
+
         ordering = [
             'r1070_evttabprocesso',
             'tpproc',
@@ -120,30 +120,30 @@ class r1070alteracao(SoftDeletionModel):
 class r1070alteracaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r1070alteracao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r1070alteracaodadosProcJud(SoftDeletionModel):
 
-    r1070_alteracao = models.ForeignKey('r1070.r1070alteracao', 
+    r1070_alteracao = models.ForeignKey('r1070.r1070alteracao',
         related_name='%(class)s_r1070_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r1070_alteracao.evento()
     ufvara = models.CharField(choices=ESTADOS, max_length=2, null=True, )
-    codmunic = models.TextField(null=True, )
+    codmunic = models.IntegerField(null=True, )
     idvara = models.CharField(max_length=4, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r1070_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -151,24 +151,24 @@ class r1070alteracaodadosProcJud(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações Complementares do Processo Judicial'
-        db_table = r'r1070_alteracao_dadosprocjud'       
+        db_table = r'r1070_alteracao_dadosprocjud'
         managed = True # r1070_alteracao_dadosprocjud #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r1070alteracaodadosProcJud", u"Pode ver listagem do modelo R1070ALTERACAODADOSPROCJUD"),
             ("can_see_data_r1070alteracaodadosProcJud", u"Pode visualizar o conteúdo do modelo R1070ALTERACAODADOSPROCJUD"),
             ("can_see_menu_r1070alteracaodadosProcJud", u"Pode visualizar no menu o modelo R1070ALTERACAODADOSPROCJUD"),
             ("can_print_list_r1070alteracaodadosProcJud", u"Pode imprimir listagem do modelo R1070ALTERACAODADOSPROCJUD"),
             ("can_print_data_r1070alteracaodadosProcJud", u"Pode imprimir o conteúdo do modelo R1070ALTERACAODADOSPROCJUD"), )
-            
+
         ordering = [
             'r1070_alteracao',
             'ufvara',
@@ -180,31 +180,31 @@ class r1070alteracaodadosProcJud(SoftDeletionModel):
 class r1070alteracaodadosProcJudSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r1070alteracaodadosProcJud
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r1070alteracaoinfoSusp(SoftDeletionModel):
 
-    r1070_alteracao = models.ForeignKey('r1070.r1070alteracao', 
+    r1070_alteracao = models.ForeignKey('r1070.r1070alteracao',
         related_name='%(class)s_r1070_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r1070_alteracao.evento()
     codsusp = models.IntegerField(blank=True, null=True, )
     indsusp = models.CharField(choices=CHOICES_R1070_INDSUSP_ALTERACAO, max_length=2, null=True, )
     dtdecisao = models.DateField(null=True, )
     inddeposito = models.CharField(choices=CHOICES_R1070_INDDEPOSITO_ALTERACAO, max_length=1, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r1070_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -212,24 +212,24 @@ class r1070alteracaoinfoSusp(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de Suspensão de Exibilidade de tributos'
-        db_table = r'r1070_alteracao_infosusp'       
+        db_table = r'r1070_alteracao_infosusp'
         managed = True # r1070_alteracao_infosusp #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r1070alteracaoinfoSusp", u"Pode ver listagem do modelo R1070ALTERACAOINFOSUSP"),
             ("can_see_data_r1070alteracaoinfoSusp", u"Pode visualizar o conteúdo do modelo R1070ALTERACAOINFOSUSP"),
             ("can_see_menu_r1070alteracaoinfoSusp", u"Pode visualizar no menu o modelo R1070ALTERACAOINFOSUSP"),
             ("can_print_list_r1070alteracaoinfoSusp", u"Pode imprimir listagem do modelo R1070ALTERACAOINFOSUSP"),
             ("can_print_data_r1070alteracaoinfoSusp", u"Pode imprimir o conteúdo do modelo R1070ALTERACAOINFOSUSP"), )
-            
+
         ordering = [
             'r1070_alteracao',
             'indsusp',
@@ -241,29 +241,29 @@ class r1070alteracaoinfoSusp(SoftDeletionModel):
 class r1070alteracaoinfoSuspSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r1070alteracaoinfoSusp
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r1070alteracaonovaValidade(SoftDeletionModel):
 
-    r1070_alteracao = models.ForeignKey('r1070.r1070alteracao', 
+    r1070_alteracao = models.ForeignKey('r1070.r1070alteracao',
         related_name='%(class)s_r1070_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r1070_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r1070_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -271,24 +271,24 @@ class r1070alteracaonovaValidade(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade'
-        db_table = r'r1070_alteracao_novavalidade'       
+        db_table = r'r1070_alteracao_novavalidade'
         managed = True # r1070_alteracao_novavalidade #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r1070alteracaonovaValidade", u"Pode ver listagem do modelo R1070ALTERACAONOVAVALIDADE"),
             ("can_see_data_r1070alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo R1070ALTERACAONOVAVALIDADE"),
             ("can_see_menu_r1070alteracaonovaValidade", u"Pode visualizar no menu o modelo R1070ALTERACAONOVAVALIDADE"),
             ("can_print_list_r1070alteracaonovaValidade", u"Pode imprimir listagem do modelo R1070ALTERACAONOVAVALIDADE"),
             ("can_print_data_r1070alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo R1070ALTERACAONOVAVALIDADE"), )
-            
+
         ordering = [
             'r1070_alteracao',
             'inivalid',]
@@ -298,31 +298,31 @@ class r1070alteracaonovaValidade(SoftDeletionModel):
 class r1070alteracaonovaValidadeSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r1070alteracaonovaValidade
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r1070exclusao(SoftDeletionModel):
 
-    r1070_evttabprocesso = models.ForeignKey('efdreinf.r1070evtTabProcesso', 
+    r1070_evttabprocesso = models.ForeignKey('efdreinf.r1070evtTabProcesso',
         related_name='%(class)s_r1070_evttabprocesso', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r1070_evttabprocesso.evento()
     tpproc = models.IntegerField(choices=CHOICES_R1070_TPPROC_EXCLUSAO, null=True, )
     nrproc = models.CharField(max_length=21, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r1070_evttabprocesso), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -330,24 +330,24 @@ class r1070exclusao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Exclusão das informações'
-        db_table = r'r1070_exclusao'       
+        db_table = r'r1070_exclusao'
         managed = True # r1070_exclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r1070exclusao", u"Pode ver listagem do modelo R1070EXCLUSAO"),
             ("can_see_data_r1070exclusao", u"Pode visualizar o conteúdo do modelo R1070EXCLUSAO"),
             ("can_see_menu_r1070exclusao", u"Pode visualizar no menu o modelo R1070EXCLUSAO"),
             ("can_print_list_r1070exclusao", u"Pode imprimir listagem do modelo R1070EXCLUSAO"),
             ("can_print_data_r1070exclusao", u"Pode imprimir o conteúdo do modelo R1070EXCLUSAO"), )
-            
+
         ordering = [
             'r1070_evttabprocesso',
             'tpproc',
@@ -359,32 +359,32 @@ class r1070exclusao(SoftDeletionModel):
 class r1070exclusaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r1070exclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r1070inclusao(SoftDeletionModel):
 
-    r1070_evttabprocesso = models.ForeignKey('efdreinf.r1070evtTabProcesso', 
+    r1070_evttabprocesso = models.ForeignKey('efdreinf.r1070evtTabProcesso',
         related_name='%(class)s_r1070_evttabprocesso', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r1070_evttabprocesso.evento()
     tpproc = models.IntegerField(choices=CHOICES_R1070_TPPROC_INCLUSAO, null=True, )
     nrproc = models.CharField(max_length=21, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     indautoria = models.IntegerField(choices=CHOICES_R1070_INDAUTORIA_INCLUSAO, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r1070_evttabprocesso), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -392,24 +392,24 @@ class r1070inclusao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Inclusão de novas informações'
-        db_table = r'r1070_inclusao'       
+        db_table = r'r1070_inclusao'
         managed = True # r1070_inclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r1070inclusao", u"Pode ver listagem do modelo R1070INCLUSAO"),
             ("can_see_data_r1070inclusao", u"Pode visualizar o conteúdo do modelo R1070INCLUSAO"),
             ("can_see_menu_r1070inclusao", u"Pode visualizar no menu o modelo R1070INCLUSAO"),
             ("can_print_list_r1070inclusao", u"Pode imprimir listagem do modelo R1070INCLUSAO"),
             ("can_print_data_r1070inclusao", u"Pode imprimir o conteúdo do modelo R1070INCLUSAO"), )
-            
+
         ordering = [
             'r1070_evttabprocesso',
             'tpproc',
@@ -422,30 +422,30 @@ class r1070inclusao(SoftDeletionModel):
 class r1070inclusaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r1070inclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r1070inclusaodadosProcJud(SoftDeletionModel):
 
-    r1070_inclusao = models.ForeignKey('r1070.r1070inclusao', 
+    r1070_inclusao = models.ForeignKey('r1070.r1070inclusao',
         related_name='%(class)s_r1070_inclusao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r1070_inclusao.evento()
     ufvara = models.CharField(choices=ESTADOS, max_length=2, null=True, )
-    codmunic = models.TextField(null=True, )
+    codmunic = models.IntegerField(null=True, )
     idvara = models.CharField(max_length=4, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r1070_inclusao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -453,24 +453,24 @@ class r1070inclusaodadosProcJud(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações Complementares do Processo Judicial'
-        db_table = r'r1070_inclusao_dadosprocjud'       
+        db_table = r'r1070_inclusao_dadosprocjud'
         managed = True # r1070_inclusao_dadosprocjud #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r1070inclusaodadosProcJud", u"Pode ver listagem do modelo R1070INCLUSAODADOSPROCJUD"),
             ("can_see_data_r1070inclusaodadosProcJud", u"Pode visualizar o conteúdo do modelo R1070INCLUSAODADOSPROCJUD"),
             ("can_see_menu_r1070inclusaodadosProcJud", u"Pode visualizar no menu o modelo R1070INCLUSAODADOSPROCJUD"),
             ("can_print_list_r1070inclusaodadosProcJud", u"Pode imprimir listagem do modelo R1070INCLUSAODADOSPROCJUD"),
             ("can_print_data_r1070inclusaodadosProcJud", u"Pode imprimir o conteúdo do modelo R1070INCLUSAODADOSPROCJUD"), )
-            
+
         ordering = [
             'r1070_inclusao',
             'ufvara',
@@ -482,31 +482,31 @@ class r1070inclusaodadosProcJud(SoftDeletionModel):
 class r1070inclusaodadosProcJudSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r1070inclusaodadosProcJud
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r1070inclusaoinfoSusp(SoftDeletionModel):
 
-    r1070_inclusao = models.ForeignKey('r1070.r1070inclusao', 
+    r1070_inclusao = models.ForeignKey('r1070.r1070inclusao',
         related_name='%(class)s_r1070_inclusao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r1070_inclusao.evento()
     codsusp = models.IntegerField(blank=True, null=True, )
     indsusp = models.CharField(choices=CHOICES_R1070_INDSUSP_INCLUSAO, max_length=2, null=True, )
     dtdecisao = models.DateField(null=True, )
     inddeposito = models.CharField(choices=CHOICES_R1070_INDDEPOSITO_INCLUSAO, max_length=1, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r1070_inclusao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -514,24 +514,24 @@ class r1070inclusaoinfoSusp(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de Suspensão de Exibilidade de tributos'
-        db_table = r'r1070_inclusao_infosusp'       
+        db_table = r'r1070_inclusao_infosusp'
         managed = True # r1070_inclusao_infosusp #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r1070inclusaoinfoSusp", u"Pode ver listagem do modelo R1070INCLUSAOINFOSUSP"),
             ("can_see_data_r1070inclusaoinfoSusp", u"Pode visualizar o conteúdo do modelo R1070INCLUSAOINFOSUSP"),
             ("can_see_menu_r1070inclusaoinfoSusp", u"Pode visualizar no menu o modelo R1070INCLUSAOINFOSUSP"),
             ("can_print_list_r1070inclusaoinfoSusp", u"Pode imprimir listagem do modelo R1070INCLUSAOINFOSUSP"),
             ("can_print_data_r1070inclusaoinfoSusp", u"Pode imprimir o conteúdo do modelo R1070INCLUSAOINFOSUSP"), )
-            
+
         ordering = [
             'r1070_inclusao',
             'indsusp',
@@ -543,9 +543,9 @@ class r1070inclusaoinfoSusp(SoftDeletionModel):
 class r1070inclusaoinfoSuspSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r1070inclusaoinfoSusp
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

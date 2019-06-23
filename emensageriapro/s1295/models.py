@@ -67,21 +67,21 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s1295ideRespInf(SoftDeletionModel):
 
-    s1295_evttotconting = models.ForeignKey('esocial.s1295evtTotConting', 
+    s1295_evttotconting = models.ForeignKey('esocial.s1295evtTotConting',
         related_name='%(class)s_s1295_evttotconting', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1295_evttotconting.evento()
     nmresp = models.CharField(max_length=70, null=True, )
     cpfresp = models.CharField(max_length=11, null=True, )
     telefone = models.CharField(max_length=13, null=True, )
     email = models.CharField(max_length=60, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1295_evttotconting), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -89,24 +89,24 @@ class s1295ideRespInf(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Responsável pelas informações'
-        db_table = r's1295_iderespinf'       
+        db_table = r's1295_iderespinf'
         managed = True # s1295_iderespinf #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1295ideRespInf", u"Pode ver listagem do modelo S1295IDERESPINF"),
             ("can_see_data_s1295ideRespInf", u"Pode visualizar o conteúdo do modelo S1295IDERESPINF"),
             ("can_see_menu_s1295ideRespInf", u"Pode visualizar no menu o modelo S1295IDERESPINF"),
             ("can_print_list_s1295ideRespInf", u"Pode imprimir listagem do modelo S1295IDERESPINF"),
             ("can_print_data_s1295ideRespInf", u"Pode imprimir o conteúdo do modelo S1295IDERESPINF"), )
-            
+
         ordering = [
             's1295_evttotconting',
             'nmresp',
@@ -118,9 +118,9 @@ class s1295ideRespInf(SoftDeletionModel):
 class s1295ideRespInfSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1295ideRespInf
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

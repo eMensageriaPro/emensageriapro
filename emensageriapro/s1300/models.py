@@ -67,20 +67,20 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s1300contribSind(SoftDeletionModel):
 
-    s1300_evtcontrsindpatr = models.ForeignKey('esocial.s1300evtContrSindPatr', 
+    s1300_evtcontrsindpatr = models.ForeignKey('esocial.s1300evtContrSindPatr',
         related_name='%(class)s_s1300_evtcontrsindpatr', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1300_evtcontrsindpatr.evento()
     cnpjsindic = models.CharField(max_length=14, null=True, )
     tpcontribsind = models.IntegerField(choices=CHOICES_S1300_TPCONTRIBSIND, null=True, )
     vlrcontribsind = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1300_evtcontrsindpatr), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -88,24 +88,24 @@ class s1300contribSind(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações da contribuição sindical patronal'
-        db_table = r's1300_contribsind'       
+        db_table = r's1300_contribsind'
         managed = True # s1300_contribsind #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1300contribSind", u"Pode ver listagem do modelo S1300CONTRIBSIND"),
             ("can_see_data_s1300contribSind", u"Pode visualizar o conteúdo do modelo S1300CONTRIBSIND"),
             ("can_see_menu_s1300contribSind", u"Pode visualizar no menu o modelo S1300CONTRIBSIND"),
             ("can_print_list_s1300contribSind", u"Pode imprimir listagem do modelo S1300CONTRIBSIND"),
             ("can_print_data_s1300contribSind", u"Pode imprimir o conteúdo do modelo S1300CONTRIBSIND"), )
-            
+
         ordering = [
             's1300_evtcontrsindpatr',
             'cnpjsindic',
@@ -117,9 +117,9 @@ class s1300contribSind(SoftDeletionModel):
 class s1300contribSindSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1300contribSind
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

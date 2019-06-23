@@ -67,10 +67,10 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s1270remunAvNP(SoftDeletionModel):
 
-    s1270_evtcontratavnp = models.ForeignKey('esocial.s1270evtContratAvNP', 
+    s1270_evtcontratavnp = models.ForeignKey('esocial.s1270evtContratAvNP',
         related_name='%(class)s_s1270_evtcontratavnp', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1270_evtcontratavnp.evento()
     tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
@@ -82,12 +82,12 @@ class s1270remunAvNP(SoftDeletionModel):
     vrbccp13 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrbcfgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrdesccp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1270_evtcontratavnp), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -95,24 +95,24 @@ class s1270remunAvNP(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro que apresenta a remuneração dos trabalhadores avulsos não portuários, de forma totalizada por estabelecimento contratante.'
-        db_table = r's1270_remunavnp'       
+        db_table = r's1270_remunavnp'
         managed = True # s1270_remunavnp #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1270remunAvNP", u"Pode ver listagem do modelo S1270REMUNAVNP"),
             ("can_see_data_s1270remunAvNP", u"Pode visualizar o conteúdo do modelo S1270REMUNAVNP"),
             ("can_see_menu_s1270remunAvNP", u"Pode visualizar no menu o modelo S1270REMUNAVNP"),
             ("can_print_list_s1270remunAvNP", u"Pode imprimir listagem do modelo S1270REMUNAVNP"),
             ("can_print_data_s1270remunAvNP", u"Pode imprimir o conteúdo do modelo S1270REMUNAVNP"), )
-            
+
         ordering = [
             's1270_evtcontratavnp',
             'tpinsc',
@@ -131,9 +131,9 @@ class s1270remunAvNP(SoftDeletionModel):
 class s1270remunAvNPSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1270remunAvNP
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

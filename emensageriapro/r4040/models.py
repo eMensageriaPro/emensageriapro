@@ -67,18 +67,18 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class r4040ideNat(SoftDeletionModel):
 
-    r4040_evtbenefnid = models.ForeignKey('efdreinf.r4040evtBenefNId', 
+    r4040_evtbenefnid = models.ForeignKey('efdreinf.r4040evtBenefNId',
         related_name='%(class)s_r4040_evtbenefnid', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4040_evtbenefnid.evento()
     natrendim = models.IntegerField(choices=CHOICES_R4040_NATRENDIM, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4040_evtbenefnid), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -86,24 +86,24 @@ class r4040ideNat(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Identificação da natureza do rendimento'
-        db_table = r'r4040_idenat'       
+        db_table = r'r4040_idenat'
         managed = True # r4040_idenat #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4040ideNat", u"Pode ver listagem do modelo R4040IDENAT"),
             ("can_see_data_r4040ideNat", u"Pode visualizar o conteúdo do modelo R4040IDENAT"),
             ("can_see_menu_r4040ideNat", u"Pode visualizar no menu o modelo R4040IDENAT"),
             ("can_print_list_r4040ideNat", u"Pode imprimir listagem do modelo R4040IDENAT"),
             ("can_print_data_r4040ideNat", u"Pode imprimir o conteúdo do modelo R4040IDENAT"), )
-            
+
         ordering = [
             'r4040_evtbenefnid',
             'natrendim',]
@@ -113,32 +113,32 @@ class r4040ideNat(SoftDeletionModel):
 class r4040ideNatSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4040ideNat
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4040infoPgto(SoftDeletionModel):
 
-    r4040_idenat = models.ForeignKey('r4040.r4040ideNat', 
+    r4040_idenat = models.ForeignKey('r4040.r4040ideNat',
         related_name='%(class)s_r4040_idenat', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4040_idenat.evento()
     dtfg = models.DateField(null=True, )
     vlrliq = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrreaj = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrir = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     descr = models.CharField(max_length=200, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4040_idenat), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -146,24 +146,24 @@ class r4040infoPgto(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações do Pagamento'
-        db_table = r'r4040_infopgto'       
+        db_table = r'r4040_infopgto'
         managed = True # r4040_infopgto #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4040infoPgto", u"Pode ver listagem do modelo R4040INFOPGTO"),
             ("can_see_data_r4040infoPgto", u"Pode visualizar o conteúdo do modelo R4040INFOPGTO"),
             ("can_see_menu_r4040infoPgto", u"Pode visualizar no menu o modelo R4040INFOPGTO"),
             ("can_print_list_r4040infoPgto", u"Pode imprimir listagem do modelo R4040INFOPGTO"),
             ("can_print_data_r4040infoPgto", u"Pode imprimir o conteúdo do modelo R4040INFOPGTO"), )
-            
+
         ordering = [
             'r4040_idenat',
             'dtfg',
@@ -177,9 +177,9 @@ class r4040infoPgto(SoftDeletionModel):
 class r4040infoPgtoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4040infoPgto
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

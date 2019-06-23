@@ -67,19 +67,19 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s5002basesIrrf(SoftDeletionModel):
 
-    s5002_infoirrf = models.ForeignKey('s5002.s5002infoIrrf', 
+    s5002_infoirrf = models.ForeignKey('s5002.s5002infoIrrf',
         related_name='%(class)s_s5002_infoirrf', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5002_infoirrf.evento()
     tpvalor = models.IntegerField(null=True, )
     valor = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5002_infoirrf), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -87,24 +87,24 @@ class s5002basesIrrf(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Bases, deduções, isenções e retenções do IRRF'
-        db_table = r's5002_basesirrf'       
+        db_table = r's5002_basesirrf'
         managed = True # s5002_basesirrf #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5002basesIrrf", u"Pode ver listagem do modelo S5002BASESIRRF"),
             ("can_see_data_s5002basesIrrf", u"Pode visualizar o conteúdo do modelo S5002BASESIRRF"),
             ("can_see_menu_s5002basesIrrf", u"Pode visualizar no menu o modelo S5002BASESIRRF"),
             ("can_print_list_s5002basesIrrf", u"Pode imprimir listagem do modelo S5002BASESIRRF"),
             ("can_print_data_s5002basesIrrf", u"Pode imprimir o conteúdo do modelo S5002BASESIRRF"), )
-            
+
         ordering = [
             's5002_infoirrf',
             'tpvalor',
@@ -115,17 +115,17 @@ class s5002basesIrrf(SoftDeletionModel):
 class s5002basesIrrfSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5002basesIrrf
         fields = '__all__'
 
 
 class s5002idePgtoExt(SoftDeletionModel):
 
-    s5002_infoirrf = models.ForeignKey('s5002.s5002infoIrrf', 
+    s5002_infoirrf = models.ForeignKey('s5002.s5002infoIrrf',
         related_name='%(class)s_s5002_infoirrf', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5002_infoirrf.evento()
     codpais = models.TextField(null=True, )
     indnif = models.IntegerField(choices=CHOICES_S5002_INDNIF, null=True, )
@@ -136,12 +136,12 @@ class s5002idePgtoExt(SoftDeletionModel):
     bairro = models.CharField(max_length=90, blank=True, null=True, )
     nmcid = models.CharField(max_length=50, null=True, )
     codpostal = models.CharField(max_length=12, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5002_infoirrf), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -149,24 +149,24 @@ class s5002idePgtoExt(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.'
-        db_table = r's5002_idepgtoext'       
+        db_table = r's5002_idepgtoext'
         managed = True # s5002_idepgtoext #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5002idePgtoExt", u"Pode ver listagem do modelo S5002IDEPGTOEXT"),
             ("can_see_data_s5002idePgtoExt", u"Pode visualizar o conteúdo do modelo S5002IDEPGTOEXT"),
             ("can_see_menu_s5002idePgtoExt", u"Pode visualizar no menu o modelo S5002IDEPGTOEXT"),
             ("can_print_list_s5002idePgtoExt", u"Pode imprimir listagem do modelo S5002IDEPGTOEXT"),
             ("can_print_data_s5002idePgtoExt", u"Pode imprimir o conteúdo do modelo S5002IDEPGTOEXT"), )
-            
+
         ordering = [
             's5002_infoirrf',
             'codpais',
@@ -179,25 +179,25 @@ class s5002idePgtoExt(SoftDeletionModel):
 class s5002idePgtoExtSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5002idePgtoExt
         fields = '__all__'
 
 
 class s5002infoDep(SoftDeletionModel):
 
-    s5002_evtirrfbenef = models.ForeignKey('esocial.s5002evtIrrfBenef', 
+    s5002_evtirrfbenef = models.ForeignKey('esocial.s5002evtIrrfBenef',
         related_name='%(class)s_s5002_evtirrfbenef', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5002_evtirrfbenef.evento()
     vrdeddep = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5002_evtirrfbenef), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -205,24 +205,24 @@ class s5002infoDep(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações relativas a existência de dependentes do beneficiário do pagamento. Origem: S-1210 - registro {deps}'
-        db_table = r's5002_infodep'       
+        db_table = r's5002_infodep'
         managed = True # s5002_infodep #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5002infoDep", u"Pode ver listagem do modelo S5002INFODEP"),
             ("can_see_data_s5002infoDep", u"Pode visualizar o conteúdo do modelo S5002INFODEP"),
             ("can_see_menu_s5002infoDep", u"Pode visualizar no menu o modelo S5002INFODEP"),
             ("can_print_list_s5002infoDep", u"Pode imprimir listagem do modelo S5002INFODEP"),
             ("can_print_data_s5002infoDep", u"Pode imprimir o conteúdo do modelo S5002INFODEP"), )
-            
+
         ordering = [
             's5002_evtirrfbenef',
             'vrdeddep',]
@@ -232,26 +232,26 @@ class s5002infoDep(SoftDeletionModel):
 class s5002infoDepSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5002infoDep
         fields = '__all__'
 
 
 class s5002infoIrrf(SoftDeletionModel):
 
-    s5002_evtirrfbenef = models.ForeignKey('esocial.s5002evtIrrfBenef', 
+    s5002_evtirrfbenef = models.ForeignKey('esocial.s5002evtIrrfBenef',
         related_name='%(class)s_s5002_evtirrfbenef', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5002_evtirrfbenef.evento()
     codcateg = models.IntegerField(blank=True, null=True, )
     indresbr = models.CharField(choices=CHOICES_S5002_INDRESBR, max_length=1, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5002_evtirrfbenef), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -259,24 +259,24 @@ class s5002infoIrrf(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo'
-        db_table = r's5002_infoirrf'       
+        db_table = r's5002_infoirrf'
         managed = True # s5002_infoirrf #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5002infoIrrf", u"Pode ver listagem do modelo S5002INFOIRRF"),
             ("can_see_data_s5002infoIrrf", u"Pode visualizar o conteúdo do modelo S5002INFOIRRF"),
             ("can_see_menu_s5002infoIrrf", u"Pode visualizar no menu o modelo S5002INFOIRRF"),
             ("can_print_list_s5002infoIrrf", u"Pode imprimir listagem do modelo S5002INFOIRRF"),
             ("can_print_data_s5002infoIrrf", u"Pode imprimir o conteúdo do modelo S5002INFOIRRF"), )
-            
+
         ordering = [
             's5002_evtirrfbenef',
             'indresbr',]
@@ -286,26 +286,26 @@ class s5002infoIrrf(SoftDeletionModel):
 class s5002infoIrrfSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5002infoIrrf
         fields = '__all__'
 
 
 class s5002irrf(SoftDeletionModel):
 
-    s5002_infoirrf = models.ForeignKey('s5002.s5002infoIrrf', 
+    s5002_infoirrf = models.ForeignKey('s5002.s5002infoIrrf',
         related_name='%(class)s_s5002_infoirrf', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5002_infoirrf.evento()
     tpcr = models.CharField(choices=CHOICES_S5002_TPCR, max_length=6, null=True, )
     vrirrfdesc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5002_infoirrf), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -313,24 +313,24 @@ class s5002irrf(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações relativas ao Imposto de Renda Retido na Fonte'
-        db_table = r's5002_irrf'       
+        db_table = r's5002_irrf'
         managed = True # s5002_irrf #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5002irrf", u"Pode ver listagem do modelo S5002IRRF"),
             ("can_see_data_s5002irrf", u"Pode visualizar o conteúdo do modelo S5002IRRF"),
             ("can_see_menu_s5002irrf", u"Pode visualizar no menu o modelo S5002IRRF"),
             ("can_print_list_s5002irrf", u"Pode imprimir listagem do modelo S5002IRRF"),
             ("can_print_data_s5002irrf", u"Pode imprimir o conteúdo do modelo S5002IRRF"), )
-            
+
         ordering = [
             's5002_infoirrf',
             'tpcr',
@@ -341,6 +341,6 @@ class s5002irrf(SoftDeletionModel):
 class s5002irrfSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5002irrf
         fields = '__all__'

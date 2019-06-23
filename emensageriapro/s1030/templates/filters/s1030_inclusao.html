@@ -150,11 +150,32 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>CBO</label>
-    <div name="codcbo" class="input-group" style="width: 100%;">
-      <input type="text" name="codcbo" class="form-control" value="{{ dict_fields|get_value_from_dict:'codcbo' }}">
-    </div>
+    <input type="text" id="txt_codcbo" name="txt_codcbo" class="form-control" value="{{ dict_fields|get_value_from_dict:'codcbo' }}">
+    <input type="hidden" id="id_codcbo" name="codcbo" value="{{ dict_fields|get_value_from_dict:'codcbo'|valor }}">
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_codcbo').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/128/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_codcbo').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
 <!-- fim__s1030_inclusao__codcbo -->
 
 

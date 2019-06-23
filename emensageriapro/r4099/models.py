@@ -67,21 +67,21 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class r4099ideRespInf(SoftDeletionModel):
 
-    r4099_evtfech = models.ForeignKey('efdreinf.r4099evtFech', 
+    r4099_evtfech = models.ForeignKey('efdreinf.r4099evtFech',
         related_name='%(class)s_r4099_evtfech', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r4099_evtfech.evento()
     nmresp = models.CharField(max_length=70, null=True, )
     cpfresp = models.CharField(max_length=11, null=True, )
     telefone = models.CharField(max_length=13, blank=True, null=True, )
     email = models.CharField(max_length=60, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r4099_evtfech), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -89,24 +89,24 @@ class r4099ideRespInf(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Responsável pelas informações'
-        db_table = r'r4099_iderespinf'       
+        db_table = r'r4099_iderespinf'
         managed = True # r4099_iderespinf #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r4099ideRespInf", u"Pode ver listagem do modelo R4099IDERESPINF"),
             ("can_see_data_r4099ideRespInf", u"Pode visualizar o conteúdo do modelo R4099IDERESPINF"),
             ("can_see_menu_r4099ideRespInf", u"Pode visualizar no menu o modelo R4099IDERESPINF"),
             ("can_print_list_r4099ideRespInf", u"Pode imprimir listagem do modelo R4099IDERESPINF"),
             ("can_print_data_r4099ideRespInf", u"Pode imprimir o conteúdo do modelo R4099IDERESPINF"), )
-            
+
         ordering = [
             'r4099_evtfech',
             'nmresp',
@@ -117,9 +117,9 @@ class r4099ideRespInf(SoftDeletionModel):
 class r4099ideRespInfSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r4099ideRespInf
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

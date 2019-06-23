@@ -181,7 +181,7 @@
 $(document).ready(function(e){
   $('#txt_codcateg').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/172/" + request.term + "/", function (data) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/175/" + request.term + "/", function (data) {
       response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
@@ -233,7 +233,7 @@ $(document).ready(function(e){
 $(document).ready(function(e){
   $('#txt_tpacid').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/341/" + request.term + "/", function (data) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/344/" + request.term + "/", function (data) {
       response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
@@ -347,7 +347,7 @@ $(document).ready(function(e){
 $(document).ready(function(e){
   $('#txt_codsitgeradora').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/345/" + request.term + "/", function (data) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/348/" + request.term + "/", function (data) {
       response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
@@ -465,7 +465,7 @@ $(document).ready(function(e){
 $(document).ready(function(e){
   $('#txt_tplograd').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/258/" + request.term + "/", function (data) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/261/" + request.term + "/", function (data) {
       response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
@@ -541,7 +541,7 @@ $(document).ready(function(e){
 <!-- fim__s2210_evtcat__cep -->
 
 <!-- inicio__s2210_evtcat__codmunic -->
-<div class="col-md-12">
+<div class="col-md-6">
   <div class="form-group">
     <label>Código do Município</label>
     <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{{ dict_fields|get_value_from_dict:'codmunic' }}">
@@ -552,8 +552,8 @@ $(document).ready(function(e){
 $(document).ready(function(e){
   $('#txt_codmunic').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas//json-search/" + request.term + "/", function (data) {
-      response($.map(data., function (value, key) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/58/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
           value: value.key
@@ -624,7 +624,7 @@ $(document).ready(function(e){
 $(document).ready(function(e){
   $('#txt_pais').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/204/" + request.term + "/", function (data) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/207/" + request.term + "/", function (data) {
       response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,

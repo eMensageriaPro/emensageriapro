@@ -67,10 +67,10 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class r2050infoProc(SoftDeletionModel):
 
-    r2050_tipocom = models.ForeignKey('r2050.r2050tipoCom', 
+    r2050_tipocom = models.ForeignKey('r2050.r2050tipoCom',
         related_name='%(class)s_r2050_tipocom', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2050_tipocom.evento()
     tpproc = models.IntegerField(choices=CHOICES_R2050_TPPROC, null=True, )
     nrproc = models.CharField(max_length=21, null=True, )
@@ -78,12 +78,12 @@ class r2050infoProc(SoftDeletionModel):
     vlrcpsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrratsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrsenarsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2050_tipocom), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -91,24 +91,24 @@ class r2050infoProc(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de processos relacionados a não retenção de contribuição previdenciária'
-        db_table = r'r2050_infoproc'       
+        db_table = r'r2050_infoproc'
         managed = True # r2050_infoproc #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2050infoProc", u"Pode ver listagem do modelo R2050INFOPROC"),
             ("can_see_data_r2050infoProc", u"Pode visualizar o conteúdo do modelo R2050INFOPROC"),
             ("can_see_menu_r2050infoProc", u"Pode visualizar no menu o modelo R2050INFOPROC"),
             ("can_print_list_r2050infoProc", u"Pode imprimir listagem do modelo R2050INFOPROC"),
             ("can_print_data_r2050infoProc", u"Pode imprimir o conteúdo do modelo R2050INFOPROC"), )
-            
+
         ordering = [
             'r2050_tipocom',
             'tpproc',
@@ -119,29 +119,29 @@ class r2050infoProc(SoftDeletionModel):
 class r2050infoProcSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2050infoProc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2050tipoCom(SoftDeletionModel):
 
-    r2050_evtcomprod = models.ForeignKey('efdreinf.r2050evtComProd', 
+    r2050_evtcomprod = models.ForeignKey('efdreinf.r2050evtComProd',
         related_name='%(class)s_r2050_evtcomprod', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2050_evtcomprod.evento()
     indcom = models.IntegerField(choices=CHOICES_R2050_INDCOM, null=True, )
     vlrrecbruta = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2050_evtcomprod), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -149,24 +149,24 @@ class r2050tipoCom(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro que apresenta o valor total da Receita Bruta por 'tipo' de comercialização.'
-        db_table = r'r2050_tipocom'       
+        db_table = r'r2050_tipocom'
         managed = True # r2050_tipocom #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2050tipoCom", u"Pode ver listagem do modelo R2050TIPOCOM"),
             ("can_see_data_r2050tipoCom", u"Pode visualizar o conteúdo do modelo R2050TIPOCOM"),
             ("can_see_menu_r2050tipoCom", u"Pode visualizar no menu o modelo R2050TIPOCOM"),
             ("can_print_list_r2050tipoCom", u"Pode imprimir listagem do modelo R2050TIPOCOM"),
             ("can_print_data_r2050tipoCom", u"Pode imprimir o conteúdo do modelo R2050TIPOCOM"), )
-            
+
         ordering = [
             'r2050_evtcomprod',
             'indcom',
@@ -177,9 +177,9 @@ class r2050tipoCom(SoftDeletionModel):
 class r2050tipoComSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2050tipoCom
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

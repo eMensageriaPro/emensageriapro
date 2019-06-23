@@ -67,10 +67,10 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s2220exame(SoftDeletionModel):
 
-    s2220_evtmonit = models.ForeignKey('esocial.s2220evtMonit', 
+    s2220_evtmonit = models.ForeignKey('esocial.s2220evtMonit',
         related_name='%(class)s_s2220_evtmonit', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2220_evtmonit.evento()
     dtexm = models.DateField(null=True, )
     procrealizado = models.IntegerField(null=True, )
@@ -80,12 +80,12 @@ class s2220exame(SoftDeletionModel):
     dtinimonit = models.DateField(null=True, )
     dtfimmonit = models.DateField(blank=True, null=True, )
     indresult = models.IntegerField(choices=CHOICES_S2220_INDRESULT, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2220_evtmonit), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -93,24 +93,24 @@ class s2220exame(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro que detalha os exames complementares porventura realizados pelo trabalhador em virtude do determinado no Quadro II da NR 07 do MTE, além de outros solicitados pelo médico e os referentes ao ASO'
-        db_table = r's2220_exame'       
+        db_table = r's2220_exame'
         managed = True # s2220_exame #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2220exame", u"Pode ver listagem do modelo S2220EXAME"),
             ("can_see_data_s2220exame", u"Pode visualizar o conteúdo do modelo S2220EXAME"),
             ("can_see_menu_s2220exame", u"Pode visualizar no menu o modelo S2220EXAME"),
             ("can_print_list_s2220exame", u"Pode imprimir listagem do modelo S2220EXAME"),
             ("can_print_data_s2220exame", u"Pode imprimir o conteúdo do modelo S2220EXAME"), )
-            
+
         ordering = [
             's2220_evtmonit',
             'dtexm',
@@ -124,9 +124,9 @@ class s2220exame(SoftDeletionModel):
 class s2220exameSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2220exame
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

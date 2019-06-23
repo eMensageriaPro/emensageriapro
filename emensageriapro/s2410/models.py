@@ -67,19 +67,19 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s2410homologTC(SoftDeletionModel):
 
-    s2410_evtcdbenin = models.ForeignKey('esocial.s2410evtCdBenIn', 
+    s2410_evtcdbenin = models.ForeignKey('esocial.s2410evtCdBenIn',
         related_name='%(class)s_s2410_evtcdbenin', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2410_evtcdbenin.evento()
     dthomol = models.DateField(null=True, )
     nratolegal = models.CharField(max_length=20, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2410_evtcdbenin), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -87,24 +87,24 @@ class s2410homologTC(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas'
-        db_table = r's2410_homologtc'       
+        db_table = r's2410_homologtc'
         managed = True # s2410_homologtc #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2410homologTC", u"Pode ver listagem do modelo S2410HOMOLOGTC"),
             ("can_see_data_s2410homologTC", u"Pode visualizar o conteúdo do modelo S2410HOMOLOGTC"),
             ("can_see_menu_s2410homologTC", u"Pode visualizar no menu o modelo S2410HOMOLOGTC"),
             ("can_print_list_s2410homologTC", u"Pode imprimir listagem do modelo S2410HOMOLOGTC"),
             ("can_print_data_s2410homologTC", u"Pode imprimir o conteúdo do modelo S2410HOMOLOGTC"), )
-            
+
         ordering = [
             's2410_evtcdbenin',
             'dthomol',
@@ -115,28 +115,28 @@ class s2410homologTC(SoftDeletionModel):
 class s2410homologTCSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2410homologTC
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2410infoPenMorte(SoftDeletionModel):
 
-    s2410_evtcdbenin = models.ForeignKey('esocial.s2410evtCdBenIn', 
+    s2410_evtcdbenin = models.ForeignKey('esocial.s2410evtCdBenIn',
         related_name='%(class)s_s2410_evtcdbenin', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2410_evtcdbenin.evento()
     tppenmorte = models.IntegerField(choices=CHOICES_S2410_TPPENMORTE, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2410_evtcdbenin), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -144,24 +144,24 @@ class s2410infoPenMorte(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações relativas a pensão por morte'
-        db_table = r's2410_infopenmorte'       
+        db_table = r's2410_infopenmorte'
         managed = True # s2410_infopenmorte #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2410infoPenMorte", u"Pode ver listagem do modelo S2410INFOPENMORTE"),
             ("can_see_data_s2410infoPenMorte", u"Pode visualizar o conteúdo do modelo S2410INFOPENMORTE"),
             ("can_see_menu_s2410infoPenMorte", u"Pode visualizar no menu o modelo S2410INFOPENMORTE"),
             ("can_print_list_s2410infoPenMorte", u"Pode imprimir listagem do modelo S2410INFOPENMORTE"),
             ("can_print_data_s2410infoPenMorte", u"Pode imprimir o conteúdo do modelo S2410INFOPENMORTE"), )
-            
+
         ordering = [
             's2410_evtcdbenin',
             'tppenmorte',]
@@ -171,30 +171,30 @@ class s2410infoPenMorte(SoftDeletionModel):
 class s2410infoPenMorteSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2410infoPenMorte
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2410instPenMorte(SoftDeletionModel):
 
-    s2410_infopenmorte = models.ForeignKey('s2410.s2410infoPenMorte', 
+    s2410_infopenmorte = models.ForeignKey('s2410.s2410infoPenMorte',
         related_name='%(class)s_s2410_infopenmorte', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2410_infopenmorte.evento()
     cpfinst = models.CharField(max_length=11, null=True, )
     dtinst = models.DateField(null=True, )
     intaposentado = models.CharField(choices=CHOICES_S2410_INTAPOSENTADO, max_length=1, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2410_infopenmorte), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -202,24 +202,24 @@ class s2410instPenMorte(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações do instituidor da pensão por morte'
-        db_table = r's2410_instpenmorte'       
+        db_table = r's2410_instpenmorte'
         managed = True # s2410_instpenmorte #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2410instPenMorte", u"Pode ver listagem do modelo S2410INSTPENMORTE"),
             ("can_see_data_s2410instPenMorte", u"Pode visualizar o conteúdo do modelo S2410INSTPENMORTE"),
             ("can_see_menu_s2410instPenMorte", u"Pode visualizar no menu o modelo S2410INSTPENMORTE"),
             ("can_print_list_s2410instPenMorte", u"Pode imprimir listagem do modelo S2410INSTPENMORTE"),
             ("can_print_data_s2410instPenMorte", u"Pode imprimir o conteúdo do modelo S2410INSTPENMORTE"), )
-            
+
         ordering = [
             's2410_infopenmorte',
             'cpfinst',
@@ -231,9 +231,9 @@ class s2410instPenMorte(SoftDeletionModel):
 class s2410instPenMorteSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2410instPenMorte
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

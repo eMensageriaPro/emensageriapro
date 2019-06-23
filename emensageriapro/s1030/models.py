@@ -67,22 +67,22 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s1030alteracao(SoftDeletionModel):
 
-    s1030_evttabcargo = models.ForeignKey('esocial.s1030evtTabCargo', 
+    s1030_evttabcargo = models.ForeignKey('esocial.s1030evtTabCargo',
         related_name='%(class)s_s1030_evttabcargo', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1030_evttabcargo.evento()
     codcargo = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     nmcargo = models.CharField(max_length=100, null=True, )
-    codcbo = models.CharField(max_length=6, null=True, )
-    
+    codcbo = models.TextField(null=True, )
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1030_evttabcargo), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -90,24 +90,24 @@ class s1030alteracao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Alteração das informações'
-        db_table = r's1030_alteracao'       
+        db_table = r's1030_alteracao'
         managed = True # s1030_alteracao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1030alteracao", u"Pode ver listagem do modelo S1030ALTERACAO"),
             ("can_see_data_s1030alteracao", u"Pode visualizar o conteúdo do modelo S1030ALTERACAO"),
             ("can_see_menu_s1030alteracao", u"Pode visualizar no menu o modelo S1030ALTERACAO"),
             ("can_print_list_s1030alteracao", u"Pode imprimir listagem do modelo S1030ALTERACAO"),
             ("can_print_data_s1030alteracao", u"Pode imprimir o conteúdo do modelo S1030ALTERACAO"), )
-            
+
         ordering = [
             's1030_evttabcargo',
             'codcargo',
@@ -120,20 +120,20 @@ class s1030alteracao(SoftDeletionModel):
 class s1030alteracaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1030alteracao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1030alteracaocargoPublico(SoftDeletionModel):
 
-    s1030_alteracao = models.ForeignKey('s1030.s1030alteracao', 
+    s1030_alteracao = models.ForeignKey('s1030.s1030alteracao',
         related_name='%(class)s_s1030_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1030_alteracao.evento()
     acumcargo = models.IntegerField(choices=CHOICES_S1030_ACUMCARGO_ALTERACAO, null=True, )
     contagemesp = models.IntegerField(choices=CHOICES_S1030_CONTAGEMESP_ALTERACAO, null=True, )
@@ -142,12 +142,12 @@ class s1030alteracaocargoPublico(SoftDeletionModel):
     nrlei = models.CharField(max_length=12, null=True, )
     dtlei = models.DateField(null=True, )
     sitcargo = models.IntegerField(choices=CHOICES_S1030_SITCARGO_ALTERACAO, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1030_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -155,24 +155,24 @@ class s1030alteracaocargoPublico(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento de informações exclusivas para Cargos e Empregos Públicos'
-        db_table = r's1030_alteracao_cargopublico'       
+        db_table = r's1030_alteracao_cargopublico'
         managed = True # s1030_alteracao_cargopublico #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1030alteracaocargoPublico", u"Pode ver listagem do modelo S1030ALTERACAOCARGOPUBLICO"),
             ("can_see_data_s1030alteracaocargoPublico", u"Pode visualizar o conteúdo do modelo S1030ALTERACAOCARGOPUBLICO"),
             ("can_see_menu_s1030alteracaocargoPublico", u"Pode visualizar no menu o modelo S1030ALTERACAOCARGOPUBLICO"),
             ("can_print_list_s1030alteracaocargoPublico", u"Pode imprimir listagem do modelo S1030ALTERACAOCARGOPUBLICO"),
             ("can_print_data_s1030alteracaocargoPublico", u"Pode imprimir o conteúdo do modelo S1030ALTERACAOCARGOPUBLICO"), )
-            
+
         ordering = [
             's1030_alteracao',
             'acumcargo',
@@ -187,29 +187,29 @@ class s1030alteracaocargoPublico(SoftDeletionModel):
 class s1030alteracaocargoPublicoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1030alteracaocargoPublico
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1030alteracaonovaValidade(SoftDeletionModel):
 
-    s1030_alteracao = models.ForeignKey('s1030.s1030alteracao', 
+    s1030_alteracao = models.ForeignKey('s1030.s1030alteracao',
         related_name='%(class)s_s1030_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1030_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1030_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -217,24 +217,24 @@ class s1030alteracaonovaValidade(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
-        db_table = r's1030_alteracao_novavalidade'       
+        db_table = r's1030_alteracao_novavalidade'
         managed = True # s1030_alteracao_novavalidade #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1030alteracaonovaValidade", u"Pode ver listagem do modelo S1030ALTERACAONOVAVALIDADE"),
             ("can_see_data_s1030alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1030ALTERACAONOVAVALIDADE"),
             ("can_see_menu_s1030alteracaonovaValidade", u"Pode visualizar no menu o modelo S1030ALTERACAONOVAVALIDADE"),
             ("can_print_list_s1030alteracaonovaValidade", u"Pode imprimir listagem do modelo S1030ALTERACAONOVAVALIDADE"),
             ("can_print_data_s1030alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1030ALTERACAONOVAVALIDADE"), )
-            
+
         ordering = [
             's1030_alteracao',
             'inivalid',]
@@ -244,30 +244,30 @@ class s1030alteracaonovaValidade(SoftDeletionModel):
 class s1030alteracaonovaValidadeSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1030alteracaonovaValidade
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1030exclusao(SoftDeletionModel):
 
-    s1030_evttabcargo = models.ForeignKey('esocial.s1030evtTabCargo', 
+    s1030_evttabcargo = models.ForeignKey('esocial.s1030evtTabCargo',
         related_name='%(class)s_s1030_evttabcargo', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1030_evttabcargo.evento()
     codcargo = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1030_evttabcargo), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -275,24 +275,24 @@ class s1030exclusao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Exclusão das informações'
-        db_table = r's1030_exclusao'       
+        db_table = r's1030_exclusao'
         managed = True # s1030_exclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1030exclusao", u"Pode ver listagem do modelo S1030EXCLUSAO"),
             ("can_see_data_s1030exclusao", u"Pode visualizar o conteúdo do modelo S1030EXCLUSAO"),
             ("can_see_menu_s1030exclusao", u"Pode visualizar no menu o modelo S1030EXCLUSAO"),
             ("can_print_list_s1030exclusao", u"Pode imprimir listagem do modelo S1030EXCLUSAO"),
             ("can_print_data_s1030exclusao", u"Pode imprimir o conteúdo do modelo S1030EXCLUSAO"), )
-            
+
         ordering = [
             's1030_evttabcargo',
             'codcargo',
@@ -303,32 +303,32 @@ class s1030exclusao(SoftDeletionModel):
 class s1030exclusaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1030exclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1030inclusao(SoftDeletionModel):
 
-    s1030_evttabcargo = models.ForeignKey('esocial.s1030evtTabCargo', 
+    s1030_evttabcargo = models.ForeignKey('esocial.s1030evtTabCargo',
         related_name='%(class)s_s1030_evttabcargo', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1030_evttabcargo.evento()
     codcargo = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     nmcargo = models.CharField(max_length=100, null=True, )
-    codcbo = models.CharField(max_length=6, null=True, )
-    
+    codcbo = models.TextField(null=True, )
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1030_evttabcargo), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -336,24 +336,24 @@ class s1030inclusao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Inclusão de novas informações'
-        db_table = r's1030_inclusao'       
+        db_table = r's1030_inclusao'
         managed = True # s1030_inclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1030inclusao", u"Pode ver listagem do modelo S1030INCLUSAO"),
             ("can_see_data_s1030inclusao", u"Pode visualizar o conteúdo do modelo S1030INCLUSAO"),
             ("can_see_menu_s1030inclusao", u"Pode visualizar no menu o modelo S1030INCLUSAO"),
             ("can_print_list_s1030inclusao", u"Pode imprimir listagem do modelo S1030INCLUSAO"),
             ("can_print_data_s1030inclusao", u"Pode imprimir o conteúdo do modelo S1030INCLUSAO"), )
-            
+
         ordering = [
             's1030_evttabcargo',
             'codcargo',
@@ -366,20 +366,20 @@ class s1030inclusao(SoftDeletionModel):
 class s1030inclusaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1030inclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1030inclusaocargoPublico(SoftDeletionModel):
 
-    s1030_inclusao = models.ForeignKey('s1030.s1030inclusao', 
+    s1030_inclusao = models.ForeignKey('s1030.s1030inclusao',
         related_name='%(class)s_s1030_inclusao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1030_inclusao.evento()
     acumcargo = models.IntegerField(choices=CHOICES_S1030_ACUMCARGO_INCLUSAO, null=True, )
     contagemesp = models.IntegerField(choices=CHOICES_S1030_CONTAGEMESP_INCLUSAO, null=True, )
@@ -388,12 +388,12 @@ class s1030inclusaocargoPublico(SoftDeletionModel):
     nrlei = models.CharField(max_length=12, null=True, )
     dtlei = models.DateField(null=True, )
     sitcargo = models.IntegerField(choices=CHOICES_S1030_SITCARGO_INCLUSAO, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1030_inclusao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -401,24 +401,24 @@ class s1030inclusaocargoPublico(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento de informações exclusivas para Cargos e Empregos Públicos'
-        db_table = r's1030_inclusao_cargopublico'       
+        db_table = r's1030_inclusao_cargopublico'
         managed = True # s1030_inclusao_cargopublico #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1030inclusaocargoPublico", u"Pode ver listagem do modelo S1030INCLUSAOCARGOPUBLICO"),
             ("can_see_data_s1030inclusaocargoPublico", u"Pode visualizar o conteúdo do modelo S1030INCLUSAOCARGOPUBLICO"),
             ("can_see_menu_s1030inclusaocargoPublico", u"Pode visualizar no menu o modelo S1030INCLUSAOCARGOPUBLICO"),
             ("can_print_list_s1030inclusaocargoPublico", u"Pode imprimir listagem do modelo S1030INCLUSAOCARGOPUBLICO"),
             ("can_print_data_s1030inclusaocargoPublico", u"Pode imprimir o conteúdo do modelo S1030INCLUSAOCARGOPUBLICO"), )
-            
+
         ordering = [
             's1030_inclusao',
             'acumcargo',
@@ -433,9 +433,9 @@ class s1030inclusaocargoPublico(SoftDeletionModel):
 class s1030inclusaocargoPublicoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1030inclusaocargoPublico
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

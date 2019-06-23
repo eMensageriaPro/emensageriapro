@@ -67,19 +67,19 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s1280infoAtivConcom(SoftDeletionModel):
 
-    s1280_evtinfocomplper = models.ForeignKey('esocial.s1280evtInfoComplPer', 
+    s1280_evtinfocomplper = models.ForeignKey('esocial.s1280evtInfoComplPer',
         related_name='%(class)s_s1280_evtinfocomplper', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1280_evtinfocomplper.evento()
     fatormes = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     fator13 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1280_evtinfocomplper), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -87,24 +87,24 @@ class s1280infoAtivConcom(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída.'
-        db_table = r's1280_infoativconcom'       
+        db_table = r's1280_infoativconcom'
         managed = True # s1280_infoativconcom #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1280infoAtivConcom", u"Pode ver listagem do modelo S1280INFOATIVCONCOM"),
             ("can_see_data_s1280infoAtivConcom", u"Pode visualizar o conteúdo do modelo S1280INFOATIVCONCOM"),
             ("can_see_menu_s1280infoAtivConcom", u"Pode visualizar no menu o modelo S1280INFOATIVCONCOM"),
             ("can_print_list_s1280infoAtivConcom", u"Pode imprimir listagem do modelo S1280INFOATIVCONCOM"),
             ("can_print_data_s1280infoAtivConcom", u"Pode imprimir o conteúdo do modelo S1280INFOATIVCONCOM"), )
-            
+
         ordering = [
             's1280_evtinfocomplper',
             'fatormes',
@@ -115,29 +115,29 @@ class s1280infoAtivConcom(SoftDeletionModel):
 class s1280infoAtivConcomSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1280infoAtivConcom
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1280infoSubstPatr(SoftDeletionModel):
 
-    s1280_evtinfocomplper = models.ForeignKey('esocial.s1280evtInfoComplPer', 
+    s1280_evtinfocomplper = models.ForeignKey('esocial.s1280evtInfoComplPer',
         related_name='%(class)s_s1280_evtinfocomplper', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1280_evtinfocomplper.evento()
     indsubstpatr = models.IntegerField(choices=CHOICES_S1280_INDSUBSTPATR, null=True, )
     percredcontrib = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1280_evtinfocomplper), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -145,24 +145,24 @@ class s1280infoSubstPatr(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador.'
-        db_table = r's1280_infosubstpatr'       
+        db_table = r's1280_infosubstpatr'
         managed = True # s1280_infosubstpatr #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1280infoSubstPatr", u"Pode ver listagem do modelo S1280INFOSUBSTPATR"),
             ("can_see_data_s1280infoSubstPatr", u"Pode visualizar o conteúdo do modelo S1280INFOSUBSTPATR"),
             ("can_see_menu_s1280infoSubstPatr", u"Pode visualizar no menu o modelo S1280INFOSUBSTPATR"),
             ("can_print_list_s1280infoSubstPatr", u"Pode imprimir listagem do modelo S1280INFOSUBSTPATR"),
             ("can_print_data_s1280infoSubstPatr", u"Pode imprimir o conteúdo do modelo S1280INFOSUBSTPATR"), )
-            
+
         ordering = [
             's1280_evtinfocomplper',
             'indsubstpatr',
@@ -173,28 +173,28 @@ class s1280infoSubstPatr(SoftDeletionModel):
 class s1280infoSubstPatrSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1280infoSubstPatr
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1280infoSubstPatrOpPort(SoftDeletionModel):
 
-    s1280_evtinfocomplper = models.ForeignKey('esocial.s1280evtInfoComplPer', 
+    s1280_evtinfocomplper = models.ForeignKey('esocial.s1280evtInfoComplPer',
         related_name='%(class)s_s1280_evtinfocomplper', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1280_evtinfocomplper.evento()
     cnpjopportuario = models.CharField(max_length=14, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1280_evtinfocomplper), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -202,24 +202,24 @@ class s1280infoSubstPatrOpPort(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.'
-        db_table = r's1280_infosubstpatropport'       
+        db_table = r's1280_infosubstpatropport'
         managed = True # s1280_infosubstpatropport #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1280infoSubstPatrOpPort", u"Pode ver listagem do modelo S1280INFOSUBSTPATROPPORT"),
             ("can_see_data_s1280infoSubstPatrOpPort", u"Pode visualizar o conteúdo do modelo S1280INFOSUBSTPATROPPORT"),
             ("can_see_menu_s1280infoSubstPatrOpPort", u"Pode visualizar no menu o modelo S1280INFOSUBSTPATROPPORT"),
             ("can_print_list_s1280infoSubstPatrOpPort", u"Pode imprimir listagem do modelo S1280INFOSUBSTPATROPPORT"),
             ("can_print_data_s1280infoSubstPatrOpPort", u"Pode imprimir o conteúdo do modelo S1280INFOSUBSTPATROPPORT"), )
-            
+
         ordering = [
             's1280_evtinfocomplper',
             'cnpjopportuario',]
@@ -229,9 +229,9 @@ class s1280infoSubstPatrOpPort(SoftDeletionModel):
 class s1280infoSubstPatrOpPortSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1280infoSubstPatrOpPort
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

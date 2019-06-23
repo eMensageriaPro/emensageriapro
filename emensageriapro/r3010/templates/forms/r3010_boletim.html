@@ -193,7 +193,7 @@
 <!-- fim__r3010_boletim__pracadesportiva -->
 <!-- inicio__r3010_boletim__codmunic -->
 {% if perms..add_ or perms..change_ %}
-  <div class="col-md-12" id="r3010_boletim__codmunic__div">
+  <div class="col-md-6" id="r3010_boletim__codmunic__div">
     <div class="form-group">
       <label id="r3010_boletim__codmunic__label">Código do Município</label>
         {% if r3010_boletim_form.codmunic.errors %}
@@ -201,17 +201,25 @@
             {{ r3010_boletim_form.codmunic.errors }}
           </div>
         {% endif %}
-        <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if r3010_boletim.codmunic %}{{ r3010_boletim.codmunic }}{% endif %}" 
-        {% if r3010_boletim_form.codmunic.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if r3010_boletim_form.codmunic.field.widget.attrs.required %} required="required"{% endif %}{% if r3010_boletim_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" id="id_codmunic" name="codmunic" value="{% if r3010_boletim.codmunic %}{{ r3010_boletim_form.codmunic.value|valor }}{% endif %}">
+        <input type="text" 
+               id="txt_codmunic" 
+               name="txt_codmunic" class="form-control" 
+               value="{% if r3010_boletim.codmunic %}{{ r3010_boletim.codmunic|get_opcoes_titulo:58 }}{% endif %}" 
+               {% if r3010_boletim_form.codmunic.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if r3010_boletim_form.codmunic.field.widget.attrs.required %} required="required"{% endif %}
+               {% if r3010_boletim_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_codmunic" 
+               name="codmunic" 
+               value="{% if r3010_boletim.codmunic %}{{ r3010_boletim_form.codmunic.value|valor }}{% endif %}" >
     </div>
   </div>
   <script type="text/javascript">
   $(document).ready(function(e){
     $('#txt_codmunic').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas//json-search/" + request.term + "/", function (data) {
-          response($.map(data., function (value, key) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/58/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
               value: value.key
@@ -239,14 +247,9 @@
   });
   </script>
   {% else %}
-  <div class="col-md-12" id="r3010_boletim__codmunic__div">
+  <div class="col-md-6" id="r3010_boletim__codmunic__div">
     <div class="form-group">
       <label id="r3010_boletim__codmunic__label">Código do Município</label>
-        {% if not for_print %}{% if r3010_boletim_form.codmunic.value %}
-            <a id="r3010_boletim__codmunic__div_acessar" href="{% url '_salvar' hash='{}'|json_id:r3010_boletim_form.codmunic.value|json_print:0|base64_encode_me %}">
-                [Acessar]
-            </a>
-        {% endif %} {% endif %}
         <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if r3010_boletim.codmunic %}{{ r3010_boletim.codmunic }}{% endif %}" disabled="disabled">
     </div>
   </div>

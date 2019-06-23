@@ -67,19 +67,19 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s5013basePerAntE(SoftDeletionModel):
 
-    s5013_infobaseperante = models.ForeignKey('s5013.s5013infoBasePerAntE', 
+    s5013_infobaseperante = models.ForeignKey('s5013.s5013infoBasePerAntE',
         related_name='%(class)s_s5013_infobaseperante', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5013_infobaseperante.evento()
     tpvalore = models.IntegerField(choices=CHOICES_S5013_TPVALORE, null=True, )
     basefgtse = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5013_infobaseperante), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -87,24 +87,24 @@ class s5013basePerAntE(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações sobre bases de cálculo do FGTS referentes à remuneração de períodos anteriores quando {tpAcConv} = [E]. Origem: S-1200 ou S-2299.'
-        db_table = r's5013_baseperante'       
+        db_table = r's5013_baseperante'
         managed = True # s5013_baseperante #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5013basePerAntE", u"Pode ver listagem do modelo S5013BASEPERANTE"),
             ("can_see_data_s5013basePerAntE", u"Pode visualizar o conteúdo do modelo S5013BASEPERANTE"),
             ("can_see_menu_s5013basePerAntE", u"Pode visualizar no menu o modelo S5013BASEPERANTE"),
             ("can_print_list_s5013basePerAntE", u"Pode imprimir listagem do modelo S5013BASEPERANTE"),
             ("can_print_data_s5013basePerAntE", u"Pode imprimir o conteúdo do modelo S5013BASEPERANTE"), )
-            
+
         ordering = [
             's5013_infobaseperante',
             'tpvalore',
@@ -115,26 +115,26 @@ class s5013basePerAntE(SoftDeletionModel):
 class s5013basePerAntESerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5013basePerAntE
         fields = '__all__'
 
 
 class s5013basePerApur(SoftDeletionModel):
 
-    s5013_infobasefgts = models.ForeignKey('s5013.s5013infoBaseFGTS', 
+    s5013_infobasefgts = models.ForeignKey('s5013.s5013infoBaseFGTS',
         related_name='%(class)s_s5013_infobasefgts', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5013_infobasefgts.evento()
     tpvalor = models.IntegerField(null=True, )
     basefgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5013_infobasefgts), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -142,24 +142,24 @@ class s5013basePerApur(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações sobre bases de cálculo do FGTS referentes à remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E]. Origem: S-1200, S-2299 ou S-2399.'
-        db_table = r's5013_baseperapur'       
+        db_table = r's5013_baseperapur'
         managed = True # s5013_baseperapur #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5013basePerApur", u"Pode ver listagem do modelo S5013BASEPERAPUR"),
             ("can_see_data_s5013basePerApur", u"Pode visualizar o conteúdo do modelo S5013BASEPERAPUR"),
             ("can_see_menu_s5013basePerApur", u"Pode visualizar no menu o modelo S5013BASEPERAPUR"),
             ("can_print_list_s5013basePerApur", u"Pode imprimir listagem do modelo S5013BASEPERAPUR"),
             ("can_print_data_s5013basePerApur", u"Pode imprimir o conteúdo do modelo S5013BASEPERAPUR"), )
-            
+
         ordering = [
             's5013_infobasefgts',
             'tpvalor',
@@ -170,26 +170,26 @@ class s5013basePerApur(SoftDeletionModel):
 class s5013basePerApurSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5013basePerApur
         fields = '__all__'
 
 
 class s5013dpsPerAntE(SoftDeletionModel):
 
-    s5013_infodpsperante = models.ForeignKey('s5013.s5013infoDpsPerAntE', 
+    s5013_infodpsperante = models.ForeignKey('s5013.s5013infoDpsPerAntE',
         related_name='%(class)s_s5013_infodpsperante', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5013_infodpsperante.evento()
     tpdpse = models.IntegerField(choices=CHOICES_S5013_TPDPSE, null=True, )
     vrfgtse = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5013_infodpsperante), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -197,24 +197,24 @@ class s5013dpsPerAntE(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração de períodos anteriores quando {tpAcConv} = [E].'
-        db_table = r's5013_dpsperante'       
+        db_table = r's5013_dpsperante'
         managed = True # s5013_dpsperante #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5013dpsPerAntE", u"Pode ver listagem do modelo S5013DPSPERANTE"),
             ("can_see_data_s5013dpsPerAntE", u"Pode visualizar o conteúdo do modelo S5013DPSPERANTE"),
             ("can_see_menu_s5013dpsPerAntE", u"Pode visualizar no menu o modelo S5013DPSPERANTE"),
             ("can_print_list_s5013dpsPerAntE", u"Pode imprimir listagem do modelo S5013DPSPERANTE"),
             ("can_print_data_s5013dpsPerAntE", u"Pode imprimir o conteúdo do modelo S5013DPSPERANTE"), )
-            
+
         ordering = [
             's5013_infodpsperante',
             'tpdpse',
@@ -225,26 +225,26 @@ class s5013dpsPerAntE(SoftDeletionModel):
 class s5013dpsPerAntESerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5013dpsPerAntE
         fields = '__all__'
 
 
 class s5013dpsPerApur(SoftDeletionModel):
 
-    s5013_infodpsfgts = models.ForeignKey('s5013.s5013infoDpsFGTS', 
+    s5013_infodpsfgts = models.ForeignKey('s5013.s5013infoDpsFGTS',
         related_name='%(class)s_s5013_infodpsfgts', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5013_infodpsfgts.evento()
     tpdps = models.IntegerField(choices=CHOICES_S5013_TPDPS, null=True, )
     vrfgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5013_infodpsfgts), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -252,24 +252,24 @@ class s5013dpsPerApur(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E].'
-        db_table = r's5013_dpsperapur'       
+        db_table = r's5013_dpsperapur'
         managed = True # s5013_dpsperapur #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5013dpsPerApur", u"Pode ver listagem do modelo S5013DPSPERAPUR"),
             ("can_see_data_s5013dpsPerApur", u"Pode visualizar o conteúdo do modelo S5013DPSPERAPUR"),
             ("can_see_menu_s5013dpsPerApur", u"Pode visualizar no menu o modelo S5013DPSPERAPUR"),
             ("can_print_list_s5013dpsPerApur", u"Pode imprimir listagem do modelo S5013DPSPERAPUR"),
             ("can_print_data_s5013dpsPerApur", u"Pode imprimir o conteúdo do modelo S5013DPSPERAPUR"), )
-            
+
         ordering = [
             's5013_infodpsfgts',
             'tpdps',
@@ -280,24 +280,24 @@ class s5013dpsPerApur(SoftDeletionModel):
 class s5013dpsPerApurSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5013dpsPerApur
         fields = '__all__'
 
 
 class s5013infoBaseFGTS(SoftDeletionModel):
 
-    s5013_evtfgts = models.ForeignKey('esocial.s5013evtFGTS', 
+    s5013_evtfgts = models.ForeignKey('esocial.s5013evtFGTS',
         related_name='%(class)s_s5013_evtfgts', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5013_evtfgts.evento()
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5013_evtfgts), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -305,24 +305,24 @@ class s5013infoBaseFGTS(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações referentes a bases de cálculo do FGTS.'
-        db_table = r's5013_infobasefgts'       
+        db_table = r's5013_infobasefgts'
         managed = True # s5013_infobasefgts #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5013infoBaseFGTS", u"Pode ver listagem do modelo S5013INFOBASEFGTS"),
             ("can_see_data_s5013infoBaseFGTS", u"Pode visualizar o conteúdo do modelo S5013INFOBASEFGTS"),
             ("can_see_menu_s5013infoBaseFGTS", u"Pode visualizar no menu o modelo S5013INFOBASEFGTS"),
             ("can_print_list_s5013infoBaseFGTS", u"Pode imprimir listagem do modelo S5013INFOBASEFGTS"),
             ("can_print_data_s5013infoBaseFGTS", u"Pode imprimir o conteúdo do modelo S5013INFOBASEFGTS"), )
-            
+
         ordering = [
             's5013_evtfgts',]
 
@@ -331,25 +331,25 @@ class s5013infoBaseFGTS(SoftDeletionModel):
 class s5013infoBaseFGTSSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5013infoBaseFGTS
         fields = '__all__'
 
 
 class s5013infoBasePerAntE(SoftDeletionModel):
 
-    s5013_infobasefgts = models.ForeignKey('s5013.s5013infoBaseFGTS', 
+    s5013_infobasefgts = models.ForeignKey('s5013.s5013infoBaseFGTS',
         related_name='%(class)s_s5013_infobasefgts', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5013_infobasefgts.evento()
     perref = models.CharField(max_length=7, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5013_infobasefgts), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -357,24 +357,24 @@ class s5013infoBasePerAntE(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações referentes a bases de cálculo do FGTS de períodos anteriores quando {tpAcConv} = [E].'
-        db_table = r's5013_infobaseperante'       
+        db_table = r's5013_infobaseperante'
         managed = True # s5013_infobaseperante #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5013infoBasePerAntE", u"Pode ver listagem do modelo S5013INFOBASEPERANTE"),
             ("can_see_data_s5013infoBasePerAntE", u"Pode visualizar o conteúdo do modelo S5013INFOBASEPERANTE"),
             ("can_see_menu_s5013infoBasePerAntE", u"Pode visualizar no menu o modelo S5013INFOBASEPERANTE"),
             ("can_print_list_s5013infoBasePerAntE", u"Pode imprimir listagem do modelo S5013INFOBASEPERANTE"),
             ("can_print_data_s5013infoBasePerAntE", u"Pode imprimir o conteúdo do modelo S5013INFOBASEPERANTE"), )
-            
+
         ordering = [
             's5013_infobasefgts',
             'perref',]
@@ -384,24 +384,24 @@ class s5013infoBasePerAntE(SoftDeletionModel):
 class s5013infoBasePerAntESerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5013infoBasePerAntE
         fields = '__all__'
 
 
 class s5013infoDpsFGTS(SoftDeletionModel):
 
-    s5013_evtfgts = models.ForeignKey('esocial.s5013evtFGTS', 
+    s5013_evtfgts = models.ForeignKey('esocial.s5013evtFGTS',
         related_name='%(class)s_s5013_evtfgts', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5013_evtfgts.evento()
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5013_evtfgts), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -409,24 +409,24 @@ class s5013infoDpsFGTS(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações sobre valores de FGTS.'
-        db_table = r's5013_infodpsfgts'       
+        db_table = r's5013_infodpsfgts'
         managed = True # s5013_infodpsfgts #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5013infoDpsFGTS", u"Pode ver listagem do modelo S5013INFODPSFGTS"),
             ("can_see_data_s5013infoDpsFGTS", u"Pode visualizar o conteúdo do modelo S5013INFODPSFGTS"),
             ("can_see_menu_s5013infoDpsFGTS", u"Pode visualizar no menu o modelo S5013INFODPSFGTS"),
             ("can_print_list_s5013infoDpsFGTS", u"Pode imprimir listagem do modelo S5013INFODPSFGTS"),
             ("can_print_data_s5013infoDpsFGTS", u"Pode imprimir o conteúdo do modelo S5013INFODPSFGTS"), )
-            
+
         ordering = [
             's5013_evtfgts',]
 
@@ -435,25 +435,25 @@ class s5013infoDpsFGTS(SoftDeletionModel):
 class s5013infoDpsFGTSSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5013infoDpsFGTS
         fields = '__all__'
 
 
 class s5013infoDpsPerAntE(SoftDeletionModel):
 
-    s5013_infodpsfgts = models.ForeignKey('s5013.s5013infoDpsFGTS', 
+    s5013_infodpsfgts = models.ForeignKey('s5013.s5013infoDpsFGTS',
         related_name='%(class)s_s5013_infodpsfgts', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5013_infodpsfgts.evento()
     perref = models.CharField(max_length=7, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5013_infodpsfgts), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -461,24 +461,24 @@ class s5013infoDpsPerAntE(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações referentes ao cálculo dos valores de FGTS de períodos anteriores quando {tpAcConv} = [E].'
-        db_table = r's5013_infodpsperante'       
+        db_table = r's5013_infodpsperante'
         managed = True # s5013_infodpsperante #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5013infoDpsPerAntE", u"Pode ver listagem do modelo S5013INFODPSPERANTE"),
             ("can_see_data_s5013infoDpsPerAntE", u"Pode visualizar o conteúdo do modelo S5013INFODPSPERANTE"),
             ("can_see_menu_s5013infoDpsPerAntE", u"Pode visualizar no menu o modelo S5013INFODPSPERANTE"),
             ("can_print_list_s5013infoDpsPerAntE", u"Pode imprimir listagem do modelo S5013INFODPSPERANTE"),
             ("can_print_data_s5013infoDpsPerAntE", u"Pode imprimir o conteúdo do modelo S5013INFODPSPERANTE"), )
-            
+
         ordering = [
             's5013_infodpsfgts',
             'perref',]
@@ -488,6 +488,6 @@ class s5013infoDpsPerAntE(SoftDeletionModel):
 class s5013infoDpsPerAntESerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5013infoDpsPerAntE
         fields = '__all__'

@@ -118,17 +118,66 @@
 </div>
 <!-- fim__s1040_inclusao__dscfuncao -->
 <!-- inicio__s1040_inclusao__codcbo -->
-<div class="col-md-6" id="s1040_inclusao__codcbo__div">
-  <div class="form-group">
-    <label id="s1040_inclusao__codcbo__label">CBO*</label>
-      {% if s1040_inclusao_form.codcbo.errors %}
-        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-          {{ s1040_inclusao_form.codcbo.errors }}
-        </div>
-      {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {{ s1040_inclusao_form.codcbo|addcss:'form-control' }}
+{% if perms..add_ or perms..change_ %}
+  <div class="col-md-6" id="s1040_inclusao__codcbo__div">
+    <div class="form-group">
+      <label id="s1040_inclusao__codcbo__label">CBO*</label>
+        {% if s1040_inclusao_form.codcbo.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s1040_inclusao_form.codcbo.errors }}
+          </div>
+        {% endif %}
+        <input type="text" 
+               id="txt_codcbo" 
+               name="txt_codcbo" class="form-control" 
+               value="{% if s1040_inclusao.codcbo %}{{ s1040_inclusao.codcbo|get_opcoes_titulo:128 }}{% endif %}" 
+               {% if s1040_inclusao_form.codcbo.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if s1040_inclusao_form.codcbo.field.widget.attrs.required %} required="required"{% endif %}
+               {% if s1040_inclusao_form.codcbo.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_codcbo" 
+               name="codcbo" 
+               value="{% if s1040_inclusao.codcbo %}{{ s1040_inclusao_form.codcbo.value|valor }}{% endif %}" >
     </div>
   </div>
-</div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_codcbo').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/128/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_codcbo').val(ui.item.value);
+        return false;
+      }});
+    {% if s1040_inclusao_form.codcbo.field.widget.attrs.required %}
+    $("#id_form_s1040_inclusao").submit(function(e) {
+      $('#txt_codcbo').disabled = true;
+        if ($('#id_codcbo').val() == "") {
+          $('#txt_codcbo').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo CBO!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-6" id="s1040_inclusao__codcbo__div">
+    <div class="form-group">
+      <label id="s1040_inclusao__codcbo__label">CBO*</label>
+        <input type="text" id="txt_codcbo" name="txt_codcbo" class="form-control" value="{% if s1040_inclusao.codcbo %}{{ s1040_inclusao.codcbo }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
 <!-- fim__s1040_inclusao__codcbo -->

@@ -30,19 +30,68 @@
 </div>
 <!-- fim__s5011_infoestab__s5011_ideestab -->
 <!-- inicio__s5011_infoestab__cnaeprep -->
-<div class="col-md-6" id="s5011_infoestab__cnaeprep__div">
-  <div class="form-group">
-    <label id="s5011_infoestab__cnaeprep__label">CNAE preponderante*</label>
-      {% if s5011_infoestab_form.cnaeprep.errors %}
-        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-          {{ s5011_infoestab_form.cnaeprep.errors }}
-        </div>
-      {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {{ s5011_infoestab_form.cnaeprep|addcss:'form-control' }}
+{% if perms..add_ or perms..change_ %}
+  <div class="col-md-6" id="s5011_infoestab__cnaeprep__div">
+    <div class="form-group">
+      <label id="s5011_infoestab__cnaeprep__label">CNAE preponderante*</label>
+        {% if s5011_infoestab_form.cnaeprep.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s5011_infoestab_form.cnaeprep.errors }}
+          </div>
+        {% endif %}
+        <input type="text" 
+               id="txt_cnaeprep" 
+               name="txt_cnaeprep" class="form-control" 
+               value="{% if s5011_infoestab.cnaeprep %}{{ s5011_infoestab.cnaeprep|get_opcoes_titulo:82 }}{% endif %}" 
+               {% if s5011_infoestab_form.cnaeprep.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if s5011_infoestab_form.cnaeprep.field.widget.attrs.required %} required="required"{% endif %}
+               {% if s5011_infoestab_form.cnaeprep.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_cnaeprep" 
+               name="cnaeprep" 
+               value="{% if s5011_infoestab.cnaeprep %}{{ s5011_infoestab_form.cnaeprep.value|valor }}{% endif %}" >
     </div>
   </div>
-</div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_cnaeprep').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/82/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_cnaeprep').val(ui.item.value);
+        return false;
+      }});
+    {% if s5011_infoestab_form.cnaeprep.field.widget.attrs.required %}
+    $("#id_form_s5011_infoestab").submit(function(e) {
+      $('#txt_cnaeprep').disabled = true;
+        if ($('#id_cnaeprep').val() == "") {
+          $('#txt_cnaeprep').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo CNAE preponderante!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-6" id="s5011_infoestab__cnaeprep__div">
+    <div class="form-group">
+      <label id="s5011_infoestab__cnaeprep__label">CNAE preponderante*</label>
+        <input type="text" id="txt_cnaeprep" name="txt_cnaeprep" class="form-control" value="{% if s5011_infoestab.cnaeprep %}{{ s5011_infoestab.cnaeprep }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
 <!-- fim__s5011_infoestab__cnaeprep -->
 <!-- inicio__s5011_infoestab__aliqrat -->
 <div class="col-md-6" id="s5011_infoestab__aliqrat__div">

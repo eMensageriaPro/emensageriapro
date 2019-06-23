@@ -1,6 +1,6 @@
 -- View: public.vw_transmissor_eventos_efdreinf
 
-DROP VIEW public.vw_transmissor_eventos_efdreinf;
+DROP VIEW IF EXISTS public.vw_transmissor_eventos_efdreinf;
 
 CREATE OR REPLACE VIEW public.vw_transmissor_eventos_efdreinf AS SELECT r1000_evtinfocontri.id,
     'r1000'::text AS evento,
@@ -527,4 +527,35 @@ SELECT r4099_evtfech.id,
     r4099_evtfech.retornos_r9012_id,
     r4099_evtfech.ocorrencias
    FROM r4099_evtfech
-  WHERE r4099_evtfech.ativo = true;
+  WHERE r4099_evtfech.ativo = true
+ UNION 
+SELECT r9000_evtexclusao.id,
+    'r9000'::text AS evento,
+    r9000_evtexclusao.identidade,
+    r9000_evtexclusao.transmissor_lote_efdreinf_id,
+    r9000_evtexclusao.criado_em,
+    r9000_evtexclusao.criado_por_id,
+    r9000_evtexclusao.modificado_em,
+    r9000_evtexclusao.modificado_por_id,
+    r9000_evtexclusao.desativado_em,
+    r9000_evtexclusao.desativado_por_id,
+    r9000_evtexclusao.ativo,
+    2 AS grupo,
+    'r9000_evtexclusao'::text AS tabela,
+    'r9000_evtexclusao_salvar'::text AS tabela_salvar,
+    r9000_evtexclusao.id AS ordem,
+    r9000_evtexclusao.tpinsc,
+    r9000_evtexclusao.nrinsc,
+    'r9000_evtexclusao_recibo'::text AS url_recibo,
+    r9000_evtexclusao.validacao_precedencia,
+    r9000_evtexclusao.validacoes,
+    r9000_evtexclusao.status,
+    r9000_evtexclusao.retornos_r5001_id,
+    r9000_evtexclusao.retornos_r5011_id,
+    r9000_evtexclusao.retornos_r9001_id,
+    r9000_evtexclusao.retornos_r9002_id,
+    r9000_evtexclusao.retornos_r9011_id,
+    r9000_evtexclusao.retornos_r9012_id,
+    r9000_evtexclusao.ocorrencias
+   FROM r9000_evtexclusao
+  WHERE r9000_evtexclusao.ativo = true;

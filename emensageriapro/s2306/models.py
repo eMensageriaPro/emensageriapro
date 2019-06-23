@@ -67,10 +67,10 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s2306ageIntegracao(SoftDeletionModel):
 
-    s2306_infoestagiario = models.ForeignKey('s2306.s2306infoEstagiario', 
+    s2306_infoestagiario = models.ForeignKey('s2306.s2306infoEstagiario',
         related_name='%(class)s_s2306_infoestagiario', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2306_infoestagiario.evento()
     cnpjagntinteg = models.CharField(max_length=14, null=True, )
     nmrazao = models.CharField(max_length=100, null=True, )
@@ -78,14 +78,14 @@ class s2306ageIntegracao(SoftDeletionModel):
     nrlograd = models.CharField(max_length=10, null=True, )
     bairro = models.CharField(max_length=90, blank=True, null=True, )
     cep = models.CharField(max_length=8, null=True, )
-    codmunic = models.TextField(blank=True, null=True, )
+    codmunic = models.IntegerField(blank=True, null=True, )
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2306_infoestagiario), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -93,24 +93,24 @@ class s2306ageIntegracao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Agente de Integração'
-        db_table = r's2306_ageintegracao'       
+        db_table = r's2306_ageintegracao'
         managed = True # s2306_ageintegracao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2306ageIntegracao", u"Pode ver listagem do modelo S2306AGEINTEGRACAO"),
             ("can_see_data_s2306ageIntegracao", u"Pode visualizar o conteúdo do modelo S2306AGEINTEGRACAO"),
             ("can_see_menu_s2306ageIntegracao", u"Pode visualizar no menu o modelo S2306AGEINTEGRACAO"),
             ("can_print_list_s2306ageIntegracao", u"Pode imprimir listagem do modelo S2306AGEINTEGRACAO"),
             ("can_print_data_s2306ageIntegracao", u"Pode imprimir o conteúdo do modelo S2306AGEINTEGRACAO"), )
-            
+
         ordering = [
             's2306_infoestagiario',
             'cnpjagntinteg',
@@ -125,29 +125,29 @@ class s2306ageIntegracao(SoftDeletionModel):
 class s2306ageIntegracaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2306ageIntegracao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2306cargoFuncao(SoftDeletionModel):
 
-    s2306_infocomplementares = models.ForeignKey('s2306.s2306infoComplementares', 
+    s2306_infocomplementares = models.ForeignKey('s2306.s2306infoComplementares',
         related_name='%(class)s_s2306_infocomplementares', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2306_infocomplementares.evento()
     codcargo = models.CharField(max_length=30, null=True, )
     codfuncao = models.CharField(max_length=30, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2306_infocomplementares), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -155,24 +155,24 @@ class s2306cargoFuncao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo'
-        db_table = r's2306_cargofuncao'       
+        db_table = r's2306_cargofuncao'
         managed = True # s2306_cargofuncao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2306cargoFuncao", u"Pode ver listagem do modelo S2306CARGOFUNCAO"),
             ("can_see_data_s2306cargoFuncao", u"Pode visualizar o conteúdo do modelo S2306CARGOFUNCAO"),
             ("can_see_menu_s2306cargoFuncao", u"Pode visualizar no menu o modelo S2306CARGOFUNCAO"),
             ("can_print_list_s2306cargoFuncao", u"Pode imprimir listagem do modelo S2306CARGOFUNCAO"),
             ("can_print_data_s2306cargoFuncao", u"Pode imprimir o conteúdo do modelo S2306CARGOFUNCAO"), )
-            
+
         ordering = [
             's2306_infocomplementares',
             'codcargo',]
@@ -182,27 +182,27 @@ class s2306cargoFuncao(SoftDeletionModel):
 class s2306cargoFuncaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2306cargoFuncao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2306infoComplementares(SoftDeletionModel):
 
-    s2306_evttsvaltcontr = models.ForeignKey('esocial.s2306evtTSVAltContr', 
+    s2306_evttsvaltcontr = models.ForeignKey('esocial.s2306evtTSVAltContr',
         related_name='%(class)s_s2306_evttsvaltcontr', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2306_evttsvaltcontr.evento()
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2306_evttsvaltcontr), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -210,24 +210,24 @@ class s2306infoComplementares(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações complementares sobre o declarante'
-        db_table = r's2306_infocomplementares'       
+        db_table = r's2306_infocomplementares'
         managed = True # s2306_infocomplementares #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2306infoComplementares", u"Pode ver listagem do modelo S2306INFOCOMPLEMENTARES"),
             ("can_see_data_s2306infoComplementares", u"Pode visualizar o conteúdo do modelo S2306INFOCOMPLEMENTARES"),
             ("can_see_menu_s2306infoComplementares", u"Pode visualizar no menu o modelo S2306INFOCOMPLEMENTARES"),
             ("can_print_list_s2306infoComplementares", u"Pode imprimir listagem do modelo S2306INFOCOMPLEMENTARES"),
             ("can_print_data_s2306infoComplementares", u"Pode imprimir o conteúdo do modelo S2306INFOCOMPLEMENTARES"), )
-            
+
         ordering = [
             's2306_evttsvaltcontr',]
 
@@ -236,20 +236,20 @@ class s2306infoComplementares(SoftDeletionModel):
 class s2306infoComplementaresSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2306infoComplementares
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2306infoEstagiario(SoftDeletionModel):
 
-    s2306_infocomplementares = models.ForeignKey('s2306.s2306infoComplementares', 
+    s2306_infocomplementares = models.ForeignKey('s2306.s2306infoComplementares',
         related_name='%(class)s_s2306_infocomplementares', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2306_infocomplementares.evento()
     natestagio = models.CharField(choices=CHOICES_S2306_NATESTAGIO, max_length=1, null=True, )
     nivestagio = models.IntegerField(choices=CHOICES_S2306_NIVESTAGIO, null=True, )
@@ -263,14 +263,14 @@ class s2306infoEstagiario(SoftDeletionModel):
     nrlograd = models.CharField(max_length=10, blank=True, null=True, )
     bairro = models.CharField(max_length=90, blank=True, null=True, )
     cep = models.CharField(max_length=8, blank=True, null=True, )
-    codmunic = models.TextField(blank=True, null=True, )
+    codmunic = models.IntegerField(blank=True, null=True, )
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2306_infocomplementares), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -278,24 +278,24 @@ class s2306infoEstagiario(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações relativas ao estagiário'
-        db_table = r's2306_infoestagiario'       
+        db_table = r's2306_infoestagiario'
         managed = True # s2306_infoestagiario #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2306infoEstagiario", u"Pode ver listagem do modelo S2306INFOESTAGIARIO"),
             ("can_see_data_s2306infoEstagiario", u"Pode visualizar o conteúdo do modelo S2306INFOESTAGIARIO"),
             ("can_see_menu_s2306infoEstagiario", u"Pode visualizar no menu o modelo S2306INFOESTAGIARIO"),
             ("can_print_list_s2306infoEstagiario", u"Pode imprimir listagem do modelo S2306INFOESTAGIARIO"),
             ("can_print_data_s2306infoEstagiario", u"Pode imprimir o conteúdo do modelo S2306INFOESTAGIARIO"), )
-            
+
         ordering = [
             's2306_infocomplementares',
             'natestagio',
@@ -308,28 +308,28 @@ class s2306infoEstagiario(SoftDeletionModel):
 class s2306infoEstagiarioSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2306infoEstagiario
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2306infoTrabCedido(SoftDeletionModel):
 
-    s2306_infocomplementares = models.ForeignKey('s2306.s2306infoComplementares', 
+    s2306_infocomplementares = models.ForeignKey('s2306.s2306infoComplementares',
         related_name='%(class)s_s2306_infocomplementares', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2306_infocomplementares.evento()
     indremuncargo = models.CharField(choices=CHOICES_S2306_INDREMUNCARGO, max_length=1, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2306_infocomplementares), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -337,24 +337,24 @@ class s2306infoTrabCedido(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.'
-        db_table = r's2306_infotrabcedido'       
+        db_table = r's2306_infotrabcedido'
         managed = True # s2306_infotrabcedido #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2306infoTrabCedido", u"Pode ver listagem do modelo S2306INFOTRABCEDIDO"),
             ("can_see_data_s2306infoTrabCedido", u"Pode visualizar o conteúdo do modelo S2306INFOTRABCEDIDO"),
             ("can_see_menu_s2306infoTrabCedido", u"Pode visualizar no menu o modelo S2306INFOTRABCEDIDO"),
             ("can_print_list_s2306infoTrabCedido", u"Pode imprimir listagem do modelo S2306INFOTRABCEDIDO"),
             ("can_print_data_s2306infoTrabCedido", u"Pode imprimir o conteúdo do modelo S2306INFOTRABCEDIDO"), )
-            
+
         ordering = [
             's2306_infocomplementares',
             'indremuncargo',]
@@ -364,30 +364,30 @@ class s2306infoTrabCedido(SoftDeletionModel):
 class s2306infoTrabCedidoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2306infoTrabCedido
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2306remuneracao(SoftDeletionModel):
 
-    s2306_infocomplementares = models.ForeignKey('s2306.s2306infoComplementares', 
+    s2306_infocomplementares = models.ForeignKey('s2306.s2306infoComplementares',
         related_name='%(class)s_s2306_infocomplementares', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2306_infocomplementares.evento()
     vrsalfx = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     undsalfixo = models.IntegerField(choices=CHOICES_S2306_UNDSALFIXO, null=True, )
     dscsalvar = models.CharField(max_length=255, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2306_infocomplementares), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -395,24 +395,24 @@ class s2306remuneracao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações da remuneração e periodicidade de pagamento'
-        db_table = r's2306_remuneracao'       
+        db_table = r's2306_remuneracao'
         managed = True # s2306_remuneracao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2306remuneracao", u"Pode ver listagem do modelo S2306REMUNERACAO"),
             ("can_see_data_s2306remuneracao", u"Pode visualizar o conteúdo do modelo S2306REMUNERACAO"),
             ("can_see_menu_s2306remuneracao", u"Pode visualizar no menu o modelo S2306REMUNERACAO"),
             ("can_print_list_s2306remuneracao", u"Pode imprimir listagem do modelo S2306REMUNERACAO"),
             ("can_print_data_s2306remuneracao", u"Pode imprimir o conteúdo do modelo S2306REMUNERACAO"), )
-            
+
         ordering = [
             's2306_infocomplementares',
             'vrsalfx',
@@ -423,29 +423,29 @@ class s2306remuneracao(SoftDeletionModel):
 class s2306remuneracaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2306remuneracao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2306supervisorEstagio(SoftDeletionModel):
 
-    s2306_infoestagiario = models.ForeignKey('s2306.s2306infoEstagiario', 
+    s2306_infoestagiario = models.ForeignKey('s2306.s2306infoEstagiario',
         related_name='%(class)s_s2306_infoestagiario', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2306_infoestagiario.evento()
     cpfsupervisor = models.CharField(max_length=11, null=True, )
     nmsuperv = models.CharField(max_length=70, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2306_infoestagiario), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -453,24 +453,24 @@ class s2306supervisorEstagio(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Supervisor do Estágio'
-        db_table = r's2306_supervisorestagio'       
+        db_table = r's2306_supervisorestagio'
         managed = True # s2306_supervisorestagio #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2306supervisorEstagio", u"Pode ver listagem do modelo S2306SUPERVISORESTAGIO"),
             ("can_see_data_s2306supervisorEstagio", u"Pode visualizar o conteúdo do modelo S2306SUPERVISORESTAGIO"),
             ("can_see_menu_s2306supervisorEstagio", u"Pode visualizar no menu o modelo S2306SUPERVISORESTAGIO"),
             ("can_print_list_s2306supervisorEstagio", u"Pode imprimir listagem do modelo S2306SUPERVISORESTAGIO"),
             ("can_print_data_s2306supervisorEstagio", u"Pode imprimir o conteúdo do modelo S2306SUPERVISORESTAGIO"), )
-            
+
         ordering = [
             's2306_infoestagiario',
             'cpfsupervisor',
@@ -481,9 +481,9 @@ class s2306supervisorEstagio(SoftDeletionModel):
 class s2306supervisorEstagioSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2306supervisorEstagio
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

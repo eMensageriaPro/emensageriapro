@@ -70,11 +70,11 @@ class Arquivos(SoftDeletionModel):
     arquivo = models.CharField(max_length=300, )
     data_criacao = models.DateField()
     permite_recuperacao = models.IntegerField(choices=SIM_NAO, )
-    
+
     def __unicode__(self):
-        
+
         lista = [ ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -84,23 +84,23 @@ class Arquivos(SoftDeletionModel):
             return self.id
 
     class Meta:
-    
+
         verbose_name = u'Arquivos'
         verbose_name_plural = u'Arquivos'
-        db_table = r'arquivos'       
+        db_table = r'arquivos'
         managed = True # arquivos #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_Arquivos", u"Pode ver listagem do modelo ARQUIVOS"),
             ("can_see_data_Arquivos", u"Pode visualizar o conteúdo do modelo ARQUIVOS"),
             ("can_see_menu_Arquivos", u"Pode visualizar no menu o modelo ARQUIVOS"),
             ("can_print_list_Arquivos", u"Pode imprimir listagem do modelo ARQUIVOS"),
             ("can_print_data_Arquivos", u"Pode imprimir o conteúdo do modelo ARQUIVOS"), )
-            
+
         ordering = [ ]
 
 
@@ -108,10 +108,10 @@ class Arquivos(SoftDeletionModel):
 class ArquivosSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = Arquivos
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -124,44 +124,44 @@ class Certificados(SoftDeletionModel):
     fs_certificado = FileSystemStorage(location=BASE_DIR+'/certificado/')
     certificado = models.FileField(storage=fs_certificado)
     senha = models.CharField(max_length=300, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.nome),]
-            
+
         if lista:
             return ' - '.join(lista)
-            
+
         else:
             return self.id
 
     class Meta:
-    
+
         verbose_name = u'Certificados'
         verbose_name_plural = u'Certificados'
-        db_table = r'certificados'       
+        db_table = r'certificados'
         managed = True # certificados #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_view_certificados", "Can view certificados"), )
-        
+
         ordering = [
             'nome', ]
-            
-            
- 
+
+
+
 class CertificadosSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = Certificados
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -178,12 +178,12 @@ class ImportacaoArquivos(SoftDeletionModel):
     quant_processado = models.IntegerField(blank=True, null=True, )
     quant_importado = models.IntegerField(blank=True, null=True, )
     quant_erros = models.IntegerField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.arquivo), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -193,23 +193,23 @@ class ImportacaoArquivos(SoftDeletionModel):
             return self.id
 
     class Meta:
-    
+
         verbose_name = u'Importação de Arquivos'
         verbose_name_plural = u'Importação de Arquivos'
-        db_table = r'importacao_arquivos'       
+        db_table = r'importacao_arquivos'
         managed = True # importacao_arquivos #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_ImportacaoArquivos", u"Pode ver listagem do modelo IMPORTACAOARQUIVOS"),
             ("can_see_data_ImportacaoArquivos", u"Pode visualizar o conteúdo do modelo IMPORTACAOARQUIVOS"),
             ("can_see_menu_ImportacaoArquivos", u"Pode visualizar no menu o modelo IMPORTACAOARQUIVOS"),
             ("can_print_list_ImportacaoArquivos", u"Pode imprimir listagem do modelo IMPORTACAOARQUIVOS"),
             ("can_print_data_ImportacaoArquivos", u"Pode imprimir o conteúdo do modelo IMPORTACAOARQUIVOS"), )
-            
+
         ordering = [
             'arquivo', ]
 
@@ -218,10 +218,10 @@ class ImportacaoArquivos(SoftDeletionModel):
 class ImportacaoArquivosSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = ImportacaoArquivos
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -238,9 +238,9 @@ class ImportacaoArquivosEventos(SoftDeletionModel):
     status = models.IntegerField(choices=IMPORTACAO_STATUS, blank=True, null=True, )
     data_hora = models.DateTimeField(blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.importacao_arquivos),
             unicode(self.arquivo),
@@ -248,7 +248,7 @@ class ImportacaoArquivosEventos(SoftDeletionModel):
             unicode(self.versao),
             unicode(self.identidade_evento),
             unicode(self.identidade), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -258,23 +258,23 @@ class ImportacaoArquivosEventos(SoftDeletionModel):
             return self.id
 
     class Meta:
-    
+
         verbose_name = u'Eventos de Arquivos Importados'
         verbose_name_plural = u'Eventos de Arquivos Importados'
-        db_table = r'importacao_arquivos_eventos'       
+        db_table = r'importacao_arquivos_eventos'
         managed = True # importacao_arquivos_eventos #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_ImportacaoArquivosEventos", u"Pode ver listagem do modelo IMPORTACAOARQUIVOSEVENTOS"),
             ("can_see_data_ImportacaoArquivosEventos", u"Pode visualizar o conteúdo do modelo IMPORTACAOARQUIVOSEVENTOS"),
             ("can_see_menu_ImportacaoArquivosEventos", u"Pode visualizar no menu o modelo IMPORTACAOARQUIVOSEVENTOS"),
             ("can_print_list_ImportacaoArquivosEventos", u"Pode imprimir listagem do modelo IMPORTACAOARQUIVOSEVENTOS"),
             ("can_print_data_ImportacaoArquivosEventos", u"Pode imprimir o conteúdo do modelo IMPORTACAOARQUIVOSEVENTOS"), )
-            
+
         ordering = [
             'importacao_arquivos',
             'arquivo',
@@ -288,10 +288,10 @@ class ImportacaoArquivosEventos(SoftDeletionModel):
 class ImportacaoArquivosEventosSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = ImportacaoArquivosEventos
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -314,16 +314,16 @@ class RegrasDeValidacao(SoftDeletionModel):
     valores_validos = models.TextField(blank=True, null=True, )
     validacoes_precedencia = models.TextField(blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.evento),
             unicode(self.versao),
             unicode(self.numero),
             unicode(self.registro_campo),
             unicode(self.registro_pai), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -333,23 +333,23 @@ class RegrasDeValidacao(SoftDeletionModel):
             return self.id
 
     class Meta:
-    
+
         verbose_name = u'Regras de Validação'
         verbose_name_plural = u'Regras de Validação'
-        db_table = r'regras_validacao'       
+        db_table = r'regras_validacao'
         managed = True # regras_validacao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_RegrasDeValidacao", u"Pode ver listagem do modelo REGRASDEVALIDACAO"),
             ("can_see_data_RegrasDeValidacao", u"Pode visualizar o conteúdo do modelo REGRASDEVALIDACAO"),
             ("can_see_menu_RegrasDeValidacao", u"Pode visualizar no menu o modelo REGRASDEVALIDACAO"),
             ("can_print_list_RegrasDeValidacao", u"Pode imprimir listagem do modelo REGRASDEVALIDACAO"),
             ("can_print_data_RegrasDeValidacao", u"Pode imprimir o conteúdo do modelo REGRASDEVALIDACAO"), )
-            
+
         ordering = [ ]
 
 
@@ -357,10 +357,10 @@ class RegrasDeValidacao(SoftDeletionModel):
 class RegrasDeValidacaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = RegrasDeValidacao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -370,11 +370,11 @@ class Relatorios(SoftDeletionModel):
     titulo = models.CharField(max_length=500, )
     campos = models.CharField(max_length=500, )
     sql = models.TextField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [ ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -384,23 +384,23 @@ class Relatorios(SoftDeletionModel):
             return self.id
 
     class Meta:
-    
+
         verbose_name = u'Relatórios'
         verbose_name_plural = u'Relatórios'
-        db_table = r'relatorios'       
+        db_table = r'relatorios'
         managed = True # relatorios #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_Relatorios", u"Pode ver listagem do modelo RELATORIOS"),
             ("can_see_data_Relatorios", u"Pode visualizar o conteúdo do modelo RELATORIOS"),
             ("can_see_menu_Relatorios", u"Pode visualizar no menu o modelo RELATORIOS"),
             ("can_print_list_Relatorios", u"Pode imprimir listagem do modelo RELATORIOS"),
             ("can_print_data_Relatorios", u"Pode imprimir o conteúdo do modelo RELATORIOS"), )
-            
+
         ordering = [ ]
 
 
@@ -408,10 +408,10 @@ class Relatorios(SoftDeletionModel):
 class RelatoriosSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = Relatorios
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -466,13 +466,13 @@ class RetornosEventos(SoftDeletionModel):
     tpjornada = models.IntegerField(choices=CHOICES_TPJORNADA, blank=True, null=True, )
     dsctpjorn = models.CharField(max_length=100, blank=True, null=True, )
     tmpparc = models.IntegerField(choices=CHOICES_TMPPARC, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.transmissor_lote_esocial),
             unicode(self.identidade), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -482,23 +482,23 @@ class RetornosEventos(SoftDeletionModel):
             return self.id
 
     class Meta:
-    
+
         verbose_name = u'Retornos dos Eventos'
         verbose_name_plural = u'Retornos dos Eventos'
-        db_table = r'retornos_eventos'       
+        db_table = r'retornos_eventos'
         managed = True # retornos_eventos #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_RetornosEventos", u"Pode ver listagem do modelo RETORNOSEVENTOS"),
             ("can_see_data_RetornosEventos", u"Pode visualizar o conteúdo do modelo RETORNOSEVENTOS"),
             ("can_see_menu_RetornosEventos", u"Pode visualizar no menu o modelo RETORNOSEVENTOS"),
             ("can_print_list_RetornosEventos", u"Pode imprimir listagem do modelo RETORNOSEVENTOS"),
             ("can_print_data_RetornosEventos", u"Pode imprimir o conteúdo do modelo RETORNOSEVENTOS"), )
-            
+
         ordering = [
             'transmissor_lote_esocial',
             'identidade', ]
@@ -508,10 +508,10 @@ class RetornosEventos(SoftDeletionModel):
 class RetornosEventosSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = RetornosEventos
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -526,11 +526,11 @@ class RetornosEventosHorarios(SoftDeletionModel):
     hrsaida = models.CharField(max_length=50, blank=True, null=True, )
     durjornada = models.IntegerField(blank=True, null=True, )
     perhorflexivel = models.CharField(choices=CHOICES_PERHORFLEXIVEL, max_length=50, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [ ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -540,23 +540,23 @@ class RetornosEventosHorarios(SoftDeletionModel):
             return self.id
 
     class Meta:
-    
+
         verbose_name = u'Retornos dos Eventos - Horários'
         verbose_name_plural = u'Retornos dos Eventos - Horários'
-        db_table = r'retornos_eventos_horarios'       
+        db_table = r'retornos_eventos_horarios'
         managed = True # retornos_eventos_horarios #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_RetornosEventosHorarios", u"Pode ver listagem do modelo RETORNOSEVENTOSHORARIOS"),
             ("can_see_data_RetornosEventosHorarios", u"Pode visualizar o conteúdo do modelo RETORNOSEVENTOSHORARIOS"),
             ("can_see_menu_RetornosEventosHorarios", u"Pode visualizar no menu o modelo RETORNOSEVENTOSHORARIOS"),
             ("can_print_list_RetornosEventosHorarios", u"Pode imprimir listagem do modelo RETORNOSEVENTOSHORARIOS"),
             ("can_print_data_RetornosEventosHorarios", u"Pode imprimir o conteúdo do modelo RETORNOSEVENTOSHORARIOS"), )
-            
+
         ordering = [ ]
 
 
@@ -564,10 +564,10 @@ class RetornosEventosHorarios(SoftDeletionModel):
 class RetornosEventosHorariosSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = RetornosEventosHorarios
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -580,11 +580,11 @@ class RetornosEventosIntervalos(SoftDeletionModel):
     durinterv = models.IntegerField(blank=True, null=True, )
     iniinterv = models.CharField(max_length=50, blank=True, null=True, )
     terminterv = models.CharField(max_length=50, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [ ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -594,23 +594,23 @@ class RetornosEventosIntervalos(SoftDeletionModel):
             return self.id
 
     class Meta:
-    
+
         verbose_name = u'Retornos dos Eventos - Intervalos'
         verbose_name_plural = u'Retornos dos Eventos - Intervalos'
-        db_table = r'retornos_eventos_intervalos'       
+        db_table = r'retornos_eventos_intervalos'
         managed = True # retornos_eventos_intervalos #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_RetornosEventosIntervalos", u"Pode ver listagem do modelo RETORNOSEVENTOSINTERVALOS"),
             ("can_see_data_RetornosEventosIntervalos", u"Pode visualizar o conteúdo do modelo RETORNOSEVENTOSINTERVALOS"),
             ("can_see_menu_RetornosEventosIntervalos", u"Pode visualizar no menu o modelo RETORNOSEVENTOSINTERVALOS"),
             ("can_print_list_RetornosEventosIntervalos", u"Pode imprimir listagem do modelo RETORNOSEVENTOSINTERVALOS"),
             ("can_print_data_RetornosEventosIntervalos", u"Pode imprimir o conteúdo do modelo RETORNOSEVENTOSINTERVALOS"), )
-            
+
         ordering = [ ]
 
 
@@ -618,10 +618,10 @@ class RetornosEventosIntervalos(SoftDeletionModel):
 class RetornosEventosIntervalosSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = RetornosEventosIntervalos
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -634,11 +634,11 @@ class RetornosEventosOcorrencias(SoftDeletionModel):
     codigo = models.IntegerField(blank=True, )
     descricao = models.TextField(blank=True, )
     localizacao = models.TextField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [ ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -648,23 +648,23 @@ class RetornosEventosOcorrencias(SoftDeletionModel):
             return self.id
 
     class Meta:
-    
+
         verbose_name = u'Retornos dos Eventos - Ocorrencias'
         verbose_name_plural = u'Retornos dos Eventos - Ocorrencias'
-        db_table = r'retornos_eventos_ocorrencias'       
+        db_table = r'retornos_eventos_ocorrencias'
         managed = True # retornos_eventos_ocorrencias #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_RetornosEventosOcorrencias", u"Pode ver listagem do modelo RETORNOSEVENTOSOCORRENCIAS"),
             ("can_see_data_RetornosEventosOcorrencias", u"Pode visualizar o conteúdo do modelo RETORNOSEVENTOSOCORRENCIAS"),
             ("can_see_menu_RetornosEventosOcorrencias", u"Pode visualizar no menu o modelo RETORNOSEVENTOSOCORRENCIAS"),
             ("can_print_list_RetornosEventosOcorrencias", u"Pode imprimir listagem do modelo RETORNOSEVENTOSOCORRENCIAS"),
             ("can_print_data_RetornosEventosOcorrencias", u"Pode imprimir o conteúdo do modelo RETORNOSEVENTOSOCORRENCIAS"), )
-            
+
         ordering = [ ]
 
 
@@ -672,10 +672,10 @@ class RetornosEventosOcorrencias(SoftDeletionModel):
 class RetornosEventosOcorrenciasSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = RetornosEventosOcorrencias
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -692,14 +692,14 @@ class TransmissorLote(SoftDeletionModel):
     tpinsc = models.IntegerField(choices=TIPO_INSCRICAO, )
     certificado = models.ForeignKey('mensageiro.Certificados',
         related_name='%(class)s_certificado', blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.transmissor_nrinsc),
             unicode(self.nome_empresa),
             unicode(self.nrinsc), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -709,24 +709,24 @@ class TransmissorLote(SoftDeletionModel):
             return self.id
 
     class Meta:
-    
+
         verbose_name = u'Transmissor'
         verbose_name_plural = u'Transmissor'
-        db_table = r'transmissores'       
+        db_table = r'transmissores'
         managed = True # transmissores #
-        
+
         unique_together = (
             ('nome_empresa', 'ativo'), )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_TransmissorLote", u"Pode ver listagem do modelo TRANSMISSORLOTE"),
             ("can_see_data_TransmissorLote", u"Pode visualizar o conteúdo do modelo TRANSMISSORLOTE"),
             ("can_see_menu_TransmissorLote", u"Pode visualizar no menu o modelo TRANSMISSORLOTE"),
             ("can_print_list_TransmissorLote", u"Pode imprimir listagem do modelo TRANSMISSORLOTE"),
             ("can_print_data_TransmissorLote", u"Pode imprimir o conteúdo do modelo TRANSMISSORLOTE"), )
-            
+
         ordering = [ ]
 
 
@@ -734,10 +734,10 @@ class TransmissorLote(SoftDeletionModel):
 class TransmissorLoteSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = TransmissorLote
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -762,9 +762,9 @@ class TransmissorLoteEfdreinf(SoftDeletionModel):
     arquivo_header = models.CharField(max_length=200, blank=True, null=True, )
     arquivo_request = models.CharField(max_length=200, blank=True, null=True, )
     arquivo_response = models.CharField(max_length=200, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.transmissor),
             unicode(self.contribuinte_tpinsc),
@@ -772,7 +772,7 @@ class TransmissorLoteEfdreinf(SoftDeletionModel):
             unicode(self.identidade_transmissor),
             unicode(self.codigo_status),
             unicode(self.retorno_descricao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -782,23 +782,23 @@ class TransmissorLoteEfdreinf(SoftDeletionModel):
             return self.id
 
     class Meta:
-    
+
         verbose_name = u'Transmissor do EFD-Reinf'
         verbose_name_plural = u'Transmissor do EFD-Reinf'
-        db_table = r'transmissor_lote_efdreinf'       
+        db_table = r'transmissor_lote_efdreinf'
         managed = True # transmissor_lote_efdreinf #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_TransmissorLoteEfdreinf", u"Pode ver listagem do modelo TRANSMISSORLOTEEFDREINF"),
             ("can_see_data_TransmissorLoteEfdreinf", u"Pode visualizar o conteúdo do modelo TRANSMISSORLOTEEFDREINF"),
             ("can_see_menu_TransmissorLoteEfdreinf", u"Pode visualizar no menu o modelo TRANSMISSORLOTEEFDREINF"),
             ("can_print_list_TransmissorLoteEfdreinf", u"Pode imprimir listagem do modelo TRANSMISSORLOTEEFDREINF"),
             ("can_print_data_TransmissorLoteEfdreinf", u"Pode imprimir o conteúdo do modelo TRANSMISSORLOTEEFDREINF"), )
-            
+
         ordering = [ ]
 
 
@@ -806,10 +806,10 @@ class TransmissorLoteEfdreinf(SoftDeletionModel):
 class TransmissorLoteEfdreinfSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = TransmissorLoteEfdreinf
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -822,11 +822,11 @@ class TransmissorLoteEfdreinfOcorrencias(SoftDeletionModel):
     descricao = models.TextField()
     tipo = models.IntegerField(choices=EVENTOS_OCORRENCIAS_TIPO_EFDREINF, )
     localizacao = models.CharField(max_length=50, )
-    
+
     def __unicode__(self):
-        
+
         lista = [ ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -836,23 +836,23 @@ class TransmissorLoteEfdreinfOcorrencias(SoftDeletionModel):
             return self.id
 
     class Meta:
-    
+
         verbose_name = u'Ocorrências do Transmissor de Lote do EFD-Reinf'
         verbose_name_plural = u'Ocorrências do Transmissor de Lote do EFD-Reinf'
-        db_table = r'transmissor_lote_efdreinf_ocorrencias'       
+        db_table = r'transmissor_lote_efdreinf_ocorrencias'
         managed = True # transmissor_lote_efdreinf_ocorrencias #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_TransmissorLoteEfdreinfOcorrencias", u"Pode ver listagem do modelo TRANSMISSORLOTEEFDREINFOCORRENCIAS"),
             ("can_see_data_TransmissorLoteEfdreinfOcorrencias", u"Pode visualizar o conteúdo do modelo TRANSMISSORLOTEEFDREINFOCORRENCIAS"),
             ("can_see_menu_TransmissorLoteEfdreinfOcorrencias", u"Pode visualizar no menu o modelo TRANSMISSORLOTEEFDREINFOCORRENCIAS"),
             ("can_print_list_TransmissorLoteEfdreinfOcorrencias", u"Pode imprimir listagem do modelo TRANSMISSORLOTEEFDREINFOCORRENCIAS"),
             ("can_print_data_TransmissorLoteEfdreinfOcorrencias", u"Pode imprimir o conteúdo do modelo TRANSMISSORLOTEEFDREINFOCORRENCIAS"), )
-            
+
         ordering = [ ]
 
 
@@ -860,10 +860,10 @@ class TransmissorLoteEfdreinfOcorrencias(SoftDeletionModel):
 class TransmissorLoteEfdreinfOcorrenciasSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = TransmissorLoteEfdreinfOcorrencias
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -886,16 +886,16 @@ class TransmissorLoteEsocial(SoftDeletionModel):
     arquivo_header = models.CharField(max_length=200, blank=True, null=True, )
     arquivo_request = models.CharField(max_length=200, blank=True, null=True, )
     arquivo_response = models.CharField(max_length=200, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.transmissor),
             unicode(self.empregador_tpinsc),
             unicode(self.empregador_nrinsc),
             unicode(self.resposta_codigo),
             unicode(self.resposta_descricao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -905,23 +905,23 @@ class TransmissorLoteEsocial(SoftDeletionModel):
             return self.id
 
     class Meta:
-    
+
         verbose_name = u'Transmissor do eSocial'
         verbose_name_plural = u'Transmissor do eSocial'
-        db_table = r'transmissor_lote_esocial'       
+        db_table = r'transmissor_lote_esocial'
         managed = True # transmissor_lote_esocial #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_TransmissorLoteEsocial", u"Pode ver listagem do modelo TRANSMISSORLOTEESOCIAL"),
             ("can_see_data_TransmissorLoteEsocial", u"Pode visualizar o conteúdo do modelo TRANSMISSORLOTEESOCIAL"),
             ("can_see_menu_TransmissorLoteEsocial", u"Pode visualizar no menu o modelo TRANSMISSORLOTEESOCIAL"),
             ("can_print_list_TransmissorLoteEsocial", u"Pode imprimir listagem do modelo TRANSMISSORLOTEESOCIAL"),
             ("can_print_data_TransmissorLoteEsocial", u"Pode imprimir o conteúdo do modelo TRANSMISSORLOTEESOCIAL"), )
-            
+
         ordering = [ ]
 
 
@@ -929,10 +929,10 @@ class TransmissorLoteEsocial(SoftDeletionModel):
 class TransmissorLoteEsocialSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = TransmissorLoteEsocial
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -945,11 +945,11 @@ class TransmissorLoteEsocialOcorrencias(SoftDeletionModel):
     descricao = models.TextField()
     tipo = models.IntegerField(choices=EVENTOS_OCORRENCIAS_TIPO, )
     localizacao = models.CharField(max_length=50, )
-    
+
     def __unicode__(self):
-        
+
         lista = [ ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -959,23 +959,23 @@ class TransmissorLoteEsocialOcorrencias(SoftDeletionModel):
             return self.id
 
     class Meta:
-    
+
         verbose_name = u'Ocorrências do Transmissor de Lote do eSocial'
         verbose_name_plural = u'Ocorrências do Transmissor de Lote do eSocial'
-        db_table = r'transmissor_lote_esocial_ocorrencias'       
+        db_table = r'transmissor_lote_esocial_ocorrencias'
         managed = True # transmissor_lote_esocial_ocorrencias #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_TransmissorLoteEsocialOcorrencias", u"Pode ver listagem do modelo TRANSMISSORLOTEESOCIALOCORRENCIAS"),
             ("can_see_data_TransmissorLoteEsocialOcorrencias", u"Pode visualizar o conteúdo do modelo TRANSMISSORLOTEESOCIALOCORRENCIAS"),
             ("can_see_menu_TransmissorLoteEsocialOcorrencias", u"Pode visualizar no menu o modelo TRANSMISSORLOTEESOCIALOCORRENCIAS"),
             ("can_print_list_TransmissorLoteEsocialOcorrencias", u"Pode imprimir listagem do modelo TRANSMISSORLOTEESOCIALOCORRENCIAS"),
             ("can_print_data_TransmissorLoteEsocialOcorrencias", u"Pode imprimir o conteúdo do modelo TRANSMISSORLOTEESOCIALOCORRENCIAS"), )
-            
+
         ordering = [ ]
 
 
@@ -983,10 +983,10 @@ class TransmissorLoteEsocialOcorrencias(SoftDeletionModel):
 class TransmissorLoteEsocialOcorrenciasSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = TransmissorLoteEsocialOcorrencias
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -1009,7 +1009,7 @@ TIPO_TRANSMISSOR_EVENTOS = (
 class TransmissorEventosEsocial(SoftDeletionModel):
 
     from emensageriapro.esocial.models import EVENTO_STATUS
-    
+
     evento = models.CharField(max_length=10)
     identidade = models.CharField(max_length=36)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -1042,9 +1042,9 @@ class TransmissorEventosEsocial(SoftDeletionModel):
 
     def tabela_xml(self):
         return self.tabela + '_xml'
-        
+
     class Meta:
-    
+
         db_table = r'vw_transmissor_eventos_esocial'
         managed = False
 
@@ -1052,7 +1052,7 @@ class TransmissorEventosEsocial(SoftDeletionModel):
 class TransmissorEventosEfdreinf(SoftDeletionModel):
 
     from emensageriapro.esocial.models import EVENTO_STATUS
-    
+
     evento = models.CharField(max_length=10)
     identidade = models.CharField(max_length=36)
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -1067,7 +1067,7 @@ class TransmissorEventosEfdreinf(SoftDeletionModel):
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, default=0)
-    
+
     retornos_r5001 = models.ForeignKey('efdreinf.r5001evtTotal',
         related_name='%(class)s_retornos_r5001', blank=True, null=True)
     retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
@@ -1080,7 +1080,7 @@ class TransmissorEventosEfdreinf(SoftDeletionModel):
         related_name='%(class)s_retornos_r9011', blank=True, null=True)
     retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
         related_name='%(class)s_retornos_r9012', blank=True, null=True)
-        
+
     def tabela_validar_api(self):
         return self.tabela + '_validar_evento_api'
 
@@ -1100,16 +1100,16 @@ class TransmissorEventosEfdreinf(SoftDeletionModel):
         return self.tabela + '_xml'
 
     class Meta:
-    
+
         db_table = r'vw_transmissor_eventos_efdreinf'
         managed = False
-        
-        
+
+
 
 class TransmissorEventosEsocialTotalizacoes(SoftDeletionModel):
 
     from emensageriapro.esocial.models import EVENTO_STATUS
-    
+
     evento = models.CharField(max_length=10)
     identidade = models.CharField(max_length=36)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -1138,7 +1138,7 @@ class TransmissorEventosEsocialTotalizacoes(SoftDeletionModel):
         return self.tabela + '_xml'
 
     class Meta:
-    
+
         db_table = r'vw_transmissor_eventos_esocial_totalizacoes'
         managed = False
 
@@ -1146,7 +1146,7 @@ class TransmissorEventosEsocialTotalizacoes(SoftDeletionModel):
 class TransmissorEventosEfdreinfTotalizacoes(SoftDeletionModel):
 
     from emensageriapro.esocial.models import EVENTO_STATUS
-    
+
     evento = models.CharField(max_length=10)
     identidade = models.CharField(max_length=36)
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -1162,19 +1162,6 @@ class TransmissorEventosEfdreinfTotalizacoes(SoftDeletionModel):
     validacoes = models.TextField(blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, default=0)
 
-    retornos_r5001 = models.ForeignKey('efdreinf.r5001evtTotal',
-        related_name='%(class)s_retornos_r5001', blank=True, null=True)
-    retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
-        related_name='%(class)s_retornos_r5011', blank=True, null=True)
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True)
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True)
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True)
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True)
-
     def tabela_verificar(self):
         return self.tabela + '_verificar'
 
@@ -1188,6 +1175,6 @@ class TransmissorEventosEfdreinfTotalizacoes(SoftDeletionModel):
         return self.tabela + '_xml'
 
     class Meta:
-    
+
         db_table = r'vw_transmissor_eventos_efdreinf_totalizacoes'
         managed = False

@@ -145,7 +145,7 @@
         <input type="text" 
                id="txt_natrubr" 
                name="txt_natrubr" class="form-control" 
-               value="{% if s1010_inclusao.natrubr %}{{ s1010_inclusao.natrubr|get_opcoes_titulo:99 }}{% endif %}" 
+               value="{% if s1010_inclusao.natrubr %}{{ s1010_inclusao.natrubr|get_opcoes_titulo:101 }}{% endif %}" 
                {% if s1010_inclusao_form.natrubr.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1010_inclusao_form.natrubr.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1010_inclusao_form.natrubr.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -159,7 +159,7 @@
   $(document).ready(function(e){
     $('#txt_natrubr').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/99/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/101/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -233,7 +233,7 @@
         <input type="text" 
                id="txt_codinccp" 
                name="txt_codinccp" class="form-control" 
-               value="{% if s1010_inclusao.codinccp %}{{ s1010_inclusao.codinccp|get_opcoes_titulo:101 }}{% endif %}" 
+               value="{% if s1010_inclusao.codinccp %}{{ s1010_inclusao.codinccp|get_opcoes_titulo:103 }}{% endif %}" 
                {% if s1010_inclusao_form.codinccp.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1010_inclusao_form.codinccp.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1010_inclusao_form.codinccp.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -247,7 +247,7 @@
   $(document).ready(function(e){
     $('#txt_codinccp').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/101/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/103/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -297,7 +297,7 @@
         <input type="text" 
                id="txt_codincirrf" 
                name="txt_codincirrf" class="form-control" 
-               value="{% if s1010_inclusao.codincirrf %}{{ s1010_inclusao.codincirrf|get_opcoes_titulo:102 }}{% endif %}" 
+               value="{% if s1010_inclusao.codincirrf %}{{ s1010_inclusao.codincirrf|get_opcoes_titulo:104 }}{% endif %}" 
                {% if s1010_inclusao_form.codincirrf.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1010_inclusao_form.codincirrf.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1010_inclusao_form.codincirrf.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -311,7 +311,7 @@
   $(document).ready(function(e){
     $('#txt_codincirrf').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/102/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/104/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -409,7 +409,7 @@
         <input type="text" 
                id="txt_codinccprp" 
                name="txt_codinccprp" class="form-control" 
-               value="{% if s1010_inclusao.codinccprp %}{{ s1010_inclusao.codinccprp|get_opcoes_titulo:105 }}{% endif %}" 
+               value="{% if s1010_inclusao.codinccprp %}{{ s1010_inclusao.codinccprp|get_opcoes_titulo:107 }}{% endif %}" 
                {% if s1010_inclusao_form.codinccprp.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1010_inclusao_form.codinccprp.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1010_inclusao_form.codinccprp.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -423,7 +423,7 @@
   $(document).ready(function(e){
     $('#txt_codinccprp').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/105/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/107/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,

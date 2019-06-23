@@ -67,20 +67,20 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s1260ideAdquir(SoftDeletionModel):
 
-    s1260_tpcomerc = models.ForeignKey('s1260.s1260tpComerc', 
+    s1260_tpcomerc = models.ForeignKey('s1260.s1260tpComerc',
         related_name='%(class)s_s1260_tpcomerc', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1260_tpcomerc.evento()
     tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     vrcomerc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1260_tpcomerc), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -88,24 +88,24 @@ class s1260ideAdquir(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Identificação dos Adquirentes da Produção.'
-        db_table = r's1260_ideadquir'       
+        db_table = r's1260_ideadquir'
         managed = True # s1260_ideadquir #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1260ideAdquir", u"Pode ver listagem do modelo S1260IDEADQUIR"),
             ("can_see_data_s1260ideAdquir", u"Pode visualizar o conteúdo do modelo S1260IDEADQUIR"),
             ("can_see_menu_s1260ideAdquir", u"Pode visualizar no menu o modelo S1260IDEADQUIR"),
             ("can_print_list_s1260ideAdquir", u"Pode imprimir listagem do modelo S1260IDEADQUIR"),
             ("can_print_data_s1260ideAdquir", u"Pode imprimir o conteúdo do modelo S1260IDEADQUIR"), )
-            
+
         ordering = [
             's1260_tpcomerc',
             'tpinsc',
@@ -117,20 +117,20 @@ class s1260ideAdquir(SoftDeletionModel):
 class s1260ideAdquirSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1260ideAdquir
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1260infoProcJud(SoftDeletionModel):
 
-    s1260_tpcomerc = models.ForeignKey('s1260.s1260tpComerc', 
+    s1260_tpcomerc = models.ForeignKey('s1260.s1260tpComerc',
         related_name='%(class)s_s1260_tpcomerc', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1260_tpcomerc.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1260_TPPROC, null=True, )
     nrproc = models.CharField(max_length=21, null=True, )
@@ -138,12 +138,12 @@ class s1260infoProcJud(SoftDeletionModel):
     vrcpsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrratsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrsenarsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1260_tpcomerc), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -151,24 +151,24 @@ class s1260infoProcJud(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.'
-        db_table = r's1260_infoprocjud'       
+        db_table = r's1260_infoprocjud'
         managed = True # s1260_infoprocjud #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1260infoProcJud", u"Pode ver listagem do modelo S1260INFOPROCJUD"),
             ("can_see_data_s1260infoProcJud", u"Pode visualizar o conteúdo do modelo S1260INFOPROCJUD"),
             ("can_see_menu_s1260infoProcJud", u"Pode visualizar no menu o modelo S1260INFOPROCJUD"),
             ("can_print_list_s1260infoProcJud", u"Pode imprimir listagem do modelo S1260INFOPROCJUD"),
             ("can_print_data_s1260infoProcJud", u"Pode imprimir o conteúdo do modelo S1260INFOPROCJUD"), )
-            
+
         ordering = [
             's1260_tpcomerc',
             'tpproc',
@@ -180,20 +180,20 @@ class s1260infoProcJud(SoftDeletionModel):
 class s1260infoProcJudSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1260infoProcJud
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1260nfs(SoftDeletionModel):
 
-    s1260_ideadquir = models.ForeignKey('s1260.s1260ideAdquir', 
+    s1260_ideadquir = models.ForeignKey('s1260.s1260ideAdquir',
         related_name='%(class)s_s1260_ideadquir', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1260_ideadquir.evento()
     serie = models.CharField(max_length=5, blank=True, null=True, )
     nrdocto = models.CharField(max_length=20, null=True, )
@@ -202,12 +202,12 @@ class s1260nfs(SoftDeletionModel):
     vrcpdescpr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrratdescpr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrsenardesc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1260_ideadquir), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -215,24 +215,24 @@ class s1260nfs(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.'
-        db_table = r's1260_nfs'       
+        db_table = r's1260_nfs'
         managed = True # s1260_nfs #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1260nfs", u"Pode ver listagem do modelo S1260NFS"),
             ("can_see_data_s1260nfs", u"Pode visualizar o conteúdo do modelo S1260NFS"),
             ("can_see_menu_s1260nfs", u"Pode visualizar no menu o modelo S1260NFS"),
             ("can_print_list_s1260nfs", u"Pode imprimir listagem do modelo S1260NFS"),
             ("can_print_data_s1260nfs", u"Pode imprimir o conteúdo do modelo S1260NFS"), )
-            
+
         ordering = [
             's1260_ideadquir',
             'nrdocto',
@@ -247,29 +247,29 @@ class s1260nfs(SoftDeletionModel):
 class s1260nfsSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1260nfs
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1260tpComerc(SoftDeletionModel):
 
-    s1260_evtcomprod = models.ForeignKey('esocial.s1260evtComProd', 
+    s1260_evtcomprod = models.ForeignKey('esocial.s1260evtComProd',
         related_name='%(class)s_s1260_evtcomprod', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1260_evtcomprod.evento()
     indcomerc = models.IntegerField(choices=CHOICES_S1260_INDCOMERC, null=True, )
     vrtotcom = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1260_evtcomprod), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -277,24 +277,24 @@ class s1260tpComerc(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro que apresenta o valor total da comercialização por 'tipo' de comercialização'
-        db_table = r's1260_tpcomerc'       
+        db_table = r's1260_tpcomerc'
         managed = True # s1260_tpcomerc #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1260tpComerc", u"Pode ver listagem do modelo S1260TPCOMERC"),
             ("can_see_data_s1260tpComerc", u"Pode visualizar o conteúdo do modelo S1260TPCOMERC"),
             ("can_see_menu_s1260tpComerc", u"Pode visualizar no menu o modelo S1260TPCOMERC"),
             ("can_print_list_s1260tpComerc", u"Pode imprimir listagem do modelo S1260TPCOMERC"),
             ("can_print_data_s1260tpComerc", u"Pode imprimir o conteúdo do modelo S1260TPCOMERC"), )
-            
+
         ordering = [
             's1260_evtcomprod',
             'indcomerc',
@@ -305,9 +305,9 @@ class s1260tpComerc(SoftDeletionModel):
 class s1260tpComercSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1260tpComerc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

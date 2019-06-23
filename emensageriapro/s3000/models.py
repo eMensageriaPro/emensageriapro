@@ -67,19 +67,19 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s3000ideFolhaPagto(SoftDeletionModel):
 
-    s3000_evtexclusao = models.ForeignKey('esocial.s3000evtExclusao', 
+    s3000_evtexclusao = models.ForeignKey('esocial.s3000evtExclusao',
         related_name='%(class)s_s3000_evtexclusao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s3000_evtexclusao.evento()
     indapuracao = models.IntegerField(choices=CHOICES_S3000_INDAPURACAO, null=True, )
     perapur = models.CharField(max_length=7, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s3000_evtexclusao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -87,24 +87,24 @@ class s3000ideFolhaPagto(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro que identifica a qual folha de pagamento pertence o evento que será excluído'
-        db_table = r's3000_idefolhapagto'       
+        db_table = r's3000_idefolhapagto'
         managed = True # s3000_idefolhapagto #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s3000ideFolhaPagto", u"Pode ver listagem do modelo S3000IDEFOLHAPAGTO"),
             ("can_see_data_s3000ideFolhaPagto", u"Pode visualizar o conteúdo do modelo S3000IDEFOLHAPAGTO"),
             ("can_see_menu_s3000ideFolhaPagto", u"Pode visualizar no menu o modelo S3000IDEFOLHAPAGTO"),
             ("can_print_list_s3000ideFolhaPagto", u"Pode imprimir listagem do modelo S3000IDEFOLHAPAGTO"),
             ("can_print_data_s3000ideFolhaPagto", u"Pode imprimir o conteúdo do modelo S3000IDEFOLHAPAGTO"), )
-            
+
         ordering = [
             's3000_evtexclusao',
             'indapuracao',
@@ -115,29 +115,29 @@ class s3000ideFolhaPagto(SoftDeletionModel):
 class s3000ideFolhaPagtoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s3000ideFolhaPagto
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s3000ideTrabalhador(SoftDeletionModel):
 
-    s3000_evtexclusao = models.ForeignKey('esocial.s3000evtExclusao', 
+    s3000_evtexclusao = models.ForeignKey('esocial.s3000evtExclusao',
         related_name='%(class)s_s3000_evtexclusao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s3000_evtexclusao.evento()
     cpftrab = models.CharField(max_length=11, null=True, )
     nistrab = models.CharField(max_length=11, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s3000_evtexclusao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -145,24 +145,24 @@ class s3000ideTrabalhador(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.'
-        db_table = r's3000_idetrabalhador'       
+        db_table = r's3000_idetrabalhador'
         managed = True # s3000_idetrabalhador #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s3000ideTrabalhador", u"Pode ver listagem do modelo S3000IDETRABALHADOR"),
             ("can_see_data_s3000ideTrabalhador", u"Pode visualizar o conteúdo do modelo S3000IDETRABALHADOR"),
             ("can_see_menu_s3000ideTrabalhador", u"Pode visualizar no menu o modelo S3000IDETRABALHADOR"),
             ("can_print_list_s3000ideTrabalhador", u"Pode imprimir listagem do modelo S3000IDETRABALHADOR"),
             ("can_print_data_s3000ideTrabalhador", u"Pode imprimir o conteúdo do modelo S3000IDETRABALHADOR"), )
-            
+
         ordering = [
             's3000_evtexclusao',
             'cpftrab',]
@@ -172,9 +172,9 @@ class s3000ideTrabalhador(SoftDeletionModel):
 class s3000ideTrabalhadorSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s3000ideTrabalhador
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

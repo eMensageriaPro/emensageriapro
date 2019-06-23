@@ -67,19 +67,19 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s5012infoCRContrib(SoftDeletionModel):
 
-    s5012_evtirrf = models.ForeignKey('esocial.s5012evtIrrf', 
+    s5012_evtirrf = models.ForeignKey('esocial.s5012evtIrrf',
         related_name='%(class)s_s5012_evtirrf', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s5012_evtirrf.evento()
     tpcr = models.CharField(choices=CHOICES_S5012_TPCR, max_length=6, null=True, )
     vrcr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s5012_evtirrf), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -87,24 +87,24 @@ class s5012infoCRContrib(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.'
-        db_table = r's5012_infocrcontrib'       
+        db_table = r's5012_infocrcontrib'
         managed = True # s5012_infocrcontrib #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s5012infoCRContrib", u"Pode ver listagem do modelo S5012INFOCRCONTRIB"),
             ("can_see_data_s5012infoCRContrib", u"Pode visualizar o conteúdo do modelo S5012INFOCRCONTRIB"),
             ("can_see_menu_s5012infoCRContrib", u"Pode visualizar no menu o modelo S5012INFOCRCONTRIB"),
             ("can_print_list_s5012infoCRContrib", u"Pode imprimir listagem do modelo S5012INFOCRCONTRIB"),
             ("can_print_data_s5012infoCRContrib", u"Pode imprimir o conteúdo do modelo S5012INFOCRCONTRIB"), )
-            
+
         ordering = [
             's5012_evtirrf',
             'tpcr',
@@ -115,6 +115,6 @@ class s5012infoCRContrib(SoftDeletionModel):
 class s5012infoCRContribSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s5012infoCRContrib
         fields = '__all__'

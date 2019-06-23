@@ -67,21 +67,21 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s2230emitente(SoftDeletionModel):
 
-    s2230_infoatestado = models.ForeignKey('s2230.s2230infoAtestado', 
+    s2230_infoatestado = models.ForeignKey('s2230.s2230infoAtestado',
         related_name='%(class)s_s2230_infoatestado', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2230_infoatestado.evento()
     nmemit = models.CharField(max_length=70, null=True, )
     ideoc = models.IntegerField(choices=CHOICES_S2230_IDEOC, null=True, )
     nroc = models.CharField(max_length=14, null=True, )
     ufoc = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2230_infoatestado), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -89,24 +89,24 @@ class s2230emitente(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Médico/Dentista que emitiu o atestado'
-        db_table = r's2230_emitente'       
+        db_table = r's2230_emitente'
         managed = True # s2230_emitente #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2230emitente", u"Pode ver listagem do modelo S2230EMITENTE"),
             ("can_see_data_s2230emitente", u"Pode visualizar o conteúdo do modelo S2230EMITENTE"),
             ("can_see_menu_s2230emitente", u"Pode visualizar no menu o modelo S2230EMITENTE"),
             ("can_print_list_s2230emitente", u"Pode imprimir listagem do modelo S2230EMITENTE"),
             ("can_print_data_s2230emitente", u"Pode imprimir o conteúdo do modelo S2230EMITENTE"), )
-            
+
         ordering = [
             's2230_infoatestado',
             'nmemit',
@@ -118,28 +118,28 @@ class s2230emitente(SoftDeletionModel):
 class s2230emitenteSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2230emitente
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2230fimAfastamento(SoftDeletionModel):
 
-    s2230_evtafasttemp = models.ForeignKey('esocial.s2230evtAfastTemp', 
+    s2230_evtafasttemp = models.ForeignKey('esocial.s2230evtAfastTemp',
         related_name='%(class)s_s2230_evtafasttemp', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2230_evtafasttemp.evento()
     dttermafast = models.DateField(null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2230_evtafasttemp), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -147,24 +147,24 @@ class s2230fimAfastamento(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações do Término do Afastamento'
-        db_table = r's2230_fimafastamento'       
+        db_table = r's2230_fimafastamento'
         managed = True # s2230_fimafastamento #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2230fimAfastamento", u"Pode ver listagem do modelo S2230FIMAFASTAMENTO"),
             ("can_see_data_s2230fimAfastamento", u"Pode visualizar o conteúdo do modelo S2230FIMAFASTAMENTO"),
             ("can_see_menu_s2230fimAfastamento", u"Pode visualizar no menu o modelo S2230FIMAFASTAMENTO"),
             ("can_print_list_s2230fimAfastamento", u"Pode imprimir listagem do modelo S2230FIMAFASTAMENTO"),
             ("can_print_data_s2230fimAfastamento", u"Pode imprimir o conteúdo do modelo S2230FIMAFASTAMENTO"), )
-            
+
         ordering = [
             's2230_evtafasttemp',
             'dttermafast',]
@@ -174,29 +174,29 @@ class s2230fimAfastamento(SoftDeletionModel):
 class s2230fimAfastamentoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2230fimAfastamento
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2230infoAtestado(SoftDeletionModel):
 
-    s2230_iniafastamento = models.ForeignKey('s2230.s2230iniAfastamento', 
+    s2230_iniafastamento = models.ForeignKey('s2230.s2230iniAfastamento',
         related_name='%(class)s_s2230_iniafastamento', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2230_iniafastamento.evento()
     codcid = models.CharField(max_length=4, blank=True, null=True, )
     qtddiasafast = models.IntegerField(null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2230_iniafastamento), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -204,24 +204,24 @@ class s2230infoAtestado(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações complementares relativas ao atestado médico'
-        db_table = r's2230_infoatestado'       
+        db_table = r's2230_infoatestado'
         managed = True # s2230_infoatestado #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2230infoAtestado", u"Pode ver listagem do modelo S2230INFOATESTADO"),
             ("can_see_data_s2230infoAtestado", u"Pode visualizar o conteúdo do modelo S2230INFOATESTADO"),
             ("can_see_menu_s2230infoAtestado", u"Pode visualizar no menu o modelo S2230INFOATESTADO"),
             ("can_print_list_s2230infoAtestado", u"Pode imprimir listagem do modelo S2230INFOATESTADO"),
             ("can_print_data_s2230infoAtestado", u"Pode imprimir o conteúdo do modelo S2230INFOATESTADO"), )
-            
+
         ordering = [
             's2230_iniafastamento',
             'qtddiasafast',]
@@ -231,29 +231,29 @@ class s2230infoAtestado(SoftDeletionModel):
 class s2230infoAtestadoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2230infoAtestado
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2230infoCessao(SoftDeletionModel):
 
-    s2230_iniafastamento = models.ForeignKey('s2230.s2230iniAfastamento', 
+    s2230_iniafastamento = models.ForeignKey('s2230.s2230iniAfastamento',
         related_name='%(class)s_s2230_iniafastamento', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2230_iniafastamento.evento()
     cnpjcess = models.CharField(max_length=14, null=True, )
     infonus = models.IntegerField(choices=CHOICES_S2230_INFONUS, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2230_iniafastamento), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -261,24 +261,24 @@ class s2230infoCessao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador.'
-        db_table = r's2230_infocessao'       
+        db_table = r's2230_infocessao'
         managed = True # s2230_infocessao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2230infoCessao", u"Pode ver listagem do modelo S2230INFOCESSAO"),
             ("can_see_data_s2230infoCessao", u"Pode visualizar o conteúdo do modelo S2230INFOCESSAO"),
             ("can_see_menu_s2230infoCessao", u"Pode visualizar no menu o modelo S2230INFOCESSAO"),
             ("can_print_list_s2230infoCessao", u"Pode imprimir listagem do modelo S2230INFOCESSAO"),
             ("can_print_data_s2230infoCessao", u"Pode imprimir o conteúdo do modelo S2230INFOCESSAO"), )
-            
+
         ordering = [
             's2230_iniafastamento',
             'cnpjcess',
@@ -289,29 +289,29 @@ class s2230infoCessao(SoftDeletionModel):
 class s2230infoCessaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2230infoCessao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2230infoMandSind(SoftDeletionModel):
 
-    s2230_iniafastamento = models.ForeignKey('s2230.s2230iniAfastamento', 
+    s2230_iniafastamento = models.ForeignKey('s2230.s2230iniAfastamento',
         related_name='%(class)s_s2230_iniafastamento', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2230_iniafastamento.evento()
     cnpjsind = models.CharField(max_length=14, null=True, )
     infonusremun = models.IntegerField(choices=CHOICES_S2230_INFONUSREMUN, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2230_iniafastamento), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -319,24 +319,24 @@ class s2230infoMandSind(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações Complementares - afastamento para exercício de mandato sindical'
-        db_table = r's2230_infomandsind'       
+        db_table = r's2230_infomandsind'
         managed = True # s2230_infomandsind #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2230infoMandSind", u"Pode ver listagem do modelo S2230INFOMANDSIND"),
             ("can_see_data_s2230infoMandSind", u"Pode visualizar o conteúdo do modelo S2230INFOMANDSIND"),
             ("can_see_menu_s2230infoMandSind", u"Pode visualizar no menu o modelo S2230INFOMANDSIND"),
             ("can_print_list_s2230infoMandSind", u"Pode imprimir listagem do modelo S2230INFOMANDSIND"),
             ("can_print_data_s2230infoMandSind", u"Pode imprimir o conteúdo do modelo S2230INFOMANDSIND"), )
-            
+
         ordering = [
             's2230_iniafastamento',
             'cnpjsind',
@@ -347,30 +347,30 @@ class s2230infoMandSind(SoftDeletionModel):
 class s2230infoMandSindSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2230infoMandSind
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2230infoRetif(SoftDeletionModel):
 
-    s2230_evtafasttemp = models.ForeignKey('esocial.s2230evtAfastTemp', 
+    s2230_evtafasttemp = models.ForeignKey('esocial.s2230evtAfastTemp',
         related_name='%(class)s_s2230_evtafasttemp', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2230_evtafasttemp.evento()
     origretif = models.IntegerField(choices=CHOICES_S2230_ORIGRETIF, null=True, )
     tpproc = models.IntegerField(choices=CHOICES_S2230_TPPROC, blank=True, null=True, )
     nrproc = models.CharField(max_length=21, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2230_evtafasttemp), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -378,24 +378,24 @@ class s2230infoRetif(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de retificação do Afastamento Temporário'
-        db_table = r's2230_inforetif'       
+        db_table = r's2230_inforetif'
         managed = True # s2230_inforetif #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2230infoRetif", u"Pode ver listagem do modelo S2230INFORETIF"),
             ("can_see_data_s2230infoRetif", u"Pode visualizar o conteúdo do modelo S2230INFORETIF"),
             ("can_see_menu_s2230infoRetif", u"Pode visualizar no menu o modelo S2230INFORETIF"),
             ("can_print_list_s2230infoRetif", u"Pode imprimir listagem do modelo S2230INFORETIF"),
             ("can_print_data_s2230infoRetif", u"Pode imprimir o conteúdo do modelo S2230INFORETIF"), )
-            
+
         ordering = [
             's2230_evtafasttemp',
             'origretif',]
@@ -405,32 +405,32 @@ class s2230infoRetif(SoftDeletionModel):
 class s2230infoRetifSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2230infoRetif
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2230iniAfastamento(SoftDeletionModel):
 
-    s2230_evtafasttemp = models.ForeignKey('esocial.s2230evtAfastTemp', 
+    s2230_evtafasttemp = models.ForeignKey('esocial.s2230evtAfastTemp',
         related_name='%(class)s_s2230_evtafasttemp', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2230_evtafasttemp.evento()
     dtiniafast = models.DateField(null=True, )
     codmotafast = models.TextField(null=True, )
     infomesmomtv = models.CharField(choices=CHOICES_S2230_INFOMESMOMTV, max_length=1, blank=True, null=True, )
     tpacidtransito = models.IntegerField(choices=CHOICES_S2230_TPACIDTRANSITO, blank=True, null=True, )
     observacao = models.CharField(max_length=255, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2230_evtafasttemp), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -438,24 +438,24 @@ class s2230iniAfastamento(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações do Afastamento Temporário - Início'
-        db_table = r's2230_iniafastamento'       
+        db_table = r's2230_iniafastamento'
         managed = True # s2230_iniafastamento #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2230iniAfastamento", u"Pode ver listagem do modelo S2230INIAFASTAMENTO"),
             ("can_see_data_s2230iniAfastamento", u"Pode visualizar o conteúdo do modelo S2230INIAFASTAMENTO"),
             ("can_see_menu_s2230iniAfastamento", u"Pode visualizar no menu o modelo S2230INIAFASTAMENTO"),
             ("can_print_list_s2230iniAfastamento", u"Pode imprimir listagem do modelo S2230INIAFASTAMENTO"),
             ("can_print_data_s2230iniAfastamento", u"Pode imprimir o conteúdo do modelo S2230INIAFASTAMENTO"), )
-            
+
         ordering = [
             's2230_evtafasttemp',
             'dtiniafast',
@@ -466,9 +466,9 @@ class s2230iniAfastamento(SoftDeletionModel):
 class s2230iniAfastamentoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2230iniAfastamento
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

@@ -67,10 +67,10 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s2405brasil(SoftDeletionModel):
 
-    s2405_endereco = models.ForeignKey('s2405.s2405endereco', 
+    s2405_endereco = models.ForeignKey('s2405.s2405endereco',
         related_name='%(class)s_s2405_endereco', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2405_endereco.evento()
     tplograd = models.TextField(null=True, )
     dsclograd = models.CharField(max_length=80, null=True, )
@@ -78,14 +78,14 @@ class s2405brasil(SoftDeletionModel):
     complemento = models.CharField(max_length=30, blank=True, null=True, )
     bairro = models.CharField(max_length=60, blank=True, null=True, )
     cep = models.CharField(max_length=8, null=True, )
-    codmunic = models.TextField(null=True, )
+    codmunic = models.IntegerField(null=True, )
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2405_endereco), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -93,24 +93,24 @@ class s2405brasil(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Preenchimento obrigatório para trabalhador residente no Brasil.'
-        db_table = r's2405_brasil'       
+        db_table = r's2405_brasil'
         managed = True # s2405_brasil #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2405brasil", u"Pode ver listagem do modelo S2405BRASIL"),
             ("can_see_data_s2405brasil", u"Pode visualizar o conteúdo do modelo S2405BRASIL"),
             ("can_see_menu_s2405brasil", u"Pode visualizar no menu o modelo S2405BRASIL"),
             ("can_print_list_s2405brasil", u"Pode imprimir listagem do modelo S2405BRASIL"),
             ("can_print_data_s2405brasil", u"Pode imprimir o conteúdo do modelo S2405BRASIL"), )
-            
+
         ordering = [
             's2405_endereco',
             'tplograd',
@@ -125,20 +125,20 @@ class s2405brasil(SoftDeletionModel):
 class s2405brasilSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2405brasil
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2405dependente(SoftDeletionModel):
 
-    s2405_evtcdbenefalt = models.ForeignKey('esocial.s2405evtCdBenefAlt', 
+    s2405_evtcdbenefalt = models.ForeignKey('esocial.s2405evtCdBenefAlt',
         related_name='%(class)s_s2405_evtcdbenefalt', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2405_evtcdbenefalt.evento()
     tpdep = models.CharField(choices=CHOICES_ESOCIALDEPENDENTESTIPOS, max_length=2, null=True, )
     nmdep = models.CharField(max_length=70, null=True, )
@@ -148,12 +148,12 @@ class s2405dependente(SoftDeletionModel):
     depirrf = models.CharField(choices=CHOICES_S2405_DEPIRRF, max_length=1, null=True, )
     incfismen = models.CharField(choices=CHOICES_S2405_INCFISMEN, max_length=1, null=True, )
     depfinsprev = models.CharField(choices=CHOICES_S2405_DEPFINSPREV, max_length=1, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2405_evtcdbenefalt), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -161,24 +161,24 @@ class s2405dependente(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações dos dependentes'
-        db_table = r's2405_dependente'       
+        db_table = r's2405_dependente'
         managed = True # s2405_dependente #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2405dependente", u"Pode ver listagem do modelo S2405DEPENDENTE"),
             ("can_see_data_s2405dependente", u"Pode visualizar o conteúdo do modelo S2405DEPENDENTE"),
             ("can_see_menu_s2405dependente", u"Pode visualizar no menu o modelo S2405DEPENDENTE"),
             ("can_print_list_s2405dependente", u"Pode imprimir listagem do modelo S2405DEPENDENTE"),
             ("can_print_data_s2405dependente", u"Pode imprimir o conteúdo do modelo S2405DEPENDENTE"), )
-            
+
         ordering = [
             's2405_evtcdbenefalt',
             'tpdep',
@@ -194,27 +194,27 @@ class s2405dependente(SoftDeletionModel):
 class s2405dependenteSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2405dependente
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2405endereco(SoftDeletionModel):
 
-    s2405_evtcdbenefalt = models.ForeignKey('esocial.s2405evtCdBenefAlt', 
+    s2405_evtcdbenefalt = models.ForeignKey('esocial.s2405evtCdBenefAlt',
         related_name='%(class)s_s2405_evtcdbenefalt', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2405_evtcdbenefalt.evento()
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2405_evtcdbenefalt), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -222,24 +222,24 @@ class s2405endereco(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Grupo de informações do endereço do Trabalhador'
-        db_table = r's2405_endereco'       
+        db_table = r's2405_endereco'
         managed = True # s2405_endereco #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2405endereco", u"Pode ver listagem do modelo S2405ENDERECO"),
             ("can_see_data_s2405endereco", u"Pode visualizar o conteúdo do modelo S2405ENDERECO"),
             ("can_see_menu_s2405endereco", u"Pode visualizar no menu o modelo S2405ENDERECO"),
             ("can_print_list_s2405endereco", u"Pode imprimir listagem do modelo S2405ENDERECO"),
             ("can_print_data_s2405endereco", u"Pode imprimir o conteúdo do modelo S2405ENDERECO"), )
-            
+
         ordering = [
             's2405_evtcdbenefalt',]
 
@@ -248,20 +248,20 @@ class s2405endereco(SoftDeletionModel):
 class s2405enderecoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2405endereco
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2405exterior(SoftDeletionModel):
 
-    s2405_endereco = models.ForeignKey('s2405.s2405endereco', 
+    s2405_endereco = models.ForeignKey('s2405.s2405endereco',
         related_name='%(class)s_s2405_endereco', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2405_endereco.evento()
     paisresid = models.TextField(null=True, )
     dsclograd = models.CharField(max_length=80, null=True, )
@@ -270,12 +270,12 @@ class s2405exterior(SoftDeletionModel):
     bairro = models.CharField(max_length=60, blank=True, null=True, )
     nmcid = models.CharField(max_length=50, null=True, )
     codpostal = models.CharField(max_length=12, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2405_endereco), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -283,24 +283,24 @@ class s2405exterior(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Preenchido em caso de trabalhador residente no exterior.'
-        db_table = r's2405_exterior'       
+        db_table = r's2405_exterior'
         managed = True # s2405_exterior #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2405exterior", u"Pode ver listagem do modelo S2405EXTERIOR"),
             ("can_see_data_s2405exterior", u"Pode visualizar o conteúdo do modelo S2405EXTERIOR"),
             ("can_see_menu_s2405exterior", u"Pode visualizar no menu o modelo S2405EXTERIOR"),
             ("can_print_list_s2405exterior", u"Pode imprimir listagem do modelo S2405EXTERIOR"),
             ("can_print_data_s2405exterior", u"Pode imprimir o conteúdo do modelo S2405EXTERIOR"), )
-            
+
         ordering = [
             's2405_endereco',
             'paisresid',
@@ -313,9 +313,9 @@ class s2405exterior(SoftDeletionModel):
 class s2405exteriorSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2405exterior
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

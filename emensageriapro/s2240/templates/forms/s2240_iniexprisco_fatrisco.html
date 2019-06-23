@@ -51,7 +51,7 @@
         <input type="text" 
                id="txt_codfatris" 
                name="txt_codfatris" class="form-control" 
-               value="{% if s2240_iniexprisco_fatrisco.codfatris %}{{ s2240_iniexprisco_fatrisco.codfatris|get_opcoes_titulo:387 }}{% endif %}" 
+               value="{% if s2240_iniexprisco_fatrisco.codfatris %}{{ s2240_iniexprisco_fatrisco.codfatris|get_opcoes_titulo:390 }}{% endif %}" 
                {% if s2240_iniexprisco_fatrisco_form.codfatris.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2240_iniexprisco_fatrisco_form.codfatris.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2240_iniexprisco_fatrisco_form.codfatris.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -65,7 +65,7 @@
   $(document).ready(function(e){
     $('#txt_codfatris').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/387/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/390/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -173,7 +173,7 @@
         <input type="text" 
                id="txt_unmed" 
                name="txt_unmed" class="form-control" 
-               value="{% if s2240_iniexprisco_fatrisco.unmed %}{{ s2240_iniexprisco_fatrisco.unmed|get_opcoes_titulo:389 }}{% endif %}" 
+               value="{% if s2240_iniexprisco_fatrisco.unmed %}{{ s2240_iniexprisco_fatrisco.unmed|get_opcoes_titulo:392 }}{% endif %}" 
                {% if s2240_iniexprisco_fatrisco_form.unmed.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2240_iniexprisco_fatrisco_form.unmed.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2240_iniexprisco_fatrisco_form.unmed.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -187,7 +187,7 @@
   $(document).ready(function(e){
     $('#txt_unmed').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/389/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/392/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,

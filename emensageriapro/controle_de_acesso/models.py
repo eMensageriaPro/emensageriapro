@@ -69,15 +69,15 @@ class ConfigPerfis(SoftDeletionModel):
 
     titulo = models.CharField(max_length=25, )
     grupos = models.ManyToManyField("auth.Group")
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.titulo),]
-            
+
         if lista:
             return ' - '.join(lista)
-            
+
         else:
             return self.id
 
@@ -91,31 +91,31 @@ class ConfigPerfis(SoftDeletionModel):
         super(ConfigPerfis, self).save(*args, **kwargs)
 
     class Meta:
-    
+
         verbose_name = u'Perfis'
         verbose_name_plural = u'Perfis'
-        db_table = r'config_perfis'       
+        db_table = r'config_perfis'
         managed = True # config_perfis #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_view_config_perfis", "Can view config_perfis"), )
-        
+
         ordering = [
             'titulo', ]
-            
-            
- 
+
+
+
 class ConfigPerfisSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = ConfigPerfis
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
@@ -128,7 +128,7 @@ class Usuarios(SoftDeletionModel):
     name = models.CharField('Nome Completo', max_length=120)
     config_perfis = models.ForeignKey('ConfigPerfis',
         related_name='%(class)s_config_perfis')
-    
+
     def __unicode__(self):
         return unicode(self.user.first_name) + unicode(self.user.last_name)
 
@@ -152,29 +152,29 @@ class Usuarios(SoftDeletionModel):
 
     def is_superuser(self):
         return self.user.is_superuser
-        
+
     class Meta:
-    
+
         verbose_name = u'Usuários'
-        db_table = r'usuarios'       
+        db_table = r'usuarios'
         managed = True
         unique_together = ()
         index_together = ()
-        
+
         permissions = (
             ("can_view_usuarios", "Can view usuarios"),
             ("can_create_token_usuarios", "Pode criar Token"),)
-       
+
 
 
 class UsuariosSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = Usuarios
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
@@ -202,18 +202,18 @@ class Auditoria(models.Model):
                                        related_name='%(class)s_desativado_por',
                                        blank=True, null=True)
     ativo = models.NullBooleanField(blank=True, default=True)
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.tabela),
             unicode(self.identidade),
             unicode(self.data_hora),
             unicode(self.tipo), ]
-            
+
         if lista:
             return ' - '.join(lista)
-            
+
         else:
             return self.id
 
@@ -241,31 +241,31 @@ class Auditoria(models.Model):
         super(Auditoria, self).save(**kwargs)
 
     class Meta:
-    
+
         verbose_name = u'Auditoria'
-        db_table = r'auditoria'       
+        db_table = r'auditoria'
         managed = True # auditoria #
-        
+
         unique_together = ()
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_view_auditoria", "Can view auditoria"), )
-        
+
         ordering = [
             'identidade', ]
-            
-            
- 
+
+
+
 class AuditoriaSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = Auditoria
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
@@ -280,7 +280,7 @@ class UserGroups(models.Model):
 
 
 class PerfilGroups(models.Model):
-    
+
     configperfis_id = models.IntegerField()
     group_id = models.IntegerField()
 

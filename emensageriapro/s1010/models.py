@@ -67,10 +67,10 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s1010alteracao(SoftDeletionModel):
 
-    s1010_evttabrubrica = models.ForeignKey('esocial.s1010evtTabRubrica', 
+    s1010_evttabrubrica = models.ForeignKey('esocial.s1010evtTabRubrica',
         related_name='%(class)s_s1010_evttabrubrica', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1010_evttabrubrica.evento()
     codrubr = models.CharField(max_length=30, null=True, )
     idetabrubr = models.CharField(max_length=8, null=True, )
@@ -86,12 +86,12 @@ class s1010alteracao(SoftDeletionModel):
     codinccprp = models.TextField(blank=True, null=True, )
     tetoremun = models.CharField(choices=CHOICES_S1010_TETOREMUN_ALTERACAO, max_length=1, blank=True, null=True, )
     observacao = models.CharField(max_length=255, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1010_evttabrubrica), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -99,24 +99,24 @@ class s1010alteracao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Alteração das informações'
-        db_table = r's1010_alteracao'       
+        db_table = r's1010_alteracao'
         managed = True # s1010_alteracao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1010alteracao", u"Pode ver listagem do modelo S1010ALTERACAO"),
             ("can_see_data_s1010alteracao", u"Pode visualizar o conteúdo do modelo S1010ALTERACAO"),
             ("can_see_menu_s1010alteracao", u"Pode visualizar no menu o modelo S1010ALTERACAO"),
             ("can_print_list_s1010alteracao", u"Pode imprimir listagem do modelo S1010ALTERACAO"),
             ("can_print_data_s1010alteracao", u"Pode imprimir o conteúdo do modelo S1010ALTERACAO"), )
-            
+
         ordering = [
             's1010_evttabrubrica',
             'codrubr',
@@ -135,31 +135,31 @@ class s1010alteracao(SoftDeletionModel):
 class s1010alteracaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1010alteracao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1010alteracaoideProcessoCP(SoftDeletionModel):
 
-    s1010_alteracao = models.ForeignKey('s1010.s1010alteracao', 
+    s1010_alteracao = models.ForeignKey('s1010.s1010alteracao',
         related_name='%(class)s_s1010_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1010_alteracao.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1010_TPPROC_ALTERACAO, null=True, )
     nrproc = models.CharField(max_length=21, null=True, )
     extdecisao = models.IntegerField(choices=CHOICES_S1010_EXTDECISAO_ALTERACAO, null=True, )
     codsusp = models.IntegerField(null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1010_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -167,24 +167,24 @@ class s1010alteracaoideProcessoCP(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.'
-        db_table = r's1010_alteracao_ideprocessocp'       
+        db_table = r's1010_alteracao_ideprocessocp'
         managed = True # s1010_alteracao_ideprocessocp #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1010alteracaoideProcessoCP", u"Pode ver listagem do modelo S1010ALTERACAOIDEPROCESSOCP"),
             ("can_see_data_s1010alteracaoideProcessoCP", u"Pode visualizar o conteúdo do modelo S1010ALTERACAOIDEPROCESSOCP"),
             ("can_see_menu_s1010alteracaoideProcessoCP", u"Pode visualizar no menu o modelo S1010ALTERACAOIDEPROCESSOCP"),
             ("can_print_list_s1010alteracaoideProcessoCP", u"Pode imprimir listagem do modelo S1010ALTERACAOIDEPROCESSOCP"),
             ("can_print_data_s1010alteracaoideProcessoCP", u"Pode imprimir o conteúdo do modelo S1010ALTERACAOIDEPROCESSOCP"), )
-            
+
         ordering = [
             's1010_alteracao',
             'tpproc',
@@ -197,30 +197,30 @@ class s1010alteracaoideProcessoCP(SoftDeletionModel):
 class s1010alteracaoideProcessoCPSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1010alteracaoideProcessoCP
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1010alteracaoideProcessoCPRP(SoftDeletionModel):
 
-    s1010_alteracao = models.ForeignKey('s1010.s1010alteracao', 
+    s1010_alteracao = models.ForeignKey('s1010.s1010alteracao',
         related_name='%(class)s_s1010_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1010_alteracao.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1010_TPPROC_ALTERACAO, null=True, )
     nrproc = models.CharField(max_length=21, null=True, )
     extdecisao = models.IntegerField(choices=CHOICES_S1010_EXTDECISAO_ALTERACAO, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1010_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -228,24 +228,24 @@ class s1010alteracaoideProcessoCPRP(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.'
-        db_table = r's1010_alteracao_ideprocessocprp'       
+        db_table = r's1010_alteracao_ideprocessocprp'
         managed = True # s1010_alteracao_ideprocessocprp #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1010alteracaoideProcessoCPRP", u"Pode ver listagem do modelo S1010ALTERACAOIDEPROCESSOCPRP"),
             ("can_see_data_s1010alteracaoideProcessoCPRP", u"Pode visualizar o conteúdo do modelo S1010ALTERACAOIDEPROCESSOCPRP"),
             ("can_see_menu_s1010alteracaoideProcessoCPRP", u"Pode visualizar no menu o modelo S1010ALTERACAOIDEPROCESSOCPRP"),
             ("can_print_list_s1010alteracaoideProcessoCPRP", u"Pode imprimir listagem do modelo S1010ALTERACAOIDEPROCESSOCPRP"),
             ("can_print_data_s1010alteracaoideProcessoCPRP", u"Pode imprimir o conteúdo do modelo S1010ALTERACAOIDEPROCESSOCPRP"), )
-            
+
         ordering = [
             's1010_alteracao',
             'tpproc',
@@ -257,28 +257,28 @@ class s1010alteracaoideProcessoCPRP(SoftDeletionModel):
 class s1010alteracaoideProcessoCPRPSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1010alteracaoideProcessoCPRP
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1010alteracaoideProcessoFGTS(SoftDeletionModel):
 
-    s1010_alteracao = models.ForeignKey('s1010.s1010alteracao', 
+    s1010_alteracao = models.ForeignKey('s1010.s1010alteracao',
         related_name='%(class)s_s1010_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1010_alteracao.evento()
     nrproc = models.CharField(max_length=21, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1010_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -286,24 +286,24 @@ class s1010alteracaoideProcessoFGTS(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.'
-        db_table = r's1010_alteracao_ideprocessofgts'       
+        db_table = r's1010_alteracao_ideprocessofgts'
         managed = True # s1010_alteracao_ideprocessofgts #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1010alteracaoideProcessoFGTS", u"Pode ver listagem do modelo S1010ALTERACAOIDEPROCESSOFGTS"),
             ("can_see_data_s1010alteracaoideProcessoFGTS", u"Pode visualizar o conteúdo do modelo S1010ALTERACAOIDEPROCESSOFGTS"),
             ("can_see_menu_s1010alteracaoideProcessoFGTS", u"Pode visualizar no menu o modelo S1010ALTERACAOIDEPROCESSOFGTS"),
             ("can_print_list_s1010alteracaoideProcessoFGTS", u"Pode imprimir listagem do modelo S1010ALTERACAOIDEPROCESSOFGTS"),
             ("can_print_data_s1010alteracaoideProcessoFGTS", u"Pode imprimir o conteúdo do modelo S1010ALTERACAOIDEPROCESSOFGTS"), )
-            
+
         ordering = [
             's1010_alteracao',
             'nrproc',]
@@ -313,29 +313,29 @@ class s1010alteracaoideProcessoFGTS(SoftDeletionModel):
 class s1010alteracaoideProcessoFGTSSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1010alteracaoideProcessoFGTS
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1010alteracaoideProcessoIRRF(SoftDeletionModel):
 
-    s1010_alteracao = models.ForeignKey('s1010.s1010alteracao', 
+    s1010_alteracao = models.ForeignKey('s1010.s1010alteracao',
         related_name='%(class)s_s1010_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1010_alteracao.evento()
     nrproc = models.CharField(max_length=21, null=True, )
     codsusp = models.IntegerField(null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1010_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -343,24 +343,24 @@ class s1010alteracaoideProcessoIRRF(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.'
-        db_table = r's1010_alteracao_ideprocessoirrf'       
+        db_table = r's1010_alteracao_ideprocessoirrf'
         managed = True # s1010_alteracao_ideprocessoirrf #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1010alteracaoideProcessoIRRF", u"Pode ver listagem do modelo S1010ALTERACAOIDEPROCESSOIRRF"),
             ("can_see_data_s1010alteracaoideProcessoIRRF", u"Pode visualizar o conteúdo do modelo S1010ALTERACAOIDEPROCESSOIRRF"),
             ("can_see_menu_s1010alteracaoideProcessoIRRF", u"Pode visualizar no menu o modelo S1010ALTERACAOIDEPROCESSOIRRF"),
             ("can_print_list_s1010alteracaoideProcessoIRRF", u"Pode imprimir listagem do modelo S1010ALTERACAOIDEPROCESSOIRRF"),
             ("can_print_data_s1010alteracaoideProcessoIRRF", u"Pode imprimir o conteúdo do modelo S1010ALTERACAOIDEPROCESSOIRRF"), )
-            
+
         ordering = [
             's1010_alteracao',
             'nrproc',
@@ -371,28 +371,28 @@ class s1010alteracaoideProcessoIRRF(SoftDeletionModel):
 class s1010alteracaoideProcessoIRRFSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1010alteracaoideProcessoIRRF
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1010alteracaoideProcessoSIND(SoftDeletionModel):
 
-    s1010_alteracao = models.ForeignKey('s1010.s1010alteracao', 
+    s1010_alteracao = models.ForeignKey('s1010.s1010alteracao',
         related_name='%(class)s_s1010_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1010_alteracao.evento()
     nrproc = models.CharField(max_length=21, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1010_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -400,24 +400,24 @@ class s1010alteracaoideProcessoSIND(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.'
-        db_table = r's1010_alteracao_ideprocessosind'       
+        db_table = r's1010_alteracao_ideprocessosind'
         managed = True # s1010_alteracao_ideprocessosind #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1010alteracaoideProcessoSIND", u"Pode ver listagem do modelo S1010ALTERACAOIDEPROCESSOSIND"),
             ("can_see_data_s1010alteracaoideProcessoSIND", u"Pode visualizar o conteúdo do modelo S1010ALTERACAOIDEPROCESSOSIND"),
             ("can_see_menu_s1010alteracaoideProcessoSIND", u"Pode visualizar no menu o modelo S1010ALTERACAOIDEPROCESSOSIND"),
             ("can_print_list_s1010alteracaoideProcessoSIND", u"Pode imprimir listagem do modelo S1010ALTERACAOIDEPROCESSOSIND"),
             ("can_print_data_s1010alteracaoideProcessoSIND", u"Pode imprimir o conteúdo do modelo S1010ALTERACAOIDEPROCESSOSIND"), )
-            
+
         ordering = [
             's1010_alteracao',
             'nrproc',]
@@ -427,29 +427,29 @@ class s1010alteracaoideProcessoSIND(SoftDeletionModel):
 class s1010alteracaoideProcessoSINDSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1010alteracaoideProcessoSIND
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1010alteracaonovaValidade(SoftDeletionModel):
 
-    s1010_alteracao = models.ForeignKey('s1010.s1010alteracao', 
+    s1010_alteracao = models.ForeignKey('s1010.s1010alteracao',
         related_name='%(class)s_s1010_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1010_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1010_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -457,24 +457,24 @@ class s1010alteracaonovaValidade(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
-        db_table = r's1010_alteracao_novavalidade'       
+        db_table = r's1010_alteracao_novavalidade'
         managed = True # s1010_alteracao_novavalidade #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1010alteracaonovaValidade", u"Pode ver listagem do modelo S1010ALTERACAONOVAVALIDADE"),
             ("can_see_data_s1010alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1010ALTERACAONOVAVALIDADE"),
             ("can_see_menu_s1010alteracaonovaValidade", u"Pode visualizar no menu o modelo S1010ALTERACAONOVAVALIDADE"),
             ("can_print_list_s1010alteracaonovaValidade", u"Pode imprimir listagem do modelo S1010ALTERACAONOVAVALIDADE"),
             ("can_print_data_s1010alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1010ALTERACAONOVAVALIDADE"), )
-            
+
         ordering = [
             's1010_alteracao',
             'inivalid',]
@@ -484,31 +484,31 @@ class s1010alteracaonovaValidade(SoftDeletionModel):
 class s1010alteracaonovaValidadeSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1010alteracaonovaValidade
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1010exclusao(SoftDeletionModel):
 
-    s1010_evttabrubrica = models.ForeignKey('esocial.s1010evtTabRubrica', 
+    s1010_evttabrubrica = models.ForeignKey('esocial.s1010evtTabRubrica',
         related_name='%(class)s_s1010_evttabrubrica', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1010_evttabrubrica.evento()
     codrubr = models.CharField(max_length=30, null=True, )
     idetabrubr = models.CharField(max_length=8, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1010_evttabrubrica), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -516,24 +516,24 @@ class s1010exclusao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Exclusão das informações'
-        db_table = r's1010_exclusao'       
+        db_table = r's1010_exclusao'
         managed = True # s1010_exclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1010exclusao", u"Pode ver listagem do modelo S1010EXCLUSAO"),
             ("can_see_data_s1010exclusao", u"Pode visualizar o conteúdo do modelo S1010EXCLUSAO"),
             ("can_see_menu_s1010exclusao", u"Pode visualizar no menu o modelo S1010EXCLUSAO"),
             ("can_print_list_s1010exclusao", u"Pode imprimir listagem do modelo S1010EXCLUSAO"),
             ("can_print_data_s1010exclusao", u"Pode imprimir o conteúdo do modelo S1010EXCLUSAO"), )
-            
+
         ordering = [
             's1010_evttabrubrica',
             'codrubr',
@@ -545,20 +545,20 @@ class s1010exclusao(SoftDeletionModel):
 class s1010exclusaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1010exclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1010inclusao(SoftDeletionModel):
 
-    s1010_evttabrubrica = models.ForeignKey('esocial.s1010evtTabRubrica', 
+    s1010_evttabrubrica = models.ForeignKey('esocial.s1010evtTabRubrica',
         related_name='%(class)s_s1010_evttabrubrica', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1010_evttabrubrica.evento()
     codrubr = models.CharField(max_length=30, null=True, )
     idetabrubr = models.CharField(max_length=8, null=True, )
@@ -574,12 +574,12 @@ class s1010inclusao(SoftDeletionModel):
     codinccprp = models.TextField(blank=True, null=True, )
     tetoremun = models.CharField(choices=CHOICES_S1010_TETOREMUN_INCLUSAO, max_length=1, blank=True, null=True, )
     observacao = models.CharField(max_length=255, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1010_evttabrubrica), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -587,24 +587,24 @@ class s1010inclusao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Inclusão de novas informações'
-        db_table = r's1010_inclusao'       
+        db_table = r's1010_inclusao'
         managed = True # s1010_inclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1010inclusao", u"Pode ver listagem do modelo S1010INCLUSAO"),
             ("can_see_data_s1010inclusao", u"Pode visualizar o conteúdo do modelo S1010INCLUSAO"),
             ("can_see_menu_s1010inclusao", u"Pode visualizar no menu o modelo S1010INCLUSAO"),
             ("can_print_list_s1010inclusao", u"Pode imprimir listagem do modelo S1010INCLUSAO"),
             ("can_print_data_s1010inclusao", u"Pode imprimir o conteúdo do modelo S1010INCLUSAO"), )
-            
+
         ordering = [
             's1010_evttabrubrica',
             'codrubr',
@@ -623,31 +623,31 @@ class s1010inclusao(SoftDeletionModel):
 class s1010inclusaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1010inclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1010inclusaoideProcessoCP(SoftDeletionModel):
 
-    s1010_inclusao = models.ForeignKey('s1010.s1010inclusao', 
+    s1010_inclusao = models.ForeignKey('s1010.s1010inclusao',
         related_name='%(class)s_s1010_inclusao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1010_inclusao.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1010_TPPROC_INCLUSAO, null=True, )
     nrproc = models.CharField(max_length=21, null=True, )
     extdecisao = models.IntegerField(choices=CHOICES_S1010_EXTDECISAO_INCLUSAO, null=True, )
     codsusp = models.IntegerField(null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1010_inclusao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -655,24 +655,24 @@ class s1010inclusaoideProcessoCP(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.'
-        db_table = r's1010_inclusao_ideprocessocp'       
+        db_table = r's1010_inclusao_ideprocessocp'
         managed = True # s1010_inclusao_ideprocessocp #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1010inclusaoideProcessoCP", u"Pode ver listagem do modelo S1010INCLUSAOIDEPROCESSOCP"),
             ("can_see_data_s1010inclusaoideProcessoCP", u"Pode visualizar o conteúdo do modelo S1010INCLUSAOIDEPROCESSOCP"),
             ("can_see_menu_s1010inclusaoideProcessoCP", u"Pode visualizar no menu o modelo S1010INCLUSAOIDEPROCESSOCP"),
             ("can_print_list_s1010inclusaoideProcessoCP", u"Pode imprimir listagem do modelo S1010INCLUSAOIDEPROCESSOCP"),
             ("can_print_data_s1010inclusaoideProcessoCP", u"Pode imprimir o conteúdo do modelo S1010INCLUSAOIDEPROCESSOCP"), )
-            
+
         ordering = [
             's1010_inclusao',
             'tpproc',
@@ -685,30 +685,30 @@ class s1010inclusaoideProcessoCP(SoftDeletionModel):
 class s1010inclusaoideProcessoCPSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1010inclusaoideProcessoCP
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1010inclusaoideProcessoCPRP(SoftDeletionModel):
 
-    s1010_inclusao = models.ForeignKey('s1010.s1010inclusao', 
+    s1010_inclusao = models.ForeignKey('s1010.s1010inclusao',
         related_name='%(class)s_s1010_inclusao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1010_inclusao.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1010_TPPROC_INCLUSAO, null=True, )
     nrproc = models.CharField(max_length=21, null=True, )
     extdecisao = models.IntegerField(choices=CHOICES_S1010_EXTDECISAO_INCLUSAO, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1010_inclusao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -716,24 +716,24 @@ class s1010inclusaoideProcessoCPRP(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.'
-        db_table = r's1010_inclusao_ideprocessocprp'       
+        db_table = r's1010_inclusao_ideprocessocprp'
         managed = True # s1010_inclusao_ideprocessocprp #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1010inclusaoideProcessoCPRP", u"Pode ver listagem do modelo S1010INCLUSAOIDEPROCESSOCPRP"),
             ("can_see_data_s1010inclusaoideProcessoCPRP", u"Pode visualizar o conteúdo do modelo S1010INCLUSAOIDEPROCESSOCPRP"),
             ("can_see_menu_s1010inclusaoideProcessoCPRP", u"Pode visualizar no menu o modelo S1010INCLUSAOIDEPROCESSOCPRP"),
             ("can_print_list_s1010inclusaoideProcessoCPRP", u"Pode imprimir listagem do modelo S1010INCLUSAOIDEPROCESSOCPRP"),
             ("can_print_data_s1010inclusaoideProcessoCPRP", u"Pode imprimir o conteúdo do modelo S1010INCLUSAOIDEPROCESSOCPRP"), )
-            
+
         ordering = [
             's1010_inclusao',
             'tpproc',
@@ -745,28 +745,28 @@ class s1010inclusaoideProcessoCPRP(SoftDeletionModel):
 class s1010inclusaoideProcessoCPRPSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1010inclusaoideProcessoCPRP
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1010inclusaoideProcessoFGTS(SoftDeletionModel):
 
-    s1010_inclusao = models.ForeignKey('s1010.s1010inclusao', 
+    s1010_inclusao = models.ForeignKey('s1010.s1010inclusao',
         related_name='%(class)s_s1010_inclusao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1010_inclusao.evento()
     nrproc = models.CharField(max_length=21, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1010_inclusao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -774,24 +774,24 @@ class s1010inclusaoideProcessoFGTS(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.'
-        db_table = r's1010_inclusao_ideprocessofgts'       
+        db_table = r's1010_inclusao_ideprocessofgts'
         managed = True # s1010_inclusao_ideprocessofgts #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1010inclusaoideProcessoFGTS", u"Pode ver listagem do modelo S1010INCLUSAOIDEPROCESSOFGTS"),
             ("can_see_data_s1010inclusaoideProcessoFGTS", u"Pode visualizar o conteúdo do modelo S1010INCLUSAOIDEPROCESSOFGTS"),
             ("can_see_menu_s1010inclusaoideProcessoFGTS", u"Pode visualizar no menu o modelo S1010INCLUSAOIDEPROCESSOFGTS"),
             ("can_print_list_s1010inclusaoideProcessoFGTS", u"Pode imprimir listagem do modelo S1010INCLUSAOIDEPROCESSOFGTS"),
             ("can_print_data_s1010inclusaoideProcessoFGTS", u"Pode imprimir o conteúdo do modelo S1010INCLUSAOIDEPROCESSOFGTS"), )
-            
+
         ordering = [
             's1010_inclusao',
             'nrproc',]
@@ -801,29 +801,29 @@ class s1010inclusaoideProcessoFGTS(SoftDeletionModel):
 class s1010inclusaoideProcessoFGTSSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1010inclusaoideProcessoFGTS
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1010inclusaoideProcessoIRRF(SoftDeletionModel):
 
-    s1010_inclusao = models.ForeignKey('s1010.s1010inclusao', 
+    s1010_inclusao = models.ForeignKey('s1010.s1010inclusao',
         related_name='%(class)s_s1010_inclusao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1010_inclusao.evento()
     nrproc = models.CharField(max_length=21, null=True, )
     codsusp = models.IntegerField(null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1010_inclusao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -831,24 +831,24 @@ class s1010inclusaoideProcessoIRRF(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.'
-        db_table = r's1010_inclusao_ideprocessoirrf'       
+        db_table = r's1010_inclusao_ideprocessoirrf'
         managed = True # s1010_inclusao_ideprocessoirrf #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1010inclusaoideProcessoIRRF", u"Pode ver listagem do modelo S1010INCLUSAOIDEPROCESSOIRRF"),
             ("can_see_data_s1010inclusaoideProcessoIRRF", u"Pode visualizar o conteúdo do modelo S1010INCLUSAOIDEPROCESSOIRRF"),
             ("can_see_menu_s1010inclusaoideProcessoIRRF", u"Pode visualizar no menu o modelo S1010INCLUSAOIDEPROCESSOIRRF"),
             ("can_print_list_s1010inclusaoideProcessoIRRF", u"Pode imprimir listagem do modelo S1010INCLUSAOIDEPROCESSOIRRF"),
             ("can_print_data_s1010inclusaoideProcessoIRRF", u"Pode imprimir o conteúdo do modelo S1010INCLUSAOIDEPROCESSOIRRF"), )
-            
+
         ordering = [
             's1010_inclusao',
             'nrproc',
@@ -859,28 +859,28 @@ class s1010inclusaoideProcessoIRRF(SoftDeletionModel):
 class s1010inclusaoideProcessoIRRFSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1010inclusaoideProcessoIRRF
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1010inclusaoideProcessoSIND(SoftDeletionModel):
 
-    s1010_inclusao = models.ForeignKey('s1010.s1010inclusao', 
+    s1010_inclusao = models.ForeignKey('s1010.s1010inclusao',
         related_name='%(class)s_s1010_inclusao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1010_inclusao.evento()
     nrproc = models.CharField(max_length=21, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1010_inclusao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -888,24 +888,24 @@ class s1010inclusaoideProcessoSIND(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.'
-        db_table = r's1010_inclusao_ideprocessosind'       
+        db_table = r's1010_inclusao_ideprocessosind'
         managed = True # s1010_inclusao_ideprocessosind #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1010inclusaoideProcessoSIND", u"Pode ver listagem do modelo S1010INCLUSAOIDEPROCESSOSIND"),
             ("can_see_data_s1010inclusaoideProcessoSIND", u"Pode visualizar o conteúdo do modelo S1010INCLUSAOIDEPROCESSOSIND"),
             ("can_see_menu_s1010inclusaoideProcessoSIND", u"Pode visualizar no menu o modelo S1010INCLUSAOIDEPROCESSOSIND"),
             ("can_print_list_s1010inclusaoideProcessoSIND", u"Pode imprimir listagem do modelo S1010INCLUSAOIDEPROCESSOSIND"),
             ("can_print_data_s1010inclusaoideProcessoSIND", u"Pode imprimir o conteúdo do modelo S1010INCLUSAOIDEPROCESSOSIND"), )
-            
+
         ordering = [
             's1010_inclusao',
             'nrproc',]
@@ -915,9 +915,9 @@ class s1010inclusaoideProcessoSIND(SoftDeletionModel):
 class s1010inclusaoideProcessoSINDSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1010inclusaoideProcessoSIND
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

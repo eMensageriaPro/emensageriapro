@@ -67,10 +67,10 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s1080alteracao(SoftDeletionModel):
 
-    s1080_evttaboperport = models.ForeignKey('esocial.s1080evtTabOperPort', 
+    s1080_evttaboperport = models.ForeignKey('esocial.s1080evtTabOperPort',
         related_name='%(class)s_s1080_evttaboperport', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1080_evttaboperport.evento()
     cnpjopportuario = models.CharField(max_length=14, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
@@ -78,12 +78,12 @@ class s1080alteracao(SoftDeletionModel):
     aliqrat = models.IntegerField(choices=CHOICES_S1080_ALIQRAT_ALTERACAO, null=True, )
     fap = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     aliqratajust = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1080_evttaboperport), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -91,24 +91,24 @@ class s1080alteracao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Alteração das informações'
-        db_table = r's1080_alteracao'       
+        db_table = r's1080_alteracao'
         managed = True # s1080_alteracao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1080alteracao", u"Pode ver listagem do modelo S1080ALTERACAO"),
             ("can_see_data_s1080alteracao", u"Pode visualizar o conteúdo do modelo S1080ALTERACAO"),
             ("can_see_menu_s1080alteracao", u"Pode visualizar no menu o modelo S1080ALTERACAO"),
             ("can_print_list_s1080alteracao", u"Pode imprimir listagem do modelo S1080ALTERACAO"),
             ("can_print_data_s1080alteracao", u"Pode imprimir o conteúdo do modelo S1080ALTERACAO"), )
-            
+
         ordering = [
             's1080_evttaboperport',
             'cnpjopportuario',
@@ -122,29 +122,29 @@ class s1080alteracao(SoftDeletionModel):
 class s1080alteracaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1080alteracao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1080alteracaonovaValidade(SoftDeletionModel):
 
-    s1080_alteracao = models.ForeignKey('s1080.s1080alteracao', 
+    s1080_alteracao = models.ForeignKey('s1080.s1080alteracao',
         related_name='%(class)s_s1080_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1080_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1080_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -152,24 +152,24 @@ class s1080alteracaonovaValidade(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
-        db_table = r's1080_alteracao_novavalidade'       
+        db_table = r's1080_alteracao_novavalidade'
         managed = True # s1080_alteracao_novavalidade #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1080alteracaonovaValidade", u"Pode ver listagem do modelo S1080ALTERACAONOVAVALIDADE"),
             ("can_see_data_s1080alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1080ALTERACAONOVAVALIDADE"),
             ("can_see_menu_s1080alteracaonovaValidade", u"Pode visualizar no menu o modelo S1080ALTERACAONOVAVALIDADE"),
             ("can_print_list_s1080alteracaonovaValidade", u"Pode imprimir listagem do modelo S1080ALTERACAONOVAVALIDADE"),
             ("can_print_data_s1080alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1080ALTERACAONOVAVALIDADE"), )
-            
+
         ordering = [
             's1080_alteracao',
             'inivalid',]
@@ -179,30 +179,30 @@ class s1080alteracaonovaValidade(SoftDeletionModel):
 class s1080alteracaonovaValidadeSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1080alteracaonovaValidade
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1080exclusao(SoftDeletionModel):
 
-    s1080_evttaboperport = models.ForeignKey('esocial.s1080evtTabOperPort', 
+    s1080_evttaboperport = models.ForeignKey('esocial.s1080evtTabOperPort',
         related_name='%(class)s_s1080_evttaboperport', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1080_evttaboperport.evento()
     cnpjopportuario = models.CharField(max_length=14, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1080_evttaboperport), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -210,24 +210,24 @@ class s1080exclusao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Exclusão das informações'
-        db_table = r's1080_exclusao'       
+        db_table = r's1080_exclusao'
         managed = True # s1080_exclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1080exclusao", u"Pode ver listagem do modelo S1080EXCLUSAO"),
             ("can_see_data_s1080exclusao", u"Pode visualizar o conteúdo do modelo S1080EXCLUSAO"),
             ("can_see_menu_s1080exclusao", u"Pode visualizar no menu o modelo S1080EXCLUSAO"),
             ("can_print_list_s1080exclusao", u"Pode imprimir listagem do modelo S1080EXCLUSAO"),
             ("can_print_data_s1080exclusao", u"Pode imprimir o conteúdo do modelo S1080EXCLUSAO"), )
-            
+
         ordering = [
             's1080_evttaboperport',
             'cnpjopportuario',
@@ -238,20 +238,20 @@ class s1080exclusao(SoftDeletionModel):
 class s1080exclusaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1080exclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1080inclusao(SoftDeletionModel):
 
-    s1080_evttaboperport = models.ForeignKey('esocial.s1080evtTabOperPort', 
+    s1080_evttaboperport = models.ForeignKey('esocial.s1080evtTabOperPort',
         related_name='%(class)s_s1080_evttaboperport', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1080_evttaboperport.evento()
     cnpjopportuario = models.CharField(max_length=14, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
@@ -259,12 +259,12 @@ class s1080inclusao(SoftDeletionModel):
     aliqrat = models.IntegerField(choices=CHOICES_S1080_ALIQRAT_INCLUSAO, null=True, )
     fap = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     aliqratajust = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1080_evttaboperport), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -272,24 +272,24 @@ class s1080inclusao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Inclusão de novas informações'
-        db_table = r's1080_inclusao'       
+        db_table = r's1080_inclusao'
         managed = True # s1080_inclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1080inclusao", u"Pode ver listagem do modelo S1080INCLUSAO"),
             ("can_see_data_s1080inclusao", u"Pode visualizar o conteúdo do modelo S1080INCLUSAO"),
             ("can_see_menu_s1080inclusao", u"Pode visualizar no menu o modelo S1080INCLUSAO"),
             ("can_print_list_s1080inclusao", u"Pode imprimir listagem do modelo S1080INCLUSAO"),
             ("can_print_data_s1080inclusao", u"Pode imprimir o conteúdo do modelo S1080INCLUSAO"), )
-            
+
         ordering = [
             's1080_evttaboperport',
             'cnpjopportuario',
@@ -303,9 +303,9 @@ class s1080inclusao(SoftDeletionModel):
 class s1080inclusaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1080inclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

@@ -67,18 +67,18 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s2210agenteCausador(SoftDeletionModel):
 
-    s2210_evtcat = models.ForeignKey('esocial.s2210evtCAT', 
+    s2210_evtcat = models.ForeignKey('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2210_evtcat.evento()
     codagntcausador = models.IntegerField(null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2210_evtcat), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -86,24 +86,24 @@ class s2210agenteCausador(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento do(s) agente(s) causador(es) do acidente de trabalho'
-        db_table = r's2210_agentecausador'       
+        db_table = r's2210_agentecausador'
         managed = True # s2210_agentecausador #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2210agenteCausador", u"Pode ver listagem do modelo S2210AGENTECAUSADOR"),
             ("can_see_data_s2210agenteCausador", u"Pode visualizar o conteúdo do modelo S2210AGENTECAUSADOR"),
             ("can_see_menu_s2210agenteCausador", u"Pode visualizar no menu o modelo S2210AGENTECAUSADOR"),
             ("can_print_list_s2210agenteCausador", u"Pode imprimir listagem do modelo S2210AGENTECAUSADOR"),
             ("can_print_data_s2210agenteCausador", u"Pode imprimir o conteúdo do modelo S2210AGENTECAUSADOR"), )
-            
+
         ordering = [
             's2210_evtcat',
             'codagntcausador',]
@@ -113,20 +113,20 @@ class s2210agenteCausador(SoftDeletionModel):
 class s2210agenteCausadorSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2210agenteCausador
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2210atestado(SoftDeletionModel):
 
-    s2210_evtcat = models.ForeignKey('esocial.s2210evtCAT', 
+    s2210_evtcat = models.ForeignKey('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2210_evtcat.evento()
     codcnes = models.CharField(max_length=7, blank=True, null=True, )
     dtatendimento = models.DateField(null=True, )
@@ -143,12 +143,12 @@ class s2210atestado(SoftDeletionModel):
     ideoc = models.IntegerField(choices=CHOICES_S2210_IDEOC, null=True, )
     nroc = models.CharField(max_length=14, null=True, )
     ufoc = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2210_evtcat), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -156,24 +156,24 @@ class s2210atestado(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Atestado Médico'
-        db_table = r's2210_atestado'       
+        db_table = r's2210_atestado'
         managed = True # s2210_atestado #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2210atestado", u"Pode ver listagem do modelo S2210ATESTADO"),
             ("can_see_data_s2210atestado", u"Pode visualizar o conteúdo do modelo S2210ATESTADO"),
             ("can_see_menu_s2210atestado", u"Pode visualizar no menu o modelo S2210ATESTADO"),
             ("can_print_list_s2210atestado", u"Pode imprimir listagem do modelo S2210ATESTADO"),
             ("can_print_data_s2210atestado", u"Pode imprimir o conteúdo do modelo S2210ATESTADO"), )
-            
+
         ordering = [
             's2210_evtcat',
             'dtatendimento',
@@ -192,29 +192,29 @@ class s2210atestado(SoftDeletionModel):
 class s2210atestadoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2210atestado
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2210catOrigem(SoftDeletionModel):
 
-    s2210_evtcat = models.ForeignKey('esocial.s2210evtCAT', 
+    s2210_evtcat = models.ForeignKey('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2210_evtcat.evento()
     dtcatorig = models.DateField(null=True, )
     nrreccatorig = models.CharField(max_length=40, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2210_evtcat), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -222,24 +222,24 @@ class s2210catOrigem(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito'
-        db_table = r's2210_catorigem'       
+        db_table = r's2210_catorigem'
         managed = True # s2210_catorigem #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2210catOrigem", u"Pode ver listagem do modelo S2210CATORIGEM"),
             ("can_see_data_s2210catOrigem", u"Pode visualizar o conteúdo do modelo S2210CATORIGEM"),
             ("can_see_menu_s2210catOrigem", u"Pode visualizar no menu o modelo S2210CATORIGEM"),
             ("can_print_list_s2210catOrigem", u"Pode imprimir listagem do modelo S2210CATORIGEM"),
             ("can_print_data_s2210catOrigem", u"Pode imprimir o conteúdo do modelo S2210CATORIGEM"), )
-            
+
         ordering = [
             's2210_evtcat',
             'dtcatorig',
@@ -250,29 +250,29 @@ class s2210catOrigem(SoftDeletionModel):
 class s2210catOrigemSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2210catOrigem
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2210ideLocalAcid(SoftDeletionModel):
 
-    s2210_evtcat = models.ForeignKey('esocial.s2210evtCAT', 
+    s2210_evtcat = models.ForeignKey('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2210_evtcat.evento()
     tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2210_evtcat), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -280,24 +280,24 @@ class s2210ideLocalAcid(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Identificação do local onde ocorreu o acidente'
-        db_table = r's2210_idelocalacid'       
+        db_table = r's2210_idelocalacid'
         managed = True # s2210_idelocalacid #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2210ideLocalAcid", u"Pode ver listagem do modelo S2210IDELOCALACID"),
             ("can_see_data_s2210ideLocalAcid", u"Pode visualizar o conteúdo do modelo S2210IDELOCALACID"),
             ("can_see_menu_s2210ideLocalAcid", u"Pode visualizar no menu o modelo S2210IDELOCALACID"),
             ("can_print_list_s2210ideLocalAcid", u"Pode imprimir listagem do modelo S2210IDELOCALACID"),
             ("can_print_data_s2210ideLocalAcid", u"Pode imprimir o conteúdo do modelo S2210IDELOCALACID"), )
-            
+
         ordering = [
             's2210_evtcat',
             'tpinsc',
@@ -308,29 +308,29 @@ class s2210ideLocalAcid(SoftDeletionModel):
 class s2210ideLocalAcidSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2210ideLocalAcid
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2210parteAtingida(SoftDeletionModel):
 
-    s2210_evtcat = models.ForeignKey('esocial.s2210evtCAT', 
+    s2210_evtcat = models.ForeignKey('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s2210_evtcat.evento()
     codparteating = models.IntegerField(null=True, )
     lateralidade = models.IntegerField(choices=CHOICES_S2210_LATERALIDADE, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s2210_evtcat), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -338,24 +338,24 @@ class s2210parteAtingida(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.'
-        db_table = r's2210_parteatingida'       
+        db_table = r's2210_parteatingida'
         managed = True # s2210_parteatingida #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s2210parteAtingida", u"Pode ver listagem do modelo S2210PARTEATINGIDA"),
             ("can_see_data_s2210parteAtingida", u"Pode visualizar o conteúdo do modelo S2210PARTEATINGIDA"),
             ("can_see_menu_s2210parteAtingida", u"Pode visualizar no menu o modelo S2210PARTEATINGIDA"),
             ("can_print_list_s2210parteAtingida", u"Pode imprimir listagem do modelo S2210PARTEATINGIDA"),
             ("can_print_data_s2210parteAtingida", u"Pode imprimir o conteúdo do modelo S2210PARTEATINGIDA"), )
-            
+
         ordering = [
             's2210_evtcat',
             'codparteating',
@@ -366,9 +366,9 @@ class s2210parteAtingida(SoftDeletionModel):
 class s2210parteAtingidaSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s2210parteAtingida
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

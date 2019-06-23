@@ -67,21 +67,21 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class r2060infoProc(SoftDeletionModel):
 
-    r2060_tipocod = models.ForeignKey('r2060.r2060tipoCod', 
+    r2060_tipocod = models.ForeignKey('r2060.r2060tipoCod',
         related_name='%(class)s_r2060_tipocod', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2060_tipocod.evento()
     tpproc = models.IntegerField(choices=CHOICES_R2060_TPPROC, null=True, )
     nrproc = models.CharField(max_length=21, null=True, )
     codsusp = models.IntegerField(blank=True, null=True, )
     vlrcprbsusp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2060_tipocod), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -89,24 +89,24 @@ class r2060infoProc(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de processos relacionados a não retenção de contribuição previdenciária'
-        db_table = r'r2060_infoproc'       
+        db_table = r'r2060_infoproc'
         managed = True # r2060_infoproc #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2060infoProc", u"Pode ver listagem do modelo R2060INFOPROC"),
             ("can_see_data_r2060infoProc", u"Pode visualizar o conteúdo do modelo R2060INFOPROC"),
             ("can_see_menu_r2060infoProc", u"Pode visualizar no menu o modelo R2060INFOPROC"),
             ("can_print_list_r2060infoProc", u"Pode imprimir listagem do modelo R2060INFOPROC"),
             ("can_print_data_r2060infoProc", u"Pode imprimir o conteúdo do modelo R2060INFOPROC"), )
-            
+
         ordering = [
             'r2060_tipocod',
             'tpproc',
@@ -118,32 +118,32 @@ class r2060infoProc(SoftDeletionModel):
 class r2060infoProcSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2060infoProc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2060tipoAjuste(SoftDeletionModel):
 
-    r2060_tipocod = models.ForeignKey('r2060.r2060tipoCod', 
+    r2060_tipocod = models.ForeignKey('r2060.r2060tipoCod',
         related_name='%(class)s_r2060_tipocod', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2060_tipocod.evento()
     tpajuste = models.IntegerField(choices=CHOICES_R2060_TPAJUSTE, null=True, )
     codajuste = models.IntegerField(choices=CHOICES_R2060_CODAJUSTE, null=True, )
     vlrajuste = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     descajuste = models.CharField(max_length=20, null=True, )
     dtajuste = models.CharField(max_length=7, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2060_tipocod), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -151,24 +151,24 @@ class r2060tipoAjuste(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.'
-        db_table = r'r2060_tipoajuste'       
+        db_table = r'r2060_tipoajuste'
         managed = True # r2060_tipoajuste #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2060tipoAjuste", u"Pode ver listagem do modelo R2060TIPOAJUSTE"),
             ("can_see_data_r2060tipoAjuste", u"Pode visualizar o conteúdo do modelo R2060TIPOAJUSTE"),
             ("can_see_menu_r2060tipoAjuste", u"Pode visualizar no menu o modelo R2060TIPOAJUSTE"),
             ("can_print_list_r2060tipoAjuste", u"Pode imprimir listagem do modelo R2060TIPOAJUSTE"),
             ("can_print_data_r2060tipoAjuste", u"Pode imprimir o conteúdo do modelo R2060TIPOAJUSTE"), )
-            
+
         ordering = [
             'r2060_tipocod',
             'tpajuste',
@@ -182,20 +182,20 @@ class r2060tipoAjuste(SoftDeletionModel):
 class r2060tipoAjusteSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2060tipoAjuste
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2060tipoCod(SoftDeletionModel):
 
-    r2060_evtcprb = models.ForeignKey('efdreinf.r2060evtCPRB', 
+    r2060_evtcprb = models.ForeignKey('efdreinf.r2060evtCPRB',
         related_name='%(class)s_r2060_evtcprb', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2060_evtcprb.evento()
     codativecon = models.TextField(null=True, )
     vlrrecbrutaativ = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
@@ -204,12 +204,12 @@ class r2060tipoCod(SoftDeletionModel):
     vlrbccprb = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcprbapur = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     observ = models.CharField(max_length=200, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2060_evtcprb), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -217,24 +217,24 @@ class r2060tipoCod(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro que apresenta o valor total da receita por tipo de código de atividade econômica.'
-        db_table = r'r2060_tipocod'       
+        db_table = r'r2060_tipocod'
         managed = True # r2060_tipocod #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2060tipoCod", u"Pode ver listagem do modelo R2060TIPOCOD"),
             ("can_see_data_r2060tipoCod", u"Pode visualizar o conteúdo do modelo R2060TIPOCOD"),
             ("can_see_menu_r2060tipoCod", u"Pode visualizar no menu o modelo R2060TIPOCOD"),
             ("can_print_list_r2060tipoCod", u"Pode imprimir listagem do modelo R2060TIPOCOD"),
             ("can_print_data_r2060tipoCod", u"Pode imprimir o conteúdo do modelo R2060TIPOCOD"), )
-            
+
         ordering = [
             'r2060_evtcprb',
             'codativecon',
@@ -248,9 +248,9 @@ class r2060tipoCod(SoftDeletionModel):
 class r2060tipoCodSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2060tipoCod
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

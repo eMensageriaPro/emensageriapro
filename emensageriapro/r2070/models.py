@@ -67,19 +67,19 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class r2070compJud(SoftDeletionModel):
 
-    r2070_pgtopf = models.ForeignKey('r2070.r2070pgtoPF', 
+    r2070_pgtopf = models.ForeignKey('r2070.r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_pgtopf.evento()
     vlrcompanocalend = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrcompanoant = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_pgtopf), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -87,24 +87,24 @@ class r2070compJud(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Compensação Judicial'
-        db_table = r'r2070_compjud'       
+        db_table = r'r2070_compjud'
         managed = True # r2070_compjud #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070compJud", u"Pode ver listagem do modelo R2070COMPJUD"),
             ("can_see_data_r2070compJud", u"Pode visualizar o conteúdo do modelo R2070COMPJUD"),
             ("can_see_menu_r2070compJud", u"Pode visualizar no menu o modelo R2070COMPJUD"),
             ("can_print_list_r2070compJud", u"Pode imprimir listagem do modelo R2070COMPJUD"),
             ("can_print_data_r2070compJud", u"Pode imprimir o conteúdo do modelo R2070COMPJUD"), )
-            
+
         ordering = [
             'r2070_pgtopf',]
 
@@ -113,28 +113,28 @@ class r2070compJud(SoftDeletionModel):
 class r2070compJudSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070compJud
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070depJudicial(SoftDeletionModel):
 
-    r2070_pgtopf = models.ForeignKey('r2070.r2070pgtoPF', 
+    r2070_pgtopf = models.ForeignKey('r2070.r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_pgtopf.evento()
     vlrdepjudicial = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_pgtopf), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -142,24 +142,24 @@ class r2070depJudicial(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Depósito Judicial'
-        db_table = r'r2070_depjudicial'       
+        db_table = r'r2070_depjudicial'
         managed = True # r2070_depjudicial #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070depJudicial", u"Pode ver listagem do modelo R2070DEPJUDICIAL"),
             ("can_see_data_r2070depJudicial", u"Pode visualizar o conteúdo do modelo R2070DEPJUDICIAL"),
             ("can_see_menu_r2070depJudicial", u"Pode visualizar no menu o modelo R2070DEPJUDICIAL"),
             ("can_print_list_r2070depJudicial", u"Pode imprimir listagem do modelo R2070DEPJUDICIAL"),
             ("can_print_data_r2070depJudicial", u"Pode imprimir o conteúdo do modelo R2070DEPJUDICIAL"), )
-            
+
         ordering = [
             'r2070_pgtopf',]
 
@@ -168,30 +168,30 @@ class r2070depJudicial(SoftDeletionModel):
 class r2070depJudicialSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070depJudicial
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070detCompet(SoftDeletionModel):
 
-    r2070_pgtopf = models.ForeignKey('r2070.r2070pgtoPF', 
+    r2070_pgtopf = models.ForeignKey('r2070.r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_pgtopf.evento()
     indperreferencia = models.IntegerField(choices=CHOICES_R2070_INDPERREFERENCIA, null=True, )
     perrefpagto = models.CharField(max_length=7, null=True, )
     vlrrendtributavel = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_pgtopf), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -199,24 +199,24 @@ class r2070detCompet(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento das Competências'
-        db_table = r'r2070_detcompet'       
+        db_table = r'r2070_detcompet'
         managed = True # r2070_detcompet #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070detCompet", u"Pode ver listagem do modelo R2070DETCOMPET"),
             ("can_see_data_r2070detCompet", u"Pode visualizar o conteúdo do modelo R2070DETCOMPET"),
             ("can_see_menu_r2070detCompet", u"Pode visualizar no menu o modelo R2070DETCOMPET"),
             ("can_print_list_r2070detCompet", u"Pode imprimir listagem do modelo R2070DETCOMPET"),
             ("can_print_data_r2070detCompet", u"Pode imprimir o conteúdo do modelo R2070DETCOMPET"), )
-            
+
         ordering = [
             'r2070_pgtopf',
             'indperreferencia',
@@ -228,29 +228,29 @@ class r2070detCompet(SoftDeletionModel):
 class r2070detCompetSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070detCompet
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070detDeducao(SoftDeletionModel):
 
-    r2070_pgtopf = models.ForeignKey('r2070.r2070pgtoPF', 
+    r2070_pgtopf = models.ForeignKey('r2070.r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_pgtopf.evento()
     indtpdeducao = models.IntegerField(choices=CHOICES_R2070_INDTPDEDUCAO, null=True, )
     vlrdeducao = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_pgtopf), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -258,24 +258,24 @@ class r2070detDeducao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento das Deduções'
-        db_table = r'r2070_detdeducao'       
+        db_table = r'r2070_detdeducao'
         managed = True # r2070_detdeducao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070detDeducao", u"Pode ver listagem do modelo R2070DETDEDUCAO"),
             ("can_see_data_r2070detDeducao", u"Pode visualizar o conteúdo do modelo R2070DETDEDUCAO"),
             ("can_see_menu_r2070detDeducao", u"Pode visualizar no menu o modelo R2070DETDEDUCAO"),
             ("can_print_list_r2070detDeducao", u"Pode imprimir listagem do modelo R2070DETDEDUCAO"),
             ("can_print_data_r2070detDeducao", u"Pode imprimir o conteúdo do modelo R2070DETDEDUCAO"), )
-            
+
         ordering = [
             'r2070_pgtopf',
             'indtpdeducao',
@@ -286,29 +286,29 @@ class r2070detDeducao(SoftDeletionModel):
 class r2070detDeducaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070detDeducao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070ideEstab(SoftDeletionModel):
 
-    r2070_evtpgtosdivs = models.ForeignKey('efdreinf.r2070evtPgtosDivs', 
+    r2070_evtpgtosdivs = models.ForeignKey('efdreinf.r2070evtPgtosDivs',
         related_name='%(class)s_r2070_evtpgtosdivs', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_evtpgtosdivs.evento()
     tpinsc = models.IntegerField(null=True, )
     nrinsc = models.CharField(max_length=14, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_evtpgtosdivs), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -316,24 +316,24 @@ class r2070ideEstab(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Identificação dos estabelecimentos da associação desportiva que receberam os recursos'
-        db_table = r'r2070_ideestab'       
+        db_table = r'r2070_ideestab'
         managed = True # r2070_ideestab #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070ideEstab", u"Pode ver listagem do modelo R2070IDEESTAB"),
             ("can_see_data_r2070ideEstab", u"Pode visualizar o conteúdo do modelo R2070IDEESTAB"),
             ("can_see_menu_r2070ideEstab", u"Pode visualizar no menu o modelo R2070IDEESTAB"),
             ("can_print_list_r2070ideEstab", u"Pode imprimir listagem do modelo R2070IDEESTAB"),
             ("can_print_data_r2070ideEstab", u"Pode imprimir o conteúdo do modelo R2070IDEESTAB"), )
-            
+
         ordering = [
             'r2070_evtpgtosdivs',
             'tpinsc',
@@ -344,28 +344,28 @@ class r2070ideEstab(SoftDeletionModel):
 class r2070ideEstabSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070ideEstab
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070infoMolestia(SoftDeletionModel):
 
-    r2070_evtpgtosdivs = models.ForeignKey('efdreinf.r2070evtPgtosDivs', 
+    r2070_evtpgtosdivs = models.ForeignKey('efdreinf.r2070evtPgtosDivs',
         related_name='%(class)s_r2070_evtpgtosdivs', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_evtpgtosdivs.evento()
     dtlaudo = models.DateField(null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_evtpgtosdivs), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -373,24 +373,24 @@ class r2070infoMolestia(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações de Beneficiário portador de moléstia grave'
-        db_table = r'r2070_infomolestia'       
+        db_table = r'r2070_infomolestia'
         managed = True # r2070_infomolestia #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070infoMolestia", u"Pode ver listagem do modelo R2070INFOMOLESTIA"),
             ("can_see_data_r2070infoMolestia", u"Pode visualizar o conteúdo do modelo R2070INFOMOLESTIA"),
             ("can_see_menu_r2070infoMolestia", u"Pode visualizar no menu o modelo R2070INFOMOLESTIA"),
             ("can_print_list_r2070infoMolestia", u"Pode imprimir listagem do modelo R2070INFOMOLESTIA"),
             ("can_print_data_r2070infoMolestia", u"Pode imprimir o conteúdo do modelo R2070INFOMOLESTIA"), )
-            
+
         ordering = [
             'r2070_evtpgtosdivs',
             'dtlaudo',]
@@ -400,30 +400,30 @@ class r2070infoMolestia(SoftDeletionModel):
 class r2070infoMolestiaSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070infoMolestia
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070infoProcJud(SoftDeletionModel):
 
-    r2070_pgtopf = models.ForeignKey('r2070.r2070pgtoPF', 
+    r2070_pgtopf = models.ForeignKey('r2070.r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_pgtopf.evento()
     nrprocjud = models.CharField(max_length=21, null=True, )
     codsusp = models.IntegerField(blank=True, null=True, )
     indorigemrecursos = models.IntegerField(choices=CHOICES_R2070_INDORIGEMRECURSOS_INFOPROCJUD, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_pgtopf), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -431,24 +431,24 @@ class r2070infoProcJud(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial'
-        db_table = r'r2070_infoprocjud'       
+        db_table = r'r2070_infoprocjud'
         managed = True # r2070_infoprocjud #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070infoProcJud", u"Pode ver listagem do modelo R2070INFOPROCJUD"),
             ("can_see_data_r2070infoProcJud", u"Pode visualizar o conteúdo do modelo R2070INFOPROCJUD"),
             ("can_see_menu_r2070infoProcJud", u"Pode visualizar no menu o modelo R2070INFOPROCJUD"),
             ("can_print_list_r2070infoProcJud", u"Pode imprimir listagem do modelo R2070INFOPROCJUD"),
             ("can_print_data_r2070infoProcJud", u"Pode imprimir o conteúdo do modelo R2070INFOPROCJUD"), )
-            
+
         ordering = [
             'r2070_pgtopf',
             'nrprocjud',
@@ -459,29 +459,29 @@ class r2070infoProcJud(SoftDeletionModel):
 class r2070infoProcJudSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070infoProcJud
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070infoProcJuddespProcJud(SoftDeletionModel):
 
-    r2070_infoprocjud = models.ForeignKey('r2070.r2070infoProcJud', 
+    r2070_infoprocjud = models.ForeignKey('r2070.r2070infoProcJud',
         related_name='%(class)s_r2070_infoprocjud', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_infoprocjud.evento()
     vlrdespcustas = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrdespadvogados = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_infoprocjud), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -489,24 +489,24 @@ class r2070infoProcJuddespProcJud(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento das despesas de processo judicial'
-        db_table = r'r2070_infoprocjud_despprocjud'       
+        db_table = r'r2070_infoprocjud_despprocjud'
         managed = True # r2070_infoprocjud_despprocjud #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070infoProcJuddespProcJud", u"Pode ver listagem do modelo R2070INFOPROCJUDDESPPROCJUD"),
             ("can_see_data_r2070infoProcJuddespProcJud", u"Pode visualizar o conteúdo do modelo R2070INFOPROCJUDDESPPROCJUD"),
             ("can_see_menu_r2070infoProcJuddespProcJud", u"Pode visualizar no menu o modelo R2070INFOPROCJUDDESPPROCJUD"),
             ("can_print_list_r2070infoProcJuddespProcJud", u"Pode imprimir listagem do modelo R2070INFOPROCJUDDESPPROCJUD"),
             ("can_print_data_r2070infoProcJuddespProcJud", u"Pode imprimir o conteúdo do modelo R2070INFOPROCJUDDESPPROCJUD"), )
-            
+
         ordering = [
             'r2070_infoprocjud',
             'vlrdespcustas',
@@ -517,30 +517,30 @@ class r2070infoProcJuddespProcJud(SoftDeletionModel):
 class r2070infoProcJuddespProcJudSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070infoProcJuddespProcJud
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070infoProcJudideAdvogado(SoftDeletionModel):
 
-    r2070_infoprocjud_despprocjud = models.ForeignKey('r2070.r2070infoProcJuddespProcJud', 
+    r2070_infoprocjud_despprocjud = models.ForeignKey('r2070.r2070infoProcJuddespProcJud',
         related_name='%(class)s_r2070_infoprocjud_despprocjud', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_infoprocjud_despprocjud.evento()
     tpinscadvogado = models.IntegerField(null=True, )
     nrinscadvogado = models.CharField(max_length=14, null=True, )
     vlradvogado = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_infoprocjud_despprocjud), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -548,24 +548,24 @@ class r2070infoProcJudideAdvogado(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Identificação do Advogado'
-        db_table = r'r2070_infoprocjud_ideadvogado'       
+        db_table = r'r2070_infoprocjud_ideadvogado'
         managed = True # r2070_infoprocjud_ideadvogado #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070infoProcJudideAdvogado", u"Pode ver listagem do modelo R2070INFOPROCJUDIDEADVOGADO"),
             ("can_see_data_r2070infoProcJudideAdvogado", u"Pode visualizar o conteúdo do modelo R2070INFOPROCJUDIDEADVOGADO"),
             ("can_see_menu_r2070infoProcJudideAdvogado", u"Pode visualizar no menu o modelo R2070INFOPROCJUDIDEADVOGADO"),
             ("can_print_list_r2070infoProcJudideAdvogado", u"Pode imprimir listagem do modelo R2070INFOPROCJUDIDEADVOGADO"),
             ("can_print_data_r2070infoProcJudideAdvogado", u"Pode imprimir o conteúdo do modelo R2070INFOPROCJUDIDEADVOGADO"), )
-            
+
         ordering = [
             'r2070_infoprocjud_despprocjud',
             'tpinscadvogado',
@@ -577,28 +577,28 @@ class r2070infoProcJudideAdvogado(SoftDeletionModel):
 class r2070infoProcJudideAdvogadoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070infoProcJudideAdvogado
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070infoProcJudorigemRecursos(SoftDeletionModel):
 
-    r2070_infoprocjud = models.ForeignKey('r2070.r2070infoProcJud', 
+    r2070_infoprocjud = models.ForeignKey('r2070.r2070infoProcJud',
         related_name='%(class)s_r2070_infoprocjud', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_infoprocjud.evento()
     cnpjorigemrecursos = models.CharField(max_length=14, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_infoprocjud), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -606,24 +606,24 @@ class r2070infoProcJudorigemRecursos(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Identificação da origem dos recursos'
-        db_table = r'r2070_infoprocjud_origemrecursos'       
+        db_table = r'r2070_infoprocjud_origemrecursos'
         managed = True # r2070_infoprocjud_origemrecursos #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070infoProcJudorigemRecursos", u"Pode ver listagem do modelo R2070INFOPROCJUDORIGEMRECURSOS"),
             ("can_see_data_r2070infoProcJudorigemRecursos", u"Pode visualizar o conteúdo do modelo R2070INFOPROCJUDORIGEMRECURSOS"),
             ("can_see_menu_r2070infoProcJudorigemRecursos", u"Pode visualizar no menu o modelo R2070INFOPROCJUDORIGEMRECURSOS"),
             ("can_print_list_r2070infoProcJudorigemRecursos", u"Pode imprimir listagem do modelo R2070INFOPROCJUDORIGEMRECURSOS"),
             ("can_print_data_r2070infoProcJudorigemRecursos", u"Pode imprimir o conteúdo do modelo R2070INFOPROCJUDORIGEMRECURSOS"), )
-            
+
         ordering = [
             'r2070_infoprocjud',
             'cnpjorigemrecursos',]
@@ -633,32 +633,32 @@ class r2070infoProcJudorigemRecursos(SoftDeletionModel):
 class r2070infoProcJudorigemRecursosSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070infoProcJudorigemRecursos
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070infoRRA(SoftDeletionModel):
 
-    r2070_pgtopf = models.ForeignKey('r2070.r2070pgtoPF', 
+    r2070_pgtopf = models.ForeignKey('r2070.r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_pgtopf.evento()
     tpprocrra = models.IntegerField(choices=CHOICES_R2070_TPPROCRRA_INFORRA, blank=True, null=True, )
     nrprocrra = models.CharField(max_length=21, blank=True, null=True, )
     codsusp = models.IntegerField(blank=True, null=True, )
     natrra = models.CharField(max_length=50, blank=True, null=True, )
     qtdmesesrra = models.IntegerField(blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_pgtopf), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -666,24 +666,24 @@ class r2070infoRRA(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações Complementares - Rendimentos Recebidos Acumuladamente'
-        db_table = r'r2070_inforra'       
+        db_table = r'r2070_inforra'
         managed = True # r2070_inforra #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070infoRRA", u"Pode ver listagem do modelo R2070INFORRA"),
             ("can_see_data_r2070infoRRA", u"Pode visualizar o conteúdo do modelo R2070INFORRA"),
             ("can_see_menu_r2070infoRRA", u"Pode visualizar no menu o modelo R2070INFORRA"),
             ("can_print_list_r2070infoRRA", u"Pode imprimir listagem do modelo R2070INFORRA"),
             ("can_print_data_r2070infoRRA", u"Pode imprimir o conteúdo do modelo R2070INFORRA"), )
-            
+
         ordering = [
             'r2070_pgtopf',]
 
@@ -692,29 +692,29 @@ class r2070infoRRA(SoftDeletionModel):
 class r2070infoRRASerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070infoRRA
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070infoRRAdespProcJud(SoftDeletionModel):
 
-    r2070_inforra = models.ForeignKey('r2070.r2070infoRRA', 
+    r2070_inforra = models.ForeignKey('r2070.r2070infoRRA',
         related_name='%(class)s_r2070_inforra', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_inforra.evento()
     vlrdespcustas = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrdespadvogados = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_inforra), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -722,24 +722,24 @@ class r2070infoRRAdespProcJud(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento das despesas de processo judicial'
-        db_table = r'r2070_inforra_despprocjud'       
+        db_table = r'r2070_inforra_despprocjud'
         managed = True # r2070_inforra_despprocjud #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070infoRRAdespProcJud", u"Pode ver listagem do modelo R2070INFORRADESPPROCJUD"),
             ("can_see_data_r2070infoRRAdespProcJud", u"Pode visualizar o conteúdo do modelo R2070INFORRADESPPROCJUD"),
             ("can_see_menu_r2070infoRRAdespProcJud", u"Pode visualizar no menu o modelo R2070INFORRADESPPROCJUD"),
             ("can_print_list_r2070infoRRAdespProcJud", u"Pode imprimir listagem do modelo R2070INFORRADESPPROCJUD"),
             ("can_print_data_r2070infoRRAdespProcJud", u"Pode imprimir o conteúdo do modelo R2070INFORRADESPPROCJUD"), )
-            
+
         ordering = [
             'r2070_inforra',
             'vlrdespcustas',
@@ -750,30 +750,30 @@ class r2070infoRRAdespProcJud(SoftDeletionModel):
 class r2070infoRRAdespProcJudSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070infoRRAdespProcJud
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070infoRRAideAdvogado(SoftDeletionModel):
 
-    r2070_inforra_despprocjud = models.ForeignKey('r2070.r2070infoRRAdespProcJud', 
+    r2070_inforra_despprocjud = models.ForeignKey('r2070.r2070infoRRAdespProcJud',
         related_name='%(class)s_r2070_inforra_despprocjud', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_inforra_despprocjud.evento()
     tpinscadvogado = models.IntegerField(null=True, )
     nrinscadvogado = models.CharField(max_length=14, null=True, )
     vlradvogado = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_inforra_despprocjud), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -781,24 +781,24 @@ class r2070infoRRAideAdvogado(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Identificação do Advogado'
-        db_table = r'r2070_inforra_ideadvogado'       
+        db_table = r'r2070_inforra_ideadvogado'
         managed = True # r2070_inforra_ideadvogado #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070infoRRAideAdvogado", u"Pode ver listagem do modelo R2070INFORRAIDEADVOGADO"),
             ("can_see_data_r2070infoRRAideAdvogado", u"Pode visualizar o conteúdo do modelo R2070INFORRAIDEADVOGADO"),
             ("can_see_menu_r2070infoRRAideAdvogado", u"Pode visualizar no menu o modelo R2070INFORRAIDEADVOGADO"),
             ("can_print_list_r2070infoRRAideAdvogado", u"Pode imprimir listagem do modelo R2070INFORRAIDEADVOGADO"),
             ("can_print_data_r2070infoRRAideAdvogado", u"Pode imprimir o conteúdo do modelo R2070INFORRAIDEADVOGADO"), )
-            
+
         ordering = [
             'r2070_inforra_despprocjud',
             'tpinscadvogado',
@@ -810,20 +810,20 @@ class r2070infoRRAideAdvogado(SoftDeletionModel):
 class r2070infoRRAideAdvogadoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070infoRRAideAdvogado
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070infoResidExt(SoftDeletionModel):
 
-    r2070_evtpgtosdivs = models.ForeignKey('efdreinf.r2070evtPgtosDivs', 
+    r2070_evtpgtosdivs = models.ForeignKey('efdreinf.r2070evtPgtosDivs',
         related_name='%(class)s_r2070_evtpgtosdivs', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_evtpgtosdivs.evento()
     paisresid = models.TextField(null=True, )
     dsclograd = models.CharField(max_length=80, null=True, )
@@ -835,12 +835,12 @@ class r2070infoResidExt(SoftDeletionModel):
     indnif = models.IntegerField(choices=CHOICES_R2070_INDNIF, null=True, )
     nifbenef = models.CharField(max_length=20, blank=True, null=True, )
     relfontepagad = models.CharField(choices=CHOICES_EFDREINFINFORMACOESBENEFICIARIOSEXTERIOR, max_length=3, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_evtpgtosdivs), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -848,24 +848,24 @@ class r2070infoResidExt(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações complementares de beneficiário residente ou domiciliado no exterior'
-        db_table = r'r2070_inforesidext'       
+        db_table = r'r2070_inforesidext'
         managed = True # r2070_inforesidext #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070infoResidExt", u"Pode ver listagem do modelo R2070INFORESIDEXT"),
             ("can_see_data_r2070infoResidExt", u"Pode visualizar o conteúdo do modelo R2070INFORESIDEXT"),
             ("can_see_menu_r2070infoResidExt", u"Pode visualizar no menu o modelo R2070INFORESIDEXT"),
             ("can_print_list_r2070infoResidExt", u"Pode imprimir listagem do modelo R2070INFORESIDEXT"),
             ("can_print_data_r2070infoResidExt", u"Pode imprimir o conteúdo do modelo R2070INFORESIDEXT"), )
-            
+
         ordering = [
             'r2070_evtpgtosdivs',
             'paisresid',
@@ -877,32 +877,32 @@ class r2070infoResidExt(SoftDeletionModel):
 class r2070infoResidExtSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070infoResidExt
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070pgtoPF(SoftDeletionModel):
 
-    r2070_pgtoresidbr = models.ForeignKey('r2070.r2070pgtoResidBR', 
+    r2070_pgtoresidbr = models.ForeignKey('r2070.r2070pgtoResidBR',
         related_name='%(class)s_r2070_pgtoresidbr', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_pgtoresidbr.evento()
     dtpgto = models.DateField(null=True, )
     indsuspexig = models.CharField(choices=CHOICES_R2070_INDSUSPEXIG, max_length=1, null=True, )
     inddecterceiro = models.CharField(choices=CHOICES_R2070_INDDECTERCEIRO, max_length=1, null=True, )
     vlrrendtributavel = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrirrf = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_pgtoresidbr), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -910,24 +910,24 @@ class r2070pgtoPF(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Beneficiário Pessoa Física - Residente no Brasil'
-        db_table = r'r2070_pgtopf'       
+        db_table = r'r2070_pgtopf'
         managed = True # r2070_pgtopf #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070pgtoPF", u"Pode ver listagem do modelo R2070PGTOPF"),
             ("can_see_data_r2070pgtoPF", u"Pode visualizar o conteúdo do modelo R2070PGTOPF"),
             ("can_see_menu_r2070pgtoPF", u"Pode visualizar no menu o modelo R2070PGTOPF"),
             ("can_print_list_r2070pgtoPF", u"Pode imprimir listagem do modelo R2070PGTOPF"),
             ("can_print_data_r2070pgtoPF", u"Pode imprimir o conteúdo do modelo R2070PGTOPF"), )
-            
+
         ordering = [
             'r2070_pgtoresidbr',
             'dtpgto',
@@ -941,30 +941,30 @@ class r2070pgtoPF(SoftDeletionModel):
 class r2070pgtoPFSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070pgtoPF
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070pgtoPJ(SoftDeletionModel):
 
-    r2070_pgtoresidbr = models.ForeignKey('r2070.r2070pgtoResidBR', 
+    r2070_pgtoresidbr = models.ForeignKey('r2070.r2070pgtoResidBR',
         related_name='%(class)s_r2070_pgtoresidbr', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_pgtoresidbr.evento()
     dtpagto = models.DateField(null=True, )
     vlrrendtributavel = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_pgtoresidbr), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -972,24 +972,24 @@ class r2070pgtoPJ(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil'
-        db_table = r'r2070_pgtopj'       
+        db_table = r'r2070_pgtopj'
         managed = True # r2070_pgtopj #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070pgtoPJ", u"Pode ver listagem do modelo R2070PGTOPJ"),
             ("can_see_data_r2070pgtoPJ", u"Pode visualizar o conteúdo do modelo R2070PGTOPJ"),
             ("can_see_menu_r2070pgtoPJ", u"Pode visualizar no menu o modelo R2070PGTOPJ"),
             ("can_print_list_r2070pgtoPJ", u"Pode imprimir listagem do modelo R2070PGTOPJ"),
             ("can_print_data_r2070pgtoPJ", u"Pode imprimir o conteúdo do modelo R2070PGTOPJ"), )
-            
+
         ordering = [
             'r2070_pgtoresidbr',
             'dtpagto',
@@ -1001,29 +1001,29 @@ class r2070pgtoPJ(SoftDeletionModel):
 class r2070pgtoPJSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070pgtoPJ
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070pgtoPJdespProcJud(SoftDeletionModel):
 
-    r2070_pgtopj_infoprocjud = models.ForeignKey('r2070.r2070pgtoPJinfoProcJud', 
+    r2070_pgtopj_infoprocjud = models.ForeignKey('r2070.r2070pgtoPJinfoProcJud',
         related_name='%(class)s_r2070_pgtopj_infoprocjud', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_pgtopj_infoprocjud.evento()
     vlrdespcustas = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrdespadvogados = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_pgtopj_infoprocjud), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -1031,24 +1031,24 @@ class r2070pgtoPJdespProcJud(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Detalhamento das despesas de processo judicial'
-        db_table = r'r2070_pgtopj_despprocjud'       
+        db_table = r'r2070_pgtopj_despprocjud'
         managed = True # r2070_pgtopj_despprocjud #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070pgtoPJdespProcJud", u"Pode ver listagem do modelo R2070PGTOPJDESPPROCJUD"),
             ("can_see_data_r2070pgtoPJdespProcJud", u"Pode visualizar o conteúdo do modelo R2070PGTOPJDESPPROCJUD"),
             ("can_see_menu_r2070pgtoPJdespProcJud", u"Pode visualizar no menu o modelo R2070PGTOPJDESPPROCJUD"),
             ("can_print_list_r2070pgtoPJdespProcJud", u"Pode imprimir listagem do modelo R2070PGTOPJDESPPROCJUD"),
             ("can_print_data_r2070pgtoPJdespProcJud", u"Pode imprimir o conteúdo do modelo R2070PGTOPJDESPPROCJUD"), )
-            
+
         ordering = [
             'r2070_pgtopj_infoprocjud',
             'vlrdespcustas',
@@ -1059,30 +1059,30 @@ class r2070pgtoPJdespProcJud(SoftDeletionModel):
 class r2070pgtoPJdespProcJudSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070pgtoPJdespProcJud
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070pgtoPJideAdvogado(SoftDeletionModel):
 
-    r2070_pgtopj_despprocjud = models.ForeignKey('r2070.r2070pgtoPJdespProcJud', 
+    r2070_pgtopj_despprocjud = models.ForeignKey('r2070.r2070pgtoPJdespProcJud',
         related_name='%(class)s_r2070_pgtopj_despprocjud', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_pgtopj_despprocjud.evento()
     tpinscadvogado = models.IntegerField(null=True, )
     nrinscadvogado = models.CharField(max_length=14, null=True, )
     vlradvogado = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_pgtopj_despprocjud), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -1090,24 +1090,24 @@ class r2070pgtoPJideAdvogado(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Identificação do Advogado'
-        db_table = r'r2070_pgtopj_ideadvogado'       
+        db_table = r'r2070_pgtopj_ideadvogado'
         managed = True # r2070_pgtopj_ideadvogado #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070pgtoPJideAdvogado", u"Pode ver listagem do modelo R2070PGTOPJIDEADVOGADO"),
             ("can_see_data_r2070pgtoPJideAdvogado", u"Pode visualizar o conteúdo do modelo R2070PGTOPJIDEADVOGADO"),
             ("can_see_menu_r2070pgtoPJideAdvogado", u"Pode visualizar no menu o modelo R2070PGTOPJIDEADVOGADO"),
             ("can_print_list_r2070pgtoPJideAdvogado", u"Pode imprimir listagem do modelo R2070PGTOPJIDEADVOGADO"),
             ("can_print_data_r2070pgtoPJideAdvogado", u"Pode imprimir o conteúdo do modelo R2070PGTOPJIDEADVOGADO"), )
-            
+
         ordering = [
             'r2070_pgtopj_despprocjud',
             'tpinscadvogado',
@@ -1119,30 +1119,30 @@ class r2070pgtoPJideAdvogado(SoftDeletionModel):
 class r2070pgtoPJideAdvogadoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070pgtoPJideAdvogado
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070pgtoPJinfoProcJud(SoftDeletionModel):
 
-    r2070_pgtopj = models.ForeignKey('r2070.r2070pgtoPJ', 
+    r2070_pgtopj = models.ForeignKey('r2070.r2070pgtoPJ',
         related_name='%(class)s_r2070_pgtopj', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_pgtopj.evento()
     nrprocjud = models.CharField(max_length=21, null=True, )
     codsusp = models.IntegerField(blank=True, null=True, )
     indorigemrecursos = models.IntegerField(choices=CHOICES_R2070_INDORIGEMRECURSOS_PGTOPJ, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_pgtopj), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -1150,24 +1150,24 @@ class r2070pgtoPJinfoProcJud(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial'
-        db_table = r'r2070_pgtopj_infoprocjud'       
+        db_table = r'r2070_pgtopj_infoprocjud'
         managed = True # r2070_pgtopj_infoprocjud #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070pgtoPJinfoProcJud", u"Pode ver listagem do modelo R2070PGTOPJINFOPROCJUD"),
             ("can_see_data_r2070pgtoPJinfoProcJud", u"Pode visualizar o conteúdo do modelo R2070PGTOPJINFOPROCJUD"),
             ("can_see_menu_r2070pgtoPJinfoProcJud", u"Pode visualizar no menu o modelo R2070PGTOPJINFOPROCJUD"),
             ("can_print_list_r2070pgtoPJinfoProcJud", u"Pode imprimir listagem do modelo R2070PGTOPJINFOPROCJUD"),
             ("can_print_data_r2070pgtoPJinfoProcJud", u"Pode imprimir o conteúdo do modelo R2070PGTOPJINFOPROCJUD"), )
-            
+
         ordering = [
             'r2070_pgtopj',
             'nrprocjud',
@@ -1178,28 +1178,28 @@ class r2070pgtoPJinfoProcJud(SoftDeletionModel):
 class r2070pgtoPJinfoProcJudSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070pgtoPJinfoProcJud
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070pgtoPJorigemRecursos(SoftDeletionModel):
 
-    r2070_pgtopj_infoprocjud = models.ForeignKey('r2070.r2070pgtoPJinfoProcJud', 
+    r2070_pgtopj_infoprocjud = models.ForeignKey('r2070.r2070pgtoPJinfoProcJud',
         related_name='%(class)s_r2070_pgtopj_infoprocjud', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_pgtopj_infoprocjud.evento()
     cnpjorigemrecursos = models.CharField(max_length=14, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_pgtopj_infoprocjud), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -1207,24 +1207,24 @@ class r2070pgtoPJorigemRecursos(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Identificação da origem dos recursos'
-        db_table = r'r2070_pgtopj_origemrecursos'       
+        db_table = r'r2070_pgtopj_origemrecursos'
         managed = True # r2070_pgtopj_origemrecursos #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070pgtoPJorigemRecursos", u"Pode ver listagem do modelo R2070PGTOPJORIGEMRECURSOS"),
             ("can_see_data_r2070pgtoPJorigemRecursos", u"Pode visualizar o conteúdo do modelo R2070PGTOPJORIGEMRECURSOS"),
             ("can_see_menu_r2070pgtoPJorigemRecursos", u"Pode visualizar no menu o modelo R2070PGTOPJORIGEMRECURSOS"),
             ("can_print_list_r2070pgtoPJorigemRecursos", u"Pode imprimir listagem do modelo R2070PGTOPJORIGEMRECURSOS"),
             ("can_print_data_r2070pgtoPJorigemRecursos", u"Pode imprimir o conteúdo do modelo R2070PGTOPJORIGEMRECURSOS"), )
-            
+
         ordering = [
             'r2070_pgtopj_infoprocjud',
             'cnpjorigemrecursos',]
@@ -1234,27 +1234,27 @@ class r2070pgtoPJorigemRecursos(SoftDeletionModel):
 class r2070pgtoPJorigemRecursosSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070pgtoPJorigemRecursos
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070pgtoResidBR(SoftDeletionModel):
 
-    r2070_ideestab = models.ForeignKey('r2070.r2070ideEstab', 
+    r2070_ideestab = models.ForeignKey('r2070.r2070ideEstab',
         related_name='%(class)s_r2070_ideestab', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_ideestab.evento()
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_ideestab), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -1262,24 +1262,24 @@ class r2070pgtoResidBR(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Pagamento a Pessoa Física ou Jurídica residente ou domiciliada no Brasil'
-        db_table = r'r2070_pgtoresidbr'       
+        db_table = r'r2070_pgtoresidbr'
         managed = True # r2070_pgtoresidbr #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070pgtoResidBR", u"Pode ver listagem do modelo R2070PGTORESIDBR"),
             ("can_see_data_r2070pgtoResidBR", u"Pode visualizar o conteúdo do modelo R2070PGTORESIDBR"),
             ("can_see_menu_r2070pgtoResidBR", u"Pode visualizar no menu o modelo R2070PGTORESIDBR"),
             ("can_print_list_r2070pgtoResidBR", u"Pode imprimir listagem do modelo R2070PGTORESIDBR"),
             ("can_print_data_r2070pgtoResidBR", u"Pode imprimir o conteúdo do modelo R2070PGTORESIDBR"), )
-            
+
         ordering = [
             'r2070_ideestab',]
 
@@ -1288,32 +1288,32 @@ class r2070pgtoResidBR(SoftDeletionModel):
 class r2070pgtoResidBRSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070pgtoResidBR
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070pgtoResidExt(SoftDeletionModel):
 
-    r2070_ideestab = models.ForeignKey('r2070.r2070ideEstab', 
+    r2070_ideestab = models.ForeignKey('r2070.r2070ideEstab',
         related_name='%(class)s_r2070_ideestab', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_ideestab.evento()
     dtpagto = models.DateField(null=True, )
     tprendimento = models.IntegerField(null=True, )
     formatributacao = models.CharField(choices=CHOICES_EFDREINFRENDIMENTOSBENEFICIARIOSEXTERIORTRIBUTACAO, max_length=2, null=True, )
     vlrpgto = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_ideestab), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -1321,24 +1321,24 @@ class r2070pgtoResidExt(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Pagamento a não residente ou domiciliado no exterior'
-        db_table = r'r2070_pgtoresidext'       
+        db_table = r'r2070_pgtoresidext'
         managed = True # r2070_pgtoresidext #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070pgtoResidExt", u"Pode ver listagem do modelo R2070PGTORESIDEXT"),
             ("can_see_data_r2070pgtoResidExt", u"Pode visualizar o conteúdo do modelo R2070PGTORESIDEXT"),
             ("can_see_menu_r2070pgtoResidExt", u"Pode visualizar no menu o modelo R2070PGTORESIDEXT"),
             ("can_print_list_r2070pgtoResidExt", u"Pode imprimir listagem do modelo R2070PGTORESIDEXT"),
             ("can_print_data_r2070pgtoResidExt", u"Pode imprimir o conteúdo do modelo R2070PGTORESIDEXT"), )
-            
+
         ordering = [
             'r2070_ideestab',
             'dtpagto',
@@ -1352,30 +1352,30 @@ class r2070pgtoResidExt(SoftDeletionModel):
 class r2070pgtoResidExtSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070pgtoResidExt
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2070rendIsento(SoftDeletionModel):
 
-    r2070_pgtopf = models.ForeignKey('r2070.r2070pgtoPF', 
+    r2070_pgtopf = models.ForeignKey('r2070.r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.r2070_pgtopf.evento()
     tpisencao = models.IntegerField(choices=CHOICES_R2070_TPISENCAO, null=True, )
     vlrisento = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     descrendimento = models.CharField(max_length=100, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.r2070_pgtopf), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -1383,24 +1383,24 @@ class r2070rendIsento(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Rendimentos Isentos/Não Tributáveis'
-        db_table = r'r2070_rendisento'       
+        db_table = r'r2070_rendisento'
         managed = True # r2070_rendisento #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_r2070rendIsento", u"Pode ver listagem do modelo R2070RENDISENTO"),
             ("can_see_data_r2070rendIsento", u"Pode visualizar o conteúdo do modelo R2070RENDISENTO"),
             ("can_see_menu_r2070rendIsento", u"Pode visualizar no menu o modelo R2070RENDISENTO"),
             ("can_print_list_r2070rendIsento", u"Pode imprimir listagem do modelo R2070RENDISENTO"),
             ("can_print_data_r2070rendIsento", u"Pode imprimir o conteúdo do modelo R2070RENDISENTO"), )
-            
+
         ordering = [
             'r2070_pgtopf',
             'tpisencao',
@@ -1411,9 +1411,9 @@ class r2070rendIsento(SoftDeletionModel):
 class r2070rendIsentoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = r2070rendIsento
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

@@ -28,7 +28,7 @@
 $(document).ready(function(e){
   $('#txt_codfatris').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/387/" + request.term + "/", function (data) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/390/" + request.term + "/", function (data) {
       response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
@@ -101,7 +101,7 @@ $(document).ready(function(e){
 $(document).ready(function(e){
   $('#txt_unmed').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/389/" + request.term + "/", function (data) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/392/" + request.term + "/", function (data) {
       response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,

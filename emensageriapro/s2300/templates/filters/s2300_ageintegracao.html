@@ -81,7 +81,7 @@
 <!-- fim__s2300_ageintegracao__cep -->
 
 <!-- inicio__s2300_ageintegracao__codmunic -->
-<div class="col-md-12">
+<div class="col-md-6">
   <div class="form-group">
     <label>Código do Município</label>
     <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{{ dict_fields|get_value_from_dict:'codmunic' }}">
@@ -92,8 +92,8 @@
 $(document).ready(function(e){
   $('#txt_codmunic').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas//json-search/" + request.term + "/", function (data) {
-      response($.map(data., function (value, key) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/58/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
           value: value.key

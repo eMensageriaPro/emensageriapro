@@ -67,10 +67,10 @@ STATUS_EVENTO_PROCESSADO = 13
 
 class s1050alteracao(SoftDeletionModel):
 
-    s1050_evttabhortur = models.ForeignKey('esocial.s1050evtTabHorTur', 
+    s1050_evttabhortur = models.ForeignKey('esocial.s1050evtTabHorTur',
         related_name='%(class)s_s1050_evttabhortur', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1050_evttabhortur.evento()
     codhorcontrat = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
@@ -79,12 +79,12 @@ class s1050alteracao(SoftDeletionModel):
     hrsaida = models.CharField(max_length=4, null=True, )
     durjornada = models.IntegerField(null=True, )
     perhorflexivel = models.CharField(choices=CHOICES_S1050_PERHORFLEXIVEL_ALTERACAO, max_length=1, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1050_evttabhortur), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -92,24 +92,24 @@ class s1050alteracao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Alteração das informações'
-        db_table = r's1050_alteracao'       
+        db_table = r's1050_alteracao'
         managed = True # s1050_alteracao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1050alteracao", u"Pode ver listagem do modelo S1050ALTERACAO"),
             ("can_see_data_s1050alteracao", u"Pode visualizar o conteúdo do modelo S1050ALTERACAO"),
             ("can_see_menu_s1050alteracao", u"Pode visualizar no menu o modelo S1050ALTERACAO"),
             ("can_print_list_s1050alteracao", u"Pode imprimir listagem do modelo S1050ALTERACAO"),
             ("can_print_data_s1050alteracao", u"Pode imprimir o conteúdo do modelo S1050ALTERACAO"), )
-            
+
         ordering = [
             's1050_evttabhortur',
             'codhorcontrat',
@@ -124,31 +124,31 @@ class s1050alteracao(SoftDeletionModel):
 class s1050alteracaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1050alteracao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1050alteracaohorarioIntervalo(SoftDeletionModel):
 
-    s1050_alteracao = models.ForeignKey('s1050.s1050alteracao', 
+    s1050_alteracao = models.ForeignKey('s1050.s1050alteracao',
         related_name='%(class)s_s1050_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1050_alteracao.evento()
     tpinterv = models.IntegerField(choices=CHOICES_S1050_TPINTERV_ALTERACAO, null=True, )
     durinterv = models.IntegerField(null=True, )
     iniinterv = models.CharField(max_length=4, blank=True, null=True, )
     terminterv = models.CharField(max_length=4, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1050_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -156,24 +156,24 @@ class s1050alteracaohorarioIntervalo(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.'
-        db_table = r's1050_alteracao_horariointervalo'       
+        db_table = r's1050_alteracao_horariointervalo'
         managed = True # s1050_alteracao_horariointervalo #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1050alteracaohorarioIntervalo", u"Pode ver listagem do modelo S1050ALTERACAOHORARIOINTERVALO"),
             ("can_see_data_s1050alteracaohorarioIntervalo", u"Pode visualizar o conteúdo do modelo S1050ALTERACAOHORARIOINTERVALO"),
             ("can_see_menu_s1050alteracaohorarioIntervalo", u"Pode visualizar no menu o modelo S1050ALTERACAOHORARIOINTERVALO"),
             ("can_print_list_s1050alteracaohorarioIntervalo", u"Pode imprimir listagem do modelo S1050ALTERACAOHORARIOINTERVALO"),
             ("can_print_data_s1050alteracaohorarioIntervalo", u"Pode imprimir o conteúdo do modelo S1050ALTERACAOHORARIOINTERVALO"), )
-            
+
         ordering = [
             's1050_alteracao',
             'tpinterv',
@@ -184,29 +184,29 @@ class s1050alteracaohorarioIntervalo(SoftDeletionModel):
 class s1050alteracaohorarioIntervaloSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1050alteracaohorarioIntervalo
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1050alteracaonovaValidade(SoftDeletionModel):
 
-    s1050_alteracao = models.ForeignKey('s1050.s1050alteracao', 
+    s1050_alteracao = models.ForeignKey('s1050.s1050alteracao',
         related_name='%(class)s_s1050_alteracao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1050_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1050_alteracao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -214,24 +214,24 @@ class s1050alteracaonovaValidade(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
-        db_table = r's1050_alteracao_novavalidade'       
+        db_table = r's1050_alteracao_novavalidade'
         managed = True # s1050_alteracao_novavalidade #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1050alteracaonovaValidade", u"Pode ver listagem do modelo S1050ALTERACAONOVAVALIDADE"),
             ("can_see_data_s1050alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1050ALTERACAONOVAVALIDADE"),
             ("can_see_menu_s1050alteracaonovaValidade", u"Pode visualizar no menu o modelo S1050ALTERACAONOVAVALIDADE"),
             ("can_print_list_s1050alteracaonovaValidade", u"Pode imprimir listagem do modelo S1050ALTERACAONOVAVALIDADE"),
             ("can_print_data_s1050alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1050ALTERACAONOVAVALIDADE"), )
-            
+
         ordering = [
             's1050_alteracao',
             'inivalid',]
@@ -241,30 +241,30 @@ class s1050alteracaonovaValidade(SoftDeletionModel):
 class s1050alteracaonovaValidadeSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1050alteracaonovaValidade
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1050exclusao(SoftDeletionModel):
 
-    s1050_evttabhortur = models.ForeignKey('esocial.s1050evtTabHorTur', 
+    s1050_evttabhortur = models.ForeignKey('esocial.s1050evtTabHorTur',
         related_name='%(class)s_s1050_evttabhortur', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1050_evttabhortur.evento()
     codhorcontrat = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1050_evttabhortur), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -272,24 +272,24 @@ class s1050exclusao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Exclusão das informações'
-        db_table = r's1050_exclusao'       
+        db_table = r's1050_exclusao'
         managed = True # s1050_exclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1050exclusao", u"Pode ver listagem do modelo S1050EXCLUSAO"),
             ("can_see_data_s1050exclusao", u"Pode visualizar o conteúdo do modelo S1050EXCLUSAO"),
             ("can_see_menu_s1050exclusao", u"Pode visualizar no menu o modelo S1050EXCLUSAO"),
             ("can_print_list_s1050exclusao", u"Pode imprimir listagem do modelo S1050EXCLUSAO"),
             ("can_print_data_s1050exclusao", u"Pode imprimir o conteúdo do modelo S1050EXCLUSAO"), )
-            
+
         ordering = [
             's1050_evttabhortur',
             'codhorcontrat',
@@ -300,20 +300,20 @@ class s1050exclusao(SoftDeletionModel):
 class s1050exclusaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1050exclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1050inclusao(SoftDeletionModel):
 
-    s1050_evttabhortur = models.ForeignKey('esocial.s1050evtTabHorTur', 
+    s1050_evttabhortur = models.ForeignKey('esocial.s1050evtTabHorTur',
         related_name='%(class)s_s1050_evttabhortur', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1050_evttabhortur.evento()
     codhorcontrat = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
@@ -322,12 +322,12 @@ class s1050inclusao(SoftDeletionModel):
     hrsaida = models.CharField(max_length=4, null=True, )
     durjornada = models.IntegerField(null=True, )
     perhorflexivel = models.CharField(choices=CHOICES_S1050_PERHORFLEXIVEL_INCLUSAO, max_length=1, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1050_evttabhortur), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -335,24 +335,24 @@ class s1050inclusao(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Inclusão de novas informações'
-        db_table = r's1050_inclusao'       
+        db_table = r's1050_inclusao'
         managed = True # s1050_inclusao #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1050inclusao", u"Pode ver listagem do modelo S1050INCLUSAO"),
             ("can_see_data_s1050inclusao", u"Pode visualizar o conteúdo do modelo S1050INCLUSAO"),
             ("can_see_menu_s1050inclusao", u"Pode visualizar no menu o modelo S1050INCLUSAO"),
             ("can_print_list_s1050inclusao", u"Pode imprimir listagem do modelo S1050INCLUSAO"),
             ("can_print_data_s1050inclusao", u"Pode imprimir o conteúdo do modelo S1050INCLUSAO"), )
-            
+
         ordering = [
             's1050_evttabhortur',
             'codhorcontrat',
@@ -367,31 +367,31 @@ class s1050inclusao(SoftDeletionModel):
 class s1050inclusaoSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1050inclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1050inclusaohorarioIntervalo(SoftDeletionModel):
 
-    s1050_inclusao = models.ForeignKey('s1050.s1050inclusao', 
+    s1050_inclusao = models.ForeignKey('s1050.s1050inclusao',
         related_name='%(class)s_s1050_inclusao', )
-    
-    def evento(self): 
+
+    def evento(self):
         return self.s1050_inclusao.evento()
     tpinterv = models.IntegerField(choices=CHOICES_S1050_TPINTERV_INCLUSAO, null=True, )
     durinterv = models.IntegerField(null=True, )
     iniinterv = models.CharField(max_length=4, blank=True, null=True, )
     terminterv = models.CharField(max_length=4, blank=True, null=True, )
-    
+
     def __unicode__(self):
-        
+
         lista = [
             unicode(self.s1050_inclusao), ]
-            
+
         if lista:
             if len(lista) == 1:
                 return lista[0]
@@ -399,24 +399,24 @@ class s1050inclusaohorarioIntervalo(SoftDeletionModel):
                 return ' - '.join(lista)
         else:
             return self.id
-        
+
     class Meta:
-    
+
         # verbose_name = u'Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.'
-        db_table = r's1050_inclusao_horariointervalo'       
+        db_table = r's1050_inclusao_horariointervalo'
         managed = True # s1050_inclusao_horariointervalo #
-        
+
         unique_together = ( )
-            
+
         index_together = ()
-        
+
         permissions = (
             ("can_see_list_s1050inclusaohorarioIntervalo", u"Pode ver listagem do modelo S1050INCLUSAOHORARIOINTERVALO"),
             ("can_see_data_s1050inclusaohorarioIntervalo", u"Pode visualizar o conteúdo do modelo S1050INCLUSAOHORARIOINTERVALO"),
             ("can_see_menu_s1050inclusaohorarioIntervalo", u"Pode visualizar no menu o modelo S1050INCLUSAOHORARIOINTERVALO"),
             ("can_print_list_s1050inclusaohorarioIntervalo", u"Pode imprimir listagem do modelo S1050INCLUSAOHORARIOINTERVALO"),
             ("can_print_data_s1050inclusaohorarioIntervalo", u"Pode imprimir o conteúdo do modelo S1050INCLUSAOHORARIOINTERVALO"), )
-            
+
         ordering = [
             's1050_inclusao',
             'tpinterv',
@@ -427,9 +427,9 @@ class s1050inclusaohorarioIntervalo(SoftDeletionModel):
 class s1050inclusaohorarioIntervaloSerializer(ModelSerializer):
 
     class Meta:
-    
+
         model = s1050inclusaohorarioIntervalo
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
+        read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')

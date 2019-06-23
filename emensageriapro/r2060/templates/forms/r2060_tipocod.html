@@ -51,7 +51,7 @@
         <input type="text" 
                id="txt_codativecon" 
                name="txt_codativecon" class="form-control" 
-               value="{% if r2060_tipocod.codativecon %}{{ r2060_tipocod.codativecon|get_opcoes_titulo:636 }}{% endif %}" 
+               value="{% if r2060_tipocod.codativecon %}{{ r2060_tipocod.codativecon|get_opcoes_titulo:639 }}{% endif %}" 
                {% if r2060_tipocod_form.codativecon.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if r2060_tipocod_form.codativecon.field.widget.attrs.required %} required="required"{% endif %}
                {% if r2060_tipocod_form.codativecon.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -65,7 +65,7 @@
   $(document).ready(function(e){
     $('#txt_codativecon').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/636/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/639/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
