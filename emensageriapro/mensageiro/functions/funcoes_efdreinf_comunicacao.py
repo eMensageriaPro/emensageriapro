@@ -177,7 +177,9 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
                 for model in app_models:
 
-                    if retornos_evttotal.cdretorno == '1':
+                    lista_campos = model._meta.get_fields()
+
+                    if retornos_evttotal.cdretorno == '1' and 'retornos_r9001' in lista_campos:
 
                         model.objects.using('default').filter(
                             identidade=evento['id'],
@@ -187,7 +189,7 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
                                    retornos_r9001_id=retornos_evttotal.id,
                                    transmissor_lote_efdreinf_id=None)
 
-                    elif retornos_evttotal.cdretorno == '0':
+                    elif retornos_evttotal.cdretorno == '0' and 'retornos_r9001' in lista_campos:
 
                         model.objects.using('default').filter(
                             identidade=evento['id'],
@@ -214,7 +216,9 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
                 for model in app_models:
 
-                    if retornos_evttotalcontrib.cdretorno == '1':
+                    lista_campos = model._meta.get_fields()
+
+                    if retornos_evttotalcontrib.cdretorno == '1' and 'retornos_r9011' in lista_campos:
 
                         model.objects.using('default').filter(
                             identidade=evento['id'],
@@ -224,7 +228,7 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
                                    retornos_evttotalcontrib_id=retornos_evttotalcontrib.id,
                                    transmissor_lote_efdreinf_id=None)
 
-                    elif retornos_evttotalcontrib.cdretorno == '0':
+                    elif retornos_evttotalcontrib.cdretorno == '0' and 'retornos_r9011' in lista_campos:
 
                         model.objects.using('default').filter(
                             identidade=evento['id'],

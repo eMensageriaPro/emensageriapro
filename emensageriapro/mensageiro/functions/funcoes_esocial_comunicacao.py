@@ -376,8 +376,10 @@ def read_retornoEvento(doc, transmissor_lote_id):
         if 'processamento_codigo_resposta' in retorno_evento_dados.keys():
 
             codigo_resposta = int(retorno_evento_dados['processamento_codigo_resposta'])
+
+            lista_campos = model._meta.get_fields()
             
-            if codigo_resposta >= 300:
+            if codigo_resposta >= 300 and 'retornos_eventos' in lista_campos:
 
                 model.objects.using('default').filter(
                     identidade=retorno_evento_dados['identidade'],
@@ -387,7 +389,7 @@ def read_retornoEvento(doc, transmissor_lote_id):
                            retornos_eventos_id=retorno_evento_id,
                            transmissor_lote_esocial_id=None)
             
-            elif codigo_resposta >= 201 and codigo_resposta < 300:
+            elif codigo_resposta >= 201 and codigo_resposta < 300 and 'retornos_eventos' in lista_campos:
 
                 model.objects.using('default').filter(
                     identidade=retorno_evento_dados['identidade'],
