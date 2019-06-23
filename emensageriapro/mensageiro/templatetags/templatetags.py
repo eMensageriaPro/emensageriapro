@@ -93,15 +93,18 @@ def get_opcoes_titulo(codigo, opcoes_id):
 
 @register.filter(name='lista_json_table_esocial')
 def lista_json_table_esocial(texto):
-    texto = texto.replace('codresp', 'codigo')
-    texto = texto.replace('dscresp', 'descricao')
-    texto = texto.replace('localerroaviso', 'localizacao')
-    html_txt = ''
-    lista = texto.split('|')
-    for txt in lista:
-        dados = json_to_dict(str(txt))
-        html_txt += '<strong>%(codigo)s - %(descricao)s</strong><br>(%(localizacao)s)<br>' % dados
-    return html_txt
+    if texto:
+        texto = texto.replace('codresp', 'codigo')
+        texto = texto.replace('dscresp', 'descricao')
+        texto = texto.replace('localerroaviso', 'localizacao')
+        html_txt = ''
+        lista = texto.split('|')
+        for txt in lista:
+            dados = json_to_dict(str(txt))
+            html_txt += '<strong>%(codigo)s - %(descricao)s</strong><br>(%(localizacao)s)<br>' % dados
+        return html_txt
+    else:
+        return ''
     
 
 @register.filter(name='underline_to_hyphen')
