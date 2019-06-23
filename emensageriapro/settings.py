@@ -398,7 +398,7 @@ CONSTANCE_CONFIG = {
         int),
 
     'IMPORT_AUTOMATIC_FUNCTIONS_ENABLED': (False,
-        u'Envio automático do eSocial.',
+        u'Funções de importação automáticas ativadas.',
         bool),
 
     'EFDREINF_VALIDADE_RUN_EVERY_MINS': (10,
