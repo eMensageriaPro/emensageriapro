@@ -41,8 +41,8 @@ def read_r2070_evtpgtosdivs(request, dados, arquivo, validar=False):
 
     status = STATUS_EVENTO_IMPORTADO
     dados = read_r2070_evtpgtosdivs_obj(request, doc, status, validar, arquivo)
-
-    r2070evtPgtosDivs.objects.filter(id=dados['id']).update(arquivo=arquivo)
+    novo_arquivo = arquivo.replace('/aguardando/', '/processado/')
+    r2070evtPgtosDivs.objects.filter(id=dados['id']).update(arquivo=novo_arquivo)
     ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
 
     return dados

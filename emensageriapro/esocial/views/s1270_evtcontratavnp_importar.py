@@ -41,8 +41,8 @@ def read_s1270_evtcontratavnp(request, dados, arquivo, validar=False):
 
     status = STATUS_EVENTO_IMPORTADO
     dados = read_s1270_evtcontratavnp_obj(request, doc, status, validar, arquivo)
-
-    s1270evtContratAvNP.objects.filter(id=dados['id']).update(arquivo=arquivo)
+    novo_arquivo = arquivo.replace('/aguardando/', '/processado/')
+    s1270evtContratAvNP.objects.filter(id=dados['id']).update(arquivo=novo_arquivo)
     ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
 
     return dados

@@ -41,8 +41,8 @@ def read_r2010_evtservtom(request, dados, arquivo, validar=False):
 
     status = STATUS_EVENTO_IMPORTADO
     dados = read_r2010_evtservtom_obj(request, doc, status, validar, arquivo)
-
-    r2010evtServTom.objects.filter(id=dados['id']).update(arquivo=arquivo)
+    novo_arquivo = arquivo.replace('/aguardando/', '/processado/')
+    r2010evtServTom.objects.filter(id=dados['id']).update(arquivo=novo_arquivo)
     ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
 
     return dados

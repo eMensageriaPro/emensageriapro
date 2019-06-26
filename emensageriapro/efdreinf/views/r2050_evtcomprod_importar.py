@@ -41,8 +41,8 @@ def read_r2050_evtcomprod(request, dados, arquivo, validar=False):
 
     status = STATUS_EVENTO_IMPORTADO
     dados = read_r2050_evtcomprod_obj(request, doc, status, validar, arquivo)
-
-    r2050evtComProd.objects.filter(id=dados['id']).update(arquivo=arquivo)
+    novo_arquivo = arquivo.replace('/aguardando/', '/processado/')
+    r2050evtComProd.objects.filter(id=dados['id']).update(arquivo=novo_arquivo)
     ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
 
     return dados

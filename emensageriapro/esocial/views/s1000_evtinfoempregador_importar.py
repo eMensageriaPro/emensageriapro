@@ -41,8 +41,8 @@ def read_s1000_evtinfoempregador(request, dados, arquivo, validar=False):
 
     status = STATUS_EVENTO_IMPORTADO
     dados = read_s1000_evtinfoempregador_obj(request, doc, status, validar, arquivo)
-
-    s1000evtInfoEmpregador.objects.filter(id=dados['id']).update(arquivo=arquivo)
+    novo_arquivo = arquivo.replace('/aguardando/', '/processado/')
+    s1000evtInfoEmpregador.objects.filter(id=dados['id']).update(arquivo=novo_arquivo)
     ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
 
     return dados

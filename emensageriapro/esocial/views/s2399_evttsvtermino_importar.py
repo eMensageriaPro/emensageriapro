@@ -41,8 +41,8 @@ def read_s2399_evttsvtermino(request, dados, arquivo, validar=False):
 
     status = STATUS_EVENTO_IMPORTADO
     dados = read_s2399_evttsvtermino_obj(request, doc, status, validar, arquivo)
-
-    s2399evtTSVTermino.objects.filter(id=dados['id']).update(arquivo=arquivo)
+    novo_arquivo = arquivo.replace('/aguardando/', '/processado/')
+    s2399evtTSVTermino.objects.filter(id=dados['id']).update(arquivo=novo_arquivo)
     ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
 
     return dados

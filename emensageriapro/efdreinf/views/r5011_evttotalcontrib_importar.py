@@ -41,8 +41,8 @@ def read_r5011_evttotalcontrib(request, dados, arquivo, validar=False):
 
     status = STATUS_EVENTO_IMPORTADO
     dados = read_r5011_evttotalcontrib_obj(request, doc, status, validar, arquivo)
-
-    r5011evtTotalContrib.objects.filter(id=dados['id']).update(arquivo=arquivo)
+    novo_arquivo = arquivo.replace('/aguardando/', '/processado/')
+    r5011evtTotalContrib.objects.filter(id=dados['id']).update(arquivo=novo_arquivo)
     ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
 
     return dados

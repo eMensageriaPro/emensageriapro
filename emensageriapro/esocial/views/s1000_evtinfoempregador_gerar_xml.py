@@ -264,7 +264,7 @@ def gerar_xml_assinado(request, pk):
     arquivo = 'arquivos/Eventos/s1000_evtinfoempregador/%s.xml' % (s1000_evtinfoempregador.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1000_evtinfoempregador/' % BASE_DIR)
 
-    if not os.path.exists(BASE_DIR + arquivo):
+    if not os.path.exists(BASE_DIR+arquivo):
 
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 

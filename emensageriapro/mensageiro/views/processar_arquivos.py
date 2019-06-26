@@ -74,53 +74,6 @@ def validar_arquivo(request, arquivo, lang=None):
 
 
 
-def criar_vinculacao_arquivos(request):
-
-    import os
-    from emensageriapro.settings import BASE_DIR
-    lista = os.listdir(BASE_DIR + '/arquivos/Importacao/aguardando/')
-
-    for arquivo_evento in lista:
-        arquivo_completo = '/arquivos/Importacao/aguardando/' + arquivo_evento
-        arquivo = ImportacaoArquivosEventos.objects.filter(arquivo=arquivo_completo).all()
-        if not arquivo:
-            base = ImportacaoArquivos.objects.filter(arquivo=arquivo_completo).all()
-            if not base:
-                dados_importacao = {}
-                dados_importacao['arquivo'] = arquivo_completo
-                dados_importacao['status'] = 1
-                dados_importacao['data_hora'] = datetime.datetime.now()
-                dados_importacao['quant_processado'] = 0
-                dados_importacao['quant_erros'] = 0
-                dados_importacao['quant_aguardando'] = 0
-                dados_importacao['importado_por_id'] = request.user.id
-                dados_importacao['criado_em'] = datetime.datetime.now()
-                dados_importacao['criado_por_id'] = request.user.id
-                dados_importacao['ativo'] = True
-
-                obj = ImportacaoArquivos(**dados_importacao)
-                obj.save()
-                base_id = obj.id
-            else:
-                base_id = base[0].id
-
-            dados_eventos = {}
-            dados_eventos['importacao_arquivos_id'] = base_id
-            dados_eventos['evento'] = '-'
-            dados_eventos['versao'] = '-'
-            dados_eventos['identidade_evento'] = '-'
-            dados_eventos['identidade'] = 0
-            dados_eventos['arquivo'] = arquivo_completo
-            dados_eventos['status'] = STATUS_IMPORT_AGUARDANDO
-            dados_eventos['data_hora'] = datetime.datetime.now()
-            dados_eventos['validacoes'] = ''
-            dados_eventos['criado_em'] = datetime.datetime.now()
-            dados_eventos['criado_por_id'] = request.user.id
-            dados_eventos['ativo'] = True
-
-            obj = ImportacaoArquivosEventos(**dados_eventos)
-            obj.save()
-
 
 
 
@@ -130,7 +83,6 @@ def criar_vinculacao_arquivos(request):
 def scripts_processar_arquivos(request, tab):
 
     create_import_dirs()
-    criar_vinculacao_arquivos(request)
 
     import os.path
     from emensageriapro.settings import BASE_DIR, VERSOES_EFDREINF, VERSOES_ESOCIAL
@@ -182,9 +134,9 @@ def scripts_processar_arquivos(request, tab):
                     dados_eventos['evento'] = dados_importacao['tabela']
                     dados_eventos['status'] = STATUS_IMPORT_PROCESSADO
                     origem = BASE_DIR + arquivo.arquivo
-                    destino = BASE_DIR + arquivo.arquivo.replace('/aguardando/', '/processado/' + ident + '__')
+                    destino = BASE_DIR + arquivo.arquivo.replace('/aguardando/', '/processado/')
                     os.system('mv %s %s' % (origem, destino))
-                    dados_eventos['arquivo'] = arquivo.arquivo.replace('/aguardando/', '/processado/' + ident + '__')
+                    dados_eventos['arquivo'] = arquivo.arquivo.replace('/aguardando/', '/processado/')
 
                     gravar_nome_arquivo(dados_eventos['arquivo'], 1)
 

@@ -41,8 +41,8 @@ def read_s2260_evtconvinterm(request, dados, arquivo, validar=False):
 
     status = STATUS_EVENTO_IMPORTADO
     dados = read_s2260_evtconvinterm_obj(request, doc, status, validar, arquivo)
-
-    s2260evtConvInterm.objects.filter(id=dados['id']).update(arquivo=arquivo)
+    novo_arquivo = arquivo.replace('/aguardando/', '/processado/')
+    s2260evtConvInterm.objects.filter(id=dados['id']).update(arquivo=novo_arquivo)
     ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
 
     return dados

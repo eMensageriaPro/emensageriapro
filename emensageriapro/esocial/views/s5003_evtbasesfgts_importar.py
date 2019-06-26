@@ -41,8 +41,8 @@ def read_s5003_evtbasesfgts(request, dados, arquivo, validar=False):
 
     status = STATUS_EVENTO_IMPORTADO
     dados = read_s5003_evtbasesfgts_obj(request, doc, status, validar, arquivo)
-
-    s5003evtBasesFGTS.objects.filter(id=dados['id']).update(arquivo=arquivo)
+    novo_arquivo = arquivo.replace('/aguardando/', '/processado/')
+    s5003evtBasesFGTS.objects.filter(id=dados['id']).update(arquivo=novo_arquivo)
     ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
 
     return dados

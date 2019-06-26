@@ -41,8 +41,8 @@ def read_s1299_evtfechaevper(request, dados, arquivo, validar=False):
 
     status = STATUS_EVENTO_IMPORTADO
     dados = read_s1299_evtfechaevper_obj(request, doc, status, validar, arquivo)
-
-    s1299evtFechaEvPer.objects.filter(id=dados['id']).update(arquivo=arquivo)
+    novo_arquivo = arquivo.replace('/aguardando/', '/processado/')
+    s1299evtFechaEvPer.objects.filter(id=dados['id']).update(arquivo=novo_arquivo)
     ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
 
     return dados

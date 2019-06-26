@@ -41,8 +41,8 @@ def read_r3010_evtespdesportivo(request, dados, arquivo, validar=False):
 
     status = STATUS_EVENTO_IMPORTADO
     dados = read_r3010_evtespdesportivo_obj(request, doc, status, validar, arquivo)
-
-    r3010evtEspDesportivo.objects.filter(id=dados['id']).update(arquivo=arquivo)
+    novo_arquivo = arquivo.replace('/aguardando/', '/processado/')
+    r3010evtEspDesportivo.objects.filter(id=dados['id']).update(arquivo=novo_arquivo)
     ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
 
     return dados
