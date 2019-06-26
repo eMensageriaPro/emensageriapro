@@ -223,7 +223,6 @@ def scripts_salvar_arquivos(request, tab='master'):
 
                 destino = filename.replace('/enviado/', '/aguardando/')
                 comando = 'cp %s %s' % (filename, destino)
-                print comando
                 os.system(comando)
 
             elif '.zip' in filename:
