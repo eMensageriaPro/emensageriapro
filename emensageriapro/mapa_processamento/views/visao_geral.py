@@ -27,6 +27,9 @@ import base64
 @login_required
 def listar(request):
 
+    from emensageriapro.mensageiro.views.processar_arquivos import create_import_dirs
+    create_import_dirs()
+
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
         STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
         STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
