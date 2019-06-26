@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s2250evtAvPrevio'):
-    
+
         s2250_evtavprevio = get_object_or_404(s2250evtAvPrevio, id=pk)
         s2250_evtavprevio_lista = s2250evtAvPrevio.objects.filter(id=pk).all()
 
-        
+
         s2250_detavprevio_lista = s2250detAvPrevio.objects.filter(s2250_evtavprevio_id__in = listar_ids(s2250_evtavprevio_lista) ).all()
         s2250_cancavprevio_lista = s2250cancAvPrevio.objects.filter(s2250_evtavprevio_id__in = listar_ids(s2250_evtavprevio_lista) ).all()
 
@@ -97,9 +97,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2250_evtavprevio_verificar.html',
@@ -116,20 +116,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s2250_evtavprevio_verificar.html', context)
             filename = "%s.xls" % s2250_evtavprevio.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s2250_evtavprevio_verificar.html', context)
             filename = "%s.csv" % s2250_evtavprevio.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -137,7 +137,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's2250_evtavprevio_verificar.html', context)
 
     else:

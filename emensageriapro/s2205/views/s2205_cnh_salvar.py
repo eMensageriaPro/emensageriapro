@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2205_cnh = get_object_or_404(s2205CNH, id=pk)
         evento_dados = s2205_cnh.evento()
 
     if request.user.has_perm('s2205.can_see_s2205CNH'):
-        
+
         if pk:
-        
+
             s2205_cnh_form = form_s2205_cnh(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2205_cnh)
-                                         
+                     
         else:
-        
+
             s2205_cnh_form = form_s2205_cnh(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2205_cnh_form.is_valid():
-            
+
                 obj = s2205_cnh_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2205_cnh', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2205_cnh',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2205_cnh), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2205_cnh),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2205_cnh', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2205_cnh',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2205_cnh_apagar', 
-                    's2205_cnh_salvar', 
+                    's2205_cnh_apagar',
+                    's2205_cnh_salvar',
                     's2205_cnh'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2205_cnh_salvar', 
+                        's2205_cnh_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2205_cnh_form = disabled_form_fields(
-            s2205_cnh_form, 
+            s2205_cnh_form,
             request.user.has_perm('s2205.change_s2205CNH'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2205_cnh_form = disabled_form_fields(s2205_cnh_form, 0)
-                
+
         if output:
-        
+
             s2205_cnh_form = disabled_form_for_print(s2205_cnh_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s2205_cnh = get_object_or_404(s2205CNH, id=pk)
-            
-                
+
+
         else:
-        
+
             s2205_cnh = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2205_cnh' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2205_cnh_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2205_cnh').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2205_cnh': s2205_cnh, 
-            's2205_cnh_form': s2205_cnh_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2205_cnh': s2205_cnh,
+            's2205_cnh_form': s2205_cnh_form,
             'modulos': ['s2205', ],
             'paginas': ['s2205_cnh', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2205_cnh_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2205_cnh_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2205_cnh_salvar.html', context)
             filename = "s2205_cnh.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2205_cnh_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2205_cnh', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

@@ -62,11 +62,11 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('r3010.can_see_r3010boletim'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_r3010_evtespdesportivo': 1,
             'show_nrboletim': 1,
             'show_tpcompeticao': 1,
@@ -81,13 +81,13 @@ def listar(request, output=None):
             'show_uf': 1,
             'show_qtdepagantes': 1,
             'show_qtdenaopagantes': 1, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 'r3010_evtespdesportivo__icontains': 'r3010_evtespdesportivo__icontains',
                 'nrboletim__icontains': 'nrboletim__icontains',
                 'tpcompeticao__icontains': 'tpcompeticao__icontains',
@@ -102,18 +102,18 @@ def listar(request, output=None):
                 'uf__icontains': 'uf__icontains',
                 'qtdepagantes__icontains': 'qtdepagantes__icontains',
                 'qtdenaopagantes__icontains': 'qtdenaopagantes__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     'r3010_evtespdesportivo__icontains': 'r3010_evtespdesportivo__icontains',
                     'nrboletim__icontains': 'nrboletim__icontains',
                     'tpcompeticao__icontains': 'tpcompeticao__icontains',
@@ -128,26 +128,26 @@ def listar(request, output=None):
                     'uf__icontains': 'uf__icontains',
                     'qtdepagantes__icontains': 'qtdepagantes__icontains',
                     'qtdenaopagantes__icontains': 'qtdenaopagantes__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         r3010_boletim_lista = r3010boletim.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(r3010_boletim_lista) > 100:
-        
+
             filtrar = True
             r3010_boletim_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #r3010_boletim_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            'r3010_boletim_lista': r3010_boletim_lista, 
+            'r3010_boletim_lista': r3010_boletim_lista,
             'modulos': ['r3010', ],
             'paginas': ['r3010_boletim', ],
             'dict_fields': dict_fields,
@@ -156,11 +156,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r3010_boletim_listar.html',
@@ -178,33 +178,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('r3010_boletim_listar.html', context)
             filename = "r3010_boletim.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/r3010_boletim.csv', context)
             filename = "r3010_boletim.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 'r3010_boletim_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -212,7 +212,7 @@ def listar(request, output=None):
             'modulos': ['r3010', ],
             'paginas': ['r3010_boletim', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

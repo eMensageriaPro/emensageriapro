@@ -62,59 +62,59 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('s3000.can_see_s3000ideFolhaPagto'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_s3000_evtexclusao': 1,
             'show_indapuracao': 1,
             'show_perapur': 1, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 's3000_evtexclusao__icontains': 's3000_evtexclusao__icontains',
                 'indapuracao__icontains': 'indapuracao__icontains',
                 'perapur__icontains': 'perapur__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     's3000_evtexclusao__icontains': 's3000_evtexclusao__icontains',
                     'indapuracao__icontains': 'indapuracao__icontains',
                     'perapur__icontains': 'perapur__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         s3000_idefolhapagto_lista = s3000ideFolhaPagto.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(s3000_idefolhapagto_lista) > 100:
-        
+
             filtrar = True
             s3000_idefolhapagto_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s3000_idefolhapagto_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            's3000_idefolhapagto_lista': s3000_idefolhapagto_lista, 
+            's3000_idefolhapagto_lista': s3000_idefolhapagto_lista,
             'modulos': ['s3000', ],
             'paginas': ['s3000_idefolhapagto', ],
             'dict_fields': dict_fields,
@@ -123,11 +123,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s3000_idefolhapagto_listar.html',
@@ -145,33 +145,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('s3000_idefolhapagto_listar.html', context)
             filename = "s3000_idefolhapagto.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/s3000_idefolhapagto.csv', context)
             filename = "s3000_idefolhapagto.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 's3000_idefolhapagto_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -179,7 +179,7 @@ def listar(request, output=None):
             'modulos': ['s3000', ],
             'paginas': ['s3000_idefolhapagto', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

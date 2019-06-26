@@ -62,11 +62,11 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('mensageiro.can_see_RegrasDeValidacao'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_evento': 1,
             'show_versao': 1,
             'show_numero': 1,
@@ -83,56 +83,56 @@ def listar(request, output=None):
             'show_valores_validos': 0,
             'show_validacoes_precedencia': 0,
             'show_validacoes': 0, }
-            
+
         post = False
         #ANTES-POST-LISTAGEM
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            
-            dict_fields = { 
+
+            dict_fields = {
                 'evento__icontains': 'evento__icontains',
                 'versao__icontains': 'versao__icontains',
                 'numero__icontains': 'numero__icontains',
                 'registro_campo__icontains': 'registro_campo__icontains',
                 'registro_pai__icontains': 'registro_pai__icontains', }
-                
+
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     'evento__icontains': 'evento__icontains',
                     'versao__icontains': 'versao__icontains',
                     'numero__icontains': 'numero__icontains',
                     'registro_campo__icontains': 'registro_campo__icontains',
                     'registro_pai__icontains': 'registro_pai__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
-        
+
         regras_validacao_lista = RegrasDeValidacao.objects.filter(**dict_qs).exclude(id=0).all()
-        
+
         if not post and len(regras_validacao_lista) > 100:
-        
+
             filtrar = True
             regras_validacao_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #regras_validacao_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            'regras_validacao_lista': regras_validacao_lista, 
+            'regras_validacao_lista': regras_validacao_lista,
             'modulos': ['mensageiro', ],
             'paginas': ['regras_validacao', ],
             'dict_fields': dict_fields,
@@ -141,11 +141,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='regras_validacao_listar.html',
@@ -163,37 +163,37 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('regras_validacao_listar.html', context)
             filename = "regras_validacao.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('csv/regras_validacao.csv', context)
             filename = "regras_validacao.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
-            
+
             return response
-        
+
         else:
-        
+
             return render(request, 'regras_validacao_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -201,7 +201,7 @@ def listar(request, output=None):
             'modulos': ['mensageiro', ],
             'paginas': ['regras_validacao', ],
         }
-        
-        return render(request, 
-            'permissao_negada.html', 
+
+        return render(request,
+            'permissao_negada.html',
             context)

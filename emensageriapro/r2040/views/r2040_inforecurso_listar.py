@@ -62,65 +62,65 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('r2040.can_see_r2040infoRecurso'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_r2040_recursosrep': 1,
             'show_tprepasse': 1,
             'show_descrecurso': 1,
             'show_vlrbruto': 1,
             'show_vlrretapur': 1, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 'r2040_recursosrep__icontains': 'r2040_recursosrep__icontains',
                 'tprepasse__icontains': 'tprepasse__icontains',
                 'descrecurso__icontains': 'descrecurso__icontains',
                 'vlrbruto__icontains': 'vlrbruto__icontains',
                 'vlrretapur__icontains': 'vlrretapur__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     'r2040_recursosrep__icontains': 'r2040_recursosrep__icontains',
                     'tprepasse__icontains': 'tprepasse__icontains',
                     'descrecurso__icontains': 'descrecurso__icontains',
                     'vlrbruto__icontains': 'vlrbruto__icontains',
                     'vlrretapur__icontains': 'vlrretapur__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         r2040_inforecurso_lista = r2040infoRecurso.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(r2040_inforecurso_lista) > 100:
-        
+
             filtrar = True
             r2040_inforecurso_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #r2040_inforecurso_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            'r2040_inforecurso_lista': r2040_inforecurso_lista, 
+            'r2040_inforecurso_lista': r2040_inforecurso_lista,
             'modulos': ['r2040', ],
             'paginas': ['r2040_inforecurso', ],
             'dict_fields': dict_fields,
@@ -129,11 +129,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r2040_inforecurso_listar.html',
@@ -151,33 +151,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('r2040_inforecurso_listar.html', context)
             filename = "r2040_inforecurso.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/r2040_inforecurso.csv', context)
             filename = "r2040_inforecurso.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 'r2040_inforecurso_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -185,7 +185,7 @@ def listar(request, output=None):
             'modulos': ['r2040', ],
             'paginas': ['r2040_inforecurso', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

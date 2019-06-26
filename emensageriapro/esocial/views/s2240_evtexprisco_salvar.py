@@ -81,9 +81,9 @@ def salvar(request, pk=None, tab='master', output=None):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
     TP_AMB = config.ESOCIAL_TP_AMB
-    
+
     if pk:
-    
+
         s2240_evtexprisco = get_object_or_404(s2240evtExpRisco, id=pk)
 
         #if s2240_evtexprisco.status != STATUS_EVENTO_CADASTRADO:
@@ -91,105 +91,105 @@ def salvar(request, pk=None, tab='master', output=None):
         #    dict_permissoes = {}
         #    dict_permissoes['s2240_evtexprisco_apagar'] = 0
         #    dict_permissoes['s2240_evtexprisco_editar'] = 0
-            
+
     if request.user.has_perm('esocial.can_see_s2240evtExpRisco'):
-    
+
         if pk:
-        
-            s2240_evtexprisco_form = form_s2240_evtexprisco(request.POST or None, instance = s2240_evtexprisco, 
+
+            s2240_evtexprisco_form = form_s2240_evtexprisco(request.POST or None, instance = s2240_evtexprisco,
                                          initial={'ativo': True})
-                                         
+                     
         else:
-        
-            s2240_evtexprisco_form = form_s2240_evtexprisco(request.POST or None, 
-                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL, 
-                                                  'status': STATUS_EVENTO_CADASTRADO, 
-                                                  'tpamb': TP_AMB, 
-                                                  'procemi': 1, 
-                                                  'verproc': VERSAO_EMENSAGERIA, 
+
+            s2240_evtexprisco_form = form_s2240_evtexprisco(request.POST or None,
+                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA,
                                                   'ativo': True})
-                                                  
+                              
         if request.method == 'POST':
-        
+
             if s2240_evtexprisco_form.is_valid():
-            
+
                 obj = s2240_evtexprisco_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 if not pk:
-                
+
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
-                  
+
                 #    gravar_auditoria('{}',
-                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                 's2240_evtexprisco', obj.id, request.user.id, 1)
                 #else:
-                # 
+                #
                 #    gravar_auditoria(json.dumps(model_to_dict(s2240_evtexprisco), indent=4, sort_keys=True, default=str),
-                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                     's2240_evtexprisco', pk, request.user.id, 2)
-                                 
+             
                 if request.session['return_page'] not in (
-                    's2240_evtexprisco_apagar', 
-                    's2240_evtexprisco_salvar', 
+                    's2240_evtexprisco_apagar',
+                    's2240_evtexprisco_salvar',
                     's2240_evtexprisco'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2240_evtexprisco_salvar', 
+                        's2240_evtexprisco_salvar',
                         pk=obj.id)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-                
+
         s2240_evtexprisco_form = disabled_form_fields(
-             s2240_evtexprisco_form, 
+             s2240_evtexprisco_form,
              request.user.has_perm('esocial.change_s2240evtExpRisco'))
-        
+
         if pk:
-        
+
             if s2240_evtexprisco.status != 0:
-            
+
                 s2240_evtexprisco_form = disabled_form_fields(s2240_evtexprisco_form, False)
-                
+
         #s2240_evtexprisco_campos_multiple_passo3
 
         for field in s2240_evtexprisco_form.fields.keys():
-        
+
             s2240_evtexprisco_form.fields[field].widget.attrs['ng-model'] = 's2240_evtexprisco_'+field
-            
+
         if output:
-        
+
             s2240_evtexprisco_form = disabled_form_for_print(s2240_evtexprisco_form)
 
-        
-        s2240_iniexprisco_infoamb_lista = None 
-        s2240_iniexprisco_infoamb_form = None 
-        s2240_iniexprisco_ativpericinsal_lista = None 
-        s2240_iniexprisco_ativpericinsal_form = None 
-        s2240_iniexprisco_fatrisco_lista = None 
-        s2240_iniexprisco_fatrisco_form = None 
-        s2240_iniexprisco_respreg_lista = None 
-        s2240_iniexprisco_respreg_form = None 
-        s2240_iniexprisco_obs_lista = None 
-        s2240_iniexprisco_obs_form = None 
-        s2240_altexprisco_lista = None 
-        s2240_altexprisco_form = None 
-        s2240_fimexprisco_lista = None 
-        s2240_fimexprisco_form = None 
-        s2240_fimexprisco_respreg_lista = None 
-        s2240_fimexprisco_respreg_form = None 
-        
+
+        s2240_iniexprisco_infoamb_lista = None
+        s2240_iniexprisco_infoamb_form = None
+        s2240_iniexprisco_ativpericinsal_lista = None
+        s2240_iniexprisco_ativpericinsal_form = None
+        s2240_iniexprisco_fatrisco_lista = None
+        s2240_iniexprisco_fatrisco_form = None
+        s2240_iniexprisco_respreg_lista = None
+        s2240_iniexprisco_respreg_form = None
+        s2240_iniexprisco_obs_lista = None
+        s2240_iniexprisco_obs_form = None
+        s2240_altexprisco_lista = None
+        s2240_altexprisco_form = None
+        s2240_fimexprisco_lista = None
+        s2240_fimexprisco_form = None
+        s2240_fimexprisco_respreg_lista = None
+        s2240_fimexprisco_respreg_form = None
+
         if pk:
-        
+
             s2240_evtexprisco = get_object_or_404(s2240evtExpRisco, id=pk)
-            
+
             s2240_iniexprisco_infoamb_form = form_s2240_iniexprisco_infoamb(
                 initial={ 's2240_evtexprisco': s2240_evtexprisco })
             s2240_iniexprisco_infoamb_form.fields['s2240_evtexprisco'].widget.attrs['readonly'] = True
@@ -230,38 +230,38 @@ def salvar(request, pk=None, tab='master', output=None):
             s2240_fimexprisco_respreg_form.fields['s2240_evtexprisco'].widget.attrs['readonly'] = True
             s2240_fimexprisco_respreg_lista = s2240fimExpRiscorespReg.objects.\
                 filter(s2240_evtexprisco_id=s2240_evtexprisco.id).all()
-                
+
         else:
-        
+
             s2240_evtexprisco = None
-            
+
         #s2240_evtexprisco_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if 's2240_evtexprisco'[1] == '5':
             evento_totalizador = True
-            
+
         else:
             evento_totalizador = False
-        
+
         if tab or 's2240_evtexprisco' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2240_evtexprisco_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2240_evtexprisco').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
-            's2240_evtexprisco': s2240_evtexprisco, 
-            's2240_evtexprisco_form': s2240_evtexprisco_form, 
-            
+            's2240_evtexprisco': s2240_evtexprisco,
+            's2240_evtexprisco_form': s2240_evtexprisco_form,
+
             's2240_iniexprisco_infoamb_form': s2240_iniexprisco_infoamb_form,
             's2240_iniexprisco_infoamb_lista': s2240_iniexprisco_infoamb_lista,
             's2240_iniexprisco_ativpericinsal_form': s2240_iniexprisco_ativpericinsal_form,
@@ -285,10 +285,10 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2240_evtexprisco_salvar_custom_variaveis_context#
         }
-        
-            
+
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2240_evtexprisco_salvar.html',
@@ -306,24 +306,24 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             response = render_to_response('s2240_evtexprisco_salvar.html', context)
             filename = "s2240_evtexprisco.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2240_evtexprisco_salvar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -333,5 +333,5 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2240_evtexprisco', ],
             'data': datetime.datetime.now(),
         }
-        
+
         return render(request, 'permissao_negada.html', context)

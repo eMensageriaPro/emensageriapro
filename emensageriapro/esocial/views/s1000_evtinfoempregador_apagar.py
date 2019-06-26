@@ -58,17 +58,17 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, pk):
-        
+
     import json
     from django.forms.models import model_to_dict
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     s1000_evtinfoempregador = get_object_or_404(s1000evtInfoEmpregador, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         if s1000_evtinfoempregador.status == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s1000_evtinfoempregador), indent=4, sort_keys=True, default=str)
             obj = s1000evtInfoEmpregador.objects.get(id=pk)
             obj.delete(request=request)
@@ -76,29 +76,29 @@ def apagar(request, pk):
             #s1000_evtinfoempregador_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
-                             '', 
+                             '',
                              's1000_evtinfoempregador', pk, request.user.id, 3)
         else:
-        
-            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é
                                         possível apagar os eventos com status "Cadastrado"!''')
-            
+
         if 's1000_evtinfoempregador' in request.session['return_page']:
-        
+
             return redirect('s1000_evtinfoempregador')
-            
+
         else:
-        
-            return redirect(request.session['return_page'], 
+
+            return redirect(request.session['return_page'],
                             pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
-        'pk': pk, 
-        's1000_evtinfoempregador': s1000_evtinfoempregador, 
+        'pk': pk,
+        's1000_evtinfoempregador': s1000_evtinfoempregador,
         'data': datetime.datetime.now(),
         'modulos': ['esocial', ],
         'paginas': ['s1000_evtinfoempregador', ],
     }
-    
+
     return render(request, 's1000_evtinfoempregador_apagar.html', context)

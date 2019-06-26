@@ -75,9 +75,9 @@ def salvar(request, pk=None, tab='master', output=None):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
     TP_AMB = config.ESOCIAL_TP_AMB
-    
+
     if pk:
-    
+
         s2210_evtcat = get_object_or_404(s2210evtCAT, id=pk)
 
         #if s2210_evtcat.status != STATUS_EVENTO_CADASTRADO:
@@ -85,99 +85,99 @@ def salvar(request, pk=None, tab='master', output=None):
         #    dict_permissoes = {}
         #    dict_permissoes['s2210_evtcat_apagar'] = 0
         #    dict_permissoes['s2210_evtcat_editar'] = 0
-            
+
     if request.user.has_perm('esocial.can_see_s2210evtCAT'):
-    
+
         if pk:
-        
-            s2210_evtcat_form = form_s2210_evtcat(request.POST or None, instance = s2210_evtcat, 
+
+            s2210_evtcat_form = form_s2210_evtcat(request.POST or None, instance = s2210_evtcat,
                                          initial={'ativo': True})
-                                         
+                     
         else:
-        
-            s2210_evtcat_form = form_s2210_evtcat(request.POST or None, 
-                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL, 
-                                                  'status': STATUS_EVENTO_CADASTRADO, 
-                                                  'tpamb': TP_AMB, 
-                                                  'procemi': 1, 
-                                                  'verproc': VERSAO_EMENSAGERIA, 
+
+            s2210_evtcat_form = form_s2210_evtcat(request.POST or None,
+                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA,
                                                   'ativo': True})
-                                                  
+                              
         if request.method == 'POST':
-        
+
             if s2210_evtcat_form.is_valid():
-            
+
                 obj = s2210_evtcat_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 if not pk:
-                
+
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
-                  
+
                 #    gravar_auditoria('{}',
-                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                 's2210_evtcat', obj.id, request.user.id, 1)
                 #else:
-                # 
+                #
                 #    gravar_auditoria(json.dumps(model_to_dict(s2210_evtcat), indent=4, sort_keys=True, default=str),
-                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                     's2210_evtcat', pk, request.user.id, 2)
-                                 
+             
                 if request.session['return_page'] not in (
-                    's2210_evtcat_apagar', 
-                    's2210_evtcat_salvar', 
+                    's2210_evtcat_apagar',
+                    's2210_evtcat_salvar',
                     's2210_evtcat'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2210_evtcat_salvar', 
+                        's2210_evtcat_salvar',
                         pk=obj.id)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-                
+
         s2210_evtcat_form = disabled_form_fields(
-             s2210_evtcat_form, 
+             s2210_evtcat_form,
              request.user.has_perm('esocial.change_s2210evtCAT'))
-        
+
         if pk:
-        
+
             if s2210_evtcat.status != 0:
-            
+
                 s2210_evtcat_form = disabled_form_fields(s2210_evtcat_form, False)
-                
+
         #s2210_evtcat_campos_multiple_passo3
 
         for field in s2210_evtcat_form.fields.keys():
-        
+
             s2210_evtcat_form.fields[field].widget.attrs['ng-model'] = 's2210_evtcat_'+field
-            
+
         if output:
-        
+
             s2210_evtcat_form = disabled_form_for_print(s2210_evtcat_form)
 
-        
-        s2210_idelocalacid_lista = None 
-        s2210_idelocalacid_form = None 
-        s2210_parteatingida_lista = None 
-        s2210_parteatingida_form = None 
-        s2210_agentecausador_lista = None 
-        s2210_agentecausador_form = None 
-        s2210_atestado_lista = None 
-        s2210_atestado_form = None 
-        s2210_catorigem_lista = None 
-        s2210_catorigem_form = None 
-        
+
+        s2210_idelocalacid_lista = None
+        s2210_idelocalacid_form = None
+        s2210_parteatingida_lista = None
+        s2210_parteatingida_form = None
+        s2210_agentecausador_lista = None
+        s2210_agentecausador_form = None
+        s2210_atestado_lista = None
+        s2210_atestado_form = None
+        s2210_catorigem_lista = None
+        s2210_catorigem_form = None
+
         if pk:
-        
+
             s2210_evtcat = get_object_or_404(s2210evtCAT, id=pk)
-            
+
             s2210_idelocalacid_form = form_s2210_idelocalacid(
                 initial={ 's2210_evtcat': s2210_evtcat })
             s2210_idelocalacid_form.fields['s2210_evtcat'].widget.attrs['readonly'] = True
@@ -203,38 +203,38 @@ def salvar(request, pk=None, tab='master', output=None):
             s2210_catorigem_form.fields['s2210_evtcat'].widget.attrs['readonly'] = True
             s2210_catorigem_lista = s2210catOrigem.objects.\
                 filter(s2210_evtcat_id=s2210_evtcat.id).all()
-                
+
         else:
-        
+
             s2210_evtcat = None
-            
+
         #s2210_evtcat_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if 's2210_evtcat'[1] == '5':
             evento_totalizador = True
-            
+
         else:
             evento_totalizador = False
-        
+
         if tab or 's2210_evtcat' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2210_evtcat_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2210_evtcat').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
-            's2210_evtcat': s2210_evtcat, 
-            's2210_evtcat_form': s2210_evtcat_form, 
-            
+            's2210_evtcat': s2210_evtcat,
+            's2210_evtcat_form': s2210_evtcat_form,
+
             's2210_idelocalacid_form': s2210_idelocalacid_form,
             's2210_idelocalacid_lista': s2210_idelocalacid_lista,
             's2210_parteatingida_form': s2210_parteatingida_form,
@@ -252,10 +252,10 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2210_evtcat_salvar_custom_variaveis_context#
         }
-        
-            
+
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2210_evtcat_salvar.html',
@@ -273,24 +273,24 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             response = render_to_response('s2210_evtcat_salvar.html', context)
             filename = "s2210_evtcat.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2210_evtcat_salvar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -300,5 +300,5 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2210_evtcat', ],
             'data': datetime.datetime.now(),
         }
-        
+
         return render(request, 'permissao_negada.html', context)

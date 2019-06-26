@@ -71,9 +71,9 @@ def salvar(request, pk=None, tab='master', output=None):
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_EFDREINF
     TP_AMB = config.EFDREINF_TP_AMB
-    
+
     if pk:
-    
+
         r2010_evtservtom = get_object_or_404(r2010evtServTom, id=pk)
 
         #if r2010_evtservtom.status != STATUS_EVENTO_CADASTRADO:
@@ -81,95 +81,95 @@ def salvar(request, pk=None, tab='master', output=None):
         #    dict_permissoes = {}
         #    dict_permissoes['r2010_evtservtom_apagar'] = 0
         #    dict_permissoes['r2010_evtservtom_editar'] = 0
-            
+
     if request.user.has_perm('efdreinf.can_see_r2010evtServTom'):
-    
+
         if pk:
-        
-            r2010_evtservtom_form = form_r2010_evtservtom(request.POST or None, instance = r2010_evtservtom, 
+
+            r2010_evtservtom_form = form_r2010_evtservtom(request.POST or None, instance = r2010_evtservtom,
                                          initial={'ativo': True})
-                                         
+                     
         else:
-        
-            r2010_evtservtom_form = form_r2010_evtservtom(request.POST or None, 
-                                         initial={'versao': VERSAO_LAYOUT_EFDREINF, 
-                                                  'status': STATUS_EVENTO_CADASTRADO, 
-                                                  'tpamb': TP_AMB, 
-                                                  'procemi': 1, 
-                                                  'verproc': VERSAO_EMENSAGERIA, 
+
+            r2010_evtservtom_form = form_r2010_evtservtom(request.POST or None,
+                                         initial={'versao': VERSAO_LAYOUT_EFDREINF,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA,
                                                   'ativo': True})
-                                                  
+                              
         if request.method == 'POST':
-        
+
             if r2010_evtservtom_form.is_valid():
-            
+
                 obj = r2010_evtservtom_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 if not pk:
-                
+
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
-                  
+
                 #    gravar_auditoria('{}',
-                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                 'r2010_evtservtom', obj.id, request.user.id, 1)
                 #else:
-                # 
+                #
                 #    gravar_auditoria(json.dumps(model_to_dict(r2010_evtservtom), indent=4, sort_keys=True, default=str),
-                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                     'r2010_evtservtom', pk, request.user.id, 2)
-                                 
+             
                 if request.session['return_page'] not in (
-                    'r2010_evtservtom_apagar', 
-                    'r2010_evtservtom_salvar', 
+                    'r2010_evtservtom_apagar',
+                    'r2010_evtservtom_salvar',
                     'r2010_evtservtom'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'r2010_evtservtom_salvar', 
+                        'r2010_evtservtom_salvar',
                         pk=obj.id)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-                
+
         r2010_evtservtom_form = disabled_form_fields(
-             r2010_evtservtom_form, 
+             r2010_evtservtom_form,
              request.user.has_perm('efdreinf.change_r2010evtServTom'))
-        
+
         if pk:
-        
+
             if r2010_evtservtom.status != 0:
-            
+
                 r2010_evtservtom_form = disabled_form_fields(r2010_evtservtom_form, False)
-                
+
         #r2010_evtservtom_campos_multiple_passo3
 
         for field in r2010_evtservtom_form.fields.keys():
-        
+
             r2010_evtservtom_form.fields[field].widget.attrs['ng-model'] = 'r2010_evtservtom_'+field
-            
+
         if output:
-        
+
             r2010_evtservtom_form = disabled_form_for_print(r2010_evtservtom_form)
 
-        
-        r2010_nfs_lista = None 
-        r2010_nfs_form = None 
-        r2010_infoprocretpr_lista = None 
-        r2010_infoprocretpr_form = None 
-        r2010_infoprocretad_lista = None 
-        r2010_infoprocretad_form = None 
-        
+
+        r2010_nfs_lista = None
+        r2010_nfs_form = None
+        r2010_infoprocretpr_lista = None
+        r2010_infoprocretpr_form = None
+        r2010_infoprocretad_lista = None
+        r2010_infoprocretad_form = None
+
         if pk:
-        
+
             r2010_evtservtom = get_object_or_404(r2010evtServTom, id=pk)
-            
+
             r2010_nfs_form = form_r2010_nfs(
                 initial={ 'r2010_evtservtom': r2010_evtservtom })
             r2010_nfs_form.fields['r2010_evtservtom'].widget.attrs['readonly'] = True
@@ -185,38 +185,38 @@ def salvar(request, pk=None, tab='master', output=None):
             r2010_infoprocretad_form.fields['r2010_evtservtom'].widget.attrs['readonly'] = True
             r2010_infoprocretad_lista = r2010infoProcRetAd.objects.\
                 filter(r2010_evtservtom_id=r2010_evtservtom.id).all()
-                
+
         else:
-        
+
             r2010_evtservtom = None
-            
+
         #r2010_evtservtom_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if 'r2010_evtservtom'[1] == '5':
             evento_totalizador = True
-            
+
         else:
             evento_totalizador = False
-        
+
         if tab or 'r2010_evtservtom' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'r2010_evtservtom_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r2010_evtservtom').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
-            'r2010_evtservtom': r2010_evtservtom, 
-            'r2010_evtservtom_form': r2010_evtservtom_form, 
-            
+            'r2010_evtservtom': r2010_evtservtom,
+            'r2010_evtservtom_form': r2010_evtservtom_form,
+
             'r2010_nfs_form': r2010_nfs_form,
             'r2010_nfs_lista': r2010_nfs_lista,
             'r2010_infoprocretpr_form': r2010_infoprocretpr_form,
@@ -230,10 +230,10 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #r2010_evtservtom_salvar_custom_variaveis_context#
         }
-        
-            
+
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r2010_evtservtom_salvar.html',
@@ -251,24 +251,24 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             response = render_to_response('r2010_evtservtom_salvar.html', context)
             filename = "r2010_evtservtom.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 'r2010_evtservtom_salvar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -278,5 +278,5 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r2010_evtservtom', ],
             'data': datetime.datetime.now(),
         }
-        
+
         return render(request, 'permissao_negada.html', context)

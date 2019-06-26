@@ -44,12 +44,12 @@ from emensageriapro.s5002.models import s5002infoIrrf, s5002infoIrrfSerializer
 
 
 class s5002infoIrrfList(generics.ListAPIView):
-    
+
     queryset = s5002infoIrrf.objects.all()
     serializer_class = s5002infoIrrfSerializer
 
 
 class s5002infoIrrfDetail(generics.ListAPIView):
-    
+
     queryset = s5002infoIrrf.objects.all()
     serializer_class = s5002infoIrrfSerializer

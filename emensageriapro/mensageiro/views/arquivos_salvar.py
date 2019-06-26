@@ -61,97 +61,97 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def salvar(request, pk=None, tab='master', output=None):
-    
+
     if pk:
-    
+
         arquivos = get_object_or_404(Arquivos, id=pk)
-        
+
     if request.user.has_perm('mensageiro.can_see_Arquivos'):
-        
+
         if pk:
-        
+
             arquivos_form = form_arquivos(request.POST or None, instance=arquivos)
-            
+
         else:
-        
+
             arquivos_form = form_arquivos(request.POST or None)
-            
+
         if request.method == 'POST':
-        
+
             if arquivos_form.is_valid():
-            
+
                 #arquivos_campos_multiple_passo1
-                
-                
+
+
                 obj = arquivos_form.save(request=request)
                 messages.success(request, 'Salvo com sucesso!')
                 #arquivos_campos_multiple_passo2
-                
+
                 if request.session['return_page'] not in (
-                    'arquivos_apagar', 
-                    'arquivos_salvar', 
+                    'arquivos_apagar',
+                    'arquivos_salvar',
                     'arquivos'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'arquivos_salvar', 
+                        'arquivos_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, 'Erro ao salvar!')
-                
+
         arquivos_form = disabled_form_fields(arquivos_form, request.user.has_perm('mensageiro.change_Arquivos'))
         #arquivos_campos_multiple_passo3
-        
+
         if output:
-        
+
             arquivos_form = disabled_form_for_print(arquivos_form)
-        
-        
-        
+
+
+
         if pk:
-        
+
             arquivos = get_object_or_404(Arquivos, id=pk)
-            
-                
+
+
         else:
-        
+
             arquivos = None
-            
+
         #arquivos_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if tab or 'arquivos' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'arquivos_salvar'
-            
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'tab': tab,
-            'arquivos': arquivos, 
-            'arquivos_form': arquivos_form, 
+            'arquivos': arquivos,
+            'arquivos_form': arquivos_form,
             'modulos': ['mensageiro', ],
             'paginas': ['arquivos', ],
             'data': datetime.datetime.now(),
             'tabelas_secundarias': tabelas_secundarias,
             #arquivos_salvar_custom_variaveis_context#
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='arquivos_salvar.html',
@@ -169,26 +169,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True})
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('arquivos_salvar.html', context)
             filename = "arquivos.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-        
+
         else:
-        
+
             return render(request, 'arquivos_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -198,7 +198,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['arquivos', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-            'permissao_negada.html', 
+
+        return render(request,
+            'permissao_negada.html',
             context)

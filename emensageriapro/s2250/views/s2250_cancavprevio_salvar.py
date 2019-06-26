@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2250_cancavprevio = get_object_or_404(s2250cancAvPrevio, id=pk)
         evento_dados = s2250_cancavprevio.evento()
 
     if request.user.has_perm('s2250.can_see_s2250cancAvPrevio'):
-        
+
         if pk:
-        
+
             s2250_cancavprevio_form = form_s2250_cancavprevio(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2250_cancavprevio)
-                                         
+                     
         else:
-        
+
             s2250_cancavprevio_form = form_s2250_cancavprevio(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2250_cancavprevio_form.is_valid():
-            
+
                 obj = s2250_cancavprevio_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2250_cancavprevio', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2250_cancavprevio',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2250_cancavprevio), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2250_cancavprevio),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2250_cancavprevio', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2250_cancavprevio',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2250_cancavprevio_apagar', 
-                    's2250_cancavprevio_salvar', 
+                    's2250_cancavprevio_apagar',
+                    's2250_cancavprevio_salvar',
                     's2250_cancavprevio'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2250_cancavprevio_salvar', 
+                        's2250_cancavprevio_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2250_cancavprevio_form = disabled_form_fields(
-            s2250_cancavprevio_form, 
+            s2250_cancavprevio_form,
             request.user.has_perm('s2250.change_s2250cancAvPrevio'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2250_cancavprevio_form = disabled_form_fields(s2250_cancavprevio_form, 0)
-                
+
         if output:
-        
+
             s2250_cancavprevio_form = disabled_form_for_print(s2250_cancavprevio_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s2250_cancavprevio = get_object_or_404(s2250cancAvPrevio, id=pk)
-            
-                
+
+
         else:
-        
+
             s2250_cancavprevio = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2250_cancavprevio' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2250_cancavprevio_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2250_cancavprevio').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2250_cancavprevio': s2250_cancavprevio, 
-            's2250_cancavprevio_form': s2250_cancavprevio_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2250_cancavprevio': s2250_cancavprevio,
+            's2250_cancavprevio_form': s2250_cancavprevio_form,
             'modulos': ['s2250', ],
             'paginas': ['s2250_cancavprevio', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2250_cancavprevio_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2250_cancavprevio_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2250_cancavprevio_salvar.html', context)
             filename = "s2250_cancavprevio.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2250_cancavprevio_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2250_cancavprevio', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

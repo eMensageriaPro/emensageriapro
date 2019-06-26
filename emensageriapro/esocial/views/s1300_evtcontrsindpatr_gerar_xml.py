@@ -95,22 +95,22 @@ def gerar_xml_s1300(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         s1300_evtcontrsindpatr_lista = s1300evtContrSindPatr.objects. \
             filter(id=pk).all()
-            
-        
+
+
         s1300_contribsind_lista = s1300contribSind.objects. \
             filter(s1300_evtcontrsindpatr_id__in=listar_ids(s1300_evtcontrsindpatr_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -138,14 +138,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1300_evtcontrsindpatr.arquivo_original:
-    
+
         xml = ler_arquivo(s1300_evtcontrsindpatr.arquivo)
 
     else:
         xml = gerar_xml_s1300(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -166,16 +166,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 s1300evtContrSindPatr,
                 s1300_evtcontrsindpatr)
-        
+
         s1300_evtcontrsindpatr = get_object_or_404(
             s1300evtContrSindPatr,
             id=pk)
-        
+
         xml_assinado = assinar_esocial(
-            request, 
-            xml, 
+            request,
+            xml,
             s1300_evtcontrsindpatr.transmissor_lote_esocial_id)
-        
+
     if s1300_evtcontrsindpatr.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -189,11 +189,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s1300_evtcontrsindpatr/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -206,5 +206,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

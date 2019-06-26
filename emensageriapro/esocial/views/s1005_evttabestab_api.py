@@ -60,25 +60,25 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class s1005evtTabEstabList(generics.ListCreateAPIView):
-    
+
     queryset = s1005evtTabEstab.objects.all()
     serializer_class = s1005evtTabEstabSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
 
 
 class s1005evtTabEstabDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = s1005evtTabEstab.objects.all()
     serializer_class = s1005evtTabEstabSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

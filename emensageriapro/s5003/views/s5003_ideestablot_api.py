@@ -44,12 +44,12 @@ from emensageriapro.s5003.models import s5003ideEstabLot, s5003ideEstabLotSerial
 
 
 class s5003ideEstabLotList(generics.ListAPIView):
-    
+
     queryset = s5003ideEstabLot.objects.all()
     serializer_class = s5003ideEstabLotSerializer
 
 
 class s5003ideEstabLotDetail(generics.ListAPIView):
-    
+
     queryset = s5003ideEstabLot.objects.all()
     serializer_class = s5003ideEstabLotSerializer

@@ -115,7 +115,7 @@ def scripts_processar_arquivos(request, tab):
                 origem = BASE_DIR + arquivo.arquivo
                 destino = BASE_DIR + arquivo.arquivo.replace('/aguardando/', '/erro/' + ident + '__')
                 os.system('mv %s %s' % (origem, destino))
-                dados_eventos['arquivo'] = arquivo.arquivo.replace('/aguardando/', '/erro/'+ ident + '__')
+                dados_eventos['arquivo'] = arquivo.arquivo.replace('/aguardando/', '/erro/' + ident + '__')
                 gravar_nome_arquivo(dados_eventos['arquivo'], 1)
 
             elif dados_eventos['versao'] in VERSOES_ESOCIAL or dados_eventos['versao'] in VERSOES_EFDREINF:
@@ -177,6 +177,8 @@ def scripts_processar_arquivos(request, tab):
 @login_required
 def scripts_salvar_arquivos(request, tab='master'):
 
+    create_import_dirs()
+
     import os
     from emensageriapro.settings import BASE_DIR
     from django.core.files.storage import FileSystemStorage
@@ -209,63 +211,67 @@ def scripts_salvar_arquivos(request, tab='master'):
 
         for arquivo in arquivos:
 
-            filename = BASE_DIR + '/' + arquivo.arquivo
+            filename = BASE_DIR + arquivo.arquivo
 
             if '.xml' in filename.lower():
 
                 destino = filename.replace('/enviado/', '/aguardando/')
-                os.system('mv %s %s' % (filename, destino))
+                comando = 'cp %s %s' % (filename, destino)
+                print comando
+                os.system(comando)
 
             elif '.zip' in filename:
 
-                os.system('unzip -o -a %s -d %s' % (filename, BASE_DIR + '/arquivos/Importacao/aguardando'))
+                os.system('unzip -o -a %s -d %s' % (filename, BASE_DIR + '/arquivos/Importacao/aguardando/'))
 
-            lista = os.listdir(BASE_DIR + '/arquivos/Importacao/aguardando')
+            ImportacaoArquivos.objects.filter(id=arquivo.id).update(status=2)
 
-            n = 0
+        lista = os.listdir(BASE_DIR + '/arquivos/Importacao/aguardando/')
 
-            for arquivo_evento in lista:
+        n = 0
 
-                if '.xml' in arquivo_evento.lower():
+        for arquivo_evento in lista:
 
-                    n += 1
-                    arq_compl = '/arquivos/Importacao/aguardando/' + arquivo_evento
+            if '.xml' in arquivo_evento.lower():
 
-                    dados_eventos = {}
-                    dados_eventos['importacao_arquivos_id'] = arquivo.id
-                    dados_eventos['evento'] = '-'
-                    dados_eventos['versao'] = '-'
-                    dados_eventos['identidade_evento'] = '-'
-                    dados_eventos['identidade'] = 0
-                    dados_eventos['arquivo'] = arq_compl
-                    dados_eventos['status'] = 0
-                    dados_eventos['data_hora'] = datetime.datetime.now()
-                    dados_eventos['validacoes'] = ''
-                    dados_eventos['criado_em'] = datetime.datetime.now()
-                    dados_eventos['criado_por_id'] = request.user.id
-                    dados_eventos['ativo'] = True
+                n += 1
+                arq_compl = '/arquivos/Importacao/aguardando/' + arquivo_evento
 
-                    obj = ImportacaoArquivosEventos(**dados_eventos)
-                    obj.save()
+                dados_eventos = {}
+                dados_eventos['importacao_arquivos_id'] = arquivo.id
+                dados_eventos['evento'] = '-'
+                dados_eventos['versao'] = '-'
+                dados_eventos['identidade_evento'] = '-'
+                dados_eventos['identidade'] = 0
+                dados_eventos['arquivo'] = arq_compl
+                dados_eventos['status'] = 0
+                dados_eventos['data_hora'] = datetime.datetime.now()
+                dados_eventos['validacoes'] = ''
+                dados_eventos['criado_em'] = datetime.datetime.now()
+                dados_eventos['criado_por_id'] = request.user.id
+                dados_eventos['ativo'] = True
 
-            if config.IMPORT_AUTOMATIC_FUNCTIONS_ENABLED:
+                obj = ImportacaoArquivosEventos(**dados_eventos)
+                obj.save()
 
-                messages.success(request,
-                    '''Arquivo %s extraido com sucesso! 
-                       Aguarde um momento que o arquivo 
-                       será processado em breve ou 
-                       clique em "Processar Arquivos" 
-                       para processar os arquivos''' % arquivo)
-                return redirect('mapa_importacoes', tab='master')
+        if config.IMPORT_AUTOMATIC_FUNCTIONS_ENABLED:
 
-            else:
+            messages.success(request,
+                '''Arquivo %s extraido com sucesso! 
+                   Aguarde um momento que o arquivo 
+                   será processado em breve ou 
+                   clique em "Processar Arquivos" 
+                   para processar os arquivos''' % arquivo)
+            return redirect('mapa_importacoes', tab='master')
 
-                messages.success(request,
-                    u'''Arquivo %s extraido com sucesso!
-                        Habilite a função de processamento automático 
-                        ou clique em "Processar Arquivos" 
-                        para processar os arquivos''' % arquivo)
-                return redirect('mapa_importacoes', tab='master')
+        else:
+
+            messages.success(request,
+                u'''Arquivo %s extraido com sucesso!
+                    Habilite a função de processamento automático 
+                    ou clique em "Processar Arquivos" 
+                    para processar os arquivos''' % arquivo)
+            return redirect('mapa_importacoes', tab='master')
 
     else:
 

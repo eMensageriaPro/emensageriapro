@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2206_localtrabgeral = get_object_or_404(s2206localTrabGeral, id=pk)
         evento_dados = s2206_localtrabgeral.evento()
 
     if request.user.has_perm('s2206.can_see_s2206localTrabGeral'):
-        
+
         if pk:
-        
+
             s2206_localtrabgeral_form = form_s2206_localtrabgeral(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2206_localtrabgeral)
-                                         
+                     
         else:
-        
+
             s2206_localtrabgeral_form = form_s2206_localtrabgeral(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2206_localtrabgeral_form.is_valid():
-            
+
                 obj = s2206_localtrabgeral_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2206_localtrabgeral', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2206_localtrabgeral',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2206_localtrabgeral), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2206_localtrabgeral),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2206_localtrabgeral', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2206_localtrabgeral',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2206_localtrabgeral_apagar', 
-                    's2206_localtrabgeral_salvar', 
+                    's2206_localtrabgeral_apagar',
+                    's2206_localtrabgeral_salvar',
                     's2206_localtrabgeral'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2206_localtrabgeral_salvar', 
+                        's2206_localtrabgeral_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2206_localtrabgeral_form = disabled_form_fields(
-            s2206_localtrabgeral_form, 
+            s2206_localtrabgeral_form,
             request.user.has_perm('s2206.change_s2206localTrabGeral'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2206_localtrabgeral_form = disabled_form_fields(s2206_localtrabgeral_form, 0)
-                
+
         if output:
-        
+
             s2206_localtrabgeral_form = disabled_form_for_print(s2206_localtrabgeral_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s2206_localtrabgeral = get_object_or_404(s2206localTrabGeral, id=pk)
-            
-                
+
+
         else:
-        
+
             s2206_localtrabgeral = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2206_localtrabgeral' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2206_localtrabgeral_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2206_localtrabgeral').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2206_localtrabgeral': s2206_localtrabgeral, 
-            's2206_localtrabgeral_form': s2206_localtrabgeral_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2206_localtrabgeral': s2206_localtrabgeral,
+            's2206_localtrabgeral_form': s2206_localtrabgeral_form,
             'modulos': ['s2206', ],
             'paginas': ['s2206_localtrabgeral', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2206_localtrabgeral_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2206_localtrabgeral_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2206_localtrabgeral_salvar.html', context)
             filename = "s2206_localtrabgeral.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2206_localtrabgeral_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2206_localtrabgeral', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2245_ideprofresp = get_object_or_404(s2245ideProfResp, id=pk)
         evento_dados = s2245_ideprofresp.evento()
 
     if request.user.has_perm('s2245.can_see_s2245ideProfResp'):
-        
+
         if pk:
-        
+
             s2245_ideprofresp_form = form_s2245_ideprofresp(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2245_ideprofresp)
-                                         
+                     
         else:
-        
+
             s2245_ideprofresp_form = form_s2245_ideprofresp(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2245_ideprofresp_form.is_valid():
-            
+
                 obj = s2245_ideprofresp_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2245_ideprofresp', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2245_ideprofresp',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2245_ideprofresp), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2245_ideprofresp),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2245_ideprofresp', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2245_ideprofresp',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2245_ideprofresp_apagar', 
-                    's2245_ideprofresp_salvar', 
+                    's2245_ideprofresp_apagar',
+                    's2245_ideprofresp_salvar',
                     's2245_ideprofresp'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2245_ideprofresp_salvar', 
+                        's2245_ideprofresp_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2245_ideprofresp_form = disabled_form_fields(
-            s2245_ideprofresp_form, 
+            s2245_ideprofresp_form,
             request.user.has_perm('s2245.change_s2245ideProfResp'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2245_ideprofresp_form = disabled_form_fields(s2245_ideprofresp_form, 0)
-                
+
         if output:
-        
+
             s2245_ideprofresp_form = disabled_form_for_print(s2245_ideprofresp_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s2245_ideprofresp = get_object_or_404(s2245ideProfResp, id=pk)
-            
-                
+
+
         else:
-        
+
             s2245_ideprofresp = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2245_ideprofresp' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2245_ideprofresp_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2245_ideprofresp').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2245_ideprofresp': s2245_ideprofresp, 
-            's2245_ideprofresp_form': s2245_ideprofresp_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2245_ideprofresp': s2245_ideprofresp,
+            's2245_ideprofresp_form': s2245_ideprofresp_form,
             'modulos': ['s2245', ],
             'paginas': ['s2245_ideprofresp', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2245_ideprofresp_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2245_ideprofresp_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2245_ideprofresp_salvar.html', context)
             filename = "s2245_ideprofresp.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2245_ideprofresp_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2245_ideprofresp', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

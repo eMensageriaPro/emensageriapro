@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s1260_nfs = get_object_or_404(s1260nfs, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s1260_nfs.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s1260_nfs), indent=4, sort_keys=True, default=str)
             obj = s1260nfs.objects.get(id=pk)
             obj.delete(request=request)
             #s1260_nfs_apagar_custom
             #s1260_nfs_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's1260_nfs', 
-                             pk, 
+                             '',
+                             's1260_nfs',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's1260_nfs' in request.session['return_page']:
-        
+
             return redirect('s1260_nfs')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s1260', ],
         'paginas': ['s1260_nfs', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's1260_nfs_apagar.html', 
+
+    return render(request,
+                  's1260_nfs_apagar.html',
                   context)

@@ -459,3 +459,48 @@ CONSTANCE_CONFIG = {
         unicode),
 
 }
+
+DJANGO_LOG_DIR = env('DJANGO_LOG_DIR', default='/var/log/django')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+
+    },
+    'handlers': {
+        'applogfile': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(DJANGO_LOG_DIR, 'messageria.log'),
+            'maxBytes': 1024*1024*15,  # 15MB
+            'backupCount': 10,
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['applogfile'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['applogfile'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'APPNAME': {
+            'handlers': ['applogfile'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'messageria': {
+            # mail_admins will only accept ERROR and higher
+            'handlers': ['applogfile'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    }
+}

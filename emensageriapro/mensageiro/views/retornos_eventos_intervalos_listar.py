@@ -62,62 +62,62 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('mensageiro.can_see_RetornosEventosIntervalos'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_retornos_eventos_horarios': 1,
             'show_tpinterv': 1,
             'show_durinterv': 1,
             'show_iniinterv': 0,
             'show_terminterv': 0, }
-            
+
         post = False
         #ANTES-POST-LISTAGEM
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            
-            dict_fields = { 
+
+            dict_fields = {
                 'retornos_eventos_horarios__icontains': 'retornos_eventos_horarios__icontains',
                 'tpinterv__icontains': 'tpinterv__icontains',
                 'durinterv__icontains': 'durinterv__icontains', }
-                
+
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     'retornos_eventos_horarios__icontains': 'retornos_eventos_horarios__icontains',
                     'tpinterv__icontains': 'tpinterv__icontains',
                     'durinterv__icontains': 'durinterv__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
-        
+
         retornos_eventos_intervalos_lista = RetornosEventosIntervalos.objects.filter(**dict_qs).exclude(id=0).all()
-        
+
         if not post and len(retornos_eventos_intervalos_lista) > 100:
-        
+
             filtrar = True
             retornos_eventos_intervalos_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #retornos_eventos_intervalos_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            'retornos_eventos_intervalos_lista': retornos_eventos_intervalos_lista, 
+            'retornos_eventos_intervalos_lista': retornos_eventos_intervalos_lista,
             'modulos': ['mensageiro', ],
             'paginas': ['retornos_eventos_intervalos', ],
             'dict_fields': dict_fields,
@@ -126,11 +126,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='retornos_eventos_intervalos_listar.html',
@@ -148,37 +148,37 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('retornos_eventos_intervalos_listar.html', context)
             filename = "retornos_eventos_intervalos.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('csv/retornos_eventos_intervalos.csv', context)
             filename = "retornos_eventos_intervalos.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
-            
+
             return response
-        
+
         else:
-        
+
             return render(request, 'retornos_eventos_intervalos_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -186,7 +186,7 @@ def listar(request, output=None):
             'modulos': ['mensageiro', ],
             'paginas': ['retornos_eventos_intervalos', ],
         }
-        
-        return render(request, 
-            'permissao_negada.html', 
+
+        return render(request,
+            'permissao_negada.html',
             context)

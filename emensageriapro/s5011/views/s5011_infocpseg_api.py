@@ -44,12 +44,12 @@ from emensageriapro.s5011.models import s5011infoCPSeg, s5011infoCPSegSerializer
 
 
 class s5011infoCPSegList(generics.ListAPIView):
-    
+
     queryset = s5011infoCPSeg.objects.all()
     serializer_class = s5011infoCPSegSerializer
 
 
 class s5011infoCPSegDetail(generics.ListAPIView):
-    
+
     queryset = s5011infoCPSeg.objects.all()
     serializer_class = s5011infoCPSegSerializer

@@ -74,11 +74,11 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('efdreinf.can_see_r2040evtAssocDespRep'):
-    
+
         r2040_evtassocdesprep = get_object_or_404(r2040evtAssocDespRep, id=pk)
         r2040_evtassocdesprep_lista = r2040evtAssocDespRep.objects.filter(id=pk).all()
 
-        
+
         r2040_recursosrep_lista = r2040recursosRep.objects.filter(r2040_evtassocdesprep_id__in = listar_ids(r2040_evtassocdesprep_lista) ).all()
         r2040_inforecurso_lista = r2040infoRecurso.objects.filter(r2040_recursosrep_id__in = listar_ids(r2040_recursosrep_lista) ).all()
         r2040_infoproc_lista = r2040infoProc.objects.filter(r2040_recursosrep_id__in = listar_ids(r2040_recursosrep_lista) ).all()
@@ -99,9 +99,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r2040_evtassocdesprep_verificar.html',
@@ -118,20 +118,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('r2040_evtassocdesprep_verificar.html', context)
             filename = "%s.xls" % r2040_evtassocdesprep.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('r2040_evtassocdesprep_verificar.html', context)
             filename = "%s.csv" % r2040_evtassocdesprep.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -139,7 +139,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 'r2040_evtassocdesprep_verificar.html', context)
 
     else:

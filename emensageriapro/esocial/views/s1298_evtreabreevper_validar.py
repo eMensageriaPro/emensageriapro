@@ -23,7 +23,7 @@
         mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
         COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
         Licença Pública Geral GNU Affero para mais detalhes.
-    
+
         Este programa é software livre: você pode redistribuí-lo e / ou modificar
         sob os termos da licença GNU Affero General Public License como
         publicado pela Free Software Foundation, seja versão 3 do
@@ -46,59 +46,59 @@ def validacoes_s1298_evtreabreevper(arquivo):
 
     from emensageriapro.mensageiro.functions.funcoes_validacoes import validar_campo
     import untangle
-    
+
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
     validacoes_lista = []
     xmlns = doc.eSocial['xmlns'].split('/')
     evtReabreEvPer = doc.eSocial.evtReabreEvPer
     #variaveis
-    
+
     if 'ideEvento' in dir(evtReabreEvPer.ideEvento):
         for ideEvento in evtReabreEvPer.ideEvento:
-            
+
             if 'indApuracao' in dir(ideEvento):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEvento.indApuracao', 
-                                                  ideEvento.indApuracao.cdata, 
+                                                  'ideEvento.indApuracao',
+                                                  ideEvento.indApuracao.cdata,
                                                   1, u'1, 2')
-            
+
             if 'perApur' in dir(ideEvento):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEvento.perApur', 
-                                                  ideEvento.perApur.cdata, 
+                                                  'ideEvento.perApur',
+                                                  ideEvento.perApur.cdata,
                                                   1, u'None')
-            
+
             if 'tpAmb' in dir(ideEvento):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEvento.tpAmb', 
-                                                  ideEvento.tpAmb.cdata, 
+                                                  'ideEvento.tpAmb',
+                                                  ideEvento.tpAmb.cdata,
                                                   1, u'1, 2')
-            
+
             if 'procEmi' in dir(ideEvento):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEvento.procEmi', 
-                                                  ideEvento.procEmi.cdata, 
+                                                  'ideEvento.procEmi',
+                                                  ideEvento.procEmi.cdata,
                                                   1, u'1, 2, 3, 4, 5')
-            
+
             if 'verProc' in dir(ideEvento):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEvento.verProc', 
-                                                  ideEvento.verProc.cdata, 
+                                                  'ideEvento.verProc',
+                                                  ideEvento.verProc.cdata,
                                                   1, u'None')
-    
+
     if 'ideEmpregador' in dir(evtReabreEvPer.ideEmpregador):
         for ideEmpregador in evtReabreEvPer.ideEmpregador:
-            
+
             if 'tpInsc' in dir(ideEmpregador):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEmpregador.tpInsc', 
-                                                  ideEmpregador.tpInsc.cdata, 
+                                                  'ideEmpregador.tpInsc',
+                                                  ideEmpregador.tpInsc.cdata,
                                                   1, u'1, 2, 3, 4, 5')
-            
+
             if 'nrInsc' in dir(ideEmpregador):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEmpregador.nrInsc', 
-                                                  ideEmpregador.nrInsc.cdata, 
+                                                  'ideEmpregador.nrInsc',
+                                                  ideEmpregador.nrInsc.cdata,
                                                   1, u'None')
     return validacoes_lista

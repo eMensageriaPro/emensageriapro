@@ -95,67 +95,67 @@ def gerar_xml_s1005(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         s1005_evttabestab_lista = s1005evtTabEstab.objects. \
             filter(id=pk).all()
-            
-        
+
+
         s1005_inclusao_lista = s1005inclusao.objects. \
             filter(s1005_evttabestab_id__in=listar_ids(s1005_evttabestab_lista)).all()
-        
+
         s1005_inclusao_procadmjudrat_lista = s1005inclusaoprocAdmJudRat.objects. \
             filter(s1005_inclusao_id__in=listar_ids(s1005_inclusao_lista)).all()
-        
+
         s1005_inclusao_procadmjudfap_lista = s1005inclusaoprocAdmJudFap.objects. \
             filter(s1005_inclusao_id__in=listar_ids(s1005_inclusao_lista)).all()
-        
+
         s1005_inclusao_infocaepf_lista = s1005inclusaoinfoCaepf.objects. \
             filter(s1005_inclusao_id__in=listar_ids(s1005_inclusao_lista)).all()
-        
+
         s1005_inclusao_infoobra_lista = s1005inclusaoinfoObra.objects. \
             filter(s1005_inclusao_id__in=listar_ids(s1005_inclusao_lista)).all()
-        
+
         s1005_inclusao_infoenteduc_lista = s1005inclusaoinfoEntEduc.objects. \
             filter(s1005_inclusao_id__in=listar_ids(s1005_inclusao_lista)).all()
-        
+
         s1005_inclusao_infopcd_lista = s1005inclusaoinfoPCD.objects. \
             filter(s1005_inclusao_id__in=listar_ids(s1005_inclusao_lista)).all()
-        
+
         s1005_alteracao_lista = s1005alteracao.objects. \
             filter(s1005_evttabestab_id__in=listar_ids(s1005_evttabestab_lista)).all()
-        
+
         s1005_alteracao_procadmjudrat_lista = s1005alteracaoprocAdmJudRat.objects. \
             filter(s1005_alteracao_id__in=listar_ids(s1005_alteracao_lista)).all()
-        
+
         s1005_alteracao_procadmjudfap_lista = s1005alteracaoprocAdmJudFap.objects. \
             filter(s1005_alteracao_id__in=listar_ids(s1005_alteracao_lista)).all()
-        
+
         s1005_alteracao_infocaepf_lista = s1005alteracaoinfoCaepf.objects. \
             filter(s1005_alteracao_id__in=listar_ids(s1005_alteracao_lista)).all()
-        
+
         s1005_alteracao_infoobra_lista = s1005alteracaoinfoObra.objects. \
             filter(s1005_alteracao_id__in=listar_ids(s1005_alteracao_lista)).all()
-        
+
         s1005_alteracao_infoenteduc_lista = s1005alteracaoinfoEntEduc.objects. \
             filter(s1005_alteracao_id__in=listar_ids(s1005_alteracao_lista)).all()
-        
+
         s1005_alteracao_infopcd_lista = s1005alteracaoinfoPCD.objects. \
             filter(s1005_alteracao_id__in=listar_ids(s1005_alteracao_lista)).all()
-        
+
         s1005_alteracao_novavalidade_lista = s1005alteracaonovaValidade.objects. \
             filter(s1005_alteracao_id__in=listar_ids(s1005_alteracao_lista)).all()
-        
+
         s1005_exclusao_lista = s1005exclusao.objects. \
             filter(s1005_evttabestab_id__in=listar_ids(s1005_evttabestab_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -198,14 +198,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1005_evttabestab.arquivo_original:
-    
+
         xml = ler_arquivo(s1005_evttabestab.arquivo)
 
     else:
         xml = gerar_xml_s1005(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -226,16 +226,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 s1005evtTabEstab,
                 s1005_evttabestab)
-        
+
         s1005_evttabestab = get_object_or_404(
             s1005evtTabEstab,
             id=pk)
-        
+
         xml_assinado = assinar_esocial(
-            request, 
-            xml, 
+            request,
+            xml,
             s1005_evttabestab.transmissor_lote_esocial_id)
-        
+
     if s1005_evttabestab.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -249,11 +249,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s1005_evttabestab/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -266,5 +266,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

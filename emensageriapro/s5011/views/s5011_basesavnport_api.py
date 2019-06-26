@@ -44,12 +44,12 @@ from emensageriapro.s5011.models import s5011basesAvNPort, s5011basesAvNPortSeri
 
 
 class s5011basesAvNPortList(generics.ListAPIView):
-    
+
     queryset = s5011basesAvNPort.objects.all()
     serializer_class = s5011basesAvNPortSerializer
 
 
 class s5011basesAvNPortDetail(generics.ListAPIView):
-    
+
     queryset = s5011basesAvNPort.objects.all()
     serializer_class = s5011basesAvNPortSerializer

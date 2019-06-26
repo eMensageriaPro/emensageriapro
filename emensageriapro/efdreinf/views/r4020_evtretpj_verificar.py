@@ -74,11 +74,11 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('efdreinf.can_see_r4020evtRetPJ'):
-    
+
         r4020_evtretpj = get_object_or_404(r4020evtRetPJ, id=pk)
         r4020_evtretpj_lista = r4020evtRetPJ.objects.filter(id=pk).all()
 
-        
+
         r4020_idepgto_lista = r4020idePgto.objects.filter(r4020_evtretpj_id__in = listar_ids(r4020_evtretpj_lista) ).all()
         r4020_infopgto_lista = r4020infoPgto.objects.filter(r4020_idepgto_id__in = listar_ids(r4020_idepgto_lista) ).all()
         r4020_ir_lista = r4020IR.objects.filter(r4020_infopgto_id__in = listar_ids(r4020_infopgto_lista) ).all()
@@ -121,9 +121,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r4020_evtretpj_verificar.html',
@@ -140,20 +140,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('r4020_evtretpj_verificar.html', context)
             filename = "%s.xls" % r4020_evtretpj.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('r4020_evtretpj_verificar.html', context)
             filename = "%s.csv" % r4020_evtretpj.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -161,7 +161,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 'r4020_evtretpj_verificar.html', context)
 
     else:

@@ -44,12 +44,12 @@ from emensageriapro.r9011.models import r9011RComl, r9011RComlSerializer
 
 
 class r9011RComlList(generics.ListAPIView):
-    
+
     queryset = r9011RComl.objects.all()
     serializer_class = r9011RComlSerializer
 
 
 class r9011RComlDetail(generics.ListAPIView):
-    
+
     queryset = r9011RComl.objects.all()
     serializer_class = r9011RComlSerializer

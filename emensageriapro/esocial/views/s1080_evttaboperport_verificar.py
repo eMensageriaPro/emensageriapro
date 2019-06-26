@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s1080evtTabOperPort'):
-    
+
         s1080_evttaboperport = get_object_or_404(s1080evtTabOperPort, id=pk)
         s1080_evttaboperport_lista = s1080evtTabOperPort.objects.filter(id=pk).all()
 
-        
+
         s1080_inclusao_lista = s1080inclusao.objects.filter(s1080_evttaboperport_id__in = listar_ids(s1080_evttaboperport_lista) ).all()
         s1080_alteracao_lista = s1080alteracao.objects.filter(s1080_evttaboperport_id__in = listar_ids(s1080_evttaboperport_lista) ).all()
         s1080_alteracao_novavalidade_lista = s1080alteracaonovaValidade.objects.filter(s1080_alteracao_id__in = listar_ids(s1080_alteracao_lista) ).all()
@@ -101,9 +101,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1080_evttaboperport_verificar.html',
@@ -120,20 +120,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s1080_evttaboperport_verificar.html', context)
             filename = "%s.xls" % s1080_evttaboperport.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s1080_evttaboperport_verificar.html', context)
             filename = "%s.csv" % s1080_evttaboperport.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -141,7 +141,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's1080_evttaboperport_verificar.html', context)
 
     else:

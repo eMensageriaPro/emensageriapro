@@ -62,11 +62,11 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('s2400.can_see_s2400dependente'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_s2400_evtcdbenefin': 1,
             'show_tpdep': 1,
             'show_nmdep': 1,
@@ -76,13 +76,13 @@ def listar(request, output=None):
             'show_depirrf': 1,
             'show_incfismen': 1,
             'show_depfinsprev': 1, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 's2400_evtcdbenefin__icontains': 's2400_evtcdbenefin__icontains',
                 'tpdep__icontains': 'tpdep__icontains',
                 'nmdep__icontains': 'nmdep__icontains',
@@ -92,18 +92,18 @@ def listar(request, output=None):
                 'depirrf__icontains': 'depirrf__icontains',
                 'incfismen__icontains': 'incfismen__icontains',
                 'depfinsprev__icontains': 'depfinsprev__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     's2400_evtcdbenefin__icontains': 's2400_evtcdbenefin__icontains',
                     'tpdep__icontains': 'tpdep__icontains',
                     'nmdep__icontains': 'nmdep__icontains',
@@ -113,26 +113,26 @@ def listar(request, output=None):
                     'depirrf__icontains': 'depirrf__icontains',
                     'incfismen__icontains': 'incfismen__icontains',
                     'depfinsprev__icontains': 'depfinsprev__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         s2400_dependente_lista = s2400dependente.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(s2400_dependente_lista) > 100:
-        
+
             filtrar = True
             s2400_dependente_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s2400_dependente_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            's2400_dependente_lista': s2400_dependente_lista, 
+            's2400_dependente_lista': s2400_dependente_lista,
             'modulos': ['s2400', ],
             'paginas': ['s2400_dependente', ],
             'dict_fields': dict_fields,
@@ -141,11 +141,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2400_dependente_listar.html',
@@ -163,33 +163,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('s2400_dependente_listar.html', context)
             filename = "s2400_dependente.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/s2400_dependente.csv', context)
             filename = "s2400_dependente.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 's2400_dependente_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -197,7 +197,7 @@ def listar(request, output=None):
             'modulos': ['s2400', ],
             'paginas': ['s2400_dependente', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

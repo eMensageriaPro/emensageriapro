@@ -95,37 +95,37 @@ def gerar_xml_s1030(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         s1030_evttabcargo_lista = s1030evtTabCargo.objects. \
             filter(id=pk).all()
-            
-        
+
+
         s1030_inclusao_lista = s1030inclusao.objects. \
             filter(s1030_evttabcargo_id__in=listar_ids(s1030_evttabcargo_lista)).all()
-        
+
         s1030_inclusao_cargopublico_lista = s1030inclusaocargoPublico.objects. \
             filter(s1030_inclusao_id__in=listar_ids(s1030_inclusao_lista)).all()
-        
+
         s1030_alteracao_lista = s1030alteracao.objects. \
             filter(s1030_evttabcargo_id__in=listar_ids(s1030_evttabcargo_lista)).all()
-        
+
         s1030_alteracao_cargopublico_lista = s1030alteracaocargoPublico.objects. \
             filter(s1030_alteracao_id__in=listar_ids(s1030_alteracao_lista)).all()
-        
+
         s1030_alteracao_novavalidade_lista = s1030alteracaonovaValidade.objects. \
             filter(s1030_alteracao_id__in=listar_ids(s1030_alteracao_lista)).all()
-        
+
         s1030_exclusao_lista = s1030exclusao.objects. \
             filter(s1030_evttabcargo_id__in=listar_ids(s1030_evttabcargo_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -158,14 +158,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1030_evttabcargo.arquivo_original:
-    
+
         xml = ler_arquivo(s1030_evttabcargo.arquivo)
 
     else:
         xml = gerar_xml_s1030(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -186,16 +186,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 s1030evtTabCargo,
                 s1030_evttabcargo)
-        
+
         s1030_evttabcargo = get_object_or_404(
             s1030evtTabCargo,
             id=pk)
-        
+
         xml_assinado = assinar_esocial(
-            request, 
-            xml, 
+            request,
+            xml,
             s1030_evttabcargo.transmissor_lote_esocial_id)
-        
+
     if s1030_evttabcargo.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -209,11 +209,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s1030_evttabcargo/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -226,5 +226,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

@@ -82,7 +82,7 @@ def validar_evento_funcao(request, pk):
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.esocial.views.s1080_evttaboperport_gerar_xml import gerar_xml_assinado
     VERIFICAR_PREDECESSAO_ANTES_ENVIO = config.ESOCIAL_VERIFICAR_PREDECESSAO_ANTES_ENVIO
-    
+
     lista_validacoes = []
     s1080_evttaboperport = get_object_or_404(s1080evtTabOperPort, id=pk)
 
@@ -94,52 +94,52 @@ def validar_evento_funcao(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s1080_evttaboperport/' % BASE_DIR)
     lista = []
     tipo = 'esocial'
-    
+
     if not os.path.exists(BASE_DIR + '/' + arquivo):
-    
+
         gerar_xml_assinado(request, pk)
-        
+
     if os.path.exists(BASE_DIR + '/' + arquivo):
-    
+
         from emensageriapro.esocial.views.s1080_evttaboperport_validar import validacoes_s1080_evttaboperport
-        
+
         texto_xml = ler_arquivo(arquivo).replace("s:", "")
         versao = get_versao_evento(texto_xml)
         lista = validacoes_s1080_evttaboperport(arquivo)
-        
+
     for a in lista:
-    
-        if a: 
-            
+
+        if a:
+
             lista_validacoes.append(a)
-        
+
     #
     # validando schema
     #
-    
+
     schema_filename = get_schema_name(arquivo)
     quant_erros, error_list = validar_schema(request, schema_filename, arquivo, lang='pt')
-    
+
     for a in error_list:
-    
-        if a: 
-            
+
+        if a:
+
             lista_validacoes.append(a)
-        
+
     #
     #
     #
-    
+
     if lista_validacoes:
 
         validacoes = '<br>'.join(lista_validacoes).replace("'", "''")
-        
+
         s1080evtTabOperPort.objects.\
             filter(id=pk).\
             update(validacoes=validacoes,
                    status=STATUS_EVENTO_VALIDADO_ERRO)
 
-        messages.error(request, 
+        messages.error(request,
             u'Validações foram processadas, porém foram encontrados erros!')
 
     else:
@@ -149,23 +149,23 @@ def validar_evento_funcao(request, pk):
             quant = validar_precedencia('esocial', 's1080_evttaboperport', pk)
 
             if quant <= 0:
-            
+
                 s1080evtTabOperPort.objects.\
                     filter(id=pk).\
                     update(validacoes=None,
                            status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
 
-                messages.warning(request, 
+                messages.warning(request,
                     u'Validações foram processadas com sucesso, porém o evento está aguardando envio de sua precedência!')
 
             else:
-            
+
                 s1080evtTabOperPort.objects.\
                     filter(id=pk).\
                     update(validacoes=None,
                            status=STATUS_EVENTO_AGUARD_ENVIO)
 
-                messages.success(request, 
+                messages.success(request,
                     u'Validações foram processadas com sucesso, evento está aguardandando envio!')
 
         else:
@@ -175,7 +175,7 @@ def validar_evento_funcao(request, pk):
                 update(validacoes=None,
                        status=STATUS_EVENTO_AGUARD_ENVIO)
 
-            messages.success(request, 
+            messages.success(request,
                 u'Validações foram processadas com sucesso, evento está aguardandando envio!')
 
     return lista_validacoes
@@ -203,25 +203,25 @@ def validar_evento(request, pk, tab=None):
     if s1080_evttaboperport.status in STATUS_VALIDACAO:
 
         if s1080_evttaboperport.versao in VERSOES_ESOCIAL:
-        
+
             lista_validacoes = validar_evento_funcao(request, pk)
 
         else:
-        
-            messages.error(request, 
-                u'''Não foi possível validar o evento pois a 
+
+            messages.error(request,
+                u'''Não foi possível validar o evento pois a
                     versão do evento não é compatível com a versão do sistema!''')
     else:
-    
-        messages.error(request, 
-            u'''Não foi possível validar o 
-                evento pois o mesmo não está em nenhum dos sequintes status: Cadastrado, 
+
+        messages.error(request,
+            u'''Não foi possível validar o
+                evento pois o mesmo não está em nenhum dos sequintes status: Cadastrado,
                 Importado, Duplicado, Gerado, Assinado ou com Erro de Validação!''')
-                
+
     if tab == 'mapa':
-    
+
         return redirect('mapa_esocial', tab='master')
-        
+
     else:
-    
+
         return redirect('s1080_evttaboperport_salvar', pk=pk)

@@ -44,12 +44,12 @@ from emensageriapro.s5011.models import s5011basesRemun, s5011basesRemunSerializ
 
 
 class s5011basesRemunList(generics.ListAPIView):
-    
+
     queryset = s5011basesRemun.objects.all()
     serializer_class = s5011basesRemunSerializer
 
 
 class s5011basesRemunDetail(generics.ListAPIView):
-    
+
     queryset = s5011basesRemun.objects.all()
     serializer_class = s5011basesRemunSerializer

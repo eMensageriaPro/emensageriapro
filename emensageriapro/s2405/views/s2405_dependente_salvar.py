@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2405_dependente = get_object_or_404(s2405dependente, id=pk)
         evento_dados = s2405_dependente.evento()
 
     if request.user.has_perm('s2405.can_see_s2405dependente'):
-        
+
         if pk:
-        
+
             s2405_dependente_form = form_s2405_dependente(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2405_dependente)
-                                         
+                     
         else:
-        
+
             s2405_dependente_form = form_s2405_dependente(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2405_dependente_form.is_valid():
-            
+
                 obj = s2405_dependente_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2405_dependente', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2405_dependente',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2405_dependente), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2405_dependente),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2405_dependente', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2405_dependente',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2405_dependente_apagar', 
-                    's2405_dependente_salvar', 
+                    's2405_dependente_apagar',
+                    's2405_dependente_salvar',
                     's2405_dependente'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2405_dependente_salvar', 
+                        's2405_dependente_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2405_dependente_form = disabled_form_fields(
-            s2405_dependente_form, 
+            s2405_dependente_form,
             request.user.has_perm('s2405.change_s2405dependente'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2405_dependente_form = disabled_form_fields(s2405_dependente_form, 0)
-                
+
         if output:
-        
+
             s2405_dependente_form = disabled_form_for_print(s2405_dependente_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s2405_dependente = get_object_or_404(s2405dependente, id=pk)
-            
-                
+
+
         else:
-        
+
             s2405_dependente = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2405_dependente' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2405_dependente_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2405_dependente').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2405_dependente': s2405_dependente, 
-            's2405_dependente_form': s2405_dependente_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2405_dependente': s2405_dependente,
+            's2405_dependente_form': s2405_dependente_form,
             'modulos': ['s2405', ],
             'paginas': ['s2405_dependente', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2405_dependente_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2405_dependente_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2405_dependente_salvar.html', context)
             filename = "s2405_dependente.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2405_dependente_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2405_dependente', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

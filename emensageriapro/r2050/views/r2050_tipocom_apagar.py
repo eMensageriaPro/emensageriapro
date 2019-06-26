@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
 
     r2050_tipocom = get_object_or_404(r2050tipoCom, id=pk)
-    
+
     dados_evento = {}
     dados_evento = r2050_tipocom.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(r2050_tipocom), indent=4, sort_keys=True, default=str)
             obj = r2050tipoCom.objects.get(id=pk)
             obj.delete(request=request)
             #r2050_tipocom_apagar_custom
             #r2050_tipocom_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             'r2050_tipocom', 
-                             pk, 
+                             '',
+                             'r2050_tipocom',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 'r2050_tipocom' in request.session['return_page']:
-        
+
             return redirect('r2050_tipocom')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['r2050', ],
         'paginas': ['r2050_tipocom', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  'r2050_tipocom_apagar.html', 
+
+    return render(request,
+                  'r2050_tipocom_apagar.html',
                   context)

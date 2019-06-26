@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s1200_infoperant_itensremun = get_object_or_404(s1200infoPerAntitensRemun, id=pk)
         evento_dados = s1200_infoperant_itensremun.evento()
 
     if request.user.has_perm('s1200.can_see_s1200infoPerAntitensRemun'):
-        
+
         if pk:
-        
+
             s1200_infoperant_itensremun_form = form_s1200_infoperant_itensremun(
-                request.POST or None, 
+                request.POST or None,
                 instance=s1200_infoperant_itensremun)
-                                         
+                     
         else:
-        
+
             s1200_infoperant_itensremun_form = form_s1200_infoperant_itensremun(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s1200_infoperant_itensremun_form.is_valid():
-            
+
                 obj = s1200_infoperant_itensremun_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1200_infoperant_itensremun', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1200_infoperant_itensremun',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s1200_infoperant_itensremun), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s1200_infoperant_itensremun),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1200_infoperant_itensremun', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1200_infoperant_itensremun',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's1200_infoperant_itensremun_apagar', 
-                    's1200_infoperant_itensremun_salvar', 
+                    's1200_infoperant_itensremun_apagar',
+                    's1200_infoperant_itensremun_salvar',
                     's1200_infoperant_itensremun'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's1200_infoperant_itensremun_salvar', 
+                        's1200_infoperant_itensremun_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s1200_infoperant_itensremun_form = disabled_form_fields(
-            s1200_infoperant_itensremun_form, 
+            s1200_infoperant_itensremun_form,
             request.user.has_perm('s1200.change_s1200infoPerAntitensRemun'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s1200_infoperant_itensremun_form = disabled_form_fields(s1200_infoperant_itensremun_form, 0)
-                
+
         if output:
-        
+
             s1200_infoperant_itensremun_form = disabled_form_for_print(s1200_infoperant_itensremun_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s1200_infoperant_itensremun = get_object_or_404(s1200infoPerAntitensRemun, id=pk)
-            
-                
+
+
         else:
-        
+
             s1200_infoperant_itensremun = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's1200_infoperant_itensremun' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's1200_infoperant_itensremun_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1200_infoperant_itensremun').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's1200_infoperant_itensremun': s1200_infoperant_itensremun, 
-            's1200_infoperant_itensremun_form': s1200_infoperant_itensremun_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's1200_infoperant_itensremun': s1200_infoperant_itensremun,
+            's1200_infoperant_itensremun_form': s1200_infoperant_itensremun_form,
             'modulos': ['s1200', ],
             'paginas': ['s1200_infoperant_itensremun', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s1200_infoperant_itensremun_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1200_infoperant_itensremun_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s1200_infoperant_itensremun_salvar.html', context)
             filename = "s1200_infoperant_itensremun.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's1200_infoperant_itensremun_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1200_infoperant_itensremun', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

@@ -65,134 +65,134 @@ from emensageriapro.s2206.forms import form_s2206_horario
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2206_horcontratual = get_object_or_404(s2206horContratual, id=pk)
         evento_dados = s2206_horcontratual.evento()
 
     if request.user.has_perm('s2206.can_see_s2206horContratual'):
-        
+
         if pk:
-        
+
             s2206_horcontratual_form = form_s2206_horcontratual(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2206_horcontratual)
-                                         
+                     
         else:
-        
+
             s2206_horcontratual_form = form_s2206_horcontratual(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2206_horcontratual_form.is_valid():
-            
+
                 obj = s2206_horcontratual_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2206_horcontratual', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2206_horcontratual',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2206_horcontratual), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2206_horcontratual),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2206_horcontratual', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2206_horcontratual',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2206_horcontratual_apagar', 
-                    's2206_horcontratual_salvar', 
+                    's2206_horcontratual_apagar',
+                    's2206_horcontratual_salvar',
                     's2206_horcontratual'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2206_horcontratual_salvar', 
+                        's2206_horcontratual_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2206_horcontratual_form = disabled_form_fields(
-            s2206_horcontratual_form, 
+            s2206_horcontratual_form,
             request.user.has_perm('s2206.change_s2206horContratual'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2206_horcontratual_form = disabled_form_fields(s2206_horcontratual_form, 0)
-                
+
         if output:
-        
+
             s2206_horcontratual_form = disabled_form_for_print(s2206_horcontratual_form)
-            
-        
-        s2206_horario_lista = None 
-        s2206_horario_form = None 
-        
+
+
+        s2206_horario_lista = None
+        s2206_horario_form = None
+
         if pk:
-        
+
             s2206_horcontratual = get_object_or_404(s2206horContratual, id=pk)
-            
+
             s2206_horario_form = form_s2206_horario(
                 initial={ 's2206_horcontratual': s2206_horcontratual })
             s2206_horario_form.fields['s2206_horcontratual'].widget.attrs['readonly'] = True
             s2206_horario_lista = s2206horario.objects.\
                 filter(s2206_horcontratual_id=s2206_horcontratual.id).all()
-                
-                
+
+
         else:
-        
+
             s2206_horcontratual = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2206_horcontratual' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2206_horcontratual_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2206_horcontratual').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2206_horcontratual': s2206_horcontratual, 
-            's2206_horcontratual_form': s2206_horcontratual_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2206_horcontratual': s2206_horcontratual,
+            's2206_horcontratual_form': s2206_horcontratual_form,
             'modulos': ['s2206', ],
             'paginas': ['s2206_horcontratual', ],
             's2206_horario_form': s2206_horario_form,
@@ -202,11 +202,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2206_horcontratual_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2206_horcontratual_salvar.html',
@@ -224,26 +224,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2206_horcontratual_salvar.html', context)
             filename = "s2206_horcontratual.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2206_horcontratual_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -253,7 +253,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2206_horcontratual', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

@@ -97,11 +97,11 @@ def abrir_evento_para_edicao(request, pk):
         ]
 
         if s1010_evttabrubrica.status in status_list:
-        
+
             s1010evtTabRubrica.objects.filter(id=pk).update(
                 status=STATUS_EVENTO_CADASTRADO,
                 arquivo_original=0)
-                                                                          
+                                                      
             arquivo = 'arquivos/Eventos/s1010_evttabrubrica/%s.xml' % (s1010_evttabrubrica.identidade)
 
             if os.path.exists(BASE_DIR + '/' + arquivo):
@@ -114,12 +114,12 @@ def abrir_evento_para_edicao(request, pk):
 
             messages.success(request, 'Evento aberto para edição!')
             request.user.id = request.user.id
-            
+
             gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
-                's1010_evttabrubrica', pk, request.user.id, 1)
-            
+                's1010_evttabrubrica', pk, request.user.id, 2)
+
         else:
-        
+
             messages.error(request, u'''
                 Não foi possível abrir o evento para edição! Somente é possível
                 abrir eventos com os seguintes status: "Cadastrado", "Importado", "Validado",
@@ -128,8 +128,8 @@ def abrir_evento_para_edicao(request, pk):
                  "401 - Lote Incorreto - Erro preenchimento" ou "402 - Lote Incorreto - schema Inválido"!''')
 
     else:
-    
-        messages.error(request, u'''Você não possui permissão para abrir evento para edição. 
+
+        messages.error(request, u'''Você não possui permissão para abrir evento para edição.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
     return redirect('s1010_evttabrubrica_salvar', pk=pk)

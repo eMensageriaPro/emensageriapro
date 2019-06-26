@@ -44,12 +44,12 @@ from emensageriapro.s5011.models import s5011basesAquis, s5011basesAquisSerializ
 
 
 class s5011basesAquisList(generics.ListAPIView):
-    
+
     queryset = s5011basesAquis.objects.all()
     serializer_class = s5011basesAquisSerializer
 
 
 class s5011basesAquisDetail(generics.ListAPIView):
-    
+
     queryset = s5011basesAquis.objects.all()
     serializer_class = s5011basesAquisSerializer

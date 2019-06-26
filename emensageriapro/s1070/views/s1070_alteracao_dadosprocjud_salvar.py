@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s1070_alteracao_dadosprocjud = get_object_or_404(s1070alteracaodadosProcJud, id=pk)
         evento_dados = s1070_alteracao_dadosprocjud.evento()
 
     if request.user.has_perm('s1070.can_see_s1070alteracaodadosProcJud'):
-        
+
         if pk:
-        
+
             s1070_alteracao_dadosprocjud_form = form_s1070_alteracao_dadosprocjud(
-                request.POST or None, 
+                request.POST or None,
                 instance=s1070_alteracao_dadosprocjud)
-                                         
+                     
         else:
-        
+
             s1070_alteracao_dadosprocjud_form = form_s1070_alteracao_dadosprocjud(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s1070_alteracao_dadosprocjud_form.is_valid():
-            
+
                 obj = s1070_alteracao_dadosprocjud_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1070_alteracao_dadosprocjud', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1070_alteracao_dadosprocjud',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s1070_alteracao_dadosprocjud), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s1070_alteracao_dadosprocjud),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1070_alteracao_dadosprocjud', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1070_alteracao_dadosprocjud',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's1070_alteracao_dadosprocjud_apagar', 
-                    's1070_alteracao_dadosprocjud_salvar', 
+                    's1070_alteracao_dadosprocjud_apagar',
+                    's1070_alteracao_dadosprocjud_salvar',
                     's1070_alteracao_dadosprocjud'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's1070_alteracao_dadosprocjud_salvar', 
+                        's1070_alteracao_dadosprocjud_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s1070_alteracao_dadosprocjud_form = disabled_form_fields(
-            s1070_alteracao_dadosprocjud_form, 
+            s1070_alteracao_dadosprocjud_form,
             request.user.has_perm('s1070.change_s1070alteracaodadosProcJud'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s1070_alteracao_dadosprocjud_form = disabled_form_fields(s1070_alteracao_dadosprocjud_form, 0)
-                
+
         if output:
-        
+
             s1070_alteracao_dadosprocjud_form = disabled_form_for_print(s1070_alteracao_dadosprocjud_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s1070_alteracao_dadosprocjud = get_object_or_404(s1070alteracaodadosProcJud, id=pk)
-            
-                
+
+
         else:
-        
+
             s1070_alteracao_dadosprocjud = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's1070_alteracao_dadosprocjud' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's1070_alteracao_dadosprocjud_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1070_alteracao_dadosprocjud').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's1070_alteracao_dadosprocjud': s1070_alteracao_dadosprocjud, 
-            's1070_alteracao_dadosprocjud_form': s1070_alteracao_dadosprocjud_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's1070_alteracao_dadosprocjud': s1070_alteracao_dadosprocjud,
+            's1070_alteracao_dadosprocjud_form': s1070_alteracao_dadosprocjud_form,
             'modulos': ['s1070', ],
             'paginas': ['s1070_alteracao_dadosprocjud', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s1070_alteracao_dadosprocjud_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1070_alteracao_dadosprocjud_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s1070_alteracao_dadosprocjud_salvar.html', context)
             filename = "s1070_alteracao_dadosprocjud.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's1070_alteracao_dadosprocjud_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1070_alteracao_dadosprocjud', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

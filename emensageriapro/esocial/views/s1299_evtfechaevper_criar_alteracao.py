@@ -77,7 +77,7 @@ def criar_alteracao(request, pk):
     from emensageriapro.esocial.views.s1299_evtfechaevper_importar import read_s1299_evtfechaevper_string
     from emensageriapro.esocial.views.s1299_evtfechaevper_gerar_xml import gerar_xml_s1299
     from emensageriapro.functions import identidade_evento
-    
+
     if request.user.has_perm('esocial.can_create_change_s1299evtFechaEvPer'):
 
         s1299_evtfechaevper = get_object_or_404(
@@ -99,14 +99,14 @@ def criar_alteracao(request, pk):
             's1299_evtfechaevper', dados['id'], request.user.id, 1)
 
         messages.success(request, u'Evento de alteração criado com sucesso!')
-        
+
         return_pk = dados['id']
-        
+
         return redirect('s1299_evtfechaevper_salvar', pk=return_pk)
-        
+
     else:
-    
-        messages.error(request, u'''Você não possui permissão para criar evento de alteração a partir de evento existente. 
+
+        messages.error(request, u'''Você não possui permissão para criar evento de alteração a partir de evento existente.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
         return redirect('s1299_evtfechaevper_salvar', pk=pk)

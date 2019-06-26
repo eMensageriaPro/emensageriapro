@@ -71,9 +71,9 @@ def salvar(request, pk=None, tab='master', output=None):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
     TP_AMB = config.ESOCIAL_TP_AMB
-    
+
     if pk:
-    
+
         s2230_evtafasttemp = get_object_or_404(s2230evtAfastTemp, id=pk)
 
         #if s2230_evtafasttemp.status != STATUS_EVENTO_CADASTRADO:
@@ -81,95 +81,95 @@ def salvar(request, pk=None, tab='master', output=None):
         #    dict_permissoes = {}
         #    dict_permissoes['s2230_evtafasttemp_apagar'] = 0
         #    dict_permissoes['s2230_evtafasttemp_editar'] = 0
-            
+
     if request.user.has_perm('esocial.can_see_s2230evtAfastTemp'):
-    
+
         if pk:
-        
-            s2230_evtafasttemp_form = form_s2230_evtafasttemp(request.POST or None, instance = s2230_evtafasttemp, 
+
+            s2230_evtafasttemp_form = form_s2230_evtafasttemp(request.POST or None, instance = s2230_evtafasttemp,
                                          initial={'ativo': True})
-                                         
+                     
         else:
-        
-            s2230_evtafasttemp_form = form_s2230_evtafasttemp(request.POST or None, 
-                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL, 
-                                                  'status': STATUS_EVENTO_CADASTRADO, 
-                                                  'tpamb': TP_AMB, 
-                                                  'procemi': 1, 
-                                                  'verproc': VERSAO_EMENSAGERIA, 
+
+            s2230_evtafasttemp_form = form_s2230_evtafasttemp(request.POST or None,
+                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA,
                                                   'ativo': True})
-                                                  
+                              
         if request.method == 'POST':
-        
+
             if s2230_evtafasttemp_form.is_valid():
-            
+
                 obj = s2230_evtafasttemp_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 if not pk:
-                
+
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
-                  
+
                 #    gravar_auditoria('{}',
-                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                 's2230_evtafasttemp', obj.id, request.user.id, 1)
                 #else:
-                # 
+                #
                 #    gravar_auditoria(json.dumps(model_to_dict(s2230_evtafasttemp), indent=4, sort_keys=True, default=str),
-                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                     's2230_evtafasttemp', pk, request.user.id, 2)
-                                 
+             
                 if request.session['return_page'] not in (
-                    's2230_evtafasttemp_apagar', 
-                    's2230_evtafasttemp_salvar', 
+                    's2230_evtafasttemp_apagar',
+                    's2230_evtafasttemp_salvar',
                     's2230_evtafasttemp'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2230_evtafasttemp_salvar', 
+                        's2230_evtafasttemp_salvar',
                         pk=obj.id)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-                
+
         s2230_evtafasttemp_form = disabled_form_fields(
-             s2230_evtafasttemp_form, 
+             s2230_evtafasttemp_form,
              request.user.has_perm('esocial.change_s2230evtAfastTemp'))
-        
+
         if pk:
-        
+
             if s2230_evtafasttemp.status != 0:
-            
+
                 s2230_evtafasttemp_form = disabled_form_fields(s2230_evtafasttemp_form, False)
-                
+
         #s2230_evtafasttemp_campos_multiple_passo3
 
         for field in s2230_evtafasttemp_form.fields.keys():
-        
+
             s2230_evtafasttemp_form.fields[field].widget.attrs['ng-model'] = 's2230_evtafasttemp_'+field
-            
+
         if output:
-        
+
             s2230_evtafasttemp_form = disabled_form_for_print(s2230_evtafasttemp_form)
 
-        
-        s2230_iniafastamento_lista = None 
-        s2230_iniafastamento_form = None 
-        s2230_inforetif_lista = None 
-        s2230_inforetif_form = None 
-        s2230_fimafastamento_lista = None 
-        s2230_fimafastamento_form = None 
-        
+
+        s2230_iniafastamento_lista = None
+        s2230_iniafastamento_form = None
+        s2230_inforetif_lista = None
+        s2230_inforetif_form = None
+        s2230_fimafastamento_lista = None
+        s2230_fimafastamento_form = None
+
         if pk:
-        
+
             s2230_evtafasttemp = get_object_or_404(s2230evtAfastTemp, id=pk)
-            
+
             s2230_iniafastamento_form = form_s2230_iniafastamento(
                 initial={ 's2230_evtafasttemp': s2230_evtafasttemp })
             s2230_iniafastamento_form.fields['s2230_evtafasttemp'].widget.attrs['readonly'] = True
@@ -185,38 +185,38 @@ def salvar(request, pk=None, tab='master', output=None):
             s2230_fimafastamento_form.fields['s2230_evtafasttemp'].widget.attrs['readonly'] = True
             s2230_fimafastamento_lista = s2230fimAfastamento.objects.\
                 filter(s2230_evtafasttemp_id=s2230_evtafasttemp.id).all()
-                
+
         else:
-        
+
             s2230_evtafasttemp = None
-            
+
         #s2230_evtafasttemp_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if 's2230_evtafasttemp'[1] == '5':
             evento_totalizador = True
-            
+
         else:
             evento_totalizador = False
-        
+
         if tab or 's2230_evtafasttemp' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2230_evtafasttemp_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2230_evtafasttemp').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
-            's2230_evtafasttemp': s2230_evtafasttemp, 
-            's2230_evtafasttemp_form': s2230_evtafasttemp_form, 
-            
+            's2230_evtafasttemp': s2230_evtafasttemp,
+            's2230_evtafasttemp_form': s2230_evtafasttemp_form,
+
             's2230_iniafastamento_form': s2230_iniafastamento_form,
             's2230_iniafastamento_lista': s2230_iniafastamento_lista,
             's2230_inforetif_form': s2230_inforetif_form,
@@ -230,10 +230,10 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2230_evtafasttemp_salvar_custom_variaveis_context#
         }
-        
-            
+
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2230_evtafasttemp_salvar.html',
@@ -251,24 +251,24 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             response = render_to_response('s2230_evtafasttemp_salvar.html', context)
             filename = "s2230_evtafasttemp.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2230_evtafasttemp_salvar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -278,5 +278,5 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2230_evtafasttemp', ],
             'data': datetime.datetime.now(),
         }
-        
+
         return render(request, 'permissao_negada.html', context)

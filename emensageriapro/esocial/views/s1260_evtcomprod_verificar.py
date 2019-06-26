@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s1260evtComProd'):
-    
+
         s1260_evtcomprod = get_object_or_404(s1260evtComProd, id=pk)
         s1260_evtcomprod_lista = s1260evtComProd.objects.filter(id=pk).all()
 
-        
+
         s1260_tpcomerc_lista = s1260tpComerc.objects.filter(s1260_evtcomprod_id__in = listar_ids(s1260_evtcomprod_lista) ).all()
         s1260_ideadquir_lista = s1260ideAdquir.objects.filter(s1260_tpcomerc_id__in = listar_ids(s1260_tpcomerc_lista) ).all()
         s1260_nfs_lista = s1260nfs.objects.filter(s1260_ideadquir_id__in = listar_ids(s1260_ideadquir_lista) ).all()
@@ -101,9 +101,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1260_evtcomprod_verificar.html',
@@ -120,20 +120,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s1260_evtcomprod_verificar.html', context)
             filename = "%s.xls" % s1260_evtcomprod.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s1260_evtcomprod_verificar.html', context)
             filename = "%s.csv" % s1260_evtcomprod.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -141,7 +141,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's1260_evtcomprod_verificar.html', context)
 
     else:

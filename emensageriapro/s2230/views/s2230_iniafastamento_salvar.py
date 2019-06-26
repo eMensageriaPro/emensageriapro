@@ -69,150 +69,150 @@ from emensageriapro.s2230.forms import form_s2230_infomandsind
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2230_iniafastamento = get_object_or_404(s2230iniAfastamento, id=pk)
         evento_dados = s2230_iniafastamento.evento()
 
     if request.user.has_perm('s2230.can_see_s2230iniAfastamento'):
-        
+
         if pk:
-        
+
             s2230_iniafastamento_form = form_s2230_iniafastamento(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2230_iniafastamento)
-                                         
+                     
         else:
-        
+
             s2230_iniafastamento_form = form_s2230_iniafastamento(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2230_iniafastamento_form.is_valid():
-            
+
                 obj = s2230_iniafastamento_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2230_iniafastamento', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2230_iniafastamento',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2230_iniafastamento), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2230_iniafastamento),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2230_iniafastamento', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2230_iniafastamento',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2230_iniafastamento_apagar', 
-                    's2230_iniafastamento_salvar', 
+                    's2230_iniafastamento_apagar',
+                    's2230_iniafastamento_salvar',
                     's2230_iniafastamento'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2230_iniafastamento_salvar', 
+                        's2230_iniafastamento_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2230_iniafastamento_form = disabled_form_fields(
-            s2230_iniafastamento_form, 
+            s2230_iniafastamento_form,
             request.user.has_perm('s2230.change_s2230iniAfastamento'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2230_iniafastamento_form = disabled_form_fields(s2230_iniafastamento_form, 0)
-                
+
         if output:
-        
+
             s2230_iniafastamento_form = disabled_form_for_print(s2230_iniafastamento_form)
-            
-        
-        s2230_infoatestado_lista = None 
-        s2230_infoatestado_form = None 
-        s2230_infocessao_lista = None 
-        s2230_infocessao_form = None 
-        s2230_infomandsind_lista = None 
-        s2230_infomandsind_form = None 
-        
+
+
+        s2230_infoatestado_lista = None
+        s2230_infoatestado_form = None
+        s2230_infocessao_lista = None
+        s2230_infocessao_form = None
+        s2230_infomandsind_lista = None
+        s2230_infomandsind_form = None
+
         if pk:
-        
+
             s2230_iniafastamento = get_object_or_404(s2230iniAfastamento, id=pk)
-            
+
             s2230_infoatestado_form = form_s2230_infoatestado(
                 initial={ 's2230_iniafastamento': s2230_iniafastamento })
             s2230_infoatestado_form.fields['s2230_iniafastamento'].widget.attrs['readonly'] = True
             s2230_infoatestado_lista = s2230infoAtestado.objects.\
                 filter(s2230_iniafastamento_id=s2230_iniafastamento.id).all()
-                
+
             s2230_infocessao_form = form_s2230_infocessao(
                 initial={ 's2230_iniafastamento': s2230_iniafastamento })
             s2230_infocessao_form.fields['s2230_iniafastamento'].widget.attrs['readonly'] = True
             s2230_infocessao_lista = s2230infoCessao.objects.\
                 filter(s2230_iniafastamento_id=s2230_iniafastamento.id).all()
-                
+
             s2230_infomandsind_form = form_s2230_infomandsind(
                 initial={ 's2230_iniafastamento': s2230_iniafastamento })
             s2230_infomandsind_form.fields['s2230_iniafastamento'].widget.attrs['readonly'] = True
             s2230_infomandsind_lista = s2230infoMandSind.objects.\
                 filter(s2230_iniafastamento_id=s2230_iniafastamento.id).all()
-                
-                
+
+
         else:
-        
+
             s2230_iniafastamento = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2230_iniafastamento' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2230_iniafastamento_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2230_iniafastamento').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2230_iniafastamento': s2230_iniafastamento, 
-            's2230_iniafastamento_form': s2230_iniafastamento_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2230_iniafastamento': s2230_iniafastamento,
+            's2230_iniafastamento_form': s2230_iniafastamento_form,
             'modulos': ['s2230', ],
             'paginas': ['s2230_iniafastamento', ],
             's2230_infoatestado_form': s2230_infoatestado_form,
@@ -226,11 +226,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2230_iniafastamento_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2230_iniafastamento_salvar.html',
@@ -248,26 +248,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2230_iniafastamento_salvar.html', context)
             filename = "s2230_iniafastamento.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2230_iniafastamento_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -277,7 +277,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2230_iniafastamento', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

@@ -65,134 +65,134 @@ from emensageriapro.r2010.forms import form_r2010_infotpserv
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         r2010_nfs = get_object_or_404(r2010nfs, id=pk)
         evento_dados = r2010_nfs.evento()
 
     if request.user.has_perm('r2010.can_see_r2010nfs'):
-        
+
         if pk:
-        
+
             r2010_nfs_form = form_r2010_nfs(
-                request.POST or None, 
+                request.POST or None,
                 instance=r2010_nfs)
-                                         
+                     
         else:
-        
+
             r2010_nfs_form = form_r2010_nfs(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if r2010_nfs_form.is_valid():
-            
+
                 obj = r2010_nfs_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r2010_nfs', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r2010_nfs',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(r2010_nfs), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(r2010_nfs),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r2010_nfs', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r2010_nfs',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    'r2010_nfs_apagar', 
-                    'r2010_nfs_salvar', 
+                    'r2010_nfs_apagar',
+                    'r2010_nfs_salvar',
                     'r2010_nfs'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'r2010_nfs_salvar', 
+                        'r2010_nfs_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         r2010_nfs_form = disabled_form_fields(
-            r2010_nfs_form, 
+            r2010_nfs_form,
             request.user.has_perm('r2010.change_r2010nfs'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 r2010_nfs_form = disabled_form_fields(r2010_nfs_form, 0)
-                
+
         if output:
-        
+
             r2010_nfs_form = disabled_form_for_print(r2010_nfs_form)
-            
-        
-        r2010_infotpserv_lista = None 
-        r2010_infotpserv_form = None 
-        
+
+
+        r2010_infotpserv_lista = None
+        r2010_infotpserv_form = None
+
         if pk:
-        
+
             r2010_nfs = get_object_or_404(r2010nfs, id=pk)
-            
+
             r2010_infotpserv_form = form_r2010_infotpserv(
                 initial={ 'r2010_nfs': r2010_nfs })
             r2010_infotpserv_form.fields['r2010_nfs'].widget.attrs['readonly'] = True
             r2010_infotpserv_lista = r2010infoTpServ.objects.\
                 filter(r2010_nfs_id=r2010_nfs.id).all()
-                
-                
+
+
         else:
-        
+
             r2010_nfs = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 'r2010_nfs' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'r2010_nfs_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r2010_nfs').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            'r2010_nfs': r2010_nfs, 
-            'r2010_nfs_form': r2010_nfs_form, 
+            'controle_alteracoes': controle_alteracoes,
+            'r2010_nfs': r2010_nfs,
+            'r2010_nfs_form': r2010_nfs_form,
             'modulos': ['r2010', ],
             'paginas': ['r2010_nfs', ],
             'r2010_infotpserv_form': r2010_infotpserv_form,
@@ -202,11 +202,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #r2010_nfs_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r2010_nfs_salvar.html',
@@ -224,26 +224,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('r2010_nfs_salvar.html', context)
             filename = "r2010_nfs.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 'r2010_nfs_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -253,7 +253,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r2010_nfs', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

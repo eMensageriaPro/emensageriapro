@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
 
     r1070_exclusao = get_object_or_404(r1070exclusao, id=pk)
-    
+
     dados_evento = {}
     dados_evento = r1070_exclusao.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(r1070_exclusao), indent=4, sort_keys=True, default=str)
             obj = r1070exclusao.objects.get(id=pk)
             obj.delete(request=request)
             #r1070_exclusao_apagar_custom
             #r1070_exclusao_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             'r1070_exclusao', 
-                             pk, 
+                             '',
+                             'r1070_exclusao',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 'r1070_exclusao' in request.session['return_page']:
-        
+
             return redirect('r1070_exclusao')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['r1070', ],
         'paginas': ['r1070_exclusao', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  'r1070_exclusao_apagar.html', 
+
+    return render(request,
+                  'r1070_exclusao_apagar.html',
                   context)

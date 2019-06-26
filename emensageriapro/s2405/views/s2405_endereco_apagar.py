@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s2405_endereco = get_object_or_404(s2405endereco, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s2405_endereco.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2405_endereco), indent=4, sort_keys=True, default=str)
             obj = s2405endereco.objects.get(id=pk)
             obj.delete(request=request)
             #s2405_endereco_apagar_custom
             #s2405_endereco_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's2405_endereco', 
-                             pk, 
+                             '',
+                             's2405_endereco',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's2405_endereco' in request.session['return_page']:
-        
+
             return redirect('s2405_endereco')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s2405', ],
         'paginas': ['s2405_endereco', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's2405_endereco_apagar.html', 
+
+    return render(request,
+                  's2405_endereco_apagar.html',
                   context)

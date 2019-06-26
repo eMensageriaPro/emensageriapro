@@ -65,134 +65,134 @@ from emensageriapro.s2299.forms import form_s2299_infoperapur_detoper
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2299_infoperapur_infosaudecolet = get_object_or_404(s2299infoPerApurinfoSaudeColet, id=pk)
         evento_dados = s2299_infoperapur_infosaudecolet.evento()
 
     if request.user.has_perm('s2299.can_see_s2299infoPerApurinfoSaudeColet'):
-        
+
         if pk:
-        
+
             s2299_infoperapur_infosaudecolet_form = form_s2299_infoperapur_infosaudecolet(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2299_infoperapur_infosaudecolet)
-                                         
+                     
         else:
-        
+
             s2299_infoperapur_infosaudecolet_form = form_s2299_infoperapur_infosaudecolet(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2299_infoperapur_infosaudecolet_form.is_valid():
-            
+
                 obj = s2299_infoperapur_infosaudecolet_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2299_infoperapur_infosaudecolet', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2299_infoperapur_infosaudecolet',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2299_infoperapur_infosaudecolet), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2299_infoperapur_infosaudecolet),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2299_infoperapur_infosaudecolet', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2299_infoperapur_infosaudecolet',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2299_infoperapur_infosaudecolet_apagar', 
-                    's2299_infoperapur_infosaudecolet_salvar', 
+                    's2299_infoperapur_infosaudecolet_apagar',
+                    's2299_infoperapur_infosaudecolet_salvar',
                     's2299_infoperapur_infosaudecolet'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2299_infoperapur_infosaudecolet_salvar', 
+                        's2299_infoperapur_infosaudecolet_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2299_infoperapur_infosaudecolet_form = disabled_form_fields(
-            s2299_infoperapur_infosaudecolet_form, 
+            s2299_infoperapur_infosaudecolet_form,
             request.user.has_perm('s2299.change_s2299infoPerApurinfoSaudeColet'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2299_infoperapur_infosaudecolet_form = disabled_form_fields(s2299_infoperapur_infosaudecolet_form, 0)
-                
+
         if output:
-        
+
             s2299_infoperapur_infosaudecolet_form = disabled_form_for_print(s2299_infoperapur_infosaudecolet_form)
-            
-        
-        s2299_infoperapur_detoper_lista = None 
-        s2299_infoperapur_detoper_form = None 
-        
+
+
+        s2299_infoperapur_detoper_lista = None
+        s2299_infoperapur_detoper_form = None
+
         if pk:
-        
+
             s2299_infoperapur_infosaudecolet = get_object_or_404(s2299infoPerApurinfoSaudeColet, id=pk)
-            
+
             s2299_infoperapur_detoper_form = form_s2299_infoperapur_detoper(
                 initial={ 's2299_infoperapur_infosaudecolet': s2299_infoperapur_infosaudecolet })
             s2299_infoperapur_detoper_form.fields['s2299_infoperapur_infosaudecolet'].widget.attrs['readonly'] = True
             s2299_infoperapur_detoper_lista = s2299infoPerApurdetOper.objects.\
                 filter(s2299_infoperapur_infosaudecolet_id=s2299_infoperapur_infosaudecolet.id).all()
-                
-                
+
+
         else:
-        
+
             s2299_infoperapur_infosaudecolet = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2299_infoperapur_infosaudecolet' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2299_infoperapur_infosaudecolet_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2299_infoperapur_infosaudecolet').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2299_infoperapur_infosaudecolet': s2299_infoperapur_infosaudecolet, 
-            's2299_infoperapur_infosaudecolet_form': s2299_infoperapur_infosaudecolet_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2299_infoperapur_infosaudecolet': s2299_infoperapur_infosaudecolet,
+            's2299_infoperapur_infosaudecolet_form': s2299_infoperapur_infosaudecolet_form,
             'modulos': ['s2299', ],
             'paginas': ['s2299_infoperapur_infosaudecolet', ],
             's2299_infoperapur_detoper_form': s2299_infoperapur_detoper_form,
@@ -202,11 +202,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2299_infoperapur_infosaudecolet_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2299_infoperapur_infosaudecolet_salvar.html',
@@ -224,26 +224,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2299_infoperapur_infosaudecolet_salvar.html', context)
             filename = "s2299_infoperapur_infosaudecolet.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2299_infoperapur_infosaudecolet_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -253,7 +253,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2299_infoperapur_infosaudecolet', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

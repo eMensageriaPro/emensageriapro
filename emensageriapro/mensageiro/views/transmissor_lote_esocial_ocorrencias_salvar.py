@@ -61,97 +61,97 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def salvar(request, pk=None, tab='master', output=None):
-    
+
     if pk:
-    
+
         transmissor_lote_esocial_ocorrencias = get_object_or_404(TransmissorLoteEsocialOcorrencias, id=pk)
-        
+
     if request.user.has_perm('mensageiro.can_see_TransmissorLoteEsocialOcorrencias'):
-        
+
         if pk:
-        
+
             transmissor_lote_esocial_ocorrencias_form = form_transmissor_lote_esocial_ocorrencias(request.POST or None, instance=transmissor_lote_esocial_ocorrencias)
-            
+
         else:
-        
+
             transmissor_lote_esocial_ocorrencias_form = form_transmissor_lote_esocial_ocorrencias(request.POST or None)
-            
+
         if request.method == 'POST':
-        
+
             if transmissor_lote_esocial_ocorrencias_form.is_valid():
-            
+
                 #transmissor_lote_esocial_ocorrencias_campos_multiple_passo1
-                
-                
+
+
                 obj = transmissor_lote_esocial_ocorrencias_form.save(request=request)
                 messages.success(request, 'Salvo com sucesso!')
                 #transmissor_lote_esocial_ocorrencias_campos_multiple_passo2
-                
+
                 if request.session['return_page'] not in (
-                    'transmissor_lote_esocial_ocorrencias_apagar', 
-                    'transmissor_lote_esocial_ocorrencias_salvar', 
+                    'transmissor_lote_esocial_ocorrencias_apagar',
+                    'transmissor_lote_esocial_ocorrencias_salvar',
                     'transmissor_lote_esocial_ocorrencias'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'transmissor_lote_esocial_ocorrencias_salvar', 
+                        'transmissor_lote_esocial_ocorrencias_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, 'Erro ao salvar!')
-                
+
         transmissor_lote_esocial_ocorrencias_form = disabled_form_fields(transmissor_lote_esocial_ocorrencias_form, request.user.has_perm('mensageiro.change_TransmissorLoteEsocialOcorrencias'))
         #transmissor_lote_esocial_ocorrencias_campos_multiple_passo3
-        
+
         if output:
-        
+
             transmissor_lote_esocial_ocorrencias_form = disabled_form_for_print(transmissor_lote_esocial_ocorrencias_form)
-        
-        
-        
+
+
+
         if pk:
-        
+
             transmissor_lote_esocial_ocorrencias = get_object_or_404(TransmissorLoteEsocialOcorrencias, id=pk)
-            
-                
+
+
         else:
-        
+
             transmissor_lote_esocial_ocorrencias = None
-            
+
         #transmissor_lote_esocial_ocorrencias_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if tab or 'transmissor_lote_esocial_ocorrencias' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'transmissor_lote_esocial_ocorrencias_salvar'
-            
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'tab': tab,
-            'transmissor_lote_esocial_ocorrencias': transmissor_lote_esocial_ocorrencias, 
-            'transmissor_lote_esocial_ocorrencias_form': transmissor_lote_esocial_ocorrencias_form, 
+            'transmissor_lote_esocial_ocorrencias': transmissor_lote_esocial_ocorrencias,
+            'transmissor_lote_esocial_ocorrencias_form': transmissor_lote_esocial_ocorrencias_form,
             'modulos': ['mensageiro', ],
             'paginas': ['transmissor_lote_esocial_ocorrencias', ],
             'data': datetime.datetime.now(),
             'tabelas_secundarias': tabelas_secundarias,
             #transmissor_lote_esocial_ocorrencias_salvar_custom_variaveis_context#
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='transmissor_lote_esocial_ocorrencias_salvar.html',
@@ -169,26 +169,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True})
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('transmissor_lote_esocial_ocorrencias_salvar.html', context)
             filename = "transmissor_lote_esocial_ocorrencias.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-        
+
         else:
-        
+
             return render(request, 'transmissor_lote_esocial_ocorrencias_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -198,7 +198,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['transmissor_lote_esocial_ocorrencias', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-            'permissao_negada.html', 
+
+        return render(request,
+            'permissao_negada.html',
             context)

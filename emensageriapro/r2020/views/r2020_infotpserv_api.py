@@ -60,13 +60,13 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class r2020infoTpServList(generics.ListCreateAPIView):
-    
+
     queryset = r2020infoTpServ.objects.all()
     serializer_class = r2020infoTpServSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
@@ -74,12 +74,12 @@ class r2020infoTpServList(generics.ListCreateAPIView):
 
 
 class r2020infoTpServDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = r2020infoTpServ.objects.all()
     serializer_class = r2020infoTpServSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

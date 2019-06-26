@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s2399_detplano = get_object_or_404(s2399detPlano, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s2399_detplano.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2399_detplano), indent=4, sort_keys=True, default=str)
             obj = s2399detPlano.objects.get(id=pk)
             obj.delete(request=request)
             #s2399_detplano_apagar_custom
             #s2399_detplano_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's2399_detplano', 
-                             pk, 
+                             '',
+                             's2399_detplano',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's2399_detplano' in request.session['return_page']:
-        
+
             return redirect('s2399_detplano')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s2399', ],
         'paginas': ['s2399_detplano', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's2399_detplano_apagar.html', 
+
+    return render(request,
+                  's2399_detplano_apagar.html',
                   context)

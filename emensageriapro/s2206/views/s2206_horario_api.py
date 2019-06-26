@@ -60,13 +60,13 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class s2206horarioList(generics.ListCreateAPIView):
-    
+
     queryset = s2206horario.objects.all()
     serializer_class = s2206horarioSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
@@ -74,12 +74,12 @@ class s2206horarioList(generics.ListCreateAPIView):
 
 
 class s2206horarioDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = s2206horario.objects.all()
     serializer_class = s2206horarioSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

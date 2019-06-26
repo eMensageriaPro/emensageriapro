@@ -44,13 +44,13 @@ from emensageriapro.efdreinf.models import r9012evtRetCons, r9012evtRetConsSeria
 
 
 class r9012evtRetConsList(generics.ListAPIView):
-    
+
     queryset = r9012evtRetCons.objects.all()
     serializer_class = r9012evtRetConsSerializer
 
 
 
 class r9012evtRetConsDetail(generics.ListAPIView):
-    
+
     queryset = r9012evtRetCons.objects.all()
     serializer_class = r9012evtRetConsSerializer

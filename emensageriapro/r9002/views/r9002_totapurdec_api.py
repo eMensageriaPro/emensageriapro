@@ -44,12 +44,12 @@ from emensageriapro.r9002.models import r9002totApurDec, r9002totApurDecSerializ
 
 
 class r9002totApurDecList(generics.ListAPIView):
-    
+
     queryset = r9002totApurDec.objects.all()
     serializer_class = r9002totApurDecSerializer
 
 
 class r9002totApurDecDetail(generics.ListAPIView):
-    
+
     queryset = r9002totApurDec.objects.all()
     serializer_class = r9002totApurDecSerializer

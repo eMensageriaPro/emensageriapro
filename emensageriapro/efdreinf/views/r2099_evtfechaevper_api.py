@@ -60,25 +60,25 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class r2099evtFechaEvPerList(generics.ListCreateAPIView):
-    
+
     queryset = r2099evtFechaEvPer.objects.all()
     serializer_class = r2099evtFechaEvPerSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
 
 
 class r2099evtFechaEvPerDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = r2099evtFechaEvPer.objects.all()
     serializer_class = r2099evtFechaEvPerSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

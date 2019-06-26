@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s1280_infoativconcom = get_object_or_404(s1280infoAtivConcom, id=pk)
         evento_dados = s1280_infoativconcom.evento()
 
     if request.user.has_perm('s1280.can_see_s1280infoAtivConcom'):
-        
+
         if pk:
-        
+
             s1280_infoativconcom_form = form_s1280_infoativconcom(
-                request.POST or None, 
+                request.POST or None,
                 instance=s1280_infoativconcom)
-                                         
+                     
         else:
-        
+
             s1280_infoativconcom_form = form_s1280_infoativconcom(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s1280_infoativconcom_form.is_valid():
-            
+
                 obj = s1280_infoativconcom_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1280_infoativconcom', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1280_infoativconcom',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s1280_infoativconcom), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s1280_infoativconcom),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1280_infoativconcom', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1280_infoativconcom',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's1280_infoativconcom_apagar', 
-                    's1280_infoativconcom_salvar', 
+                    's1280_infoativconcom_apagar',
+                    's1280_infoativconcom_salvar',
                     's1280_infoativconcom'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's1280_infoativconcom_salvar', 
+                        's1280_infoativconcom_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s1280_infoativconcom_form = disabled_form_fields(
-            s1280_infoativconcom_form, 
+            s1280_infoativconcom_form,
             request.user.has_perm('s1280.change_s1280infoAtivConcom'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s1280_infoativconcom_form = disabled_form_fields(s1280_infoativconcom_form, 0)
-                
+
         if output:
-        
+
             s1280_infoativconcom_form = disabled_form_for_print(s1280_infoativconcom_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s1280_infoativconcom = get_object_or_404(s1280infoAtivConcom, id=pk)
-            
-                
+
+
         else:
-        
+
             s1280_infoativconcom = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's1280_infoativconcom' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's1280_infoativconcom_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1280_infoativconcom').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's1280_infoativconcom': s1280_infoativconcom, 
-            's1280_infoativconcom_form': s1280_infoativconcom_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's1280_infoativconcom': s1280_infoativconcom,
+            's1280_infoativconcom_form': s1280_infoativconcom_form,
             'modulos': ['s1280', ],
             'paginas': ['s1280_infoativconcom', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s1280_infoativconcom_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1280_infoativconcom_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s1280_infoativconcom_salvar.html', context)
             filename = "s1280_infoativconcom.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's1280_infoativconcom_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1280_infoativconcom', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

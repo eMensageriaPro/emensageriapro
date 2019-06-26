@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s2299evtDeslig'):
-    
+
         s2299_evtdeslig = get_object_or_404(s2299evtDeslig, id=pk)
         s2299_evtdeslig_lista = s2299evtDeslig.objects.filter(id=pk).all()
 
-        
+
         s2299_observacoes_lista = s2299observacoes.objects.filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).all()
         s2299_sucessaovinc_lista = s2299sucessaoVinc.objects.filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).all()
         s2299_transftit_lista = s2299transfTit.objects.filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).all()
@@ -149,9 +149,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2299_evtdeslig_verificar.html',
@@ -168,20 +168,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s2299_evtdeslig_verificar.html', context)
             filename = "%s.xls" % s2299_evtdeslig.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s2299_evtdeslig_verificar.html', context)
             filename = "%s.csv" % s2299_evtdeslig.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -189,7 +189,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's2299_evtdeslig_verificar.html', context)
 
     else:

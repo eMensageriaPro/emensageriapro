@@ -65,134 +65,134 @@ from emensageriapro.s2299.forms import form_s2299_infoperant_ideperiodo
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2299_infoperant_ideadc = get_object_or_404(s2299infoPerAntideADC, id=pk)
         evento_dados = s2299_infoperant_ideadc.evento()
 
     if request.user.has_perm('s2299.can_see_s2299infoPerAntideADC'):
-        
+
         if pk:
-        
+
             s2299_infoperant_ideadc_form = form_s2299_infoperant_ideadc(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2299_infoperant_ideadc)
-                                         
+                     
         else:
-        
+
             s2299_infoperant_ideadc_form = form_s2299_infoperant_ideadc(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2299_infoperant_ideadc_form.is_valid():
-            
+
                 obj = s2299_infoperant_ideadc_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2299_infoperant_ideadc', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2299_infoperant_ideadc',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2299_infoperant_ideadc), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2299_infoperant_ideadc),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2299_infoperant_ideadc', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2299_infoperant_ideadc',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2299_infoperant_ideadc_apagar', 
-                    's2299_infoperant_ideadc_salvar', 
+                    's2299_infoperant_ideadc_apagar',
+                    's2299_infoperant_ideadc_salvar',
                     's2299_infoperant_ideadc'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2299_infoperant_ideadc_salvar', 
+                        's2299_infoperant_ideadc_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2299_infoperant_ideadc_form = disabled_form_fields(
-            s2299_infoperant_ideadc_form, 
+            s2299_infoperant_ideadc_form,
             request.user.has_perm('s2299.change_s2299infoPerAntideADC'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2299_infoperant_ideadc_form = disabled_form_fields(s2299_infoperant_ideadc_form, 0)
-                
+
         if output:
-        
+
             s2299_infoperant_ideadc_form = disabled_form_for_print(s2299_infoperant_ideadc_form)
-            
-        
-        s2299_infoperant_ideperiodo_lista = None 
-        s2299_infoperant_ideperiodo_form = None 
-        
+
+
+        s2299_infoperant_ideperiodo_lista = None
+        s2299_infoperant_ideperiodo_form = None
+
         if pk:
-        
+
             s2299_infoperant_ideadc = get_object_or_404(s2299infoPerAntideADC, id=pk)
-            
+
             s2299_infoperant_ideperiodo_form = form_s2299_infoperant_ideperiodo(
                 initial={ 's2299_infoperant_ideadc': s2299_infoperant_ideadc })
             s2299_infoperant_ideperiodo_form.fields['s2299_infoperant_ideadc'].widget.attrs['readonly'] = True
             s2299_infoperant_ideperiodo_lista = s2299infoPerAntidePeriodo.objects.\
                 filter(s2299_infoperant_ideadc_id=s2299_infoperant_ideadc.id).all()
-                
-                
+
+
         else:
-        
+
             s2299_infoperant_ideadc = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2299_infoperant_ideadc' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2299_infoperant_ideadc_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2299_infoperant_ideadc').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2299_infoperant_ideadc': s2299_infoperant_ideadc, 
-            's2299_infoperant_ideadc_form': s2299_infoperant_ideadc_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2299_infoperant_ideadc': s2299_infoperant_ideadc,
+            's2299_infoperant_ideadc_form': s2299_infoperant_ideadc_form,
             'modulos': ['s2299', ],
             'paginas': ['s2299_infoperant_ideadc', ],
             's2299_infoperant_ideperiodo_form': s2299_infoperant_ideperiodo_form,
@@ -202,11 +202,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2299_infoperant_ideadc_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2299_infoperant_ideadc_salvar.html',
@@ -224,26 +224,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2299_infoperant_ideadc_salvar.html', context)
             filename = "s2299_infoperant_ideadc.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2299_infoperant_ideadc_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -253,7 +253,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2299_infoperant_ideadc', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

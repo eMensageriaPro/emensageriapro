@@ -77,182 +77,182 @@ from emensageriapro.s1005.forms import form_s1005_alteracao_novavalidade
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s1005_alteracao = get_object_or_404(s1005alteracao, id=pk)
         evento_dados = s1005_alteracao.evento()
 
     if request.user.has_perm('s1005.can_see_s1005alteracao'):
-        
+
         if pk:
-        
+
             s1005_alteracao_form = form_s1005_alteracao(
-                request.POST or None, 
+                request.POST or None,
                 instance=s1005_alteracao)
-                                         
+                     
         else:
-        
+
             s1005_alteracao_form = form_s1005_alteracao(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s1005_alteracao_form.is_valid():
-            
+
                 obj = s1005_alteracao_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1005_alteracao', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1005_alteracao',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s1005_alteracao), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s1005_alteracao),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1005_alteracao', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1005_alteracao',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's1005_alteracao_apagar', 
-                    's1005_alteracao_salvar', 
+                    's1005_alteracao_apagar',
+                    's1005_alteracao_salvar',
                     's1005_alteracao'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's1005_alteracao_salvar', 
+                        's1005_alteracao_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s1005_alteracao_form = disabled_form_fields(
-            s1005_alteracao_form, 
+            s1005_alteracao_form,
             request.user.has_perm('s1005.change_s1005alteracao'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s1005_alteracao_form = disabled_form_fields(s1005_alteracao_form, 0)
-                
+
         if output:
-        
+
             s1005_alteracao_form = disabled_form_for_print(s1005_alteracao_form)
-            
-        
-        s1005_alteracao_procadmjudrat_lista = None 
-        s1005_alteracao_procadmjudrat_form = None 
-        s1005_alteracao_procadmjudfap_lista = None 
-        s1005_alteracao_procadmjudfap_form = None 
-        s1005_alteracao_infocaepf_lista = None 
-        s1005_alteracao_infocaepf_form = None 
-        s1005_alteracao_infoobra_lista = None 
-        s1005_alteracao_infoobra_form = None 
-        s1005_alteracao_infoenteduc_lista = None 
-        s1005_alteracao_infoenteduc_form = None 
-        s1005_alteracao_infopcd_lista = None 
-        s1005_alteracao_infopcd_form = None 
-        s1005_alteracao_novavalidade_lista = None 
-        s1005_alteracao_novavalidade_form = None 
-        
+
+
+        s1005_alteracao_procadmjudrat_lista = None
+        s1005_alteracao_procadmjudrat_form = None
+        s1005_alteracao_procadmjudfap_lista = None
+        s1005_alteracao_procadmjudfap_form = None
+        s1005_alteracao_infocaepf_lista = None
+        s1005_alteracao_infocaepf_form = None
+        s1005_alteracao_infoobra_lista = None
+        s1005_alteracao_infoobra_form = None
+        s1005_alteracao_infoenteduc_lista = None
+        s1005_alteracao_infoenteduc_form = None
+        s1005_alteracao_infopcd_lista = None
+        s1005_alteracao_infopcd_form = None
+        s1005_alteracao_novavalidade_lista = None
+        s1005_alteracao_novavalidade_form = None
+
         if pk:
-        
+
             s1005_alteracao = get_object_or_404(s1005alteracao, id=pk)
-            
+
             s1005_alteracao_procadmjudrat_form = form_s1005_alteracao_procadmjudrat(
                 initial={ 's1005_alteracao': s1005_alteracao })
             s1005_alteracao_procadmjudrat_form.fields['s1005_alteracao'].widget.attrs['readonly'] = True
             s1005_alteracao_procadmjudrat_lista = s1005alteracaoprocAdmJudRat.objects.\
                 filter(s1005_alteracao_id=s1005_alteracao.id).all()
-                
+
             s1005_alteracao_procadmjudfap_form = form_s1005_alteracao_procadmjudfap(
                 initial={ 's1005_alteracao': s1005_alteracao })
             s1005_alteracao_procadmjudfap_form.fields['s1005_alteracao'].widget.attrs['readonly'] = True
             s1005_alteracao_procadmjudfap_lista = s1005alteracaoprocAdmJudFap.objects.\
                 filter(s1005_alteracao_id=s1005_alteracao.id).all()
-                
+
             s1005_alteracao_infocaepf_form = form_s1005_alteracao_infocaepf(
                 initial={ 's1005_alteracao': s1005_alteracao })
             s1005_alteracao_infocaepf_form.fields['s1005_alteracao'].widget.attrs['readonly'] = True
             s1005_alteracao_infocaepf_lista = s1005alteracaoinfoCaepf.objects.\
                 filter(s1005_alteracao_id=s1005_alteracao.id).all()
-                
+
             s1005_alteracao_infoobra_form = form_s1005_alteracao_infoobra(
                 initial={ 's1005_alteracao': s1005_alteracao })
             s1005_alteracao_infoobra_form.fields['s1005_alteracao'].widget.attrs['readonly'] = True
             s1005_alteracao_infoobra_lista = s1005alteracaoinfoObra.objects.\
                 filter(s1005_alteracao_id=s1005_alteracao.id).all()
-                
+
             s1005_alteracao_infoenteduc_form = form_s1005_alteracao_infoenteduc(
                 initial={ 's1005_alteracao': s1005_alteracao })
             s1005_alteracao_infoenteduc_form.fields['s1005_alteracao'].widget.attrs['readonly'] = True
             s1005_alteracao_infoenteduc_lista = s1005alteracaoinfoEntEduc.objects.\
                 filter(s1005_alteracao_id=s1005_alteracao.id).all()
-                
+
             s1005_alteracao_infopcd_form = form_s1005_alteracao_infopcd(
                 initial={ 's1005_alteracao': s1005_alteracao })
             s1005_alteracao_infopcd_form.fields['s1005_alteracao'].widget.attrs['readonly'] = True
             s1005_alteracao_infopcd_lista = s1005alteracaoinfoPCD.objects.\
                 filter(s1005_alteracao_id=s1005_alteracao.id).all()
-                
+
             s1005_alteracao_novavalidade_form = form_s1005_alteracao_novavalidade(
                 initial={ 's1005_alteracao': s1005_alteracao })
             s1005_alteracao_novavalidade_form.fields['s1005_alteracao'].widget.attrs['readonly'] = True
             s1005_alteracao_novavalidade_lista = s1005alteracaonovaValidade.objects.\
                 filter(s1005_alteracao_id=s1005_alteracao.id).all()
-                
-                
+
+
         else:
-        
+
             s1005_alteracao = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's1005_alteracao' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's1005_alteracao_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1005_alteracao').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's1005_alteracao': s1005_alteracao, 
-            's1005_alteracao_form': s1005_alteracao_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's1005_alteracao': s1005_alteracao,
+            's1005_alteracao_form': s1005_alteracao_form,
             'modulos': ['s1005', ],
             'paginas': ['s1005_alteracao', ],
             's1005_alteracao_procadmjudrat_form': s1005_alteracao_procadmjudrat_form,
@@ -274,11 +274,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s1005_alteracao_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1005_alteracao_salvar.html',
@@ -296,26 +296,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s1005_alteracao_salvar.html', context)
             filename = "s1005_alteracao.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's1005_alteracao_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -325,7 +325,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1005_alteracao', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

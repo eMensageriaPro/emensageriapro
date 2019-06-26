@@ -67,142 +67,142 @@ from emensageriapro.r4010.forms import form_r4010_inforra_origemrec
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         r4010_inforra = get_object_or_404(r4010infoRRA, id=pk)
         evento_dados = r4010_inforra.evento()
 
     if request.user.has_perm('r4010.can_see_r4010infoRRA'):
-        
+
         if pk:
-        
+
             r4010_inforra_form = form_r4010_inforra(
-                request.POST or None, 
+                request.POST or None,
                 instance=r4010_inforra)
-                                         
+                     
         else:
-        
+
             r4010_inforra_form = form_r4010_inforra(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if r4010_inforra_form.is_valid():
-            
+
                 obj = r4010_inforra_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r4010_inforra', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r4010_inforra',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(r4010_inforra), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(r4010_inforra),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r4010_inforra', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r4010_inforra',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    'r4010_inforra_apagar', 
-                    'r4010_inforra_salvar', 
+                    'r4010_inforra_apagar',
+                    'r4010_inforra_salvar',
                     'r4010_inforra'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'r4010_inforra_salvar', 
+                        'r4010_inforra_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         r4010_inforra_form = disabled_form_fields(
-            r4010_inforra_form, 
+            r4010_inforra_form,
             request.user.has_perm('r4010.change_r4010infoRRA'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 r4010_inforra_form = disabled_form_fields(r4010_inforra_form, 0)
-                
+
         if output:
-        
+
             r4010_inforra_form = disabled_form_for_print(r4010_inforra_form)
-            
-        
-        r4010_inforra_despprocjud_lista = None 
-        r4010_inforra_despprocjud_form = None 
-        r4010_inforra_origemrec_lista = None 
-        r4010_inforra_origemrec_form = None 
-        
+
+
+        r4010_inforra_despprocjud_lista = None
+        r4010_inforra_despprocjud_form = None
+        r4010_inforra_origemrec_lista = None
+        r4010_inforra_origemrec_form = None
+
         if pk:
-        
+
             r4010_inforra = get_object_or_404(r4010infoRRA, id=pk)
-            
+
             r4010_inforra_despprocjud_form = form_r4010_inforra_despprocjud(
                 initial={ 'r4010_inforra': r4010_inforra })
             r4010_inforra_despprocjud_form.fields['r4010_inforra'].widget.attrs['readonly'] = True
             r4010_inforra_despprocjud_lista = r4010infoRRAdespProcJud.objects.\
                 filter(r4010_inforra_id=r4010_inforra.id).all()
-                
+
             r4010_inforra_origemrec_form = form_r4010_inforra_origemrec(
                 initial={ 'r4010_inforra': r4010_inforra })
             r4010_inforra_origemrec_form.fields['r4010_inforra'].widget.attrs['readonly'] = True
             r4010_inforra_origemrec_lista = r4010infoRRAorigemRec.objects.\
                 filter(r4010_inforra_id=r4010_inforra.id).all()
-                
-                
+
+
         else:
-        
+
             r4010_inforra = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 'r4010_inforra' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'r4010_inforra_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r4010_inforra').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            'r4010_inforra': r4010_inforra, 
-            'r4010_inforra_form': r4010_inforra_form, 
+            'controle_alteracoes': controle_alteracoes,
+            'r4010_inforra': r4010_inforra,
+            'r4010_inforra_form': r4010_inforra_form,
             'modulos': ['r4010', ],
             'paginas': ['r4010_inforra', ],
             'r4010_inforra_despprocjud_form': r4010_inforra_despprocjud_form,
@@ -214,11 +214,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #r4010_inforra_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r4010_inforra_salvar.html',
@@ -236,26 +236,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('r4010_inforra_salvar.html', context)
             filename = "r4010_inforra.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 'r4010_inforra_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -265,7 +265,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r4010_inforra', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

@@ -58,17 +58,17 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, pk):
-        
+
     import json
     from django.forms.models import model_to_dict
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     s2300_evttsvinicio = get_object_or_404(s2300evtTSVInicio, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2300_evttsvinicio), indent=4, sort_keys=True, default=str)
             obj = s2300evtTSVInicio.objects.get(id=pk)
             obj.delete(request=request)
@@ -76,29 +76,29 @@ def apagar(request, pk):
             #s2300_evttsvinicio_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
-                             '', 
+                             '',
                              's2300_evttsvinicio', pk, request.user.id, 3)
         else:
-        
-            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é
                                         possível apagar os eventos com status "Cadastrado"!''')
-            
+
         if 's2300_evttsvinicio' in request.session['return_page']:
-        
+
             return redirect('s2300_evttsvinicio')
-            
+
         else:
-        
-            return redirect(request.session['return_page'], 
+
+            return redirect(request.session['return_page'],
                             pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
-        'pk': pk, 
-        's2300_evttsvinicio': s2300_evttsvinicio, 
+        'pk': pk,
+        's2300_evttsvinicio': s2300_evttsvinicio,
         'data': datetime.datetime.now(),
         'modulos': ['esocial', ],
         'paginas': ['s2300_evttsvinicio', ],
     }
-    
+
     return render(request, 's2300_evttsvinicio_apagar.html', context)

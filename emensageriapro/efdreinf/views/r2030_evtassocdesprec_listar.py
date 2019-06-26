@@ -62,10 +62,10 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('efdreinf.can_see_r2030evtAssocDespRec'):
-    
+
         filtrar = False
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_reinf': 0,
             'show_evtassocdesprec': 0,
             'show_identidade': 1,
@@ -99,13 +99,13 @@ def listar(request, output=None):
             'show_cdretorno': 1,
             'show_descretorno': 0,
             'show_dhprocess': 0, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 'reinf': 'reinf',
                 'evtassocdesprec': 'evtassocdesprec',
                 'identidade__icontains': 'identidade__icontains',
@@ -126,15 +126,15 @@ def listar(request, output=None):
                 'transmissor_lote_efdreinf__icontains': 'transmissor_lote_efdreinf__icontains',
                 'status__icontains': 'status__icontains',
                 'cdretorno__icontains': 'cdretorno__icontains', }
-                
+
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-                dict_fields = { 
+                dict_fields = {
                     'reinf': 'reinf',
                     'evtassocdesprec': 'evtassocdesprec',
                     'identidade__icontains': 'identidade__icontains',
@@ -157,18 +157,18 @@ def listar(request, output=None):
                     'cdretorno__icontains': 'cdretorno__icontains', }
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         r2030_evtassocdesprec_lista = r2030evtAssocDespRec.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(r2030_evtassocdesprec_lista) > 100:
             filtrar = True
             r2030_evtassocdesprec_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #r2030_evtassocdesprec_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -181,12 +181,12 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-        
+
         if output == 'pdf':
-        
+
             from emensageriapro.functions import render_to_pdf
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r2030_evtassocdesprec_listar.html',
@@ -206,31 +206,31 @@ def listar(request, output=None):
                              "no-stop-slow-scripts": True},
             )
             return response
-            
+
         elif output == 'xls':
-        
+
             response = render_to_response('r2030_evtassocdesprec_listar.html', context)
             filename = "r2030_evtassocdesprec.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         elif output == 'csv':
-        
+
             response = render_to_response('csv/r2030_evtassocdesprec.csv', context)
             filename = "r2030_evtassocdesprec.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 'r2030_evtassocdesprec_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'data': datetime.datetime.now(),

@@ -62,10 +62,10 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('esocial.can_see_s1299evtFechaEvPer'):
-    
+
         filtrar = False
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_esocial': 0,
             'show_evtfechaevper': 0,
             'show_identidade': 1,
@@ -95,13 +95,13 @@ def listar(request, output=None):
             'show_arquivo_original': 0,
             'show_arquivo': 0,
             'show_status': 1, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 'esocial': 'esocial',
                 'evtfechaevper': 'evtfechaevper',
                 'identidade__icontains': 'identidade__icontains',
@@ -125,15 +125,15 @@ def listar(request, output=None):
                 'versao__icontains': 'versao__icontains',
                 'transmissor_lote_esocial__icontains': 'transmissor_lote_esocial__icontains',
                 'status__icontains': 'status__icontains', }
-                
+
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-                dict_fields = { 
+                dict_fields = {
                     'esocial': 'esocial',
                     'evtfechaevper': 'evtfechaevper',
                     'identidade__icontains': 'identidade__icontains',
@@ -159,18 +159,18 @@ def listar(request, output=None):
                     'status__icontains': 'status__icontains', }
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         s1299_evtfechaevper_lista = s1299evtFechaEvPer.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(s1299_evtfechaevper_lista) > 100:
             filtrar = True
             s1299_evtfechaevper_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s1299_evtfechaevper_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -183,12 +183,12 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-        
+
         if output == 'pdf':
-        
+
             from emensageriapro.functions import render_to_pdf
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1299_evtfechaevper_listar.html',
@@ -208,31 +208,31 @@ def listar(request, output=None):
                              "no-stop-slow-scripts": True},
             )
             return response
-            
+
         elif output == 'xls':
-        
+
             response = render_to_response('s1299_evtfechaevper_listar.html', context)
             filename = "s1299_evtfechaevper.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         elif output == 'csv':
-        
+
             response = render_to_response('csv/s1299_evtfechaevper.csv', context)
             filename = "s1299_evtfechaevper.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's1299_evtfechaevper_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'data': datetime.datetime.now(),

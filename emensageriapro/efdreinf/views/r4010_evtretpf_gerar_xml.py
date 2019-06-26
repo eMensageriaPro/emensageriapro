@@ -95,82 +95,82 @@ def gerar_xml_r4010(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         r4010_evtretpf_lista = r4010evtRetPF.objects. \
             filter(id=pk).all()
-            
-        
+
+
         r4010_idepgto_lista = r4010idePgto.objects. \
             filter(r4010_evtretpf_id__in=listar_ids(r4010_evtretpf_lista)).all()
-        
+
         r4010_infopgto_lista = r4010infoPgto.objects. \
             filter(r4010_idepgto_id__in=listar_ids(r4010_idepgto_lista)).all()
-        
+
         r4010_fci_lista = r4010FCI.objects. \
             filter(r4010_infopgto_id__in=listar_ids(r4010_infopgto_lista)).all()
-        
+
         r4010_scp_lista = r4010SCP.objects. \
             filter(r4010_infopgto_id__in=listar_ids(r4010_infopgto_lista)).all()
-        
+
         r4010_detded_lista = r4010detDed.objects. \
             filter(r4010_infopgto_id__in=listar_ids(r4010_infopgto_lista)).all()
-        
+
         r4010_benefpen_lista = r4010benefPen.objects. \
             filter(r4010_detded_id__in=listar_ids(r4010_detded_lista)).all()
-        
+
         r4010_rendisento_lista = r4010rendIsento.objects. \
             filter(r4010_infopgto_id__in=listar_ids(r4010_infopgto_lista)).all()
-        
+
         r4010_infoprocret_lista = r4010infoProcRet.objects. \
             filter(r4010_infopgto_id__in=listar_ids(r4010_infopgto_lista)).all()
-        
+
         r4010_inforra_lista = r4010infoRRA.objects. \
             filter(r4010_infopgto_id__in=listar_ids(r4010_infopgto_lista)).all()
-        
+
         r4010_inforra_despprocjud_lista = r4010infoRRAdespProcJud.objects. \
             filter(r4010_inforra_id__in=listar_ids(r4010_inforra_lista)).all()
-        
+
         r4010_inforra_ideadv_lista = r4010infoRRAideAdv.objects. \
             filter(r4010_inforra_despprocjud_id__in=listar_ids(r4010_inforra_despprocjud_lista)).all()
-        
+
         r4010_inforra_origemrec_lista = r4010infoRRAorigemRec.objects. \
             filter(r4010_inforra_id__in=listar_ids(r4010_inforra_lista)).all()
-        
+
         r4010_infoprocjud_lista = r4010infoProcJud.objects. \
             filter(r4010_infopgto_id__in=listar_ids(r4010_infopgto_lista)).all()
-        
+
         r4010_infoprocjud_despprocjud_lista = r4010infoProcJuddespProcJud.objects. \
             filter(r4010_infoprocjud_id__in=listar_ids(r4010_infoprocjud_lista)).all()
-        
+
         r4010_infoprocjud_ideadv_lista = r4010infoProcJudideAdv.objects. \
             filter(r4010_infoprocjud_despprocjud_id__in=listar_ids(r4010_infoprocjud_despprocjud_lista)).all()
-        
+
         r4010_infoprocjud_origemrec_lista = r4010infoProcJudorigemRec.objects. \
             filter(r4010_infoprocjud_id__in=listar_ids(r4010_infoprocjud_lista)).all()
-        
+
         r4010_infopgtoext_lista = r4010infoPgtoExt.objects. \
             filter(r4010_idepgto_id__in=listar_ids(r4010_idepgto_lista)).all()
-        
+
         r4010_ideopsaude_lista = r4010ideOpSaude.objects. \
             filter(r4010_evtretpf_id__in=listar_ids(r4010_evtretpf_lista)).all()
-        
+
         r4010_inforeemb_lista = r4010infoReemb.objects. \
             filter(r4010_ideopsaude_id__in=listar_ids(r4010_ideopsaude_lista)).all()
-        
+
         r4010_infodependpl_lista = r4010infoDependPl.objects. \
             filter(r4010_ideopsaude_id__in=listar_ids(r4010_ideopsaude_lista)).all()
-        
+
         r4010_inforeembdep_lista = r4010infoReembDep.objects. \
             filter(r4010_infodependpl_id__in=listar_ids(r4010_infodependpl_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -218,14 +218,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if r4010_evtretpf.arquivo_original:
-    
+
         xml = ler_arquivo(r4010_evtretpf.arquivo)
 
     else:
         xml = gerar_xml_r4010(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -246,16 +246,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 r4010evtRetPF,
                 r4010_evtretpf)
-        
+
         r4010_evtretpf = get_object_or_404(
             r4010evtRetPF,
             id=pk)
-        
+
         xml_assinado = assinar_efdreinf(
-            request, 
-            xml, 
+            request,
+            xml,
             r4010_evtretpf.transmissor_lote_efdreinf_id)
-        
+
     if r4010_evtretpf.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -269,11 +269,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/r4010_evtretpf/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_efdreinf(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -286,5 +286,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

@@ -44,12 +44,12 @@ from emensageriapro.r5011.models import r5011RPrest, r5011RPrestSerializer
 
 
 class r5011RPrestList(generics.ListAPIView):
-    
+
     queryset = r5011RPrest.objects.all()
     serializer_class = r5011RPrestSerializer
 
 
 class r5011RPrestDetail(generics.ListAPIView):
-    
+
     queryset = r5011RPrest.objects.all()
     serializer_class = r5011RPrestSerializer

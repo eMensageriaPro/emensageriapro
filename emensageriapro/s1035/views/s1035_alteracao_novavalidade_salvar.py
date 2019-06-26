@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s1035_alteracao_novavalidade = get_object_or_404(s1035alteracaonovaValidade, id=pk)
         evento_dados = s1035_alteracao_novavalidade.evento()
 
     if request.user.has_perm('s1035.can_see_s1035alteracaonovaValidade'):
-        
+
         if pk:
-        
+
             s1035_alteracao_novavalidade_form = form_s1035_alteracao_novavalidade(
-                request.POST or None, 
+                request.POST or None,
                 instance=s1035_alteracao_novavalidade)
-                                         
+                     
         else:
-        
+
             s1035_alteracao_novavalidade_form = form_s1035_alteracao_novavalidade(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s1035_alteracao_novavalidade_form.is_valid():
-            
+
                 obj = s1035_alteracao_novavalidade_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1035_alteracao_novavalidade', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1035_alteracao_novavalidade',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s1035_alteracao_novavalidade), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s1035_alteracao_novavalidade),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1035_alteracao_novavalidade', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1035_alteracao_novavalidade',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's1035_alteracao_novavalidade_apagar', 
-                    's1035_alteracao_novavalidade_salvar', 
+                    's1035_alteracao_novavalidade_apagar',
+                    's1035_alteracao_novavalidade_salvar',
                     's1035_alteracao_novavalidade'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's1035_alteracao_novavalidade_salvar', 
+                        's1035_alteracao_novavalidade_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s1035_alteracao_novavalidade_form = disabled_form_fields(
-            s1035_alteracao_novavalidade_form, 
+            s1035_alteracao_novavalidade_form,
             request.user.has_perm('s1035.change_s1035alteracaonovaValidade'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s1035_alteracao_novavalidade_form = disabled_form_fields(s1035_alteracao_novavalidade_form, 0)
-                
+
         if output:
-        
+
             s1035_alteracao_novavalidade_form = disabled_form_for_print(s1035_alteracao_novavalidade_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s1035_alteracao_novavalidade = get_object_or_404(s1035alteracaonovaValidade, id=pk)
-            
-                
+
+
         else:
-        
+
             s1035_alteracao_novavalidade = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's1035_alteracao_novavalidade' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's1035_alteracao_novavalidade_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1035_alteracao_novavalidade').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's1035_alteracao_novavalidade': s1035_alteracao_novavalidade, 
-            's1035_alteracao_novavalidade_form': s1035_alteracao_novavalidade_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's1035_alteracao_novavalidade': s1035_alteracao_novavalidade,
+            's1035_alteracao_novavalidade_form': s1035_alteracao_novavalidade_form,
             'modulos': ['s1035', ],
             'paginas': ['s1035_alteracao_novavalidade', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s1035_alteracao_novavalidade_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1035_alteracao_novavalidade_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s1035_alteracao_novavalidade_salvar.html', context)
             filename = "s1035_alteracao_novavalidade.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's1035_alteracao_novavalidade_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1035_alteracao_novavalidade', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

@@ -62,65 +62,65 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('r2060.can_see_r2060infoProc'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_r2060_tipocod': 1,
             'show_tpproc': 1,
             'show_nrproc': 1,
             'show_codsusp': 0,
             'show_vlrcprbsusp': 1, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 'r2060_tipocod__icontains': 'r2060_tipocod__icontains',
                 'tpproc__icontains': 'tpproc__icontains',
                 'nrproc__icontains': 'nrproc__icontains',
                 'codsusp__icontains': 'codsusp__icontains',
                 'vlrcprbsusp__icontains': 'vlrcprbsusp__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     'r2060_tipocod__icontains': 'r2060_tipocod__icontains',
                     'tpproc__icontains': 'tpproc__icontains',
                     'nrproc__icontains': 'nrproc__icontains',
                     'codsusp__icontains': 'codsusp__icontains',
                     'vlrcprbsusp__icontains': 'vlrcprbsusp__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         r2060_infoproc_lista = r2060infoProc.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(r2060_infoproc_lista) > 100:
-        
+
             filtrar = True
             r2060_infoproc_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #r2060_infoproc_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            'r2060_infoproc_lista': r2060_infoproc_lista, 
+            'r2060_infoproc_lista': r2060_infoproc_lista,
             'modulos': ['r2060', ],
             'paginas': ['r2060_infoproc', ],
             'dict_fields': dict_fields,
@@ -129,11 +129,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r2060_infoproc_listar.html',
@@ -151,33 +151,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('r2060_infoproc_listar.html', context)
             filename = "r2060_infoproc.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/r2060_infoproc.csv', context)
             filename = "r2060_infoproc.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 'r2060_infoproc_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -185,7 +185,7 @@ def listar(request, output=None):
             'modulos': ['r2060', ],
             'paginas': ['r2060_infoproc', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

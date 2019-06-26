@@ -44,13 +44,13 @@ from emensageriapro.efdreinf.models import r9001evtTotal, r9001evtTotalSerialize
 
 
 class r9001evtTotalList(generics.ListAPIView):
-    
+
     queryset = r9001evtTotal.objects.all()
     serializer_class = r9001evtTotalSerializer
 
 
 
 class r9001evtTotalDetail(generics.ListAPIView):
-    
+
     queryset = r9001evtTotal.objects.all()
     serializer_class = r9001evtTotalSerializer

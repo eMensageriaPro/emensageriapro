@@ -44,12 +44,12 @@ from emensageriapro.r9001.models import r9001infoTotal, r9001infoTotalSerializer
 
 
 class r9001infoTotalList(generics.ListAPIView):
-    
+
     queryset = r9001infoTotal.objects.all()
     serializer_class = r9001infoTotalSerializer
 
 
 class r9001infoTotalDetail(generics.ListAPIView):
-    
+
     queryset = r9001infoTotal.objects.all()
     serializer_class = r9001infoTotalSerializer

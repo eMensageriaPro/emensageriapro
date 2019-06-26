@@ -62,62 +62,62 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('r2070.can_see_r2070rendIsento'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_r2070_pgtopf': 1,
             'show_tpisencao': 1,
             'show_vlrisento': 1,
             'show_descrendimento': 0, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 'r2070_pgtopf__icontains': 'r2070_pgtopf__icontains',
                 'tpisencao__icontains': 'tpisencao__icontains',
                 'vlrisento__icontains': 'vlrisento__icontains',
                 'descrendimento__icontains': 'descrendimento__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     'r2070_pgtopf__icontains': 'r2070_pgtopf__icontains',
                     'tpisencao__icontains': 'tpisencao__icontains',
                     'vlrisento__icontains': 'vlrisento__icontains',
                     'descrendimento__icontains': 'descrendimento__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         r2070_rendisento_lista = r2070rendIsento.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(r2070_rendisento_lista) > 100:
-        
+
             filtrar = True
             r2070_rendisento_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #r2070_rendisento_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            'r2070_rendisento_lista': r2070_rendisento_lista, 
+            'r2070_rendisento_lista': r2070_rendisento_lista,
             'modulos': ['r2070', ],
             'paginas': ['r2070_rendisento', ],
             'dict_fields': dict_fields,
@@ -126,11 +126,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r2070_rendisento_listar.html',
@@ -148,33 +148,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('r2070_rendisento_listar.html', context)
             filename = "r2070_rendisento.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/r2070_rendisento.csv', context)
             filename = "r2070_rendisento.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 'r2070_rendisento_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -182,7 +182,7 @@ def listar(request, output=None):
             'modulos': ['r2070', ],
             'paginas': ['r2070_rendisento', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

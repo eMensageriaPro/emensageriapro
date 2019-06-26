@@ -60,25 +60,25 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class s2410evtCdBenInList(generics.ListCreateAPIView):
-    
+
     queryset = s2410evtCdBenIn.objects.all()
     serializer_class = s2410evtCdBenInSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
 
 
 class s2410evtCdBenInDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = s2410evtCdBenIn.objects.all()
     serializer_class = s2410evtCdBenInSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

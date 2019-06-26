@@ -61,97 +61,97 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def salvar(request, pk=None, tab='master', output=None):
-    
+
     if pk:
-    
+
         importacao_arquivos_eventos = get_object_or_404(ImportacaoArquivosEventos, id=pk)
-        
+
     if request.user.has_perm('mensageiro.can_see_ImportacaoArquivosEventos'):
-        
+
         if pk:
-        
+
             importacao_arquivos_eventos_form = form_importacao_arquivos_eventos(request.POST or None, instance=importacao_arquivos_eventos)
-            
+
         else:
-        
+
             importacao_arquivos_eventos_form = form_importacao_arquivos_eventos(request.POST or None)
-            
+
         if request.method == 'POST':
-        
+
             if importacao_arquivos_eventos_form.is_valid():
-            
+
                 #importacao_arquivos_eventos_campos_multiple_passo1
-                
-                
+
+
                 obj = importacao_arquivos_eventos_form.save(request=request)
                 messages.success(request, 'Salvo com sucesso!')
                 #importacao_arquivos_eventos_campos_multiple_passo2
-                
+
                 if request.session['return_page'] not in (
-                    'importacao_arquivos_eventos_apagar', 
-                    'importacao_arquivos_eventos_salvar', 
+                    'importacao_arquivos_eventos_apagar',
+                    'importacao_arquivos_eventos_salvar',
                     'importacao_arquivos_eventos'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'importacao_arquivos_eventos_salvar', 
+                        'importacao_arquivos_eventos_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, 'Erro ao salvar!')
-                
+
         importacao_arquivos_eventos_form = disabled_form_fields(importacao_arquivos_eventos_form, request.user.has_perm('mensageiro.change_ImportacaoArquivosEventos'))
         #importacao_arquivos_eventos_campos_multiple_passo3
-        
+
         if output:
-        
+
             importacao_arquivos_eventos_form = disabled_form_for_print(importacao_arquivos_eventos_form)
-        
-        
-        
+
+
+
         if pk:
-        
+
             importacao_arquivos_eventos = get_object_or_404(ImportacaoArquivosEventos, id=pk)
-            
-                
+
+
         else:
-        
+
             importacao_arquivos_eventos = None
-            
+
         #importacao_arquivos_eventos_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if tab or 'importacao_arquivos_eventos' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'importacao_arquivos_eventos_salvar'
-            
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'tab': tab,
-            'importacao_arquivos_eventos': importacao_arquivos_eventos, 
-            'importacao_arquivos_eventos_form': importacao_arquivos_eventos_form, 
+            'importacao_arquivos_eventos': importacao_arquivos_eventos,
+            'importacao_arquivos_eventos_form': importacao_arquivos_eventos_form,
             'modulos': ['mensageiro', ],
             'paginas': ['importacao_arquivos_eventos', ],
             'data': datetime.datetime.now(),
             'tabelas_secundarias': tabelas_secundarias,
             #importacao_arquivos_eventos_salvar_custom_variaveis_context#
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='importacao_arquivos_eventos_salvar.html',
@@ -169,26 +169,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True})
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('importacao_arquivos_eventos_salvar.html', context)
             filename = "importacao_arquivos_eventos.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-        
+
         else:
-        
+
             return render(request, 'importacao_arquivos_eventos_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -198,7 +198,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['importacao_arquivos_eventos', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-            'permissao_negada.html', 
+
+        return render(request,
+            'permissao_negada.html',
             context)

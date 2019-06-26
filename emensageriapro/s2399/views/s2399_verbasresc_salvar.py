@@ -69,150 +69,150 @@ from emensageriapro.s2399.forms import form_s2399_infomv
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2399_verbasresc = get_object_or_404(s2399verbasResc, id=pk)
         evento_dados = s2399_verbasresc.evento()
 
     if request.user.has_perm('s2399.can_see_s2399verbasResc'):
-        
+
         if pk:
-        
+
             s2399_verbasresc_form = form_s2399_verbasresc(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2399_verbasresc)
-                                         
+                     
         else:
-        
+
             s2399_verbasresc_form = form_s2399_verbasresc(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2399_verbasresc_form.is_valid():
-            
+
                 obj = s2399_verbasresc_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2399_verbasresc', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2399_verbasresc',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2399_verbasresc), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2399_verbasresc),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2399_verbasresc', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2399_verbasresc',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2399_verbasresc_apagar', 
-                    's2399_verbasresc_salvar', 
+                    's2399_verbasresc_apagar',
+                    's2399_verbasresc_salvar',
                     's2399_verbasresc'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2399_verbasresc_salvar', 
+                        's2399_verbasresc_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2399_verbasresc_form = disabled_form_fields(
-            s2399_verbasresc_form, 
+            s2399_verbasresc_form,
             request.user.has_perm('s2399.change_s2399verbasResc'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2399_verbasresc_form = disabled_form_fields(s2399_verbasresc_form, 0)
-                
+
         if output:
-        
+
             s2399_verbasresc_form = disabled_form_for_print(s2399_verbasresc_form)
-            
-        
-        s2399_dmdev_lista = None 
-        s2399_dmdev_form = None 
-        s2399_procjudtrab_lista = None 
-        s2399_procjudtrab_form = None 
-        s2399_infomv_lista = None 
-        s2399_infomv_form = None 
-        
+
+
+        s2399_dmdev_lista = None
+        s2399_dmdev_form = None
+        s2399_procjudtrab_lista = None
+        s2399_procjudtrab_form = None
+        s2399_infomv_lista = None
+        s2399_infomv_form = None
+
         if pk:
-        
+
             s2399_verbasresc = get_object_or_404(s2399verbasResc, id=pk)
-            
+
             s2399_dmdev_form = form_s2399_dmdev(
                 initial={ 's2399_verbasresc': s2399_verbasresc })
             s2399_dmdev_form.fields['s2399_verbasresc'].widget.attrs['readonly'] = True
             s2399_dmdev_lista = s2399dmDev.objects.\
                 filter(s2399_verbasresc_id=s2399_verbasresc.id).all()
-                
+
             s2399_procjudtrab_form = form_s2399_procjudtrab(
                 initial={ 's2399_verbasresc': s2399_verbasresc })
             s2399_procjudtrab_form.fields['s2399_verbasresc'].widget.attrs['readonly'] = True
             s2399_procjudtrab_lista = s2399procJudTrab.objects.\
                 filter(s2399_verbasresc_id=s2399_verbasresc.id).all()
-                
+
             s2399_infomv_form = form_s2399_infomv(
                 initial={ 's2399_verbasresc': s2399_verbasresc })
             s2399_infomv_form.fields['s2399_verbasresc'].widget.attrs['readonly'] = True
             s2399_infomv_lista = s2399infoMV.objects.\
                 filter(s2399_verbasresc_id=s2399_verbasresc.id).all()
-                
-                
+
+
         else:
-        
+
             s2399_verbasresc = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2399_verbasresc' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2399_verbasresc_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2399_verbasresc').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2399_verbasresc': s2399_verbasresc, 
-            's2399_verbasresc_form': s2399_verbasresc_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2399_verbasresc': s2399_verbasresc,
+            's2399_verbasresc_form': s2399_verbasresc_form,
             'modulos': ['s2399', ],
             'paginas': ['s2399_verbasresc', ],
             's2399_dmdev_form': s2399_dmdev_form,
@@ -226,11 +226,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2399_verbasresc_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2399_verbasresc_salvar.html',
@@ -248,26 +248,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2399_verbasresc_salvar.html', context)
             filename = "s2399_verbasresc.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2399_verbasresc_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -277,7 +277,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2399_verbasresc', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

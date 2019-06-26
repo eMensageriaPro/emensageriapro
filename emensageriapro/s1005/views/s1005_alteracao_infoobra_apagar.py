@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s1005_alteracao_infoobra = get_object_or_404(s1005alteracaoinfoObra, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s1005_alteracao_infoobra.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s1005_alteracao_infoobra), indent=4, sort_keys=True, default=str)
             obj = s1005alteracaoinfoObra.objects.get(id=pk)
             obj.delete(request=request)
             #s1005_alteracao_infoobra_apagar_custom
             #s1005_alteracao_infoobra_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's1005_alteracao_infoobra', 
-                             pk, 
+                             '',
+                             's1005_alteracao_infoobra',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's1005_alteracao_infoobra' in request.session['return_page']:
-        
+
             return redirect('s1005_alteracao_infoobra')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s1005', ],
         'paginas': ['s1005_alteracao_infoobra', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's1005_alteracao_infoobra_apagar.html', 
+
+    return render(request,
+                  's1005_alteracao_infoobra_apagar.html',
                   context)

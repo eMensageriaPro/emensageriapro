@@ -44,13 +44,13 @@ from emensageriapro.esocial.models import s5012evtIrrf, s5012evtIrrfSerializer
 
 
 class s5012evtIrrfList(generics.ListAPIView):
-    
+
     queryset = s5012evtIrrf.objects.all()
     serializer_class = s5012evtIrrfSerializer
 
 
 
 class s5012evtIrrfDetail(generics.ListAPIView):
-    
+
     queryset = s5012evtIrrf.objects.all()
     serializer_class = s5012evtIrrfSerializer

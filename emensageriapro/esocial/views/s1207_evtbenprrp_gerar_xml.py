@@ -95,58 +95,58 @@ def gerar_xml_s1207(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         s1207_evtbenprrp_lista = s1207evtBenPrRP.objects. \
             filter(id=pk).all()
-            
-        
+
+
         s1207_procjudtrab_lista = s1207procJudTrab.objects. \
             filter(s1207_evtbenprrp_id__in=listar_ids(s1207_evtbenprrp_lista)).all()
-        
+
         s1207_dmdev_lista = s1207dmDev.objects. \
             filter(s1207_evtbenprrp_id__in=listar_ids(s1207_evtbenprrp_lista)).all()
-        
+
         s1207_itens_lista = s1207itens.objects. \
             filter(s1207_dmdev_id__in=listar_ids(s1207_dmdev_lista)).all()
-        
+
         s1207_infoperapur_lista = s1207infoPerApur.objects. \
             filter(s1207_dmdev_id__in=listar_ids(s1207_dmdev_lista)).all()
-        
+
         s1207_infoperapur_ideestab_lista = s1207infoPerApurideEstab.objects. \
             filter(s1207_infoperapur_id__in=listar_ids(s1207_infoperapur_lista)).all()
-        
+
         s1207_infoperapur_remunperapur_lista = s1207infoPerApurremunPerApur.objects. \
             filter(s1207_infoperapur_ideestab_id__in=listar_ids(s1207_infoperapur_ideestab_lista)).all()
-        
+
         s1207_infoperapur_itensremun_lista = s1207infoPerApuritensRemun.objects. \
             filter(s1207_infoperapur_remunperapur_id__in=listar_ids(s1207_infoperapur_remunperapur_lista)).all()
-        
+
         s1207_infoperant_lista = s1207infoPerAnt.objects. \
             filter(s1207_dmdev_id__in=listar_ids(s1207_dmdev_lista)).all()
-        
+
         s1207_infoperant_ideadc_lista = s1207infoPerAntideADC.objects. \
             filter(s1207_infoperant_id__in=listar_ids(s1207_infoperant_lista)).all()
-        
+
         s1207_infoperant_ideperiodo_lista = s1207infoPerAntidePeriodo.objects. \
             filter(s1207_infoperant_ideadc_id__in=listar_ids(s1207_infoperant_ideadc_lista)).all()
-        
+
         s1207_infoperant_ideestab_lista = s1207infoPerAntideEstab.objects. \
             filter(s1207_infoperant_ideperiodo_id__in=listar_ids(s1207_infoperant_ideperiodo_lista)).all()
-        
+
         s1207_infoperant_remunperant_lista = s1207infoPerAntremunPerAnt.objects. \
             filter(s1207_infoperant_ideestab_id__in=listar_ids(s1207_infoperant_ideestab_lista)).all()
-        
+
         s1207_infoperant_itensremun_lista = s1207infoPerAntitensRemun.objects. \
             filter(s1207_infoperant_remunperant_id__in=listar_ids(s1207_infoperant_remunperant_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -186,14 +186,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1207_evtbenprrp.arquivo_original:
-    
+
         xml = ler_arquivo(s1207_evtbenprrp.arquivo)
 
     else:
         xml = gerar_xml_s1207(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -214,16 +214,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 s1207evtBenPrRP,
                 s1207_evtbenprrp)
-        
+
         s1207_evtbenprrp = get_object_or_404(
             s1207evtBenPrRP,
             id=pk)
-        
+
         xml_assinado = assinar_esocial(
-            request, 
-            xml, 
+            request,
+            xml,
             s1207_evtbenprrp.transmissor_lote_esocial_id)
-        
+
     if s1207_evtbenprrp.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -237,11 +237,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s1207_evtbenprrp/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -254,5 +254,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

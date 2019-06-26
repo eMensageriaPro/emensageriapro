@@ -95,28 +95,28 @@ def gerar_xml_r2030(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         r2030_evtassocdesprec_lista = r2030evtAssocDespRec.objects. \
             filter(id=pk).all()
-            
-        
+
+
         r2030_recursosrec_lista = r2030recursosRec.objects. \
             filter(r2030_evtassocdesprec_id__in=listar_ids(r2030_evtassocdesprec_lista)).all()
-        
+
         r2030_inforecurso_lista = r2030infoRecurso.objects. \
             filter(r2030_recursosrec_id__in=listar_ids(r2030_recursosrec_lista)).all()
-        
+
         r2030_infoproc_lista = r2030infoProc.objects. \
             filter(r2030_recursosrec_id__in=listar_ids(r2030_recursosrec_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -146,14 +146,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if r2030_evtassocdesprec.arquivo_original:
-    
+
         xml = ler_arquivo(r2030_evtassocdesprec.arquivo)
 
     else:
         xml = gerar_xml_r2030(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -174,16 +174,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 r2030evtAssocDespRec,
                 r2030_evtassocdesprec)
-        
+
         r2030_evtassocdesprec = get_object_or_404(
             r2030evtAssocDespRec,
             id=pk)
-        
+
         xml_assinado = assinar_efdreinf(
-            request, 
-            xml, 
+            request,
+            xml,
             r2030_evtassocdesprec.transmissor_lote_efdreinf_id)
-        
+
     if r2030_evtassocdesprec.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -197,11 +197,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/r2030_evtassocdesprec/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_efdreinf(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -214,5 +214,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

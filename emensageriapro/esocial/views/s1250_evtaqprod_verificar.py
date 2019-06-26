@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s1250evtAqProd'):
-    
+
         s1250_evtaqprod = get_object_or_404(s1250evtAqProd, id=pk)
         s1250_evtaqprod_lista = s1250evtAqProd.objects.filter(id=pk).all()
 
-        
+
         s1250_tpaquis_lista = s1250tpAquis.objects.filter(s1250_evtaqprod_id__in = listar_ids(s1250_evtaqprod_lista) ).all()
         s1250_ideprodutor_lista = s1250ideProdutor.objects.filter(s1250_tpaquis_id__in = listar_ids(s1250_tpaquis_lista) ).all()
         s1250_nfs_lista = s1250nfs.objects.filter(s1250_ideprodutor_id__in = listar_ids(s1250_ideprodutor_lista) ).all()
@@ -103,9 +103,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1250_evtaqprod_verificar.html',
@@ -122,20 +122,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s1250_evtaqprod_verificar.html', context)
             filename = "%s.xls" % s1250_evtaqprod.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s1250_evtaqprod_verificar.html', context)
             filename = "%s.csv" % s1250_evtaqprod.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -143,7 +143,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's1250_evtaqprod_verificar.html', context)
 
     else:

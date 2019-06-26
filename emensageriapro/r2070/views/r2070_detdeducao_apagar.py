@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
 
     r2070_detdeducao = get_object_or_404(r2070detDeducao, id=pk)
-    
+
     dados_evento = {}
     dados_evento = r2070_detdeducao.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(r2070_detdeducao), indent=4, sort_keys=True, default=str)
             obj = r2070detDeducao.objects.get(id=pk)
             obj.delete(request=request)
             #r2070_detdeducao_apagar_custom
             #r2070_detdeducao_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             'r2070_detdeducao', 
-                             pk, 
+                             '',
+                             'r2070_detdeducao',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 'r2070_detdeducao' in request.session['return_page']:
-        
+
             return redirect('r2070_detdeducao')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['r2070', ],
         'paginas': ['r2070_detdeducao', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  'r2070_detdeducao_apagar.html', 
+
+    return render(request,
+                  'r2070_detdeducao_apagar.html',
                   context)

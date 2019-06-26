@@ -62,65 +62,65 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('r4099.can_see_r4099ideRespInf'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_r4099_evtfech': 1,
             'show_nmresp': 1,
             'show_cpfresp': 1,
             'show_telefone': 0,
             'show_email': 0, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 'r4099_evtfech__icontains': 'r4099_evtfech__icontains',
                 'nmresp__icontains': 'nmresp__icontains',
                 'cpfresp__icontains': 'cpfresp__icontains',
                 'telefone__icontains': 'telefone__icontains',
                 'email__icontains': 'email__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     'r4099_evtfech__icontains': 'r4099_evtfech__icontains',
                     'nmresp__icontains': 'nmresp__icontains',
                     'cpfresp__icontains': 'cpfresp__icontains',
                     'telefone__icontains': 'telefone__icontains',
                     'email__icontains': 'email__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         r4099_iderespinf_lista = r4099ideRespInf.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(r4099_iderespinf_lista) > 100:
-        
+
             filtrar = True
             r4099_iderespinf_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #r4099_iderespinf_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            'r4099_iderespinf_lista': r4099_iderespinf_lista, 
+            'r4099_iderespinf_lista': r4099_iderespinf_lista,
             'modulos': ['r4099', ],
             'paginas': ['r4099_iderespinf', ],
             'dict_fields': dict_fields,
@@ -129,11 +129,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r4099_iderespinf_listar.html',
@@ -151,33 +151,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('r4099_iderespinf_listar.html', context)
             filename = "r4099_iderespinf.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/r4099_iderespinf.csv', context)
             filename = "r4099_iderespinf.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 'r4099_iderespinf_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -185,7 +185,7 @@ def listar(request, output=None):
             'modulos': ['r4099', ],
             'paginas': ['r4099_iderespinf', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

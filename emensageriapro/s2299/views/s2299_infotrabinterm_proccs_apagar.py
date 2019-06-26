@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s2299_infotrabinterm_proccs = get_object_or_404(s2299infoTrabIntermprocCS, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s2299_infotrabinterm_proccs.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2299_infotrabinterm_proccs), indent=4, sort_keys=True, default=str)
             obj = s2299infoTrabIntermprocCS.objects.get(id=pk)
             obj.delete(request=request)
             #s2299_infotrabinterm_proccs_apagar_custom
             #s2299_infotrabinterm_proccs_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's2299_infotrabinterm_proccs', 
-                             pk, 
+                             '',
+                             's2299_infotrabinterm_proccs',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's2299_infotrabinterm_proccs' in request.session['return_page']:
-        
+
             return redirect('s2299_infotrabinterm_proccs')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s2299', ],
         'paginas': ['s2299_infotrabinterm_proccs', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's2299_infotrabinterm_proccs_apagar.html', 
+
+    return render(request,
+                  's2299_infotrabinterm_proccs_apagar.html',
                   context)

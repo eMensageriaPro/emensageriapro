@@ -78,39 +78,39 @@ def duplicar(request, pk):
     from emensageriapro.efdreinf.views.r2070_evtpgtosdivs_importar import read_r2070_evtpgtosdivs_string
     from emensageriapro.efdreinf.views.r2070_evtpgtosdivs_gerar_xml import gerar_xml_r2070
     from emensageriapro.functions import identidade_evento
-    
+
     if request.user.has_perm('efdreinf.can_duplicate_r2070evtPgtosDivs'):
 
         if pk:
-    
+
             r2070_evtpgtosdivs = get_object_or_404(
                 r2070evtPgtosDivs,
                 id=pk)
-    
+
             texto = gerar_xml_r2070(request, pk, versao="|")
             dados = read_r2070_evtpgtosdivs_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(r2070_evtpgtosdivs)
-    
+
             r2070evtPgtosDivs.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,
                        arquivo_original=0,
                        arquivo='')
-    
+
             gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r2070_evtpgtosdivs.identidade),
                 'r2070_evtpgtosdivs', dados['id'], request.user.id, 1)
-    
+
             messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
             return_pk = dados['id']
-            
+
             return redirect('r2070_evtpgtosdivs_salvar', pk=return_pk)
-    
+
         messages.error(request, 'Erro ao duplicar evento!')
-        
+
         return redirect('r2070_evtpgtosdivs_salvar', pk=pk)
-        
+
     else:
-    
-        messages.error(request, u'''Você não possui permissão para duplicar o evento. 
+
+        messages.error(request, u'''Você não possui permissão para duplicar o evento.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
         return redirect('r2070_evtpgtosdivs_salvar', pk=pk)

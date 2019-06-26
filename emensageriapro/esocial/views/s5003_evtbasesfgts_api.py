@@ -44,13 +44,13 @@ from emensageriapro.esocial.models import s5003evtBasesFGTS, s5003evtBasesFGTSSe
 
 
 class s5003evtBasesFGTSList(generics.ListAPIView):
-    
+
     queryset = s5003evtBasesFGTS.objects.all()
     serializer_class = s5003evtBasesFGTSSerializer
 
 
 
 class s5003evtBasesFGTSDetail(generics.ListAPIView):
-    
+
     queryset = s5003evtBasesFGTS.objects.all()
     serializer_class = s5003evtBasesFGTSSerializer

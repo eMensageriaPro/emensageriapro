@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s2299_infoperant_detverbas = get_object_or_404(s2299infoPerAntdetVerbas, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s2299_infoperant_detverbas.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2299_infoperant_detverbas), indent=4, sort_keys=True, default=str)
             obj = s2299infoPerAntdetVerbas.objects.get(id=pk)
             obj.delete(request=request)
             #s2299_infoperant_detverbas_apagar_custom
             #s2299_infoperant_detverbas_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's2299_infoperant_detverbas', 
-                             pk, 
+                             '',
+                             's2299_infoperant_detverbas',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's2299_infoperant_detverbas' in request.session['return_page']:
-        
+
             return redirect('s2299_infoperant_detverbas')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s2299', ],
         'paginas': ['s2299_infoperant_detverbas', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's2299_infoperant_detverbas_apagar.html', 
+
+    return render(request,
+                  's2299_infoperant_detverbas_apagar.html',
                   context)

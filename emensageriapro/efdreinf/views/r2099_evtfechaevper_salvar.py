@@ -67,9 +67,9 @@ def salvar(request, pk=None, tab='master', output=None):
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_EFDREINF
     TP_AMB = config.EFDREINF_TP_AMB
-    
+
     if pk:
-    
+
         r2099_evtfechaevper = get_object_or_404(r2099evtFechaEvPer, id=pk)
 
         #if r2099_evtfechaevper.status != STATUS_EVENTO_CADASTRADO:
@@ -77,128 +77,128 @@ def salvar(request, pk=None, tab='master', output=None):
         #    dict_permissoes = {}
         #    dict_permissoes['r2099_evtfechaevper_apagar'] = 0
         #    dict_permissoes['r2099_evtfechaevper_editar'] = 0
-            
+
     if request.user.has_perm('efdreinf.can_see_r2099evtFechaEvPer'):
-    
+
         if pk:
-        
-            r2099_evtfechaevper_form = form_r2099_evtfechaevper(request.POST or None, instance = r2099_evtfechaevper, 
+
+            r2099_evtfechaevper_form = form_r2099_evtfechaevper(request.POST or None, instance = r2099_evtfechaevper,
                                          initial={'ativo': True})
-                                         
+                     
         else:
-        
-            r2099_evtfechaevper_form = form_r2099_evtfechaevper(request.POST or None, 
-                                         initial={'versao': VERSAO_LAYOUT_EFDREINF, 
-                                                  'status': STATUS_EVENTO_CADASTRADO, 
-                                                  'tpamb': TP_AMB, 
-                                                  'procemi': 1, 
-                                                  'verproc': VERSAO_EMENSAGERIA, 
+
+            r2099_evtfechaevper_form = form_r2099_evtfechaevper(request.POST or None,
+                                         initial={'versao': VERSAO_LAYOUT_EFDREINF,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA,
                                                   'ativo': True})
-                                                  
+                              
         if request.method == 'POST':
-        
+
             if r2099_evtfechaevper_form.is_valid():
-            
+
                 obj = r2099_evtfechaevper_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 if not pk:
-                
+
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
-                  
+
                 #    gravar_auditoria('{}',
-                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                 'r2099_evtfechaevper', obj.id, request.user.id, 1)
                 #else:
-                # 
+                #
                 #    gravar_auditoria(json.dumps(model_to_dict(r2099_evtfechaevper), indent=4, sort_keys=True, default=str),
-                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                     'r2099_evtfechaevper', pk, request.user.id, 2)
-                                 
+             
                 if request.session['return_page'] not in (
-                    'r2099_evtfechaevper_apagar', 
-                    'r2099_evtfechaevper_salvar', 
+                    'r2099_evtfechaevper_apagar',
+                    'r2099_evtfechaevper_salvar',
                     'r2099_evtfechaevper'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'r2099_evtfechaevper_salvar', 
+                        'r2099_evtfechaevper_salvar',
                         pk=obj.id)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-                
+
         r2099_evtfechaevper_form = disabled_form_fields(
-             r2099_evtfechaevper_form, 
+             r2099_evtfechaevper_form,
              request.user.has_perm('efdreinf.change_r2099evtFechaEvPer'))
-        
+
         if pk:
-        
+
             if r2099_evtfechaevper.status != 0:
-            
+
                 r2099_evtfechaevper_form = disabled_form_fields(r2099_evtfechaevper_form, False)
-                
+
         #r2099_evtfechaevper_campos_multiple_passo3
 
         for field in r2099_evtfechaevper_form.fields.keys():
-        
+
             r2099_evtfechaevper_form.fields[field].widget.attrs['ng-model'] = 'r2099_evtfechaevper_'+field
-            
+
         if output:
-        
+
             r2099_evtfechaevper_form = disabled_form_for_print(r2099_evtfechaevper_form)
 
-        
-        r2099_iderespinf_lista = None 
-        r2099_iderespinf_form = None 
-        
+
+        r2099_iderespinf_lista = None
+        r2099_iderespinf_form = None
+
         if pk:
-        
+
             r2099_evtfechaevper = get_object_or_404(r2099evtFechaEvPer, id=pk)
-            
+
             r2099_iderespinf_form = form_r2099_iderespinf(
                 initial={ 'r2099_evtfechaevper': r2099_evtfechaevper })
             r2099_iderespinf_form.fields['r2099_evtfechaevper'].widget.attrs['readonly'] = True
             r2099_iderespinf_lista = r2099ideRespInf.objects.\
                 filter(r2099_evtfechaevper_id=r2099_evtfechaevper.id).all()
-                
+
         else:
-        
+
             r2099_evtfechaevper = None
-            
+
         #r2099_evtfechaevper_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if 'r2099_evtfechaevper'[1] == '5':
             evento_totalizador = True
-            
+
         else:
             evento_totalizador = False
-        
+
         if tab or 'r2099_evtfechaevper' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'r2099_evtfechaevper_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r2099_evtfechaevper').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
-            'r2099_evtfechaevper': r2099_evtfechaevper, 
-            'r2099_evtfechaevper_form': r2099_evtfechaevper_form, 
-            
+            'r2099_evtfechaevper': r2099_evtfechaevper,
+            'r2099_evtfechaevper_form': r2099_evtfechaevper_form,
+
             'r2099_iderespinf_form': r2099_iderespinf_form,
             'r2099_iderespinf_lista': r2099_iderespinf_lista,
             'data': datetime.datetime.now(),
@@ -208,10 +208,10 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #r2099_evtfechaevper_salvar_custom_variaveis_context#
         }
-        
-            
+
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r2099_evtfechaevper_salvar.html',
@@ -229,24 +229,24 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             response = render_to_response('r2099_evtfechaevper_salvar.html', context)
             filename = "r2099_evtfechaevper.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 'r2099_evtfechaevper_salvar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -256,5 +256,5 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r2099_evtfechaevper', ],
             'data': datetime.datetime.now(),
         }
-        
+
         return render(request, 'permissao_negada.html', context)

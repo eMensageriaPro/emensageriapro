@@ -62,25 +62,25 @@ from emensageriapro.controle_de_acesso.models import *
 def apagar(request, pk):
 
     importacao_arquivos_eventos = get_object_or_404(ImportacaoArquivosEventos, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         obj = ImportacaoArquivosEventos.objects.get(id=pk)
         obj.delete(request=request)
         #importacao_arquivos_eventos_apagar_custom
         #importacao_arquivos_eventos_apagar_custom
         messages.success(request, u'Apagado com sucesso!')
-        
+
         if 'importacao_arquivos_eventos' in request.session['return_page']:
-        
+
             return redirect('importacao_arquivos_eventos')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
@@ -88,7 +88,7 @@ def apagar(request, pk):
         'modulos': ['mensageiro', ],
         'paginas': ['importacao_arquivos_eventos', ],
     }
-    
-    return render(request, 
-        'importacao_arquivos_eventos_apagar.html', 
+
+    return render(request,
+        'importacao_arquivos_eventos_apagar.html',
         context)

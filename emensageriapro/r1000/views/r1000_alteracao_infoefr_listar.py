@@ -62,59 +62,59 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('r1000.can_see_r1000alteracaoinfoEFR'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_r1000_alteracao': 1,
             'show_ideefr': 1,
             'show_cnpjefr': 0, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 'r1000_alteracao__icontains': 'r1000_alteracao__icontains',
                 'ideefr__icontains': 'ideefr__icontains',
                 'cnpjefr__icontains': 'cnpjefr__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     'r1000_alteracao__icontains': 'r1000_alteracao__icontains',
                     'ideefr__icontains': 'ideefr__icontains',
                     'cnpjefr__icontains': 'cnpjefr__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         r1000_alteracao_infoefr_lista = r1000alteracaoinfoEFR.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(r1000_alteracao_infoefr_lista) > 100:
-        
+
             filtrar = True
             r1000_alteracao_infoefr_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #r1000_alteracao_infoefr_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            'r1000_alteracao_infoefr_lista': r1000_alteracao_infoefr_lista, 
+            'r1000_alteracao_infoefr_lista': r1000_alteracao_infoefr_lista,
             'modulos': ['r1000', ],
             'paginas': ['r1000_alteracao_infoefr', ],
             'dict_fields': dict_fields,
@@ -123,11 +123,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r1000_alteracao_infoefr_listar.html',
@@ -145,33 +145,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('r1000_alteracao_infoefr_listar.html', context)
             filename = "r1000_alteracao_infoefr.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/r1000_alteracao_infoefr.csv', context)
             filename = "r1000_alteracao_infoefr.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 'r1000_alteracao_infoefr_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -179,7 +179,7 @@ def listar(request, output=None):
             'modulos': ['r1000', ],
             'paginas': ['r1000_alteracao_infoefr', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

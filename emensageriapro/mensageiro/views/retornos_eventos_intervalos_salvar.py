@@ -61,97 +61,97 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def salvar(request, pk=None, tab='master', output=None):
-    
+
     if pk:
-    
+
         retornos_eventos_intervalos = get_object_or_404(RetornosEventosIntervalos, id=pk)
-        
+
     if request.user.has_perm('mensageiro.can_see_RetornosEventosIntervalos'):
-        
+
         if pk:
-        
+
             retornos_eventos_intervalos_form = form_retornos_eventos_intervalos(request.POST or None, instance=retornos_eventos_intervalos)
-            
+
         else:
-        
+
             retornos_eventos_intervalos_form = form_retornos_eventos_intervalos(request.POST or None)
-            
+
         if request.method == 'POST':
-        
+
             if retornos_eventos_intervalos_form.is_valid():
-            
+
                 #retornos_eventos_intervalos_campos_multiple_passo1
-                
-                
+
+
                 obj = retornos_eventos_intervalos_form.save(request=request)
                 messages.success(request, 'Salvo com sucesso!')
                 #retornos_eventos_intervalos_campos_multiple_passo2
-                
+
                 if request.session['return_page'] not in (
-                    'retornos_eventos_intervalos_apagar', 
-                    'retornos_eventos_intervalos_salvar', 
+                    'retornos_eventos_intervalos_apagar',
+                    'retornos_eventos_intervalos_salvar',
                     'retornos_eventos_intervalos'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'retornos_eventos_intervalos_salvar', 
+                        'retornos_eventos_intervalos_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, 'Erro ao salvar!')
-                
+
         retornos_eventos_intervalos_form = disabled_form_fields(retornos_eventos_intervalos_form, request.user.has_perm('mensageiro.change_RetornosEventosIntervalos'))
         #retornos_eventos_intervalos_campos_multiple_passo3
-        
+
         if output:
-        
+
             retornos_eventos_intervalos_form = disabled_form_for_print(retornos_eventos_intervalos_form)
-        
-        
-        
+
+
+
         if pk:
-        
+
             retornos_eventos_intervalos = get_object_or_404(RetornosEventosIntervalos, id=pk)
-            
-                
+
+
         else:
-        
+
             retornos_eventos_intervalos = None
-            
+
         #retornos_eventos_intervalos_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if tab or 'retornos_eventos_intervalos' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'retornos_eventos_intervalos_salvar'
-            
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'tab': tab,
-            'retornos_eventos_intervalos': retornos_eventos_intervalos, 
-            'retornos_eventos_intervalos_form': retornos_eventos_intervalos_form, 
+            'retornos_eventos_intervalos': retornos_eventos_intervalos,
+            'retornos_eventos_intervalos_form': retornos_eventos_intervalos_form,
             'modulos': ['mensageiro', ],
             'paginas': ['retornos_eventos_intervalos', ],
             'data': datetime.datetime.now(),
             'tabelas_secundarias': tabelas_secundarias,
             #retornos_eventos_intervalos_salvar_custom_variaveis_context#
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='retornos_eventos_intervalos_salvar.html',
@@ -169,26 +169,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True})
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('retornos_eventos_intervalos_salvar.html', context)
             filename = "retornos_eventos_intervalos.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-        
+
         else:
-        
+
             return render(request, 'retornos_eventos_intervalos_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -198,7 +198,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['retornos_eventos_intervalos', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-            'permissao_negada.html', 
+
+        return render(request,
+            'permissao_negada.html',
             context)

@@ -65,9 +65,9 @@ def salvar(request, pk=None, tab='master', output=None):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
     TP_AMB = config.ESOCIAL_TP_AMB
-    
+
     if pk:
-    
+
         s2420_evtcdbenterm = get_object_or_404(s2420evtCdBenTerm, id=pk)
 
         #if s2420_evtcdbenterm.status != STATUS_EVENTO_CADASTRADO:
@@ -75,121 +75,121 @@ def salvar(request, pk=None, tab='master', output=None):
         #    dict_permissoes = {}
         #    dict_permissoes['s2420_evtcdbenterm_apagar'] = 0
         #    dict_permissoes['s2420_evtcdbenterm_editar'] = 0
-            
+
     if request.user.has_perm('esocial.can_see_s2420evtCdBenTerm'):
-    
+
         if pk:
-        
-            s2420_evtcdbenterm_form = form_s2420_evtcdbenterm(request.POST or None, instance = s2420_evtcdbenterm, 
+
+            s2420_evtcdbenterm_form = form_s2420_evtcdbenterm(request.POST or None, instance = s2420_evtcdbenterm,
                                          initial={'ativo': True})
-                                         
+                     
         else:
-        
-            s2420_evtcdbenterm_form = form_s2420_evtcdbenterm(request.POST or None, 
-                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL, 
-                                                  'status': STATUS_EVENTO_CADASTRADO, 
-                                                  'tpamb': TP_AMB, 
-                                                  'procemi': 1, 
-                                                  'verproc': VERSAO_EMENSAGERIA, 
+
+            s2420_evtcdbenterm_form = form_s2420_evtcdbenterm(request.POST or None,
+                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA,
                                                   'ativo': True})
-                                                  
+                              
         if request.method == 'POST':
-        
+
             if s2420_evtcdbenterm_form.is_valid():
-            
+
                 obj = s2420_evtcdbenterm_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 if not pk:
-                
+
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
-                  
+
                 #    gravar_auditoria('{}',
-                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                 's2420_evtcdbenterm', obj.id, request.user.id, 1)
                 #else:
-                # 
+                #
                 #    gravar_auditoria(json.dumps(model_to_dict(s2420_evtcdbenterm), indent=4, sort_keys=True, default=str),
-                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                     's2420_evtcdbenterm', pk, request.user.id, 2)
-                                 
+             
                 if request.session['return_page'] not in (
-                    's2420_evtcdbenterm_apagar', 
-                    's2420_evtcdbenterm_salvar', 
+                    's2420_evtcdbenterm_apagar',
+                    's2420_evtcdbenterm_salvar',
                     's2420_evtcdbenterm'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2420_evtcdbenterm_salvar', 
+                        's2420_evtcdbenterm_salvar',
                         pk=obj.id)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-                
+
         s2420_evtcdbenterm_form = disabled_form_fields(
-             s2420_evtcdbenterm_form, 
+             s2420_evtcdbenterm_form,
              request.user.has_perm('esocial.change_s2420evtCdBenTerm'))
-        
+
         if pk:
-        
+
             if s2420_evtcdbenterm.status != 0:
-            
+
                 s2420_evtcdbenterm_form = disabled_form_fields(s2420_evtcdbenterm_form, False)
-                
+
         #s2420_evtcdbenterm_campos_multiple_passo3
 
         for field in s2420_evtcdbenterm_form.fields.keys():
-        
+
             s2420_evtcdbenterm_form.fields[field].widget.attrs['ng-model'] = 's2420_evtcdbenterm_'+field
-            
+
         if output:
-        
+
             s2420_evtcdbenterm_form = disabled_form_for_print(s2420_evtcdbenterm_form)
 
-        
-        
+
+
         if pk:
-        
+
             s2420_evtcdbenterm = get_object_or_404(s2420evtCdBenTerm, id=pk)
-            
-                
+
+
         else:
-        
+
             s2420_evtcdbenterm = None
-            
+
         #s2420_evtcdbenterm_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if 's2420_evtcdbenterm'[1] == '5':
             evento_totalizador = True
-            
+
         else:
             evento_totalizador = False
-        
+
         if tab or 's2420_evtcdbenterm' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2420_evtcdbenterm_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2420_evtcdbenterm').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
-            's2420_evtcdbenterm': s2420_evtcdbenterm, 
-            's2420_evtcdbenterm_form': s2420_evtcdbenterm_form, 
-            
+            's2420_evtcdbenterm': s2420_evtcdbenterm,
+            's2420_evtcdbenterm_form': s2420_evtcdbenterm_form,
+
             'data': datetime.datetime.now(),
             'modulos': ['esocial', ],
             'paginas': ['s2420_evtcdbenterm', ],
@@ -197,10 +197,10 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2420_evtcdbenterm_salvar_custom_variaveis_context#
         }
-        
-            
+
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2420_evtcdbenterm_salvar.html',
@@ -218,24 +218,24 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             response = render_to_response('s2420_evtcdbenterm_salvar.html', context)
             filename = "s2420_evtcdbenterm.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2420_evtcdbenterm_salvar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -245,5 +245,5 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2420_evtcdbenterm', ],
             'data': datetime.datetime.now(),
         }
-        
+
         return render(request, 'permissao_negada.html', context)

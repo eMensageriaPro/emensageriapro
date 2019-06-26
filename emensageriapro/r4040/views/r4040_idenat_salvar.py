@@ -65,134 +65,134 @@ from emensageriapro.r4040.forms import form_r4040_infopgto
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         r4040_idenat = get_object_or_404(r4040ideNat, id=pk)
         evento_dados = r4040_idenat.evento()
 
     if request.user.has_perm('r4040.can_see_r4040ideNat'):
-        
+
         if pk:
-        
+
             r4040_idenat_form = form_r4040_idenat(
-                request.POST or None, 
+                request.POST or None,
                 instance=r4040_idenat)
-                                         
+                     
         else:
-        
+
             r4040_idenat_form = form_r4040_idenat(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if r4040_idenat_form.is_valid():
-            
+
                 obj = r4040_idenat_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r4040_idenat', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r4040_idenat',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(r4040_idenat), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(r4040_idenat),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r4040_idenat', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r4040_idenat',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    'r4040_idenat_apagar', 
-                    'r4040_idenat_salvar', 
+                    'r4040_idenat_apagar',
+                    'r4040_idenat_salvar',
                     'r4040_idenat'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'r4040_idenat_salvar', 
+                        'r4040_idenat_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         r4040_idenat_form = disabled_form_fields(
-            r4040_idenat_form, 
+            r4040_idenat_form,
             request.user.has_perm('r4040.change_r4040ideNat'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 r4040_idenat_form = disabled_form_fields(r4040_idenat_form, 0)
-                
+
         if output:
-        
+
             r4040_idenat_form = disabled_form_for_print(r4040_idenat_form)
-            
-        
-        r4040_infopgto_lista = None 
-        r4040_infopgto_form = None 
-        
+
+
+        r4040_infopgto_lista = None
+        r4040_infopgto_form = None
+
         if pk:
-        
+
             r4040_idenat = get_object_or_404(r4040ideNat, id=pk)
-            
+
             r4040_infopgto_form = form_r4040_infopgto(
                 initial={ 'r4040_idenat': r4040_idenat })
             r4040_infopgto_form.fields['r4040_idenat'].widget.attrs['readonly'] = True
             r4040_infopgto_lista = r4040infoPgto.objects.\
                 filter(r4040_idenat_id=r4040_idenat.id).all()
-                
-                
+
+
         else:
-        
+
             r4040_idenat = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 'r4040_idenat' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'r4040_idenat_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r4040_idenat').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            'r4040_idenat': r4040_idenat, 
-            'r4040_idenat_form': r4040_idenat_form, 
+            'controle_alteracoes': controle_alteracoes,
+            'r4040_idenat': r4040_idenat,
+            'r4040_idenat_form': r4040_idenat_form,
             'modulos': ['r4040', ],
             'paginas': ['r4040_idenat', ],
             'r4040_infopgto_form': r4040_infopgto_form,
@@ -202,11 +202,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #r4040_idenat_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r4040_idenat_salvar.html',
@@ -224,26 +224,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('r4040_idenat_salvar.html', context)
             filename = "r4040_idenat.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 'r4040_idenat_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -253,7 +253,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r4040_idenat', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

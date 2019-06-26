@@ -63,136 +63,136 @@ from emensageriapro.mensageiro.forms import form_importacao_arquivos
 
 @login_required
 def salvar(request, pk=None, tab='master', output=None):
-    
+
     if pk:
-    
+
         usuarios = get_object_or_404(Usuarios, id=pk)
         user = get_object_or_404(User, id=usuarios.user_id)
-        
+
     if request.user.has_perm('controle_de_acesso.can_see_Usuarios'):
-        
+
         if pk:
-        
+
             usuarios_form = form_usuarios(request.POST or None, instance=usuarios)
             users_form = form_users(request.POST or None, instance=user)
-            
+
         else:
-        
+
             usuarios_form = form_usuarios(request.POST or None)
             users_form = form_users(request.POST or None)
-            
+
         if request.method == 'POST':
-        
+
             if usuarios_form.is_valid() and users_form.is_valid():
-            
+
                 #usuarios_campos_multiple_passo1
-                
+
                 dados = usuarios_form.cleaned_data
                 users_dados = users_form.cleaned_data
-                
+
                 if pk:
-                
+
                     User.objects.filter(id=usuarios.user_id).update(**users_dados)
                     dados['modificado_por_id'] = request.user.id
                     dados['modificado_em'] = datetime.datetime.now()
-                    
+
                     Usuarios.objects.filter(id=pk).update(**dados)
                     obj = Usuarios.objects.get(id=pk)
-                    
+
                 else:
-                
+
                     users_dados['password'] = 'asdkl1231'
                     user_obj = User(**users_dados)
                     user_obj.save()
-                    
+
                     dados['user_id'] = user_obj.pk
                     dados['criado_por_id'] = request.user.id
                     dados['criado_em'] = datetime.datetime.now()
                     dados['ativo'] = True
                     obj = Usuarios(**dados)
                     obj.save()
-                    
+
                     from emensageriapro.controle_de_acesso.views.login_recuperar_senha import recuperar_senha_funcao
-                    
+
                     try:
-                    
+
                         recuperar_senha_funcao(users_dados['email'])
                         messages.success(request, 'A senha foi enviada para o e-mail %(email)s!' % users_dados)
-                        
+    
                     except:
-                    
+
                         messages.error(request, 'Erro ao enviar o email com a senha!')
 
                 from emensageriapro.controle_de_acesso.admin import update_user
                 update_user(obj.user)
                 #usuarios_campos_multiple_passo2
-                
+
                 if request.session['return_page'] not in (
-                    'usuarios_apagar', 
-                    'usuarios_salvar', 
+                    'usuarios_apagar',
+                    'usuarios_salvar',
                     'usuarios'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'usuarios_salvar', 
+                        'usuarios_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, 'Erro ao salvar!')
-                
+
         usuarios_form = disabled_form_fields(usuarios_form, request.user.has_perm('controle_de_acesso.change_Usuarios'))
         users_form = disabled_form_fields(users_form, request.user.has_perm('controle_de_acesso.change_Usuarios'))
         #usuarios_campos_multiple_passo3
-        
+
         if output:
-        
+
             usuarios_form = disabled_form_for_print(usuarios_form)
             users_form = disabled_form_for_print(users_form)
-        
-        
-        importacao_arquivos_lista = None 
-        importacao_arquivos_form = None 
-        
+
+
+        importacao_arquivos_lista = None
+        importacao_arquivos_form = None
+
         if pk:
-        
+
             usuarios = get_object_or_404(Usuarios, id=pk)
             user = get_object_or_404(User, id=usuarios.user_id)
-            
+
             importacao_arquivos_form = form_importacao_arquivos(
                 initial={ 'importado_por': usuarios })
             importacao_arquivos_form.fields['importado_por'].widget.attrs['readonly'] = True
             importacao_arquivos_lista = ImportacaoArquivos.objects.\
                 filter(importado_por_id=usuarios.id).all()
-                
-                
+
+
         else:
-        
+
             usuarios = None
-            
+
         #usuarios_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if tab or 'usuarios' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'usuarios_salvar'
-            
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'tab': tab,
-            'usuarios': usuarios, 
+            'usuarios': usuarios,
             'users_form': users_form,
-            'usuarios_form': usuarios_form, 
+            'usuarios_form': usuarios_form,
             'importacao_arquivos_form': importacao_arquivos_form,
             'importacao_arquivos_lista': importacao_arquivos_lista,
             'modulos': ['controle_de_acesso', ],
@@ -201,11 +201,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tabelas_secundarias': tabelas_secundarias,
             #usuarios_salvar_custom_variaveis_context#
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='usuarios_salvar.html',
@@ -223,26 +223,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True})
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('usuarios_salvar.html', context)
             filename = "usuarios.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-        
+
         else:
-        
+
             return render(request, 'usuarios_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -252,7 +252,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['usuarios', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-            'permissao_negada.html', 
+
+        return render(request,
+            'permissao_negada.html',
             context)

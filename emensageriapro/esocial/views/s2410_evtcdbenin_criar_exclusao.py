@@ -78,9 +78,9 @@ def criar_exclusao(request, pk):
     from emensageriapro.esocial.views.s2410_evtcdbenin_importar import read_s2410_evtcdbenin_string
     from emensageriapro.esocial.views.s2410_evtcdbenin_gerar_xml import gerar_xml_s2410
     from emensageriapro.functions import identidade_evento
-    
+
     if request.user.has_perm('esocial.can_create_delete_s2410evtCdBenIn'):
-    
+
         s2410_evtcdbenin = get_object_or_404(
             s2410evtCdBenIn,
             id=pk)
@@ -101,14 +101,14 @@ def criar_exclusao(request, pk):
             's2410_evtcdbenin', dados['id'], request.user.id, 1)
 
         messages.success(request, u'Evento de exclusão criado com sucesso!')
-        
+
         return_pk = dados['id']
-        
+
         return redirect('s2410_evtcdbenin_salvar', pk=return_pk)
-        
+
     else:
-    
-        messages.error(request, u'''Você não possui permissão para criar evento de exclusão a partir de evento existente. 
+
+        messages.error(request, u'''Você não possui permissão para criar evento de exclusão a partir de evento existente.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
         return redirect('s2410_evtcdbenin_salvar', pk=pk)

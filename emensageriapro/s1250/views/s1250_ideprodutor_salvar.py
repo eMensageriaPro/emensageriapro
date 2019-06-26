@@ -67,142 +67,142 @@ from emensageriapro.s1250.forms import form_s1250_infoprocjud
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s1250_ideprodutor = get_object_or_404(s1250ideProdutor, id=pk)
         evento_dados = s1250_ideprodutor.evento()
 
     if request.user.has_perm('s1250.can_see_s1250ideProdutor'):
-        
+
         if pk:
-        
+
             s1250_ideprodutor_form = form_s1250_ideprodutor(
-                request.POST or None, 
+                request.POST or None,
                 instance=s1250_ideprodutor)
-                                         
+                     
         else:
-        
+
             s1250_ideprodutor_form = form_s1250_ideprodutor(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s1250_ideprodutor_form.is_valid():
-            
+
                 obj = s1250_ideprodutor_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1250_ideprodutor', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1250_ideprodutor',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s1250_ideprodutor), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s1250_ideprodutor),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1250_ideprodutor', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1250_ideprodutor',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's1250_ideprodutor_apagar', 
-                    's1250_ideprodutor_salvar', 
+                    's1250_ideprodutor_apagar',
+                    's1250_ideprodutor_salvar',
                     's1250_ideprodutor'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's1250_ideprodutor_salvar', 
+                        's1250_ideprodutor_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s1250_ideprodutor_form = disabled_form_fields(
-            s1250_ideprodutor_form, 
+            s1250_ideprodutor_form,
             request.user.has_perm('s1250.change_s1250ideProdutor'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s1250_ideprodutor_form = disabled_form_fields(s1250_ideprodutor_form, 0)
-                
+
         if output:
-        
+
             s1250_ideprodutor_form = disabled_form_for_print(s1250_ideprodutor_form)
-            
-        
-        s1250_nfs_lista = None 
-        s1250_nfs_form = None 
-        s1250_infoprocjud_lista = None 
-        s1250_infoprocjud_form = None 
-        
+
+
+        s1250_nfs_lista = None
+        s1250_nfs_form = None
+        s1250_infoprocjud_lista = None
+        s1250_infoprocjud_form = None
+
         if pk:
-        
+
             s1250_ideprodutor = get_object_or_404(s1250ideProdutor, id=pk)
-            
+
             s1250_nfs_form = form_s1250_nfs(
                 initial={ 's1250_ideprodutor': s1250_ideprodutor })
             s1250_nfs_form.fields['s1250_ideprodutor'].widget.attrs['readonly'] = True
             s1250_nfs_lista = s1250nfs.objects.\
                 filter(s1250_ideprodutor_id=s1250_ideprodutor.id).all()
-                
+
             s1250_infoprocjud_form = form_s1250_infoprocjud(
                 initial={ 's1250_ideprodutor': s1250_ideprodutor })
             s1250_infoprocjud_form.fields['s1250_ideprodutor'].widget.attrs['readonly'] = True
             s1250_infoprocjud_lista = s1250infoProcJud.objects.\
                 filter(s1250_ideprodutor_id=s1250_ideprodutor.id).all()
-                
-                
+
+
         else:
-        
+
             s1250_ideprodutor = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's1250_ideprodutor' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's1250_ideprodutor_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1250_ideprodutor').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's1250_ideprodutor': s1250_ideprodutor, 
-            's1250_ideprodutor_form': s1250_ideprodutor_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's1250_ideprodutor': s1250_ideprodutor,
+            's1250_ideprodutor_form': s1250_ideprodutor_form,
             'modulos': ['s1250', ],
             'paginas': ['s1250_ideprodutor', ],
             's1250_nfs_form': s1250_nfs_form,
@@ -214,11 +214,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s1250_ideprodutor_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1250_ideprodutor_salvar.html',
@@ -236,26 +236,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s1250_ideprodutor_salvar.html', context)
             filename = "s1250_ideprodutor.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's1250_ideprodutor_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -265,7 +265,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1250_ideprodutor', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

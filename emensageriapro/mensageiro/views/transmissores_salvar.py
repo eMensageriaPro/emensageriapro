@@ -65,102 +65,102 @@ from emensageriapro.mensageiro.forms import form_transmissor_lote_efdreinf
 
 @login_required
 def salvar(request, pk=None, tab='master', output=None):
-    
+
     if pk:
-    
+
         transmissores = get_object_or_404(TransmissorLote, id=pk)
-        
+
     if request.user.has_perm('mensageiro.can_see_TransmissorLote'):
-        
+
         if pk:
-        
+
             transmissores_form = form_transmissores(request.POST or None, instance=transmissores)
-            
+
         else:
-        
+
             transmissores_form = form_transmissores(request.POST or None)
-            
+
         if request.method == 'POST':
-        
+
             if transmissores_form.is_valid():
-            
+
                 #transmissores_campos_multiple_passo1
-                
-                
+
+
                 obj = transmissores_form.save(request=request)
                 messages.success(request, 'Salvo com sucesso!')
                 #transmissores_campos_multiple_passo2
-                
+
                 if request.session['return_page'] not in (
-                    'transmissores_apagar', 
-                    'transmissores_salvar', 
+                    'transmissores_apagar',
+                    'transmissores_salvar',
                     'transmissores'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'transmissores_salvar', 
+                        'transmissores_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, 'Erro ao salvar!')
-                
+
         transmissores_form = disabled_form_fields(transmissores_form, request.user.has_perm('mensageiro.change_TransmissorLote'))
         #transmissores_campos_multiple_passo3
-        
+
         if output:
-        
+
             transmissores_form = disabled_form_for_print(transmissores_form)
-        
-        
-        transmissor_lote_esocial_lista = None 
-        transmissor_lote_esocial_form = None 
-        transmissor_lote_efdreinf_lista = None 
-        transmissor_lote_efdreinf_form = None 
-        
+
+
+        transmissor_lote_esocial_lista = None
+        transmissor_lote_esocial_form = None
+        transmissor_lote_efdreinf_lista = None
+        transmissor_lote_efdreinf_form = None
+
         if pk:
-        
+
             transmissores = get_object_or_404(TransmissorLote, id=pk)
-            
+
             transmissor_lote_esocial_form = form_transmissor_lote_esocial(
                 initial={ 'transmissor': transmissores })
             transmissor_lote_esocial_form.fields['transmissor'].widget.attrs['readonly'] = True
             transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.\
                 filter(transmissor_id=transmissores.id).all()
-                
+
             transmissor_lote_efdreinf_form = form_transmissor_lote_efdreinf(
                 initial={ 'transmissor': transmissores })
             transmissor_lote_efdreinf_form.fields['transmissor'].widget.attrs['readonly'] = True
             transmissor_lote_efdreinf_lista = TransmissorLoteEfdreinf.objects.\
                 filter(transmissor_id=transmissores.id).all()
-                
-                
+
+
         else:
-        
+
             transmissores = None
-            
+
         #transmissores_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if tab or 'transmissores' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'transmissores_salvar'
-            
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'tab': tab,
-            'transmissores': transmissores, 
-            'transmissores_form': transmissores_form, 
+            'transmissores': transmissores,
+            'transmissores_form': transmissores_form,
             'transmissor_lote_esocial_form': transmissor_lote_esocial_form,
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
             'transmissor_lote_efdreinf_form': transmissor_lote_efdreinf_form,
@@ -171,11 +171,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tabelas_secundarias': tabelas_secundarias,
             #transmissores_salvar_custom_variaveis_context#
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='transmissores_salvar.html',
@@ -193,26 +193,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True})
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('transmissores_salvar.html', context)
             filename = "transmissores.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-        
+
         else:
-        
+
             return render(request, 'transmissores_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -222,7 +222,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['transmissores', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-            'permissao_negada.html', 
+
+        return render(request,
+            'permissao_negada.html',
             context)

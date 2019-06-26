@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2230_emitente = get_object_or_404(s2230emitente, id=pk)
         evento_dados = s2230_emitente.evento()
 
     if request.user.has_perm('s2230.can_see_s2230emitente'):
-        
+
         if pk:
-        
+
             s2230_emitente_form = form_s2230_emitente(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2230_emitente)
-                                         
+                     
         else:
-        
+
             s2230_emitente_form = form_s2230_emitente(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2230_emitente_form.is_valid():
-            
+
                 obj = s2230_emitente_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2230_emitente', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2230_emitente',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2230_emitente), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2230_emitente),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2230_emitente', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2230_emitente',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2230_emitente_apagar', 
-                    's2230_emitente_salvar', 
+                    's2230_emitente_apagar',
+                    's2230_emitente_salvar',
                     's2230_emitente'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2230_emitente_salvar', 
+                        's2230_emitente_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2230_emitente_form = disabled_form_fields(
-            s2230_emitente_form, 
+            s2230_emitente_form,
             request.user.has_perm('s2230.change_s2230emitente'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2230_emitente_form = disabled_form_fields(s2230_emitente_form, 0)
-                
+
         if output:
-        
+
             s2230_emitente_form = disabled_form_for_print(s2230_emitente_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s2230_emitente = get_object_or_404(s2230emitente, id=pk)
-            
-                
+
+
         else:
-        
+
             s2230_emitente = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2230_emitente' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2230_emitente_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2230_emitente').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2230_emitente': s2230_emitente, 
-            's2230_emitente_form': s2230_emitente_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2230_emitente': s2230_emitente,
+            's2230_emitente_form': s2230_emitente_form,
             'modulos': ['s2230', ],
             'paginas': ['s2230_emitente', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2230_emitente_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2230_emitente_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2230_emitente_salvar.html', context)
             filename = "s2230_emitente.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2230_emitente_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2230_emitente', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

@@ -67,9 +67,9 @@ def salvar(request, pk=None, tab='master', output=None):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
     TP_AMB = config.ESOCIAL_TP_AMB
-    
+
     if pk:
-    
+
         s2245_evttreicap = get_object_or_404(s2245evtTreiCap, id=pk)
 
         #if s2245_evttreicap.status != STATUS_EVENTO_CADASTRADO:
@@ -77,128 +77,128 @@ def salvar(request, pk=None, tab='master', output=None):
         #    dict_permissoes = {}
         #    dict_permissoes['s2245_evttreicap_apagar'] = 0
         #    dict_permissoes['s2245_evttreicap_editar'] = 0
-            
+
     if request.user.has_perm('esocial.can_see_s2245evtTreiCap'):
-    
+
         if pk:
-        
-            s2245_evttreicap_form = form_s2245_evttreicap(request.POST or None, instance = s2245_evttreicap, 
+
+            s2245_evttreicap_form = form_s2245_evttreicap(request.POST or None, instance = s2245_evttreicap,
                                          initial={'ativo': True})
-                                         
+                     
         else:
-        
-            s2245_evttreicap_form = form_s2245_evttreicap(request.POST or None, 
-                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL, 
-                                                  'status': STATUS_EVENTO_CADASTRADO, 
-                                                  'tpamb': TP_AMB, 
-                                                  'procemi': 1, 
-                                                  'verproc': VERSAO_EMENSAGERIA, 
+
+            s2245_evttreicap_form = form_s2245_evttreicap(request.POST or None,
+                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA,
                                                   'ativo': True})
-                                                  
+                              
         if request.method == 'POST':
-        
+
             if s2245_evttreicap_form.is_valid():
-            
+
                 obj = s2245_evttreicap_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 if not pk:
-                
+
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
-                  
+
                 #    gravar_auditoria('{}',
-                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                 's2245_evttreicap', obj.id, request.user.id, 1)
                 #else:
-                # 
+                #
                 #    gravar_auditoria(json.dumps(model_to_dict(s2245_evttreicap), indent=4, sort_keys=True, default=str),
-                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                     's2245_evttreicap', pk, request.user.id, 2)
-                                 
+             
                 if request.session['return_page'] not in (
-                    's2245_evttreicap_apagar', 
-                    's2245_evttreicap_salvar', 
+                    's2245_evttreicap_apagar',
+                    's2245_evttreicap_salvar',
                     's2245_evttreicap'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2245_evttreicap_salvar', 
+                        's2245_evttreicap_salvar',
                         pk=obj.id)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-                
+
         s2245_evttreicap_form = disabled_form_fields(
-             s2245_evttreicap_form, 
+             s2245_evttreicap_form,
              request.user.has_perm('esocial.change_s2245evtTreiCap'))
-        
+
         if pk:
-        
+
             if s2245_evttreicap.status != 0:
-            
+
                 s2245_evttreicap_form = disabled_form_fields(s2245_evttreicap_form, False)
-                
+
         #s2245_evttreicap_campos_multiple_passo3
 
         for field in s2245_evttreicap_form.fields.keys():
-        
+
             s2245_evttreicap_form.fields[field].widget.attrs['ng-model'] = 's2245_evttreicap_'+field
-            
+
         if output:
-        
+
             s2245_evttreicap_form = disabled_form_for_print(s2245_evttreicap_form)
 
-        
-        s2245_ideprofresp_lista = None 
-        s2245_ideprofresp_form = None 
-        
+
+        s2245_ideprofresp_lista = None
+        s2245_ideprofresp_form = None
+
         if pk:
-        
+
             s2245_evttreicap = get_object_or_404(s2245evtTreiCap, id=pk)
-            
+
             s2245_ideprofresp_form = form_s2245_ideprofresp(
                 initial={ 's2245_evttreicap': s2245_evttreicap })
             s2245_ideprofresp_form.fields['s2245_evttreicap'].widget.attrs['readonly'] = True
             s2245_ideprofresp_lista = s2245ideProfResp.objects.\
                 filter(s2245_evttreicap_id=s2245_evttreicap.id).all()
-                
+
         else:
-        
+
             s2245_evttreicap = None
-            
+
         #s2245_evttreicap_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if 's2245_evttreicap'[1] == '5':
             evento_totalizador = True
-            
+
         else:
             evento_totalizador = False
-        
+
         if tab or 's2245_evttreicap' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2245_evttreicap_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2245_evttreicap').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
-            's2245_evttreicap': s2245_evttreicap, 
-            's2245_evttreicap_form': s2245_evttreicap_form, 
-            
+            's2245_evttreicap': s2245_evttreicap,
+            's2245_evttreicap_form': s2245_evttreicap_form,
+
             's2245_ideprofresp_form': s2245_ideprofresp_form,
             's2245_ideprofresp_lista': s2245_ideprofresp_lista,
             'data': datetime.datetime.now(),
@@ -208,10 +208,10 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2245_evttreicap_salvar_custom_variaveis_context#
         }
-        
-            
+
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2245_evttreicap_salvar.html',
@@ -229,24 +229,24 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             response = render_to_response('s2245_evttreicap_salvar.html', context)
             filename = "s2245_evttreicap.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2245_evttreicap_salvar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -256,5 +256,5 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2245_evttreicap', ],
             'data': datetime.datetime.now(),
         }
-        
+
         return render(request, 'permissao_negada.html', context)

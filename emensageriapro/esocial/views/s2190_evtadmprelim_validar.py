@@ -23,7 +23,7 @@
         mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
         COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
         Licença Pública Geral GNU Affero para mais detalhes.
-    
+
         Este programa é software livre: você pode redistribuí-lo e / ou modificar
         sob os termos da licença GNU Affero General Public License como
         publicado pela Free Software Foundation, seja versão 3 do
@@ -46,68 +46,68 @@ def validacoes_s2190_evtadmprelim(arquivo):
 
     from emensageriapro.mensageiro.functions.funcoes_validacoes import validar_campo
     import untangle
-    
+
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
     validacoes_lista = []
     xmlns = doc.eSocial['xmlns'].split('/')
     evtAdmPrelim = doc.eSocial.evtAdmPrelim
     #variaveis
-    
+
     if 'ideEvento' in dir(evtAdmPrelim.ideEvento):
         for ideEvento in evtAdmPrelim.ideEvento:
-            
+
             if 'tpAmb' in dir(ideEvento):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEvento.tpAmb', 
-                                                  ideEvento.tpAmb.cdata, 
+                                                  'ideEvento.tpAmb',
+                                                  ideEvento.tpAmb.cdata,
                                                   1, u'1, 2')
-            
+
             if 'procEmi' in dir(ideEvento):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEvento.procEmi', 
-                                                  ideEvento.procEmi.cdata, 
+                                                  'ideEvento.procEmi',
+                                                  ideEvento.procEmi.cdata,
                                                   1, u'1, 2, 3, 4, 5')
-            
+
             if 'verProc' in dir(ideEvento):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEvento.verProc', 
-                                                  ideEvento.verProc.cdata, 
+                                                  'ideEvento.verProc',
+                                                  ideEvento.verProc.cdata,
                                                   1, u'None')
-    
+
     if 'ideEmpregador' in dir(evtAdmPrelim.ideEmpregador):
         for ideEmpregador in evtAdmPrelim.ideEmpregador:
-            
+
             if 'tpInsc' in dir(ideEmpregador):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEmpregador.tpInsc', 
-                                                  ideEmpregador.tpInsc.cdata, 
+                                                  'ideEmpregador.tpInsc',
+                                                  ideEmpregador.tpInsc.cdata,
                                                   1, u'1, 2, 3, 4, 5')
-            
+
             if 'nrInsc' in dir(ideEmpregador):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEmpregador.nrInsc', 
-                                                  ideEmpregador.nrInsc.cdata, 
+                                                  'ideEmpregador.nrInsc',
+                                                  ideEmpregador.nrInsc.cdata,
                                                   1, u'None')
-    
+
     if 'infoRegPrelim' in dir(evtAdmPrelim.infoRegPrelim):
         for infoRegPrelim in evtAdmPrelim.infoRegPrelim:
-            
+
             if 'cpfTrab' in dir(infoRegPrelim):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'infoRegPrelim.cpfTrab', 
-                                                  infoRegPrelim.cpfTrab.cdata, 
+                                                  'infoRegPrelim.cpfTrab',
+                                                  infoRegPrelim.cpfTrab.cdata,
                                                   1, u'None')
-            
+
             if 'dtNascto' in dir(infoRegPrelim):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'infoRegPrelim.dtNascto', 
-                                                  infoRegPrelim.dtNascto.cdata, 
+                                                  'infoRegPrelim.dtNascto',
+                                                  infoRegPrelim.dtNascto.cdata,
                                                   1, u'None')
-            
+
             if 'dtAdm' in dir(infoRegPrelim):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'infoRegPrelim.dtAdm', 
-                                                  infoRegPrelim.dtAdm.cdata, 
+                                                  'infoRegPrelim.dtAdm',
+                                                  infoRegPrelim.dtAdm.cdata,
                                                   1, u'None')
     return validacoes_lista

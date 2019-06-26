@@ -44,12 +44,12 @@ from emensageriapro.r9001.models import r9001RTom, r9001RTomSerializer
 
 
 class r9001RTomList(generics.ListAPIView):
-    
+
     queryset = r9001RTom.objects.all()
     serializer_class = r9001RTomSerializer
 
 
 class r9001RTomDetail(generics.ListAPIView):
-    
+
     queryset = r9001RTom.objects.all()
     serializer_class = r9001RTomSerializer

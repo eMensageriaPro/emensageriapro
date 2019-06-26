@@ -78,9 +78,9 @@ def criar_exclusao(request, pk):
     from emensageriapro.efdreinf.views.r4020_evtretpj_importar import read_r4020_evtretpj_string
     from emensageriapro.efdreinf.views.r4020_evtretpj_gerar_xml import gerar_xml_r4020
     from emensageriapro.functions import identidade_evento
-    
+
     if request.user.has_perm('efdreinf.can_create_delete_r4020evtRetPJ'):
-    
+
         r4020_evtretpj = get_object_or_404(
             r4020evtRetPJ,
             id=pk)
@@ -101,14 +101,14 @@ def criar_exclusao(request, pk):
             'r4020_evtretpj', dados['id'], request.user.id, 1)
 
         messages.success(request, u'Evento de exclusão criado com sucesso!')
-        
+
         return_pk = dados['id']
-        
+
         return redirect('r4020_evtretpj_salvar', pk=return_pk)
-        
+
     else:
-    
-        messages.error(request, u'''Você não possui permissão para criar evento de exclusão a partir de evento existente. 
+
+        messages.error(request, u'''Você não possui permissão para criar evento de exclusão a partir de evento existente.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
         return redirect('r4020_evtretpj_salvar', pk=pk)

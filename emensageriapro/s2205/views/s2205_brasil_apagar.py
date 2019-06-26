@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s2205_brasil = get_object_or_404(s2205brasil, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s2205_brasil.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2205_brasil), indent=4, sort_keys=True, default=str)
             obj = s2205brasil.objects.get(id=pk)
             obj.delete(request=request)
             #s2205_brasil_apagar_custom
             #s2205_brasil_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's2205_brasil', 
-                             pk, 
+                             '',
+                             's2205_brasil',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's2205_brasil' in request.session['return_page']:
-        
+
             return redirect('s2205_brasil')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s2205', ],
         'paginas': ['s2205_brasil', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's2205_brasil_apagar.html', 
+
+    return render(request,
+                  's2205_brasil_apagar.html',
                   context)

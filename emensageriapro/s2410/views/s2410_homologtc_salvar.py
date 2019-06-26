@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2410_homologtc = get_object_or_404(s2410homologTC, id=pk)
         evento_dados = s2410_homologtc.evento()
 
     if request.user.has_perm('s2410.can_see_s2410homologTC'):
-        
+
         if pk:
-        
+
             s2410_homologtc_form = form_s2410_homologtc(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2410_homologtc)
-                                         
+                     
         else:
-        
+
             s2410_homologtc_form = form_s2410_homologtc(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2410_homologtc_form.is_valid():
-            
+
                 obj = s2410_homologtc_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2410_homologtc', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2410_homologtc',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2410_homologtc), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2410_homologtc),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2410_homologtc', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2410_homologtc',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2410_homologtc_apagar', 
-                    's2410_homologtc_salvar', 
+                    's2410_homologtc_apagar',
+                    's2410_homologtc_salvar',
                     's2410_homologtc'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2410_homologtc_salvar', 
+                        's2410_homologtc_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2410_homologtc_form = disabled_form_fields(
-            s2410_homologtc_form, 
+            s2410_homologtc_form,
             request.user.has_perm('s2410.change_s2410homologTC'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2410_homologtc_form = disabled_form_fields(s2410_homologtc_form, 0)
-                
+
         if output:
-        
+
             s2410_homologtc_form = disabled_form_for_print(s2410_homologtc_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s2410_homologtc = get_object_or_404(s2410homologTC, id=pk)
-            
-                
+
+
         else:
-        
+
             s2410_homologtc = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2410_homologtc' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2410_homologtc_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2410_homologtc').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2410_homologtc': s2410_homologtc, 
-            's2410_homologtc_form': s2410_homologtc_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2410_homologtc': s2410_homologtc,
+            's2410_homologtc_form': s2410_homologtc_form,
             'modulos': ['s2410', ],
             'paginas': ['s2410_homologtc', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2410_homologtc_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2410_homologtc_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2410_homologtc_salvar.html', context)
             filename = "s2410_homologtc.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2410_homologtc_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2410_homologtc', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

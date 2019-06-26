@@ -95,55 +95,55 @@ def gerar_xml_s2206(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         s2206_evtaltcontratual_lista = s2206evtAltContratual.objects. \
             filter(id=pk).all()
-            
-        
+
+
         s2206_infoceletista_lista = s2206infoCeletista.objects. \
             filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
-        
+
         s2206_trabtemp_lista = s2206trabTemp.objects. \
             filter(s2206_infoceletista_id__in=listar_ids(s2206_infoceletista_lista)).all()
-        
+
         s2206_aprend_lista = s2206aprend.objects. \
             filter(s2206_infoceletista_id__in=listar_ids(s2206_infoceletista_lista)).all()
-        
+
         s2206_infoestatutario_lista = s2206infoEstatutario.objects. \
             filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
-        
+
         s2206_localtrabgeral_lista = s2206localTrabGeral.objects. \
             filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
-        
+
         s2206_localtrabdom_lista = s2206localTrabDom.objects. \
             filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
-        
+
         s2206_horcontratual_lista = s2206horContratual.objects. \
             filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
-        
+
         s2206_horario_lista = s2206horario.objects. \
             filter(s2206_horcontratual_id__in=listar_ids(s2206_horcontratual_lista)).all()
-        
+
         s2206_filiacaosindical_lista = s2206filiacaoSindical.objects. \
             filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
-        
+
         s2206_alvarajudicial_lista = s2206alvaraJudicial.objects. \
             filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
-        
+
         s2206_observacoes_lista = s2206observacoes.objects. \
             filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
-        
+
         s2206_servpubl_lista = s2206servPubl.objects. \
             filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -182,14 +182,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s2206_evtaltcontratual.arquivo_original:
-    
+
         xml = ler_arquivo(s2206_evtaltcontratual.arquivo)
 
     else:
         xml = gerar_xml_s2206(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -210,16 +210,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 s2206evtAltContratual,
                 s2206_evtaltcontratual)
-        
+
         s2206_evtaltcontratual = get_object_or_404(
             s2206evtAltContratual,
             id=pk)
-        
+
         xml_assinado = assinar_esocial(
-            request, 
-            xml, 
+            request,
+            xml,
             s2206_evtaltcontratual.transmissor_lote_esocial_id)
-        
+
     if s2206_evtaltcontratual.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -233,11 +233,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s2206_evtaltcontratual/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -250,5 +250,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

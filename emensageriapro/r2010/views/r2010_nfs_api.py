@@ -60,13 +60,13 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class r2010nfsList(generics.ListCreateAPIView):
-    
+
     queryset = r2010nfs.objects.all()
     serializer_class = r2010nfsSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
@@ -74,12 +74,12 @@ class r2010nfsList(generics.ListCreateAPIView):
 
 
 class r2010nfsDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = r2010nfs.objects.all()
     serializer_class = r2010nfsSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

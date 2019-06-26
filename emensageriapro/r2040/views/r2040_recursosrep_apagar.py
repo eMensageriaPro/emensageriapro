@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
 
     r2040_recursosrep = get_object_or_404(r2040recursosRep, id=pk)
-    
+
     dados_evento = {}
     dados_evento = r2040_recursosrep.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(r2040_recursosrep), indent=4, sort_keys=True, default=str)
             obj = r2040recursosRep.objects.get(id=pk)
             obj.delete(request=request)
             #r2040_recursosrep_apagar_custom
             #r2040_recursosrep_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             'r2040_recursosrep', 
-                             pk, 
+                             '',
+                             'r2040_recursosrep',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 'r2040_recursosrep' in request.session['return_page']:
-        
+
             return redirect('r2040_recursosrep')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['r2040', ],
         'paginas': ['r2040_recursosrep', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  'r2040_recursosrep_apagar.html', 
+
+    return render(request,
+                  'r2040_recursosrep_apagar.html',
                   context)

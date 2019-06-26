@@ -60,25 +60,25 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class RetornosEventosList(generics.ListCreateAPIView):
-    
+
     queryset = RetornosEventos.objects.all()
     serializer_class = RetornosEventosSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
 
 
 class RetornosEventosDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = RetornosEventos.objects.all()
     serializer_class = RetornosEventosSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

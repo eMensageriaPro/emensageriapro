@@ -41,11 +41,11 @@ from django import template
 from django.core.validators import EMPTY_VALUES
 from emensageriapro.padrao import *
 
-try: 
+try:
 
     locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
-    
-except: 
+
+except:
 
     locale.setlocale(locale.LC_ALL, 'pt_BR.utf8')
 
@@ -61,14 +61,14 @@ def query(qs, **kwargs):
           {% endfor %}
     """
     return qs.filter(**kwargs)
-    
+
 
 @register.filter(name='to_xml')
 def to_xml(texto, esocial_efdreinf_tipo):
     a = esocial_efdreinf_tipo.split('|')
     esocial_efdreinf = a[0]
     tipo = a[1]
-    texto = str(texto)
+    texto = unicode(texto)
     if esocial_efdreinf == 'efdreinf' and tipo == 'N':
         texto = texto.replace(".", ',')
     texto = texto.replace(">", '&gt;')
@@ -77,8 +77,8 @@ def to_xml(texto, esocial_efdreinf_tipo):
     texto = texto.replace('"', '&quot;')
     texto = texto.replace("'", '&apos;')
     return texto
-    
-    
+
+
 @register.filter(name='multiply')
 def multiply(value, arg):
     return value*arg
@@ -105,7 +105,7 @@ def lista_json_table_esocial(texto):
         return html_txt
     else:
         return ''
-    
+
 
 @register.filter(name='underline_to_hyphen')
 def underline_to_hyphen(value):
@@ -142,7 +142,7 @@ def validacoes_esocial_efdreinf(var, tab_campo):
     from emensageriapro.padrao import executar_sql
     tab = tab_campo.split('.')
     lista = executar_sql("""
-    SELECT tipo, tamanho, casas_decimais, obrigatorio, 
+    SELECT tipo, tamanho, casas_decimais, obrigatorio,
           valores_validos, validacoes_precedencia, validacoes, elemento
       FROM public.regras_validacao WHERE tabela='%s' AND lower(registro_campo)='%s';
     """ % (tab[0], tab[1]), True)
@@ -172,7 +172,7 @@ def validacoes_esocial_efdreinf(var, tab_campo):
             quant_erros += 1
         if quant_erros:
             return '#FF0000'
-           
+
 
 
 @register.filter(name='auditoria_json')
@@ -192,7 +192,7 @@ def dec_to_int(var):
     return int(var)
 
 
-@register.filter(name='valor')  
+@register.filter(name='valor')
 def valor(var):
     a = str(var).replace('.', '')
     return a
@@ -240,7 +240,7 @@ def json_print(json_str, variavel):
         json_str = json_str.replace('}', '"print": "%s"}' % variavel)
     else:
         json_str = json_str.replace('}', ', "print": "%s"}' % variavel)
-    return json_str        
+    return json_str
 
 
 def DV_maker(v):
@@ -331,9 +331,9 @@ def base64_encode_me(text):
 
 @register.filter('get_value_from_dict')
 def get_value_from_dict(dict_data, key):
-    # 
+    #
     # usage example {{ your_dict|get_value_from_dict:your_key }}
-    # 
+    #
     if key:
         a = dict_data.get(key)
         #print key, a
@@ -364,7 +364,7 @@ def notNone(var):
     return a
 
 
-@register.filter(name='mes_ano')  
+@register.filter(name='mes_ano')
 def mes_ano(var):
     mes = var[4:7]
     ano = var[2:4]
@@ -429,16 +429,16 @@ def padrao_americano(var):
     return str(var)
 
 
-@register.filter(name='total_quant') 
+@register.filter(name='total_quant')
 def total_quant(list, arg):
     soma = sum( d[arg] for d in list)
     return soma
 
 
-@register.filter(name='percentage')  
-def percentage(fraction, population):  
+@register.filter(name='percentage')
+def percentage(fraction, population):
     #{{ yes.count|percentage:votes.count }} votes.count - total ||| yes.count - parcial
-    try:  
-        return "%.2f%%" % ((float(fraction) / float(population)) * 100)  
-    except ValueError:  
+    try:
+        return "%.2f%%" % ((float(fraction) / float(population)) * 100)
+    except ValueError:
         return ''

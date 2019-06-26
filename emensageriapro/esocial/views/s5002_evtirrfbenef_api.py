@@ -44,13 +44,13 @@ from emensageriapro.esocial.models import s5002evtIrrfBenef, s5002evtIrrfBenefSe
 
 
 class s5002evtIrrfBenefList(generics.ListAPIView):
-    
+
     queryset = s5002evtIrrfBenef.objects.all()
     serializer_class = s5002evtIrrfBenefSerializer
 
 
 
 class s5002evtIrrfBenefDetail(generics.ListAPIView):
-    
+
     queryset = s5002evtIrrfBenef.objects.all()
     serializer_class = s5002evtIrrfBenefSerializer

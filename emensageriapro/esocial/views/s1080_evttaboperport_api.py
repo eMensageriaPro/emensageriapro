@@ -60,25 +60,25 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class s1080evtTabOperPortList(generics.ListCreateAPIView):
-    
+
     queryset = s1080evtTabOperPort.objects.all()
     serializer_class = s1080evtTabOperPortSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
 
 
 class s1080evtTabOperPortDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = s1080evtTabOperPort.objects.all()
     serializer_class = s1080evtTabOperPortSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

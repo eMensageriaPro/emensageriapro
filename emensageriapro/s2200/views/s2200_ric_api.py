@@ -60,13 +60,13 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class s2200RICList(generics.ListCreateAPIView):
-    
+
     queryset = s2200RIC.objects.all()
     serializer_class = s2200RICSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
@@ -74,12 +74,12 @@ class s2200RICList(generics.ListCreateAPIView):
 
 
 class s2200RICDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = s2200RIC.objects.all()
     serializer_class = s2200RICSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s2400_dependente = get_object_or_404(s2400dependente, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s2400_dependente.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2400_dependente), indent=4, sort_keys=True, default=str)
             obj = s2400dependente.objects.get(id=pk)
             obj.delete(request=request)
             #s2400_dependente_apagar_custom
             #s2400_dependente_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's2400_dependente', 
-                             pk, 
+                             '',
+                             's2400_dependente',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's2400_dependente' in request.session['return_page']:
-        
+
             return redirect('s2400_dependente')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s2400', ],
         'paginas': ['s2400_dependente', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's2400_dependente_apagar.html', 
+
+    return render(request,
+                  's2400_dependente_apagar.html',
                   context)

@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s2410evtCdBenIn'):
-    
+
         s2410_evtcdbenin = get_object_or_404(s2410evtCdBenIn, id=pk)
         s2410_evtcdbenin_lista = s2410evtCdBenIn.objects.filter(id=pk).all()
 
-        
+
         s2410_infopenmorte_lista = s2410infoPenMorte.objects.filter(s2410_evtcdbenin_id__in = listar_ids(s2410_evtcdbenin_lista) ).all()
         s2410_instpenmorte_lista = s2410instPenMorte.objects.filter(s2410_infopenmorte_id__in = listar_ids(s2410_infopenmorte_lista) ).all()
         s2410_homologtc_lista = s2410homologTC.objects.filter(s2410_evtcdbenin_id__in = listar_ids(s2410_evtcdbenin_lista) ).all()
@@ -99,9 +99,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2410_evtcdbenin_verificar.html',
@@ -118,20 +118,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s2410_evtcdbenin_verificar.html', context)
             filename = "%s.xls" % s2410_evtcdbenin.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s2410_evtcdbenin_verificar.html', context)
             filename = "%s.csv" % s2410_evtcdbenin.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -139,7 +139,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's2410_evtcdbenin_verificar.html', context)
 
     else:

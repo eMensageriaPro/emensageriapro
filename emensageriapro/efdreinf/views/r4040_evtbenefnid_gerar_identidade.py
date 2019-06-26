@@ -61,8 +61,8 @@ from emensageriapro.functions import identidade_evento
 
 @login_required
 def gerar_identidade(request, pk):
-        
+
     obj = get_object_or_404(r4040evtBenefNId, id=pk)
     ident = identidade_evento(obj)
-    
+
     return HttpResponse(ident)

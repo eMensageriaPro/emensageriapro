@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s1040evtTabFuncao'):
-    
+
         s1040_evttabfuncao = get_object_or_404(s1040evtTabFuncao, id=pk)
         s1040_evttabfuncao_lista = s1040evtTabFuncao.objects.filter(id=pk).all()
 
-        
+
         s1040_inclusao_lista = s1040inclusao.objects.filter(s1040_evttabfuncao_id__in = listar_ids(s1040_evttabfuncao_lista) ).all()
         s1040_alteracao_lista = s1040alteracao.objects.filter(s1040_evttabfuncao_id__in = listar_ids(s1040_evttabfuncao_lista) ).all()
         s1040_alteracao_novavalidade_lista = s1040alteracaonovaValidade.objects.filter(s1040_alteracao_id__in = listar_ids(s1040_alteracao_lista) ).all()
@@ -101,9 +101,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1040_evttabfuncao_verificar.html',
@@ -120,20 +120,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s1040_evttabfuncao_verificar.html', context)
             filename = "%s.xls" % s1040_evttabfuncao.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s1040_evttabfuncao_verificar.html', context)
             filename = "%s.csv" % s1040_evttabfuncao.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -141,7 +141,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's1040_evttabfuncao_verificar.html', context)
 
     else:

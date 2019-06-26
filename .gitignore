@@ -10,6 +10,7 @@ certificados/*.pfx
 certificados/*.pem
 umls_retorno/
 arquivos/
+logs/
 arquivos_old/
 static/
 arquivos_backup/

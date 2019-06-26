@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s1020evtTabLotacao'):
-    
+
         s1020_evttablotacao = get_object_or_404(s1020evtTabLotacao, id=pk)
         s1020_evttablotacao_lista = s1020evtTabLotacao.objects.filter(id=pk).all()
 
-        
+
         s1020_inclusao_lista = s1020inclusao.objects.filter(s1020_evttablotacao_id__in = listar_ids(s1020_evttablotacao_lista) ).all()
         s1020_inclusao_infoprocjudterceiros_lista = s1020inclusaoinfoProcJudTerceiros.objects.filter(s1020_inclusao_id__in = listar_ids(s1020_inclusao_lista) ).all()
         s1020_inclusao_procjudterceiro_lista = s1020inclusaoprocJudTerceiro.objects.filter(s1020_inclusao_infoprocjudterceiros_id__in = listar_ids(s1020_inclusao_infoprocjudterceiros_lista) ).all()
@@ -113,9 +113,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1020_evttablotacao_verificar.html',
@@ -132,20 +132,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s1020_evttablotacao_verificar.html', context)
             filename = "%s.xls" % s1020_evttablotacao.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s1020_evttablotacao_verificar.html', context)
             filename = "%s.csv" % s1020_evttablotacao.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -153,7 +153,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's1020_evttablotacao_verificar.html', context)
 
     else:

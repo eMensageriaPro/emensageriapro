@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s2210evtCAT'):
-    
+
         s2210_evtcat = get_object_or_404(s2210evtCAT, id=pk)
         s2210_evtcat_lista = s2210evtCAT.objects.filter(id=pk).all()
 
-        
+
         s2210_idelocalacid_lista = s2210ideLocalAcid.objects.filter(s2210_evtcat_id__in = listar_ids(s2210_evtcat_lista) ).all()
         s2210_parteatingida_lista = s2210parteAtingida.objects.filter(s2210_evtcat_id__in = listar_ids(s2210_evtcat_lista) ).all()
         s2210_agentecausador_lista = s2210agenteCausador.objects.filter(s2210_evtcat_id__in = listar_ids(s2210_evtcat_lista) ).all()
@@ -103,9 +103,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2210_evtcat_verificar.html',
@@ -122,20 +122,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s2210_evtcat_verificar.html', context)
             filename = "%s.xls" % s2210_evtcat.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s2210_evtcat_verificar.html', context)
             filename = "%s.csv" % s2210_evtcat.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -143,7 +143,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's2210_evtcat_verificar.html', context)
 
     else:

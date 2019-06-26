@@ -79,9 +79,9 @@ def salvar(request, pk=None, tab='master', output=None):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
     TP_AMB = config.ESOCIAL_TP_AMB
-    
+
     if pk:
-    
+
         s2299_evtdeslig = get_object_or_404(s2299evtDeslig, id=pk)
 
         #if s2299_evtdeslig.status != STATUS_EVENTO_CADASTRADO:
@@ -89,103 +89,103 @@ def salvar(request, pk=None, tab='master', output=None):
         #    dict_permissoes = {}
         #    dict_permissoes['s2299_evtdeslig_apagar'] = 0
         #    dict_permissoes['s2299_evtdeslig_editar'] = 0
-            
+
     if request.user.has_perm('esocial.can_see_s2299evtDeslig'):
-    
+
         if pk:
-        
-            s2299_evtdeslig_form = form_s2299_evtdeslig(request.POST or None, instance = s2299_evtdeslig, 
+
+            s2299_evtdeslig_form = form_s2299_evtdeslig(request.POST or None, instance = s2299_evtdeslig,
                                          initial={'ativo': True})
-                                         
+                     
         else:
-        
-            s2299_evtdeslig_form = form_s2299_evtdeslig(request.POST or None, 
-                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL, 
-                                                  'status': STATUS_EVENTO_CADASTRADO, 
-                                                  'tpamb': TP_AMB, 
-                                                  'procemi': 1, 
-                                                  'verproc': VERSAO_EMENSAGERIA, 
+
+            s2299_evtdeslig_form = form_s2299_evtdeslig(request.POST or None,
+                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA,
                                                   'ativo': True})
-                                                  
+                              
         if request.method == 'POST':
-        
+
             if s2299_evtdeslig_form.is_valid():
-            
+
                 obj = s2299_evtdeslig_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 if not pk:
-                
+
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
-                  
+
                 #    gravar_auditoria('{}',
-                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                 's2299_evtdeslig', obj.id, request.user.id, 1)
                 #else:
-                # 
+                #
                 #    gravar_auditoria(json.dumps(model_to_dict(s2299_evtdeslig), indent=4, sort_keys=True, default=str),
-                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                     's2299_evtdeslig', pk, request.user.id, 2)
-                                 
+             
                 if request.session['return_page'] not in (
-                    's2299_evtdeslig_apagar', 
-                    's2299_evtdeslig_salvar', 
+                    's2299_evtdeslig_apagar',
+                    's2299_evtdeslig_salvar',
                     's2299_evtdeslig'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2299_evtdeslig_salvar', 
+                        's2299_evtdeslig_salvar',
                         pk=obj.id)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-                
+
         s2299_evtdeslig_form = disabled_form_fields(
-             s2299_evtdeslig_form, 
+             s2299_evtdeslig_form,
              request.user.has_perm('esocial.change_s2299evtDeslig'))
-        
+
         if pk:
-        
+
             if s2299_evtdeslig.status != 0:
-            
+
                 s2299_evtdeslig_form = disabled_form_fields(s2299_evtdeslig_form, False)
-                
+
         #s2299_evtdeslig_campos_multiple_passo3
 
         for field in s2299_evtdeslig_form.fields.keys():
-        
+
             s2299_evtdeslig_form.fields[field].widget.attrs['ng-model'] = 's2299_evtdeslig_'+field
-            
+
         if output:
-        
+
             s2299_evtdeslig_form = disabled_form_for_print(s2299_evtdeslig_form)
 
-        
-        s2299_observacoes_lista = None 
-        s2299_observacoes_form = None 
-        s2299_sucessaovinc_lista = None 
-        s2299_sucessaovinc_form = None 
-        s2299_transftit_lista = None 
-        s2299_transftit_form = None 
-        s2299_mudancacpf_lista = None 
-        s2299_mudancacpf_form = None 
-        s2299_verbasresc_lista = None 
-        s2299_verbasresc_form = None 
-        s2299_infotrabinterm_quarentena_lista = None 
-        s2299_infotrabinterm_quarentena_form = None 
-        s2299_infotrabinterm_consigfgts_lista = None 
-        s2299_infotrabinterm_consigfgts_form = None 
-        
+
+        s2299_observacoes_lista = None
+        s2299_observacoes_form = None
+        s2299_sucessaovinc_lista = None
+        s2299_sucessaovinc_form = None
+        s2299_transftit_lista = None
+        s2299_transftit_form = None
+        s2299_mudancacpf_lista = None
+        s2299_mudancacpf_form = None
+        s2299_verbasresc_lista = None
+        s2299_verbasresc_form = None
+        s2299_infotrabinterm_quarentena_lista = None
+        s2299_infotrabinterm_quarentena_form = None
+        s2299_infotrabinterm_consigfgts_lista = None
+        s2299_infotrabinterm_consigfgts_form = None
+
         if pk:
-        
+
             s2299_evtdeslig = get_object_or_404(s2299evtDeslig, id=pk)
-            
+
             s2299_observacoes_form = form_s2299_observacoes(
                 initial={ 's2299_evtdeslig': s2299_evtdeslig })
             s2299_observacoes_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
@@ -221,38 +221,38 @@ def salvar(request, pk=None, tab='master', output=None):
             s2299_infotrabinterm_consigfgts_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
             s2299_infotrabinterm_consigfgts_lista = s2299infoTrabIntermconsigFGTS.objects.\
                 filter(s2299_evtdeslig_id=s2299_evtdeslig.id).all()
-                
+
         else:
-        
+
             s2299_evtdeslig = None
-            
+
         #s2299_evtdeslig_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if 's2299_evtdeslig'[1] == '5':
             evento_totalizador = True
-            
+
         else:
             evento_totalizador = False
-        
+
         if tab or 's2299_evtdeslig' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2299_evtdeslig_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2299_evtdeslig').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
-            's2299_evtdeslig': s2299_evtdeslig, 
-            's2299_evtdeslig_form': s2299_evtdeslig_form, 
-            
+            's2299_evtdeslig': s2299_evtdeslig,
+            's2299_evtdeslig_form': s2299_evtdeslig_form,
+
             's2299_observacoes_form': s2299_observacoes_form,
             's2299_observacoes_lista': s2299_observacoes_lista,
             's2299_sucessaovinc_form': s2299_sucessaovinc_form,
@@ -274,10 +274,10 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2299_evtdeslig_salvar_custom_variaveis_context#
         }
-        
-            
+
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2299_evtdeslig_salvar.html',
@@ -295,24 +295,24 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             response = render_to_response('s2299_evtdeslig_salvar.html', context)
             filename = "s2299_evtdeslig.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2299_evtdeslig_salvar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -322,5 +322,5 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2299_evtdeslig', ],
             'data': datetime.datetime.now(),
         }
-        
+
         return render(request, 'permissao_negada.html', context)

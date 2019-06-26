@@ -44,12 +44,12 @@ from emensageriapro.s5011.models import s5011ideLotacao, s5011ideLotacaoSerializ
 
 
 class s5011ideLotacaoList(generics.ListAPIView):
-    
+
     queryset = s5011ideLotacao.objects.all()
     serializer_class = s5011ideLotacaoSerializer
 
 
 class s5011ideLotacaoDetail(generics.ListAPIView):
-    
+
     queryset = s5011ideLotacao.objects.all()
     serializer_class = s5011ideLotacaoSerializer

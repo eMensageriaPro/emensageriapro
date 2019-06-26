@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2200_sucessaovinc = get_object_or_404(s2200sucessaoVinc, id=pk)
         evento_dados = s2200_sucessaovinc.evento()
 
     if request.user.has_perm('s2200.can_see_s2200sucessaoVinc'):
-        
+
         if pk:
-        
+
             s2200_sucessaovinc_form = form_s2200_sucessaovinc(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2200_sucessaovinc)
-                                         
+                     
         else:
-        
+
             s2200_sucessaovinc_form = form_s2200_sucessaovinc(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2200_sucessaovinc_form.is_valid():
-            
+
                 obj = s2200_sucessaovinc_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2200_sucessaovinc', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2200_sucessaovinc',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2200_sucessaovinc), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2200_sucessaovinc),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2200_sucessaovinc', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2200_sucessaovinc',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2200_sucessaovinc_apagar', 
-                    's2200_sucessaovinc_salvar', 
+                    's2200_sucessaovinc_apagar',
+                    's2200_sucessaovinc_salvar',
                     's2200_sucessaovinc'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2200_sucessaovinc_salvar', 
+                        's2200_sucessaovinc_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2200_sucessaovinc_form = disabled_form_fields(
-            s2200_sucessaovinc_form, 
+            s2200_sucessaovinc_form,
             request.user.has_perm('s2200.change_s2200sucessaoVinc'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2200_sucessaovinc_form = disabled_form_fields(s2200_sucessaovinc_form, 0)
-                
+
         if output:
-        
+
             s2200_sucessaovinc_form = disabled_form_for_print(s2200_sucessaovinc_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s2200_sucessaovinc = get_object_or_404(s2200sucessaoVinc, id=pk)
-            
-                
+
+
         else:
-        
+
             s2200_sucessaovinc = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2200_sucessaovinc' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2200_sucessaovinc_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2200_sucessaovinc').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2200_sucessaovinc': s2200_sucessaovinc, 
-            's2200_sucessaovinc_form': s2200_sucessaovinc_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2200_sucessaovinc': s2200_sucessaovinc,
+            's2200_sucessaovinc_form': s2200_sucessaovinc_form,
             'modulos': ['s2200', ],
             'paginas': ['s2200_sucessaovinc', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2200_sucessaovinc_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2200_sucessaovinc_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2200_sucessaovinc_salvar.html', context)
             filename = "s2200_sucessaovinc.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2200_sucessaovinc_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2200_sucessaovinc', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

@@ -60,13 +60,13 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class s1200infoPerAntinfoAgNocivoList(generics.ListCreateAPIView):
-    
+
     queryset = s1200infoPerAntinfoAgNocivo.objects.all()
     serializer_class = s1200infoPerAntinfoAgNocivoSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
@@ -74,12 +74,12 @@ class s1200infoPerAntinfoAgNocivoList(generics.ListCreateAPIView):
 
 
 class s1200infoPerAntinfoAgNocivoDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = s1200infoPerAntinfoAgNocivo.objects.all()
     serializer_class = s1200infoPerAntinfoAgNocivoSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

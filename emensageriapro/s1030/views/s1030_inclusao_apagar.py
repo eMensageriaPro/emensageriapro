@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s1030_inclusao = get_object_or_404(s1030inclusao, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s1030_inclusao.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s1030_inclusao), indent=4, sort_keys=True, default=str)
             obj = s1030inclusao.objects.get(id=pk)
             obj.delete(request=request)
             #s1030_inclusao_apagar_custom
             #s1030_inclusao_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's1030_inclusao', 
-                             pk, 
+                             '',
+                             's1030_inclusao',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's1030_inclusao' in request.session['return_page']:
-        
+
             return redirect('s1030_inclusao')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s1030', ],
         'paginas': ['s1030_inclusao', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's1030_inclusao_apagar.html', 
+
+    return render(request,
+                  's1030_inclusao_apagar.html',
                   context)

@@ -82,7 +82,7 @@ def validar_evento_funcao(request, pk):
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.esocial.views.s2221_evttoxic_gerar_xml import gerar_xml_assinado
     VERIFICAR_PREDECESSAO_ANTES_ENVIO = config.ESOCIAL_VERIFICAR_PREDECESSAO_ANTES_ENVIO
-    
+
     lista_validacoes = []
     s2221_evttoxic = get_object_or_404(s2221evtToxic, id=pk)
 
@@ -94,52 +94,52 @@ def validar_evento_funcao(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s2221_evttoxic/' % BASE_DIR)
     lista = []
     tipo = 'esocial'
-    
+
     if not os.path.exists(BASE_DIR + '/' + arquivo):
-    
+
         gerar_xml_assinado(request, pk)
-        
+
     if os.path.exists(BASE_DIR + '/' + arquivo):
-    
+
         from emensageriapro.esocial.views.s2221_evttoxic_validar import validacoes_s2221_evttoxic
-        
+
         texto_xml = ler_arquivo(arquivo).replace("s:", "")
         versao = get_versao_evento(texto_xml)
         lista = validacoes_s2221_evttoxic(arquivo)
-        
+
     for a in lista:
-    
-        if a: 
-            
+
+        if a:
+
             lista_validacoes.append(a)
-        
+
     #
     # validando schema
     #
-    
+
     schema_filename = get_schema_name(arquivo)
     quant_erros, error_list = validar_schema(request, schema_filename, arquivo, lang='pt')
-    
+
     for a in error_list:
-    
-        if a: 
-            
+
+        if a:
+
             lista_validacoes.append(a)
-        
+
     #
     #
     #
-    
+
     if lista_validacoes:
 
         validacoes = '<br>'.join(lista_validacoes).replace("'", "''")
-        
+
         s2221evtToxic.objects.\
             filter(id=pk).\
             update(validacoes=validacoes,
                    status=STATUS_EVENTO_VALIDADO_ERRO)
 
-        messages.error(request, 
+        messages.error(request,
             u'Validações foram processadas, porém foram encontrados erros!')
 
     else:
@@ -149,23 +149,23 @@ def validar_evento_funcao(request, pk):
             quant = validar_precedencia('esocial', 's2221_evttoxic', pk)
 
             if quant <= 0:
-            
+
                 s2221evtToxic.objects.\
                     filter(id=pk).\
                     update(validacoes=None,
                            status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
 
-                messages.warning(request, 
+                messages.warning(request,
                     u'Validações foram processadas com sucesso, porém o evento está aguardando envio de sua precedência!')
 
             else:
-            
+
                 s2221evtToxic.objects.\
                     filter(id=pk).\
                     update(validacoes=None,
                            status=STATUS_EVENTO_AGUARD_ENVIO)
 
-                messages.success(request, 
+                messages.success(request,
                     u'Validações foram processadas com sucesso, evento está aguardandando envio!')
 
         else:
@@ -175,7 +175,7 @@ def validar_evento_funcao(request, pk):
                 update(validacoes=None,
                        status=STATUS_EVENTO_AGUARD_ENVIO)
 
-            messages.success(request, 
+            messages.success(request,
                 u'Validações foram processadas com sucesso, evento está aguardandando envio!')
 
     return lista_validacoes
@@ -203,25 +203,25 @@ def validar_evento(request, pk, tab=None):
     if s2221_evttoxic.status in STATUS_VALIDACAO:
 
         if s2221_evttoxic.versao in VERSOES_ESOCIAL:
-        
+
             lista_validacoes = validar_evento_funcao(request, pk)
 
         else:
-        
-            messages.error(request, 
-                u'''Não foi possível validar o evento pois a 
+
+            messages.error(request,
+                u'''Não foi possível validar o evento pois a
                     versão do evento não é compatível com a versão do sistema!''')
     else:
-    
-        messages.error(request, 
-            u'''Não foi possível validar o 
-                evento pois o mesmo não está em nenhum dos sequintes status: Cadastrado, 
+
+        messages.error(request,
+            u'''Não foi possível validar o
+                evento pois o mesmo não está em nenhum dos sequintes status: Cadastrado,
                 Importado, Duplicado, Gerado, Assinado ou com Erro de Validação!''')
-                
+
     if tab == 'mapa':
-    
+
         return redirect('mapa_esocial', tab='master')
-        
+
     else:
-    
+
         return redirect('s2221_evttoxic_salvar', pk=pk)

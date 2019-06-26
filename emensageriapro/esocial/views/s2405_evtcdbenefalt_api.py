@@ -60,25 +60,25 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class s2405evtCdBenefAltList(generics.ListCreateAPIView):
-    
+
     queryset = s2405evtCdBenefAlt.objects.all()
     serializer_class = s2405evtCdBenefAltSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
 
 
 class s2405evtCdBenefAltDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = s2405evtCdBenefAlt.objects.all()
     serializer_class = s2405evtCdBenefAltSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

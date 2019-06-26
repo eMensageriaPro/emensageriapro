@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         r4099_iderespinf = get_object_or_404(r4099ideRespInf, id=pk)
         evento_dados = r4099_iderespinf.evento()
 
     if request.user.has_perm('r4099.can_see_r4099ideRespInf'):
-        
+
         if pk:
-        
+
             r4099_iderespinf_form = form_r4099_iderespinf(
-                request.POST or None, 
+                request.POST or None,
                 instance=r4099_iderespinf)
-                                         
+                     
         else:
-        
+
             r4099_iderespinf_form = form_r4099_iderespinf(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if r4099_iderespinf_form.is_valid():
-            
+
                 obj = r4099_iderespinf_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r4099_iderespinf', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r4099_iderespinf',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(r4099_iderespinf), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(r4099_iderespinf),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r4099_iderespinf', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r4099_iderespinf',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    'r4099_iderespinf_apagar', 
-                    'r4099_iderespinf_salvar', 
+                    'r4099_iderespinf_apagar',
+                    'r4099_iderespinf_salvar',
                     'r4099_iderespinf'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'r4099_iderespinf_salvar', 
+                        'r4099_iderespinf_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         r4099_iderespinf_form = disabled_form_fields(
-            r4099_iderespinf_form, 
+            r4099_iderespinf_form,
             request.user.has_perm('r4099.change_r4099ideRespInf'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 r4099_iderespinf_form = disabled_form_fields(r4099_iderespinf_form, 0)
-                
+
         if output:
-        
+
             r4099_iderespinf_form = disabled_form_for_print(r4099_iderespinf_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             r4099_iderespinf = get_object_or_404(r4099ideRespInf, id=pk)
-            
-                
+
+
         else:
-        
+
             r4099_iderespinf = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 'r4099_iderespinf' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'r4099_iderespinf_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r4099_iderespinf').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            'r4099_iderespinf': r4099_iderespinf, 
-            'r4099_iderespinf_form': r4099_iderespinf_form, 
+            'controle_alteracoes': controle_alteracoes,
+            'r4099_iderespinf': r4099_iderespinf,
+            'r4099_iderespinf_form': r4099_iderespinf_form,
             'modulos': ['r4099', ],
             'paginas': ['r4099_iderespinf', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #r4099_iderespinf_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r4099_iderespinf_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('r4099_iderespinf_salvar.html', context)
             filename = "r4099_iderespinf.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 'r4099_iderespinf_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r4099_iderespinf', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

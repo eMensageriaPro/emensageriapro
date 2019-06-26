@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s2416_suspensao = get_object_or_404(s2416suspensao, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s2416_suspensao.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2416_suspensao), indent=4, sort_keys=True, default=str)
             obj = s2416suspensao.objects.get(id=pk)
             obj.delete(request=request)
             #s2416_suspensao_apagar_custom
             #s2416_suspensao_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's2416_suspensao', 
-                             pk, 
+                             '',
+                             's2416_suspensao',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's2416_suspensao' in request.session['return_page']:
-        
+
             return redirect('s2416_suspensao')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s2416', ],
         'paginas': ['s2416_suspensao', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's2416_suspensao_apagar.html', 
+
+    return render(request,
+                  's2416_suspensao_apagar.html',
                   context)

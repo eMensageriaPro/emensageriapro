@@ -58,17 +58,17 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, pk):
-        
+
     import json
     from django.forms.models import model_to_dict
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     s1040_evttabfuncao = get_object_or_404(s1040evtTabFuncao, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         if s1040_evttabfuncao.status == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s1040_evttabfuncao), indent=4, sort_keys=True, default=str)
             obj = s1040evtTabFuncao.objects.get(id=pk)
             obj.delete(request=request)
@@ -76,29 +76,29 @@ def apagar(request, pk):
             #s1040_evttabfuncao_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
-                             '', 
+                             '',
                              's1040_evttabfuncao', pk, request.user.id, 3)
         else:
-        
-            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é
                                         possível apagar os eventos com status "Cadastrado"!''')
-            
+
         if 's1040_evttabfuncao' in request.session['return_page']:
-        
+
             return redirect('s1040_evttabfuncao')
-            
+
         else:
-        
-            return redirect(request.session['return_page'], 
+
+            return redirect(request.session['return_page'],
                             pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
-        'pk': pk, 
-        's1040_evttabfuncao': s1040_evttabfuncao, 
+        'pk': pk,
+        's1040_evttabfuncao': s1040_evttabfuncao,
         'data': datetime.datetime.now(),
         'modulos': ['esocial', ],
         'paginas': ['s1040_evttabfuncao', ],
     }
-    
+
     return render(request, 's1040_evttabfuncao_apagar.html', context)

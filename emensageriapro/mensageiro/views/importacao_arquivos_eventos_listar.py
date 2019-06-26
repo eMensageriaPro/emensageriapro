@@ -62,11 +62,11 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('mensageiro.can_see_ImportacaoArquivosEventos'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_importacao_arquivos': 0,
             'show_arquivo': 1,
             'show_evento': 1,
@@ -76,56 +76,56 @@ def listar(request, output=None):
             'show_status': 1,
             'show_data_hora': 1,
             'show_validacoes': 0, }
-            
+
         post = False
         #ANTES-POST-LISTAGEM
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            
-            dict_fields = { 
+
+            dict_fields = {
                 'arquivo__icontains': 'arquivo__icontains',
                 'evento__icontains': 'evento__icontains',
                 'versao__icontains': 'versao__icontains',
                 'identidade_evento__icontains': 'identidade_evento__icontains',
                 'status__icontains': 'status__icontains', }
-                
+
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     'arquivo__icontains': 'arquivo__icontains',
                     'evento__icontains': 'evento__icontains',
                     'versao__icontains': 'versao__icontains',
                     'identidade_evento__icontains': 'identidade_evento__icontains',
                     'status__icontains': 'status__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
-        
+
         importacao_arquivos_eventos_lista = ImportacaoArquivosEventos.objects.filter(**dict_qs).exclude(id=0).all()
-        
+
         if not post and len(importacao_arquivos_eventos_lista) > 100:
-        
+
             filtrar = True
             importacao_arquivos_eventos_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #importacao_arquivos_eventos_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            'importacao_arquivos_eventos_lista': importacao_arquivos_eventos_lista, 
+            'importacao_arquivos_eventos_lista': importacao_arquivos_eventos_lista,
             'modulos': ['mensageiro', ],
             'paginas': ['importacao_arquivos_eventos', ],
             'dict_fields': dict_fields,
@@ -134,11 +134,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='importacao_arquivos_eventos_listar.html',
@@ -156,37 +156,37 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('importacao_arquivos_eventos_listar.html', context)
             filename = "importacao_arquivos_eventos.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('csv/importacao_arquivos_eventos.csv', context)
             filename = "importacao_arquivos_eventos.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
-            
+
             return response
-        
+
         else:
-        
+
             return render(request, 'importacao_arquivos_eventos_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -194,7 +194,7 @@ def listar(request, output=None):
             'modulos': ['mensageiro', ],
             'paginas': ['importacao_arquivos_eventos', ],
         }
-        
-        return render(request, 
-            'permissao_negada.html', 
+
+        return render(request,
+            'permissao_negada.html',
             context)

@@ -95,31 +95,31 @@ def gerar_xml_r3010(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         r3010_evtespdesportivo_lista = r3010evtEspDesportivo.objects. \
             filter(id=pk).all()
-            
-        
+
+
         r3010_boletim_lista = r3010boletim.objects. \
             filter(r3010_evtespdesportivo_id__in=listar_ids(r3010_evtespdesportivo_lista)).all()
-        
+
         r3010_receitaingressos_lista = r3010receitaIngressos.objects. \
             filter(r3010_boletim_id__in=listar_ids(r3010_boletim_lista)).all()
-        
+
         r3010_outrasreceitas_lista = r3010outrasReceitas.objects. \
             filter(r3010_boletim_id__in=listar_ids(r3010_boletim_lista)).all()
-        
+
         r3010_infoproc_lista = r3010infoProc.objects. \
             filter(r3010_evtespdesportivo_id__in=listar_ids(r3010_evtespdesportivo_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -150,14 +150,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if r3010_evtespdesportivo.arquivo_original:
-    
+
         xml = ler_arquivo(r3010_evtespdesportivo.arquivo)
 
     else:
         xml = gerar_xml_r3010(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -178,16 +178,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 r3010evtEspDesportivo,
                 r3010_evtespdesportivo)
-        
+
         r3010_evtespdesportivo = get_object_or_404(
             r3010evtEspDesportivo,
             id=pk)
-        
+
         xml_assinado = assinar_efdreinf(
-            request, 
-            xml, 
+            request,
+            xml,
             r3010_evtespdesportivo.transmissor_lote_efdreinf_id)
-        
+
     if r3010_evtespdesportivo.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -201,11 +201,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/r3010_evtespdesportivo/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_efdreinf(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -218,5 +218,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

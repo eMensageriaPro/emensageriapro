@@ -44,12 +44,12 @@ from emensageriapro.s5002.models import s5002idePgtoExt, s5002idePgtoExtSerializ
 
 
 class s5002idePgtoExtList(generics.ListAPIView):
-    
+
     queryset = s5002idePgtoExt.objects.all()
     serializer_class = s5002idePgtoExtSerializer
 
 
 class s5002idePgtoExtDetail(generics.ListAPIView):
-    
+
     queryset = s5002idePgtoExt.objects.all()
     serializer_class = s5002idePgtoExtSerializer

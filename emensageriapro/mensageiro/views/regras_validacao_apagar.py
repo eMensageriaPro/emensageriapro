@@ -62,25 +62,25 @@ from emensageriapro.controle_de_acesso.models import *
 def apagar(request, pk):
 
     regras_validacao = get_object_or_404(RegrasDeValidacao, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         obj = RegrasDeValidacao.objects.get(id=pk)
         obj.delete(request=request)
         #regras_validacao_apagar_custom
         #regras_validacao_apagar_custom
         messages.success(request, u'Apagado com sucesso!')
-        
+
         if 'regras_validacao' in request.session['return_page']:
-        
+
             return redirect('regras_validacao')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
@@ -88,7 +88,7 @@ def apagar(request, pk):
         'modulos': ['mensageiro', ],
         'paginas': ['regras_validacao', ],
     }
-    
-    return render(request, 
-        'regras_validacao_apagar.html', 
+
+    return render(request,
+        'regras_validacao_apagar.html',
         context)

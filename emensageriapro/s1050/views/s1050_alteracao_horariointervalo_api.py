@@ -60,13 +60,13 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class s1050alteracaohorarioIntervaloList(generics.ListCreateAPIView):
-    
+
     queryset = s1050alteracaohorarioIntervalo.objects.all()
     serializer_class = s1050alteracaohorarioIntervaloSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
@@ -74,12 +74,12 @@ class s1050alteracaohorarioIntervaloList(generics.ListCreateAPIView):
 
 
 class s1050alteracaohorarioIntervaloDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = s1050alteracaohorarioIntervalo.objects.all()
     serializer_class = s1050alteracaohorarioIntervaloSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

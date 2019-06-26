@@ -77,7 +77,7 @@ def criar_alteracao(request, pk):
     from emensageriapro.efdreinf.views.r4099_evtfech_importar import read_r4099_evtfech_string
     from emensageriapro.efdreinf.views.r4099_evtfech_gerar_xml import gerar_xml_r4099
     from emensageriapro.functions import identidade_evento
-    
+
     if request.user.has_perm('efdreinf.can_create_change_r4099evtFech'):
 
         r4099_evtfech = get_object_or_404(
@@ -99,14 +99,14 @@ def criar_alteracao(request, pk):
             'r4099_evtfech', dados['id'], request.user.id, 1)
 
         messages.success(request, u'Evento de alteração criado com sucesso!')
-        
+
         return_pk = dados['id']
-        
+
         return redirect('r4099_evtfech_salvar', pk=return_pk)
-        
+
     else:
-    
-        messages.error(request, u'''Você não possui permissão para criar evento de alteração a partir de evento existente. 
+
+        messages.error(request, u'''Você não possui permissão para criar evento de alteração a partir de evento existente.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
         return redirect('r4099_evtfech_salvar', pk=pk)

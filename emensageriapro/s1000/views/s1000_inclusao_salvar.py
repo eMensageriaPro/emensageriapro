@@ -75,174 +75,174 @@ from emensageriapro.s1000.forms import form_s1000_inclusao_situacaopf
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s1000_inclusao = get_object_or_404(s1000inclusao, id=pk)
         evento_dados = s1000_inclusao.evento()
 
     if request.user.has_perm('s1000.can_see_s1000inclusao'):
-        
+
         if pk:
-        
+
             s1000_inclusao_form = form_s1000_inclusao(
-                request.POST or None, 
+                request.POST or None,
                 instance=s1000_inclusao)
-                                         
+                     
         else:
-        
+
             s1000_inclusao_form = form_s1000_inclusao(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s1000_inclusao_form.is_valid():
-            
+
                 obj = s1000_inclusao_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1000_inclusao', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1000_inclusao',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s1000_inclusao), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s1000_inclusao),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1000_inclusao', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1000_inclusao',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's1000_inclusao_apagar', 
-                    's1000_inclusao_salvar', 
+                    's1000_inclusao_apagar',
+                    's1000_inclusao_salvar',
                     's1000_inclusao'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's1000_inclusao_salvar', 
+                        's1000_inclusao_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s1000_inclusao_form = disabled_form_fields(
-            s1000_inclusao_form, 
+            s1000_inclusao_form,
             request.user.has_perm('s1000.change_s1000inclusao'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s1000_inclusao_form = disabled_form_fields(s1000_inclusao_form, 0)
-                
+
         if output:
-        
+
             s1000_inclusao_form = disabled_form_for_print(s1000_inclusao_form)
-            
-        
-        s1000_inclusao_dadosisencao_lista = None 
-        s1000_inclusao_dadosisencao_form = None 
-        s1000_inclusao_infoop_lista = None 
-        s1000_inclusao_infoop_form = None 
-        s1000_inclusao_infoorginternacional_lista = None 
-        s1000_inclusao_infoorginternacional_form = None 
-        s1000_inclusao_softwarehouse_lista = None 
-        s1000_inclusao_softwarehouse_form = None 
-        s1000_inclusao_situacaopj_lista = None 
-        s1000_inclusao_situacaopj_form = None 
-        s1000_inclusao_situacaopf_lista = None 
-        s1000_inclusao_situacaopf_form = None 
-        
+
+
+        s1000_inclusao_dadosisencao_lista = None
+        s1000_inclusao_dadosisencao_form = None
+        s1000_inclusao_infoop_lista = None
+        s1000_inclusao_infoop_form = None
+        s1000_inclusao_infoorginternacional_lista = None
+        s1000_inclusao_infoorginternacional_form = None
+        s1000_inclusao_softwarehouse_lista = None
+        s1000_inclusao_softwarehouse_form = None
+        s1000_inclusao_situacaopj_lista = None
+        s1000_inclusao_situacaopj_form = None
+        s1000_inclusao_situacaopf_lista = None
+        s1000_inclusao_situacaopf_form = None
+
         if pk:
-        
+
             s1000_inclusao = get_object_or_404(s1000inclusao, id=pk)
-            
+
             s1000_inclusao_dadosisencao_form = form_s1000_inclusao_dadosisencao(
                 initial={ 's1000_inclusao': s1000_inclusao })
             s1000_inclusao_dadosisencao_form.fields['s1000_inclusao'].widget.attrs['readonly'] = True
             s1000_inclusao_dadosisencao_lista = s1000inclusaodadosIsencao.objects.\
                 filter(s1000_inclusao_id=s1000_inclusao.id).all()
-                
+
             s1000_inclusao_infoop_form = form_s1000_inclusao_infoop(
                 initial={ 's1000_inclusao': s1000_inclusao })
             s1000_inclusao_infoop_form.fields['s1000_inclusao'].widget.attrs['readonly'] = True
             s1000_inclusao_infoop_lista = s1000inclusaoinfoOP.objects.\
                 filter(s1000_inclusao_id=s1000_inclusao.id).all()
-                
+
             s1000_inclusao_infoorginternacional_form = form_s1000_inclusao_infoorginternacional(
                 initial={ 's1000_inclusao': s1000_inclusao })
             s1000_inclusao_infoorginternacional_form.fields['s1000_inclusao'].widget.attrs['readonly'] = True
             s1000_inclusao_infoorginternacional_lista = s1000inclusaoinfoOrgInternacional.objects.\
                 filter(s1000_inclusao_id=s1000_inclusao.id).all()
-                
+
             s1000_inclusao_softwarehouse_form = form_s1000_inclusao_softwarehouse(
                 initial={ 's1000_inclusao': s1000_inclusao })
             s1000_inclusao_softwarehouse_form.fields['s1000_inclusao'].widget.attrs['readonly'] = True
             s1000_inclusao_softwarehouse_lista = s1000inclusaosoftwareHouse.objects.\
                 filter(s1000_inclusao_id=s1000_inclusao.id).all()
-                
+
             s1000_inclusao_situacaopj_form = form_s1000_inclusao_situacaopj(
                 initial={ 's1000_inclusao': s1000_inclusao })
             s1000_inclusao_situacaopj_form.fields['s1000_inclusao'].widget.attrs['readonly'] = True
             s1000_inclusao_situacaopj_lista = s1000inclusaosituacaoPJ.objects.\
                 filter(s1000_inclusao_id=s1000_inclusao.id).all()
-                
+
             s1000_inclusao_situacaopf_form = form_s1000_inclusao_situacaopf(
                 initial={ 's1000_inclusao': s1000_inclusao })
             s1000_inclusao_situacaopf_form.fields['s1000_inclusao'].widget.attrs['readonly'] = True
             s1000_inclusao_situacaopf_lista = s1000inclusaosituacaoPF.objects.\
                 filter(s1000_inclusao_id=s1000_inclusao.id).all()
-                
-                
+
+
         else:
-        
+
             s1000_inclusao = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's1000_inclusao' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's1000_inclusao_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1000_inclusao').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's1000_inclusao': s1000_inclusao, 
-            's1000_inclusao_form': s1000_inclusao_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's1000_inclusao': s1000_inclusao,
+            's1000_inclusao_form': s1000_inclusao_form,
             'modulos': ['s1000', ],
             'paginas': ['s1000_inclusao', ],
             's1000_inclusao_dadosisencao_form': s1000_inclusao_dadosisencao_form,
@@ -262,11 +262,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s1000_inclusao_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1000_inclusao_salvar.html',
@@ -284,26 +284,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s1000_inclusao_salvar.html', context)
             filename = "s1000_inclusao.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's1000_inclusao_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -313,7 +313,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1000_inclusao', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

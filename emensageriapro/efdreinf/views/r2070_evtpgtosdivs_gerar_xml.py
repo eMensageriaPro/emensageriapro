@@ -95,88 +95,88 @@ def gerar_xml_r2070(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         r2070_evtpgtosdivs_lista = r2070evtPgtosDivs.objects. \
             filter(id=pk).all()
-            
-        
+
+
         r2070_inforesidext_lista = r2070infoResidExt.objects. \
             filter(r2070_evtpgtosdivs_id__in=listar_ids(r2070_evtpgtosdivs_lista)).all()
-        
+
         r2070_infomolestia_lista = r2070infoMolestia.objects. \
             filter(r2070_evtpgtosdivs_id__in=listar_ids(r2070_evtpgtosdivs_lista)).all()
-        
+
         r2070_ideestab_lista = r2070ideEstab.objects. \
             filter(r2070_evtpgtosdivs_id__in=listar_ids(r2070_evtpgtosdivs_lista)).all()
-        
+
         r2070_pgtoresidbr_lista = r2070pgtoResidBR.objects. \
             filter(r2070_ideestab_id__in=listar_ids(r2070_ideestab_lista)).all()
-        
+
         r2070_pgtopf_lista = r2070pgtoPF.objects. \
             filter(r2070_pgtoresidbr_id__in=listar_ids(r2070_pgtoresidbr_lista)).all()
-        
+
         r2070_detdeducao_lista = r2070detDeducao.objects. \
             filter(r2070_pgtopf_id__in=listar_ids(r2070_pgtopf_lista)).all()
-        
+
         r2070_rendisento_lista = r2070rendIsento.objects. \
             filter(r2070_pgtopf_id__in=listar_ids(r2070_pgtopf_lista)).all()
-        
+
         r2070_detcompet_lista = r2070detCompet.objects. \
             filter(r2070_pgtopf_id__in=listar_ids(r2070_pgtopf_lista)).all()
-        
+
         r2070_compjud_lista = r2070compJud.objects. \
             filter(r2070_pgtopf_id__in=listar_ids(r2070_pgtopf_lista)).all()
-        
+
         r2070_inforra_lista = r2070infoRRA.objects. \
             filter(r2070_pgtopf_id__in=listar_ids(r2070_pgtopf_lista)).all()
-        
+
         r2070_inforra_despprocjud_lista = r2070infoRRAdespProcJud.objects. \
             filter(r2070_inforra_id__in=listar_ids(r2070_inforra_lista)).all()
-        
+
         r2070_inforra_ideadvogado_lista = r2070infoRRAideAdvogado.objects. \
             filter(r2070_inforra_despprocjud_id__in=listar_ids(r2070_inforra_despprocjud_lista)).all()
-        
+
         r2070_infoprocjud_lista = r2070infoProcJud.objects. \
             filter(r2070_pgtopf_id__in=listar_ids(r2070_pgtopf_lista)).all()
-        
+
         r2070_infoprocjud_despprocjud_lista = r2070infoProcJuddespProcJud.objects. \
             filter(r2070_infoprocjud_id__in=listar_ids(r2070_infoprocjud_lista)).all()
-        
+
         r2070_infoprocjud_ideadvogado_lista = r2070infoProcJudideAdvogado.objects. \
             filter(r2070_infoprocjud_despprocjud_id__in=listar_ids(r2070_infoprocjud_despprocjud_lista)).all()
-        
+
         r2070_infoprocjud_origemrecursos_lista = r2070infoProcJudorigemRecursos.objects. \
             filter(r2070_infoprocjud_id__in=listar_ids(r2070_infoprocjud_lista)).all()
-        
+
         r2070_depjudicial_lista = r2070depJudicial.objects. \
             filter(r2070_pgtopf_id__in=listar_ids(r2070_pgtopf_lista)).all()
-        
+
         r2070_pgtopj_lista = r2070pgtoPJ.objects. \
             filter(r2070_pgtoresidbr_id__in=listar_ids(r2070_pgtoresidbr_lista)).all()
-        
+
         r2070_pgtopj_infoprocjud_lista = r2070pgtoPJinfoProcJud.objects. \
             filter(r2070_pgtopj_id__in=listar_ids(r2070_pgtopj_lista)).all()
-        
+
         r2070_pgtopj_despprocjud_lista = r2070pgtoPJdespProcJud.objects. \
             filter(r2070_pgtopj_infoprocjud_id__in=listar_ids(r2070_pgtopj_infoprocjud_lista)).all()
-        
+
         r2070_pgtopj_ideadvogado_lista = r2070pgtoPJideAdvogado.objects. \
             filter(r2070_pgtopj_despprocjud_id__in=listar_ids(r2070_pgtopj_despprocjud_lista)).all()
-        
+
         r2070_pgtopj_origemrecursos_lista = r2070pgtoPJorigemRecursos.objects. \
             filter(r2070_pgtopj_infoprocjud_id__in=listar_ids(r2070_pgtopj_infoprocjud_lista)).all()
-        
+
         r2070_pgtoresidext_lista = r2070pgtoResidExt.objects. \
             filter(r2070_ideestab_id__in=listar_ids(r2070_ideestab_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -226,14 +226,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if r2070_evtpgtosdivs.arquivo_original:
-    
+
         xml = ler_arquivo(r2070_evtpgtosdivs.arquivo)
 
     else:
         xml = gerar_xml_r2070(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -254,16 +254,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 r2070evtPgtosDivs,
                 r2070_evtpgtosdivs)
-        
+
         r2070_evtpgtosdivs = get_object_or_404(
             r2070evtPgtosDivs,
             id=pk)
-        
+
         xml_assinado = assinar_efdreinf(
-            request, 
-            xml, 
+            request,
+            xml,
             r2070_evtpgtosdivs.transmissor_lote_efdreinf_id)
-        
+
     if r2070_evtpgtosdivs.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -277,11 +277,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/r2070_evtpgtosdivs/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_efdreinf(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -294,5 +294,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

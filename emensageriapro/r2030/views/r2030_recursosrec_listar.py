@@ -62,65 +62,65 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('r2030.can_see_r2030recursosRec'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_r2030_evtassocdesprec': 1,
             'show_cnpjorigrecurso': 1,
             'show_vlrtotalrec': 1,
             'show_vlrtotalret': 1,
             'show_vlrtotalnret': 0, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 'r2030_evtassocdesprec__icontains': 'r2030_evtassocdesprec__icontains',
                 'cnpjorigrecurso__icontains': 'cnpjorigrecurso__icontains',
                 'vlrtotalrec__icontains': 'vlrtotalrec__icontains',
                 'vlrtotalret__icontains': 'vlrtotalret__icontains',
                 'vlrtotalnret__icontains': 'vlrtotalnret__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     'r2030_evtassocdesprec__icontains': 'r2030_evtassocdesprec__icontains',
                     'cnpjorigrecurso__icontains': 'cnpjorigrecurso__icontains',
                     'vlrtotalrec__icontains': 'vlrtotalrec__icontains',
                     'vlrtotalret__icontains': 'vlrtotalret__icontains',
                     'vlrtotalnret__icontains': 'vlrtotalnret__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         r2030_recursosrec_lista = r2030recursosRec.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(r2030_recursosrec_lista) > 100:
-        
+
             filtrar = True
             r2030_recursosrec_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #r2030_recursosrec_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            'r2030_recursosrec_lista': r2030_recursosrec_lista, 
+            'r2030_recursosrec_lista': r2030_recursosrec_lista,
             'modulos': ['r2030', ],
             'paginas': ['r2030_recursosrec', ],
             'dict_fields': dict_fields,
@@ -129,11 +129,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r2030_recursosrec_listar.html',
@@ -151,33 +151,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('r2030_recursosrec_listar.html', context)
             filename = "r2030_recursosrec.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/r2030_recursosrec.csv', context)
             filename = "r2030_recursosrec.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 'r2030_recursosrec_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -185,7 +185,7 @@ def listar(request, output=None):
             'modulos': ['r2030', ],
             'paginas': ['r2030_recursosrec', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

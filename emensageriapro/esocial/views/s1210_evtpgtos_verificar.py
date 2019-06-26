@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s1210evtPgtos'):
-    
+
         s1210_evtpgtos = get_object_or_404(s1210evtPgtos, id=pk)
         s1210_evtpgtos_lista = s1210evtPgtos.objects.filter(id=pk).all()
 
-        
+
         s1210_deps_lista = s1210deps.objects.filter(s1210_evtpgtos_id__in = listar_ids(s1210_evtpgtos_lista) ).all()
         s1210_infopgto_lista = s1210infoPgto.objects.filter(s1210_evtpgtos_id__in = listar_ids(s1210_evtpgtos_lista) ).all()
         s1210_detpgtofl_lista = s1210detPgtoFl.objects.filter(s1210_infopgto_id__in = listar_ids(s1210_infopgto_lista) ).all()
@@ -123,9 +123,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1210_evtpgtos_verificar.html',
@@ -142,20 +142,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s1210_evtpgtos_verificar.html', context)
             filename = "%s.xls" % s1210_evtpgtos.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s1210_evtpgtos_verificar.html', context)
             filename = "%s.csv" % s1210_evtpgtos.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -163,7 +163,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's1210_evtpgtos_verificar.html', context)
 
     else:

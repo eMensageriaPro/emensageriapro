@@ -95,61 +95,61 @@ def gerar_xml_s2205(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         s2205_evtaltcadastral_lista = s2205evtAltCadastral.objects. \
             filter(id=pk).all()
-            
-        
+
+
         s2205_documentos_lista = s2205documentos.objects. \
             filter(s2205_evtaltcadastral_id__in=listar_ids(s2205_evtaltcadastral_lista)).all()
-        
+
         s2205_ctps_lista = s2205CTPS.objects. \
             filter(s2205_documentos_id__in=listar_ids(s2205_documentos_lista)).all()
-        
+
         s2205_ric_lista = s2205RIC.objects. \
             filter(s2205_documentos_id__in=listar_ids(s2205_documentos_lista)).all()
-        
+
         s2205_rg_lista = s2205RG.objects. \
             filter(s2205_documentos_id__in=listar_ids(s2205_documentos_lista)).all()
-        
+
         s2205_rne_lista = s2205RNE.objects. \
             filter(s2205_documentos_id__in=listar_ids(s2205_documentos_lista)).all()
-        
+
         s2205_oc_lista = s2205OC.objects. \
             filter(s2205_documentos_id__in=listar_ids(s2205_documentos_lista)).all()
-        
+
         s2205_cnh_lista = s2205CNH.objects. \
             filter(s2205_documentos_id__in=listar_ids(s2205_documentos_lista)).all()
-        
+
         s2205_brasil_lista = s2205brasil.objects. \
             filter(s2205_evtaltcadastral_id__in=listar_ids(s2205_evtaltcadastral_lista)).all()
-        
+
         s2205_exterior_lista = s2205exterior.objects. \
             filter(s2205_evtaltcadastral_id__in=listar_ids(s2205_evtaltcadastral_lista)).all()
-        
+
         s2205_trabestrangeiro_lista = s2205trabEstrangeiro.objects. \
             filter(s2205_evtaltcadastral_id__in=listar_ids(s2205_evtaltcadastral_lista)).all()
-        
+
         s2205_infodeficiencia_lista = s2205infoDeficiencia.objects. \
             filter(s2205_evtaltcadastral_id__in=listar_ids(s2205_evtaltcadastral_lista)).all()
-        
+
         s2205_dependente_lista = s2205dependente.objects. \
             filter(s2205_evtaltcadastral_id__in=listar_ids(s2205_evtaltcadastral_lista)).all()
-        
+
         s2205_aposentadoria_lista = s2205aposentadoria.objects. \
             filter(s2205_evtaltcadastral_id__in=listar_ids(s2205_evtaltcadastral_lista)).all()
-        
+
         s2205_contato_lista = s2205contato.objects. \
             filter(s2205_evtaltcadastral_id__in=listar_ids(s2205_evtaltcadastral_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -190,14 +190,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s2205_evtaltcadastral.arquivo_original:
-    
+
         xml = ler_arquivo(s2205_evtaltcadastral.arquivo)
 
     else:
         xml = gerar_xml_s2205(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -218,16 +218,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 s2205evtAltCadastral,
                 s2205_evtaltcadastral)
-        
+
         s2205_evtaltcadastral = get_object_or_404(
             s2205evtAltCadastral,
             id=pk)
-        
+
         xml_assinado = assinar_esocial(
-            request, 
-            xml, 
+            request,
+            xml,
             s2205_evtaltcadastral.transmissor_lote_esocial_id)
-        
+
     if s2205_evtaltcadastral.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -241,11 +241,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s2205_evtaltcadastral/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -258,5 +258,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

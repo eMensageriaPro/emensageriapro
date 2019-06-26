@@ -60,13 +60,13 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class s1300contribSindList(generics.ListCreateAPIView):
-    
+
     queryset = s1300contribSind.objects.all()
     serializer_class = s1300contribSindSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
@@ -74,12 +74,12 @@ class s1300contribSindList(generics.ListCreateAPIView):
 
 
 class s1300contribSindDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = s1300contribSind.objects.all()
     serializer_class = s1300contribSindSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

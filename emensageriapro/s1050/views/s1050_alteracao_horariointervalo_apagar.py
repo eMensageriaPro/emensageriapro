@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s1050_alteracao_horariointervalo = get_object_or_404(s1050alteracaohorarioIntervalo, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s1050_alteracao_horariointervalo.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s1050_alteracao_horariointervalo), indent=4, sort_keys=True, default=str)
             obj = s1050alteracaohorarioIntervalo.objects.get(id=pk)
             obj.delete(request=request)
             #s1050_alteracao_horariointervalo_apagar_custom
             #s1050_alteracao_horariointervalo_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's1050_alteracao_horariointervalo', 
-                             pk, 
+                             '',
+                             's1050_alteracao_horariointervalo',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's1050_alteracao_horariointervalo' in request.session['return_page']:
-        
+
             return redirect('s1050_alteracao_horariointervalo')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s1050', ],
         'paginas': ['s1050_alteracao_horariointervalo', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's1050_alteracao_horariointervalo_apagar.html', 
+
+    return render(request,
+                  's1050_alteracao_horariointervalo_apagar.html',
                   context)

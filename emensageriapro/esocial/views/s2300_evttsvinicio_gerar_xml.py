@@ -95,94 +95,94 @@ def gerar_xml_s2300(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         s2300_evttsvinicio_lista = s2300evtTSVInicio.objects. \
             filter(id=pk).all()
-            
-        
+
+
         s2300_documentos_lista = s2300documentos.objects. \
             filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
-        
+
         s2300_ctps_lista = s2300CTPS.objects. \
             filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
-        
+
         s2300_ric_lista = s2300RIC.objects. \
             filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
-        
+
         s2300_rg_lista = s2300RG.objects. \
             filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
-        
+
         s2300_rne_lista = s2300RNE.objects. \
             filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
-        
+
         s2300_oc_lista = s2300OC.objects. \
             filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
-        
+
         s2300_cnh_lista = s2300CNH.objects. \
             filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
-        
+
         s2300_brasil_lista = s2300brasil.objects. \
             filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
-        
+
         s2300_exterior_lista = s2300exterior.objects. \
             filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
-        
+
         s2300_trabestrangeiro_lista = s2300trabEstrangeiro.objects. \
             filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
-        
+
         s2300_infodeficiencia_lista = s2300infoDeficiencia.objects. \
             filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
-        
+
         s2300_dependente_lista = s2300dependente.objects. \
             filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
-        
+
         s2300_contato_lista = s2300contato.objects. \
             filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
-        
+
         s2300_infocomplementares_lista = s2300infoComplementares.objects. \
             filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
-        
+
         s2300_cargofuncao_lista = s2300cargoFuncao.objects. \
             filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
-        
+
         s2300_remuneracao_lista = s2300remuneracao.objects. \
             filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
-        
+
         s2300_fgts_lista = s2300fgts.objects. \
             filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
-        
+
         s2300_infodirigentesindical_lista = s2300infoDirigenteSindical.objects. \
             filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
-        
+
         s2300_infotrabcedido_lista = s2300infoTrabCedido.objects. \
             filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
-        
+
         s2300_infoestagiario_lista = s2300infoEstagiario.objects. \
             filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
-        
+
         s2300_ageintegracao_lista = s2300ageIntegracao.objects. \
             filter(s2300_infoestagiario_id__in=listar_ids(s2300_infoestagiario_lista)).all()
-        
+
         s2300_supervisorestagio_lista = s2300supervisorEstagio.objects. \
             filter(s2300_infoestagiario_id__in=listar_ids(s2300_infoestagiario_lista)).all()
-        
+
         s2300_mudancacpf_lista = s2300mudancaCPF.objects. \
             filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
-        
+
         s2300_afastamento_lista = s2300afastamento.objects. \
             filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
-        
+
         s2300_termino_lista = s2300termino.objects. \
             filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -234,14 +234,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s2300_evttsvinicio.arquivo_original:
-    
+
         xml = ler_arquivo(s2300_evttsvinicio.arquivo)
 
     else:
         xml = gerar_xml_s2300(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -262,16 +262,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 s2300evtTSVInicio,
                 s2300_evttsvinicio)
-        
+
         s2300_evttsvinicio = get_object_or_404(
             s2300evtTSVInicio,
             id=pk)
-        
+
         xml_assinado = assinar_esocial(
-            request, 
-            xml, 
+            request,
+            xml,
             s2300_evttsvinicio.transmissor_lote_esocial_id)
-        
+
     if s2300_evttsvinicio.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -285,11 +285,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s2300_evttsvinicio/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -302,5 +302,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

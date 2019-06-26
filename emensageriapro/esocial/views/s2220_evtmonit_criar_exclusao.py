@@ -78,9 +78,9 @@ def criar_exclusao(request, pk):
     from emensageriapro.esocial.views.s2220_evtmonit_importar import read_s2220_evtmonit_string
     from emensageriapro.esocial.views.s2220_evtmonit_gerar_xml import gerar_xml_s2220
     from emensageriapro.functions import identidade_evento
-    
+
     if request.user.has_perm('esocial.can_create_delete_s2220evtMonit'):
-    
+
         s2220_evtmonit = get_object_or_404(
             s2220evtMonit,
             id=pk)
@@ -101,14 +101,14 @@ def criar_exclusao(request, pk):
             's2220_evtmonit', dados['id'], request.user.id, 1)
 
         messages.success(request, u'Evento de exclusão criado com sucesso!')
-        
+
         return_pk = dados['id']
-        
+
         return redirect('s2220_evtmonit_salvar', pk=return_pk)
-        
+
     else:
-    
-        messages.error(request, u'''Você não possui permissão para criar evento de exclusão a partir de evento existente. 
+
+        messages.error(request, u'''Você não possui permissão para criar evento de exclusão a partir de evento existente.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
         return redirect('s2220_evtmonit_salvar', pk=pk)

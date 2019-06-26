@@ -44,12 +44,12 @@ from emensageriapro.s5011.models import s5011infoEmprParcial, s5011infoEmprParci
 
 
 class s5011infoEmprParcialList(generics.ListAPIView):
-    
+
     queryset = s5011infoEmprParcial.objects.all()
     serializer_class = s5011infoEmprParcialSerializer
 
 
 class s5011infoEmprParcialDetail(generics.ListAPIView):
-    
+
     queryset = s5011infoEmprParcial.objects.all()
     serializer_class = s5011infoEmprParcialSerializer

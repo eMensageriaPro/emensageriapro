@@ -44,12 +44,12 @@ from emensageriapro.r9011.models import r9011RRecRepAD, r9011RRecRepADSerializer
 
 
 class r9011RRecRepADList(generics.ListAPIView):
-    
+
     queryset = r9011RRecRepAD.objects.all()
     serializer_class = r9011RRecRepADSerializer
 
 
 class r9011RRecRepADDetail(generics.ListAPIView):
-    
+
     queryset = r9011RRecRepAD.objects.all()
     serializer_class = r9011RRecRepADSerializer

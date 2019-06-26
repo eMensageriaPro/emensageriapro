@@ -75,174 +75,174 @@ from emensageriapro.s2205.forms import form_s2205_cnh
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2205_documentos = get_object_or_404(s2205documentos, id=pk)
         evento_dados = s2205_documentos.evento()
 
     if request.user.has_perm('s2205.can_see_s2205documentos'):
-        
+
         if pk:
-        
+
             s2205_documentos_form = form_s2205_documentos(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2205_documentos)
-                                         
+                     
         else:
-        
+
             s2205_documentos_form = form_s2205_documentos(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2205_documentos_form.is_valid():
-            
+
                 obj = s2205_documentos_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2205_documentos', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2205_documentos',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2205_documentos), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2205_documentos),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2205_documentos', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2205_documentos',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2205_documentos_apagar', 
-                    's2205_documentos_salvar', 
+                    's2205_documentos_apagar',
+                    's2205_documentos_salvar',
                     's2205_documentos'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2205_documentos_salvar', 
+                        's2205_documentos_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2205_documentos_form = disabled_form_fields(
-            s2205_documentos_form, 
+            s2205_documentos_form,
             request.user.has_perm('s2205.change_s2205documentos'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2205_documentos_form = disabled_form_fields(s2205_documentos_form, 0)
-                
+
         if output:
-        
+
             s2205_documentos_form = disabled_form_for_print(s2205_documentos_form)
-            
-        
-        s2205_ctps_lista = None 
-        s2205_ctps_form = None 
-        s2205_ric_lista = None 
-        s2205_ric_form = None 
-        s2205_rg_lista = None 
-        s2205_rg_form = None 
-        s2205_rne_lista = None 
-        s2205_rne_form = None 
-        s2205_oc_lista = None 
-        s2205_oc_form = None 
-        s2205_cnh_lista = None 
-        s2205_cnh_form = None 
-        
+
+
+        s2205_ctps_lista = None
+        s2205_ctps_form = None
+        s2205_ric_lista = None
+        s2205_ric_form = None
+        s2205_rg_lista = None
+        s2205_rg_form = None
+        s2205_rne_lista = None
+        s2205_rne_form = None
+        s2205_oc_lista = None
+        s2205_oc_form = None
+        s2205_cnh_lista = None
+        s2205_cnh_form = None
+
         if pk:
-        
+
             s2205_documentos = get_object_or_404(s2205documentos, id=pk)
-            
+
             s2205_ctps_form = form_s2205_ctps(
                 initial={ 's2205_documentos': s2205_documentos })
             s2205_ctps_form.fields['s2205_documentos'].widget.attrs['readonly'] = True
             s2205_ctps_lista = s2205CTPS.objects.\
                 filter(s2205_documentos_id=s2205_documentos.id).all()
-                
+
             s2205_ric_form = form_s2205_ric(
                 initial={ 's2205_documentos': s2205_documentos })
             s2205_ric_form.fields['s2205_documentos'].widget.attrs['readonly'] = True
             s2205_ric_lista = s2205RIC.objects.\
                 filter(s2205_documentos_id=s2205_documentos.id).all()
-                
+
             s2205_rg_form = form_s2205_rg(
                 initial={ 's2205_documentos': s2205_documentos })
             s2205_rg_form.fields['s2205_documentos'].widget.attrs['readonly'] = True
             s2205_rg_lista = s2205RG.objects.\
                 filter(s2205_documentos_id=s2205_documentos.id).all()
-                
+
             s2205_rne_form = form_s2205_rne(
                 initial={ 's2205_documentos': s2205_documentos })
             s2205_rne_form.fields['s2205_documentos'].widget.attrs['readonly'] = True
             s2205_rne_lista = s2205RNE.objects.\
                 filter(s2205_documentos_id=s2205_documentos.id).all()
-                
+
             s2205_oc_form = form_s2205_oc(
                 initial={ 's2205_documentos': s2205_documentos })
             s2205_oc_form.fields['s2205_documentos'].widget.attrs['readonly'] = True
             s2205_oc_lista = s2205OC.objects.\
                 filter(s2205_documentos_id=s2205_documentos.id).all()
-                
+
             s2205_cnh_form = form_s2205_cnh(
                 initial={ 's2205_documentos': s2205_documentos })
             s2205_cnh_form.fields['s2205_documentos'].widget.attrs['readonly'] = True
             s2205_cnh_lista = s2205CNH.objects.\
                 filter(s2205_documentos_id=s2205_documentos.id).all()
-                
-                
+
+
         else:
-        
+
             s2205_documentos = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2205_documentos' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2205_documentos_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2205_documentos').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2205_documentos': s2205_documentos, 
-            's2205_documentos_form': s2205_documentos_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2205_documentos': s2205_documentos,
+            's2205_documentos_form': s2205_documentos_form,
             'modulos': ['s2205', ],
             'paginas': ['s2205_documentos', ],
             's2205_ctps_form': s2205_ctps_form,
@@ -262,11 +262,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2205_documentos_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2205_documentos_salvar.html',
@@ -284,26 +284,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2205_documentos_salvar.html', context)
             filename = "s2205_documentos.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2205_documentos_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -313,7 +313,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2205_documentos', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

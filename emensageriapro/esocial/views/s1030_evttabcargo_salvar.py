@@ -71,9 +71,9 @@ def salvar(request, pk=None, tab='master', output=None):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
     TP_AMB = config.ESOCIAL_TP_AMB
-    
+
     if pk:
-    
+
         s1030_evttabcargo = get_object_or_404(s1030evtTabCargo, id=pk)
 
         #if s1030_evttabcargo.status != STATUS_EVENTO_CADASTRADO:
@@ -81,95 +81,95 @@ def salvar(request, pk=None, tab='master', output=None):
         #    dict_permissoes = {}
         #    dict_permissoes['s1030_evttabcargo_apagar'] = 0
         #    dict_permissoes['s1030_evttabcargo_editar'] = 0
-            
+
     if request.user.has_perm('esocial.can_see_s1030evtTabCargo'):
-    
+
         if pk:
-        
-            s1030_evttabcargo_form = form_s1030_evttabcargo(request.POST or None, instance = s1030_evttabcargo, 
+
+            s1030_evttabcargo_form = form_s1030_evttabcargo(request.POST or None, instance = s1030_evttabcargo,
                                          initial={'ativo': True})
-                                         
+                     
         else:
-        
-            s1030_evttabcargo_form = form_s1030_evttabcargo(request.POST or None, 
-                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL, 
-                                                  'status': STATUS_EVENTO_CADASTRADO, 
-                                                  'tpamb': TP_AMB, 
-                                                  'procemi': 1, 
-                                                  'verproc': VERSAO_EMENSAGERIA, 
+
+            s1030_evttabcargo_form = form_s1030_evttabcargo(request.POST or None,
+                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA,
                                                   'ativo': True})
-                                                  
+                              
         if request.method == 'POST':
-        
+
             if s1030_evttabcargo_form.is_valid():
-            
+
                 obj = s1030_evttabcargo_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 if not pk:
-                
+
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
-                  
+
                 #    gravar_auditoria('{}',
-                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                 's1030_evttabcargo', obj.id, request.user.id, 1)
                 #else:
-                # 
+                #
                 #    gravar_auditoria(json.dumps(model_to_dict(s1030_evttabcargo), indent=4, sort_keys=True, default=str),
-                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                     's1030_evttabcargo', pk, request.user.id, 2)
-                                 
+             
                 if request.session['return_page'] not in (
-                    's1030_evttabcargo_apagar', 
-                    's1030_evttabcargo_salvar', 
+                    's1030_evttabcargo_apagar',
+                    's1030_evttabcargo_salvar',
                     's1030_evttabcargo'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's1030_evttabcargo_salvar', 
+                        's1030_evttabcargo_salvar',
                         pk=obj.id)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-                
+
         s1030_evttabcargo_form = disabled_form_fields(
-             s1030_evttabcargo_form, 
+             s1030_evttabcargo_form,
              request.user.has_perm('esocial.change_s1030evtTabCargo'))
-        
+
         if pk:
-        
+
             if s1030_evttabcargo.status != 0:
-            
+
                 s1030_evttabcargo_form = disabled_form_fields(s1030_evttabcargo_form, False)
-                
+
         #s1030_evttabcargo_campos_multiple_passo3
 
         for field in s1030_evttabcargo_form.fields.keys():
-        
+
             s1030_evttabcargo_form.fields[field].widget.attrs['ng-model'] = 's1030_evttabcargo_'+field
-            
+
         if output:
-        
+
             s1030_evttabcargo_form = disabled_form_for_print(s1030_evttabcargo_form)
 
-        
-        s1030_inclusao_lista = None 
-        s1030_inclusao_form = None 
-        s1030_alteracao_lista = None 
-        s1030_alteracao_form = None 
-        s1030_exclusao_lista = None 
-        s1030_exclusao_form = None 
-        
+
+        s1030_inclusao_lista = None
+        s1030_inclusao_form = None
+        s1030_alteracao_lista = None
+        s1030_alteracao_form = None
+        s1030_exclusao_lista = None
+        s1030_exclusao_form = None
+
         if pk:
-        
+
             s1030_evttabcargo = get_object_or_404(s1030evtTabCargo, id=pk)
-            
+
             s1030_inclusao_form = form_s1030_inclusao(
                 initial={ 's1030_evttabcargo': s1030_evttabcargo })
             s1030_inclusao_form.fields['s1030_evttabcargo'].widget.attrs['readonly'] = True
@@ -185,38 +185,38 @@ def salvar(request, pk=None, tab='master', output=None):
             s1030_exclusao_form.fields['s1030_evttabcargo'].widget.attrs['readonly'] = True
             s1030_exclusao_lista = s1030exclusao.objects.\
                 filter(s1030_evttabcargo_id=s1030_evttabcargo.id).all()
-                
+
         else:
-        
+
             s1030_evttabcargo = None
-            
+
         #s1030_evttabcargo_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if 's1030_evttabcargo'[1] == '5':
             evento_totalizador = True
-            
+
         else:
             evento_totalizador = False
-        
+
         if tab or 's1030_evttabcargo' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's1030_evttabcargo_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1030_evttabcargo').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
-            's1030_evttabcargo': s1030_evttabcargo, 
-            's1030_evttabcargo_form': s1030_evttabcargo_form, 
-            
+            's1030_evttabcargo': s1030_evttabcargo,
+            's1030_evttabcargo_form': s1030_evttabcargo_form,
+
             's1030_inclusao_form': s1030_inclusao_form,
             's1030_inclusao_lista': s1030_inclusao_lista,
             's1030_alteracao_form': s1030_alteracao_form,
@@ -230,10 +230,10 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s1030_evttabcargo_salvar_custom_variaveis_context#
         }
-        
-            
+
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1030_evttabcargo_salvar.html',
@@ -251,24 +251,24 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             response = render_to_response('s1030_evttabcargo_salvar.html', context)
             filename = "s1030_evttabcargo.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's1030_evttabcargo_salvar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -278,5 +278,5 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1030_evttabcargo', ],
             'data': datetime.datetime.now(),
         }
-        
+
         return render(request, 'permissao_negada.html', context)

@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s1295_iderespinf = get_object_or_404(s1295ideRespInf, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s1295_iderespinf.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s1295_iderespinf), indent=4, sort_keys=True, default=str)
             obj = s1295ideRespInf.objects.get(id=pk)
             obj.delete(request=request)
             #s1295_iderespinf_apagar_custom
             #s1295_iderespinf_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's1295_iderespinf', 
-                             pk, 
+                             '',
+                             's1295_iderespinf',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's1295_iderespinf' in request.session['return_page']:
-        
+
             return redirect('s1295_iderespinf')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s1295', ],
         'paginas': ['s1295_iderespinf', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's1295_iderespinf_apagar.html', 
+
+    return render(request,
+                  's1295_iderespinf_apagar.html',
                   context)

@@ -58,17 +58,17 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, pk):
-        
+
     import json
     from django.forms.models import model_to_dict
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
+
     r4020_evtretpj = get_object_or_404(r4020evtRetPJ, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         if r4020_evtretpj.status == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(r4020_evtretpj), indent=4, sort_keys=True, default=str)
             obj = r4020evtRetPJ.objects.get(id=pk)
             obj.delete(request=request)
@@ -76,29 +76,29 @@ def apagar(request, pk):
             #r4020_evtretpj_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
-                             '', 
+                             '',
                              'r4020_evtretpj', pk, request.user.id, 3)
         else:
-        
-            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é
                                         possível apagar os eventos com status "Cadastrado"!''')
-            
+
         if 'r4020_evtretpj' in request.session['return_page']:
-        
+
             return redirect('r4020_evtretpj')
-            
+
         else:
-        
-            return redirect(request.session['return_page'], 
+
+            return redirect(request.session['return_page'],
                             pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
-        'pk': pk, 
-        'r4020_evtretpj': r4020_evtretpj, 
+        'pk': pk,
+        'r4020_evtretpj': r4020_evtretpj,
         'data': datetime.datetime.now(),
         'modulos': ['efdreinf', ],
         'paginas': ['r4020_evtretpj', ],
     }
-    
+
     return render(request, 'r4020_evtretpj_apagar.html', context)

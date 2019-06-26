@@ -83,9 +83,9 @@ def salvar(request, pk=None, tab='master', output=None):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
     TP_AMB = config.ESOCIAL_TP_AMB
-    
+
     if pk:
-    
+
         s2206_evtaltcontratual = get_object_or_404(s2206evtAltContratual, id=pk)
 
         #if s2206_evtaltcontratual.status != STATUS_EVENTO_CADASTRADO:
@@ -93,107 +93,107 @@ def salvar(request, pk=None, tab='master', output=None):
         #    dict_permissoes = {}
         #    dict_permissoes['s2206_evtaltcontratual_apagar'] = 0
         #    dict_permissoes['s2206_evtaltcontratual_editar'] = 0
-            
+
     if request.user.has_perm('esocial.can_see_s2206evtAltContratual'):
-    
+
         if pk:
-        
-            s2206_evtaltcontratual_form = form_s2206_evtaltcontratual(request.POST or None, instance = s2206_evtaltcontratual, 
+
+            s2206_evtaltcontratual_form = form_s2206_evtaltcontratual(request.POST or None, instance = s2206_evtaltcontratual,
                                          initial={'ativo': True})
-                                         
+                     
         else:
-        
-            s2206_evtaltcontratual_form = form_s2206_evtaltcontratual(request.POST or None, 
-                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL, 
-                                                  'status': STATUS_EVENTO_CADASTRADO, 
-                                                  'tpamb': TP_AMB, 
-                                                  'procemi': 1, 
-                                                  'verproc': VERSAO_EMENSAGERIA, 
+
+            s2206_evtaltcontratual_form = form_s2206_evtaltcontratual(request.POST or None,
+                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA,
                                                   'ativo': True})
-                                                  
+                              
         if request.method == 'POST':
-        
+
             if s2206_evtaltcontratual_form.is_valid():
-            
+
                 obj = s2206_evtaltcontratual_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 if not pk:
-                
+
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
-                  
+
                 #    gravar_auditoria('{}',
-                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                 's2206_evtaltcontratual', obj.id, request.user.id, 1)
                 #else:
-                # 
+                #
                 #    gravar_auditoria(json.dumps(model_to_dict(s2206_evtaltcontratual), indent=4, sort_keys=True, default=str),
-                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                     's2206_evtaltcontratual', pk, request.user.id, 2)
-                                 
+             
                 if request.session['return_page'] not in (
-                    's2206_evtaltcontratual_apagar', 
-                    's2206_evtaltcontratual_salvar', 
+                    's2206_evtaltcontratual_apagar',
+                    's2206_evtaltcontratual_salvar',
                     's2206_evtaltcontratual'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2206_evtaltcontratual_salvar', 
+                        's2206_evtaltcontratual_salvar',
                         pk=obj.id)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-                
+
         s2206_evtaltcontratual_form = disabled_form_fields(
-             s2206_evtaltcontratual_form, 
+             s2206_evtaltcontratual_form,
              request.user.has_perm('esocial.change_s2206evtAltContratual'))
-        
+
         if pk:
-        
+
             if s2206_evtaltcontratual.status != 0:
-            
+
                 s2206_evtaltcontratual_form = disabled_form_fields(s2206_evtaltcontratual_form, False)
-                
+
         #s2206_evtaltcontratual_campos_multiple_passo3
 
         for field in s2206_evtaltcontratual_form.fields.keys():
-        
+
             s2206_evtaltcontratual_form.fields[field].widget.attrs['ng-model'] = 's2206_evtaltcontratual_'+field
-            
+
         if output:
-        
+
             s2206_evtaltcontratual_form = disabled_form_for_print(s2206_evtaltcontratual_form)
 
-        
-        s2206_infoceletista_lista = None 
-        s2206_infoceletista_form = None 
-        s2206_infoestatutario_lista = None 
-        s2206_infoestatutario_form = None 
-        s2206_localtrabgeral_lista = None 
-        s2206_localtrabgeral_form = None 
-        s2206_localtrabdom_lista = None 
-        s2206_localtrabdom_form = None 
-        s2206_horcontratual_lista = None 
-        s2206_horcontratual_form = None 
-        s2206_filiacaosindical_lista = None 
-        s2206_filiacaosindical_form = None 
-        s2206_alvarajudicial_lista = None 
-        s2206_alvarajudicial_form = None 
-        s2206_observacoes_lista = None 
-        s2206_observacoes_form = None 
-        s2206_servpubl_lista = None 
-        s2206_servpubl_form = None 
-        
+
+        s2206_infoceletista_lista = None
+        s2206_infoceletista_form = None
+        s2206_infoestatutario_lista = None
+        s2206_infoestatutario_form = None
+        s2206_localtrabgeral_lista = None
+        s2206_localtrabgeral_form = None
+        s2206_localtrabdom_lista = None
+        s2206_localtrabdom_form = None
+        s2206_horcontratual_lista = None
+        s2206_horcontratual_form = None
+        s2206_filiacaosindical_lista = None
+        s2206_filiacaosindical_form = None
+        s2206_alvarajudicial_lista = None
+        s2206_alvarajudicial_form = None
+        s2206_observacoes_lista = None
+        s2206_observacoes_form = None
+        s2206_servpubl_lista = None
+        s2206_servpubl_form = None
+
         if pk:
-        
+
             s2206_evtaltcontratual = get_object_or_404(s2206evtAltContratual, id=pk)
-            
+
             s2206_infoceletista_form = form_s2206_infoceletista(
                 initial={ 's2206_evtaltcontratual': s2206_evtaltcontratual })
             s2206_infoceletista_form.fields['s2206_evtaltcontratual'].widget.attrs['readonly'] = True
@@ -239,38 +239,38 @@ def salvar(request, pk=None, tab='master', output=None):
             s2206_servpubl_form.fields['s2206_evtaltcontratual'].widget.attrs['readonly'] = True
             s2206_servpubl_lista = s2206servPubl.objects.\
                 filter(s2206_evtaltcontratual_id=s2206_evtaltcontratual.id).all()
-                
+
         else:
-        
+
             s2206_evtaltcontratual = None
-            
+
         #s2206_evtaltcontratual_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if 's2206_evtaltcontratual'[1] == '5':
             evento_totalizador = True
-            
+
         else:
             evento_totalizador = False
-        
+
         if tab or 's2206_evtaltcontratual' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2206_evtaltcontratual_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2206_evtaltcontratual').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
-            's2206_evtaltcontratual': s2206_evtaltcontratual, 
-            's2206_evtaltcontratual_form': s2206_evtaltcontratual_form, 
-            
+            's2206_evtaltcontratual': s2206_evtaltcontratual,
+            's2206_evtaltcontratual_form': s2206_evtaltcontratual_form,
+
             's2206_infoceletista_form': s2206_infoceletista_form,
             's2206_infoceletista_lista': s2206_infoceletista_lista,
             's2206_infoestatutario_form': s2206_infoestatutario_form,
@@ -296,10 +296,10 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2206_evtaltcontratual_salvar_custom_variaveis_context#
         }
-        
-            
+
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2206_evtaltcontratual_salvar.html',
@@ -317,24 +317,24 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             response = render_to_response('s2206_evtaltcontratual_salvar.html', context)
             filename = "s2206_evtaltcontratual.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2206_evtaltcontratual_salvar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -344,5 +344,5 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2206_evtaltcontratual', ],
             'data': datetime.datetime.now(),
         }
-        
+
         return render(request, 'permissao_negada.html', context)

@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
 
     r2010_infotpserv = get_object_or_404(r2010infoTpServ, id=pk)
-    
+
     dados_evento = {}
     dados_evento = r2010_infotpserv.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(r2010_infotpserv), indent=4, sort_keys=True, default=str)
             obj = r2010infoTpServ.objects.get(id=pk)
             obj.delete(request=request)
             #r2010_infotpserv_apagar_custom
             #r2010_infotpserv_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             'r2010_infotpserv', 
-                             pk, 
+                             '',
+                             'r2010_infotpserv',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 'r2010_infotpserv' in request.session['return_page']:
-        
+
             return redirect('r2010_infotpserv')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['r2010', ],
         'paginas': ['r2010_infotpserv', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  'r2010_infotpserv_apagar.html', 
+
+    return render(request,
+                  'r2010_infotpserv_apagar.html',
                   context)

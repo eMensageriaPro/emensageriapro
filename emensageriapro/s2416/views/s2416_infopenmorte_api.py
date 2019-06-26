@@ -60,13 +60,13 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class s2416infoPenMorteList(generics.ListCreateAPIView):
-    
+
     queryset = s2416infoPenMorte.objects.all()
     serializer_class = s2416infoPenMorteSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
@@ -74,12 +74,12 @@ class s2416infoPenMorteList(generics.ListCreateAPIView):
 
 
 class s2416infoPenMorteDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = s2416infoPenMorte.objects.all()
     serializer_class = s2416infoPenMorteSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

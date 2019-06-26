@@ -67,142 +67,142 @@ from emensageriapro.s2400.forms import form_s2400_exterior
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2400_endereco = get_object_or_404(s2400endereco, id=pk)
         evento_dados = s2400_endereco.evento()
 
     if request.user.has_perm('s2400.can_see_s2400endereco'):
-        
+
         if pk:
-        
+
             s2400_endereco_form = form_s2400_endereco(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2400_endereco)
-                                         
+                     
         else:
-        
+
             s2400_endereco_form = form_s2400_endereco(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2400_endereco_form.is_valid():
-            
+
                 obj = s2400_endereco_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2400_endereco', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2400_endereco',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2400_endereco), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2400_endereco),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2400_endereco', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2400_endereco',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2400_endereco_apagar', 
-                    's2400_endereco_salvar', 
+                    's2400_endereco_apagar',
+                    's2400_endereco_salvar',
                     's2400_endereco'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2400_endereco_salvar', 
+                        's2400_endereco_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2400_endereco_form = disabled_form_fields(
-            s2400_endereco_form, 
+            s2400_endereco_form,
             request.user.has_perm('s2400.change_s2400endereco'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2400_endereco_form = disabled_form_fields(s2400_endereco_form, 0)
-                
+
         if output:
-        
+
             s2400_endereco_form = disabled_form_for_print(s2400_endereco_form)
-            
-        
-        s2400_brasil_lista = None 
-        s2400_brasil_form = None 
-        s2400_exterior_lista = None 
-        s2400_exterior_form = None 
-        
+
+
+        s2400_brasil_lista = None
+        s2400_brasil_form = None
+        s2400_exterior_lista = None
+        s2400_exterior_form = None
+
         if pk:
-        
+
             s2400_endereco = get_object_or_404(s2400endereco, id=pk)
-            
+
             s2400_brasil_form = form_s2400_brasil(
                 initial={ 's2400_endereco': s2400_endereco })
             s2400_brasil_form.fields['s2400_endereco'].widget.attrs['readonly'] = True
             s2400_brasil_lista = s2400brasil.objects.\
                 filter(s2400_endereco_id=s2400_endereco.id).all()
-                
+
             s2400_exterior_form = form_s2400_exterior(
                 initial={ 's2400_endereco': s2400_endereco })
             s2400_exterior_form.fields['s2400_endereco'].widget.attrs['readonly'] = True
             s2400_exterior_lista = s2400exterior.objects.\
                 filter(s2400_endereco_id=s2400_endereco.id).all()
-                
-                
+
+
         else:
-        
+
             s2400_endereco = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2400_endereco' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2400_endereco_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2400_endereco').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2400_endereco': s2400_endereco, 
-            's2400_endereco_form': s2400_endereco_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2400_endereco': s2400_endereco,
+            's2400_endereco_form': s2400_endereco_form,
             'modulos': ['s2400', ],
             'paginas': ['s2400_endereco', ],
             's2400_brasil_form': s2400_brasil_form,
@@ -214,11 +214,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2400_endereco_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2400_endereco_salvar.html',
@@ -236,26 +236,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2400_endereco_salvar.html', context)
             filename = "s2400_endereco.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2400_endereco_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -265,7 +265,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2400_endereco', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

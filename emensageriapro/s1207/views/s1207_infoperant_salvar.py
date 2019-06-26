@@ -65,134 +65,134 @@ from emensageriapro.s1207.forms import form_s1207_infoperant_ideadc
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s1207_infoperant = get_object_or_404(s1207infoPerAnt, id=pk)
         evento_dados = s1207_infoperant.evento()
 
     if request.user.has_perm('s1207.can_see_s1207infoPerAnt'):
-        
+
         if pk:
-        
+
             s1207_infoperant_form = form_s1207_infoperant(
-                request.POST or None, 
+                request.POST or None,
                 instance=s1207_infoperant)
-                                         
+                     
         else:
-        
+
             s1207_infoperant_form = form_s1207_infoperant(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s1207_infoperant_form.is_valid():
-            
+
                 obj = s1207_infoperant_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1207_infoperant', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1207_infoperant',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s1207_infoperant), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s1207_infoperant),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1207_infoperant', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1207_infoperant',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's1207_infoperant_apagar', 
-                    's1207_infoperant_salvar', 
+                    's1207_infoperant_apagar',
+                    's1207_infoperant_salvar',
                     's1207_infoperant'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's1207_infoperant_salvar', 
+                        's1207_infoperant_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s1207_infoperant_form = disabled_form_fields(
-            s1207_infoperant_form, 
+            s1207_infoperant_form,
             request.user.has_perm('s1207.change_s1207infoPerAnt'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s1207_infoperant_form = disabled_form_fields(s1207_infoperant_form, 0)
-                
+
         if output:
-        
+
             s1207_infoperant_form = disabled_form_for_print(s1207_infoperant_form)
-            
-        
-        s1207_infoperant_ideadc_lista = None 
-        s1207_infoperant_ideadc_form = None 
-        
+
+
+        s1207_infoperant_ideadc_lista = None
+        s1207_infoperant_ideadc_form = None
+
         if pk:
-        
+
             s1207_infoperant = get_object_or_404(s1207infoPerAnt, id=pk)
-            
+
             s1207_infoperant_ideadc_form = form_s1207_infoperant_ideadc(
                 initial={ 's1207_infoperant': s1207_infoperant })
             s1207_infoperant_ideadc_form.fields['s1207_infoperant'].widget.attrs['readonly'] = True
             s1207_infoperant_ideadc_lista = s1207infoPerAntideADC.objects.\
                 filter(s1207_infoperant_id=s1207_infoperant.id).all()
-                
-                
+
+
         else:
-        
+
             s1207_infoperant = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's1207_infoperant' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's1207_infoperant_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1207_infoperant').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's1207_infoperant': s1207_infoperant, 
-            's1207_infoperant_form': s1207_infoperant_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's1207_infoperant': s1207_infoperant,
+            's1207_infoperant_form': s1207_infoperant_form,
             'modulos': ['s1207', ],
             'paginas': ['s1207_infoperant', ],
             's1207_infoperant_ideadc_form': s1207_infoperant_ideadc_form,
@@ -202,11 +202,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s1207_infoperant_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1207_infoperant_salvar.html',
@@ -224,26 +224,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s1207_infoperant_salvar.html', context)
             filename = "s1207_infoperant.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's1207_infoperant_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -253,7 +253,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1207_infoperant', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

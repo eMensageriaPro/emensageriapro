@@ -44,12 +44,12 @@ from emensageriapro.r9002.models import r9002infoTotal, r9002infoTotalSerializer
 
 
 class r9002infoTotalList(generics.ListAPIView):
-    
+
     queryset = r9002infoTotal.objects.all()
     serializer_class = r9002infoTotalSerializer
 
 
 class r9002infoTotalDetail(generics.ListAPIView):
-    
+
     queryset = r9002infoTotal.objects.all()
     serializer_class = r9002infoTotalSerializer

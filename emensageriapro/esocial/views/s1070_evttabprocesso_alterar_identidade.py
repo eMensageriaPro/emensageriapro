@@ -75,7 +75,7 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def alterar_identidade(request, pk):
 
     from emensageriapro.functions import identidade_evento
-    
+
     if request.user.has_perm('esocial.can_change_identity_s1070evtTabProcesso'):
 
         s1070_evttabprocesso = get_object_or_404(
@@ -90,17 +90,17 @@ def alterar_identidade(request, pk):
 
             gravar_auditoria(u'{}',
                 u'{"funcao": "Identidade do evento foi alterada"}',
-                's1070_evttabprocesso', pk, request.user.id, 1)
+                's1070_evttabprocesso', pk, request.user.id, 2)
 
         else:
 
-            messages.error(request, u'''Não foi possível alterar a identidade do evento! 
-                                        Somente é possível alterar o status de eventos que estão 
+            messages.error(request, u'''Não foi possível alterar a identidade do evento!
+                                        Somente é possível alterar o status de eventos que estão
                                         abertos para edição (status: Cadastrado)!''')
-        
+
     else:
-    
+
         messages.error(request, u'''Você não possui permissão para alterar a identidade do evento.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
     return redirect('s1070_evttabprocesso_salvar', pk=pk)

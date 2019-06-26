@@ -44,12 +44,12 @@ from emensageriapro.s5003.models import s5003infoTrabFGTS, s5003infoTrabFGTSSeri
 
 
 class s5003infoTrabFGTSList(generics.ListAPIView):
-    
+
     queryset = s5003infoTrabFGTS.objects.all()
     serializer_class = s5003infoTrabFGTSSerializer
 
 
 class s5003infoTrabFGTSDetail(generics.ListAPIView):
-    
+
     queryset = s5003infoTrabFGTS.objects.all()
     serializer_class = s5003infoTrabFGTSSerializer

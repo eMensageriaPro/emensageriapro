@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s1210_detpgtoant_infopgtoant = get_object_or_404(s1210detPgtoAntinfoPgtoAnt, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s1210_detpgtoant_infopgtoant.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s1210_detpgtoant_infopgtoant), indent=4, sort_keys=True, default=str)
             obj = s1210detPgtoAntinfoPgtoAnt.objects.get(id=pk)
             obj.delete(request=request)
             #s1210_detpgtoant_infopgtoant_apagar_custom
             #s1210_detpgtoant_infopgtoant_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's1210_detpgtoant_infopgtoant', 
-                             pk, 
+                             '',
+                             's1210_detpgtoant_infopgtoant',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's1210_detpgtoant_infopgtoant' in request.session['return_page']:
-        
+
             return redirect('s1210_detpgtoant_infopgtoant')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s1210', ],
         'paginas': ['s1210_detpgtoant_infopgtoant', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's1210_detpgtoant_infopgtoant_apagar.html', 
+
+    return render(request,
+                  's1210_detpgtoant_infopgtoant_apagar.html',
                   context)

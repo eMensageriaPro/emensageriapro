@@ -78,9 +78,9 @@ def criar_exclusao(request, pk):
     from emensageriapro.esocial.views.s2306_evttsvaltcontr_importar import read_s2306_evttsvaltcontr_string
     from emensageriapro.esocial.views.s2306_evttsvaltcontr_gerar_xml import gerar_xml_s2306
     from emensageriapro.functions import identidade_evento
-    
+
     if request.user.has_perm('esocial.can_create_delete_s2306evtTSVAltContr'):
-    
+
         s2306_evttsvaltcontr = get_object_or_404(
             s2306evtTSVAltContr,
             id=pk)
@@ -101,14 +101,14 @@ def criar_exclusao(request, pk):
             's2306_evttsvaltcontr', dados['id'], request.user.id, 1)
 
         messages.success(request, u'Evento de exclusão criado com sucesso!')
-        
+
         return_pk = dados['id']
-        
+
         return redirect('s2306_evttsvaltcontr_salvar', pk=return_pk)
-        
+
     else:
-    
-        messages.error(request, u'''Você não possui permissão para criar evento de exclusão a partir de evento existente. 
+
+        messages.error(request, u'''Você não possui permissão para criar evento de exclusão a partir de evento existente.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
         return redirect('s2306_evttsvaltcontr_salvar', pk=pk)

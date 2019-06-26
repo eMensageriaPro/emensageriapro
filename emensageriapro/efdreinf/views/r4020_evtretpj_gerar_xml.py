@@ -95,61 +95,61 @@ def gerar_xml_r4020(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         r4020_evtretpj_lista = r4020evtRetPJ.objects. \
             filter(id=pk).all()
-            
-        
+
+
         r4020_idepgto_lista = r4020idePgto.objects. \
             filter(r4020_evtretpj_id__in=listar_ids(r4020_evtretpj_lista)).all()
-        
+
         r4020_infopgto_lista = r4020infoPgto.objects. \
             filter(r4020_idepgto_id__in=listar_ids(r4020_idepgto_lista)).all()
-        
+
         r4020_ir_lista = r4020IR.objects. \
             filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
-        
+
         r4020_csll_lista = r4020CSLL.objects. \
             filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
-        
+
         r4020_cofins_lista = r4020Cofins.objects. \
             filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
-        
+
         r4020_pp_lista = r4020PP.objects. \
             filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
-        
+
         r4020_fci_lista = r4020FCI.objects. \
             filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
-        
+
         r4020_scp_lista = r4020SCP.objects. \
             filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
-        
+
         r4020_infoprocret_lista = r4020infoProcRet.objects. \
             filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
-        
+
         r4020_infoprocjud_lista = r4020infoProcJud.objects. \
             filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
-        
+
         r4020_despprocjud_lista = r4020despProcJud.objects. \
             filter(r4020_infoprocjud_id__in=listar_ids(r4020_infoprocjud_lista)).all()
-        
+
         r4020_ideadv_lista = r4020ideAdv.objects. \
             filter(r4020_despprocjud_id__in=listar_ids(r4020_despprocjud_lista)).all()
-        
+
         r4020_origemrec_lista = r4020origemRec.objects. \
             filter(r4020_infoprocjud_id__in=listar_ids(r4020_infoprocjud_lista)).all()
-        
+
         r4020_infopgtoext_lista = r4020infoPgtoExt.objects. \
             filter(r4020_idepgto_id__in=listar_ids(r4020_idepgto_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -190,14 +190,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if r4020_evtretpj.arquivo_original:
-    
+
         xml = ler_arquivo(r4020_evtretpj.arquivo)
 
     else:
         xml = gerar_xml_r4020(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -218,16 +218,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 r4020evtRetPJ,
                 r4020_evtretpj)
-        
+
         r4020_evtretpj = get_object_or_404(
             r4020evtRetPJ,
             id=pk)
-        
+
         xml_assinado = assinar_efdreinf(
-            request, 
-            xml, 
+            request,
+            xml,
             r4020_evtretpj.transmissor_lote_efdreinf_id)
-        
+
     if r4020_evtretpj.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -241,11 +241,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/r4020_evtretpj/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_efdreinf(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -258,5 +258,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

@@ -95,28 +95,28 @@ def gerar_xml_s2416(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         s2416_evtcdbenalt_lista = s2416evtCdBenAlt.objects. \
             filter(id=pk).all()
-            
-        
+
+
         s2416_infopenmorte_lista = s2416infoPenMorte.objects. \
             filter(s2416_evtcdbenalt_id__in=listar_ids(s2416_evtcdbenalt_lista)).all()
-        
+
         s2416_homologtc_lista = s2416homologTC.objects. \
             filter(s2416_evtcdbenalt_id__in=listar_ids(s2416_evtcdbenalt_lista)).all()
-        
+
         s2416_suspensao_lista = s2416suspensao.objects. \
             filter(s2416_evtcdbenalt_id__in=listar_ids(s2416_evtcdbenalt_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -146,14 +146,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s2416_evtcdbenalt.arquivo_original:
-    
+
         xml = ler_arquivo(s2416_evtcdbenalt.arquivo)
 
     else:
         xml = gerar_xml_s2416(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -174,16 +174,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 s2416evtCdBenAlt,
                 s2416_evtcdbenalt)
-        
+
         s2416_evtcdbenalt = get_object_or_404(
             s2416evtCdBenAlt,
             id=pk)
-        
+
         xml_assinado = assinar_esocial(
-            request, 
-            xml, 
+            request,
+            xml,
             s2416_evtcdbenalt.transmissor_lote_esocial_id)
-        
+
     if s2416_evtcdbenalt.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -197,11 +197,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s2416_evtcdbenalt/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -214,5 +214,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

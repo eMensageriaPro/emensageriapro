@@ -95,43 +95,43 @@ def gerar_xml_s1070(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         s1070_evttabprocesso_lista = s1070evtTabProcesso.objects. \
             filter(id=pk).all()
-            
-        
+
+
         s1070_inclusao_lista = s1070inclusao.objects. \
             filter(s1070_evttabprocesso_id__in=listar_ids(s1070_evttabprocesso_lista)).all()
-        
+
         s1070_inclusao_dadosprocjud_lista = s1070inclusaodadosProcJud.objects. \
             filter(s1070_inclusao_id__in=listar_ids(s1070_inclusao_lista)).all()
-        
+
         s1070_inclusao_infosusp_lista = s1070inclusaoinfoSusp.objects. \
             filter(s1070_inclusao_id__in=listar_ids(s1070_inclusao_lista)).all()
-        
+
         s1070_alteracao_lista = s1070alteracao.objects. \
             filter(s1070_evttabprocesso_id__in=listar_ids(s1070_evttabprocesso_lista)).all()
-        
+
         s1070_alteracao_dadosprocjud_lista = s1070alteracaodadosProcJud.objects. \
             filter(s1070_alteracao_id__in=listar_ids(s1070_alteracao_lista)).all()
-        
+
         s1070_alteracao_infosusp_lista = s1070alteracaoinfoSusp.objects. \
             filter(s1070_alteracao_id__in=listar_ids(s1070_alteracao_lista)).all()
-        
+
         s1070_alteracao_novavalidade_lista = s1070alteracaonovaValidade.objects. \
             filter(s1070_alteracao_id__in=listar_ids(s1070_alteracao_lista)).all()
-        
+
         s1070_exclusao_lista = s1070exclusao.objects. \
             filter(s1070_evttabprocesso_id__in=listar_ids(s1070_evttabprocesso_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -166,14 +166,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1070_evttabprocesso.arquivo_original:
-    
+
         xml = ler_arquivo(s1070_evttabprocesso.arquivo)
 
     else:
         xml = gerar_xml_s1070(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -194,16 +194,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 s1070evtTabProcesso,
                 s1070_evttabprocesso)
-        
+
         s1070_evttabprocesso = get_object_or_404(
             s1070evtTabProcesso,
             id=pk)
-        
+
         xml_assinado = assinar_esocial(
-            request, 
-            xml, 
+            request,
+            xml,
             s1070_evttabprocesso.transmissor_lote_esocial_id)
-        
+
     if s1070_evttabprocesso.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -217,11 +217,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s1070_evttabprocesso/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -234,5 +234,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

@@ -87,9 +87,9 @@ def salvar(request, pk=None, tab='master', output=None):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
     TP_AMB = config.ESOCIAL_TP_AMB
-    
+
     if pk:
-    
+
         s2300_evttsvinicio = get_object_or_404(s2300evtTSVInicio, id=pk)
 
         #if s2300_evttsvinicio.status != STATUS_EVENTO_CADASTRADO:
@@ -97,111 +97,111 @@ def salvar(request, pk=None, tab='master', output=None):
         #    dict_permissoes = {}
         #    dict_permissoes['s2300_evttsvinicio_apagar'] = 0
         #    dict_permissoes['s2300_evttsvinicio_editar'] = 0
-            
+
     if request.user.has_perm('esocial.can_see_s2300evtTSVInicio'):
-    
+
         if pk:
-        
-            s2300_evttsvinicio_form = form_s2300_evttsvinicio(request.POST or None, instance = s2300_evttsvinicio, 
+
+            s2300_evttsvinicio_form = form_s2300_evttsvinicio(request.POST or None, instance = s2300_evttsvinicio,
                                          initial={'ativo': True})
-                                         
+                     
         else:
-        
-            s2300_evttsvinicio_form = form_s2300_evttsvinicio(request.POST or None, 
-                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL, 
-                                                  'status': STATUS_EVENTO_CADASTRADO, 
-                                                  'tpamb': TP_AMB, 
-                                                  'procemi': 1, 
-                                                  'verproc': VERSAO_EMENSAGERIA, 
+
+            s2300_evttsvinicio_form = form_s2300_evttsvinicio(request.POST or None,
+                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA,
                                                   'ativo': True})
-                                                  
+                              
         if request.method == 'POST':
-        
+
             if s2300_evttsvinicio_form.is_valid():
-            
+
                 obj = s2300_evttsvinicio_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 if not pk:
-                
+
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
-                  
+
                 #    gravar_auditoria('{}',
-                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                 's2300_evttsvinicio', obj.id, request.user.id, 1)
                 #else:
-                # 
+                #
                 #    gravar_auditoria(json.dumps(model_to_dict(s2300_evttsvinicio), indent=4, sort_keys=True, default=str),
-                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                     's2300_evttsvinicio', pk, request.user.id, 2)
-                                 
+             
                 if request.session['return_page'] not in (
-                    's2300_evttsvinicio_apagar', 
-                    's2300_evttsvinicio_salvar', 
+                    's2300_evttsvinicio_apagar',
+                    's2300_evttsvinicio_salvar',
                     's2300_evttsvinicio'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2300_evttsvinicio_salvar', 
+                        's2300_evttsvinicio_salvar',
                         pk=obj.id)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-                
+
         s2300_evttsvinicio_form = disabled_form_fields(
-             s2300_evttsvinicio_form, 
+             s2300_evttsvinicio_form,
              request.user.has_perm('esocial.change_s2300evtTSVInicio'))
-        
+
         if pk:
-        
+
             if s2300_evttsvinicio.status != 0:
-            
+
                 s2300_evttsvinicio_form = disabled_form_fields(s2300_evttsvinicio_form, False)
-                
+
         #s2300_evttsvinicio_campos_multiple_passo3
 
         for field in s2300_evttsvinicio_form.fields.keys():
-        
+
             s2300_evttsvinicio_form.fields[field].widget.attrs['ng-model'] = 's2300_evttsvinicio_'+field
-            
+
         if output:
-        
+
             s2300_evttsvinicio_form = disabled_form_for_print(s2300_evttsvinicio_form)
 
-        
-        s2300_documentos_lista = None 
-        s2300_documentos_form = None 
-        s2300_brasil_lista = None 
-        s2300_brasil_form = None 
-        s2300_exterior_lista = None 
-        s2300_exterior_form = None 
-        s2300_trabestrangeiro_lista = None 
-        s2300_trabestrangeiro_form = None 
-        s2300_infodeficiencia_lista = None 
-        s2300_infodeficiencia_form = None 
-        s2300_dependente_lista = None 
-        s2300_dependente_form = None 
-        s2300_contato_lista = None 
-        s2300_contato_form = None 
-        s2300_infocomplementares_lista = None 
-        s2300_infocomplementares_form = None 
-        s2300_mudancacpf_lista = None 
-        s2300_mudancacpf_form = None 
-        s2300_afastamento_lista = None 
-        s2300_afastamento_form = None 
-        s2300_termino_lista = None 
-        s2300_termino_form = None 
-        
+
+        s2300_documentos_lista = None
+        s2300_documentos_form = None
+        s2300_brasil_lista = None
+        s2300_brasil_form = None
+        s2300_exterior_lista = None
+        s2300_exterior_form = None
+        s2300_trabestrangeiro_lista = None
+        s2300_trabestrangeiro_form = None
+        s2300_infodeficiencia_lista = None
+        s2300_infodeficiencia_form = None
+        s2300_dependente_lista = None
+        s2300_dependente_form = None
+        s2300_contato_lista = None
+        s2300_contato_form = None
+        s2300_infocomplementares_lista = None
+        s2300_infocomplementares_form = None
+        s2300_mudancacpf_lista = None
+        s2300_mudancacpf_form = None
+        s2300_afastamento_lista = None
+        s2300_afastamento_form = None
+        s2300_termino_lista = None
+        s2300_termino_form = None
+
         if pk:
-        
+
             s2300_evttsvinicio = get_object_or_404(s2300evtTSVInicio, id=pk)
-            
+
             s2300_documentos_form = form_s2300_documentos(
                 initial={ 's2300_evttsvinicio': s2300_evttsvinicio })
             s2300_documentos_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
@@ -257,38 +257,38 @@ def salvar(request, pk=None, tab='master', output=None):
             s2300_termino_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
             s2300_termino_lista = s2300termino.objects.\
                 filter(s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
-                
+
         else:
-        
+
             s2300_evttsvinicio = None
-            
+
         #s2300_evttsvinicio_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if 's2300_evttsvinicio'[1] == '5':
             evento_totalizador = True
-            
+
         else:
             evento_totalizador = False
-        
+
         if tab or 's2300_evttsvinicio' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2300_evttsvinicio_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2300_evttsvinicio').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
-            's2300_evttsvinicio': s2300_evttsvinicio, 
-            's2300_evttsvinicio_form': s2300_evttsvinicio_form, 
-            
+            's2300_evttsvinicio': s2300_evttsvinicio,
+            's2300_evttsvinicio_form': s2300_evttsvinicio_form,
+
             's2300_documentos_form': s2300_documentos_form,
             's2300_documentos_lista': s2300_documentos_lista,
             's2300_brasil_form': s2300_brasil_form,
@@ -318,10 +318,10 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2300_evttsvinicio_salvar_custom_variaveis_context#
         }
-        
-            
+
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2300_evttsvinicio_salvar.html',
@@ -339,24 +339,24 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             response = render_to_response('s2300_evttsvinicio_salvar.html', context)
             filename = "s2300_evttsvinicio.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2300_evttsvinicio_salvar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -366,5 +366,5 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2300_evttsvinicio', ],
             'data': datetime.datetime.now(),
         }
-        
+
         return render(request, 'permissao_negada.html', context)

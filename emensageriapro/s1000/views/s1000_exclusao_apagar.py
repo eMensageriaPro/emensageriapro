@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s1000_exclusao = get_object_or_404(s1000exclusao, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s1000_exclusao.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s1000_exclusao), indent=4, sort_keys=True, default=str)
             obj = s1000exclusao.objects.get(id=pk)
             obj.delete(request=request)
             #s1000_exclusao_apagar_custom
             #s1000_exclusao_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's1000_exclusao', 
-                             pk, 
+                             '',
+                             's1000_exclusao',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's1000_exclusao' in request.session['return_page']:
-        
+
             return redirect('s1000_exclusao')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s1000', ],
         'paginas': ['s1000_exclusao', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's1000_exclusao_apagar.html', 
+
+    return render(request,
+                  's1000_exclusao_apagar.html',
                   context)

@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2200_brasil = get_object_or_404(s2200brasil, id=pk)
         evento_dados = s2200_brasil.evento()
 
     if request.user.has_perm('s2200.can_see_s2200brasil'):
-        
+
         if pk:
-        
+
             s2200_brasil_form = form_s2200_brasil(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2200_brasil)
-                                         
+                     
         else:
-        
+
             s2200_brasil_form = form_s2200_brasil(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2200_brasil_form.is_valid():
-            
+
                 obj = s2200_brasil_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2200_brasil', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2200_brasil',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2200_brasil), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2200_brasil),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2200_brasil', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2200_brasil',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2200_brasil_apagar', 
-                    's2200_brasil_salvar', 
+                    's2200_brasil_apagar',
+                    's2200_brasil_salvar',
                     's2200_brasil'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2200_brasil_salvar', 
+                        's2200_brasil_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2200_brasil_form = disabled_form_fields(
-            s2200_brasil_form, 
+            s2200_brasil_form,
             request.user.has_perm('s2200.change_s2200brasil'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2200_brasil_form = disabled_form_fields(s2200_brasil_form, 0)
-                
+
         if output:
-        
+
             s2200_brasil_form = disabled_form_for_print(s2200_brasil_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s2200_brasil = get_object_or_404(s2200brasil, id=pk)
-            
-                
+
+
         else:
-        
+
             s2200_brasil = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2200_brasil' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2200_brasil_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2200_brasil').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2200_brasil': s2200_brasil, 
-            's2200_brasil_form': s2200_brasil_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2200_brasil': s2200_brasil,
+            's2200_brasil_form': s2200_brasil_form,
             'modulos': ['s2200', ],
             'paginas': ['s2200_brasil', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2200_brasil_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2200_brasil_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2200_brasil_salvar.html', context)
             filename = "s2200_brasil.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2200_brasil_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2200_brasil', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

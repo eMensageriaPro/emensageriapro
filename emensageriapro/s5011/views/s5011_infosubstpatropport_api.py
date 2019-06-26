@@ -44,12 +44,12 @@ from emensageriapro.s5011.models import s5011infoSubstPatrOpPort, s5011infoSubst
 
 
 class s5011infoSubstPatrOpPortList(generics.ListAPIView):
-    
+
     queryset = s5011infoSubstPatrOpPort.objects.all()
     serializer_class = s5011infoSubstPatrOpPortSerializer
 
 
 class s5011infoSubstPatrOpPortDetail(generics.ListAPIView):
-    
+
     queryset = s5011infoSubstPatrOpPort.objects.all()
     serializer_class = s5011infoSubstPatrOpPortSerializer

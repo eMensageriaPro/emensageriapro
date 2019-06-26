@@ -74,11 +74,11 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('efdreinf.can_see_r9000evtExclusao'):
-    
+
         r9000_evtexclusao = get_object_or_404(r9000evtExclusao, id=pk)
         r9000_evtexclusao_lista = r9000evtExclusao.objects.filter(id=pk).all()
 
-        
+
 
         request.session['return_pk'] = pk
         request.session['return_page'] = 'r9000_evtexclusao'
@@ -93,9 +93,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r9000_evtexclusao_verificar.html',
@@ -112,20 +112,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('r9000_evtexclusao_verificar.html', context)
             filename = "%s.xls" % r9000_evtexclusao.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('r9000_evtexclusao_verificar.html', context)
             filename = "%s.csv" % r9000_evtexclusao.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -133,7 +133,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 'r9000_evtexclusao_verificar.html', context)
 
     else:

@@ -62,68 +62,68 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('r4010.can_see_r4010infoDependPl'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_r4010_ideopsaude': 1,
             'show_cpf': 0,
             'show_dtnascto': 0,
             'show_nome': 1,
             'show_reldep': 1,
             'show_vlrsaude': 1, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 'r4010_ideopsaude__icontains': 'r4010_ideopsaude__icontains',
                 'cpf__icontains': 'cpf__icontains',
                 'dtnascto__range': 'dtnascto__range',
                 'nome__icontains': 'nome__icontains',
                 'reldep__icontains': 'reldep__icontains',
                 'vlrsaude__icontains': 'vlrsaude__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     'r4010_ideopsaude__icontains': 'r4010_ideopsaude__icontains',
                     'cpf__icontains': 'cpf__icontains',
                     'dtnascto__range': 'dtnascto__range',
                     'nome__icontains': 'nome__icontains',
                     'reldep__icontains': 'reldep__icontains',
                     'vlrsaude__icontains': 'vlrsaude__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         r4010_infodependpl_lista = r4010infoDependPl.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(r4010_infodependpl_lista) > 100:
-        
+
             filtrar = True
             r4010_infodependpl_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #r4010_infodependpl_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            'r4010_infodependpl_lista': r4010_infodependpl_lista, 
+            'r4010_infodependpl_lista': r4010_infodependpl_lista,
             'modulos': ['r4010', ],
             'paginas': ['r4010_infodependpl', ],
             'dict_fields': dict_fields,
@@ -132,11 +132,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r4010_infodependpl_listar.html',
@@ -154,33 +154,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('r4010_infodependpl_listar.html', context)
             filename = "r4010_infodependpl.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/r4010_infodependpl.csv', context)
             filename = "r4010_infodependpl.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 'r4010_infodependpl_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -188,7 +188,7 @@ def listar(request, output=None):
             'modulos': ['r4010', ],
             'paginas': ['r4010_infodependpl', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

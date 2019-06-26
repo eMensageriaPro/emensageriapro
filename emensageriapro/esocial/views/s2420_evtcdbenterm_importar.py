@@ -29,17 +29,18 @@ def read_s2420_evtcdbenterm(request, dados, arquivo, validar=False):
 
     import untangle
     from emensageriapro.mensageiro.models import ImportacaoArquivosEventos
-    
+
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
 
-    if validar:
-        status = STATUS_EVENTO_IMPORTADO
+    # if validar:
+    #     status = STATUS_EVENTO_IMPORTADO
+    #
+    # else:
+    #     status = STATUS_EVENTO_CADASTRADO
 
-    else:
-        status = STATUS_EVENTO_CADASTRADO
-
-    dados = read_s2420_evtcdbenterm_obj(request, doc, status, validar)
+    status = STATUS_EVENTO_IMPORTADO
+    dados = read_s2420_evtcdbenterm_obj(request, doc, status, validar, arquivo)
 
     s2420evtCdBenTerm.objects.filter(id=dados['id']).update(arquivo=arquivo)
     ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
@@ -48,81 +49,82 @@ def read_s2420_evtcdbenterm(request, dados, arquivo, validar=False):
 
 
 
-def read_s2420_evtcdbenterm_obj(request, doc, status, validar=False):
+def read_s2420_evtcdbenterm_obj(request, doc, status, validar=False, arquivo=False):
 
     xmlns_lista = doc.eSocial['xmlns'].split('/')
 
     s2420_evtcdbenterm_dados = {}
     s2420_evtcdbenterm_dados['status'] = status
+    s2420_evtcdbenterm_dados['arquivo_original'] = 1
+    if arquivo:
+        s2420_evtcdbenterm_dados['arquivo'] = arquivo
     s2420_evtcdbenterm_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2420_evtcdbenterm_dados['identidade'] = doc.eSocial.evtCdBenTerm['Id']
     evtCdBenTerm = doc.eSocial.evtCdBenTerm
-    
+
     try:
         s2420_evtcdbenterm_dados['indretif'] = evtCdBenTerm.ideEvento.indRetif.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s2420_evtcdbenterm_dados['nrrecibo'] = evtCdBenTerm.ideEvento.nrRecibo.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s2420_evtcdbenterm_dados['tpamb'] = evtCdBenTerm.ideEvento.tpAmb.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s2420_evtcdbenterm_dados['procemi'] = evtCdBenTerm.ideEvento.procEmi.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s2420_evtcdbenterm_dados['verproc'] = evtCdBenTerm.ideEvento.verProc.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s2420_evtcdbenterm_dados['tpinsc'] = evtCdBenTerm.ideEmpregador.tpInsc.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s2420_evtcdbenterm_dados['nrinsc'] = evtCdBenTerm.ideEmpregador.nrInsc.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s2420_evtcdbenterm_dados['cpfbenef'] = evtCdBenTerm.ideBeneficio.cpfBenef.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s2420_evtcdbenterm_dados['nrbeneficio'] = evtCdBenTerm.ideBeneficio.nrBeneficio.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s2420_evtcdbenterm_dados['dttermbeneficio'] = evtCdBenTerm.infoBenTermino.dtTermBeneficio.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s2420_evtcdbenterm_dados['mtvtermino'] = evtCdBenTerm.infoBenTermino.mtvTermino.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-        
-    s2420_evtcdbenterm = s2420evtCdBenTerm.objects.create(**s2420_evtcdbenterm_dados)    
+
+    s2420_evtcdbenterm = s2420evtCdBenTerm.objects.create(**s2420_evtcdbenterm_dados)
     s2420_evtcdbenterm_dados['evento'] = 's2420'
     s2420_evtcdbenterm_dados['id'] = s2420_evtcdbenterm.id
     s2420_evtcdbenterm_dados['identidade_evento'] = doc.eSocial.evtCdBenTerm['Id']
-    s2420_evtcdbenterm_dados['status'] = STATUS_EVENTO_IMPORTADO
-
 
     from emensageriapro.esocial.views.s2420_evtcdbenterm_validar_evento import validar_evento_funcao
-    
+
     if validar:
         validar_evento_funcao(request, s2420_evtcdbenterm.id)
-    
+
     return s2420_evtcdbenterm_dados

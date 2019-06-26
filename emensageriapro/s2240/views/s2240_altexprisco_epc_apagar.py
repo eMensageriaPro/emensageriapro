@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s2240_altexprisco_epc = get_object_or_404(s2240altExpRiscoepc, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s2240_altexprisco_epc.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2240_altexprisco_epc), indent=4, sort_keys=True, default=str)
             obj = s2240altExpRiscoepc.objects.get(id=pk)
             obj.delete(request=request)
             #s2240_altexprisco_epc_apagar_custom
             #s2240_altexprisco_epc_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's2240_altexprisco_epc', 
-                             pk, 
+                             '',
+                             's2240_altexprisco_epc',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's2240_altexprisco_epc' in request.session['return_page']:
-        
+
             return redirect('s2240_altexprisco_epc')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s2240', ],
         'paginas': ['s2240_altexprisco_epc', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's2240_altexprisco_epc_apagar.html', 
+
+    return render(request,
+                  's2240_altexprisco_epc_apagar.html',
                   context)

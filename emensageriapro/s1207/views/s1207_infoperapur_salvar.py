@@ -65,134 +65,134 @@ from emensageriapro.s1207.forms import form_s1207_infoperapur_ideestab
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s1207_infoperapur = get_object_or_404(s1207infoPerApur, id=pk)
         evento_dados = s1207_infoperapur.evento()
 
     if request.user.has_perm('s1207.can_see_s1207infoPerApur'):
-        
+
         if pk:
-        
+
             s1207_infoperapur_form = form_s1207_infoperapur(
-                request.POST or None, 
+                request.POST or None,
                 instance=s1207_infoperapur)
-                                         
+                     
         else:
-        
+
             s1207_infoperapur_form = form_s1207_infoperapur(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s1207_infoperapur_form.is_valid():
-            
+
                 obj = s1207_infoperapur_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1207_infoperapur', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1207_infoperapur',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s1207_infoperapur), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s1207_infoperapur),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1207_infoperapur', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1207_infoperapur',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's1207_infoperapur_apagar', 
-                    's1207_infoperapur_salvar', 
+                    's1207_infoperapur_apagar',
+                    's1207_infoperapur_salvar',
                     's1207_infoperapur'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's1207_infoperapur_salvar', 
+                        's1207_infoperapur_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s1207_infoperapur_form = disabled_form_fields(
-            s1207_infoperapur_form, 
+            s1207_infoperapur_form,
             request.user.has_perm('s1207.change_s1207infoPerApur'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s1207_infoperapur_form = disabled_form_fields(s1207_infoperapur_form, 0)
-                
+
         if output:
-        
+
             s1207_infoperapur_form = disabled_form_for_print(s1207_infoperapur_form)
-            
-        
-        s1207_infoperapur_ideestab_lista = None 
-        s1207_infoperapur_ideestab_form = None 
-        
+
+
+        s1207_infoperapur_ideestab_lista = None
+        s1207_infoperapur_ideestab_form = None
+
         if pk:
-        
+
             s1207_infoperapur = get_object_or_404(s1207infoPerApur, id=pk)
-            
+
             s1207_infoperapur_ideestab_form = form_s1207_infoperapur_ideestab(
                 initial={ 's1207_infoperapur': s1207_infoperapur })
             s1207_infoperapur_ideestab_form.fields['s1207_infoperapur'].widget.attrs['readonly'] = True
             s1207_infoperapur_ideestab_lista = s1207infoPerApurideEstab.objects.\
                 filter(s1207_infoperapur_id=s1207_infoperapur.id).all()
-                
-                
+
+
         else:
-        
+
             s1207_infoperapur = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's1207_infoperapur' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's1207_infoperapur_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1207_infoperapur').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's1207_infoperapur': s1207_infoperapur, 
-            's1207_infoperapur_form': s1207_infoperapur_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's1207_infoperapur': s1207_infoperapur,
+            's1207_infoperapur_form': s1207_infoperapur_form,
             'modulos': ['s1207', ],
             'paginas': ['s1207_infoperapur', ],
             's1207_infoperapur_ideestab_form': s1207_infoperapur_ideestab_form,
@@ -202,11 +202,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s1207_infoperapur_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1207_infoperapur_salvar.html',
@@ -224,26 +224,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s1207_infoperapur_salvar.html', context)
             filename = "s1207_infoperapur.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's1207_infoperapur_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -253,7 +253,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1207_infoperapur', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

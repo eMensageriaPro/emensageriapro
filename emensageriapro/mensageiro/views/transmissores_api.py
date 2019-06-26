@@ -60,25 +60,25 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class TransmissorLoteList(generics.ListCreateAPIView):
-    
+
     queryset = TransmissorLote.objects.all()
     serializer_class = TransmissorLoteSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
 
 
 class TransmissorLoteDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = TransmissorLote.objects.all()
     serializer_class = TransmissorLoteSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

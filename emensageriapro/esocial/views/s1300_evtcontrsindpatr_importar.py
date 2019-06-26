@@ -29,17 +29,18 @@ def read_s1300_evtcontrsindpatr(request, dados, arquivo, validar=False):
 
     import untangle
     from emensageriapro.mensageiro.models import ImportacaoArquivosEventos
-    
+
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
 
-    if validar:
-        status = STATUS_EVENTO_IMPORTADO
+    # if validar:
+    #     status = STATUS_EVENTO_IMPORTADO
+    #
+    # else:
+    #     status = STATUS_EVENTO_CADASTRADO
 
-    else:
-        status = STATUS_EVENTO_CADASTRADO
-
-    dados = read_s1300_evtcontrsindpatr_obj(request, doc, status, validar)
+    status = STATUS_EVENTO_IMPORTADO
+    dados = read_s1300_evtcontrsindpatr_obj(request, doc, status, validar, arquivo)
 
     s1300evtContrSindPatr.objects.filter(id=dados['id']).update(arquivo=arquivo)
     ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
@@ -48,95 +49,96 @@ def read_s1300_evtcontrsindpatr(request, dados, arquivo, validar=False):
 
 
 
-def read_s1300_evtcontrsindpatr_obj(request, doc, status, validar=False):
+def read_s1300_evtcontrsindpatr_obj(request, doc, status, validar=False, arquivo=False):
 
     xmlns_lista = doc.eSocial['xmlns'].split('/')
 
     s1300_evtcontrsindpatr_dados = {}
     s1300_evtcontrsindpatr_dados['status'] = status
+    s1300_evtcontrsindpatr_dados['arquivo_original'] = 1
+    if arquivo:
+        s1300_evtcontrsindpatr_dados['arquivo'] = arquivo
     s1300_evtcontrsindpatr_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1300_evtcontrsindpatr_dados['identidade'] = doc.eSocial.evtContrSindPatr['Id']
     evtContrSindPatr = doc.eSocial.evtContrSindPatr
-    
+
     try:
         s1300_evtcontrsindpatr_dados['indretif'] = evtContrSindPatr.ideEvento.indRetif.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s1300_evtcontrsindpatr_dados['nrrecibo'] = evtContrSindPatr.ideEvento.nrRecibo.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s1300_evtcontrsindpatr_dados['indapuracao'] = evtContrSindPatr.ideEvento.indApuracao.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s1300_evtcontrsindpatr_dados['perapur'] = evtContrSindPatr.ideEvento.perApur.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s1300_evtcontrsindpatr_dados['tpamb'] = evtContrSindPatr.ideEvento.tpAmb.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s1300_evtcontrsindpatr_dados['procemi'] = evtContrSindPatr.ideEvento.procEmi.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s1300_evtcontrsindpatr_dados['verproc'] = evtContrSindPatr.ideEvento.verProc.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s1300_evtcontrsindpatr_dados['tpinsc'] = evtContrSindPatr.ideEmpregador.tpInsc.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-    
+
     try:
         s1300_evtcontrsindpatr_dados['nrinsc'] = evtContrSindPatr.ideEmpregador.nrInsc.cdata
-    except AttributeError: 
+    except AttributeError:
         pass
-        
+
     s1300_evtcontrsindpatr = s1300evtContrSindPatr.objects.create(**s1300_evtcontrsindpatr_dados)
-    
+
     if 'contribSind' in dir(evtContrSindPatr):
-    
+
         for contribSind in evtContrSindPatr.contribSind:
-    
+
             s1300_contribsind_dados = {}
             s1300_contribsind_dados['s1300_evtcontrsindpatr_id'] = s1300_evtcontrsindpatr.id
-            
+
             try:
                 s1300_contribsind_dados['cnpjsindic'] = contribSind.cnpjSindic.cdata
-            except AttributeError: 
+            except AttributeError:
                 pass
-            
+
             try:
                 s1300_contribsind_dados['tpcontribsind'] = contribSind.tpContribSind.cdata
-            except AttributeError: 
+            except AttributeError:
                 pass
-            
+
             try:
                 s1300_contribsind_dados['vlrcontribsind'] = contribSind.vlrContribSind.cdata
-            except AttributeError: 
+            except AttributeError:
                 pass
-    
-            s1300_contribsind = s1300contribSind.objects.create(**s1300_contribsind_dados)    
+
+            s1300_contribsind = s1300contribSind.objects.create(**s1300_contribsind_dados)
     s1300_evtcontrsindpatr_dados['evento'] = 's1300'
     s1300_evtcontrsindpatr_dados['id'] = s1300_evtcontrsindpatr.id
     s1300_evtcontrsindpatr_dados['identidade_evento'] = doc.eSocial.evtContrSindPatr['Id']
-    s1300_evtcontrsindpatr_dados['status'] = STATUS_EVENTO_IMPORTADO
-
 
     from emensageriapro.esocial.views.s1300_evtcontrsindpatr_validar_evento import validar_evento_funcao
-    
+
     if validar:
         validar_evento_funcao(request, s1300_evtcontrsindpatr.id)
-    
+
     return s1300_evtcontrsindpatr_dados

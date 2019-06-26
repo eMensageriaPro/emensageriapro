@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s1070evtTabProcesso'):
-    
+
         s1070_evttabprocesso = get_object_or_404(s1070evtTabProcesso, id=pk)
         s1070_evttabprocesso_lista = s1070evtTabProcesso.objects.filter(id=pk).all()
 
-        
+
         s1070_inclusao_lista = s1070inclusao.objects.filter(s1070_evttabprocesso_id__in = listar_ids(s1070_evttabprocesso_lista) ).all()
         s1070_inclusao_dadosprocjud_lista = s1070inclusaodadosProcJud.objects.filter(s1070_inclusao_id__in = listar_ids(s1070_inclusao_lista) ).all()
         s1070_inclusao_infosusp_lista = s1070inclusaoinfoSusp.objects.filter(s1070_inclusao_id__in = listar_ids(s1070_inclusao_lista) ).all()
@@ -109,9 +109,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1070_evttabprocesso_verificar.html',
@@ -128,20 +128,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s1070_evttabprocesso_verificar.html', context)
             filename = "%s.xls" % s1070_evttabprocesso.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s1070_evttabprocesso_verificar.html', context)
             filename = "%s.csv" % s1070_evttabprocesso.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -149,7 +149,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's1070_evttabprocesso_verificar.html', context)
 
     else:

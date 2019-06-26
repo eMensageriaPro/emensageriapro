@@ -62,25 +62,25 @@ from emensageriapro.controle_de_acesso.models import *
 def apagar(request, pk):
 
     transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         obj = TransmissorLoteEsocial.objects.get(id=pk)
         obj.delete(request=request)
         #transmissor_lote_esocial_apagar_custom
         #transmissor_lote_esocial_apagar_custom
         messages.success(request, u'Apagado com sucesso!')
-        
+
         if 'transmissor_lote_esocial' in request.session['return_page']:
-        
+
             return redirect('transmissor_lote_esocial')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
@@ -88,7 +88,7 @@ def apagar(request, pk):
         'modulos': ['mensageiro', ],
         'paginas': ['transmissor_lote_esocial', ],
     }
-    
-    return render(request, 
-        'transmissor_lote_esocial_apagar.html', 
+
+    return render(request,
+        'transmissor_lote_esocial_apagar.html',
         context)

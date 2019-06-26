@@ -60,13 +60,13 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class s1200infoPerAntidePeriodoList(generics.ListCreateAPIView):
-    
+
     queryset = s1200infoPerAntidePeriodo.objects.all()
     serializer_class = s1200infoPerAntidePeriodoSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
@@ -74,12 +74,12 @@ class s1200infoPerAntidePeriodoList(generics.ListCreateAPIView):
 
 
 class s1200infoPerAntidePeriodoDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = s1200infoPerAntidePeriodo.objects.all()
     serializer_class = s1200infoPerAntidePeriodoSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

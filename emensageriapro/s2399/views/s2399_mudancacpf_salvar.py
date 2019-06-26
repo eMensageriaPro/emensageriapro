@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2399_mudancacpf = get_object_or_404(s2399mudancaCPF, id=pk)
         evento_dados = s2399_mudancacpf.evento()
 
     if request.user.has_perm('s2399.can_see_s2399mudancaCPF'):
-        
+
         if pk:
-        
+
             s2399_mudancacpf_form = form_s2399_mudancacpf(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2399_mudancacpf)
-                                         
+                     
         else:
-        
+
             s2399_mudancacpf_form = form_s2399_mudancacpf(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2399_mudancacpf_form.is_valid():
-            
+
                 obj = s2399_mudancacpf_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2399_mudancacpf', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2399_mudancacpf',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2399_mudancacpf), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2399_mudancacpf),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2399_mudancacpf', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2399_mudancacpf',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2399_mudancacpf_apagar', 
-                    's2399_mudancacpf_salvar', 
+                    's2399_mudancacpf_apagar',
+                    's2399_mudancacpf_salvar',
                     's2399_mudancacpf'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2399_mudancacpf_salvar', 
+                        's2399_mudancacpf_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2399_mudancacpf_form = disabled_form_fields(
-            s2399_mudancacpf_form, 
+            s2399_mudancacpf_form,
             request.user.has_perm('s2399.change_s2399mudancaCPF'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2399_mudancacpf_form = disabled_form_fields(s2399_mudancacpf_form, 0)
-                
+
         if output:
-        
+
             s2399_mudancacpf_form = disabled_form_for_print(s2399_mudancacpf_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s2399_mudancacpf = get_object_or_404(s2399mudancaCPF, id=pk)
-            
-                
+
+
         else:
-        
+
             s2399_mudancacpf = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2399_mudancacpf' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2399_mudancacpf_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2399_mudancacpf').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2399_mudancacpf': s2399_mudancacpf, 
-            's2399_mudancacpf_form': s2399_mudancacpf_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2399_mudancacpf': s2399_mudancacpf,
+            's2399_mudancacpf_form': s2399_mudancacpf_form,
             'modulos': ['s2399', ],
             'paginas': ['s2399_mudancacpf', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2399_mudancacpf_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2399_mudancacpf_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2399_mudancacpf_salvar.html', context)
             filename = "s2399_mudancacpf.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2399_mudancacpf_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2399_mudancacpf', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

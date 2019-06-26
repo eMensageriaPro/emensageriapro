@@ -92,21 +92,27 @@ def atualizar_tabela(tabela, dados, arquivo):
 
 
 def importar_arquivo(arquivo, request, validar=0):
+
     from emensageriapro.settings import BASE_DIR
     from django.contrib import messages
     import untangle
+    import os
+
     quant_erros = 0
     error_list = 0
-    import os
+
     dados = {}
+
     if not os.path.isfile(BASE_DIR + '/' + arquivo):
         messages.error(request, 'Arquivo não encontrado!')
         return dados
+
     xml = ler_arquivo(arquivo).replace("s:", "")
     
     try:
         doc = untangle.parse(xml)
         dados['status'] = 1
+
     except:
         messages.error(request, 'Erro na importação. Arquivo XML inválido!')
         dados['status'] = 2

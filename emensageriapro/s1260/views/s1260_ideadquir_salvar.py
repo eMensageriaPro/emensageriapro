@@ -65,134 +65,134 @@ from emensageriapro.s1260.forms import form_s1260_nfs
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s1260_ideadquir = get_object_or_404(s1260ideAdquir, id=pk)
         evento_dados = s1260_ideadquir.evento()
 
     if request.user.has_perm('s1260.can_see_s1260ideAdquir'):
-        
+
         if pk:
-        
+
             s1260_ideadquir_form = form_s1260_ideadquir(
-                request.POST or None, 
+                request.POST or None,
                 instance=s1260_ideadquir)
-                                         
+                     
         else:
-        
+
             s1260_ideadquir_form = form_s1260_ideadquir(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s1260_ideadquir_form.is_valid():
-            
+
                 obj = s1260_ideadquir_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1260_ideadquir', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1260_ideadquir',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s1260_ideadquir), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s1260_ideadquir),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1260_ideadquir', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1260_ideadquir',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's1260_ideadquir_apagar', 
-                    's1260_ideadquir_salvar', 
+                    's1260_ideadquir_apagar',
+                    's1260_ideadquir_salvar',
                     's1260_ideadquir'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's1260_ideadquir_salvar', 
+                        's1260_ideadquir_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s1260_ideadquir_form = disabled_form_fields(
-            s1260_ideadquir_form, 
+            s1260_ideadquir_form,
             request.user.has_perm('s1260.change_s1260ideAdquir'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s1260_ideadquir_form = disabled_form_fields(s1260_ideadquir_form, 0)
-                
+
         if output:
-        
+
             s1260_ideadquir_form = disabled_form_for_print(s1260_ideadquir_form)
-            
-        
-        s1260_nfs_lista = None 
-        s1260_nfs_form = None 
-        
+
+
+        s1260_nfs_lista = None
+        s1260_nfs_form = None
+
         if pk:
-        
+
             s1260_ideadquir = get_object_or_404(s1260ideAdquir, id=pk)
-            
+
             s1260_nfs_form = form_s1260_nfs(
                 initial={ 's1260_ideadquir': s1260_ideadquir })
             s1260_nfs_form.fields['s1260_ideadquir'].widget.attrs['readonly'] = True
             s1260_nfs_lista = s1260nfs.objects.\
                 filter(s1260_ideadquir_id=s1260_ideadquir.id).all()
-                
-                
+
+
         else:
-        
+
             s1260_ideadquir = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's1260_ideadquir' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's1260_ideadquir_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1260_ideadquir').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's1260_ideadquir': s1260_ideadquir, 
-            's1260_ideadquir_form': s1260_ideadquir_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's1260_ideadquir': s1260_ideadquir,
+            's1260_ideadquir_form': s1260_ideadquir_form,
             'modulos': ['s1260', ],
             'paginas': ['s1260_ideadquir', ],
             's1260_nfs_form': s1260_nfs_form,
@@ -202,11 +202,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s1260_ideadquir_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1260_ideadquir_salvar.html',
@@ -224,26 +224,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s1260_ideadquir_salvar.html', context)
             filename = "s1260_ideadquir.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's1260_ideadquir_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -253,7 +253,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1260_ideadquir', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

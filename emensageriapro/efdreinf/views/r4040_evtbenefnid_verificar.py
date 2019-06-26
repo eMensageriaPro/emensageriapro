@@ -74,11 +74,11 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('efdreinf.can_see_r4040evtBenefNId'):
-    
+
         r4040_evtbenefnid = get_object_or_404(r4040evtBenefNId, id=pk)
         r4040_evtbenefnid_lista = r4040evtBenefNId.objects.filter(id=pk).all()
 
-        
+
         r4040_idenat_lista = r4040ideNat.objects.filter(r4040_evtbenefnid_id__in = listar_ids(r4040_evtbenefnid_lista) ).all()
         r4040_infopgto_lista = r4040infoPgto.objects.filter(r4040_idenat_id__in = listar_ids(r4040_idenat_lista) ).all()
 
@@ -97,9 +97,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r4040_evtbenefnid_verificar.html',
@@ -116,20 +116,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('r4040_evtbenefnid_verificar.html', context)
             filename = "%s.xls" % r4040_evtbenefnid.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('r4040_evtbenefnid_verificar.html', context)
             filename = "%s.csv" % r4040_evtbenefnid.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -137,7 +137,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 'r4040_evtbenefnid_verificar.html', context)
 
     else:

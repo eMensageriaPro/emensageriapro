@@ -74,11 +74,11 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('efdreinf.can_see_r2070evtPgtosDivs'):
-    
+
         r2070_evtpgtosdivs = get_object_or_404(r2070evtPgtosDivs, id=pk)
         r2070_evtpgtosdivs_lista = r2070evtPgtosDivs.objects.filter(id=pk).all()
 
-        
+
         r2070_inforesidext_lista = r2070infoResidExt.objects.filter(r2070_evtpgtosdivs_id__in = listar_ids(r2070_evtpgtosdivs_lista) ).all()
         r2070_infomolestia_lista = r2070infoMolestia.objects.filter(r2070_evtpgtosdivs_id__in = listar_ids(r2070_evtpgtosdivs_lista) ).all()
         r2070_ideestab_lista = r2070ideEstab.objects.filter(r2070_evtpgtosdivs_id__in = listar_ids(r2070_evtpgtosdivs_lista) ).all()
@@ -139,9 +139,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r2070_evtpgtosdivs_verificar.html',
@@ -158,20 +158,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('r2070_evtpgtosdivs_verificar.html', context)
             filename = "%s.xls" % r2070_evtpgtosdivs.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('r2070_evtpgtosdivs_verificar.html', context)
             filename = "%s.csv" % r2070_evtpgtosdivs.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -179,7 +179,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 'r2070_evtpgtosdivs_verificar.html', context)
 
     else:

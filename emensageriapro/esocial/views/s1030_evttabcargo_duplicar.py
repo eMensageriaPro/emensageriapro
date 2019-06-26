@@ -78,39 +78,39 @@ def duplicar(request, pk):
     from emensageriapro.esocial.views.s1030_evttabcargo_importar import read_s1030_evttabcargo_string
     from emensageriapro.esocial.views.s1030_evttabcargo_gerar_xml import gerar_xml_s1030
     from emensageriapro.functions import identidade_evento
-    
+
     if request.user.has_perm('esocial.can_duplicate_s1030evtTabCargo'):
 
         if pk:
-    
+
             s1030_evttabcargo = get_object_or_404(
                 s1030evtTabCargo,
                 id=pk)
-    
+
             texto = gerar_xml_s1030(request, pk, versao="|")
             dados = read_s1030_evttabcargo_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s1030_evttabcargo)
-    
+
             s1030evtTabCargo.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,
                        arquivo_original=0,
                        arquivo='')
-    
+
             gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1030_evttabcargo.identidade),
                 's1030_evttabcargo', dados['id'], request.user.id, 1)
-    
+
             messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
             return_pk = dados['id']
-            
+
             return redirect('s1030_evttabcargo_salvar', pk=return_pk)
-    
+
         messages.error(request, 'Erro ao duplicar evento!')
-        
+
         return redirect('s1030_evttabcargo_salvar', pk=pk)
-        
+
     else:
-    
-        messages.error(request, u'''Você não possui permissão para duplicar o evento. 
+
+        messages.error(request, u'''Você não possui permissão para duplicar o evento.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
         return redirect('s1030_evttabcargo_salvar', pk=pk)

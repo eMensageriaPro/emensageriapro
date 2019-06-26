@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
 
     r4020_infopgtoext = get_object_or_404(r4020infoPgtoExt, id=pk)
-    
+
     dados_evento = {}
     dados_evento = r4020_infopgtoext.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(r4020_infopgtoext), indent=4, sort_keys=True, default=str)
             obj = r4020infoPgtoExt.objects.get(id=pk)
             obj.delete(request=request)
             #r4020_infopgtoext_apagar_custom
             #r4020_infopgtoext_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             'r4020_infopgtoext', 
-                             pk, 
+                             '',
+                             'r4020_infopgtoext',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 'r4020_infopgtoext' in request.session['return_page']:
-        
+
             return redirect('r4020_infopgtoext')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['r4020', ],
         'paginas': ['r4020_infopgtoext', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  'r4020_infopgtoext_apagar.html', 
+
+    return render(request,
+                  'r4020_infopgtoext_apagar.html',
                   context)

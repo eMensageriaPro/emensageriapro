@@ -95,43 +95,43 @@ def gerar_xml_r1070(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         r1070_evttabprocesso_lista = r1070evtTabProcesso.objects. \
             filter(id=pk).all()
-            
-        
+
+
         r1070_inclusao_lista = r1070inclusao.objects. \
             filter(r1070_evttabprocesso_id__in=listar_ids(r1070_evttabprocesso_lista)).all()
-        
+
         r1070_inclusao_infosusp_lista = r1070inclusaoinfoSusp.objects. \
             filter(r1070_inclusao_id__in=listar_ids(r1070_inclusao_lista)).all()
-        
+
         r1070_inclusao_dadosprocjud_lista = r1070inclusaodadosProcJud.objects. \
             filter(r1070_inclusao_id__in=listar_ids(r1070_inclusao_lista)).all()
-        
+
         r1070_alteracao_lista = r1070alteracao.objects. \
             filter(r1070_evttabprocesso_id__in=listar_ids(r1070_evttabprocesso_lista)).all()
-        
+
         r1070_alteracao_infosusp_lista = r1070alteracaoinfoSusp.objects. \
             filter(r1070_alteracao_id__in=listar_ids(r1070_alteracao_lista)).all()
-        
+
         r1070_alteracao_dadosprocjud_lista = r1070alteracaodadosProcJud.objects. \
             filter(r1070_alteracao_id__in=listar_ids(r1070_alteracao_lista)).all()
-        
+
         r1070_alteracao_novavalidade_lista = r1070alteracaonovaValidade.objects. \
             filter(r1070_alteracao_id__in=listar_ids(r1070_alteracao_lista)).all()
-        
+
         r1070_exclusao_lista = r1070exclusao.objects. \
             filter(r1070_evttabprocesso_id__in=listar_ids(r1070_evttabprocesso_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -166,14 +166,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if r1070_evttabprocesso.arquivo_original:
-    
+
         xml = ler_arquivo(r1070_evttabprocesso.arquivo)
 
     else:
         xml = gerar_xml_r1070(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -194,16 +194,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 r1070evtTabProcesso,
                 r1070_evttabprocesso)
-        
+
         r1070_evttabprocesso = get_object_or_404(
             r1070evtTabProcesso,
             id=pk)
-        
+
         xml_assinado = assinar_efdreinf(
-            request, 
-            xml, 
+            request,
+            xml,
             r1070_evttabprocesso.transmissor_lote_efdreinf_id)
-        
+
     if r1070_evttabprocesso.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -217,11 +217,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/r1070_evttabprocesso/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_efdreinf(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -234,5 +234,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

@@ -67,142 +67,142 @@ from emensageriapro.r2070.forms import form_r2070_pgtoresidext
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         r2070_ideestab = get_object_or_404(r2070ideEstab, id=pk)
         evento_dados = r2070_ideestab.evento()
 
     if request.user.has_perm('r2070.can_see_r2070ideEstab'):
-        
+
         if pk:
-        
+
             r2070_ideestab_form = form_r2070_ideestab(
-                request.POST or None, 
+                request.POST or None,
                 instance=r2070_ideestab)
-                                         
+                     
         else:
-        
+
             r2070_ideestab_form = form_r2070_ideestab(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if r2070_ideestab_form.is_valid():
-            
+
                 obj = r2070_ideestab_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r2070_ideestab', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r2070_ideestab',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(r2070_ideestab), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(r2070_ideestab),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r2070_ideestab', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r2070_ideestab',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    'r2070_ideestab_apagar', 
-                    'r2070_ideestab_salvar', 
+                    'r2070_ideestab_apagar',
+                    'r2070_ideestab_salvar',
                     'r2070_ideestab'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'r2070_ideestab_salvar', 
+                        'r2070_ideestab_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         r2070_ideestab_form = disabled_form_fields(
-            r2070_ideestab_form, 
+            r2070_ideestab_form,
             request.user.has_perm('r2070.change_r2070ideEstab'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 r2070_ideestab_form = disabled_form_fields(r2070_ideestab_form, 0)
-                
+
         if output:
-        
+
             r2070_ideestab_form = disabled_form_for_print(r2070_ideestab_form)
-            
-        
-        r2070_pgtoresidbr_lista = None 
-        r2070_pgtoresidbr_form = None 
-        r2070_pgtoresidext_lista = None 
-        r2070_pgtoresidext_form = None 
-        
+
+
+        r2070_pgtoresidbr_lista = None
+        r2070_pgtoresidbr_form = None
+        r2070_pgtoresidext_lista = None
+        r2070_pgtoresidext_form = None
+
         if pk:
-        
+
             r2070_ideestab = get_object_or_404(r2070ideEstab, id=pk)
-            
+
             r2070_pgtoresidbr_form = form_r2070_pgtoresidbr(
                 initial={ 'r2070_ideestab': r2070_ideestab })
             r2070_pgtoresidbr_form.fields['r2070_ideestab'].widget.attrs['readonly'] = True
             r2070_pgtoresidbr_lista = r2070pgtoResidBR.objects.\
                 filter(r2070_ideestab_id=r2070_ideestab.id).all()
-                
+
             r2070_pgtoresidext_form = form_r2070_pgtoresidext(
                 initial={ 'r2070_ideestab': r2070_ideestab })
             r2070_pgtoresidext_form.fields['r2070_ideestab'].widget.attrs['readonly'] = True
             r2070_pgtoresidext_lista = r2070pgtoResidExt.objects.\
                 filter(r2070_ideestab_id=r2070_ideestab.id).all()
-                
-                
+
+
         else:
-        
+
             r2070_ideestab = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 'r2070_ideestab' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'r2070_ideestab_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r2070_ideestab').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            'r2070_ideestab': r2070_ideestab, 
-            'r2070_ideestab_form': r2070_ideestab_form, 
+            'controle_alteracoes': controle_alteracoes,
+            'r2070_ideestab': r2070_ideestab,
+            'r2070_ideestab_form': r2070_ideestab_form,
             'modulos': ['r2070', ],
             'paginas': ['r2070_ideestab', ],
             'r2070_pgtoresidbr_form': r2070_pgtoresidbr_form,
@@ -214,11 +214,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #r2070_ideestab_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r2070_ideestab_salvar.html',
@@ -236,26 +236,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('r2070_ideestab_salvar.html', context)
             filename = "r2070_ideestab.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 'r2070_ideestab_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -265,7 +265,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r2070_ideestab', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

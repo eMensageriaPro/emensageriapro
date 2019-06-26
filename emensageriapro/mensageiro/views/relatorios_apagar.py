@@ -62,25 +62,25 @@ from emensageriapro.controle_de_acesso.models import *
 def apagar(request, pk):
 
     relatorios = get_object_or_404(Relatorios, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         obj = Relatorios.objects.get(id=pk)
         obj.delete(request=request)
         #relatorios_apagar_custom
         #relatorios_apagar_custom
         messages.success(request, u'Apagado com sucesso!')
-        
+
         if 'relatorios' in request.session['return_page']:
-        
+
             return redirect('relatorios')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
@@ -88,7 +88,7 @@ def apagar(request, pk):
         'modulos': ['mensageiro', ],
         'paginas': ['relatorios', ],
     }
-    
-    return render(request, 
-        'relatorios_apagar.html', 
+
+    return render(request,
+        'relatorios_apagar.html',
         context)

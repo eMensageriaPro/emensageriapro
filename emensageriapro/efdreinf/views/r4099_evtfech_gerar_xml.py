@@ -95,22 +95,22 @@ def gerar_xml_r4099(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         r4099_evtfech_lista = r4099evtFech.objects. \
             filter(id=pk).all()
-            
-        
+
+
         r4099_iderespinf_lista = r4099ideRespInf.objects. \
             filter(r4099_evtfech_id__in=listar_ids(r4099_evtfech_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -138,14 +138,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if r4099_evtfech.arquivo_original:
-    
+
         xml = ler_arquivo(r4099_evtfech.arquivo)
 
     else:
         xml = gerar_xml_r4099(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -166,16 +166,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 r4099evtFech,
                 r4099_evtfech)
-        
+
         r4099_evtfech = get_object_or_404(
             r4099evtFech,
             id=pk)
-        
+
         xml_assinado = assinar_efdreinf(
-            request, 
-            xml, 
+            request,
+            xml,
             r4099_evtfech.transmissor_lote_efdreinf_id)
-        
+
     if r4099_evtfech.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -189,11 +189,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/r4099_evtfech/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_efdreinf(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -206,5 +206,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

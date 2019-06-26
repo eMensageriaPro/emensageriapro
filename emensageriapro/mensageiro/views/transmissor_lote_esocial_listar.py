@@ -62,11 +62,11 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('mensageiro.can_see_TransmissorLoteEsocial'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_transmissor': 0,
             'show_empregador_tpinsc': 1,
             'show_empregador_nrinsc': 1,
@@ -82,15 +82,15 @@ def listar(request, output=None):
             'show_arquivo_header': 0,
             'show_arquivo_request': 0,
             'show_arquivo_response': 0, }
-            
+
         post = False
         #ANTES-POST-LISTAGEM
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            
-            dict_fields = { 
+
+            dict_fields = {
                 'transmissor__icontains': 'transmissor__icontains',
                 'empregador_tpinsc__icontains': 'empregador_tpinsc__icontains',
                 'empregador_nrinsc__icontains': 'empregador_nrinsc__icontains',
@@ -98,16 +98,16 @@ def listar(request, output=None):
                 'status__icontains': 'status__icontains',
                 'resposta_codigo__icontains': 'resposta_codigo__icontains',
                 'protocolo__icontains': 'protocolo__icontains', }
-                
+
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     'transmissor__icontains': 'transmissor__icontains',
                     'empregador_tpinsc__icontains': 'empregador_tpinsc__icontains',
                     'empregador_nrinsc__icontains': 'empregador_nrinsc__icontains',
@@ -115,27 +115,27 @@ def listar(request, output=None):
                     'status__icontains': 'status__icontains',
                     'resposta_codigo__icontains': 'resposta_codigo__icontains',
                     'protocolo__icontains': 'protocolo__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
-        
+
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.filter(**dict_qs).exclude(id=0).all()
-        
+
         if not post and len(transmissor_lote_esocial_lista) > 100:
-        
+
             filtrar = True
             transmissor_lote_esocial_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #transmissor_lote_esocial_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista, 
+            'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
             'modulos': ['mensageiro', ],
             'paginas': ['transmissor_lote_esocial', ],
             'dict_fields': dict_fields,
@@ -144,11 +144,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='transmissor_lote_esocial_listar.html',
@@ -166,37 +166,37 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('transmissor_lote_esocial_listar.html', context)
             filename = "transmissor_lote_esocial.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('csv/transmissor_lote_esocial.csv', context)
             filename = "transmissor_lote_esocial.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
-            
+
             return response
-        
+
         else:
-        
+
             return render(request, 'transmissor_lote_esocial_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -204,7 +204,7 @@ def listar(request, output=None):
             'modulos': ['mensageiro', ],
             'paginas': ['transmissor_lote_esocial', ],
         }
-        
-        return render(request, 
-            'permissao_negada.html', 
+
+        return render(request,
+            'permissao_negada.html',
             context)

@@ -75,174 +75,174 @@ from emensageriapro.s2200.forms import form_s2200_cnh
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2200_documentos = get_object_or_404(s2200documentos, id=pk)
         evento_dados = s2200_documentos.evento()
 
     if request.user.has_perm('s2200.can_see_s2200documentos'):
-        
+
         if pk:
-        
+
             s2200_documentos_form = form_s2200_documentos(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2200_documentos)
-                                         
+                     
         else:
-        
+
             s2200_documentos_form = form_s2200_documentos(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2200_documentos_form.is_valid():
-            
+
                 obj = s2200_documentos_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2200_documentos', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2200_documentos',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2200_documentos), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2200_documentos),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2200_documentos', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2200_documentos',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2200_documentos_apagar', 
-                    's2200_documentos_salvar', 
+                    's2200_documentos_apagar',
+                    's2200_documentos_salvar',
                     's2200_documentos'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2200_documentos_salvar', 
+                        's2200_documentos_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2200_documentos_form = disabled_form_fields(
-            s2200_documentos_form, 
+            s2200_documentos_form,
             request.user.has_perm('s2200.change_s2200documentos'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2200_documentos_form = disabled_form_fields(s2200_documentos_form, 0)
-                
+
         if output:
-        
+
             s2200_documentos_form = disabled_form_for_print(s2200_documentos_form)
-            
-        
-        s2200_ctps_lista = None 
-        s2200_ctps_form = None 
-        s2200_ric_lista = None 
-        s2200_ric_form = None 
-        s2200_rg_lista = None 
-        s2200_rg_form = None 
-        s2200_rne_lista = None 
-        s2200_rne_form = None 
-        s2200_oc_lista = None 
-        s2200_oc_form = None 
-        s2200_cnh_lista = None 
-        s2200_cnh_form = None 
-        
+
+
+        s2200_ctps_lista = None
+        s2200_ctps_form = None
+        s2200_ric_lista = None
+        s2200_ric_form = None
+        s2200_rg_lista = None
+        s2200_rg_form = None
+        s2200_rne_lista = None
+        s2200_rne_form = None
+        s2200_oc_lista = None
+        s2200_oc_form = None
+        s2200_cnh_lista = None
+        s2200_cnh_form = None
+
         if pk:
-        
+
             s2200_documentos = get_object_or_404(s2200documentos, id=pk)
-            
+
             s2200_ctps_form = form_s2200_ctps(
                 initial={ 's2200_documentos': s2200_documentos })
             s2200_ctps_form.fields['s2200_documentos'].widget.attrs['readonly'] = True
             s2200_ctps_lista = s2200CTPS.objects.\
                 filter(s2200_documentos_id=s2200_documentos.id).all()
-                
+
             s2200_ric_form = form_s2200_ric(
                 initial={ 's2200_documentos': s2200_documentos })
             s2200_ric_form.fields['s2200_documentos'].widget.attrs['readonly'] = True
             s2200_ric_lista = s2200RIC.objects.\
                 filter(s2200_documentos_id=s2200_documentos.id).all()
-                
+
             s2200_rg_form = form_s2200_rg(
                 initial={ 's2200_documentos': s2200_documentos })
             s2200_rg_form.fields['s2200_documentos'].widget.attrs['readonly'] = True
             s2200_rg_lista = s2200RG.objects.\
                 filter(s2200_documentos_id=s2200_documentos.id).all()
-                
+
             s2200_rne_form = form_s2200_rne(
                 initial={ 's2200_documentos': s2200_documentos })
             s2200_rne_form.fields['s2200_documentos'].widget.attrs['readonly'] = True
             s2200_rne_lista = s2200RNE.objects.\
                 filter(s2200_documentos_id=s2200_documentos.id).all()
-                
+
             s2200_oc_form = form_s2200_oc(
                 initial={ 's2200_documentos': s2200_documentos })
             s2200_oc_form.fields['s2200_documentos'].widget.attrs['readonly'] = True
             s2200_oc_lista = s2200OC.objects.\
                 filter(s2200_documentos_id=s2200_documentos.id).all()
-                
+
             s2200_cnh_form = form_s2200_cnh(
                 initial={ 's2200_documentos': s2200_documentos })
             s2200_cnh_form.fields['s2200_documentos'].widget.attrs['readonly'] = True
             s2200_cnh_lista = s2200CNH.objects.\
                 filter(s2200_documentos_id=s2200_documentos.id).all()
-                
-                
+
+
         else:
-        
+
             s2200_documentos = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2200_documentos' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2200_documentos_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2200_documentos').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2200_documentos': s2200_documentos, 
-            's2200_documentos_form': s2200_documentos_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2200_documentos': s2200_documentos,
+            's2200_documentos_form': s2200_documentos_form,
             'modulos': ['s2200', ],
             'paginas': ['s2200_documentos', ],
             's2200_ctps_form': s2200_ctps_form,
@@ -262,11 +262,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2200_documentos_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2200_documentos_salvar.html',
@@ -284,26 +284,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2200_documentos_salvar.html', context)
             filename = "s2200_documentos.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2200_documentos_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -313,7 +313,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2200_documentos', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

@@ -23,7 +23,7 @@
         mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
         COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
         Licença Pública Geral GNU Affero para mais detalhes.
-    
+
         Este programa é software livre: você pode redistribuí-lo e / ou modificar
         sob os termos da licença GNU Affero General Public License como
         publicado pela Free Software Foundation, seja versão 3 do
@@ -46,290 +46,290 @@ def validacoes_r5011_evttotalcontrib(arquivo):
 
     from emensageriapro.mensageiro.functions.funcoes_validacoes import validar_campo
     import untangle
-    
+
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
     validacoes_lista = []
     xmlns = doc.Reinf['xmlns'].split('/')
     evtTotalContrib = doc.Reinf.evtTotalContrib
     #variaveis
-    
+
     if 'ideEvento' in dir(evtTotalContrib.ideEvento):
         for ideEvento in evtTotalContrib.ideEvento:
-            
+
             if 'perApur' in dir(ideEvento):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEvento.perApur', 
-                                                  ideEvento.perApur.cdata, 
+                                                  'ideEvento.perApur',
+                                                  ideEvento.perApur.cdata,
                                                   1, u'None')
-    
+
     if 'ideContri' in dir(evtTotalContrib.ideContri):
         for ideContri in evtTotalContrib.ideContri:
-            
+
             if 'tpInsc' in dir(ideContri):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideContri.tpInsc', 
-                                                  ideContri.tpInsc.cdata, 
+                                                  'ideContri.tpInsc',
+                                                  ideContri.tpInsc.cdata,
                                                   1, u'1, 2')
-            
+
             if 'nrInsc' in dir(ideContri):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideContri.nrInsc', 
-                                                  ideContri.nrInsc.cdata, 
+                                                  'ideContri.nrInsc',
+                                                  ideContri.nrInsc.cdata,
                                                   1, u'None')
-    
+
     if 'ideRecRetorno' in dir(evtTotalContrib.ideRecRetorno):
         for ideRecRetorno in evtTotalContrib.ideRecRetorno:
-            
+
             if 'ideStatus' in dir(ideRecRetorno.ideStatus):
                 for ideStatus in ideRecRetorno.ideStatus:
-                    
+
                     if 'cdRetorno' in dir(ideStatus):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'ideStatus.cdRetorno', 
-                                                          ideStatus.cdRetorno.cdata, 
+                                                          'ideStatus.cdRetorno',
+                                                          ideStatus.cdRetorno.cdata,
                                                           1, u'None')
-                    
+
                     if 'descRetorno' in dir(ideStatus):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'ideStatus.descRetorno', 
-                                                          ideStatus.descRetorno.cdata, 
+                                                          'ideStatus.descRetorno',
+                                                          ideStatus.descRetorno.cdata,
                                                           1, u'None')
-                    
+
                     if 'regOcorrs' in dir(ideStatus.regOcorrs):
                         for regOcorrs in ideStatus.regOcorrs:
-                            
+        
                             if 'tpOcorr' in dir(regOcorrs):
                                 validacoes_lista = validar_campo( validacoes_lista,
-                                                                  'regOcorrs.tpOcorr', 
-                                                                  regOcorrs.tpOcorr.cdata, 
+                                                                  'regOcorrs.tpOcorr',
+                                                                  regOcorrs.tpOcorr.cdata,
                                                                   1, u'None')
-                            
+        
                             if 'localErroAviso' in dir(regOcorrs):
                                 validacoes_lista = validar_campo( validacoes_lista,
-                                                                  'regOcorrs.localErroAviso', 
-                                                                  regOcorrs.localErroAviso.cdata, 
+                                                                  'regOcorrs.localErroAviso',
+                                                                  regOcorrs.localErroAviso.cdata,
                                                                   1, u'None')
-                            
+        
                             if 'codResp' in dir(regOcorrs):
                                 validacoes_lista = validar_campo( validacoes_lista,
-                                                                  'regOcorrs.codResp', 
-                                                                  regOcorrs.codResp.cdata, 
+                                                                  'regOcorrs.codResp',
+                                                                  regOcorrs.codResp.cdata,
                                                                   1, u'None')
-                            
+        
                             if 'dscResp' in dir(regOcorrs):
                                 validacoes_lista = validar_campo( validacoes_lista,
-                                                                  'regOcorrs.dscResp', 
-                                                                  regOcorrs.dscResp.cdata, 
+                                                                  'regOcorrs.dscResp',
+                                                                  regOcorrs.dscResp.cdata,
                                                                   1, u'None')
-    
+
     if 'infoRecEv' in dir(evtTotalContrib.infoRecEv):
         for infoRecEv in evtTotalContrib.infoRecEv:
-            
+
             if 'nrProtEntr' in dir(infoRecEv):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'infoRecEv.nrProtEntr', 
-                                                  infoRecEv.nrProtEntr.cdata, 
+                                                  'infoRecEv.nrProtEntr',
+                                                  infoRecEv.nrProtEntr.cdata,
                                                   1, u'None')
-            
+
             if 'dhProcess' in dir(infoRecEv):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'infoRecEv.dhProcess', 
-                                                  infoRecEv.dhProcess.cdata, 
+                                                  'infoRecEv.dhProcess',
+                                                  infoRecEv.dhProcess.cdata,
                                                   1, u'None')
-            
+
             if 'tpEv' in dir(infoRecEv):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'infoRecEv.tpEv', 
-                                                  infoRecEv.tpEv.cdata, 
+                                                  'infoRecEv.tpEv',
+                                                  infoRecEv.tpEv.cdata,
                                                   1, u'None')
-            
+
             if 'idEv' in dir(infoRecEv):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'infoRecEv.idEv', 
-                                                  infoRecEv.idEv.cdata, 
+                                                  'infoRecEv.idEv',
+                                                  infoRecEv.idEv.cdata,
                                                   1, u'None')
-            
+
             if 'hash' in dir(infoRecEv):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'infoRecEv.hash', 
-                                                  infoRecEv.hash.cdata, 
+                                                  'infoRecEv.hash',
+                                                  infoRecEv.hash.cdata,
                                                   1, u'None')
-    
+
     if 'infoTotalContrib' in dir(evtTotalContrib.infoTotalContrib):
         for infoTotalContrib in evtTotalContrib.infoTotalContrib:
-            
+
             if 'nrRecArqBase' in dir(infoTotalContrib):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'infoTotalContrib.nrRecArqBase', 
-                                                  infoTotalContrib.nrRecArqBase.cdata, 
+                                                  'infoTotalContrib.nrRecArqBase',
+                                                  infoTotalContrib.nrRecArqBase.cdata,
                                                   0, u'None')
-            
+
             if 'indExistInfo' in dir(infoTotalContrib):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'infoTotalContrib.indExistInfo', 
-                                                  infoTotalContrib.indExistInfo.cdata, 
+                                                  'infoTotalContrib.indExistInfo',
+                                                  infoTotalContrib.indExistInfo.cdata,
                                                   1, u'1, 2, 3')
-            
+
             if 'RTom' in dir(infoTotalContrib.RTom):
                 for RTom in infoTotalContrib.RTom:
-                    
+
                     if 'cnpjPrestador' in dir(RTom):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RTom.cnpjPrestador', 
-                                                          RTom.cnpjPrestador.cdata, 
+                                                          'RTom.cnpjPrestador',
+                                                          RTom.cnpjPrestador.cdata,
                                                           1, u'None')
-                    
+
                     if 'cno' in dir(RTom):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RTom.cno', 
-                                                          RTom.cno.cdata, 
+                                                          'RTom.cno',
+                                                          RTom.cno.cdata,
                                                           0, u'None')
-                    
+
                     if 'vlrTotalBaseRet' in dir(RTom):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RTom.vlrTotalBaseRet', 
-                                                          RTom.vlrTotalBaseRet.cdata, 
+                                                          'RTom.vlrTotalBaseRet',
+                                                          RTom.vlrTotalBaseRet.cdata,
                                                           1, u'None')
-                    
+
                     if 'infoCRTom' in dir(RTom.infoCRTom):
                         for infoCRTom in RTom.infoCRTom:
-                            
+        
                             if 'CRTom' in dir(infoCRTom):
                                 validacoes_lista = validar_campo( validacoes_lista,
-                                                                  'infoCRTom.CRTom', 
-                                                                  infoCRTom.CRTom.cdata, 
+                                                                  'infoCRTom.CRTom',
+                                                                  infoCRTom.CRTom.cdata,
                                                                   1, u'114106, 116201')
-                            
+        
                             if 'vlrCRTom' in dir(infoCRTom):
                                 validacoes_lista = validar_campo( validacoes_lista,
-                                                                  'infoCRTom.vlrCRTom', 
-                                                                  infoCRTom.vlrCRTom.cdata, 
+                                                                  'infoCRTom.vlrCRTom',
+                                                                  infoCRTom.vlrCRTom.cdata,
                                                                   0, u'None')
-                            
+        
                             if 'vlrCRTomSusp' in dir(infoCRTom):
                                 validacoes_lista = validar_campo( validacoes_lista,
-                                                                  'infoCRTom.vlrCRTomSusp', 
-                                                                  infoCRTom.vlrCRTomSusp.cdata, 
+                                                                  'infoCRTom.vlrCRTomSusp',
+                                                                  infoCRTom.vlrCRTomSusp.cdata,
                                                                   0, u'None')
-            
+
             if 'RPrest' in dir(infoTotalContrib.RPrest):
                 for RPrest in infoTotalContrib.RPrest:
-                    
+
                     if 'tpInscTomador' in dir(RPrest):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RPrest.tpInscTomador', 
-                                                          RPrest.tpInscTomador.cdata, 
+                                                          'RPrest.tpInscTomador',
+                                                          RPrest.tpInscTomador.cdata,
                                                           1, u'1, 4')
-                    
+
                     if 'nrInscTomador' in dir(RPrest):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RPrest.nrInscTomador', 
-                                                          RPrest.nrInscTomador.cdata, 
+                                                          'RPrest.nrInscTomador',
+                                                          RPrest.nrInscTomador.cdata,
                                                           1, u'None')
-                    
+
                     if 'vlrTotalBaseRet' in dir(RPrest):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RPrest.vlrTotalBaseRet', 
-                                                          RPrest.vlrTotalBaseRet.cdata, 
+                                                          'RPrest.vlrTotalBaseRet',
+                                                          RPrest.vlrTotalBaseRet.cdata,
                                                           1, u'None')
-                    
+
                     if 'vlrTotalRetPrinc' in dir(RPrest):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RPrest.vlrTotalRetPrinc', 
-                                                          RPrest.vlrTotalRetPrinc.cdata, 
+                                                          'RPrest.vlrTotalRetPrinc',
+                                                          RPrest.vlrTotalRetPrinc.cdata,
                                                           1, u'None')
-                    
+
                     if 'vlrTotalRetAdic' in dir(RPrest):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RPrest.vlrTotalRetAdic', 
-                                                          RPrest.vlrTotalRetAdic.cdata, 
+                                                          'RPrest.vlrTotalRetAdic',
+                                                          RPrest.vlrTotalRetAdic.cdata,
                                                           0, u'None')
-                    
+
                     if 'vlrTotalNRetPrinc' in dir(RPrest):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RPrest.vlrTotalNRetPrinc', 
-                                                          RPrest.vlrTotalNRetPrinc.cdata, 
+                                                          'RPrest.vlrTotalNRetPrinc',
+                                                          RPrest.vlrTotalNRetPrinc.cdata,
                                                           0, u'None')
-                    
+
                     if 'vlrTotalNRetAdic' in dir(RPrest):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RPrest.vlrTotalNRetAdic', 
-                                                          RPrest.vlrTotalNRetAdic.cdata, 
+                                                          'RPrest.vlrTotalNRetAdic',
+                                                          RPrest.vlrTotalNRetAdic.cdata,
                                                           0, u'None')
-            
+
             if 'RRecRepAD' in dir(infoTotalContrib.RRecRepAD):
                 for RRecRepAD in infoTotalContrib.RRecRepAD:
-                    
+
                     if 'cnpjAssocDesp' in dir(RRecRepAD):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RRecRepAD.cnpjAssocDesp', 
-                                                          RRecRepAD.cnpjAssocDesp.cdata, 
+                                                          'RRecRepAD.cnpjAssocDesp',
+                                                          RRecRepAD.cnpjAssocDesp.cdata,
                                                           1, u'None')
-                    
+
                     if 'vlrTotalRep' in dir(RRecRepAD):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RRecRepAD.vlrTotalRep', 
-                                                          RRecRepAD.vlrTotalRep.cdata, 
+                                                          'RRecRepAD.vlrTotalRep',
+                                                          RRecRepAD.vlrTotalRep.cdata,
                                                           1, u'None')
-                    
+
                     if 'CRRecRepAD' in dir(RRecRepAD):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RRecRepAD.CRRecRepAD', 
-                                                          RRecRepAD.CRRecRepAD.cdata, 
+                                                          'RRecRepAD.CRRecRepAD',
+                                                          RRecRepAD.CRRecRepAD.cdata,
                                                           1, u'115102')
-                    
+
                     if 'vlrCRRecRepAD' in dir(RRecRepAD):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RRecRepAD.vlrCRRecRepAD', 
-                                                          RRecRepAD.vlrCRRecRepAD.cdata, 
+                                                          'RRecRepAD.vlrCRRecRepAD',
+                                                          RRecRepAD.vlrCRRecRepAD.cdata,
                                                           1, u'None')
-                    
+
                     if 'vlrCRRecRepADSusp' in dir(RRecRepAD):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RRecRepAD.vlrCRRecRepADSusp', 
-                                                          RRecRepAD.vlrCRRecRepADSusp.cdata, 
+                                                          'RRecRepAD.vlrCRRecRepADSusp',
+                                                          RRecRepAD.vlrCRRecRepADSusp.cdata,
                                                           0, u'None')
-            
+
             if 'RComl' in dir(infoTotalContrib.RComl):
                 for RComl in infoTotalContrib.RComl:
-                    
+
                     if 'CRComl' in dir(RComl):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RComl.CRComl', 
-                                                          RComl.CRComl.cdata, 
+                                                          'RComl.CRComl',
+                                                          RComl.CRComl.cdata,
                                                           1, u'165701, 165702, 164605, 164606, 121302, 121304')
-                    
+
                     if 'vlrCRComl' in dir(RComl):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RComl.vlrCRComl', 
-                                                          RComl.vlrCRComl.cdata, 
+                                                          'RComl.vlrCRComl',
+                                                          RComl.vlrCRComl.cdata,
                                                           1, u'None')
-                    
+
                     if 'vlrCRComlSusp' in dir(RComl):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RComl.vlrCRComlSusp', 
-                                                          RComl.vlrCRComlSusp.cdata, 
+                                                          'RComl.vlrCRComlSusp',
+                                                          RComl.vlrCRComlSusp.cdata,
                                                           0, u'None')
-            
+
             if 'RCPRB' in dir(infoTotalContrib.RCPRB):
                 for RCPRB in infoTotalContrib.RCPRB:
-                    
+
                     if 'CRCPRB' in dir(RCPRB):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RCPRB.CRCPRB', 
-                                                          RCPRB.CRCPRB.cdata, 
+                                                          'RCPRB.CRCPRB',
+                                                          RCPRB.CRCPRB.cdata,
                                                           1, u'299101, 298501, 298504, 298506')
-                    
+
                     if 'vlrCRCPRB' in dir(RCPRB):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RCPRB.vlrCRCPRB', 
-                                                          RCPRB.vlrCRCPRB.cdata, 
+                                                          'RCPRB.vlrCRCPRB',
+                                                          RCPRB.vlrCRCPRB.cdata,
                                                           1, u'None')
-                    
+
                     if 'vlrCRCPRBSusp' in dir(RCPRB):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'RCPRB.vlrCRCPRBSusp', 
-                                                          RCPRB.vlrCRCPRBSusp.cdata, 
+                                                          'RCPRB.vlrCRCPRBSusp',
+                                                          RCPRB.vlrCRCPRBSusp.cdata,
                                                           0, u'None')
     return validacoes_lista

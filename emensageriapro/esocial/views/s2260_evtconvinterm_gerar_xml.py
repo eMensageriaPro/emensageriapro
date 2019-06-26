@@ -95,22 +95,22 @@ def gerar_xml_s2260(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         s2260_evtconvinterm_lista = s2260evtConvInterm.objects. \
             filter(id=pk).all()
-            
-        
+
+
         s2260_localtrabinterm_lista = s2260localTrabInterm.objects. \
             filter(s2260_evtconvinterm_id__in=listar_ids(s2260_evtconvinterm_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -138,14 +138,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s2260_evtconvinterm.arquivo_original:
-    
+
         xml = ler_arquivo(s2260_evtconvinterm.arquivo)
 
     else:
         xml = gerar_xml_s2260(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -166,16 +166,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 s2260evtConvInterm,
                 s2260_evtconvinterm)
-        
+
         s2260_evtconvinterm = get_object_or_404(
             s2260evtConvInterm,
             id=pk)
-        
+
         xml_assinado = assinar_esocial(
-            request, 
-            xml, 
+            request,
+            xml,
             s2260_evtconvinterm.transmissor_lote_esocial_id)
-        
+
     if s2260_evtconvinterm.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -189,11 +189,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s2260_evtconvinterm/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -206,5 +206,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

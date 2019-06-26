@@ -44,12 +44,12 @@ from emensageriapro.s5001.models import s5001procJudTrab, s5001procJudTrabSerial
 
 
 class s5001procJudTrabList(generics.ListAPIView):
-    
+
     queryset = s5001procJudTrab.objects.all()
     serializer_class = s5001procJudTrabSerializer
 
 
 class s5001procJudTrabDetail(generics.ListAPIView):
-    
+
     queryset = s5001procJudTrab.objects.all()
     serializer_class = s5001procJudTrabSerializer

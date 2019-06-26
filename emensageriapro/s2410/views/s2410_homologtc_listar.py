@@ -62,59 +62,59 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('s2410.can_see_s2410homologTC'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_s2410_evtcdbenin': 1,
             'show_dthomol': 1,
             'show_nratolegal': 1, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 's2410_evtcdbenin__icontains': 's2410_evtcdbenin__icontains',
                 'dthomol__range': 'dthomol__range',
                 'nratolegal__icontains': 'nratolegal__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     's2410_evtcdbenin__icontains': 's2410_evtcdbenin__icontains',
                     'dthomol__range': 'dthomol__range',
                     'nratolegal__icontains': 'nratolegal__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         s2410_homologtc_lista = s2410homologTC.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(s2410_homologtc_lista) > 100:
-        
+
             filtrar = True
             s2410_homologtc_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s2410_homologtc_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            's2410_homologtc_lista': s2410_homologtc_lista, 
+            's2410_homologtc_lista': s2410_homologtc_lista,
             'modulos': ['s2410', ],
             'paginas': ['s2410_homologtc', ],
             'dict_fields': dict_fields,
@@ -123,11 +123,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2410_homologtc_listar.html',
@@ -145,33 +145,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('s2410_homologtc_listar.html', context)
             filename = "s2410_homologtc.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/s2410_homologtc.csv', context)
             filename = "s2410_homologtc.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 's2410_homologtc_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -179,7 +179,7 @@ def listar(request, output=None):
             'modulos': ['s2410', ],
             'paginas': ['s2410_homologtc', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

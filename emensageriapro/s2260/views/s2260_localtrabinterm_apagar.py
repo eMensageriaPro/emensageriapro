@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s2260_localtrabinterm = get_object_or_404(s2260localTrabInterm, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s2260_localtrabinterm.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2260_localtrabinterm), indent=4, sort_keys=True, default=str)
             obj = s2260localTrabInterm.objects.get(id=pk)
             obj.delete(request=request)
             #s2260_localtrabinterm_apagar_custom
             #s2260_localtrabinterm_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's2260_localtrabinterm', 
-                             pk, 
+                             '',
+                             's2260_localtrabinterm',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's2260_localtrabinterm' in request.session['return_page']:
-        
+
             return redirect('s2260_localtrabinterm')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s2260', ],
         'paginas': ['s2260_localtrabinterm', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's2260_localtrabinterm_apagar.html', 
+
+    return render(request,
+                  's2260_localtrabinterm_apagar.html',
                   context)

@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s2250_detavprevio = get_object_or_404(s2250detAvPrevio, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s2250_detavprevio.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2250_detavprevio), indent=4, sort_keys=True, default=str)
             obj = s2250detAvPrevio.objects.get(id=pk)
             obj.delete(request=request)
             #s2250_detavprevio_apagar_custom
             #s2250_detavprevio_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's2250_detavprevio', 
-                             pk, 
+                             '',
+                             's2250_detavprevio',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's2250_detavprevio' in request.session['return_page']:
-        
+
             return redirect('s2250_detavprevio')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s2250', ],
         'paginas': ['s2250_detavprevio', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's2250_detavprevio_apagar.html', 
+
+    return render(request,
+                  's2250_detavprevio_apagar.html',
                   context)

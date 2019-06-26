@@ -62,62 +62,62 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('s2250.can_see_s2250cancAvPrevio'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_s2250_evtavprevio': 1,
             'show_dtcancavprv': 1,
             'show_observacao': 0,
             'show_mtvcancavprevio': 1, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 's2250_evtavprevio__icontains': 's2250_evtavprevio__icontains',
                 'dtcancavprv__range': 'dtcancavprv__range',
                 'observacao__icontains': 'observacao__icontains',
                 'mtvcancavprevio__icontains': 'mtvcancavprevio__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     's2250_evtavprevio__icontains': 's2250_evtavprevio__icontains',
                     'dtcancavprv__range': 'dtcancavprv__range',
                     'observacao__icontains': 'observacao__icontains',
                     'mtvcancavprevio__icontains': 'mtvcancavprevio__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         s2250_cancavprevio_lista = s2250cancAvPrevio.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(s2250_cancavprevio_lista) > 100:
-        
+
             filtrar = True
             s2250_cancavprevio_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s2250_cancavprevio_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            's2250_cancavprevio_lista': s2250_cancavprevio_lista, 
+            's2250_cancavprevio_lista': s2250_cancavprevio_lista,
             'modulos': ['s2250', ],
             'paginas': ['s2250_cancavprevio', ],
             'dict_fields': dict_fields,
@@ -126,11 +126,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2250_cancavprevio_listar.html',
@@ -148,33 +148,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('s2250_cancavprevio_listar.html', context)
             filename = "s2250_cancavprevio.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/s2250_cancavprevio.csv', context)
             filename = "s2250_cancavprevio.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 's2250_cancavprevio_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -182,7 +182,7 @@ def listar(request, output=None):
             'modulos': ['s2250', ],
             'paginas': ['s2250_cancavprevio', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

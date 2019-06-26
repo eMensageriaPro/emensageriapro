@@ -109,29 +109,29 @@ def recibo(request, pk, output=None):
         }
 
         if output == 'xls':
-        
+
             response =  render_to_response('s2206_evtaltcontratual_recibo_pdf.html', context)
             filename = "%s.xls" % s2206_evtaltcontratual.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response =  render_to_response('s2206_evtaltcontratual_recibo_csv.html', context)
             filename = "%s.csv" % s2206_evtaltcontratual.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
-            
+
             return response
 
         elif output == 'pdf':
-        
+
             return render_to_pdf('s2206_evtaltcontratual_recibo_pdf.html', context)
 
         else:
-        
+
             return render(request, 's2206_evtaltcontratual_recibo_pdf.html', context)
 
     else:
@@ -139,5 +139,5 @@ def recibo(request, pk, output=None):
         context = {
             'data': datetime.now(),
         }
-        
+
         return render(request, 'permissao_negada.html', context)

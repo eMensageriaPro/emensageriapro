@@ -61,97 +61,97 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def salvar(request, pk=None, tab='master', output=None):
-    
+
     if pk:
-    
+
         regras_validacao = get_object_or_404(RegrasDeValidacao, id=pk)
-        
+
     if request.user.has_perm('mensageiro.can_see_RegrasDeValidacao'):
-        
+
         if pk:
-        
+
             regras_validacao_form = form_regras_validacao(request.POST or None, instance=regras_validacao)
-            
+
         else:
-        
+
             regras_validacao_form = form_regras_validacao(request.POST or None)
-            
+
         if request.method == 'POST':
-        
+
             if regras_validacao_form.is_valid():
-            
+
                 #regras_validacao_campos_multiple_passo1
-                
-                
+
+
                 obj = regras_validacao_form.save(request=request)
                 messages.success(request, 'Salvo com sucesso!')
                 #regras_validacao_campos_multiple_passo2
-                
+
                 if request.session['return_page'] not in (
-                    'regras_validacao_apagar', 
-                    'regras_validacao_salvar', 
+                    'regras_validacao_apagar',
+                    'regras_validacao_salvar',
                     'regras_validacao'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'regras_validacao_salvar', 
+                        'regras_validacao_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, 'Erro ao salvar!')
-                
+
         regras_validacao_form = disabled_form_fields(regras_validacao_form, request.user.has_perm('mensageiro.change_RegrasDeValidacao'))
         #regras_validacao_campos_multiple_passo3
-        
+
         if output:
-        
+
             regras_validacao_form = disabled_form_for_print(regras_validacao_form)
-        
-        
-        
+
+
+
         if pk:
-        
+
             regras_validacao = get_object_or_404(RegrasDeValidacao, id=pk)
-            
-                
+
+
         else:
-        
+
             regras_validacao = None
-            
+
         #regras_validacao_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if tab or 'regras_validacao' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'regras_validacao_salvar'
-            
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'tab': tab,
-            'regras_validacao': regras_validacao, 
-            'regras_validacao_form': regras_validacao_form, 
+            'regras_validacao': regras_validacao,
+            'regras_validacao_form': regras_validacao_form,
             'modulos': ['mensageiro', ],
             'paginas': ['regras_validacao', ],
             'data': datetime.datetime.now(),
             'tabelas_secundarias': tabelas_secundarias,
             #regras_validacao_salvar_custom_variaveis_context#
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='regras_validacao_salvar.html',
@@ -169,26 +169,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True})
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('regras_validacao_salvar.html', context)
             filename = "regras_validacao.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-        
+
         else:
-        
+
             return render(request, 'regras_validacao_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -198,7 +198,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['regras_validacao', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-            'permissao_negada.html', 
+
+        return render(request,
+            'permissao_negada.html',
             context)

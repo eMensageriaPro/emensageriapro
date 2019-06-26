@@ -67,142 +67,142 @@ from emensageriapro.s1250.forms import form_s1250_infoprocj
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s1250_tpaquis = get_object_or_404(s1250tpAquis, id=pk)
         evento_dados = s1250_tpaquis.evento()
 
     if request.user.has_perm('s1250.can_see_s1250tpAquis'):
-        
+
         if pk:
-        
+
             s1250_tpaquis_form = form_s1250_tpaquis(
-                request.POST or None, 
+                request.POST or None,
                 instance=s1250_tpaquis)
-                                         
+                     
         else:
-        
+
             s1250_tpaquis_form = form_s1250_tpaquis(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s1250_tpaquis_form.is_valid():
-            
+
                 obj = s1250_tpaquis_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1250_tpaquis', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1250_tpaquis',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s1250_tpaquis), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s1250_tpaquis),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1250_tpaquis', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1250_tpaquis',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's1250_tpaquis_apagar', 
-                    's1250_tpaquis_salvar', 
+                    's1250_tpaquis_apagar',
+                    's1250_tpaquis_salvar',
                     's1250_tpaquis'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's1250_tpaquis_salvar', 
+                        's1250_tpaquis_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s1250_tpaquis_form = disabled_form_fields(
-            s1250_tpaquis_form, 
+            s1250_tpaquis_form,
             request.user.has_perm('s1250.change_s1250tpAquis'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s1250_tpaquis_form = disabled_form_fields(s1250_tpaquis_form, 0)
-                
+
         if output:
-        
+
             s1250_tpaquis_form = disabled_form_for_print(s1250_tpaquis_form)
-            
-        
-        s1250_ideprodutor_lista = None 
-        s1250_ideprodutor_form = None 
-        s1250_infoprocj_lista = None 
-        s1250_infoprocj_form = None 
-        
+
+
+        s1250_ideprodutor_lista = None
+        s1250_ideprodutor_form = None
+        s1250_infoprocj_lista = None
+        s1250_infoprocj_form = None
+
         if pk:
-        
+
             s1250_tpaquis = get_object_or_404(s1250tpAquis, id=pk)
-            
+
             s1250_ideprodutor_form = form_s1250_ideprodutor(
                 initial={ 's1250_tpaquis': s1250_tpaquis })
             s1250_ideprodutor_form.fields['s1250_tpaquis'].widget.attrs['readonly'] = True
             s1250_ideprodutor_lista = s1250ideProdutor.objects.\
                 filter(s1250_tpaquis_id=s1250_tpaquis.id).all()
-                
+
             s1250_infoprocj_form = form_s1250_infoprocj(
                 initial={ 's1250_tpaquis': s1250_tpaquis })
             s1250_infoprocj_form.fields['s1250_tpaquis'].widget.attrs['readonly'] = True
             s1250_infoprocj_lista = s1250infoProcJ.objects.\
                 filter(s1250_tpaquis_id=s1250_tpaquis.id).all()
-                
-                
+
+
         else:
-        
+
             s1250_tpaquis = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's1250_tpaquis' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's1250_tpaquis_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1250_tpaquis').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's1250_tpaquis': s1250_tpaquis, 
-            's1250_tpaquis_form': s1250_tpaquis_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's1250_tpaquis': s1250_tpaquis,
+            's1250_tpaquis_form': s1250_tpaquis_form,
             'modulos': ['s1250', ],
             'paginas': ['s1250_tpaquis', ],
             's1250_ideprodutor_form': s1250_ideprodutor_form,
@@ -214,11 +214,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s1250_tpaquis_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1250_tpaquis_salvar.html',
@@ -236,26 +236,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s1250_tpaquis_salvar.html', context)
             filename = "s1250_tpaquis.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's1250_tpaquis_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -265,7 +265,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1250_tpaquis', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

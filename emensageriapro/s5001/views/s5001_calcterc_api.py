@@ -44,12 +44,12 @@ from emensageriapro.s5001.models import s5001calcTerc, s5001calcTercSerializer
 
 
 class s5001calcTercList(generics.ListAPIView):
-    
+
     queryset = s5001calcTerc.objects.all()
     serializer_class = s5001calcTercSerializer
 
 
 class s5001calcTercDetail(generics.ListAPIView):
-    
+
     queryset = s5001calcTerc.objects.all()
     serializer_class = s5001calcTercSerializer

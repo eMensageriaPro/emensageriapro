@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s1010_inclusao_ideprocessofgts = get_object_or_404(s1010inclusaoideProcessoFGTS, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s1010_inclusao_ideprocessofgts.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s1010_inclusao_ideprocessofgts), indent=4, sort_keys=True, default=str)
             obj = s1010inclusaoideProcessoFGTS.objects.get(id=pk)
             obj.delete(request=request)
             #s1010_inclusao_ideprocessofgts_apagar_custom
             #s1010_inclusao_ideprocessofgts_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's1010_inclusao_ideprocessofgts', 
-                             pk, 
+                             '',
+                             's1010_inclusao_ideprocessofgts',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's1010_inclusao_ideprocessofgts' in request.session['return_page']:
-        
+
             return redirect('s1010_inclusao_ideprocessofgts')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s1010', ],
         'paginas': ['s1010_inclusao_ideprocessofgts', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's1010_inclusao_ideprocessofgts_apagar.html', 
+
+    return render(request,
+                  's1010_inclusao_ideprocessofgts_apagar.html',
                   context)

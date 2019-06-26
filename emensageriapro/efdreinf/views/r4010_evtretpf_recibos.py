@@ -87,37 +87,37 @@ def recibo(request, pk, output=None):
         r4010_evtretpf = get_object_or_404(
             r4010evtRetPF,
             id=pk)
-            
+
         if r4010_evtretpf.retornos_r5001_id:
             r5001_evttotal = get_object_or_404(r5001evtTotal,
                 id=r4010_evtretpf.retornos_r5001_id)
         else:
             r5001_evttotal = None
-            
+
         if r4010_evtretpf.retornos_r5011_id:
             r5011_evttotalcontrib = get_object_or_404(r5011evtTotalContrib,
                 id=r4010_evtretpf.retornos_r5011_id)
         else:
             r5011_evttotalcontrib = None
-            
+
         if r4010_evtretpf.retornos_r9001_id:
             r9001_evttotal = get_object_or_404(r9001evtTotal,
                 id=r4010_evtretpf.retornos_r9001_id)
         else:
             r9001_evttotal = None
-            
+
         if r4010_evtretpf.retornos_r9002_id:
             r9002_evtret = get_object_or_404(r9002evtRet,
                 id=r4010_evtretpf.retornos_r9002_id)
         else:
             r9002_evtret = None
-            
+
         if r4010_evtretpf.retornos_r9011_id:
             r9011_evttotalcontrib = get_object_or_404(r9011evtTotalContrib,
                 id=r4010_evtretpf.retornos_r9011_id)
         else:
             r9011_evttotalcontrib = None
-            
+
         if r4010_evtretpf.retornos_r9012_id:
             r9012_evtretcons = get_object_or_404(r9012evtRetCons,
                 id=r4010_evtretpf.retornos_r9012_id)
@@ -139,29 +139,29 @@ def recibo(request, pk, output=None):
         }
 
         if output == 'xls':
-        
+
             response =  render_to_response('r4010_evtretpf_recibo_pdf.html', context)
             filename = "%s.xls" % r4010_evtretpf.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response =  render_to_response('r4010_evtretpf_recibo_csv.html', context)
             filename = "%s.csv" % r4010_evtretpf.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
-            
+
             return response
 
         elif output == 'pdf':
-        
+
             return render_to_pdf('r4010_evtretpf_recibo_pdf.html', context)
 
         else:
-        
+
             return render(request, 'r4010_evtretpf_recibo_pdf.html', context)
 
     else:
@@ -169,5 +169,5 @@ def recibo(request, pk, output=None):
         context = {
             'data': datetime.now(),
         }
-        
+
         return render(request, 'permissao_negada.html', context)

@@ -65,134 +65,134 @@ from emensageriapro.s2241.forms import form_s2241_iniinsalperic_infoamb
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2241_iniinsalperic = get_object_or_404(s2241iniInsalPeric, id=pk)
         evento_dados = s2241_iniinsalperic.evento()
 
     if request.user.has_perm('s2241.can_see_s2241iniInsalPeric'):
-        
+
         if pk:
-        
+
             s2241_iniinsalperic_form = form_s2241_iniinsalperic(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2241_iniinsalperic)
-                                         
+                     
         else:
-        
+
             s2241_iniinsalperic_form = form_s2241_iniinsalperic(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2241_iniinsalperic_form.is_valid():
-            
+
                 obj = s2241_iniinsalperic_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2241_iniinsalperic', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2241_iniinsalperic',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2241_iniinsalperic), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2241_iniinsalperic),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2241_iniinsalperic', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2241_iniinsalperic',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2241_iniinsalperic_apagar', 
-                    's2241_iniinsalperic_salvar', 
+                    's2241_iniinsalperic_apagar',
+                    's2241_iniinsalperic_salvar',
                     's2241_iniinsalperic'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2241_iniinsalperic_salvar', 
+                        's2241_iniinsalperic_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2241_iniinsalperic_form = disabled_form_fields(
-            s2241_iniinsalperic_form, 
+            s2241_iniinsalperic_form,
             request.user.has_perm('s2241.change_s2241iniInsalPeric'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2241_iniinsalperic_form = disabled_form_fields(s2241_iniinsalperic_form, 0)
-                
+
         if output:
-        
+
             s2241_iniinsalperic_form = disabled_form_for_print(s2241_iniinsalperic_form)
-            
-        
-        s2241_iniinsalperic_infoamb_lista = None 
-        s2241_iniinsalperic_infoamb_form = None 
-        
+
+
+        s2241_iniinsalperic_infoamb_lista = None
+        s2241_iniinsalperic_infoamb_form = None
+
         if pk:
-        
+
             s2241_iniinsalperic = get_object_or_404(s2241iniInsalPeric, id=pk)
-            
+
             s2241_iniinsalperic_infoamb_form = form_s2241_iniinsalperic_infoamb(
                 initial={ 's2241_iniinsalperic': s2241_iniinsalperic })
             s2241_iniinsalperic_infoamb_form.fields['s2241_iniinsalperic'].widget.attrs['readonly'] = True
             s2241_iniinsalperic_infoamb_lista = s2241iniInsalPericinfoAmb.objects.\
                 filter(s2241_iniinsalperic_id=s2241_iniinsalperic.id).all()
-                
-                
+
+
         else:
-        
+
             s2241_iniinsalperic = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2241_iniinsalperic' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2241_iniinsalperic_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2241_iniinsalperic').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2241_iniinsalperic': s2241_iniinsalperic, 
-            's2241_iniinsalperic_form': s2241_iniinsalperic_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2241_iniinsalperic': s2241_iniinsalperic,
+            's2241_iniinsalperic_form': s2241_iniinsalperic_form,
             'modulos': ['s2241', ],
             'paginas': ['s2241_iniinsalperic', ],
             's2241_iniinsalperic_infoamb_form': s2241_iniinsalperic_infoamb_form,
@@ -202,11 +202,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2241_iniinsalperic_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2241_iniinsalperic_salvar.html',
@@ -224,26 +224,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2241_iniinsalperic_salvar.html', context)
             filename = "s2241_iniinsalperic.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2241_iniinsalperic_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -253,7 +253,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2241_iniinsalperic', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

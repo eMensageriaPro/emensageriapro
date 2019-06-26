@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s1050evtTabHorTur'):
-    
+
         s1050_evttabhortur = get_object_or_404(s1050evtTabHorTur, id=pk)
         s1050_evttabhortur_lista = s1050evtTabHorTur.objects.filter(id=pk).all()
 
-        
+
         s1050_inclusao_lista = s1050inclusao.objects.filter(s1050_evttabhortur_id__in = listar_ids(s1050_evttabhortur_lista) ).all()
         s1050_inclusao_horariointervalo_lista = s1050inclusaohorarioIntervalo.objects.filter(s1050_inclusao_id__in = listar_ids(s1050_inclusao_lista) ).all()
         s1050_alteracao_lista = s1050alteracao.objects.filter(s1050_evttabhortur_id__in = listar_ids(s1050_evttabhortur_lista) ).all()
@@ -105,9 +105,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1050_evttabhortur_verificar.html',
@@ -124,20 +124,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s1050_evttabhortur_verificar.html', context)
             filename = "%s.xls" % s1050_evttabhortur.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s1050_evttabhortur_verificar.html', context)
             filename = "%s.csv" % s1050_evttabhortur.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -145,7 +145,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's1050_evttabhortur_verificar.html', context)
 
     else:

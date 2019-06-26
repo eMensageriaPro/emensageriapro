@@ -62,11 +62,11 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('controle_de_acesso.can_see_Usuarios'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_foto': 0,
             'show_username': 1,
             'show_password': 0,
@@ -80,58 +80,58 @@ def listar(request, output=None):
             'show_date_joined': 0,
             'show_config_perfis': 1,
             'show_name': 1, }
-            
+
         post = False
         #ANTES-POST-LISTAGEM
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            
-            dict_fields = { 
+
+            dict_fields = {
                 'username__icontains': 'username__icontains',
                 'first_name__icontains': 'first_name__icontains',
                 'last_name__icontains': 'last_name__icontains',
                 'email__icontains': 'email__icontains',
                 'config_perfis__icontains': 'config_perfis__icontains',
                 'name__icontains': 'name__icontains', }
-                
+
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     'username__icontains': 'username__icontains',
                     'first_name__icontains': 'first_name__icontains',
                     'last_name__icontains': 'last_name__icontains',
                     'email__icontains': 'email__icontains',
                     'config_perfis__icontains': 'config_perfis__icontains',
                     'name__icontains': 'name__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
-        
+
         usuarios_lista = Usuarios.objects.filter(**dict_qs).exclude(id=0).all()
-        
+
         if not post and len(usuarios_lista) > 100:
-        
+
             filtrar = True
             usuarios_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #usuarios_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            'usuarios_lista': usuarios_lista, 
+            'usuarios_lista': usuarios_lista,
             'modulos': ['controle_de_acesso', ],
             'paginas': ['usuarios', ],
             'dict_fields': dict_fields,
@@ -140,11 +140,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='usuarios_listar.html',
@@ -162,37 +162,37 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('usuarios_listar.html', context)
             filename = "usuarios.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('csv/usuarios.csv', context)
             filename = "usuarios.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
-            
+
             return response
-        
+
         else:
-        
+
             return render(request, 'usuarios_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -200,7 +200,7 @@ def listar(request, output=None):
             'modulos': ['controle_de_acesso', ],
             'paginas': ['usuarios', ],
         }
-        
-        return render(request, 
-            'permissao_negada.html', 
+
+        return render(request,
+            'permissao_negada.html',
             context)

@@ -62,10 +62,10 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('esocial.can_see_s2240evtExpRisco'):
-    
+
         filtrar = False
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_esocial': 0,
             'show_evtexprisco': 0,
             'show_identidade': 1,
@@ -96,13 +96,13 @@ def listar(request, output=None):
             'show_arquivo_original': 0,
             'show_arquivo': 0,
             'show_status': 1, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 'esocial': 'esocial',
                 'evtexprisco': 'evtexprisco',
                 'identidade__icontains': 'identidade__icontains',
@@ -127,15 +127,15 @@ def listar(request, output=None):
                 'versao__icontains': 'versao__icontains',
                 'transmissor_lote_esocial__icontains': 'transmissor_lote_esocial__icontains',
                 'status__icontains': 'status__icontains', }
-                
+
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-                dict_fields = { 
+                dict_fields = {
                     'esocial': 'esocial',
                     'evtexprisco': 'evtexprisco',
                     'identidade__icontains': 'identidade__icontains',
@@ -162,18 +162,18 @@ def listar(request, output=None):
                     'status__icontains': 'status__icontains', }
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         s2240_evtexprisco_lista = s2240evtExpRisco.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(s2240_evtexprisco_lista) > 100:
             filtrar = True
             s2240_evtexprisco_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s2240_evtexprisco_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -186,12 +186,12 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-        
+
         if output == 'pdf':
-        
+
             from emensageriapro.functions import render_to_pdf
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2240_evtexprisco_listar.html',
@@ -211,31 +211,31 @@ def listar(request, output=None):
                              "no-stop-slow-scripts": True},
             )
             return response
-            
+
         elif output == 'xls':
-        
+
             response = render_to_response('s2240_evtexprisco_listar.html', context)
             filename = "s2240_evtexprisco.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         elif output == 'csv':
-        
+
             response = render_to_response('csv/s2240_evtexprisco.csv', context)
             filename = "s2240_evtexprisco.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2240_evtexprisco_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'data': datetime.datetime.now(),

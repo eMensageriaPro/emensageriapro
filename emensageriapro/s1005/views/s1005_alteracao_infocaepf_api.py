@@ -60,13 +60,13 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class s1005alteracaoinfoCaepfList(generics.ListCreateAPIView):
-    
+
     queryset = s1005alteracaoinfoCaepf.objects.all()
     serializer_class = s1005alteracaoinfoCaepfSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
@@ -74,12 +74,12 @@ class s1005alteracaoinfoCaepfList(generics.ListCreateAPIView):
 
 
 class s1005alteracaoinfoCaepfDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = s1005alteracaoinfoCaepf.objects.all()
     serializer_class = s1005alteracaoinfoCaepfSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

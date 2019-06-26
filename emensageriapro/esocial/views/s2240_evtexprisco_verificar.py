@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s2240evtExpRisco'):
-    
+
         s2240_evtexprisco = get_object_or_404(s2240evtExpRisco, id=pk)
         s2240_evtexprisco_lista = s2240evtExpRisco.objects.filter(id=pk).all()
 
-        
+
         s2240_iniexprisco_infoamb_lista = s2240iniExpRiscoinfoAmb.objects.filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).all()
         s2240_iniexprisco_ativpericinsal_lista = s2240iniExpRiscoativPericInsal.objects.filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).all()
         s2240_iniexprisco_fatrisco_lista = s2240iniExpRiscofatRisco.objects.filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).all()
@@ -123,9 +123,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2240_evtexprisco_verificar.html',
@@ -142,20 +142,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s2240_evtexprisco_verificar.html', context)
             filename = "%s.xls" % s2240_evtexprisco.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s2240_evtexprisco_verificar.html', context)
             filename = "%s.csv" % s2240_evtexprisco.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -163,7 +163,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's2240_evtexprisco_verificar.html', context)
 
     else:

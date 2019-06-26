@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s2230_iniafastamento = get_object_or_404(s2230iniAfastamento, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s2230_iniafastamento.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2230_iniafastamento), indent=4, sort_keys=True, default=str)
             obj = s2230iniAfastamento.objects.get(id=pk)
             obj.delete(request=request)
             #s2230_iniafastamento_apagar_custom
             #s2230_iniafastamento_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's2230_iniafastamento', 
-                             pk, 
+                             '',
+                             's2230_iniafastamento',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's2230_iniafastamento' in request.session['return_page']:
-        
+
             return redirect('s2230_iniafastamento')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s2230', ],
         'paginas': ['s2230_iniafastamento', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's2230_iniafastamento_apagar.html', 
+
+    return render(request,
+                  's2230_iniafastamento_apagar.html',
                   context)

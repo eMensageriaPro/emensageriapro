@@ -44,12 +44,12 @@ from emensageriapro.s5003.models import s5003infoTrabDps, s5003infoTrabDpsSerial
 
 
 class s5003infoTrabDpsList(generics.ListAPIView):
-    
+
     queryset = s5003infoTrabDps.objects.all()
     serializer_class = s5003infoTrabDpsSerializer
 
 
 class s5003infoTrabDpsDetail(generics.ListAPIView):
-    
+
     queryset = s5003infoTrabDps.objects.all()
     serializer_class = s5003infoTrabDpsSerializer

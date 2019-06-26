@@ -60,13 +60,13 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class s1000alteracaoinfoOrgInternacionalList(generics.ListCreateAPIView):
-    
+
     queryset = s1000alteracaoinfoOrgInternacional.objects.all()
     serializer_class = s1000alteracaoinfoOrgInternacionalSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
@@ -74,12 +74,12 @@ class s1000alteracaoinfoOrgInternacionalList(generics.ListCreateAPIView):
 
 
 class s1000alteracaoinfoOrgInternacionalDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = s1000alteracaoinfoOrgInternacional.objects.all()
     serializer_class = s1000alteracaoinfoOrgInternacionalSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

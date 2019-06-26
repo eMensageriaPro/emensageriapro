@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
 
     r2060_tipocod = get_object_or_404(r2060tipoCod, id=pk)
-    
+
     dados_evento = {}
     dados_evento = r2060_tipocod.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(r2060_tipocod), indent=4, sort_keys=True, default=str)
             obj = r2060tipoCod.objects.get(id=pk)
             obj.delete(request=request)
             #r2060_tipocod_apagar_custom
             #r2060_tipocod_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             'r2060_tipocod', 
-                             pk, 
+                             '',
+                             'r2060_tipocod',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 'r2060_tipocod' in request.session['return_page']:
-        
+
             return redirect('r2060_tipocod')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['r2060', ],
         'paginas': ['r2060_tipocod', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  'r2060_tipocod_apagar.html', 
+
+    return render(request,
+                  'r2060_tipocod_apagar.html',
                   context)

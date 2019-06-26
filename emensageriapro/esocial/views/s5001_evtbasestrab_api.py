@@ -44,13 +44,13 @@ from emensageriapro.esocial.models import s5001evtBasesTrab, s5001evtBasesTrabSe
 
 
 class s5001evtBasesTrabList(generics.ListAPIView):
-    
+
     queryset = s5001evtBasesTrab.objects.all()
     serializer_class = s5001evtBasesTrabSerializer
 
 
 
 class s5001evtBasesTrabDetail(generics.ListAPIView):
-    
+
     queryset = s5001evtBasesTrab.objects.all()
     serializer_class = s5001evtBasesTrabSerializer

@@ -58,17 +58,17 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, pk):
-        
+
     import json
     from django.forms.models import model_to_dict
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
+
     r2010_evtservtom = get_object_or_404(r2010evtServTom, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         if r2010_evtservtom.status == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(r2010_evtservtom), indent=4, sort_keys=True, default=str)
             obj = r2010evtServTom.objects.get(id=pk)
             obj.delete(request=request)
@@ -76,29 +76,29 @@ def apagar(request, pk):
             #r2010_evtservtom_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
-                             '', 
+                             '',
                              'r2010_evtservtom', pk, request.user.id, 3)
         else:
-        
-            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é
                                         possível apagar os eventos com status "Cadastrado"!''')
-            
+
         if 'r2010_evtservtom' in request.session['return_page']:
-        
+
             return redirect('r2010_evtservtom')
-            
+
         else:
-        
-            return redirect(request.session['return_page'], 
+
+            return redirect(request.session['return_page'],
                             pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
-        'pk': pk, 
-        'r2010_evtservtom': r2010_evtservtom, 
+        'pk': pk,
+        'r2010_evtservtom': r2010_evtservtom,
         'data': datetime.datetime.now(),
         'modulos': ['efdreinf', ],
         'paginas': ['r2010_evtservtom', ],
     }
-    
+
     return render(request, 'r2010_evtservtom_apagar.html', context)

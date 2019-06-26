@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s2306evtTSVAltContr'):
-    
+
         s2306_evttsvaltcontr = get_object_or_404(s2306evtTSVAltContr, id=pk)
         s2306_evttsvaltcontr_lista = s2306evtTSVAltContr.objects.filter(id=pk).all()
 
-        
+
         s2306_infocomplementares_lista = s2306infoComplementares.objects.filter(s2306_evttsvaltcontr_id__in = listar_ids(s2306_evttsvaltcontr_lista) ).all()
         s2306_cargofuncao_lista = s2306cargoFuncao.objects.filter(s2306_infocomplementares_id__in = listar_ids(s2306_infocomplementares_lista) ).all()
         s2306_remuneracao_lista = s2306remuneracao.objects.filter(s2306_infocomplementares_id__in = listar_ids(s2306_infocomplementares_lista) ).all()
@@ -107,9 +107,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2306_evttsvaltcontr_verificar.html',
@@ -126,20 +126,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s2306_evttsvaltcontr_verificar.html', context)
             filename = "%s.xls" % s2306_evttsvaltcontr.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s2306_evttsvaltcontr_verificar.html', context)
             filename = "%s.csv" % s2306_evttsvaltcontr.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -147,7 +147,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's2306_evttsvaltcontr_verificar.html', context)
 
     else:

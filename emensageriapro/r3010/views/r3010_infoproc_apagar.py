@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
 
     r3010_infoproc = get_object_or_404(r3010infoProc, id=pk)
-    
+
     dados_evento = {}
     dados_evento = r3010_infoproc.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(r3010_infoproc), indent=4, sort_keys=True, default=str)
             obj = r3010infoProc.objects.get(id=pk)
             obj.delete(request=request)
             #r3010_infoproc_apagar_custom
             #r3010_infoproc_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             'r3010_infoproc', 
-                             pk, 
+                             '',
+                             'r3010_infoproc',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 'r3010_infoproc' in request.session['return_page']:
-        
+
             return redirect('r3010_infoproc')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['r3010', ],
         'paginas': ['r3010_infoproc', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  'r3010_infoproc_apagar.html', 
+
+    return render(request,
+                  'r3010_infoproc_apagar.html',
                   context)

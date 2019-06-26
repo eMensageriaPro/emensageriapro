@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s1000evtInfoEmpregador'):
-    
+
         s1000_evtinfoempregador = get_object_or_404(s1000evtInfoEmpregador, id=pk)
         s1000_evtinfoempregador_lista = s1000evtInfoEmpregador.objects.filter(id=pk).all()
 
-        
+
         s1000_inclusao_lista = s1000inclusao.objects.filter(s1000_evtinfoempregador_id__in = listar_ids(s1000_evtinfoempregador_lista) ).all()
         s1000_inclusao_dadosisencao_lista = s1000inclusaodadosIsencao.objects.filter(s1000_inclusao_id__in = listar_ids(s1000_inclusao_lista) ).all()
         s1000_inclusao_infoop_lista = s1000inclusaoinfoOP.objects.filter(s1000_inclusao_id__in = listar_ids(s1000_inclusao_lista) ).all()
@@ -133,9 +133,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1000_evtinfoempregador_verificar.html',
@@ -152,20 +152,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s1000_evtinfoempregador_verificar.html', context)
             filename = "%s.xls" % s1000_evtinfoempregador.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s1000_evtinfoempregador_verificar.html', context)
             filename = "%s.csv" % s1000_evtinfoempregador.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -173,7 +173,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's1000_evtinfoempregador_verificar.html', context)
 
     else:

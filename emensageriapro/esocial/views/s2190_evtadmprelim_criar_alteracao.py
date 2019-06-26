@@ -77,7 +77,7 @@ def criar_alteracao(request, pk):
     from emensageriapro.esocial.views.s2190_evtadmprelim_importar import read_s2190_evtadmprelim_string
     from emensageriapro.esocial.views.s2190_evtadmprelim_gerar_xml import gerar_xml_s2190
     from emensageriapro.functions import identidade_evento
-    
+
     if request.user.has_perm('esocial.can_create_change_s2190evtAdmPrelim'):
 
         s2190_evtadmprelim = get_object_or_404(
@@ -99,14 +99,14 @@ def criar_alteracao(request, pk):
             's2190_evtadmprelim', dados['id'], request.user.id, 1)
 
         messages.success(request, u'Evento de alteração criado com sucesso!')
-        
+
         return_pk = dados['id']
-        
+
         return redirect('s2190_evtadmprelim_salvar', pk=return_pk)
-        
+
     else:
-    
-        messages.error(request, u'''Você não possui permissão para criar evento de alteração a partir de evento existente. 
+
+        messages.error(request, u'''Você não possui permissão para criar evento de alteração a partir de evento existente.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
         return redirect('s2190_evtadmprelim_salvar', pk=pk)

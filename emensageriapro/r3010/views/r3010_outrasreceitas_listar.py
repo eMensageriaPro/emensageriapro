@@ -62,62 +62,62 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('r3010.can_see_r3010outrasReceitas'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_r3010_boletim': 1,
             'show_tpreceita': 1,
             'show_vlrreceita': 1,
             'show_descreceita': 1, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 'r3010_boletim__icontains': 'r3010_boletim__icontains',
                 'tpreceita__icontains': 'tpreceita__icontains',
                 'vlrreceita__icontains': 'vlrreceita__icontains',
                 'descreceita__icontains': 'descreceita__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     'r3010_boletim__icontains': 'r3010_boletim__icontains',
                     'tpreceita__icontains': 'tpreceita__icontains',
                     'vlrreceita__icontains': 'vlrreceita__icontains',
                     'descreceita__icontains': 'descreceita__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         r3010_outrasreceitas_lista = r3010outrasReceitas.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(r3010_outrasreceitas_lista) > 100:
-        
+
             filtrar = True
             r3010_outrasreceitas_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #r3010_outrasreceitas_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            'r3010_outrasreceitas_lista': r3010_outrasreceitas_lista, 
+            'r3010_outrasreceitas_lista': r3010_outrasreceitas_lista,
             'modulos': ['r3010', ],
             'paginas': ['r3010_outrasreceitas', ],
             'dict_fields': dict_fields,
@@ -126,11 +126,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r3010_outrasreceitas_listar.html',
@@ -148,33 +148,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('r3010_outrasreceitas_listar.html', context)
             filename = "r3010_outrasreceitas.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/r3010_outrasreceitas.csv', context)
             filename = "r3010_outrasreceitas.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 'r3010_outrasreceitas_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -182,7 +182,7 @@ def listar(request, output=None):
             'modulos': ['r3010', ],
             'paginas': ['r3010_outrasreceitas', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

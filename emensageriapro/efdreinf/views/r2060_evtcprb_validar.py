@@ -23,7 +23,7 @@
         mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
         COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
         Licença Pública Geral GNU Affero para mais detalhes.
-    
+
         Este programa é software livre: você pode redistribuí-lo e / ou modificar
         sob os termos da licença GNU Affero General Public License como
         publicado pela Free Software Foundation, seja versão 3 do
@@ -46,206 +46,206 @@ def validacoes_r2060_evtcprb(arquivo):
 
     from emensageriapro.mensageiro.functions.funcoes_validacoes import validar_campo
     import untangle
-    
+
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
     validacoes_lista = []
     xmlns = doc.Reinf['xmlns'].split('/')
     evtCPRB = doc.Reinf.evtCPRB
     #variaveis
-    
+
     if 'ideEvento' in dir(evtCPRB.ideEvento):
         for ideEvento in evtCPRB.ideEvento:
-            
+
             if 'indRetif' in dir(ideEvento):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEvento.indRetif', 
-                                                  ideEvento.indRetif.cdata, 
+                                                  'ideEvento.indRetif',
+                                                  ideEvento.indRetif.cdata,
                                                   1, u'1, 2')
-            
+
             if 'nrRecibo' in dir(ideEvento):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEvento.nrRecibo', 
-                                                  ideEvento.nrRecibo.cdata, 
+                                                  'ideEvento.nrRecibo',
+                                                  ideEvento.nrRecibo.cdata,
                                                   0, u'None')
-            
+
             if 'perApur' in dir(ideEvento):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEvento.perApur', 
-                                                  ideEvento.perApur.cdata, 
+                                                  'ideEvento.perApur',
+                                                  ideEvento.perApur.cdata,
                                                   1, u'None')
-            
+
             if 'tpAmb' in dir(ideEvento):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEvento.tpAmb', 
-                                                  ideEvento.tpAmb.cdata, 
+                                                  'ideEvento.tpAmb',
+                                                  ideEvento.tpAmb.cdata,
                                                   1, u'1, 2')
-            
+
             if 'procEmi' in dir(ideEvento):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEvento.procEmi', 
-                                                  ideEvento.procEmi.cdata, 
+                                                  'ideEvento.procEmi',
+                                                  ideEvento.procEmi.cdata,
                                                   1, u'1, 2')
-            
+
             if 'verProc' in dir(ideEvento):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideEvento.verProc', 
-                                                  ideEvento.verProc.cdata, 
+                                                  'ideEvento.verProc',
+                                                  ideEvento.verProc.cdata,
                                                   1, u'None')
-    
+
     if 'ideContri' in dir(evtCPRB.ideContri):
         for ideContri in evtCPRB.ideContri:
-            
+
             if 'tpInsc' in dir(ideContri):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideContri.tpInsc', 
-                                                  ideContri.tpInsc.cdata, 
+                                                  'ideContri.tpInsc',
+                                                  ideContri.tpInsc.cdata,
                                                   1, u'None')
-            
+
             if 'nrInsc' in dir(ideContri):
                 validacoes_lista = validar_campo( validacoes_lista,
-                                                  'ideContri.nrInsc', 
-                                                  ideContri.nrInsc.cdata, 
+                                                  'ideContri.nrInsc',
+                                                  ideContri.nrInsc.cdata,
                                                   1, u'None')
-    
+
     if 'infoCPRB' in dir(evtCPRB.infoCPRB):
         for infoCPRB in evtCPRB.infoCPRB:
-            
+
             if 'ideEstab' in dir(infoCPRB.ideEstab):
                 for ideEstab in infoCPRB.ideEstab:
-                    
+
                     if 'tpInscEstab' in dir(ideEstab):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'ideEstab.tpInscEstab', 
-                                                          ideEstab.tpInscEstab.cdata, 
+                                                          'ideEstab.tpInscEstab',
+                                                          ideEstab.tpInscEstab.cdata,
                                                           1, u'None')
-                    
+
                     if 'nrInscEstab' in dir(ideEstab):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'ideEstab.nrInscEstab', 
-                                                          ideEstab.nrInscEstab.cdata, 
+                                                          'ideEstab.nrInscEstab',
+                                                          ideEstab.nrInscEstab.cdata,
                                                           1, u'None')
-                    
+
                     if 'vlrRecBrutaTotal' in dir(ideEstab):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'ideEstab.vlrRecBrutaTotal', 
-                                                          ideEstab.vlrRecBrutaTotal.cdata, 
+                                                          'ideEstab.vlrRecBrutaTotal',
+                                                          ideEstab.vlrRecBrutaTotal.cdata,
                                                           1, u'None')
-                    
+
                     if 'vlrCPApurTotal' in dir(ideEstab):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'ideEstab.vlrCPApurTotal', 
-                                                          ideEstab.vlrCPApurTotal.cdata, 
+                                                          'ideEstab.vlrCPApurTotal',
+                                                          ideEstab.vlrCPApurTotal.cdata,
                                                           1, u'None')
-                    
+
                     if 'vlrCPRBSuspTotal' in dir(ideEstab):
                         validacoes_lista = validar_campo( validacoes_lista,
-                                                          'ideEstab.vlrCPRBSuspTotal', 
-                                                          ideEstab.vlrCPRBSuspTotal.cdata, 
+                                                          'ideEstab.vlrCPRBSuspTotal',
+                                                          ideEstab.vlrCPRBSuspTotal.cdata,
                                                           0, u'None')
-                    
+
                     if 'tipoCod' in dir(ideEstab.tipoCod):
                         for tipoCod in ideEstab.tipoCod:
-                            
+        
                             if 'codAtivEcon' in dir(tipoCod):
                                 validacoes_lista = validar_campo( validacoes_lista,
-                                                                  'tipoCod.codAtivEcon', 
-                                                                  tipoCod.codAtivEcon.cdata, 
+                                                                  'tipoCod.codAtivEcon',
+                                                                  tipoCod.codAtivEcon.cdata,
                                                                   1, u'I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, II, II, II, II, II, II, II, II, II, II, II, II, II, II, II, II, II, II, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, IV, IV, IV, IV, IV, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, III, IV, IV, IV, IV, IV, IV')
-                            
+        
                             if 'vlrRecBrutaAtiv' in dir(tipoCod):
                                 validacoes_lista = validar_campo( validacoes_lista,
-                                                                  'tipoCod.vlrRecBrutaAtiv', 
-                                                                  tipoCod.vlrRecBrutaAtiv.cdata, 
+                                                                  'tipoCod.vlrRecBrutaAtiv',
+                                                                  tipoCod.vlrRecBrutaAtiv.cdata,
                                                                   1, u'None')
-                            
+        
                             if 'vlrExcRecBruta' in dir(tipoCod):
                                 validacoes_lista = validar_campo( validacoes_lista,
-                                                                  'tipoCod.vlrExcRecBruta', 
-                                                                  tipoCod.vlrExcRecBruta.cdata, 
+                                                                  'tipoCod.vlrExcRecBruta',
+                                                                  tipoCod.vlrExcRecBruta.cdata,
                                                                   1, u'None')
-                            
+        
                             if 'vlrAdicRecBruta' in dir(tipoCod):
                                 validacoes_lista = validar_campo( validacoes_lista,
-                                                                  'tipoCod.vlrAdicRecBruta', 
-                                                                  tipoCod.vlrAdicRecBruta.cdata, 
+                                                                  'tipoCod.vlrAdicRecBruta',
+                                                                  tipoCod.vlrAdicRecBruta.cdata,
                                                                   1, u'None')
-                            
+        
                             if 'vlrBcCPRB' in dir(tipoCod):
                                 validacoes_lista = validar_campo( validacoes_lista,
-                                                                  'tipoCod.vlrBcCPRB', 
-                                                                  tipoCod.vlrBcCPRB.cdata, 
+                                                                  'tipoCod.vlrBcCPRB',
+                                                                  tipoCod.vlrBcCPRB.cdata,
                                                                   1, u'None')
-                            
+        
                             if 'vlrCPRBapur' in dir(tipoCod):
                                 validacoes_lista = validar_campo( validacoes_lista,
-                                                                  'tipoCod.vlrCPRBapur', 
-                                                                  tipoCod.vlrCPRBapur.cdata, 
+                                                                  'tipoCod.vlrCPRBapur',
+                                                                  tipoCod.vlrCPRBapur.cdata,
                                                                   0, u'None')
-                            
+        
                             if 'observ' in dir(tipoCod):
                                 validacoes_lista = validar_campo( validacoes_lista,
-                                                                  'tipoCod.observ', 
-                                                                  tipoCod.observ.cdata, 
+                                                                  'tipoCod.observ',
+                                                                  tipoCod.observ.cdata,
                                                                   0, u'None')
-                            
+        
                             if 'tipoAjuste' in dir(tipoCod.tipoAjuste):
                                 for tipoAjuste in tipoCod.tipoAjuste:
-                                    
+                
                                     if 'tpAjuste' in dir(tipoAjuste):
                                         validacoes_lista = validar_campo( validacoes_lista,
-                                                                          'tipoAjuste.tpAjuste', 
-                                                                          tipoAjuste.tpAjuste.cdata, 
+                                                                          'tipoAjuste.tpAjuste',
+                                                                          tipoAjuste.tpAjuste.cdata,
                                                                           1, u'0, 1')
-                                    
+                
                                     if 'codAjuste' in dir(tipoAjuste):
                                         validacoes_lista = validar_campo( validacoes_lista,
-                                                                          'tipoAjuste.codAjuste', 
-                                                                          tipoAjuste.codAjuste.cdata, 
+                                                                          'tipoAjuste.codAjuste',
+                                                                          tipoAjuste.codAjuste.cdata,
                                                                           1, u'1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11')
-                                    
+                
                                     if 'vlrAjuste' in dir(tipoAjuste):
                                         validacoes_lista = validar_campo( validacoes_lista,
-                                                                          'tipoAjuste.vlrAjuste', 
-                                                                          tipoAjuste.vlrAjuste.cdata, 
+                                                                          'tipoAjuste.vlrAjuste',
+                                                                          tipoAjuste.vlrAjuste.cdata,
                                                                           1, u'None')
-                                    
+                
                                     if 'descAjuste' in dir(tipoAjuste):
                                         validacoes_lista = validar_campo( validacoes_lista,
-                                                                          'tipoAjuste.descAjuste', 
-                                                                          tipoAjuste.descAjuste.cdata, 
+                                                                          'tipoAjuste.descAjuste',
+                                                                          tipoAjuste.descAjuste.cdata,
                                                                           1, u'None')
-                                    
+                
                                     if 'dtAjuste' in dir(tipoAjuste):
                                         validacoes_lista = validar_campo( validacoes_lista,
-                                                                          'tipoAjuste.dtAjuste', 
-                                                                          tipoAjuste.dtAjuste.cdata, 
+                                                                          'tipoAjuste.dtAjuste',
+                                                                          tipoAjuste.dtAjuste.cdata,
                                                                           1, u'None')
-                            
+        
                             if 'infoProc' in dir(tipoCod.infoProc):
                                 for infoProc in tipoCod.infoProc:
-                                    
+                
                                     if 'tpProc' in dir(infoProc):
                                         validacoes_lista = validar_campo( validacoes_lista,
-                                                                          'infoProc.tpProc', 
-                                                                          infoProc.tpProc.cdata, 
+                                                                          'infoProc.tpProc',
+                                                                          infoProc.tpProc.cdata,
                                                                           1, u'1, 2')
-                                    
+                
                                     if 'nrProc' in dir(infoProc):
                                         validacoes_lista = validar_campo( validacoes_lista,
-                                                                          'infoProc.nrProc', 
-                                                                          infoProc.nrProc.cdata, 
+                                                                          'infoProc.nrProc',
+                                                                          infoProc.nrProc.cdata,
                                                                           1, u'None')
-                                    
+                
                                     if 'codSusp' in dir(infoProc):
                                         validacoes_lista = validar_campo( validacoes_lista,
-                                                                          'infoProc.codSusp', 
-                                                                          infoProc.codSusp.cdata, 
+                                                                          'infoProc.codSusp',
+                                                                          infoProc.codSusp.cdata,
                                                                           0, u'None')
-                                    
+                
                                     if 'vlrCPRBSusp' in dir(infoProc):
                                         validacoes_lista = validar_campo( validacoes_lista,
-                                                                          'infoProc.vlrCPRBSusp', 
-                                                                          infoProc.vlrCPRBSusp.cdata, 
+                                                                          'infoProc.vlrCPRBSusp',
+                                                                          infoProc.vlrCPRBSusp.cdata,
                                                                           1, u'None')
     return validacoes_lista

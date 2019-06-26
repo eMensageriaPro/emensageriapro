@@ -78,9 +78,9 @@ def criar_exclusao(request, pk):
     from emensageriapro.efdreinf.views.r2030_evtassocdesprec_importar import read_r2030_evtassocdesprec_string
     from emensageriapro.efdreinf.views.r2030_evtassocdesprec_gerar_xml import gerar_xml_r2030
     from emensageriapro.functions import identidade_evento
-    
+
     if request.user.has_perm('efdreinf.can_create_delete_r2030evtAssocDespRec'):
-    
+
         r2030_evtassocdesprec = get_object_or_404(
             r2030evtAssocDespRec,
             id=pk)
@@ -101,14 +101,14 @@ def criar_exclusao(request, pk):
             'r2030_evtassocdesprec', dados['id'], request.user.id, 1)
 
         messages.success(request, u'Evento de exclusão criado com sucesso!')
-        
+
         return_pk = dados['id']
-        
+
         return redirect('r2030_evtassocdesprec_salvar', pk=return_pk)
-        
+
     else:
-    
-        messages.error(request, u'''Você não possui permissão para criar evento de exclusão a partir de evento existente. 
+
+        messages.error(request, u'''Você não possui permissão para criar evento de exclusão a partir de evento existente.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
         return redirect('r2030_evtassocdesprec_salvar', pk=pk)

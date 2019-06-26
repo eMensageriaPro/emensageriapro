@@ -44,12 +44,12 @@ from emensageriapro.s5013.models import s5013infoBasePerAntE, s5013infoBasePerAn
 
 
 class s5013infoBasePerAntEList(generics.ListAPIView):
-    
+
     queryset = s5013infoBasePerAntE.objects.all()
     serializer_class = s5013infoBasePerAntESerializer
 
 
 class s5013infoBasePerAntEDetail(generics.ListAPIView):
-    
+
     queryset = s5013infoBasePerAntE.objects.all()
     serializer_class = s5013infoBasePerAntESerializer

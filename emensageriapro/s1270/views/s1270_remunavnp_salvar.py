@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s1270_remunavnp = get_object_or_404(s1270remunAvNP, id=pk)
         evento_dados = s1270_remunavnp.evento()
 
     if request.user.has_perm('s1270.can_see_s1270remunAvNP'):
-        
+
         if pk:
-        
+
             s1270_remunavnp_form = form_s1270_remunavnp(
-                request.POST or None, 
+                request.POST or None,
                 instance=s1270_remunavnp)
-                                         
+                     
         else:
-        
+
             s1270_remunavnp_form = form_s1270_remunavnp(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s1270_remunavnp_form.is_valid():
-            
+
                 obj = s1270_remunavnp_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1270_remunavnp', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1270_remunavnp',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s1270_remunavnp), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s1270_remunavnp),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1270_remunavnp', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1270_remunavnp',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's1270_remunavnp_apagar', 
-                    's1270_remunavnp_salvar', 
+                    's1270_remunavnp_apagar',
+                    's1270_remunavnp_salvar',
                     's1270_remunavnp'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's1270_remunavnp_salvar', 
+                        's1270_remunavnp_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s1270_remunavnp_form = disabled_form_fields(
-            s1270_remunavnp_form, 
+            s1270_remunavnp_form,
             request.user.has_perm('s1270.change_s1270remunAvNP'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s1270_remunavnp_form = disabled_form_fields(s1270_remunavnp_form, 0)
-                
+
         if output:
-        
+
             s1270_remunavnp_form = disabled_form_for_print(s1270_remunavnp_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s1270_remunavnp = get_object_or_404(s1270remunAvNP, id=pk)
-            
-                
+
+
         else:
-        
+
             s1270_remunavnp = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's1270_remunavnp' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's1270_remunavnp_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1270_remunavnp').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's1270_remunavnp': s1270_remunavnp, 
-            's1270_remunavnp_form': s1270_remunavnp_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's1270_remunavnp': s1270_remunavnp,
+            's1270_remunavnp_form': s1270_remunavnp_form,
             'modulos': ['s1270', ],
             'paginas': ['s1270_remunavnp', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s1270_remunavnp_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1270_remunavnp_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s1270_remunavnp_salvar.html', context)
             filename = "s1270_remunavnp.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's1270_remunavnp_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1270_remunavnp', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

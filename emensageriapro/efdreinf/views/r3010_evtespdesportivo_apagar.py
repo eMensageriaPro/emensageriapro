@@ -58,17 +58,17 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, pk):
-        
+
     import json
     from django.forms.models import model_to_dict
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
+
     r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         if r3010_evtespdesportivo.status == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(r3010_evtespdesportivo), indent=4, sort_keys=True, default=str)
             obj = r3010evtEspDesportivo.objects.get(id=pk)
             obj.delete(request=request)
@@ -76,29 +76,29 @@ def apagar(request, pk):
             #r3010_evtespdesportivo_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
-                             '', 
+                             '',
                              'r3010_evtespdesportivo', pk, request.user.id, 3)
         else:
-        
-            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é
                                         possível apagar os eventos com status "Cadastrado"!''')
-            
+
         if 'r3010_evtespdesportivo' in request.session['return_page']:
-        
+
             return redirect('r3010_evtespdesportivo')
-            
+
         else:
-        
-            return redirect(request.session['return_page'], 
+
+            return redirect(request.session['return_page'],
                             pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
-        'pk': pk, 
-        'r3010_evtespdesportivo': r3010_evtespdesportivo, 
+        'pk': pk,
+        'r3010_evtespdesportivo': r3010_evtespdesportivo,
         'data': datetime.datetime.now(),
         'modulos': ['efdreinf', ],
         'paginas': ['r3010_evtespdesportivo', ],
     }
-    
+
     return render(request, 'r3010_evtespdesportivo_apagar.html', context)

@@ -77,182 +77,182 @@ from emensageriapro.r4010.forms import form_r4010_infoprocjud
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         r4010_infopgto = get_object_or_404(r4010infoPgto, id=pk)
         evento_dados = r4010_infopgto.evento()
 
     if request.user.has_perm('r4010.can_see_r4010infoPgto'):
-        
+
         if pk:
-        
+
             r4010_infopgto_form = form_r4010_infopgto(
-                request.POST or None, 
+                request.POST or None,
                 instance=r4010_infopgto)
-                                         
+                     
         else:
-        
+
             r4010_infopgto_form = form_r4010_infopgto(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if r4010_infopgto_form.is_valid():
-            
+
                 obj = r4010_infopgto_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r4010_infopgto', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r4010_infopgto',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(r4010_infopgto), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(r4010_infopgto),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r4010_infopgto', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r4010_infopgto',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    'r4010_infopgto_apagar', 
-                    'r4010_infopgto_salvar', 
+                    'r4010_infopgto_apagar',
+                    'r4010_infopgto_salvar',
                     'r4010_infopgto'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'r4010_infopgto_salvar', 
+                        'r4010_infopgto_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         r4010_infopgto_form = disabled_form_fields(
-            r4010_infopgto_form, 
+            r4010_infopgto_form,
             request.user.has_perm('r4010.change_r4010infoPgto'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 r4010_infopgto_form = disabled_form_fields(r4010_infopgto_form, 0)
-                
+
         if output:
-        
+
             r4010_infopgto_form = disabled_form_for_print(r4010_infopgto_form)
-            
-        
-        r4010_fci_lista = None 
-        r4010_fci_form = None 
-        r4010_scp_lista = None 
-        r4010_scp_form = None 
-        r4010_detded_lista = None 
-        r4010_detded_form = None 
-        r4010_rendisento_lista = None 
-        r4010_rendisento_form = None 
-        r4010_infoprocret_lista = None 
-        r4010_infoprocret_form = None 
-        r4010_inforra_lista = None 
-        r4010_inforra_form = None 
-        r4010_infoprocjud_lista = None 
-        r4010_infoprocjud_form = None 
-        
+
+
+        r4010_fci_lista = None
+        r4010_fci_form = None
+        r4010_scp_lista = None
+        r4010_scp_form = None
+        r4010_detded_lista = None
+        r4010_detded_form = None
+        r4010_rendisento_lista = None
+        r4010_rendisento_form = None
+        r4010_infoprocret_lista = None
+        r4010_infoprocret_form = None
+        r4010_inforra_lista = None
+        r4010_inforra_form = None
+        r4010_infoprocjud_lista = None
+        r4010_infoprocjud_form = None
+
         if pk:
-        
+
             r4010_infopgto = get_object_or_404(r4010infoPgto, id=pk)
-            
+
             r4010_fci_form = form_r4010_fci(
                 initial={ 'r4010_infopgto': r4010_infopgto })
             r4010_fci_form.fields['r4010_infopgto'].widget.attrs['readonly'] = True
             r4010_fci_lista = r4010FCI.objects.\
                 filter(r4010_infopgto_id=r4010_infopgto.id).all()
-                
+
             r4010_scp_form = form_r4010_scp(
                 initial={ 'r4010_infopgto': r4010_infopgto })
             r4010_scp_form.fields['r4010_infopgto'].widget.attrs['readonly'] = True
             r4010_scp_lista = r4010SCP.objects.\
                 filter(r4010_infopgto_id=r4010_infopgto.id).all()
-                
+
             r4010_detded_form = form_r4010_detded(
                 initial={ 'r4010_infopgto': r4010_infopgto })
             r4010_detded_form.fields['r4010_infopgto'].widget.attrs['readonly'] = True
             r4010_detded_lista = r4010detDed.objects.\
                 filter(r4010_infopgto_id=r4010_infopgto.id).all()
-                
+
             r4010_rendisento_form = form_r4010_rendisento(
                 initial={ 'r4010_infopgto': r4010_infopgto })
             r4010_rendisento_form.fields['r4010_infopgto'].widget.attrs['readonly'] = True
             r4010_rendisento_lista = r4010rendIsento.objects.\
                 filter(r4010_infopgto_id=r4010_infopgto.id).all()
-                
+
             r4010_infoprocret_form = form_r4010_infoprocret(
                 initial={ 'r4010_infopgto': r4010_infopgto })
             r4010_infoprocret_form.fields['r4010_infopgto'].widget.attrs['readonly'] = True
             r4010_infoprocret_lista = r4010infoProcRet.objects.\
                 filter(r4010_infopgto_id=r4010_infopgto.id).all()
-                
+
             r4010_inforra_form = form_r4010_inforra(
                 initial={ 'r4010_infopgto': r4010_infopgto })
             r4010_inforra_form.fields['r4010_infopgto'].widget.attrs['readonly'] = True
             r4010_inforra_lista = r4010infoRRA.objects.\
                 filter(r4010_infopgto_id=r4010_infopgto.id).all()
-                
+
             r4010_infoprocjud_form = form_r4010_infoprocjud(
                 initial={ 'r4010_infopgto': r4010_infopgto })
             r4010_infoprocjud_form.fields['r4010_infopgto'].widget.attrs['readonly'] = True
             r4010_infoprocjud_lista = r4010infoProcJud.objects.\
                 filter(r4010_infopgto_id=r4010_infopgto.id).all()
-                
-                
+
+
         else:
-        
+
             r4010_infopgto = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 'r4010_infopgto' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'r4010_infopgto_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r4010_infopgto').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            'r4010_infopgto': r4010_infopgto, 
-            'r4010_infopgto_form': r4010_infopgto_form, 
+            'controle_alteracoes': controle_alteracoes,
+            'r4010_infopgto': r4010_infopgto,
+            'r4010_infopgto_form': r4010_infopgto_form,
             'modulos': ['r4010', ],
             'paginas': ['r4010_infopgto', ],
             'r4010_fci_form': r4010_fci_form,
@@ -274,11 +274,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #r4010_infopgto_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r4010_infopgto_salvar.html',
@@ -296,26 +296,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('r4010_infopgto_salvar.html', context)
             filename = "r4010_infopgto.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 'r4010_infopgto_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -325,7 +325,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r4010_infopgto', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

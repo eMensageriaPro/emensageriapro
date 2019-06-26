@@ -68,4 +68,6 @@ def admin_media(request):
         'STATUS_EVENTO_ENVIADO': STATUS_EVENTO_ENVIADO,
         'STATUS_EVENTO_ENVIADO_ERRO': STATUS_EVENTO_ENVIADO_ERRO,
         'STATUS_EVENTO_PROCESSADO': STATUS_EVENTO_PROCESSADO,
+        'modulos': [],
+        'output': None,
     }

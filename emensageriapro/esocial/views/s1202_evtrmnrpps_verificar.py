@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s1202evtRmnRPPS'):
-    
+
         s1202_evtrmnrpps = get_object_or_404(s1202evtRmnRPPS, id=pk)
         s1202_evtrmnrpps_lista = s1202evtRmnRPPS.objects.filter(id=pk).all()
 
-        
+
         s1202_procjudtrab_lista = s1202procJudTrab.objects.filter(s1202_evtrmnrpps_id__in = listar_ids(s1202_evtrmnrpps_lista) ).all()
         s1202_dmdev_lista = s1202dmDev.objects.filter(s1202_evtrmnrpps_id__in = listar_ids(s1202_evtrmnrpps_lista) ).all()
         s1202_infoperapur_lista = s1202infoPerApur.objects.filter(s1202_dmdev_id__in = listar_ids(s1202_dmdev_lista) ).all()
@@ -123,9 +123,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1202_evtrmnrpps_verificar.html',
@@ -142,20 +142,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s1202_evtrmnrpps_verificar.html', context)
             filename = "%s.xls" % s1202_evtrmnrpps.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s1202_evtrmnrpps_verificar.html', context)
             filename = "%s.csv" % s1202_evtrmnrpps.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -163,7 +163,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's1202_evtrmnrpps_verificar.html', context)
 
     else:

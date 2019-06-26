@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s1207_infoperapur_itensremun = get_object_or_404(s1207infoPerApuritensRemun, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s1207_infoperapur_itensremun.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s1207_infoperapur_itensremun), indent=4, sort_keys=True, default=str)
             obj = s1207infoPerApuritensRemun.objects.get(id=pk)
             obj.delete(request=request)
             #s1207_infoperapur_itensremun_apagar_custom
             #s1207_infoperapur_itensremun_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's1207_infoperapur_itensremun', 
-                             pk, 
+                             '',
+                             's1207_infoperapur_itensremun',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's1207_infoperapur_itensremun' in request.session['return_page']:
-        
+
             return redirect('s1207_infoperapur_itensremun')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s1207', ],
         'paginas': ['s1207_infoperapur_itensremun', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's1207_infoperapur_itensremun_apagar.html', 
+
+    return render(request,
+                  's1207_infoperapur_itensremun_apagar.html',
                   context)

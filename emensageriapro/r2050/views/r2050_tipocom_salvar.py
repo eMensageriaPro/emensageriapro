@@ -65,134 +65,134 @@ from emensageriapro.r2050.forms import form_r2050_infoproc
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         r2050_tipocom = get_object_or_404(r2050tipoCom, id=pk)
         evento_dados = r2050_tipocom.evento()
 
     if request.user.has_perm('r2050.can_see_r2050tipoCom'):
-        
+
         if pk:
-        
+
             r2050_tipocom_form = form_r2050_tipocom(
-                request.POST or None, 
+                request.POST or None,
                 instance=r2050_tipocom)
-                                         
+                     
         else:
-        
+
             r2050_tipocom_form = form_r2050_tipocom(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if r2050_tipocom_form.is_valid():
-            
+
                 obj = r2050_tipocom_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r2050_tipocom', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r2050_tipocom',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(r2050_tipocom), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(r2050_tipocom),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r2050_tipocom', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r2050_tipocom',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    'r2050_tipocom_apagar', 
-                    'r2050_tipocom_salvar', 
+                    'r2050_tipocom_apagar',
+                    'r2050_tipocom_salvar',
                     'r2050_tipocom'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'r2050_tipocom_salvar', 
+                        'r2050_tipocom_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         r2050_tipocom_form = disabled_form_fields(
-            r2050_tipocom_form, 
+            r2050_tipocom_form,
             request.user.has_perm('r2050.change_r2050tipoCom'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 r2050_tipocom_form = disabled_form_fields(r2050_tipocom_form, 0)
-                
+
         if output:
-        
+
             r2050_tipocom_form = disabled_form_for_print(r2050_tipocom_form)
-            
-        
-        r2050_infoproc_lista = None 
-        r2050_infoproc_form = None 
-        
+
+
+        r2050_infoproc_lista = None
+        r2050_infoproc_form = None
+
         if pk:
-        
+
             r2050_tipocom = get_object_or_404(r2050tipoCom, id=pk)
-            
+
             r2050_infoproc_form = form_r2050_infoproc(
                 initial={ 'r2050_tipocom': r2050_tipocom })
             r2050_infoproc_form.fields['r2050_tipocom'].widget.attrs['readonly'] = True
             r2050_infoproc_lista = r2050infoProc.objects.\
                 filter(r2050_tipocom_id=r2050_tipocom.id).all()
-                
-                
+
+
         else:
-        
+
             r2050_tipocom = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 'r2050_tipocom' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'r2050_tipocom_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r2050_tipocom').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            'r2050_tipocom': r2050_tipocom, 
-            'r2050_tipocom_form': r2050_tipocom_form, 
+            'controle_alteracoes': controle_alteracoes,
+            'r2050_tipocom': r2050_tipocom,
+            'r2050_tipocom_form': r2050_tipocom_form,
             'modulos': ['r2050', ],
             'paginas': ['r2050_tipocom', ],
             'r2050_infoproc_form': r2050_infoproc_form,
@@ -202,11 +202,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #r2050_tipocom_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r2050_tipocom_salvar.html',
@@ -224,26 +224,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('r2050_tipocom_salvar.html', context)
             filename = "r2050_tipocom.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 'r2050_tipocom_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -253,7 +253,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r2050_tipocom', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

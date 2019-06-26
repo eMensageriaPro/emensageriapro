@@ -95,34 +95,34 @@ def gerar_xml_s1250(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         s1250_evtaqprod_lista = s1250evtAqProd.objects. \
             filter(id=pk).all()
-            
-        
+
+
         s1250_tpaquis_lista = s1250tpAquis.objects. \
             filter(s1250_evtaqprod_id__in=listar_ids(s1250_evtaqprod_lista)).all()
-        
+
         s1250_ideprodutor_lista = s1250ideProdutor.objects. \
             filter(s1250_tpaquis_id__in=listar_ids(s1250_tpaquis_lista)).all()
-        
+
         s1250_nfs_lista = s1250nfs.objects. \
             filter(s1250_ideprodutor_id__in=listar_ids(s1250_ideprodutor_lista)).all()
-        
+
         s1250_infoprocjud_lista = s1250infoProcJud.objects. \
             filter(s1250_ideprodutor_id__in=listar_ids(s1250_ideprodutor_lista)).all()
-        
+
         s1250_infoprocj_lista = s1250infoProcJ.objects. \
             filter(s1250_tpaquis_id__in=listar_ids(s1250_tpaquis_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -154,14 +154,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1250_evtaqprod.arquivo_original:
-    
+
         xml = ler_arquivo(s1250_evtaqprod.arquivo)
 
     else:
         xml = gerar_xml_s1250(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -182,16 +182,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 s1250evtAqProd,
                 s1250_evtaqprod)
-        
+
         s1250_evtaqprod = get_object_or_404(
             s1250evtAqProd,
             id=pk)
-        
+
         xml_assinado = assinar_esocial(
-            request, 
-            xml, 
+            request,
+            xml,
             s1250_evtaqprod.transmissor_lote_esocial_id)
-        
+
     if s1250_evtaqprod.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -205,11 +205,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s1250_evtaqprod/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -222,5 +222,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

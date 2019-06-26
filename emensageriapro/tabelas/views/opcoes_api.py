@@ -60,13 +60,13 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class OpcoesList(generics.ListCreateAPIView):
-    
+
     queryset = Opcoes.objects.all()
     serializer_class = OpcoesSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
@@ -74,18 +74,18 @@ class OpcoesList(generics.ListCreateAPIView):
 
 
 class OpcoesDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = Opcoes.objects.all()
     serializer_class = OpcoesSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
-    
-    
+
+
 
 @login_required
 def json_search(request, pk, search):
@@ -94,33 +94,33 @@ def json_search(request, pk, search):
     import operator
     from django.db.models import Count, Q
     import urllib
-    
+
     search = urllib.unquote(search)
     lista = search.split(" ")
     dicionario = {}
-    
+
     if search.strip():
-    
+
         try:
             query = reduce(operator.and_, ((Q(titulo__icontains=item) | Q(codigo__icontains=item)) for item in lista))
             lista = Opcoes.objects.filter(opcoes_id=pk).filter(query).all()
-            
+
         except:
             query = reduce(operator.and_, ((Q(descricao__icontains=item) | Q(codigo__icontains=item)) for item in lista))
             lista = Opcoes.objects.filter(opcoes_id=pk).filter(query).all()
-            
+
     else:
         lista = Opcoes.objects.filter(opcoes_id=pk).all()
 
     lista_opcoes = []
-    
+
     for a in lista:
-    
+
         dic = {}
         dic['key'] = a.codigo
         dic['value'] = '%s - %s' % (a.codigo, a.titulo)
         lista_opcoes.append(dic)
-        
+
     dicionario['opcoes'] = lista_opcoes
-    
+
     return JsonResponse(dicionario)

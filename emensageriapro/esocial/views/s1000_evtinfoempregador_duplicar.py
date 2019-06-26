@@ -78,39 +78,39 @@ def duplicar(request, pk):
     from emensageriapro.esocial.views.s1000_evtinfoempregador_importar import read_s1000_evtinfoempregador_string
     from emensageriapro.esocial.views.s1000_evtinfoempregador_gerar_xml import gerar_xml_s1000
     from emensageriapro.functions import identidade_evento
-    
+
     if request.user.has_perm('esocial.can_duplicate_s1000evtInfoEmpregador'):
 
         if pk:
-    
+
             s1000_evtinfoempregador = get_object_or_404(
                 s1000evtInfoEmpregador,
                 id=pk)
-    
+
             texto = gerar_xml_s1000(request, pk, versao="|")
             dados = read_s1000_evtinfoempregador_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s1000_evtinfoempregador)
-    
+
             s1000evtInfoEmpregador.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,
                        arquivo_original=0,
                        arquivo='')
-    
+
             gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1000_evtinfoempregador.identidade),
                 's1000_evtinfoempregador', dados['id'], request.user.id, 1)
-    
+
             messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
             return_pk = dados['id']
-            
+
             return redirect('s1000_evtinfoempregador_salvar', pk=return_pk)
-    
+
         messages.error(request, 'Erro ao duplicar evento!')
-        
+
         return redirect('s1000_evtinfoempregador_salvar', pk=pk)
-        
+
     else:
-    
-        messages.error(request, u'''Você não possui permissão para duplicar o evento. 
+
+        messages.error(request, u'''Você não possui permissão para duplicar o evento.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
         return redirect('s1000_evtinfoempregador_salvar', pk=pk)

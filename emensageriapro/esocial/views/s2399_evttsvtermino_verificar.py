@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s2399evtTSVTermino'):
-    
+
         s2399_evttsvtermino = get_object_or_404(s2399evtTSVTermino, id=pk)
         s2399_evttsvtermino_lista = s2399evtTSVTermino.objects.filter(id=pk).all()
 
-        
+
         s2399_mudancacpf_lista = s2399mudancaCPF.objects.filter(s2399_evttsvtermino_id__in = listar_ids(s2399_evttsvtermino_lista) ).all()
         s2399_verbasresc_lista = s2399verbasResc.objects.filter(s2399_evttsvtermino_id__in = listar_ids(s2399_evttsvtermino_lista) ).all()
         s2399_dmdev_lista = s2399dmDev.objects.filter(s2399_verbasresc_id__in = listar_ids(s2399_verbasresc_lista) ).all()
@@ -121,9 +121,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2399_evttsvtermino_verificar.html',
@@ -140,20 +140,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s2399_evttsvtermino_verificar.html', context)
             filename = "%s.xls" % s2399_evttsvtermino.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s2399_evttsvtermino_verificar.html', context)
             filename = "%s.csv" % s2399_evttsvtermino.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -161,7 +161,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's2399_evttsvtermino_verificar.html', context)
 
     else:

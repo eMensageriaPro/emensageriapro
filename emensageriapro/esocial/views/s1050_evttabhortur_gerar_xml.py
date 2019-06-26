@@ -95,37 +95,37 @@ def gerar_xml_s1050(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         s1050_evttabhortur_lista = s1050evtTabHorTur.objects. \
             filter(id=pk).all()
-            
-        
+
+
         s1050_inclusao_lista = s1050inclusao.objects. \
             filter(s1050_evttabhortur_id__in=listar_ids(s1050_evttabhortur_lista)).all()
-        
+
         s1050_inclusao_horariointervalo_lista = s1050inclusaohorarioIntervalo.objects. \
             filter(s1050_inclusao_id__in=listar_ids(s1050_inclusao_lista)).all()
-        
+
         s1050_alteracao_lista = s1050alteracao.objects. \
             filter(s1050_evttabhortur_id__in=listar_ids(s1050_evttabhortur_lista)).all()
-        
+
         s1050_alteracao_horariointervalo_lista = s1050alteracaohorarioIntervalo.objects. \
             filter(s1050_alteracao_id__in=listar_ids(s1050_alteracao_lista)).all()
-        
+
         s1050_alteracao_novavalidade_lista = s1050alteracaonovaValidade.objects. \
             filter(s1050_alteracao_id__in=listar_ids(s1050_alteracao_lista)).all()
-        
+
         s1050_exclusao_lista = s1050exclusao.objects. \
             filter(s1050_evttabhortur_id__in=listar_ids(s1050_evttabhortur_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -158,14 +158,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1050_evttabhortur.arquivo_original:
-    
+
         xml = ler_arquivo(s1050_evttabhortur.arquivo)
 
     else:
         xml = gerar_xml_s1050(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -186,16 +186,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 s1050evtTabHorTur,
                 s1050_evttabhortur)
-        
+
         s1050_evttabhortur = get_object_or_404(
             s1050evtTabHorTur,
             id=pk)
-        
+
         xml_assinado = assinar_esocial(
-            request, 
-            xml, 
+            request,
+            xml,
             s1050_evttabhortur.transmissor_lote_esocial_id)
-        
+
     if s1050_evttabhortur.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -209,11 +209,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s1050_evttabhortur/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -226,5 +226,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

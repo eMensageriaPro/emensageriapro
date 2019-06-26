@@ -74,11 +74,11 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('efdreinf.can_see_r3010evtEspDesportivo'):
-    
+
         r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo, id=pk)
         r3010_evtespdesportivo_lista = r3010evtEspDesportivo.objects.filter(id=pk).all()
 
-        
+
         r3010_boletim_lista = r3010boletim.objects.filter(r3010_evtespdesportivo_id__in = listar_ids(r3010_evtespdesportivo_lista) ).all()
         r3010_receitaingressos_lista = r3010receitaIngressos.objects.filter(r3010_boletim_id__in = listar_ids(r3010_boletim_lista) ).all()
         r3010_outrasreceitas_lista = r3010outrasReceitas.objects.filter(r3010_boletim_id__in = listar_ids(r3010_boletim_lista) ).all()
@@ -101,9 +101,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r3010_evtespdesportivo_verificar.html',
@@ -120,20 +120,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('r3010_evtespdesportivo_verificar.html', context)
             filename = "%s.xls" % r3010_evtespdesportivo.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('r3010_evtespdesportivo_verificar.html', context)
             filename = "%s.csv" % r3010_evtespdesportivo.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -141,7 +141,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 'r3010_evtespdesportivo_verificar.html', context)
 
     else:

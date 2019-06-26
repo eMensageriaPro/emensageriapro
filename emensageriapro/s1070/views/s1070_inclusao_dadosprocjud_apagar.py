@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s1070_inclusao_dadosprocjud = get_object_or_404(s1070inclusaodadosProcJud, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s1070_inclusao_dadosprocjud.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s1070_inclusao_dadosprocjud), indent=4, sort_keys=True, default=str)
             obj = s1070inclusaodadosProcJud.objects.get(id=pk)
             obj.delete(request=request)
             #s1070_inclusao_dadosprocjud_apagar_custom
             #s1070_inclusao_dadosprocjud_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's1070_inclusao_dadosprocjud', 
-                             pk, 
+                             '',
+                             's1070_inclusao_dadosprocjud',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's1070_inclusao_dadosprocjud' in request.session['return_page']:
-        
+
             return redirect('s1070_inclusao_dadosprocjud')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s1070', ],
         'paginas': ['s1070_inclusao_dadosprocjud', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's1070_inclusao_dadosprocjud_apagar.html', 
+
+    return render(request,
+                  's1070_inclusao_dadosprocjud_apagar.html',
                   context)

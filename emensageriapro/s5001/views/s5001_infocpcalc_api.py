@@ -44,12 +44,12 @@ from emensageriapro.s5001.models import s5001infoCpCalc, s5001infoCpCalcSerializ
 
 
 class s5001infoCpCalcList(generics.ListAPIView):
-    
+
     queryset = s5001infoCpCalc.objects.all()
     serializer_class = s5001infoCpCalcSerializer
 
 
 class s5001infoCpCalcDetail(generics.ListAPIView):
-    
+
     queryset = s5001infoCpCalc.objects.all()
     serializer_class = s5001infoCpCalcSerializer

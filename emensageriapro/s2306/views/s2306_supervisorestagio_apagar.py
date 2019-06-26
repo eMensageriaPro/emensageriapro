@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s2306_supervisorestagio = get_object_or_404(s2306supervisorEstagio, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s2306_supervisorestagio.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2306_supervisorestagio), indent=4, sort_keys=True, default=str)
             obj = s2306supervisorEstagio.objects.get(id=pk)
             obj.delete(request=request)
             #s2306_supervisorestagio_apagar_custom
             #s2306_supervisorestagio_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's2306_supervisorestagio', 
-                             pk, 
+                             '',
+                             's2306_supervisorestagio',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's2306_supervisorestagio' in request.session['return_page']:
-        
+
             return redirect('s2306_supervisorestagio')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s2306', ],
         'paginas': ['s2306_supervisorestagio', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's2306_supervisorestagio_apagar.html', 
+
+    return render(request,
+                  's2306_supervisorestagio_apagar.html',
                   context)

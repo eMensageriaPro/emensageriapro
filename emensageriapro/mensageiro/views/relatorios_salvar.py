@@ -61,97 +61,97 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def salvar(request, pk=None, tab='master', output=None):
-    
+
     if pk:
-    
+
         relatorios = get_object_or_404(Relatorios, id=pk)
-        
+
     if request.user.has_perm('mensageiro.can_see_Relatorios'):
-        
+
         if pk:
-        
+
             relatorios_form = form_relatorios(request.POST or None, instance=relatorios)
-            
+
         else:
-        
+
             relatorios_form = form_relatorios(request.POST or None)
-            
+
         if request.method == 'POST':
-        
+
             if relatorios_form.is_valid():
-            
+
                 #relatorios_campos_multiple_passo1
-                
-                
+
+
                 obj = relatorios_form.save(request=request)
                 messages.success(request, 'Salvo com sucesso!')
                 #relatorios_campos_multiple_passo2
-                
+
                 if request.session['return_page'] not in (
-                    'relatorios_apagar', 
-                    'relatorios_salvar', 
+                    'relatorios_apagar',
+                    'relatorios_salvar',
                     'relatorios'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'relatorios_salvar', 
+                        'relatorios_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, 'Erro ao salvar!')
-                
+
         relatorios_form = disabled_form_fields(relatorios_form, request.user.has_perm('mensageiro.change_Relatorios'))
         #relatorios_campos_multiple_passo3
-        
+
         if output:
-        
+
             relatorios_form = disabled_form_for_print(relatorios_form)
-        
-        
-        
+
+
+
         if pk:
-        
+
             relatorios = get_object_or_404(Relatorios, id=pk)
-            
-                
+
+
         else:
-        
+
             relatorios = None
-            
+
         #relatorios_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if tab or 'relatorios' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'relatorios_salvar'
-            
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'tab': tab,
-            'relatorios': relatorios, 
-            'relatorios_form': relatorios_form, 
+            'relatorios': relatorios,
+            'relatorios_form': relatorios_form,
             'modulos': ['mensageiro', ],
             'paginas': ['relatorios', ],
             'data': datetime.datetime.now(),
             'tabelas_secundarias': tabelas_secundarias,
             #relatorios_salvar_custom_variaveis_context#
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='relatorios_salvar.html',
@@ -169,26 +169,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True})
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('relatorios_salvar.html', context)
             filename = "relatorios.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-        
+
         else:
-        
+
             return render(request, 'relatorios_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -198,7 +198,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['relatorios', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-            'permissao_negada.html', 
+
+        return render(request,
+            'permissao_negada.html',
             context)

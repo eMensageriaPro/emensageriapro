@@ -62,11 +62,11 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('s1000.can_see_s1000inclusaoinfoOP'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_s1000_inclusao': 1,
             'show_nrsiafi': 1,
             'show_indugrpps': 1,
@@ -75,13 +75,13 @@ def listar(request, output=None):
             'show_vrtetorem': 1,
             'show_ideefr': 1,
             'show_cnpjefr': 0, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 's1000_inclusao__icontains': 's1000_inclusao__icontains',
                 'nrsiafi__icontains': 'nrsiafi__icontains',
                 'indugrpps__icontains': 'indugrpps__icontains',
@@ -90,18 +90,18 @@ def listar(request, output=None):
                 'vrtetorem__icontains': 'vrtetorem__icontains',
                 'ideefr__icontains': 'ideefr__icontains',
                 'cnpjefr__icontains': 'cnpjefr__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     's1000_inclusao__icontains': 's1000_inclusao__icontains',
                     'nrsiafi__icontains': 'nrsiafi__icontains',
                     'indugrpps__icontains': 'indugrpps__icontains',
@@ -110,26 +110,26 @@ def listar(request, output=None):
                     'vrtetorem__icontains': 'vrtetorem__icontains',
                     'ideefr__icontains': 'ideefr__icontains',
                     'cnpjefr__icontains': 'cnpjefr__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         s1000_inclusao_infoop_lista = s1000inclusaoinfoOP.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(s1000_inclusao_infoop_lista) > 100:
-        
+
             filtrar = True
             s1000_inclusao_infoop_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s1000_inclusao_infoop_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            's1000_inclusao_infoop_lista': s1000_inclusao_infoop_lista, 
+            's1000_inclusao_infoop_lista': s1000_inclusao_infoop_lista,
             'modulos': ['s1000', ],
             'paginas': ['s1000_inclusao_infoop', ],
             'dict_fields': dict_fields,
@@ -138,11 +138,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1000_inclusao_infoop_listar.html',
@@ -160,33 +160,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('s1000_inclusao_infoop_listar.html', context)
             filename = "s1000_inclusao_infoop.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/s1000_inclusao_infoop.csv', context)
             filename = "s1000_inclusao_infoop.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 's1000_inclusao_infoop_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -194,7 +194,7 @@ def listar(request, output=None):
             'modulos': ['s1000', ],
             'paginas': ['s1000_inclusao_infoop', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

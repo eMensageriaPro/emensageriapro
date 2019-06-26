@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s3000_idetrabalhador = get_object_or_404(s3000ideTrabalhador, id=pk)
         evento_dados = s3000_idetrabalhador.evento()
 
     if request.user.has_perm('s3000.can_see_s3000ideTrabalhador'):
-        
+
         if pk:
-        
+
             s3000_idetrabalhador_form = form_s3000_idetrabalhador(
-                request.POST or None, 
+                request.POST or None,
                 instance=s3000_idetrabalhador)
-                                         
+                     
         else:
-        
+
             s3000_idetrabalhador_form = form_s3000_idetrabalhador(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s3000_idetrabalhador_form.is_valid():
-            
+
                 obj = s3000_idetrabalhador_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's3000_idetrabalhador', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's3000_idetrabalhador',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s3000_idetrabalhador), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s3000_idetrabalhador),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's3000_idetrabalhador', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's3000_idetrabalhador',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's3000_idetrabalhador_apagar', 
-                    's3000_idetrabalhador_salvar', 
+                    's3000_idetrabalhador_apagar',
+                    's3000_idetrabalhador_salvar',
                     's3000_idetrabalhador'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's3000_idetrabalhador_salvar', 
+                        's3000_idetrabalhador_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s3000_idetrabalhador_form = disabled_form_fields(
-            s3000_idetrabalhador_form, 
+            s3000_idetrabalhador_form,
             request.user.has_perm('s3000.change_s3000ideTrabalhador'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s3000_idetrabalhador_form = disabled_form_fields(s3000_idetrabalhador_form, 0)
-                
+
         if output:
-        
+
             s3000_idetrabalhador_form = disabled_form_for_print(s3000_idetrabalhador_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s3000_idetrabalhador = get_object_or_404(s3000ideTrabalhador, id=pk)
-            
-                
+
+
         else:
-        
+
             s3000_idetrabalhador = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's3000_idetrabalhador' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's3000_idetrabalhador_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s3000_idetrabalhador').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's3000_idetrabalhador': s3000_idetrabalhador, 
-            's3000_idetrabalhador_form': s3000_idetrabalhador_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's3000_idetrabalhador': s3000_idetrabalhador,
+            's3000_idetrabalhador_form': s3000_idetrabalhador_form,
             'modulos': ['s3000', ],
             'paginas': ['s3000_idetrabalhador', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s3000_idetrabalhador_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s3000_idetrabalhador_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s3000_idetrabalhador_salvar.html', context)
             filename = "s3000_idetrabalhador.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's3000_idetrabalhador_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s3000_idetrabalhador', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

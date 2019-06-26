@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s2210_agentecausador = get_object_or_404(s2210agenteCausador, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s2210_agentecausador.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2210_agentecausador), indent=4, sort_keys=True, default=str)
             obj = s2210agenteCausador.objects.get(id=pk)
             obj.delete(request=request)
             #s2210_agentecausador_apagar_custom
             #s2210_agentecausador_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's2210_agentecausador', 
-                             pk, 
+                             '',
+                             's2210_agentecausador',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's2210_agentecausador' in request.session['return_page']:
-        
+
             return redirect('s2210_agentecausador')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s2210', ],
         'paginas': ['s2210_agentecausador', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's2210_agentecausador_apagar.html', 
+
+    return render(request,
+                  's2210_agentecausador_apagar.html',
                   context)

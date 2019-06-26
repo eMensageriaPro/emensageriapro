@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s2399_verbasresc = get_object_or_404(s2399verbasResc, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s2399_verbasresc.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2399_verbasresc), indent=4, sort_keys=True, default=str)
             obj = s2399verbasResc.objects.get(id=pk)
             obj.delete(request=request)
             #s2399_verbasresc_apagar_custom
             #s2399_verbasresc_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's2399_verbasresc', 
-                             pk, 
+                             '',
+                             's2399_verbasresc',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's2399_verbasresc' in request.session['return_page']:
-        
+
             return redirect('s2399_verbasresc')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s2399', ],
         'paginas': ['s2399_verbasresc', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's2399_verbasresc_apagar.html', 
+
+    return render(request,
+                  's2399_verbasresc_apagar.html',
                   context)

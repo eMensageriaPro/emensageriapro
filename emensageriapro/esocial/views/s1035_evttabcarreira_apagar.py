@@ -58,17 +58,17 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, pk):
-        
+
     import json
     from django.forms.models import model_to_dict
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     s1035_evttabcarreira = get_object_or_404(s1035evtTabCarreira, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         if s1035_evttabcarreira.status == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s1035_evttabcarreira), indent=4, sort_keys=True, default=str)
             obj = s1035evtTabCarreira.objects.get(id=pk)
             obj.delete(request=request)
@@ -76,29 +76,29 @@ def apagar(request, pk):
             #s1035_evttabcarreira_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
-                             '', 
+                             '',
                              's1035_evttabcarreira', pk, request.user.id, 3)
         else:
-        
-            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é
                                         possível apagar os eventos com status "Cadastrado"!''')
-            
+
         if 's1035_evttabcarreira' in request.session['return_page']:
-        
+
             return redirect('s1035_evttabcarreira')
-            
+
         else:
-        
-            return redirect(request.session['return_page'], 
+
+            return redirect(request.session['return_page'],
                             pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
-        'pk': pk, 
-        's1035_evttabcarreira': s1035_evttabcarreira, 
+        'pk': pk,
+        's1035_evttabcarreira': s1035_evttabcarreira,
         'data': datetime.datetime.now(),
         'modulos': ['esocial', ],
         'paginas': ['s1035_evttabcarreira', ],
     }
-    
+
     return render(request, 's1035_evttabcarreira_apagar.html', context)

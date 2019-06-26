@@ -44,12 +44,12 @@ from emensageriapro.r9001.models import r9001RCPRB, r9001RCPRBSerializer
 
 
 class r9001RCPRBList(generics.ListAPIView):
-    
+
     queryset = r9001RCPRB.objects.all()
     serializer_class = r9001RCPRBSerializer
 
 
 class r9001RCPRBDetail(generics.ListAPIView):
-    
+
     queryset = r9001RCPRB.objects.all()
     serializer_class = r9001RCPRBSerializer

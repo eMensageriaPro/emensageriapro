@@ -44,12 +44,12 @@ from emensageriapro.s5011.models import s5011infoCREstab, s5011infoCREstabSerial
 
 
 class s5011infoCREstabList(generics.ListAPIView):
-    
+
     queryset = s5011infoCREstab.objects.all()
     serializer_class = s5011infoCREstabSerializer
 
 
 class s5011infoCREstabDetail(generics.ListAPIView):
-    
+
     queryset = s5011infoCREstab.objects.all()
     serializer_class = s5011infoCREstabSerializer

@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s1020_exclusao = get_object_or_404(s1020exclusao, id=pk)
         evento_dados = s1020_exclusao.evento()
 
     if request.user.has_perm('s1020.can_see_s1020exclusao'):
-        
+
         if pk:
-        
+
             s1020_exclusao_form = form_s1020_exclusao(
-                request.POST or None, 
+                request.POST or None,
                 instance=s1020_exclusao)
-                                         
+                     
         else:
-        
+
             s1020_exclusao_form = form_s1020_exclusao(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s1020_exclusao_form.is_valid():
-            
+
                 obj = s1020_exclusao_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1020_exclusao', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1020_exclusao',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s1020_exclusao), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s1020_exclusao),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1020_exclusao', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1020_exclusao',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's1020_exclusao_apagar', 
-                    's1020_exclusao_salvar', 
+                    's1020_exclusao_apagar',
+                    's1020_exclusao_salvar',
                     's1020_exclusao'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's1020_exclusao_salvar', 
+                        's1020_exclusao_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s1020_exclusao_form = disabled_form_fields(
-            s1020_exclusao_form, 
+            s1020_exclusao_form,
             request.user.has_perm('s1020.change_s1020exclusao'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s1020_exclusao_form = disabled_form_fields(s1020_exclusao_form, 0)
-                
+
         if output:
-        
+
             s1020_exclusao_form = disabled_form_for_print(s1020_exclusao_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s1020_exclusao = get_object_or_404(s1020exclusao, id=pk)
-            
-                
+
+
         else:
-        
+
             s1020_exclusao = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's1020_exclusao' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's1020_exclusao_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1020_exclusao').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's1020_exclusao': s1020_exclusao, 
-            's1020_exclusao_form': s1020_exclusao_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's1020_exclusao': s1020_exclusao,
+            's1020_exclusao_form': s1020_exclusao_form,
             'modulos': ['s1020', ],
             'paginas': ['s1020_exclusao', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s1020_exclusao_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1020_exclusao_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s1020_exclusao_salvar.html', context)
             filename = "s1020_exclusao.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's1020_exclusao_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1020_exclusao', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

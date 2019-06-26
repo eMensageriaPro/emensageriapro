@@ -58,17 +58,17 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, pk):
-        
+
     import json
     from django.forms.models import model_to_dict
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
+
     r1000_evtinfocontri = get_object_or_404(r1000evtInfoContri, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         if r1000_evtinfocontri.status == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(r1000_evtinfocontri), indent=4, sort_keys=True, default=str)
             obj = r1000evtInfoContri.objects.get(id=pk)
             obj.delete(request=request)
@@ -76,29 +76,29 @@ def apagar(request, pk):
             #r1000_evtinfocontri_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
-                             '', 
+                             '',
                              'r1000_evtinfocontri', pk, request.user.id, 3)
         else:
-        
-            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é
                                         possível apagar os eventos com status "Cadastrado"!''')
-            
+
         if 'r1000_evtinfocontri' in request.session['return_page']:
-        
+
             return redirect('r1000_evtinfocontri')
-            
+
         else:
-        
-            return redirect(request.session['return_page'], 
+
+            return redirect(request.session['return_page'],
                             pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
-        'pk': pk, 
-        'r1000_evtinfocontri': r1000_evtinfocontri, 
+        'pk': pk,
+        'r1000_evtinfocontri': r1000_evtinfocontri,
         'data': datetime.datetime.now(),
         'modulos': ['efdreinf', ],
         'paginas': ['r1000_evtinfocontri', ],
     }
-    
+
     return render(request, 'r1000_evtinfocontri_apagar.html', context)

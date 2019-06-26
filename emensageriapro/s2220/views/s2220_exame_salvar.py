@@ -63,126 +63,126 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s2220_exame = get_object_or_404(s2220exame, id=pk)
         evento_dados = s2220_exame.evento()
 
     if request.user.has_perm('s2220.can_see_s2220exame'):
-        
+
         if pk:
-        
+
             s2220_exame_form = form_s2220_exame(
-                request.POST or None, 
+                request.POST or None,
                 instance=s2220_exame)
-                                         
+                     
         else:
-        
+
             s2220_exame_form = form_s2220_exame(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s2220_exame_form.is_valid():
-            
+
                 obj = s2220_exame_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2220_exame', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2220_exame',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s2220_exame), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s2220_exame),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's2220_exame', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's2220_exame',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's2220_exame_apagar', 
-                    's2220_exame_salvar', 
+                    's2220_exame_apagar',
+                    's2220_exame_salvar',
                     's2220_exame'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2220_exame_salvar', 
+                        's2220_exame_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s2220_exame_form = disabled_form_fields(
-            s2220_exame_form, 
+            s2220_exame_form,
             request.user.has_perm('s2220.change_s2220exame'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s2220_exame_form = disabled_form_fields(s2220_exame_form, 0)
-                
+
         if output:
-        
+
             s2220_exame_form = disabled_form_for_print(s2220_exame_form)
-            
-        
-        
+
+
+
         if pk:
-        
+
             s2220_exame = get_object_or_404(s2220exame, id=pk)
-            
-                
+
+
         else:
-        
+
             s2220_exame = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's2220_exame' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2220_exame_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2220_exame').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's2220_exame': s2220_exame, 
-            's2220_exame_form': s2220_exame_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's2220_exame': s2220_exame,
+            's2220_exame_form': s2220_exame_form,
             'modulos': ['s2220', ],
             'paginas': ['s2220_exame', ],
             'data': datetime.datetime.now(),
@@ -190,11 +190,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2220_exame_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2220_exame_salvar.html',
@@ -212,26 +212,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s2220_exame_salvar.html', context)
             filename = "s2220_exame.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2220_exame_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -241,7 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2220_exame', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

@@ -78,39 +78,39 @@ def duplicar(request, pk):
     from emensageriapro.esocial.views.s2210_evtcat_importar import read_s2210_evtcat_string
     from emensageriapro.esocial.views.s2210_evtcat_gerar_xml import gerar_xml_s2210
     from emensageriapro.functions import identidade_evento
-    
+
     if request.user.has_perm('esocial.can_duplicate_s2210evtCAT'):
 
         if pk:
-    
+
             s2210_evtcat = get_object_or_404(
                 s2210evtCAT,
                 id=pk)
-    
+
             texto = gerar_xml_s2210(request, pk, versao="|")
             dados = read_s2210_evtcat_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s2210_evtcat)
-    
+
             s2210evtCAT.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,
                        arquivo_original=0,
                        arquivo='')
-    
+
             gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2210_evtcat.identidade),
                 's2210_evtcat', dados['id'], request.user.id, 1)
-    
+
             messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
             return_pk = dados['id']
-            
+
             return redirect('s2210_evtcat_salvar', pk=return_pk)
-    
+
         messages.error(request, 'Erro ao duplicar evento!')
-        
+
         return redirect('s2210_evtcat_salvar', pk=pk)
-        
+
     else:
-    
-        messages.error(request, u'''Você não possui permissão para duplicar o evento. 
+
+        messages.error(request, u'''Você não possui permissão para duplicar o evento.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
         return redirect('s2210_evtcat_salvar', pk=pk)

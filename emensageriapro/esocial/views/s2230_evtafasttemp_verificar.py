@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s2230evtAfastTemp'):
-    
+
         s2230_evtafasttemp = get_object_or_404(s2230evtAfastTemp, id=pk)
         s2230_evtafasttemp_lista = s2230evtAfastTemp.objects.filter(id=pk).all()
 
-        
+
         s2230_iniafastamento_lista = s2230iniAfastamento.objects.filter(s2230_evtafasttemp_id__in = listar_ids(s2230_evtafasttemp_lista) ).all()
         s2230_infoatestado_lista = s2230infoAtestado.objects.filter(s2230_iniafastamento_id__in = listar_ids(s2230_iniafastamento_lista) ).all()
         s2230_emitente_lista = s2230emitente.objects.filter(s2230_infoatestado_id__in = listar_ids(s2230_infoatestado_lista) ).all()
@@ -107,9 +107,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2230_evtafasttemp_verificar.html',
@@ -126,20 +126,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s2230_evtafasttemp_verificar.html', context)
             filename = "%s.xls" % s2230_evtafasttemp.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s2230_evtafasttemp_verificar.html', context)
             filename = "%s.csv" % s2230_evtafasttemp.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -147,7 +147,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's2230_evtafasttemp_verificar.html', context)
 
     else:

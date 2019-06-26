@@ -60,25 +60,25 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class r2070evtPgtosDivsList(generics.ListCreateAPIView):
-    
+
     queryset = r2070evtPgtosDivs.objects.all()
     serializer_class = r2070evtPgtosDivsSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
 
 
 class r2070evtPgtosDivsDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = r2070evtPgtosDivs.objects.all()
     serializer_class = r2070evtPgtosDivsSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s1270evtContratAvNP'):
-    
+
         s1270_evtcontratavnp = get_object_or_404(s1270evtContratAvNP, id=pk)
         s1270_evtcontratavnp_lista = s1270evtContratAvNP.objects.filter(id=pk).all()
 
-        
+
         s1270_remunavnp_lista = s1270remunAvNP.objects.filter(s1270_evtcontratavnp_id__in = listar_ids(s1270_evtcontratavnp_lista) ).all()
 
         request.session['return_pk'] = pk
@@ -95,9 +95,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1270_evtcontratavnp_verificar.html',
@@ -114,20 +114,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s1270_evtcontratavnp_verificar.html', context)
             filename = "%s.xls" % s1270_evtcontratavnp.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s1270_evtcontratavnp_verificar.html', context)
             filename = "%s.csv" % s1270_evtcontratavnp.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -135,7 +135,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's1270_evtcontratavnp_verificar.html', context)
 
     else:

@@ -60,13 +60,13 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class s2299infoPerApurdetPlanoList(generics.ListCreateAPIView):
-    
+
     queryset = s2299infoPerApurdetPlano.objects.all()
     serializer_class = s2299infoPerApurdetPlanoSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
@@ -74,12 +74,12 @@ class s2299infoPerApurdetPlanoList(generics.ListCreateAPIView):
 
 
 class s2299infoPerApurdetPlanoDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = s2299infoPerApurdetPlano.objects.all()
     serializer_class = s2299infoPerApurdetPlanoSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

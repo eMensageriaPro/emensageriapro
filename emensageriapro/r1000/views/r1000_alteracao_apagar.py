@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
 
     r1000_alteracao = get_object_or_404(r1000alteracao, id=pk)
-    
+
     dados_evento = {}
     dados_evento = r1000_alteracao.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(r1000_alteracao), indent=4, sort_keys=True, default=str)
             obj = r1000alteracao.objects.get(id=pk)
             obj.delete(request=request)
             #r1000_alteracao_apagar_custom
             #r1000_alteracao_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             'r1000_alteracao', 
-                             pk, 
+                             '',
+                             'r1000_alteracao',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 'r1000_alteracao' in request.session['return_page']:
-        
+
             return redirect('r1000_alteracao')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['r1000', ],
         'paginas': ['r1000_alteracao', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  'r1000_alteracao_apagar.html', 
+
+    return render(request,
+                  'r1000_alteracao_apagar.html',
                   context)

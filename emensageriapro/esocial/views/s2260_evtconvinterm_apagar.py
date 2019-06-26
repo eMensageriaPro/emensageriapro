@@ -58,17 +58,17 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, pk):
-        
+
     import json
     from django.forms.models import model_to_dict
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     s2260_evtconvinterm = get_object_or_404(s2260evtConvInterm, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         if s2260_evtconvinterm.status == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2260_evtconvinterm), indent=4, sort_keys=True, default=str)
             obj = s2260evtConvInterm.objects.get(id=pk)
             obj.delete(request=request)
@@ -76,29 +76,29 @@ def apagar(request, pk):
             #s2260_evtconvinterm_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
-                             '', 
+                             '',
                              's2260_evtconvinterm', pk, request.user.id, 3)
         else:
-        
-            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é
                                         possível apagar os eventos com status "Cadastrado"!''')
-            
+
         if 's2260_evtconvinterm' in request.session['return_page']:
-        
+
             return redirect('s2260_evtconvinterm')
-            
+
         else:
-        
-            return redirect(request.session['return_page'], 
+
+            return redirect(request.session['return_page'],
                             pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
-        'pk': pk, 
-        's2260_evtconvinterm': s2260_evtconvinterm, 
+        'pk': pk,
+        's2260_evtconvinterm': s2260_evtconvinterm,
         'data': datetime.datetime.now(),
         'modulos': ['esocial', ],
         'paginas': ['s2260_evtconvinterm', ],
     }
-    
+
     return render(request, 's2260_evtconvinterm_apagar.html', context)

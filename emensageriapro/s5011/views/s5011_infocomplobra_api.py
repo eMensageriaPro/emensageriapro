@@ -44,12 +44,12 @@ from emensageriapro.s5011.models import s5011infoComplObra, s5011infoComplObraSe
 
 
 class s5011infoComplObraList(generics.ListAPIView):
-    
+
     queryset = s5011infoComplObra.objects.all()
     serializer_class = s5011infoComplObraSerializer
 
 
 class s5011infoComplObraDetail(generics.ListAPIView):
-    
+
     queryset = s5011infoComplObra.objects.all()
     serializer_class = s5011infoComplObraSerializer

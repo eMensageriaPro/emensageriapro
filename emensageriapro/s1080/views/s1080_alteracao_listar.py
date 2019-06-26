@@ -62,11 +62,11 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('s1080.can_see_s1080alteracao'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_s1080_evttaboperport': 1,
             'show_ideoperportuario': 0,
             'show_cnpjopportuario': 1,
@@ -76,13 +76,13 @@ def listar(request, output=None):
             'show_aliqrat': 1,
             'show_fap': 1,
             'show_aliqratajust': 1, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 's1080_evttaboperport__icontains': 's1080_evttaboperport__icontains',
                 'ideoperportuario': 'ideoperportuario',
                 'cnpjopportuario__icontains': 'cnpjopportuario__icontains',
@@ -92,18 +92,18 @@ def listar(request, output=None):
                 'aliqrat__icontains': 'aliqrat__icontains',
                 'fap__icontains': 'fap__icontains',
                 'aliqratajust__icontains': 'aliqratajust__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     's1080_evttaboperport__icontains': 's1080_evttaboperport__icontains',
                     'ideoperportuario': 'ideoperportuario',
                     'cnpjopportuario__icontains': 'cnpjopportuario__icontains',
@@ -113,26 +113,26 @@ def listar(request, output=None):
                     'aliqrat__icontains': 'aliqrat__icontains',
                     'fap__icontains': 'fap__icontains',
                     'aliqratajust__icontains': 'aliqratajust__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         s1080_alteracao_lista = s1080alteracao.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(s1080_alteracao_lista) > 100:
-        
+
             filtrar = True
             s1080_alteracao_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s1080_alteracao_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            's1080_alteracao_lista': s1080_alteracao_lista, 
+            's1080_alteracao_lista': s1080_alteracao_lista,
             'modulos': ['s1080', ],
             'paginas': ['s1080_alteracao', ],
             'dict_fields': dict_fields,
@@ -141,11 +141,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1080_alteracao_listar.html',
@@ -163,33 +163,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('s1080_alteracao_listar.html', context)
             filename = "s1080_alteracao.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/s1080_alteracao.csv', context)
             filename = "s1080_alteracao.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 's1080_alteracao_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -197,7 +197,7 @@ def listar(request, output=None):
             'modulos': ['s1080', ],
             'paginas': ['s1080_alteracao', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

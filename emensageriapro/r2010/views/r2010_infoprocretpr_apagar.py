@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
 
     r2010_infoprocretpr = get_object_or_404(r2010infoProcRetPr, id=pk)
-    
+
     dados_evento = {}
     dados_evento = r2010_infoprocretpr.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(r2010_infoprocretpr), indent=4, sort_keys=True, default=str)
             obj = r2010infoProcRetPr.objects.get(id=pk)
             obj.delete(request=request)
             #r2010_infoprocretpr_apagar_custom
             #r2010_infoprocretpr_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             'r2010_infoprocretpr', 
-                             pk, 
+                             '',
+                             'r2010_infoprocretpr',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 'r2010_infoprocretpr' in request.session['return_page']:
-        
+
             return redirect('r2010_infoprocretpr')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['r2010', ],
         'paginas': ['r2010_infoprocretpr', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  'r2010_infoprocretpr_apagar.html', 
+
+    return render(request,
+                  'r2010_infoprocretpr_apagar.html',
                   context)

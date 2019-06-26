@@ -58,17 +58,17 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, pk):
-        
+
     import json
     from django.forms.models import model_to_dict
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
+
     r2040_evtassocdesprep = get_object_or_404(r2040evtAssocDespRep, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         if r2040_evtassocdesprep.status == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(r2040_evtassocdesprep), indent=4, sort_keys=True, default=str)
             obj = r2040evtAssocDespRep.objects.get(id=pk)
             obj.delete(request=request)
@@ -76,29 +76,29 @@ def apagar(request, pk):
             #r2040_evtassocdesprep_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
-                             '', 
+                             '',
                              'r2040_evtassocdesprep', pk, request.user.id, 3)
         else:
-        
-            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é
                                         possível apagar os eventos com status "Cadastrado"!''')
-            
+
         if 'r2040_evtassocdesprep' in request.session['return_page']:
-        
+
             return redirect('r2040_evtassocdesprep')
-            
+
         else:
-        
-            return redirect(request.session['return_page'], 
+
+            return redirect(request.session['return_page'],
                             pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
-        'pk': pk, 
-        'r2040_evtassocdesprep': r2040_evtassocdesprep, 
+        'pk': pk,
+        'r2040_evtassocdesprep': r2040_evtassocdesprep,
         'data': datetime.datetime.now(),
         'modulos': ['efdreinf', ],
         'paginas': ['r2040_evtassocdesprep', ],
     }
-    
+
     return render(request, 'r2040_evtassocdesprep_apagar.html', context)

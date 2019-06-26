@@ -44,12 +44,12 @@ from emensageriapro.s5013.models import s5013infoDpsFGTS, s5013infoDpsFGTSSerial
 
 
 class s5013infoDpsFGTSList(generics.ListAPIView):
-    
+
     queryset = s5013infoDpsFGTS.objects.all()
     serializer_class = s5013infoDpsFGTSSerializer
 
 
 class s5013infoDpsFGTSDetail(generics.ListAPIView):
-    
+
     queryset = s5013infoDpsFGTS.objects.all()
     serializer_class = s5013infoDpsFGTSSerializer

@@ -95,64 +95,64 @@ def gerar_xml_s1202(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         s1202_evtrmnrpps_lista = s1202evtRmnRPPS.objects. \
             filter(id=pk).all()
-            
-        
+
+
         s1202_procjudtrab_lista = s1202procJudTrab.objects. \
             filter(s1202_evtrmnrpps_id__in=listar_ids(s1202_evtrmnrpps_lista)).all()
-        
+
         s1202_dmdev_lista = s1202dmDev.objects. \
             filter(s1202_evtrmnrpps_id__in=listar_ids(s1202_evtrmnrpps_lista)).all()
-        
+
         s1202_infoperapur_lista = s1202infoPerApur.objects. \
             filter(s1202_dmdev_id__in=listar_ids(s1202_dmdev_lista)).all()
-        
+
         s1202_infoperapur_ideestab_lista = s1202infoPerApurideEstab.objects. \
             filter(s1202_infoperapur_id__in=listar_ids(s1202_infoperapur_lista)).all()
-        
+
         s1202_infoperapur_remunperapur_lista = s1202infoPerApurremunPerApur.objects. \
             filter(s1202_infoperapur_ideestab_id__in=listar_ids(s1202_infoperapur_ideestab_lista)).all()
-        
+
         s1202_infoperapur_itensremun_lista = s1202infoPerApuritensRemun.objects. \
             filter(s1202_infoperapur_remunperapur_id__in=listar_ids(s1202_infoperapur_remunperapur_lista)).all()
-        
+
         s1202_infoperapur_infosaudecolet_lista = s1202infoPerApurinfoSaudeColet.objects. \
             filter(s1202_infoperapur_remunperapur_id__in=listar_ids(s1202_infoperapur_remunperapur_lista)).all()
-        
+
         s1202_infoperapur_detoper_lista = s1202infoPerApurdetOper.objects. \
             filter(s1202_infoperapur_infosaudecolet_id__in=listar_ids(s1202_infoperapur_infosaudecolet_lista)).all()
-        
+
         s1202_infoperapur_detplano_lista = s1202infoPerApurdetPlano.objects. \
             filter(s1202_infoperapur_detoper_id__in=listar_ids(s1202_infoperapur_detoper_lista)).all()
-        
+
         s1202_infoperant_lista = s1202infoPerAnt.objects. \
             filter(s1202_dmdev_id__in=listar_ids(s1202_dmdev_lista)).all()
-        
+
         s1202_infoperant_ideadc_lista = s1202infoPerAntideADC.objects. \
             filter(s1202_infoperant_id__in=listar_ids(s1202_infoperant_lista)).all()
-        
+
         s1202_infoperant_ideperiodo_lista = s1202infoPerAntidePeriodo.objects. \
             filter(s1202_infoperant_ideadc_id__in=listar_ids(s1202_infoperant_ideadc_lista)).all()
-        
+
         s1202_infoperant_ideestab_lista = s1202infoPerAntideEstab.objects. \
             filter(s1202_infoperant_ideperiodo_id__in=listar_ids(s1202_infoperant_ideperiodo_lista)).all()
-        
+
         s1202_infoperant_remunperant_lista = s1202infoPerAntremunPerAnt.objects. \
             filter(s1202_infoperant_ideestab_id__in=listar_ids(s1202_infoperant_ideestab_lista)).all()
-        
+
         s1202_infoperant_itensremun_lista = s1202infoPerAntitensRemun.objects. \
             filter(s1202_infoperant_remunperant_id__in=listar_ids(s1202_infoperant_remunperant_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -194,14 +194,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1202_evtrmnrpps.arquivo_original:
-    
+
         xml = ler_arquivo(s1202_evtrmnrpps.arquivo)
 
     else:
         xml = gerar_xml_s1202(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -222,16 +222,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 s1202evtRmnRPPS,
                 s1202_evtrmnrpps)
-        
+
         s1202_evtrmnrpps = get_object_or_404(
             s1202evtRmnRPPS,
             id=pk)
-        
+
         xml_assinado = assinar_esocial(
-            request, 
-            xml, 
+            request,
+            xml,
             s1202_evtrmnrpps.transmissor_lote_esocial_id)
-        
+
     if s1202_evtrmnrpps.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -245,11 +245,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s1202_evtrmnrpps/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -262,5 +262,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

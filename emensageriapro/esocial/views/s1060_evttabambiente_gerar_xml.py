@@ -95,31 +95,31 @@ def gerar_xml_s1060(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         s1060_evttabambiente_lista = s1060evtTabAmbiente.objects. \
             filter(id=pk).all()
-            
-        
+
+
         s1060_inclusao_lista = s1060inclusao.objects. \
             filter(s1060_evttabambiente_id__in=listar_ids(s1060_evttabambiente_lista)).all()
-        
+
         s1060_alteracao_lista = s1060alteracao.objects. \
             filter(s1060_evttabambiente_id__in=listar_ids(s1060_evttabambiente_lista)).all()
-        
+
         s1060_alteracao_novavalidade_lista = s1060alteracaonovaValidade.objects. \
             filter(s1060_alteracao_id__in=listar_ids(s1060_alteracao_lista)).all()
-        
+
         s1060_exclusao_lista = s1060exclusao.objects. \
             filter(s1060_evttabambiente_id__in=listar_ids(s1060_evttabambiente_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -150,14 +150,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1060_evttabambiente.arquivo_original:
-    
+
         xml = ler_arquivo(s1060_evttabambiente.arquivo)
 
     else:
         xml = gerar_xml_s1060(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -178,16 +178,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 s1060evtTabAmbiente,
                 s1060_evttabambiente)
-        
+
         s1060_evttabambiente = get_object_or_404(
             s1060evtTabAmbiente,
             id=pk)
-        
+
         xml_assinado = assinar_esocial(
-            request, 
-            xml, 
+            request,
+            xml,
             s1060_evttabambiente.transmissor_lote_esocial_id)
-        
+
     if s1060_evttabambiente.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -201,11 +201,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s1060_evttabambiente/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -218,5 +218,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

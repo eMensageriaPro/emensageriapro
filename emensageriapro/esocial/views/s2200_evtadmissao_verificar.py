@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s2200evtAdmissao'):
-    
+
         s2200_evtadmissao = get_object_or_404(s2200evtAdmissao, id=pk)
         s2200_evtadmissao_lista = s2200evtAdmissao.objects.filter(id=pk).all()
 
-        
+
         s2200_documentos_lista = s2200documentos.objects.filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).all()
         s2200_ctps_lista = s2200CTPS.objects.filter(s2200_documentos_id__in = listar_ids(s2200_documentos_lista) ).all()
         s2200_ric_lista = s2200RIC.objects.filter(s2200_documentos_id__in = listar_ids(s2200_documentos_lista) ).all()
@@ -161,9 +161,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2200_evtadmissao_verificar.html',
@@ -180,20 +180,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s2200_evtadmissao_verificar.html', context)
             filename = "%s.xls" % s2200_evtadmissao.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s2200_evtadmissao_verificar.html', context)
             filename = "%s.csv" % s2200_evtadmissao.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -201,7 +201,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's2200_evtadmissao_verificar.html', context)
 
     else:

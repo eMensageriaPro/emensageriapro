@@ -78,39 +78,39 @@ def duplicar(request, pk):
     from emensageriapro.esocial.views.s2399_evttsvtermino_importar import read_s2399_evttsvtermino_string
     from emensageriapro.esocial.views.s2399_evttsvtermino_gerar_xml import gerar_xml_s2399
     from emensageriapro.functions import identidade_evento
-    
+
     if request.user.has_perm('esocial.can_duplicate_s2399evtTSVTermino'):
 
         if pk:
-    
+
             s2399_evttsvtermino = get_object_or_404(
                 s2399evtTSVTermino,
                 id=pk)
-    
+
             texto = gerar_xml_s2399(request, pk, versao="|")
             dados = read_s2399_evttsvtermino_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s2399_evttsvtermino)
-    
+
             s2399evtTSVTermino.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,
                        arquivo_original=0,
                        arquivo='')
-    
+
             gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2399_evttsvtermino.identidade),
                 's2399_evttsvtermino', dados['id'], request.user.id, 1)
-    
+
             messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
             return_pk = dados['id']
-            
+
             return redirect('s2399_evttsvtermino_salvar', pk=return_pk)
-    
+
         messages.error(request, 'Erro ao duplicar evento!')
-        
+
         return redirect('s2399_evttsvtermino_salvar', pk=pk)
-        
+
     else:
-    
-        messages.error(request, u'''Você não possui permissão para duplicar o evento. 
+
+        messages.error(request, u'''Você não possui permissão para duplicar o evento.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
         return redirect('s2399_evttsvtermino_salvar', pk=pk)

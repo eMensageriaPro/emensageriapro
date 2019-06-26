@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s1300evtContrSindPatr'):
-    
+
         s1300_evtcontrsindpatr = get_object_or_404(s1300evtContrSindPatr, id=pk)
         s1300_evtcontrsindpatr_lista = s1300evtContrSindPatr.objects.filter(id=pk).all()
 
-        
+
         s1300_contribsind_lista = s1300contribSind.objects.filter(s1300_evtcontrsindpatr_id__in = listar_ids(s1300_evtcontrsindpatr_lista) ).all()
 
         request.session['return_pk'] = pk
@@ -95,9 +95,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1300_evtcontrsindpatr_verificar.html',
@@ -114,20 +114,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s1300_evtcontrsindpatr_verificar.html', context)
             filename = "%s.xls" % s1300_evtcontrsindpatr.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s1300_evtcontrsindpatr_verificar.html', context)
             filename = "%s.csv" % s1300_evtcontrsindpatr.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -135,7 +135,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's1300_evtcontrsindpatr_verificar.html', context)
 
     else:

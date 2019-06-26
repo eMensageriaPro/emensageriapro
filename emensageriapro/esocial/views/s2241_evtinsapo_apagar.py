@@ -58,17 +58,17 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, pk):
-        
+
     import json
     from django.forms.models import model_to_dict
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     s2241_evtinsapo = get_object_or_404(s2241evtInsApo, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         if s2241_evtinsapo.status == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2241_evtinsapo), indent=4, sort_keys=True, default=str)
             obj = s2241evtInsApo.objects.get(id=pk)
             obj.delete(request=request)
@@ -76,29 +76,29 @@ def apagar(request, pk):
             #s2241_evtinsapo_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
-                             '', 
+                             '',
                              's2241_evtinsapo', pk, request.user.id, 3)
         else:
-        
-            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é
                                         possível apagar os eventos com status "Cadastrado"!''')
-            
+
         if 's2241_evtinsapo' in request.session['return_page']:
-        
+
             return redirect('s2241_evtinsapo')
-            
+
         else:
-        
-            return redirect(request.session['return_page'], 
+
+            return redirect(request.session['return_page'],
                             pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
-        'pk': pk, 
-        's2241_evtinsapo': s2241_evtinsapo, 
+        'pk': pk,
+        's2241_evtinsapo': s2241_evtinsapo,
         'data': datetime.datetime.now(),
         'modulos': ['esocial', ],
         'paginas': ['s2241_evtinsapo', ],
     }
-    
+
     return render(request, 's2241_evtinsapo_apagar.html', context)

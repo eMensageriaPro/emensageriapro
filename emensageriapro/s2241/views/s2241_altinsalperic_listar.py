@@ -62,56 +62,56 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('s2241.can_see_s2241altInsalPeric'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_s2241_insalperic': 1,
             'show_dtaltcondicao': 1, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 's2241_insalperic__icontains': 's2241_insalperic__icontains',
                 'dtaltcondicao__range': 'dtaltcondicao__range', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     's2241_insalperic__icontains': 's2241_insalperic__icontains',
                     'dtaltcondicao__range': 'dtaltcondicao__range', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         s2241_altinsalperic_lista = s2241altInsalPeric.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(s2241_altinsalperic_lista) > 100:
-        
+
             filtrar = True
             s2241_altinsalperic_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s2241_altinsalperic_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            's2241_altinsalperic_lista': s2241_altinsalperic_lista, 
+            's2241_altinsalperic_lista': s2241_altinsalperic_lista,
             'modulos': ['s2241', ],
             'paginas': ['s2241_altinsalperic', ],
             'dict_fields': dict_fields,
@@ -120,11 +120,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2241_altinsalperic_listar.html',
@@ -142,33 +142,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('s2241_altinsalperic_listar.html', context)
             filename = "s2241_altinsalperic.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/s2241_altinsalperic.csv', context)
             filename = "s2241_altinsalperic.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 's2241_altinsalperic_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -176,7 +176,7 @@ def listar(request, output=None):
             'modulos': ['s2241', ],
             'paginas': ['s2241_altinsalperic', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

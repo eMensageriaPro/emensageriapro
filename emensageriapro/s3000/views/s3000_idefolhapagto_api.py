@@ -60,13 +60,13 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class s3000ideFolhaPagtoList(generics.ListCreateAPIView):
-    
+
     queryset = s3000ideFolhaPagto.objects.all()
     serializer_class = s3000ideFolhaPagtoSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
@@ -74,12 +74,12 @@ class s3000ideFolhaPagtoList(generics.ListCreateAPIView):
 
 
 class s3000ideFolhaPagtoDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = s3000ideFolhaPagto.objects.all()
     serializer_class = s3000ideFolhaPagtoSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

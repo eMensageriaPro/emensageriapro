@@ -75,7 +75,7 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 def alterar_identidade(request, pk):
 
     from emensageriapro.functions import identidade_evento
-    
+
     if request.user.has_perm('efdreinf.can_change_identity_r2030evtAssocDespRec'):
 
         r2030_evtassocdesprec = get_object_or_404(
@@ -90,17 +90,17 @@ def alterar_identidade(request, pk):
 
             gravar_auditoria(u'{}',
                 u'{"funcao": "Identidade do evento foi alterada"}',
-                'r2030_evtassocdesprec', pk, request.user.id, 1)
+                'r2030_evtassocdesprec', pk, request.user.id, 2)
 
         else:
 
-            messages.error(request, u'''Não foi possível alterar a identidade do evento! 
-                                        Somente é possível alterar o status de eventos que estão 
+            messages.error(request, u'''Não foi possível alterar a identidade do evento!
+                                        Somente é possível alterar o status de eventos que estão
                                         abertos para edição (status: Cadastrado)!''')
-        
+
     else:
-    
+
         messages.error(request, u'''Você não possui permissão para alterar a identidade do evento.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
     return redirect('r2030_evtassocdesprec_salvar', pk=pk)

@@ -44,13 +44,13 @@ from emensageriapro.esocial.models import s5011evtCS, s5011evtCSSerializer
 
 
 class s5011evtCSList(generics.ListAPIView):
-    
+
     queryset = s5011evtCS.objects.all()
     serializer_class = s5011evtCSSerializer
 
 
 
 class s5011evtCSDetail(generics.ListAPIView):
-    
+
     queryset = s5011evtCS.objects.all()
     serializer_class = s5011evtCSSerializer

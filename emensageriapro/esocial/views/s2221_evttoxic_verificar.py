@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s2221evtToxic'):
-    
+
         s2221_evttoxic = get_object_or_404(s2221evtToxic, id=pk)
         s2221_evttoxic_lista = s2221evtToxic.objects.filter(id=pk).all()
 
-        
+
 
         request.session['return_pk'] = pk
         request.session['return_page'] = 's2221_evttoxic'
@@ -93,9 +93,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2221_evttoxic_verificar.html',
@@ -112,20 +112,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s2221_evttoxic_verificar.html', context)
             filename = "%s.xls" % s2221_evttoxic.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s2221_evttoxic_verificar.html', context)
             filename = "%s.csv" % s2221_evttoxic.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -133,7 +133,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's2221_evttoxic_verificar.html', context)
 
     else:

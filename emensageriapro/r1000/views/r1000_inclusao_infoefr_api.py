@@ -60,13 +60,13 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class r1000inclusaoinfoEFRList(generics.ListCreateAPIView):
-    
+
     queryset = r1000inclusaoinfoEFR.objects.all()
     serializer_class = r1000inclusaoinfoEFRSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
@@ -74,12 +74,12 @@ class r1000inclusaoinfoEFRList(generics.ListCreateAPIView):
 
 
 class r1000inclusaoinfoEFRDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = r1000inclusaoinfoEFR.objects.all()
     serializer_class = r1000inclusaoinfoEFRSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

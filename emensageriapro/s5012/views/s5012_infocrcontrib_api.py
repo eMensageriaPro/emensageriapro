@@ -44,12 +44,12 @@ from emensageriapro.s5012.models import s5012infoCRContrib, s5012infoCRContribSe
 
 
 class s5012infoCRContribList(generics.ListAPIView):
-    
+
     queryset = s5012infoCRContrib.objects.all()
     serializer_class = s5012infoCRContribSerializer
 
 
 class s5012infoCRContribDetail(generics.ListAPIView):
-    
+
     queryset = s5012infoCRContrib.objects.all()
     serializer_class = s5012infoCRContribSerializer

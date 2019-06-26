@@ -67,142 +67,142 @@ from emensageriapro.r3010.forms import form_r3010_outrasreceitas
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         r3010_boletim = get_object_or_404(r3010boletim, id=pk)
         evento_dados = r3010_boletim.evento()
 
     if request.user.has_perm('r3010.can_see_r3010boletim'):
-        
+
         if pk:
-        
+
             r3010_boletim_form = form_r3010_boletim(
-                request.POST or None, 
+                request.POST or None,
                 instance=r3010_boletim)
-                                         
+                     
         else:
-        
+
             r3010_boletim_form = form_r3010_boletim(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if r3010_boletim_form.is_valid():
-            
+
                 obj = r3010_boletim_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r3010_boletim', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r3010_boletim',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(r3010_boletim), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(r3010_boletim),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r3010_boletim', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r3010_boletim',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    'r3010_boletim_apagar', 
-                    'r3010_boletim_salvar', 
+                    'r3010_boletim_apagar',
+                    'r3010_boletim_salvar',
                     'r3010_boletim'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'r3010_boletim_salvar', 
+                        'r3010_boletim_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         r3010_boletim_form = disabled_form_fields(
-            r3010_boletim_form, 
+            r3010_boletim_form,
             request.user.has_perm('r3010.change_r3010boletim'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 r3010_boletim_form = disabled_form_fields(r3010_boletim_form, 0)
-                
+
         if output:
-        
+
             r3010_boletim_form = disabled_form_for_print(r3010_boletim_form)
-            
-        
-        r3010_receitaingressos_lista = None 
-        r3010_receitaingressos_form = None 
-        r3010_outrasreceitas_lista = None 
-        r3010_outrasreceitas_form = None 
-        
+
+
+        r3010_receitaingressos_lista = None
+        r3010_receitaingressos_form = None
+        r3010_outrasreceitas_lista = None
+        r3010_outrasreceitas_form = None
+
         if pk:
-        
+
             r3010_boletim = get_object_or_404(r3010boletim, id=pk)
-            
+
             r3010_receitaingressos_form = form_r3010_receitaingressos(
                 initial={ 'r3010_boletim': r3010_boletim })
             r3010_receitaingressos_form.fields['r3010_boletim'].widget.attrs['readonly'] = True
             r3010_receitaingressos_lista = r3010receitaIngressos.objects.\
                 filter(r3010_boletim_id=r3010_boletim.id).all()
-                
+
             r3010_outrasreceitas_form = form_r3010_outrasreceitas(
                 initial={ 'r3010_boletim': r3010_boletim })
             r3010_outrasreceitas_form.fields['r3010_boletim'].widget.attrs['readonly'] = True
             r3010_outrasreceitas_lista = r3010outrasReceitas.objects.\
                 filter(r3010_boletim_id=r3010_boletim.id).all()
-                
-                
+
+
         else:
-        
+
             r3010_boletim = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 'r3010_boletim' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'r3010_boletim_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r3010_boletim').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            'r3010_boletim': r3010_boletim, 
-            'r3010_boletim_form': r3010_boletim_form, 
+            'controle_alteracoes': controle_alteracoes,
+            'r3010_boletim': r3010_boletim,
+            'r3010_boletim_form': r3010_boletim_form,
             'modulos': ['r3010', ],
             'paginas': ['r3010_boletim', ],
             'r3010_receitaingressos_form': r3010_receitaingressos_form,
@@ -214,11 +214,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #r3010_boletim_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r3010_boletim_salvar.html',
@@ -236,26 +236,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('r3010_boletim_salvar.html', context)
             filename = "r3010_boletim.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 'r3010_boletim_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -265,7 +265,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r3010_boletim', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

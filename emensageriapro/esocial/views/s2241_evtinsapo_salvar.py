@@ -69,9 +69,9 @@ def salvar(request, pk=None, tab='master', output=None):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
     TP_AMB = config.ESOCIAL_TP_AMB
-    
+
     if pk:
-    
+
         s2241_evtinsapo = get_object_or_404(s2241evtInsApo, id=pk)
 
         #if s2241_evtinsapo.status != STATUS_EVENTO_CADASTRADO:
@@ -79,93 +79,93 @@ def salvar(request, pk=None, tab='master', output=None):
         #    dict_permissoes = {}
         #    dict_permissoes['s2241_evtinsapo_apagar'] = 0
         #    dict_permissoes['s2241_evtinsapo_editar'] = 0
-            
+
     if request.user.has_perm('esocial.can_see_s2241evtInsApo'):
-    
+
         if pk:
-        
-            s2241_evtinsapo_form = form_s2241_evtinsapo(request.POST or None, instance = s2241_evtinsapo, 
+
+            s2241_evtinsapo_form = form_s2241_evtinsapo(request.POST or None, instance = s2241_evtinsapo,
                                          initial={'ativo': True})
-                                         
+                     
         else:
-        
-            s2241_evtinsapo_form = form_s2241_evtinsapo(request.POST or None, 
-                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL, 
-                                                  'status': STATUS_EVENTO_CADASTRADO, 
-                                                  'tpamb': TP_AMB, 
-                                                  'procemi': 1, 
-                                                  'verproc': VERSAO_EMENSAGERIA, 
+
+            s2241_evtinsapo_form = form_s2241_evtinsapo(request.POST or None,
+                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA,
                                                   'ativo': True})
-                                                  
+                              
         if request.method == 'POST':
-        
+
             if s2241_evtinsapo_form.is_valid():
-            
+
                 obj = s2241_evtinsapo_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 if not pk:
-                
+
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
-                  
+
                 #    gravar_auditoria('{}',
-                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                 's2241_evtinsapo', obj.id, request.user.id, 1)
                 #else:
-                # 
+                #
                 #    gravar_auditoria(json.dumps(model_to_dict(s2241_evtinsapo), indent=4, sort_keys=True, default=str),
-                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                     's2241_evtinsapo', pk, request.user.id, 2)
-                                 
+             
                 if request.session['return_page'] not in (
-                    's2241_evtinsapo_apagar', 
-                    's2241_evtinsapo_salvar', 
+                    's2241_evtinsapo_apagar',
+                    's2241_evtinsapo_salvar',
                     's2241_evtinsapo'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2241_evtinsapo_salvar', 
+                        's2241_evtinsapo_salvar',
                         pk=obj.id)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-                
+
         s2241_evtinsapo_form = disabled_form_fields(
-             s2241_evtinsapo_form, 
+             s2241_evtinsapo_form,
              request.user.has_perm('esocial.change_s2241evtInsApo'))
-        
+
         if pk:
-        
+
             if s2241_evtinsapo.status != 0:
-            
+
                 s2241_evtinsapo_form = disabled_form_fields(s2241_evtinsapo_form, False)
-                
+
         #s2241_evtinsapo_campos_multiple_passo3
 
         for field in s2241_evtinsapo_form.fields.keys():
-        
+
             s2241_evtinsapo_form.fields[field].widget.attrs['ng-model'] = 's2241_evtinsapo_'+field
-            
+
         if output:
-        
+
             s2241_evtinsapo_form = disabled_form_for_print(s2241_evtinsapo_form)
 
-        
-        s2241_insalperic_lista = None 
-        s2241_insalperic_form = None 
-        s2241_aposentesp_lista = None 
-        s2241_aposentesp_form = None 
-        
+
+        s2241_insalperic_lista = None
+        s2241_insalperic_form = None
+        s2241_aposentesp_lista = None
+        s2241_aposentesp_form = None
+
         if pk:
-        
+
             s2241_evtinsapo = get_object_or_404(s2241evtInsApo, id=pk)
-            
+
             s2241_insalperic_form = form_s2241_insalperic(
                 initial={ 's2241_evtinsapo': s2241_evtinsapo })
             s2241_insalperic_form.fields['s2241_evtinsapo'].widget.attrs['readonly'] = True
@@ -176,38 +176,38 @@ def salvar(request, pk=None, tab='master', output=None):
             s2241_aposentesp_form.fields['s2241_evtinsapo'].widget.attrs['readonly'] = True
             s2241_aposentesp_lista = s2241aposentEsp.objects.\
                 filter(s2241_evtinsapo_id=s2241_evtinsapo.id).all()
-                
+
         else:
-        
+
             s2241_evtinsapo = None
-            
+
         #s2241_evtinsapo_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if 's2241_evtinsapo'[1] == '5':
             evento_totalizador = True
-            
+
         else:
             evento_totalizador = False
-        
+
         if tab or 's2241_evtinsapo' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2241_evtinsapo_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2241_evtinsapo').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
-            's2241_evtinsapo': s2241_evtinsapo, 
-            's2241_evtinsapo_form': s2241_evtinsapo_form, 
-            
+            's2241_evtinsapo': s2241_evtinsapo,
+            's2241_evtinsapo_form': s2241_evtinsapo_form,
+
             's2241_insalperic_form': s2241_insalperic_form,
             's2241_insalperic_lista': s2241_insalperic_lista,
             's2241_aposentesp_form': s2241_aposentesp_form,
@@ -219,10 +219,10 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2241_evtinsapo_salvar_custom_variaveis_context#
         }
-        
-            
+
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2241_evtinsapo_salvar.html',
@@ -240,24 +240,24 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             response = render_to_response('s2241_evtinsapo_salvar.html', context)
             filename = "s2241_evtinsapo.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2241_evtinsapo_salvar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -267,5 +267,5 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2241_evtinsapo', ],
             'data': datetime.datetime.now(),
         }
-        
+
         return render(request, 'permissao_negada.html', context)

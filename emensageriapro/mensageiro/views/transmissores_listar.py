@@ -62,11 +62,11 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('mensageiro.can_see_TransmissorLote'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_transmissor_dados': 0,
             'show_transmissor_tpinsc': 1,
             'show_transmissor_nrinsc': 1,
@@ -78,15 +78,15 @@ def listar(request, output=None):
             'show_nrinsc': 1,
             'show_tpinsc': 1,
             'show_certificado': 0, }
-            
+
         post = False
         #ANTES-POST-LISTAGEM
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            
-            dict_fields = { 
+
+            dict_fields = {
                 'transmissor_dados': 'transmissor_dados',
                 'transmissor_tpinsc__icontains': 'transmissor_tpinsc__icontains',
                 'transmissor_nrinsc__icontains': 'transmissor_nrinsc__icontains',
@@ -94,16 +94,16 @@ def listar(request, output=None):
                 'nome_empresa__icontains': 'nome_empresa__icontains',
                 'nrinsc__icontains': 'nrinsc__icontains',
                 'tpinsc__icontains': 'tpinsc__icontains', }
-                
+
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     'transmissor_dados': 'transmissor_dados',
                     'transmissor_tpinsc__icontains': 'transmissor_tpinsc__icontains',
                     'transmissor_nrinsc__icontains': 'transmissor_nrinsc__icontains',
@@ -111,27 +111,27 @@ def listar(request, output=None):
                     'nome_empresa__icontains': 'nome_empresa__icontains',
                     'nrinsc__icontains': 'nrinsc__icontains',
                     'tpinsc__icontains': 'tpinsc__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
-        
+
         transmissores_lista = TransmissorLote.objects.filter(**dict_qs).exclude(id=0).all()
-        
+
         if not post and len(transmissores_lista) > 100:
-        
+
             filtrar = True
             transmissores_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #transmissores_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            'transmissores_lista': transmissores_lista, 
+            'transmissores_lista': transmissores_lista,
             'modulos': ['mensageiro', ],
             'paginas': ['transmissores', ],
             'dict_fields': dict_fields,
@@ -140,11 +140,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='transmissores_listar.html',
@@ -162,37 +162,37 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('transmissores_listar.html', context)
             filename = "transmissores.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('csv/transmissores.csv', context)
             filename = "transmissores.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
-            
+
             return response
-        
+
         else:
-        
+
             return render(request, 'transmissores_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -200,7 +200,7 @@ def listar(request, output=None):
             'modulos': ['mensageiro', ],
             'paginas': ['transmissores', ],
         }
-        
-        return render(request, 
-            'permissao_negada.html', 
+
+        return render(request,
+            'permissao_negada.html',
             context)

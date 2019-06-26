@@ -58,17 +58,17 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, pk):
-        
+
     import json
     from django.forms.models import model_to_dict
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     s3000_evtexclusao = get_object_or_404(s3000evtExclusao, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         if s3000_evtexclusao.status == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s3000_evtexclusao), indent=4, sort_keys=True, default=str)
             obj = s3000evtExclusao.objects.get(id=pk)
             obj.delete(request=request)
@@ -76,29 +76,29 @@ def apagar(request, pk):
             #s3000_evtexclusao_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
-                             '', 
+                             '',
                              's3000_evtexclusao', pk, request.user.id, 3)
         else:
-        
-            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é
                                         possível apagar os eventos com status "Cadastrado"!''')
-            
+
         if 's3000_evtexclusao' in request.session['return_page']:
-        
+
             return redirect('s3000_evtexclusao')
-            
+
         else:
-        
-            return redirect(request.session['return_page'], 
+
+            return redirect(request.session['return_page'],
                             pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
-        'pk': pk, 
-        's3000_evtexclusao': s3000_evtexclusao, 
+        'pk': pk,
+        's3000_evtexclusao': s3000_evtexclusao,
         'data': datetime.datetime.now(),
         'modulos': ['esocial', ],
         'paginas': ['s3000_evtexclusao', ],
     }
-    
+
     return render(request, 's3000_evtexclusao_apagar.html', context)

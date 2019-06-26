@@ -60,13 +60,13 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 class s1020alteracaoinfoProcJudTerceirosList(generics.ListCreateAPIView):
-    
+
     queryset = s1020alteracaoinfoProcJudTerceiros.objects.all()
     serializer_class = s1020alteracaoinfoProcJudTerceirosSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)
 
@@ -74,12 +74,12 @@ class s1020alteracaoinfoProcJudTerceirosList(generics.ListCreateAPIView):
 
 
 class s1020alteracaoinfoProcJudTerceirosDetail(generics.RetrieveUpdateDestroyAPIView):
-    
+
     queryset = s1020alteracaoinfoProcJudTerceiros.objects.all()
     serializer_class = s1020alteracaoinfoProcJudTerceirosSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(criado_por=self.request.user)
-    
+
     def perform_update(self, serializer):
         serializer.save(modificado_por=self.request.user)

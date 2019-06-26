@@ -62,25 +62,25 @@ from emensageriapro.controle_de_acesso.models import *
 def apagar(request, pk):
 
     retornos_eventos_ocorrencias = get_object_or_404(RetornosEventosOcorrencias, id=pk)
-    
+
     if request.method == 'POST':
-    
+
         obj = RetornosEventosOcorrencias.objects.get(id=pk)
         obj.delete(request=request)
         #retornos_eventos_ocorrencias_apagar_custom
         #retornos_eventos_ocorrencias_apagar_custom
         messages.success(request, u'Apagado com sucesso!')
-        
+
         if 'retornos_eventos_ocorrencias' in request.session['return_page']:
-        
+
             return redirect('retornos_eventos_ocorrencias')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
@@ -88,7 +88,7 @@ def apagar(request, pk):
         'modulos': ['mensageiro', ],
         'paginas': ['retornos_eventos_ocorrencias', ],
     }
-    
-    return render(request, 
-        'retornos_eventos_ocorrencias_apagar.html', 
+
+    return render(request,
+        'retornos_eventos_ocorrencias_apagar.html',
         context)

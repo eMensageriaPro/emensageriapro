@@ -69,150 +69,150 @@ from emensageriapro.s1070.forms import form_s1070_alteracao_novavalidade
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         s1070_alteracao = get_object_or_404(s1070alteracao, id=pk)
         evento_dados = s1070_alteracao.evento()
 
     if request.user.has_perm('s1070.can_see_s1070alteracao'):
-        
+
         if pk:
-        
+
             s1070_alteracao_form = form_s1070_alteracao(
-                request.POST or None, 
+                request.POST or None,
                 instance=s1070_alteracao)
-                                         
+                     
         else:
-        
+
             s1070_alteracao_form = form_s1070_alteracao(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if s1070_alteracao_form.is_valid():
-            
+
                 obj = s1070_alteracao_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1070_alteracao', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1070_alteracao',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(s1070_alteracao), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(s1070_alteracao),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        's1070_alteracao', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        's1070_alteracao',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    's1070_alteracao_apagar', 
-                    's1070_alteracao_salvar', 
+                    's1070_alteracao_apagar',
+                    's1070_alteracao_salvar',
                     's1070_alteracao'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's1070_alteracao_salvar', 
+                        's1070_alteracao_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         s1070_alteracao_form = disabled_form_fields(
-            s1070_alteracao_form, 
+            s1070_alteracao_form,
             request.user.has_perm('s1070.change_s1070alteracao'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 s1070_alteracao_form = disabled_form_fields(s1070_alteracao_form, 0)
-                
+
         if output:
-        
+
             s1070_alteracao_form = disabled_form_for_print(s1070_alteracao_form)
-            
-        
-        s1070_alteracao_dadosprocjud_lista = None 
-        s1070_alteracao_dadosprocjud_form = None 
-        s1070_alteracao_infosusp_lista = None 
-        s1070_alteracao_infosusp_form = None 
-        s1070_alteracao_novavalidade_lista = None 
-        s1070_alteracao_novavalidade_form = None 
-        
+
+
+        s1070_alteracao_dadosprocjud_lista = None
+        s1070_alteracao_dadosprocjud_form = None
+        s1070_alteracao_infosusp_lista = None
+        s1070_alteracao_infosusp_form = None
+        s1070_alteracao_novavalidade_lista = None
+        s1070_alteracao_novavalidade_form = None
+
         if pk:
-        
+
             s1070_alteracao = get_object_or_404(s1070alteracao, id=pk)
-            
+
             s1070_alteracao_dadosprocjud_form = form_s1070_alteracao_dadosprocjud(
                 initial={ 's1070_alteracao': s1070_alteracao })
             s1070_alteracao_dadosprocjud_form.fields['s1070_alteracao'].widget.attrs['readonly'] = True
             s1070_alteracao_dadosprocjud_lista = s1070alteracaodadosProcJud.objects.\
                 filter(s1070_alteracao_id=s1070_alteracao.id).all()
-                
+
             s1070_alteracao_infosusp_form = form_s1070_alteracao_infosusp(
                 initial={ 's1070_alteracao': s1070_alteracao })
             s1070_alteracao_infosusp_form.fields['s1070_alteracao'].widget.attrs['readonly'] = True
             s1070_alteracao_infosusp_lista = s1070alteracaoinfoSusp.objects.\
                 filter(s1070_alteracao_id=s1070_alteracao.id).all()
-                
+
             s1070_alteracao_novavalidade_form = form_s1070_alteracao_novavalidade(
                 initial={ 's1070_alteracao': s1070_alteracao })
             s1070_alteracao_novavalidade_form.fields['s1070_alteracao'].widget.attrs['readonly'] = True
             s1070_alteracao_novavalidade_lista = s1070alteracaonovaValidade.objects.\
                 filter(s1070_alteracao_id=s1070_alteracao.id).all()
-                
-                
+
+
         else:
-        
+
             s1070_alteracao = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 's1070_alteracao' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's1070_alteracao_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1070_alteracao').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            's1070_alteracao': s1070_alteracao, 
-            's1070_alteracao_form': s1070_alteracao_form, 
+            'controle_alteracoes': controle_alteracoes,
+            's1070_alteracao': s1070_alteracao,
+            's1070_alteracao_form': s1070_alteracao_form,
             'modulos': ['s1070', ],
             'paginas': ['s1070_alteracao', ],
             's1070_alteracao_dadosprocjud_form': s1070_alteracao_dadosprocjud_form,
@@ -226,11 +226,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s1070_alteracao_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s1070_alteracao_salvar.html',
@@ -248,26 +248,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('s1070_alteracao_salvar.html', context)
             filename = "s1070_alteracao.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's1070_alteracao_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -277,7 +277,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1070_alteracao', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

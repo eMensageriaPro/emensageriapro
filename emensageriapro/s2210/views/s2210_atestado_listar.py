@@ -62,11 +62,11 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('s2210.can_see_s2210atestado'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_s2210_evtcat': 1,
             'show_codcnes': 0,
             'show_dtatendimento': 1,
@@ -84,13 +84,13 @@ def listar(request, output=None):
             'show_ideoc': 1,
             'show_nroc': 1,
             'show_ufoc': 0, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 's2210_evtcat__icontains': 's2210_evtcat__icontains',
                 'codcnes__icontains': 'codcnes__icontains',
                 'dtatendimento__range': 'dtatendimento__range',
@@ -108,18 +108,18 @@ def listar(request, output=None):
                 'ideoc__icontains': 'ideoc__icontains',
                 'nroc__icontains': 'nroc__icontains',
                 'ufoc__icontains': 'ufoc__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     's2210_evtcat__icontains': 's2210_evtcat__icontains',
                     'codcnes__icontains': 'codcnes__icontains',
                     'dtatendimento__range': 'dtatendimento__range',
@@ -137,26 +137,26 @@ def listar(request, output=None):
                     'ideoc__icontains': 'ideoc__icontains',
                     'nroc__icontains': 'nroc__icontains',
                     'ufoc__icontains': 'ufoc__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         s2210_atestado_lista = s2210atestado.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(s2210_atestado_lista) > 100:
-        
+
             filtrar = True
             s2210_atestado_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s2210_atestado_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            's2210_atestado_lista': s2210_atestado_lista, 
+            's2210_atestado_lista': s2210_atestado_lista,
             'modulos': ['s2210', ],
             'paginas': ['s2210_atestado', ],
             'dict_fields': dict_fields,
@@ -165,11 +165,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2210_atestado_listar.html',
@@ -187,33 +187,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('s2210_atestado_listar.html', context)
             filename = "s2210_atestado.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/s2210_atestado.csv', context)
             filename = "s2210_atestado.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 's2210_atestado_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -221,7 +221,7 @@ def listar(request, output=None):
             'modulos': ['s2210', ],
             'paginas': ['s2210_atestado', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

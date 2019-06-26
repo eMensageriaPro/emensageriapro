@@ -95,73 +95,73 @@ def gerar_xml_s2241(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         s2241_evtinsapo_lista = s2241evtInsApo.objects. \
             filter(id=pk).all()
-            
-        
+
+
         s2241_insalperic_lista = s2241insalPeric.objects. \
             filter(s2241_evtinsapo_id__in=listar_ids(s2241_evtinsapo_lista)).all()
-        
+
         s2241_iniinsalperic_lista = s2241iniInsalPeric.objects. \
             filter(s2241_insalperic_id__in=listar_ids(s2241_insalperic_lista)).all()
-        
+
         s2241_iniinsalperic_infoamb_lista = s2241iniInsalPericinfoAmb.objects. \
             filter(s2241_iniinsalperic_id__in=listar_ids(s2241_iniinsalperic_lista)).all()
-        
+
         s2241_iniinsalperic_fatrisco_lista = s2241iniInsalPericfatRisco.objects. \
             filter(s2241_iniinsalperic_infoamb_id__in=listar_ids(s2241_iniinsalperic_infoamb_lista)).all()
-        
+
         s2241_altinsalperic_lista = s2241altInsalPeric.objects. \
             filter(s2241_insalperic_id__in=listar_ids(s2241_insalperic_lista)).all()
-        
+
         s2241_altinsalperic_infoamb_lista = s2241altInsalPericinfoamb.objects. \
             filter(s2241_altinsalperic_id__in=listar_ids(s2241_altinsalperic_lista)).all()
-        
+
         s2241_altinsalperic_fatrisco_lista = s2241altInsalPericfatRisco.objects. \
             filter(s2241_altinsalperic_infoamb_id__in=listar_ids(s2241_altinsalperic_infoamb_lista)).all()
-        
+
         s2241_fiminsalperic_lista = s2241fimInsalPeric.objects. \
             filter(s2241_insalperic_id__in=listar_ids(s2241_insalperic_lista)).all()
-        
+
         s2241_fiminsalperic_infoamb_lista = s2241fimInsalPericinfoAmb.objects. \
             filter(s2241_fiminsalperic_id__in=listar_ids(s2241_fiminsalperic_lista)).all()
-        
+
         s2241_aposentesp_lista = s2241aposentEsp.objects. \
             filter(s2241_evtinsapo_id__in=listar_ids(s2241_evtinsapo_lista)).all()
-        
+
         s2241_iniaposentesp_lista = s2241iniAposentEsp.objects. \
             filter(s2241_aposentesp_id__in=listar_ids(s2241_aposentesp_lista)).all()
-        
+
         s2241_iniaposentesp_infoamb_lista = s2241iniAposentEspinfoAmb.objects. \
             filter(s2241_iniaposentesp_id__in=listar_ids(s2241_iniaposentesp_lista)).all()
-        
+
         s2241_iniaposentesp_fatrisco_lista = s2241iniAposentEspfatRisco.objects. \
             filter(s2241_iniaposentesp_infoamb_id__in=listar_ids(s2241_iniaposentesp_infoamb_lista)).all()
-        
+
         s2241_altaposentesp_lista = s2241altAposentEsp.objects. \
             filter(s2241_aposentesp_id__in=listar_ids(s2241_aposentesp_lista)).all()
-        
+
         s2241_altaposentesp_infoamb_lista = s2241altAposentEspinfoamb.objects. \
             filter(s2241_altaposentesp_id__in=listar_ids(s2241_altaposentesp_lista)).all()
-        
+
         s2241_altaposentesp_fatrisco_lista = s2241altAposentEspfatRisco.objects. \
             filter(s2241_altaposentesp_infoamb_id__in=listar_ids(s2241_altaposentesp_infoamb_lista)).all()
-        
+
         s2241_fimaposentesp_lista = s2241fimAposentEsp.objects. \
             filter(s2241_aposentesp_id__in=listar_ids(s2241_aposentesp_lista)).all()
-        
+
         s2241_fimaposentesp_infoamb_lista = s2241fimAposentEspinfoAmb.objects. \
             filter(s2241_fimaposentesp_id__in=listar_ids(s2241_fimaposentesp_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -206,14 +206,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s2241_evtinsapo.arquivo_original:
-    
+
         xml = ler_arquivo(s2241_evtinsapo.arquivo)
 
     else:
         xml = gerar_xml_s2241(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -234,16 +234,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 s2241evtInsApo,
                 s2241_evtinsapo)
-        
+
         s2241_evtinsapo = get_object_or_404(
             s2241evtInsApo,
             id=pk)
-        
+
         xml_assinado = assinar_esocial(
-            request, 
-            xml, 
+            request,
+            xml,
             s2241_evtinsapo.transmissor_lote_esocial_id)
-        
+
     if s2241_evtinsapo.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -257,11 +257,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s2241_evtinsapo/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -274,5 +274,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

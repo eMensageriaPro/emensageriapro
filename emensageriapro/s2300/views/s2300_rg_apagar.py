@@ -66,50 +66,50 @@ def apagar(request, pk):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s2300_rg = get_object_or_404(s2300RG, id=pk)
-    
+
     dados_evento = {}
     dados_evento = s2300_rg.evento()
-            
+
     if request.method == 'POST':
-    
+
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-            
+
             situacao_anterior = json.dumps(model_to_dict(s2300_rg), indent=4, sort_keys=True, default=str)
             obj = s2300RG.objects.get(id=pk)
             obj.delete(request=request)
             #s2300_rg_apagar_custom
             #s2300_rg_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
-            
+
             gravar_auditoria(situacao_anterior,
-                             '', 
-                             's2300_rg', 
-                             pk, 
+                             '',
+                             's2300_rg',
+                             pk,
                              request.user.id, 3)
-                             
+         
         else:
-        
+
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+
         if 's2300_rg' in request.session['return_page']:
-        
+
             return redirect('s2300_rg')
-            
+
         else:
-        
+
             return redirect(
-                request.session['return_page'], 
+                request.session['return_page'],
                 pk=request.session['return_pk'])
-            
+
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),
         'pk': pk,
-        'dados_evento': dados_evento, 
+        'dados_evento': dados_evento,
         'modulos': ['s2300', ],
         'paginas': ['s2300_rg', ],
         'data': datetime.datetime.now(),
     }
-    
-    return render(request, 
-                  's2300_rg_apagar.html', 
+
+    return render(request,
+                  's2300_rg_apagar.html',
                   context)

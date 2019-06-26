@@ -74,11 +74,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def verificar(request, pk, output=None):
 
     if request.user.has_perm('esocial.can_see_s2420evtCdBenTerm'):
-    
+
         s2420_evtcdbenterm = get_object_or_404(s2420evtCdBenTerm, id=pk)
         s2420_evtcdbenterm_lista = s2420evtCdBenTerm.objects.filter(id=pk).all()
 
-        
+
 
         request.session['return_pk'] = pk
         request.session['return_page'] = 's2420_evtcdbenterm'
@@ -93,9 +93,9 @@ def verificar(request, pk, output=None):
             'data': datetime.now(),
             'output': output,
         }
-        
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2420_evtcdbenterm_verificar.html',
@@ -112,20 +112,20 @@ def verificar(request, pk, output=None):
                              'footer-center': u'Página [page]/[topage]',
                              'footer-font-size': 10,
                              'no-stop-slow-scripts': True})
-                            
+        
             return response
 
         elif output == 'xls':
-        
+
             response = render_to_response('s2420_evtcdbenterm_verificar.html', context)
             filename = "%s.xls" % s2420_evtcdbenterm.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
 
         elif output == 'csv':
-        
+
             response = render_to_response('s2420_evtcdbenterm_verificar.html', context)
             filename = "%s.csv" % s2420_evtcdbenterm.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -133,7 +133,7 @@ def verificar(request, pk, output=None):
             return response
 
         else:
-        
+
             return render(request, 's2420_evtcdbenterm_verificar.html', context)
 
     else:

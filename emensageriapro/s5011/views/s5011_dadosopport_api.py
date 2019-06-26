@@ -44,12 +44,12 @@ from emensageriapro.s5011.models import s5011dadosOpPort, s5011dadosOpPortSerial
 
 
 class s5011dadosOpPortList(generics.ListAPIView):
-    
+
     queryset = s5011dadosOpPort.objects.all()
     serializer_class = s5011dadosOpPortSerializer
 
 
 class s5011dadosOpPortDetail(generics.ListAPIView):
-    
+
     queryset = s5011dadosOpPort.objects.all()
     serializer_class = s5011dadosOpPortSerializer

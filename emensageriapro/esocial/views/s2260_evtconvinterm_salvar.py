@@ -67,9 +67,9 @@ def salvar(request, pk=None, tab='master', output=None):
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
     TP_AMB = config.ESOCIAL_TP_AMB
-    
+
     if pk:
-    
+
         s2260_evtconvinterm = get_object_or_404(s2260evtConvInterm, id=pk)
 
         #if s2260_evtconvinterm.status != STATUS_EVENTO_CADASTRADO:
@@ -77,128 +77,128 @@ def salvar(request, pk=None, tab='master', output=None):
         #    dict_permissoes = {}
         #    dict_permissoes['s2260_evtconvinterm_apagar'] = 0
         #    dict_permissoes['s2260_evtconvinterm_editar'] = 0
-            
+
     if request.user.has_perm('esocial.can_see_s2260evtConvInterm'):
-    
+
         if pk:
-        
-            s2260_evtconvinterm_form = form_s2260_evtconvinterm(request.POST or None, instance = s2260_evtconvinterm, 
+
+            s2260_evtconvinterm_form = form_s2260_evtconvinterm(request.POST or None, instance = s2260_evtconvinterm,
                                          initial={'ativo': True})
-                                         
+                     
         else:
-        
-            s2260_evtconvinterm_form = form_s2260_evtconvinterm(request.POST or None, 
-                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL, 
-                                                  'status': STATUS_EVENTO_CADASTRADO, 
-                                                  'tpamb': TP_AMB, 
-                                                  'procemi': 1, 
-                                                  'verproc': VERSAO_EMENSAGERIA, 
+
+            s2260_evtconvinterm_form = form_s2260_evtconvinterm(request.POST or None,
+                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA,
                                                   'ativo': True})
-                                                  
+                              
         if request.method == 'POST':
-        
+
             if s2260_evtconvinterm_form.is_valid():
-            
+
                 obj = s2260_evtconvinterm_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 if not pk:
-                
+
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
-                  
+
                 #    gravar_auditoria('{}',
-                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                 's2260_evtconvinterm', obj.id, request.user.id, 1)
                 #else:
-                # 
+                #
                 #    gravar_auditoria(json.dumps(model_to_dict(s2260_evtconvinterm), indent=4, sort_keys=True, default=str),
-                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                 #                     's2260_evtconvinterm', pk, request.user.id, 2)
-                                 
+             
                 if request.session['return_page'] not in (
-                    's2260_evtconvinterm_apagar', 
-                    's2260_evtconvinterm_salvar', 
+                    's2260_evtconvinterm_apagar',
+                    's2260_evtconvinterm_salvar',
                     's2260_evtconvinterm'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        's2260_evtconvinterm_salvar', 
+                        's2260_evtconvinterm_salvar',
                         pk=obj.id)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-                
+
         s2260_evtconvinterm_form = disabled_form_fields(
-             s2260_evtconvinterm_form, 
+             s2260_evtconvinterm_form,
              request.user.has_perm('esocial.change_s2260evtConvInterm'))
-        
+
         if pk:
-        
+
             if s2260_evtconvinterm.status != 0:
-            
+
                 s2260_evtconvinterm_form = disabled_form_fields(s2260_evtconvinterm_form, False)
-                
+
         #s2260_evtconvinterm_campos_multiple_passo3
 
         for field in s2260_evtconvinterm_form.fields.keys():
-        
+
             s2260_evtconvinterm_form.fields[field].widget.attrs['ng-model'] = 's2260_evtconvinterm_'+field
-            
+
         if output:
-        
+
             s2260_evtconvinterm_form = disabled_form_for_print(s2260_evtconvinterm_form)
 
-        
-        s2260_localtrabinterm_lista = None 
-        s2260_localtrabinterm_form = None 
-        
+
+        s2260_localtrabinterm_lista = None
+        s2260_localtrabinterm_form = None
+
         if pk:
-        
+
             s2260_evtconvinterm = get_object_or_404(s2260evtConvInterm, id=pk)
-            
+
             s2260_localtrabinterm_form = form_s2260_localtrabinterm(
                 initial={ 's2260_evtconvinterm': s2260_evtconvinterm })
             s2260_localtrabinterm_form.fields['s2260_evtconvinterm'].widget.attrs['readonly'] = True
             s2260_localtrabinterm_lista = s2260localTrabInterm.objects.\
                 filter(s2260_evtconvinterm_id=s2260_evtconvinterm.id).all()
-                
+
         else:
-        
+
             s2260_evtconvinterm = None
-            
+
         #s2260_evtconvinterm_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
-        
+
         if 's2260_evtconvinterm'[1] == '5':
             evento_totalizador = True
-            
+
         else:
             evento_totalizador = False
-        
+
         if tab or 's2260_evtconvinterm' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 's2260_evtconvinterm_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2260_evtconvinterm').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
-            's2260_evtconvinterm': s2260_evtconvinterm, 
-            's2260_evtconvinterm_form': s2260_evtconvinterm_form, 
-            
+            's2260_evtconvinterm': s2260_evtconvinterm,
+            's2260_evtconvinterm_form': s2260_evtconvinterm_form,
+
             's2260_localtrabinterm_form': s2260_localtrabinterm_form,
             's2260_localtrabinterm_lista': s2260_localtrabinterm_lista,
             'data': datetime.datetime.now(),
@@ -208,10 +208,10 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #s2260_evtconvinterm_salvar_custom_variaveis_context#
         }
-        
-            
+
+
         if output == 'pdf':
-        
+
             response = PDFTemplateResponse(
                 request=request,
                 template='s2260_evtconvinterm_salvar.html',
@@ -229,24 +229,24 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             response = render_to_response('s2260_evtconvinterm_salvar.html', context)
             filename = "s2260_evtconvinterm.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 's2260_evtconvinterm_salvar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -256,5 +256,5 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2260_evtconvinterm', ],
             'data': datetime.datetime.now(),
         }
-        
+
         return render(request, 'permissao_negada.html', context)

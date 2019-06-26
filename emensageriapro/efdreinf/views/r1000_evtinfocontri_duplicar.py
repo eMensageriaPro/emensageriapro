@@ -78,39 +78,39 @@ def duplicar(request, pk):
     from emensageriapro.efdreinf.views.r1000_evtinfocontri_importar import read_r1000_evtinfocontri_string
     from emensageriapro.efdreinf.views.r1000_evtinfocontri_gerar_xml import gerar_xml_r1000
     from emensageriapro.functions import identidade_evento
-    
+
     if request.user.has_perm('efdreinf.can_duplicate_r1000evtInfoContri'):
 
         if pk:
-    
+
             r1000_evtinfocontri = get_object_or_404(
                 r1000evtInfoContri,
                 id=pk)
-    
+
             texto = gerar_xml_r1000(request, pk, versao="|")
             dados = read_r1000_evtinfocontri_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(r1000_evtinfocontri)
-    
+
             r1000evtInfoContri.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,
                        arquivo_original=0,
                        arquivo='')
-    
+
             gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r1000_evtinfocontri.identidade),
                 'r1000_evtinfocontri', dados['id'], request.user.id, 1)
-    
+
             messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
             return_pk = dados['id']
-            
+
             return redirect('r1000_evtinfocontri_salvar', pk=return_pk)
-    
+
         messages.error(request, 'Erro ao duplicar evento!')
-        
+
         return redirect('r1000_evtinfocontri_salvar', pk=pk)
-        
+
     else:
-    
-        messages.error(request, u'''Você não possui permissão para duplicar o evento. 
+
+        messages.error(request, u'''Você não possui permissão para duplicar o evento.
                                     Entre em contato com o administrador do sistema!''')
-                                    
+                
         return redirect('r1000_evtinfocontri_salvar', pk=pk)

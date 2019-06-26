@@ -62,65 +62,65 @@ from emensageriapro.controle_de_acesso.models import *
 def listar(request, output=None):
 
     if request.user.has_perm('r4010.can_see_r4010infoReemb'):
-    
+
         filtrar = False
-        
+
         dict_fields = {}
-        show_fields = { 
+        show_fields = {
             'show_r4010_ideopsaude': 1,
             'show_tpinsc': 1,
             'show_nrinsc': 1,
             'show_vlrreemb': 1,
             'show_vlrreembant': 0, }
-            
+
         post = False
-        
+
         if request.method == 'POST':
-        
+
             post = True
-            dict_fields = { 
+            dict_fields = {
                 'r4010_ideopsaude__icontains': 'r4010_ideopsaude__icontains',
                 'tpinsc__icontains': 'tpinsc__icontains',
                 'nrinsc__icontains': 'nrinsc__icontains',
                 'vlrreemb__icontains': 'vlrreemb__icontains',
                 'vlrreembant__icontains': 'vlrreembant__icontains', }
-                
+
             for a in dict_fields:
-            
+
                 dict_fields[a] = request.POST.get(a or None)
-                
+
             for a in show_fields:
-            
+
                 show_fields[a] = request.POST.get(a or None)
-                
+
             if request.method == 'POST':
-            
-                dict_fields = { 
+
+                dict_fields = {
                     'r4010_ideopsaude__icontains': 'r4010_ideopsaude__icontains',
                     'tpinsc__icontains': 'tpinsc__icontains',
                     'nrinsc__icontains': 'nrinsc__icontains',
                     'vlrreemb__icontains': 'vlrreemb__icontains',
                     'vlrreembant__icontains': 'vlrreembant__icontains', }
-                    
+
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
+
         dict_qs = clear_dict_fields(dict_fields)
         r4010_inforeemb_lista = r4010infoReemb.objects.filter(**dict_qs).filter().exclude(id=0).all()
-        
+
         if not post and len(r4010_inforeemb_lista) > 100:
-        
+
             filtrar = True
             r4010_inforeemb_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-            
+
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #r4010_inforeemb_listar_custom
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
-            'r4010_inforeemb_lista': r4010_inforeemb_lista, 
+            'r4010_inforeemb_lista': r4010_inforeemb_lista,
             'modulos': ['r4010', ],
             'paginas': ['r4010_inforeemb', ],
             'dict_fields': dict_fields,
@@ -129,11 +129,11 @@ def listar(request, output=None):
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-            
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r4010_inforeemb_listar.html',
@@ -151,33 +151,33 @@ def listar(request, output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-                             
+         
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('r4010_inforeemb_listar.html', context)
             filename = "r4010_inforeemb.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
-            
+
         elif output == 'csv':
-        
+
             from django.shortcuts import render_to_response
             response = render_to_response('csv/r4010_inforeemb.csv', context)
             filename = "r4010_inforeemb.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-        
+
         else:
-        
+
             return render(request, 'r4010_inforeemb_listar.html', context)
-            
+
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
@@ -185,7 +185,7 @@ def listar(request, output=None):
             'modulos': ['r4010', ],
             'paginas': ['r4010_inforeemb', ],
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

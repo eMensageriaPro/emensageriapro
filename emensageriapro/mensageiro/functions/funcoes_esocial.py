@@ -131,9 +131,16 @@ def salvar_arquivo_esocial(arquivo, texto, permite_recuperacao):
     arquivo1 = BASE_DIR+'/'+arquivo
     arquivo1 = arquivo1.replace('//', '/').replace('//', '/')
 
-    file = codecs.open(arquivo1, "w", "utf-8")
+    file = open(arquivo1, "w")
     file.write(texto)
     file.close()
+
+    print arquivo1
+    print texto
+
+    # file = codecs.open(arquivo1, "w", "utf-8")
+    # file.write(texto)
+    # file.close()
 
     gravar_nome_arquivo(arquivo, permite_recuperacao)
 

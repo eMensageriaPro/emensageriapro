@@ -95,40 +95,40 @@ def gerar_xml_s2230(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         s2230_evtafasttemp_lista = s2230evtAfastTemp.objects. \
             filter(id=pk).all()
-            
-        
+
+
         s2230_iniafastamento_lista = s2230iniAfastamento.objects. \
             filter(s2230_evtafasttemp_id__in=listar_ids(s2230_evtafasttemp_lista)).all()
-        
+
         s2230_infoatestado_lista = s2230infoAtestado.objects. \
             filter(s2230_iniafastamento_id__in=listar_ids(s2230_iniafastamento_lista)).all()
-        
+
         s2230_emitente_lista = s2230emitente.objects. \
             filter(s2230_infoatestado_id__in=listar_ids(s2230_infoatestado_lista)).all()
-        
+
         s2230_infocessao_lista = s2230infoCessao.objects. \
             filter(s2230_iniafastamento_id__in=listar_ids(s2230_iniafastamento_lista)).all()
-        
+
         s2230_infomandsind_lista = s2230infoMandSind.objects. \
             filter(s2230_iniafastamento_id__in=listar_ids(s2230_iniafastamento_lista)).all()
-        
+
         s2230_inforetif_lista = s2230infoRetif.objects. \
             filter(s2230_evtafasttemp_id__in=listar_ids(s2230_evtafasttemp_lista)).all()
-        
+
         s2230_fimafastamento_lista = s2230fimAfastamento.objects. \
             filter(s2230_evtafasttemp_id__in=listar_ids(s2230_evtafasttemp_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -162,14 +162,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s2230_evtafasttemp.arquivo_original:
-    
+
         xml = ler_arquivo(s2230_evtafasttemp.arquivo)
 
     else:
         xml = gerar_xml_s2230(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -190,16 +190,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 s2230evtAfastTemp,
                 s2230_evtafasttemp)
-        
+
         s2230_evtafasttemp = get_object_or_404(
             s2230evtAfastTemp,
             id=pk)
-        
+
         xml_assinado = assinar_esocial(
-            request, 
-            xml, 
+            request,
+            xml,
             s2230_evtafasttemp.transmissor_lote_esocial_id)
-        
+
     if s2230_evtafasttemp.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -213,11 +213,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/s2230_evtafasttemp/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -230,5 +230,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)

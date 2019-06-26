@@ -67,142 +67,142 @@ from emensageriapro.r2030.forms import form_r2030_infoproc
 def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
+
     evento_dados = {}
     evento_dados['status'] = STATUS_EVENTO_CADASTRADO
-    
+
     if pk:
-    
+
         r2030_recursosrec = get_object_or_404(r2030recursosRec, id=pk)
         evento_dados = r2030_recursosrec.evento()
 
     if request.user.has_perm('r2030.can_see_r2030recursosRec'):
-        
+
         if pk:
-        
+
             r2030_recursosrec_form = form_r2030_recursosrec(
-                request.POST or None, 
+                request.POST or None,
                 instance=r2030_recursosrec)
-                                         
+                     
         else:
-        
+
             r2030_recursosrec_form = form_r2030_recursosrec(request.POST or None)
-                                         
+                     
         if request.method == 'POST':
-        
+
             if r2030_recursosrec_form.is_valid():
-            
+
                 obj = r2030_recursosrec_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-                
+
                 #if not pk:
                 #
                 #    gravar_auditoria(
                 #        '{}',
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r2030_recursosrec', 
-                #        obj.id, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r2030_recursosrec',
+                #        obj.id,
                 #        request.user.id, 1)
-                #                 
+                #
                 #else:
                 #
                 #    gravar_auditoria(
                 #        json.dumps(
-                #            model_to_dict(r2030_recursosrec), 
-                #            indent=4, 
-                #            sort_keys=True, 
+                #            model_to_dict(r2030_recursosrec),
+                #            indent=4,
+                #            sort_keys=True,
                 #            default=str),
                 #        json.dumps(
-                #            model_to_dict(obj), 
-                #            indent=4, 
-                #            sort_keys=True, 
-                #            default=str), 
-                #        'r2030_recursosrec', 
-                #        pk, 
+                #            model_to_dict(obj),
+                #            indent=4,
+                #            sort_keys=True,
+                #            default=str),
+                #        'r2030_recursosrec',
+                #        pk,
                 #        request.user.id, 2)
-                                     
+                 
                 if request.session['return_page'] not in (
-                    'r2030_recursosrec_apagar', 
-                    'r2030_recursosrec_salvar', 
+                    'r2030_recursosrec_apagar',
+                    'r2030_recursosrec_salvar',
                     'r2030_recursosrec'):
-                    
+
                     return redirect(
-                        request.session['return_page'], 
+                        request.session['return_page'],
                         pk=request.session['return_pk'])
-                    
+
                 if pk != obj.id:
-                
+
                     return redirect(
-                        'r2030_recursosrec_salvar', 
+                        'r2030_recursosrec_salvar',
                         pk=obj.id)
-                    
+
             else:
-            
+
                 messages.error(request, u'Erro ao salvar!')
-               
+
         r2030_recursosrec_form = disabled_form_fields(
-            r2030_recursosrec_form, 
+            r2030_recursosrec_form,
             request.user.has_perm('r2030.change_r2030recursosRec'))
-        
+
         if pk:
-        
+
             if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
-            
+
                 r2030_recursosrec_form = disabled_form_fields(r2030_recursosrec_form, 0)
-                
+
         if output:
-        
+
             r2030_recursosrec_form = disabled_form_for_print(r2030_recursosrec_form)
-            
-        
-        r2030_inforecurso_lista = None 
-        r2030_inforecurso_form = None 
-        r2030_infoproc_lista = None 
-        r2030_infoproc_form = None 
-        
+
+
+        r2030_inforecurso_lista = None
+        r2030_inforecurso_form = None
+        r2030_infoproc_lista = None
+        r2030_infoproc_form = None
+
         if pk:
-        
+
             r2030_recursosrec = get_object_or_404(r2030recursosRec, id=pk)
-            
+
             r2030_inforecurso_form = form_r2030_inforecurso(
                 initial={ 'r2030_recursosrec': r2030_recursosrec })
             r2030_inforecurso_form.fields['r2030_recursosrec'].widget.attrs['readonly'] = True
             r2030_inforecurso_lista = r2030infoRecurso.objects.\
                 filter(r2030_recursosrec_id=r2030_recursosrec.id).all()
-                
+
             r2030_infoproc_form = form_r2030_infoproc(
                 initial={ 'r2030_recursosrec': r2030_recursosrec })
             r2030_infoproc_form.fields['r2030_recursosrec'].widget.attrs['readonly'] = True
             r2030_infoproc_lista = r2030infoProc.objects.\
                 filter(r2030_recursosrec_id=r2030_recursosrec.id).all()
-                
-                
+
+
         else:
-        
+
             r2030_recursosrec = None
-            
+
         tabelas_secundarias = []
-        
+
         if tab or 'r2030_recursosrec' in request.session['return_page']:
-        
+
             request.session['return_pk'] = pk
             request.session['return_tab'] = tab
             request.session['return_page'] = 'r2030_recursosrec_salvar'
-            
+
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r2030_recursosrec').all()
-        
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
             'evento_dados': evento_dados,
-            'controle_alteracoes': controle_alteracoes, 
-            'r2030_recursosrec': r2030_recursosrec, 
-            'r2030_recursosrec_form': r2030_recursosrec_form, 
+            'controle_alteracoes': controle_alteracoes,
+            'r2030_recursosrec': r2030_recursosrec,
+            'r2030_recursosrec_form': r2030_recursosrec_form,
             'modulos': ['r2030', ],
             'paginas': ['r2030_recursosrec', ],
             'r2030_inforecurso_form': r2030_inforecurso_form,
@@ -214,11 +214,11 @@ def salvar(request, pk=None, tab='master', output=None):
             'tab': tab,
             #r2030_recursosrec_salvar_custom_variaveis_context#
         }
-        
+
         if output == 'pdf':
-        
+
             from wkhtmltopdf.views import PDFTemplateResponse
-            
+
             response = PDFTemplateResponse(
                 request=request,
                 template='r2030_recursosrec_salvar.html',
@@ -236,26 +236,26 @@ def salvar(request, pk=None, tab='master', output=None):
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True}, )
-            
+
             return response
-            
+
         elif output == 'xls':
-        
+
             from django.shortcuts import render_to_response
-            
+
             response = render_to_response('r2030_recursosrec_salvar.html', context)
             filename = "r2030_recursosrec.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            
+
             return response
-            
+
         else:
-        
+
             return render(request, 'r2030_recursosrec_salvar.html', context)
 
     else:
-    
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
@@ -265,7 +265,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r2030_recursosrec', ],
             'data': datetime.datetime.now(),
         }
-        
-        return render(request, 
-                      'permissao_negada.html', 
+
+        return render(request,
+                      'permissao_negada.html',
                       context)

@@ -95,28 +95,28 @@ def gerar_xml_r2060(request, pk, versao=None):
             xmlns = get_xmlns(arquivo)
 
         else:
-        
+
             from django.contrib import messages
 
             messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do 
+                Não foi capturar o XMLNS pois o XSD do
                 evento não está contido na pasta!''')
 
             xmlns = ''
 
         r2060_evtcprb_lista = r2060evtCPRB.objects. \
             filter(id=pk).all()
-            
-        
+
+
         r2060_tipocod_lista = r2060tipoCod.objects. \
             filter(r2060_evtcprb_id__in=listar_ids(r2060_evtcprb_lista)).all()
-        
+
         r2060_tipoajuste_lista = r2060tipoAjuste.objects. \
             filter(r2060_tipocod_id__in=listar_ids(r2060_tipocod_lista)).all()
-        
+
         r2060_infoproc_lista = r2060infoProc.objects. \
             filter(r2060_tipocod_id__in=listar_ids(r2060_tipocod_lista)).all()
-        
+
 
         context = {
             'xmlns': xmlns,
@@ -146,14 +146,14 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if r2060_evtcprb.arquivo_original:
-    
+
         xml = ler_arquivo(r2060_evtcprb.arquivo)
 
     else:
         xml = gerar_xml_r2060(request, pk)
 
     if 'Signature' in xml:
-    
+
         xml_assinado = xml
 
     else:
@@ -174,16 +174,16 @@ def gerar_xml_assinado(request, pk):
                 grupo,
                 r2060evtCPRB,
                 r2060_evtcprb)
-        
+
         r2060_evtcprb = get_object_or_404(
             r2060evtCPRB,
             id=pk)
-        
+
         xml_assinado = assinar_efdreinf(
-            request, 
-            xml, 
+            request,
+            xml,
             r2060_evtcprb.transmissor_lote_efdreinf_id)
-        
+
     if r2060_evtcprb.status in (
         STATUS_EVENTO_CADASTRADO,
         STATUS_EVENTO_IMPORTADO,
@@ -197,11 +197,11 @@ def gerar_xml_assinado(request, pk):
     os.system('mkdir -p %s/arquivos/Eventos/r2060_evtcprb/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
-    
+
         salvar_arquivo_efdreinf(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
-    
+
     return xml_assinado
 
 
@@ -214,5 +214,5 @@ def gerar_xml(request, pk):
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
-    
+
     return render(request, 'permissao_negada.html', context)
