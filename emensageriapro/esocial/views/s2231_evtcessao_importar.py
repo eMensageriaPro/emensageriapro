@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2231.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,52 +62,52 @@ def read_s2231_evtcessao_obj(request, doc, status, validar=False, arquivo=False)
     evtCessao = doc.eSocial.evtCessao
 
     try:
-        s2231_evtcessao_dados['indretif'] = evtCessao.ideEvento.indRetif.cdata
+        s2231_evtcessao_dados['indretif'] = read_from_xml(evtCessao.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2231_evtcessao_dados['nrrecibo'] = evtCessao.ideEvento.nrRecibo.cdata
+        s2231_evtcessao_dados['nrrecibo'] = read_from_xml(evtCessao.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2231_evtcessao_dados['tpamb'] = evtCessao.ideEvento.tpAmb.cdata
+        s2231_evtcessao_dados['tpamb'] = read_from_xml(evtCessao.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2231_evtcessao_dados['procemi'] = evtCessao.ideEvento.procEmi.cdata
+        s2231_evtcessao_dados['procemi'] = read_from_xml(evtCessao.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2231_evtcessao_dados['verproc'] = evtCessao.ideEvento.verProc.cdata
+        s2231_evtcessao_dados['verproc'] = read_from_xml(evtCessao.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2231_evtcessao_dados['tpinsc'] = evtCessao.ideEmpregador.tpInsc.cdata
+        s2231_evtcessao_dados['tpinsc'] = read_from_xml(evtCessao.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2231_evtcessao_dados['nrinsc'] = evtCessao.ideEmpregador.nrInsc.cdata
+        s2231_evtcessao_dados['nrinsc'] = read_from_xml(evtCessao.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2231_evtcessao_dados['cpftrab'] = evtCessao.ideVinculo.cpfTrab.cdata
+        s2231_evtcessao_dados['cpftrab'] = read_from_xml(evtCessao.ideVinculo.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2231_evtcessao_dados['nistrab'] = evtCessao.ideVinculo.nisTrab.cdata
+        s2231_evtcessao_dados['nistrab'] = read_from_xml(evtCessao.ideVinculo.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2231_evtcessao_dados['matricula'] = evtCessao.ideVinculo.matricula.cdata
+        s2231_evtcessao_dados['matricula'] = read_from_xml(evtCessao.ideVinculo.matricula.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -120,27 +121,27 @@ def read_s2231_evtcessao_obj(request, doc, status, validar=False, arquivo=False)
             s2231_inicessao_dados['s2231_evtcessao_id'] = s2231_evtcessao.id
 
             try:
-                s2231_inicessao_dados['dtinicessao'] = iniCessao.dtIniCessao.cdata
+                s2231_inicessao_dados['dtinicessao'] = read_from_xml(iniCessao.dtIniCessao.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2231_inicessao_dados['cnpjcess'] = iniCessao.cnpjCess.cdata
+                s2231_inicessao_dados['cnpjcess'] = read_from_xml(iniCessao.cnpjCess.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2231_inicessao_dados['infonus'] = iniCessao.infOnus.cdata
+                s2231_inicessao_dados['infonus'] = read_from_xml(iniCessao.infOnus.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2231_inicessao_dados['indcessao'] = iniCessao.indCessao.cdata
+                s2231_inicessao_dados['indcessao'] = read_from_xml(iniCessao.indCessao.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2231_inicessao_dados['dscsituacao'] = iniCessao.dscSituacao.cdata
+                s2231_inicessao_dados['dscsituacao'] = read_from_xml(iniCessao.dscSituacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -154,7 +155,7 @@ def read_s2231_evtcessao_obj(request, doc, status, validar=False, arquivo=False)
             s2231_fimcessao_dados['s2231_evtcessao_id'] = s2231_evtcessao.id
 
             try:
-                s2231_fimcessao_dados['dttermcessao'] = fimCessao.dtTermCessao.cdata
+                s2231_fimcessao_dados['dttermcessao'] = read_from_xml(fimCessao.dtTermCessao.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 

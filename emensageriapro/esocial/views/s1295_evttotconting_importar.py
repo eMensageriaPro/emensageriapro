@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1295.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,37 +62,37 @@ def read_s1295_evttotconting_obj(request, doc, status, validar=False, arquivo=Fa
     evtTotConting = doc.eSocial.evtTotConting
 
     try:
-        s1295_evttotconting_dados['indapuracao'] = evtTotConting.ideEvento.indApuracao.cdata
+        s1295_evttotconting_dados['indapuracao'] = read_from_xml(evtTotConting.ideEvento.indApuracao.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1295_evttotconting_dados['perapur'] = evtTotConting.ideEvento.perApur.cdata
+        s1295_evttotconting_dados['perapur'] = read_from_xml(evtTotConting.ideEvento.perApur.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1295_evttotconting_dados['tpamb'] = evtTotConting.ideEvento.tpAmb.cdata
+        s1295_evttotconting_dados['tpamb'] = read_from_xml(evtTotConting.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1295_evttotconting_dados['procemi'] = evtTotConting.ideEvento.procEmi.cdata
+        s1295_evttotconting_dados['procemi'] = read_from_xml(evtTotConting.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1295_evttotconting_dados['verproc'] = evtTotConting.ideEvento.verProc.cdata
+        s1295_evttotconting_dados['verproc'] = read_from_xml(evtTotConting.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1295_evttotconting_dados['tpinsc'] = evtTotConting.ideEmpregador.tpInsc.cdata
+        s1295_evttotconting_dados['tpinsc'] = read_from_xml(evtTotConting.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1295_evttotconting_dados['nrinsc'] = evtTotConting.ideEmpregador.nrInsc.cdata
+        s1295_evttotconting_dados['nrinsc'] = read_from_xml(evtTotConting.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -105,22 +106,22 @@ def read_s1295_evttotconting_obj(request, doc, status, validar=False, arquivo=Fa
             s1295_iderespinf_dados['s1295_evttotconting_id'] = s1295_evttotconting.id
 
             try:
-                s1295_iderespinf_dados['nmresp'] = ideRespInf.nmResp.cdata
+                s1295_iderespinf_dados['nmresp'] = read_from_xml(ideRespInf.nmResp.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1295_iderespinf_dados['cpfresp'] = ideRespInf.cpfResp.cdata
+                s1295_iderespinf_dados['cpfresp'] = read_from_xml(ideRespInf.cpfResp.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1295_iderespinf_dados['telefone'] = ideRespInf.telefone.cdata
+                s1295_iderespinf_dados['telefone'] = read_from_xml(ideRespInf.telefone.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1295_iderespinf_dados['email'] = ideRespInf.email.cdata
+                s1295_iderespinf_dados['email'] = read_from_xml(ideRespInf.email.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

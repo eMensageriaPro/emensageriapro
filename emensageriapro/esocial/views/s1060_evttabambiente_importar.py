@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1060.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -65,27 +66,27 @@ def read_s1060_evttabambiente_obj(request, doc, status, validar=False, arquivo=F
     elif 'exclusao' in dir(evtTabAmbiente.infoAmbiente): s1060_evttabambiente_dados['operacao'] = 3
 
     try:
-        s1060_evttabambiente_dados['tpamb'] = evtTabAmbiente.ideEvento.tpAmb.cdata
+        s1060_evttabambiente_dados['tpamb'] = read_from_xml(evtTabAmbiente.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1060_evttabambiente_dados['procemi'] = evtTabAmbiente.ideEvento.procEmi.cdata
+        s1060_evttabambiente_dados['procemi'] = read_from_xml(evtTabAmbiente.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1060_evttabambiente_dados['verproc'] = evtTabAmbiente.ideEvento.verProc.cdata
+        s1060_evttabambiente_dados['verproc'] = read_from_xml(evtTabAmbiente.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1060_evttabambiente_dados['tpinsc'] = evtTabAmbiente.ideEmpregador.tpInsc.cdata
+        s1060_evttabambiente_dados['tpinsc'] = read_from_xml(evtTabAmbiente.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1060_evttabambiente_dados['nrinsc'] = evtTabAmbiente.ideEmpregador.nrInsc.cdata
+        s1060_evttabambiente_dados['nrinsc'] = read_from_xml(evtTabAmbiente.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -99,47 +100,47 @@ def read_s1060_evttabambiente_obj(request, doc, status, validar=False, arquivo=F
             s1060_inclusao_dados['s1060_evttabambiente_id'] = s1060_evttabambiente.id
 
             try:
-                s1060_inclusao_dados['codamb'] = inclusao.ideAmbiente.codAmb.cdata
+                s1060_inclusao_dados['codamb'] = read_from_xml(inclusao.ideAmbiente.codAmb.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_inclusao_dados['inivalid'] = inclusao.ideAmbiente.iniValid.cdata
+                s1060_inclusao_dados['inivalid'] = read_from_xml(inclusao.ideAmbiente.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_inclusao_dados['fimvalid'] = inclusao.ideAmbiente.fimValid.cdata
+                s1060_inclusao_dados['fimvalid'] = read_from_xml(inclusao.ideAmbiente.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_inclusao_dados['nmamb'] = inclusao.dadosAmbiente.nmAmb.cdata
+                s1060_inclusao_dados['nmamb'] = read_from_xml(inclusao.dadosAmbiente.nmAmb.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_inclusao_dados['dscamb'] = inclusao.dadosAmbiente.dscAmb.cdata
+                s1060_inclusao_dados['dscamb'] = read_from_xml(inclusao.dadosAmbiente.dscAmb.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_inclusao_dados['localamb'] = inclusao.dadosAmbiente.localAmb.cdata
+                s1060_inclusao_dados['localamb'] = read_from_xml(inclusao.dadosAmbiente.localAmb.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_inclusao_dados['tpinsc'] = inclusao.dadosAmbiente.tpInsc.cdata
+                s1060_inclusao_dados['tpinsc'] = read_from_xml(inclusao.dadosAmbiente.tpInsc.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_inclusao_dados['nrinsc'] = inclusao.dadosAmbiente.nrInsc.cdata
+                s1060_inclusao_dados['nrinsc'] = read_from_xml(inclusao.dadosAmbiente.nrInsc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_inclusao_dados['codlotacao'] = inclusao.dadosAmbiente.codLotacao.cdata
+                s1060_inclusao_dados['codlotacao'] = read_from_xml(inclusao.dadosAmbiente.codLotacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -153,47 +154,47 @@ def read_s1060_evttabambiente_obj(request, doc, status, validar=False, arquivo=F
             s1060_alteracao_dados['s1060_evttabambiente_id'] = s1060_evttabambiente.id
 
             try:
-                s1060_alteracao_dados['codamb'] = alteracao.ideAmbiente.codAmb.cdata
+                s1060_alteracao_dados['codamb'] = read_from_xml(alteracao.ideAmbiente.codAmb.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_alteracao_dados['inivalid'] = alteracao.ideAmbiente.iniValid.cdata
+                s1060_alteracao_dados['inivalid'] = read_from_xml(alteracao.ideAmbiente.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_alteracao_dados['fimvalid'] = alteracao.ideAmbiente.fimValid.cdata
+                s1060_alteracao_dados['fimvalid'] = read_from_xml(alteracao.ideAmbiente.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_alteracao_dados['nmamb'] = alteracao.dadosAmbiente.nmAmb.cdata
+                s1060_alteracao_dados['nmamb'] = read_from_xml(alteracao.dadosAmbiente.nmAmb.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_alteracao_dados['dscamb'] = alteracao.dadosAmbiente.dscAmb.cdata
+                s1060_alteracao_dados['dscamb'] = read_from_xml(alteracao.dadosAmbiente.dscAmb.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_alteracao_dados['localamb'] = alteracao.dadosAmbiente.localAmb.cdata
+                s1060_alteracao_dados['localamb'] = read_from_xml(alteracao.dadosAmbiente.localAmb.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_alteracao_dados['tpinsc'] = alteracao.dadosAmbiente.tpInsc.cdata
+                s1060_alteracao_dados['tpinsc'] = read_from_xml(alteracao.dadosAmbiente.tpInsc.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_alteracao_dados['nrinsc'] = alteracao.dadosAmbiente.nrInsc.cdata
+                s1060_alteracao_dados['nrinsc'] = read_from_xml(alteracao.dadosAmbiente.nrInsc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_alteracao_dados['codlotacao'] = alteracao.dadosAmbiente.codLotacao.cdata
+                s1060_alteracao_dados['codlotacao'] = read_from_xml(alteracao.dadosAmbiente.codLotacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -207,12 +208,12 @@ def read_s1060_evttabambiente_obj(request, doc, status, validar=False, arquivo=F
                     s1060_alteracao_novavalidade_dados['s1060_alteracao_id'] = s1060_alteracao.id
 
                     try:
-                        s1060_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
+                        s1060_alteracao_novavalidade_dados['inivalid'] = read_from_xml(novaValidade.iniValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1060_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                        s1060_alteracao_novavalidade_dados['fimvalid'] = read_from_xml(novaValidade.fimValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -226,17 +227,17 @@ def read_s1060_evttabambiente_obj(request, doc, status, validar=False, arquivo=F
             s1060_exclusao_dados['s1060_evttabambiente_id'] = s1060_evttabambiente.id
 
             try:
-                s1060_exclusao_dados['codamb'] = exclusao.ideAmbiente.codAmb.cdata
+                s1060_exclusao_dados['codamb'] = read_from_xml(exclusao.ideAmbiente.codAmb.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_exclusao_dados['inivalid'] = exclusao.ideAmbiente.iniValid.cdata
+                s1060_exclusao_dados['inivalid'] = read_from_xml(exclusao.ideAmbiente.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1060_exclusao_dados['fimvalid'] = exclusao.ideAmbiente.fimValid.cdata
+                s1060_exclusao_dados['fimvalid'] = read_from_xml(exclusao.ideAmbiente.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

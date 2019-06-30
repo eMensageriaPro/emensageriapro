@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.efdreinf.models import *
 from emensageriapro.r2020.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,97 +62,97 @@ def read_r2020_evtservprest_obj(request, doc, status, validar=False, arquivo=Fal
     evtServPrest = doc.Reinf.evtServPrest
 
     try:
-        r2020_evtservprest_dados['indretif'] = evtServPrest.ideEvento.indRetif.cdata
+        r2020_evtservprest_dados['indretif'] = read_from_xml(evtServPrest.ideEvento.indRetif.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['nrrecibo'] = evtServPrest.ideEvento.nrRecibo.cdata
+        r2020_evtservprest_dados['nrrecibo'] = read_from_xml(evtServPrest.ideEvento.nrRecibo.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['perapur'] = evtServPrest.ideEvento.perApur.cdata
+        r2020_evtservprest_dados['perapur'] = read_from_xml(evtServPrest.ideEvento.perApur.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['tpamb'] = evtServPrest.ideEvento.tpAmb.cdata
+        r2020_evtservprest_dados['tpamb'] = read_from_xml(evtServPrest.ideEvento.tpAmb.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['procemi'] = evtServPrest.ideEvento.procEmi.cdata
+        r2020_evtservprest_dados['procemi'] = read_from_xml(evtServPrest.ideEvento.procEmi.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['verproc'] = evtServPrest.ideEvento.verProc.cdata
+        r2020_evtservprest_dados['verproc'] = read_from_xml(evtServPrest.ideEvento.verProc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['tpinsc'] = evtServPrest.ideContri.tpInsc.cdata
+        r2020_evtservprest_dados['tpinsc'] = read_from_xml(evtServPrest.ideContri.tpInsc.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['nrinsc'] = evtServPrest.ideContri.nrInsc.cdata
+        r2020_evtservprest_dados['nrinsc'] = read_from_xml(evtServPrest.ideContri.nrInsc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['tpinscestabprest'] = evtServPrest.infoServPrest.ideEstabPrest.tpInscEstabPrest.cdata
+        r2020_evtservprest_dados['tpinscestabprest'] = read_from_xml(evtServPrest.infoServPrest.ideEstabPrest.tpInscEstabPrest.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['nrinscestabprest'] = evtServPrest.infoServPrest.ideEstabPrest.nrInscEstabPrest.cdata
+        r2020_evtservprest_dados['nrinscestabprest'] = read_from_xml(evtServPrest.infoServPrest.ideEstabPrest.nrInscEstabPrest.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['tpinsctomador'] = evtServPrest.infoServPrest.ideEstabPrest.ideTomador.tpInscTomador.cdata
+        r2020_evtservprest_dados['tpinsctomador'] = read_from_xml(evtServPrest.infoServPrest.ideEstabPrest.ideTomador.tpInscTomador.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['nrinsctomador'] = evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nrInscTomador.cdata
+        r2020_evtservprest_dados['nrinsctomador'] = read_from_xml(evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nrInscTomador.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['indobra'] = evtServPrest.infoServPrest.ideEstabPrest.ideTomador.indObra.cdata
+        r2020_evtservprest_dados['indobra'] = read_from_xml(evtServPrest.infoServPrest.ideEstabPrest.ideTomador.indObra.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['vlrtotalbruto'] = evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalBruto.cdata.replace('.', '').replace(',', '.')
+        r2020_evtservprest_dados['vlrtotalbruto'] = read_from_xml(evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalBruto.cdata, 'efdreinf', 'N', 2)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['vlrtotalbaseret'] = evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalBaseRet.cdata.replace('.', '').replace(',', '.')
+        r2020_evtservprest_dados['vlrtotalbaseret'] = read_from_xml(evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalBaseRet.cdata, 'efdreinf', 'N', 2)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['vlrtotalretprinc'] = evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalRetPrinc.cdata.replace('.', '').replace(',', '.')
+        r2020_evtservprest_dados['vlrtotalretprinc'] = read_from_xml(evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalRetPrinc.cdata, 'efdreinf', 'N', 2)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['vlrtotalretadic'] = evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalRetAdic.cdata.replace('.', '').replace(',', '.')
+        r2020_evtservprest_dados['vlrtotalretadic'] = read_from_xml(evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalRetAdic.cdata, 'efdreinf', 'N', 2)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['vlrtotalnretprinc'] = evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalNRetPrinc.cdata.replace('.', '').replace(',', '.')
+        r2020_evtservprest_dados['vlrtotalnretprinc'] = read_from_xml(evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalNRetPrinc.cdata, 'efdreinf', 'N', 2)
     except AttributeError:
         pass
 
     try:
-        r2020_evtservprest_dados['vlrtotalnretadic'] = evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalNRetAdic.cdata.replace('.', '').replace(',', '.')
+        r2020_evtservprest_dados['vlrtotalnretadic'] = read_from_xml(evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalNRetAdic.cdata, 'efdreinf', 'N', 2)
     except AttributeError:
         pass
 
@@ -165,27 +166,27 @@ def read_r2020_evtservprest_obj(request, doc, status, validar=False, arquivo=Fal
             r2020_nfs_dados['r2020_evtservprest_id'] = r2020_evtservprest.id
 
             try:
-                r2020_nfs_dados['serie'] = nfs.serie.cdata
+                r2020_nfs_dados['serie'] = read_from_xml(nfs.serie.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r2020_nfs_dados['numdocto'] = nfs.numDocto.cdata
+                r2020_nfs_dados['numdocto'] = read_from_xml(nfs.numDocto.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r2020_nfs_dados['dtemissaonf'] = nfs.dtEmissaoNF.cdata
+                r2020_nfs_dados['dtemissaonf'] = read_from_xml(nfs.dtEmissaoNF.cdata, 'efdreinf', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                r2020_nfs_dados['vlrbruto'] = nfs.vlrBruto.cdata.replace('.', '').replace(',', '.')
+                r2020_nfs_dados['vlrbruto'] = read_from_xml(nfs.vlrBruto.cdata, 'efdreinf', 'N', 2)
             except AttributeError:
                 pass
 
             try:
-                r2020_nfs_dados['obs'] = nfs.obs.cdata
+                r2020_nfs_dados['obs'] = read_from_xml(nfs.obs.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
@@ -199,52 +200,52 @@ def read_r2020_evtservprest_obj(request, doc, status, validar=False, arquivo=Fal
                     r2020_infotpserv_dados['r2020_nfs_id'] = r2020_nfs.id
 
                     try:
-                        r2020_infotpserv_dados['tpservico'] = infoTpServ.tpServico.cdata
+                        r2020_infotpserv_dados['tpservico'] = read_from_xml(infoTpServ.tpServico.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r2020_infotpserv_dados['vlrbaseret'] = infoTpServ.vlrBaseRet.cdata.replace('.', '').replace(',', '.')
+                        r2020_infotpserv_dados['vlrbaseret'] = read_from_xml(infoTpServ.vlrBaseRet.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r2020_infotpserv_dados['vlrretencao'] = infoTpServ.vlrRetencao.cdata.replace('.', '').replace(',', '.')
+                        r2020_infotpserv_dados['vlrretencao'] = read_from_xml(infoTpServ.vlrRetencao.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r2020_infotpserv_dados['vlrretsub'] = infoTpServ.vlrRetSub.cdata.replace('.', '').replace(',', '.')
+                        r2020_infotpserv_dados['vlrretsub'] = read_from_xml(infoTpServ.vlrRetSub.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r2020_infotpserv_dados['vlrnretprinc'] = infoTpServ.vlrNRetPrinc.cdata.replace('.', '').replace(',', '.')
+                        r2020_infotpserv_dados['vlrnretprinc'] = read_from_xml(infoTpServ.vlrNRetPrinc.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r2020_infotpserv_dados['vlrservicos15'] = infoTpServ.vlrServicos15.cdata.replace('.', '').replace(',', '.')
+                        r2020_infotpserv_dados['vlrservicos15'] = read_from_xml(infoTpServ.vlrServicos15.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r2020_infotpserv_dados['vlrservicos20'] = infoTpServ.vlrServicos20.cdata.replace('.', '').replace(',', '.')
+                        r2020_infotpserv_dados['vlrservicos20'] = read_from_xml(infoTpServ.vlrServicos20.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r2020_infotpserv_dados['vlrservicos25'] = infoTpServ.vlrServicos25.cdata.replace('.', '').replace(',', '.')
+                        r2020_infotpserv_dados['vlrservicos25'] = read_from_xml(infoTpServ.vlrServicos25.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r2020_infotpserv_dados['vlradicional'] = infoTpServ.vlrAdicional.cdata.replace('.', '').replace(',', '.')
+                        r2020_infotpserv_dados['vlradicional'] = read_from_xml(infoTpServ.vlrAdicional.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r2020_infotpserv_dados['vlrnretadic'] = infoTpServ.vlrNRetAdic.cdata.replace('.', '').replace(',', '.')
+                        r2020_infotpserv_dados['vlrnretadic'] = read_from_xml(infoTpServ.vlrNRetAdic.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -258,22 +259,22 @@ def read_r2020_evtservprest_obj(request, doc, status, validar=False, arquivo=Fal
             r2020_infoprocretpr_dados['r2020_evtservprest_id'] = r2020_evtservprest.id
 
             try:
-                r2020_infoprocretpr_dados['tpprocretprinc'] = infoProcRetPr.tpProcRetPrinc.cdata
+                r2020_infoprocretpr_dados['tpprocretprinc'] = read_from_xml(infoProcRetPr.tpProcRetPrinc.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r2020_infoprocretpr_dados['nrprocretprinc'] = infoProcRetPr.nrProcRetPrinc.cdata
+                r2020_infoprocretpr_dados['nrprocretprinc'] = read_from_xml(infoProcRetPr.nrProcRetPrinc.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r2020_infoprocretpr_dados['codsuspprinc'] = infoProcRetPr.codSuspPrinc.cdata
+                r2020_infoprocretpr_dados['codsuspprinc'] = read_from_xml(infoProcRetPr.codSuspPrinc.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r2020_infoprocretpr_dados['valorprinc'] = infoProcRetPr.valorPrinc.cdata
+                r2020_infoprocretpr_dados['valorprinc'] = read_from_xml(infoProcRetPr.valorPrinc.cdata, 'efdreinf', 'N', 2)
             except AttributeError:
                 pass
 
@@ -287,22 +288,22 @@ def read_r2020_evtservprest_obj(request, doc, status, validar=False, arquivo=Fal
             r2020_infoprocretad_dados['r2020_evtservprest_id'] = r2020_evtservprest.id
 
             try:
-                r2020_infoprocretad_dados['tpprocretadic'] = infoProcRetAd.tpProcRetAdic.cdata
+                r2020_infoprocretad_dados['tpprocretadic'] = read_from_xml(infoProcRetAd.tpProcRetAdic.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r2020_infoprocretad_dados['nrprocretadic'] = infoProcRetAd.nrProcRetAdic.cdata
+                r2020_infoprocretad_dados['nrprocretadic'] = read_from_xml(infoProcRetAd.nrProcRetAdic.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r2020_infoprocretad_dados['codsuspadic'] = infoProcRetAd.codSuspAdic.cdata
+                r2020_infoprocretad_dados['codsuspadic'] = read_from_xml(infoProcRetAd.codSuspAdic.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r2020_infoprocretad_dados['valoradic'] = infoProcRetAd.valorAdic.cdata
+                r2020_infoprocretad_dados['valoradic'] = read_from_xml(infoProcRetAd.valorAdic.cdata, 'efdreinf', 'N', 2)
             except AttributeError:
                 pass
 

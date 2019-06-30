@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s5013.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,27 +62,27 @@ def read_s5013_evtfgts_obj(request, doc, status, validar=False, arquivo=False):
     evtFGTS = doc.eSocial.evtFGTS
 
     try:
-        s5013_evtfgts_dados['perapur'] = evtFGTS.ideEvento.perApur.cdata
+        s5013_evtfgts_dados['perapur'] = read_from_xml(evtFGTS.ideEvento.perApur.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s5013_evtfgts_dados['tpinsc'] = evtFGTS.ideEmpregador.tpInsc.cdata
+        s5013_evtfgts_dados['tpinsc'] = read_from_xml(evtFGTS.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s5013_evtfgts_dados['nrinsc'] = evtFGTS.ideEmpregador.nrInsc.cdata
+        s5013_evtfgts_dados['nrinsc'] = read_from_xml(evtFGTS.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s5013_evtfgts_dados['nrrecarqbase'] = evtFGTS.infoFGTS.nrRecArqBase.cdata
+        s5013_evtfgts_dados['nrrecarqbase'] = read_from_xml(evtFGTS.infoFGTS.nrRecArqBase.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s5013_evtfgts_dados['indexistinfo'] = evtFGTS.infoFGTS.indExistInfo.cdata
+        s5013_evtfgts_dados['indexistinfo'] = read_from_xml(evtFGTS.infoFGTS.indExistInfo.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
@@ -104,12 +105,12 @@ def read_s5013_evtfgts_obj(request, doc, status, validar=False, arquivo=False):
                     s5013_baseperapur_dados['s5013_infobasefgts_id'] = s5013_infobasefgts.id
 
                     try:
-                        s5013_baseperapur_dados['tpvalor'] = basePerApur.tpValor.cdata
+                        s5013_baseperapur_dados['tpvalor'] = read_from_xml(basePerApur.tpValor.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s5013_baseperapur_dados['basefgts'] = basePerApur.baseFGTS.cdata
+                        s5013_baseperapur_dados['basefgts'] = read_from_xml(basePerApur.baseFGTS.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -123,7 +124,7 @@ def read_s5013_evtfgts_obj(request, doc, status, validar=False, arquivo=False):
                     s5013_infobaseperante_dados['s5013_infobasefgts_id'] = s5013_infobasefgts.id
 
                     try:
-                        s5013_infobaseperante_dados['perref'] = infoBasePerAntE.perRef.cdata
+                        s5013_infobaseperante_dados['perref'] = read_from_xml(infoBasePerAntE.perRef.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -137,12 +138,12 @@ def read_s5013_evtfgts_obj(request, doc, status, validar=False, arquivo=False):
                             s5013_baseperante_dados['s5013_infobaseperante_id'] = s5013_infobaseperante.id
         
                             try:
-                                s5013_baseperante_dados['tpvalore'] = basePerAntE.tpValorE.cdata
+                                s5013_baseperante_dados['tpvalore'] = read_from_xml(basePerAntE.tpValorE.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s5013_baseperante_dados['basefgtse'] = basePerAntE.baseFGTSE.cdata
+                                s5013_baseperante_dados['basefgtse'] = read_from_xml(basePerAntE.baseFGTSE.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
 
@@ -165,12 +166,12 @@ def read_s5013_evtfgts_obj(request, doc, status, validar=False, arquivo=False):
                     s5013_dpsperapur_dados['s5013_infodpsfgts_id'] = s5013_infodpsfgts.id
 
                     try:
-                        s5013_dpsperapur_dados['tpdps'] = dpsPerApur.tpDps.cdata
+                        s5013_dpsperapur_dados['tpdps'] = read_from_xml(dpsPerApur.tpDps.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s5013_dpsperapur_dados['vrfgts'] = dpsPerApur.vrFGTS.cdata
+                        s5013_dpsperapur_dados['vrfgts'] = read_from_xml(dpsPerApur.vrFGTS.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -184,7 +185,7 @@ def read_s5013_evtfgts_obj(request, doc, status, validar=False, arquivo=False):
                     s5013_infodpsperante_dados['s5013_infodpsfgts_id'] = s5013_infodpsfgts.id
 
                     try:
-                        s5013_infodpsperante_dados['perref'] = infoDpsPerAntE.perRef.cdata
+                        s5013_infodpsperante_dados['perref'] = read_from_xml(infoDpsPerAntE.perRef.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -198,12 +199,12 @@ def read_s5013_evtfgts_obj(request, doc, status, validar=False, arquivo=False):
                             s5013_dpsperante_dados['s5013_infodpsperante_id'] = s5013_infodpsperante.id
         
                             try:
-                                s5013_dpsperante_dados['tpdpse'] = dpsPerAntE.tpDpsE.cdata
+                                s5013_dpsperante_dados['tpdpse'] = read_from_xml(dpsPerAntE.tpDpsE.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s5013_dpsperante_dados['vrfgtse'] = dpsPerAntE.vrFGTSE.cdata
+                                s5013_dpsperante_dados['vrfgtse'] = read_from_xml(dpsPerAntE.vrFGTSE.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
 

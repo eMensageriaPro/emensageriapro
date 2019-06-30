@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.efdreinf.models import *
 from emensageriapro.r1070.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -65,27 +66,27 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False, arquivo=F
     elif 'exclusao' in dir(evtTabProcesso.infoProcesso): r1070_evttabprocesso_dados['operacao'] = 3
 
     try:
-        r1070_evttabprocesso_dados['tpamb'] = evtTabProcesso.ideEvento.tpAmb.cdata
+        r1070_evttabprocesso_dados['tpamb'] = read_from_xml(evtTabProcesso.ideEvento.tpAmb.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r1070_evttabprocesso_dados['procemi'] = evtTabProcesso.ideEvento.procEmi.cdata
+        r1070_evttabprocesso_dados['procemi'] = read_from_xml(evtTabProcesso.ideEvento.procEmi.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r1070_evttabprocesso_dados['verproc'] = evtTabProcesso.ideEvento.verProc.cdata
+        r1070_evttabprocesso_dados['verproc'] = read_from_xml(evtTabProcesso.ideEvento.verProc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r1070_evttabprocesso_dados['tpinsc'] = evtTabProcesso.ideContri.tpInsc.cdata
+        r1070_evttabprocesso_dados['tpinsc'] = read_from_xml(evtTabProcesso.ideContri.tpInsc.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r1070_evttabprocesso_dados['nrinsc'] = evtTabProcesso.ideContri.nrInsc.cdata
+        r1070_evttabprocesso_dados['nrinsc'] = read_from_xml(evtTabProcesso.ideContri.nrInsc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
@@ -99,27 +100,27 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False, arquivo=F
             r1070_inclusao_dados['r1070_evttabprocesso_id'] = r1070_evttabprocesso.id
 
             try:
-                r1070_inclusao_dados['tpproc'] = inclusao.ideProcesso.tpProc.cdata
+                r1070_inclusao_dados['tpproc'] = read_from_xml(inclusao.ideProcesso.tpProc.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r1070_inclusao_dados['nrproc'] = inclusao.ideProcesso.nrProc.cdata
+                r1070_inclusao_dados['nrproc'] = read_from_xml(inclusao.ideProcesso.nrProc.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1070_inclusao_dados['inivalid'] = inclusao.ideProcesso.iniValid.cdata
+                r1070_inclusao_dados['inivalid'] = read_from_xml(inclusao.ideProcesso.iniValid.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1070_inclusao_dados['fimvalid'] = inclusao.ideProcesso.fimValid.cdata
+                r1070_inclusao_dados['fimvalid'] = read_from_xml(inclusao.ideProcesso.fimValid.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1070_inclusao_dados['indautoria'] = inclusao.ideProcesso.indAutoria.cdata
+                r1070_inclusao_dados['indautoria'] = read_from_xml(inclusao.ideProcesso.indAutoria.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
@@ -133,22 +134,22 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False, arquivo=F
                     r1070_inclusao_infosusp_dados['r1070_inclusao_id'] = r1070_inclusao.id
 
                     try:
-                        r1070_inclusao_infosusp_dados['codsusp'] = infoSusp.codSusp.cdata
+                        r1070_inclusao_infosusp_dados['codsusp'] = read_from_xml(infoSusp.codSusp.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1070_inclusao_infosusp_dados['indsusp'] = infoSusp.indSusp.cdata
+                        r1070_inclusao_infosusp_dados['indsusp'] = read_from_xml(infoSusp.indSusp.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1070_inclusao_infosusp_dados['dtdecisao'] = infoSusp.dtDecisao.cdata
+                        r1070_inclusao_infosusp_dados['dtdecisao'] = read_from_xml(infoSusp.dtDecisao.cdata, 'efdreinf', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1070_inclusao_infosusp_dados['inddeposito'] = infoSusp.indDeposito.cdata
+                        r1070_inclusao_infosusp_dados['inddeposito'] = read_from_xml(infoSusp.indDeposito.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
@@ -162,17 +163,17 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False, arquivo=F
                     r1070_inclusao_dadosprocjud_dados['r1070_inclusao_id'] = r1070_inclusao.id
 
                     try:
-                        r1070_inclusao_dadosprocjud_dados['ufvara'] = dadosProcJud.ufVara.cdata
+                        r1070_inclusao_dadosprocjud_dados['ufvara'] = read_from_xml(dadosProcJud.ufVara.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1070_inclusao_dadosprocjud_dados['codmunic'] = dadosProcJud.codMunic.cdata
+                        r1070_inclusao_dadosprocjud_dados['codmunic'] = read_from_xml(dadosProcJud.codMunic.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1070_inclusao_dadosprocjud_dados['idvara'] = dadosProcJud.idVara.cdata
+                        r1070_inclusao_dadosprocjud_dados['idvara'] = read_from_xml(dadosProcJud.idVara.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
@@ -186,27 +187,27 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False, arquivo=F
             r1070_alteracao_dados['r1070_evttabprocesso_id'] = r1070_evttabprocesso.id
 
             try:
-                r1070_alteracao_dados['tpproc'] = alteracao.ideProcesso.tpProc.cdata
+                r1070_alteracao_dados['tpproc'] = read_from_xml(alteracao.ideProcesso.tpProc.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r1070_alteracao_dados['nrproc'] = alteracao.ideProcesso.nrProc.cdata
+                r1070_alteracao_dados['nrproc'] = read_from_xml(alteracao.ideProcesso.nrProc.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1070_alteracao_dados['inivalid'] = alteracao.ideProcesso.iniValid.cdata
+                r1070_alteracao_dados['inivalid'] = read_from_xml(alteracao.ideProcesso.iniValid.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1070_alteracao_dados['fimvalid'] = alteracao.ideProcesso.fimValid.cdata
+                r1070_alteracao_dados['fimvalid'] = read_from_xml(alteracao.ideProcesso.fimValid.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1070_alteracao_dados['indautoria'] = alteracao.ideProcesso.indAutoria.cdata
+                r1070_alteracao_dados['indautoria'] = read_from_xml(alteracao.ideProcesso.indAutoria.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
@@ -220,22 +221,22 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False, arquivo=F
                     r1070_alteracao_infosusp_dados['r1070_alteracao_id'] = r1070_alteracao.id
 
                     try:
-                        r1070_alteracao_infosusp_dados['codsusp'] = infoSusp.codSusp.cdata
+                        r1070_alteracao_infosusp_dados['codsusp'] = read_from_xml(infoSusp.codSusp.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1070_alteracao_infosusp_dados['indsusp'] = infoSusp.indSusp.cdata
+                        r1070_alteracao_infosusp_dados['indsusp'] = read_from_xml(infoSusp.indSusp.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1070_alteracao_infosusp_dados['dtdecisao'] = infoSusp.dtDecisao.cdata
+                        r1070_alteracao_infosusp_dados['dtdecisao'] = read_from_xml(infoSusp.dtDecisao.cdata, 'efdreinf', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1070_alteracao_infosusp_dados['inddeposito'] = infoSusp.indDeposito.cdata
+                        r1070_alteracao_infosusp_dados['inddeposito'] = read_from_xml(infoSusp.indDeposito.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
@@ -249,17 +250,17 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False, arquivo=F
                     r1070_alteracao_dadosprocjud_dados['r1070_alteracao_id'] = r1070_alteracao.id
 
                     try:
-                        r1070_alteracao_dadosprocjud_dados['ufvara'] = dadosProcJud.ufVara.cdata
+                        r1070_alteracao_dadosprocjud_dados['ufvara'] = read_from_xml(dadosProcJud.ufVara.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1070_alteracao_dadosprocjud_dados['codmunic'] = dadosProcJud.codMunic.cdata
+                        r1070_alteracao_dadosprocjud_dados['codmunic'] = read_from_xml(dadosProcJud.codMunic.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1070_alteracao_dadosprocjud_dados['idvara'] = dadosProcJud.idVara.cdata
+                        r1070_alteracao_dadosprocjud_dados['idvara'] = read_from_xml(dadosProcJud.idVara.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
@@ -273,12 +274,12 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False, arquivo=F
                     r1070_alteracao_novavalidade_dados['r1070_alteracao_id'] = r1070_alteracao.id
 
                     try:
-                        r1070_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
+                        r1070_alteracao_novavalidade_dados['inivalid'] = read_from_xml(novaValidade.iniValid.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1070_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                        r1070_alteracao_novavalidade_dados['fimvalid'] = read_from_xml(novaValidade.fimValid.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
@@ -292,22 +293,22 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False, arquivo=F
             r1070_exclusao_dados['r1070_evttabprocesso_id'] = r1070_evttabprocesso.id
 
             try:
-                r1070_exclusao_dados['tpproc'] = exclusao.ideProcesso.tpProc.cdata
+                r1070_exclusao_dados['tpproc'] = read_from_xml(exclusao.ideProcesso.tpProc.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r1070_exclusao_dados['nrproc'] = exclusao.ideProcesso.nrProc.cdata
+                r1070_exclusao_dados['nrproc'] = read_from_xml(exclusao.ideProcesso.nrProc.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1070_exclusao_dados['inivalid'] = exclusao.ideProcesso.iniValid.cdata
+                r1070_exclusao_dados['inivalid'] = read_from_xml(exclusao.ideProcesso.iniValid.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1070_exclusao_dados['fimvalid'] = exclusao.ideProcesso.fimValid.cdata
+                r1070_exclusao_dados['fimvalid'] = read_from_xml(exclusao.ideProcesso.fimValid.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 

@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2210.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,182 +62,182 @@ def read_s2210_evtcat_obj(request, doc, status, validar=False, arquivo=False):
     evtCAT = doc.eSocial.evtCAT
 
     try:
-        s2210_evtcat_dados['indretif'] = evtCAT.ideEvento.indRetif.cdata
+        s2210_evtcat_dados['indretif'] = read_from_xml(evtCAT.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['nrrecibo'] = evtCAT.ideEvento.nrRecibo.cdata
+        s2210_evtcat_dados['nrrecibo'] = read_from_xml(evtCAT.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['tpamb'] = evtCAT.ideEvento.tpAmb.cdata
+        s2210_evtcat_dados['tpamb'] = read_from_xml(evtCAT.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['procemi'] = evtCAT.ideEvento.procEmi.cdata
+        s2210_evtcat_dados['procemi'] = read_from_xml(evtCAT.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['verproc'] = evtCAT.ideEvento.verProc.cdata
+        s2210_evtcat_dados['verproc'] = read_from_xml(evtCAT.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['tpinsc'] = evtCAT.ideEmpregador.tpInsc.cdata
+        s2210_evtcat_dados['tpinsc'] = read_from_xml(evtCAT.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['nrinsc'] = evtCAT.ideEmpregador.nrInsc.cdata
+        s2210_evtcat_dados['nrinsc'] = read_from_xml(evtCAT.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['cpftrab'] = evtCAT.ideVinculo.cpfTrab.cdata
+        s2210_evtcat_dados['cpftrab'] = read_from_xml(evtCAT.ideVinculo.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['nistrab'] = evtCAT.ideVinculo.nisTrab.cdata
+        s2210_evtcat_dados['nistrab'] = read_from_xml(evtCAT.ideVinculo.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['matricula'] = evtCAT.ideVinculo.matricula.cdata
+        s2210_evtcat_dados['matricula'] = read_from_xml(evtCAT.ideVinculo.matricula.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['codcateg'] = evtCAT.ideVinculo.codCateg.cdata
+        s2210_evtcat_dados['codcateg'] = read_from_xml(evtCAT.ideVinculo.codCateg.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['dtacid'] = evtCAT.cat.dtAcid.cdata
+        s2210_evtcat_dados['dtacid'] = read_from_xml(evtCAT.cat.dtAcid.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['tpacid'] = evtCAT.cat.tpAcid.cdata
+        s2210_evtcat_dados['tpacid'] = read_from_xml(evtCAT.cat.tpAcid.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['hracid'] = evtCAT.cat.hrAcid.cdata
+        s2210_evtcat_dados['hracid'] = read_from_xml(evtCAT.cat.hrAcid.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['hrstrabantesacid'] = evtCAT.cat.hrsTrabAntesAcid.cdata
+        s2210_evtcat_dados['hrstrabantesacid'] = read_from_xml(evtCAT.cat.hrsTrabAntesAcid.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['tpcat'] = evtCAT.cat.tpCat.cdata
+        s2210_evtcat_dados['tpcat'] = read_from_xml(evtCAT.cat.tpCat.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['indcatobito'] = evtCAT.cat.indCatObito.cdata
+        s2210_evtcat_dados['indcatobito'] = read_from_xml(evtCAT.cat.indCatObito.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['dtobito'] = evtCAT.cat.dtObito.cdata
+        s2210_evtcat_dados['dtobito'] = read_from_xml(evtCAT.cat.dtObito.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['indcomunpolicia'] = evtCAT.cat.indComunPolicia.cdata
+        s2210_evtcat_dados['indcomunpolicia'] = read_from_xml(evtCAT.cat.indComunPolicia.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['codsitgeradora'] = evtCAT.cat.codSitGeradora.cdata
+        s2210_evtcat_dados['codsitgeradora'] = read_from_xml(evtCAT.cat.codSitGeradora.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['iniciatcat'] = evtCAT.cat.iniciatCAT.cdata
+        s2210_evtcat_dados['iniciatcat'] = read_from_xml(evtCAT.cat.iniciatCAT.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['obscat'] = evtCAT.cat.obsCAT.cdata
+        s2210_evtcat_dados['obscat'] = read_from_xml(evtCAT.cat.obsCAT.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['observacao'] = evtCAT.cat.observacao.cdata
+        s2210_evtcat_dados['observacao'] = read_from_xml(evtCAT.cat.observacao.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['tplocal'] = evtCAT.cat.localAcidente.tpLocal.cdata
+        s2210_evtcat_dados['tplocal'] = read_from_xml(evtCAT.cat.localAcidente.tpLocal.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['dsclocal'] = evtCAT.cat.localAcidente.dscLocal.cdata
+        s2210_evtcat_dados['dsclocal'] = read_from_xml(evtCAT.cat.localAcidente.dscLocal.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['codamb'] = evtCAT.cat.localAcidente.codAmb.cdata
+        s2210_evtcat_dados['codamb'] = read_from_xml(evtCAT.cat.localAcidente.codAmb.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['tplograd'] = evtCAT.cat.localAcidente.tpLograd.cdata
+        s2210_evtcat_dados['tplograd'] = read_from_xml(evtCAT.cat.localAcidente.tpLograd.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['dsclograd'] = evtCAT.cat.localAcidente.dscLograd.cdata
+        s2210_evtcat_dados['dsclograd'] = read_from_xml(evtCAT.cat.localAcidente.dscLograd.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['nrlograd'] = evtCAT.cat.localAcidente.nrLograd.cdata
+        s2210_evtcat_dados['nrlograd'] = read_from_xml(evtCAT.cat.localAcidente.nrLograd.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['complemento'] = evtCAT.cat.localAcidente.complemento.cdata
+        s2210_evtcat_dados['complemento'] = read_from_xml(evtCAT.cat.localAcidente.complemento.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['bairro'] = evtCAT.cat.localAcidente.bairro.cdata
+        s2210_evtcat_dados['bairro'] = read_from_xml(evtCAT.cat.localAcidente.bairro.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['cep'] = evtCAT.cat.localAcidente.cep.cdata
+        s2210_evtcat_dados['cep'] = read_from_xml(evtCAT.cat.localAcidente.cep.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['codmunic'] = evtCAT.cat.localAcidente.codMunic.cdata
+        s2210_evtcat_dados['codmunic'] = read_from_xml(evtCAT.cat.localAcidente.codMunic.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['uf'] = evtCAT.cat.localAcidente.uf.cdata
+        s2210_evtcat_dados['uf'] = read_from_xml(evtCAT.cat.localAcidente.uf.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['pais'] = evtCAT.cat.localAcidente.pais.cdata
+        s2210_evtcat_dados['pais'] = read_from_xml(evtCAT.cat.localAcidente.pais.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2210_evtcat_dados['codpostal'] = evtCAT.cat.localAcidente.codPostal.cdata
+        s2210_evtcat_dados['codpostal'] = read_from_xml(evtCAT.cat.localAcidente.codPostal.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -250,12 +251,12 @@ def read_s2210_evtcat_obj(request, doc, status, validar=False, arquivo=False):
             s2210_idelocalacid_dados['s2210_evtcat_id'] = s2210_evtcat.id
 
             try:
-                s2210_idelocalacid_dados['tpinsc'] = ideLocalAcid.tpInsc.cdata
+                s2210_idelocalacid_dados['tpinsc'] = read_from_xml(ideLocalAcid.tpInsc.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_idelocalacid_dados['nrinsc'] = ideLocalAcid.nrInsc.cdata
+                s2210_idelocalacid_dados['nrinsc'] = read_from_xml(ideLocalAcid.nrInsc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -269,12 +270,12 @@ def read_s2210_evtcat_obj(request, doc, status, validar=False, arquivo=False):
             s2210_parteatingida_dados['s2210_evtcat_id'] = s2210_evtcat.id
 
             try:
-                s2210_parteatingida_dados['codparteating'] = parteAtingida.codParteAting.cdata
+                s2210_parteatingida_dados['codparteating'] = read_from_xml(parteAtingida.codParteAting.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_parteatingida_dados['lateralidade'] = parteAtingida.lateralidade.cdata
+                s2210_parteatingida_dados['lateralidade'] = read_from_xml(parteAtingida.lateralidade.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
@@ -288,7 +289,7 @@ def read_s2210_evtcat_obj(request, doc, status, validar=False, arquivo=False):
             s2210_agentecausador_dados['s2210_evtcat_id'] = s2210_evtcat.id
 
             try:
-                s2210_agentecausador_dados['codagntcausador'] = agenteCausador.codAgntCausador.cdata
+                s2210_agentecausador_dados['codagntcausador'] = read_from_xml(agenteCausador.codAgntCausador.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
@@ -302,77 +303,77 @@ def read_s2210_evtcat_obj(request, doc, status, validar=False, arquivo=False):
             s2210_atestado_dados['s2210_evtcat_id'] = s2210_evtcat.id
 
             try:
-                s2210_atestado_dados['codcnes'] = atestado.codCNES.cdata
+                s2210_atestado_dados['codcnes'] = read_from_xml(atestado.codCNES.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_atestado_dados['dtatendimento'] = atestado.dtAtendimento.cdata
+                s2210_atestado_dados['dtatendimento'] = read_from_xml(atestado.dtAtendimento.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_atestado_dados['hratendimento'] = atestado.hrAtendimento.cdata
+                s2210_atestado_dados['hratendimento'] = read_from_xml(atestado.hrAtendimento.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_atestado_dados['indinternacao'] = atestado.indInternacao.cdata
+                s2210_atestado_dados['indinternacao'] = read_from_xml(atestado.indInternacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_atestado_dados['durtrat'] = atestado.durTrat.cdata
+                s2210_atestado_dados['durtrat'] = read_from_xml(atestado.durTrat.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_atestado_dados['indafast'] = atestado.indAfast.cdata
+                s2210_atestado_dados['indafast'] = read_from_xml(atestado.indAfast.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_atestado_dados['dsclesao'] = atestado.dscLesao.cdata
+                s2210_atestado_dados['dsclesao'] = read_from_xml(atestado.dscLesao.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_atestado_dados['dsccomplesao'] = atestado.dscCompLesao.cdata
+                s2210_atestado_dados['dsccomplesao'] = read_from_xml(atestado.dscCompLesao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_atestado_dados['diagprovavel'] = atestado.diagProvavel.cdata
+                s2210_atestado_dados['diagprovavel'] = read_from_xml(atestado.diagProvavel.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_atestado_dados['codcid'] = atestado.codCID.cdata
+                s2210_atestado_dados['codcid'] = read_from_xml(atestado.codCID.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_atestado_dados['observacao'] = atestado.observacao.cdata
+                s2210_atestado_dados['observacao'] = read_from_xml(atestado.observacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_atestado_dados['nmemit'] = atestado.emitente.nmEmit.cdata
+                s2210_atestado_dados['nmemit'] = read_from_xml(atestado.emitente.nmEmit.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_atestado_dados['ideoc'] = atestado.emitente.ideOC.cdata
+                s2210_atestado_dados['ideoc'] = read_from_xml(atestado.emitente.ideOC.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_atestado_dados['nroc'] = atestado.emitente.nrOC.cdata
+                s2210_atestado_dados['nroc'] = read_from_xml(atestado.emitente.nrOC.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_atestado_dados['ufoc'] = atestado.emitente.ufOC.cdata
+                s2210_atestado_dados['ufoc'] = read_from_xml(atestado.emitente.ufOC.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -386,12 +387,12 @@ def read_s2210_evtcat_obj(request, doc, status, validar=False, arquivo=False):
             s2210_catorigem_dados['s2210_evtcat_id'] = s2210_evtcat.id
 
             try:
-                s2210_catorigem_dados['dtcatorig'] = catOrigem.dtCatOrig.cdata
+                s2210_catorigem_dados['dtcatorig'] = read_from_xml(catOrigem.dtCatOrig.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2210_catorigem_dados['nrreccatorig'] = catOrigem.nrRecCatOrig.cdata
+                s2210_catorigem_dados['nrreccatorig'] = read_from_xml(catOrigem.nrRecCatOrig.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

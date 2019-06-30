@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1260.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,52 +62,52 @@ def read_s1260_evtcomprod_obj(request, doc, status, validar=False, arquivo=False
     evtComProd = doc.eSocial.evtComProd
 
     try:
-        s1260_evtcomprod_dados['indretif'] = evtComProd.ideEvento.indRetif.cdata
+        s1260_evtcomprod_dados['indretif'] = read_from_xml(evtComProd.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1260_evtcomprod_dados['nrrecibo'] = evtComProd.ideEvento.nrRecibo.cdata
+        s1260_evtcomprod_dados['nrrecibo'] = read_from_xml(evtComProd.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1260_evtcomprod_dados['indapuracao'] = evtComProd.ideEvento.indApuracao.cdata
+        s1260_evtcomprod_dados['indapuracao'] = read_from_xml(evtComProd.ideEvento.indApuracao.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1260_evtcomprod_dados['perapur'] = evtComProd.ideEvento.perApur.cdata
+        s1260_evtcomprod_dados['perapur'] = read_from_xml(evtComProd.ideEvento.perApur.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1260_evtcomprod_dados['tpamb'] = evtComProd.ideEvento.tpAmb.cdata
+        s1260_evtcomprod_dados['tpamb'] = read_from_xml(evtComProd.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1260_evtcomprod_dados['procemi'] = evtComProd.ideEvento.procEmi.cdata
+        s1260_evtcomprod_dados['procemi'] = read_from_xml(evtComProd.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1260_evtcomprod_dados['verproc'] = evtComProd.ideEvento.verProc.cdata
+        s1260_evtcomprod_dados['verproc'] = read_from_xml(evtComProd.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1260_evtcomprod_dados['tpinsc'] = evtComProd.ideEmpregador.tpInsc.cdata
+        s1260_evtcomprod_dados['tpinsc'] = read_from_xml(evtComProd.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1260_evtcomprod_dados['nrinsc'] = evtComProd.ideEmpregador.nrInsc.cdata
+        s1260_evtcomprod_dados['nrinsc'] = read_from_xml(evtComProd.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1260_evtcomprod_dados['nrinscestabrural'] = evtComProd.infoComProd.ideEstabel.nrInscEstabRural.cdata
+        s1260_evtcomprod_dados['nrinscestabrural'] = read_from_xml(evtComProd.infoComProd.ideEstabel.nrInscEstabRural.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -120,12 +121,12 @@ def read_s1260_evtcomprod_obj(request, doc, status, validar=False, arquivo=False
             s1260_tpcomerc_dados['s1260_evtcomprod_id'] = s1260_evtcomprod.id
 
             try:
-                s1260_tpcomerc_dados['indcomerc'] = tpComerc.indComerc.cdata
+                s1260_tpcomerc_dados['indcomerc'] = read_from_xml(tpComerc.indComerc.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1260_tpcomerc_dados['vrtotcom'] = tpComerc.vrTotCom.cdata
+                s1260_tpcomerc_dados['vrtotcom'] = read_from_xml(tpComerc.vrTotCom.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 
@@ -139,17 +140,17 @@ def read_s1260_evtcomprod_obj(request, doc, status, validar=False, arquivo=False
                     s1260_ideadquir_dados['s1260_tpcomerc_id'] = s1260_tpcomerc.id
 
                     try:
-                        s1260_ideadquir_dados['tpinsc'] = ideAdquir.tpInsc.cdata
+                        s1260_ideadquir_dados['tpinsc'] = read_from_xml(ideAdquir.tpInsc.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1260_ideadquir_dados['nrinsc'] = ideAdquir.nrInsc.cdata
+                        s1260_ideadquir_dados['nrinsc'] = read_from_xml(ideAdquir.nrInsc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1260_ideadquir_dados['vrcomerc'] = ideAdquir.vrComerc.cdata
+                        s1260_ideadquir_dados['vrcomerc'] = read_from_xml(ideAdquir.vrComerc.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -163,37 +164,37 @@ def read_s1260_evtcomprod_obj(request, doc, status, validar=False, arquivo=False
                             s1260_nfs_dados['s1260_ideadquir_id'] = s1260_ideadquir.id
         
                             try:
-                                s1260_nfs_dados['serie'] = nfs.serie.cdata
+                                s1260_nfs_dados['serie'] = read_from_xml(nfs.serie.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1260_nfs_dados['nrdocto'] = nfs.nrDocto.cdata
+                                s1260_nfs_dados['nrdocto'] = read_from_xml(nfs.nrDocto.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1260_nfs_dados['dtemisnf'] = nfs.dtEmisNF.cdata
+                                s1260_nfs_dados['dtemisnf'] = read_from_xml(nfs.dtEmisNF.cdata, 'esocial', 'D', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1260_nfs_dados['vlrbruto'] = nfs.vlrBruto.cdata
+                                s1260_nfs_dados['vlrbruto'] = read_from_xml(nfs.vlrBruto.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1260_nfs_dados['vrcpdescpr'] = nfs.vrCPDescPR.cdata
+                                s1260_nfs_dados['vrcpdescpr'] = read_from_xml(nfs.vrCPDescPR.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1260_nfs_dados['vrratdescpr'] = nfs.vrRatDescPR.cdata
+                                s1260_nfs_dados['vrratdescpr'] = read_from_xml(nfs.vrRatDescPR.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1260_nfs_dados['vrsenardesc'] = nfs.vrSenarDesc.cdata
+                                s1260_nfs_dados['vrsenardesc'] = read_from_xml(nfs.vrSenarDesc.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
 
@@ -207,32 +208,32 @@ def read_s1260_evtcomprod_obj(request, doc, status, validar=False, arquivo=False
                     s1260_infoprocjud_dados['s1260_tpcomerc_id'] = s1260_tpcomerc.id
 
                     try:
-                        s1260_infoprocjud_dados['tpproc'] = infoProcJud.tpProc.cdata
+                        s1260_infoprocjud_dados['tpproc'] = read_from_xml(infoProcJud.tpProc.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1260_infoprocjud_dados['nrproc'] = infoProcJud.nrProc.cdata
+                        s1260_infoprocjud_dados['nrproc'] = read_from_xml(infoProcJud.nrProc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1260_infoprocjud_dados['codsusp'] = infoProcJud.codSusp.cdata
+                        s1260_infoprocjud_dados['codsusp'] = read_from_xml(infoProcJud.codSusp.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1260_infoprocjud_dados['vrcpsusp'] = infoProcJud.vrCPSusp.cdata
+                        s1260_infoprocjud_dados['vrcpsusp'] = read_from_xml(infoProcJud.vrCPSusp.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        s1260_infoprocjud_dados['vrratsusp'] = infoProcJud.vrRatSusp.cdata
+                        s1260_infoprocjud_dados['vrratsusp'] = read_from_xml(infoProcJud.vrRatSusp.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        s1260_infoprocjud_dados['vrsenarsusp'] = infoProcJud.vrSenarSusp.cdata
+                        s1260_infoprocjud_dados['vrsenarsusp'] = read_from_xml(infoProcJud.vrSenarSusp.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 

@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.efdreinf.models import *
 from emensageriapro.r9012.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,52 +62,52 @@ def read_r9012_evtretcons_obj(request, doc, status, validar=False, arquivo=False
     evtRetCons = doc.Reinf.evtRetCons
 
     try:
-        r9012_evtretcons_dados['perapur'] = evtRetCons.ideEvento.perApur.cdata
+        r9012_evtretcons_dados['perapur'] = read_from_xml(evtRetCons.ideEvento.perApur.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r9012_evtretcons_dados['tpinsc'] = evtRetCons.ideContri.tpInsc.cdata
+        r9012_evtretcons_dados['tpinsc'] = read_from_xml(evtRetCons.ideContri.tpInsc.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r9012_evtretcons_dados['nrinsc'] = evtRetCons.ideContri.nrInsc.cdata
+        r9012_evtretcons_dados['nrinsc'] = read_from_xml(evtRetCons.ideContri.nrInsc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r9012_evtretcons_dados['cdretorno'] = evtRetCons.ideRecRetorno.ideStatus.cdRetorno.cdata
+        r9012_evtretcons_dados['cdretorno'] = read_from_xml(evtRetCons.ideRecRetorno.ideStatus.cdRetorno.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r9012_evtretcons_dados['descretorno'] = evtRetCons.ideRecRetorno.ideStatus.descRetorno.cdata
+        r9012_evtretcons_dados['descretorno'] = read_from_xml(evtRetCons.ideRecRetorno.ideStatus.descRetorno.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r9012_evtretcons_dados['nrprotentr'] = evtRetCons.infoRecEv.nrProtEntr.cdata
+        r9012_evtretcons_dados['nrprotentr'] = read_from_xml(evtRetCons.infoRecEv.nrProtEntr.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r9012_evtretcons_dados['dhprocess'] = evtRetCons.infoRecEv.dhProcess.cdata
+        r9012_evtretcons_dados['dhprocess'] = read_from_xml(evtRetCons.infoRecEv.dhProcess.cdata, 'efdreinf', 'D', None)
     except AttributeError:
         pass
 
     try:
-        r9012_evtretcons_dados['tpev'] = evtRetCons.infoRecEv.tpEv.cdata
+        r9012_evtretcons_dados['tpev'] = read_from_xml(evtRetCons.infoRecEv.tpEv.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r9012_evtretcons_dados['idev'] = evtRetCons.infoRecEv.idEv.cdata
+        r9012_evtretcons_dados['idev'] = read_from_xml(evtRetCons.infoRecEv.idEv.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r9012_evtretcons_dados['hash'] = evtRetCons.infoRecEv.hash.cdata
+        r9012_evtretcons_dados['hash'] = read_from_xml(evtRetCons.infoRecEv.hash.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
@@ -120,22 +121,22 @@ def read_r9012_evtretcons_obj(request, doc, status, validar=False, arquivo=False
             r9012_regocorrs_dados['r9012_evtretcons_id'] = r9012_evtretcons.id
 
             try:
-                r9012_regocorrs_dados['tpocorr'] = regOcorrs.tpOcorr.cdata
+                r9012_regocorrs_dados['tpocorr'] = read_from_xml(regOcorrs.tpOcorr.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r9012_regocorrs_dados['localerroaviso'] = regOcorrs.localErroAviso.cdata
+                r9012_regocorrs_dados['localerroaviso'] = read_from_xml(regOcorrs.localErroAviso.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r9012_regocorrs_dados['codresp'] = regOcorrs.codResp.cdata
+                r9012_regocorrs_dados['codresp'] = read_from_xml(regOcorrs.codResp.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r9012_regocorrs_dados['dscresp'] = regOcorrs.dscResp.cdata
+                r9012_regocorrs_dados['dscresp'] = read_from_xml(regOcorrs.dscResp.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
@@ -149,12 +150,12 @@ def read_r9012_evtretcons_obj(request, doc, status, validar=False, arquivo=False
             r9012_infototalcontrib_dados['r9012_evtretcons_id'] = r9012_evtretcons.id
 
             try:
-                r9012_infototalcontrib_dados['nrrecarqbase'] = infoTotalContrib.nrRecArqBase.cdata
+                r9012_infototalcontrib_dados['nrrecarqbase'] = read_from_xml(infoTotalContrib.nrRecArqBase.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r9012_infototalcontrib_dados['indexistinfo'] = infoTotalContrib.indExistInfo.cdata
+                r9012_infototalcontrib_dados['indexistinfo'] = read_from_xml(infoTotalContrib.indExistInfo.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
@@ -168,27 +169,27 @@ def read_r9012_evtretcons_obj(request, doc, status, validar=False, arquivo=False
                     r9012_totapurmen_dados['r9012_infototalcontrib_id'] = r9012_infototalcontrib.id
 
                     try:
-                        r9012_totapurmen_dados['crmen'] = totApurMen.CRMen.cdata
+                        r9012_totapurmen_dados['crmen'] = read_from_xml(totApurMen.CRMen.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurmen_dados['vlrbasecrmen'] = totApurMen.vlrBaseCRMen.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapurmen_dados['vlrbasecrmen'] = read_from_xml(totApurMen.vlrBaseCRMen.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurmen_dados['vlrcrmen'] = totApurMen.vlrCRMen.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapurmen_dados['vlrcrmen'] = read_from_xml(totApurMen.vlrCRMen.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurmen_dados['vlrbasecrmensusp'] = totApurMen.vlrBaseCRMenSusp.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapurmen_dados['vlrbasecrmensusp'] = read_from_xml(totApurMen.vlrBaseCRMenSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurmen_dados['vlrcrmensusp'] = totApurMen.vlrCRMenSusp.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapurmen_dados['vlrcrmensusp'] = read_from_xml(totApurMen.vlrCRMenSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -202,32 +203,32 @@ def read_r9012_evtretcons_obj(request, doc, status, validar=False, arquivo=False
                     r9012_totapurqui_dados['r9012_infototalcontrib_id'] = r9012_infototalcontrib.id
 
                     try:
-                        r9012_totapurqui_dados['perapurqui'] = totApurQui.perApurQui.cdata
+                        r9012_totapurqui_dados['perapurqui'] = read_from_xml(totApurQui.perApurQui.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurqui_dados['crqui'] = totApurQui.CRQui.cdata
+                        r9012_totapurqui_dados['crqui'] = read_from_xml(totApurQui.CRQui.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurqui_dados['vlrbasecrqui'] = totApurQui.vlrBaseCRQui.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapurqui_dados['vlrbasecrqui'] = read_from_xml(totApurQui.vlrBaseCRQui.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurqui_dados['vlrcrqui'] = totApurQui.vlrCRQui.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapurqui_dados['vlrcrqui'] = read_from_xml(totApurQui.vlrCRQui.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurqui_dados['vlrbasecrquisusp'] = totApurQui.vlrBaseCRQuiSusp.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapurqui_dados['vlrbasecrquisusp'] = read_from_xml(totApurQui.vlrBaseCRQuiSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurqui_dados['vlrcrquisusp'] = totApurQui.vlrCRQuiSusp.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapurqui_dados['vlrcrquisusp'] = read_from_xml(totApurQui.vlrCRQuiSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -241,32 +242,32 @@ def read_r9012_evtretcons_obj(request, doc, status, validar=False, arquivo=False
                     r9012_totapurdec_dados['r9012_infototalcontrib_id'] = r9012_infototalcontrib.id
 
                     try:
-                        r9012_totapurdec_dados['perapurdec'] = totApurDec.perApurDec.cdata
+                        r9012_totapurdec_dados['perapurdec'] = read_from_xml(totApurDec.perApurDec.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurdec_dados['crdec'] = totApurDec.CRDec.cdata
+                        r9012_totapurdec_dados['crdec'] = read_from_xml(totApurDec.CRDec.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurdec_dados['vlrbasecrdec'] = totApurDec.vlrBaseCRDec.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapurdec_dados['vlrbasecrdec'] = read_from_xml(totApurDec.vlrBaseCRDec.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurdec_dados['vlrcrdec'] = totApurDec.vlrCRDec.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapurdec_dados['vlrcrdec'] = read_from_xml(totApurDec.vlrCRDec.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurdec_dados['vlrbasecrdecsusp'] = totApurDec.vlrBaseCRDecSusp.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapurdec_dados['vlrbasecrdecsusp'] = read_from_xml(totApurDec.vlrBaseCRDecSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurdec_dados['vlrcrdecsusp'] = totApurDec.vlrCRDecSusp.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapurdec_dados['vlrcrdecsusp'] = read_from_xml(totApurDec.vlrCRDecSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -280,32 +281,32 @@ def read_r9012_evtretcons_obj(request, doc, status, validar=False, arquivo=False
                     r9012_totapursem_dados['r9012_infototalcontrib_id'] = r9012_infototalcontrib.id
 
                     try:
-                        r9012_totapursem_dados['perapursem'] = totApurSem.perApurSem.cdata
+                        r9012_totapursem_dados['perapursem'] = read_from_xml(totApurSem.perApurSem.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapursem_dados['crsem'] = totApurSem.CRSem.cdata
+                        r9012_totapursem_dados['crsem'] = read_from_xml(totApurSem.CRSem.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapursem_dados['vlrbasecrsem'] = totApurSem.vlrBaseCRSem.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapursem_dados['vlrbasecrsem'] = read_from_xml(totApurSem.vlrBaseCRSem.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapursem_dados['vlrcrsem'] = totApurSem.vlrCRSem.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapursem_dados['vlrcrsem'] = read_from_xml(totApurSem.vlrCRSem.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapursem_dados['vlrbasecrsemsusp'] = totApurSem.vlrBaseCRSemSusp.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapursem_dados['vlrbasecrsemsusp'] = read_from_xml(totApurSem.vlrBaseCRSemSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapursem_dados['vlrcrsemsusp'] = totApurSem.vlrCRSemSusp.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapursem_dados['vlrcrsemsusp'] = read_from_xml(totApurSem.vlrCRSemSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -319,32 +320,32 @@ def read_r9012_evtretcons_obj(request, doc, status, validar=False, arquivo=False
                     r9012_totapurdia_dados['r9012_infototalcontrib_id'] = r9012_infototalcontrib.id
 
                     try:
-                        r9012_totapurdia_dados['perapurdia'] = totApurDia.perApurDia.cdata
+                        r9012_totapurdia_dados['perapurdia'] = read_from_xml(totApurDia.perApurDia.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurdia_dados['crdia'] = totApurDia.CRDia.cdata
+                        r9012_totapurdia_dados['crdia'] = read_from_xml(totApurDia.CRDia.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurdia_dados['vlrbasecrdia'] = totApurDia.vlrBaseCRDia.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapurdia_dados['vlrbasecrdia'] = read_from_xml(totApurDia.vlrBaseCRDia.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurdia_dados['vlrcrdia'] = totApurDia.vlrCRDia.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapurdia_dados['vlrcrdia'] = read_from_xml(totApurDia.vlrCRDia.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurdia_dados['vlrbasecrdiasusp'] = totApurDia.vlrBaseCRDiaSusp.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapurdia_dados['vlrbasecrdiasusp'] = read_from_xml(totApurDia.vlrBaseCRDiaSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9012_totapurdia_dados['vlrcrdiasusp'] = totApurDia.vlrCRDiaSusp.cdata.replace('.', '').replace(',', '.')
+                        r9012_totapurdia_dados['vlrcrdiasusp'] = read_from_xml(totApurDia.vlrCRDiaSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 

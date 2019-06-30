@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2230.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,57 +62,57 @@ def read_s2230_evtafasttemp_obj(request, doc, status, validar=False, arquivo=Fal
     evtAfastTemp = doc.eSocial.evtAfastTemp
 
     try:
-        s2230_evtafasttemp_dados['indretif'] = evtAfastTemp.ideEvento.indRetif.cdata
+        s2230_evtafasttemp_dados['indretif'] = read_from_xml(evtAfastTemp.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2230_evtafasttemp_dados['nrrecibo'] = evtAfastTemp.ideEvento.nrRecibo.cdata
+        s2230_evtafasttemp_dados['nrrecibo'] = read_from_xml(evtAfastTemp.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2230_evtafasttemp_dados['tpamb'] = evtAfastTemp.ideEvento.tpAmb.cdata
+        s2230_evtafasttemp_dados['tpamb'] = read_from_xml(evtAfastTemp.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2230_evtafasttemp_dados['procemi'] = evtAfastTemp.ideEvento.procEmi.cdata
+        s2230_evtafasttemp_dados['procemi'] = read_from_xml(evtAfastTemp.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2230_evtafasttemp_dados['verproc'] = evtAfastTemp.ideEvento.verProc.cdata
+        s2230_evtafasttemp_dados['verproc'] = read_from_xml(evtAfastTemp.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2230_evtafasttemp_dados['tpinsc'] = evtAfastTemp.ideEmpregador.tpInsc.cdata
+        s2230_evtafasttemp_dados['tpinsc'] = read_from_xml(evtAfastTemp.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2230_evtafasttemp_dados['nrinsc'] = evtAfastTemp.ideEmpregador.nrInsc.cdata
+        s2230_evtafasttemp_dados['nrinsc'] = read_from_xml(evtAfastTemp.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2230_evtafasttemp_dados['cpftrab'] = evtAfastTemp.ideVinculo.cpfTrab.cdata
+        s2230_evtafasttemp_dados['cpftrab'] = read_from_xml(evtAfastTemp.ideVinculo.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2230_evtafasttemp_dados['nistrab'] = evtAfastTemp.ideVinculo.nisTrab.cdata
+        s2230_evtafasttemp_dados['nistrab'] = read_from_xml(evtAfastTemp.ideVinculo.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2230_evtafasttemp_dados['matricula'] = evtAfastTemp.ideVinculo.matricula.cdata
+        s2230_evtafasttemp_dados['matricula'] = read_from_xml(evtAfastTemp.ideVinculo.matricula.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2230_evtafasttemp_dados['codcateg'] = evtAfastTemp.ideVinculo.codCateg.cdata
+        s2230_evtafasttemp_dados['codcateg'] = read_from_xml(evtAfastTemp.ideVinculo.codCateg.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
@@ -125,27 +126,27 @@ def read_s2230_evtafasttemp_obj(request, doc, status, validar=False, arquivo=Fal
             s2230_iniafastamento_dados['s2230_evtafasttemp_id'] = s2230_evtafasttemp.id
 
             try:
-                s2230_iniafastamento_dados['dtiniafast'] = iniAfastamento.dtIniAfast.cdata
+                s2230_iniafastamento_dados['dtiniafast'] = read_from_xml(iniAfastamento.dtIniAfast.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2230_iniafastamento_dados['codmotafast'] = iniAfastamento.codMotAfast.cdata
+                s2230_iniafastamento_dados['codmotafast'] = read_from_xml(iniAfastamento.codMotAfast.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2230_iniafastamento_dados['infomesmomtv'] = iniAfastamento.infoMesmoMtv.cdata
+                s2230_iniafastamento_dados['infomesmomtv'] = read_from_xml(iniAfastamento.infoMesmoMtv.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2230_iniafastamento_dados['tpacidtransito'] = iniAfastamento.tpAcidTransito.cdata
+                s2230_iniafastamento_dados['tpacidtransito'] = read_from_xml(iniAfastamento.tpAcidTransito.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2230_iniafastamento_dados['observacao'] = iniAfastamento.observacao.cdata
+                s2230_iniafastamento_dados['observacao'] = read_from_xml(iniAfastamento.observacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -159,12 +160,12 @@ def read_s2230_evtafasttemp_obj(request, doc, status, validar=False, arquivo=Fal
                     s2230_infoatestado_dados['s2230_iniafastamento_id'] = s2230_iniafastamento.id
 
                     try:
-                        s2230_infoatestado_dados['codcid'] = infoAtestado.codCID.cdata
+                        s2230_infoatestado_dados['codcid'] = read_from_xml(infoAtestado.codCID.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2230_infoatestado_dados['qtddiasafast'] = infoAtestado.qtdDiasAfast.cdata
+                        s2230_infoatestado_dados['qtddiasafast'] = read_from_xml(infoAtestado.qtdDiasAfast.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -178,22 +179,22 @@ def read_s2230_evtafasttemp_obj(request, doc, status, validar=False, arquivo=Fal
                             s2230_emitente_dados['s2230_infoatestado_id'] = s2230_infoatestado.id
         
                             try:
-                                s2230_emitente_dados['nmemit'] = emitente.nmEmit.cdata
+                                s2230_emitente_dados['nmemit'] = read_from_xml(emitente.nmEmit.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2230_emitente_dados['ideoc'] = emitente.ideOC.cdata
+                                s2230_emitente_dados['ideoc'] = read_from_xml(emitente.ideOC.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2230_emitente_dados['nroc'] = emitente.nrOc.cdata
+                                s2230_emitente_dados['nroc'] = read_from_xml(emitente.nrOc.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2230_emitente_dados['ufoc'] = emitente.ufOC.cdata
+                                s2230_emitente_dados['ufoc'] = read_from_xml(emitente.ufOC.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -207,12 +208,12 @@ def read_s2230_evtafasttemp_obj(request, doc, status, validar=False, arquivo=Fal
                     s2230_infocessao_dados['s2230_iniafastamento_id'] = s2230_iniafastamento.id
 
                     try:
-                        s2230_infocessao_dados['cnpjcess'] = infoCessao.cnpjCess.cdata
+                        s2230_infocessao_dados['cnpjcess'] = read_from_xml(infoCessao.cnpjCess.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2230_infocessao_dados['infonus'] = infoCessao.infOnus.cdata
+                        s2230_infocessao_dados['infonus'] = read_from_xml(infoCessao.infOnus.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -226,12 +227,12 @@ def read_s2230_evtafasttemp_obj(request, doc, status, validar=False, arquivo=Fal
                     s2230_infomandsind_dados['s2230_iniafastamento_id'] = s2230_iniafastamento.id
 
                     try:
-                        s2230_infomandsind_dados['cnpjsind'] = infoMandSind.cnpjSind.cdata
+                        s2230_infomandsind_dados['cnpjsind'] = read_from_xml(infoMandSind.cnpjSind.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2230_infomandsind_dados['infonusremun'] = infoMandSind.infOnusRemun.cdata
+                        s2230_infomandsind_dados['infonusremun'] = read_from_xml(infoMandSind.infOnusRemun.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -245,17 +246,17 @@ def read_s2230_evtafasttemp_obj(request, doc, status, validar=False, arquivo=Fal
             s2230_inforetif_dados['s2230_evtafasttemp_id'] = s2230_evtafasttemp.id
 
             try:
-                s2230_inforetif_dados['origretif'] = infoRetif.origRetif.cdata
+                s2230_inforetif_dados['origretif'] = read_from_xml(infoRetif.origRetif.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2230_inforetif_dados['tpproc'] = infoRetif.tpProc.cdata
+                s2230_inforetif_dados['tpproc'] = read_from_xml(infoRetif.tpProc.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2230_inforetif_dados['nrproc'] = infoRetif.nrProc.cdata
+                s2230_inforetif_dados['nrproc'] = read_from_xml(infoRetif.nrProc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -269,7 +270,7 @@ def read_s2230_evtafasttemp_obj(request, doc, status, validar=False, arquivo=Fal
             s2230_fimafastamento_dados['s2230_evtafasttemp_id'] = s2230_evtafasttemp.id
 
             try:
-                s2230_fimafastamento_dados['dttermafast'] = fimAfastamento.dtTermAfast.cdata
+                s2230_fimafastamento_dados['dttermafast'] = read_from_xml(fimAfastamento.dtTermAfast.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 

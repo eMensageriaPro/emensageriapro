@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1280.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,47 +62,47 @@ def read_s1280_evtinfocomplper_obj(request, doc, status, validar=False, arquivo=
     evtInfoComplPer = doc.eSocial.evtInfoComplPer
 
     try:
-        s1280_evtinfocomplper_dados['indretif'] = evtInfoComplPer.ideEvento.indRetif.cdata
+        s1280_evtinfocomplper_dados['indretif'] = read_from_xml(evtInfoComplPer.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1280_evtinfocomplper_dados['nrrecibo'] = evtInfoComplPer.ideEvento.nrRecibo.cdata
+        s1280_evtinfocomplper_dados['nrrecibo'] = read_from_xml(evtInfoComplPer.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1280_evtinfocomplper_dados['indapuracao'] = evtInfoComplPer.ideEvento.indApuracao.cdata
+        s1280_evtinfocomplper_dados['indapuracao'] = read_from_xml(evtInfoComplPer.ideEvento.indApuracao.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1280_evtinfocomplper_dados['perapur'] = evtInfoComplPer.ideEvento.perApur.cdata
+        s1280_evtinfocomplper_dados['perapur'] = read_from_xml(evtInfoComplPer.ideEvento.perApur.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1280_evtinfocomplper_dados['tpamb'] = evtInfoComplPer.ideEvento.tpAmb.cdata
+        s1280_evtinfocomplper_dados['tpamb'] = read_from_xml(evtInfoComplPer.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1280_evtinfocomplper_dados['procemi'] = evtInfoComplPer.ideEvento.procEmi.cdata
+        s1280_evtinfocomplper_dados['procemi'] = read_from_xml(evtInfoComplPer.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1280_evtinfocomplper_dados['verproc'] = evtInfoComplPer.ideEvento.verProc.cdata
+        s1280_evtinfocomplper_dados['verproc'] = read_from_xml(evtInfoComplPer.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1280_evtinfocomplper_dados['tpinsc'] = evtInfoComplPer.ideEmpregador.tpInsc.cdata
+        s1280_evtinfocomplper_dados['tpinsc'] = read_from_xml(evtInfoComplPer.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1280_evtinfocomplper_dados['nrinsc'] = evtInfoComplPer.ideEmpregador.nrInsc.cdata
+        s1280_evtinfocomplper_dados['nrinsc'] = read_from_xml(evtInfoComplPer.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -115,12 +116,12 @@ def read_s1280_evtinfocomplper_obj(request, doc, status, validar=False, arquivo=
             s1280_infosubstpatr_dados['s1280_evtinfocomplper_id'] = s1280_evtinfocomplper.id
 
             try:
-                s1280_infosubstpatr_dados['indsubstpatr'] = infoSubstPatr.indSubstPatr.cdata
+                s1280_infosubstpatr_dados['indsubstpatr'] = read_from_xml(infoSubstPatr.indSubstPatr.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1280_infosubstpatr_dados['percredcontrib'] = infoSubstPatr.percRedContrib.cdata
+                s1280_infosubstpatr_dados['percredcontrib'] = read_from_xml(infoSubstPatr.percRedContrib.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 
@@ -134,7 +135,7 @@ def read_s1280_evtinfocomplper_obj(request, doc, status, validar=False, arquivo=
             s1280_infosubstpatropport_dados['s1280_evtinfocomplper_id'] = s1280_evtinfocomplper.id
 
             try:
-                s1280_infosubstpatropport_dados['cnpjopportuario'] = infoSubstPatrOpPort.cnpjOpPortuario.cdata
+                s1280_infosubstpatropport_dados['cnpjopportuario'] = read_from_xml(infoSubstPatrOpPort.cnpjOpPortuario.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -148,12 +149,12 @@ def read_s1280_evtinfocomplper_obj(request, doc, status, validar=False, arquivo=
             s1280_infoativconcom_dados['s1280_evtinfocomplper_id'] = s1280_evtinfocomplper.id
 
             try:
-                s1280_infoativconcom_dados['fatormes'] = infoAtivConcom.fatorMes.cdata
+                s1280_infoativconcom_dados['fatormes'] = read_from_xml(infoAtivConcom.fatorMes.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 
             try:
-                s1280_infoativconcom_dados['fator13'] = infoAtivConcom.fator13.cdata
+                s1280_infoativconcom_dados['fator13'] = read_from_xml(infoAtivConcom.fator13.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 

@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2241.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,52 +62,52 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
     evtInsApo = doc.eSocial.evtInsApo
 
     try:
-        s2241_evtinsapo_dados['indretif'] = evtInsApo.ideEvento.indRetif.cdata
+        s2241_evtinsapo_dados['indretif'] = read_from_xml(evtInsApo.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2241_evtinsapo_dados['nrrecibo'] = evtInsApo.ideEvento.nrRecibo.cdata
+        s2241_evtinsapo_dados['nrrecibo'] = read_from_xml(evtInsApo.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2241_evtinsapo_dados['tpamb'] = evtInsApo.ideEvento.tpAmb.cdata
+        s2241_evtinsapo_dados['tpamb'] = read_from_xml(evtInsApo.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2241_evtinsapo_dados['procemi'] = evtInsApo.ideEvento.procEmi.cdata
+        s2241_evtinsapo_dados['procemi'] = read_from_xml(evtInsApo.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2241_evtinsapo_dados['verproc'] = evtInsApo.ideEvento.verProc.cdata
+        s2241_evtinsapo_dados['verproc'] = read_from_xml(evtInsApo.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2241_evtinsapo_dados['tpinsc'] = evtInsApo.ideEmpregador.tpInsc.cdata
+        s2241_evtinsapo_dados['tpinsc'] = read_from_xml(evtInsApo.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2241_evtinsapo_dados['nrinsc'] = evtInsApo.ideEmpregador.nrInsc.cdata
+        s2241_evtinsapo_dados['nrinsc'] = read_from_xml(evtInsApo.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2241_evtinsapo_dados['cpftrab'] = evtInsApo.ideVinculo.cpfTrab.cdata
+        s2241_evtinsapo_dados['cpftrab'] = read_from_xml(evtInsApo.ideVinculo.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2241_evtinsapo_dados['nistrab'] = evtInsApo.ideVinculo.nisTrab.cdata
+        s2241_evtinsapo_dados['nistrab'] = read_from_xml(evtInsApo.ideVinculo.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2241_evtinsapo_dados['matricula'] = evtInsApo.ideVinculo.matricula.cdata
+        s2241_evtinsapo_dados['matricula'] = read_from_xml(evtInsApo.ideVinculo.matricula.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -129,7 +130,7 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
                     s2241_iniinsalperic_dados['s2241_insalperic_id'] = s2241_insalperic.id
 
                     try:
-                        s2241_iniinsalperic_dados['dtinicondicao'] = iniInsalPeric.dtIniCondicao.cdata
+                        s2241_iniinsalperic_dados['dtinicondicao'] = read_from_xml(iniInsalPeric.dtIniCondicao.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -143,7 +144,7 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
                             s2241_iniinsalperic_infoamb_dados['s2241_iniinsalperic_id'] = s2241_iniinsalperic.id
         
                             try:
-                                s2241_iniinsalperic_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                                s2241_iniinsalperic_infoamb_dados['codamb'] = read_from_xml(infoAmb.codAmb.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -157,7 +158,7 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
                                     s2241_iniinsalperic_fatrisco_dados['s2241_iniinsalperic_infoamb_id'] = s2241_iniinsalperic_infoamb.id
                 
                                     try:
-                                        s2241_iniinsalperic_fatrisco_dados['codfatris'] = fatRisco.codFatRis.cdata
+                                        s2241_iniinsalperic_fatrisco_dados['codfatris'] = read_from_xml(fatRisco.codFatRis.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
         
@@ -171,7 +172,7 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
                     s2241_altinsalperic_dados['s2241_insalperic_id'] = s2241_insalperic.id
 
                     try:
-                        s2241_altinsalperic_dados['dtaltcondicao'] = altInsalPeric.dtAltCondicao.cdata
+                        s2241_altinsalperic_dados['dtaltcondicao'] = read_from_xml(altInsalPeric.dtAltCondicao.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -185,7 +186,7 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
                             s2241_altinsalperic_infoamb_dados['s2241_altinsalperic_id'] = s2241_altinsalperic.id
         
                             try:
-                                s2241_altinsalperic_infoamb_dados['codamb'] = infoamb.codAmb.cdata
+                                s2241_altinsalperic_infoamb_dados['codamb'] = read_from_xml(infoamb.codAmb.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -199,7 +200,7 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
                                     s2241_altinsalperic_fatrisco_dados['s2241_altinsalperic_infoamb_id'] = s2241_altinsalperic_infoamb.id
                 
                                     try:
-                                        s2241_altinsalperic_fatrisco_dados['codfatris'] = fatRisco.codFatRis.cdata
+                                        s2241_altinsalperic_fatrisco_dados['codfatris'] = read_from_xml(fatRisco.codFatRis.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
         
@@ -213,7 +214,7 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
                     s2241_fiminsalperic_dados['s2241_insalperic_id'] = s2241_insalperic.id
 
                     try:
-                        s2241_fiminsalperic_dados['dtfimcondicao'] = fimInsalPeric.dtFimCondicao.cdata
+                        s2241_fiminsalperic_dados['dtfimcondicao'] = read_from_xml(fimInsalPeric.dtFimCondicao.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -227,7 +228,7 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
                             s2241_fiminsalperic_infoamb_dados['s2241_fiminsalperic_id'] = s2241_fiminsalperic.id
         
                             try:
-                                s2241_fiminsalperic_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                                s2241_fiminsalperic_infoamb_dados['codamb'] = read_from_xml(infoAmb.codAmb.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -250,7 +251,7 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
                     s2241_iniaposentesp_dados['s2241_aposentesp_id'] = s2241_aposentesp.id
 
                     try:
-                        s2241_iniaposentesp_dados['dtinicondicao'] = iniAposentEsp.dtIniCondicao.cdata
+                        s2241_iniaposentesp_dados['dtinicondicao'] = read_from_xml(iniAposentEsp.dtIniCondicao.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -264,7 +265,7 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
                             s2241_iniaposentesp_infoamb_dados['s2241_iniaposentesp_id'] = s2241_iniaposentesp.id
         
                             try:
-                                s2241_iniaposentesp_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                                s2241_iniaposentesp_infoamb_dados['codamb'] = read_from_xml(infoAmb.codAmb.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -278,7 +279,7 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
                                     s2241_iniaposentesp_fatrisco_dados['s2241_iniaposentesp_infoamb_id'] = s2241_iniaposentesp_infoamb.id
                 
                                     try:
-                                        s2241_iniaposentesp_fatrisco_dados['codfatris'] = fatRisco.codFatRis.cdata
+                                        s2241_iniaposentesp_fatrisco_dados['codfatris'] = read_from_xml(fatRisco.codFatRis.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
         
@@ -292,7 +293,7 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
                     s2241_altaposentesp_dados['s2241_aposentesp_id'] = s2241_aposentesp.id
 
                     try:
-                        s2241_altaposentesp_dados['dtaltcondicao'] = altAposentEsp.dtAltCondicao.cdata
+                        s2241_altaposentesp_dados['dtaltcondicao'] = read_from_xml(altAposentEsp.dtAltCondicao.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -306,7 +307,7 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
                             s2241_altaposentesp_infoamb_dados['s2241_altaposentesp_id'] = s2241_altaposentesp.id
         
                             try:
-                                s2241_altaposentesp_infoamb_dados['codamb'] = infoamb.codAmb.cdata
+                                s2241_altaposentesp_infoamb_dados['codamb'] = read_from_xml(infoamb.codAmb.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -320,7 +321,7 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
                                     s2241_altaposentesp_fatrisco_dados['s2241_altaposentesp_infoamb_id'] = s2241_altaposentesp_infoamb.id
                 
                                     try:
-                                        s2241_altaposentesp_fatrisco_dados['codfatris'] = fatRisco.codFatRis.cdata
+                                        s2241_altaposentesp_fatrisco_dados['codfatris'] = read_from_xml(fatRisco.codFatRis.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
         
@@ -334,7 +335,7 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
                     s2241_fimaposentesp_dados['s2241_aposentesp_id'] = s2241_aposentesp.id
 
                     try:
-                        s2241_fimaposentesp_dados['dtfimcondicao'] = fimAposentEsp.dtFimCondicao.cdata
+                        s2241_fimaposentesp_dados['dtfimcondicao'] = read_from_xml(fimAposentEsp.dtFimCondicao.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -348,7 +349,7 @@ def read_s2241_evtinsapo_obj(request, doc, status, validar=False, arquivo=False)
                             s2241_fimaposentesp_infoamb_dados['s2241_fimaposentesp_id'] = s2241_fimaposentesp.id
         
                             try:
-                                s2241_fimaposentesp_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                                s2241_fimaposentesp_infoamb_dados['codamb'] = read_from_xml(infoAmb.codAmb.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 

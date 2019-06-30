@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1300.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,47 +62,47 @@ def read_s1300_evtcontrsindpatr_obj(request, doc, status, validar=False, arquivo
     evtContrSindPatr = doc.eSocial.evtContrSindPatr
 
     try:
-        s1300_evtcontrsindpatr_dados['indretif'] = evtContrSindPatr.ideEvento.indRetif.cdata
+        s1300_evtcontrsindpatr_dados['indretif'] = read_from_xml(evtContrSindPatr.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1300_evtcontrsindpatr_dados['nrrecibo'] = evtContrSindPatr.ideEvento.nrRecibo.cdata
+        s1300_evtcontrsindpatr_dados['nrrecibo'] = read_from_xml(evtContrSindPatr.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1300_evtcontrsindpatr_dados['indapuracao'] = evtContrSindPatr.ideEvento.indApuracao.cdata
+        s1300_evtcontrsindpatr_dados['indapuracao'] = read_from_xml(evtContrSindPatr.ideEvento.indApuracao.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1300_evtcontrsindpatr_dados['perapur'] = evtContrSindPatr.ideEvento.perApur.cdata
+        s1300_evtcontrsindpatr_dados['perapur'] = read_from_xml(evtContrSindPatr.ideEvento.perApur.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1300_evtcontrsindpatr_dados['tpamb'] = evtContrSindPatr.ideEvento.tpAmb.cdata
+        s1300_evtcontrsindpatr_dados['tpamb'] = read_from_xml(evtContrSindPatr.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1300_evtcontrsindpatr_dados['procemi'] = evtContrSindPatr.ideEvento.procEmi.cdata
+        s1300_evtcontrsindpatr_dados['procemi'] = read_from_xml(evtContrSindPatr.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1300_evtcontrsindpatr_dados['verproc'] = evtContrSindPatr.ideEvento.verProc.cdata
+        s1300_evtcontrsindpatr_dados['verproc'] = read_from_xml(evtContrSindPatr.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1300_evtcontrsindpatr_dados['tpinsc'] = evtContrSindPatr.ideEmpregador.tpInsc.cdata
+        s1300_evtcontrsindpatr_dados['tpinsc'] = read_from_xml(evtContrSindPatr.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1300_evtcontrsindpatr_dados['nrinsc'] = evtContrSindPatr.ideEmpregador.nrInsc.cdata
+        s1300_evtcontrsindpatr_dados['nrinsc'] = read_from_xml(evtContrSindPatr.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -115,17 +116,17 @@ def read_s1300_evtcontrsindpatr_obj(request, doc, status, validar=False, arquivo
             s1300_contribsind_dados['s1300_evtcontrsindpatr_id'] = s1300_evtcontrsindpatr.id
 
             try:
-                s1300_contribsind_dados['cnpjsindic'] = contribSind.cnpjSindic.cdata
+                s1300_contribsind_dados['cnpjsindic'] = read_from_xml(contribSind.cnpjSindic.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1300_contribsind_dados['tpcontribsind'] = contribSind.tpContribSind.cdata
+                s1300_contribsind_dados['tpcontribsind'] = read_from_xml(contribSind.tpContribSind.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1300_contribsind_dados['vlrcontribsind'] = contribSind.vlrContribSind.cdata
+                s1300_contribsind_dados['vlrcontribsind'] = read_from_xml(contribSind.vlrContribSind.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 

@@ -55,6 +55,26 @@ def render_to_pdf(template_src, context_dict={}):
     return None
 
 
+def read_from_xml(texto, esocial_efdreinf, tipo, casas_decimais):
+
+    texto = unicode(texto)
+
+    if esocial_efdreinf == 'efdreinf' and tipo == 'N' and casas_decimais:
+        texto = texto.replace(".", '')
+        texto = texto.replace(",", '.')
+
+    elif esocial_efdreinf == 'efdreinf' and tipo == 'N' and not casas_decimais:
+        texto = texto.replace(",", '.')
+
+    texto = texto.replace('&gt;', ">")
+    texto = texto.replace('&lt;', "<")
+    texto = texto.replace('&amp;', "&")
+    texto = texto.replace('&quot;', '"')
+    texto = texto.replace('&apos;', "'")
+
+    return texto
+
+
 
 def txt_xml(texto):
 
@@ -139,7 +159,7 @@ def identidade_evento(obj):
 def get_xmlns(arquivo):
     from emensageriapro.padrao import ler_arquivo
 
-    texto = ler_arquivo( arquivo )
+    texto = ler_arquivo(arquivo)
     b = texto.split('xmlns="')
     c = b[1].split('"')
     return c[0]

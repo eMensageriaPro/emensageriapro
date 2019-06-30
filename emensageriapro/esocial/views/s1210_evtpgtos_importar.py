@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1210.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,52 +62,52 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False, arquivo=False):
     evtPgtos = doc.eSocial.evtPgtos
 
     try:
-        s1210_evtpgtos_dados['indretif'] = evtPgtos.ideEvento.indRetif.cdata
+        s1210_evtpgtos_dados['indretif'] = read_from_xml(evtPgtos.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1210_evtpgtos_dados['nrrecibo'] = evtPgtos.ideEvento.nrRecibo.cdata
+        s1210_evtpgtos_dados['nrrecibo'] = read_from_xml(evtPgtos.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1210_evtpgtos_dados['indapuracao'] = evtPgtos.ideEvento.indApuracao.cdata
+        s1210_evtpgtos_dados['indapuracao'] = read_from_xml(evtPgtos.ideEvento.indApuracao.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1210_evtpgtos_dados['perapur'] = evtPgtos.ideEvento.perApur.cdata
+        s1210_evtpgtos_dados['perapur'] = read_from_xml(evtPgtos.ideEvento.perApur.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1210_evtpgtos_dados['tpamb'] = evtPgtos.ideEvento.tpAmb.cdata
+        s1210_evtpgtos_dados['tpamb'] = read_from_xml(evtPgtos.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1210_evtpgtos_dados['procemi'] = evtPgtos.ideEvento.procEmi.cdata
+        s1210_evtpgtos_dados['procemi'] = read_from_xml(evtPgtos.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1210_evtpgtos_dados['verproc'] = evtPgtos.ideEvento.verProc.cdata
+        s1210_evtpgtos_dados['verproc'] = read_from_xml(evtPgtos.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1210_evtpgtos_dados['tpinsc'] = evtPgtos.ideEmpregador.tpInsc.cdata
+        s1210_evtpgtos_dados['tpinsc'] = read_from_xml(evtPgtos.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1210_evtpgtos_dados['nrinsc'] = evtPgtos.ideEmpregador.nrInsc.cdata
+        s1210_evtpgtos_dados['nrinsc'] = read_from_xml(evtPgtos.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1210_evtpgtos_dados['cpfbenef'] = evtPgtos.ideBenef.cpfBenef.cdata
+        s1210_evtpgtos_dados['cpfbenef'] = read_from_xml(evtPgtos.ideBenef.cpfBenef.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -120,7 +121,7 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False, arquivo=False):
             s1210_deps_dados['s1210_evtpgtos_id'] = s1210_evtpgtos.id
 
             try:
-                s1210_deps_dados['vrdeddep'] = deps.vrDedDep.cdata
+                s1210_deps_dados['vrdeddep'] = read_from_xml(deps.vrDedDep.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 
@@ -134,17 +135,17 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False, arquivo=False):
             s1210_infopgto_dados['s1210_evtpgtos_id'] = s1210_evtpgtos.id
 
             try:
-                s1210_infopgto_dados['dtpgto'] = infoPgto.dtPgto.cdata
+                s1210_infopgto_dados['dtpgto'] = read_from_xml(infoPgto.dtPgto.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s1210_infopgto_dados['tppgto'] = infoPgto.tpPgto.cdata
+                s1210_infopgto_dados['tppgto'] = read_from_xml(infoPgto.tpPgto.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1210_infopgto_dados['indresbr'] = infoPgto.indResBr.cdata
+                s1210_infopgto_dados['indresbr'] = read_from_xml(infoPgto.indResBr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -158,27 +159,27 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False, arquivo=False):
                     s1210_detpgtofl_dados['s1210_infopgto_id'] = s1210_infopgto.id
 
                     try:
-                        s1210_detpgtofl_dados['perref'] = detPgtoFl.perRef.cdata
+                        s1210_detpgtofl_dados['perref'] = read_from_xml(detPgtoFl.perRef.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_detpgtofl_dados['idedmdev'] = detPgtoFl.ideDmDev.cdata
+                        s1210_detpgtofl_dados['idedmdev'] = read_from_xml(detPgtoFl.ideDmDev.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_detpgtofl_dados['indpgtott'] = detPgtoFl.indPgtoTt.cdata
+                        s1210_detpgtofl_dados['indpgtott'] = read_from_xml(detPgtoFl.indPgtoTt.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_detpgtofl_dados['vrliq'] = detPgtoFl.vrLiq.cdata
+                        s1210_detpgtofl_dados['vrliq'] = read_from_xml(detPgtoFl.vrLiq.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_detpgtofl_dados['nrrecarq'] = detPgtoFl.nrRecArq.cdata
+                        s1210_detpgtofl_dados['nrrecarq'] = read_from_xml(detPgtoFl.nrRecArq.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -192,32 +193,32 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False, arquivo=False):
                             s1210_detpgtofl_retpgtotot_dados['s1210_detpgtofl_id'] = s1210_detpgtofl.id
         
                             try:
-                                s1210_detpgtofl_retpgtotot_dados['codrubr'] = retPgtoTot.codRubr.cdata
+                                s1210_detpgtofl_retpgtotot_dados['codrubr'] = read_from_xml(retPgtoTot.codRubr.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtofl_retpgtotot_dados['idetabrubr'] = retPgtoTot.ideTabRubr.cdata
+                                s1210_detpgtofl_retpgtotot_dados['idetabrubr'] = read_from_xml(retPgtoTot.ideTabRubr.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtofl_retpgtotot_dados['qtdrubr'] = retPgtoTot.qtdRubr.cdata
+                                s1210_detpgtofl_retpgtotot_dados['qtdrubr'] = read_from_xml(retPgtoTot.qtdRubr.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtofl_retpgtotot_dados['fatorrubr'] = retPgtoTot.fatorRubr.cdata
+                                s1210_detpgtofl_retpgtotot_dados['fatorrubr'] = read_from_xml(retPgtoTot.fatorRubr.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtofl_retpgtotot_dados['vrunit'] = retPgtoTot.vrUnit.cdata
+                                s1210_detpgtofl_retpgtotot_dados['vrunit'] = read_from_xml(retPgtoTot.vrUnit.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtofl_retpgtotot_dados['vrrubr'] = retPgtoTot.vrRubr.cdata
+                                s1210_detpgtofl_retpgtotot_dados['vrrubr'] = read_from_xml(retPgtoTot.vrRubr.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
 
@@ -231,22 +232,22 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False, arquivo=False):
                                     s1210_detpgtofl_penalim_dados['s1210_detpgtofl_retpgtotot_id'] = s1210_detpgtofl_retpgtotot.id
                 
                                     try:
-                                        s1210_detpgtofl_penalim_dados['cpfbenef'] = penAlim.cpfBenef.cdata
+                                        s1210_detpgtofl_penalim_dados['cpfbenef'] = read_from_xml(penAlim.cpfBenef.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s1210_detpgtofl_penalim_dados['dtnasctobenef'] = penAlim.dtNasctoBenef.cdata
+                                        s1210_detpgtofl_penalim_dados['dtnasctobenef'] = read_from_xml(penAlim.dtNasctoBenef.cdata, 'esocial', 'D', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s1210_detpgtofl_penalim_dados['nmbenefic'] = penAlim.nmBenefic.cdata
+                                        s1210_detpgtofl_penalim_dados['nmbenefic'] = read_from_xml(penAlim.nmBenefic.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s1210_detpgtofl_penalim_dados['vlrpensao'] = penAlim.vlrPensao.cdata
+                                        s1210_detpgtofl_penalim_dados['vlrpensao'] = read_from_xml(penAlim.vlrPensao.cdata, 'esocial', 'N', 2)
                                     except AttributeError:
                                         pass
         
@@ -260,37 +261,37 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False, arquivo=False):
                             s1210_detpgtofl_infopgtoparc_dados['s1210_detpgtofl_id'] = s1210_detpgtofl.id
         
                             try:
-                                s1210_detpgtofl_infopgtoparc_dados['matricula'] = infoPgtoParc.matricula.cdata
+                                s1210_detpgtofl_infopgtoparc_dados['matricula'] = read_from_xml(infoPgtoParc.matricula.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtofl_infopgtoparc_dados['codrubr'] = infoPgtoParc.codRubr.cdata
+                                s1210_detpgtofl_infopgtoparc_dados['codrubr'] = read_from_xml(infoPgtoParc.codRubr.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtofl_infopgtoparc_dados['idetabrubr'] = infoPgtoParc.ideTabRubr.cdata
+                                s1210_detpgtofl_infopgtoparc_dados['idetabrubr'] = read_from_xml(infoPgtoParc.ideTabRubr.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtofl_infopgtoparc_dados['qtdrubr'] = infoPgtoParc.qtdRubr.cdata
+                                s1210_detpgtofl_infopgtoparc_dados['qtdrubr'] = read_from_xml(infoPgtoParc.qtdRubr.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtofl_infopgtoparc_dados['fatorrubr'] = infoPgtoParc.fatorRubr.cdata
+                                s1210_detpgtofl_infopgtoparc_dados['fatorrubr'] = read_from_xml(infoPgtoParc.fatorRubr.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtofl_infopgtoparc_dados['vrunit'] = infoPgtoParc.vrUnit.cdata
+                                s1210_detpgtofl_infopgtoparc_dados['vrunit'] = read_from_xml(infoPgtoParc.vrUnit.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtofl_infopgtoparc_dados['vrrubr'] = infoPgtoParc.vrRubr.cdata
+                                s1210_detpgtofl_infopgtoparc_dados['vrrubr'] = read_from_xml(infoPgtoParc.vrRubr.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
 
@@ -304,22 +305,22 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False, arquivo=False):
                     s1210_detpgtobenpr_dados['s1210_infopgto_id'] = s1210_infopgto.id
 
                     try:
-                        s1210_detpgtobenpr_dados['perref'] = detPgtoBenPr.perRef.cdata
+                        s1210_detpgtobenpr_dados['perref'] = read_from_xml(detPgtoBenPr.perRef.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_detpgtobenpr_dados['idedmdev'] = detPgtoBenPr.ideDmDev.cdata
+                        s1210_detpgtobenpr_dados['idedmdev'] = read_from_xml(detPgtoBenPr.ideDmDev.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_detpgtobenpr_dados['indpgtott'] = detPgtoBenPr.indPgtoTt.cdata
+                        s1210_detpgtobenpr_dados['indpgtott'] = read_from_xml(detPgtoBenPr.indPgtoTt.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_detpgtobenpr_dados['vrliq'] = detPgtoBenPr.vrLiq.cdata
+                        s1210_detpgtobenpr_dados['vrliq'] = read_from_xml(detPgtoBenPr.vrLiq.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -333,32 +334,32 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False, arquivo=False):
                             s1210_detpgtobenpr_retpgtotot_dados['s1210_detpgtobenpr_id'] = s1210_detpgtobenpr.id
         
                             try:
-                                s1210_detpgtobenpr_retpgtotot_dados['codrubr'] = retPgtoTot.codRubr.cdata
+                                s1210_detpgtobenpr_retpgtotot_dados['codrubr'] = read_from_xml(retPgtoTot.codRubr.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtobenpr_retpgtotot_dados['idetabrubr'] = retPgtoTot.ideTabRubr.cdata
+                                s1210_detpgtobenpr_retpgtotot_dados['idetabrubr'] = read_from_xml(retPgtoTot.ideTabRubr.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtobenpr_retpgtotot_dados['qtdrubr'] = retPgtoTot.qtdRubr.cdata
+                                s1210_detpgtobenpr_retpgtotot_dados['qtdrubr'] = read_from_xml(retPgtoTot.qtdRubr.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtobenpr_retpgtotot_dados['fatorrubr'] = retPgtoTot.fatorRubr.cdata
+                                s1210_detpgtobenpr_retpgtotot_dados['fatorrubr'] = read_from_xml(retPgtoTot.fatorRubr.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtobenpr_retpgtotot_dados['vrunit'] = retPgtoTot.vrUnit.cdata
+                                s1210_detpgtobenpr_retpgtotot_dados['vrunit'] = read_from_xml(retPgtoTot.vrUnit.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtobenpr_retpgtotot_dados['vrrubr'] = retPgtoTot.vrRubr.cdata
+                                s1210_detpgtobenpr_retpgtotot_dados['vrrubr'] = read_from_xml(retPgtoTot.vrRubr.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
 
@@ -372,32 +373,32 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False, arquivo=False):
                             s1210_detpgtobenpr_infopgtoparc_dados['s1210_detpgtobenpr_id'] = s1210_detpgtobenpr.id
         
                             try:
-                                s1210_detpgtobenpr_infopgtoparc_dados['codrubr'] = infoPgtoParc.codRubr.cdata
+                                s1210_detpgtobenpr_infopgtoparc_dados['codrubr'] = read_from_xml(infoPgtoParc.codRubr.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtobenpr_infopgtoparc_dados['idetabrubr'] = infoPgtoParc.ideTabRubr.cdata
+                                s1210_detpgtobenpr_infopgtoparc_dados['idetabrubr'] = read_from_xml(infoPgtoParc.ideTabRubr.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtobenpr_infopgtoparc_dados['qtdrubr'] = infoPgtoParc.qtdRubr.cdata
+                                s1210_detpgtobenpr_infopgtoparc_dados['qtdrubr'] = read_from_xml(infoPgtoParc.qtdRubr.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtobenpr_infopgtoparc_dados['fatorrubr'] = infoPgtoParc.fatorRubr.cdata
+                                s1210_detpgtobenpr_infopgtoparc_dados['fatorrubr'] = read_from_xml(infoPgtoParc.fatorRubr.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtobenpr_infopgtoparc_dados['vrunit'] = infoPgtoParc.vrUnit.cdata
+                                s1210_detpgtobenpr_infopgtoparc_dados['vrunit'] = read_from_xml(infoPgtoParc.vrUnit.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtobenpr_infopgtoparc_dados['vrrubr'] = infoPgtoParc.vrRubr.cdata
+                                s1210_detpgtobenpr_infopgtoparc_dados['vrrubr'] = read_from_xml(infoPgtoParc.vrRubr.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
 
@@ -411,27 +412,27 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False, arquivo=False):
                     s1210_detpgtofer_dados['s1210_infopgto_id'] = s1210_infopgto.id
 
                     try:
-                        s1210_detpgtofer_dados['codcateg'] = detPgtoFer.codCateg.cdata
+                        s1210_detpgtofer_dados['codcateg'] = read_from_xml(detPgtoFer.codCateg.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_detpgtofer_dados['matricula'] = detPgtoFer.matricula.cdata
+                        s1210_detpgtofer_dados['matricula'] = read_from_xml(detPgtoFer.matricula.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_detpgtofer_dados['dtinigoz'] = detPgtoFer.dtIniGoz.cdata
+                        s1210_detpgtofer_dados['dtinigoz'] = read_from_xml(detPgtoFer.dtIniGoz.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_detpgtofer_dados['qtdias'] = detPgtoFer.qtDias.cdata
+                        s1210_detpgtofer_dados['qtdias'] = read_from_xml(detPgtoFer.qtDias.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_detpgtofer_dados['vrliq'] = detPgtoFer.vrLiq.cdata
+                        s1210_detpgtofer_dados['vrliq'] = read_from_xml(detPgtoFer.vrLiq.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -445,32 +446,32 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False, arquivo=False):
                             s1210_detpgtofer_detrubrfer_dados['s1210_detpgtofer_id'] = s1210_detpgtofer.id
         
                             try:
-                                s1210_detpgtofer_detrubrfer_dados['codrubr'] = detRubrFer.codRubr.cdata
+                                s1210_detpgtofer_detrubrfer_dados['codrubr'] = read_from_xml(detRubrFer.codRubr.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtofer_detrubrfer_dados['idetabrubr'] = detRubrFer.ideTabRubr.cdata
+                                s1210_detpgtofer_detrubrfer_dados['idetabrubr'] = read_from_xml(detRubrFer.ideTabRubr.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtofer_detrubrfer_dados['qtdrubr'] = detRubrFer.qtdRubr.cdata
+                                s1210_detpgtofer_detrubrfer_dados['qtdrubr'] = read_from_xml(detRubrFer.qtdRubr.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtofer_detrubrfer_dados['fatorrubr'] = detRubrFer.fatorRubr.cdata
+                                s1210_detpgtofer_detrubrfer_dados['fatorrubr'] = read_from_xml(detRubrFer.fatorRubr.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtofer_detrubrfer_dados['vrunit'] = detRubrFer.vrUnit.cdata
+                                s1210_detpgtofer_detrubrfer_dados['vrunit'] = read_from_xml(detRubrFer.vrUnit.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtofer_detrubrfer_dados['vrrubr'] = detRubrFer.vrRubr.cdata
+                                s1210_detpgtofer_detrubrfer_dados['vrrubr'] = read_from_xml(detRubrFer.vrRubr.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
 
@@ -484,22 +485,22 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False, arquivo=False):
                                     s1210_detpgtofer_penalim_dados['s1210_detpgtofer_detrubrfer_id'] = s1210_detpgtofer_detrubrfer.id
                 
                                     try:
-                                        s1210_detpgtofer_penalim_dados['cpfbenef'] = penAlim.cpfBenef.cdata
+                                        s1210_detpgtofer_penalim_dados['cpfbenef'] = read_from_xml(penAlim.cpfBenef.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s1210_detpgtofer_penalim_dados['dtnasctobenef'] = penAlim.dtNasctoBenef.cdata
+                                        s1210_detpgtofer_penalim_dados['dtnasctobenef'] = read_from_xml(penAlim.dtNasctoBenef.cdata, 'esocial', 'D', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s1210_detpgtofer_penalim_dados['nmbenefic'] = penAlim.nmBenefic.cdata
+                                        s1210_detpgtofer_penalim_dados['nmbenefic'] = read_from_xml(penAlim.nmBenefic.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s1210_detpgtofer_penalim_dados['vlrpensao'] = penAlim.vlrPensao.cdata
+                                        s1210_detpgtofer_penalim_dados['vlrpensao'] = read_from_xml(penAlim.vlrPensao.cdata, 'esocial', 'N', 2)
                                     except AttributeError:
                                         pass
         
@@ -513,7 +514,7 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False, arquivo=False):
                     s1210_detpgtoant_dados['s1210_infopgto_id'] = s1210_infopgto.id
 
                     try:
-                        s1210_detpgtoant_dados['codcateg'] = detPgtoAnt.codCateg.cdata
+                        s1210_detpgtoant_dados['codcateg'] = read_from_xml(detPgtoAnt.codCateg.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -527,12 +528,12 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False, arquivo=False):
                             s1210_detpgtoant_infopgtoant_dados['s1210_detpgtoant_id'] = s1210_detpgtoant.id
         
                             try:
-                                s1210_detpgtoant_infopgtoant_dados['tpbcirrf'] = infoPgtoAnt.tpBcIRRF.cdata
+                                s1210_detpgtoant_infopgtoant_dados['tpbcirrf'] = read_from_xml(infoPgtoAnt.tpBcIRRF.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1210_detpgtoant_infopgtoant_dados['vrbcirrf'] = infoPgtoAnt.vrBcIRRF.cdata
+                                s1210_detpgtoant_infopgtoant_dados['vrbcirrf'] = read_from_xml(infoPgtoAnt.vrBcIRRF.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
 
@@ -546,47 +547,47 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False, arquivo=False):
                     s1210_idepgtoext_dados['s1210_infopgto_id'] = s1210_infopgto.id
 
                     try:
-                        s1210_idepgtoext_dados['codpais'] = idePgtoExt.idePais.codPais.cdata
+                        s1210_idepgtoext_dados['codpais'] = read_from_xml(idePgtoExt.idePais.codPais.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_idepgtoext_dados['indnif'] = idePgtoExt.idePais.indNIF.cdata
+                        s1210_idepgtoext_dados['indnif'] = read_from_xml(idePgtoExt.idePais.indNIF.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_idepgtoext_dados['nifbenef'] = idePgtoExt.idePais.nifBenef.cdata
+                        s1210_idepgtoext_dados['nifbenef'] = read_from_xml(idePgtoExt.idePais.nifBenef.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_idepgtoext_dados['dsclograd'] = idePgtoExt.endExt.dscLograd.cdata
+                        s1210_idepgtoext_dados['dsclograd'] = read_from_xml(idePgtoExt.endExt.dscLograd.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_idepgtoext_dados['nrlograd'] = idePgtoExt.endExt.nrLograd.cdata
+                        s1210_idepgtoext_dados['nrlograd'] = read_from_xml(idePgtoExt.endExt.nrLograd.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_idepgtoext_dados['complem'] = idePgtoExt.endExt.complem.cdata
+                        s1210_idepgtoext_dados['complem'] = read_from_xml(idePgtoExt.endExt.complem.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_idepgtoext_dados['bairro'] = idePgtoExt.endExt.bairro.cdata
+                        s1210_idepgtoext_dados['bairro'] = read_from_xml(idePgtoExt.endExt.bairro.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_idepgtoext_dados['nmcid'] = idePgtoExt.endExt.nmCid.cdata
+                        s1210_idepgtoext_dados['nmcid'] = read_from_xml(idePgtoExt.endExt.nmCid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1210_idepgtoext_dados['codpostal'] = idePgtoExt.endExt.codPostal.cdata
+                        s1210_idepgtoext_dados['codpostal'] = read_from_xml(idePgtoExt.endExt.codPostal.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 

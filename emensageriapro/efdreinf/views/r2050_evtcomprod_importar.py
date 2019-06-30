@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.efdreinf.models import *
 from emensageriapro.r2050.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,87 +62,87 @@ def read_r2050_evtcomprod_obj(request, doc, status, validar=False, arquivo=False
     evtComProd = doc.Reinf.evtComProd
 
     try:
-        r2050_evtcomprod_dados['indretif'] = evtComProd.ideEvento.indRetif.cdata
+        r2050_evtcomprod_dados['indretif'] = read_from_xml(evtComProd.ideEvento.indRetif.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2050_evtcomprod_dados['nrrecibo'] = evtComProd.ideEvento.nrRecibo.cdata
+        r2050_evtcomprod_dados['nrrecibo'] = read_from_xml(evtComProd.ideEvento.nrRecibo.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2050_evtcomprod_dados['perapur'] = evtComProd.ideEvento.perApur.cdata
+        r2050_evtcomprod_dados['perapur'] = read_from_xml(evtComProd.ideEvento.perApur.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2050_evtcomprod_dados['tpamb'] = evtComProd.ideEvento.tpAmb.cdata
+        r2050_evtcomprod_dados['tpamb'] = read_from_xml(evtComProd.ideEvento.tpAmb.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2050_evtcomprod_dados['procemi'] = evtComProd.ideEvento.procEmi.cdata
+        r2050_evtcomprod_dados['procemi'] = read_from_xml(evtComProd.ideEvento.procEmi.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2050_evtcomprod_dados['verproc'] = evtComProd.ideEvento.verProc.cdata
+        r2050_evtcomprod_dados['verproc'] = read_from_xml(evtComProd.ideEvento.verProc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2050_evtcomprod_dados['tpinsc'] = evtComProd.ideContri.tpInsc.cdata
+        r2050_evtcomprod_dados['tpinsc'] = read_from_xml(evtComProd.ideContri.tpInsc.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2050_evtcomprod_dados['nrinsc'] = evtComProd.ideContri.nrInsc.cdata
+        r2050_evtcomprod_dados['nrinsc'] = read_from_xml(evtComProd.ideContri.nrInsc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2050_evtcomprod_dados['tpinscestab'] = evtComProd.infoComProd.ideEstab.tpInscEstab.cdata
+        r2050_evtcomprod_dados['tpinscestab'] = read_from_xml(evtComProd.infoComProd.ideEstab.tpInscEstab.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2050_evtcomprod_dados['nrinscestab'] = evtComProd.infoComProd.ideEstab.nrInscEstab.cdata
+        r2050_evtcomprod_dados['nrinscestab'] = read_from_xml(evtComProd.infoComProd.ideEstab.nrInscEstab.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2050_evtcomprod_dados['vlrrecbrutatotal'] = evtComProd.infoComProd.ideEstab.vlrRecBrutaTotal.cdata.replace('.', '').replace(',', '.')
+        r2050_evtcomprod_dados['vlrrecbrutatotal'] = read_from_xml(evtComProd.infoComProd.ideEstab.vlrRecBrutaTotal.cdata, 'efdreinf', 'N', 2)
     except AttributeError:
         pass
 
     try:
-        r2050_evtcomprod_dados['vlrcpapur'] = evtComProd.infoComProd.ideEstab.vlrCPApur.cdata.replace('.', '').replace(',', '.')
+        r2050_evtcomprod_dados['vlrcpapur'] = read_from_xml(evtComProd.infoComProd.ideEstab.vlrCPApur.cdata, 'efdreinf', 'N', 2)
     except AttributeError:
         pass
 
     try:
-        r2050_evtcomprod_dados['vlrratapur'] = evtComProd.infoComProd.ideEstab.vlrRatApur.cdata.replace('.', '').replace(',', '.')
+        r2050_evtcomprod_dados['vlrratapur'] = read_from_xml(evtComProd.infoComProd.ideEstab.vlrRatApur.cdata, 'efdreinf', 'N', 2)
     except AttributeError:
         pass
 
     try:
-        r2050_evtcomprod_dados['vlrsenarapur'] = evtComProd.infoComProd.ideEstab.vlrSenarApur.cdata.replace('.', '').replace(',', '.')
+        r2050_evtcomprod_dados['vlrsenarapur'] = read_from_xml(evtComProd.infoComProd.ideEstab.vlrSenarApur.cdata, 'efdreinf', 'N', 2)
     except AttributeError:
         pass
 
     try:
-        r2050_evtcomprod_dados['vlrcpsusptotal'] = evtComProd.infoComProd.ideEstab.vlrCPSuspTotal.cdata.replace('.', '').replace(',', '.')
+        r2050_evtcomprod_dados['vlrcpsusptotal'] = read_from_xml(evtComProd.infoComProd.ideEstab.vlrCPSuspTotal.cdata, 'efdreinf', 'N', 2)
     except AttributeError:
         pass
 
     try:
-        r2050_evtcomprod_dados['vlrratsusptotal'] = evtComProd.infoComProd.ideEstab.vlrRatSuspTotal.cdata.replace('.', '').replace(',', '.')
+        r2050_evtcomprod_dados['vlrratsusptotal'] = read_from_xml(evtComProd.infoComProd.ideEstab.vlrRatSuspTotal.cdata, 'efdreinf', 'N', 2)
     except AttributeError:
         pass
 
     try:
-        r2050_evtcomprod_dados['vlrsenarsusptotal'] = evtComProd.infoComProd.ideEstab.vlrSenarSuspTotal.cdata.replace('.', '').replace(',', '.')
+        r2050_evtcomprod_dados['vlrsenarsusptotal'] = read_from_xml(evtComProd.infoComProd.ideEstab.vlrSenarSuspTotal.cdata, 'efdreinf', 'N', 2)
     except AttributeError:
         pass
 
@@ -155,12 +156,12 @@ def read_r2050_evtcomprod_obj(request, doc, status, validar=False, arquivo=False
             r2050_tipocom_dados['r2050_evtcomprod_id'] = r2050_evtcomprod.id
 
             try:
-                r2050_tipocom_dados['indcom'] = tipoCom.indCom.cdata
+                r2050_tipocom_dados['indcom'] = read_from_xml(tipoCom.indCom.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r2050_tipocom_dados['vlrrecbruta'] = tipoCom.vlrRecBruta.cdata.replace('.', '').replace(',', '.')
+                r2050_tipocom_dados['vlrrecbruta'] = read_from_xml(tipoCom.vlrRecBruta.cdata, 'efdreinf', 'N', 2)
             except AttributeError:
                 pass
 
@@ -174,32 +175,32 @@ def read_r2050_evtcomprod_obj(request, doc, status, validar=False, arquivo=False
                     r2050_infoproc_dados['r2050_tipocom_id'] = r2050_tipocom.id
 
                     try:
-                        r2050_infoproc_dados['tpproc'] = infoProc.tpProc.cdata
+                        r2050_infoproc_dados['tpproc'] = read_from_xml(infoProc.tpProc.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r2050_infoproc_dados['nrproc'] = infoProc.nrProc.cdata
+                        r2050_infoproc_dados['nrproc'] = read_from_xml(infoProc.nrProc.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r2050_infoproc_dados['codsusp'] = infoProc.codSusp.cdata
+                        r2050_infoproc_dados['codsusp'] = read_from_xml(infoProc.codSusp.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r2050_infoproc_dados['vlrcpsusp'] = infoProc.vlrCPSusp.cdata.replace('.', '').replace(',', '.')
+                        r2050_infoproc_dados['vlrcpsusp'] = read_from_xml(infoProc.vlrCPSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r2050_infoproc_dados['vlrratsusp'] = infoProc.vlrRatSusp.cdata.replace('.', '').replace(',', '.')
+                        r2050_infoproc_dados['vlrratsusp'] = read_from_xml(infoProc.vlrRatSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r2050_infoproc_dados['vlrsenarsusp'] = infoProc.vlrSenarSusp.cdata.replace('.', '').replace(',', '.')
+                        r2050_infoproc_dados['vlrsenarsusp'] = read_from_xml(infoProc.vlrSenarSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 

@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1050.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -65,27 +66,27 @@ def read_s1050_evttabhortur_obj(request, doc, status, validar=False, arquivo=Fal
     elif 'exclusao' in dir(evtTabHorTur.infoHorContratual): s1050_evttabhortur_dados['operacao'] = 3
 
     try:
-        s1050_evttabhortur_dados['tpamb'] = evtTabHorTur.ideEvento.tpAmb.cdata
+        s1050_evttabhortur_dados['tpamb'] = read_from_xml(evtTabHorTur.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1050_evttabhortur_dados['procemi'] = evtTabHorTur.ideEvento.procEmi.cdata
+        s1050_evttabhortur_dados['procemi'] = read_from_xml(evtTabHorTur.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1050_evttabhortur_dados['verproc'] = evtTabHorTur.ideEvento.verProc.cdata
+        s1050_evttabhortur_dados['verproc'] = read_from_xml(evtTabHorTur.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1050_evttabhortur_dados['tpinsc'] = evtTabHorTur.ideEmpregador.tpInsc.cdata
+        s1050_evttabhortur_dados['tpinsc'] = read_from_xml(evtTabHorTur.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1050_evttabhortur_dados['nrinsc'] = evtTabHorTur.ideEmpregador.nrInsc.cdata
+        s1050_evttabhortur_dados['nrinsc'] = read_from_xml(evtTabHorTur.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -99,37 +100,37 @@ def read_s1050_evttabhortur_obj(request, doc, status, validar=False, arquivo=Fal
             s1050_inclusao_dados['s1050_evttabhortur_id'] = s1050_evttabhortur.id
 
             try:
-                s1050_inclusao_dados['codhorcontrat'] = inclusao.ideHorContratual.codHorContrat.cdata
+                s1050_inclusao_dados['codhorcontrat'] = read_from_xml(inclusao.ideHorContratual.codHorContrat.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1050_inclusao_dados['inivalid'] = inclusao.ideHorContratual.iniValid.cdata
+                s1050_inclusao_dados['inivalid'] = read_from_xml(inclusao.ideHorContratual.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1050_inclusao_dados['fimvalid'] = inclusao.ideHorContratual.fimValid.cdata
+                s1050_inclusao_dados['fimvalid'] = read_from_xml(inclusao.ideHorContratual.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1050_inclusao_dados['hrentr'] = inclusao.dadosHorContratual.hrEntr.cdata
+                s1050_inclusao_dados['hrentr'] = read_from_xml(inclusao.dadosHorContratual.hrEntr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1050_inclusao_dados['hrsaida'] = inclusao.dadosHorContratual.hrSaida.cdata
+                s1050_inclusao_dados['hrsaida'] = read_from_xml(inclusao.dadosHorContratual.hrSaida.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1050_inclusao_dados['durjornada'] = inclusao.dadosHorContratual.durJornada.cdata
+                s1050_inclusao_dados['durjornada'] = read_from_xml(inclusao.dadosHorContratual.durJornada.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1050_inclusao_dados['perhorflexivel'] = inclusao.dadosHorContratual.perHorFlexivel.cdata
+                s1050_inclusao_dados['perhorflexivel'] = read_from_xml(inclusao.dadosHorContratual.perHorFlexivel.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -143,22 +144,22 @@ def read_s1050_evttabhortur_obj(request, doc, status, validar=False, arquivo=Fal
                     s1050_inclusao_horariointervalo_dados['s1050_inclusao_id'] = s1050_inclusao.id
 
                     try:
-                        s1050_inclusao_horariointervalo_dados['tpinterv'] = horarioIntervalo.tpInterv.cdata
+                        s1050_inclusao_horariointervalo_dados['tpinterv'] = read_from_xml(horarioIntervalo.tpInterv.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1050_inclusao_horariointervalo_dados['durinterv'] = horarioIntervalo.durInterv.cdata
+                        s1050_inclusao_horariointervalo_dados['durinterv'] = read_from_xml(horarioIntervalo.durInterv.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1050_inclusao_horariointervalo_dados['iniinterv'] = horarioIntervalo.iniInterv.cdata
+                        s1050_inclusao_horariointervalo_dados['iniinterv'] = read_from_xml(horarioIntervalo.iniInterv.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1050_inclusao_horariointervalo_dados['terminterv'] = horarioIntervalo.termInterv.cdata
+                        s1050_inclusao_horariointervalo_dados['terminterv'] = read_from_xml(horarioIntervalo.termInterv.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -172,37 +173,37 @@ def read_s1050_evttabhortur_obj(request, doc, status, validar=False, arquivo=Fal
             s1050_alteracao_dados['s1050_evttabhortur_id'] = s1050_evttabhortur.id
 
             try:
-                s1050_alteracao_dados['codhorcontrat'] = alteracao.ideHorContratual.codHorContrat.cdata
+                s1050_alteracao_dados['codhorcontrat'] = read_from_xml(alteracao.ideHorContratual.codHorContrat.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1050_alteracao_dados['inivalid'] = alteracao.ideHorContratual.iniValid.cdata
+                s1050_alteracao_dados['inivalid'] = read_from_xml(alteracao.ideHorContratual.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1050_alteracao_dados['fimvalid'] = alteracao.ideHorContratual.fimValid.cdata
+                s1050_alteracao_dados['fimvalid'] = read_from_xml(alteracao.ideHorContratual.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1050_alteracao_dados['hrentr'] = alteracao.dadosHorContratual.hrEntr.cdata
+                s1050_alteracao_dados['hrentr'] = read_from_xml(alteracao.dadosHorContratual.hrEntr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1050_alteracao_dados['hrsaida'] = alteracao.dadosHorContratual.hrSaida.cdata
+                s1050_alteracao_dados['hrsaida'] = read_from_xml(alteracao.dadosHorContratual.hrSaida.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1050_alteracao_dados['durjornada'] = alteracao.dadosHorContratual.durJornada.cdata
+                s1050_alteracao_dados['durjornada'] = read_from_xml(alteracao.dadosHorContratual.durJornada.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1050_alteracao_dados['perhorflexivel'] = alteracao.dadosHorContratual.perHorFlexivel.cdata
+                s1050_alteracao_dados['perhorflexivel'] = read_from_xml(alteracao.dadosHorContratual.perHorFlexivel.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -216,22 +217,22 @@ def read_s1050_evttabhortur_obj(request, doc, status, validar=False, arquivo=Fal
                     s1050_alteracao_horariointervalo_dados['s1050_alteracao_id'] = s1050_alteracao.id
 
                     try:
-                        s1050_alteracao_horariointervalo_dados['tpinterv'] = horarioIntervalo.tpInterv.cdata
+                        s1050_alteracao_horariointervalo_dados['tpinterv'] = read_from_xml(horarioIntervalo.tpInterv.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1050_alteracao_horariointervalo_dados['durinterv'] = horarioIntervalo.durInterv.cdata
+                        s1050_alteracao_horariointervalo_dados['durinterv'] = read_from_xml(horarioIntervalo.durInterv.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1050_alteracao_horariointervalo_dados['iniinterv'] = horarioIntervalo.iniInterv.cdata
+                        s1050_alteracao_horariointervalo_dados['iniinterv'] = read_from_xml(horarioIntervalo.iniInterv.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1050_alteracao_horariointervalo_dados['terminterv'] = horarioIntervalo.termInterv.cdata
+                        s1050_alteracao_horariointervalo_dados['terminterv'] = read_from_xml(horarioIntervalo.termInterv.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -245,12 +246,12 @@ def read_s1050_evttabhortur_obj(request, doc, status, validar=False, arquivo=Fal
                     s1050_alteracao_novavalidade_dados['s1050_alteracao_id'] = s1050_alteracao.id
 
                     try:
-                        s1050_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
+                        s1050_alteracao_novavalidade_dados['inivalid'] = read_from_xml(novaValidade.iniValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1050_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                        s1050_alteracao_novavalidade_dados['fimvalid'] = read_from_xml(novaValidade.fimValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -264,17 +265,17 @@ def read_s1050_evttabhortur_obj(request, doc, status, validar=False, arquivo=Fal
             s1050_exclusao_dados['s1050_evttabhortur_id'] = s1050_evttabhortur.id
 
             try:
-                s1050_exclusao_dados['codhorcontrat'] = exclusao.ideHorContratual.codHorContrat.cdata
+                s1050_exclusao_dados['codhorcontrat'] = read_from_xml(exclusao.ideHorContratual.codHorContrat.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1050_exclusao_dados['inivalid'] = exclusao.ideHorContratual.iniValid.cdata
+                s1050_exclusao_dados['inivalid'] = read_from_xml(exclusao.ideHorContratual.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1050_exclusao_dados['fimvalid'] = exclusao.ideHorContratual.fimValid.cdata
+                s1050_exclusao_dados['fimvalid'] = read_from_xml(exclusao.ideHorContratual.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

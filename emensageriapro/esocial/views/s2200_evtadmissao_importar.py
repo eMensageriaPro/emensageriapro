@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2200.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,207 +62,207 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
     evtAdmissao = doc.eSocial.evtAdmissao
 
     try:
-        s2200_evtadmissao_dados['indretif'] = evtAdmissao.ideEvento.indRetif.cdata
+        s2200_evtadmissao_dados['indretif'] = read_from_xml(evtAdmissao.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['nrrecibo'] = evtAdmissao.ideEvento.nrRecibo.cdata
+        s2200_evtadmissao_dados['nrrecibo'] = read_from_xml(evtAdmissao.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['tpamb'] = evtAdmissao.ideEvento.tpAmb.cdata
+        s2200_evtadmissao_dados['tpamb'] = read_from_xml(evtAdmissao.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['procemi'] = evtAdmissao.ideEvento.procEmi.cdata
+        s2200_evtadmissao_dados['procemi'] = read_from_xml(evtAdmissao.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['verproc'] = evtAdmissao.ideEvento.verProc.cdata
+        s2200_evtadmissao_dados['verproc'] = read_from_xml(evtAdmissao.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['tpinsc'] = evtAdmissao.ideEmpregador.tpInsc.cdata
+        s2200_evtadmissao_dados['tpinsc'] = read_from_xml(evtAdmissao.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['nrinsc'] = evtAdmissao.ideEmpregador.nrInsc.cdata
+        s2200_evtadmissao_dados['nrinsc'] = read_from_xml(evtAdmissao.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['cpftrab'] = evtAdmissao.trabalhador.cpfTrab.cdata
+        s2200_evtadmissao_dados['cpftrab'] = read_from_xml(evtAdmissao.trabalhador.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['nistrab'] = evtAdmissao.trabalhador.nisTrab.cdata
+        s2200_evtadmissao_dados['nistrab'] = read_from_xml(evtAdmissao.trabalhador.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['nmtrab'] = evtAdmissao.trabalhador.nmTrab.cdata
+        s2200_evtadmissao_dados['nmtrab'] = read_from_xml(evtAdmissao.trabalhador.nmTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['sexo'] = evtAdmissao.trabalhador.sexo.cdata
+        s2200_evtadmissao_dados['sexo'] = read_from_xml(evtAdmissao.trabalhador.sexo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['racacor'] = evtAdmissao.trabalhador.racaCor.cdata
+        s2200_evtadmissao_dados['racacor'] = read_from_xml(evtAdmissao.trabalhador.racaCor.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['estciv'] = evtAdmissao.trabalhador.estCiv.cdata
+        s2200_evtadmissao_dados['estciv'] = read_from_xml(evtAdmissao.trabalhador.estCiv.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['grauinstr'] = evtAdmissao.trabalhador.grauInstr.cdata
+        s2200_evtadmissao_dados['grauinstr'] = read_from_xml(evtAdmissao.trabalhador.grauInstr.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['indpriempr'] = evtAdmissao.trabalhador.indPriEmpr.cdata
+        s2200_evtadmissao_dados['indpriempr'] = read_from_xml(evtAdmissao.trabalhador.indPriEmpr.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['nmsoc'] = evtAdmissao.trabalhador.nmSoc.cdata
+        s2200_evtadmissao_dados['nmsoc'] = read_from_xml(evtAdmissao.trabalhador.nmSoc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['dtnascto'] = evtAdmissao.trabalhador.nascimento.dtNascto.cdata
+        s2200_evtadmissao_dados['dtnascto'] = read_from_xml(evtAdmissao.trabalhador.nascimento.dtNascto.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['codmunic'] = evtAdmissao.trabalhador.nascimento.codMunic.cdata
+        s2200_evtadmissao_dados['codmunic'] = read_from_xml(evtAdmissao.trabalhador.nascimento.codMunic.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['uf'] = evtAdmissao.trabalhador.nascimento.uf.cdata
+        s2200_evtadmissao_dados['uf'] = read_from_xml(evtAdmissao.trabalhador.nascimento.uf.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['paisnascto'] = evtAdmissao.trabalhador.nascimento.paisNascto.cdata
+        s2200_evtadmissao_dados['paisnascto'] = read_from_xml(evtAdmissao.trabalhador.nascimento.paisNascto.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['paisnac'] = evtAdmissao.trabalhador.nascimento.paisNac.cdata
+        s2200_evtadmissao_dados['paisnac'] = read_from_xml(evtAdmissao.trabalhador.nascimento.paisNac.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['nmmae'] = evtAdmissao.trabalhador.nascimento.nmMae.cdata
+        s2200_evtadmissao_dados['nmmae'] = read_from_xml(evtAdmissao.trabalhador.nascimento.nmMae.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['nmpai'] = evtAdmissao.trabalhador.nascimento.nmPai.cdata
+        s2200_evtadmissao_dados['nmpai'] = read_from_xml(evtAdmissao.trabalhador.nascimento.nmPai.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['matricula'] = evtAdmissao.vinculo.matricula.cdata
+        s2200_evtadmissao_dados['matricula'] = read_from_xml(evtAdmissao.vinculo.matricula.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['tpregtrab'] = evtAdmissao.vinculo.tpRegTrab.cdata
+        s2200_evtadmissao_dados['tpregtrab'] = read_from_xml(evtAdmissao.vinculo.tpRegTrab.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['tpregprev'] = evtAdmissao.vinculo.tpRegPrev.cdata
+        s2200_evtadmissao_dados['tpregprev'] = read_from_xml(evtAdmissao.vinculo.tpRegPrev.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['nrrecinfprelim'] = evtAdmissao.vinculo.nrRecInfPrelim.cdata
+        s2200_evtadmissao_dados['nrrecinfprelim'] = read_from_xml(evtAdmissao.vinculo.nrRecInfPrelim.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['cadini'] = evtAdmissao.vinculo.cadIni.cdata
+        s2200_evtadmissao_dados['cadini'] = read_from_xml(evtAdmissao.vinculo.cadIni.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['codcargo'] = evtAdmissao.vinculo.infoContrato.codCargo.cdata
+        s2200_evtadmissao_dados['codcargo'] = read_from_xml(evtAdmissao.vinculo.infoContrato.codCargo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['dtingrcargo'] = evtAdmissao.vinculo.infoContrato.dtIngrCargo.cdata
+        s2200_evtadmissao_dados['dtingrcargo'] = read_from_xml(evtAdmissao.vinculo.infoContrato.dtIngrCargo.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['codfuncao'] = evtAdmissao.vinculo.infoContrato.codFuncao.cdata
+        s2200_evtadmissao_dados['codfuncao'] = read_from_xml(evtAdmissao.vinculo.infoContrato.codFuncao.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['codcateg'] = evtAdmissao.vinculo.infoContrato.codCateg.cdata
+        s2200_evtadmissao_dados['codcateg'] = read_from_xml(evtAdmissao.vinculo.infoContrato.codCateg.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['codcarreira'] = evtAdmissao.vinculo.infoContrato.codCarreira.cdata
+        s2200_evtadmissao_dados['codcarreira'] = read_from_xml(evtAdmissao.vinculo.infoContrato.codCarreira.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['dtingrcarr'] = evtAdmissao.vinculo.infoContrato.dtIngrCarr.cdata
+        s2200_evtadmissao_dados['dtingrcarr'] = read_from_xml(evtAdmissao.vinculo.infoContrato.dtIngrCarr.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['vrsalfx'] = evtAdmissao.vinculo.infoContrato.remuneracao.vrSalFx.cdata
+        s2200_evtadmissao_dados['vrsalfx'] = read_from_xml(evtAdmissao.vinculo.infoContrato.remuneracao.vrSalFx.cdata, 'esocial', 'N', 2)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['undsalfixo'] = evtAdmissao.vinculo.infoContrato.remuneracao.undSalFixo.cdata
+        s2200_evtadmissao_dados['undsalfixo'] = read_from_xml(evtAdmissao.vinculo.infoContrato.remuneracao.undSalFixo.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['dscsalvar'] = evtAdmissao.vinculo.infoContrato.remuneracao.dscSalVar.cdata
+        s2200_evtadmissao_dados['dscsalvar'] = read_from_xml(evtAdmissao.vinculo.infoContrato.remuneracao.dscSalVar.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['tpcontr'] = evtAdmissao.vinculo.infoContrato.duracao.tpContr.cdata
+        s2200_evtadmissao_dados['tpcontr'] = read_from_xml(evtAdmissao.vinculo.infoContrato.duracao.tpContr.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['dtterm'] = evtAdmissao.vinculo.infoContrato.duracao.dtTerm.cdata
+        s2200_evtadmissao_dados['dtterm'] = read_from_xml(evtAdmissao.vinculo.infoContrato.duracao.dtTerm.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['clauassec'] = evtAdmissao.vinculo.infoContrato.duracao.clauAssec.cdata
+        s2200_evtadmissao_dados['clauassec'] = read_from_xml(evtAdmissao.vinculo.infoContrato.duracao.clauAssec.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2200_evtadmissao_dados['objdet'] = evtAdmissao.vinculo.infoContrato.duracao.objDet.cdata
+        s2200_evtadmissao_dados['objdet'] = read_from_xml(evtAdmissao.vinculo.infoContrato.duracao.objDet.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -284,17 +285,17 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
                     s2200_ctps_dados['s2200_documentos_id'] = s2200_documentos.id
 
                     try:
-                        s2200_ctps_dados['nrctps'] = CTPS.nrCtps.cdata
+                        s2200_ctps_dados['nrctps'] = read_from_xml(CTPS.nrCtps.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_ctps_dados['seriectps'] = CTPS.serieCtps.cdata
+                        s2200_ctps_dados['seriectps'] = read_from_xml(CTPS.serieCtps.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_ctps_dados['ufctps'] = CTPS.ufCtps.cdata
+                        s2200_ctps_dados['ufctps'] = read_from_xml(CTPS.ufCtps.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -308,17 +309,17 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
                     s2200_ric_dados['s2200_documentos_id'] = s2200_documentos.id
 
                     try:
-                        s2200_ric_dados['nrric'] = RIC.nrRic.cdata
+                        s2200_ric_dados['nrric'] = read_from_xml(RIC.nrRic.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_ric_dados['orgaoemissor'] = RIC.orgaoEmissor.cdata
+                        s2200_ric_dados['orgaoemissor'] = read_from_xml(RIC.orgaoEmissor.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_ric_dados['dtexped'] = RIC.dtExped.cdata
+                        s2200_ric_dados['dtexped'] = read_from_xml(RIC.dtExped.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -332,17 +333,17 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
                     s2200_rg_dados['s2200_documentos_id'] = s2200_documentos.id
 
                     try:
-                        s2200_rg_dados['nrrg'] = RG.nrRg.cdata
+                        s2200_rg_dados['nrrg'] = read_from_xml(RG.nrRg.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_rg_dados['orgaoemissor'] = RG.orgaoEmissor.cdata
+                        s2200_rg_dados['orgaoemissor'] = read_from_xml(RG.orgaoEmissor.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_rg_dados['dtexped'] = RG.dtExped.cdata
+                        s2200_rg_dados['dtexped'] = read_from_xml(RG.dtExped.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -356,17 +357,17 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
                     s2200_rne_dados['s2200_documentos_id'] = s2200_documentos.id
 
                     try:
-                        s2200_rne_dados['nrrne'] = RNE.nrRne.cdata
+                        s2200_rne_dados['nrrne'] = read_from_xml(RNE.nrRne.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_rne_dados['orgaoemissor'] = RNE.orgaoEmissor.cdata
+                        s2200_rne_dados['orgaoemissor'] = read_from_xml(RNE.orgaoEmissor.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_rne_dados['dtexped'] = RNE.dtExped.cdata
+                        s2200_rne_dados['dtexped'] = read_from_xml(RNE.dtExped.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -380,22 +381,22 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
                     s2200_oc_dados['s2200_documentos_id'] = s2200_documentos.id
 
                     try:
-                        s2200_oc_dados['nroc'] = OC.nrOc.cdata
+                        s2200_oc_dados['nroc'] = read_from_xml(OC.nrOc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_oc_dados['orgaoemissor'] = OC.orgaoEmissor.cdata
+                        s2200_oc_dados['orgaoemissor'] = read_from_xml(OC.orgaoEmissor.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_oc_dados['dtexped'] = OC.dtExped.cdata
+                        s2200_oc_dados['dtexped'] = read_from_xml(OC.dtExped.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_oc_dados['dtvalid'] = OC.dtValid.cdata
+                        s2200_oc_dados['dtvalid'] = read_from_xml(OC.dtValid.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -409,32 +410,32 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
                     s2200_cnh_dados['s2200_documentos_id'] = s2200_documentos.id
 
                     try:
-                        s2200_cnh_dados['nrregcnh'] = CNH.nrRegCnh.cdata
+                        s2200_cnh_dados['nrregcnh'] = read_from_xml(CNH.nrRegCnh.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_cnh_dados['dtexped'] = CNH.dtExped.cdata
+                        s2200_cnh_dados['dtexped'] = read_from_xml(CNH.dtExped.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_cnh_dados['ufcnh'] = CNH.ufCnh.cdata
+                        s2200_cnh_dados['ufcnh'] = read_from_xml(CNH.ufCnh.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_cnh_dados['dtvalid'] = CNH.dtValid.cdata
+                        s2200_cnh_dados['dtvalid'] = read_from_xml(CNH.dtValid.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_cnh_dados['dtprihab'] = CNH.dtPriHab.cdata
+                        s2200_cnh_dados['dtprihab'] = read_from_xml(CNH.dtPriHab.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_cnh_dados['categoriacnh'] = CNH.categoriaCnh.cdata
+                        s2200_cnh_dados['categoriacnh'] = read_from_xml(CNH.categoriaCnh.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -448,42 +449,42 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_brasil_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_brasil_dados['tplograd'] = brasil.tpLograd.cdata
+                s2200_brasil_dados['tplograd'] = read_from_xml(brasil.tpLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_brasil_dados['dsclograd'] = brasil.dscLograd.cdata
+                s2200_brasil_dados['dsclograd'] = read_from_xml(brasil.dscLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_brasil_dados['nrlograd'] = brasil.nrLograd.cdata
+                s2200_brasil_dados['nrlograd'] = read_from_xml(brasil.nrLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_brasil_dados['complemento'] = brasil.complemento.cdata
+                s2200_brasil_dados['complemento'] = read_from_xml(brasil.complemento.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_brasil_dados['bairro'] = brasil.bairro.cdata
+                s2200_brasil_dados['bairro'] = read_from_xml(brasil.bairro.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_brasil_dados['cep'] = brasil.cep.cdata
+                s2200_brasil_dados['cep'] = read_from_xml(brasil.cep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_brasil_dados['codmunic'] = brasil.codMunic.cdata
+                s2200_brasil_dados['codmunic'] = read_from_xml(brasil.codMunic.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_brasil_dados['uf'] = brasil.uf.cdata
+                s2200_brasil_dados['uf'] = read_from_xml(brasil.uf.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -497,37 +498,37 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_exterior_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_exterior_dados['paisresid'] = exterior.paisResid.cdata
+                s2200_exterior_dados['paisresid'] = read_from_xml(exterior.paisResid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_exterior_dados['dsclograd'] = exterior.dscLograd.cdata
+                s2200_exterior_dados['dsclograd'] = read_from_xml(exterior.dscLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_exterior_dados['nrlograd'] = exterior.nrLograd.cdata
+                s2200_exterior_dados['nrlograd'] = read_from_xml(exterior.nrLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_exterior_dados['complemento'] = exterior.complemento.cdata
+                s2200_exterior_dados['complemento'] = read_from_xml(exterior.complemento.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_exterior_dados['bairro'] = exterior.bairro.cdata
+                s2200_exterior_dados['bairro'] = read_from_xml(exterior.bairro.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_exterior_dados['nmcid'] = exterior.nmCid.cdata
+                s2200_exterior_dados['nmcid'] = read_from_xml(exterior.nmCid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_exterior_dados['codpostal'] = exterior.codPostal.cdata
+                s2200_exterior_dados['codpostal'] = read_from_xml(exterior.codPostal.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -541,22 +542,22 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_trabestrangeiro_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_trabestrangeiro_dados['dtchegada'] = trabEstrangeiro.dtChegada.cdata
+                s2200_trabestrangeiro_dados['dtchegada'] = read_from_xml(trabEstrangeiro.dtChegada.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_trabestrangeiro_dados['classtrabestrang'] = trabEstrangeiro.classTrabEstrang.cdata
+                s2200_trabestrangeiro_dados['classtrabestrang'] = read_from_xml(trabEstrangeiro.classTrabEstrang.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_trabestrangeiro_dados['casadobr'] = trabEstrangeiro.casadoBr.cdata
+                s2200_trabestrangeiro_dados['casadobr'] = read_from_xml(trabEstrangeiro.casadoBr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_trabestrangeiro_dados['filhosbr'] = trabEstrangeiro.filhosBr.cdata
+                s2200_trabestrangeiro_dados['filhosbr'] = read_from_xml(trabEstrangeiro.filhosBr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -570,42 +571,42 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_infodeficiencia_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_infodeficiencia_dados['deffisica'] = infoDeficiencia.defFisica.cdata
+                s2200_infodeficiencia_dados['deffisica'] = read_from_xml(infoDeficiencia.defFisica.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infodeficiencia_dados['defvisual'] = infoDeficiencia.defVisual.cdata
+                s2200_infodeficiencia_dados['defvisual'] = read_from_xml(infoDeficiencia.defVisual.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infodeficiencia_dados['defauditiva'] = infoDeficiencia.defAuditiva.cdata
+                s2200_infodeficiencia_dados['defauditiva'] = read_from_xml(infoDeficiencia.defAuditiva.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infodeficiencia_dados['defmental'] = infoDeficiencia.defMental.cdata
+                s2200_infodeficiencia_dados['defmental'] = read_from_xml(infoDeficiencia.defMental.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infodeficiencia_dados['defintelectual'] = infoDeficiencia.defIntelectual.cdata
+                s2200_infodeficiencia_dados['defintelectual'] = read_from_xml(infoDeficiencia.defIntelectual.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infodeficiencia_dados['reabreadap'] = infoDeficiencia.reabReadap.cdata
+                s2200_infodeficiencia_dados['reabreadap'] = read_from_xml(infoDeficiencia.reabReadap.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infodeficiencia_dados['infocota'] = infoDeficiencia.infoCota.cdata
+                s2200_infodeficiencia_dados['infocota'] = read_from_xml(infoDeficiencia.infoCota.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infodeficiencia_dados['observacao'] = infoDeficiencia.observacao.cdata
+                s2200_infodeficiencia_dados['observacao'] = read_from_xml(infoDeficiencia.observacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -619,47 +620,47 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_dependente_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_dependente_dados['tpdep'] = dependente.tpDep.cdata
+                s2200_dependente_dados['tpdep'] = read_from_xml(dependente.tpDep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_dependente_dados['nmdep'] = dependente.nmDep.cdata
+                s2200_dependente_dados['nmdep'] = read_from_xml(dependente.nmDep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_dependente_dados['dtnascto'] = dependente.dtNascto.cdata
+                s2200_dependente_dados['dtnascto'] = read_from_xml(dependente.dtNascto.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_dependente_dados['cpfdep'] = dependente.cpfDep.cdata
+                s2200_dependente_dados['cpfdep'] = read_from_xml(dependente.cpfDep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_dependente_dados['sexodep'] = dependente.sexoDep.cdata
+                s2200_dependente_dados['sexodep'] = read_from_xml(dependente.sexoDep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_dependente_dados['depirrf'] = dependente.depIRRF.cdata
+                s2200_dependente_dados['depirrf'] = read_from_xml(dependente.depIRRF.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_dependente_dados['depsf'] = dependente.depSF.cdata
+                s2200_dependente_dados['depsf'] = read_from_xml(dependente.depSF.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_dependente_dados['inctrab'] = dependente.incTrab.cdata
+                s2200_dependente_dados['inctrab'] = read_from_xml(dependente.incTrab.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_dependente_dados['depfinsprev'] = dependente.depFinsPrev.cdata
+                s2200_dependente_dados['depfinsprev'] = read_from_xml(dependente.depFinsPrev.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -673,7 +674,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_aposentadoria_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_aposentadoria_dados['trabaposent'] = aposentadoria.trabAposent.cdata
+                s2200_aposentadoria_dados['trabaposent'] = read_from_xml(aposentadoria.trabAposent.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -687,22 +688,22 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_contato_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_contato_dados['foneprinc'] = contato.fonePrinc.cdata
+                s2200_contato_dados['foneprinc'] = read_from_xml(contato.fonePrinc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_contato_dados['fonealternat'] = contato.foneAlternat.cdata
+                s2200_contato_dados['fonealternat'] = read_from_xml(contato.foneAlternat.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_contato_dados['emailprinc'] = contato.emailPrinc.cdata
+                s2200_contato_dados['emailprinc'] = read_from_xml(contato.emailPrinc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_contato_dados['emailalternat'] = contato.emailAlternat.cdata
+                s2200_contato_dados['emailalternat'] = read_from_xml(contato.emailAlternat.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -716,47 +717,47 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_infoceletista_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_infoceletista_dados['dtadm'] = infoCeletista.dtAdm.cdata
+                s2200_infoceletista_dados['dtadm'] = read_from_xml(infoCeletista.dtAdm.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoceletista_dados['tpadmissao'] = infoCeletista.tpAdmissao.cdata
+                s2200_infoceletista_dados['tpadmissao'] = read_from_xml(infoCeletista.tpAdmissao.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoceletista_dados['indadmissao'] = infoCeletista.indAdmissao.cdata
+                s2200_infoceletista_dados['indadmissao'] = read_from_xml(infoCeletista.indAdmissao.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoceletista_dados['tpregjor'] = infoCeletista.tpRegJor.cdata
+                s2200_infoceletista_dados['tpregjor'] = read_from_xml(infoCeletista.tpRegJor.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoceletista_dados['natatividade'] = infoCeletista.natAtividade.cdata
+                s2200_infoceletista_dados['natatividade'] = read_from_xml(infoCeletista.natAtividade.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoceletista_dados['dtbase'] = infoCeletista.dtBase.cdata
+                s2200_infoceletista_dados['dtbase'] = read_from_xml(infoCeletista.dtBase.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoceletista_dados['cnpjsindcategprof'] = infoCeletista.cnpjSindCategProf.cdata
+                s2200_infoceletista_dados['cnpjsindcategprof'] = read_from_xml(infoCeletista.cnpjSindCategProf.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoceletista_dados['opcfgts'] = infoCeletista.FGTS.opcFGTS.cdata
+                s2200_infoceletista_dados['opcfgts'] = read_from_xml(infoCeletista.FGTS.opcFGTS.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoceletista_dados['dtopcfgts'] = infoCeletista.FGTS.dtOpcFGTS.cdata
+                s2200_infoceletista_dados['dtopcfgts'] = read_from_xml(infoCeletista.FGTS.dtOpcFGTS.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
@@ -770,27 +771,27 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
                     s2200_trabtemporario_dados['s2200_infoceletista_id'] = s2200_infoceletista.id
 
                     try:
-                        s2200_trabtemporario_dados['hipleg'] = trabTemporario.hipLeg.cdata
+                        s2200_trabtemporario_dados['hipleg'] = read_from_xml(trabTemporario.hipLeg.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_trabtemporario_dados['justcontr'] = trabTemporario.justContr.cdata
+                        s2200_trabtemporario_dados['justcontr'] = read_from_xml(trabTemporario.justContr.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_trabtemporario_dados['tpinclcontr'] = trabTemporario.tpInclContr.cdata
+                        s2200_trabtemporario_dados['tpinclcontr'] = read_from_xml(trabTemporario.tpInclContr.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_trabtemporario_dados['tpinsc'] = trabTemporario.ideTomadorServ.tpInsc.cdata
+                        s2200_trabtemporario_dados['tpinsc'] = read_from_xml(trabTemporario.ideTomadorServ.tpInsc.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_trabtemporario_dados['nrinsc'] = trabTemporario.ideTomadorServ.nrInsc.cdata
+                        s2200_trabtemporario_dados['nrinsc'] = read_from_xml(trabTemporario.ideTomadorServ.nrInsc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -804,12 +805,12 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
                             s2200_ideestabvinc_dados['s2200_trabtemporario_id'] = s2200_trabtemporario.id
         
                             try:
-                                s2200_ideestabvinc_dados['tpinsc'] = ideEstabVinc.tpInsc.cdata
+                                s2200_ideestabvinc_dados['tpinsc'] = read_from_xml(ideEstabVinc.tpInsc.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2200_ideestabvinc_dados['nrinsc'] = ideEstabVinc.nrInsc.cdata
+                                s2200_ideestabvinc_dados['nrinsc'] = read_from_xml(ideEstabVinc.nrInsc.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -823,7 +824,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
                             s2200_idetrabsubstituido_dados['s2200_trabtemporario_id'] = s2200_trabtemporario.id
         
                             try:
-                                s2200_idetrabsubstituido_dados['cpftrabsubst'] = ideTrabSubstituido.cpfTrabSubst.cdata
+                                s2200_idetrabsubstituido_dados['cpftrabsubst'] = read_from_xml(ideTrabSubstituido.cpfTrabSubst.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -837,12 +838,12 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
                     s2200_aprend_dados['s2200_infoceletista_id'] = s2200_infoceletista.id
 
                     try:
-                        s2200_aprend_dados['tpinsc'] = aprend.tpInsc.cdata
+                        s2200_aprend_dados['tpinsc'] = read_from_xml(aprend.tpInsc.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_aprend_dados['nrinsc'] = aprend.nrInsc.cdata
+                        s2200_aprend_dados['nrinsc'] = read_from_xml(aprend.nrInsc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -856,62 +857,62 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_infoestatutario_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_infoestatutario_dados['indprovim'] = infoEstatutario.indProvim.cdata
+                s2200_infoestatutario_dados['indprovim'] = read_from_xml(infoEstatutario.indProvim.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoestatutario_dados['tpprov'] = infoEstatutario.tpProv.cdata
+                s2200_infoestatutario_dados['tpprov'] = read_from_xml(infoEstatutario.tpProv.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoestatutario_dados['dtnomeacao'] = infoEstatutario.dtNomeacao.cdata
+                s2200_infoestatutario_dados['dtnomeacao'] = read_from_xml(infoEstatutario.dtNomeacao.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoestatutario_dados['dtposse'] = infoEstatutario.dtPosse.cdata
+                s2200_infoestatutario_dados['dtposse'] = read_from_xml(infoEstatutario.dtPosse.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoestatutario_dados['dtexercicio'] = infoEstatutario.dtExercicio.cdata
+                s2200_infoestatutario_dados['dtexercicio'] = read_from_xml(infoEstatutario.dtExercicio.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoestatutario_dados['dtingsvpub'] = infoEstatutario.dtIngSvPub.cdata
+                s2200_infoestatutario_dados['dtingsvpub'] = read_from_xml(infoEstatutario.dtIngSvPub.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoestatutario_dados['tpplanrp'] = infoEstatutario.tpPlanRP.cdata
+                s2200_infoestatutario_dados['tpplanrp'] = read_from_xml(infoEstatutario.tpPlanRP.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoestatutario_dados['indtetorgps'] = infoEstatutario.indTetoRGPS.cdata
+                s2200_infoestatutario_dados['indtetorgps'] = read_from_xml(infoEstatutario.indTetoRGPS.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoestatutario_dados['indabonoperm'] = infoEstatutario.indAbonoPerm.cdata
+                s2200_infoestatutario_dados['indabonoperm'] = read_from_xml(infoEstatutario.indAbonoPerm.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoestatutario_dados['dtiniabono'] = infoEstatutario.dtIniAbono.cdata
+                s2200_infoestatutario_dados['dtiniabono'] = read_from_xml(infoEstatutario.dtIniAbono.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoestatutario_dados['indparcremun'] = infoEstatutario.indParcRemun.cdata
+                s2200_infoestatutario_dados['indparcremun'] = read_from_xml(infoEstatutario.indParcRemun.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_infoestatutario_dados['dtiniparc'] = infoEstatutario.dtIniParc.cdata
+                s2200_infoestatutario_dados['dtiniparc'] = read_from_xml(infoEstatutario.dtIniParc.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
@@ -925,7 +926,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
                     s2200_infodecjud_dados['s2200_infoestatutario_id'] = s2200_infoestatutario.id
 
                     try:
-                        s2200_infodecjud_dados['nrprocjud'] = infoDecJud.nrProcJud.cdata
+                        s2200_infodecjud_dados['nrprocjud'] = read_from_xml(infoDecJud.nrProcJud.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -939,17 +940,17 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_localtrabgeral_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_localtrabgeral_dados['tpinsc'] = localTrabGeral.tpInsc.cdata
+                s2200_localtrabgeral_dados['tpinsc'] = read_from_xml(localTrabGeral.tpInsc.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_localtrabgeral_dados['nrinsc'] = localTrabGeral.nrInsc.cdata
+                s2200_localtrabgeral_dados['nrinsc'] = read_from_xml(localTrabGeral.nrInsc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_localtrabgeral_dados['desccomp'] = localTrabGeral.descComp.cdata
+                s2200_localtrabgeral_dados['desccomp'] = read_from_xml(localTrabGeral.descComp.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -963,42 +964,42 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_localtrabdom_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_localtrabdom_dados['tplograd'] = localTrabDom.tpLograd.cdata
+                s2200_localtrabdom_dados['tplograd'] = read_from_xml(localTrabDom.tpLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_localtrabdom_dados['dsclograd'] = localTrabDom.dscLograd.cdata
+                s2200_localtrabdom_dados['dsclograd'] = read_from_xml(localTrabDom.dscLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_localtrabdom_dados['nrlograd'] = localTrabDom.nrLograd.cdata
+                s2200_localtrabdom_dados['nrlograd'] = read_from_xml(localTrabDom.nrLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_localtrabdom_dados['complemento'] = localTrabDom.complemento.cdata
+                s2200_localtrabdom_dados['complemento'] = read_from_xml(localTrabDom.complemento.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_localtrabdom_dados['bairro'] = localTrabDom.bairro.cdata
+                s2200_localtrabdom_dados['bairro'] = read_from_xml(localTrabDom.bairro.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_localtrabdom_dados['cep'] = localTrabDom.cep.cdata
+                s2200_localtrabdom_dados['cep'] = read_from_xml(localTrabDom.cep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_localtrabdom_dados['codmunic'] = localTrabDom.codMunic.cdata
+                s2200_localtrabdom_dados['codmunic'] = read_from_xml(localTrabDom.codMunic.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_localtrabdom_dados['uf'] = localTrabDom.uf.cdata
+                s2200_localtrabdom_dados['uf'] = read_from_xml(localTrabDom.uf.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -1012,22 +1013,22 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_horcontratual_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_horcontratual_dados['qtdhrssem'] = horContratual.qtdHrsSem.cdata
+                s2200_horcontratual_dados['qtdhrssem'] = read_from_xml(horContratual.qtdHrsSem.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 
             try:
-                s2200_horcontratual_dados['tpjornada'] = horContratual.tpJornada.cdata
+                s2200_horcontratual_dados['tpjornada'] = read_from_xml(horContratual.tpJornada.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_horcontratual_dados['dsctpjorn'] = horContratual.dscTpJorn.cdata
+                s2200_horcontratual_dados['dsctpjorn'] = read_from_xml(horContratual.dscTpJorn.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_horcontratual_dados['tmpparc'] = horContratual.tmpParc.cdata
+                s2200_horcontratual_dados['tmpparc'] = read_from_xml(horContratual.tmpParc.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
@@ -1041,12 +1042,12 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
                     s2200_horario_dados['s2200_horcontratual_id'] = s2200_horcontratual.id
 
                     try:
-                        s2200_horario_dados['dia'] = horario.dia.cdata
+                        s2200_horario_dados['dia'] = read_from_xml(horario.dia.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2200_horario_dados['codhorcontrat'] = horario.codHorContrat.cdata
+                        s2200_horario_dados['codhorcontrat'] = read_from_xml(horario.codHorContrat.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -1060,7 +1061,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_filiacaosindical_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_filiacaosindical_dados['cnpjsindtrab'] = filiacaoSindical.cnpjSindTrab.cdata
+                s2200_filiacaosindical_dados['cnpjsindtrab'] = read_from_xml(filiacaoSindical.cnpjSindTrab.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -1074,7 +1075,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_alvarajudicial_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_alvarajudicial_dados['nrprocjud'] = alvaraJudicial.nrProcJud.cdata
+                s2200_alvarajudicial_dados['nrprocjud'] = read_from_xml(alvaraJudicial.nrProcJud.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -1088,7 +1089,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_observacoes_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_observacoes_dados['observacao'] = observacoes.observacao.cdata
+                s2200_observacoes_dados['observacao'] = read_from_xml(observacoes.observacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -1102,27 +1103,27 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_sucessaovinc_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_sucessaovinc_dados['tpinscant'] = sucessaoVinc.tpInscAnt.cdata
+                s2200_sucessaovinc_dados['tpinscant'] = read_from_xml(sucessaoVinc.tpInscAnt.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_sucessaovinc_dados['cnpjempregant'] = sucessaoVinc.cnpjEmpregAnt.cdata
+                s2200_sucessaovinc_dados['cnpjempregant'] = read_from_xml(sucessaoVinc.cnpjEmpregAnt.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_sucessaovinc_dados['matricant'] = sucessaoVinc.matricAnt.cdata
+                s2200_sucessaovinc_dados['matricant'] = read_from_xml(sucessaoVinc.matricAnt.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_sucessaovinc_dados['dttransf'] = sucessaoVinc.dtTransf.cdata
+                s2200_sucessaovinc_dados['dttransf'] = read_from_xml(sucessaoVinc.dtTransf.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_sucessaovinc_dados['observacao'] = sucessaoVinc.observacao.cdata
+                s2200_sucessaovinc_dados['observacao'] = read_from_xml(sucessaoVinc.observacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -1136,17 +1137,17 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_transfdom_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_transfdom_dados['cpfsubstituido'] = transfDom.cpfSubstituido.cdata
+                s2200_transfdom_dados['cpfsubstituido'] = read_from_xml(transfDom.cpfSubstituido.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_transfdom_dados['matricant'] = transfDom.matricAnt.cdata
+                s2200_transfdom_dados['matricant'] = read_from_xml(transfDom.matricAnt.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_transfdom_dados['dttransf'] = transfDom.dtTransf.cdata
+                s2200_transfdom_dados['dttransf'] = read_from_xml(transfDom.dtTransf.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
@@ -1160,22 +1161,22 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_mudancacpf_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_mudancacpf_dados['cpfant'] = mudancaCPF.cpfAnt.cdata
+                s2200_mudancacpf_dados['cpfant'] = read_from_xml(mudancaCPF.cpfAnt.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_mudancacpf_dados['matricant'] = mudancaCPF.matricAnt.cdata
+                s2200_mudancacpf_dados['matricant'] = read_from_xml(mudancaCPF.matricAnt.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_mudancacpf_dados['dtaltcpf'] = mudancaCPF.dtAltCPF.cdata
+                s2200_mudancacpf_dados['dtaltcpf'] = read_from_xml(mudancaCPF.dtAltCPF.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_mudancacpf_dados['observacao'] = mudancaCPF.observacao.cdata
+                s2200_mudancacpf_dados['observacao'] = read_from_xml(mudancaCPF.observacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -1189,12 +1190,12 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_afastamento_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_afastamento_dados['dtiniafast'] = afastamento.dtIniAfast.cdata
+                s2200_afastamento_dados['dtiniafast'] = read_from_xml(afastamento.dtIniAfast.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2200_afastamento_dados['codmotafast'] = afastamento.codMotAfast.cdata
+                s2200_afastamento_dados['codmotafast'] = read_from_xml(afastamento.codMotAfast.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -1208,7 +1209,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_desligamento_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_desligamento_dados['dtdeslig'] = desligamento.dtDeslig.cdata
+                s2200_desligamento_dados['dtdeslig'] = read_from_xml(desligamento.dtDeslig.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
@@ -1222,7 +1223,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False, arquivo=Fals
             s2200_cessao_dados['s2200_evtadmissao_id'] = s2200_evtadmissao.id
 
             try:
-                s2200_cessao_dados['dtinicessao'] = cessao.dtIniCessao.cdata
+                s2200_cessao_dados['dtinicessao'] = read_from_xml(cessao.dtIniCessao.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 

@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1298.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,37 +62,37 @@ def read_s1298_evtreabreevper_obj(request, doc, status, validar=False, arquivo=F
     evtReabreEvPer = doc.eSocial.evtReabreEvPer
 
     try:
-        s1298_evtreabreevper_dados['indapuracao'] = evtReabreEvPer.ideEvento.indApuracao.cdata
+        s1298_evtreabreevper_dados['indapuracao'] = read_from_xml(evtReabreEvPer.ideEvento.indApuracao.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1298_evtreabreevper_dados['perapur'] = evtReabreEvPer.ideEvento.perApur.cdata
+        s1298_evtreabreevper_dados['perapur'] = read_from_xml(evtReabreEvPer.ideEvento.perApur.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1298_evtreabreevper_dados['tpamb'] = evtReabreEvPer.ideEvento.tpAmb.cdata
+        s1298_evtreabreevper_dados['tpamb'] = read_from_xml(evtReabreEvPer.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1298_evtreabreevper_dados['procemi'] = evtReabreEvPer.ideEvento.procEmi.cdata
+        s1298_evtreabreevper_dados['procemi'] = read_from_xml(evtReabreEvPer.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1298_evtreabreevper_dados['verproc'] = evtReabreEvPer.ideEvento.verProc.cdata
+        s1298_evtreabreevper_dados['verproc'] = read_from_xml(evtReabreEvPer.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1298_evtreabreevper_dados['tpinsc'] = evtReabreEvPer.ideEmpregador.tpInsc.cdata
+        s1298_evtreabreevper_dados['tpinsc'] = read_from_xml(evtReabreEvPer.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1298_evtreabreevper_dados['nrinsc'] = evtReabreEvPer.ideEmpregador.nrInsc.cdata
+        s1298_evtreabreevper_dados['nrinsc'] = read_from_xml(evtReabreEvPer.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 

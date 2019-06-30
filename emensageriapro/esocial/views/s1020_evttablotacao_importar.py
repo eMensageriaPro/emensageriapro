@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1020.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -65,27 +66,27 @@ def read_s1020_evttablotacao_obj(request, doc, status, validar=False, arquivo=Fa
     elif 'exclusao' in dir(evtTabLotacao.infoLotacao): s1020_evttablotacao_dados['operacao'] = 3
 
     try:
-        s1020_evttablotacao_dados['tpamb'] = evtTabLotacao.ideEvento.tpAmb.cdata
+        s1020_evttablotacao_dados['tpamb'] = read_from_xml(evtTabLotacao.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1020_evttablotacao_dados['procemi'] = evtTabLotacao.ideEvento.procEmi.cdata
+        s1020_evttablotacao_dados['procemi'] = read_from_xml(evtTabLotacao.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1020_evttablotacao_dados['verproc'] = evtTabLotacao.ideEvento.verProc.cdata
+        s1020_evttablotacao_dados['verproc'] = read_from_xml(evtTabLotacao.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1020_evttablotacao_dados['tpinsc'] = evtTabLotacao.ideEmpregador.tpInsc.cdata
+        s1020_evttablotacao_dados['tpinsc'] = read_from_xml(evtTabLotacao.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1020_evttablotacao_dados['nrinsc'] = evtTabLotacao.ideEmpregador.nrInsc.cdata
+        s1020_evttablotacao_dados['nrinsc'] = read_from_xml(evtTabLotacao.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -99,47 +100,47 @@ def read_s1020_evttablotacao_obj(request, doc, status, validar=False, arquivo=Fa
             s1020_inclusao_dados['s1020_evttablotacao_id'] = s1020_evttablotacao.id
 
             try:
-                s1020_inclusao_dados['codlotacao'] = inclusao.ideLotacao.codLotacao.cdata
+                s1020_inclusao_dados['codlotacao'] = read_from_xml(inclusao.ideLotacao.codLotacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_inclusao_dados['inivalid'] = inclusao.ideLotacao.iniValid.cdata
+                s1020_inclusao_dados['inivalid'] = read_from_xml(inclusao.ideLotacao.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_inclusao_dados['fimvalid'] = inclusao.ideLotacao.fimValid.cdata
+                s1020_inclusao_dados['fimvalid'] = read_from_xml(inclusao.ideLotacao.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_inclusao_dados['tplotacao'] = inclusao.dadosLotacao.tpLotacao.cdata
+                s1020_inclusao_dados['tplotacao'] = read_from_xml(inclusao.dadosLotacao.tpLotacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_inclusao_dados['tpinsc'] = inclusao.dadosLotacao.tpInsc.cdata
+                s1020_inclusao_dados['tpinsc'] = read_from_xml(inclusao.dadosLotacao.tpInsc.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_inclusao_dados['nrinsc'] = inclusao.dadosLotacao.nrInsc.cdata
+                s1020_inclusao_dados['nrinsc'] = read_from_xml(inclusao.dadosLotacao.nrInsc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_inclusao_dados['fpas'] = inclusao.dadosLotacao.fpasLotacao.fpas.cdata
+                s1020_inclusao_dados['fpas'] = read_from_xml(inclusao.dadosLotacao.fpasLotacao.fpas.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_inclusao_dados['codtercs'] = inclusao.dadosLotacao.fpasLotacao.codTercs.cdata
+                s1020_inclusao_dados['codtercs'] = read_from_xml(inclusao.dadosLotacao.fpasLotacao.codTercs.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_inclusao_dados['codtercssusp'] = inclusao.dadosLotacao.fpasLotacao.codTercsSusp.cdata
+                s1020_inclusao_dados['codtercssusp'] = read_from_xml(inclusao.dadosLotacao.fpasLotacao.codTercsSusp.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -162,17 +163,17 @@ def read_s1020_evttablotacao_obj(request, doc, status, validar=False, arquivo=Fa
                             s1020_inclusao_procjudterceiro_dados['s1020_inclusao_infoprocjudterceiros_id'] = s1020_inclusao_infoprocjudterceiros.id
         
                             try:
-                                s1020_inclusao_procjudterceiro_dados['codterc'] = procJudTerceiro.codTerc.cdata
+                                s1020_inclusao_procjudterceiro_dados['codterc'] = read_from_xml(procJudTerceiro.codTerc.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1020_inclusao_procjudterceiro_dados['nrprocjud'] = procJudTerceiro.nrProcJud.cdata
+                                s1020_inclusao_procjudterceiro_dados['nrprocjud'] = read_from_xml(procJudTerceiro.nrProcJud.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1020_inclusao_procjudterceiro_dados['codsusp'] = procJudTerceiro.codSusp.cdata
+                                s1020_inclusao_procjudterceiro_dados['codsusp'] = read_from_xml(procJudTerceiro.codSusp.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
 
@@ -186,22 +187,22 @@ def read_s1020_evttablotacao_obj(request, doc, status, validar=False, arquivo=Fa
                     s1020_inclusao_infoemprparcial_dados['s1020_inclusao_id'] = s1020_inclusao.id
 
                     try:
-                        s1020_inclusao_infoemprparcial_dados['tpinsccontrat'] = infoEmprParcial.tpInscContrat.cdata
+                        s1020_inclusao_infoemprparcial_dados['tpinsccontrat'] = read_from_xml(infoEmprParcial.tpInscContrat.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1020_inclusao_infoemprparcial_dados['nrinsccontrat'] = infoEmprParcial.nrInscContrat.cdata
+                        s1020_inclusao_infoemprparcial_dados['nrinsccontrat'] = read_from_xml(infoEmprParcial.nrInscContrat.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1020_inclusao_infoemprparcial_dados['tpinscprop'] = infoEmprParcial.tpInscProp.cdata
+                        s1020_inclusao_infoemprparcial_dados['tpinscprop'] = read_from_xml(infoEmprParcial.tpInscProp.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1020_inclusao_infoemprparcial_dados['nrinscprop'] = infoEmprParcial.nrInscProp.cdata
+                        s1020_inclusao_infoemprparcial_dados['nrinscprop'] = read_from_xml(infoEmprParcial.nrInscProp.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -215,47 +216,47 @@ def read_s1020_evttablotacao_obj(request, doc, status, validar=False, arquivo=Fa
             s1020_alteracao_dados['s1020_evttablotacao_id'] = s1020_evttablotacao.id
 
             try:
-                s1020_alteracao_dados['codlotacao'] = alteracao.ideLotacao.codLotacao.cdata
+                s1020_alteracao_dados['codlotacao'] = read_from_xml(alteracao.ideLotacao.codLotacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_alteracao_dados['inivalid'] = alteracao.ideLotacao.iniValid.cdata
+                s1020_alteracao_dados['inivalid'] = read_from_xml(alteracao.ideLotacao.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_alteracao_dados['fimvalid'] = alteracao.ideLotacao.fimValid.cdata
+                s1020_alteracao_dados['fimvalid'] = read_from_xml(alteracao.ideLotacao.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_alteracao_dados['tplotacao'] = alteracao.dadosLotacao.tpLotacao.cdata
+                s1020_alteracao_dados['tplotacao'] = read_from_xml(alteracao.dadosLotacao.tpLotacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_alteracao_dados['tpinsc'] = alteracao.dadosLotacao.tpInsc.cdata
+                s1020_alteracao_dados['tpinsc'] = read_from_xml(alteracao.dadosLotacao.tpInsc.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_alteracao_dados['nrinsc'] = alteracao.dadosLotacao.nrInsc.cdata
+                s1020_alteracao_dados['nrinsc'] = read_from_xml(alteracao.dadosLotacao.nrInsc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_alteracao_dados['fpas'] = alteracao.dadosLotacao.fpasLotacao.fpas.cdata
+                s1020_alteracao_dados['fpas'] = read_from_xml(alteracao.dadosLotacao.fpasLotacao.fpas.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_alteracao_dados['codtercs'] = alteracao.dadosLotacao.fpasLotacao.codTercs.cdata
+                s1020_alteracao_dados['codtercs'] = read_from_xml(alteracao.dadosLotacao.fpasLotacao.codTercs.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_alteracao_dados['codtercssusp'] = alteracao.dadosLotacao.fpasLotacao.codTercsSusp.cdata
+                s1020_alteracao_dados['codtercssusp'] = read_from_xml(alteracao.dadosLotacao.fpasLotacao.codTercsSusp.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -278,17 +279,17 @@ def read_s1020_evttablotacao_obj(request, doc, status, validar=False, arquivo=Fa
                             s1020_alteracao_procjudterceiro_dados['s1020_alteracao_infoprocjudterceiros_id'] = s1020_alteracao_infoprocjudterceiros.id
         
                             try:
-                                s1020_alteracao_procjudterceiro_dados['codterc'] = procJudTerceiro.codTerc.cdata
+                                s1020_alteracao_procjudterceiro_dados['codterc'] = read_from_xml(procJudTerceiro.codTerc.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1020_alteracao_procjudterceiro_dados['nrprocjud'] = procJudTerceiro.nrProcJud.cdata
+                                s1020_alteracao_procjudterceiro_dados['nrprocjud'] = read_from_xml(procJudTerceiro.nrProcJud.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1020_alteracao_procjudterceiro_dados['codsusp'] = procJudTerceiro.codSusp.cdata
+                                s1020_alteracao_procjudterceiro_dados['codsusp'] = read_from_xml(procJudTerceiro.codSusp.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
 
@@ -302,22 +303,22 @@ def read_s1020_evttablotacao_obj(request, doc, status, validar=False, arquivo=Fa
                     s1020_alteracao_infoemprparcial_dados['s1020_alteracao_id'] = s1020_alteracao.id
 
                     try:
-                        s1020_alteracao_infoemprparcial_dados['tpinsccontrat'] = infoEmprParcial.tpInscContrat.cdata
+                        s1020_alteracao_infoemprparcial_dados['tpinsccontrat'] = read_from_xml(infoEmprParcial.tpInscContrat.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1020_alteracao_infoemprparcial_dados['nrinsccontrat'] = infoEmprParcial.nrInscContrat.cdata
+                        s1020_alteracao_infoemprparcial_dados['nrinsccontrat'] = read_from_xml(infoEmprParcial.nrInscContrat.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1020_alteracao_infoemprparcial_dados['tpinscprop'] = infoEmprParcial.tpInscProp.cdata
+                        s1020_alteracao_infoemprparcial_dados['tpinscprop'] = read_from_xml(infoEmprParcial.tpInscProp.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1020_alteracao_infoemprparcial_dados['nrinscprop'] = infoEmprParcial.nrInscProp.cdata
+                        s1020_alteracao_infoemprparcial_dados['nrinscprop'] = read_from_xml(infoEmprParcial.nrInscProp.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -331,12 +332,12 @@ def read_s1020_evttablotacao_obj(request, doc, status, validar=False, arquivo=Fa
                     s1020_alteracao_novavalidade_dados['s1020_alteracao_id'] = s1020_alteracao.id
 
                     try:
-                        s1020_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
+                        s1020_alteracao_novavalidade_dados['inivalid'] = read_from_xml(novaValidade.iniValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1020_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                        s1020_alteracao_novavalidade_dados['fimvalid'] = read_from_xml(novaValidade.fimValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -350,17 +351,17 @@ def read_s1020_evttablotacao_obj(request, doc, status, validar=False, arquivo=Fa
             s1020_exclusao_dados['s1020_evttablotacao_id'] = s1020_evttablotacao.id
 
             try:
-                s1020_exclusao_dados['codlotacao'] = exclusao.ideLotacao.codLotacao.cdata
+                s1020_exclusao_dados['codlotacao'] = read_from_xml(exclusao.ideLotacao.codLotacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_exclusao_dados['inivalid'] = exclusao.ideLotacao.iniValid.cdata
+                s1020_exclusao_dados['inivalid'] = read_from_xml(exclusao.ideLotacao.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1020_exclusao_dados['fimvalid'] = exclusao.ideLotacao.fimValid.cdata
+                s1020_exclusao_dados['fimvalid'] = read_from_xml(exclusao.ideLotacao.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

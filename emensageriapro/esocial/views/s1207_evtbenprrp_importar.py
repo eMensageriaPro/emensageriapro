@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1207.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,52 +62,52 @@ def read_s1207_evtbenprrp_obj(request, doc, status, validar=False, arquivo=False
     evtBenPrRP = doc.eSocial.evtBenPrRP
 
     try:
-        s1207_evtbenprrp_dados['indretif'] = evtBenPrRP.ideEvento.indRetif.cdata
+        s1207_evtbenprrp_dados['indretif'] = read_from_xml(evtBenPrRP.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1207_evtbenprrp_dados['nrrecibo'] = evtBenPrRP.ideEvento.nrRecibo.cdata
+        s1207_evtbenprrp_dados['nrrecibo'] = read_from_xml(evtBenPrRP.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1207_evtbenprrp_dados['indapuracao'] = evtBenPrRP.ideEvento.indApuracao.cdata
+        s1207_evtbenprrp_dados['indapuracao'] = read_from_xml(evtBenPrRP.ideEvento.indApuracao.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1207_evtbenprrp_dados['perapur'] = evtBenPrRP.ideEvento.perApur.cdata
+        s1207_evtbenprrp_dados['perapur'] = read_from_xml(evtBenPrRP.ideEvento.perApur.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1207_evtbenprrp_dados['tpamb'] = evtBenPrRP.ideEvento.tpAmb.cdata
+        s1207_evtbenprrp_dados['tpamb'] = read_from_xml(evtBenPrRP.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1207_evtbenprrp_dados['procemi'] = evtBenPrRP.ideEvento.procEmi.cdata
+        s1207_evtbenprrp_dados['procemi'] = read_from_xml(evtBenPrRP.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1207_evtbenprrp_dados['verproc'] = evtBenPrRP.ideEvento.verProc.cdata
+        s1207_evtbenprrp_dados['verproc'] = read_from_xml(evtBenPrRP.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1207_evtbenprrp_dados['tpinsc'] = evtBenPrRP.ideEmpregador.tpInsc.cdata
+        s1207_evtbenprrp_dados['tpinsc'] = read_from_xml(evtBenPrRP.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1207_evtbenprrp_dados['nrinsc'] = evtBenPrRP.ideEmpregador.nrInsc.cdata
+        s1207_evtbenprrp_dados['nrinsc'] = read_from_xml(evtBenPrRP.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1207_evtbenprrp_dados['cpfbenef'] = evtBenPrRP.ideBenef.cpfBenef.cdata
+        s1207_evtbenprrp_dados['cpfbenef'] = read_from_xml(evtBenPrRP.ideBenef.cpfBenef.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -120,17 +121,17 @@ def read_s1207_evtbenprrp_obj(request, doc, status, validar=False, arquivo=False
             s1207_procjudtrab_dados['s1207_evtbenprrp_id'] = s1207_evtbenprrp.id
 
             try:
-                s1207_procjudtrab_dados['tptrib'] = procJudTrab.tpTrib.cdata
+                s1207_procjudtrab_dados['tptrib'] = read_from_xml(procJudTrab.tpTrib.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1207_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
+                s1207_procjudtrab_dados['nrprocjud'] = read_from_xml(procJudTrab.nrProcJud.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1207_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
+                s1207_procjudtrab_dados['codsusp'] = read_from_xml(procJudTrab.codSusp.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
@@ -144,17 +145,17 @@ def read_s1207_evtbenprrp_obj(request, doc, status, validar=False, arquivo=False
             s1207_dmdev_dados['s1207_evtbenprrp_id'] = s1207_evtbenprrp.id
 
             try:
-                s1207_dmdev_dados['tpbenef'] = dmDev.tpBenef.cdata
+                s1207_dmdev_dados['tpbenef'] = read_from_xml(dmDev.tpBenef.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1207_dmdev_dados['nrbenefic'] = dmDev.nrBenefic.cdata
+                s1207_dmdev_dados['nrbenefic'] = read_from_xml(dmDev.nrBenefic.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1207_dmdev_dados['idedmdev'] = dmDev.ideDmDev.cdata
+                s1207_dmdev_dados['idedmdev'] = read_from_xml(dmDev.ideDmDev.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -168,17 +169,17 @@ def read_s1207_evtbenprrp_obj(request, doc, status, validar=False, arquivo=False
                     s1207_itens_dados['s1207_dmdev_id'] = s1207_dmdev.id
 
                     try:
-                        s1207_itens_dados['codrubr'] = itens.codRubr.cdata
+                        s1207_itens_dados['codrubr'] = read_from_xml(itens.codRubr.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1207_itens_dados['idetabrubr'] = itens.ideTabRubr.cdata
+                        s1207_itens_dados['idetabrubr'] = read_from_xml(itens.ideTabRubr.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1207_itens_dados['vrrubr'] = itens.vrRubr.cdata
+                        s1207_itens_dados['vrrubr'] = read_from_xml(itens.vrRubr.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -201,12 +202,12 @@ def read_s1207_evtbenprrp_obj(request, doc, status, validar=False, arquivo=False
                             s1207_infoperapur_ideestab_dados['s1207_infoperapur_id'] = s1207_infoperapur.id
         
                             try:
-                                s1207_infoperapur_ideestab_dados['tpinsc'] = ideEstab.tpInsc.cdata
+                                s1207_infoperapur_ideestab_dados['tpinsc'] = read_from_xml(ideEstab.tpInsc.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1207_infoperapur_ideestab_dados['nrinsc'] = ideEstab.nrInsc.cdata
+                                s1207_infoperapur_ideestab_dados['nrinsc'] = read_from_xml(ideEstab.nrInsc.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -229,32 +230,32 @@ def read_s1207_evtbenprrp_obj(request, doc, status, validar=False, arquivo=False
                                             s1207_infoperapur_itensremun_dados['s1207_infoperapur_remunperapur_id'] = s1207_infoperapur_remunperapur.id
                         
                                             try:
-                                                s1207_infoperapur_itensremun_dados['codrubr'] = itensRemun.codRubr.cdata
+                                                s1207_infoperapur_itensremun_dados['codrubr'] = read_from_xml(itensRemun.codRubr.cdata, 'esocial', 'C', None)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                s1207_infoperapur_itensremun_dados['idetabrubr'] = itensRemun.ideTabRubr.cdata
+                                                s1207_infoperapur_itensremun_dados['idetabrubr'] = read_from_xml(itensRemun.ideTabRubr.cdata, 'esocial', 'C', None)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                s1207_infoperapur_itensremun_dados['qtdrubr'] = itensRemun.qtdRubr.cdata
+                                                s1207_infoperapur_itensremun_dados['qtdrubr'] = read_from_xml(itensRemun.qtdRubr.cdata, 'esocial', 'N', 2)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                s1207_infoperapur_itensremun_dados['fatorrubr'] = itensRemun.fatorRubr.cdata
+                                                s1207_infoperapur_itensremun_dados['fatorrubr'] = read_from_xml(itensRemun.fatorRubr.cdata, 'esocial', 'N', 2)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                s1207_infoperapur_itensremun_dados['vrunit'] = itensRemun.vrUnit.cdata
+                                                s1207_infoperapur_itensremun_dados['vrunit'] = read_from_xml(itensRemun.vrUnit.cdata, 'esocial', 'N', 2)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                s1207_infoperapur_itensremun_dados['vrrubr'] = itensRemun.vrRubr.cdata
+                                                s1207_infoperapur_itensremun_dados['vrrubr'] = read_from_xml(itensRemun.vrRubr.cdata, 'esocial', 'N', 2)
                                             except AttributeError:
                                                 pass
                 
@@ -277,27 +278,27 @@ def read_s1207_evtbenprrp_obj(request, doc, status, validar=False, arquivo=False
                             s1207_infoperant_ideadc_dados['s1207_infoperant_id'] = s1207_infoperant.id
         
                             try:
-                                s1207_infoperant_ideadc_dados['dtacconv'] = ideADC.dtAcConv.cdata
+                                s1207_infoperant_ideadc_dados['dtacconv'] = read_from_xml(ideADC.dtAcConv.cdata, 'esocial', 'D', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1207_infoperant_ideadc_dados['tpacconv'] = ideADC.tpAcConv.cdata
+                                s1207_infoperant_ideadc_dados['tpacconv'] = read_from_xml(ideADC.tpAcConv.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1207_infoperant_ideadc_dados['compacconv'] = ideADC.compAcConv.cdata
+                                s1207_infoperant_ideadc_dados['compacconv'] = read_from_xml(ideADC.compAcConv.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1207_infoperant_ideadc_dados['dtefacconv'] = ideADC.dtEfAcConv.cdata
+                                s1207_infoperant_ideadc_dados['dtefacconv'] = read_from_xml(ideADC.dtEfAcConv.cdata, 'esocial', 'D', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1207_infoperant_ideadc_dados['dsc'] = ideADC.dsc.cdata
+                                s1207_infoperant_ideadc_dados['dsc'] = read_from_xml(ideADC.dsc.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -311,7 +312,7 @@ def read_s1207_evtbenprrp_obj(request, doc, status, validar=False, arquivo=False
                                     s1207_infoperant_ideperiodo_dados['s1207_infoperant_ideadc_id'] = s1207_infoperant_ideadc.id
                 
                                     try:
-                                        s1207_infoperant_ideperiodo_dados['perref'] = idePeriodo.perRef.cdata
+                                        s1207_infoperant_ideperiodo_dados['perref'] = read_from_xml(idePeriodo.perRef.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
         
@@ -325,12 +326,12 @@ def read_s1207_evtbenprrp_obj(request, doc, status, validar=False, arquivo=False
                                             s1207_infoperant_ideestab_dados['s1207_infoperant_ideperiodo_id'] = s1207_infoperant_ideperiodo.id
                         
                                             try:
-                                                s1207_infoperant_ideestab_dados['tpinsc'] = ideEstab.tpInsc.cdata
+                                                s1207_infoperant_ideestab_dados['tpinsc'] = read_from_xml(ideEstab.tpInsc.cdata, 'esocial', 'N', None)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                s1207_infoperant_ideestab_dados['nrinsc'] = ideEstab.nrInsc.cdata
+                                                s1207_infoperant_ideestab_dados['nrinsc'] = read_from_xml(ideEstab.nrInsc.cdata, 'esocial', 'C', None)
                                             except AttributeError:
                                                 pass
                 
@@ -353,32 +354,32 @@ def read_s1207_evtbenprrp_obj(request, doc, status, validar=False, arquivo=False
                                                             s1207_infoperant_itensremun_dados['s1207_infoperant_remunperant_id'] = s1207_infoperant_remunperant.id
                                         
                                                             try:
-                                                                s1207_infoperant_itensremun_dados['codrubr'] = itensRemun.codRubr.cdata
+                                                                s1207_infoperant_itensremun_dados['codrubr'] = read_from_xml(itensRemun.codRubr.cdata, 'esocial', 'C', None)
                                                             except AttributeError:
                                                                 pass
                                         
                                                             try:
-                                                                s1207_infoperant_itensremun_dados['idetabrubr'] = itensRemun.ideTabRubr.cdata
+                                                                s1207_infoperant_itensremun_dados['idetabrubr'] = read_from_xml(itensRemun.ideTabRubr.cdata, 'esocial', 'C', None)
                                                             except AttributeError:
                                                                 pass
                                         
                                                             try:
-                                                                s1207_infoperant_itensremun_dados['qtdrubr'] = itensRemun.qtdRubr.cdata
+                                                                s1207_infoperant_itensremun_dados['qtdrubr'] = read_from_xml(itensRemun.qtdRubr.cdata, 'esocial', 'N', 2)
                                                             except AttributeError:
                                                                 pass
                                         
                                                             try:
-                                                                s1207_infoperant_itensremun_dados['fatorrubr'] = itensRemun.fatorRubr.cdata
+                                                                s1207_infoperant_itensremun_dados['fatorrubr'] = read_from_xml(itensRemun.fatorRubr.cdata, 'esocial', 'N', 2)
                                                             except AttributeError:
                                                                 pass
                                         
                                                             try:
-                                                                s1207_infoperant_itensremun_dados['vrunit'] = itensRemun.vrUnit.cdata
+                                                                s1207_infoperant_itensremun_dados['vrunit'] = read_from_xml(itensRemun.vrUnit.cdata, 'esocial', 'N', 2)
                                                             except AttributeError:
                                                                 pass
                                         
                                                             try:
-                                                                s1207_infoperant_itensremun_dados['vrrubr'] = itensRemun.vrRubr.cdata
+                                                                s1207_infoperant_itensremun_dados['vrrubr'] = read_from_xml(itensRemun.vrRubr.cdata, 'esocial', 'N', 2)
                                                             except AttributeError:
                                                                 pass
                                 

@@ -145,6 +145,7 @@ def ler_arquivo(arquivo):
     from emensageriapro.settings import BASE_DIR
 
     arquivo = BASE_DIR + arquivo
+
     file = codecs.open(arquivo, "r", "utf-8")
     texto = file.read()
     file.close()

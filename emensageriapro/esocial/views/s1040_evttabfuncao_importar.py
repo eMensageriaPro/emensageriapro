@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1040.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -65,27 +66,27 @@ def read_s1040_evttabfuncao_obj(request, doc, status, validar=False, arquivo=Fal
     elif 'exclusao' in dir(evtTabFuncao.infoFuncao): s1040_evttabfuncao_dados['operacao'] = 3
 
     try:
-        s1040_evttabfuncao_dados['tpamb'] = evtTabFuncao.ideEvento.tpAmb.cdata
+        s1040_evttabfuncao_dados['tpamb'] = read_from_xml(evtTabFuncao.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1040_evttabfuncao_dados['procemi'] = evtTabFuncao.ideEvento.procEmi.cdata
+        s1040_evttabfuncao_dados['procemi'] = read_from_xml(evtTabFuncao.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1040_evttabfuncao_dados['verproc'] = evtTabFuncao.ideEvento.verProc.cdata
+        s1040_evttabfuncao_dados['verproc'] = read_from_xml(evtTabFuncao.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1040_evttabfuncao_dados['tpinsc'] = evtTabFuncao.ideEmpregador.tpInsc.cdata
+        s1040_evttabfuncao_dados['tpinsc'] = read_from_xml(evtTabFuncao.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1040_evttabfuncao_dados['nrinsc'] = evtTabFuncao.ideEmpregador.nrInsc.cdata
+        s1040_evttabfuncao_dados['nrinsc'] = read_from_xml(evtTabFuncao.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -99,27 +100,27 @@ def read_s1040_evttabfuncao_obj(request, doc, status, validar=False, arquivo=Fal
             s1040_inclusao_dados['s1040_evttabfuncao_id'] = s1040_evttabfuncao.id
 
             try:
-                s1040_inclusao_dados['codfuncao'] = inclusao.ideFuncao.codFuncao.cdata
+                s1040_inclusao_dados['codfuncao'] = read_from_xml(inclusao.ideFuncao.codFuncao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1040_inclusao_dados['inivalid'] = inclusao.ideFuncao.iniValid.cdata
+                s1040_inclusao_dados['inivalid'] = read_from_xml(inclusao.ideFuncao.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1040_inclusao_dados['fimvalid'] = inclusao.ideFuncao.fimValid.cdata
+                s1040_inclusao_dados['fimvalid'] = read_from_xml(inclusao.ideFuncao.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1040_inclusao_dados['dscfuncao'] = inclusao.dadosFuncao.dscFuncao.cdata
+                s1040_inclusao_dados['dscfuncao'] = read_from_xml(inclusao.dadosFuncao.dscFuncao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1040_inclusao_dados['codcbo'] = inclusao.dadosFuncao.codCBO.cdata
+                s1040_inclusao_dados['codcbo'] = read_from_xml(inclusao.dadosFuncao.codCBO.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -133,27 +134,27 @@ def read_s1040_evttabfuncao_obj(request, doc, status, validar=False, arquivo=Fal
             s1040_alteracao_dados['s1040_evttabfuncao_id'] = s1040_evttabfuncao.id
 
             try:
-                s1040_alteracao_dados['codfuncao'] = alteracao.ideFuncao.codFuncao.cdata
+                s1040_alteracao_dados['codfuncao'] = read_from_xml(alteracao.ideFuncao.codFuncao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1040_alteracao_dados['inivalid'] = alteracao.ideFuncao.iniValid.cdata
+                s1040_alteracao_dados['inivalid'] = read_from_xml(alteracao.ideFuncao.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1040_alteracao_dados['fimvalid'] = alteracao.ideFuncao.fimValid.cdata
+                s1040_alteracao_dados['fimvalid'] = read_from_xml(alteracao.ideFuncao.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1040_alteracao_dados['dscfuncao'] = alteracao.dadosFuncao.dscFuncao.cdata
+                s1040_alteracao_dados['dscfuncao'] = read_from_xml(alteracao.dadosFuncao.dscFuncao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1040_alteracao_dados['codcbo'] = alteracao.dadosFuncao.codCBO.cdata
+                s1040_alteracao_dados['codcbo'] = read_from_xml(alteracao.dadosFuncao.codCBO.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -167,12 +168,12 @@ def read_s1040_evttabfuncao_obj(request, doc, status, validar=False, arquivo=Fal
                     s1040_alteracao_novavalidade_dados['s1040_alteracao_id'] = s1040_alteracao.id
 
                     try:
-                        s1040_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
+                        s1040_alteracao_novavalidade_dados['inivalid'] = read_from_xml(novaValidade.iniValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1040_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                        s1040_alteracao_novavalidade_dados['fimvalid'] = read_from_xml(novaValidade.fimValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -186,17 +187,17 @@ def read_s1040_evttabfuncao_obj(request, doc, status, validar=False, arquivo=Fal
             s1040_exclusao_dados['s1040_evttabfuncao_id'] = s1040_evttabfuncao.id
 
             try:
-                s1040_exclusao_dados['codfuncao'] = exclusao.ideFuncao.codFuncao.cdata
+                s1040_exclusao_dados['codfuncao'] = read_from_xml(exclusao.ideFuncao.codFuncao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1040_exclusao_dados['inivalid'] = exclusao.ideFuncao.iniValid.cdata
+                s1040_exclusao_dados['inivalid'] = read_from_xml(exclusao.ideFuncao.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1040_exclusao_dados['fimvalid'] = exclusao.ideFuncao.fimValid.cdata
+                s1040_exclusao_dados['fimvalid'] = read_from_xml(exclusao.ideFuncao.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2399.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,77 +62,77 @@ def read_s2399_evttsvtermino_obj(request, doc, status, validar=False, arquivo=Fa
     evtTSVTermino = doc.eSocial.evtTSVTermino
 
     try:
-        s2399_evttsvtermino_dados['indretif'] = evtTSVTermino.ideEvento.indRetif.cdata
+        s2399_evttsvtermino_dados['indretif'] = read_from_xml(evtTSVTermino.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2399_evttsvtermino_dados['nrrecibo'] = evtTSVTermino.ideEvento.nrRecibo.cdata
+        s2399_evttsvtermino_dados['nrrecibo'] = read_from_xml(evtTSVTermino.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2399_evttsvtermino_dados['tpamb'] = evtTSVTermino.ideEvento.tpAmb.cdata
+        s2399_evttsvtermino_dados['tpamb'] = read_from_xml(evtTSVTermino.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2399_evttsvtermino_dados['procemi'] = evtTSVTermino.ideEvento.procEmi.cdata
+        s2399_evttsvtermino_dados['procemi'] = read_from_xml(evtTSVTermino.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2399_evttsvtermino_dados['verproc'] = evtTSVTermino.ideEvento.verProc.cdata
+        s2399_evttsvtermino_dados['verproc'] = read_from_xml(evtTSVTermino.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2399_evttsvtermino_dados['tpinsc'] = evtTSVTermino.ideEmpregador.tpInsc.cdata
+        s2399_evttsvtermino_dados['tpinsc'] = read_from_xml(evtTSVTermino.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2399_evttsvtermino_dados['nrinsc'] = evtTSVTermino.ideEmpregador.nrInsc.cdata
+        s2399_evttsvtermino_dados['nrinsc'] = read_from_xml(evtTSVTermino.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2399_evttsvtermino_dados['cpftrab'] = evtTSVTermino.ideTrabSemVinculo.cpfTrab.cdata
+        s2399_evttsvtermino_dados['cpftrab'] = read_from_xml(evtTSVTermino.ideTrabSemVinculo.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2399_evttsvtermino_dados['nistrab'] = evtTSVTermino.ideTrabSemVinculo.nisTrab.cdata
+        s2399_evttsvtermino_dados['nistrab'] = read_from_xml(evtTSVTermino.ideTrabSemVinculo.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2399_evttsvtermino_dados['codcateg'] = evtTSVTermino.ideTrabSemVinculo.codCateg.cdata
+        s2399_evttsvtermino_dados['codcateg'] = read_from_xml(evtTSVTermino.ideTrabSemVinculo.codCateg.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2399_evttsvtermino_dados['dtterm'] = evtTSVTermino.infoTSVTermino.dtTerm.cdata
+        s2399_evttsvtermino_dados['dtterm'] = read_from_xml(evtTSVTermino.infoTSVTermino.dtTerm.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2399_evttsvtermino_dados['mtvdesligtsv'] = evtTSVTermino.infoTSVTermino.mtvDesligTSV.cdata
+        s2399_evttsvtermino_dados['mtvdesligtsv'] = read_from_xml(evtTSVTermino.infoTSVTermino.mtvDesligTSV.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2399_evttsvtermino_dados['pensalim'] = evtTSVTermino.infoTSVTermino.pensAlim.cdata
+        s2399_evttsvtermino_dados['pensalim'] = read_from_xml(evtTSVTermino.infoTSVTermino.pensAlim.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2399_evttsvtermino_dados['percaliment'] = evtTSVTermino.infoTSVTermino.percAliment.cdata
+        s2399_evttsvtermino_dados['percaliment'] = read_from_xml(evtTSVTermino.infoTSVTermino.percAliment.cdata, 'esocial', 'N', 2)
     except AttributeError:
         pass
 
     try:
-        s2399_evttsvtermino_dados['vralim'] = evtTSVTermino.infoTSVTermino.vrAlim.cdata
+        s2399_evttsvtermino_dados['vralim'] = read_from_xml(evtTSVTermino.infoTSVTermino.vrAlim.cdata, 'esocial', 'N', 2)
     except AttributeError:
         pass
 
@@ -145,7 +146,7 @@ def read_s2399_evttsvtermino_obj(request, doc, status, validar=False, arquivo=Fa
             s2399_mudancacpf_dados['s2399_evttsvtermino_id'] = s2399_evttsvtermino.id
 
             try:
-                s2399_mudancacpf_dados['novocpf'] = mudancaCPF.novoCPF.cdata
+                s2399_mudancacpf_dados['novocpf'] = read_from_xml(mudancaCPF.novoCPF.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -168,7 +169,7 @@ def read_s2399_evttsvtermino_obj(request, doc, status, validar=False, arquivo=Fa
                     s2399_dmdev_dados['s2399_verbasresc_id'] = s2399_verbasresc.id
 
                     try:
-                        s2399_dmdev_dados['idedmdev'] = dmDev.ideDmDev.cdata
+                        s2399_dmdev_dados['idedmdev'] = read_from_xml(dmDev.ideDmDev.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -182,17 +183,17 @@ def read_s2399_evttsvtermino_obj(request, doc, status, validar=False, arquivo=Fa
                             s2399_ideestablot_dados['s2399_dmdev_id'] = s2399_dmdev.id
         
                             try:
-                                s2399_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
+                                s2399_ideestablot_dados['tpinsc'] = read_from_xml(ideEstabLot.tpInsc.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2399_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
+                                s2399_ideestablot_dados['nrinsc'] = read_from_xml(ideEstabLot.nrInsc.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2399_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
+                                s2399_ideestablot_dados['codlotacao'] = read_from_xml(ideEstabLot.codLotacao.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -206,32 +207,32 @@ def read_s2399_evttsvtermino_obj(request, doc, status, validar=False, arquivo=Fa
                                     s2399_detverbas_dados['s2399_ideestablot_id'] = s2399_ideestablot.id
                 
                                     try:
-                                        s2399_detverbas_dados['codrubr'] = detVerbas.codRubr.cdata
+                                        s2399_detverbas_dados['codrubr'] = read_from_xml(detVerbas.codRubr.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s2399_detverbas_dados['idetabrubr'] = detVerbas.ideTabRubr.cdata
+                                        s2399_detverbas_dados['idetabrubr'] = read_from_xml(detVerbas.ideTabRubr.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s2399_detverbas_dados['qtdrubr'] = detVerbas.qtdRubr.cdata
+                                        s2399_detverbas_dados['qtdrubr'] = read_from_xml(detVerbas.qtdRubr.cdata, 'esocial', 'N', 2)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s2399_detverbas_dados['fatorrubr'] = detVerbas.fatorRubr.cdata
+                                        s2399_detverbas_dados['fatorrubr'] = read_from_xml(detVerbas.fatorRubr.cdata, 'esocial', 'N', 2)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s2399_detverbas_dados['vrunit'] = detVerbas.vrUnit.cdata
+                                        s2399_detverbas_dados['vrunit'] = read_from_xml(detVerbas.vrUnit.cdata, 'esocial', 'N', 2)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s2399_detverbas_dados['vrrubr'] = detVerbas.vrRubr.cdata
+                                        s2399_detverbas_dados['vrrubr'] = read_from_xml(detVerbas.vrRubr.cdata, 'esocial', 'N', 2)
                                     except AttributeError:
                                         pass
         
@@ -254,17 +255,17 @@ def read_s2399_evttsvtermino_obj(request, doc, status, validar=False, arquivo=Fa
                                             s2399_detoper_dados['s2399_infosaudecolet_id'] = s2399_infosaudecolet.id
                         
                                             try:
-                                                s2399_detoper_dados['cnpjoper'] = detOper.cnpjOper.cdata
+                                                s2399_detoper_dados['cnpjoper'] = read_from_xml(detOper.cnpjOper.cdata, 'esocial', 'C', None)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                s2399_detoper_dados['regans'] = detOper.regANS.cdata
+                                                s2399_detoper_dados['regans'] = read_from_xml(detOper.regANS.cdata, 'esocial', 'C', None)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                s2399_detoper_dados['vrpgtit'] = detOper.vrPgTit.cdata
+                                                s2399_detoper_dados['vrpgtit'] = read_from_xml(detOper.vrPgTit.cdata, 'esocial', 'N', 2)
                                             except AttributeError:
                                                 pass
                 
@@ -278,27 +279,27 @@ def read_s2399_evttsvtermino_obj(request, doc, status, validar=False, arquivo=Fa
                                                     s2399_detplano_dados['s2399_detoper_id'] = s2399_detoper.id
                                 
                                                     try:
-                                                        s2399_detplano_dados['tpdep'] = detPlano.tpDep.cdata
+                                                        s2399_detplano_dados['tpdep'] = read_from_xml(detPlano.tpDep.cdata, 'esocial', 'C', None)
                                                     except AttributeError:
                                                         pass
                                 
                                                     try:
-                                                        s2399_detplano_dados['cpfdep'] = detPlano.cpfDep.cdata
+                                                        s2399_detplano_dados['cpfdep'] = read_from_xml(detPlano.cpfDep.cdata, 'esocial', 'C', None)
                                                     except AttributeError:
                                                         pass
                                 
                                                     try:
-                                                        s2399_detplano_dados['nmdep'] = detPlano.nmDep.cdata
+                                                        s2399_detplano_dados['nmdep'] = read_from_xml(detPlano.nmDep.cdata, 'esocial', 'C', None)
                                                     except AttributeError:
                                                         pass
                                 
                                                     try:
-                                                        s2399_detplano_dados['dtnascto'] = detPlano.dtNascto.cdata
+                                                        s2399_detplano_dados['dtnascto'] = read_from_xml(detPlano.dtNascto.cdata, 'esocial', 'D', None)
                                                     except AttributeError:
                                                         pass
                                 
                                                     try:
-                                                        s2399_detplano_dados['vlrpgdep'] = detPlano.vlrPgDep.cdata
+                                                        s2399_detplano_dados['vlrpgdep'] = read_from_xml(detPlano.vlrPgDep.cdata, 'esocial', 'N', 2)
                                                     except AttributeError:
                                                         pass
                         
@@ -312,7 +313,7 @@ def read_s2399_evttsvtermino_obj(request, doc, status, validar=False, arquivo=Fa
                                     s2399_infoagnocivo_dados['s2399_ideestablot_id'] = s2399_ideestablot.id
                 
                                     try:
-                                        s2399_infoagnocivo_dados['grauexp'] = infoAgNocivo.grauExp.cdata
+                                        s2399_infoagnocivo_dados['grauexp'] = read_from_xml(infoAgNocivo.grauExp.cdata, 'esocial', 'N', None)
                                     except AttributeError:
                                         pass
         
@@ -326,7 +327,7 @@ def read_s2399_evttsvtermino_obj(request, doc, status, validar=False, arquivo=Fa
                                     s2399_infosimples_dados['s2399_ideestablot_id'] = s2399_ideestablot.id
                 
                                     try:
-                                        s2399_infosimples_dados['indsimples'] = infoSimples.indSimples.cdata
+                                        s2399_infosimples_dados['indsimples'] = read_from_xml(infoSimples.indSimples.cdata, 'esocial', 'N', None)
                                     except AttributeError:
                                         pass
         
@@ -340,17 +341,17 @@ def read_s2399_evttsvtermino_obj(request, doc, status, validar=False, arquivo=Fa
                     s2399_procjudtrab_dados['s2399_verbasresc_id'] = s2399_verbasresc.id
 
                     try:
-                        s2399_procjudtrab_dados['tptrib'] = procJudTrab.tpTrib.cdata
+                        s2399_procjudtrab_dados['tptrib'] = read_from_xml(procJudTrab.tpTrib.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2399_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
+                        s2399_procjudtrab_dados['nrprocjud'] = read_from_xml(procJudTrab.nrProcJud.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2399_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
+                        s2399_procjudtrab_dados['codsusp'] = read_from_xml(procJudTrab.codSusp.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -364,7 +365,7 @@ def read_s2399_evttsvtermino_obj(request, doc, status, validar=False, arquivo=Fa
                     s2399_infomv_dados['s2399_verbasresc_id'] = s2399_verbasresc.id
 
                     try:
-                        s2399_infomv_dados['indmv'] = infoMV.indMV.cdata
+                        s2399_infomv_dados['indmv'] = read_from_xml(infoMV.indMV.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -378,22 +379,22 @@ def read_s2399_evttsvtermino_obj(request, doc, status, validar=False, arquivo=Fa
                             s2399_remunoutrempr_dados['s2399_infomv_id'] = s2399_infomv.id
         
                             try:
-                                s2399_remunoutrempr_dados['tpinsc'] = remunOutrEmpr.tpInsc.cdata
+                                s2399_remunoutrempr_dados['tpinsc'] = read_from_xml(remunOutrEmpr.tpInsc.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2399_remunoutrempr_dados['nrinsc'] = remunOutrEmpr.nrInsc.cdata
+                                s2399_remunoutrempr_dados['nrinsc'] = read_from_xml(remunOutrEmpr.nrInsc.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2399_remunoutrempr_dados['codcateg'] = remunOutrEmpr.codCateg.cdata
+                                s2399_remunoutrempr_dados['codcateg'] = read_from_xml(remunOutrEmpr.codCateg.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2399_remunoutrempr_dados['vlrremunoe'] = remunOutrEmpr.vlrRemunOE.cdata
+                                s2399_remunoutrempr_dados['vlrremunoe'] = read_from_xml(remunOutrEmpr.vlrRemunOE.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
 
@@ -407,7 +408,7 @@ def read_s2399_evttsvtermino_obj(request, doc, status, validar=False, arquivo=Fa
             s2399_quarentena_dados['s2399_evttsvtermino_id'] = s2399_evttsvtermino.id
 
             try:
-                s2399_quarentena_dados['dtfimquar'] = quarentena.dtFimQuar.cdata
+                s2399_quarentena_dados['dtfimquar'] = read_from_xml(quarentena.dtFimQuar.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 

@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.efdreinf.models import *
 from emensageriapro.r9011.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,52 +62,52 @@ def read_r9011_evttotalcontrib_obj(request, doc, status, validar=False, arquivo=
     evtTotalContrib = doc.Reinf.evtTotalContrib
 
     try:
-        r9011_evttotalcontrib_dados['perapur'] = evtTotalContrib.ideEvento.perApur.cdata
+        r9011_evttotalcontrib_dados['perapur'] = read_from_xml(evtTotalContrib.ideEvento.perApur.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r9011_evttotalcontrib_dados['tpinsc'] = evtTotalContrib.ideContri.tpInsc.cdata
+        r9011_evttotalcontrib_dados['tpinsc'] = read_from_xml(evtTotalContrib.ideContri.tpInsc.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r9011_evttotalcontrib_dados['nrinsc'] = evtTotalContrib.ideContri.nrInsc.cdata
+        r9011_evttotalcontrib_dados['nrinsc'] = read_from_xml(evtTotalContrib.ideContri.nrInsc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r9011_evttotalcontrib_dados['cdretorno'] = evtTotalContrib.ideRecRetorno.ideStatus.cdRetorno.cdata
+        r9011_evttotalcontrib_dados['cdretorno'] = read_from_xml(evtTotalContrib.ideRecRetorno.ideStatus.cdRetorno.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r9011_evttotalcontrib_dados['descretorno'] = evtTotalContrib.ideRecRetorno.ideStatus.descRetorno.cdata
+        r9011_evttotalcontrib_dados['descretorno'] = read_from_xml(evtTotalContrib.ideRecRetorno.ideStatus.descRetorno.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r9011_evttotalcontrib_dados['nrprotentr'] = evtTotalContrib.infoRecEv.nrProtEntr.cdata
+        r9011_evttotalcontrib_dados['nrprotentr'] = read_from_xml(evtTotalContrib.infoRecEv.nrProtEntr.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r9011_evttotalcontrib_dados['dhprocess'] = evtTotalContrib.infoRecEv.dhProcess.cdata
+        r9011_evttotalcontrib_dados['dhprocess'] = read_from_xml(evtTotalContrib.infoRecEv.dhProcess.cdata, 'efdreinf', 'D', None)
     except AttributeError:
         pass
 
     try:
-        r9011_evttotalcontrib_dados['tpev'] = evtTotalContrib.infoRecEv.tpEv.cdata
+        r9011_evttotalcontrib_dados['tpev'] = read_from_xml(evtTotalContrib.infoRecEv.tpEv.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r9011_evttotalcontrib_dados['idev'] = evtTotalContrib.infoRecEv.idEv.cdata
+        r9011_evttotalcontrib_dados['idev'] = read_from_xml(evtTotalContrib.infoRecEv.idEv.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r9011_evttotalcontrib_dados['hash'] = evtTotalContrib.infoRecEv.hash.cdata
+        r9011_evttotalcontrib_dados['hash'] = read_from_xml(evtTotalContrib.infoRecEv.hash.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
@@ -120,22 +121,22 @@ def read_r9011_evttotalcontrib_obj(request, doc, status, validar=False, arquivo=
             r9011_regocorrs_dados['r9011_evttotalcontrib_id'] = r9011_evttotalcontrib.id
 
             try:
-                r9011_regocorrs_dados['tpocorr'] = regOcorrs.tpOcorr.cdata
+                r9011_regocorrs_dados['tpocorr'] = read_from_xml(regOcorrs.tpOcorr.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r9011_regocorrs_dados['localerroaviso'] = regOcorrs.localErroAviso.cdata
+                r9011_regocorrs_dados['localerroaviso'] = read_from_xml(regOcorrs.localErroAviso.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r9011_regocorrs_dados['codresp'] = regOcorrs.codResp.cdata
+                r9011_regocorrs_dados['codresp'] = read_from_xml(regOcorrs.codResp.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r9011_regocorrs_dados['dscresp'] = regOcorrs.dscResp.cdata
+                r9011_regocorrs_dados['dscresp'] = read_from_xml(regOcorrs.dscResp.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
@@ -149,12 +150,12 @@ def read_r9011_evttotalcontrib_obj(request, doc, status, validar=False, arquivo=
             r9011_infototalcontrib_dados['r9011_evttotalcontrib_id'] = r9011_evttotalcontrib.id
 
             try:
-                r9011_infototalcontrib_dados['nrrecarqbase'] = infoTotalContrib.nrRecArqBase.cdata
+                r9011_infototalcontrib_dados['nrrecarqbase'] = read_from_xml(infoTotalContrib.nrRecArqBase.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r9011_infototalcontrib_dados['indexistinfo'] = infoTotalContrib.indExistInfo.cdata
+                r9011_infototalcontrib_dados['indexistinfo'] = read_from_xml(infoTotalContrib.indExistInfo.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
@@ -168,17 +169,17 @@ def read_r9011_evttotalcontrib_obj(request, doc, status, validar=False, arquivo=
                     r9011_rtom_dados['r9011_infototalcontrib_id'] = r9011_infototalcontrib.id
 
                     try:
-                        r9011_rtom_dados['cnpjprestador'] = RTom.cnpjPrestador.cdata
+                        r9011_rtom_dados['cnpjprestador'] = read_from_xml(RTom.cnpjPrestador.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r9011_rtom_dados['cno'] = RTom.cno.cdata
+                        r9011_rtom_dados['cno'] = read_from_xml(RTom.cno.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r9011_rtom_dados['vlrtotalbaseret'] = RTom.vlrTotalBaseRet.cdata.replace('.', '').replace(',', '.')
+                        r9011_rtom_dados['vlrtotalbaseret'] = read_from_xml(RTom.vlrTotalBaseRet.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -192,17 +193,17 @@ def read_r9011_evttotalcontrib_obj(request, doc, status, validar=False, arquivo=
                             r9011_infocrtom_dados['r9011_rtom_id'] = r9011_rtom.id
         
                             try:
-                                r9011_infocrtom_dados['crtom'] = infoCRTom.CRTom.cdata
+                                r9011_infocrtom_dados['crtom'] = read_from_xml(infoCRTom.CRTom.cdata, 'efdreinf', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r9011_infocrtom_dados['vlrcrtom'] = infoCRTom.vlrCRTom.cdata.replace('.', '').replace(',', '.')
+                                r9011_infocrtom_dados['vlrcrtom'] = read_from_xml(infoCRTom.vlrCRTom.cdata, 'efdreinf', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                r9011_infocrtom_dados['vlrcrtomsusp'] = infoCRTom.vlrCRTomSusp.cdata.replace('.', '').replace(',', '.')
+                                r9011_infocrtom_dados['vlrcrtomsusp'] = read_from_xml(infoCRTom.vlrCRTomSusp.cdata, 'efdreinf', 'N', 2)
                             except AttributeError:
                                 pass
 
@@ -216,37 +217,37 @@ def read_r9011_evttotalcontrib_obj(request, doc, status, validar=False, arquivo=
                     r9011_rprest_dados['r9011_infototalcontrib_id'] = r9011_infototalcontrib.id
 
                     try:
-                        r9011_rprest_dados['tpinsctomador'] = RPrest.tpInscTomador.cdata
+                        r9011_rprest_dados['tpinsctomador'] = read_from_xml(RPrest.tpInscTomador.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r9011_rprest_dados['nrinsctomador'] = RPrest.nrInscTomador.cdata
+                        r9011_rprest_dados['nrinsctomador'] = read_from_xml(RPrest.nrInscTomador.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r9011_rprest_dados['vlrtotalbaseret'] = RPrest.vlrTotalBaseRet.cdata.replace('.', '').replace(',', '.')
+                        r9011_rprest_dados['vlrtotalbaseret'] = read_from_xml(RPrest.vlrTotalBaseRet.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9011_rprest_dados['vlrtotalretprinc'] = RPrest.vlrTotalRetPrinc.cdata.replace('.', '').replace(',', '.')
+                        r9011_rprest_dados['vlrtotalretprinc'] = read_from_xml(RPrest.vlrTotalRetPrinc.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9011_rprest_dados['vlrtotalretadic'] = RPrest.vlrTotalRetAdic.cdata.replace('.', '').replace(',', '.')
+                        r9011_rprest_dados['vlrtotalretadic'] = read_from_xml(RPrest.vlrTotalRetAdic.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9011_rprest_dados['vlrtotalnretprinc'] = RPrest.vlrTotalNRetPrinc.cdata.replace('.', '').replace(',', '.')
+                        r9011_rprest_dados['vlrtotalnretprinc'] = read_from_xml(RPrest.vlrTotalNRetPrinc.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9011_rprest_dados['vlrtotalnretadic'] = RPrest.vlrTotalNRetAdic.cdata.replace('.', '').replace(',', '.')
+                        r9011_rprest_dados['vlrtotalnretadic'] = read_from_xml(RPrest.vlrTotalNRetAdic.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -260,17 +261,17 @@ def read_r9011_evttotalcontrib_obj(request, doc, status, validar=False, arquivo=
                     r9011_rrecrepad_dados['r9011_infototalcontrib_id'] = r9011_infototalcontrib.id
 
                     try:
-                        r9011_rrecrepad_dados['crrecrepad'] = RRecRepAD.CRRecRepAD.cdata
+                        r9011_rrecrepad_dados['crrecrepad'] = read_from_xml(RRecRepAD.CRRecRepAD.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r9011_rrecrepad_dados['vlrcrrecrepad'] = RRecRepAD.vlrCRRecRepAD.cdata.replace('.', '').replace(',', '.')
+                        r9011_rrecrepad_dados['vlrcrrecrepad'] = read_from_xml(RRecRepAD.vlrCRRecRepAD.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9011_rrecrepad_dados['vlrcrrecrepadsusp'] = RRecRepAD.vlrCRRecRepADSusp.cdata.replace('.', '').replace(',', '.')
+                        r9011_rrecrepad_dados['vlrcrrecrepadsusp'] = read_from_xml(RRecRepAD.vlrCRRecRepADSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -284,17 +285,17 @@ def read_r9011_evttotalcontrib_obj(request, doc, status, validar=False, arquivo=
                     r9011_rcoml_dados['r9011_infototalcontrib_id'] = r9011_infototalcontrib.id
 
                     try:
-                        r9011_rcoml_dados['crcoml'] = RComl.CRComl.cdata
+                        r9011_rcoml_dados['crcoml'] = read_from_xml(RComl.CRComl.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r9011_rcoml_dados['vlrcrcoml'] = RComl.vlrCRComl.cdata.replace('.', '').replace(',', '.')
+                        r9011_rcoml_dados['vlrcrcoml'] = read_from_xml(RComl.vlrCRComl.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9011_rcoml_dados['vlrcrcomlsusp'] = RComl.vlrCRComlSusp.cdata.replace('.', '').replace(',', '.')
+                        r9011_rcoml_dados['vlrcrcomlsusp'] = read_from_xml(RComl.vlrCRComlSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -308,17 +309,17 @@ def read_r9011_evttotalcontrib_obj(request, doc, status, validar=False, arquivo=
                     r9011_rcprb_dados['r9011_infototalcontrib_id'] = r9011_infototalcontrib.id
 
                     try:
-                        r9011_rcprb_dados['crcprb'] = RCPRB.CRCPRB.cdata
+                        r9011_rcprb_dados['crcprb'] = read_from_xml(RCPRB.CRCPRB.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r9011_rcprb_dados['vlrcrcprb'] = RCPRB.vlrCRCPRB.cdata.replace('.', '').replace(',', '.')
+                        r9011_rcprb_dados['vlrcrcprb'] = read_from_xml(RCPRB.vlrCRCPRB.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r9011_rcprb_dados['vlrcrcprbsusp'] = RCPRB.vlrCRCPRBSusp.cdata.replace('.', '').replace(',', '.')
+                        r9011_rcprb_dados['vlrcrcprbsusp'] = read_from_xml(RCPRB.vlrCRCPRBSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 

@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2220.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,137 +62,137 @@ def read_s2220_evtmonit_obj(request, doc, status, validar=False, arquivo=False):
     evtMonit = doc.eSocial.evtMonit
 
     try:
-        s2220_evtmonit_dados['indretif'] = evtMonit.ideEvento.indRetif.cdata
+        s2220_evtmonit_dados['indretif'] = read_from_xml(evtMonit.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['nrrecibo'] = evtMonit.ideEvento.nrRecibo.cdata
+        s2220_evtmonit_dados['nrrecibo'] = read_from_xml(evtMonit.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['tpamb'] = evtMonit.ideEvento.tpAmb.cdata
+        s2220_evtmonit_dados['tpamb'] = read_from_xml(evtMonit.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['procemi'] = evtMonit.ideEvento.procEmi.cdata
+        s2220_evtmonit_dados['procemi'] = read_from_xml(evtMonit.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['verproc'] = evtMonit.ideEvento.verProc.cdata
+        s2220_evtmonit_dados['verproc'] = read_from_xml(evtMonit.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['tpinsc'] = evtMonit.ideEmpregador.tpInsc.cdata
+        s2220_evtmonit_dados['tpinsc'] = read_from_xml(evtMonit.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['nrinsc'] = evtMonit.ideEmpregador.nrInsc.cdata
+        s2220_evtmonit_dados['nrinsc'] = read_from_xml(evtMonit.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['cpftrab'] = evtMonit.ideVinculo.cpfTrab.cdata
+        s2220_evtmonit_dados['cpftrab'] = read_from_xml(evtMonit.ideVinculo.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['nistrab'] = evtMonit.ideVinculo.nisTrab.cdata
+        s2220_evtmonit_dados['nistrab'] = read_from_xml(evtMonit.ideVinculo.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['matricula'] = evtMonit.ideVinculo.matricula.cdata
+        s2220_evtmonit_dados['matricula'] = read_from_xml(evtMonit.ideVinculo.matricula.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['codcateg'] = evtMonit.ideVinculo.codCateg.cdata
+        s2220_evtmonit_dados['codcateg'] = read_from_xml(evtMonit.ideVinculo.codCateg.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['tpexameocup'] = evtMonit.exMedOcup.tpExameOcup.cdata
+        s2220_evtmonit_dados['tpexameocup'] = read_from_xml(evtMonit.exMedOcup.tpExameOcup.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['dtaso'] = evtMonit.exMedOcup.aso.dtAso.cdata
+        s2220_evtmonit_dados['dtaso'] = read_from_xml(evtMonit.exMedOcup.aso.dtAso.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['tpaso'] = evtMonit.exMedOcup.aso.tpAso.cdata
+        s2220_evtmonit_dados['tpaso'] = read_from_xml(evtMonit.exMedOcup.aso.tpAso.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['resaso'] = evtMonit.exMedOcup.aso.resAso.cdata
+        s2220_evtmonit_dados['resaso'] = read_from_xml(evtMonit.exMedOcup.aso.resAso.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['cpfmed'] = evtMonit.exMedOcup.aso.medico.cpfMed.cdata
+        s2220_evtmonit_dados['cpfmed'] = read_from_xml(evtMonit.exMedOcup.aso.medico.cpfMed.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['nismed'] = evtMonit.exMedOcup.aso.medico.nisMed.cdata
+        s2220_evtmonit_dados['nismed'] = read_from_xml(evtMonit.exMedOcup.aso.medico.nisMed.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['nmmed'] = evtMonit.exMedOcup.aso.medico.nmMed.cdata
+        s2220_evtmonit_dados['nmmed'] = read_from_xml(evtMonit.exMedOcup.aso.medico.nmMed.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['nrcrm'] = evtMonit.exMedOcup.aso.medico.nrCRM.cdata
+        s2220_evtmonit_dados['nrcrm'] = read_from_xml(evtMonit.exMedOcup.aso.medico.nrCRM.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['ufcrm'] = evtMonit.exMedOcup.aso.medico.ufCRM.cdata
+        s2220_evtmonit_dados['ufcrm'] = read_from_xml(evtMonit.exMedOcup.aso.medico.ufCRM.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['nisresp'] = evtMonit.exMedOcup.respMonit.nisResp.cdata
+        s2220_evtmonit_dados['nisresp'] = read_from_xml(evtMonit.exMedOcup.respMonit.nisResp.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['nrconsclasse'] = evtMonit.exMedOcup.respMonit.nrConsClasse.cdata
+        s2220_evtmonit_dados['nrconsclasse'] = read_from_xml(evtMonit.exMedOcup.respMonit.nrConsClasse.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['ufconsclasse'] = evtMonit.exMedOcup.respMonit.ufConsClasse.cdata
+        s2220_evtmonit_dados['ufconsclasse'] = read_from_xml(evtMonit.exMedOcup.respMonit.ufConsClasse.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['cpfresp'] = evtMonit.exMedOcup.respMonit.cpfResp.cdata
+        s2220_evtmonit_dados['cpfresp'] = read_from_xml(evtMonit.exMedOcup.respMonit.cpfResp.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['nmresp'] = evtMonit.exMedOcup.respMonit.nmResp.cdata
+        s2220_evtmonit_dados['nmresp'] = read_from_xml(evtMonit.exMedOcup.respMonit.nmResp.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['nrcrm'] = evtMonit.exMedOcup.respMonit.nrCRM.cdata
+        s2220_evtmonit_dados['nrcrm'] = read_from_xml(evtMonit.exMedOcup.respMonit.nrCRM.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2220_evtmonit_dados['ufcrm'] = evtMonit.exMedOcup.respMonit.ufCRM.cdata
+        s2220_evtmonit_dados['ufcrm'] = read_from_xml(evtMonit.exMedOcup.respMonit.ufCRM.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -205,42 +206,42 @@ def read_s2220_evtmonit_obj(request, doc, status, validar=False, arquivo=False):
             s2220_exame_dados['s2220_evtmonit_id'] = s2220_evtmonit.id
 
             try:
-                s2220_exame_dados['dtexm'] = exame.dtExm.cdata
+                s2220_exame_dados['dtexm'] = read_from_xml(exame.dtExm.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2220_exame_dados['procrealizado'] = exame.procRealizado.cdata
+                s2220_exame_dados['procrealizado'] = read_from_xml(exame.procRealizado.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2220_exame_dados['obsproc'] = exame.obsProc.cdata
+                s2220_exame_dados['obsproc'] = read_from_xml(exame.obsProc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2220_exame_dados['interprexm'] = exame.interprExm.cdata
+                s2220_exame_dados['interprexm'] = read_from_xml(exame.interprExm.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2220_exame_dados['ordexame'] = exame.ordExame.cdata
+                s2220_exame_dados['ordexame'] = read_from_xml(exame.ordExame.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2220_exame_dados['dtinimonit'] = exame.dtIniMonit.cdata
+                s2220_exame_dados['dtinimonit'] = read_from_xml(exame.dtIniMonit.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2220_exame_dados['dtfimmonit'] = exame.dtFimMonit.cdata
+                s2220_exame_dados['dtfimmonit'] = read_from_xml(exame.dtFimMonit.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2220_exame_dados['indresult'] = exame.indResult.cdata
+                s2220_exame_dados['indresult'] = read_from_xml(exame.indResult.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 

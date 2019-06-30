@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1270.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,47 +62,47 @@ def read_s1270_evtcontratavnp_obj(request, doc, status, validar=False, arquivo=F
     evtContratAvNP = doc.eSocial.evtContratAvNP
 
     try:
-        s1270_evtcontratavnp_dados['indretif'] = evtContratAvNP.ideEvento.indRetif.cdata
+        s1270_evtcontratavnp_dados['indretif'] = read_from_xml(evtContratAvNP.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1270_evtcontratavnp_dados['nrrecibo'] = evtContratAvNP.ideEvento.nrRecibo.cdata
+        s1270_evtcontratavnp_dados['nrrecibo'] = read_from_xml(evtContratAvNP.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1270_evtcontratavnp_dados['indapuracao'] = evtContratAvNP.ideEvento.indApuracao.cdata
+        s1270_evtcontratavnp_dados['indapuracao'] = read_from_xml(evtContratAvNP.ideEvento.indApuracao.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1270_evtcontratavnp_dados['perapur'] = evtContratAvNP.ideEvento.perApur.cdata
+        s1270_evtcontratavnp_dados['perapur'] = read_from_xml(evtContratAvNP.ideEvento.perApur.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1270_evtcontratavnp_dados['tpamb'] = evtContratAvNP.ideEvento.tpAmb.cdata
+        s1270_evtcontratavnp_dados['tpamb'] = read_from_xml(evtContratAvNP.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1270_evtcontratavnp_dados['procemi'] = evtContratAvNP.ideEvento.procEmi.cdata
+        s1270_evtcontratavnp_dados['procemi'] = read_from_xml(evtContratAvNP.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1270_evtcontratavnp_dados['verproc'] = evtContratAvNP.ideEvento.verProc.cdata
+        s1270_evtcontratavnp_dados['verproc'] = read_from_xml(evtContratAvNP.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1270_evtcontratavnp_dados['tpinsc'] = evtContratAvNP.ideEmpregador.tpInsc.cdata
+        s1270_evtcontratavnp_dados['tpinsc'] = read_from_xml(evtContratAvNP.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1270_evtcontratavnp_dados['nrinsc'] = evtContratAvNP.ideEmpregador.nrInsc.cdata
+        s1270_evtcontratavnp_dados['nrinsc'] = read_from_xml(evtContratAvNP.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -115,52 +116,52 @@ def read_s1270_evtcontratavnp_obj(request, doc, status, validar=False, arquivo=F
             s1270_remunavnp_dados['s1270_evtcontratavnp_id'] = s1270_evtcontratavnp.id
 
             try:
-                s1270_remunavnp_dados['tpinsc'] = remunAvNP.tpInsc.cdata
+                s1270_remunavnp_dados['tpinsc'] = read_from_xml(remunAvNP.tpInsc.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1270_remunavnp_dados['nrinsc'] = remunAvNP.nrInsc.cdata
+                s1270_remunavnp_dados['nrinsc'] = read_from_xml(remunAvNP.nrInsc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1270_remunavnp_dados['codlotacao'] = remunAvNP.codLotacao.cdata
+                s1270_remunavnp_dados['codlotacao'] = read_from_xml(remunAvNP.codLotacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1270_remunavnp_dados['vrbccp00'] = remunAvNP.vrBcCp00.cdata
+                s1270_remunavnp_dados['vrbccp00'] = read_from_xml(remunAvNP.vrBcCp00.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 
             try:
-                s1270_remunavnp_dados['vrbccp15'] = remunAvNP.vrBcCp15.cdata
+                s1270_remunavnp_dados['vrbccp15'] = read_from_xml(remunAvNP.vrBcCp15.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 
             try:
-                s1270_remunavnp_dados['vrbccp20'] = remunAvNP.vrBcCp20.cdata
+                s1270_remunavnp_dados['vrbccp20'] = read_from_xml(remunAvNP.vrBcCp20.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 
             try:
-                s1270_remunavnp_dados['vrbccp25'] = remunAvNP.vrBcCp25.cdata
+                s1270_remunavnp_dados['vrbccp25'] = read_from_xml(remunAvNP.vrBcCp25.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 
             try:
-                s1270_remunavnp_dados['vrbccp13'] = remunAvNP.vrBcCp13.cdata
+                s1270_remunavnp_dados['vrbccp13'] = read_from_xml(remunAvNP.vrBcCp13.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 
             try:
-                s1270_remunavnp_dados['vrbcfgts'] = remunAvNP.vrBcFgts.cdata
+                s1270_remunavnp_dados['vrbcfgts'] = read_from_xml(remunAvNP.vrBcFgts.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 
             try:
-                s1270_remunavnp_dados['vrdesccp'] = remunAvNP.vrDescCP.cdata
+                s1270_remunavnp_dados['vrdesccp'] = read_from_xml(remunAvNP.vrDescCP.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 

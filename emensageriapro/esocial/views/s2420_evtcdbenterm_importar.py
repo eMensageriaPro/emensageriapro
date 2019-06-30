@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2420.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,57 +62,57 @@ def read_s2420_evtcdbenterm_obj(request, doc, status, validar=False, arquivo=Fal
     evtCdBenTerm = doc.eSocial.evtCdBenTerm
 
     try:
-        s2420_evtcdbenterm_dados['indretif'] = evtCdBenTerm.ideEvento.indRetif.cdata
+        s2420_evtcdbenterm_dados['indretif'] = read_from_xml(evtCdBenTerm.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2420_evtcdbenterm_dados['nrrecibo'] = evtCdBenTerm.ideEvento.nrRecibo.cdata
+        s2420_evtcdbenterm_dados['nrrecibo'] = read_from_xml(evtCdBenTerm.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2420_evtcdbenterm_dados['tpamb'] = evtCdBenTerm.ideEvento.tpAmb.cdata
+        s2420_evtcdbenterm_dados['tpamb'] = read_from_xml(evtCdBenTerm.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2420_evtcdbenterm_dados['procemi'] = evtCdBenTerm.ideEvento.procEmi.cdata
+        s2420_evtcdbenterm_dados['procemi'] = read_from_xml(evtCdBenTerm.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2420_evtcdbenterm_dados['verproc'] = evtCdBenTerm.ideEvento.verProc.cdata
+        s2420_evtcdbenterm_dados['verproc'] = read_from_xml(evtCdBenTerm.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2420_evtcdbenterm_dados['tpinsc'] = evtCdBenTerm.ideEmpregador.tpInsc.cdata
+        s2420_evtcdbenterm_dados['tpinsc'] = read_from_xml(evtCdBenTerm.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2420_evtcdbenterm_dados['nrinsc'] = evtCdBenTerm.ideEmpregador.nrInsc.cdata
+        s2420_evtcdbenterm_dados['nrinsc'] = read_from_xml(evtCdBenTerm.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2420_evtcdbenterm_dados['cpfbenef'] = evtCdBenTerm.ideBeneficio.cpfBenef.cdata
+        s2420_evtcdbenterm_dados['cpfbenef'] = read_from_xml(evtCdBenTerm.ideBeneficio.cpfBenef.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2420_evtcdbenterm_dados['nrbeneficio'] = evtCdBenTerm.ideBeneficio.nrBeneficio.cdata
+        s2420_evtcdbenterm_dados['nrbeneficio'] = read_from_xml(evtCdBenTerm.ideBeneficio.nrBeneficio.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2420_evtcdbenterm_dados['dttermbeneficio'] = evtCdBenTerm.infoBenTermino.dtTermBeneficio.cdata
+        s2420_evtcdbenterm_dados['dttermbeneficio'] = read_from_xml(evtCdBenTerm.infoBenTermino.dtTermBeneficio.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2420_evtcdbenterm_dados['mtvtermino'] = evtCdBenTerm.infoBenTermino.mtvTermino.cdata
+        s2420_evtcdbenterm_dados['mtvtermino'] = read_from_xml(evtCdBenTerm.infoBenTermino.mtvTermino.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 

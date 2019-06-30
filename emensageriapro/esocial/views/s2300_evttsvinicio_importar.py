@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2300.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,132 +62,132 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
     evtTSVInicio = doc.eSocial.evtTSVInicio
 
     try:
-        s2300_evttsvinicio_dados['indretif'] = evtTSVInicio.ideEvento.indRetif.cdata
+        s2300_evttsvinicio_dados['indretif'] = read_from_xml(evtTSVInicio.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['nrrecibo'] = evtTSVInicio.ideEvento.nrRecibo.cdata
+        s2300_evttsvinicio_dados['nrrecibo'] = read_from_xml(evtTSVInicio.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['tpamb'] = evtTSVInicio.ideEvento.tpAmb.cdata
+        s2300_evttsvinicio_dados['tpamb'] = read_from_xml(evtTSVInicio.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['procemi'] = evtTSVInicio.ideEvento.procEmi.cdata
+        s2300_evttsvinicio_dados['procemi'] = read_from_xml(evtTSVInicio.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['verproc'] = evtTSVInicio.ideEvento.verProc.cdata
+        s2300_evttsvinicio_dados['verproc'] = read_from_xml(evtTSVInicio.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['tpinsc'] = evtTSVInicio.ideEmpregador.tpInsc.cdata
+        s2300_evttsvinicio_dados['tpinsc'] = read_from_xml(evtTSVInicio.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['nrinsc'] = evtTSVInicio.ideEmpregador.nrInsc.cdata
+        s2300_evttsvinicio_dados['nrinsc'] = read_from_xml(evtTSVInicio.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['cpftrab'] = evtTSVInicio.trabalhador.cpfTrab.cdata
+        s2300_evttsvinicio_dados['cpftrab'] = read_from_xml(evtTSVInicio.trabalhador.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['nistrab'] = evtTSVInicio.trabalhador.nisTrab.cdata
+        s2300_evttsvinicio_dados['nistrab'] = read_from_xml(evtTSVInicio.trabalhador.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['nmtrab'] = evtTSVInicio.trabalhador.nmTrab.cdata
+        s2300_evttsvinicio_dados['nmtrab'] = read_from_xml(evtTSVInicio.trabalhador.nmTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['sexo'] = evtTSVInicio.trabalhador.sexo.cdata
+        s2300_evttsvinicio_dados['sexo'] = read_from_xml(evtTSVInicio.trabalhador.sexo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['racacor'] = evtTSVInicio.trabalhador.racaCor.cdata
+        s2300_evttsvinicio_dados['racacor'] = read_from_xml(evtTSVInicio.trabalhador.racaCor.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['estciv'] = evtTSVInicio.trabalhador.estCiv.cdata
+        s2300_evttsvinicio_dados['estciv'] = read_from_xml(evtTSVInicio.trabalhador.estCiv.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['grauinstr'] = evtTSVInicio.trabalhador.grauInstr.cdata
+        s2300_evttsvinicio_dados['grauinstr'] = read_from_xml(evtTSVInicio.trabalhador.grauInstr.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['nmsoc'] = evtTSVInicio.trabalhador.nmSoc.cdata
+        s2300_evttsvinicio_dados['nmsoc'] = read_from_xml(evtTSVInicio.trabalhador.nmSoc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['dtnascto'] = evtTSVInicio.trabalhador.nascimento.dtNascto.cdata
+        s2300_evttsvinicio_dados['dtnascto'] = read_from_xml(evtTSVInicio.trabalhador.nascimento.dtNascto.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['codmunic'] = evtTSVInicio.trabalhador.nascimento.codMunic.cdata
+        s2300_evttsvinicio_dados['codmunic'] = read_from_xml(evtTSVInicio.trabalhador.nascimento.codMunic.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['uf'] = evtTSVInicio.trabalhador.nascimento.uf.cdata
+        s2300_evttsvinicio_dados['uf'] = read_from_xml(evtTSVInicio.trabalhador.nascimento.uf.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['paisnascto'] = evtTSVInicio.trabalhador.nascimento.paisNascto.cdata
+        s2300_evttsvinicio_dados['paisnascto'] = read_from_xml(evtTSVInicio.trabalhador.nascimento.paisNascto.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['paisnac'] = evtTSVInicio.trabalhador.nascimento.paisNac.cdata
+        s2300_evttsvinicio_dados['paisnac'] = read_from_xml(evtTSVInicio.trabalhador.nascimento.paisNac.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['nmmae'] = evtTSVInicio.trabalhador.nascimento.nmMae.cdata
+        s2300_evttsvinicio_dados['nmmae'] = read_from_xml(evtTSVInicio.trabalhador.nascimento.nmMae.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['nmpai'] = evtTSVInicio.trabalhador.nascimento.nmPai.cdata
+        s2300_evttsvinicio_dados['nmpai'] = read_from_xml(evtTSVInicio.trabalhador.nascimento.nmPai.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['cadini'] = evtTSVInicio.infoTSVInicio.cadIni.cdata
+        s2300_evttsvinicio_dados['cadini'] = read_from_xml(evtTSVInicio.infoTSVInicio.cadIni.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['codcateg'] = evtTSVInicio.infoTSVInicio.codCateg.cdata
+        s2300_evttsvinicio_dados['codcateg'] = read_from_xml(evtTSVInicio.infoTSVInicio.codCateg.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['dtinicio'] = evtTSVInicio.infoTSVInicio.dtInicio.cdata
+        s2300_evttsvinicio_dados['dtinicio'] = read_from_xml(evtTSVInicio.infoTSVInicio.dtInicio.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2300_evttsvinicio_dados['natatividade'] = evtTSVInicio.infoTSVInicio.natAtividade.cdata
+        s2300_evttsvinicio_dados['natatividade'] = read_from_xml(evtTSVInicio.infoTSVInicio.natAtividade.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
@@ -209,17 +210,17 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
                     s2300_ctps_dados['s2300_documentos_id'] = s2300_documentos.id
 
                     try:
-                        s2300_ctps_dados['nrctps'] = CTPS.nrCtps.cdata
+                        s2300_ctps_dados['nrctps'] = read_from_xml(CTPS.nrCtps.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_ctps_dados['seriectps'] = CTPS.serieCtps.cdata
+                        s2300_ctps_dados['seriectps'] = read_from_xml(CTPS.serieCtps.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_ctps_dados['ufctps'] = CTPS.ufCtps.cdata
+                        s2300_ctps_dados['ufctps'] = read_from_xml(CTPS.ufCtps.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -233,17 +234,17 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
                     s2300_ric_dados['s2300_documentos_id'] = s2300_documentos.id
 
                     try:
-                        s2300_ric_dados['nrric'] = RIC.nrRic.cdata
+                        s2300_ric_dados['nrric'] = read_from_xml(RIC.nrRic.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_ric_dados['orgaoemissor'] = RIC.orgaoEmissor.cdata
+                        s2300_ric_dados['orgaoemissor'] = read_from_xml(RIC.orgaoEmissor.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_ric_dados['dtexped'] = RIC.dtExped.cdata
+                        s2300_ric_dados['dtexped'] = read_from_xml(RIC.dtExped.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -257,17 +258,17 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
                     s2300_rg_dados['s2300_documentos_id'] = s2300_documentos.id
 
                     try:
-                        s2300_rg_dados['nrrg'] = RG.nrRg.cdata
+                        s2300_rg_dados['nrrg'] = read_from_xml(RG.nrRg.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_rg_dados['orgaoemissor'] = RG.orgaoEmissor.cdata
+                        s2300_rg_dados['orgaoemissor'] = read_from_xml(RG.orgaoEmissor.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_rg_dados['dtexped'] = RG.dtExped.cdata
+                        s2300_rg_dados['dtexped'] = read_from_xml(RG.dtExped.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -281,17 +282,17 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
                     s2300_rne_dados['s2300_documentos_id'] = s2300_documentos.id
 
                     try:
-                        s2300_rne_dados['nrrne'] = RNE.nrRne.cdata
+                        s2300_rne_dados['nrrne'] = read_from_xml(RNE.nrRne.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_rne_dados['orgaoemissor'] = RNE.orgaoEmissor.cdata
+                        s2300_rne_dados['orgaoemissor'] = read_from_xml(RNE.orgaoEmissor.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_rne_dados['dtexped'] = RNE.dtExped.cdata
+                        s2300_rne_dados['dtexped'] = read_from_xml(RNE.dtExped.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -305,22 +306,22 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
                     s2300_oc_dados['s2300_documentos_id'] = s2300_documentos.id
 
                     try:
-                        s2300_oc_dados['nroc'] = OC.nrOc.cdata
+                        s2300_oc_dados['nroc'] = read_from_xml(OC.nrOc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_oc_dados['orgaoemissor'] = OC.orgaoEmissor.cdata
+                        s2300_oc_dados['orgaoemissor'] = read_from_xml(OC.orgaoEmissor.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_oc_dados['dtexped'] = OC.dtExped.cdata
+                        s2300_oc_dados['dtexped'] = read_from_xml(OC.dtExped.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_oc_dados['dtvalid'] = OC.dtValid.cdata
+                        s2300_oc_dados['dtvalid'] = read_from_xml(OC.dtValid.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -334,32 +335,32 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
                     s2300_cnh_dados['s2300_documentos_id'] = s2300_documentos.id
 
                     try:
-                        s2300_cnh_dados['nrregcnh'] = CNH.nrRegCnh.cdata
+                        s2300_cnh_dados['nrregcnh'] = read_from_xml(CNH.nrRegCnh.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_cnh_dados['dtexped'] = CNH.dtExped.cdata
+                        s2300_cnh_dados['dtexped'] = read_from_xml(CNH.dtExped.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_cnh_dados['ufcnh'] = CNH.ufCnh.cdata
+                        s2300_cnh_dados['ufcnh'] = read_from_xml(CNH.ufCnh.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_cnh_dados['dtvalid'] = CNH.dtValid.cdata
+                        s2300_cnh_dados['dtvalid'] = read_from_xml(CNH.dtValid.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_cnh_dados['dtprihab'] = CNH.dtPriHab.cdata
+                        s2300_cnh_dados['dtprihab'] = read_from_xml(CNH.dtPriHab.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_cnh_dados['categoriacnh'] = CNH.categoriaCnh.cdata
+                        s2300_cnh_dados['categoriacnh'] = read_from_xml(CNH.categoriaCnh.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -373,42 +374,42 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
             s2300_brasil_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio.id
 
             try:
-                s2300_brasil_dados['tplograd'] = brasil.tpLograd.cdata
+                s2300_brasil_dados['tplograd'] = read_from_xml(brasil.tpLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_brasil_dados['dsclograd'] = brasil.dscLograd.cdata
+                s2300_brasil_dados['dsclograd'] = read_from_xml(brasil.dscLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_brasil_dados['nrlograd'] = brasil.nrLograd.cdata
+                s2300_brasil_dados['nrlograd'] = read_from_xml(brasil.nrLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_brasil_dados['complemento'] = brasil.complemento.cdata
+                s2300_brasil_dados['complemento'] = read_from_xml(brasil.complemento.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_brasil_dados['bairro'] = brasil.bairro.cdata
+                s2300_brasil_dados['bairro'] = read_from_xml(brasil.bairro.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_brasil_dados['cep'] = brasil.cep.cdata
+                s2300_brasil_dados['cep'] = read_from_xml(brasil.cep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_brasil_dados['codmunic'] = brasil.codMunic.cdata
+                s2300_brasil_dados['codmunic'] = read_from_xml(brasil.codMunic.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_brasil_dados['uf'] = brasil.uf.cdata
+                s2300_brasil_dados['uf'] = read_from_xml(brasil.uf.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -422,37 +423,37 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
             s2300_exterior_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio.id
 
             try:
-                s2300_exterior_dados['paisresid'] = exterior.paisResid.cdata
+                s2300_exterior_dados['paisresid'] = read_from_xml(exterior.paisResid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_exterior_dados['dsclograd'] = exterior.dscLograd.cdata
+                s2300_exterior_dados['dsclograd'] = read_from_xml(exterior.dscLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_exterior_dados['nrlograd'] = exterior.nrLograd.cdata
+                s2300_exterior_dados['nrlograd'] = read_from_xml(exterior.nrLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_exterior_dados['complemento'] = exterior.complemento.cdata
+                s2300_exterior_dados['complemento'] = read_from_xml(exterior.complemento.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_exterior_dados['bairro'] = exterior.bairro.cdata
+                s2300_exterior_dados['bairro'] = read_from_xml(exterior.bairro.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_exterior_dados['nmcid'] = exterior.nmCid.cdata
+                s2300_exterior_dados['nmcid'] = read_from_xml(exterior.nmCid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_exterior_dados['codpostal'] = exterior.codPostal.cdata
+                s2300_exterior_dados['codpostal'] = read_from_xml(exterior.codPostal.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -466,22 +467,22 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
             s2300_trabestrangeiro_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio.id
 
             try:
-                s2300_trabestrangeiro_dados['dtchegada'] = trabEstrangeiro.dtChegada.cdata
+                s2300_trabestrangeiro_dados['dtchegada'] = read_from_xml(trabEstrangeiro.dtChegada.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_trabestrangeiro_dados['classtrabestrang'] = trabEstrangeiro.classTrabEstrang.cdata
+                s2300_trabestrangeiro_dados['classtrabestrang'] = read_from_xml(trabEstrangeiro.classTrabEstrang.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_trabestrangeiro_dados['casadobr'] = trabEstrangeiro.casadoBr.cdata
+                s2300_trabestrangeiro_dados['casadobr'] = read_from_xml(trabEstrangeiro.casadoBr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_trabestrangeiro_dados['filhosbr'] = trabEstrangeiro.filhosBr.cdata
+                s2300_trabestrangeiro_dados['filhosbr'] = read_from_xml(trabEstrangeiro.filhosBr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -495,37 +496,37 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
             s2300_infodeficiencia_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio.id
 
             try:
-                s2300_infodeficiencia_dados['deffisica'] = infoDeficiencia.defFisica.cdata
+                s2300_infodeficiencia_dados['deffisica'] = read_from_xml(infoDeficiencia.defFisica.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_infodeficiencia_dados['defvisual'] = infoDeficiencia.defVisual.cdata
+                s2300_infodeficiencia_dados['defvisual'] = read_from_xml(infoDeficiencia.defVisual.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_infodeficiencia_dados['defauditiva'] = infoDeficiencia.defAuditiva.cdata
+                s2300_infodeficiencia_dados['defauditiva'] = read_from_xml(infoDeficiencia.defAuditiva.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_infodeficiencia_dados['defmental'] = infoDeficiencia.defMental.cdata
+                s2300_infodeficiencia_dados['defmental'] = read_from_xml(infoDeficiencia.defMental.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_infodeficiencia_dados['defintelectual'] = infoDeficiencia.defIntelectual.cdata
+                s2300_infodeficiencia_dados['defintelectual'] = read_from_xml(infoDeficiencia.defIntelectual.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_infodeficiencia_dados['reabreadap'] = infoDeficiencia.reabReadap.cdata
+                s2300_infodeficiencia_dados['reabreadap'] = read_from_xml(infoDeficiencia.reabReadap.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_infodeficiencia_dados['observacao'] = infoDeficiencia.observacao.cdata
+                s2300_infodeficiencia_dados['observacao'] = read_from_xml(infoDeficiencia.observacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -539,47 +540,47 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
             s2300_dependente_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio.id
 
             try:
-                s2300_dependente_dados['tpdep'] = dependente.tpDep.cdata
+                s2300_dependente_dados['tpdep'] = read_from_xml(dependente.tpDep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_dependente_dados['nmdep'] = dependente.nmDep.cdata
+                s2300_dependente_dados['nmdep'] = read_from_xml(dependente.nmDep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_dependente_dados['dtnascto'] = dependente.dtNascto.cdata
+                s2300_dependente_dados['dtnascto'] = read_from_xml(dependente.dtNascto.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_dependente_dados['cpfdep'] = dependente.cpfDep.cdata
+                s2300_dependente_dados['cpfdep'] = read_from_xml(dependente.cpfDep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_dependente_dados['sexodep'] = dependente.sexoDep.cdata
+                s2300_dependente_dados['sexodep'] = read_from_xml(dependente.sexoDep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_dependente_dados['depirrf'] = dependente.depIRRF.cdata
+                s2300_dependente_dados['depirrf'] = read_from_xml(dependente.depIRRF.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_dependente_dados['depsf'] = dependente.depSF.cdata
+                s2300_dependente_dados['depsf'] = read_from_xml(dependente.depSF.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_dependente_dados['inctrab'] = dependente.incTrab.cdata
+                s2300_dependente_dados['inctrab'] = read_from_xml(dependente.incTrab.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_dependente_dados['depfinsprev'] = dependente.depFinsPrev.cdata
+                s2300_dependente_dados['depfinsprev'] = read_from_xml(dependente.depFinsPrev.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -593,22 +594,22 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
             s2300_contato_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio.id
 
             try:
-                s2300_contato_dados['foneprinc'] = contato.fonePrinc.cdata
+                s2300_contato_dados['foneprinc'] = read_from_xml(contato.fonePrinc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_contato_dados['fonealternat'] = contato.foneAlternat.cdata
+                s2300_contato_dados['fonealternat'] = read_from_xml(contato.foneAlternat.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_contato_dados['emailprinc'] = contato.emailPrinc.cdata
+                s2300_contato_dados['emailprinc'] = read_from_xml(contato.emailPrinc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_contato_dados['emailalternat'] = contato.emailAlternat.cdata
+                s2300_contato_dados['emailalternat'] = read_from_xml(contato.emailAlternat.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -631,12 +632,12 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
                     s2300_cargofuncao_dados['s2300_infocomplementares_id'] = s2300_infocomplementares.id
 
                     try:
-                        s2300_cargofuncao_dados['codcargo'] = cargoFuncao.codCargo.cdata
+                        s2300_cargofuncao_dados['codcargo'] = read_from_xml(cargoFuncao.codCargo.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_cargofuncao_dados['codfuncao'] = cargoFuncao.codFuncao.cdata
+                        s2300_cargofuncao_dados['codfuncao'] = read_from_xml(cargoFuncao.codFuncao.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -650,17 +651,17 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
                     s2300_remuneracao_dados['s2300_infocomplementares_id'] = s2300_infocomplementares.id
 
                     try:
-                        s2300_remuneracao_dados['vrsalfx'] = remuneracao.vrSalFx.cdata
+                        s2300_remuneracao_dados['vrsalfx'] = read_from_xml(remuneracao.vrSalFx.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_remuneracao_dados['undsalfixo'] = remuneracao.undSalFixo.cdata
+                        s2300_remuneracao_dados['undsalfixo'] = read_from_xml(remuneracao.undSalFixo.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_remuneracao_dados['dscsalvar'] = remuneracao.dscSalVar.cdata
+                        s2300_remuneracao_dados['dscsalvar'] = read_from_xml(remuneracao.dscSalVar.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -674,12 +675,12 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
                     s2300_fgts_dados['s2300_infocomplementares_id'] = s2300_infocomplementares.id
 
                     try:
-                        s2300_fgts_dados['opcfgts'] = fgts.opcFGTS.cdata
+                        s2300_fgts_dados['opcfgts'] = read_from_xml(fgts.opcFGTS.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_fgts_dados['dtopcfgts'] = fgts.dtOpcFGTS.cdata
+                        s2300_fgts_dados['dtopcfgts'] = read_from_xml(fgts.dtOpcFGTS.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -693,22 +694,22 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
                     s2300_infodirigentesindical_dados['s2300_infocomplementares_id'] = s2300_infocomplementares.id
 
                     try:
-                        s2300_infodirigentesindical_dados['categorig'] = infoDirigenteSindical.categOrig.cdata
+                        s2300_infodirigentesindical_dados['categorig'] = read_from_xml(infoDirigenteSindical.categOrig.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infodirigentesindical_dados['cnpjorigem'] = infoDirigenteSindical.cnpjOrigem.cdata
+                        s2300_infodirigentesindical_dados['cnpjorigem'] = read_from_xml(infoDirigenteSindical.cnpjOrigem.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infodirigentesindical_dados['dtadmorig'] = infoDirigenteSindical.dtAdmOrig.cdata
+                        s2300_infodirigentesindical_dados['dtadmorig'] = read_from_xml(infoDirigenteSindical.dtAdmOrig.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infodirigentesindical_dados['matricorig'] = infoDirigenteSindical.matricOrig.cdata
+                        s2300_infodirigentesindical_dados['matricorig'] = read_from_xml(infoDirigenteSindical.matricOrig.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -722,42 +723,42 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
                     s2300_infotrabcedido_dados['s2300_infocomplementares_id'] = s2300_infocomplementares.id
 
                     try:
-                        s2300_infotrabcedido_dados['categorig'] = infoTrabCedido.categOrig.cdata
+                        s2300_infotrabcedido_dados['categorig'] = read_from_xml(infoTrabCedido.categOrig.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infotrabcedido_dados['cnpjcednt'] = infoTrabCedido.cnpjCednt.cdata
+                        s2300_infotrabcedido_dados['cnpjcednt'] = read_from_xml(infoTrabCedido.cnpjCednt.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infotrabcedido_dados['matricced'] = infoTrabCedido.matricCed.cdata
+                        s2300_infotrabcedido_dados['matricced'] = read_from_xml(infoTrabCedido.matricCed.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infotrabcedido_dados['dtadmced'] = infoTrabCedido.dtAdmCed.cdata
+                        s2300_infotrabcedido_dados['dtadmced'] = read_from_xml(infoTrabCedido.dtAdmCed.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infotrabcedido_dados['tpregtrab'] = infoTrabCedido.tpRegTrab.cdata
+                        s2300_infotrabcedido_dados['tpregtrab'] = read_from_xml(infoTrabCedido.tpRegTrab.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infotrabcedido_dados['tpregprev'] = infoTrabCedido.tpRegPrev.cdata
+                        s2300_infotrabcedido_dados['tpregprev'] = read_from_xml(infoTrabCedido.tpRegPrev.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infotrabcedido_dados['infonus'] = infoTrabCedido.infOnus.cdata
+                        s2300_infotrabcedido_dados['infonus'] = read_from_xml(infoTrabCedido.infOnus.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infotrabcedido_dados['indremuncargo'] = infoTrabCedido.indRemunCargo.cdata
+                        s2300_infotrabcedido_dados['indremuncargo'] = read_from_xml(infoTrabCedido.indRemunCargo.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -771,72 +772,72 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
                     s2300_infoestagiario_dados['s2300_infocomplementares_id'] = s2300_infocomplementares.id
 
                     try:
-                        s2300_infoestagiario_dados['natestagio'] = infoEstagiario.natEstagio.cdata
+                        s2300_infoestagiario_dados['natestagio'] = read_from_xml(infoEstagiario.natEstagio.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infoestagiario_dados['nivestagio'] = infoEstagiario.nivEstagio.cdata
+                        s2300_infoestagiario_dados['nivestagio'] = read_from_xml(infoEstagiario.nivEstagio.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infoestagiario_dados['areaatuacao'] = infoEstagiario.areaAtuacao.cdata
+                        s2300_infoestagiario_dados['areaatuacao'] = read_from_xml(infoEstagiario.areaAtuacao.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infoestagiario_dados['nrapol'] = infoEstagiario.nrApol.cdata
+                        s2300_infoestagiario_dados['nrapol'] = read_from_xml(infoEstagiario.nrApol.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infoestagiario_dados['vlrbolsa'] = infoEstagiario.vlrBolsa.cdata
+                        s2300_infoestagiario_dados['vlrbolsa'] = read_from_xml(infoEstagiario.vlrBolsa.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infoestagiario_dados['dtprevterm'] = infoEstagiario.dtPrevTerm.cdata
+                        s2300_infoestagiario_dados['dtprevterm'] = read_from_xml(infoEstagiario.dtPrevTerm.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infoestagiario_dados['cnpjinstensino'] = infoEstagiario.instEnsino.cnpjInstEnsino.cdata
+                        s2300_infoestagiario_dados['cnpjinstensino'] = read_from_xml(infoEstagiario.instEnsino.cnpjInstEnsino.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infoestagiario_dados['nmrazao'] = infoEstagiario.instEnsino.nmRazao.cdata
+                        s2300_infoestagiario_dados['nmrazao'] = read_from_xml(infoEstagiario.instEnsino.nmRazao.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infoestagiario_dados['dsclograd'] = infoEstagiario.instEnsino.dscLograd.cdata
+                        s2300_infoestagiario_dados['dsclograd'] = read_from_xml(infoEstagiario.instEnsino.dscLograd.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infoestagiario_dados['nrlograd'] = infoEstagiario.instEnsino.nrLograd.cdata
+                        s2300_infoestagiario_dados['nrlograd'] = read_from_xml(infoEstagiario.instEnsino.nrLograd.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infoestagiario_dados['bairro'] = infoEstagiario.instEnsino.bairro.cdata
+                        s2300_infoestagiario_dados['bairro'] = read_from_xml(infoEstagiario.instEnsino.bairro.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infoestagiario_dados['cep'] = infoEstagiario.instEnsino.cep.cdata
+                        s2300_infoestagiario_dados['cep'] = read_from_xml(infoEstagiario.instEnsino.cep.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infoestagiario_dados['codmunic'] = infoEstagiario.instEnsino.codMunic.cdata
+                        s2300_infoestagiario_dados['codmunic'] = read_from_xml(infoEstagiario.instEnsino.codMunic.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2300_infoestagiario_dados['uf'] = infoEstagiario.instEnsino.uf.cdata
+                        s2300_infoestagiario_dados['uf'] = read_from_xml(infoEstagiario.instEnsino.uf.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -850,42 +851,42 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
                             s2300_ageintegracao_dados['s2300_infoestagiario_id'] = s2300_infoestagiario.id
         
                             try:
-                                s2300_ageintegracao_dados['cnpjagntinteg'] = ageIntegracao.cnpjAgntInteg.cdata
+                                s2300_ageintegracao_dados['cnpjagntinteg'] = read_from_xml(ageIntegracao.cnpjAgntInteg.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2300_ageintegracao_dados['nmrazao'] = ageIntegracao.nmRazao.cdata
+                                s2300_ageintegracao_dados['nmrazao'] = read_from_xml(ageIntegracao.nmRazao.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2300_ageintegracao_dados['dsclograd'] = ageIntegracao.dscLograd.cdata
+                                s2300_ageintegracao_dados['dsclograd'] = read_from_xml(ageIntegracao.dscLograd.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2300_ageintegracao_dados['nrlograd'] = ageIntegracao.nrLograd.cdata
+                                s2300_ageintegracao_dados['nrlograd'] = read_from_xml(ageIntegracao.nrLograd.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2300_ageintegracao_dados['bairro'] = ageIntegracao.bairro.cdata
+                                s2300_ageintegracao_dados['bairro'] = read_from_xml(ageIntegracao.bairro.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2300_ageintegracao_dados['cep'] = ageIntegracao.cep.cdata
+                                s2300_ageintegracao_dados['cep'] = read_from_xml(ageIntegracao.cep.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2300_ageintegracao_dados['codmunic'] = ageIntegracao.codMunic.cdata
+                                s2300_ageintegracao_dados['codmunic'] = read_from_xml(ageIntegracao.codMunic.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2300_ageintegracao_dados['uf'] = ageIntegracao.uf.cdata
+                                s2300_ageintegracao_dados['uf'] = read_from_xml(ageIntegracao.uf.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -899,12 +900,12 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
                             s2300_supervisorestagio_dados['s2300_infoestagiario_id'] = s2300_infoestagiario.id
         
                             try:
-                                s2300_supervisorestagio_dados['cpfsupervisor'] = supervisorEstagio.cpfSupervisor.cdata
+                                s2300_supervisorestagio_dados['cpfsupervisor'] = read_from_xml(supervisorEstagio.cpfSupervisor.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2300_supervisorestagio_dados['nmsuperv'] = supervisorEstagio.nmSuperv.cdata
+                                s2300_supervisorestagio_dados['nmsuperv'] = read_from_xml(supervisorEstagio.nmSuperv.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -918,17 +919,17 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
             s2300_mudancacpf_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio.id
 
             try:
-                s2300_mudancacpf_dados['cpfant'] = mudancaCPF.cpfAnt.cdata
+                s2300_mudancacpf_dados['cpfant'] = read_from_xml(mudancaCPF.cpfAnt.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_mudancacpf_dados['dtaltcpf'] = mudancaCPF.dtAltCPF.cdata
+                s2300_mudancacpf_dados['dtaltcpf'] = read_from_xml(mudancaCPF.dtAltCPF.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_mudancacpf_dados['observacao'] = mudancaCPF.observacao.cdata
+                s2300_mudancacpf_dados['observacao'] = read_from_xml(mudancaCPF.observacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -942,12 +943,12 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
             s2300_afastamento_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio.id
 
             try:
-                s2300_afastamento_dados['dtiniafast'] = afastamento.dtIniAfast.cdata
+                s2300_afastamento_dados['dtiniafast'] = read_from_xml(afastamento.dtIniAfast.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2300_afastamento_dados['codmotafast'] = afastamento.codMotAfast.cdata
+                s2300_afastamento_dados['codmotafast'] = read_from_xml(afastamento.codMotAfast.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -961,7 +962,7 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False, arquivo=Fal
             s2300_termino_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio.id
 
             try:
-                s2300_termino_dados['dtterm'] = termino.dtTerm.cdata
+                s2300_termino_dados['dtterm'] = read_from_xml(termino.dtTerm.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 

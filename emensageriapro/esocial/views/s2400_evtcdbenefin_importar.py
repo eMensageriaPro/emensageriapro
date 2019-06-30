@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2400.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,117 +62,117 @@ def read_s2400_evtcdbenefin_obj(request, doc, status, validar=False, arquivo=Fal
     evtCdBenefIn = doc.eSocial.evtCdBenefIn
 
     try:
-        s2400_evtcdbenefin_dados['indretif'] = evtCdBenefIn.ideEvento.indRetif.cdata
+        s2400_evtcdbenefin_dados['indretif'] = read_from_xml(evtCdBenefIn.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['nrrecibo'] = evtCdBenefIn.ideEvento.nrRecibo.cdata
+        s2400_evtcdbenefin_dados['nrrecibo'] = read_from_xml(evtCdBenefIn.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['tpamb'] = evtCdBenefIn.ideEvento.tpAmb.cdata
+        s2400_evtcdbenefin_dados['tpamb'] = read_from_xml(evtCdBenefIn.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['procemi'] = evtCdBenefIn.ideEvento.procEmi.cdata
+        s2400_evtcdbenefin_dados['procemi'] = read_from_xml(evtCdBenefIn.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['verproc'] = evtCdBenefIn.ideEvento.verProc.cdata
+        s2400_evtcdbenefin_dados['verproc'] = read_from_xml(evtCdBenefIn.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['tpinsc'] = evtCdBenefIn.ideEmpregador.tpInsc.cdata
+        s2400_evtcdbenefin_dados['tpinsc'] = read_from_xml(evtCdBenefIn.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['nrinsc'] = evtCdBenefIn.ideEmpregador.nrInsc.cdata
+        s2400_evtcdbenefin_dados['nrinsc'] = read_from_xml(evtCdBenefIn.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['cpfbenef'] = evtCdBenefIn.beneficiario.cpfBenef.cdata
+        s2400_evtcdbenefin_dados['cpfbenef'] = read_from_xml(evtCdBenefIn.beneficiario.cpfBenef.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['nisbenef'] = evtCdBenefIn.beneficiario.nisBenef.cdata
+        s2400_evtcdbenefin_dados['nisbenef'] = read_from_xml(evtCdBenefIn.beneficiario.nisBenef.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['nmbenefic'] = evtCdBenefIn.beneficiario.nmBenefic.cdata
+        s2400_evtcdbenefin_dados['nmbenefic'] = read_from_xml(evtCdBenefIn.beneficiario.nmBenefic.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['dtinicio'] = evtCdBenefIn.beneficiario.dtInicio.cdata
+        s2400_evtcdbenefin_dados['dtinicio'] = read_from_xml(evtCdBenefIn.beneficiario.dtInicio.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['sexo'] = evtCdBenefIn.beneficiario.sexo.cdata
+        s2400_evtcdbenefin_dados['sexo'] = read_from_xml(evtCdBenefIn.beneficiario.sexo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['racacor'] = evtCdBenefIn.beneficiario.racaCor.cdata
+        s2400_evtcdbenefin_dados['racacor'] = read_from_xml(evtCdBenefIn.beneficiario.racaCor.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['estciv'] = evtCdBenefIn.beneficiario.estCiv.cdata
+        s2400_evtcdbenefin_dados['estciv'] = read_from_xml(evtCdBenefIn.beneficiario.estCiv.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['incfismen'] = evtCdBenefIn.beneficiario.incFisMen.cdata
+        s2400_evtcdbenefin_dados['incfismen'] = read_from_xml(evtCdBenefIn.beneficiario.incFisMen.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['dtincfismen'] = evtCdBenefIn.beneficiario.dtIncFisMen.cdata
+        s2400_evtcdbenefin_dados['dtincfismen'] = read_from_xml(evtCdBenefIn.beneficiario.dtIncFisMen.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['dtnascto'] = evtCdBenefIn.beneficiario.dadosNasc.dtNascto.cdata
+        s2400_evtcdbenefin_dados['dtnascto'] = read_from_xml(evtCdBenefIn.beneficiario.dadosNasc.dtNascto.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['codmunic'] = evtCdBenefIn.beneficiario.dadosNasc.codMunic.cdata
+        s2400_evtcdbenefin_dados['codmunic'] = read_from_xml(evtCdBenefIn.beneficiario.dadosNasc.codMunic.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['uf'] = evtCdBenefIn.beneficiario.dadosNasc.uf.cdata
+        s2400_evtcdbenefin_dados['uf'] = read_from_xml(evtCdBenefIn.beneficiario.dadosNasc.uf.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['paisnascto'] = evtCdBenefIn.beneficiario.dadosNasc.paisNascto.cdata
+        s2400_evtcdbenefin_dados['paisnascto'] = read_from_xml(evtCdBenefIn.beneficiario.dadosNasc.paisNascto.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['paisnac'] = evtCdBenefIn.beneficiario.dadosNasc.paisNac.cdata
+        s2400_evtcdbenefin_dados['paisnac'] = read_from_xml(evtCdBenefIn.beneficiario.dadosNasc.paisNac.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['nmmae'] = evtCdBenefIn.beneficiario.dadosNasc.nmMae.cdata
+        s2400_evtcdbenefin_dados['nmmae'] = read_from_xml(evtCdBenefIn.beneficiario.dadosNasc.nmMae.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2400_evtcdbenefin_dados['nmpai'] = evtCdBenefIn.beneficiario.dadosNasc.nmPai.cdata
+        s2400_evtcdbenefin_dados['nmpai'] = read_from_xml(evtCdBenefIn.beneficiario.dadosNasc.nmPai.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -194,42 +195,42 @@ def read_s2400_evtcdbenefin_obj(request, doc, status, validar=False, arquivo=Fal
                     s2400_brasil_dados['s2400_endereco_id'] = s2400_endereco.id
 
                     try:
-                        s2400_brasil_dados['tplograd'] = brasil.tpLograd.cdata
+                        s2400_brasil_dados['tplograd'] = read_from_xml(brasil.tpLograd.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2400_brasil_dados['dsclograd'] = brasil.dscLograd.cdata
+                        s2400_brasil_dados['dsclograd'] = read_from_xml(brasil.dscLograd.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2400_brasil_dados['nrlograd'] = brasil.nrLograd.cdata
+                        s2400_brasil_dados['nrlograd'] = read_from_xml(brasil.nrLograd.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2400_brasil_dados['complemento'] = brasil.complemento.cdata
+                        s2400_brasil_dados['complemento'] = read_from_xml(brasil.complemento.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2400_brasil_dados['bairro'] = brasil.bairro.cdata
+                        s2400_brasil_dados['bairro'] = read_from_xml(brasil.bairro.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2400_brasil_dados['cep'] = brasil.cep.cdata
+                        s2400_brasil_dados['cep'] = read_from_xml(brasil.cep.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2400_brasil_dados['codmunic'] = brasil.codMunic.cdata
+                        s2400_brasil_dados['codmunic'] = read_from_xml(brasil.codMunic.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2400_brasil_dados['uf'] = brasil.uf.cdata
+                        s2400_brasil_dados['uf'] = read_from_xml(brasil.uf.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -243,37 +244,37 @@ def read_s2400_evtcdbenefin_obj(request, doc, status, validar=False, arquivo=Fal
                     s2400_exterior_dados['s2400_endereco_id'] = s2400_endereco.id
 
                     try:
-                        s2400_exterior_dados['paisresid'] = exterior.paisResid.cdata
+                        s2400_exterior_dados['paisresid'] = read_from_xml(exterior.paisResid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2400_exterior_dados['dsclograd'] = exterior.dscLograd.cdata
+                        s2400_exterior_dados['dsclograd'] = read_from_xml(exterior.dscLograd.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2400_exterior_dados['nrlograd'] = exterior.nrLograd.cdata
+                        s2400_exterior_dados['nrlograd'] = read_from_xml(exterior.nrLograd.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2400_exterior_dados['complemento'] = exterior.complemento.cdata
+                        s2400_exterior_dados['complemento'] = read_from_xml(exterior.complemento.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2400_exterior_dados['bairro'] = exterior.bairro.cdata
+                        s2400_exterior_dados['bairro'] = read_from_xml(exterior.bairro.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2400_exterior_dados['nmcid'] = exterior.nmCid.cdata
+                        s2400_exterior_dados['nmcid'] = read_from_xml(exterior.nmCid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2400_exterior_dados['codpostal'] = exterior.codPostal.cdata
+                        s2400_exterior_dados['codpostal'] = read_from_xml(exterior.codPostal.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -287,42 +288,42 @@ def read_s2400_evtcdbenefin_obj(request, doc, status, validar=False, arquivo=Fal
             s2400_dependente_dados['s2400_evtcdbenefin_id'] = s2400_evtcdbenefin.id
 
             try:
-                s2400_dependente_dados['tpdep'] = dependente.tpDep.cdata
+                s2400_dependente_dados['tpdep'] = read_from_xml(dependente.tpDep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2400_dependente_dados['nmdep'] = dependente.nmDep.cdata
+                s2400_dependente_dados['nmdep'] = read_from_xml(dependente.nmDep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2400_dependente_dados['dtnascto'] = dependente.dtNascto.cdata
+                s2400_dependente_dados['dtnascto'] = read_from_xml(dependente.dtNascto.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2400_dependente_dados['cpfdep'] = dependente.cpfDep.cdata
+                s2400_dependente_dados['cpfdep'] = read_from_xml(dependente.cpfDep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2400_dependente_dados['sexodep'] = dependente.sexoDep.cdata
+                s2400_dependente_dados['sexodep'] = read_from_xml(dependente.sexoDep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2400_dependente_dados['depirrf'] = dependente.depIRRF.cdata
+                s2400_dependente_dados['depirrf'] = read_from_xml(dependente.depIRRF.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2400_dependente_dados['incfismen'] = dependente.incFisMen.cdata
+                s2400_dependente_dados['incfismen'] = read_from_xml(dependente.incFisMen.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2400_dependente_dados['depfinsprev'] = dependente.depFinsPrev.cdata
+                s2400_dependente_dados['depfinsprev'] = read_from_xml(dependente.depFinsPrev.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

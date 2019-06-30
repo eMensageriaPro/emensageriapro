@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.efdreinf.models import *
 from emensageriapro.r2099.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,72 +62,72 @@ def read_r2099_evtfechaevper_obj(request, doc, status, validar=False, arquivo=Fa
     evtFechaEvPer = doc.Reinf.evtFechaEvPer
 
     try:
-        r2099_evtfechaevper_dados['perapur'] = evtFechaEvPer.ideEvento.perApur.cdata
+        r2099_evtfechaevper_dados['perapur'] = read_from_xml(evtFechaEvPer.ideEvento.perApur.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2099_evtfechaevper_dados['tpamb'] = evtFechaEvPer.ideEvento.tpAmb.cdata
+        r2099_evtfechaevper_dados['tpamb'] = read_from_xml(evtFechaEvPer.ideEvento.tpAmb.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2099_evtfechaevper_dados['procemi'] = evtFechaEvPer.ideEvento.procEmi.cdata
+        r2099_evtfechaevper_dados['procemi'] = read_from_xml(evtFechaEvPer.ideEvento.procEmi.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2099_evtfechaevper_dados['verproc'] = evtFechaEvPer.ideEvento.verProc.cdata
+        r2099_evtfechaevper_dados['verproc'] = read_from_xml(evtFechaEvPer.ideEvento.verProc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2099_evtfechaevper_dados['tpinsc'] = evtFechaEvPer.ideContri.tpInsc.cdata
+        r2099_evtfechaevper_dados['tpinsc'] = read_from_xml(evtFechaEvPer.ideContri.tpInsc.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2099_evtfechaevper_dados['nrinsc'] = evtFechaEvPer.ideContri.nrInsc.cdata
+        r2099_evtfechaevper_dados['nrinsc'] = read_from_xml(evtFechaEvPer.ideContri.nrInsc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2099_evtfechaevper_dados['evtservtm'] = evtFechaEvPer.infoFech.evtServTm.cdata
+        r2099_evtfechaevper_dados['evtservtm'] = read_from_xml(evtFechaEvPer.infoFech.evtServTm.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2099_evtfechaevper_dados['evtservpr'] = evtFechaEvPer.infoFech.evtServPr.cdata
+        r2099_evtfechaevper_dados['evtservpr'] = read_from_xml(evtFechaEvPer.infoFech.evtServPr.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2099_evtfechaevper_dados['evtassdesprec'] = evtFechaEvPer.infoFech.evtAssDespRec.cdata
+        r2099_evtfechaevper_dados['evtassdesprec'] = read_from_xml(evtFechaEvPer.infoFech.evtAssDespRec.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2099_evtfechaevper_dados['evtassdesprep'] = evtFechaEvPer.infoFech.evtAssDespRep.cdata
+        r2099_evtfechaevper_dados['evtassdesprep'] = read_from_xml(evtFechaEvPer.infoFech.evtAssDespRep.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2099_evtfechaevper_dados['evtcomprod'] = evtFechaEvPer.infoFech.evtComProd.cdata
+        r2099_evtfechaevper_dados['evtcomprod'] = read_from_xml(evtFechaEvPer.infoFech.evtComProd.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2099_evtfechaevper_dados['evtcprb'] = evtFechaEvPer.infoFech.evtCPRB.cdata
+        r2099_evtfechaevper_dados['evtcprb'] = read_from_xml(evtFechaEvPer.infoFech.evtCPRB.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2099_evtfechaevper_dados['evtpgtos'] = evtFechaEvPer.infoFech.evtPgtos.cdata
+        r2099_evtfechaevper_dados['evtpgtos'] = read_from_xml(evtFechaEvPer.infoFech.evtPgtos.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2099_evtfechaevper_dados['compsemmovto'] = evtFechaEvPer.infoFech.compSemMovto.cdata
+        r2099_evtfechaevper_dados['compsemmovto'] = read_from_xml(evtFechaEvPer.infoFech.compSemMovto.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
@@ -140,22 +141,22 @@ def read_r2099_evtfechaevper_obj(request, doc, status, validar=False, arquivo=Fa
             r2099_iderespinf_dados['r2099_evtfechaevper_id'] = r2099_evtfechaevper.id
 
             try:
-                r2099_iderespinf_dados['nmresp'] = ideRespInf.nmResp.cdata
+                r2099_iderespinf_dados['nmresp'] = read_from_xml(ideRespInf.nmResp.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r2099_iderespinf_dados['cpfresp'] = ideRespInf.cpfResp.cdata
+                r2099_iderespinf_dados['cpfresp'] = read_from_xml(ideRespInf.cpfResp.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r2099_iderespinf_dados['telefone'] = ideRespInf.telefone.cdata
+                r2099_iderespinf_dados['telefone'] = read_from_xml(ideRespInf.telefone.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r2099_iderespinf_dados['email'] = ideRespInf.email.cdata
+                r2099_iderespinf_dados['email'] = read_from_xml(ideRespInf.email.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 

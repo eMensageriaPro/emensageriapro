@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2410.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,97 +62,97 @@ def read_s2410_evtcdbenin_obj(request, doc, status, validar=False, arquivo=False
     evtCdBenIn = doc.eSocial.evtCdBenIn
 
     try:
-        s2410_evtcdbenin_dados['indretif'] = evtCdBenIn.ideEvento.indRetif.cdata
+        s2410_evtcdbenin_dados['indretif'] = read_from_xml(evtCdBenIn.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['nrrecibo'] = evtCdBenIn.ideEvento.nrRecibo.cdata
+        s2410_evtcdbenin_dados['nrrecibo'] = read_from_xml(evtCdBenIn.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['tpamb'] = evtCdBenIn.ideEvento.tpAmb.cdata
+        s2410_evtcdbenin_dados['tpamb'] = read_from_xml(evtCdBenIn.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['procemi'] = evtCdBenIn.ideEvento.procEmi.cdata
+        s2410_evtcdbenin_dados['procemi'] = read_from_xml(evtCdBenIn.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['verproc'] = evtCdBenIn.ideEvento.verProc.cdata
+        s2410_evtcdbenin_dados['verproc'] = read_from_xml(evtCdBenIn.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['tpinsc'] = evtCdBenIn.ideEmpregador.tpInsc.cdata
+        s2410_evtcdbenin_dados['tpinsc'] = read_from_xml(evtCdBenIn.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['nrinsc'] = evtCdBenIn.ideEmpregador.nrInsc.cdata
+        s2410_evtcdbenin_dados['nrinsc'] = read_from_xml(evtCdBenIn.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['cpfbenef'] = evtCdBenIn.beneficiario.cpfBenef.cdata
+        s2410_evtcdbenin_dados['cpfbenef'] = read_from_xml(evtCdBenIn.beneficiario.cpfBenef.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['matricula'] = evtCdBenIn.beneficiario.matricula.cdata
+        s2410_evtcdbenin_dados['matricula'] = read_from_xml(evtCdBenIn.beneficiario.matricula.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['cnpjorigem'] = evtCdBenIn.beneficiario.cnpjOrigem.cdata
+        s2410_evtcdbenin_dados['cnpjorigem'] = read_from_xml(evtCdBenIn.beneficiario.cnpjOrigem.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['cadini'] = evtCdBenIn.infoBenInicio.cadIni.cdata
+        s2410_evtcdbenin_dados['cadini'] = read_from_xml(evtCdBenIn.infoBenInicio.cadIni.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['nrbeneficio'] = evtCdBenIn.infoBenInicio.nrBeneficio.cdata
+        s2410_evtcdbenin_dados['nrbeneficio'] = read_from_xml(evtCdBenIn.infoBenInicio.nrBeneficio.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['dtinibeneficio'] = evtCdBenIn.infoBenInicio.dtIniBeneficio.cdata
+        s2410_evtcdbenin_dados['dtinibeneficio'] = read_from_xml(evtCdBenIn.infoBenInicio.dtIniBeneficio.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['tpbeneficio'] = evtCdBenIn.infoBenInicio.dadosBeneficio.tpBeneficio.cdata
+        s2410_evtcdbenin_dados['tpbeneficio'] = read_from_xml(evtCdBenIn.infoBenInicio.dadosBeneficio.tpBeneficio.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['vrbeneficio'] = evtCdBenIn.infoBenInicio.dadosBeneficio.vrBeneficio.cdata
+        s2410_evtcdbenin_dados['vrbeneficio'] = read_from_xml(evtCdBenIn.infoBenInicio.dadosBeneficio.vrBeneficio.cdata, 'esocial', 'N', 2)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['tpplanrp'] = evtCdBenIn.infoBenInicio.dadosBeneficio.tpPlanRP.cdata
+        s2410_evtcdbenin_dados['tpplanrp'] = read_from_xml(evtCdBenIn.infoBenInicio.dadosBeneficio.tpPlanRP.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['dsc'] = evtCdBenIn.infoBenInicio.dadosBeneficio.dsc.cdata
+        s2410_evtcdbenin_dados['dsc'] = read_from_xml(evtCdBenIn.infoBenInicio.dadosBeneficio.dsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['inddecjud'] = evtCdBenIn.infoBenInicio.dadosBeneficio.indDecJud.cdata
+        s2410_evtcdbenin_dados['inddecjud'] = read_from_xml(evtCdBenIn.infoBenInicio.dadosBeneficio.indDecJud.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2410_evtcdbenin_dados['indhomologtc'] = evtCdBenIn.infoBenInicio.dadosBeneficio.indHomologTC.cdata
+        s2410_evtcdbenin_dados['indhomologtc'] = read_from_xml(evtCdBenIn.infoBenInicio.dadosBeneficio.indHomologTC.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -165,7 +166,7 @@ def read_s2410_evtcdbenin_obj(request, doc, status, validar=False, arquivo=False
             s2410_infopenmorte_dados['s2410_evtcdbenin_id'] = s2410_evtcdbenin.id
 
             try:
-                s2410_infopenmorte_dados['tppenmorte'] = infoPenMorte.tpPenMorte.cdata
+                s2410_infopenmorte_dados['tppenmorte'] = read_from_xml(infoPenMorte.tpPenMorte.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
@@ -179,17 +180,17 @@ def read_s2410_evtcdbenin_obj(request, doc, status, validar=False, arquivo=False
                     s2410_instpenmorte_dados['s2410_infopenmorte_id'] = s2410_infopenmorte.id
 
                     try:
-                        s2410_instpenmorte_dados['cpfinst'] = instPenMorte.cpfInst.cdata
+                        s2410_instpenmorte_dados['cpfinst'] = read_from_xml(instPenMorte.cpfInst.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2410_instpenmorte_dados['dtinst'] = instPenMorte.dtInst.cdata
+                        s2410_instpenmorte_dados['dtinst'] = read_from_xml(instPenMorte.dtInst.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2410_instpenmorte_dados['intaposentado'] = instPenMorte.intAposentado.cdata
+                        s2410_instpenmorte_dados['intaposentado'] = read_from_xml(instPenMorte.intAposentado.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -203,12 +204,12 @@ def read_s2410_evtcdbenin_obj(request, doc, status, validar=False, arquivo=False
             s2410_homologtc_dados['s2410_evtcdbenin_id'] = s2410_evtcdbenin.id
 
             try:
-                s2410_homologtc_dados['dthomol'] = homologTC.dtHomol.cdata
+                s2410_homologtc_dados['dthomol'] = read_from_xml(homologTC.dtHomol.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2410_homologtc_dados['nratolegal'] = homologTC.nrAtoLegal.cdata
+                s2410_homologtc_dados['nratolegal'] = read_from_xml(homologTC.nrAtoLegal.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

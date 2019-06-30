@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.efdreinf.models import *
 from emensageriapro.r2030.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,52 +62,52 @@ def read_r2030_evtassocdesprec_obj(request, doc, status, validar=False, arquivo=
     evtAssocDespRec = doc.Reinf.evtAssocDespRec
 
     try:
-        r2030_evtassocdesprec_dados['indretif'] = evtAssocDespRec.ideEvento.indRetif.cdata
+        r2030_evtassocdesprec_dados['indretif'] = read_from_xml(evtAssocDespRec.ideEvento.indRetif.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2030_evtassocdesprec_dados['nrrecibo'] = evtAssocDespRec.ideEvento.nrRecibo.cdata
+        r2030_evtassocdesprec_dados['nrrecibo'] = read_from_xml(evtAssocDespRec.ideEvento.nrRecibo.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2030_evtassocdesprec_dados['perapur'] = evtAssocDespRec.ideEvento.perApur.cdata
+        r2030_evtassocdesprec_dados['perapur'] = read_from_xml(evtAssocDespRec.ideEvento.perApur.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2030_evtassocdesprec_dados['tpamb'] = evtAssocDespRec.ideEvento.tpAmb.cdata
+        r2030_evtassocdesprec_dados['tpamb'] = read_from_xml(evtAssocDespRec.ideEvento.tpAmb.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2030_evtassocdesprec_dados['procemi'] = evtAssocDespRec.ideEvento.procEmi.cdata
+        r2030_evtassocdesprec_dados['procemi'] = read_from_xml(evtAssocDespRec.ideEvento.procEmi.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2030_evtassocdesprec_dados['verproc'] = evtAssocDespRec.ideEvento.verProc.cdata
+        r2030_evtassocdesprec_dados['verproc'] = read_from_xml(evtAssocDespRec.ideEvento.verProc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2030_evtassocdesprec_dados['tpinsc'] = evtAssocDespRec.ideContri.tpInsc.cdata
+        r2030_evtassocdesprec_dados['tpinsc'] = read_from_xml(evtAssocDespRec.ideContri.tpInsc.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2030_evtassocdesprec_dados['nrinsc'] = evtAssocDespRec.ideContri.nrInsc.cdata
+        r2030_evtassocdesprec_dados['nrinsc'] = read_from_xml(evtAssocDespRec.ideContri.nrInsc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2030_evtassocdesprec_dados['tpinscestab'] = evtAssocDespRec.ideContri.ideEstab.tpInscEstab.cdata
+        r2030_evtassocdesprec_dados['tpinscestab'] = read_from_xml(evtAssocDespRec.ideContri.ideEstab.tpInscEstab.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2030_evtassocdesprec_dados['nrinscestab'] = evtAssocDespRec.ideContri.ideEstab.nrInscEstab.cdata
+        r2030_evtassocdesprec_dados['nrinscestab'] = read_from_xml(evtAssocDespRec.ideContri.ideEstab.nrInscEstab.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
@@ -120,22 +121,22 @@ def read_r2030_evtassocdesprec_obj(request, doc, status, validar=False, arquivo=
             r2030_recursosrec_dados['r2030_evtassocdesprec_id'] = r2030_evtassocdesprec.id
 
             try:
-                r2030_recursosrec_dados['cnpjorigrecurso'] = recursosRec.cnpjOrigRecurso.cdata
+                r2030_recursosrec_dados['cnpjorigrecurso'] = read_from_xml(recursosRec.cnpjOrigRecurso.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r2030_recursosrec_dados['vlrtotalrec'] = recursosRec.vlrTotalRec.cdata.replace('.', '').replace(',', '.')
+                r2030_recursosrec_dados['vlrtotalrec'] = read_from_xml(recursosRec.vlrTotalRec.cdata, 'efdreinf', 'N', 2)
             except AttributeError:
                 pass
 
             try:
-                r2030_recursosrec_dados['vlrtotalret'] = recursosRec.vlrTotalRet.cdata.replace('.', '').replace(',', '.')
+                r2030_recursosrec_dados['vlrtotalret'] = read_from_xml(recursosRec.vlrTotalRet.cdata, 'efdreinf', 'N', 2)
             except AttributeError:
                 pass
 
             try:
-                r2030_recursosrec_dados['vlrtotalnret'] = recursosRec.vlrTotalNRet.cdata.replace('.', '').replace(',', '.')
+                r2030_recursosrec_dados['vlrtotalnret'] = read_from_xml(recursosRec.vlrTotalNRet.cdata, 'efdreinf', 'N', 2)
             except AttributeError:
                 pass
 
@@ -149,22 +150,22 @@ def read_r2030_evtassocdesprec_obj(request, doc, status, validar=False, arquivo=
                     r2030_inforecurso_dados['r2030_recursosrec_id'] = r2030_recursosrec.id
 
                     try:
-                        r2030_inforecurso_dados['tprepasse'] = infoRecurso.tpRepasse.cdata
+                        r2030_inforecurso_dados['tprepasse'] = read_from_xml(infoRecurso.tpRepasse.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r2030_inforecurso_dados['descrecurso'] = infoRecurso.descRecurso.cdata
+                        r2030_inforecurso_dados['descrecurso'] = read_from_xml(infoRecurso.descRecurso.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r2030_inforecurso_dados['vlrbruto'] = infoRecurso.vlrBruto.cdata.replace('.', '').replace(',', '.')
+                        r2030_inforecurso_dados['vlrbruto'] = read_from_xml(infoRecurso.vlrBruto.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r2030_inforecurso_dados['vlrretapur'] = infoRecurso.vlrRetApur.cdata.replace('.', '').replace(',', '.')
+                        r2030_inforecurso_dados['vlrretapur'] = read_from_xml(infoRecurso.vlrRetApur.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -178,22 +179,22 @@ def read_r2030_evtassocdesprec_obj(request, doc, status, validar=False, arquivo=
                     r2030_infoproc_dados['r2030_recursosrec_id'] = r2030_recursosrec.id
 
                     try:
-                        r2030_infoproc_dados['tpproc'] = infoProc.tpProc.cdata
+                        r2030_infoproc_dados['tpproc'] = read_from_xml(infoProc.tpProc.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r2030_infoproc_dados['nrproc'] = infoProc.nrProc.cdata
+                        r2030_infoproc_dados['nrproc'] = read_from_xml(infoProc.nrProc.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r2030_infoproc_dados['codsusp'] = infoProc.codSusp.cdata
+                        r2030_infoproc_dados['codsusp'] = read_from_xml(infoProc.codSusp.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r2030_infoproc_dados['vlrnret'] = infoProc.vlrNRet.cdata.replace('.', '').replace(',', '.')
+                        r2030_infoproc_dados['vlrnret'] = read_from_xml(infoProc.vlrNRet.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 

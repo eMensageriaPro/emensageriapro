@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2240.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,67 +62,67 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
     evtExpRisco = doc.eSocial.evtExpRisco
 
     try:
-        s2240_evtexprisco_dados['indretif'] = evtExpRisco.ideEvento.indRetif.cdata
+        s2240_evtexprisco_dados['indretif'] = read_from_xml(evtExpRisco.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2240_evtexprisco_dados['nrrecibo'] = evtExpRisco.ideEvento.nrRecibo.cdata
+        s2240_evtexprisco_dados['nrrecibo'] = read_from_xml(evtExpRisco.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2240_evtexprisco_dados['tpamb'] = evtExpRisco.ideEvento.tpAmb.cdata
+        s2240_evtexprisco_dados['tpamb'] = read_from_xml(evtExpRisco.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2240_evtexprisco_dados['procemi'] = evtExpRisco.ideEvento.procEmi.cdata
+        s2240_evtexprisco_dados['procemi'] = read_from_xml(evtExpRisco.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2240_evtexprisco_dados['verproc'] = evtExpRisco.ideEvento.verProc.cdata
+        s2240_evtexprisco_dados['verproc'] = read_from_xml(evtExpRisco.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2240_evtexprisco_dados['tpinsc'] = evtExpRisco.ideEmpregador.tpInsc.cdata
+        s2240_evtexprisco_dados['tpinsc'] = read_from_xml(evtExpRisco.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2240_evtexprisco_dados['nrinsc'] = evtExpRisco.ideEmpregador.nrInsc.cdata
+        s2240_evtexprisco_dados['nrinsc'] = read_from_xml(evtExpRisco.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2240_evtexprisco_dados['cpftrab'] = evtExpRisco.ideVinculo.cpfTrab.cdata
+        s2240_evtexprisco_dados['cpftrab'] = read_from_xml(evtExpRisco.ideVinculo.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2240_evtexprisco_dados['nistrab'] = evtExpRisco.ideVinculo.nisTrab.cdata
+        s2240_evtexprisco_dados['nistrab'] = read_from_xml(evtExpRisco.ideVinculo.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2240_evtexprisco_dados['matricula'] = evtExpRisco.ideVinculo.matricula.cdata
+        s2240_evtexprisco_dados['matricula'] = read_from_xml(evtExpRisco.ideVinculo.matricula.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2240_evtexprisco_dados['codcateg'] = evtExpRisco.ideVinculo.codCateg.cdata
+        s2240_evtexprisco_dados['codcateg'] = read_from_xml(evtExpRisco.ideVinculo.codCateg.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2240_evtexprisco_dados['dtinicondicao'] = evtExpRisco.infoExpRisco.dtIniCondicao.cdata
+        s2240_evtexprisco_dados['dtinicondicao'] = read_from_xml(evtExpRisco.infoExpRisco.dtIniCondicao.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2240_evtexprisco_dados['dscativdes'] = evtExpRisco.infoExpRisco.infoAtiv.dscAtivDes.cdata
+        s2240_evtexprisco_dados['dscativdes'] = read_from_xml(evtExpRisco.infoExpRisco.infoAtiv.dscAtivDes.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -135,7 +136,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
             s2240_iniexprisco_infoamb_dados['s2240_evtexprisco_id'] = s2240_evtexprisco.id
 
             try:
-                s2240_iniexprisco_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                s2240_iniexprisco_infoamb_dados['codamb'] = read_from_xml(infoAmb.codAmb.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -149,7 +150,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
             s2240_iniexprisco_ativpericinsal_dados['s2240_evtexprisco_id'] = s2240_evtexprisco.id
 
             try:
-                s2240_iniexprisco_ativpericinsal_dados['codativ'] = ativPericInsal.codAtiv.cdata
+                s2240_iniexprisco_ativpericinsal_dados['codativ'] = read_from_xml(ativPericInsal.codAtiv.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -163,67 +164,67 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
             s2240_iniexprisco_fatrisco_dados['s2240_evtexprisco_id'] = s2240_evtexprisco.id
 
             try:
-                s2240_iniexprisco_fatrisco_dados['codfatris'] = fatRisco.codFatRis.cdata
+                s2240_iniexprisco_fatrisco_dados['codfatris'] = read_from_xml(fatRisco.codFatRis.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_fatrisco_dados['tpaval'] = fatRisco.tpAval.cdata
+                s2240_iniexprisco_fatrisco_dados['tpaval'] = read_from_xml(fatRisco.tpAval.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_fatrisco_dados['intconc'] = fatRisco.intConc.cdata
+                s2240_iniexprisco_fatrisco_dados['intconc'] = read_from_xml(fatRisco.intConc.cdata, 'esocial', 'N', 4)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_fatrisco_dados['limtol'] = fatRisco.limTol.cdata
+                s2240_iniexprisco_fatrisco_dados['limtol'] = read_from_xml(fatRisco.limTol.cdata, 'esocial', 'N', 4)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_fatrisco_dados['unmed'] = fatRisco.unMed.cdata
+                s2240_iniexprisco_fatrisco_dados['unmed'] = read_from_xml(fatRisco.unMed.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_fatrisco_dados['tecmedicao'] = fatRisco.tecMedicao.cdata
+                s2240_iniexprisco_fatrisco_dados['tecmedicao'] = read_from_xml(fatRisco.tecMedicao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_fatrisco_dados['insalubridade'] = fatRisco.insalubridade.cdata
+                s2240_iniexprisco_fatrisco_dados['insalubridade'] = read_from_xml(fatRisco.insalubridade.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_fatrisco_dados['periculosidade'] = fatRisco.periculosidade.cdata
+                s2240_iniexprisco_fatrisco_dados['periculosidade'] = read_from_xml(fatRisco.periculosidade.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_fatrisco_dados['aposentesp'] = fatRisco.aposentEsp.cdata
+                s2240_iniexprisco_fatrisco_dados['aposentesp'] = read_from_xml(fatRisco.aposentEsp.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_fatrisco_dados['dscfatrisc'] = fatRisco.dscFatRisc.cdata
+                s2240_iniexprisco_fatrisco_dados['dscfatrisc'] = read_from_xml(fatRisco.dscFatRisc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_fatrisco_dados['utilizepc'] = fatRisco.epcEpi.utilizEPC.cdata
+                s2240_iniexprisco_fatrisco_dados['utilizepc'] = read_from_xml(fatRisco.epcEpi.utilizEPC.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_fatrisco_dados['eficepc'] = fatRisco.epcEpi.eficEpc.cdata
+                s2240_iniexprisco_fatrisco_dados['eficepc'] = read_from_xml(fatRisco.epcEpi.eficEpc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_fatrisco_dados['utilizepi'] = fatRisco.epcEpi.utilizEPI.cdata
+                s2240_iniexprisco_fatrisco_dados['utilizepi'] = read_from_xml(fatRisco.epcEpi.utilizEPI.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
@@ -237,17 +238,17 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
                     s2240_iniexprisco_epc_dados['s2240_iniexprisco_fatrisco_id'] = s2240_iniexprisco_fatrisco.id
 
                     try:
-                        s2240_iniexprisco_epc_dados['codep'] = epc.codEP.cdata
+                        s2240_iniexprisco_epc_dados['codep'] = read_from_xml(epc.codEP.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2240_iniexprisco_epc_dados['dscepc'] = epc.dscEpc.cdata
+                        s2240_iniexprisco_epc_dados['dscepc'] = read_from_xml(epc.dscEpc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2240_iniexprisco_epc_dados['eficepc'] = epc.eficEpc.cdata
+                        s2240_iniexprisco_epc_dados['eficepc'] = read_from_xml(epc.eficEpc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -261,47 +262,47 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
                     s2240_iniexprisco_epi_dados['s2240_iniexprisco_fatrisco_id'] = s2240_iniexprisco_fatrisco.id
 
                     try:
-                        s2240_iniexprisco_epi_dados['caepi'] = epi.caEPI.cdata
+                        s2240_iniexprisco_epi_dados['caepi'] = read_from_xml(epi.caEPI.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2240_iniexprisco_epi_dados['dscepi'] = epi.dscEPI.cdata
+                        s2240_iniexprisco_epi_dados['dscepi'] = read_from_xml(epi.dscEPI.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2240_iniexprisco_epi_dados['eficepi'] = epi.eficEpi.cdata
+                        s2240_iniexprisco_epi_dados['eficepi'] = read_from_xml(epi.eficEpi.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2240_iniexprisco_epi_dados['medprotecao'] = epi.medProtecao.cdata
+                        s2240_iniexprisco_epi_dados['medprotecao'] = read_from_xml(epi.medProtecao.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2240_iniexprisco_epi_dados['condfuncto'] = epi.condFuncto.cdata
+                        s2240_iniexprisco_epi_dados['condfuncto'] = read_from_xml(epi.condFuncto.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2240_iniexprisco_epi_dados['usoinint'] = epi.usoInint.cdata
+                        s2240_iniexprisco_epi_dados['usoinint'] = read_from_xml(epi.usoInint.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2240_iniexprisco_epi_dados['przvalid'] = epi.przValid.cdata
+                        s2240_iniexprisco_epi_dados['przvalid'] = read_from_xml(epi.przValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2240_iniexprisco_epi_dados['periodictroca'] = epi.periodicTroca.cdata
+                        s2240_iniexprisco_epi_dados['periodictroca'] = read_from_xml(epi.periodicTroca.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2240_iniexprisco_epi_dados['higienizacao'] = epi.higienizacao.cdata
+                        s2240_iniexprisco_epi_dados['higienizacao'] = read_from_xml(epi.higienizacao.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -315,37 +316,37 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
             s2240_iniexprisco_respreg_dados['s2240_evtexprisco_id'] = s2240_evtexprisco.id
 
             try:
-                s2240_iniexprisco_respreg_dados['cpfresp'] = respReg.cpfResp.cdata
+                s2240_iniexprisco_respreg_dados['cpfresp'] = read_from_xml(respReg.cpfResp.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_respreg_dados['nisresp'] = respReg.nisResp.cdata
+                s2240_iniexprisco_respreg_dados['nisresp'] = read_from_xml(respReg.nisResp.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_respreg_dados['nmresp'] = respReg.nmResp.cdata
+                s2240_iniexprisco_respreg_dados['nmresp'] = read_from_xml(respReg.nmResp.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_respreg_dados['ideoc'] = respReg.ideOC.cdata
+                s2240_iniexprisco_respreg_dados['ideoc'] = read_from_xml(respReg.ideOC.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_respreg_dados['dscoc'] = respReg.dscOC.cdata
+                s2240_iniexprisco_respreg_dados['dscoc'] = read_from_xml(respReg.dscOC.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_respreg_dados['nroc'] = respReg.nrOC.cdata
+                s2240_iniexprisco_respreg_dados['nroc'] = read_from_xml(respReg.nrOC.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_respreg_dados['ufoc'] = respReg.ufOC.cdata
+                s2240_iniexprisco_respreg_dados['ufoc'] = read_from_xml(respReg.ufOC.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -359,17 +360,17 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
             s2240_iniexprisco_obs_dados['s2240_evtexprisco_id'] = s2240_evtexprisco.id
 
             try:
-                s2240_iniexprisco_obs_dados['meterg'] = obs.metErg.cdata
+                s2240_iniexprisco_obs_dados['meterg'] = read_from_xml(obs.metErg.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_obs_dados['obscompl'] = obs.obsCompl.cdata
+                s2240_iniexprisco_obs_dados['obscompl'] = read_from_xml(obs.obsCompl.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_iniexprisco_obs_dados['observacao'] = obs.observacao.cdata
+                s2240_iniexprisco_obs_dados['observacao'] = read_from_xml(obs.observacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -383,7 +384,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
             s2240_altexprisco_dados['s2240_evtexprisco_id'] = s2240_evtexprisco.id
 
             try:
-                s2240_altexprisco_dados['dtaltcondicao'] = altExpRisco.dtAltCondicao.cdata
+                s2240_altexprisco_dados['dtaltcondicao'] = read_from_xml(altExpRisco.dtAltCondicao.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
@@ -397,12 +398,12 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
                     s2240_altexprisco_infoamb_dados['s2240_altexprisco_id'] = s2240_altexprisco.id
 
                     try:
-                        s2240_altexprisco_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                        s2240_altexprisco_infoamb_dados['codamb'] = read_from_xml(infoAmb.codAmb.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2240_altexprisco_infoamb_dados['dscativdes'] = infoAmb.infoAtiv.dscAtivDes.cdata
+                        s2240_altexprisco_infoamb_dados['dscativdes'] = read_from_xml(infoAmb.infoAtiv.dscAtivDes.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -416,27 +417,27 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
                             s2240_altexprisco_fatrisco_dados['s2240_altexprisco_infoamb_id'] = s2240_altexprisco_infoamb.id
         
                             try:
-                                s2240_altexprisco_fatrisco_dados['codfatris'] = fatRisco.codFatRis.cdata
+                                s2240_altexprisco_fatrisco_dados['codfatris'] = read_from_xml(fatRisco.codFatRis.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2240_altexprisco_fatrisco_dados['intconc'] = fatRisco.intConc.cdata
+                                s2240_altexprisco_fatrisco_dados['intconc'] = read_from_xml(fatRisco.intConc.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2240_altexprisco_fatrisco_dados['tecmedicao'] = fatRisco.tecMedicao.cdata
+                                s2240_altexprisco_fatrisco_dados['tecmedicao'] = read_from_xml(fatRisco.tecMedicao.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2240_altexprisco_fatrisco_dados['utilizepc'] = fatRisco.epcEpi.utilizEPC.cdata
+                                s2240_altexprisco_fatrisco_dados['utilizepc'] = read_from_xml(fatRisco.epcEpi.utilizEPC.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s2240_altexprisco_fatrisco_dados['utilizepi'] = fatRisco.epcEpi.utilizEPI.cdata
+                                s2240_altexprisco_fatrisco_dados['utilizepi'] = read_from_xml(fatRisco.epcEpi.utilizEPI.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
 
@@ -450,12 +451,12 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
                                     s2240_altexprisco_epc_dados['s2240_altexprisco_fatrisco_id'] = s2240_altexprisco_fatrisco.id
                 
                                     try:
-                                        s2240_altexprisco_epc_dados['dscepc'] = epc.dscEpc.cdata
+                                        s2240_altexprisco_epc_dados['dscepc'] = read_from_xml(epc.dscEpc.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s2240_altexprisco_epc_dados['eficepc'] = epc.eficEpc.cdata
+                                        s2240_altexprisco_epc_dados['eficepc'] = read_from_xml(epc.eficEpc.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
         
@@ -469,37 +470,37 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
                                     s2240_altexprisco_epi_dados['s2240_altexprisco_fatrisco_id'] = s2240_altexprisco_fatrisco.id
                 
                                     try:
-                                        s2240_altexprisco_epi_dados['caepi'] = epi.caEPI.cdata
+                                        s2240_altexprisco_epi_dados['caepi'] = read_from_xml(epi.caEPI.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s2240_altexprisco_epi_dados['eficepi'] = epi.eficEpi.cdata
+                                        s2240_altexprisco_epi_dados['eficepi'] = read_from_xml(epi.eficEpi.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s2240_altexprisco_epi_dados['medprotecao'] = epi.medProtecao.cdata
+                                        s2240_altexprisco_epi_dados['medprotecao'] = read_from_xml(epi.medProtecao.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s2240_altexprisco_epi_dados['condfuncto'] = epi.condFuncto.cdata
+                                        s2240_altexprisco_epi_dados['condfuncto'] = read_from_xml(epi.condFuncto.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s2240_altexprisco_epi_dados['przvalid'] = epi.przValid.cdata
+                                        s2240_altexprisco_epi_dados['przvalid'] = read_from_xml(epi.przValid.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s2240_altexprisco_epi_dados['periodictroca'] = epi.periodicTroca.cdata
+                                        s2240_altexprisco_epi_dados['periodictroca'] = read_from_xml(epi.periodicTroca.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s2240_altexprisco_epi_dados['higienizacao'] = epi.higienizacao.cdata
+                                        s2240_altexprisco_epi_dados['higienizacao'] = read_from_xml(epi.higienizacao.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
         
@@ -513,7 +514,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
             s2240_fimexprisco_dados['s2240_evtexprisco_id'] = s2240_evtexprisco.id
 
             try:
-                s2240_fimexprisco_dados['dtfimcondicao'] = fimExpRisco.dtFimCondicao.cdata
+                s2240_fimexprisco_dados['dtfimcondicao'] = read_from_xml(fimExpRisco.dtFimCondicao.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
@@ -527,7 +528,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
                     s2240_fimexprisco_infoamb_dados['s2240_fimexprisco_id'] = s2240_fimexprisco.id
 
                     try:
-                        s2240_fimexprisco_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                        s2240_fimexprisco_infoamb_dados['codamb'] = read_from_xml(infoAmb.codAmb.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -541,27 +542,27 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
             s2240_fimexprisco_respreg_dados['s2240_evtexprisco_id'] = s2240_evtexprisco.id
 
             try:
-                s2240_fimexprisco_respreg_dados['dtini'] = respReg.dtIni.cdata
+                s2240_fimexprisco_respreg_dados['dtini'] = read_from_xml(respReg.dtIni.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_fimexprisco_respreg_dados['dtfim'] = respReg.dtFim.cdata
+                s2240_fimexprisco_respreg_dados['dtfim'] = read_from_xml(respReg.dtFim.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_fimexprisco_respreg_dados['nisresp'] = respReg.nisResp.cdata
+                s2240_fimexprisco_respreg_dados['nisresp'] = read_from_xml(respReg.nisResp.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_fimexprisco_respreg_dados['nroc'] = respReg.nrOc.cdata
+                s2240_fimexprisco_respreg_dados['nroc'] = read_from_xml(respReg.nrOc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2240_fimexprisco_respreg_dados['ufoc'] = respReg.ufOC.cdata
+                s2240_fimexprisco_respreg_dados['ufoc'] = read_from_xml(respReg.ufOC.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

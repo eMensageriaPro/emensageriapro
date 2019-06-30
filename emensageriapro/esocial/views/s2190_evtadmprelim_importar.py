@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2190.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,42 +62,42 @@ def read_s2190_evtadmprelim_obj(request, doc, status, validar=False, arquivo=Fal
     evtAdmPrelim = doc.eSocial.evtAdmPrelim
 
     try:
-        s2190_evtadmprelim_dados['tpamb'] = evtAdmPrelim.ideEvento.tpAmb.cdata
+        s2190_evtadmprelim_dados['tpamb'] = read_from_xml(evtAdmPrelim.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2190_evtadmprelim_dados['procemi'] = evtAdmPrelim.ideEvento.procEmi.cdata
+        s2190_evtadmprelim_dados['procemi'] = read_from_xml(evtAdmPrelim.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2190_evtadmprelim_dados['verproc'] = evtAdmPrelim.ideEvento.verProc.cdata
+        s2190_evtadmprelim_dados['verproc'] = read_from_xml(evtAdmPrelim.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2190_evtadmprelim_dados['tpinsc'] = evtAdmPrelim.ideEmpregador.tpInsc.cdata
+        s2190_evtadmprelim_dados['tpinsc'] = read_from_xml(evtAdmPrelim.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2190_evtadmprelim_dados['nrinsc'] = evtAdmPrelim.ideEmpregador.nrInsc.cdata
+        s2190_evtadmprelim_dados['nrinsc'] = read_from_xml(evtAdmPrelim.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2190_evtadmprelim_dados['cpftrab'] = evtAdmPrelim.infoRegPrelim.cpfTrab.cdata
+        s2190_evtadmprelim_dados['cpftrab'] = read_from_xml(evtAdmPrelim.infoRegPrelim.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2190_evtadmprelim_dados['dtnascto'] = evtAdmPrelim.infoRegPrelim.dtNascto.cdata
+        s2190_evtadmprelim_dados['dtnascto'] = read_from_xml(evtAdmPrelim.infoRegPrelim.dtNascto.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2190_evtadmprelim_dados['dtadm'] = evtAdmPrelim.infoRegPrelim.dtAdm.cdata
+        s2190_evtadmprelim_dados['dtadm'] = read_from_xml(evtAdmPrelim.infoRegPrelim.dtAdm.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 

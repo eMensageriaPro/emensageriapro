@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s5012.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,27 +62,27 @@ def read_s5012_evtirrf_obj(request, doc, status, validar=False, arquivo=False):
     evtIrrf = doc.eSocial.evtIrrf
 
     try:
-        s5012_evtirrf_dados['perapur'] = evtIrrf.ideEvento.perApur.cdata
+        s5012_evtirrf_dados['perapur'] = read_from_xml(evtIrrf.ideEvento.perApur.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s5012_evtirrf_dados['tpinsc'] = evtIrrf.ideEmpregador.tpInsc.cdata
+        s5012_evtirrf_dados['tpinsc'] = read_from_xml(evtIrrf.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s5012_evtirrf_dados['nrinsc'] = evtIrrf.ideEmpregador.nrInsc.cdata
+        s5012_evtirrf_dados['nrinsc'] = read_from_xml(evtIrrf.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s5012_evtirrf_dados['nrrecarqbase'] = evtIrrf.infoIRRF.nrRecArqBase.cdata
+        s5012_evtirrf_dados['nrrecarqbase'] = read_from_xml(evtIrrf.infoIRRF.nrRecArqBase.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s5012_evtirrf_dados['indexistinfo'] = evtIrrf.infoIRRF.indExistInfo.cdata
+        s5012_evtirrf_dados['indexistinfo'] = read_from_xml(evtIrrf.infoIRRF.indExistInfo.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
@@ -95,12 +96,12 @@ def read_s5012_evtirrf_obj(request, doc, status, validar=False, arquivo=False):
             s5012_infocrcontrib_dados['s5012_evtirrf_id'] = s5012_evtirrf.id
 
             try:
-                s5012_infocrcontrib_dados['tpcr'] = infoCRContrib.tpCR.cdata
+                s5012_infocrcontrib_dados['tpcr'] = read_from_xml(infoCRContrib.tpCR.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s5012_infocrcontrib_dados['vrcr'] = infoCRContrib.vrCR.cdata
+                s5012_infocrcontrib_dados['vrcr'] = read_from_xml(infoCRContrib.vrCR.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 

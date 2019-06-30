@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2245.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,97 +62,97 @@ def read_s2245_evttreicap_obj(request, doc, status, validar=False, arquivo=False
     evtTreiCap = doc.eSocial.evtTreiCap
 
     try:
-        s2245_evttreicap_dados['indretif'] = evtTreiCap.ideEvento.indRetif.cdata
+        s2245_evttreicap_dados['indretif'] = read_from_xml(evtTreiCap.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['nrrecibo'] = evtTreiCap.ideEvento.nrRecibo.cdata
+        s2245_evttreicap_dados['nrrecibo'] = read_from_xml(evtTreiCap.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['tpamb'] = evtTreiCap.ideEvento.tpAmb.cdata
+        s2245_evttreicap_dados['tpamb'] = read_from_xml(evtTreiCap.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['procemi'] = evtTreiCap.ideEvento.procEmi.cdata
+        s2245_evttreicap_dados['procemi'] = read_from_xml(evtTreiCap.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['verproc'] = evtTreiCap.ideEvento.verProc.cdata
+        s2245_evttreicap_dados['verproc'] = read_from_xml(evtTreiCap.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['tpinsc'] = evtTreiCap.ideEmpregador.tpInsc.cdata
+        s2245_evttreicap_dados['tpinsc'] = read_from_xml(evtTreiCap.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['nrinsc'] = evtTreiCap.ideEmpregador.nrInsc.cdata
+        s2245_evttreicap_dados['nrinsc'] = read_from_xml(evtTreiCap.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['cpftrab'] = evtTreiCap.ideVinculo.cpfTrab.cdata
+        s2245_evttreicap_dados['cpftrab'] = read_from_xml(evtTreiCap.ideVinculo.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['nistrab'] = evtTreiCap.ideVinculo.nisTrab.cdata
+        s2245_evttreicap_dados['nistrab'] = read_from_xml(evtTreiCap.ideVinculo.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['matricula'] = evtTreiCap.ideVinculo.matricula.cdata
+        s2245_evttreicap_dados['matricula'] = read_from_xml(evtTreiCap.ideVinculo.matricula.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['codcateg'] = evtTreiCap.ideVinculo.codCateg.cdata
+        s2245_evttreicap_dados['codcateg'] = read_from_xml(evtTreiCap.ideVinculo.codCateg.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['codtreicap'] = evtTreiCap.treiCap.codTreiCap.cdata
+        s2245_evttreicap_dados['codtreicap'] = read_from_xml(evtTreiCap.treiCap.codTreiCap.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['obstreicap'] = evtTreiCap.treiCap.obsTreiCap.cdata
+        s2245_evttreicap_dados['obstreicap'] = read_from_xml(evtTreiCap.treiCap.obsTreiCap.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['observacao'] = evtTreiCap.treiCap.observacao.cdata
+        s2245_evttreicap_dados['observacao'] = read_from_xml(evtTreiCap.treiCap.observacao.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['dttreicap'] = evtTreiCap.treiCap.infoComplem.dtTreiCap.cdata
+        s2245_evttreicap_dados['dttreicap'] = read_from_xml(evtTreiCap.treiCap.infoComplem.dtTreiCap.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['durtreicap'] = evtTreiCap.treiCap.infoComplem.durTreiCap.cdata
+        s2245_evttreicap_dados['durtreicap'] = read_from_xml(evtTreiCap.treiCap.infoComplem.durTreiCap.cdata, 'esocial', 'N', 2)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['modtreicap'] = evtTreiCap.treiCap.infoComplem.modTreiCap.cdata
+        s2245_evttreicap_dados['modtreicap'] = read_from_xml(evtTreiCap.treiCap.infoComplem.modTreiCap.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['tptreicap'] = evtTreiCap.treiCap.infoComplem.tpTreiCap.cdata
+        s2245_evttreicap_dados['tptreicap'] = read_from_xml(evtTreiCap.treiCap.infoComplem.tpTreiCap.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2245_evttreicap_dados['indtreinant'] = evtTreiCap.treiCap.infoComplem.indTreinAnt.cdata
+        s2245_evttreicap_dados['indtreinant'] = read_from_xml(evtTreiCap.treiCap.infoComplem.indTreinAnt.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -165,32 +166,32 @@ def read_s2245_evttreicap_obj(request, doc, status, validar=False, arquivo=False
             s2245_ideprofresp_dados['s2245_evttreicap_id'] = s2245_evttreicap.id
 
             try:
-                s2245_ideprofresp_dados['cpfprof'] = ideProfResp.cpfProf.cdata
+                s2245_ideprofresp_dados['cpfprof'] = read_from_xml(ideProfResp.cpfProf.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2245_ideprofresp_dados['nmprof'] = ideProfResp.nmProf.cdata
+                s2245_ideprofresp_dados['nmprof'] = read_from_xml(ideProfResp.nmProf.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2245_ideprofresp_dados['tpprof'] = ideProfResp.tpProf.cdata
+                s2245_ideprofresp_dados['tpprof'] = read_from_xml(ideProfResp.tpProf.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2245_ideprofresp_dados['formprof'] = ideProfResp.formProf.cdata
+                s2245_ideprofresp_dados['formprof'] = read_from_xml(ideProfResp.formProf.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2245_ideprofresp_dados['codcbo'] = ideProfResp.codCBO.cdata
+                s2245_ideprofresp_dados['codcbo'] = read_from_xml(ideProfResp.codCBO.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2245_ideprofresp_dados['nacprof'] = ideProfResp.nacProf.cdata
+                s2245_ideprofresp_dados['nacprof'] = read_from_xml(ideProfResp.nacProf.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 

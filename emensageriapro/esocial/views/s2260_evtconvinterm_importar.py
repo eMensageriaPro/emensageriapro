@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2260.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,87 +62,87 @@ def read_s2260_evtconvinterm_obj(request, doc, status, validar=False, arquivo=Fa
     evtConvInterm = doc.eSocial.evtConvInterm
 
     try:
-        s2260_evtconvinterm_dados['indretif'] = evtConvInterm.ideEvento.indRetif.cdata
+        s2260_evtconvinterm_dados['indretif'] = read_from_xml(evtConvInterm.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2260_evtconvinterm_dados['nrrecibo'] = evtConvInterm.ideEvento.nrRecibo.cdata
+        s2260_evtconvinterm_dados['nrrecibo'] = read_from_xml(evtConvInterm.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2260_evtconvinterm_dados['tpamb'] = evtConvInterm.ideEvento.tpAmb.cdata
+        s2260_evtconvinterm_dados['tpamb'] = read_from_xml(evtConvInterm.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2260_evtconvinterm_dados['procemi'] = evtConvInterm.ideEvento.procEmi.cdata
+        s2260_evtconvinterm_dados['procemi'] = read_from_xml(evtConvInterm.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2260_evtconvinterm_dados['verproc'] = evtConvInterm.ideEvento.verProc.cdata
+        s2260_evtconvinterm_dados['verproc'] = read_from_xml(evtConvInterm.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2260_evtconvinterm_dados['tpinsc'] = evtConvInterm.ideEmpregador.tpInsc.cdata
+        s2260_evtconvinterm_dados['tpinsc'] = read_from_xml(evtConvInterm.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2260_evtconvinterm_dados['nrinsc'] = evtConvInterm.ideEmpregador.nrInsc.cdata
+        s2260_evtconvinterm_dados['nrinsc'] = read_from_xml(evtConvInterm.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2260_evtconvinterm_dados['cpftrab'] = evtConvInterm.ideVinculo.cpfTrab.cdata
+        s2260_evtconvinterm_dados['cpftrab'] = read_from_xml(evtConvInterm.ideVinculo.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2260_evtconvinterm_dados['nistrab'] = evtConvInterm.ideVinculo.nisTrab.cdata
+        s2260_evtconvinterm_dados['nistrab'] = read_from_xml(evtConvInterm.ideVinculo.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2260_evtconvinterm_dados['matricula'] = evtConvInterm.ideVinculo.matricula.cdata
+        s2260_evtconvinterm_dados['matricula'] = read_from_xml(evtConvInterm.ideVinculo.matricula.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2260_evtconvinterm_dados['codconv'] = evtConvInterm.infoConvInterm.codConv.cdata
+        s2260_evtconvinterm_dados['codconv'] = read_from_xml(evtConvInterm.infoConvInterm.codConv.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2260_evtconvinterm_dados['dtinicio'] = evtConvInterm.infoConvInterm.dtInicio.cdata
+        s2260_evtconvinterm_dados['dtinicio'] = read_from_xml(evtConvInterm.infoConvInterm.dtInicio.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2260_evtconvinterm_dados['dtfim'] = evtConvInterm.infoConvInterm.dtFim.cdata
+        s2260_evtconvinterm_dados['dtfim'] = read_from_xml(evtConvInterm.infoConvInterm.dtFim.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2260_evtconvinterm_dados['dtprevpgto'] = evtConvInterm.infoConvInterm.dtPrevPgto.cdata
+        s2260_evtconvinterm_dados['dtprevpgto'] = read_from_xml(evtConvInterm.infoConvInterm.dtPrevPgto.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2260_evtconvinterm_dados['codhorcontrat'] = evtConvInterm.infoConvInterm.jornada.codHorContrat.cdata
+        s2260_evtconvinterm_dados['codhorcontrat'] = read_from_xml(evtConvInterm.infoConvInterm.jornada.codHorContrat.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2260_evtconvinterm_dados['dscjornada'] = evtConvInterm.infoConvInterm.jornada.dscJornada.cdata
+        s2260_evtconvinterm_dados['dscjornada'] = read_from_xml(evtConvInterm.infoConvInterm.jornada.dscJornada.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2260_evtconvinterm_dados['indlocal'] = evtConvInterm.infoConvInterm.localTrab.indLocal.cdata
+        s2260_evtconvinterm_dados['indlocal'] = read_from_xml(evtConvInterm.infoConvInterm.localTrab.indLocal.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
@@ -155,42 +156,42 @@ def read_s2260_evtconvinterm_obj(request, doc, status, validar=False, arquivo=Fa
             s2260_localtrabinterm_dados['s2260_evtconvinterm_id'] = s2260_evtconvinterm.id
 
             try:
-                s2260_localtrabinterm_dados['tplograd'] = localTrabInterm.tpLograd.cdata
+                s2260_localtrabinterm_dados['tplograd'] = read_from_xml(localTrabInterm.tpLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2260_localtrabinterm_dados['dsclograd'] = localTrabInterm.dscLograd.cdata
+                s2260_localtrabinterm_dados['dsclograd'] = read_from_xml(localTrabInterm.dscLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2260_localtrabinterm_dados['nrlograd'] = localTrabInterm.nrLograd.cdata
+                s2260_localtrabinterm_dados['nrlograd'] = read_from_xml(localTrabInterm.nrLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2260_localtrabinterm_dados['complem'] = localTrabInterm.complem.cdata
+                s2260_localtrabinterm_dados['complem'] = read_from_xml(localTrabInterm.complem.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2260_localtrabinterm_dados['bairro'] = localTrabInterm.bairro.cdata
+                s2260_localtrabinterm_dados['bairro'] = read_from_xml(localTrabInterm.bairro.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2260_localtrabinterm_dados['cep'] = localTrabInterm.cep.cdata
+                s2260_localtrabinterm_dados['cep'] = read_from_xml(localTrabInterm.cep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2260_localtrabinterm_dados['codmunic'] = localTrabInterm.codMunic.cdata
+                s2260_localtrabinterm_dados['codmunic'] = read_from_xml(localTrabInterm.codMunic.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2260_localtrabinterm_dados['uf'] = localTrabInterm.uf.cdata
+                s2260_localtrabinterm_dados['uf'] = read_from_xml(localTrabInterm.uf.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

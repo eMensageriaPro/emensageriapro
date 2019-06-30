@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2298.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,82 +62,82 @@ def read_s2298_evtreintegr_obj(request, doc, status, validar=False, arquivo=Fals
     evtReintegr = doc.eSocial.evtReintegr
 
     try:
-        s2298_evtreintegr_dados['indretif'] = evtReintegr.ideEvento.indRetif.cdata
+        s2298_evtreintegr_dados['indretif'] = read_from_xml(evtReintegr.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2298_evtreintegr_dados['nrrecibo'] = evtReintegr.ideEvento.nrRecibo.cdata
+        s2298_evtreintegr_dados['nrrecibo'] = read_from_xml(evtReintegr.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2298_evtreintegr_dados['tpamb'] = evtReintegr.ideEvento.tpAmb.cdata
+        s2298_evtreintegr_dados['tpamb'] = read_from_xml(evtReintegr.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2298_evtreintegr_dados['procemi'] = evtReintegr.ideEvento.procEmi.cdata
+        s2298_evtreintegr_dados['procemi'] = read_from_xml(evtReintegr.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2298_evtreintegr_dados['verproc'] = evtReintegr.ideEvento.verProc.cdata
+        s2298_evtreintegr_dados['verproc'] = read_from_xml(evtReintegr.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2298_evtreintegr_dados['tpinsc'] = evtReintegr.ideEmpregador.tpInsc.cdata
+        s2298_evtreintegr_dados['tpinsc'] = read_from_xml(evtReintegr.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2298_evtreintegr_dados['nrinsc'] = evtReintegr.ideEmpregador.nrInsc.cdata
+        s2298_evtreintegr_dados['nrinsc'] = read_from_xml(evtReintegr.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2298_evtreintegr_dados['cpftrab'] = evtReintegr.ideVinculo.cpfTrab.cdata
+        s2298_evtreintegr_dados['cpftrab'] = read_from_xml(evtReintegr.ideVinculo.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2298_evtreintegr_dados['nistrab'] = evtReintegr.ideVinculo.nisTrab.cdata
+        s2298_evtreintegr_dados['nistrab'] = read_from_xml(evtReintegr.ideVinculo.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2298_evtreintegr_dados['matricula'] = evtReintegr.ideVinculo.matricula.cdata
+        s2298_evtreintegr_dados['matricula'] = read_from_xml(evtReintegr.ideVinculo.matricula.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2298_evtreintegr_dados['tpreint'] = evtReintegr.infoReintegr.tpReint.cdata
+        s2298_evtreintegr_dados['tpreint'] = read_from_xml(evtReintegr.infoReintegr.tpReint.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2298_evtreintegr_dados['nrprocjud'] = evtReintegr.infoReintegr.nrProcJud.cdata
+        s2298_evtreintegr_dados['nrprocjud'] = read_from_xml(evtReintegr.infoReintegr.nrProcJud.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2298_evtreintegr_dados['nrleianistia'] = evtReintegr.infoReintegr.nrLeiAnistia.cdata
+        s2298_evtreintegr_dados['nrleianistia'] = read_from_xml(evtReintegr.infoReintegr.nrLeiAnistia.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2298_evtreintegr_dados['dtefetretorno'] = evtReintegr.infoReintegr.dtEfetRetorno.cdata
+        s2298_evtreintegr_dados['dtefetretorno'] = read_from_xml(evtReintegr.infoReintegr.dtEfetRetorno.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2298_evtreintegr_dados['dtefeito'] = evtReintegr.infoReintegr.dtEfeito.cdata
+        s2298_evtreintegr_dados['dtefeito'] = read_from_xml(evtReintegr.infoReintegr.dtEfeito.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2298_evtreintegr_dados['indpagtojuizo'] = evtReintegr.infoReintegr.indPagtoJuizo.cdata
+        s2298_evtreintegr_dados['indpagtojuizo'] = read_from_xml(evtReintegr.infoReintegr.indPagtoJuizo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 

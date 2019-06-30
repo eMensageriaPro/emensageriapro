@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1010.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -65,27 +66,27 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False, arquivo=Fa
     elif 'exclusao' in dir(evtTabRubrica.infoRubrica): s1010_evttabrubrica_dados['operacao'] = 3
 
     try:
-        s1010_evttabrubrica_dados['tpamb'] = evtTabRubrica.ideEvento.tpAmb.cdata
+        s1010_evttabrubrica_dados['tpamb'] = read_from_xml(evtTabRubrica.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1010_evttabrubrica_dados['procemi'] = evtTabRubrica.ideEvento.procEmi.cdata
+        s1010_evttabrubrica_dados['procemi'] = read_from_xml(evtTabRubrica.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1010_evttabrubrica_dados['verproc'] = evtTabRubrica.ideEvento.verProc.cdata
+        s1010_evttabrubrica_dados['verproc'] = read_from_xml(evtTabRubrica.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1010_evttabrubrica_dados['tpinsc'] = evtTabRubrica.ideEmpregador.tpInsc.cdata
+        s1010_evttabrubrica_dados['tpinsc'] = read_from_xml(evtTabRubrica.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1010_evttabrubrica_dados['nrinsc'] = evtTabRubrica.ideEmpregador.nrInsc.cdata
+        s1010_evttabrubrica_dados['nrinsc'] = read_from_xml(evtTabRubrica.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -99,72 +100,72 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False, arquivo=Fa
             s1010_inclusao_dados['s1010_evttabrubrica_id'] = s1010_evttabrubrica.id
 
             try:
-                s1010_inclusao_dados['codrubr'] = inclusao.ideRubrica.codRubr.cdata
+                s1010_inclusao_dados['codrubr'] = read_from_xml(inclusao.ideRubrica.codRubr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_inclusao_dados['idetabrubr'] = inclusao.ideRubrica.ideTabRubr.cdata
+                s1010_inclusao_dados['idetabrubr'] = read_from_xml(inclusao.ideRubrica.ideTabRubr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_inclusao_dados['inivalid'] = inclusao.ideRubrica.iniValid.cdata
+                s1010_inclusao_dados['inivalid'] = read_from_xml(inclusao.ideRubrica.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_inclusao_dados['fimvalid'] = inclusao.ideRubrica.fimValid.cdata
+                s1010_inclusao_dados['fimvalid'] = read_from_xml(inclusao.ideRubrica.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_inclusao_dados['dscrubr'] = inclusao.dadosRubrica.dscRubr.cdata
+                s1010_inclusao_dados['dscrubr'] = read_from_xml(inclusao.dadosRubrica.dscRubr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_inclusao_dados['natrubr'] = inclusao.dadosRubrica.natRubr.cdata
+                s1010_inclusao_dados['natrubr'] = read_from_xml(inclusao.dadosRubrica.natRubr.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_inclusao_dados['tprubr'] = inclusao.dadosRubrica.tpRubr.cdata
+                s1010_inclusao_dados['tprubr'] = read_from_xml(inclusao.dadosRubrica.tpRubr.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_inclusao_dados['codinccp'] = inclusao.dadosRubrica.codIncCP.cdata
+                s1010_inclusao_dados['codinccp'] = read_from_xml(inclusao.dadosRubrica.codIncCP.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_inclusao_dados['codincirrf'] = inclusao.dadosRubrica.codIncIRRF.cdata
+                s1010_inclusao_dados['codincirrf'] = read_from_xml(inclusao.dadosRubrica.codIncIRRF.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_inclusao_dados['codincfgts'] = inclusao.dadosRubrica.codIncFGTS.cdata
+                s1010_inclusao_dados['codincfgts'] = read_from_xml(inclusao.dadosRubrica.codIncFGTS.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_inclusao_dados['codincsind'] = inclusao.dadosRubrica.codIncSIND.cdata
+                s1010_inclusao_dados['codincsind'] = read_from_xml(inclusao.dadosRubrica.codIncSIND.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_inclusao_dados['codinccprp'] = inclusao.dadosRubrica.codIncCPRP.cdata
+                s1010_inclusao_dados['codinccprp'] = read_from_xml(inclusao.dadosRubrica.codIncCPRP.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_inclusao_dados['tetoremun'] = inclusao.dadosRubrica.tetoRemun.cdata
+                s1010_inclusao_dados['tetoremun'] = read_from_xml(inclusao.dadosRubrica.tetoRemun.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_inclusao_dados['observacao'] = inclusao.dadosRubrica.observacao.cdata
+                s1010_inclusao_dados['observacao'] = read_from_xml(inclusao.dadosRubrica.observacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -178,22 +179,22 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False, arquivo=Fa
                     s1010_inclusao_ideprocessocp_dados['s1010_inclusao_id'] = s1010_inclusao.id
 
                     try:
-                        s1010_inclusao_ideprocessocp_dados['tpproc'] = ideProcessoCP.tpProc.cdata
+                        s1010_inclusao_ideprocessocp_dados['tpproc'] = read_from_xml(ideProcessoCP.tpProc.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1010_inclusao_ideprocessocp_dados['nrproc'] = ideProcessoCP.nrProc.cdata
+                        s1010_inclusao_ideprocessocp_dados['nrproc'] = read_from_xml(ideProcessoCP.nrProc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1010_inclusao_ideprocessocp_dados['extdecisao'] = ideProcessoCP.extDecisao.cdata
+                        s1010_inclusao_ideprocessocp_dados['extdecisao'] = read_from_xml(ideProcessoCP.extDecisao.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1010_inclusao_ideprocessocp_dados['codsusp'] = ideProcessoCP.codSusp.cdata
+                        s1010_inclusao_ideprocessocp_dados['codsusp'] = read_from_xml(ideProcessoCP.codSusp.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -207,12 +208,12 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False, arquivo=Fa
                     s1010_inclusao_ideprocessoirrf_dados['s1010_inclusao_id'] = s1010_inclusao.id
 
                     try:
-                        s1010_inclusao_ideprocessoirrf_dados['nrproc'] = ideProcessoIRRF.nrProc.cdata
+                        s1010_inclusao_ideprocessoirrf_dados['nrproc'] = read_from_xml(ideProcessoIRRF.nrProc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1010_inclusao_ideprocessoirrf_dados['codsusp'] = ideProcessoIRRF.codSusp.cdata
+                        s1010_inclusao_ideprocessoirrf_dados['codsusp'] = read_from_xml(ideProcessoIRRF.codSusp.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -226,7 +227,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False, arquivo=Fa
                     s1010_inclusao_ideprocessofgts_dados['s1010_inclusao_id'] = s1010_inclusao.id
 
                     try:
-                        s1010_inclusao_ideprocessofgts_dados['nrproc'] = ideProcessoFGTS.nrProc.cdata
+                        s1010_inclusao_ideprocessofgts_dados['nrproc'] = read_from_xml(ideProcessoFGTS.nrProc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -240,7 +241,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False, arquivo=Fa
                     s1010_inclusao_ideprocessosind_dados['s1010_inclusao_id'] = s1010_inclusao.id
 
                     try:
-                        s1010_inclusao_ideprocessosind_dados['nrproc'] = ideProcessoSIND.nrProc.cdata
+                        s1010_inclusao_ideprocessosind_dados['nrproc'] = read_from_xml(ideProcessoSIND.nrProc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -254,17 +255,17 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False, arquivo=Fa
                     s1010_inclusao_ideprocessocprp_dados['s1010_inclusao_id'] = s1010_inclusao.id
 
                     try:
-                        s1010_inclusao_ideprocessocprp_dados['tpproc'] = ideProcessoCPRP.tpProc.cdata
+                        s1010_inclusao_ideprocessocprp_dados['tpproc'] = read_from_xml(ideProcessoCPRP.tpProc.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1010_inclusao_ideprocessocprp_dados['nrproc'] = ideProcessoCPRP.nrProc.cdata
+                        s1010_inclusao_ideprocessocprp_dados['nrproc'] = read_from_xml(ideProcessoCPRP.nrProc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1010_inclusao_ideprocessocprp_dados['extdecisao'] = ideProcessoCPRP.extDecisao.cdata
+                        s1010_inclusao_ideprocessocprp_dados['extdecisao'] = read_from_xml(ideProcessoCPRP.extDecisao.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -278,72 +279,72 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False, arquivo=Fa
             s1010_alteracao_dados['s1010_evttabrubrica_id'] = s1010_evttabrubrica.id
 
             try:
-                s1010_alteracao_dados['codrubr'] = alteracao.ideRubrica.codRubr.cdata
+                s1010_alteracao_dados['codrubr'] = read_from_xml(alteracao.ideRubrica.codRubr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_alteracao_dados['idetabrubr'] = alteracao.ideRubrica.ideTabRubr.cdata
+                s1010_alteracao_dados['idetabrubr'] = read_from_xml(alteracao.ideRubrica.ideTabRubr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_alteracao_dados['inivalid'] = alteracao.ideRubrica.iniValid.cdata
+                s1010_alteracao_dados['inivalid'] = read_from_xml(alteracao.ideRubrica.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_alteracao_dados['fimvalid'] = alteracao.ideRubrica.fimValid.cdata
+                s1010_alteracao_dados['fimvalid'] = read_from_xml(alteracao.ideRubrica.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_alteracao_dados['dscrubr'] = alteracao.dadosRubrica.dscRubr.cdata
+                s1010_alteracao_dados['dscrubr'] = read_from_xml(alteracao.dadosRubrica.dscRubr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_alteracao_dados['natrubr'] = alteracao.dadosRubrica.natRubr.cdata
+                s1010_alteracao_dados['natrubr'] = read_from_xml(alteracao.dadosRubrica.natRubr.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_alteracao_dados['tprubr'] = alteracao.dadosRubrica.tpRubr.cdata
+                s1010_alteracao_dados['tprubr'] = read_from_xml(alteracao.dadosRubrica.tpRubr.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_alteracao_dados['codinccp'] = alteracao.dadosRubrica.codIncCP.cdata
+                s1010_alteracao_dados['codinccp'] = read_from_xml(alteracao.dadosRubrica.codIncCP.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_alteracao_dados['codincirrf'] = alteracao.dadosRubrica.codIncIRRF.cdata
+                s1010_alteracao_dados['codincirrf'] = read_from_xml(alteracao.dadosRubrica.codIncIRRF.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_alteracao_dados['codincfgts'] = alteracao.dadosRubrica.codIncFGTS.cdata
+                s1010_alteracao_dados['codincfgts'] = read_from_xml(alteracao.dadosRubrica.codIncFGTS.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_alteracao_dados['codincsind'] = alteracao.dadosRubrica.codIncSIND.cdata
+                s1010_alteracao_dados['codincsind'] = read_from_xml(alteracao.dadosRubrica.codIncSIND.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_alteracao_dados['codinccprp'] = alteracao.dadosRubrica.codIncCPRP.cdata
+                s1010_alteracao_dados['codinccprp'] = read_from_xml(alteracao.dadosRubrica.codIncCPRP.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_alteracao_dados['tetoremun'] = alteracao.dadosRubrica.tetoRemun.cdata
+                s1010_alteracao_dados['tetoremun'] = read_from_xml(alteracao.dadosRubrica.tetoRemun.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_alteracao_dados['observacao'] = alteracao.dadosRubrica.observacao.cdata
+                s1010_alteracao_dados['observacao'] = read_from_xml(alteracao.dadosRubrica.observacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -357,22 +358,22 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False, arquivo=Fa
                     s1010_alteracao_ideprocessocp_dados['s1010_alteracao_id'] = s1010_alteracao.id
 
                     try:
-                        s1010_alteracao_ideprocessocp_dados['tpproc'] = ideProcessoCP.tpProc.cdata
+                        s1010_alteracao_ideprocessocp_dados['tpproc'] = read_from_xml(ideProcessoCP.tpProc.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1010_alteracao_ideprocessocp_dados['nrproc'] = ideProcessoCP.nrProc.cdata
+                        s1010_alteracao_ideprocessocp_dados['nrproc'] = read_from_xml(ideProcessoCP.nrProc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1010_alteracao_ideprocessocp_dados['extdecisao'] = ideProcessoCP.extDecisao.cdata
+                        s1010_alteracao_ideprocessocp_dados['extdecisao'] = read_from_xml(ideProcessoCP.extDecisao.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1010_alteracao_ideprocessocp_dados['codsusp'] = ideProcessoCP.codSusp.cdata
+                        s1010_alteracao_ideprocessocp_dados['codsusp'] = read_from_xml(ideProcessoCP.codSusp.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -386,12 +387,12 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False, arquivo=Fa
                     s1010_alteracao_ideprocessoirrf_dados['s1010_alteracao_id'] = s1010_alteracao.id
 
                     try:
-                        s1010_alteracao_ideprocessoirrf_dados['nrproc'] = ideProcessoIRRF.nrProc.cdata
+                        s1010_alteracao_ideprocessoirrf_dados['nrproc'] = read_from_xml(ideProcessoIRRF.nrProc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1010_alteracao_ideprocessoirrf_dados['codsusp'] = ideProcessoIRRF.codSusp.cdata
+                        s1010_alteracao_ideprocessoirrf_dados['codsusp'] = read_from_xml(ideProcessoIRRF.codSusp.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -405,7 +406,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False, arquivo=Fa
                     s1010_alteracao_ideprocessofgts_dados['s1010_alteracao_id'] = s1010_alteracao.id
 
                     try:
-                        s1010_alteracao_ideprocessofgts_dados['nrproc'] = ideProcessoFGTS.nrProc.cdata
+                        s1010_alteracao_ideprocessofgts_dados['nrproc'] = read_from_xml(ideProcessoFGTS.nrProc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -419,7 +420,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False, arquivo=Fa
                     s1010_alteracao_ideprocessosind_dados['s1010_alteracao_id'] = s1010_alteracao.id
 
                     try:
-                        s1010_alteracao_ideprocessosind_dados['nrproc'] = ideProcessoSIND.nrProc.cdata
+                        s1010_alteracao_ideprocessosind_dados['nrproc'] = read_from_xml(ideProcessoSIND.nrProc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -433,17 +434,17 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False, arquivo=Fa
                     s1010_alteracao_ideprocessocprp_dados['s1010_alteracao_id'] = s1010_alteracao.id
 
                     try:
-                        s1010_alteracao_ideprocessocprp_dados['tpproc'] = ideProcessoCPRP.tpProc.cdata
+                        s1010_alteracao_ideprocessocprp_dados['tpproc'] = read_from_xml(ideProcessoCPRP.tpProc.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1010_alteracao_ideprocessocprp_dados['nrproc'] = ideProcessoCPRP.nrProc.cdata
+                        s1010_alteracao_ideprocessocprp_dados['nrproc'] = read_from_xml(ideProcessoCPRP.nrProc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1010_alteracao_ideprocessocprp_dados['extdecisao'] = ideProcessoCPRP.extDecisao.cdata
+                        s1010_alteracao_ideprocessocprp_dados['extdecisao'] = read_from_xml(ideProcessoCPRP.extDecisao.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -457,12 +458,12 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False, arquivo=Fa
                     s1010_alteracao_novavalidade_dados['s1010_alteracao_id'] = s1010_alteracao.id
 
                     try:
-                        s1010_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
+                        s1010_alteracao_novavalidade_dados['inivalid'] = read_from_xml(novaValidade.iniValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1010_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                        s1010_alteracao_novavalidade_dados['fimvalid'] = read_from_xml(novaValidade.fimValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -476,22 +477,22 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False, arquivo=Fa
             s1010_exclusao_dados['s1010_evttabrubrica_id'] = s1010_evttabrubrica.id
 
             try:
-                s1010_exclusao_dados['codrubr'] = exclusao.ideRubrica.codRubr.cdata
+                s1010_exclusao_dados['codrubr'] = read_from_xml(exclusao.ideRubrica.codRubr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_exclusao_dados['idetabrubr'] = exclusao.ideRubrica.ideTabRubr.cdata
+                s1010_exclusao_dados['idetabrubr'] = read_from_xml(exclusao.ideRubrica.ideTabRubr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_exclusao_dados['inivalid'] = exclusao.ideRubrica.iniValid.cdata
+                s1010_exclusao_dados['inivalid'] = read_from_xml(exclusao.ideRubrica.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1010_exclusao_dados['fimvalid'] = exclusao.ideRubrica.fimValid.cdata
+                s1010_exclusao_dados['fimvalid'] = read_from_xml(exclusao.ideRubrica.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

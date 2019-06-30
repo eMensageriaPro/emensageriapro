@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1200.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,57 +62,57 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
     evtRemun = doc.eSocial.evtRemun
 
     try:
-        s1200_evtremun_dados['indretif'] = evtRemun.ideEvento.indRetif.cdata
+        s1200_evtremun_dados['indretif'] = read_from_xml(evtRemun.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1200_evtremun_dados['nrrecibo'] = evtRemun.ideEvento.nrRecibo.cdata
+        s1200_evtremun_dados['nrrecibo'] = read_from_xml(evtRemun.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1200_evtremun_dados['indapuracao'] = evtRemun.ideEvento.indApuracao.cdata
+        s1200_evtremun_dados['indapuracao'] = read_from_xml(evtRemun.ideEvento.indApuracao.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1200_evtremun_dados['perapur'] = evtRemun.ideEvento.perApur.cdata
+        s1200_evtremun_dados['perapur'] = read_from_xml(evtRemun.ideEvento.perApur.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1200_evtremun_dados['tpamb'] = evtRemun.ideEvento.tpAmb.cdata
+        s1200_evtremun_dados['tpamb'] = read_from_xml(evtRemun.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1200_evtremun_dados['procemi'] = evtRemun.ideEvento.procEmi.cdata
+        s1200_evtremun_dados['procemi'] = read_from_xml(evtRemun.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1200_evtremun_dados['verproc'] = evtRemun.ideEvento.verProc.cdata
+        s1200_evtremun_dados['verproc'] = read_from_xml(evtRemun.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1200_evtremun_dados['tpinsc'] = evtRemun.ideEmpregador.tpInsc.cdata
+        s1200_evtremun_dados['tpinsc'] = read_from_xml(evtRemun.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1200_evtremun_dados['nrinsc'] = evtRemun.ideEmpregador.nrInsc.cdata
+        s1200_evtremun_dados['nrinsc'] = read_from_xml(evtRemun.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1200_evtremun_dados['cpftrab'] = evtRemun.ideTrabalhador.cpfTrab.cdata
+        s1200_evtremun_dados['cpftrab'] = read_from_xml(evtRemun.ideTrabalhador.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1200_evtremun_dados['nistrab'] = evtRemun.ideTrabalhador.nisTrab.cdata
+        s1200_evtremun_dados['nistrab'] = read_from_xml(evtRemun.ideTrabalhador.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -125,7 +126,7 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
             s1200_infomv_dados['s1200_evtremun_id'] = s1200_evtremun.id
 
             try:
-                s1200_infomv_dados['indmv'] = infoMV.indMV.cdata
+                s1200_infomv_dados['indmv'] = read_from_xml(infoMV.indMV.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
@@ -139,22 +140,22 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                     s1200_remunoutrempr_dados['s1200_infomv_id'] = s1200_infomv.id
 
                     try:
-                        s1200_remunoutrempr_dados['tpinsc'] = remunOutrEmpr.tpInsc.cdata
+                        s1200_remunoutrempr_dados['tpinsc'] = read_from_xml(remunOutrEmpr.tpInsc.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1200_remunoutrempr_dados['nrinsc'] = remunOutrEmpr.nrInsc.cdata
+                        s1200_remunoutrempr_dados['nrinsc'] = read_from_xml(remunOutrEmpr.nrInsc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1200_remunoutrempr_dados['codcateg'] = remunOutrEmpr.codCateg.cdata
+                        s1200_remunoutrempr_dados['codcateg'] = read_from_xml(remunOutrEmpr.codCateg.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1200_remunoutrempr_dados['vlrremunoe'] = remunOutrEmpr.vlrRemunOE.cdata
+                        s1200_remunoutrempr_dados['vlrremunoe'] = read_from_xml(remunOutrEmpr.vlrRemunOE.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -168,12 +169,12 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
             s1200_infocomplem_dados['s1200_evtremun_id'] = s1200_evtremun.id
 
             try:
-                s1200_infocomplem_dados['nmtrab'] = infoComplem.nmTrab.cdata
+                s1200_infocomplem_dados['nmtrab'] = read_from_xml(infoComplem.nmTrab.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1200_infocomplem_dados['dtnascto'] = infoComplem.dtNascto.cdata
+                s1200_infocomplem_dados['dtnascto'] = read_from_xml(infoComplem.dtNascto.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
@@ -187,27 +188,27 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                     s1200_sucessaovinc_dados['s1200_infocomplem_id'] = s1200_infocomplem.id
 
                     try:
-                        s1200_sucessaovinc_dados['tpinscant'] = sucessaoVinc.tpInscAnt.cdata
+                        s1200_sucessaovinc_dados['tpinscant'] = read_from_xml(sucessaoVinc.tpInscAnt.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1200_sucessaovinc_dados['cnpjempregant'] = sucessaoVinc.cnpjEmpregAnt.cdata
+                        s1200_sucessaovinc_dados['cnpjempregant'] = read_from_xml(sucessaoVinc.cnpjEmpregAnt.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1200_sucessaovinc_dados['matricant'] = sucessaoVinc.matricAnt.cdata
+                        s1200_sucessaovinc_dados['matricant'] = read_from_xml(sucessaoVinc.matricAnt.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1200_sucessaovinc_dados['dtadm'] = sucessaoVinc.dtAdm.cdata
+                        s1200_sucessaovinc_dados['dtadm'] = read_from_xml(sucessaoVinc.dtAdm.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1200_sucessaovinc_dados['observacao'] = sucessaoVinc.observacao.cdata
+                        s1200_sucessaovinc_dados['observacao'] = read_from_xml(sucessaoVinc.observacao.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -221,17 +222,17 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
             s1200_procjudtrab_dados['s1200_evtremun_id'] = s1200_evtremun.id
 
             try:
-                s1200_procjudtrab_dados['tptrib'] = procJudTrab.tpTrib.cdata
+                s1200_procjudtrab_dados['tptrib'] = read_from_xml(procJudTrab.tpTrib.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1200_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
+                s1200_procjudtrab_dados['nrprocjud'] = read_from_xml(procJudTrab.nrProcJud.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1200_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
+                s1200_procjudtrab_dados['codsusp'] = read_from_xml(procJudTrab.codSusp.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
@@ -245,7 +246,7 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
             s1200_infointerm_dados['s1200_evtremun_id'] = s1200_evtremun.id
 
             try:
-                s1200_infointerm_dados['qtddiasinterm'] = infoInterm.qtdDiasInterm.cdata
+                s1200_infointerm_dados['qtddiasinterm'] = read_from_xml(infoInterm.qtdDiasInterm.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
@@ -259,12 +260,12 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
             s1200_dmdev_dados['s1200_evtremun_id'] = s1200_evtremun.id
 
             try:
-                s1200_dmdev_dados['idedmdev'] = dmDev.ideDmDev.cdata
+                s1200_dmdev_dados['idedmdev'] = read_from_xml(dmDev.ideDmDev.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1200_dmdev_dados['codcateg'] = dmDev.codCateg.cdata
+                s1200_dmdev_dados['codcateg'] = read_from_xml(dmDev.codCateg.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
@@ -287,22 +288,22 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                             s1200_infoperapur_ideestablot_dados['s1200_infoperapur_id'] = s1200_infoperapur.id
         
                             try:
-                                s1200_infoperapur_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
+                                s1200_infoperapur_ideestablot_dados['tpinsc'] = read_from_xml(ideEstabLot.tpInsc.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1200_infoperapur_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
+                                s1200_infoperapur_ideestablot_dados['nrinsc'] = read_from_xml(ideEstabLot.nrInsc.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1200_infoperapur_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
+                                s1200_infoperapur_ideestablot_dados['codlotacao'] = read_from_xml(ideEstabLot.codLotacao.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1200_infoperapur_ideestablot_dados['qtddiasav'] = ideEstabLot.qtdDiasAv.cdata
+                                s1200_infoperapur_ideestablot_dados['qtddiasav'] = read_from_xml(ideEstabLot.qtdDiasAv.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
 
@@ -316,12 +317,12 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                                     s1200_infoperapur_remunperapur_dados['s1200_infoperapur_ideestablot_id'] = s1200_infoperapur_ideestablot.id
                 
                                     try:
-                                        s1200_infoperapur_remunperapur_dados['matricula'] = remunPerApur.matricula.cdata
+                                        s1200_infoperapur_remunperapur_dados['matricula'] = read_from_xml(remunPerApur.matricula.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s1200_infoperapur_remunperapur_dados['indsimples'] = remunPerApur.indSimples.cdata
+                                        s1200_infoperapur_remunperapur_dados['indsimples'] = read_from_xml(remunPerApur.indSimples.cdata, 'esocial', 'N', None)
                                     except AttributeError:
                                         pass
         
@@ -335,32 +336,32 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                                             s1200_infoperapur_itensremun_dados['s1200_infoperapur_remunperapur_id'] = s1200_infoperapur_remunperapur.id
                         
                                             try:
-                                                s1200_infoperapur_itensremun_dados['codrubr'] = itensRemun.codRubr.cdata
+                                                s1200_infoperapur_itensremun_dados['codrubr'] = read_from_xml(itensRemun.codRubr.cdata, 'esocial', 'C', None)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                s1200_infoperapur_itensremun_dados['idetabrubr'] = itensRemun.ideTabRubr.cdata
+                                                s1200_infoperapur_itensremun_dados['idetabrubr'] = read_from_xml(itensRemun.ideTabRubr.cdata, 'esocial', 'C', None)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                s1200_infoperapur_itensremun_dados['qtdrubr'] = itensRemun.qtdRubr.cdata
+                                                s1200_infoperapur_itensremun_dados['qtdrubr'] = read_from_xml(itensRemun.qtdRubr.cdata, 'esocial', 'N', 2)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                s1200_infoperapur_itensremun_dados['fatorrubr'] = itensRemun.fatorRubr.cdata
+                                                s1200_infoperapur_itensremun_dados['fatorrubr'] = read_from_xml(itensRemun.fatorRubr.cdata, 'esocial', 'N', 2)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                s1200_infoperapur_itensremun_dados['vrunit'] = itensRemun.vrUnit.cdata
+                                                s1200_infoperapur_itensremun_dados['vrunit'] = read_from_xml(itensRemun.vrUnit.cdata, 'esocial', 'N', 2)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                s1200_infoperapur_itensremun_dados['vrrubr'] = itensRemun.vrRubr.cdata
+                                                s1200_infoperapur_itensremun_dados['vrrubr'] = read_from_xml(itensRemun.vrRubr.cdata, 'esocial', 'N', 2)
                                             except AttributeError:
                                                 pass
                 
@@ -383,17 +384,17 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                                                     s1200_infoperapur_detoper_dados['s1200_infoperapur_infosaudecolet_id'] = s1200_infoperapur_infosaudecolet.id
                                 
                                                     try:
-                                                        s1200_infoperapur_detoper_dados['cnpjoper'] = detOper.cnpjOper.cdata
+                                                        s1200_infoperapur_detoper_dados['cnpjoper'] = read_from_xml(detOper.cnpjOper.cdata, 'esocial', 'C', None)
                                                     except AttributeError:
                                                         pass
                                 
                                                     try:
-                                                        s1200_infoperapur_detoper_dados['regans'] = detOper.regANS.cdata
+                                                        s1200_infoperapur_detoper_dados['regans'] = read_from_xml(detOper.regANS.cdata, 'esocial', 'C', None)
                                                     except AttributeError:
                                                         pass
                                 
                                                     try:
-                                                        s1200_infoperapur_detoper_dados['vrpgtit'] = detOper.vrPgTit.cdata
+                                                        s1200_infoperapur_detoper_dados['vrpgtit'] = read_from_xml(detOper.vrPgTit.cdata, 'esocial', 'N', 2)
                                                     except AttributeError:
                                                         pass
                         
@@ -407,27 +408,27 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                                                             s1200_infoperapur_detplano_dados['s1200_infoperapur_detoper_id'] = s1200_infoperapur_detoper.id
                                         
                                                             try:
-                                                                s1200_infoperapur_detplano_dados['tpdep'] = detPlano.tpDep.cdata
+                                                                s1200_infoperapur_detplano_dados['tpdep'] = read_from_xml(detPlano.tpDep.cdata, 'esocial', 'C', None)
                                                             except AttributeError:
                                                                 pass
                                         
                                                             try:
-                                                                s1200_infoperapur_detplano_dados['cpfdep'] = detPlano.cpfDep.cdata
+                                                                s1200_infoperapur_detplano_dados['cpfdep'] = read_from_xml(detPlano.cpfDep.cdata, 'esocial', 'C', None)
                                                             except AttributeError:
                                                                 pass
                                         
                                                             try:
-                                                                s1200_infoperapur_detplano_dados['nmdep'] = detPlano.nmDep.cdata
+                                                                s1200_infoperapur_detplano_dados['nmdep'] = read_from_xml(detPlano.nmDep.cdata, 'esocial', 'C', None)
                                                             except AttributeError:
                                                                 pass
                                         
                                                             try:
-                                                                s1200_infoperapur_detplano_dados['dtnascto'] = detPlano.dtNascto.cdata
+                                                                s1200_infoperapur_detplano_dados['dtnascto'] = read_from_xml(detPlano.dtNascto.cdata, 'esocial', 'D', None)
                                                             except AttributeError:
                                                                 pass
                                         
                                                             try:
-                                                                s1200_infoperapur_detplano_dados['vlrpgdep'] = detPlano.vlrPgDep.cdata
+                                                                s1200_infoperapur_detplano_dados['vlrpgdep'] = read_from_xml(detPlano.vlrPgDep.cdata, 'esocial', 'N', 2)
                                                             except AttributeError:
                                                                 pass
                                 
@@ -441,7 +442,7 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                                             s1200_infoperapur_infoagnocivo_dados['s1200_infoperapur_remunperapur_id'] = s1200_infoperapur_remunperapur.id
                         
                                             try:
-                                                s1200_infoperapur_infoagnocivo_dados['grauexp'] = infoAgNocivo.grauExp.cdata
+                                                s1200_infoperapur_infoagnocivo_dados['grauexp'] = read_from_xml(infoAgNocivo.grauExp.cdata, 'esocial', 'N', None)
                                             except AttributeError:
                                                 pass
                 
@@ -455,7 +456,7 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                                             s1200_infoperapur_infotrabinterm_dados['s1200_infoperapur_remunperapur_id'] = s1200_infoperapur_remunperapur.id
                         
                                             try:
-                                                s1200_infoperapur_infotrabinterm_dados['codconv'] = infoTrabInterm.codConv.cdata
+                                                s1200_infoperapur_infotrabinterm_dados['codconv'] = read_from_xml(infoTrabInterm.codConv.cdata, 'esocial', 'C', None)
                                             except AttributeError:
                                                 pass
                 
@@ -478,32 +479,32 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                             s1200_infoperant_ideadc_dados['s1200_infoperant_id'] = s1200_infoperant.id
         
                             try:
-                                s1200_infoperant_ideadc_dados['dtacconv'] = ideADC.dtAcConv.cdata
+                                s1200_infoperant_ideadc_dados['dtacconv'] = read_from_xml(ideADC.dtAcConv.cdata, 'esocial', 'D', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1200_infoperant_ideadc_dados['tpacconv'] = ideADC.tpAcConv.cdata
+                                s1200_infoperant_ideadc_dados['tpacconv'] = read_from_xml(ideADC.tpAcConv.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1200_infoperant_ideadc_dados['compacconv'] = ideADC.compAcConv.cdata
+                                s1200_infoperant_ideadc_dados['compacconv'] = read_from_xml(ideADC.compAcConv.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1200_infoperant_ideadc_dados['dtefacconv'] = ideADC.dtEfAcConv.cdata
+                                s1200_infoperant_ideadc_dados['dtefacconv'] = read_from_xml(ideADC.dtEfAcConv.cdata, 'esocial', 'D', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1200_infoperant_ideadc_dados['dsc'] = ideADC.dsc.cdata
+                                s1200_infoperant_ideadc_dados['dsc'] = read_from_xml(ideADC.dsc.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1200_infoperant_ideadc_dados['remunsuc'] = ideADC.remunSuc.cdata
+                                s1200_infoperant_ideadc_dados['remunsuc'] = read_from_xml(ideADC.remunSuc.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -517,7 +518,7 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                                     s1200_infoperant_ideperiodo_dados['s1200_infoperant_ideadc_id'] = s1200_infoperant_ideadc.id
                 
                                     try:
-                                        s1200_infoperant_ideperiodo_dados['perref'] = idePeriodo.perRef.cdata
+                                        s1200_infoperant_ideperiodo_dados['perref'] = read_from_xml(idePeriodo.perRef.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
         
@@ -531,17 +532,17 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                                             s1200_infoperant_ideestablot_dados['s1200_infoperant_ideperiodo_id'] = s1200_infoperant_ideperiodo.id
                         
                                             try:
-                                                s1200_infoperant_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
+                                                s1200_infoperant_ideestablot_dados['tpinsc'] = read_from_xml(ideEstabLot.tpInsc.cdata, 'esocial', 'N', None)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                s1200_infoperant_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
+                                                s1200_infoperant_ideestablot_dados['nrinsc'] = read_from_xml(ideEstabLot.nrInsc.cdata, 'esocial', 'C', None)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                s1200_infoperant_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
+                                                s1200_infoperant_ideestablot_dados['codlotacao'] = read_from_xml(ideEstabLot.codLotacao.cdata, 'esocial', 'C', None)
                                             except AttributeError:
                                                 pass
                 
@@ -555,12 +556,12 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                                                     s1200_infoperant_remunperant_dados['s1200_infoperant_ideestablot_id'] = s1200_infoperant_ideestablot.id
                                 
                                                     try:
-                                                        s1200_infoperant_remunperant_dados['matricula'] = remunPerAnt.matricula.cdata
+                                                        s1200_infoperant_remunperant_dados['matricula'] = read_from_xml(remunPerAnt.matricula.cdata, 'esocial', 'C', None)
                                                     except AttributeError:
                                                         pass
                                 
                                                     try:
-                                                        s1200_infoperant_remunperant_dados['indsimples'] = remunPerAnt.indSimples.cdata
+                                                        s1200_infoperant_remunperant_dados['indsimples'] = read_from_xml(remunPerAnt.indSimples.cdata, 'esocial', 'N', None)
                                                     except AttributeError:
                                                         pass
                         
@@ -574,32 +575,32 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                                                             s1200_infoperant_itensremun_dados['s1200_infoperant_remunperant_id'] = s1200_infoperant_remunperant.id
                                         
                                                             try:
-                                                                s1200_infoperant_itensremun_dados['codrubr'] = itensRemun.codRubr.cdata
+                                                                s1200_infoperant_itensremun_dados['codrubr'] = read_from_xml(itensRemun.codRubr.cdata, 'esocial', 'C', None)
                                                             except AttributeError:
                                                                 pass
                                         
                                                             try:
-                                                                s1200_infoperant_itensremun_dados['idetabrubr'] = itensRemun.ideTabRubr.cdata
+                                                                s1200_infoperant_itensremun_dados['idetabrubr'] = read_from_xml(itensRemun.ideTabRubr.cdata, 'esocial', 'C', None)
                                                             except AttributeError:
                                                                 pass
                                         
                                                             try:
-                                                                s1200_infoperant_itensremun_dados['qtdrubr'] = itensRemun.qtdRubr.cdata
+                                                                s1200_infoperant_itensremun_dados['qtdrubr'] = read_from_xml(itensRemun.qtdRubr.cdata, 'esocial', 'N', 2)
                                                             except AttributeError:
                                                                 pass
                                         
                                                             try:
-                                                                s1200_infoperant_itensremun_dados['fatorrubr'] = itensRemun.fatorRubr.cdata
+                                                                s1200_infoperant_itensremun_dados['fatorrubr'] = read_from_xml(itensRemun.fatorRubr.cdata, 'esocial', 'N', 2)
                                                             except AttributeError:
                                                                 pass
                                         
                                                             try:
-                                                                s1200_infoperant_itensremun_dados['vrunit'] = itensRemun.vrUnit.cdata
+                                                                s1200_infoperant_itensremun_dados['vrunit'] = read_from_xml(itensRemun.vrUnit.cdata, 'esocial', 'N', 2)
                                                             except AttributeError:
                                                                 pass
                                         
                                                             try:
-                                                                s1200_infoperant_itensremun_dados['vrrubr'] = itensRemun.vrRubr.cdata
+                                                                s1200_infoperant_itensremun_dados['vrrubr'] = read_from_xml(itensRemun.vrRubr.cdata, 'esocial', 'N', 2)
                                                             except AttributeError:
                                                                 pass
                                 
@@ -613,7 +614,7 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                                                             s1200_infoperant_infoagnocivo_dados['s1200_infoperant_remunperant_id'] = s1200_infoperant_remunperant.id
                                         
                                                             try:
-                                                                s1200_infoperant_infoagnocivo_dados['grauexp'] = infoAgNocivo.grauExp.cdata
+                                                                s1200_infoperant_infoagnocivo_dados['grauexp'] = read_from_xml(infoAgNocivo.grauExp.cdata, 'esocial', 'N', None)
                                                             except AttributeError:
                                                                 pass
                                 
@@ -627,7 +628,7 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                                                             s1200_infoperant_infotrabinterm_dados['s1200_infoperant_remunperant_id'] = s1200_infoperant_remunperant.id
                                         
                                                             try:
-                                                                s1200_infoperant_infotrabinterm_dados['codconv'] = infoTrabInterm.codConv.cdata
+                                                                s1200_infoperant_infotrabinterm_dados['codconv'] = read_from_xml(infoTrabInterm.codConv.cdata, 'esocial', 'C', None)
                                                             except AttributeError:
                                                                 pass
                                 
@@ -641,17 +642,17 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False, arquivo=False):
                     s1200_infoperant_infocomplcont_dados['s1200_dmdev_id'] = s1200_dmdev.id
 
                     try:
-                        s1200_infoperant_infocomplcont_dados['codcbo'] = infoComplCont.codCBO.cdata
+                        s1200_infoperant_infocomplcont_dados['codcbo'] = read_from_xml(infoComplCont.codCBO.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1200_infoperant_infocomplcont_dados['natatividade'] = infoComplCont.natAtividade.cdata
+                        s1200_infoperant_infocomplcont_dados['natatividade'] = read_from_xml(infoComplCont.natAtividade.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1200_infoperant_infocomplcont_dados['qtddiastrab'] = infoComplCont.qtdDiasTrab.cdata
+                        s1200_infoperant_infocomplcont_dados['qtddiastrab'] = read_from_xml(infoComplCont.qtdDiasTrab.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 

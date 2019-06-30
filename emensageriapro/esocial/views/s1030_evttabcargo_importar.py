@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1030.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -65,27 +66,27 @@ def read_s1030_evttabcargo_obj(request, doc, status, validar=False, arquivo=Fals
     elif 'exclusao' in dir(evtTabCargo.infoCargo): s1030_evttabcargo_dados['operacao'] = 3
 
     try:
-        s1030_evttabcargo_dados['tpamb'] = evtTabCargo.ideEvento.tpAmb.cdata
+        s1030_evttabcargo_dados['tpamb'] = read_from_xml(evtTabCargo.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1030_evttabcargo_dados['procemi'] = evtTabCargo.ideEvento.procEmi.cdata
+        s1030_evttabcargo_dados['procemi'] = read_from_xml(evtTabCargo.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1030_evttabcargo_dados['verproc'] = evtTabCargo.ideEvento.verProc.cdata
+        s1030_evttabcargo_dados['verproc'] = read_from_xml(evtTabCargo.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1030_evttabcargo_dados['tpinsc'] = evtTabCargo.ideEmpregador.tpInsc.cdata
+        s1030_evttabcargo_dados['tpinsc'] = read_from_xml(evtTabCargo.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1030_evttabcargo_dados['nrinsc'] = evtTabCargo.ideEmpregador.nrInsc.cdata
+        s1030_evttabcargo_dados['nrinsc'] = read_from_xml(evtTabCargo.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -99,27 +100,27 @@ def read_s1030_evttabcargo_obj(request, doc, status, validar=False, arquivo=Fals
             s1030_inclusao_dados['s1030_evttabcargo_id'] = s1030_evttabcargo.id
 
             try:
-                s1030_inclusao_dados['codcargo'] = inclusao.ideCargo.codCargo.cdata
+                s1030_inclusao_dados['codcargo'] = read_from_xml(inclusao.ideCargo.codCargo.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1030_inclusao_dados['inivalid'] = inclusao.ideCargo.iniValid.cdata
+                s1030_inclusao_dados['inivalid'] = read_from_xml(inclusao.ideCargo.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1030_inclusao_dados['fimvalid'] = inclusao.ideCargo.fimValid.cdata
+                s1030_inclusao_dados['fimvalid'] = read_from_xml(inclusao.ideCargo.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1030_inclusao_dados['nmcargo'] = inclusao.dadosCargo.nmCargo.cdata
+                s1030_inclusao_dados['nmcargo'] = read_from_xml(inclusao.dadosCargo.nmCargo.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1030_inclusao_dados['codcbo'] = inclusao.dadosCargo.codCBO.cdata
+                s1030_inclusao_dados['codcbo'] = read_from_xml(inclusao.dadosCargo.codCBO.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -133,37 +134,37 @@ def read_s1030_evttabcargo_obj(request, doc, status, validar=False, arquivo=Fals
                     s1030_inclusao_cargopublico_dados['s1030_inclusao_id'] = s1030_inclusao.id
 
                     try:
-                        s1030_inclusao_cargopublico_dados['acumcargo'] = cargoPublico.acumCargo.cdata
+                        s1030_inclusao_cargopublico_dados['acumcargo'] = read_from_xml(cargoPublico.acumCargo.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1030_inclusao_cargopublico_dados['contagemesp'] = cargoPublico.contagemEsp.cdata
+                        s1030_inclusao_cargopublico_dados['contagemesp'] = read_from_xml(cargoPublico.contagemEsp.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1030_inclusao_cargopublico_dados['dedicexcl'] = cargoPublico.dedicExcl.cdata
+                        s1030_inclusao_cargopublico_dados['dedicexcl'] = read_from_xml(cargoPublico.dedicExcl.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1030_inclusao_cargopublico_dados['codcarreira'] = cargoPublico.codCarreira.cdata
+                        s1030_inclusao_cargopublico_dados['codcarreira'] = read_from_xml(cargoPublico.codCarreira.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1030_inclusao_cargopublico_dados['nrlei'] = cargoPublico.leiCargo.nrLei.cdata
+                        s1030_inclusao_cargopublico_dados['nrlei'] = read_from_xml(cargoPublico.leiCargo.nrLei.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1030_inclusao_cargopublico_dados['dtlei'] = cargoPublico.leiCargo.dtLei.cdata
+                        s1030_inclusao_cargopublico_dados['dtlei'] = read_from_xml(cargoPublico.leiCargo.dtLei.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1030_inclusao_cargopublico_dados['sitcargo'] = cargoPublico.leiCargo.sitCargo.cdata
+                        s1030_inclusao_cargopublico_dados['sitcargo'] = read_from_xml(cargoPublico.leiCargo.sitCargo.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -177,27 +178,27 @@ def read_s1030_evttabcargo_obj(request, doc, status, validar=False, arquivo=Fals
             s1030_alteracao_dados['s1030_evttabcargo_id'] = s1030_evttabcargo.id
 
             try:
-                s1030_alteracao_dados['codcargo'] = alteracao.ideCargo.codCargo.cdata
+                s1030_alteracao_dados['codcargo'] = read_from_xml(alteracao.ideCargo.codCargo.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1030_alteracao_dados['inivalid'] = alteracao.ideCargo.iniValid.cdata
+                s1030_alteracao_dados['inivalid'] = read_from_xml(alteracao.ideCargo.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1030_alteracao_dados['fimvalid'] = alteracao.ideCargo.fimValid.cdata
+                s1030_alteracao_dados['fimvalid'] = read_from_xml(alteracao.ideCargo.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1030_alteracao_dados['nmcargo'] = alteracao.dadosCargo.nmCargo.cdata
+                s1030_alteracao_dados['nmcargo'] = read_from_xml(alteracao.dadosCargo.nmCargo.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1030_alteracao_dados['codcbo'] = alteracao.dadosCargo.codCBO.cdata
+                s1030_alteracao_dados['codcbo'] = read_from_xml(alteracao.dadosCargo.codCBO.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -211,37 +212,37 @@ def read_s1030_evttabcargo_obj(request, doc, status, validar=False, arquivo=Fals
                     s1030_alteracao_cargopublico_dados['s1030_alteracao_id'] = s1030_alteracao.id
 
                     try:
-                        s1030_alteracao_cargopublico_dados['acumcargo'] = cargoPublico.acumCargo.cdata
+                        s1030_alteracao_cargopublico_dados['acumcargo'] = read_from_xml(cargoPublico.acumCargo.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1030_alteracao_cargopublico_dados['contagemesp'] = cargoPublico.contagemEsp.cdata
+                        s1030_alteracao_cargopublico_dados['contagemesp'] = read_from_xml(cargoPublico.contagemEsp.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1030_alteracao_cargopublico_dados['dedicexcl'] = cargoPublico.dedicExcl.cdata
+                        s1030_alteracao_cargopublico_dados['dedicexcl'] = read_from_xml(cargoPublico.dedicExcl.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1030_alteracao_cargopublico_dados['codcarreira'] = cargoPublico.codCarreira.cdata
+                        s1030_alteracao_cargopublico_dados['codcarreira'] = read_from_xml(cargoPublico.codCarreira.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1030_alteracao_cargopublico_dados['nrlei'] = cargoPublico.leiCargo.nrLei.cdata
+                        s1030_alteracao_cargopublico_dados['nrlei'] = read_from_xml(cargoPublico.leiCargo.nrLei.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1030_alteracao_cargopublico_dados['dtlei'] = cargoPublico.leiCargo.dtLei.cdata
+                        s1030_alteracao_cargopublico_dados['dtlei'] = read_from_xml(cargoPublico.leiCargo.dtLei.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1030_alteracao_cargopublico_dados['sitcargo'] = cargoPublico.leiCargo.sitCargo.cdata
+                        s1030_alteracao_cargopublico_dados['sitcargo'] = read_from_xml(cargoPublico.leiCargo.sitCargo.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -255,12 +256,12 @@ def read_s1030_evttabcargo_obj(request, doc, status, validar=False, arquivo=Fals
                     s1030_alteracao_novavalidade_dados['s1030_alteracao_id'] = s1030_alteracao.id
 
                     try:
-                        s1030_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
+                        s1030_alteracao_novavalidade_dados['inivalid'] = read_from_xml(novaValidade.iniValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1030_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                        s1030_alteracao_novavalidade_dados['fimvalid'] = read_from_xml(novaValidade.fimValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -274,17 +275,17 @@ def read_s1030_evttabcargo_obj(request, doc, status, validar=False, arquivo=Fals
             s1030_exclusao_dados['s1030_evttabcargo_id'] = s1030_evttabcargo.id
 
             try:
-                s1030_exclusao_dados['codcargo'] = exclusao.ideCargo.codCargo.cdata
+                s1030_exclusao_dados['codcargo'] = read_from_xml(exclusao.ideCargo.codCargo.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1030_exclusao_dados['inivalid'] = exclusao.ideCargo.iniValid.cdata
+                s1030_exclusao_dados['inivalid'] = read_from_xml(exclusao.ideCargo.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1030_exclusao_dados['fimvalid'] = exclusao.ideCargo.fimValid.cdata
+                s1030_exclusao_dados['fimvalid'] = read_from_xml(exclusao.ideCargo.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

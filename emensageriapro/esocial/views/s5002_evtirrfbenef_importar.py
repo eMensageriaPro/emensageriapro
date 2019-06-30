@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s5002.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,27 +62,27 @@ def read_s5002_evtirrfbenef_obj(request, doc, status, validar=False, arquivo=Fal
     evtIrrfBenef = doc.eSocial.evtIrrfBenef
 
     try:
-        s5002_evtirrfbenef_dados['nrrecarqbase'] = evtIrrfBenef.ideEvento.nrRecArqBase.cdata
+        s5002_evtirrfbenef_dados['nrrecarqbase'] = read_from_xml(evtIrrfBenef.ideEvento.nrRecArqBase.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s5002_evtirrfbenef_dados['perapur'] = evtIrrfBenef.ideEvento.perApur.cdata
+        s5002_evtirrfbenef_dados['perapur'] = read_from_xml(evtIrrfBenef.ideEvento.perApur.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s5002_evtirrfbenef_dados['tpinsc'] = evtIrrfBenef.ideEmpregador.tpInsc.cdata
+        s5002_evtirrfbenef_dados['tpinsc'] = read_from_xml(evtIrrfBenef.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s5002_evtirrfbenef_dados['nrinsc'] = evtIrrfBenef.ideEmpregador.nrInsc.cdata
+        s5002_evtirrfbenef_dados['nrinsc'] = read_from_xml(evtIrrfBenef.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s5002_evtirrfbenef_dados['cpftrab'] = evtIrrfBenef.ideTrabalhador.cpfTrab.cdata
+        s5002_evtirrfbenef_dados['cpftrab'] = read_from_xml(evtIrrfBenef.ideTrabalhador.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -95,7 +96,7 @@ def read_s5002_evtirrfbenef_obj(request, doc, status, validar=False, arquivo=Fal
             s5002_infodep_dados['s5002_evtirrfbenef_id'] = s5002_evtirrfbenef.id
 
             try:
-                s5002_infodep_dados['vrdeddep'] = infoDep.vrDedDep.cdata
+                s5002_infodep_dados['vrdeddep'] = read_from_xml(infoDep.vrDedDep.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 
@@ -109,12 +110,12 @@ def read_s5002_evtirrfbenef_obj(request, doc, status, validar=False, arquivo=Fal
             s5002_infoirrf_dados['s5002_evtirrfbenef_id'] = s5002_evtirrfbenef.id
 
             try:
-                s5002_infoirrf_dados['codcateg'] = infoIrrf.codCateg.cdata
+                s5002_infoirrf_dados['codcateg'] = read_from_xml(infoIrrf.codCateg.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s5002_infoirrf_dados['indresbr'] = infoIrrf.indResBr.cdata
+                s5002_infoirrf_dados['indresbr'] = read_from_xml(infoIrrf.indResBr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -128,12 +129,12 @@ def read_s5002_evtirrfbenef_obj(request, doc, status, validar=False, arquivo=Fal
                     s5002_basesirrf_dados['s5002_infoirrf_id'] = s5002_infoirrf.id
 
                     try:
-                        s5002_basesirrf_dados['tpvalor'] = basesIrrf.tpValor.cdata
+                        s5002_basesirrf_dados['tpvalor'] = read_from_xml(basesIrrf.tpValor.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s5002_basesirrf_dados['valor'] = basesIrrf.valor.cdata
+                        s5002_basesirrf_dados['valor'] = read_from_xml(basesIrrf.valor.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -147,12 +148,12 @@ def read_s5002_evtirrfbenef_obj(request, doc, status, validar=False, arquivo=Fal
                     s5002_irrf_dados['s5002_infoirrf_id'] = s5002_infoirrf.id
 
                     try:
-                        s5002_irrf_dados['tpcr'] = irrf.tpCR.cdata
+                        s5002_irrf_dados['tpcr'] = read_from_xml(irrf.tpCR.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s5002_irrf_dados['vrirrfdesc'] = irrf.vrIrrfDesc.cdata
+                        s5002_irrf_dados['vrirrfdesc'] = read_from_xml(irrf.vrIrrfDesc.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -166,47 +167,47 @@ def read_s5002_evtirrfbenef_obj(request, doc, status, validar=False, arquivo=Fal
                     s5002_idepgtoext_dados['s5002_infoirrf_id'] = s5002_infoirrf.id
 
                     try:
-                        s5002_idepgtoext_dados['codpais'] = idePgtoExt.idePais.codPais.cdata
+                        s5002_idepgtoext_dados['codpais'] = read_from_xml(idePgtoExt.idePais.codPais.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s5002_idepgtoext_dados['indnif'] = idePgtoExt.idePais.indNIF.cdata
+                        s5002_idepgtoext_dados['indnif'] = read_from_xml(idePgtoExt.idePais.indNIF.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s5002_idepgtoext_dados['nifbenef'] = idePgtoExt.idePais.nifBenef.cdata
+                        s5002_idepgtoext_dados['nifbenef'] = read_from_xml(idePgtoExt.idePais.nifBenef.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s5002_idepgtoext_dados['dsclograd'] = idePgtoExt.endExt.dscLograd.cdata
+                        s5002_idepgtoext_dados['dsclograd'] = read_from_xml(idePgtoExt.endExt.dscLograd.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s5002_idepgtoext_dados['nrlograd'] = idePgtoExt.endExt.nrLograd.cdata
+                        s5002_idepgtoext_dados['nrlograd'] = read_from_xml(idePgtoExt.endExt.nrLograd.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s5002_idepgtoext_dados['complem'] = idePgtoExt.endExt.complem.cdata
+                        s5002_idepgtoext_dados['complem'] = read_from_xml(idePgtoExt.endExt.complem.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s5002_idepgtoext_dados['bairro'] = idePgtoExt.endExt.bairro.cdata
+                        s5002_idepgtoext_dados['bairro'] = read_from_xml(idePgtoExt.endExt.bairro.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s5002_idepgtoext_dados['nmcid'] = idePgtoExt.endExt.nmCid.cdata
+                        s5002_idepgtoext_dados['nmcid'] = read_from_xml(idePgtoExt.endExt.nmCid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s5002_idepgtoext_dados['codpostal'] = idePgtoExt.endExt.codPostal.cdata
+                        s5002_idepgtoext_dados['codpostal'] = read_from_xml(idePgtoExt.endExt.codPostal.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 

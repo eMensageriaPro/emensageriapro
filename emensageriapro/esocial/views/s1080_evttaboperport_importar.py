@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1080.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -65,27 +66,27 @@ def read_s1080_evttaboperport_obj(request, doc, status, validar=False, arquivo=F
     elif 'exclusao' in dir(evtTabOperPort.infoOperPortuario): s1080_evttaboperport_dados['operacao'] = 3
 
     try:
-        s1080_evttaboperport_dados['tpamb'] = evtTabOperPort.ideEvento.tpAmb.cdata
+        s1080_evttaboperport_dados['tpamb'] = read_from_xml(evtTabOperPort.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1080_evttaboperport_dados['procemi'] = evtTabOperPort.ideEvento.procEmi.cdata
+        s1080_evttaboperport_dados['procemi'] = read_from_xml(evtTabOperPort.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1080_evttaboperport_dados['verproc'] = evtTabOperPort.ideEvento.verProc.cdata
+        s1080_evttaboperport_dados['verproc'] = read_from_xml(evtTabOperPort.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1080_evttaboperport_dados['tpinsc'] = evtTabOperPort.ideEmpregador.tpInsc.cdata
+        s1080_evttaboperport_dados['tpinsc'] = read_from_xml(evtTabOperPort.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1080_evttaboperport_dados['nrinsc'] = evtTabOperPort.ideEmpregador.nrInsc.cdata
+        s1080_evttaboperport_dados['nrinsc'] = read_from_xml(evtTabOperPort.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -99,32 +100,32 @@ def read_s1080_evttaboperport_obj(request, doc, status, validar=False, arquivo=F
             s1080_inclusao_dados['s1080_evttaboperport_id'] = s1080_evttaboperport.id
 
             try:
-                s1080_inclusao_dados['cnpjopportuario'] = inclusao.ideOperPortuario.cnpjOpPortuario.cdata
+                s1080_inclusao_dados['cnpjopportuario'] = read_from_xml(inclusao.ideOperPortuario.cnpjOpPortuario.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1080_inclusao_dados['inivalid'] = inclusao.ideOperPortuario.iniValid.cdata
+                s1080_inclusao_dados['inivalid'] = read_from_xml(inclusao.ideOperPortuario.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1080_inclusao_dados['fimvalid'] = inclusao.ideOperPortuario.fimValid.cdata
+                s1080_inclusao_dados['fimvalid'] = read_from_xml(inclusao.ideOperPortuario.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1080_inclusao_dados['aliqrat'] = inclusao.dadosOperPortuario.aliqRat.cdata
+                s1080_inclusao_dados['aliqrat'] = read_from_xml(inclusao.dadosOperPortuario.aliqRat.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1080_inclusao_dados['fap'] = inclusao.dadosOperPortuario.fap.cdata
+                s1080_inclusao_dados['fap'] = read_from_xml(inclusao.dadosOperPortuario.fap.cdata, 'esocial', 'N', 4)
             except AttributeError:
                 pass
 
             try:
-                s1080_inclusao_dados['aliqratajust'] = inclusao.dadosOperPortuario.aliqRatAjust.cdata
+                s1080_inclusao_dados['aliqratajust'] = read_from_xml(inclusao.dadosOperPortuario.aliqRatAjust.cdata, 'esocial', 'N', 4)
             except AttributeError:
                 pass
 
@@ -138,32 +139,32 @@ def read_s1080_evttaboperport_obj(request, doc, status, validar=False, arquivo=F
             s1080_alteracao_dados['s1080_evttaboperport_id'] = s1080_evttaboperport.id
 
             try:
-                s1080_alteracao_dados['cnpjopportuario'] = alteracao.ideOperPortuario.cnpjOpPortuario.cdata
+                s1080_alteracao_dados['cnpjopportuario'] = read_from_xml(alteracao.ideOperPortuario.cnpjOpPortuario.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1080_alteracao_dados['inivalid'] = alteracao.ideOperPortuario.iniValid.cdata
+                s1080_alteracao_dados['inivalid'] = read_from_xml(alteracao.ideOperPortuario.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1080_alteracao_dados['fimvalid'] = alteracao.ideOperPortuario.fimValid.cdata
+                s1080_alteracao_dados['fimvalid'] = read_from_xml(alteracao.ideOperPortuario.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1080_alteracao_dados['aliqrat'] = alteracao.dadosOperPortuario.aliqRat.cdata
+                s1080_alteracao_dados['aliqrat'] = read_from_xml(alteracao.dadosOperPortuario.aliqRat.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1080_alteracao_dados['fap'] = alteracao.dadosOperPortuario.fap.cdata
+                s1080_alteracao_dados['fap'] = read_from_xml(alteracao.dadosOperPortuario.fap.cdata, 'esocial', 'N', 4)
             except AttributeError:
                 pass
 
             try:
-                s1080_alteracao_dados['aliqratajust'] = alteracao.dadosOperPortuario.aliqRatAjust.cdata
+                s1080_alteracao_dados['aliqratajust'] = read_from_xml(alteracao.dadosOperPortuario.aliqRatAjust.cdata, 'esocial', 'N', 4)
             except AttributeError:
                 pass
 
@@ -177,12 +178,12 @@ def read_s1080_evttaboperport_obj(request, doc, status, validar=False, arquivo=F
                     s1080_alteracao_novavalidade_dados['s1080_alteracao_id'] = s1080_alteracao.id
 
                     try:
-                        s1080_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
+                        s1080_alteracao_novavalidade_dados['inivalid'] = read_from_xml(novaValidade.iniValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1080_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                        s1080_alteracao_novavalidade_dados['fimvalid'] = read_from_xml(novaValidade.fimValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -196,17 +197,17 @@ def read_s1080_evttaboperport_obj(request, doc, status, validar=False, arquivo=F
             s1080_exclusao_dados['s1080_evttaboperport_id'] = s1080_evttaboperport.id
 
             try:
-                s1080_exclusao_dados['cnpjopportuario'] = exclusao.ideOperPortuario.cnpjOpPortuario.cdata
+                s1080_exclusao_dados['cnpjopportuario'] = read_from_xml(exclusao.ideOperPortuario.cnpjOpPortuario.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1080_exclusao_dados['inivalid'] = exclusao.ideOperPortuario.iniValid.cdata
+                s1080_exclusao_dados['inivalid'] = read_from_xml(exclusao.ideOperPortuario.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1080_exclusao_dados['fimvalid'] = exclusao.ideOperPortuario.fimValid.cdata
+                s1080_exclusao_dados['fimvalid'] = read_from_xml(exclusao.ideOperPortuario.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.efdreinf.models import *
 from emensageriapro.r4098.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,32 +62,32 @@ def read_r4098_evtreab_obj(request, doc, status, validar=False, arquivo=False):
     evtReab = doc.Reinf.evtReab
 
     try:
-        r4098_evtreab_dados['perapur'] = evtReab.ideEvento.perApur.cdata
+        r4098_evtreab_dados['perapur'] = read_from_xml(evtReab.ideEvento.perApur.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r4098_evtreab_dados['tpamb'] = evtReab.ideEvento.tpAmb.cdata
+        r4098_evtreab_dados['tpamb'] = read_from_xml(evtReab.ideEvento.tpAmb.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r4098_evtreab_dados['procemi'] = evtReab.ideEvento.procEmi.cdata
+        r4098_evtreab_dados['procemi'] = read_from_xml(evtReab.ideEvento.procEmi.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r4098_evtreab_dados['verproc'] = evtReab.ideEvento.verProc.cdata
+        r4098_evtreab_dados['verproc'] = read_from_xml(evtReab.ideEvento.verProc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r4098_evtreab_dados['tpinsc'] = evtReab.ideContri.tpInsc.cdata
+        r4098_evtreab_dados['tpinsc'] = read_from_xml(evtReab.ideContri.tpInsc.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r4098_evtreab_dados['nrinsc'] = evtReab.ideContri.nrInsc.cdata
+        r4098_evtreab_dados['nrinsc'] = read_from_xml(evtReab.ideContri.nrInsc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 

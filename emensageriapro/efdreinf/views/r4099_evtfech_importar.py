@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.efdreinf.models import *
 from emensageriapro.r4099.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,47 +62,47 @@ def read_r4099_evtfech_obj(request, doc, status, validar=False, arquivo=False):
     evtFech = doc.Reinf.evtFech
 
     try:
-        r4099_evtfech_dados['perapur'] = evtFech.ideEvento.perApur.cdata
+        r4099_evtfech_dados['perapur'] = read_from_xml(evtFech.ideEvento.perApur.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r4099_evtfech_dados['tpamb'] = evtFech.ideEvento.tpAmb.cdata
+        r4099_evtfech_dados['tpamb'] = read_from_xml(evtFech.ideEvento.tpAmb.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r4099_evtfech_dados['procemi'] = evtFech.ideEvento.procEmi.cdata
+        r4099_evtfech_dados['procemi'] = read_from_xml(evtFech.ideEvento.procEmi.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r4099_evtfech_dados['verproc'] = evtFech.ideEvento.verProc.cdata
+        r4099_evtfech_dados['verproc'] = read_from_xml(evtFech.ideEvento.verProc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r4099_evtfech_dados['tpinsc'] = evtFech.ideContri.tpInsc.cdata
+        r4099_evtfech_dados['tpinsc'] = read_from_xml(evtFech.ideContri.tpInsc.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r4099_evtfech_dados['nrinsc'] = evtFech.ideContri.nrInsc.cdata
+        r4099_evtfech_dados['nrinsc'] = read_from_xml(evtFech.ideContri.nrInsc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r4099_evtfech_dados['evtretpf'] = evtFech.infoFech.evtRetPF.cdata
+        r4099_evtfech_dados['evtretpf'] = read_from_xml(evtFech.infoFech.evtRetPF.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r4099_evtfech_dados['evtretpj'] = evtFech.infoFech.evtRetPJ.cdata
+        r4099_evtfech_dados['evtretpj'] = read_from_xml(evtFech.infoFech.evtRetPJ.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r4099_evtfech_dados['evtpgtosnid'] = evtFech.infoFech.evtPgtosNId.cdata
+        r4099_evtfech_dados['evtpgtosnid'] = read_from_xml(evtFech.infoFech.evtPgtosNId.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
@@ -115,22 +116,22 @@ def read_r4099_evtfech_obj(request, doc, status, validar=False, arquivo=False):
             r4099_iderespinf_dados['r4099_evtfech_id'] = r4099_evtfech.id
 
             try:
-                r4099_iderespinf_dados['nmresp'] = ideRespInf.nmResp.cdata
+                r4099_iderespinf_dados['nmresp'] = read_from_xml(ideRespInf.nmResp.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r4099_iderespinf_dados['cpfresp'] = ideRespInf.cpfResp.cdata
+                r4099_iderespinf_dados['cpfresp'] = read_from_xml(ideRespInf.cpfResp.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r4099_iderespinf_dados['telefone'] = ideRespInf.telefone.cdata
+                r4099_iderespinf_dados['telefone'] = read_from_xml(ideRespInf.telefone.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r4099_iderespinf_dados['email'] = ideRespInf.email.cdata
+                r4099_iderespinf_dados['email'] = read_from_xml(ideRespInf.email.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 

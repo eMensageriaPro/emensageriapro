@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s3000.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,37 +62,37 @@ def read_s3000_evtexclusao_obj(request, doc, status, validar=False, arquivo=Fals
     evtExclusao = doc.eSocial.evtExclusao
 
     try:
-        s3000_evtexclusao_dados['tpamb'] = evtExclusao.ideEvento.tpAmb.cdata
+        s3000_evtexclusao_dados['tpamb'] = read_from_xml(evtExclusao.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s3000_evtexclusao_dados['procemi'] = evtExclusao.ideEvento.procEmi.cdata
+        s3000_evtexclusao_dados['procemi'] = read_from_xml(evtExclusao.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s3000_evtexclusao_dados['verproc'] = evtExclusao.ideEvento.verProc.cdata
+        s3000_evtexclusao_dados['verproc'] = read_from_xml(evtExclusao.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s3000_evtexclusao_dados['tpinsc'] = evtExclusao.ideEmpregador.tpInsc.cdata
+        s3000_evtexclusao_dados['tpinsc'] = read_from_xml(evtExclusao.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s3000_evtexclusao_dados['nrinsc'] = evtExclusao.ideEmpregador.nrInsc.cdata
+        s3000_evtexclusao_dados['nrinsc'] = read_from_xml(evtExclusao.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s3000_evtexclusao_dados['tpevento'] = evtExclusao.infoExclusao.tpEvento.cdata
+        s3000_evtexclusao_dados['tpevento'] = read_from_xml(evtExclusao.infoExclusao.tpEvento.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s3000_evtexclusao_dados['nrrecevt'] = evtExclusao.infoExclusao.nrRecEvt.cdata
+        s3000_evtexclusao_dados['nrrecevt'] = read_from_xml(evtExclusao.infoExclusao.nrRecEvt.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -105,12 +106,12 @@ def read_s3000_evtexclusao_obj(request, doc, status, validar=False, arquivo=Fals
             s3000_idetrabalhador_dados['s3000_evtexclusao_id'] = s3000_evtexclusao.id
 
             try:
-                s3000_idetrabalhador_dados['cpftrab'] = ideTrabalhador.cpfTrab.cdata
+                s3000_idetrabalhador_dados['cpftrab'] = read_from_xml(ideTrabalhador.cpfTrab.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s3000_idetrabalhador_dados['nistrab'] = ideTrabalhador.nisTrab.cdata
+                s3000_idetrabalhador_dados['nistrab'] = read_from_xml(ideTrabalhador.nisTrab.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -124,12 +125,12 @@ def read_s3000_evtexclusao_obj(request, doc, status, validar=False, arquivo=Fals
             s3000_idefolhapagto_dados['s3000_evtexclusao_id'] = s3000_evtexclusao.id
 
             try:
-                s3000_idefolhapagto_dados['indapuracao'] = ideFolhaPagto.indApuracao.cdata
+                s3000_idefolhapagto_dados['indapuracao'] = read_from_xml(ideFolhaPagto.indApuracao.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s3000_idefolhapagto_dados['perapur'] = ideFolhaPagto.perApur.cdata
+                s3000_idefolhapagto_dados['perapur'] = read_from_xml(ideFolhaPagto.perApur.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1035.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -65,27 +66,27 @@ def read_s1035_evttabcarreira_obj(request, doc, status, validar=False, arquivo=F
     elif 'exclusao' in dir(evtTabCarreira.infoCarreira): s1035_evttabcarreira_dados['operacao'] = 3
 
     try:
-        s1035_evttabcarreira_dados['tpamb'] = evtTabCarreira.ideEvento.tpAmb.cdata
+        s1035_evttabcarreira_dados['tpamb'] = read_from_xml(evtTabCarreira.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1035_evttabcarreira_dados['procemi'] = evtTabCarreira.ideEvento.procEmi.cdata
+        s1035_evttabcarreira_dados['procemi'] = read_from_xml(evtTabCarreira.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1035_evttabcarreira_dados['verproc'] = evtTabCarreira.ideEvento.verProc.cdata
+        s1035_evttabcarreira_dados['verproc'] = read_from_xml(evtTabCarreira.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1035_evttabcarreira_dados['tpinsc'] = evtTabCarreira.ideEmpregador.tpInsc.cdata
+        s1035_evttabcarreira_dados['tpinsc'] = read_from_xml(evtTabCarreira.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1035_evttabcarreira_dados['nrinsc'] = evtTabCarreira.ideEmpregador.nrInsc.cdata
+        s1035_evttabcarreira_dados['nrinsc'] = read_from_xml(evtTabCarreira.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -99,37 +100,37 @@ def read_s1035_evttabcarreira_obj(request, doc, status, validar=False, arquivo=F
             s1035_inclusao_dados['s1035_evttabcarreira_id'] = s1035_evttabcarreira.id
 
             try:
-                s1035_inclusao_dados['codcarreira'] = inclusao.ideCarreira.codCarreira.cdata
+                s1035_inclusao_dados['codcarreira'] = read_from_xml(inclusao.ideCarreira.codCarreira.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1035_inclusao_dados['inivalid'] = inclusao.ideCarreira.iniValid.cdata
+                s1035_inclusao_dados['inivalid'] = read_from_xml(inclusao.ideCarreira.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1035_inclusao_dados['fimvalid'] = inclusao.ideCarreira.fimValid.cdata
+                s1035_inclusao_dados['fimvalid'] = read_from_xml(inclusao.ideCarreira.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1035_inclusao_dados['dsccarreira'] = inclusao.dadosCarreira.dscCarreira.cdata
+                s1035_inclusao_dados['dsccarreira'] = read_from_xml(inclusao.dadosCarreira.dscCarreira.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1035_inclusao_dados['leicarr'] = inclusao.dadosCarreira.leiCarr.cdata
+                s1035_inclusao_dados['leicarr'] = read_from_xml(inclusao.dadosCarreira.leiCarr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1035_inclusao_dados['dtleicarr'] = inclusao.dadosCarreira.dtLeiCarr.cdata
+                s1035_inclusao_dados['dtleicarr'] = read_from_xml(inclusao.dadosCarreira.dtLeiCarr.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s1035_inclusao_dados['sitcarr'] = inclusao.dadosCarreira.sitCarr.cdata
+                s1035_inclusao_dados['sitcarr'] = read_from_xml(inclusao.dadosCarreira.sitCarr.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
@@ -143,37 +144,37 @@ def read_s1035_evttabcarreira_obj(request, doc, status, validar=False, arquivo=F
             s1035_alteracao_dados['s1035_evttabcarreira_id'] = s1035_evttabcarreira.id
 
             try:
-                s1035_alteracao_dados['codcarreira'] = alteracao.ideCarreira.codCarreira.cdata
+                s1035_alteracao_dados['codcarreira'] = read_from_xml(alteracao.ideCarreira.codCarreira.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1035_alteracao_dados['inivalid'] = alteracao.ideCarreira.iniValid.cdata
+                s1035_alteracao_dados['inivalid'] = read_from_xml(alteracao.ideCarreira.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1035_alteracao_dados['fimvalid'] = alteracao.ideCarreira.fimValid.cdata
+                s1035_alteracao_dados['fimvalid'] = read_from_xml(alteracao.ideCarreira.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1035_alteracao_dados['dsccarreira'] = alteracao.dadosCarreira.dscCarreira.cdata
+                s1035_alteracao_dados['dsccarreira'] = read_from_xml(alteracao.dadosCarreira.dscCarreira.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1035_alteracao_dados['leicarr'] = alteracao.dadosCarreira.leiCarr.cdata
+                s1035_alteracao_dados['leicarr'] = read_from_xml(alteracao.dadosCarreira.leiCarr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1035_alteracao_dados['dtleicarr'] = alteracao.dadosCarreira.dtLeiCarr.cdata
+                s1035_alteracao_dados['dtleicarr'] = read_from_xml(alteracao.dadosCarreira.dtLeiCarr.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s1035_alteracao_dados['sitcarr'] = alteracao.dadosCarreira.sitCarr.cdata
+                s1035_alteracao_dados['sitcarr'] = read_from_xml(alteracao.dadosCarreira.sitCarr.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
@@ -187,12 +188,12 @@ def read_s1035_evttabcarreira_obj(request, doc, status, validar=False, arquivo=F
                     s1035_alteracao_novavalidade_dados['s1035_alteracao_id'] = s1035_alteracao.id
 
                     try:
-                        s1035_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
+                        s1035_alteracao_novavalidade_dados['inivalid'] = read_from_xml(novaValidade.iniValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1035_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                        s1035_alteracao_novavalidade_dados['fimvalid'] = read_from_xml(novaValidade.fimValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -206,17 +207,17 @@ def read_s1035_evttabcarreira_obj(request, doc, status, validar=False, arquivo=F
             s1035_exclusao_dados['s1035_evttabcarreira_id'] = s1035_evttabcarreira.id
 
             try:
-                s1035_exclusao_dados['codcarreira'] = exclusao.ideCarreira.codCarreira.cdata
+                s1035_exclusao_dados['codcarreira'] = read_from_xml(exclusao.ideCarreira.codCarreira.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1035_exclusao_dados['inivalid'] = exclusao.ideCarreira.iniValid.cdata
+                s1035_exclusao_dados['inivalid'] = read_from_xml(exclusao.ideCarreira.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1035_exclusao_dados['fimvalid'] = exclusao.ideCarreira.fimValid.cdata
+                s1035_exclusao_dados['fimvalid'] = read_from_xml(exclusao.ideCarreira.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

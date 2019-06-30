@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.efdreinf.models import *
 from emensageriapro.r4010.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,62 +62,62 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
     evtRetPF = doc.Reinf.evtRetPF
 
     try:
-        r4010_evtretpf_dados['indretif'] = evtRetPF.ideEvento.indRetif.cdata
+        r4010_evtretpf_dados['indretif'] = read_from_xml(evtRetPF.ideEvento.indRetif.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r4010_evtretpf_dados['nrrecibo'] = evtRetPF.ideEvento.nrRecibo.cdata
+        r4010_evtretpf_dados['nrrecibo'] = read_from_xml(evtRetPF.ideEvento.nrRecibo.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r4010_evtretpf_dados['perapur'] = evtRetPF.ideEvento.perApur.cdata
+        r4010_evtretpf_dados['perapur'] = read_from_xml(evtRetPF.ideEvento.perApur.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r4010_evtretpf_dados['tpamb'] = evtRetPF.ideEvento.tpAmb.cdata
+        r4010_evtretpf_dados['tpamb'] = read_from_xml(evtRetPF.ideEvento.tpAmb.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r4010_evtretpf_dados['procemi'] = evtRetPF.ideEvento.procEmi.cdata
+        r4010_evtretpf_dados['procemi'] = read_from_xml(evtRetPF.ideEvento.procEmi.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r4010_evtretpf_dados['verproc'] = evtRetPF.ideEvento.verProc.cdata
+        r4010_evtretpf_dados['verproc'] = read_from_xml(evtRetPF.ideEvento.verProc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r4010_evtretpf_dados['tpinsc'] = evtRetPF.ideContri.tpInsc.cdata
+        r4010_evtretpf_dados['tpinsc'] = read_from_xml(evtRetPF.ideContri.tpInsc.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r4010_evtretpf_dados['nrinsc'] = evtRetPF.ideContri.nrInsc.cdata
+        r4010_evtretpf_dados['nrinsc'] = read_from_xml(evtRetPF.ideContri.nrInsc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r4010_evtretpf_dados['tpinscestab'] = evtRetPF.ideEstab.tpInscEstab.cdata
+        r4010_evtretpf_dados['tpinscestab'] = read_from_xml(evtRetPF.ideEstab.tpInscEstab.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r4010_evtretpf_dados['nrinscestab'] = evtRetPF.ideEstab.nrInscEstab.cdata
+        r4010_evtretpf_dados['nrinscestab'] = read_from_xml(evtRetPF.ideEstab.nrInscEstab.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r4010_evtretpf_dados['cpfbenef'] = evtRetPF.ideEstab.ideBenef.cpfBenef.cdata
+        r4010_evtretpf_dados['cpfbenef'] = read_from_xml(evtRetPF.ideEstab.ideBenef.cpfBenef.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r4010_evtretpf_dados['nmbenef'] = evtRetPF.ideEstab.ideBenef.nmBenef.cdata
+        r4010_evtretpf_dados['nmbenef'] = read_from_xml(evtRetPF.ideEstab.ideBenef.nmBenef.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
@@ -130,17 +131,17 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
             r4010_idepgto_dados['r4010_evtretpf_id'] = r4010_evtretpf.id
 
             try:
-                r4010_idepgto_dados['natrend'] = idePgto.natRend.cdata
+                r4010_idepgto_dados['natrend'] = read_from_xml(idePgto.natRend.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r4010_idepgto_dados['paisresid'] = idePgto.paisResid.cdata
+                r4010_idepgto_dados['paisresid'] = read_from_xml(idePgto.paisResid.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r4010_idepgto_dados['observ'] = idePgto.observ.cdata
+                r4010_idepgto_dados['observ'] = read_from_xml(idePgto.observ.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
@@ -154,52 +155,52 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                     r4010_infopgto_dados['r4010_idepgto_id'] = r4010_idepgto.id
 
                     try:
-                        r4010_infopgto_dados['dtfg'] = infoPgto.dtFG.cdata
+                        r4010_infopgto_dados['dtfg'] = read_from_xml(infoPgto.dtFG.cdata, 'efdreinf', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgto_dados['inddecterc'] = infoPgto.indDecTerc.cdata
+                        r4010_infopgto_dados['inddecterc'] = read_from_xml(infoPgto.indDecTerc.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgto_dados['vlrrendbruto'] = infoPgto.vlrRendBruto.cdata.replace('.', '').replace(',', '.')
+                        r4010_infopgto_dados['vlrrendbruto'] = read_from_xml(infoPgto.vlrRendBruto.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgto_dados['vlrrendtrib'] = infoPgto.vlrRendTrib.cdata.replace('.', '').replace(',', '.')
+                        r4010_infopgto_dados['vlrrendtrib'] = read_from_xml(infoPgto.vlrRendTrib.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgto_dados['vlrir'] = infoPgto.vlrIR.cdata.replace('.', '').replace(',', '.')
+                        r4010_infopgto_dados['vlrir'] = read_from_xml(infoPgto.vlrIR.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgto_dados['vlrrendsusp'] = infoPgto.vlrRendSusp.cdata.replace('.', '').replace(',', '.')
+                        r4010_infopgto_dados['vlrrendsusp'] = read_from_xml(infoPgto.vlrRendSusp.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgto_dados['vlrnir'] = infoPgto.vlrNIR.cdata.replace('.', '').replace(',', '.')
+                        r4010_infopgto_dados['vlrnir'] = read_from_xml(infoPgto.vlrNIR.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgto_dados['vlrdeposito'] = infoPgto.vlrDeposito.cdata.replace('.', '').replace(',', '.')
+                        r4010_infopgto_dados['vlrdeposito'] = read_from_xml(infoPgto.vlrDeposito.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgto_dados['vlrcompanocalend'] = infoPgto.vlrCompAnoCalend.cdata.replace('.', '').replace(',', '.')
+                        r4010_infopgto_dados['vlrcompanocalend'] = read_from_xml(infoPgto.vlrCompAnoCalend.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgto_dados['vlrcompanoant'] = infoPgto.vlrCompAnoAnt.cdata.replace('.', '').replace(',', '.')
+                        r4010_infopgto_dados['vlrcompanoant'] = read_from_xml(infoPgto.vlrCompAnoAnt.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -213,7 +214,7 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                             r4010_fci_dados['r4010_infopgto_id'] = r4010_infopgto.id
         
                             try:
-                                r4010_fci_dados['nrinscfci'] = FCI.nrInscFCI.cdata
+                                r4010_fci_dados['nrinscfci'] = read_from_xml(FCI.nrInscFCI.cdata, 'efdreinf', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -227,12 +228,12 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                             r4010_scp_dados['r4010_infopgto_id'] = r4010_infopgto.id
         
                             try:
-                                r4010_scp_dados['nrinscscp'] = SCP.nrInscSCP.cdata
+                                r4010_scp_dados['nrinscscp'] = read_from_xml(SCP.nrInscSCP.cdata, 'efdreinf', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_scp_dados['percscp'] = SCP.percSCP.cdata
+                                r4010_scp_dados['percscp'] = read_from_xml(SCP.percSCP.cdata, 'efdreinf', 'N', 4)
                             except AttributeError:
                                 pass
 
@@ -246,22 +247,22 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                             r4010_detded_dados['r4010_infopgto_id'] = r4010_infopgto.id
         
                             try:
-                                r4010_detded_dados['indtpdeducao'] = detDed.indTpDeducao.cdata
+                                r4010_detded_dados['indtpdeducao'] = read_from_xml(detDed.indTpDeducao.cdata, 'efdreinf', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_detded_dados['vlrdeducao'] = detDed.vlrDeducao.cdata.replace('.', '').replace(',', '.')
+                                r4010_detded_dados['vlrdeducao'] = read_from_xml(detDed.vlrDeducao.cdata, 'efdreinf', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_detded_dados['vlrdedsusp'] = detDed.vlrDedSusp.cdata.replace('.', '').replace(',', '.')
+                                r4010_detded_dados['vlrdedsusp'] = read_from_xml(detDed.vlrDedSusp.cdata, 'efdreinf', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_detded_dados['nrinscprevcomp'] = detDed.nrInscPrevComp.cdata
+                                r4010_detded_dados['nrinscprevcomp'] = read_from_xml(detDed.nrInscPrevComp.cdata, 'efdreinf', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -275,27 +276,27 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                                     r4010_benefpen_dados['r4010_detded_id'] = r4010_detded.id
                 
                                     try:
-                                        r4010_benefpen_dados['cpf'] = benefPen.cpf.cdata
+                                        r4010_benefpen_dados['cpf'] = read_from_xml(benefPen.cpf.cdata, 'efdreinf', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r4010_benefpen_dados['dtnascto'] = benefPen.dtNascto.cdata
+                                        r4010_benefpen_dados['dtnascto'] = read_from_xml(benefPen.dtNascto.cdata, 'efdreinf', 'D', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r4010_benefpen_dados['nome'] = benefPen.nome.cdata
+                                        r4010_benefpen_dados['nome'] = read_from_xml(benefPen.nome.cdata, 'efdreinf', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r4010_benefpen_dados['reldep'] = benefPen.relDep.cdata
+                                        r4010_benefpen_dados['reldep'] = read_from_xml(benefPen.relDep.cdata, 'efdreinf', 'N', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r4010_benefpen_dados['descrdep'] = benefPen.descrDep.cdata
+                                        r4010_benefpen_dados['descrdep'] = read_from_xml(benefPen.descrDep.cdata, 'efdreinf', 'C', None)
                                     except AttributeError:
                                         pass
         
@@ -309,22 +310,22 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                             r4010_rendisento_dados['r4010_infopgto_id'] = r4010_infopgto.id
         
                             try:
-                                r4010_rendisento_dados['tpisencao'] = rendIsento.tpIsencao.cdata
+                                r4010_rendisento_dados['tpisencao'] = read_from_xml(rendIsento.tpIsencao.cdata, 'efdreinf', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_rendisento_dados['vlrisento'] = rendIsento.vlrIsento.cdata.replace('.', '').replace(',', '.')
+                                r4010_rendisento_dados['vlrisento'] = read_from_xml(rendIsento.vlrIsento.cdata, 'efdreinf', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_rendisento_dados['descrendimento'] = rendIsento.descRendimento.cdata
+                                r4010_rendisento_dados['descrendimento'] = read_from_xml(rendIsento.descRendimento.cdata, 'efdreinf', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_rendisento_dados['dtlaudo'] = rendIsento.dtLaudo.cdata
+                                r4010_rendisento_dados['dtlaudo'] = read_from_xml(rendIsento.dtLaudo.cdata, 'efdreinf', 'D', None)
                             except AttributeError:
                                 pass
 
@@ -338,27 +339,27 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                             r4010_infoprocret_dados['r4010_infopgto_id'] = r4010_infopgto.id
         
                             try:
-                                r4010_infoprocret_dados['tpprocret'] = infoProcRet.tpProcRet.cdata
+                                r4010_infoprocret_dados['tpprocret'] = read_from_xml(infoProcRet.tpProcRet.cdata, 'efdreinf', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_infoprocret_dados['nrprocret'] = infoProcRet.nrProcRet.cdata
+                                r4010_infoprocret_dados['nrprocret'] = read_from_xml(infoProcRet.nrProcRet.cdata, 'efdreinf', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_infoprocret_dados['codsusp'] = infoProcRet.codSusp.cdata
+                                r4010_infoprocret_dados['codsusp'] = read_from_xml(infoProcRet.codSusp.cdata, 'efdreinf', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_infoprocret_dados['vlrnretido'] = infoProcRet.vlrNRetido.cdata.replace('.', '').replace(',', '.')
+                                r4010_infoprocret_dados['vlrnretido'] = read_from_xml(infoProcRet.vlrNRetido.cdata, 'efdreinf', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_infoprocret_dados['vlrdep'] = infoProcRet.vlrDep.cdata.replace('.', '').replace(',', '.')
+                                r4010_infoprocret_dados['vlrdep'] = read_from_xml(infoProcRet.vlrDep.cdata, 'efdreinf', 'N', 2)
                             except AttributeError:
                                 pass
 
@@ -372,27 +373,27 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                             r4010_inforra_dados['r4010_infopgto_id'] = r4010_infopgto.id
         
                             try:
-                                r4010_inforra_dados['tpprocrra'] = infoRRA.tpProcRRA.cdata
+                                r4010_inforra_dados['tpprocrra'] = read_from_xml(infoRRA.tpProcRRA.cdata, 'efdreinf', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_inforra_dados['nrprocrra'] = infoRRA.nrProcRRA.cdata
+                                r4010_inforra_dados['nrprocrra'] = read_from_xml(infoRRA.nrProcRRA.cdata, 'efdreinf', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_inforra_dados['indorigrec'] = infoRRA.indOrigRec.cdata
+                                r4010_inforra_dados['indorigrec'] = read_from_xml(infoRRA.indOrigRec.cdata, 'efdreinf', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_inforra_dados['descrra'] = infoRRA.descRRA.cdata
+                                r4010_inforra_dados['descrra'] = read_from_xml(infoRRA.descRRA.cdata, 'efdreinf', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_inforra_dados['qtdmesesrra'] = infoRRA.qtdMesesRRA.cdata
+                                r4010_inforra_dados['qtdmesesrra'] = read_from_xml(infoRRA.qtdMesesRRA.cdata, 'efdreinf', 'N', 1)
                             except AttributeError:
                                 pass
 
@@ -406,12 +407,12 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                                     r4010_inforra_despprocjud_dados['r4010_inforra_id'] = r4010_inforra.id
                 
                                     try:
-                                        r4010_inforra_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata.replace('.', '').replace(',', '.')
+                                        r4010_inforra_despprocjud_dados['vlrdespcustas'] = read_from_xml(despProcJud.vlrDespCustas.cdata, 'efdreinf', 'N', 2)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r4010_inforra_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata.replace('.', '').replace(',', '.')
+                                        r4010_inforra_despprocjud_dados['vlrdespadvogados'] = read_from_xml(despProcJud.vlrDespAdvogados.cdata, 'efdreinf', 'N', 2)
                                     except AttributeError:
                                         pass
         
@@ -425,17 +426,17 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                                             r4010_inforra_ideadv_dados['r4010_inforra_despprocjud_id'] = r4010_inforra_despprocjud.id
                         
                                             try:
-                                                r4010_inforra_ideadv_dados['tpinscadv'] = ideAdv.tpInscAdv.cdata
+                                                r4010_inforra_ideadv_dados['tpinscadv'] = read_from_xml(ideAdv.tpInscAdv.cdata, 'efdreinf', 'N', None)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                r4010_inforra_ideadv_dados['nrinscadv'] = ideAdv.nrInscAdv.cdata
+                                                r4010_inforra_ideadv_dados['nrinscadv'] = read_from_xml(ideAdv.nrInscAdv.cdata, 'efdreinf', 'C', None)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                r4010_inforra_ideadv_dados['vlradv'] = ideAdv.vlrAdv.cdata.replace('.', '').replace(',', '.')
+                                                r4010_inforra_ideadv_dados['vlradv'] = read_from_xml(ideAdv.vlrAdv.cdata, 'efdreinf', 'N', 2)
                                             except AttributeError:
                                                 pass
                 
@@ -449,7 +450,7 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                                     r4010_inforra_origemrec_dados['r4010_inforra_id'] = r4010_inforra.id
                 
                                     try:
-                                        r4010_inforra_origemrec_dados['cnpjorigrecurso'] = origemRec.cnpjOrigRecurso.cdata
+                                        r4010_inforra_origemrec_dados['cnpjorigrecurso'] = read_from_xml(origemRec.cnpjOrigRecurso.cdata, 'efdreinf', 'C', None)
                                     except AttributeError:
                                         pass
         
@@ -463,17 +464,17 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                             r4010_infoprocjud_dados['r4010_infopgto_id'] = r4010_infopgto.id
         
                             try:
-                                r4010_infoprocjud_dados['nrproc'] = infoProcJud.nrProc.cdata
+                                r4010_infoprocjud_dados['nrproc'] = read_from_xml(infoProcJud.nrProc.cdata, 'efdreinf', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_infoprocjud_dados['indorigrec'] = infoProcJud.indOrigRec.cdata
+                                r4010_infoprocjud_dados['indorigrec'] = read_from_xml(infoProcJud.indOrigRec.cdata, 'efdreinf', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_infoprocjud_dados['desc'] = infoProcJud.desc.cdata
+                                r4010_infoprocjud_dados['desc'] = read_from_xml(infoProcJud.desc.cdata, 'efdreinf', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -487,12 +488,12 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                                     r4010_infoprocjud_despprocjud_dados['r4010_infoprocjud_id'] = r4010_infoprocjud.id
                 
                                     try:
-                                        r4010_infoprocjud_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata.replace('.', '').replace(',', '.')
+                                        r4010_infoprocjud_despprocjud_dados['vlrdespcustas'] = read_from_xml(despProcJud.vlrDespCustas.cdata, 'efdreinf', 'N', 2)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r4010_infoprocjud_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata.replace('.', '').replace(',', '.')
+                                        r4010_infoprocjud_despprocjud_dados['vlrdespadvogados'] = read_from_xml(despProcJud.vlrDespAdvogados.cdata, 'efdreinf', 'N', 2)
                                     except AttributeError:
                                         pass
         
@@ -506,17 +507,17 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                                             r4010_infoprocjud_ideadv_dados['r4010_infoprocjud_despprocjud_id'] = r4010_infoprocjud_despprocjud.id
                         
                                             try:
-                                                r4010_infoprocjud_ideadv_dados['tpinscadv'] = ideAdv.tpInscAdv.cdata
+                                                r4010_infoprocjud_ideadv_dados['tpinscadv'] = read_from_xml(ideAdv.tpInscAdv.cdata, 'efdreinf', 'N', None)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                r4010_infoprocjud_ideadv_dados['nrinscadv'] = ideAdv.nrInscAdv.cdata
+                                                r4010_infoprocjud_ideadv_dados['nrinscadv'] = read_from_xml(ideAdv.nrInscAdv.cdata, 'efdreinf', 'C', None)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                r4010_infoprocjud_ideadv_dados['vlradv'] = ideAdv.vlrAdv.cdata.replace('.', '').replace(',', '.')
+                                                r4010_infoprocjud_ideadv_dados['vlradv'] = read_from_xml(ideAdv.vlrAdv.cdata, 'efdreinf', 'N', 2)
                                             except AttributeError:
                                                 pass
                 
@@ -530,7 +531,7 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                                     r4010_infoprocjud_origemrec_dados['r4010_infoprocjud_id'] = r4010_infoprocjud.id
                 
                                     try:
-                                        r4010_infoprocjud_origemrec_dados['cnpjorigrecurso'] = origemRec.cnpjOrigRecurso.cdata
+                                        r4010_infoprocjud_origemrec_dados['cnpjorigrecurso'] = read_from_xml(origemRec.cnpjOrigRecurso.cdata, 'efdreinf', 'C', None)
                                     except AttributeError:
                                         pass
         
@@ -544,57 +545,57 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                     r4010_infopgtoext_dados['r4010_idepgto_id'] = r4010_idepgto.id
 
                     try:
-                        r4010_infopgtoext_dados['dsclograd'] = infoPgtoExt.endExt.dscLograd.cdata
+                        r4010_infopgtoext_dados['dsclograd'] = read_from_xml(infoPgtoExt.endExt.dscLograd.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgtoext_dados['nrlograd'] = infoPgtoExt.endExt.nrLograd.cdata
+                        r4010_infopgtoext_dados['nrlograd'] = read_from_xml(infoPgtoExt.endExt.nrLograd.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgtoext_dados['complem'] = infoPgtoExt.endExt.complem.cdata
+                        r4010_infopgtoext_dados['complem'] = read_from_xml(infoPgtoExt.endExt.complem.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgtoext_dados['bairro'] = infoPgtoExt.endExt.bairro.cdata
+                        r4010_infopgtoext_dados['bairro'] = read_from_xml(infoPgtoExt.endExt.bairro.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgtoext_dados['cidade'] = infoPgtoExt.endExt.cidade.cdata
+                        r4010_infopgtoext_dados['cidade'] = read_from_xml(infoPgtoExt.endExt.cidade.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgtoext_dados['estado'] = infoPgtoExt.endExt.estado.cdata
+                        r4010_infopgtoext_dados['estado'] = read_from_xml(infoPgtoExt.endExt.estado.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgtoext_dados['codpostal'] = infoPgtoExt.endExt.codPostal.cdata
+                        r4010_infopgtoext_dados['codpostal'] = read_from_xml(infoPgtoExt.endExt.codPostal.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgtoext_dados['telef'] = infoPgtoExt.endExt.telef.cdata
+                        r4010_infopgtoext_dados['telef'] = read_from_xml(infoPgtoExt.endExt.telef.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgtoext_dados['indnif'] = infoPgtoExt.infoFiscal.indNIF.cdata
+                        r4010_infopgtoext_dados['indnif'] = read_from_xml(infoPgtoExt.infoFiscal.indNIF.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgtoext_dados['nifbenef'] = infoPgtoExt.infoFiscal.nifBenef.cdata
+                        r4010_infopgtoext_dados['nifbenef'] = read_from_xml(infoPgtoExt.infoFiscal.nifBenef.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infopgtoext_dados['frmtribut'] = infoPgtoExt.infoFiscal.frmTribut.cdata
+                        r4010_infopgtoext_dados['frmtribut'] = read_from_xml(infoPgtoExt.infoFiscal.frmTribut.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
@@ -608,17 +609,17 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
             r4010_ideopsaude_dados['r4010_evtretpf_id'] = r4010_evtretpf.id
 
             try:
-                r4010_ideopsaude_dados['nrinsc'] = ideOpSaude.nrInsc.cdata
+                r4010_ideopsaude_dados['nrinsc'] = read_from_xml(ideOpSaude.nrInsc.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r4010_ideopsaude_dados['regans'] = ideOpSaude.regANS.cdata
+                r4010_ideopsaude_dados['regans'] = read_from_xml(ideOpSaude.regANS.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r4010_ideopsaude_dados['vlrsaude'] = ideOpSaude.vlrSaude.cdata.replace('.', '').replace(',', '.')
+                r4010_ideopsaude_dados['vlrsaude'] = read_from_xml(ideOpSaude.vlrSaude.cdata, 'efdreinf', 'N', 2)
             except AttributeError:
                 pass
 
@@ -632,22 +633,22 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                     r4010_inforeemb_dados['r4010_ideopsaude_id'] = r4010_ideopsaude.id
 
                     try:
-                        r4010_inforeemb_dados['tpinsc'] = infoReemb.tpInsc.cdata
+                        r4010_inforeemb_dados['tpinsc'] = read_from_xml(infoReemb.tpInsc.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_inforeemb_dados['nrinsc'] = infoReemb.nrInsc.cdata
+                        r4010_inforeemb_dados['nrinsc'] = read_from_xml(infoReemb.nrInsc.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_inforeemb_dados['vlrreemb'] = infoReemb.vlrReemb.cdata.replace('.', '').replace(',', '.')
+                        r4010_inforeemb_dados['vlrreemb'] = read_from_xml(infoReemb.vlrReemb.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_inforeemb_dados['vlrreembant'] = infoReemb.vlrReembAnt.cdata.replace('.', '').replace(',', '.')
+                        r4010_inforeemb_dados['vlrreembant'] = read_from_xml(infoReemb.vlrReembAnt.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -661,27 +662,27 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                     r4010_infodependpl_dados['r4010_ideopsaude_id'] = r4010_ideopsaude.id
 
                     try:
-                        r4010_infodependpl_dados['cpf'] = infoDependPl.cpf.cdata
+                        r4010_infodependpl_dados['cpf'] = read_from_xml(infoDependPl.cpf.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infodependpl_dados['dtnascto'] = infoDependPl.dtNascto.cdata
+                        r4010_infodependpl_dados['dtnascto'] = read_from_xml(infoDependPl.dtNascto.cdata, 'efdreinf', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infodependpl_dados['nome'] = infoDependPl.nome.cdata
+                        r4010_infodependpl_dados['nome'] = read_from_xml(infoDependPl.nome.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infodependpl_dados['reldep'] = infoDependPl.relDep.cdata
+                        r4010_infodependpl_dados['reldep'] = read_from_xml(infoDependPl.relDep.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r4010_infodependpl_dados['vlrsaude'] = infoDependPl.vlrSaude.cdata.replace('.', '').replace(',', '.')
+                        r4010_infodependpl_dados['vlrsaude'] = read_from_xml(infoDependPl.vlrSaude.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
@@ -695,22 +696,22 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False, arquivo=False):
                             r4010_inforeembdep_dados['r4010_infodependpl_id'] = r4010_infodependpl.id
         
                             try:
-                                r4010_inforeembdep_dados['tpinsc'] = infoReembDep.tpInsc.cdata
+                                r4010_inforeembdep_dados['tpinsc'] = read_from_xml(infoReembDep.tpInsc.cdata, 'efdreinf', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_inforeembdep_dados['nrinsc'] = infoReembDep.nrInsc.cdata
+                                r4010_inforeembdep_dados['nrinsc'] = read_from_xml(infoReembDep.nrInsc.cdata, 'efdreinf', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_inforeembdep_dados['vlrreemb'] = infoReembDep.vlrReemb.cdata.replace('.', '').replace(',', '.')
+                                r4010_inforeembdep_dados['vlrreemb'] = read_from_xml(infoReembDep.vlrReemb.cdata, 'efdreinf', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                r4010_inforeembdep_dados['vlrreembant'] = infoReembDep.vlrReembAnt.cdata.replace('.', '').replace(',', '.')
+                                r4010_inforeembdep_dados['vlrreembant'] = read_from_xml(infoReembDep.vlrReembAnt.cdata, 'efdreinf', 'N', 2)
                             except AttributeError:
                                 pass
 

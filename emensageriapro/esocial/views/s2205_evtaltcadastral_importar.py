@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2205.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,117 +62,117 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False, arquivo=
     evtAltCadastral = doc.eSocial.evtAltCadastral
 
     try:
-        s2205_evtaltcadastral_dados['indretif'] = evtAltCadastral.ideEvento.indRetif.cdata
+        s2205_evtaltcadastral_dados['indretif'] = read_from_xml(evtAltCadastral.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['nrrecibo'] = evtAltCadastral.ideEvento.nrRecibo.cdata
+        s2205_evtaltcadastral_dados['nrrecibo'] = read_from_xml(evtAltCadastral.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['tpamb'] = evtAltCadastral.ideEvento.tpAmb.cdata
+        s2205_evtaltcadastral_dados['tpamb'] = read_from_xml(evtAltCadastral.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['procemi'] = evtAltCadastral.ideEvento.procEmi.cdata
+        s2205_evtaltcadastral_dados['procemi'] = read_from_xml(evtAltCadastral.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['verproc'] = evtAltCadastral.ideEvento.verProc.cdata
+        s2205_evtaltcadastral_dados['verproc'] = read_from_xml(evtAltCadastral.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['tpinsc'] = evtAltCadastral.ideEmpregador.tpInsc.cdata
+        s2205_evtaltcadastral_dados['tpinsc'] = read_from_xml(evtAltCadastral.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['nrinsc'] = evtAltCadastral.ideEmpregador.nrInsc.cdata
+        s2205_evtaltcadastral_dados['nrinsc'] = read_from_xml(evtAltCadastral.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['cpftrab'] = evtAltCadastral.ideTrabalhador.cpfTrab.cdata
+        s2205_evtaltcadastral_dados['cpftrab'] = read_from_xml(evtAltCadastral.ideTrabalhador.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['dtalteracao'] = evtAltCadastral.alteracao.dtAlteracao.cdata
+        s2205_evtaltcadastral_dados['dtalteracao'] = read_from_xml(evtAltCadastral.alteracao.dtAlteracao.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['nistrab'] = evtAltCadastral.alteracao.dadosTrabalhador.nisTrab.cdata
+        s2205_evtaltcadastral_dados['nistrab'] = read_from_xml(evtAltCadastral.alteracao.dadosTrabalhador.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['nmtrab'] = evtAltCadastral.alteracao.dadosTrabalhador.nmTrab.cdata
+        s2205_evtaltcadastral_dados['nmtrab'] = read_from_xml(evtAltCadastral.alteracao.dadosTrabalhador.nmTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['sexo'] = evtAltCadastral.alteracao.dadosTrabalhador.sexo.cdata
+        s2205_evtaltcadastral_dados['sexo'] = read_from_xml(evtAltCadastral.alteracao.dadosTrabalhador.sexo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['racacor'] = evtAltCadastral.alteracao.dadosTrabalhador.racaCor.cdata
+        s2205_evtaltcadastral_dados['racacor'] = read_from_xml(evtAltCadastral.alteracao.dadosTrabalhador.racaCor.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['estciv'] = evtAltCadastral.alteracao.dadosTrabalhador.estCiv.cdata
+        s2205_evtaltcadastral_dados['estciv'] = read_from_xml(evtAltCadastral.alteracao.dadosTrabalhador.estCiv.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['grauinstr'] = evtAltCadastral.alteracao.dadosTrabalhador.grauInstr.cdata
+        s2205_evtaltcadastral_dados['grauinstr'] = read_from_xml(evtAltCadastral.alteracao.dadosTrabalhador.grauInstr.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['nmsoc'] = evtAltCadastral.alteracao.dadosTrabalhador.nmSoc.cdata
+        s2205_evtaltcadastral_dados['nmsoc'] = read_from_xml(evtAltCadastral.alteracao.dadosTrabalhador.nmSoc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['dtnascto'] = evtAltCadastral.alteracao.dadosTrabalhador.nascimento.dtNascto.cdata
+        s2205_evtaltcadastral_dados['dtnascto'] = read_from_xml(evtAltCadastral.alteracao.dadosTrabalhador.nascimento.dtNascto.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['codmunic'] = evtAltCadastral.alteracao.dadosTrabalhador.nascimento.codMunic.cdata
+        s2205_evtaltcadastral_dados['codmunic'] = read_from_xml(evtAltCadastral.alteracao.dadosTrabalhador.nascimento.codMunic.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['uf'] = evtAltCadastral.alteracao.dadosTrabalhador.nascimento.uf.cdata
+        s2205_evtaltcadastral_dados['uf'] = read_from_xml(evtAltCadastral.alteracao.dadosTrabalhador.nascimento.uf.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['paisnascto'] = evtAltCadastral.alteracao.dadosTrabalhador.nascimento.paisNascto.cdata
+        s2205_evtaltcadastral_dados['paisnascto'] = read_from_xml(evtAltCadastral.alteracao.dadosTrabalhador.nascimento.paisNascto.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['paisnac'] = evtAltCadastral.alteracao.dadosTrabalhador.nascimento.paisNac.cdata
+        s2205_evtaltcadastral_dados['paisnac'] = read_from_xml(evtAltCadastral.alteracao.dadosTrabalhador.nascimento.paisNac.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['nmmae'] = evtAltCadastral.alteracao.dadosTrabalhador.nascimento.nmMae.cdata
+        s2205_evtaltcadastral_dados['nmmae'] = read_from_xml(evtAltCadastral.alteracao.dadosTrabalhador.nascimento.nmMae.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2205_evtaltcadastral_dados['nmpai'] = evtAltCadastral.alteracao.dadosTrabalhador.nascimento.nmPai.cdata
+        s2205_evtaltcadastral_dados['nmpai'] = read_from_xml(evtAltCadastral.alteracao.dadosTrabalhador.nascimento.nmPai.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -194,17 +195,17 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False, arquivo=
                     s2205_ctps_dados['s2205_documentos_id'] = s2205_documentos.id
 
                     try:
-                        s2205_ctps_dados['nrctps'] = CTPS.nrCtps.cdata
+                        s2205_ctps_dados['nrctps'] = read_from_xml(CTPS.nrCtps.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2205_ctps_dados['seriectps'] = CTPS.serieCtps.cdata
+                        s2205_ctps_dados['seriectps'] = read_from_xml(CTPS.serieCtps.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2205_ctps_dados['ufctps'] = CTPS.ufCtps.cdata
+                        s2205_ctps_dados['ufctps'] = read_from_xml(CTPS.ufCtps.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -218,17 +219,17 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False, arquivo=
                     s2205_ric_dados['s2205_documentos_id'] = s2205_documentos.id
 
                     try:
-                        s2205_ric_dados['nrric'] = RIC.nrRic.cdata
+                        s2205_ric_dados['nrric'] = read_from_xml(RIC.nrRic.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2205_ric_dados['orgaoemissor'] = RIC.orgaoEmissor.cdata
+                        s2205_ric_dados['orgaoemissor'] = read_from_xml(RIC.orgaoEmissor.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2205_ric_dados['dtexped'] = RIC.dtExped.cdata
+                        s2205_ric_dados['dtexped'] = read_from_xml(RIC.dtExped.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -242,17 +243,17 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False, arquivo=
                     s2205_rg_dados['s2205_documentos_id'] = s2205_documentos.id
 
                     try:
-                        s2205_rg_dados['nrrg'] = RG.nrRg.cdata
+                        s2205_rg_dados['nrrg'] = read_from_xml(RG.nrRg.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2205_rg_dados['orgaoemissor'] = RG.orgaoEmissor.cdata
+                        s2205_rg_dados['orgaoemissor'] = read_from_xml(RG.orgaoEmissor.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2205_rg_dados['dtexped'] = RG.dtExped.cdata
+                        s2205_rg_dados['dtexped'] = read_from_xml(RG.dtExped.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -266,17 +267,17 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False, arquivo=
                     s2205_rne_dados['s2205_documentos_id'] = s2205_documentos.id
 
                     try:
-                        s2205_rne_dados['nrrne'] = RNE.nrRne.cdata
+                        s2205_rne_dados['nrrne'] = read_from_xml(RNE.nrRne.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2205_rne_dados['orgaoemissor'] = RNE.orgaoEmissor.cdata
+                        s2205_rne_dados['orgaoemissor'] = read_from_xml(RNE.orgaoEmissor.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2205_rne_dados['dtexped'] = RNE.dtExped.cdata
+                        s2205_rne_dados['dtexped'] = read_from_xml(RNE.dtExped.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -290,22 +291,22 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False, arquivo=
                     s2205_oc_dados['s2205_documentos_id'] = s2205_documentos.id
 
                     try:
-                        s2205_oc_dados['nroc'] = OC.nrOc.cdata
+                        s2205_oc_dados['nroc'] = read_from_xml(OC.nrOc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2205_oc_dados['orgaoemissor'] = OC.orgaoEmissor.cdata
+                        s2205_oc_dados['orgaoemissor'] = read_from_xml(OC.orgaoEmissor.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2205_oc_dados['dtexped'] = OC.dtExped.cdata
+                        s2205_oc_dados['dtexped'] = read_from_xml(OC.dtExped.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2205_oc_dados['dtvalid'] = OC.dtValid.cdata
+                        s2205_oc_dados['dtvalid'] = read_from_xml(OC.dtValid.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
@@ -319,32 +320,32 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False, arquivo=
                     s2205_cnh_dados['s2205_documentos_id'] = s2205_documentos.id
 
                     try:
-                        s2205_cnh_dados['nrregcnh'] = CNH.nrRegCnh.cdata
+                        s2205_cnh_dados['nrregcnh'] = read_from_xml(CNH.nrRegCnh.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2205_cnh_dados['dtexped'] = CNH.dtExped.cdata
+                        s2205_cnh_dados['dtexped'] = read_from_xml(CNH.dtExped.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2205_cnh_dados['ufcnh'] = CNH.ufCnh.cdata
+                        s2205_cnh_dados['ufcnh'] = read_from_xml(CNH.ufCnh.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2205_cnh_dados['dtvalid'] = CNH.dtValid.cdata
+                        s2205_cnh_dados['dtvalid'] = read_from_xml(CNH.dtValid.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2205_cnh_dados['dtprihab'] = CNH.dtPriHab.cdata
+                        s2205_cnh_dados['dtprihab'] = read_from_xml(CNH.dtPriHab.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2205_cnh_dados['categoriacnh'] = CNH.categoriaCnh.cdata
+                        s2205_cnh_dados['categoriacnh'] = read_from_xml(CNH.categoriaCnh.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -358,42 +359,42 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False, arquivo=
             s2205_brasil_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral.id
 
             try:
-                s2205_brasil_dados['tplograd'] = brasil.tpLograd.cdata
+                s2205_brasil_dados['tplograd'] = read_from_xml(brasil.tpLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_brasil_dados['dsclograd'] = brasil.dscLograd.cdata
+                s2205_brasil_dados['dsclograd'] = read_from_xml(brasil.dscLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_brasil_dados['nrlograd'] = brasil.nrLograd.cdata
+                s2205_brasil_dados['nrlograd'] = read_from_xml(brasil.nrLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_brasil_dados['complemento'] = brasil.complemento.cdata
+                s2205_brasil_dados['complemento'] = read_from_xml(brasil.complemento.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_brasil_dados['bairro'] = brasil.bairro.cdata
+                s2205_brasil_dados['bairro'] = read_from_xml(brasil.bairro.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_brasil_dados['cep'] = brasil.cep.cdata
+                s2205_brasil_dados['cep'] = read_from_xml(brasil.cep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_brasil_dados['codmunic'] = brasil.codMunic.cdata
+                s2205_brasil_dados['codmunic'] = read_from_xml(brasil.codMunic.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_brasil_dados['uf'] = brasil.uf.cdata
+                s2205_brasil_dados['uf'] = read_from_xml(brasil.uf.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -407,37 +408,37 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False, arquivo=
             s2205_exterior_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral.id
 
             try:
-                s2205_exterior_dados['paisresid'] = exterior.paisResid.cdata
+                s2205_exterior_dados['paisresid'] = read_from_xml(exterior.paisResid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_exterior_dados['dsclograd'] = exterior.dscLograd.cdata
+                s2205_exterior_dados['dsclograd'] = read_from_xml(exterior.dscLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_exterior_dados['nrlograd'] = exterior.nrLograd.cdata
+                s2205_exterior_dados['nrlograd'] = read_from_xml(exterior.nrLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_exterior_dados['complemento'] = exterior.complemento.cdata
+                s2205_exterior_dados['complemento'] = read_from_xml(exterior.complemento.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_exterior_dados['bairro'] = exterior.bairro.cdata
+                s2205_exterior_dados['bairro'] = read_from_xml(exterior.bairro.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_exterior_dados['nmcid'] = exterior.nmCid.cdata
+                s2205_exterior_dados['nmcid'] = read_from_xml(exterior.nmCid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_exterior_dados['codpostal'] = exterior.codPostal.cdata
+                s2205_exterior_dados['codpostal'] = read_from_xml(exterior.codPostal.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -451,22 +452,22 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False, arquivo=
             s2205_trabestrangeiro_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral.id
 
             try:
-                s2205_trabestrangeiro_dados['dtchegada'] = trabEstrangeiro.dtChegada.cdata
+                s2205_trabestrangeiro_dados['dtchegada'] = read_from_xml(trabEstrangeiro.dtChegada.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_trabestrangeiro_dados['classtrabestrang'] = trabEstrangeiro.classTrabEstrang.cdata
+                s2205_trabestrangeiro_dados['classtrabestrang'] = read_from_xml(trabEstrangeiro.classTrabEstrang.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_trabestrangeiro_dados['casadobr'] = trabEstrangeiro.casadoBr.cdata
+                s2205_trabestrangeiro_dados['casadobr'] = read_from_xml(trabEstrangeiro.casadoBr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_trabestrangeiro_dados['filhosbr'] = trabEstrangeiro.filhosBr.cdata
+                s2205_trabestrangeiro_dados['filhosbr'] = read_from_xml(trabEstrangeiro.filhosBr.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -480,42 +481,42 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False, arquivo=
             s2205_infodeficiencia_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral.id
 
             try:
-                s2205_infodeficiencia_dados['deffisica'] = infoDeficiencia.defFisica.cdata
+                s2205_infodeficiencia_dados['deffisica'] = read_from_xml(infoDeficiencia.defFisica.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_infodeficiencia_dados['defvisual'] = infoDeficiencia.defVisual.cdata
+                s2205_infodeficiencia_dados['defvisual'] = read_from_xml(infoDeficiencia.defVisual.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_infodeficiencia_dados['defauditiva'] = infoDeficiencia.defAuditiva.cdata
+                s2205_infodeficiencia_dados['defauditiva'] = read_from_xml(infoDeficiencia.defAuditiva.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_infodeficiencia_dados['defmental'] = infoDeficiencia.defMental.cdata
+                s2205_infodeficiencia_dados['defmental'] = read_from_xml(infoDeficiencia.defMental.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_infodeficiencia_dados['defintelectual'] = infoDeficiencia.defIntelectual.cdata
+                s2205_infodeficiencia_dados['defintelectual'] = read_from_xml(infoDeficiencia.defIntelectual.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_infodeficiencia_dados['reabreadap'] = infoDeficiencia.reabReadap.cdata
+                s2205_infodeficiencia_dados['reabreadap'] = read_from_xml(infoDeficiencia.reabReadap.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_infodeficiencia_dados['infocota'] = infoDeficiencia.infoCota.cdata
+                s2205_infodeficiencia_dados['infocota'] = read_from_xml(infoDeficiencia.infoCota.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_infodeficiencia_dados['observacao'] = infoDeficiencia.observacao.cdata
+                s2205_infodeficiencia_dados['observacao'] = read_from_xml(infoDeficiencia.observacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -529,47 +530,47 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False, arquivo=
             s2205_dependente_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral.id
 
             try:
-                s2205_dependente_dados['tpdep'] = dependente.tpDep.cdata
+                s2205_dependente_dados['tpdep'] = read_from_xml(dependente.tpDep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_dependente_dados['nmdep'] = dependente.nmDep.cdata
+                s2205_dependente_dados['nmdep'] = read_from_xml(dependente.nmDep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_dependente_dados['dtnascto'] = dependente.dtNascto.cdata
+                s2205_dependente_dados['dtnascto'] = read_from_xml(dependente.dtNascto.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_dependente_dados['cpfdep'] = dependente.cpfDep.cdata
+                s2205_dependente_dados['cpfdep'] = read_from_xml(dependente.cpfDep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_dependente_dados['sexodep'] = dependente.sexoDep.cdata
+                s2205_dependente_dados['sexodep'] = read_from_xml(dependente.sexoDep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_dependente_dados['depirrf'] = dependente.depIRRF.cdata
+                s2205_dependente_dados['depirrf'] = read_from_xml(dependente.depIRRF.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_dependente_dados['depsf'] = dependente.depSF.cdata
+                s2205_dependente_dados['depsf'] = read_from_xml(dependente.depSF.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_dependente_dados['inctrab'] = dependente.incTrab.cdata
+                s2205_dependente_dados['inctrab'] = read_from_xml(dependente.incTrab.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_dependente_dados['depfinsprev'] = dependente.depFinsPrev.cdata
+                s2205_dependente_dados['depfinsprev'] = read_from_xml(dependente.depFinsPrev.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -583,7 +584,7 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False, arquivo=
             s2205_aposentadoria_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral.id
 
             try:
-                s2205_aposentadoria_dados['trabaposent'] = aposentadoria.trabAposent.cdata
+                s2205_aposentadoria_dados['trabaposent'] = read_from_xml(aposentadoria.trabAposent.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -597,22 +598,22 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False, arquivo=
             s2205_contato_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral.id
 
             try:
-                s2205_contato_dados['foneprinc'] = contato.fonePrinc.cdata
+                s2205_contato_dados['foneprinc'] = read_from_xml(contato.fonePrinc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_contato_dados['fonealternat'] = contato.foneAlternat.cdata
+                s2205_contato_dados['fonealternat'] = read_from_xml(contato.foneAlternat.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_contato_dados['emailprinc'] = contato.emailPrinc.cdata
+                s2205_contato_dados['emailprinc'] = read_from_xml(contato.emailPrinc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2205_contato_dados['emailalternat'] = contato.emailAlternat.cdata
+                s2205_contato_dados['emailalternat'] = read_from_xml(contato.emailAlternat.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.efdreinf.models import *
 from emensageriapro.r2070.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,62 +62,62 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
     evtPgtosDivs = doc.Reinf.evtPgtosDivs
 
     try:
-        r2070_evtpgtosdivs_dados['indretif'] = evtPgtosDivs.ideEvento.indRetif.cdata
+        r2070_evtpgtosdivs_dados['indretif'] = read_from_xml(evtPgtosDivs.ideEvento.indRetif.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2070_evtpgtosdivs_dados['nrrecibo'] = evtPgtosDivs.ideEvento.nrRecibo.cdata
+        r2070_evtpgtosdivs_dados['nrrecibo'] = read_from_xml(evtPgtosDivs.ideEvento.nrRecibo.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2070_evtpgtosdivs_dados['perapur'] = evtPgtosDivs.ideEvento.perApur.cdata
+        r2070_evtpgtosdivs_dados['perapur'] = read_from_xml(evtPgtosDivs.ideEvento.perApur.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2070_evtpgtosdivs_dados['tpamb'] = evtPgtosDivs.ideEvento.tpAmb.cdata
+        r2070_evtpgtosdivs_dados['tpamb'] = read_from_xml(evtPgtosDivs.ideEvento.tpAmb.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2070_evtpgtosdivs_dados['procemi'] = evtPgtosDivs.ideEvento.procEmi.cdata
+        r2070_evtpgtosdivs_dados['procemi'] = read_from_xml(evtPgtosDivs.ideEvento.procEmi.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2070_evtpgtosdivs_dados['verproc'] = evtPgtosDivs.ideEvento.verProc.cdata
+        r2070_evtpgtosdivs_dados['verproc'] = read_from_xml(evtPgtosDivs.ideEvento.verProc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2070_evtpgtosdivs_dados['tpinsc'] = evtPgtosDivs.ideContri.tpInsc.cdata
+        r2070_evtpgtosdivs_dados['tpinsc'] = read_from_xml(evtPgtosDivs.ideContri.tpInsc.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2070_evtpgtosdivs_dados['nrinsc'] = evtPgtosDivs.ideContri.nrInsc.cdata
+        r2070_evtpgtosdivs_dados['nrinsc'] = read_from_xml(evtPgtosDivs.ideContri.nrInsc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2070_evtpgtosdivs_dados['codpgto'] = evtPgtosDivs.ideBenef.codPgto.cdata
+        r2070_evtpgtosdivs_dados['codpgto'] = read_from_xml(evtPgtosDivs.ideBenef.codPgto.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2070_evtpgtosdivs_dados['tpinscbenef'] = evtPgtosDivs.ideBenef.tpInscBenef.cdata
+        r2070_evtpgtosdivs_dados['tpinscbenef'] = read_from_xml(evtPgtosDivs.ideBenef.tpInscBenef.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2070_evtpgtosdivs_dados['nrinscbenef'] = evtPgtosDivs.ideBenef.nrInscBenef.cdata
+        r2070_evtpgtosdivs_dados['nrinscbenef'] = read_from_xml(evtPgtosDivs.ideBenef.nrInscBenef.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2070_evtpgtosdivs_dados['nmrazaobenef'] = evtPgtosDivs.ideBenef.nmRazaoBenef.cdata
+        r2070_evtpgtosdivs_dados['nmrazaobenef'] = read_from_xml(evtPgtosDivs.ideBenef.nmRazaoBenef.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
@@ -130,52 +131,52 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
             r2070_inforesidext_dados['r2070_evtpgtosdivs_id'] = r2070_evtpgtosdivs.id
 
             try:
-                r2070_inforesidext_dados['paisresid'] = infoResidExt.infoEnder.paisResid.cdata
+                r2070_inforesidext_dados['paisresid'] = read_from_xml(infoResidExt.infoEnder.paisResid.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r2070_inforesidext_dados['dsclograd'] = infoResidExt.infoEnder.dscLograd.cdata
+                r2070_inforesidext_dados['dsclograd'] = read_from_xml(infoResidExt.infoEnder.dscLograd.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r2070_inforesidext_dados['nrlograd'] = infoResidExt.infoEnder.nrLograd.cdata
+                r2070_inforesidext_dados['nrlograd'] = read_from_xml(infoResidExt.infoEnder.nrLograd.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r2070_inforesidext_dados['complem'] = infoResidExt.infoEnder.complem.cdata
+                r2070_inforesidext_dados['complem'] = read_from_xml(infoResidExt.infoEnder.complem.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r2070_inforesidext_dados['bairro'] = infoResidExt.infoEnder.bairro.cdata
+                r2070_inforesidext_dados['bairro'] = read_from_xml(infoResidExt.infoEnder.bairro.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r2070_inforesidext_dados['cidade'] = infoResidExt.infoEnder.cidade.cdata
+                r2070_inforesidext_dados['cidade'] = read_from_xml(infoResidExt.infoEnder.cidade.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r2070_inforesidext_dados['codpostal'] = infoResidExt.infoEnder.codPostal.cdata
+                r2070_inforesidext_dados['codpostal'] = read_from_xml(infoResidExt.infoEnder.codPostal.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r2070_inforesidext_dados['indnif'] = infoResidExt.infoFiscal.indNIF.cdata
+                r2070_inforesidext_dados['indnif'] = read_from_xml(infoResidExt.infoFiscal.indNIF.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r2070_inforesidext_dados['nifbenef'] = infoResidExt.infoFiscal.nifBenef.cdata
+                r2070_inforesidext_dados['nifbenef'] = read_from_xml(infoResidExt.infoFiscal.nifBenef.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r2070_inforesidext_dados['relfontepagad'] = infoResidExt.infoFiscal.relFontePagad.cdata
+                r2070_inforesidext_dados['relfontepagad'] = read_from_xml(infoResidExt.infoFiscal.relFontePagad.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
@@ -189,7 +190,7 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
             r2070_infomolestia_dados['r2070_evtpgtosdivs_id'] = r2070_evtpgtosdivs.id
 
             try:
-                r2070_infomolestia_dados['dtlaudo'] = infoMolestia.dtLaudo.cdata
+                r2070_infomolestia_dados['dtlaudo'] = read_from_xml(infoMolestia.dtLaudo.cdata, 'efdreinf', 'D', None)
             except AttributeError:
                 pass
 
@@ -203,12 +204,12 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
             r2070_ideestab_dados['r2070_evtpgtosdivs_id'] = r2070_evtpgtosdivs.id
 
             try:
-                r2070_ideestab_dados['tpinsc'] = ideEstab.tpInsc.cdata
+                r2070_ideestab_dados['tpinsc'] = read_from_xml(ideEstab.tpInsc.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r2070_ideestab_dados['nrinsc'] = ideEstab.nrInsc.cdata
+                r2070_ideestab_dados['nrinsc'] = read_from_xml(ideEstab.nrInsc.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
@@ -231,27 +232,27 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                             r2070_pgtopf_dados['r2070_pgtoresidbr_id'] = r2070_pgtoresidbr.id
         
                             try:
-                                r2070_pgtopf_dados['dtpgto'] = pgtoPF.dtPgto.cdata
+                                r2070_pgtopf_dados['dtpgto'] = read_from_xml(pgtoPF.dtPgto.cdata, 'efdreinf', 'D', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r2070_pgtopf_dados['indsuspexig'] = pgtoPF.indSuspExig.cdata
+                                r2070_pgtopf_dados['indsuspexig'] = read_from_xml(pgtoPF.indSuspExig.cdata, 'efdreinf', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r2070_pgtopf_dados['inddecterceiro'] = pgtoPF.indDecTerceiro.cdata
+                                r2070_pgtopf_dados['inddecterceiro'] = read_from_xml(pgtoPF.indDecTerceiro.cdata, 'efdreinf', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r2070_pgtopf_dados['vlrrendtributavel'] = pgtoPF.vlrRendTributavel.cdata.replace('.', '').replace(',', '.')
+                                r2070_pgtopf_dados['vlrrendtributavel'] = read_from_xml(pgtoPF.vlrRendTributavel.cdata, 'efdreinf', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                r2070_pgtopf_dados['vlrirrf'] = pgtoPF.vlrIRRF.cdata.replace('.', '').replace(',', '.')
+                                r2070_pgtopf_dados['vlrirrf'] = read_from_xml(pgtoPF.vlrIRRF.cdata, 'efdreinf', 'N', 2)
                             except AttributeError:
                                 pass
 
@@ -265,12 +266,12 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                                     r2070_detdeducao_dados['r2070_pgtopf_id'] = r2070_pgtopf.id
                 
                                     try:
-                                        r2070_detdeducao_dados['indtpdeducao'] = detDeducao.indTpDeducao.cdata
+                                        r2070_detdeducao_dados['indtpdeducao'] = read_from_xml(detDeducao.indTpDeducao.cdata, 'efdreinf', 'N', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r2070_detdeducao_dados['vlrdeducao'] = detDeducao.vlrDeducao.cdata.replace('.', '').replace(',', '.')
+                                        r2070_detdeducao_dados['vlrdeducao'] = read_from_xml(detDeducao.vlrDeducao.cdata, 'efdreinf', 'N', 2)
                                     except AttributeError:
                                         pass
         
@@ -284,17 +285,17 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                                     r2070_rendisento_dados['r2070_pgtopf_id'] = r2070_pgtopf.id
                 
                                     try:
-                                        r2070_rendisento_dados['tpisencao'] = rendIsento.tpIsencao.cdata
+                                        r2070_rendisento_dados['tpisencao'] = read_from_xml(rendIsento.tpIsencao.cdata, 'efdreinf', 'N', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r2070_rendisento_dados['vlrisento'] = rendIsento.vlrIsento.cdata.replace('.', '').replace(',', '.')
+                                        r2070_rendisento_dados['vlrisento'] = read_from_xml(rendIsento.vlrIsento.cdata, 'efdreinf', 'N', 2)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r2070_rendisento_dados['descrendimento'] = rendIsento.descRendimento.cdata
+                                        r2070_rendisento_dados['descrendimento'] = read_from_xml(rendIsento.descRendimento.cdata, 'efdreinf', 'C', None)
                                     except AttributeError:
                                         pass
         
@@ -308,17 +309,17 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                                     r2070_detcompet_dados['r2070_pgtopf_id'] = r2070_pgtopf.id
                 
                                     try:
-                                        r2070_detcompet_dados['indperreferencia'] = detCompet.indPerReferencia.cdata
+                                        r2070_detcompet_dados['indperreferencia'] = read_from_xml(detCompet.indPerReferencia.cdata, 'efdreinf', 'N', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r2070_detcompet_dados['perrefpagto'] = detCompet.perRefPagto.cdata
+                                        r2070_detcompet_dados['perrefpagto'] = read_from_xml(detCompet.perRefPagto.cdata, 'efdreinf', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r2070_detcompet_dados['vlrrendtributavel'] = detCompet.vlrRendTributavel.cdata.replace('.', '').replace(',', '.')
+                                        r2070_detcompet_dados['vlrrendtributavel'] = read_from_xml(detCompet.vlrRendTributavel.cdata, 'efdreinf', 'N', 2)
                                     except AttributeError:
                                         pass
         
@@ -332,12 +333,12 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                                     r2070_compjud_dados['r2070_pgtopf_id'] = r2070_pgtopf.id
                 
                                     try:
-                                        r2070_compjud_dados['vlrcompanocalend'] = compJud.vlrCompAnoCalend.cdata.replace('.', '').replace(',', '.')
+                                        r2070_compjud_dados['vlrcompanocalend'] = read_from_xml(compJud.vlrCompAnoCalend.cdata, 'efdreinf', 'N', 2)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r2070_compjud_dados['vlrcompanoant'] = compJud.vlrCompAnoAnt.cdata.replace('.', '').replace(',', '.')
+                                        r2070_compjud_dados['vlrcompanoant'] = read_from_xml(compJud.vlrCompAnoAnt.cdata, 'efdreinf', 'N', 2)
                                     except AttributeError:
                                         pass
         
@@ -351,27 +352,27 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                                     r2070_inforra_dados['r2070_pgtopf_id'] = r2070_pgtopf.id
                 
                                     try:
-                                        r2070_inforra_dados['tpprocrra'] = infoRRA.tpProcRRA.cdata
+                                        r2070_inforra_dados['tpprocrra'] = read_from_xml(infoRRA.tpProcRRA.cdata, 'efdreinf', 'N', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r2070_inforra_dados['nrprocrra'] = infoRRA.nrProcRRA.cdata
+                                        r2070_inforra_dados['nrprocrra'] = read_from_xml(infoRRA.nrProcRRA.cdata, 'efdreinf', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r2070_inforra_dados['codsusp'] = infoRRA.codSusp.cdata
+                                        r2070_inforra_dados['codsusp'] = read_from_xml(infoRRA.codSusp.cdata, 'efdreinf', 'N', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r2070_inforra_dados['natrra'] = infoRRA.natRRA.cdata
+                                        r2070_inforra_dados['natrra'] = read_from_xml(infoRRA.natRRA.cdata, 'efdreinf', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r2070_inforra_dados['qtdmesesrra'] = infoRRA.qtdMesesRRA.cdata
+                                        r2070_inforra_dados['qtdmesesrra'] = read_from_xml(infoRRA.qtdMesesRRA.cdata, 'efdreinf', 'N', None)
                                     except AttributeError:
                                         pass
         
@@ -385,12 +386,12 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                                             r2070_inforra_despprocjud_dados['r2070_inforra_id'] = r2070_inforra.id
                         
                                             try:
-                                                r2070_inforra_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata.replace('.', '').replace(',', '.')
+                                                r2070_inforra_despprocjud_dados['vlrdespcustas'] = read_from_xml(despProcJud.vlrDespCustas.cdata, 'efdreinf', 'N', 2)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                r2070_inforra_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata.replace('.', '').replace(',', '.')
+                                                r2070_inforra_despprocjud_dados['vlrdespadvogados'] = read_from_xml(despProcJud.vlrDespAdvogados.cdata, 'efdreinf', 'N', 2)
                                             except AttributeError:
                                                 pass
                 
@@ -404,17 +405,17 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                                                     r2070_inforra_ideadvogado_dados['r2070_inforra_despprocjud_id'] = r2070_inforra_despprocjud.id
                                 
                                                     try:
-                                                        r2070_inforra_ideadvogado_dados['tpinscadvogado'] = ideAdvogado.tpInscAdvogado.cdata
+                                                        r2070_inforra_ideadvogado_dados['tpinscadvogado'] = read_from_xml(ideAdvogado.tpInscAdvogado.cdata, 'efdreinf', 'N', None)
                                                     except AttributeError:
                                                         pass
                                 
                                                     try:
-                                                        r2070_inforra_ideadvogado_dados['nrinscadvogado'] = ideAdvogado.nrInscAdvogado.cdata
+                                                        r2070_inforra_ideadvogado_dados['nrinscadvogado'] = read_from_xml(ideAdvogado.nrInscAdvogado.cdata, 'efdreinf', 'C', None)
                                                     except AttributeError:
                                                         pass
                                 
                                                     try:
-                                                        r2070_inforra_ideadvogado_dados['vlradvogado'] = ideAdvogado.vlrAdvogado.cdata.replace('.', '').replace(',', '.')
+                                                        r2070_inforra_ideadvogado_dados['vlradvogado'] = read_from_xml(ideAdvogado.vlrAdvogado.cdata, 'efdreinf', 'N', 2)
                                                     except AttributeError:
                                                         pass
                         
@@ -428,17 +429,17 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                                     r2070_infoprocjud_dados['r2070_pgtopf_id'] = r2070_pgtopf.id
                 
                                     try:
-                                        r2070_infoprocjud_dados['nrprocjud'] = infoProcJud.nrProcJud.cdata
+                                        r2070_infoprocjud_dados['nrprocjud'] = read_from_xml(infoProcJud.nrProcJud.cdata, 'efdreinf', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r2070_infoprocjud_dados['codsusp'] = infoProcJud.codSusp.cdata
+                                        r2070_infoprocjud_dados['codsusp'] = read_from_xml(infoProcJud.codSusp.cdata, 'efdreinf', 'N', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r2070_infoprocjud_dados['indorigemrecursos'] = infoProcJud.indOrigemRecursos.cdata
+                                        r2070_infoprocjud_dados['indorigemrecursos'] = read_from_xml(infoProcJud.indOrigemRecursos.cdata, 'efdreinf', 'N', None)
                                     except AttributeError:
                                         pass
         
@@ -452,12 +453,12 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                                             r2070_infoprocjud_despprocjud_dados['r2070_infoprocjud_id'] = r2070_infoprocjud.id
                         
                                             try:
-                                                r2070_infoprocjud_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata.replace('.', '').replace(',', '.')
+                                                r2070_infoprocjud_despprocjud_dados['vlrdespcustas'] = read_from_xml(despProcJud.vlrDespCustas.cdata, 'efdreinf', 'N', 2)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                r2070_infoprocjud_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata.replace('.', '').replace(',', '.')
+                                                r2070_infoprocjud_despprocjud_dados['vlrdespadvogados'] = read_from_xml(despProcJud.vlrDespAdvogados.cdata, 'efdreinf', 'N', 2)
                                             except AttributeError:
                                                 pass
                 
@@ -471,17 +472,17 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                                                     r2070_infoprocjud_ideadvogado_dados['r2070_infoprocjud_despprocjud_id'] = r2070_infoprocjud_despprocjud.id
                                 
                                                     try:
-                                                        r2070_infoprocjud_ideadvogado_dados['tpinscadvogado'] = ideAdvogado.tpInscAdvogado.cdata
+                                                        r2070_infoprocjud_ideadvogado_dados['tpinscadvogado'] = read_from_xml(ideAdvogado.tpInscAdvogado.cdata, 'efdreinf', 'N', None)
                                                     except AttributeError:
                                                         pass
                                 
                                                     try:
-                                                        r2070_infoprocjud_ideadvogado_dados['nrinscadvogado'] = ideAdvogado.nrInscAdvogado.cdata
+                                                        r2070_infoprocjud_ideadvogado_dados['nrinscadvogado'] = read_from_xml(ideAdvogado.nrInscAdvogado.cdata, 'efdreinf', 'C', None)
                                                     except AttributeError:
                                                         pass
                                 
                                                     try:
-                                                        r2070_infoprocjud_ideadvogado_dados['vlradvogado'] = ideAdvogado.vlrAdvogado.cdata.replace('.', '').replace(',', '.')
+                                                        r2070_infoprocjud_ideadvogado_dados['vlradvogado'] = read_from_xml(ideAdvogado.vlrAdvogado.cdata, 'efdreinf', 'N', 2)
                                                     except AttributeError:
                                                         pass
                         
@@ -495,7 +496,7 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                                             r2070_infoprocjud_origemrecursos_dados['r2070_infoprocjud_id'] = r2070_infoprocjud.id
                         
                                             try:
-                                                r2070_infoprocjud_origemrecursos_dados['cnpjorigemrecursos'] = origemRecursos.cnpjOrigemRecursos.cdata
+                                                r2070_infoprocjud_origemrecursos_dados['cnpjorigemrecursos'] = read_from_xml(origemRecursos.cnpjOrigemRecursos.cdata, 'efdreinf', 'C', None)
                                             except AttributeError:
                                                 pass
                 
@@ -509,7 +510,7 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                                     r2070_depjudicial_dados['r2070_pgtopf_id'] = r2070_pgtopf.id
                 
                                     try:
-                                        r2070_depjudicial_dados['vlrdepjudicial'] = depJudicial.vlrDepJudicial.cdata.replace('.', '').replace(',', '.')
+                                        r2070_depjudicial_dados['vlrdepjudicial'] = read_from_xml(depJudicial.vlrDepJudicial.cdata, 'efdreinf', 'N', 2)
                                     except AttributeError:
                                         pass
         
@@ -523,17 +524,17 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                             r2070_pgtopj_dados['r2070_pgtoresidbr_id'] = r2070_pgtoresidbr.id
         
                             try:
-                                r2070_pgtopj_dados['dtpagto'] = pgtoPJ.dtPagto.cdata
+                                r2070_pgtopj_dados['dtpagto'] = read_from_xml(pgtoPJ.dtPagto.cdata, 'efdreinf', 'D', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                r2070_pgtopj_dados['vlrrendtributavel'] = pgtoPJ.vlrRendTributavel.cdata.replace('.', '').replace(',', '.')
+                                r2070_pgtopj_dados['vlrrendtributavel'] = read_from_xml(pgtoPJ.vlrRendTributavel.cdata, 'efdreinf', 'N', 2)
                             except AttributeError:
                                 pass
         
                             try:
-                                r2070_pgtopj_dados['vlrret'] = pgtoPJ.vlrRet.cdata.replace('.', '').replace(',', '.')
+                                r2070_pgtopj_dados['vlrret'] = read_from_xml(pgtoPJ.vlrRet.cdata, 'efdreinf', 'N', 2)
                             except AttributeError:
                                 pass
 
@@ -547,17 +548,17 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                                     r2070_pgtopj_infoprocjud_dados['r2070_pgtopj_id'] = r2070_pgtopj.id
                 
                                     try:
-                                        r2070_pgtopj_infoprocjud_dados['nrprocjud'] = infoProcJud.nrProcJud.cdata
+                                        r2070_pgtopj_infoprocjud_dados['nrprocjud'] = read_from_xml(infoProcJud.nrProcJud.cdata, 'efdreinf', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r2070_pgtopj_infoprocjud_dados['codsusp'] = infoProcJud.codSusp.cdata
+                                        r2070_pgtopj_infoprocjud_dados['codsusp'] = read_from_xml(infoProcJud.codSusp.cdata, 'efdreinf', 'N', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        r2070_pgtopj_infoprocjud_dados['indorigemrecursos'] = infoProcJud.indOrigemRecursos.cdata
+                                        r2070_pgtopj_infoprocjud_dados['indorigemrecursos'] = read_from_xml(infoProcJud.indOrigemRecursos.cdata, 'efdreinf', 'N', None)
                                     except AttributeError:
                                         pass
         
@@ -571,12 +572,12 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                                             r2070_pgtopj_despprocjud_dados['r2070_pgtopj_infoprocjud_id'] = r2070_pgtopj_infoprocjud.id
                         
                                             try:
-                                                r2070_pgtopj_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata.replace('.', '').replace(',', '.')
+                                                r2070_pgtopj_despprocjud_dados['vlrdespcustas'] = read_from_xml(despProcJud.vlrDespCustas.cdata, 'efdreinf', 'N', 2)
                                             except AttributeError:
                                                 pass
                         
                                             try:
-                                                r2070_pgtopj_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata.replace('.', '').replace(',', '.')
+                                                r2070_pgtopj_despprocjud_dados['vlrdespadvogados'] = read_from_xml(despProcJud.vlrDespAdvogados.cdata, 'efdreinf', 'N', 2)
                                             except AttributeError:
                                                 pass
                 
@@ -590,17 +591,17 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                                                     r2070_pgtopj_ideadvogado_dados['r2070_pgtopj_despprocjud_id'] = r2070_pgtopj_despprocjud.id
                                 
                                                     try:
-                                                        r2070_pgtopj_ideadvogado_dados['tpinscadvogado'] = ideAdvogado.tpInscAdvogado.cdata
+                                                        r2070_pgtopj_ideadvogado_dados['tpinscadvogado'] = read_from_xml(ideAdvogado.tpInscAdvogado.cdata, 'efdreinf', 'N', None)
                                                     except AttributeError:
                                                         pass
                                 
                                                     try:
-                                                        r2070_pgtopj_ideadvogado_dados['nrinscadvogado'] = ideAdvogado.nrInscAdvogado.cdata
+                                                        r2070_pgtopj_ideadvogado_dados['nrinscadvogado'] = read_from_xml(ideAdvogado.nrInscAdvogado.cdata, 'efdreinf', 'C', None)
                                                     except AttributeError:
                                                         pass
                                 
                                                     try:
-                                                        r2070_pgtopj_ideadvogado_dados['vlradvogado'] = ideAdvogado.vlrAdvogado.cdata.replace('.', '').replace(',', '.')
+                                                        r2070_pgtopj_ideadvogado_dados['vlradvogado'] = read_from_xml(ideAdvogado.vlrAdvogado.cdata, 'efdreinf', 'N', 2)
                                                     except AttributeError:
                                                         pass
                         
@@ -614,7 +615,7 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                                             r2070_pgtopj_origemrecursos_dados['r2070_pgtopj_infoprocjud_id'] = r2070_pgtopj_infoprocjud.id
                         
                                             try:
-                                                r2070_pgtopj_origemrecursos_dados['cnpjorigemrecursos'] = origemRecursos.cnpjOrigemRecursos.cdata
+                                                r2070_pgtopj_origemrecursos_dados['cnpjorigemrecursos'] = read_from_xml(origemRecursos.cnpjOrigemRecursos.cdata, 'efdreinf', 'C', None)
                                             except AttributeError:
                                                 pass
                 
@@ -628,27 +629,27 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False, arquivo=Fal
                     r2070_pgtoresidext_dados['r2070_ideestab_id'] = r2070_ideestab.id
 
                     try:
-                        r2070_pgtoresidext_dados['dtpagto'] = pgtoResidExt.dtPagto.cdata
+                        r2070_pgtoresidext_dados['dtpagto'] = read_from_xml(pgtoResidExt.dtPagto.cdata, 'efdreinf', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r2070_pgtoresidext_dados['tprendimento'] = pgtoResidExt.tpRendimento.cdata
+                        r2070_pgtoresidext_dados['tprendimento'] = read_from_xml(pgtoResidExt.tpRendimento.cdata, 'efdreinf', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r2070_pgtoresidext_dados['formatributacao'] = pgtoResidExt.formaTributacao.cdata
+                        r2070_pgtoresidext_dados['formatributacao'] = read_from_xml(pgtoResidExt.formaTributacao.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r2070_pgtoresidext_dados['vlrpgto'] = pgtoResidExt.vlrPgto.cdata.replace('.', '').replace(',', '.')
+                        r2070_pgtoresidext_dados['vlrpgto'] = read_from_xml(pgtoResidExt.vlrPgto.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        r2070_pgtoresidext_dados['vlrret'] = pgtoResidExt.vlrRet.cdata.replace('.', '').replace(',', '.')
+                        r2070_pgtoresidext_dados['vlrret'] = read_from_xml(pgtoResidExt.vlrRet.cdata, 'efdreinf', 'N', 2)
                     except AttributeError:
                         pass
 

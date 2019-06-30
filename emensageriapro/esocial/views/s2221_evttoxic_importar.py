@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2221.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,92 +62,92 @@ def read_s2221_evttoxic_obj(request, doc, status, validar=False, arquivo=False):
     evtToxic = doc.eSocial.evtToxic
 
     try:
-        s2221_evttoxic_dados['indretif'] = evtToxic.ideEvento.indRetif.cdata
+        s2221_evttoxic_dados['indretif'] = read_from_xml(evtToxic.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['nrrecibo'] = evtToxic.ideEvento.nrRecibo.cdata
+        s2221_evttoxic_dados['nrrecibo'] = read_from_xml(evtToxic.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['tpamb'] = evtToxic.ideEvento.tpAmb.cdata
+        s2221_evttoxic_dados['tpamb'] = read_from_xml(evtToxic.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['procemi'] = evtToxic.ideEvento.procEmi.cdata
+        s2221_evttoxic_dados['procemi'] = read_from_xml(evtToxic.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['verproc'] = evtToxic.ideEvento.verProc.cdata
+        s2221_evttoxic_dados['verproc'] = read_from_xml(evtToxic.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['tpinsc'] = evtToxic.ideEmpregador.tpInsc.cdata
+        s2221_evttoxic_dados['tpinsc'] = read_from_xml(evtToxic.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['nrinsc'] = evtToxic.ideEmpregador.nrInsc.cdata
+        s2221_evttoxic_dados['nrinsc'] = read_from_xml(evtToxic.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['cpftrab'] = evtToxic.ideVinculo.cpfTrab.cdata
+        s2221_evttoxic_dados['cpftrab'] = read_from_xml(evtToxic.ideVinculo.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['nistrab'] = evtToxic.ideVinculo.nisTrab.cdata
+        s2221_evttoxic_dados['nistrab'] = read_from_xml(evtToxic.ideVinculo.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['matricula'] = evtToxic.ideVinculo.matricula.cdata
+        s2221_evttoxic_dados['matricula'] = read_from_xml(evtToxic.ideVinculo.matricula.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['codcateg'] = evtToxic.ideVinculo.codCateg.cdata
+        s2221_evttoxic_dados['codcateg'] = read_from_xml(evtToxic.ideVinculo.codCateg.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['dtexame'] = evtToxic.toxicologico.dtExame.cdata
+        s2221_evttoxic_dados['dtexame'] = read_from_xml(evtToxic.toxicologico.dtExame.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['cnpjlab'] = evtToxic.toxicologico.cnpjLab.cdata
+        s2221_evttoxic_dados['cnpjlab'] = read_from_xml(evtToxic.toxicologico.cnpjLab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['codseqexame'] = evtToxic.toxicologico.codSeqExame.cdata
+        s2221_evttoxic_dados['codseqexame'] = read_from_xml(evtToxic.toxicologico.codSeqExame.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['nmmed'] = evtToxic.toxicologico.nmMed.cdata
+        s2221_evttoxic_dados['nmmed'] = read_from_xml(evtToxic.toxicologico.nmMed.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['nrcrm'] = evtToxic.toxicologico.nrCRM.cdata
+        s2221_evttoxic_dados['nrcrm'] = read_from_xml(evtToxic.toxicologico.nrCRM.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['ufcrm'] = evtToxic.toxicologico.ufCRM.cdata
+        s2221_evttoxic_dados['ufcrm'] = read_from_xml(evtToxic.toxicologico.ufCRM.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2221_evttoxic_dados['indrecusa'] = evtToxic.toxicologico.indRecusa.cdata
+        s2221_evttoxic_dados['indrecusa'] = read_from_xml(evtToxic.toxicologico.indRecusa.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 

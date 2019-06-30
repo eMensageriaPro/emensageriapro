@@ -180,7 +180,7 @@ def clear_dict_fields(dict):
 
 
 def executar_sql(select, array):
-    from django.utils.encoding import smart_str, smart_unicode
+    from django.utils.encoding import smart_str
     import psycopg2
     from emensageriapro.settings import DATABASES
     database = DATABASES['default']
@@ -224,15 +224,6 @@ def gravar_auditoria(situacao_anterior, situacao_posterior, tabela, tabela_id, u
     dados['operador_id'] = req.user.id
     obj = Auditoria(**dados)
     obj.save()
-    # executar_sql("""
-    # INSERT INTO public.auditoria(
-    #         tabela, identidade, situacao_anterior, situacao_posterior,
-    #         tipo, criado_em, criado_por_id, modificado_em, modificado_por_id, ativo,
-    #         data_hora, operador_id)
-    # VALUES ('%s', %s, '%s', '%s',
-    #         %s, now(), %s, now(), %s, True,
-    #         now(), %s);
-    # """ % (tabela, tabela_id, situacao_anterior, situacao_posterior, tipo, usuario_id, usuario_id, usuario_id), False)
 
 
 

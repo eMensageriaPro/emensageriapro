@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1005.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -65,27 +66,27 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
     elif 'exclusao' in dir(evtTabEstab.infoEstab): s1005_evttabestab_dados['operacao'] = 3
 
     try:
-        s1005_evttabestab_dados['tpamb'] = evtTabEstab.ideEvento.tpAmb.cdata
+        s1005_evttabestab_dados['tpamb'] = read_from_xml(evtTabEstab.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1005_evttabestab_dados['procemi'] = evtTabEstab.ideEvento.procEmi.cdata
+        s1005_evttabestab_dados['procemi'] = read_from_xml(evtTabEstab.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1005_evttabestab_dados['verproc'] = evtTabEstab.ideEvento.verProc.cdata
+        s1005_evttabestab_dados['verproc'] = read_from_xml(evtTabEstab.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1005_evttabestab_dados['tpinsc'] = evtTabEstab.ideEmpregador.tpInsc.cdata
+        s1005_evttabestab_dados['tpinsc'] = read_from_xml(evtTabEstab.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1005_evttabestab_dados['nrinsc'] = evtTabEstab.ideEmpregador.nrInsc.cdata
+        s1005_evttabestab_dados['nrinsc'] = read_from_xml(evtTabEstab.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -99,62 +100,62 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
             s1005_inclusao_dados['s1005_evttabestab_id'] = s1005_evttabestab.id
 
             try:
-                s1005_inclusao_dados['tpinsc'] = inclusao.ideEstab.tpInsc.cdata
+                s1005_inclusao_dados['tpinsc'] = read_from_xml(inclusao.ideEstab.tpInsc.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_inclusao_dados['nrinsc'] = inclusao.ideEstab.nrInsc.cdata
+                s1005_inclusao_dados['nrinsc'] = read_from_xml(inclusao.ideEstab.nrInsc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_inclusao_dados['inivalid'] = inclusao.ideEstab.iniValid.cdata
+                s1005_inclusao_dados['inivalid'] = read_from_xml(inclusao.ideEstab.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_inclusao_dados['fimvalid'] = inclusao.ideEstab.fimValid.cdata
+                s1005_inclusao_dados['fimvalid'] = read_from_xml(inclusao.ideEstab.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_inclusao_dados['cnaeprep'] = inclusao.dadosEstab.cnaePrep.cdata
+                s1005_inclusao_dados['cnaeprep'] = read_from_xml(inclusao.dadosEstab.cnaePrep.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_inclusao_dados['aliqrat'] = inclusao.dadosEstab.aliqGilrat.aliqRat.cdata
+                s1005_inclusao_dados['aliqrat'] = read_from_xml(inclusao.dadosEstab.aliqGilrat.aliqRat.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_inclusao_dados['fap'] = inclusao.dadosEstab.aliqGilrat.fap.cdata
+                s1005_inclusao_dados['fap'] = read_from_xml(inclusao.dadosEstab.aliqGilrat.fap.cdata, 'esocial', 'N', 4)
             except AttributeError:
                 pass
 
             try:
-                s1005_inclusao_dados['aliqratajust'] = inclusao.dadosEstab.aliqGilrat.aliqRatAjust.cdata
+                s1005_inclusao_dados['aliqratajust'] = read_from_xml(inclusao.dadosEstab.aliqGilrat.aliqRatAjust.cdata, 'esocial', 'N', 4)
             except AttributeError:
                 pass
 
             try:
-                s1005_inclusao_dados['regpt'] = inclusao.dadosEstab.infoTrab.regPt.cdata
+                s1005_inclusao_dados['regpt'] = read_from_xml(inclusao.dadosEstab.infoTrab.regPt.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_inclusao_dados['contapr'] = inclusao.dadosEstab.infoTrab.infoApr.contApr.cdata
+                s1005_inclusao_dados['contapr'] = read_from_xml(inclusao.dadosEstab.infoTrab.infoApr.contApr.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_inclusao_dados['nrprocjud'] = inclusao.dadosEstab.infoTrab.infoApr.nrProcJud.cdata
+                s1005_inclusao_dados['nrprocjud'] = read_from_xml(inclusao.dadosEstab.infoTrab.infoApr.nrProcJud.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_inclusao_dados['contented'] = inclusao.dadosEstab.infoTrab.infoApr.contEntEd.cdata
+                s1005_inclusao_dados['contented'] = read_from_xml(inclusao.dadosEstab.infoTrab.infoApr.contEntEd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -168,17 +169,17 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
                     s1005_inclusao_procadmjudrat_dados['s1005_inclusao_id'] = s1005_inclusao.id
 
                     try:
-                        s1005_inclusao_procadmjudrat_dados['tpproc'] = procAdmJudRat.tpProc.cdata
+                        s1005_inclusao_procadmjudrat_dados['tpproc'] = read_from_xml(procAdmJudRat.tpProc.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1005_inclusao_procadmjudrat_dados['nrproc'] = procAdmJudRat.nrProc.cdata
+                        s1005_inclusao_procadmjudrat_dados['nrproc'] = read_from_xml(procAdmJudRat.nrProc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1005_inclusao_procadmjudrat_dados['codsusp'] = procAdmJudRat.codSusp.cdata
+                        s1005_inclusao_procadmjudrat_dados['codsusp'] = read_from_xml(procAdmJudRat.codSusp.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -192,17 +193,17 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
                     s1005_inclusao_procadmjudfap_dados['s1005_inclusao_id'] = s1005_inclusao.id
 
                     try:
-                        s1005_inclusao_procadmjudfap_dados['tpproc'] = procAdmJudFap.tpProc.cdata
+                        s1005_inclusao_procadmjudfap_dados['tpproc'] = read_from_xml(procAdmJudFap.tpProc.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1005_inclusao_procadmjudfap_dados['nrproc'] = procAdmJudFap.nrProc.cdata
+                        s1005_inclusao_procadmjudfap_dados['nrproc'] = read_from_xml(procAdmJudFap.nrProc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1005_inclusao_procadmjudfap_dados['codsusp'] = procAdmJudFap.codSusp.cdata
+                        s1005_inclusao_procadmjudfap_dados['codsusp'] = read_from_xml(procAdmJudFap.codSusp.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -216,7 +217,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
                     s1005_inclusao_infocaepf_dados['s1005_inclusao_id'] = s1005_inclusao.id
 
                     try:
-                        s1005_inclusao_infocaepf_dados['tpcaepf'] = infoCaepf.tpCaepf.cdata
+                        s1005_inclusao_infocaepf_dados['tpcaepf'] = read_from_xml(infoCaepf.tpCaepf.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -230,7 +231,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
                     s1005_inclusao_infoobra_dados['s1005_inclusao_id'] = s1005_inclusao.id
 
                     try:
-                        s1005_inclusao_infoobra_dados['indsubstpatrobra'] = infoObra.indSubstPatrObra.cdata
+                        s1005_inclusao_infoobra_dados['indsubstpatrobra'] = read_from_xml(infoObra.indSubstPatrObra.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -244,7 +245,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
                     s1005_inclusao_infoenteduc_dados['s1005_inclusao_id'] = s1005_inclusao.id
 
                     try:
-                        s1005_inclusao_infoenteduc_dados['nrinsc'] = infoEntEduc.nrInsc.cdata
+                        s1005_inclusao_infoenteduc_dados['nrinsc'] = read_from_xml(infoEntEduc.nrInsc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -258,12 +259,12 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
                     s1005_inclusao_infopcd_dados['s1005_inclusao_id'] = s1005_inclusao.id
 
                     try:
-                        s1005_inclusao_infopcd_dados['contpcd'] = infoPCD.contPCD.cdata
+                        s1005_inclusao_infopcd_dados['contpcd'] = read_from_xml(infoPCD.contPCD.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1005_inclusao_infopcd_dados['nrprocjud'] = infoPCD.nrProcJud.cdata
+                        s1005_inclusao_infopcd_dados['nrprocjud'] = read_from_xml(infoPCD.nrProcJud.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -277,62 +278,62 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
             s1005_alteracao_dados['s1005_evttabestab_id'] = s1005_evttabestab.id
 
             try:
-                s1005_alteracao_dados['tpinsc'] = alteracao.ideEstab.tpInsc.cdata
+                s1005_alteracao_dados['tpinsc'] = read_from_xml(alteracao.ideEstab.tpInsc.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_alteracao_dados['nrinsc'] = alteracao.ideEstab.nrInsc.cdata
+                s1005_alteracao_dados['nrinsc'] = read_from_xml(alteracao.ideEstab.nrInsc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_alteracao_dados['inivalid'] = alteracao.ideEstab.iniValid.cdata
+                s1005_alteracao_dados['inivalid'] = read_from_xml(alteracao.ideEstab.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_alteracao_dados['fimvalid'] = alteracao.ideEstab.fimValid.cdata
+                s1005_alteracao_dados['fimvalid'] = read_from_xml(alteracao.ideEstab.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_alteracao_dados['cnaeprep'] = alteracao.dadosEstab.cnaePrep.cdata
+                s1005_alteracao_dados['cnaeprep'] = read_from_xml(alteracao.dadosEstab.cnaePrep.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_alteracao_dados['aliqrat'] = alteracao.dadosEstab.aliqGilrat.aliqRat.cdata
+                s1005_alteracao_dados['aliqrat'] = read_from_xml(alteracao.dadosEstab.aliqGilrat.aliqRat.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_alteracao_dados['fap'] = alteracao.dadosEstab.aliqGilrat.fap.cdata
+                s1005_alteracao_dados['fap'] = read_from_xml(alteracao.dadosEstab.aliqGilrat.fap.cdata, 'esocial', 'N', 4)
             except AttributeError:
                 pass
 
             try:
-                s1005_alteracao_dados['aliqratajust'] = alteracao.dadosEstab.aliqGilrat.aliqRatAjust.cdata
+                s1005_alteracao_dados['aliqratajust'] = read_from_xml(alteracao.dadosEstab.aliqGilrat.aliqRatAjust.cdata, 'esocial', 'N', 4)
             except AttributeError:
                 pass
 
             try:
-                s1005_alteracao_dados['regpt'] = alteracao.dadosEstab.infoTrab.regPt.cdata
+                s1005_alteracao_dados['regpt'] = read_from_xml(alteracao.dadosEstab.infoTrab.regPt.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_alteracao_dados['contapr'] = alteracao.dadosEstab.infoTrab.infoApr.contApr.cdata
+                s1005_alteracao_dados['contapr'] = read_from_xml(alteracao.dadosEstab.infoTrab.infoApr.contApr.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_alteracao_dados['nrprocjud'] = alteracao.dadosEstab.infoTrab.infoApr.nrProcJud.cdata
+                s1005_alteracao_dados['nrprocjud'] = read_from_xml(alteracao.dadosEstab.infoTrab.infoApr.nrProcJud.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_alteracao_dados['contented'] = alteracao.dadosEstab.infoTrab.infoApr.contEntEd.cdata
+                s1005_alteracao_dados['contented'] = read_from_xml(alteracao.dadosEstab.infoTrab.infoApr.contEntEd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -346,17 +347,17 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
                     s1005_alteracao_procadmjudrat_dados['s1005_alteracao_id'] = s1005_alteracao.id
 
                     try:
-                        s1005_alteracao_procadmjudrat_dados['tpproc'] = procAdmJudRat.tpProc.cdata
+                        s1005_alteracao_procadmjudrat_dados['tpproc'] = read_from_xml(procAdmJudRat.tpProc.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1005_alteracao_procadmjudrat_dados['nrproc'] = procAdmJudRat.nrProc.cdata
+                        s1005_alteracao_procadmjudrat_dados['nrproc'] = read_from_xml(procAdmJudRat.nrProc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1005_alteracao_procadmjudrat_dados['codsusp'] = procAdmJudRat.codSusp.cdata
+                        s1005_alteracao_procadmjudrat_dados['codsusp'] = read_from_xml(procAdmJudRat.codSusp.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -370,17 +371,17 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
                     s1005_alteracao_procadmjudfap_dados['s1005_alteracao_id'] = s1005_alteracao.id
 
                     try:
-                        s1005_alteracao_procadmjudfap_dados['tpproc'] = procAdmJudFap.tpProc.cdata
+                        s1005_alteracao_procadmjudfap_dados['tpproc'] = read_from_xml(procAdmJudFap.tpProc.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1005_alteracao_procadmjudfap_dados['nrproc'] = procAdmJudFap.nrProc.cdata
+                        s1005_alteracao_procadmjudfap_dados['nrproc'] = read_from_xml(procAdmJudFap.nrProc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1005_alteracao_procadmjudfap_dados['codsusp'] = procAdmJudFap.codSusp.cdata
+                        s1005_alteracao_procadmjudfap_dados['codsusp'] = read_from_xml(procAdmJudFap.codSusp.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -394,7 +395,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
                     s1005_alteracao_infocaepf_dados['s1005_alteracao_id'] = s1005_alteracao.id
 
                     try:
-                        s1005_alteracao_infocaepf_dados['tpcaepf'] = infoCaepf.tpCaepf.cdata
+                        s1005_alteracao_infocaepf_dados['tpcaepf'] = read_from_xml(infoCaepf.tpCaepf.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -408,7 +409,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
                     s1005_alteracao_infoobra_dados['s1005_alteracao_id'] = s1005_alteracao.id
 
                     try:
-                        s1005_alteracao_infoobra_dados['indsubstpatrobra'] = infoObra.indSubstPatrObra.cdata
+                        s1005_alteracao_infoobra_dados['indsubstpatrobra'] = read_from_xml(infoObra.indSubstPatrObra.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -422,7 +423,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
                     s1005_alteracao_infoenteduc_dados['s1005_alteracao_id'] = s1005_alteracao.id
 
                     try:
-                        s1005_alteracao_infoenteduc_dados['nrinsc'] = infoEntEduc.nrInsc.cdata
+                        s1005_alteracao_infoenteduc_dados['nrinsc'] = read_from_xml(infoEntEduc.nrInsc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -436,12 +437,12 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
                     s1005_alteracao_infopcd_dados['s1005_alteracao_id'] = s1005_alteracao.id
 
                     try:
-                        s1005_alteracao_infopcd_dados['contpcd'] = infoPCD.contPCD.cdata
+                        s1005_alteracao_infopcd_dados['contpcd'] = read_from_xml(infoPCD.contPCD.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1005_alteracao_infopcd_dados['nrprocjud'] = infoPCD.nrProcJud.cdata
+                        s1005_alteracao_infopcd_dados['nrprocjud'] = read_from_xml(infoPCD.nrProcJud.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -455,12 +456,12 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
                     s1005_alteracao_novavalidade_dados['s1005_alteracao_id'] = s1005_alteracao.id
 
                     try:
-                        s1005_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
+                        s1005_alteracao_novavalidade_dados['inivalid'] = read_from_xml(novaValidade.iniValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1005_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                        s1005_alteracao_novavalidade_dados['fimvalid'] = read_from_xml(novaValidade.fimValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -474,22 +475,22 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False, arquivo=Fals
             s1005_exclusao_dados['s1005_evttabestab_id'] = s1005_evttabestab.id
 
             try:
-                s1005_exclusao_dados['tpinsc'] = exclusao.ideEstab.tpInsc.cdata
+                s1005_exclusao_dados['tpinsc'] = read_from_xml(exclusao.ideEstab.tpInsc.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_exclusao_dados['nrinsc'] = exclusao.ideEstab.nrInsc.cdata
+                s1005_exclusao_dados['nrinsc'] = read_from_xml(exclusao.ideEstab.nrInsc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_exclusao_dados['inivalid'] = exclusao.ideEstab.iniValid.cdata
+                s1005_exclusao_dados['inivalid'] = read_from_xml(exclusao.ideEstab.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1005_exclusao_dados['fimvalid'] = exclusao.ideEstab.fimValid.cdata
+                s1005_exclusao_dados['fimvalid'] = read_from_xml(exclusao.ideEstab.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

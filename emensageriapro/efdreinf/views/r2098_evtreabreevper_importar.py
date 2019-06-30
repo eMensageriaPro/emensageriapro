@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.efdreinf.models import *
 from emensageriapro.r2098.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,32 +62,32 @@ def read_r2098_evtreabreevper_obj(request, doc, status, validar=False, arquivo=F
     evtReabreEvPer = doc.Reinf.evtReabreEvPer
 
     try:
-        r2098_evtreabreevper_dados['perapur'] = evtReabreEvPer.ideEvento.perApur.cdata
+        r2098_evtreabreevper_dados['perapur'] = read_from_xml(evtReabreEvPer.ideEvento.perApur.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2098_evtreabreevper_dados['tpamb'] = evtReabreEvPer.ideEvento.tpAmb.cdata
+        r2098_evtreabreevper_dados['tpamb'] = read_from_xml(evtReabreEvPer.ideEvento.tpAmb.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2098_evtreabreevper_dados['procemi'] = evtReabreEvPer.ideEvento.procEmi.cdata
+        r2098_evtreabreevper_dados['procemi'] = read_from_xml(evtReabreEvPer.ideEvento.procEmi.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2098_evtreabreevper_dados['verproc'] = evtReabreEvPer.ideEvento.verProc.cdata
+        r2098_evtreabreevper_dados['verproc'] = read_from_xml(evtReabreEvPer.ideEvento.verProc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r2098_evtreabreevper_dados['tpinsc'] = evtReabreEvPer.ideContri.tpInsc.cdata
+        r2098_evtreabreevper_dados['tpinsc'] = read_from_xml(evtReabreEvPer.ideContri.tpInsc.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r2098_evtreabreevper_dados['nrinsc'] = evtReabreEvPer.ideContri.nrInsc.cdata
+        r2098_evtreabreevper_dados['nrinsc'] = read_from_xml(evtReabreEvPer.ideContri.nrInsc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 

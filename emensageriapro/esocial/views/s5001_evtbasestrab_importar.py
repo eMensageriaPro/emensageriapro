@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s5001.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,32 +62,32 @@ def read_s5001_evtbasestrab_obj(request, doc, status, validar=False, arquivo=Fal
     evtBasesTrab = doc.eSocial.evtBasesTrab
 
     try:
-        s5001_evtbasestrab_dados['nrrecarqbase'] = evtBasesTrab.ideEvento.nrRecArqBase.cdata
+        s5001_evtbasestrab_dados['nrrecarqbase'] = read_from_xml(evtBasesTrab.ideEvento.nrRecArqBase.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s5001_evtbasestrab_dados['indapuracao'] = evtBasesTrab.ideEvento.indApuracao.cdata
+        s5001_evtbasestrab_dados['indapuracao'] = read_from_xml(evtBasesTrab.ideEvento.indApuracao.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s5001_evtbasestrab_dados['perapur'] = evtBasesTrab.ideEvento.perApur.cdata
+        s5001_evtbasestrab_dados['perapur'] = read_from_xml(evtBasesTrab.ideEvento.perApur.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s5001_evtbasestrab_dados['tpinsc'] = evtBasesTrab.ideEmpregador.tpInsc.cdata
+        s5001_evtbasestrab_dados['tpinsc'] = read_from_xml(evtBasesTrab.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s5001_evtbasestrab_dados['nrinsc'] = evtBasesTrab.ideEmpregador.nrInsc.cdata
+        s5001_evtbasestrab_dados['nrinsc'] = read_from_xml(evtBasesTrab.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s5001_evtbasestrab_dados['cpftrab'] = evtBasesTrab.ideTrabalhador.cpfTrab.cdata
+        s5001_evtbasestrab_dados['cpftrab'] = read_from_xml(evtBasesTrab.ideTrabalhador.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -100,12 +101,12 @@ def read_s5001_evtbasestrab_obj(request, doc, status, validar=False, arquivo=Fal
             s5001_procjudtrab_dados['s5001_evtbasestrab_id'] = s5001_evtbasestrab.id
 
             try:
-                s5001_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
+                s5001_procjudtrab_dados['nrprocjud'] = read_from_xml(procJudTrab.nrProcJud.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s5001_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
+                s5001_procjudtrab_dados['codsusp'] = read_from_xml(procJudTrab.codSusp.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
@@ -119,17 +120,17 @@ def read_s5001_evtbasestrab_obj(request, doc, status, validar=False, arquivo=Fal
             s5001_infocpcalc_dados['s5001_evtbasestrab_id'] = s5001_evtbasestrab.id
 
             try:
-                s5001_infocpcalc_dados['tpcr'] = infoCpCalc.tpCR.cdata
+                s5001_infocpcalc_dados['tpcr'] = read_from_xml(infoCpCalc.tpCR.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s5001_infocpcalc_dados['vrcpseg'] = infoCpCalc.vrCpSeg.cdata
+                s5001_infocpcalc_dados['vrcpseg'] = read_from_xml(infoCpCalc.vrCpSeg.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 
             try:
-                s5001_infocpcalc_dados['vrdescseg'] = infoCpCalc.vrDescSeg.cdata
+                s5001_infocpcalc_dados['vrdescseg'] = read_from_xml(infoCpCalc.vrDescSeg.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 
@@ -152,17 +153,17 @@ def read_s5001_evtbasestrab_obj(request, doc, status, validar=False, arquivo=Fal
                     s5001_ideestablot_dados['s5001_infocp_id'] = s5001_infocp.id
 
                     try:
-                        s5001_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
+                        s5001_ideestablot_dados['tpinsc'] = read_from_xml(ideEstabLot.tpInsc.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s5001_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
+                        s5001_ideestablot_dados['nrinsc'] = read_from_xml(ideEstabLot.nrInsc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s5001_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
+                        s5001_ideestablot_dados['codlotacao'] = read_from_xml(ideEstabLot.codLotacao.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -176,17 +177,17 @@ def read_s5001_evtbasestrab_obj(request, doc, status, validar=False, arquivo=Fal
                             s5001_infocategincid_dados['s5001_ideestablot_id'] = s5001_ideestablot.id
         
                             try:
-                                s5001_infocategincid_dados['matricula'] = infoCategIncid.matricula.cdata
+                                s5001_infocategincid_dados['matricula'] = read_from_xml(infoCategIncid.matricula.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s5001_infocategincid_dados['codcateg'] = infoCategIncid.codCateg.cdata
+                                s5001_infocategincid_dados['codcateg'] = read_from_xml(infoCategIncid.codCateg.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s5001_infocategincid_dados['indsimples'] = infoCategIncid.indSimples.cdata
+                                s5001_infocategincid_dados['indsimples'] = read_from_xml(infoCategIncid.indSimples.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
 
@@ -200,17 +201,17 @@ def read_s5001_evtbasestrab_obj(request, doc, status, validar=False, arquivo=Fal
                                     s5001_infobasecs_dados['s5001_infocategincid_id'] = s5001_infocategincid.id
                 
                                     try:
-                                        s5001_infobasecs_dados['ind13'] = infoBaseCS.ind13.cdata
+                                        s5001_infobasecs_dados['ind13'] = read_from_xml(infoBaseCS.ind13.cdata, 'esocial', 'N', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s5001_infobasecs_dados['tpvalor'] = infoBaseCS.tpValor.cdata
+                                        s5001_infobasecs_dados['tpvalor'] = read_from_xml(infoBaseCS.tpValor.cdata, 'esocial', 'N', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s5001_infobasecs_dados['valor'] = infoBaseCS.valor.cdata
+                                        s5001_infobasecs_dados['valor'] = read_from_xml(infoBaseCS.valor.cdata, 'esocial', 'N', 2)
                                     except AttributeError:
                                         pass
         
@@ -224,17 +225,17 @@ def read_s5001_evtbasestrab_obj(request, doc, status, validar=False, arquivo=Fal
                                     s5001_calcterc_dados['s5001_infocategincid_id'] = s5001_infocategincid.id
                 
                                     try:
-                                        s5001_calcterc_dados['tpcr'] = calcTerc.tpCR.cdata
+                                        s5001_calcterc_dados['tpcr'] = read_from_xml(calcTerc.tpCR.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s5001_calcterc_dados['vrcssegterc'] = calcTerc.vrCsSegTerc.cdata
+                                        s5001_calcterc_dados['vrcssegterc'] = read_from_xml(calcTerc.vrCsSegTerc.cdata, 'esocial', 'N', 2)
                                     except AttributeError:
                                         pass
                 
                                     try:
-                                        s5001_calcterc_dados['vrdescterc'] = calcTerc.vrDescTerc.cdata
+                                        s5001_calcterc_dados['vrdescterc'] = read_from_xml(calcTerc.vrDescTerc.cdata, 'esocial', 'N', 2)
                                     except AttributeError:
                                         pass
         

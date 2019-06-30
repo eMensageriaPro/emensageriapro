@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.efdreinf.models import *
 from emensageriapro.r9000.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,42 +62,42 @@ def read_r9000_evtexclusao_obj(request, doc, status, validar=False, arquivo=Fals
     evtExclusao = doc.Reinf.evtExclusao
 
     try:
-        r9000_evtexclusao_dados['tpamb'] = evtExclusao.ideEvento.tpAmb.cdata
+        r9000_evtexclusao_dados['tpamb'] = read_from_xml(evtExclusao.ideEvento.tpAmb.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r9000_evtexclusao_dados['procemi'] = evtExclusao.ideEvento.procEmi.cdata
+        r9000_evtexclusao_dados['procemi'] = read_from_xml(evtExclusao.ideEvento.procEmi.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r9000_evtexclusao_dados['verproc'] = evtExclusao.ideEvento.verProc.cdata
+        r9000_evtexclusao_dados['verproc'] = read_from_xml(evtExclusao.ideEvento.verProc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r9000_evtexclusao_dados['tpinsc'] = evtExclusao.ideContri.tpInsc.cdata
+        r9000_evtexclusao_dados['tpinsc'] = read_from_xml(evtExclusao.ideContri.tpInsc.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r9000_evtexclusao_dados['nrinsc'] = evtExclusao.ideContri.nrInsc.cdata
+        r9000_evtexclusao_dados['nrinsc'] = read_from_xml(evtExclusao.ideContri.nrInsc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r9000_evtexclusao_dados['tpevento'] = evtExclusao.infoExclusao.tpEvento.cdata
+        r9000_evtexclusao_dados['tpevento'] = read_from_xml(evtExclusao.infoExclusao.tpEvento.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r9000_evtexclusao_dados['nrrecevt'] = evtExclusao.infoExclusao.nrRecEvt.cdata
+        r9000_evtexclusao_dados['nrrecevt'] = read_from_xml(evtExclusao.infoExclusao.nrRecEvt.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r9000_evtexclusao_dados['perapur'] = evtExclusao.infoExclusao.perApur.cdata
+        r9000_evtexclusao_dados['perapur'] = read_from_xml(evtExclusao.infoExclusao.perApur.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 

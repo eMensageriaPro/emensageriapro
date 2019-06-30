@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1000.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -65,27 +66,27 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
     elif 'exclusao' in dir(evtInfoEmpregador.infoEmpregador): s1000_evtinfoempregador_dados['operacao'] = 3
 
     try:
-        s1000_evtinfoempregador_dados['tpamb'] = evtInfoEmpregador.ideEvento.tpAmb.cdata
+        s1000_evtinfoempregador_dados['tpamb'] = read_from_xml(evtInfoEmpregador.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1000_evtinfoempregador_dados['procemi'] = evtInfoEmpregador.ideEvento.procEmi.cdata
+        s1000_evtinfoempregador_dados['procemi'] = read_from_xml(evtInfoEmpregador.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1000_evtinfoempregador_dados['verproc'] = evtInfoEmpregador.ideEvento.verProc.cdata
+        s1000_evtinfoempregador_dados['verproc'] = read_from_xml(evtInfoEmpregador.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1000_evtinfoempregador_dados['tpinsc'] = evtInfoEmpregador.ideEmpregador.tpInsc.cdata
+        s1000_evtinfoempregador_dados['tpinsc'] = read_from_xml(evtInfoEmpregador.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1000_evtinfoempregador_dados['nrinsc'] = evtInfoEmpregador.ideEmpregador.nrInsc.cdata
+        s1000_evtinfoempregador_dados['nrinsc'] = read_from_xml(evtInfoEmpregador.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -99,92 +100,92 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
             s1000_inclusao_dados['s1000_evtinfoempregador_id'] = s1000_evtinfoempregador.id
 
             try:
-                s1000_inclusao_dados['inivalid'] = inclusao.idePeriodo.iniValid.cdata
+                s1000_inclusao_dados['inivalid'] = read_from_xml(inclusao.idePeriodo.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['fimvalid'] = inclusao.idePeriodo.fimValid.cdata
+                s1000_inclusao_dados['fimvalid'] = read_from_xml(inclusao.idePeriodo.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['nmrazao'] = inclusao.infoCadastro.nmRazao.cdata
+                s1000_inclusao_dados['nmrazao'] = read_from_xml(inclusao.infoCadastro.nmRazao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['classtrib'] = inclusao.infoCadastro.classTrib.cdata
+                s1000_inclusao_dados['classtrib'] = read_from_xml(inclusao.infoCadastro.classTrib.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['natjurid'] = inclusao.infoCadastro.natJurid.cdata
+                s1000_inclusao_dados['natjurid'] = read_from_xml(inclusao.infoCadastro.natJurid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['indcoop'] = inclusao.infoCadastro.indCoop.cdata
+                s1000_inclusao_dados['indcoop'] = read_from_xml(inclusao.infoCadastro.indCoop.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['indconstr'] = inclusao.infoCadastro.indConstr.cdata
+                s1000_inclusao_dados['indconstr'] = read_from_xml(inclusao.infoCadastro.indConstr.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['inddesfolha'] = inclusao.infoCadastro.indDesFolha.cdata
+                s1000_inclusao_dados['inddesfolha'] = read_from_xml(inclusao.infoCadastro.indDesFolha.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['indopccp'] = inclusao.infoCadastro.indOpcCP.cdata
+                s1000_inclusao_dados['indopccp'] = read_from_xml(inclusao.infoCadastro.indOpcCP.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['indoptregeletron'] = inclusao.infoCadastro.indOptRegEletron.cdata
+                s1000_inclusao_dados['indoptregeletron'] = read_from_xml(inclusao.infoCadastro.indOptRegEletron.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['indented'] = inclusao.infoCadastro.indEntEd.cdata
+                s1000_inclusao_dados['indented'] = read_from_xml(inclusao.infoCadastro.indEntEd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['indett'] = inclusao.infoCadastro.indEtt.cdata
+                s1000_inclusao_dados['indett'] = read_from_xml(inclusao.infoCadastro.indEtt.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['nrregett'] = inclusao.infoCadastro.nrRegEtt.cdata
+                s1000_inclusao_dados['nrregett'] = read_from_xml(inclusao.infoCadastro.nrRegEtt.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['nmctt'] = inclusao.infoCadastro.contato.nmCtt.cdata
+                s1000_inclusao_dados['nmctt'] = read_from_xml(inclusao.infoCadastro.contato.nmCtt.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['cpfctt'] = inclusao.infoCadastro.contato.cpfCtt.cdata
+                s1000_inclusao_dados['cpfctt'] = read_from_xml(inclusao.infoCadastro.contato.cpfCtt.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['fonefixo'] = inclusao.infoCadastro.contato.foneFixo.cdata
+                s1000_inclusao_dados['fonefixo'] = read_from_xml(inclusao.infoCadastro.contato.foneFixo.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['fonecel'] = inclusao.infoCadastro.contato.foneCel.cdata
+                s1000_inclusao_dados['fonecel'] = read_from_xml(inclusao.infoCadastro.contato.foneCel.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_inclusao_dados['email'] = inclusao.infoCadastro.contato.email.cdata
+                s1000_inclusao_dados['email'] = read_from_xml(inclusao.infoCadastro.contato.email.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -198,42 +199,42 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                     s1000_inclusao_dadosisencao_dados['s1000_inclusao_id'] = s1000_inclusao.id
 
                     try:
-                        s1000_inclusao_dadosisencao_dados['ideminlei'] = dadosIsencao.ideMinLei.cdata
+                        s1000_inclusao_dadosisencao_dados['ideminlei'] = read_from_xml(dadosIsencao.ideMinLei.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_dadosisencao_dados['nrcertif'] = dadosIsencao.nrCertif.cdata
+                        s1000_inclusao_dadosisencao_dados['nrcertif'] = read_from_xml(dadosIsencao.nrCertif.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_dadosisencao_dados['dtemiscertif'] = dadosIsencao.dtEmisCertif.cdata
+                        s1000_inclusao_dadosisencao_dados['dtemiscertif'] = read_from_xml(dadosIsencao.dtEmisCertif.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_dadosisencao_dados['dtvenccertif'] = dadosIsencao.dtVencCertif.cdata
+                        s1000_inclusao_dadosisencao_dados['dtvenccertif'] = read_from_xml(dadosIsencao.dtVencCertif.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_dadosisencao_dados['nrprotrenov'] = dadosIsencao.nrProtRenov.cdata
+                        s1000_inclusao_dadosisencao_dados['nrprotrenov'] = read_from_xml(dadosIsencao.nrProtRenov.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_dadosisencao_dados['dtprotrenov'] = dadosIsencao.dtProtRenov.cdata
+                        s1000_inclusao_dadosisencao_dados['dtprotrenov'] = read_from_xml(dadosIsencao.dtProtRenov.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_dadosisencao_dados['dtdou'] = dadosIsencao.dtDou.cdata
+                        s1000_inclusao_dadosisencao_dados['dtdou'] = read_from_xml(dadosIsencao.dtDou.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_dadosisencao_dados['pagdou'] = dadosIsencao.pagDou.cdata
+                        s1000_inclusao_dadosisencao_dados['pagdou'] = read_from_xml(dadosIsencao.pagDou.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -247,37 +248,37 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                     s1000_inclusao_infoop_dados['s1000_inclusao_id'] = s1000_inclusao.id
 
                     try:
-                        s1000_inclusao_infoop_dados['nrsiafi'] = infoOP.nrSiafi.cdata
+                        s1000_inclusao_infoop_dados['nrsiafi'] = read_from_xml(infoOP.nrSiafi.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_infoop_dados['indugrpps'] = infoOP.indUGRPPS.cdata
+                        s1000_inclusao_infoop_dados['indugrpps'] = read_from_xml(infoOP.indUGRPPS.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_infoop_dados['esferaop'] = infoOP.esferaOP.cdata
+                        s1000_inclusao_infoop_dados['esferaop'] = read_from_xml(infoOP.esferaOP.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_infoop_dados['poderop'] = infoOP.poderOP.cdata
+                        s1000_inclusao_infoop_dados['poderop'] = read_from_xml(infoOP.poderOP.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_infoop_dados['vrtetorem'] = infoOP.vrTetoRem.cdata
+                        s1000_inclusao_infoop_dados['vrtetorem'] = read_from_xml(infoOP.vrTetoRem.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_infoop_dados['ideefr'] = infoOP.ideEFR.cdata
+                        s1000_inclusao_infoop_dados['ideefr'] = read_from_xml(infoOP.ideEFR.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_infoop_dados['cnpjefr'] = infoOP.cnpjEFR.cdata
+                        s1000_inclusao_infoop_dados['cnpjefr'] = read_from_xml(infoOP.cnpjEFR.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -291,22 +292,22 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                             s1000_inclusao_infoefr_dados['s1000_inclusao_infoop_id'] = s1000_inclusao_infoop.id
         
                             try:
-                                s1000_inclusao_infoefr_dados['ideefr'] = infoEFR.ideEFR.cdata
+                                s1000_inclusao_infoefr_dados['ideefr'] = read_from_xml(infoEFR.ideEFR.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1000_inclusao_infoefr_dados['cnpjefr'] = infoEFR.cnpjEFR.cdata
+                                s1000_inclusao_infoefr_dados['cnpjefr'] = read_from_xml(infoEFR.cnpjEFR.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1000_inclusao_infoefr_dados['indrpps'] = infoEFR.indRPPS.cdata
+                                s1000_inclusao_infoefr_dados['indrpps'] = read_from_xml(infoEFR.indRPPS.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1000_inclusao_infoefr_dados['prevcomp'] = infoEFR.prevComp.cdata
+                                s1000_inclusao_infoefr_dados['prevcomp'] = read_from_xml(infoEFR.prevComp.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -320,32 +321,32 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                             s1000_inclusao_infoente_dados['s1000_inclusao_infoop_id'] = s1000_inclusao_infoop.id
         
                             try:
-                                s1000_inclusao_infoente_dados['nmente'] = infoEnte.nmEnte.cdata
+                                s1000_inclusao_infoente_dados['nmente'] = read_from_xml(infoEnte.nmEnte.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1000_inclusao_infoente_dados['uf'] = infoEnte.uf.cdata
+                                s1000_inclusao_infoente_dados['uf'] = read_from_xml(infoEnte.uf.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1000_inclusao_infoente_dados['codmunic'] = infoEnte.codMunic.cdata
+                                s1000_inclusao_infoente_dados['codmunic'] = read_from_xml(infoEnte.codMunic.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1000_inclusao_infoente_dados['indrpps'] = infoEnte.indRPPS.cdata
+                                s1000_inclusao_infoente_dados['indrpps'] = read_from_xml(infoEnte.indRPPS.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1000_inclusao_infoente_dados['subteto'] = infoEnte.subteto.cdata
+                                s1000_inclusao_infoente_dados['subteto'] = read_from_xml(infoEnte.subteto.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1000_inclusao_infoente_dados['vrsubteto'] = infoEnte.vrSubteto.cdata
+                                s1000_inclusao_infoente_dados['vrsubteto'] = read_from_xml(infoEnte.vrSubteto.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
 
@@ -359,7 +360,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                     s1000_inclusao_infoorginternacional_dados['s1000_inclusao_id'] = s1000_inclusao.id
 
                     try:
-                        s1000_inclusao_infoorginternacional_dados['indacordoisenmulta'] = infoOrgInternacional.indAcordoIsenMulta.cdata
+                        s1000_inclusao_infoorginternacional_dados['indacordoisenmulta'] = read_from_xml(infoOrgInternacional.indAcordoIsenMulta.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -373,27 +374,27 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                     s1000_inclusao_softwarehouse_dados['s1000_inclusao_id'] = s1000_inclusao.id
 
                     try:
-                        s1000_inclusao_softwarehouse_dados['cnpjsofthouse'] = softwareHouse.cnpjSoftHouse.cdata
+                        s1000_inclusao_softwarehouse_dados['cnpjsofthouse'] = read_from_xml(softwareHouse.cnpjSoftHouse.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_softwarehouse_dados['nmrazao'] = softwareHouse.nmRazao.cdata
+                        s1000_inclusao_softwarehouse_dados['nmrazao'] = read_from_xml(softwareHouse.nmRazao.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_softwarehouse_dados['nmcont'] = softwareHouse.nmCont.cdata
+                        s1000_inclusao_softwarehouse_dados['nmcont'] = read_from_xml(softwareHouse.nmCont.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_softwarehouse_dados['telefone'] = softwareHouse.telefone.cdata
+                        s1000_inclusao_softwarehouse_dados['telefone'] = read_from_xml(softwareHouse.telefone.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_inclusao_softwarehouse_dados['email'] = softwareHouse.email.cdata
+                        s1000_inclusao_softwarehouse_dados['email'] = read_from_xml(softwareHouse.email.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -407,7 +408,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                     s1000_inclusao_situacaopj_dados['s1000_inclusao_id'] = s1000_inclusao.id
 
                     try:
-                        s1000_inclusao_situacaopj_dados['indsitpj'] = situacaoPJ.indSitPJ.cdata
+                        s1000_inclusao_situacaopj_dados['indsitpj'] = read_from_xml(situacaoPJ.indSitPJ.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -421,7 +422,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                     s1000_inclusao_situacaopf_dados['s1000_inclusao_id'] = s1000_inclusao.id
 
                     try:
-                        s1000_inclusao_situacaopf_dados['indsitpf'] = situacaoPF.indSitPF.cdata
+                        s1000_inclusao_situacaopf_dados['indsitpf'] = read_from_xml(situacaoPF.indSitPF.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -435,92 +436,92 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
             s1000_alteracao_dados['s1000_evtinfoempregador_id'] = s1000_evtinfoempregador.id
 
             try:
-                s1000_alteracao_dados['inivalid'] = alteracao.idePeriodo.iniValid.cdata
+                s1000_alteracao_dados['inivalid'] = read_from_xml(alteracao.idePeriodo.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['fimvalid'] = alteracao.idePeriodo.fimValid.cdata
+                s1000_alteracao_dados['fimvalid'] = read_from_xml(alteracao.idePeriodo.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['nmrazao'] = alteracao.infoCadastro.nmRazao.cdata
+                s1000_alteracao_dados['nmrazao'] = read_from_xml(alteracao.infoCadastro.nmRazao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['classtrib'] = alteracao.infoCadastro.classTrib.cdata
+                s1000_alteracao_dados['classtrib'] = read_from_xml(alteracao.infoCadastro.classTrib.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['natjurid'] = alteracao.infoCadastro.natJurid.cdata
+                s1000_alteracao_dados['natjurid'] = read_from_xml(alteracao.infoCadastro.natJurid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['indcoop'] = alteracao.infoCadastro.indCoop.cdata
+                s1000_alteracao_dados['indcoop'] = read_from_xml(alteracao.infoCadastro.indCoop.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['indconstr'] = alteracao.infoCadastro.indConstr.cdata
+                s1000_alteracao_dados['indconstr'] = read_from_xml(alteracao.infoCadastro.indConstr.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['inddesfolha'] = alteracao.infoCadastro.indDesFolha.cdata
+                s1000_alteracao_dados['inddesfolha'] = read_from_xml(alteracao.infoCadastro.indDesFolha.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['indopccp'] = alteracao.infoCadastro.indOpcCP.cdata
+                s1000_alteracao_dados['indopccp'] = read_from_xml(alteracao.infoCadastro.indOpcCP.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['indoptregeletron'] = alteracao.infoCadastro.indOptRegEletron.cdata
+                s1000_alteracao_dados['indoptregeletron'] = read_from_xml(alteracao.infoCadastro.indOptRegEletron.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['indented'] = alteracao.infoCadastro.indEntEd.cdata
+                s1000_alteracao_dados['indented'] = read_from_xml(alteracao.infoCadastro.indEntEd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['indett'] = alteracao.infoCadastro.indEtt.cdata
+                s1000_alteracao_dados['indett'] = read_from_xml(alteracao.infoCadastro.indEtt.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['nrregett'] = alteracao.infoCadastro.nrRegEtt.cdata
+                s1000_alteracao_dados['nrregett'] = read_from_xml(alteracao.infoCadastro.nrRegEtt.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['nmctt'] = alteracao.infoCadastro.contato.nmCtt.cdata
+                s1000_alteracao_dados['nmctt'] = read_from_xml(alteracao.infoCadastro.contato.nmCtt.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['cpfctt'] = alteracao.infoCadastro.contato.cpfCtt.cdata
+                s1000_alteracao_dados['cpfctt'] = read_from_xml(alteracao.infoCadastro.contato.cpfCtt.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['fonefixo'] = alteracao.infoCadastro.contato.foneFixo.cdata
+                s1000_alteracao_dados['fonefixo'] = read_from_xml(alteracao.infoCadastro.contato.foneFixo.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['fonecel'] = alteracao.infoCadastro.contato.foneCel.cdata
+                s1000_alteracao_dados['fonecel'] = read_from_xml(alteracao.infoCadastro.contato.foneCel.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_alteracao_dados['email'] = alteracao.infoCadastro.contato.email.cdata
+                s1000_alteracao_dados['email'] = read_from_xml(alteracao.infoCadastro.contato.email.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -534,42 +535,42 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                     s1000_alteracao_dadosisencao_dados['s1000_alteracao_id'] = s1000_alteracao.id
 
                     try:
-                        s1000_alteracao_dadosisencao_dados['ideminlei'] = dadosIsencao.ideMinLei.cdata
+                        s1000_alteracao_dadosisencao_dados['ideminlei'] = read_from_xml(dadosIsencao.ideMinLei.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_dadosisencao_dados['nrcertif'] = dadosIsencao.nrCertif.cdata
+                        s1000_alteracao_dadosisencao_dados['nrcertif'] = read_from_xml(dadosIsencao.nrCertif.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_dadosisencao_dados['dtemiscertif'] = dadosIsencao.dtEmisCertif.cdata
+                        s1000_alteracao_dadosisencao_dados['dtemiscertif'] = read_from_xml(dadosIsencao.dtEmisCertif.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_dadosisencao_dados['dtvenccertif'] = dadosIsencao.dtVencCertif.cdata
+                        s1000_alteracao_dadosisencao_dados['dtvenccertif'] = read_from_xml(dadosIsencao.dtVencCertif.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_dadosisencao_dados['nrprotrenov'] = dadosIsencao.nrProtRenov.cdata
+                        s1000_alteracao_dadosisencao_dados['nrprotrenov'] = read_from_xml(dadosIsencao.nrProtRenov.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_dadosisencao_dados['dtprotrenov'] = dadosIsencao.dtProtRenov.cdata
+                        s1000_alteracao_dadosisencao_dados['dtprotrenov'] = read_from_xml(dadosIsencao.dtProtRenov.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_dadosisencao_dados['dtdou'] = dadosIsencao.dtDou.cdata
+                        s1000_alteracao_dadosisencao_dados['dtdou'] = read_from_xml(dadosIsencao.dtDou.cdata, 'esocial', 'D', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_dadosisencao_dados['pagdou'] = dadosIsencao.pagDou.cdata
+                        s1000_alteracao_dadosisencao_dados['pagdou'] = read_from_xml(dadosIsencao.pagDou.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -583,37 +584,37 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                     s1000_alteracao_infoop_dados['s1000_alteracao_id'] = s1000_alteracao.id
 
                     try:
-                        s1000_alteracao_infoop_dados['nrsiafi'] = infoOP.nrSiafi.cdata
+                        s1000_alteracao_infoop_dados['nrsiafi'] = read_from_xml(infoOP.nrSiafi.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_infoop_dados['indugrpps'] = infoOP.indUGRPPS.cdata
+                        s1000_alteracao_infoop_dados['indugrpps'] = read_from_xml(infoOP.indUGRPPS.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_infoop_dados['esferaop'] = infoOP.esferaOP.cdata
+                        s1000_alteracao_infoop_dados['esferaop'] = read_from_xml(infoOP.esferaOP.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_infoop_dados['poderop'] = infoOP.poderOP.cdata
+                        s1000_alteracao_infoop_dados['poderop'] = read_from_xml(infoOP.poderOP.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_infoop_dados['vrtetorem'] = infoOP.vrTetoRem.cdata
+                        s1000_alteracao_infoop_dados['vrtetorem'] = read_from_xml(infoOP.vrTetoRem.cdata, 'esocial', 'N', 2)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_infoop_dados['ideefr'] = infoOP.ideEFR.cdata
+                        s1000_alteracao_infoop_dados['ideefr'] = read_from_xml(infoOP.ideEFR.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_infoop_dados['cnpjefr'] = infoOP.cnpjEFR.cdata
+                        s1000_alteracao_infoop_dados['cnpjefr'] = read_from_xml(infoOP.cnpjEFR.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -627,22 +628,22 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                             s1000_alteracao_infoefr_dados['s1000_alteracao_infoop_id'] = s1000_alteracao_infoop.id
         
                             try:
-                                s1000_alteracao_infoefr_dados['ideefr'] = infoEFR.ideEFR.cdata
+                                s1000_alteracao_infoefr_dados['ideefr'] = read_from_xml(infoEFR.ideEFR.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1000_alteracao_infoefr_dados['cnpjefr'] = infoEFR.cnpjEFR.cdata
+                                s1000_alteracao_infoefr_dados['cnpjefr'] = read_from_xml(infoEFR.cnpjEFR.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1000_alteracao_infoefr_dados['indrpps'] = infoEFR.indRPPS.cdata
+                                s1000_alteracao_infoefr_dados['indrpps'] = read_from_xml(infoEFR.indRPPS.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1000_alteracao_infoefr_dados['prevcomp'] = infoEFR.prevComp.cdata
+                                s1000_alteracao_infoefr_dados['prevcomp'] = read_from_xml(infoEFR.prevComp.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
 
@@ -656,32 +657,32 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                             s1000_alteracao_infoente_dados['s1000_alteracao_infoop_id'] = s1000_alteracao_infoop.id
         
                             try:
-                                s1000_alteracao_infoente_dados['nmente'] = infoEnte.nmEnte.cdata
+                                s1000_alteracao_infoente_dados['nmente'] = read_from_xml(infoEnte.nmEnte.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1000_alteracao_infoente_dados['uf'] = infoEnte.uf.cdata
+                                s1000_alteracao_infoente_dados['uf'] = read_from_xml(infoEnte.uf.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1000_alteracao_infoente_dados['codmunic'] = infoEnte.codMunic.cdata
+                                s1000_alteracao_infoente_dados['codmunic'] = read_from_xml(infoEnte.codMunic.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1000_alteracao_infoente_dados['indrpps'] = infoEnte.indRPPS.cdata
+                                s1000_alteracao_infoente_dados['indrpps'] = read_from_xml(infoEnte.indRPPS.cdata, 'esocial', 'C', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1000_alteracao_infoente_dados['subteto'] = infoEnte.subteto.cdata
+                                s1000_alteracao_infoente_dados['subteto'] = read_from_xml(infoEnte.subteto.cdata, 'esocial', 'N', None)
                             except AttributeError:
                                 pass
         
                             try:
-                                s1000_alteracao_infoente_dados['vrsubteto'] = infoEnte.vrSubteto.cdata
+                                s1000_alteracao_infoente_dados['vrsubteto'] = read_from_xml(infoEnte.vrSubteto.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
 
@@ -695,7 +696,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                     s1000_alteracao_infoorginternacional_dados['s1000_alteracao_id'] = s1000_alteracao.id
 
                     try:
-                        s1000_alteracao_infoorginternacional_dados['indacordoisenmulta'] = infoOrgInternacional.indAcordoIsenMulta.cdata
+                        s1000_alteracao_infoorginternacional_dados['indacordoisenmulta'] = read_from_xml(infoOrgInternacional.indAcordoIsenMulta.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -709,27 +710,27 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                     s1000_alteracao_softwarehouse_dados['s1000_alteracao_id'] = s1000_alteracao.id
 
                     try:
-                        s1000_alteracao_softwarehouse_dados['cnpjsofthouse'] = softwareHouse.cnpjSoftHouse.cdata
+                        s1000_alteracao_softwarehouse_dados['cnpjsofthouse'] = read_from_xml(softwareHouse.cnpjSoftHouse.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_softwarehouse_dados['nmrazao'] = softwareHouse.nmRazao.cdata
+                        s1000_alteracao_softwarehouse_dados['nmrazao'] = read_from_xml(softwareHouse.nmRazao.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_softwarehouse_dados['nmcont'] = softwareHouse.nmCont.cdata
+                        s1000_alteracao_softwarehouse_dados['nmcont'] = read_from_xml(softwareHouse.nmCont.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_softwarehouse_dados['telefone'] = softwareHouse.telefone.cdata
+                        s1000_alteracao_softwarehouse_dados['telefone'] = read_from_xml(softwareHouse.telefone.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_softwarehouse_dados['email'] = softwareHouse.email.cdata
+                        s1000_alteracao_softwarehouse_dados['email'] = read_from_xml(softwareHouse.email.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -743,7 +744,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                     s1000_alteracao_situacaopj_dados['s1000_alteracao_id'] = s1000_alteracao.id
 
                     try:
-                        s1000_alteracao_situacaopj_dados['indsitpj'] = situacaoPJ.indSitPJ.cdata
+                        s1000_alteracao_situacaopj_dados['indsitpj'] = read_from_xml(situacaoPJ.indSitPJ.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -757,7 +758,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                     s1000_alteracao_situacaopf_dados['s1000_alteracao_id'] = s1000_alteracao.id
 
                     try:
-                        s1000_alteracao_situacaopf_dados['indsitpf'] = situacaoPF.indSitPF.cdata
+                        s1000_alteracao_situacaopf_dados['indsitpf'] = read_from_xml(situacaoPF.indSitPF.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
@@ -771,12 +772,12 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                     s1000_alteracao_novavalidade_dados['s1000_alteracao_id'] = s1000_alteracao.id
 
                     try:
-                        s1000_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
+                        s1000_alteracao_novavalidade_dados['inivalid'] = read_from_xml(novaValidade.iniValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s1000_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                        s1000_alteracao_novavalidade_dados['fimvalid'] = read_from_xml(novaValidade.fimValid.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -790,12 +791,12 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
             s1000_exclusao_dados['s1000_evtinfoempregador_id'] = s1000_evtinfoempregador.id
 
             try:
-                s1000_exclusao_dados['inivalid'] = exclusao.idePeriodo.iniValid.cdata
+                s1000_exclusao_dados['inivalid'] = read_from_xml(exclusao.idePeriodo.iniValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1000_exclusao_dados['fimvalid'] = exclusao.idePeriodo.fimValid.cdata
+                s1000_exclusao_dados['fimvalid'] = read_from_xml(exclusao.idePeriodo.fimValid.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

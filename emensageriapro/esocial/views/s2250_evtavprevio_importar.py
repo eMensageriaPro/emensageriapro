@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2250.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,52 +62,52 @@ def read_s2250_evtavprevio_obj(request, doc, status, validar=False, arquivo=Fals
     evtAvPrevio = doc.eSocial.evtAvPrevio
 
     try:
-        s2250_evtavprevio_dados['indretif'] = evtAvPrevio.ideEvento.indRetif.cdata
+        s2250_evtavprevio_dados['indretif'] = read_from_xml(evtAvPrevio.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2250_evtavprevio_dados['nrrecibo'] = evtAvPrevio.ideEvento.nrRecibo.cdata
+        s2250_evtavprevio_dados['nrrecibo'] = read_from_xml(evtAvPrevio.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2250_evtavprevio_dados['tpamb'] = evtAvPrevio.ideEvento.tpAmb.cdata
+        s2250_evtavprevio_dados['tpamb'] = read_from_xml(evtAvPrevio.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2250_evtavprevio_dados['procemi'] = evtAvPrevio.ideEvento.procEmi.cdata
+        s2250_evtavprevio_dados['procemi'] = read_from_xml(evtAvPrevio.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2250_evtavprevio_dados['verproc'] = evtAvPrevio.ideEvento.verProc.cdata
+        s2250_evtavprevio_dados['verproc'] = read_from_xml(evtAvPrevio.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2250_evtavprevio_dados['tpinsc'] = evtAvPrevio.ideEmpregador.tpInsc.cdata
+        s2250_evtavprevio_dados['tpinsc'] = read_from_xml(evtAvPrevio.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2250_evtavprevio_dados['nrinsc'] = evtAvPrevio.ideEmpregador.nrInsc.cdata
+        s2250_evtavprevio_dados['nrinsc'] = read_from_xml(evtAvPrevio.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2250_evtavprevio_dados['cpftrab'] = evtAvPrevio.ideVinculo.cpfTrab.cdata
+        s2250_evtavprevio_dados['cpftrab'] = read_from_xml(evtAvPrevio.ideVinculo.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2250_evtavprevio_dados['nistrab'] = evtAvPrevio.ideVinculo.nisTrab.cdata
+        s2250_evtavprevio_dados['nistrab'] = read_from_xml(evtAvPrevio.ideVinculo.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2250_evtavprevio_dados['matricula'] = evtAvPrevio.ideVinculo.matricula.cdata
+        s2250_evtavprevio_dados['matricula'] = read_from_xml(evtAvPrevio.ideVinculo.matricula.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -120,22 +121,22 @@ def read_s2250_evtavprevio_obj(request, doc, status, validar=False, arquivo=Fals
             s2250_detavprevio_dados['s2250_evtavprevio_id'] = s2250_evtavprevio.id
 
             try:
-                s2250_detavprevio_dados['dtavprv'] = detAvPrevio.dtAvPrv.cdata
+                s2250_detavprevio_dados['dtavprv'] = read_from_xml(detAvPrevio.dtAvPrv.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2250_detavprevio_dados['dtprevdeslig'] = detAvPrevio.dtPrevDeslig.cdata
+                s2250_detavprevio_dados['dtprevdeslig'] = read_from_xml(detAvPrevio.dtPrevDeslig.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2250_detavprevio_dados['tpavprevio'] = detAvPrevio.tpAvPrevio.cdata
+                s2250_detavprevio_dados['tpavprevio'] = read_from_xml(detAvPrevio.tpAvPrevio.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2250_detavprevio_dados['observacao'] = detAvPrevio.observacao.cdata
+                s2250_detavprevio_dados['observacao'] = read_from_xml(detAvPrevio.observacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -149,17 +150,17 @@ def read_s2250_evtavprevio_obj(request, doc, status, validar=False, arquivo=Fals
             s2250_cancavprevio_dados['s2250_evtavprevio_id'] = s2250_evtavprevio.id
 
             try:
-                s2250_cancavprevio_dados['dtcancavprv'] = cancAvPrevio.dtCancAvPrv.cdata
+                s2250_cancavprevio_dados['dtcancavprv'] = read_from_xml(cancAvPrevio.dtCancAvPrv.cdata, 'esocial', 'D', None)
             except AttributeError:
                 pass
 
             try:
-                s2250_cancavprevio_dados['observacao'] = cancAvPrevio.observacao.cdata
+                s2250_cancavprevio_dados['observacao'] = read_from_xml(cancAvPrevio.observacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2250_cancavprevio_dados['mtvcancavprevio'] = cancAvPrevio.mtvCancAvPrevio.cdata
+                s2250_cancavprevio_dados['mtvcancavprevio'] = read_from_xml(cancAvPrevio.mtvCancAvPrevio.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 

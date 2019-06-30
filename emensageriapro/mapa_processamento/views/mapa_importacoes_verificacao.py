@@ -562,10 +562,7 @@ def verificacao_importacao_funcao(arquivo):
 
     for a in range(100):
         xml_ger = xml_ger.replace('> ', '>').replace(' <', '<').replace('\n', '\n')
-        xml_imp = xml_imp.replace('> ', '>').replace(' <', '<').replace('\n', '\n')
-
-    xml_ger = xml_ger.replace('</Reinf>', '').replace('</eSocial>', '')
-    xml_imp = xml_imp.replace('</Reinf>', '').replace('</eSocial>', '')
+        xml_imp = xml_ger.replace('> ', '>').replace(' <', '<').replace('\n', '\n')
 
     return xml_ger, xml_imp
 
@@ -579,7 +576,7 @@ def verificacao_importacao(request, pk):
 
     xml_ger, xml_imp = verificacao_importacao_funcao(arquivo)
 
-    if xml_ger in xml_imp:
+    if xml_ger == xml_imp:
         return HttpResponse("Correto!")
 
     else:

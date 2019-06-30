@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s1299.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,72 +62,72 @@ def read_s1299_evtfechaevper_obj(request, doc, status, validar=False, arquivo=Fa
     evtFechaEvPer = doc.eSocial.evtFechaEvPer
 
     try:
-        s1299_evtfechaevper_dados['indapuracao'] = evtFechaEvPer.ideEvento.indApuracao.cdata
+        s1299_evtfechaevper_dados['indapuracao'] = read_from_xml(evtFechaEvPer.ideEvento.indApuracao.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1299_evtfechaevper_dados['perapur'] = evtFechaEvPer.ideEvento.perApur.cdata
+        s1299_evtfechaevper_dados['perapur'] = read_from_xml(evtFechaEvPer.ideEvento.perApur.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1299_evtfechaevper_dados['tpamb'] = evtFechaEvPer.ideEvento.tpAmb.cdata
+        s1299_evtfechaevper_dados['tpamb'] = read_from_xml(evtFechaEvPer.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1299_evtfechaevper_dados['procemi'] = evtFechaEvPer.ideEvento.procEmi.cdata
+        s1299_evtfechaevper_dados['procemi'] = read_from_xml(evtFechaEvPer.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1299_evtfechaevper_dados['verproc'] = evtFechaEvPer.ideEvento.verProc.cdata
+        s1299_evtfechaevper_dados['verproc'] = read_from_xml(evtFechaEvPer.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1299_evtfechaevper_dados['tpinsc'] = evtFechaEvPer.ideEmpregador.tpInsc.cdata
+        s1299_evtfechaevper_dados['tpinsc'] = read_from_xml(evtFechaEvPer.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s1299_evtfechaevper_dados['nrinsc'] = evtFechaEvPer.ideEmpregador.nrInsc.cdata
+        s1299_evtfechaevper_dados['nrinsc'] = read_from_xml(evtFechaEvPer.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1299_evtfechaevper_dados['evtremun'] = evtFechaEvPer.infoFech.evtRemun.cdata
+        s1299_evtfechaevper_dados['evtremun'] = read_from_xml(evtFechaEvPer.infoFech.evtRemun.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1299_evtfechaevper_dados['evtpgtos'] = evtFechaEvPer.infoFech.evtPgtos.cdata
+        s1299_evtfechaevper_dados['evtpgtos'] = read_from_xml(evtFechaEvPer.infoFech.evtPgtos.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1299_evtfechaevper_dados['evtaqprod'] = evtFechaEvPer.infoFech.evtAqProd.cdata
+        s1299_evtfechaevper_dados['evtaqprod'] = read_from_xml(evtFechaEvPer.infoFech.evtAqProd.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1299_evtfechaevper_dados['evtcomprod'] = evtFechaEvPer.infoFech.evtComProd.cdata
+        s1299_evtfechaevper_dados['evtcomprod'] = read_from_xml(evtFechaEvPer.infoFech.evtComProd.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1299_evtfechaevper_dados['evtcontratavnp'] = evtFechaEvPer.infoFech.evtContratAvNP.cdata
+        s1299_evtfechaevper_dados['evtcontratavnp'] = read_from_xml(evtFechaEvPer.infoFech.evtContratAvNP.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1299_evtfechaevper_dados['evtinfocomplper'] = evtFechaEvPer.infoFech.evtInfoComplPer.cdata
+        s1299_evtfechaevper_dados['evtinfocomplper'] = read_from_xml(evtFechaEvPer.infoFech.evtInfoComplPer.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s1299_evtfechaevper_dados['compsemmovto'] = evtFechaEvPer.infoFech.compSemMovto.cdata
+        s1299_evtfechaevper_dados['compsemmovto'] = read_from_xml(evtFechaEvPer.infoFech.compSemMovto.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -140,22 +141,22 @@ def read_s1299_evtfechaevper_obj(request, doc, status, validar=False, arquivo=Fa
             s1299_iderespinf_dados['s1299_evtfechaevper_id'] = s1299_evtfechaevper.id
 
             try:
-                s1299_iderespinf_dados['nmresp'] = ideRespInf.nmResp.cdata
+                s1299_iderespinf_dados['nmresp'] = read_from_xml(ideRespInf.nmResp.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1299_iderespinf_dados['cpfresp'] = ideRespInf.cpfResp.cdata
+                s1299_iderespinf_dados['cpfresp'] = read_from_xml(ideRespInf.cpfResp.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1299_iderespinf_dados['telefone'] = ideRespInf.telefone.cdata
+                s1299_iderespinf_dados['telefone'] = read_from_xml(ideRespInf.telefone.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s1299_iderespinf_dados['email'] = ideRespInf.email.cdata
+                s1299_iderespinf_dados['email'] = read_from_xml(ideRespInf.email.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

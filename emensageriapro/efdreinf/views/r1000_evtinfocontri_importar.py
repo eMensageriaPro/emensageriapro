@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.efdreinf.models import *
 from emensageriapro.r1000.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -65,27 +66,27 @@ def read_r1000_evtinfocontri_obj(request, doc, status, validar=False, arquivo=Fa
     elif 'exclusao' in dir(evtInfoContri.infoContri): r1000_evtinfocontri_dados['operacao'] = 3
 
     try:
-        r1000_evtinfocontri_dados['tpamb'] = evtInfoContri.ideEvento.tpAmb.cdata
+        r1000_evtinfocontri_dados['tpamb'] = read_from_xml(evtInfoContri.ideEvento.tpAmb.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r1000_evtinfocontri_dados['procemi'] = evtInfoContri.ideEvento.procEmi.cdata
+        r1000_evtinfocontri_dados['procemi'] = read_from_xml(evtInfoContri.ideEvento.procEmi.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r1000_evtinfocontri_dados['verproc'] = evtInfoContri.ideEvento.verProc.cdata
+        r1000_evtinfocontri_dados['verproc'] = read_from_xml(evtInfoContri.ideEvento.verProc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
     try:
-        r1000_evtinfocontri_dados['tpinsc'] = evtInfoContri.ideContri.tpInsc.cdata
+        r1000_evtinfocontri_dados['tpinsc'] = read_from_xml(evtInfoContri.ideContri.tpInsc.cdata, 'efdreinf', 'N', None)
     except AttributeError:
         pass
 
     try:
-        r1000_evtinfocontri_dados['nrinsc'] = evtInfoContri.ideContri.nrInsc.cdata
+        r1000_evtinfocontri_dados['nrinsc'] = read_from_xml(evtInfoContri.ideContri.nrInsc.cdata, 'efdreinf', 'C', None)
     except AttributeError:
         pass
 
@@ -99,62 +100,62 @@ def read_r1000_evtinfocontri_obj(request, doc, status, validar=False, arquivo=Fa
             r1000_inclusao_dados['r1000_evtinfocontri_id'] = r1000_evtinfocontri.id
 
             try:
-                r1000_inclusao_dados['inivalid'] = inclusao.idePeriodo.iniValid.cdata
+                r1000_inclusao_dados['inivalid'] = read_from_xml(inclusao.idePeriodo.iniValid.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_inclusao_dados['fimvalid'] = inclusao.idePeriodo.fimValid.cdata
+                r1000_inclusao_dados['fimvalid'] = read_from_xml(inclusao.idePeriodo.fimValid.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_inclusao_dados['classtrib'] = inclusao.infoCadastro.classTrib.cdata
+                r1000_inclusao_dados['classtrib'] = read_from_xml(inclusao.infoCadastro.classTrib.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_inclusao_dados['indescrituracao'] = inclusao.infoCadastro.indEscrituracao.cdata
+                r1000_inclusao_dados['indescrituracao'] = read_from_xml(inclusao.infoCadastro.indEscrituracao.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_inclusao_dados['inddesoneracao'] = inclusao.infoCadastro.indDesoneracao.cdata
+                r1000_inclusao_dados['inddesoneracao'] = read_from_xml(inclusao.infoCadastro.indDesoneracao.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_inclusao_dados['indacordoisenmulta'] = inclusao.infoCadastro.indAcordoIsenMulta.cdata
+                r1000_inclusao_dados['indacordoisenmulta'] = read_from_xml(inclusao.infoCadastro.indAcordoIsenMulta.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_inclusao_dados['indsitpj'] = inclusao.infoCadastro.indSitPJ.cdata
+                r1000_inclusao_dados['indsitpj'] = read_from_xml(inclusao.infoCadastro.indSitPJ.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_inclusao_dados['nmctt'] = inclusao.infoCadastro.contato.nmCtt.cdata
+                r1000_inclusao_dados['nmctt'] = read_from_xml(inclusao.infoCadastro.contato.nmCtt.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_inclusao_dados['cpfctt'] = inclusao.infoCadastro.contato.cpfCtt.cdata
+                r1000_inclusao_dados['cpfctt'] = read_from_xml(inclusao.infoCadastro.contato.cpfCtt.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_inclusao_dados['fonefixo'] = inclusao.infoCadastro.contato.foneFixo.cdata
+                r1000_inclusao_dados['fonefixo'] = read_from_xml(inclusao.infoCadastro.contato.foneFixo.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_inclusao_dados['fonecel'] = inclusao.infoCadastro.contato.foneCel.cdata
+                r1000_inclusao_dados['fonecel'] = read_from_xml(inclusao.infoCadastro.contato.foneCel.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_inclusao_dados['email'] = inclusao.infoCadastro.contato.email.cdata
+                r1000_inclusao_dados['email'] = read_from_xml(inclusao.infoCadastro.contato.email.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
@@ -168,27 +169,27 @@ def read_r1000_evtinfocontri_obj(request, doc, status, validar=False, arquivo=Fa
                     r1000_inclusao_softhouse_dados['r1000_inclusao_id'] = r1000_inclusao.id
 
                     try:
-                        r1000_inclusao_softhouse_dados['cnpjsofthouse'] = softHouse.cnpjSoftHouse.cdata
+                        r1000_inclusao_softhouse_dados['cnpjsofthouse'] = read_from_xml(softHouse.cnpjSoftHouse.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1000_inclusao_softhouse_dados['nmrazao'] = softHouse.nmRazao.cdata
+                        r1000_inclusao_softhouse_dados['nmrazao'] = read_from_xml(softHouse.nmRazao.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1000_inclusao_softhouse_dados['nmcont'] = softHouse.nmCont.cdata
+                        r1000_inclusao_softhouse_dados['nmcont'] = read_from_xml(softHouse.nmCont.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1000_inclusao_softhouse_dados['telefone'] = softHouse.telefone.cdata
+                        r1000_inclusao_softhouse_dados['telefone'] = read_from_xml(softHouse.telefone.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1000_inclusao_softhouse_dados['email'] = softHouse.email.cdata
+                        r1000_inclusao_softhouse_dados['email'] = read_from_xml(softHouse.email.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
@@ -202,12 +203,12 @@ def read_r1000_evtinfocontri_obj(request, doc, status, validar=False, arquivo=Fa
                     r1000_inclusao_infoefr_dados['r1000_inclusao_id'] = r1000_inclusao.id
 
                     try:
-                        r1000_inclusao_infoefr_dados['ideefr'] = infoEFR.ideEFR.cdata
+                        r1000_inclusao_infoefr_dados['ideefr'] = read_from_xml(infoEFR.ideEFR.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1000_inclusao_infoefr_dados['cnpjefr'] = infoEFR.cnpjEFR.cdata
+                        r1000_inclusao_infoefr_dados['cnpjefr'] = read_from_xml(infoEFR.cnpjEFR.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
@@ -221,62 +222,62 @@ def read_r1000_evtinfocontri_obj(request, doc, status, validar=False, arquivo=Fa
             r1000_alteracao_dados['r1000_evtinfocontri_id'] = r1000_evtinfocontri.id
 
             try:
-                r1000_alteracao_dados['inivalid'] = alteracao.idePeriodo.iniValid.cdata
+                r1000_alteracao_dados['inivalid'] = read_from_xml(alteracao.idePeriodo.iniValid.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_alteracao_dados['fimvalid'] = alteracao.idePeriodo.fimValid.cdata
+                r1000_alteracao_dados['fimvalid'] = read_from_xml(alteracao.idePeriodo.fimValid.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_alteracao_dados['classtrib'] = alteracao.infoCadastro.classTrib.cdata
+                r1000_alteracao_dados['classtrib'] = read_from_xml(alteracao.infoCadastro.classTrib.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_alteracao_dados['indescrituracao'] = alteracao.infoCadastro.indEscrituracao.cdata
+                r1000_alteracao_dados['indescrituracao'] = read_from_xml(alteracao.infoCadastro.indEscrituracao.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_alteracao_dados['inddesoneracao'] = alteracao.infoCadastro.indDesoneracao.cdata
+                r1000_alteracao_dados['inddesoneracao'] = read_from_xml(alteracao.infoCadastro.indDesoneracao.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_alteracao_dados['indacordoisenmulta'] = alteracao.infoCadastro.indAcordoIsenMulta.cdata
+                r1000_alteracao_dados['indacordoisenmulta'] = read_from_xml(alteracao.infoCadastro.indAcordoIsenMulta.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_alteracao_dados['indsitpj'] = alteracao.infoCadastro.indSitPJ.cdata
+                r1000_alteracao_dados['indsitpj'] = read_from_xml(alteracao.infoCadastro.indSitPJ.cdata, 'efdreinf', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_alteracao_dados['nmctt'] = alteracao.infoCadastro.contato.nmCtt.cdata
+                r1000_alteracao_dados['nmctt'] = read_from_xml(alteracao.infoCadastro.contato.nmCtt.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_alteracao_dados['cpfctt'] = alteracao.infoCadastro.contato.cpfCtt.cdata
+                r1000_alteracao_dados['cpfctt'] = read_from_xml(alteracao.infoCadastro.contato.cpfCtt.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_alteracao_dados['fonefixo'] = alteracao.infoCadastro.contato.foneFixo.cdata
+                r1000_alteracao_dados['fonefixo'] = read_from_xml(alteracao.infoCadastro.contato.foneFixo.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_alteracao_dados['fonecel'] = alteracao.infoCadastro.contato.foneCel.cdata
+                r1000_alteracao_dados['fonecel'] = read_from_xml(alteracao.infoCadastro.contato.foneCel.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_alteracao_dados['email'] = alteracao.infoCadastro.contato.email.cdata
+                r1000_alteracao_dados['email'] = read_from_xml(alteracao.infoCadastro.contato.email.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
@@ -290,27 +291,27 @@ def read_r1000_evtinfocontri_obj(request, doc, status, validar=False, arquivo=Fa
                     r1000_alteracao_softhouse_dados['r1000_alteracao_id'] = r1000_alteracao.id
 
                     try:
-                        r1000_alteracao_softhouse_dados['cnpjsofthouse'] = softHouse.cnpjSoftHouse.cdata
+                        r1000_alteracao_softhouse_dados['cnpjsofthouse'] = read_from_xml(softHouse.cnpjSoftHouse.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1000_alteracao_softhouse_dados['nmrazao'] = softHouse.nmRazao.cdata
+                        r1000_alteracao_softhouse_dados['nmrazao'] = read_from_xml(softHouse.nmRazao.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1000_alteracao_softhouse_dados['nmcont'] = softHouse.nmCont.cdata
+                        r1000_alteracao_softhouse_dados['nmcont'] = read_from_xml(softHouse.nmCont.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1000_alteracao_softhouse_dados['telefone'] = softHouse.telefone.cdata
+                        r1000_alteracao_softhouse_dados['telefone'] = read_from_xml(softHouse.telefone.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1000_alteracao_softhouse_dados['email'] = softHouse.email.cdata
+                        r1000_alteracao_softhouse_dados['email'] = read_from_xml(softHouse.email.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
@@ -324,12 +325,12 @@ def read_r1000_evtinfocontri_obj(request, doc, status, validar=False, arquivo=Fa
                     r1000_alteracao_infoefr_dados['r1000_alteracao_id'] = r1000_alteracao.id
 
                     try:
-                        r1000_alteracao_infoefr_dados['ideefr'] = infoEFR.ideEFR.cdata
+                        r1000_alteracao_infoefr_dados['ideefr'] = read_from_xml(infoEFR.ideEFR.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1000_alteracao_infoefr_dados['cnpjefr'] = infoEFR.cnpjEFR.cdata
+                        r1000_alteracao_infoefr_dados['cnpjefr'] = read_from_xml(infoEFR.cnpjEFR.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
@@ -343,12 +344,12 @@ def read_r1000_evtinfocontri_obj(request, doc, status, validar=False, arquivo=Fa
                     r1000_alteracao_novavalidade_dados['r1000_alteracao_id'] = r1000_alteracao.id
 
                     try:
-                        r1000_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
+                        r1000_alteracao_novavalidade_dados['inivalid'] = read_from_xml(novaValidade.iniValid.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
                     try:
-                        r1000_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                        r1000_alteracao_novavalidade_dados['fimvalid'] = read_from_xml(novaValidade.fimValid.cdata, 'efdreinf', 'C', None)
                     except AttributeError:
                         pass
 
@@ -362,12 +363,12 @@ def read_r1000_evtinfocontri_obj(request, doc, status, validar=False, arquivo=Fa
             r1000_exclusao_dados['r1000_evtinfocontri_id'] = r1000_evtinfocontri.id
 
             try:
-                r1000_exclusao_dados['inivalid'] = exclusao.idePeriodo.iniValid.cdata
+                r1000_exclusao_dados['inivalid'] = read_from_xml(exclusao.idePeriodo.iniValid.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                r1000_exclusao_dados['fimvalid'] = exclusao.idePeriodo.fimValid.cdata
+                r1000_exclusao_dados['fimvalid'] = read_from_xml(exclusao.idePeriodo.fimValid.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 

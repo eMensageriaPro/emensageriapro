@@ -7,6 +7,7 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.esocial.models import *
 from emensageriapro.s2206.models import *
+from emensageriapro.functions import read_from_xml
 
 
 
@@ -61,127 +62,127 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False, arquivo
     evtAltContratual = doc.eSocial.evtAltContratual
 
     try:
-        s2206_evtaltcontratual_dados['indretif'] = evtAltContratual.ideEvento.indRetif.cdata
+        s2206_evtaltcontratual_dados['indretif'] = read_from_xml(evtAltContratual.ideEvento.indRetif.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['nrrecibo'] = evtAltContratual.ideEvento.nrRecibo.cdata
+        s2206_evtaltcontratual_dados['nrrecibo'] = read_from_xml(evtAltContratual.ideEvento.nrRecibo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['tpamb'] = evtAltContratual.ideEvento.tpAmb.cdata
+        s2206_evtaltcontratual_dados['tpamb'] = read_from_xml(evtAltContratual.ideEvento.tpAmb.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['procemi'] = evtAltContratual.ideEvento.procEmi.cdata
+        s2206_evtaltcontratual_dados['procemi'] = read_from_xml(evtAltContratual.ideEvento.procEmi.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['verproc'] = evtAltContratual.ideEvento.verProc.cdata
+        s2206_evtaltcontratual_dados['verproc'] = read_from_xml(evtAltContratual.ideEvento.verProc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['tpinsc'] = evtAltContratual.ideEmpregador.tpInsc.cdata
+        s2206_evtaltcontratual_dados['tpinsc'] = read_from_xml(evtAltContratual.ideEmpregador.tpInsc.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['nrinsc'] = evtAltContratual.ideEmpregador.nrInsc.cdata
+        s2206_evtaltcontratual_dados['nrinsc'] = read_from_xml(evtAltContratual.ideEmpregador.nrInsc.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['cpftrab'] = evtAltContratual.ideVinculo.cpfTrab.cdata
+        s2206_evtaltcontratual_dados['cpftrab'] = read_from_xml(evtAltContratual.ideVinculo.cpfTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['nistrab'] = evtAltContratual.ideVinculo.nisTrab.cdata
+        s2206_evtaltcontratual_dados['nistrab'] = read_from_xml(evtAltContratual.ideVinculo.nisTrab.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['matricula'] = evtAltContratual.ideVinculo.matricula.cdata
+        s2206_evtaltcontratual_dados['matricula'] = read_from_xml(evtAltContratual.ideVinculo.matricula.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['dtalteracao'] = evtAltContratual.altContratual.dtAlteracao.cdata
+        s2206_evtaltcontratual_dados['dtalteracao'] = read_from_xml(evtAltContratual.altContratual.dtAlteracao.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['dtef'] = evtAltContratual.altContratual.dtEf.cdata
+        s2206_evtaltcontratual_dados['dtef'] = read_from_xml(evtAltContratual.altContratual.dtEf.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['dscalt'] = evtAltContratual.altContratual.dscAlt.cdata
+        s2206_evtaltcontratual_dados['dscalt'] = read_from_xml(evtAltContratual.altContratual.dscAlt.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['tpregprev'] = evtAltContratual.altContratual.vinculo.tpRegPrev.cdata
+        s2206_evtaltcontratual_dados['tpregprev'] = read_from_xml(evtAltContratual.altContratual.vinculo.tpRegPrev.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['codcargo'] = evtAltContratual.altContratual.infoContrato.codCargo.cdata
+        s2206_evtaltcontratual_dados['codcargo'] = read_from_xml(evtAltContratual.altContratual.infoContrato.codCargo.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['codfuncao'] = evtAltContratual.altContratual.infoContrato.codFuncao.cdata
+        s2206_evtaltcontratual_dados['codfuncao'] = read_from_xml(evtAltContratual.altContratual.infoContrato.codFuncao.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['codcateg'] = evtAltContratual.altContratual.infoContrato.codCateg.cdata
+        s2206_evtaltcontratual_dados['codcateg'] = read_from_xml(evtAltContratual.altContratual.infoContrato.codCateg.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['codcarreira'] = evtAltContratual.altContratual.infoContrato.codCarreira.cdata
+        s2206_evtaltcontratual_dados['codcarreira'] = read_from_xml(evtAltContratual.altContratual.infoContrato.codCarreira.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['dtingrcarr'] = evtAltContratual.altContratual.infoContrato.dtIngrCarr.cdata
+        s2206_evtaltcontratual_dados['dtingrcarr'] = read_from_xml(evtAltContratual.altContratual.infoContrato.dtIngrCarr.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['vrsalfx'] = evtAltContratual.altContratual.infoContrato.remuneracao.vrSalFx.cdata
+        s2206_evtaltcontratual_dados['vrsalfx'] = read_from_xml(evtAltContratual.altContratual.infoContrato.remuneracao.vrSalFx.cdata, 'esocial', 'N', 2)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['undsalfixo'] = evtAltContratual.altContratual.infoContrato.remuneracao.undSalFixo.cdata
+        s2206_evtaltcontratual_dados['undsalfixo'] = read_from_xml(evtAltContratual.altContratual.infoContrato.remuneracao.undSalFixo.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['dscsalvar'] = evtAltContratual.altContratual.infoContrato.remuneracao.dscSalVar.cdata
+        s2206_evtaltcontratual_dados['dscsalvar'] = read_from_xml(evtAltContratual.altContratual.infoContrato.remuneracao.dscSalVar.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['tpcontr'] = evtAltContratual.altContratual.infoContrato.duracao.tpContr.cdata
+        s2206_evtaltcontratual_dados['tpcontr'] = read_from_xml(evtAltContratual.altContratual.infoContrato.duracao.tpContr.cdata, 'esocial', 'N', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['dtterm'] = evtAltContratual.altContratual.infoContrato.duracao.dtTerm.cdata
+        s2206_evtaltcontratual_dados['dtterm'] = read_from_xml(evtAltContratual.altContratual.infoContrato.duracao.dtTerm.cdata, 'esocial', 'D', None)
     except AttributeError:
         pass
 
     try:
-        s2206_evtaltcontratual_dados['objdet'] = evtAltContratual.altContratual.infoContrato.duracao.objDet.cdata
+        s2206_evtaltcontratual_dados['objdet'] = read_from_xml(evtAltContratual.altContratual.infoContrato.duracao.objDet.cdata, 'esocial', 'C', None)
     except AttributeError:
         pass
 
@@ -195,22 +196,22 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False, arquivo
             s2206_infoceletista_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual.id
 
             try:
-                s2206_infoceletista_dados['tpregjor'] = infoCeletista.tpRegJor.cdata
+                s2206_infoceletista_dados['tpregjor'] = read_from_xml(infoCeletista.tpRegJor.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_infoceletista_dados['natatividade'] = infoCeletista.natAtividade.cdata
+                s2206_infoceletista_dados['natatividade'] = read_from_xml(infoCeletista.natAtividade.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_infoceletista_dados['dtbase'] = infoCeletista.dtBase.cdata
+                s2206_infoceletista_dados['dtbase'] = read_from_xml(infoCeletista.dtBase.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_infoceletista_dados['cnpjsindcategprof'] = infoCeletista.cnpjSindCategProf.cdata
+                s2206_infoceletista_dados['cnpjsindcategprof'] = read_from_xml(infoCeletista.cnpjSindCategProf.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -224,7 +225,7 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False, arquivo
                     s2206_trabtemp_dados['s2206_infoceletista_id'] = s2206_infoceletista.id
 
                     try:
-                        s2206_trabtemp_dados['justprorr'] = trabTemp.justProrr.cdata
+                        s2206_trabtemp_dados['justprorr'] = read_from_xml(trabTemp.justProrr.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -238,12 +239,12 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False, arquivo
                     s2206_aprend_dados['s2206_infoceletista_id'] = s2206_infoceletista.id
 
                     try:
-                        s2206_aprend_dados['tpinsc'] = aprend.tpInsc.cdata
+                        s2206_aprend_dados['tpinsc'] = read_from_xml(aprend.tpInsc.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2206_aprend_dados['nrinsc'] = aprend.nrInsc.cdata
+                        s2206_aprend_dados['nrinsc'] = read_from_xml(aprend.nrInsc.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -257,22 +258,22 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False, arquivo
             s2206_infoestatutario_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual.id
 
             try:
-                s2206_infoestatutario_dados['tpplanrp'] = infoEstatutario.tpPlanRP.cdata
+                s2206_infoestatutario_dados['tpplanrp'] = read_from_xml(infoEstatutario.tpPlanRP.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_infoestatutario_dados['indtetorgps'] = infoEstatutario.indTetoRGPS.cdata
+                s2206_infoestatutario_dados['indtetorgps'] = read_from_xml(infoEstatutario.indTetoRGPS.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_infoestatutario_dados['indabonoperm'] = infoEstatutario.indAbonoPerm.cdata
+                s2206_infoestatutario_dados['indabonoperm'] = read_from_xml(infoEstatutario.indAbonoPerm.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_infoestatutario_dados['indparcremun'] = infoEstatutario.indParcRemun.cdata
+                s2206_infoestatutario_dados['indparcremun'] = read_from_xml(infoEstatutario.indParcRemun.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -286,17 +287,17 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False, arquivo
             s2206_localtrabgeral_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual.id
 
             try:
-                s2206_localtrabgeral_dados['tpinsc'] = localTrabGeral.tpInsc.cdata
+                s2206_localtrabgeral_dados['tpinsc'] = read_from_xml(localTrabGeral.tpInsc.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_localtrabgeral_dados['nrinsc'] = localTrabGeral.nrInsc.cdata
+                s2206_localtrabgeral_dados['nrinsc'] = read_from_xml(localTrabGeral.nrInsc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_localtrabgeral_dados['desccomp'] = localTrabGeral.descComp.cdata
+                s2206_localtrabgeral_dados['desccomp'] = read_from_xml(localTrabGeral.descComp.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -310,42 +311,42 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False, arquivo
             s2206_localtrabdom_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual.id
 
             try:
-                s2206_localtrabdom_dados['tplograd'] = localTrabDom.tpLograd.cdata
+                s2206_localtrabdom_dados['tplograd'] = read_from_xml(localTrabDom.tpLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_localtrabdom_dados['dsclograd'] = localTrabDom.dscLograd.cdata
+                s2206_localtrabdom_dados['dsclograd'] = read_from_xml(localTrabDom.dscLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_localtrabdom_dados['nrlograd'] = localTrabDom.nrLograd.cdata
+                s2206_localtrabdom_dados['nrlograd'] = read_from_xml(localTrabDom.nrLograd.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_localtrabdom_dados['complemento'] = localTrabDom.complemento.cdata
+                s2206_localtrabdom_dados['complemento'] = read_from_xml(localTrabDom.complemento.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_localtrabdom_dados['bairro'] = localTrabDom.bairro.cdata
+                s2206_localtrabdom_dados['bairro'] = read_from_xml(localTrabDom.bairro.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_localtrabdom_dados['cep'] = localTrabDom.cep.cdata
+                s2206_localtrabdom_dados['cep'] = read_from_xml(localTrabDom.cep.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_localtrabdom_dados['codmunic'] = localTrabDom.codMunic.cdata
+                s2206_localtrabdom_dados['codmunic'] = read_from_xml(localTrabDom.codMunic.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_localtrabdom_dados['uf'] = localTrabDom.uf.cdata
+                s2206_localtrabdom_dados['uf'] = read_from_xml(localTrabDom.uf.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -359,22 +360,22 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False, arquivo
             s2206_horcontratual_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual.id
 
             try:
-                s2206_horcontratual_dados['qtdhrssem'] = horContratual.qtdHrsSem.cdata
+                s2206_horcontratual_dados['qtdhrssem'] = read_from_xml(horContratual.qtdHrsSem.cdata, 'esocial', 'N', 2)
             except AttributeError:
                 pass
 
             try:
-                s2206_horcontratual_dados['tpjornada'] = horContratual.tpJornada.cdata
+                s2206_horcontratual_dados['tpjornada'] = read_from_xml(horContratual.tpJornada.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_horcontratual_dados['dsctpjorn'] = horContratual.dscTpJorn.cdata
+                s2206_horcontratual_dados['dsctpjorn'] = read_from_xml(horContratual.dscTpJorn.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
             try:
-                s2206_horcontratual_dados['tmpparc'] = horContratual.tmpParc.cdata
+                s2206_horcontratual_dados['tmpparc'] = read_from_xml(horContratual.tmpParc.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
@@ -388,12 +389,12 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False, arquivo
                     s2206_horario_dados['s2206_horcontratual_id'] = s2206_horcontratual.id
 
                     try:
-                        s2206_horario_dados['dia'] = horario.dia.cdata
+                        s2206_horario_dados['dia'] = read_from_xml(horario.dia.cdata, 'esocial', 'N', None)
                     except AttributeError:
                         pass
 
                     try:
-                        s2206_horario_dados['codhorcontrat'] = horario.codHorContrat.cdata
+                        s2206_horario_dados['codhorcontrat'] = read_from_xml(horario.codHorContrat.cdata, 'esocial', 'C', None)
                     except AttributeError:
                         pass
 
@@ -407,7 +408,7 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False, arquivo
             s2206_filiacaosindical_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual.id
 
             try:
-                s2206_filiacaosindical_dados['cnpjsindtrab'] = filiacaoSindical.cnpjSindTrab.cdata
+                s2206_filiacaosindical_dados['cnpjsindtrab'] = read_from_xml(filiacaoSindical.cnpjSindTrab.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -421,7 +422,7 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False, arquivo
             s2206_alvarajudicial_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual.id
 
             try:
-                s2206_alvarajudicial_dados['nrprocjud'] = alvaraJudicial.nrProcJud.cdata
+                s2206_alvarajudicial_dados['nrprocjud'] = read_from_xml(alvaraJudicial.nrProcJud.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -435,7 +436,7 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False, arquivo
             s2206_observacoes_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual.id
 
             try:
-                s2206_observacoes_dados['observacao'] = observacoes.observacao.cdata
+                s2206_observacoes_dados['observacao'] = read_from_xml(observacoes.observacao.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 
@@ -449,7 +450,7 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False, arquivo
             s2206_servpubl_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual.id
 
             try:
-                s2206_servpubl_dados['mtvalter'] = servPubl.mtvAlter.cdata
+                s2206_servpubl_dados['mtvalter'] = read_from_xml(servPubl.mtvAlter.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
 
