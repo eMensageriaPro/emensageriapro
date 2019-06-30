@@ -36,6 +36,7 @@ from emensageriapro.mensageiro.functions.funcoes import create_insert
 
 from emensageriapro.padrao import executar_sql
 from emensageriapro.mensageiro.functions.funcoes import ler_arquivo
+from emensageriapro.functions import EVENTOS_RETORNO
 
 from emensageriapro.esocial.models import STATUS_EVENTO_ENVIADO, \
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
@@ -358,16 +359,8 @@ def read_retornoEvento(doc, transmissor_lote_id):
         if 'processamento_codigo_resposta' in retorno_evento_dados.keys():
 
             codigo_resposta = int(retorno_evento_dados['processamento_codigo_resposta'])
-
-            eventos_retorno = [
-                's5001evtBasesTrab',
-                's5002evtIrrfBenef',
-                's5003evtBasesFGTS',
-                's5011evtCS',
-                's5012evtIrrf',
-                's5013evtFGTS', ]
             
-            if codigo_resposta >= 300 and model._meta.object_name not in eventos_retorno:
+            if codigo_resposta >= 300 and model._meta.object_name not in EVENTOS_RETORNO:
 
                 model.objects.using('default').filter(
                     identidade=retorno_evento_dados['identidade'],
@@ -377,7 +370,7 @@ def read_retornoEvento(doc, transmissor_lote_id):
                            retornos_eventos_id=retorno_evento_id,
                            transmissor_lote_esocial_id=None)
             
-            elif codigo_resposta >= 201 and codigo_resposta < 300 and model._meta.object_name not in eventos_retorno:
+            elif codigo_resposta >= 201 and codigo_resposta < 300 and model._meta.object_name not in EVENTOS_RETORNO:
 
                 model.objects.using('default').filter(
                     identidade=retorno_evento_dados['identidade'],

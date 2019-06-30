@@ -35,6 +35,20 @@ import datetime
 
 """
 
+EVENTOS_RETORNO = [
+    'r5001evtTotal',
+    'r5011evtTotalContrib',
+    'r9001evtTotal',
+    'r9002evtRet',
+    'r9011evtTotalContrib',
+    'r9012evtRetCons',
+    's5001evtBasesTrab',
+    's5002evtIrrfBenef',
+    's5003evtBasesFGTS',
+    's5011evtCS',
+    's5012evtIrrf',
+    's5013evtFGTS',
+]
 
 
 def render_to_pdf(template_src, context_dict={}):

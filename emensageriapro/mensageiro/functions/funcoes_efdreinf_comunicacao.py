@@ -37,6 +37,7 @@ from emensageriapro.padrao import executar_sql
 
 from emensageriapro.esocial.models import STATUS_EVENTO_ENVIADO, \
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
+from emensageriapro.functions import EVENTOS_RETORNO
 
 
 from emensageriapro.mensageiro.functions.funcoes_esocial import TRANSMISSOR_STATUS_ENVIADO,\
@@ -149,6 +150,14 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
     if 'retornoEventos' in dir(child):
 
+        eventos_retorno = [
+            's5001evtBasesTrab',
+            's5002evtIrrfBenef',
+            's5003evtBasesFGTS',
+            's5011evtCS',
+            's5012evtIrrf',
+            's5013evtFGTS', ]
+
         for evento in child.retornoEventos.evento:
 
             if 'evtTotal' in dir(evento.Reinf):
@@ -167,25 +176,25 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
                 for model in app_models:
 
-                    if retornos_evttotal.cdretorno == '1' and model._meta.object_name == 'r9001evtTotal':
+                    if retornos_evttotal.cdretorno == '1' and model._meta.object_name not in EVENTOS_RETORNO:
 
                         model.objects.using('default').filter(
                             identidade=evento['id'],
                             transmissor_lote_efdreinf_id=transmissor_lote_efdreinf_id). \
                             update(status=STATUS_EVENTO_ENVIADO_ERRO,
                                    ocorrencias=get_ocorrencias('r9001', retornos_evttotal.id),
-                                   # retornos_r9001_id=retornos_evttotal.id,
+                                   retornos_r9001_id=retornos_evttotal.id,
                                    transmissor_lote_efdreinf_id=None
                                    )
 
-                    elif retornos_evttotal.cdretorno == '0' and model._meta.object_name == 'r9001evtTotal':
+                    elif retornos_evttotal.cdretorno == '0' and model._meta.object_name not in EVENTOS_RETORNO:
 
                         model.objects.using('default').filter(
                             identidade=evento['id'],
                             transmissor_lote_efdreinf_id=transmissor_lote_efdreinf_id). \
                             update(status=STATUS_EVENTO_ENVIADO,
                                    ocorrencias=get_ocorrencias('r9001', retornos_evttotal.id),
-                                   # retornos_r9001_id=retornos_evttotal.id
+                                   retornos_r9001_id=retornos_evttotal.id
                                    )
 
                 return retornos_evttotal
@@ -206,25 +215,25 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
                 for model in app_models:
 
-                    if retornos_evttotalcontrib.cdretorno == '1' and model._meta.object_name == 'r9011evtTotalContrib':
+                    if retornos_evttotalcontrib.cdretorno == '1' and model._meta.object_name not in EVENTOS_RETORNO:
 
                         model.objects.using('default').filter(
                             identidade=evento['id'],
                             transmissor_lote_efdreinf_id=transmissor_lote_efdreinf_id). \
                             update(status=STATUS_EVENTO_ENVIADO_ERRO,
                                    ocorrencias=get_ocorrencias('r9011', retornos_evttotalcontrib.id),
-                                   # retornos_evttotalcontrib_id=retornos_evttotalcontrib.id,
+                                   retornos_r9011_id=retornos_evttotalcontrib.id,
                                    transmissor_lote_efdreinf_id=None
                                    )
 
-                    elif retornos_evttotalcontrib.cdretorno == '0' and model._meta.object_name == 'r9011evtTotalContrib':
+                    elif retornos_evttotalcontrib.cdretorno == '0' and model._meta.object_name not in EVENTOS_RETORNO:
 
                         model.objects.using('default').filter(
                             identidade=evento['id'],
                             transmissor_lote_esocial_id=transmissor_lote_efdreinf_id). \
                             update(status=STATUS_EVENTO_PROCESSADO,
                                    ocorrencias=get_ocorrencias('r9011', retornos_evttotalcontrib.id),
-                                   # retornos_evttotalcontrib_id=retornos_evttotalcontrib.id
+                                   retornos_r9011_id=retornos_evttotalcontrib.id
                                    )
 
                 return retornos_evttotalcontrib
