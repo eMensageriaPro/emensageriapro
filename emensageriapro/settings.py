@@ -495,18 +495,18 @@ if not DEBUG:
                 'propagate': True,
             },
             'django.request': {
-                'handlers': ['applogfile', 'mail_admins'],
+                'handlers': ['applogfile'],
                 'level': 'DEBUG',
                 'propagate': True,
             },
             'APPNAME': {
-                'handlers': ['applogfile', 'mail_admins'],
+                'handlers': ['applogfile'],
                 'level': 'DEBUG',
                 'propagate': True,
             },
             'messageria': {
                 # mail_admins will only accept ERROR and higher
-                'handlers': ['applogfile', 'mail_admins'],
+                'handlers': ['applogfile'],
                 'level': 'DEBUG',
                 'propagate': True,
             },
