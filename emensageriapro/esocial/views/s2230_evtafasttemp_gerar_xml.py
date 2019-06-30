@@ -72,89 +72,97 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s2230(request, pk, versao=None):
+def gerar_xml_s2230_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s2230_evtafasttemp = get_object_or_404(
+        s2230evtAfastTemp,
+        id=pk)
 
-        s2230_evtafasttemp = get_object_or_404(
-            s2230evtAfastTemp,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s2230_evtafasttemp.versao
 
-        if not versao or versao == '|':
-            versao = s2230_evtafasttemp.versao
+    evento = 's2230evtAfastTemp'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's2230evtAfastTemp'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s2230_evtafasttemp_lista = s2230evtAfastTemp.objects. \
-            filter(id=pk).all()
+    s2230_evtafasttemp_lista = s2230evtAfastTemp.objects. \
+        filter(id=pk).all()
 
 
-        s2230_iniafastamento_lista = s2230iniAfastamento.objects. \
-            filter(s2230_evtafasttemp_id__in=listar_ids(s2230_evtafasttemp_lista)).all()
+    s2230_iniafastamento_lista = s2230iniAfastamento.objects. \
+        filter(s2230_evtafasttemp_id__in=listar_ids(s2230_evtafasttemp_lista)).all()
 
-        s2230_infoatestado_lista = s2230infoAtestado.objects. \
-            filter(s2230_iniafastamento_id__in=listar_ids(s2230_iniafastamento_lista)).all()
+    s2230_infoatestado_lista = s2230infoAtestado.objects. \
+        filter(s2230_iniafastamento_id__in=listar_ids(s2230_iniafastamento_lista)).all()
 
-        s2230_emitente_lista = s2230emitente.objects. \
-            filter(s2230_infoatestado_id__in=listar_ids(s2230_infoatestado_lista)).all()
+    s2230_emitente_lista = s2230emitente.objects. \
+        filter(s2230_infoatestado_id__in=listar_ids(s2230_infoatestado_lista)).all()
 
-        s2230_infocessao_lista = s2230infoCessao.objects. \
-            filter(s2230_iniafastamento_id__in=listar_ids(s2230_iniafastamento_lista)).all()
+    s2230_infocessao_lista = s2230infoCessao.objects. \
+        filter(s2230_iniafastamento_id__in=listar_ids(s2230_iniafastamento_lista)).all()
 
-        s2230_infomandsind_lista = s2230infoMandSind.objects. \
-            filter(s2230_iniafastamento_id__in=listar_ids(s2230_iniafastamento_lista)).all()
+    s2230_infomandsind_lista = s2230infoMandSind.objects. \
+        filter(s2230_iniafastamento_id__in=listar_ids(s2230_iniafastamento_lista)).all()
 
-        s2230_inforetif_lista = s2230infoRetif.objects. \
-            filter(s2230_evtafasttemp_id__in=listar_ids(s2230_evtafasttemp_lista)).all()
+    s2230_inforetif_lista = s2230infoRetif.objects. \
+        filter(s2230_evtafasttemp_id__in=listar_ids(s2230_evtafasttemp_lista)).all()
 
-        s2230_fimafastamento_lista = s2230fimAfastamento.objects. \
-            filter(s2230_evtafasttemp_id__in=listar_ids(s2230_evtafasttemp_lista)).all()
+    s2230_fimafastamento_lista = s2230fimAfastamento.objects. \
+        filter(s2230_evtafasttemp_id__in=listar_ids(s2230_evtafasttemp_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s2230_evtafasttemp,
-            's2230_evtafasttemp_lista': s2230_evtafasttemp_lista,
-            'pk': int(pk),
-            's2230_evtafasttemp': s2230_evtafasttemp,
-            's2230_iniafastamento_lista': s2230_iniafastamento_lista,
-            's2230_infoatestado_lista': s2230_infoatestado_lista,
-            's2230_emitente_lista': s2230_emitente_lista,
-            's2230_infocessao_lista': s2230_infocessao_lista,
-            's2230_infomandsind_lista': s2230_infomandsind_lista,
-            's2230_inforetif_lista': s2230_inforetif_lista,
-            's2230_fimafastamento_lista': s2230_fimafastamento_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s2230_evtafasttemp,
+        's2230_evtafasttemp_lista': s2230_evtafasttemp_lista,
+        'pk': int(pk),
+        's2230_evtafasttemp': s2230_evtafasttemp,
+        's2230_iniafastamento_lista': s2230_iniafastamento_lista,
+        's2230_infoatestado_lista': s2230_infoatestado_lista,
+        's2230_emitente_lista': s2230_emitente_lista,
+        's2230_infocessao_lista': s2230_infocessao_lista,
+        's2230_infomandsind_lista': s2230_infomandsind_lista,
+        's2230_inforetif_lista': s2230_inforetif_lista,
+        's2230_fimafastamento_lista': s2230_fimafastamento_lista,
+    }
 
-        t = get_template('s2230_evtafasttemp.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s2230_evtafasttemp.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s2230(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s2230_evtafasttemp = get_object_or_404(
+        s2230evtAfastTemp,
+        id=pk)
+    return gerar_xml_s2230_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s2230_evtafasttemp = get_object_or_404(
@@ -162,15 +170,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s2230_evtafasttemp.arquivo_original:
-
         xml = ler_arquivo(s2230_evtafasttemp.arquivo)
 
     else:
         xml = gerar_xml_s2230(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s2230evtAfastTemp.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -200,16 +208,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s2230_evtafasttemp.transmissor_lote_esocial_id)
 
-    if s2230_evtafasttemp.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s2230evtAfastTemp.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s2230evtAfastTemp.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s2230_evtafasttemp/%s.xml' % (s2230_evtafasttemp.identidade)
+            s2230evtAfastTemp.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s2230_evtafasttemp/%s.xml' % (s2230_evtafasttemp.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s2230_evtafasttemp/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

@@ -72,93 +72,101 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1070(request, pk, versao=None):
+def gerar_xml_s1070_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s1070_evttabprocesso = get_object_or_404(
+        s1070evtTabProcesso,
+        id=pk)
 
-        s1070_evttabprocesso = get_object_or_404(
-            s1070evtTabProcesso,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s1070_evttabprocesso.versao
 
-        if not versao or versao == '|':
-            versao = s1070_evttabprocesso.versao
+    evento = 's1070evtTabProcesso'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's1070evtTabProcesso'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s1070_evttabprocesso_lista = s1070evtTabProcesso.objects. \
-            filter(id=pk).all()
+    s1070_evttabprocesso_lista = s1070evtTabProcesso.objects. \
+        filter(id=pk).all()
 
 
-        s1070_inclusao_lista = s1070inclusao.objects. \
-            filter(s1070_evttabprocesso_id__in=listar_ids(s1070_evttabprocesso_lista)).all()
+    s1070_inclusao_lista = s1070inclusao.objects. \
+        filter(s1070_evttabprocesso_id__in=listar_ids(s1070_evttabprocesso_lista)).all()
 
-        s1070_inclusao_dadosprocjud_lista = s1070inclusaodadosProcJud.objects. \
-            filter(s1070_inclusao_id__in=listar_ids(s1070_inclusao_lista)).all()
+    s1070_inclusao_dadosprocjud_lista = s1070inclusaodadosProcJud.objects. \
+        filter(s1070_inclusao_id__in=listar_ids(s1070_inclusao_lista)).all()
 
-        s1070_inclusao_infosusp_lista = s1070inclusaoinfoSusp.objects. \
-            filter(s1070_inclusao_id__in=listar_ids(s1070_inclusao_lista)).all()
+    s1070_inclusao_infosusp_lista = s1070inclusaoinfoSusp.objects. \
+        filter(s1070_inclusao_id__in=listar_ids(s1070_inclusao_lista)).all()
 
-        s1070_alteracao_lista = s1070alteracao.objects. \
-            filter(s1070_evttabprocesso_id__in=listar_ids(s1070_evttabprocesso_lista)).all()
+    s1070_alteracao_lista = s1070alteracao.objects. \
+        filter(s1070_evttabprocesso_id__in=listar_ids(s1070_evttabprocesso_lista)).all()
 
-        s1070_alteracao_dadosprocjud_lista = s1070alteracaodadosProcJud.objects. \
-            filter(s1070_alteracao_id__in=listar_ids(s1070_alteracao_lista)).all()
+    s1070_alteracao_dadosprocjud_lista = s1070alteracaodadosProcJud.objects. \
+        filter(s1070_alteracao_id__in=listar_ids(s1070_alteracao_lista)).all()
 
-        s1070_alteracao_infosusp_lista = s1070alteracaoinfoSusp.objects. \
-            filter(s1070_alteracao_id__in=listar_ids(s1070_alteracao_lista)).all()
+    s1070_alteracao_infosusp_lista = s1070alteracaoinfoSusp.objects. \
+        filter(s1070_alteracao_id__in=listar_ids(s1070_alteracao_lista)).all()
 
-        s1070_alteracao_novavalidade_lista = s1070alteracaonovaValidade.objects. \
-            filter(s1070_alteracao_id__in=listar_ids(s1070_alteracao_lista)).all()
+    s1070_alteracao_novavalidade_lista = s1070alteracaonovaValidade.objects. \
+        filter(s1070_alteracao_id__in=listar_ids(s1070_alteracao_lista)).all()
 
-        s1070_exclusao_lista = s1070exclusao.objects. \
-            filter(s1070_evttabprocesso_id__in=listar_ids(s1070_evttabprocesso_lista)).all()
+    s1070_exclusao_lista = s1070exclusao.objects. \
+        filter(s1070_evttabprocesso_id__in=listar_ids(s1070_evttabprocesso_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s1070_evttabprocesso,
-            's1070_evttabprocesso_lista': s1070_evttabprocesso_lista,
-            'pk': int(pk),
-            's1070_evttabprocesso': s1070_evttabprocesso,
-            's1070_inclusao_lista': s1070_inclusao_lista,
-            's1070_inclusao_dadosprocjud_lista': s1070_inclusao_dadosprocjud_lista,
-            's1070_inclusao_infosusp_lista': s1070_inclusao_infosusp_lista,
-            's1070_alteracao_lista': s1070_alteracao_lista,
-            's1070_alteracao_dadosprocjud_lista': s1070_alteracao_dadosprocjud_lista,
-            's1070_alteracao_infosusp_lista': s1070_alteracao_infosusp_lista,
-            's1070_alteracao_novavalidade_lista': s1070_alteracao_novavalidade_lista,
-            's1070_exclusao_lista': s1070_exclusao_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s1070_evttabprocesso,
+        's1070_evttabprocesso_lista': s1070_evttabprocesso_lista,
+        'pk': int(pk),
+        's1070_evttabprocesso': s1070_evttabprocesso,
+        's1070_inclusao_lista': s1070_inclusao_lista,
+        's1070_inclusao_dadosprocjud_lista': s1070_inclusao_dadosprocjud_lista,
+        's1070_inclusao_infosusp_lista': s1070_inclusao_infosusp_lista,
+        's1070_alteracao_lista': s1070_alteracao_lista,
+        's1070_alteracao_dadosprocjud_lista': s1070_alteracao_dadosprocjud_lista,
+        's1070_alteracao_infosusp_lista': s1070_alteracao_infosusp_lista,
+        's1070_alteracao_novavalidade_lista': s1070_alteracao_novavalidade_lista,
+        's1070_exclusao_lista': s1070_exclusao_lista,
+    }
 
-        t = get_template('s1070_evttabprocesso.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s1070_evttabprocesso.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s1070(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s1070_evttabprocesso = get_object_or_404(
+        s1070evtTabProcesso,
+        id=pk)
+    return gerar_xml_s1070_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s1070_evttabprocesso = get_object_or_404(
@@ -166,15 +174,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1070_evttabprocesso.arquivo_original:
-
         xml = ler_arquivo(s1070_evttabprocesso.arquivo)
 
     else:
         xml = gerar_xml_s1070(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s1070evtTabProcesso.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -204,16 +212,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s1070_evttabprocesso.transmissor_lote_esocial_id)
 
-    if s1070_evttabprocesso.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s1070evtTabProcesso.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s1070evtTabProcesso.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s1070_evttabprocesso/%s.xml' % (s1070_evttabprocesso.identidade)
+            s1070evtTabProcesso.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s1070_evttabprocesso/%s.xml' % (s1070_evttabprocesso.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1070_evttabprocesso/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

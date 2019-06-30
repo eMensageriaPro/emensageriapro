@@ -1,10 +1,5 @@
 #coding:utf-8
-import psycopg2
-import datetime
-import os
-from django.contrib import messages
-from emensageriapro.padrao import ler_arquivo, executar_sql
-from emensageriapro.mensageiro.functions.funcoes import create_insert, testar_importacao_xml
+from emensageriapro.padrao import executar_sql
 
 """
 
@@ -40,17 +35,12 @@ from emensageriapro.mensageiro.functions.funcoes import create_insert, testar_im
 """
 
 
-from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
-    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
-    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
-    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
-    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
-    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
+from emensageriapro.esocial.models import STATUS_EVENTO_ENVIADO, \
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-from emensageriapro.mensageiro.functions.funcoes_esocial import TRANSMISSOR_STATUS_CADASTRADO, TRANSMISSOR_STATUS_ENVIADO,\
-    TRANSMISSOR_STATUS_ENVIADO_ERRO, TRANSMISSOR_STATUS_CONSULTADO, TRANSMISSOR_STATUS_CONSULTADO_ERRO
+from emensageriapro.mensageiro.functions.funcoes_esocial import TRANSMISSOR_STATUS_ENVIADO,\
+    TRANSMISSOR_STATUS_ENVIADO_ERRO
 
 
 def definir_status_evento(transmissor_lote_efdreinf_id):
@@ -103,7 +93,7 @@ def get_ocorrencias(evento_slug, retornos_evttotal_id):
     lista_ocor = []
 
     for o in ocorrencias:
-        lista_ocor.append(json.dumps(model_to_dict(o), indent=4, sort_keys=True, default=str))
+        lista_ocor.append(json.dumps(model_to_dict(o), sort_keys=True, default=str))
 
     txt_str = '|'.join(lista_ocor)
     txt_str = txt_str.replace("'", "''")
@@ -113,8 +103,8 @@ def get_ocorrencias(evento_slug, retornos_evttotal_id):
 
 def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
-    from emensageriapro.mensageiro.functions.funcoes_efdreinf import ler_arquivo
-    from emensageriapro.mensageiro.models import TransmissorLoteEfdreinfOcorrencias, TransmissorLoteEfdreinf, TransmissorEventosEfdreinf
+    from emensageriapro.mensageiro.functions.funcoes import ler_arquivo
+    from emensageriapro.mensageiro.models import TransmissorLoteEfdreinfOcorrencias, TransmissorLoteEfdreinf
     import untangle
 
     xml = ler_arquivo(arquivo).replace("s:", "")
@@ -242,9 +232,8 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
 def read_consultaLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
-    from emensageriapro.efdreinf.views.r5011_evttotalcontrib_importar import read_r5011_evttotalcontrib_obj
     from emensageriapro.efdreinf.views.r9011_evttotalcontrib_importar import read_r9011_evttotalcontrib_obj
-    from emensageriapro.mensageiro.functions.funcoes_efdreinf import ler_arquivo
+    from emensageriapro.mensageiro.functions.funcoes import ler_arquivo
     import untangle
 
     xml = ler_arquivo(arquivo).replace("s:", "")

@@ -342,7 +342,7 @@
 
     
 
-                            {% if perms.esocial.can_validate_s2206evtAltContratual and s2206_evtaltcontratual_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            {% if perms.esocial.can_validate_s2206evtAltContratual and s2206_evtaltcontratual_form.status.value == STATUS_EVENTO_CADASTRADO or s2206_evtaltcontratual_form.status.value == STATUS_EVENTO_GERADO or s2206_evtaltcontratual_form.status.value == STATUS_EVENTO_ASSINADO %}
                             <div class="col-md-3">
                                 <a href="{% url 's2206_evtaltcontratual_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">

@@ -4,19 +4,13 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
-
-
-import datetime
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
-from django.db.models import Count
-from emensageriapro.padrao import *
-from emensageriapro.mensageiro.forms import *
-from emensageriapro.mensageiro.models import *
+from django.shortcuts import render
+
 from emensageriapro.controle_de_acesso.models import *
-import base64
+from emensageriapro.mensageiro.models import *
+from emensageriapro.padrao import *
+
 
 #IMPORTACOES
 
@@ -32,8 +26,8 @@ def listar(request):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
         STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
-        STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
-        STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
+        STATUS_EVENTO_ASSINADO, \
+        STATUS_EVENTO_VALIDADO, \
         STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
         STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
         STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO

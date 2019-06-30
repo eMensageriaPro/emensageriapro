@@ -97,7 +97,7 @@ class r3010boletim(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -165,7 +165,7 @@ class r3010infoProc(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -225,7 +225,7 @@ class r3010outrasReceitas(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -289,7 +289,7 @@ class r3010receitaIngressos(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 

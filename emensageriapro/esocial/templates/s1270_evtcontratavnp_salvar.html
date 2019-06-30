@@ -286,7 +286,7 @@
 
     
 
-                            {% if perms.esocial.can_validate_s1270evtContratAvNP and s1270_evtcontratavnp_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            {% if perms.esocial.can_validate_s1270evtContratAvNP and s1270_evtcontratavnp_form.status.value == STATUS_EVENTO_CADASTRADO or s1270_evtcontratavnp_form.status.value == STATUS_EVENTO_GERADO or s1270_evtcontratavnp_form.status.value == STATUS_EVENTO_ASSINADO %}
                             <div class="col-md-3">
                                 <a href="{% url 's1270_evtcontratavnp_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">

@@ -143,3 +143,24 @@ def get_xmlns(arquivo):
     b = texto.split('xmlns="')
     c = b[1].split('"')
     return c[0]
+
+
+def get_evento_nome(texto):
+    texto = texto.replace('/">', '">').replace('id="', 'Id="')
+    a = texto.split(' Id="')
+    b = a[0].split('"><')
+    return b[len(b)-1]
+
+
+def get_versao_evento(texto):
+    texto = texto.replace('/">', '">')
+    a = texto.split('">')
+    b = a[0].split('/')
+    return b[len(b)-1]
+
+
+def get_identidade_evento(texto):
+    texto = texto.replace('/">', '">').replace('id=', 'Id=')
+    a = texto.split('Id="')
+    b = a[1].split('"')
+    return b[0]

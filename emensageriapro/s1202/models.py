@@ -86,7 +86,7 @@ class s1202dmDev(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -142,7 +142,7 @@ class s1202infoPerAnt(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -204,7 +204,7 @@ class s1202infoPerAntideADC(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -264,7 +264,7 @@ class s1202infoPerAntideEstab(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -321,7 +321,7 @@ class s1202infoPerAntidePeriodo(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -382,7 +382,7 @@ class s1202infoPerAntitensRemun(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -441,7 +441,7 @@ class s1202infoPerAntremunPerAnt(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -496,7 +496,7 @@ class s1202infoPerApur(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -553,7 +553,7 @@ class s1202infoPerApurdetOper(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -615,7 +615,7 @@ class s1202infoPerApurdetPlano(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -675,7 +675,7 @@ class s1202infoPerApurideEstab(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -731,7 +731,7 @@ class s1202infoPerApurinfoSaudeColet(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -791,7 +791,7 @@ class s1202infoPerApuritensRemun(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -850,7 +850,7 @@ class s1202infoPerApurremunPerApur(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -908,7 +908,7 @@ class s1202procJudTrab(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 

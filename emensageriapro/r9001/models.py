@@ -87,7 +87,7 @@ class r9001RCPRB(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -143,7 +143,7 @@ class r9001RComl(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -203,7 +203,7 @@ class r9001RPrest(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -262,7 +262,7 @@ class r9001RRecEspetDesp(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -321,7 +321,7 @@ class r9001RRecRepAD(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -379,7 +379,7 @@ class r9001RTom(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -435,7 +435,7 @@ class r9001infoCRTom(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -490,7 +490,7 @@ class r9001infoTotal(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -547,7 +547,7 @@ class r9001regOcorrs(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 

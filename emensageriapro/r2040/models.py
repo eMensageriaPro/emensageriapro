@@ -88,7 +88,7 @@ class r2040infoProc(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -149,7 +149,7 @@ class r2040infoRecurso(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -211,7 +211,7 @@ class r2040recursosRep(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 

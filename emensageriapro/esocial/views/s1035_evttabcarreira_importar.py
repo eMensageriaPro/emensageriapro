@@ -29,21 +29,19 @@ def read_s1035_evttabcarreira(request, dados, arquivo, validar=False):
 
     import untangle
     from emensageriapro.mensageiro.models import ImportacaoArquivosEventos
+    from emensageriapro.mensageiro.views.processar_arquivos import move_event
 
-    xml = ler_arquivo(arquivo).replace("s:", "")
+    xml = ler_arquivo(arquivo.arquivo).replace("s:", "")
     doc = untangle.parse(xml)
 
-    # if validar:
-    #     status = STATUS_EVENTO_IMPORTADO
-    #
-    # else:
-    #     status = STATUS_EVENTO_CADASTRADO
+    dados = read_s1035_evttabcarreira_obj(
+        request, doc, STATUS_EVENTO_IMPORTADO, validar, arquivo)
 
-    status = STATUS_EVENTO_IMPORTADO
-    dados = read_s1035_evttabcarreira_obj(request, doc, status, validar, arquivo)
-    novo_arquivo = arquivo.replace('/aguardando/', '/processado/')
+    novo_arquivo = move_event(arquivo, 'processado')
+
     s1035evtTabCarreira.objects.filter(id=dados['id']).update(arquivo=novo_arquivo)
-    ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
+
+    ImportacaoArquivosEventos.objects.filter(id=arquivo.id).update(versao=dados['versao'], arquivo=novo_arquivo)
 
     return dados
 
@@ -57,7 +55,7 @@ def read_s1035_evttabcarreira_obj(request, doc, status, validar=False, arquivo=F
     s1035_evttabcarreira_dados['status'] = status
     s1035_evttabcarreira_dados['arquivo_original'] = 1
     if arquivo:
-        s1035_evttabcarreira_dados['arquivo'] = arquivo
+        s1035_evttabcarreira_dados['arquivo'] = arquivo.arquivo
     s1035_evttabcarreira_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1035_evttabcarreira_dados['identidade'] = doc.eSocial.evtTabCarreira['Id']
     evtTabCarreira = doc.eSocial.evtTabCarreira

@@ -56,8 +56,8 @@ from emensageriapro.s1280.views import s1280_infoativconcom_api as s1280_infoati
 urlpatterns = [
 
 
-    url(r'^s1280-infosubstpatr/apagar/(?P<pk>[0-9]+)/$', 
-        s1280_infosubstpatr_apagar_views.apagar, 
+    url(r'^s1280-infosubstpatr/apagar/(?P<pk>[0-9]+)/$',
+        s1280_infosubstpatr_apagar_views.apagar,
         name='s1280_infosubstpatr_apagar'),
 
     url(r'^s1280-infosubstpatr/api/$',
@@ -66,32 +66,32 @@ urlpatterns = [
     url(r'^s1280-infosubstpatr/api/(?P<pk>[0-9]+)/$',
         s1280_infosubstpatr_api_views.s1280infoSubstPatrDetail.as_view() ),
 
-    url(r'^s1280-infosubstpatr/$', 
-        s1280_infosubstpatr_listar_views.listar, 
+    url(r'^s1280-infosubstpatr/$',
+        s1280_infosubstpatr_listar_views.listar,
         name='s1280_infosubstpatr'),
 
-    url(r'^s1280-infosubstpatr/salvar/(?P<pk>[0-9]+)/$', 
-        s1280_infosubstpatr_salvar_views.salvar, 
+    url(r'^s1280-infosubstpatr/salvar/(?P<pk>[0-9]+)/$',
+        s1280_infosubstpatr_salvar_views.salvar,
         name='s1280_infosubstpatr_salvar'),
 
-    url(r'^s1280-infosubstpatr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s1280_infosubstpatr_salvar_views.salvar, 
+    url(r'^s1280-infosubstpatr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s1280_infosubstpatr_salvar_views.salvar,
         name='s1280_infosubstpatr_salvar_tab'),
-        
-    url(r'^s1280-infosubstpatr/cadastrar/$', 
-        s1280_infosubstpatr_salvar_views.salvar, 
+
+    url(r'^s1280-infosubstpatr/cadastrar/$',
+        s1280_infosubstpatr_salvar_views.salvar,
         name='s1280_infosubstpatr_cadastrar'),
 
-    url(r'^s1280-infosubstpatr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s1280_infosubstpatr_salvar_views.salvar, 
+    url(r'^s1280-infosubstpatr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s1280_infosubstpatr_salvar_views.salvar,
         name='s1280_infosubstpatr_salvar_output'),
-        
-    url(r'^s1280-infosubstpatr/(?P<output>[\w-]+)/$', 
-        s1280_infosubstpatr_listar_views.listar, 
+
+    url(r'^s1280-infosubstpatr/(?P<output>[\w-]+)/$',
+        s1280_infosubstpatr_listar_views.listar,
         name='s1280_infosubstpatr_output'),
 
-    url(r'^s1280-infosubstpatropport/apagar/(?P<pk>[0-9]+)/$', 
-        s1280_infosubstpatropport_apagar_views.apagar, 
+    url(r'^s1280-infosubstpatropport/apagar/(?P<pk>[0-9]+)/$',
+        s1280_infosubstpatropport_apagar_views.apagar,
         name='s1280_infosubstpatropport_apagar'),
 
     url(r'^s1280-infosubstpatropport/api/$',
@@ -100,32 +100,32 @@ urlpatterns = [
     url(r'^s1280-infosubstpatropport/api/(?P<pk>[0-9]+)/$',
         s1280_infosubstpatropport_api_views.s1280infoSubstPatrOpPortDetail.as_view() ),
 
-    url(r'^s1280-infosubstpatropport/$', 
-        s1280_infosubstpatropport_listar_views.listar, 
+    url(r'^s1280-infosubstpatropport/$',
+        s1280_infosubstpatropport_listar_views.listar,
         name='s1280_infosubstpatropport'),
 
-    url(r'^s1280-infosubstpatropport/salvar/(?P<pk>[0-9]+)/$', 
-        s1280_infosubstpatropport_salvar_views.salvar, 
+    url(r'^s1280-infosubstpatropport/salvar/(?P<pk>[0-9]+)/$',
+        s1280_infosubstpatropport_salvar_views.salvar,
         name='s1280_infosubstpatropport_salvar'),
 
-    url(r'^s1280-infosubstpatropport/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s1280_infosubstpatropport_salvar_views.salvar, 
+    url(r'^s1280-infosubstpatropport/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s1280_infosubstpatropport_salvar_views.salvar,
         name='s1280_infosubstpatropport_salvar_tab'),
-        
-    url(r'^s1280-infosubstpatropport/cadastrar/$', 
-        s1280_infosubstpatropport_salvar_views.salvar, 
+
+    url(r'^s1280-infosubstpatropport/cadastrar/$',
+        s1280_infosubstpatropport_salvar_views.salvar,
         name='s1280_infosubstpatropport_cadastrar'),
 
-    url(r'^s1280-infosubstpatropport/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s1280_infosubstpatropport_salvar_views.salvar, 
+    url(r'^s1280-infosubstpatropport/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s1280_infosubstpatropport_salvar_views.salvar,
         name='s1280_infosubstpatropport_salvar_output'),
-        
-    url(r'^s1280-infosubstpatropport/(?P<output>[\w-]+)/$', 
-        s1280_infosubstpatropport_listar_views.listar, 
+
+    url(r'^s1280-infosubstpatropport/(?P<output>[\w-]+)/$',
+        s1280_infosubstpatropport_listar_views.listar,
         name='s1280_infosubstpatropport_output'),
 
-    url(r'^s1280-infoativconcom/apagar/(?P<pk>[0-9]+)/$', 
-        s1280_infoativconcom_apagar_views.apagar, 
+    url(r'^s1280-infoativconcom/apagar/(?P<pk>[0-9]+)/$',
+        s1280_infoativconcom_apagar_views.apagar,
         name='s1280_infoativconcom_apagar'),
 
     url(r'^s1280-infoativconcom/api/$',
@@ -134,28 +134,28 @@ urlpatterns = [
     url(r'^s1280-infoativconcom/api/(?P<pk>[0-9]+)/$',
         s1280_infoativconcom_api_views.s1280infoAtivConcomDetail.as_view() ),
 
-    url(r'^s1280-infoativconcom/$', 
-        s1280_infoativconcom_listar_views.listar, 
+    url(r'^s1280-infoativconcom/$',
+        s1280_infoativconcom_listar_views.listar,
         name='s1280_infoativconcom'),
 
-    url(r'^s1280-infoativconcom/salvar/(?P<pk>[0-9]+)/$', 
-        s1280_infoativconcom_salvar_views.salvar, 
+    url(r'^s1280-infoativconcom/salvar/(?P<pk>[0-9]+)/$',
+        s1280_infoativconcom_salvar_views.salvar,
         name='s1280_infoativconcom_salvar'),
 
-    url(r'^s1280-infoativconcom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s1280_infoativconcom_salvar_views.salvar, 
+    url(r'^s1280-infoativconcom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s1280_infoativconcom_salvar_views.salvar,
         name='s1280_infoativconcom_salvar_tab'),
-        
-    url(r'^s1280-infoativconcom/cadastrar/$', 
-        s1280_infoativconcom_salvar_views.salvar, 
+
+    url(r'^s1280-infoativconcom/cadastrar/$',
+        s1280_infoativconcom_salvar_views.salvar,
         name='s1280_infoativconcom_cadastrar'),
 
-    url(r'^s1280-infoativconcom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s1280_infoativconcom_salvar_views.salvar, 
+    url(r'^s1280-infoativconcom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s1280_infoativconcom_salvar_views.salvar,
         name='s1280_infoativconcom_salvar_output'),
-        
-    url(r'^s1280-infoativconcom/(?P<output>[\w-]+)/$', 
-        s1280_infoativconcom_listar_views.listar, 
+
+    url(r'^s1280-infoativconcom/(?P<output>[\w-]+)/$',
+        s1280_infoativconcom_listar_views.listar,
         name='s1280_infoativconcom_output'),
 
 

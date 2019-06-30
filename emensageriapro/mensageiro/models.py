@@ -81,7 +81,7 @@ class Arquivos(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -116,56 +116,6 @@ class ArquivosSerializer(ModelSerializer):
                             'desativado_em', 'desativado_por', 'ativo')
 
 
-class Certificados(SoftDeletionModel):
-
-    nome = models.CharField(max_length=300, )
-    from django.core.files.storage import FileSystemStorage
-    from emensageriapro.settings import BASE_DIR
-    fs_certificado = FileSystemStorage(location=BASE_DIR+'/certificado/')
-    certificado = models.FileField(storage=fs_certificado)
-    senha = models.CharField(max_length=300, blank=True, null=True, )
-
-    def __unicode__(self):
-
-        lista = [
-            unicode(self.nome),]
-
-        if lista:
-            return ' - '.join(lista)
-
-        else:
-            return self.id
-
-    class Meta:
-
-        verbose_name = u'Certificados'
-        verbose_name_plural = u'Certificados'
-        db_table = r'certificados'
-        managed = True # certificados #
-
-        unique_together = ( )
-
-        index_together = ()
-
-        permissions = (
-            ("can_view_certificados", "Can view certificados"), )
-
-        ordering = [
-            'nome', ]
-
-
-
-class CertificadosSerializer(ModelSerializer):
-
-    class Meta:
-
-        model = Certificados
-        fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por',
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
-
-
 class ImportacaoArquivos(SoftDeletionModel):
 
     arquivo = models.CharField(max_length=200, blank=True, )
@@ -190,7 +140,7 @@ class ImportacaoArquivos(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -255,7 +205,7 @@ class ImportacaoArquivosEventos(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -330,7 +280,7 @@ class RegrasDeValidacao(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -381,7 +331,7 @@ class Relatorios(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -479,7 +429,7 @@ class RetornosEventos(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -537,7 +487,7 @@ class RetornosEventosHorarios(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -591,7 +541,7 @@ class RetornosEventosIntervalos(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -645,7 +595,7 @@ class RetornosEventosOcorrencias(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -706,7 +656,7 @@ class TransmissorLote(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -779,7 +729,7 @@ class TransmissorLoteEfdreinf(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -833,7 +783,7 @@ class TransmissorLoteEfdreinfOcorrencias(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -902,7 +852,7 @@ class TransmissorLoteEsocial(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -956,7 +906,7 @@ class TransmissorLoteEsocialOcorrencias(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 
@@ -1178,3 +1128,53 @@ class TransmissorEventosEfdreinfTotalizacoes(SoftDeletionModel):
 
         db_table = r'vw_transmissor_eventos_efdreinf_totalizacoes'
         managed = False
+
+
+class Certificados(SoftDeletionModel):
+
+    nome = models.CharField(max_length=300, )
+    from django.core.files.storage import FileSystemStorage
+    from emensageriapro.settings import BASE_DIR
+    fs_certificado = FileSystemStorage(location=BASE_DIR+'/certificado/')
+    certificado = models.FileField(storage=fs_certificado)
+    senha = models.CharField(max_length=300, blank=True, null=True, )
+
+    def __unicode__(self):
+
+        lista = [
+            unicode(self.nome),]
+
+        if lista:
+            return ' - '.join(lista)
+
+        else:
+            return self.id
+
+    class Meta:
+
+        verbose_name = u'Certificados'
+        verbose_name_plural = u'Certificados'
+        db_table = r'certificados'
+        managed = True # certificados #
+
+        unique_together = ( )
+
+        index_together = ()
+
+        permissions = (
+            ("can_view_certificados", "Can view certificados"), )
+
+        ordering = [
+            'nome', ]
+
+
+
+class CertificadosSerializer(ModelSerializer):
+
+    class Meta:
+
+        model = Certificados
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

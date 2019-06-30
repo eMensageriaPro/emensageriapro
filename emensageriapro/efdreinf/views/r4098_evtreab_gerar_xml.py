@@ -72,61 +72,69 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_r4098(request, pk, versao=None):
+def gerar_xml_r4098_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    r4098_evtreab = get_object_or_404(
+        r4098evtReab,
+        id=pk)
 
-        r4098_evtreab = get_object_or_404(
-            r4098evtReab,
-            id=pk)
+    if not versao or versao == '|':
+        versao = r4098_evtreab.versao
 
-        if not versao or versao == '|':
-            versao = r4098_evtreab.versao
+    evento = 'r4098evtReab'[5:]
+    arquivo = '/xsd/efdreinf/%s/%s.xsd' % (versao, evento)
 
-        evento = 'r4098evtReab'[5:]
-        arquivo = 'xsd/efdreinf/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        r4098_evtreab_lista = r4098evtReab.objects. \
-            filter(id=pk).all()
+    r4098_evtreab_lista = r4098evtReab.objects. \
+        filter(id=pk).all()
 
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': r4098_evtreab,
-            'r4098_evtreab_lista': r4098_evtreab_lista,
-            'pk': int(pk),
-            'r4098_evtreab': r4098_evtreab,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': r4098_evtreab,
+        'r4098_evtreab_lista': r4098_evtreab_lista,
+        'pk': int(pk),
+        'r4098_evtreab': r4098_evtreab,
+    }
 
-        t = get_template('r4098_evtreab.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('r4098_evtreab.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_r4098(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    r4098_evtreab = get_object_or_404(
+        r4098evtReab,
+        id=pk)
+    return gerar_xml_r4098_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_efdreinf import salvar_arquivo_efdreinf
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_efdreinf
     from emensageriapro.mensageiro.functions.funcoes_efdreinf import assinar_efdreinf
 
     r4098_evtreab = get_object_or_404(
@@ -134,15 +142,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if r4098_evtreab.arquivo_original:
-
         xml = ler_arquivo(r4098_evtreab.arquivo)
 
     else:
         xml = gerar_xml_r4098(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        r4098evtReab.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -172,16 +180,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             r4098_evtreab.transmissor_lote_efdreinf_id)
 
-    if r4098_evtreab.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        r4098evtReab.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            r4098evtReab.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/r4098_evtreab/%s.xml' % (r4098_evtreab.identidade)
+            r4098evtReab.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/r4098_evtreab/%s.xml' % (r4098_evtreab.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/r4098_evtreab/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

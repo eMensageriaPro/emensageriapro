@@ -1,6 +1,5 @@
 #coding:utf-8
-from emensageriapro.mensageiro.functions.funcoes import create_insert, testar_importacao_xml
-
+from emensageriapro.mensageiro.functions.funcoes import create_insert
 
 """
 
@@ -35,38 +34,24 @@ from emensageriapro.mensageiro.functions.funcoes import create_insert, testar_im
 
 """
 
-import psycopg2
-import datetime
-import os
-from django.contrib import messages
-from emensageriapro.settings import BASE_DIR
-from emensageriapro.padrao import ler_arquivo, executar_sql
+from emensageriapro.padrao import executar_sql
+from emensageriapro.mensageiro.functions.funcoes import ler_arquivo
 
-
-from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
-    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
-    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
-    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
-    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
-    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
+from emensageriapro.esocial.models import STATUS_EVENTO_ENVIADO, \
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
-from emensageriapro.mensageiro.functions.funcoes_esocial import TRANSMISSOR_STATUS_CADASTRADO, TRANSMISSOR_STATUS_ENVIADO,\
-    TRANSMISSOR_STATUS_ENVIADO_ERRO, TRANSMISSOR_STATUS_CONSULTADO, TRANSMISSOR_STATUS_CONSULTADO_ERRO
-
+from emensageriapro.mensageiro.functions.funcoes import TRANSMISSOR_STATUS_ENVIADO,\
+    TRANSMISSOR_STATUS_ENVIADO_ERRO, TRANSMISSOR_STATUS_CONSULTADO
 
 
 def definir_status_evento(transmissor_lote_esocial_id):
+
     from django.apps import apps
-
     app_models = apps.get_app_config('esocial').get_models()
-
     for model in app_models:
-
         lista = model.objects.using('default').filter(transmissor_lote_esocial_id=transmissor_lote_esocial_id).all()
 
         for a in lista:
-
             if a.transmissor_lote_esocial.status == TRANSMISSOR_STATUS_ENVIADO:
                 model.objects.using('default').filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO, ocorrencias=None)
 
@@ -85,7 +70,7 @@ def get_ocorrencias(retornos_eventos_id):
 
     lista_ocor = []
     for o in ocorrencias:
-        lista_ocor.append(json.dumps(model_to_dict(o), indent=4, sort_keys=True, default=str))
+        lista_ocor.append(json.dumps(model_to_dict(o), sort_keys=True, default=str))
     txt_str = '|'.join(lista_ocor)
     txt_str = txt_str.replace("'", "''")
 
@@ -138,9 +123,6 @@ def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):
 
 
 def read_retornoEvento(doc, transmissor_lote_id):
-    from emensageriapro.mensageiro.models import TransmissorLoteEsocialOcorrencias, TransmissorLoteEsocial
-    
-    import untangle
     retorno_evento_dados = {}
     retorno_evento_dados['transmissor_lote_esocial_id'] = transmissor_lote_id
     retorno_evento_dados['identidade'] = doc.eSocial.retornoEvento['Id']

@@ -52,8 +52,8 @@ from emensageriapro.r2050.views import r2050_infoproc_api as r2050_infoproc_api_
 urlpatterns = [
 
 
-    url(r'^r2050-tipocom/apagar/(?P<pk>[0-9]+)/$', 
-        r2050_tipocom_apagar_views.apagar, 
+    url(r'^r2050-tipocom/apagar/(?P<pk>[0-9]+)/$',
+        r2050_tipocom_apagar_views.apagar,
         name='r2050_tipocom_apagar'),
 
     url(r'^r2050-tipocom/api/$',
@@ -62,32 +62,32 @@ urlpatterns = [
     url(r'^r2050-tipocom/api/(?P<pk>[0-9]+)/$',
         r2050_tipocom_api_views.r2050tipoComDetail.as_view() ),
 
-    url(r'^r2050-tipocom/$', 
-        r2050_tipocom_listar_views.listar, 
+    url(r'^r2050-tipocom/$',
+        r2050_tipocom_listar_views.listar,
         name='r2050_tipocom'),
 
-    url(r'^r2050-tipocom/salvar/(?P<pk>[0-9]+)/$', 
-        r2050_tipocom_salvar_views.salvar, 
+    url(r'^r2050-tipocom/salvar/(?P<pk>[0-9]+)/$',
+        r2050_tipocom_salvar_views.salvar,
         name='r2050_tipocom_salvar'),
 
-    url(r'^r2050-tipocom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        r2050_tipocom_salvar_views.salvar, 
+    url(r'^r2050-tipocom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r2050_tipocom_salvar_views.salvar,
         name='r2050_tipocom_salvar_tab'),
-        
-    url(r'^r2050-tipocom/cadastrar/$', 
-        r2050_tipocom_salvar_views.salvar, 
+
+    url(r'^r2050-tipocom/cadastrar/$',
+        r2050_tipocom_salvar_views.salvar,
         name='r2050_tipocom_cadastrar'),
 
-    url(r'^r2050-tipocom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        r2050_tipocom_salvar_views.salvar, 
+    url(r'^r2050-tipocom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        r2050_tipocom_salvar_views.salvar,
         name='r2050_tipocom_salvar_output'),
-        
-    url(r'^r2050-tipocom/(?P<output>[\w-]+)/$', 
-        r2050_tipocom_listar_views.listar, 
+
+    url(r'^r2050-tipocom/(?P<output>[\w-]+)/$',
+        r2050_tipocom_listar_views.listar,
         name='r2050_tipocom_output'),
 
-    url(r'^r2050-infoproc/apagar/(?P<pk>[0-9]+)/$', 
-        r2050_infoproc_apagar_views.apagar, 
+    url(r'^r2050-infoproc/apagar/(?P<pk>[0-9]+)/$',
+        r2050_infoproc_apagar_views.apagar,
         name='r2050_infoproc_apagar'),
 
     url(r'^r2050-infoproc/api/$',
@@ -96,28 +96,28 @@ urlpatterns = [
     url(r'^r2050-infoproc/api/(?P<pk>[0-9]+)/$',
         r2050_infoproc_api_views.r2050infoProcDetail.as_view() ),
 
-    url(r'^r2050-infoproc/$', 
-        r2050_infoproc_listar_views.listar, 
+    url(r'^r2050-infoproc/$',
+        r2050_infoproc_listar_views.listar,
         name='r2050_infoproc'),
 
-    url(r'^r2050-infoproc/salvar/(?P<pk>[0-9]+)/$', 
-        r2050_infoproc_salvar_views.salvar, 
+    url(r'^r2050-infoproc/salvar/(?P<pk>[0-9]+)/$',
+        r2050_infoproc_salvar_views.salvar,
         name='r2050_infoproc_salvar'),
 
-    url(r'^r2050-infoproc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        r2050_infoproc_salvar_views.salvar, 
+    url(r'^r2050-infoproc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r2050_infoproc_salvar_views.salvar,
         name='r2050_infoproc_salvar_tab'),
-        
-    url(r'^r2050-infoproc/cadastrar/$', 
-        r2050_infoproc_salvar_views.salvar, 
+
+    url(r'^r2050-infoproc/cadastrar/$',
+        r2050_infoproc_salvar_views.salvar,
         name='r2050_infoproc_cadastrar'),
 
-    url(r'^r2050-infoproc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        r2050_infoproc_salvar_views.salvar, 
+    url(r'^r2050-infoproc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        r2050_infoproc_salvar_views.salvar,
         name='r2050_infoproc_salvar_output'),
-        
-    url(r'^r2050-infoproc/(?P<output>[\w-]+)/$', 
-        r2050_infoproc_listar_views.listar, 
+
+    url(r'^r2050-infoproc/(?P<output>[\w-]+)/$',
+        r2050_infoproc_listar_views.listar,
         name='r2050_infoproc_output'),
 
 

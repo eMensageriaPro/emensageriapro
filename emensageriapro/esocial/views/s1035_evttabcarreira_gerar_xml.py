@@ -72,77 +72,85 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1035(request, pk, versao=None):
+def gerar_xml_s1035_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s1035_evttabcarreira = get_object_or_404(
+        s1035evtTabCarreira,
+        id=pk)
 
-        s1035_evttabcarreira = get_object_or_404(
-            s1035evtTabCarreira,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s1035_evttabcarreira.versao
 
-        if not versao or versao == '|':
-            versao = s1035_evttabcarreira.versao
+    evento = 's1035evtTabCarreira'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's1035evtTabCarreira'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s1035_evttabcarreira_lista = s1035evtTabCarreira.objects. \
-            filter(id=pk).all()
+    s1035_evttabcarreira_lista = s1035evtTabCarreira.objects. \
+        filter(id=pk).all()
 
 
-        s1035_inclusao_lista = s1035inclusao.objects. \
-            filter(s1035_evttabcarreira_id__in=listar_ids(s1035_evttabcarreira_lista)).all()
+    s1035_inclusao_lista = s1035inclusao.objects. \
+        filter(s1035_evttabcarreira_id__in=listar_ids(s1035_evttabcarreira_lista)).all()
 
-        s1035_alteracao_lista = s1035alteracao.objects. \
-            filter(s1035_evttabcarreira_id__in=listar_ids(s1035_evttabcarreira_lista)).all()
+    s1035_alteracao_lista = s1035alteracao.objects. \
+        filter(s1035_evttabcarreira_id__in=listar_ids(s1035_evttabcarreira_lista)).all()
 
-        s1035_alteracao_novavalidade_lista = s1035alteracaonovaValidade.objects. \
-            filter(s1035_alteracao_id__in=listar_ids(s1035_alteracao_lista)).all()
+    s1035_alteracao_novavalidade_lista = s1035alteracaonovaValidade.objects. \
+        filter(s1035_alteracao_id__in=listar_ids(s1035_alteracao_lista)).all()
 
-        s1035_exclusao_lista = s1035exclusao.objects. \
-            filter(s1035_evttabcarreira_id__in=listar_ids(s1035_evttabcarreira_lista)).all()
+    s1035_exclusao_lista = s1035exclusao.objects. \
+        filter(s1035_evttabcarreira_id__in=listar_ids(s1035_evttabcarreira_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s1035_evttabcarreira,
-            's1035_evttabcarreira_lista': s1035_evttabcarreira_lista,
-            'pk': int(pk),
-            's1035_evttabcarreira': s1035_evttabcarreira,
-            's1035_inclusao_lista': s1035_inclusao_lista,
-            's1035_alteracao_lista': s1035_alteracao_lista,
-            's1035_alteracao_novavalidade_lista': s1035_alteracao_novavalidade_lista,
-            's1035_exclusao_lista': s1035_exclusao_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s1035_evttabcarreira,
+        's1035_evttabcarreira_lista': s1035_evttabcarreira_lista,
+        'pk': int(pk),
+        's1035_evttabcarreira': s1035_evttabcarreira,
+        's1035_inclusao_lista': s1035_inclusao_lista,
+        's1035_alteracao_lista': s1035_alteracao_lista,
+        's1035_alteracao_novavalidade_lista': s1035_alteracao_novavalidade_lista,
+        's1035_exclusao_lista': s1035_exclusao_lista,
+    }
 
-        t = get_template('s1035_evttabcarreira.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s1035_evttabcarreira.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s1035(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s1035_evttabcarreira = get_object_or_404(
+        s1035evtTabCarreira,
+        id=pk)
+    return gerar_xml_s1035_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s1035_evttabcarreira = get_object_or_404(
@@ -150,15 +158,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1035_evttabcarreira.arquivo_original:
-
         xml = ler_arquivo(s1035_evttabcarreira.arquivo)
 
     else:
         xml = gerar_xml_s1035(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s1035evtTabCarreira.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -188,16 +196,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s1035_evttabcarreira.transmissor_lote_esocial_id)
 
-    if s1035_evttabcarreira.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s1035evtTabCarreira.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s1035evtTabCarreira.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s1035_evttabcarreira/%s.xml' % (s1035_evttabcarreira.identidade)
+            s1035evtTabCarreira.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s1035_evttabcarreira/%s.xml' % (s1035_evttabcarreira.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1035_evttabcarreira/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

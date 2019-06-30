@@ -72,101 +72,109 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1020(request, pk, versao=None):
+def gerar_xml_s1020_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s1020_evttablotacao = get_object_or_404(
+        s1020evtTabLotacao,
+        id=pk)
 
-        s1020_evttablotacao = get_object_or_404(
-            s1020evtTabLotacao,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s1020_evttablotacao.versao
 
-        if not versao or versao == '|':
-            versao = s1020_evttablotacao.versao
+    evento = 's1020evtTabLotacao'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's1020evtTabLotacao'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s1020_evttablotacao_lista = s1020evtTabLotacao.objects. \
-            filter(id=pk).all()
+    s1020_evttablotacao_lista = s1020evtTabLotacao.objects. \
+        filter(id=pk).all()
 
 
-        s1020_inclusao_lista = s1020inclusao.objects. \
-            filter(s1020_evttablotacao_id__in=listar_ids(s1020_evttablotacao_lista)).all()
+    s1020_inclusao_lista = s1020inclusao.objects. \
+        filter(s1020_evttablotacao_id__in=listar_ids(s1020_evttablotacao_lista)).all()
 
-        s1020_inclusao_infoprocjudterceiros_lista = s1020inclusaoinfoProcJudTerceiros.objects. \
-            filter(s1020_inclusao_id__in=listar_ids(s1020_inclusao_lista)).all()
+    s1020_inclusao_infoprocjudterceiros_lista = s1020inclusaoinfoProcJudTerceiros.objects. \
+        filter(s1020_inclusao_id__in=listar_ids(s1020_inclusao_lista)).all()
 
-        s1020_inclusao_procjudterceiro_lista = s1020inclusaoprocJudTerceiro.objects. \
-            filter(s1020_inclusao_infoprocjudterceiros_id__in=listar_ids(s1020_inclusao_infoprocjudterceiros_lista)).all()
+    s1020_inclusao_procjudterceiro_lista = s1020inclusaoprocJudTerceiro.objects. \
+        filter(s1020_inclusao_infoprocjudterceiros_id__in=listar_ids(s1020_inclusao_infoprocjudterceiros_lista)).all()
 
-        s1020_inclusao_infoemprparcial_lista = s1020inclusaoinfoEmprParcial.objects. \
-            filter(s1020_inclusao_id__in=listar_ids(s1020_inclusao_lista)).all()
+    s1020_inclusao_infoemprparcial_lista = s1020inclusaoinfoEmprParcial.objects. \
+        filter(s1020_inclusao_id__in=listar_ids(s1020_inclusao_lista)).all()
 
-        s1020_alteracao_lista = s1020alteracao.objects. \
-            filter(s1020_evttablotacao_id__in=listar_ids(s1020_evttablotacao_lista)).all()
+    s1020_alteracao_lista = s1020alteracao.objects. \
+        filter(s1020_evttablotacao_id__in=listar_ids(s1020_evttablotacao_lista)).all()
 
-        s1020_alteracao_infoprocjudterceiros_lista = s1020alteracaoinfoProcJudTerceiros.objects. \
-            filter(s1020_alteracao_id__in=listar_ids(s1020_alteracao_lista)).all()
+    s1020_alteracao_infoprocjudterceiros_lista = s1020alteracaoinfoProcJudTerceiros.objects. \
+        filter(s1020_alteracao_id__in=listar_ids(s1020_alteracao_lista)).all()
 
-        s1020_alteracao_procjudterceiro_lista = s1020alteracaoprocJudTerceiro.objects. \
-            filter(s1020_alteracao_infoprocjudterceiros_id__in=listar_ids(s1020_alteracao_infoprocjudterceiros_lista)).all()
+    s1020_alteracao_procjudterceiro_lista = s1020alteracaoprocJudTerceiro.objects. \
+        filter(s1020_alteracao_infoprocjudterceiros_id__in=listar_ids(s1020_alteracao_infoprocjudterceiros_lista)).all()
 
-        s1020_alteracao_infoemprparcial_lista = s1020alteracaoinfoEmprParcial.objects. \
-            filter(s1020_alteracao_id__in=listar_ids(s1020_alteracao_lista)).all()
+    s1020_alteracao_infoemprparcial_lista = s1020alteracaoinfoEmprParcial.objects. \
+        filter(s1020_alteracao_id__in=listar_ids(s1020_alteracao_lista)).all()
 
-        s1020_alteracao_novavalidade_lista = s1020alteracaonovaValidade.objects. \
-            filter(s1020_alteracao_id__in=listar_ids(s1020_alteracao_lista)).all()
+    s1020_alteracao_novavalidade_lista = s1020alteracaonovaValidade.objects. \
+        filter(s1020_alteracao_id__in=listar_ids(s1020_alteracao_lista)).all()
 
-        s1020_exclusao_lista = s1020exclusao.objects. \
-            filter(s1020_evttablotacao_id__in=listar_ids(s1020_evttablotacao_lista)).all()
+    s1020_exclusao_lista = s1020exclusao.objects. \
+        filter(s1020_evttablotacao_id__in=listar_ids(s1020_evttablotacao_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s1020_evttablotacao,
-            's1020_evttablotacao_lista': s1020_evttablotacao_lista,
-            'pk': int(pk),
-            's1020_evttablotacao': s1020_evttablotacao,
-            's1020_inclusao_lista': s1020_inclusao_lista,
-            's1020_inclusao_infoprocjudterceiros_lista': s1020_inclusao_infoprocjudterceiros_lista,
-            's1020_inclusao_procjudterceiro_lista': s1020_inclusao_procjudterceiro_lista,
-            's1020_inclusao_infoemprparcial_lista': s1020_inclusao_infoemprparcial_lista,
-            's1020_alteracao_lista': s1020_alteracao_lista,
-            's1020_alteracao_infoprocjudterceiros_lista': s1020_alteracao_infoprocjudterceiros_lista,
-            's1020_alteracao_procjudterceiro_lista': s1020_alteracao_procjudterceiro_lista,
-            's1020_alteracao_infoemprparcial_lista': s1020_alteracao_infoemprparcial_lista,
-            's1020_alteracao_novavalidade_lista': s1020_alteracao_novavalidade_lista,
-            's1020_exclusao_lista': s1020_exclusao_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s1020_evttablotacao,
+        's1020_evttablotacao_lista': s1020_evttablotacao_lista,
+        'pk': int(pk),
+        's1020_evttablotacao': s1020_evttablotacao,
+        's1020_inclusao_lista': s1020_inclusao_lista,
+        's1020_inclusao_infoprocjudterceiros_lista': s1020_inclusao_infoprocjudterceiros_lista,
+        's1020_inclusao_procjudterceiro_lista': s1020_inclusao_procjudterceiro_lista,
+        's1020_inclusao_infoemprparcial_lista': s1020_inclusao_infoemprparcial_lista,
+        's1020_alteracao_lista': s1020_alteracao_lista,
+        's1020_alteracao_infoprocjudterceiros_lista': s1020_alteracao_infoprocjudterceiros_lista,
+        's1020_alteracao_procjudterceiro_lista': s1020_alteracao_procjudterceiro_lista,
+        's1020_alteracao_infoemprparcial_lista': s1020_alteracao_infoemprparcial_lista,
+        's1020_alteracao_novavalidade_lista': s1020_alteracao_novavalidade_lista,
+        's1020_exclusao_lista': s1020_exclusao_lista,
+    }
 
-        t = get_template('s1020_evttablotacao.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s1020_evttablotacao.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s1020(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s1020_evttablotacao = get_object_or_404(
+        s1020evtTabLotacao,
+        id=pk)
+    return gerar_xml_s1020_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s1020_evttablotacao = get_object_or_404(
@@ -174,15 +182,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1020_evttablotacao.arquivo_original:
-
         xml = ler_arquivo(s1020_evttablotacao.arquivo)
 
     else:
         xml = gerar_xml_s1020(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s1020evtTabLotacao.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -212,16 +220,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s1020_evttablotacao.transmissor_lote_esocial_id)
 
-    if s1020_evttablotacao.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s1020evtTabLotacao.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s1020evtTabLotacao.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s1020_evttablotacao/%s.xml' % (s1020_evttablotacao.identidade)
+            s1020evtTabLotacao.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s1020_evttablotacao/%s.xml' % (s1020_evttablotacao.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1020_evttablotacao/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

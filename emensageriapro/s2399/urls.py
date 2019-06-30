@@ -100,8 +100,8 @@ from emensageriapro.s2399.views import s2399_quarentena_api as s2399_quarentena_
 urlpatterns = [
 
 
-    url(r'^s2399-mudancacpf/apagar/(?P<pk>[0-9]+)/$', 
-        s2399_mudancacpf_apagar_views.apagar, 
+    url(r'^s2399-mudancacpf/apagar/(?P<pk>[0-9]+)/$',
+        s2399_mudancacpf_apagar_views.apagar,
         name='s2399_mudancacpf_apagar'),
 
     url(r'^s2399-mudancacpf/api/$',
@@ -110,32 +110,32 @@ urlpatterns = [
     url(r'^s2399-mudancacpf/api/(?P<pk>[0-9]+)/$',
         s2399_mudancacpf_api_views.s2399mudancaCPFDetail.as_view() ),
 
-    url(r'^s2399-mudancacpf/$', 
-        s2399_mudancacpf_listar_views.listar, 
+    url(r'^s2399-mudancacpf/$',
+        s2399_mudancacpf_listar_views.listar,
         name='s2399_mudancacpf'),
 
-    url(r'^s2399-mudancacpf/salvar/(?P<pk>[0-9]+)/$', 
-        s2399_mudancacpf_salvar_views.salvar, 
+    url(r'^s2399-mudancacpf/salvar/(?P<pk>[0-9]+)/$',
+        s2399_mudancacpf_salvar_views.salvar,
         name='s2399_mudancacpf_salvar'),
 
-    url(r'^s2399-mudancacpf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2399_mudancacpf_salvar_views.salvar, 
+    url(r'^s2399-mudancacpf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2399_mudancacpf_salvar_views.salvar,
         name='s2399_mudancacpf_salvar_tab'),
-        
-    url(r'^s2399-mudancacpf/cadastrar/$', 
-        s2399_mudancacpf_salvar_views.salvar, 
+
+    url(r'^s2399-mudancacpf/cadastrar/$',
+        s2399_mudancacpf_salvar_views.salvar,
         name='s2399_mudancacpf_cadastrar'),
 
-    url(r'^s2399-mudancacpf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2399_mudancacpf_salvar_views.salvar, 
+    url(r'^s2399-mudancacpf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2399_mudancacpf_salvar_views.salvar,
         name='s2399_mudancacpf_salvar_output'),
-        
-    url(r'^s2399-mudancacpf/(?P<output>[\w-]+)/$', 
-        s2399_mudancacpf_listar_views.listar, 
+
+    url(r'^s2399-mudancacpf/(?P<output>[\w-]+)/$',
+        s2399_mudancacpf_listar_views.listar,
         name='s2399_mudancacpf_output'),
 
-    url(r'^s2399-verbasresc/apagar/(?P<pk>[0-9]+)/$', 
-        s2399_verbasresc_apagar_views.apagar, 
+    url(r'^s2399-verbasresc/apagar/(?P<pk>[0-9]+)/$',
+        s2399_verbasresc_apagar_views.apagar,
         name='s2399_verbasresc_apagar'),
 
     url(r'^s2399-verbasresc/api/$',
@@ -144,32 +144,32 @@ urlpatterns = [
     url(r'^s2399-verbasresc/api/(?P<pk>[0-9]+)/$',
         s2399_verbasresc_api_views.s2399verbasRescDetail.as_view() ),
 
-    url(r'^s2399-verbasresc/$', 
-        s2399_verbasresc_listar_views.listar, 
+    url(r'^s2399-verbasresc/$',
+        s2399_verbasresc_listar_views.listar,
         name='s2399_verbasresc'),
 
-    url(r'^s2399-verbasresc/salvar/(?P<pk>[0-9]+)/$', 
-        s2399_verbasresc_salvar_views.salvar, 
+    url(r'^s2399-verbasresc/salvar/(?P<pk>[0-9]+)/$',
+        s2399_verbasresc_salvar_views.salvar,
         name='s2399_verbasresc_salvar'),
 
-    url(r'^s2399-verbasresc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2399_verbasresc_salvar_views.salvar, 
+    url(r'^s2399-verbasresc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2399_verbasresc_salvar_views.salvar,
         name='s2399_verbasresc_salvar_tab'),
-        
-    url(r'^s2399-verbasresc/cadastrar/$', 
-        s2399_verbasresc_salvar_views.salvar, 
+
+    url(r'^s2399-verbasresc/cadastrar/$',
+        s2399_verbasresc_salvar_views.salvar,
         name='s2399_verbasresc_cadastrar'),
 
-    url(r'^s2399-verbasresc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2399_verbasresc_salvar_views.salvar, 
+    url(r'^s2399-verbasresc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2399_verbasresc_salvar_views.salvar,
         name='s2399_verbasresc_salvar_output'),
-        
-    url(r'^s2399-verbasresc/(?P<output>[\w-]+)/$', 
-        s2399_verbasresc_listar_views.listar, 
+
+    url(r'^s2399-verbasresc/(?P<output>[\w-]+)/$',
+        s2399_verbasresc_listar_views.listar,
         name='s2399_verbasresc_output'),
 
-    url(r'^s2399-dmdev/apagar/(?P<pk>[0-9]+)/$', 
-        s2399_dmdev_apagar_views.apagar, 
+    url(r'^s2399-dmdev/apagar/(?P<pk>[0-9]+)/$',
+        s2399_dmdev_apagar_views.apagar,
         name='s2399_dmdev_apagar'),
 
     url(r'^s2399-dmdev/api/$',
@@ -178,32 +178,32 @@ urlpatterns = [
     url(r'^s2399-dmdev/api/(?P<pk>[0-9]+)/$',
         s2399_dmdev_api_views.s2399dmDevDetail.as_view() ),
 
-    url(r'^s2399-dmdev/$', 
-        s2399_dmdev_listar_views.listar, 
+    url(r'^s2399-dmdev/$',
+        s2399_dmdev_listar_views.listar,
         name='s2399_dmdev'),
 
-    url(r'^s2399-dmdev/salvar/(?P<pk>[0-9]+)/$', 
-        s2399_dmdev_salvar_views.salvar, 
+    url(r'^s2399-dmdev/salvar/(?P<pk>[0-9]+)/$',
+        s2399_dmdev_salvar_views.salvar,
         name='s2399_dmdev_salvar'),
 
-    url(r'^s2399-dmdev/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2399_dmdev_salvar_views.salvar, 
+    url(r'^s2399-dmdev/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2399_dmdev_salvar_views.salvar,
         name='s2399_dmdev_salvar_tab'),
-        
-    url(r'^s2399-dmdev/cadastrar/$', 
-        s2399_dmdev_salvar_views.salvar, 
+
+    url(r'^s2399-dmdev/cadastrar/$',
+        s2399_dmdev_salvar_views.salvar,
         name='s2399_dmdev_cadastrar'),
 
-    url(r'^s2399-dmdev/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2399_dmdev_salvar_views.salvar, 
+    url(r'^s2399-dmdev/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2399_dmdev_salvar_views.salvar,
         name='s2399_dmdev_salvar_output'),
-        
-    url(r'^s2399-dmdev/(?P<output>[\w-]+)/$', 
-        s2399_dmdev_listar_views.listar, 
+
+    url(r'^s2399-dmdev/(?P<output>[\w-]+)/$',
+        s2399_dmdev_listar_views.listar,
         name='s2399_dmdev_output'),
 
-    url(r'^s2399-ideestablot/apagar/(?P<pk>[0-9]+)/$', 
-        s2399_ideestablot_apagar_views.apagar, 
+    url(r'^s2399-ideestablot/apagar/(?P<pk>[0-9]+)/$',
+        s2399_ideestablot_apagar_views.apagar,
         name='s2399_ideestablot_apagar'),
 
     url(r'^s2399-ideestablot/api/$',
@@ -212,32 +212,32 @@ urlpatterns = [
     url(r'^s2399-ideestablot/api/(?P<pk>[0-9]+)/$',
         s2399_ideestablot_api_views.s2399ideEstabLotDetail.as_view() ),
 
-    url(r'^s2399-ideestablot/$', 
-        s2399_ideestablot_listar_views.listar, 
+    url(r'^s2399-ideestablot/$',
+        s2399_ideestablot_listar_views.listar,
         name='s2399_ideestablot'),
 
-    url(r'^s2399-ideestablot/salvar/(?P<pk>[0-9]+)/$', 
-        s2399_ideestablot_salvar_views.salvar, 
+    url(r'^s2399-ideestablot/salvar/(?P<pk>[0-9]+)/$',
+        s2399_ideestablot_salvar_views.salvar,
         name='s2399_ideestablot_salvar'),
 
-    url(r'^s2399-ideestablot/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2399_ideestablot_salvar_views.salvar, 
+    url(r'^s2399-ideestablot/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2399_ideestablot_salvar_views.salvar,
         name='s2399_ideestablot_salvar_tab'),
-        
-    url(r'^s2399-ideestablot/cadastrar/$', 
-        s2399_ideestablot_salvar_views.salvar, 
+
+    url(r'^s2399-ideestablot/cadastrar/$',
+        s2399_ideestablot_salvar_views.salvar,
         name='s2399_ideestablot_cadastrar'),
 
-    url(r'^s2399-ideestablot/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2399_ideestablot_salvar_views.salvar, 
+    url(r'^s2399-ideestablot/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2399_ideestablot_salvar_views.salvar,
         name='s2399_ideestablot_salvar_output'),
-        
-    url(r'^s2399-ideestablot/(?P<output>[\w-]+)/$', 
-        s2399_ideestablot_listar_views.listar, 
+
+    url(r'^s2399-ideestablot/(?P<output>[\w-]+)/$',
+        s2399_ideestablot_listar_views.listar,
         name='s2399_ideestablot_output'),
 
-    url(r'^s2399-detverbas/apagar/(?P<pk>[0-9]+)/$', 
-        s2399_detverbas_apagar_views.apagar, 
+    url(r'^s2399-detverbas/apagar/(?P<pk>[0-9]+)/$',
+        s2399_detverbas_apagar_views.apagar,
         name='s2399_detverbas_apagar'),
 
     url(r'^s2399-detverbas/api/$',
@@ -246,32 +246,32 @@ urlpatterns = [
     url(r'^s2399-detverbas/api/(?P<pk>[0-9]+)/$',
         s2399_detverbas_api_views.s2399detVerbasDetail.as_view() ),
 
-    url(r'^s2399-detverbas/$', 
-        s2399_detverbas_listar_views.listar, 
+    url(r'^s2399-detverbas/$',
+        s2399_detverbas_listar_views.listar,
         name='s2399_detverbas'),
 
-    url(r'^s2399-detverbas/salvar/(?P<pk>[0-9]+)/$', 
-        s2399_detverbas_salvar_views.salvar, 
+    url(r'^s2399-detverbas/salvar/(?P<pk>[0-9]+)/$',
+        s2399_detverbas_salvar_views.salvar,
         name='s2399_detverbas_salvar'),
 
-    url(r'^s2399-detverbas/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2399_detverbas_salvar_views.salvar, 
+    url(r'^s2399-detverbas/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2399_detverbas_salvar_views.salvar,
         name='s2399_detverbas_salvar_tab'),
-        
-    url(r'^s2399-detverbas/cadastrar/$', 
-        s2399_detverbas_salvar_views.salvar, 
+
+    url(r'^s2399-detverbas/cadastrar/$',
+        s2399_detverbas_salvar_views.salvar,
         name='s2399_detverbas_cadastrar'),
 
-    url(r'^s2399-detverbas/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2399_detverbas_salvar_views.salvar, 
+    url(r'^s2399-detverbas/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2399_detverbas_salvar_views.salvar,
         name='s2399_detverbas_salvar_output'),
-        
-    url(r'^s2399-detverbas/(?P<output>[\w-]+)/$', 
-        s2399_detverbas_listar_views.listar, 
+
+    url(r'^s2399-detverbas/(?P<output>[\w-]+)/$',
+        s2399_detverbas_listar_views.listar,
         name='s2399_detverbas_output'),
 
-    url(r'^s2399-infosaudecolet/apagar/(?P<pk>[0-9]+)/$', 
-        s2399_infosaudecolet_apagar_views.apagar, 
+    url(r'^s2399-infosaudecolet/apagar/(?P<pk>[0-9]+)/$',
+        s2399_infosaudecolet_apagar_views.apagar,
         name='s2399_infosaudecolet_apagar'),
 
     url(r'^s2399-infosaudecolet/api/$',
@@ -280,32 +280,32 @@ urlpatterns = [
     url(r'^s2399-infosaudecolet/api/(?P<pk>[0-9]+)/$',
         s2399_infosaudecolet_api_views.s2399infoSaudeColetDetail.as_view() ),
 
-    url(r'^s2399-infosaudecolet/$', 
-        s2399_infosaudecolet_listar_views.listar, 
+    url(r'^s2399-infosaudecolet/$',
+        s2399_infosaudecolet_listar_views.listar,
         name='s2399_infosaudecolet'),
 
-    url(r'^s2399-infosaudecolet/salvar/(?P<pk>[0-9]+)/$', 
-        s2399_infosaudecolet_salvar_views.salvar, 
+    url(r'^s2399-infosaudecolet/salvar/(?P<pk>[0-9]+)/$',
+        s2399_infosaudecolet_salvar_views.salvar,
         name='s2399_infosaudecolet_salvar'),
 
-    url(r'^s2399-infosaudecolet/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2399_infosaudecolet_salvar_views.salvar, 
+    url(r'^s2399-infosaudecolet/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2399_infosaudecolet_salvar_views.salvar,
         name='s2399_infosaudecolet_salvar_tab'),
-        
-    url(r'^s2399-infosaudecolet/cadastrar/$', 
-        s2399_infosaudecolet_salvar_views.salvar, 
+
+    url(r'^s2399-infosaudecolet/cadastrar/$',
+        s2399_infosaudecolet_salvar_views.salvar,
         name='s2399_infosaudecolet_cadastrar'),
 
-    url(r'^s2399-infosaudecolet/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2399_infosaudecolet_salvar_views.salvar, 
+    url(r'^s2399-infosaudecolet/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2399_infosaudecolet_salvar_views.salvar,
         name='s2399_infosaudecolet_salvar_output'),
-        
-    url(r'^s2399-infosaudecolet/(?P<output>[\w-]+)/$', 
-        s2399_infosaudecolet_listar_views.listar, 
+
+    url(r'^s2399-infosaudecolet/(?P<output>[\w-]+)/$',
+        s2399_infosaudecolet_listar_views.listar,
         name='s2399_infosaudecolet_output'),
 
-    url(r'^s2399-detoper/apagar/(?P<pk>[0-9]+)/$', 
-        s2399_detoper_apagar_views.apagar, 
+    url(r'^s2399-detoper/apagar/(?P<pk>[0-9]+)/$',
+        s2399_detoper_apagar_views.apagar,
         name='s2399_detoper_apagar'),
 
     url(r'^s2399-detoper/api/$',
@@ -314,32 +314,32 @@ urlpatterns = [
     url(r'^s2399-detoper/api/(?P<pk>[0-9]+)/$',
         s2399_detoper_api_views.s2399detOperDetail.as_view() ),
 
-    url(r'^s2399-detoper/$', 
-        s2399_detoper_listar_views.listar, 
+    url(r'^s2399-detoper/$',
+        s2399_detoper_listar_views.listar,
         name='s2399_detoper'),
 
-    url(r'^s2399-detoper/salvar/(?P<pk>[0-9]+)/$', 
-        s2399_detoper_salvar_views.salvar, 
+    url(r'^s2399-detoper/salvar/(?P<pk>[0-9]+)/$',
+        s2399_detoper_salvar_views.salvar,
         name='s2399_detoper_salvar'),
 
-    url(r'^s2399-detoper/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2399_detoper_salvar_views.salvar, 
+    url(r'^s2399-detoper/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2399_detoper_salvar_views.salvar,
         name='s2399_detoper_salvar_tab'),
-        
-    url(r'^s2399-detoper/cadastrar/$', 
-        s2399_detoper_salvar_views.salvar, 
+
+    url(r'^s2399-detoper/cadastrar/$',
+        s2399_detoper_salvar_views.salvar,
         name='s2399_detoper_cadastrar'),
 
-    url(r'^s2399-detoper/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2399_detoper_salvar_views.salvar, 
+    url(r'^s2399-detoper/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2399_detoper_salvar_views.salvar,
         name='s2399_detoper_salvar_output'),
-        
-    url(r'^s2399-detoper/(?P<output>[\w-]+)/$', 
-        s2399_detoper_listar_views.listar, 
+
+    url(r'^s2399-detoper/(?P<output>[\w-]+)/$',
+        s2399_detoper_listar_views.listar,
         name='s2399_detoper_output'),
 
-    url(r'^s2399-detplano/apagar/(?P<pk>[0-9]+)/$', 
-        s2399_detplano_apagar_views.apagar, 
+    url(r'^s2399-detplano/apagar/(?P<pk>[0-9]+)/$',
+        s2399_detplano_apagar_views.apagar,
         name='s2399_detplano_apagar'),
 
     url(r'^s2399-detplano/api/$',
@@ -348,32 +348,32 @@ urlpatterns = [
     url(r'^s2399-detplano/api/(?P<pk>[0-9]+)/$',
         s2399_detplano_api_views.s2399detPlanoDetail.as_view() ),
 
-    url(r'^s2399-detplano/$', 
-        s2399_detplano_listar_views.listar, 
+    url(r'^s2399-detplano/$',
+        s2399_detplano_listar_views.listar,
         name='s2399_detplano'),
 
-    url(r'^s2399-detplano/salvar/(?P<pk>[0-9]+)/$', 
-        s2399_detplano_salvar_views.salvar, 
+    url(r'^s2399-detplano/salvar/(?P<pk>[0-9]+)/$',
+        s2399_detplano_salvar_views.salvar,
         name='s2399_detplano_salvar'),
 
-    url(r'^s2399-detplano/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2399_detplano_salvar_views.salvar, 
+    url(r'^s2399-detplano/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2399_detplano_salvar_views.salvar,
         name='s2399_detplano_salvar_tab'),
-        
-    url(r'^s2399-detplano/cadastrar/$', 
-        s2399_detplano_salvar_views.salvar, 
+
+    url(r'^s2399-detplano/cadastrar/$',
+        s2399_detplano_salvar_views.salvar,
         name='s2399_detplano_cadastrar'),
 
-    url(r'^s2399-detplano/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2399_detplano_salvar_views.salvar, 
+    url(r'^s2399-detplano/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2399_detplano_salvar_views.salvar,
         name='s2399_detplano_salvar_output'),
-        
-    url(r'^s2399-detplano/(?P<output>[\w-]+)/$', 
-        s2399_detplano_listar_views.listar, 
+
+    url(r'^s2399-detplano/(?P<output>[\w-]+)/$',
+        s2399_detplano_listar_views.listar,
         name='s2399_detplano_output'),
 
-    url(r'^s2399-infoagnocivo/apagar/(?P<pk>[0-9]+)/$', 
-        s2399_infoagnocivo_apagar_views.apagar, 
+    url(r'^s2399-infoagnocivo/apagar/(?P<pk>[0-9]+)/$',
+        s2399_infoagnocivo_apagar_views.apagar,
         name='s2399_infoagnocivo_apagar'),
 
     url(r'^s2399-infoagnocivo/api/$',
@@ -382,32 +382,32 @@ urlpatterns = [
     url(r'^s2399-infoagnocivo/api/(?P<pk>[0-9]+)/$',
         s2399_infoagnocivo_api_views.s2399infoAgNocivoDetail.as_view() ),
 
-    url(r'^s2399-infoagnocivo/$', 
-        s2399_infoagnocivo_listar_views.listar, 
+    url(r'^s2399-infoagnocivo/$',
+        s2399_infoagnocivo_listar_views.listar,
         name='s2399_infoagnocivo'),
 
-    url(r'^s2399-infoagnocivo/salvar/(?P<pk>[0-9]+)/$', 
-        s2399_infoagnocivo_salvar_views.salvar, 
+    url(r'^s2399-infoagnocivo/salvar/(?P<pk>[0-9]+)/$',
+        s2399_infoagnocivo_salvar_views.salvar,
         name='s2399_infoagnocivo_salvar'),
 
-    url(r'^s2399-infoagnocivo/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2399_infoagnocivo_salvar_views.salvar, 
+    url(r'^s2399-infoagnocivo/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2399_infoagnocivo_salvar_views.salvar,
         name='s2399_infoagnocivo_salvar_tab'),
-        
-    url(r'^s2399-infoagnocivo/cadastrar/$', 
-        s2399_infoagnocivo_salvar_views.salvar, 
+
+    url(r'^s2399-infoagnocivo/cadastrar/$',
+        s2399_infoagnocivo_salvar_views.salvar,
         name='s2399_infoagnocivo_cadastrar'),
 
-    url(r'^s2399-infoagnocivo/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2399_infoagnocivo_salvar_views.salvar, 
+    url(r'^s2399-infoagnocivo/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2399_infoagnocivo_salvar_views.salvar,
         name='s2399_infoagnocivo_salvar_output'),
-        
-    url(r'^s2399-infoagnocivo/(?P<output>[\w-]+)/$', 
-        s2399_infoagnocivo_listar_views.listar, 
+
+    url(r'^s2399-infoagnocivo/(?P<output>[\w-]+)/$',
+        s2399_infoagnocivo_listar_views.listar,
         name='s2399_infoagnocivo_output'),
 
-    url(r'^s2399-infosimples/apagar/(?P<pk>[0-9]+)/$', 
-        s2399_infosimples_apagar_views.apagar, 
+    url(r'^s2399-infosimples/apagar/(?P<pk>[0-9]+)/$',
+        s2399_infosimples_apagar_views.apagar,
         name='s2399_infosimples_apagar'),
 
     url(r'^s2399-infosimples/api/$',
@@ -416,32 +416,32 @@ urlpatterns = [
     url(r'^s2399-infosimples/api/(?P<pk>[0-9]+)/$',
         s2399_infosimples_api_views.s2399infoSimplesDetail.as_view() ),
 
-    url(r'^s2399-infosimples/$', 
-        s2399_infosimples_listar_views.listar, 
+    url(r'^s2399-infosimples/$',
+        s2399_infosimples_listar_views.listar,
         name='s2399_infosimples'),
 
-    url(r'^s2399-infosimples/salvar/(?P<pk>[0-9]+)/$', 
-        s2399_infosimples_salvar_views.salvar, 
+    url(r'^s2399-infosimples/salvar/(?P<pk>[0-9]+)/$',
+        s2399_infosimples_salvar_views.salvar,
         name='s2399_infosimples_salvar'),
 
-    url(r'^s2399-infosimples/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2399_infosimples_salvar_views.salvar, 
+    url(r'^s2399-infosimples/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2399_infosimples_salvar_views.salvar,
         name='s2399_infosimples_salvar_tab'),
-        
-    url(r'^s2399-infosimples/cadastrar/$', 
-        s2399_infosimples_salvar_views.salvar, 
+
+    url(r'^s2399-infosimples/cadastrar/$',
+        s2399_infosimples_salvar_views.salvar,
         name='s2399_infosimples_cadastrar'),
 
-    url(r'^s2399-infosimples/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2399_infosimples_salvar_views.salvar, 
+    url(r'^s2399-infosimples/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2399_infosimples_salvar_views.salvar,
         name='s2399_infosimples_salvar_output'),
-        
-    url(r'^s2399-infosimples/(?P<output>[\w-]+)/$', 
-        s2399_infosimples_listar_views.listar, 
+
+    url(r'^s2399-infosimples/(?P<output>[\w-]+)/$',
+        s2399_infosimples_listar_views.listar,
         name='s2399_infosimples_output'),
 
-    url(r'^s2399-procjudtrab/apagar/(?P<pk>[0-9]+)/$', 
-        s2399_procjudtrab_apagar_views.apagar, 
+    url(r'^s2399-procjudtrab/apagar/(?P<pk>[0-9]+)/$',
+        s2399_procjudtrab_apagar_views.apagar,
         name='s2399_procjudtrab_apagar'),
 
     url(r'^s2399-procjudtrab/api/$',
@@ -450,32 +450,32 @@ urlpatterns = [
     url(r'^s2399-procjudtrab/api/(?P<pk>[0-9]+)/$',
         s2399_procjudtrab_api_views.s2399procJudTrabDetail.as_view() ),
 
-    url(r'^s2399-procjudtrab/$', 
-        s2399_procjudtrab_listar_views.listar, 
+    url(r'^s2399-procjudtrab/$',
+        s2399_procjudtrab_listar_views.listar,
         name='s2399_procjudtrab'),
 
-    url(r'^s2399-procjudtrab/salvar/(?P<pk>[0-9]+)/$', 
-        s2399_procjudtrab_salvar_views.salvar, 
+    url(r'^s2399-procjudtrab/salvar/(?P<pk>[0-9]+)/$',
+        s2399_procjudtrab_salvar_views.salvar,
         name='s2399_procjudtrab_salvar'),
 
-    url(r'^s2399-procjudtrab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2399_procjudtrab_salvar_views.salvar, 
+    url(r'^s2399-procjudtrab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2399_procjudtrab_salvar_views.salvar,
         name='s2399_procjudtrab_salvar_tab'),
-        
-    url(r'^s2399-procjudtrab/cadastrar/$', 
-        s2399_procjudtrab_salvar_views.salvar, 
+
+    url(r'^s2399-procjudtrab/cadastrar/$',
+        s2399_procjudtrab_salvar_views.salvar,
         name='s2399_procjudtrab_cadastrar'),
 
-    url(r'^s2399-procjudtrab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2399_procjudtrab_salvar_views.salvar, 
+    url(r'^s2399-procjudtrab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2399_procjudtrab_salvar_views.salvar,
         name='s2399_procjudtrab_salvar_output'),
-        
-    url(r'^s2399-procjudtrab/(?P<output>[\w-]+)/$', 
-        s2399_procjudtrab_listar_views.listar, 
+
+    url(r'^s2399-procjudtrab/(?P<output>[\w-]+)/$',
+        s2399_procjudtrab_listar_views.listar,
         name='s2399_procjudtrab_output'),
 
-    url(r'^s2399-infomv/apagar/(?P<pk>[0-9]+)/$', 
-        s2399_infomv_apagar_views.apagar, 
+    url(r'^s2399-infomv/apagar/(?P<pk>[0-9]+)/$',
+        s2399_infomv_apagar_views.apagar,
         name='s2399_infomv_apagar'),
 
     url(r'^s2399-infomv/api/$',
@@ -484,32 +484,32 @@ urlpatterns = [
     url(r'^s2399-infomv/api/(?P<pk>[0-9]+)/$',
         s2399_infomv_api_views.s2399infoMVDetail.as_view() ),
 
-    url(r'^s2399-infomv/$', 
-        s2399_infomv_listar_views.listar, 
+    url(r'^s2399-infomv/$',
+        s2399_infomv_listar_views.listar,
         name='s2399_infomv'),
 
-    url(r'^s2399-infomv/salvar/(?P<pk>[0-9]+)/$', 
-        s2399_infomv_salvar_views.salvar, 
+    url(r'^s2399-infomv/salvar/(?P<pk>[0-9]+)/$',
+        s2399_infomv_salvar_views.salvar,
         name='s2399_infomv_salvar'),
 
-    url(r'^s2399-infomv/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2399_infomv_salvar_views.salvar, 
+    url(r'^s2399-infomv/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2399_infomv_salvar_views.salvar,
         name='s2399_infomv_salvar_tab'),
-        
-    url(r'^s2399-infomv/cadastrar/$', 
-        s2399_infomv_salvar_views.salvar, 
+
+    url(r'^s2399-infomv/cadastrar/$',
+        s2399_infomv_salvar_views.salvar,
         name='s2399_infomv_cadastrar'),
 
-    url(r'^s2399-infomv/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2399_infomv_salvar_views.salvar, 
+    url(r'^s2399-infomv/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2399_infomv_salvar_views.salvar,
         name='s2399_infomv_salvar_output'),
-        
-    url(r'^s2399-infomv/(?P<output>[\w-]+)/$', 
-        s2399_infomv_listar_views.listar, 
+
+    url(r'^s2399-infomv/(?P<output>[\w-]+)/$',
+        s2399_infomv_listar_views.listar,
         name='s2399_infomv_output'),
 
-    url(r'^s2399-remunoutrempr/apagar/(?P<pk>[0-9]+)/$', 
-        s2399_remunoutrempr_apagar_views.apagar, 
+    url(r'^s2399-remunoutrempr/apagar/(?P<pk>[0-9]+)/$',
+        s2399_remunoutrempr_apagar_views.apagar,
         name='s2399_remunoutrempr_apagar'),
 
     url(r'^s2399-remunoutrempr/api/$',
@@ -518,32 +518,32 @@ urlpatterns = [
     url(r'^s2399-remunoutrempr/api/(?P<pk>[0-9]+)/$',
         s2399_remunoutrempr_api_views.s2399remunOutrEmprDetail.as_view() ),
 
-    url(r'^s2399-remunoutrempr/$', 
-        s2399_remunoutrempr_listar_views.listar, 
+    url(r'^s2399-remunoutrempr/$',
+        s2399_remunoutrempr_listar_views.listar,
         name='s2399_remunoutrempr'),
 
-    url(r'^s2399-remunoutrempr/salvar/(?P<pk>[0-9]+)/$', 
-        s2399_remunoutrempr_salvar_views.salvar, 
+    url(r'^s2399-remunoutrempr/salvar/(?P<pk>[0-9]+)/$',
+        s2399_remunoutrempr_salvar_views.salvar,
         name='s2399_remunoutrempr_salvar'),
 
-    url(r'^s2399-remunoutrempr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2399_remunoutrempr_salvar_views.salvar, 
+    url(r'^s2399-remunoutrempr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2399_remunoutrempr_salvar_views.salvar,
         name='s2399_remunoutrempr_salvar_tab'),
-        
-    url(r'^s2399-remunoutrempr/cadastrar/$', 
-        s2399_remunoutrempr_salvar_views.salvar, 
+
+    url(r'^s2399-remunoutrempr/cadastrar/$',
+        s2399_remunoutrempr_salvar_views.salvar,
         name='s2399_remunoutrempr_cadastrar'),
 
-    url(r'^s2399-remunoutrempr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2399_remunoutrempr_salvar_views.salvar, 
+    url(r'^s2399-remunoutrempr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2399_remunoutrempr_salvar_views.salvar,
         name='s2399_remunoutrempr_salvar_output'),
-        
-    url(r'^s2399-remunoutrempr/(?P<output>[\w-]+)/$', 
-        s2399_remunoutrempr_listar_views.listar, 
+
+    url(r'^s2399-remunoutrempr/(?P<output>[\w-]+)/$',
+        s2399_remunoutrempr_listar_views.listar,
         name='s2399_remunoutrempr_output'),
 
-    url(r'^s2399-quarentena/apagar/(?P<pk>[0-9]+)/$', 
-        s2399_quarentena_apagar_views.apagar, 
+    url(r'^s2399-quarentena/apagar/(?P<pk>[0-9]+)/$',
+        s2399_quarentena_apagar_views.apagar,
         name='s2399_quarentena_apagar'),
 
     url(r'^s2399-quarentena/api/$',
@@ -552,28 +552,28 @@ urlpatterns = [
     url(r'^s2399-quarentena/api/(?P<pk>[0-9]+)/$',
         s2399_quarentena_api_views.s2399quarentenaDetail.as_view() ),
 
-    url(r'^s2399-quarentena/$', 
-        s2399_quarentena_listar_views.listar, 
+    url(r'^s2399-quarentena/$',
+        s2399_quarentena_listar_views.listar,
         name='s2399_quarentena'),
 
-    url(r'^s2399-quarentena/salvar/(?P<pk>[0-9]+)/$', 
-        s2399_quarentena_salvar_views.salvar, 
+    url(r'^s2399-quarentena/salvar/(?P<pk>[0-9]+)/$',
+        s2399_quarentena_salvar_views.salvar,
         name='s2399_quarentena_salvar'),
 
-    url(r'^s2399-quarentena/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2399_quarentena_salvar_views.salvar, 
+    url(r'^s2399-quarentena/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2399_quarentena_salvar_views.salvar,
         name='s2399_quarentena_salvar_tab'),
-        
-    url(r'^s2399-quarentena/cadastrar/$', 
-        s2399_quarentena_salvar_views.salvar, 
+
+    url(r'^s2399-quarentena/cadastrar/$',
+        s2399_quarentena_salvar_views.salvar,
         name='s2399_quarentena_cadastrar'),
 
-    url(r'^s2399-quarentena/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2399_quarentena_salvar_views.salvar, 
+    url(r'^s2399-quarentena/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2399_quarentena_salvar_views.salvar,
         name='s2399_quarentena_salvar_output'),
-        
-    url(r'^s2399-quarentena/(?P<output>[\w-]+)/$', 
-        s2399_quarentena_listar_views.listar, 
+
+    url(r'^s2399-quarentena/(?P<output>[\w-]+)/$',
+        s2399_quarentena_listar_views.listar,
         name='s2399_quarentena_output'),
 
 

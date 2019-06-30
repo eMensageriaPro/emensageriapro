@@ -33,23 +33,14 @@
 
 """
 
-from constance import config
-import psycopg2
 import datetime
-import os
+
+from constance import config
 from django.contrib import messages
-from emensageriapro.settings import BASE_DIR
-#from emensageriapro.mensageiro.functions.funcoes_status import atualizar_status_esocial
+
+from emensageriapro.esocial.models import STATUS_EVENTO_AGUARD_ENVIO
+# from emensageriapro.mensageiro.functions.funcoes_status import atualizar_status_esocial
 from emensageriapro.mensageiro.models import *
-
-from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
-    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
-    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
-    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
-    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
-    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
-    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
-
 
 TRANSMISSOR_STATUS_CADASTRADO = 0
 TRANSMISSOR_STATUS_ENVIADO = 1
@@ -109,83 +100,13 @@ BASE_XML_CONSULTA_LOTE = u"""
 
 
 
-def gravar_nome_arquivo(arquivo, permite_recuperacao):
-
-    dados = {}
-    dados['arquivo'] = arquivo.replace('//', '/').replace('//', '/')
-    dados['data_criacao'] = datetime.datetime.now()
-    dados['permite_recuperacao'] = permite_recuperacao
-    dados['criado_em'] = datetime.datetime.now()
-    dados['ativo'] = True
-    dados['criado_por_id'] = 1
-
-    obj = Arquivos(**dados)
-    obj.save()
-
-
-def salvar_arquivo_esocial(arquivo, texto, permite_recuperacao):
-
-    import codecs
-    from emensageriapro.settings import BASE_DIR
-
-    arquivo1 = BASE_DIR+'/'+arquivo
-    arquivo1 = arquivo1.replace('//', '/').replace('//', '/')
-
-    file = open(arquivo1, "w")
-    file.write(texto)
-    file.close()
-
-    print arquivo1
-    print texto
-
-    # file = codecs.open(arquivo1, "w", "utf-8")
-    # file.write(texto)
-    # file.close()
-
-    gravar_nome_arquivo(arquivo, permite_recuperacao)
-
-
-
-
-def ler_arquivo(arquivo):
-
-    import codecs
-    from emensageriapro.settings import BASE_DIR
-
-    arquivo = BASE_DIR+'/'+arquivo
-    file = codecs.open(arquivo, "r", "utf-8")
-    texto = file.read()
-    file.close()
-
-    return texto.encode('utf-8')
-
-
-def create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file):
-
-    import os.path
-    from emensageriapro.padrao import salvar_arquivo
-    from OpenSSL import crypto
-
-    pkcs12 = crypto.load_pkcs12(open(cert_host, 'rb').read(), cert_pass)
-
-    if not os.path.isfile(cert_pem_file):
-        cert_str = crypto.dump_certificate(crypto.FILETYPE_PEM, pkcs12.get_certificate())
-        salvar_arquivo(cert_pem_file, cert_str)
-
-    if not os.path.isfile(key_pem_file):
-        key_str = crypto.dump_privatekey(crypto.FILETYPE_PEM, pkcs12.get_privatekey())
-        salvar_arquivo(key_pem_file, key_str)
-
-
-
 
 def assinar_esocial(request, xml, transmissor_id):
 
     from lxml import etree
     from emensageriapro.settings import BASE_DIR
     from signxml import XMLSigner, methods
-
-    FORCE_PRODUCAO_RESTRITA = config.ESOCIAL_FORCE_PRODUCAO_RESTRITA
+    from emensageriapro.mensageiro.functions.funcoes import create_pem_files, ler_arquivo
 
     if transmissor_id:
 
@@ -198,19 +119,6 @@ def assinar_esocial(request, xml, transmissor_id):
             cert_pass = tra.transmissor.certificado.senha
             cert_pem_file = 'certificado/cert_%s.pem' % tra.transmissor.certificado.id
             key_pem_file = 'certificado/key_%s.pem' % tra.transmissor.certificado.id
-
-        else:
-
-            messages.error(request,
-                           '''O certificado não está configurado, 
-                              configure pelo menos um transmissor para o respectivo empregador!''')
-
-            return xml
-
-        if FORCE_PRODUCAO_RESTRITA:
-            xml = xml.replace('<tpAmb>1</tpAmb>', '<tpAmb>2</tpAmb>')
-
-        if cert_host:
 
             create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
             cert_str = ler_arquivo(cert_pem_file)
@@ -228,24 +136,18 @@ def assinar_esocial(request, xml, transmissor_id):
 
         else:
 
-            return xml
+            messages.error(request,
+                '''O certificado não está configurado, 
+                   configure pelo menos um transmissor para o respectivo empregador!''')
 
-    else:
+    return xml
 
-        return xml
-
-
-def get_transmissor_name(transmissor_id):
-    number = str(transmissor_id)
-
-    while len(number) < 9:
-        number = '0'+number
-
-    return number
 
 
 
 def create_request(dados, transmissor_dados):
+
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial, ler_arquivo
 
     if dados['service'] == 'WsEnviarLoteEventos':
 
@@ -294,13 +196,14 @@ def send_xml(request, transmissor_id, service):
     import os
     from datetime import datetime
     from emensageriapro.settings import BASE_DIR
+    from emensageriapro.mensageiro.functions.funcoes import get_transmissor_name, \
+        ler_arquivo, create_pem_files, send, gravar_nome_arquivo, create_folders
 
-    FORCE_PRODUCAO_RESTRITA = config.ESOCIAL_FORCE_PRODUCAO_RESTRITA
     TP_AMB = config.ESOCIAL_TP_AMB
     CA_CERT_PEM_FILE = config.ESOCIAL_CA_CERT_PEM_FILE
+    create_folders()
 
     data_atual = str(datetime.now()).replace(':', '-').replace(' ', '-').replace('.', '-')
-
 
     if TP_AMB == '1':  # Produção
 
@@ -322,8 +225,6 @@ def send_xml(request, transmissor_id, service):
             URL_WS = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_1_0/ServicoConsultarLoteEventos/ConsultarLoteEventos"
 
-    name = get_transmissor_name(transmissor_id)
-
     tle = TransmissorLoteEsocial.objects. \
         get(id=transmissor_id)
 
@@ -331,8 +232,10 @@ def send_xml(request, transmissor_id, service):
 
         cert_host = '%s/certificado/%s' % (BASE_DIR, tle.transmissor.certificado.certificado)
         cert_pass = tle.transmissor.certificado.senha
-        cert_pem_file = 'certificado/cert_%s.pem' % tle.transmissor.certificado.id
-        key_pem_file = 'certificado/key_%s.pem' % tle.transmissor.certificado.id
+        cert_pem_file = '/certificado/cert_%s.pem' % tle.transmissor.certificado.id
+        key_pem_file = '/certificado/key_%s.pem' % tle.transmissor.certificado.id
+
+        create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
 
     else:
 
@@ -340,6 +243,7 @@ def send_xml(request, transmissor_id, service):
                        'O certificado não está configurado ou não possuem eventos validados para envio neste lote!')
 
         return None
+
 
     transmissor_dados = {}
     transmissor_dados['empregador_tpinsc'] = tle.empregador_tpinsc
@@ -350,21 +254,21 @@ def send_xml(request, transmissor_id, service):
     transmissor_dados['esocial_lote_max'] = config.ESOCIAL_LOTE_MAX
     transmissor_dados['esocial_timeout'] = int(config.ESOCIAL_TIMEOUT)
 
-    create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
+    name = get_transmissor_name(transmissor_id)
 
     dados = {}
     dados['transmissor_id'] = transmissor_id
-    dados['header'] = 'arquivos/Comunicacao/%s/header/%s_%s.xml' % (service, name, data_atual)
-    dados['request'] = 'arquivos/Comunicacao/%s/request/%s_%s.xml' % (service, name, data_atual)
-    dados['response'] = 'arquivos/Comunicacao/%s/response/%s_%s.xml' % (service, name, data_atual)
+    dados['header'] = '/arquivos/Comunicacao/%s/header/%s_%s.xml' % (service, name, data_atual)
+    dados['request'] = '/arquivos/Comunicacao/%s/request/%s_%s.xml' % (service, name, data_atual)
+    dados['response'] = '/arquivos/Comunicacao/%s/response/%s_%s.xml' % (service, name, data_atual)
     dados['header_completo'] = '%s/arquivos/Comunicacao/%s/header/%s_%s.xml' % (BASE_DIR, service, name, data_atual)
     dados['request_completo'] = '%s/arquivos/Comunicacao/%s/request/%s_%s.xml' % (BASE_DIR, service, name, data_atual)
     dados['response_completo'] = '%s/arquivos/Comunicacao/%s/response/%s_%s.xml' % (BASE_DIR, service, name, data_atual)
     dados['service'] = service
     dados['url'] = URL_WS
-    dados['cert'] = '%s/%s' % (BASE_DIR, cert_pem_file)
-    dados['cacert'] = '%s/%s' % (BASE_DIR, CA_CERT_PEM_FILE)
-    dados['key'] = '%s/%s' % (BASE_DIR, key_pem_file)
+    dados['cert'] = BASE_DIR + cert_pem_file
+    dados['cacert'] = BASE_DIR + CA_CERT_PEM_FILE
+    dados['key'] = BASE_DIR + key_pem_file
     dados['action'] = ACTION
     dados['timeout'] = transmissor_dados['esocial_timeout']
 
@@ -380,35 +284,27 @@ def send_xml(request, transmissor_id, service):
 
             create_request(dados, transmissor_dados)
 
-            command = '''curl --connect-timeout %(timeout)s --insecure
-                              --cert %(cert)s
-                              --key %(key)s
-                              --cacert %(cacert)s
-                              -H "Content-Type: text/xml;charset=UTF-8" 
-                              -H "SOAPAction:%(action)s" 
-                              --dump-header %(header_completo)s
-                              --output %(response_completo)s 
-                              -d@%(request_completo)s 
-                              %(url)s''' % dados
+            send(dados)
 
-            command = command.replace('\n', '')
-            for n in range(10):
-                command = command.replace('  ', ' ')
+            gravar_nome_arquivo(dados['header'], 0)
+            gravar_nome_arquivo(dados['request'], 0)
+            gravar_nome_arquivo(dados['response'], 0)
 
-            os.system(command)
-
-            if not os.path.isfile(BASE_DIR + '/' + dados['response']):
+            if not os.path.isfile(BASE_DIR + dados['response']):
 
                 messages.error(request, '''O servidor demorou mais que o esperado 
                                             para efetuar a conexão! Caso necessário solicite ao 
                                             administrador do sistema para que aumente o tempo do 
                                             Timeout. Timeout atual %(timeout)s''' % dados)
 
-                # TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).\
-                #     update(status=TRANSMISSOR_STATUS_ENVIADO_ERRO)
                 return None
 
-            if service == 'WsEnviarLoteEventos':
+
+            elif 'HTTP/1.1 200 OK' not in ler_arquivo(dados['header']):
+
+                messages.warning(request, 'Retorno do servidor: ' + ler_arquivo(dados['header']))
+
+            elif service == 'WsEnviarLoteEventos':
 
                 from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_envioLoteEventos, definir_status_evento
                 read_envioLoteEventos(dados['response'], transmissor_id)
@@ -419,30 +315,20 @@ def send_xml(request, transmissor_id, service):
 
             elif service == 'WsConsultarLoteEventos':
 
-                from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_consultaLoteEventos
-                messages.success(request, 'Lote consultado com sucesso!')
+                from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_consultaLoteEventos, definir_status_evento
+                read_consultaLoteEventos(dados['response'], transmissor_id)
+                definir_status_evento(transmissor_id)
                 TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).\
                     update(status=TRANSMISSOR_STATUS_CONSULTADO)
-                read_consultaLoteEventos(dados['response'], transmissor_id)
+                messages.success(request, 'Lote consultado com sucesso!')
 
-            gravar_nome_arquivo(dados['header'], 0)
-            gravar_nome_arquivo(dados['request'], 0)
-            gravar_nome_arquivo(dados['response'], 0)
-
-            if 'HTTP/1.1 200 OK' not in ler_arquivo(dados['header']):
-                messages.warning(request, 'Retorno do servidor: ' + ler_arquivo(dados['header']))
-
-
-        elif (quant_eventos < transmissor_dados['esocial_lote_min'] and \
-                    service == 'WsEnviarLoteEventos'):
+        elif (quant_eventos < transmissor_dados['esocial_lote_min'] and service == 'WsEnviarLoteEventos'):
             messages.error(request, 'Lote com quantidade inferior a mínima permitida!')
 
-        elif (quant_eventos > transmissor_dados['esocial_lote_max'] and \
-                  service == 'WsEnviarLoteEventos'):
+        elif (quant_eventos > transmissor_dados['esocial_lote_max'] and service == 'WsEnviarLoteEventos'):
             messages.error(request, 'Lote com quantidade de eventos superior a máxima permitida!')
 
         else:
-
             if service == 'WsEnviarLoteEventos':
                 TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=TRANSMISSOR_STATUS_ENVIADO_ERRO)
                 messages.error(request, 'Erro ao enviar o lote!')

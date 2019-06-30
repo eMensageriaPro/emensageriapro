@@ -48,8 +48,8 @@ from emensageriapro.s2245.views import s2245_ideprofresp_api as s2245_ideprofres
 urlpatterns = [
 
 
-    url(r'^s2245-ideprofresp/apagar/(?P<pk>[0-9]+)/$', 
-        s2245_ideprofresp_apagar_views.apagar, 
+    url(r'^s2245-ideprofresp/apagar/(?P<pk>[0-9]+)/$',
+        s2245_ideprofresp_apagar_views.apagar,
         name='s2245_ideprofresp_apagar'),
 
     url(r'^s2245-ideprofresp/api/$',
@@ -58,28 +58,28 @@ urlpatterns = [
     url(r'^s2245-ideprofresp/api/(?P<pk>[0-9]+)/$',
         s2245_ideprofresp_api_views.s2245ideProfRespDetail.as_view() ),
 
-    url(r'^s2245-ideprofresp/$', 
-        s2245_ideprofresp_listar_views.listar, 
+    url(r'^s2245-ideprofresp/$',
+        s2245_ideprofresp_listar_views.listar,
         name='s2245_ideprofresp'),
 
-    url(r'^s2245-ideprofresp/salvar/(?P<pk>[0-9]+)/$', 
-        s2245_ideprofresp_salvar_views.salvar, 
+    url(r'^s2245-ideprofresp/salvar/(?P<pk>[0-9]+)/$',
+        s2245_ideprofresp_salvar_views.salvar,
         name='s2245_ideprofresp_salvar'),
 
-    url(r'^s2245-ideprofresp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2245_ideprofresp_salvar_views.salvar, 
+    url(r'^s2245-ideprofresp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2245_ideprofresp_salvar_views.salvar,
         name='s2245_ideprofresp_salvar_tab'),
-        
-    url(r'^s2245-ideprofresp/cadastrar/$', 
-        s2245_ideprofresp_salvar_views.salvar, 
+
+    url(r'^s2245-ideprofresp/cadastrar/$',
+        s2245_ideprofresp_salvar_views.salvar,
         name='s2245_ideprofresp_cadastrar'),
 
-    url(r'^s2245-ideprofresp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2245_ideprofresp_salvar_views.salvar, 
+    url(r'^s2245-ideprofresp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2245_ideprofresp_salvar_views.salvar,
         name='s2245_ideprofresp_salvar_output'),
-        
-    url(r'^s2245-ideprofresp/(?P<output>[\w-]+)/$', 
-        s2245_ideprofresp_listar_views.listar, 
+
+    url(r'^s2245-ideprofresp/(?P<output>[\w-]+)/$',
+        s2245_ideprofresp_listar_views.listar,
         name='s2245_ideprofresp_output'),
 
 

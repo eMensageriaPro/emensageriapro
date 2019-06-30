@@ -72,61 +72,69 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s2221(request, pk, versao=None):
+def gerar_xml_s2221_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s2221_evttoxic = get_object_or_404(
+        s2221evtToxic,
+        id=pk)
 
-        s2221_evttoxic = get_object_or_404(
-            s2221evtToxic,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s2221_evttoxic.versao
 
-        if not versao or versao == '|':
-            versao = s2221_evttoxic.versao
+    evento = 's2221evtToxic'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's2221evtToxic'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s2221_evttoxic_lista = s2221evtToxic.objects. \
-            filter(id=pk).all()
+    s2221_evttoxic_lista = s2221evtToxic.objects. \
+        filter(id=pk).all()
 
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s2221_evttoxic,
-            's2221_evttoxic_lista': s2221_evttoxic_lista,
-            'pk': int(pk),
-            's2221_evttoxic': s2221_evttoxic,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s2221_evttoxic,
+        's2221_evttoxic_lista': s2221_evttoxic_lista,
+        'pk': int(pk),
+        's2221_evttoxic': s2221_evttoxic,
+    }
 
-        t = get_template('s2221_evttoxic.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s2221_evttoxic.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s2221(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s2221_evttoxic = get_object_or_404(
+        s2221evtToxic,
+        id=pk)
+    return gerar_xml_s2221_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s2221_evttoxic = get_object_or_404(
@@ -134,15 +142,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s2221_evttoxic.arquivo_original:
-
         xml = ler_arquivo(s2221_evttoxic.arquivo)
 
     else:
         xml = gerar_xml_s2221(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s2221evtToxic.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -172,16 +180,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s2221_evttoxic.transmissor_lote_esocial_id)
 
-    if s2221_evttoxic.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s2221evtToxic.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s2221evtToxic.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s2221_evttoxic/%s.xml' % (s2221_evttoxic.identidade)
+            s2221evtToxic.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s2221_evttoxic/%s.xml' % (s2221_evttoxic.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s2221_evttoxic/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

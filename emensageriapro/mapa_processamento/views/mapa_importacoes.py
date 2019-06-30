@@ -4,19 +4,12 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
-
-
-import datetime
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from emensageriapro.padrao import *
-from emensageriapro.mensageiro.forms import *
-from emensageriapro.mensageiro.models import *
+from django.shortcuts import render, render_to_response
+
 from emensageriapro.controle_de_acesso.models import *
-import base64
+from emensageriapro.mensageiro.models import *
+from emensageriapro.padrao import *
 
 #IMPORTACOES
 
@@ -46,9 +39,12 @@ STATUS_IMPORT_ERRO_VERSAO_LEIAUTE = 7
 STATUS_IMPORT_ERRO_VALIDACAO_LEIAUTE = 8
 
 
-
 @login_required
 def listar(request, tab='master', output=None):
+
+    from emensageriapro.mensageiro.views.processar_arquivos import import_files_in_folder
+
+    import_files_in_folder(request)
 
     status_erros = [
         STATUS_IMPORT_ERRO_PROCESSAMENTO,

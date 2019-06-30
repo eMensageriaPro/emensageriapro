@@ -300,7 +300,7 @@
 
     
 
-                            {% if perms.esocial.can_validate_s1070evtTabProcesso and s1070_evttabprocesso_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            {% if perms.esocial.can_validate_s1070evtTabProcesso and s1070_evttabprocesso_form.status.value == STATUS_EVENTO_CADASTRADO or s1070_evttabprocesso_form.status.value == STATUS_EVENTO_GERADO or s1070_evttabprocesso_form.status.value == STATUS_EVENTO_ASSINADO %}
                             <div class="col-md-3">
                                 <a href="{% url 's1070_evttabprocesso_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">

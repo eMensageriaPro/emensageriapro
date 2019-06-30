@@ -72,65 +72,73 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_r2099(request, pk, versao=None):
+def gerar_xml_r2099_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    r2099_evtfechaevper = get_object_or_404(
+        r2099evtFechaEvPer,
+        id=pk)
 
-        r2099_evtfechaevper = get_object_or_404(
-            r2099evtFechaEvPer,
-            id=pk)
+    if not versao or versao == '|':
+        versao = r2099_evtfechaevper.versao
 
-        if not versao or versao == '|':
-            versao = r2099_evtfechaevper.versao
+    evento = 'r2099evtFechaEvPer'[5:]
+    arquivo = '/xsd/efdreinf/%s/%s.xsd' % (versao, evento)
 
-        evento = 'r2099evtFechaEvPer'[5:]
-        arquivo = 'xsd/efdreinf/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        r2099_evtfechaevper_lista = r2099evtFechaEvPer.objects. \
-            filter(id=pk).all()
+    r2099_evtfechaevper_lista = r2099evtFechaEvPer.objects. \
+        filter(id=pk).all()
 
 
-        r2099_iderespinf_lista = r2099ideRespInf.objects. \
-            filter(r2099_evtfechaevper_id__in=listar_ids(r2099_evtfechaevper_lista)).all()
+    r2099_iderespinf_lista = r2099ideRespInf.objects. \
+        filter(r2099_evtfechaevper_id__in=listar_ids(r2099_evtfechaevper_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': r2099_evtfechaevper,
-            'r2099_evtfechaevper_lista': r2099_evtfechaevper_lista,
-            'pk': int(pk),
-            'r2099_evtfechaevper': r2099_evtfechaevper,
-            'r2099_iderespinf_lista': r2099_iderespinf_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': r2099_evtfechaevper,
+        'r2099_evtfechaevper_lista': r2099_evtfechaevper_lista,
+        'pk': int(pk),
+        'r2099_evtfechaevper': r2099_evtfechaevper,
+        'r2099_iderespinf_lista': r2099_iderespinf_lista,
+    }
 
-        t = get_template('r2099_evtfechaevper.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('r2099_evtfechaevper.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_r2099(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    r2099_evtfechaevper = get_object_or_404(
+        r2099evtFechaEvPer,
+        id=pk)
+    return gerar_xml_r2099_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_efdreinf import salvar_arquivo_efdreinf
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_efdreinf
     from emensageriapro.mensageiro.functions.funcoes_efdreinf import assinar_efdreinf
 
     r2099_evtfechaevper = get_object_or_404(
@@ -138,15 +146,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if r2099_evtfechaevper.arquivo_original:
-
         xml = ler_arquivo(r2099_evtfechaevper.arquivo)
 
     else:
         xml = gerar_xml_r2099(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        r2099evtFechaEvPer.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -176,16 +184,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             r2099_evtfechaevper.transmissor_lote_efdreinf_id)
 
-    if r2099_evtfechaevper.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        r2099evtFechaEvPer.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            r2099evtFechaEvPer.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/r2099_evtfechaevper/%s.xml' % (r2099_evtfechaevper.identidade)
+            r2099evtFechaEvPer.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/r2099_evtfechaevper/%s.xml' % (r2099_evtfechaevper.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/r2099_evtfechaevper/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

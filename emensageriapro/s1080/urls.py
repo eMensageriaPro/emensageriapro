@@ -60,8 +60,8 @@ from emensageriapro.s1080.views import s1080_exclusao_api as s1080_exclusao_api_
 urlpatterns = [
 
 
-    url(r'^s1080-inclusao/apagar/(?P<pk>[0-9]+)/$', 
-        s1080_inclusao_apagar_views.apagar, 
+    url(r'^s1080-inclusao/apagar/(?P<pk>[0-9]+)/$',
+        s1080_inclusao_apagar_views.apagar,
         name='s1080_inclusao_apagar'),
 
     url(r'^s1080-inclusao/api/$',
@@ -70,32 +70,32 @@ urlpatterns = [
     url(r'^s1080-inclusao/api/(?P<pk>[0-9]+)/$',
         s1080_inclusao_api_views.s1080inclusaoDetail.as_view() ),
 
-    url(r'^s1080-inclusao/$', 
-        s1080_inclusao_listar_views.listar, 
+    url(r'^s1080-inclusao/$',
+        s1080_inclusao_listar_views.listar,
         name='s1080_inclusao'),
 
-    url(r'^s1080-inclusao/salvar/(?P<pk>[0-9]+)/$', 
-        s1080_inclusao_salvar_views.salvar, 
+    url(r'^s1080-inclusao/salvar/(?P<pk>[0-9]+)/$',
+        s1080_inclusao_salvar_views.salvar,
         name='s1080_inclusao_salvar'),
 
-    url(r'^s1080-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s1080_inclusao_salvar_views.salvar, 
+    url(r'^s1080-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s1080_inclusao_salvar_views.salvar,
         name='s1080_inclusao_salvar_tab'),
-        
-    url(r'^s1080-inclusao/cadastrar/$', 
-        s1080_inclusao_salvar_views.salvar, 
+
+    url(r'^s1080-inclusao/cadastrar/$',
+        s1080_inclusao_salvar_views.salvar,
         name='s1080_inclusao_cadastrar'),
 
-    url(r'^s1080-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s1080_inclusao_salvar_views.salvar, 
+    url(r'^s1080-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s1080_inclusao_salvar_views.salvar,
         name='s1080_inclusao_salvar_output'),
-        
-    url(r'^s1080-inclusao/(?P<output>[\w-]+)/$', 
-        s1080_inclusao_listar_views.listar, 
+
+    url(r'^s1080-inclusao/(?P<output>[\w-]+)/$',
+        s1080_inclusao_listar_views.listar,
         name='s1080_inclusao_output'),
 
-    url(r'^s1080-alteracao/apagar/(?P<pk>[0-9]+)/$', 
-        s1080_alteracao_apagar_views.apagar, 
+    url(r'^s1080-alteracao/apagar/(?P<pk>[0-9]+)/$',
+        s1080_alteracao_apagar_views.apagar,
         name='s1080_alteracao_apagar'),
 
     url(r'^s1080-alteracao/api/$',
@@ -104,32 +104,32 @@ urlpatterns = [
     url(r'^s1080-alteracao/api/(?P<pk>[0-9]+)/$',
         s1080_alteracao_api_views.s1080alteracaoDetail.as_view() ),
 
-    url(r'^s1080-alteracao/$', 
-        s1080_alteracao_listar_views.listar, 
+    url(r'^s1080-alteracao/$',
+        s1080_alteracao_listar_views.listar,
         name='s1080_alteracao'),
 
-    url(r'^s1080-alteracao/salvar/(?P<pk>[0-9]+)/$', 
-        s1080_alteracao_salvar_views.salvar, 
+    url(r'^s1080-alteracao/salvar/(?P<pk>[0-9]+)/$',
+        s1080_alteracao_salvar_views.salvar,
         name='s1080_alteracao_salvar'),
 
-    url(r'^s1080-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s1080_alteracao_salvar_views.salvar, 
+    url(r'^s1080-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s1080_alteracao_salvar_views.salvar,
         name='s1080_alteracao_salvar_tab'),
-        
-    url(r'^s1080-alteracao/cadastrar/$', 
-        s1080_alteracao_salvar_views.salvar, 
+
+    url(r'^s1080-alteracao/cadastrar/$',
+        s1080_alteracao_salvar_views.salvar,
         name='s1080_alteracao_cadastrar'),
 
-    url(r'^s1080-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s1080_alteracao_salvar_views.salvar, 
+    url(r'^s1080-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s1080_alteracao_salvar_views.salvar,
         name='s1080_alteracao_salvar_output'),
-        
-    url(r'^s1080-alteracao/(?P<output>[\w-]+)/$', 
-        s1080_alteracao_listar_views.listar, 
+
+    url(r'^s1080-alteracao/(?P<output>[\w-]+)/$',
+        s1080_alteracao_listar_views.listar,
         name='s1080_alteracao_output'),
 
-    url(r'^s1080-alteracao-novavalidade/apagar/(?P<pk>[0-9]+)/$', 
-        s1080_alteracao_novavalidade_apagar_views.apagar, 
+    url(r'^s1080-alteracao-novavalidade/apagar/(?P<pk>[0-9]+)/$',
+        s1080_alteracao_novavalidade_apagar_views.apagar,
         name='s1080_alteracao_novavalidade_apagar'),
 
     url(r'^s1080-alteracao-novavalidade/api/$',
@@ -138,32 +138,32 @@ urlpatterns = [
     url(r'^s1080-alteracao-novavalidade/api/(?P<pk>[0-9]+)/$',
         s1080_alteracao_novavalidade_api_views.s1080alteracaonovaValidadeDetail.as_view() ),
 
-    url(r'^s1080-alteracao-novavalidade/$', 
-        s1080_alteracao_novavalidade_listar_views.listar, 
+    url(r'^s1080-alteracao-novavalidade/$',
+        s1080_alteracao_novavalidade_listar_views.listar,
         name='s1080_alteracao_novavalidade'),
 
-    url(r'^s1080-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/$', 
-        s1080_alteracao_novavalidade_salvar_views.salvar, 
+    url(r'^s1080-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/$',
+        s1080_alteracao_novavalidade_salvar_views.salvar,
         name='s1080_alteracao_novavalidade_salvar'),
 
-    url(r'^s1080-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s1080_alteracao_novavalidade_salvar_views.salvar, 
+    url(r'^s1080-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s1080_alteracao_novavalidade_salvar_views.salvar,
         name='s1080_alteracao_novavalidade_salvar_tab'),
-        
-    url(r'^s1080-alteracao-novavalidade/cadastrar/$', 
-        s1080_alteracao_novavalidade_salvar_views.salvar, 
+
+    url(r'^s1080-alteracao-novavalidade/cadastrar/$',
+        s1080_alteracao_novavalidade_salvar_views.salvar,
         name='s1080_alteracao_novavalidade_cadastrar'),
 
-    url(r'^s1080-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s1080_alteracao_novavalidade_salvar_views.salvar, 
+    url(r'^s1080-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s1080_alteracao_novavalidade_salvar_views.salvar,
         name='s1080_alteracao_novavalidade_salvar_output'),
-        
-    url(r'^s1080-alteracao-novavalidade/(?P<output>[\w-]+)/$', 
-        s1080_alteracao_novavalidade_listar_views.listar, 
+
+    url(r'^s1080-alteracao-novavalidade/(?P<output>[\w-]+)/$',
+        s1080_alteracao_novavalidade_listar_views.listar,
         name='s1080_alteracao_novavalidade_output'),
 
-    url(r'^s1080-exclusao/apagar/(?P<pk>[0-9]+)/$', 
-        s1080_exclusao_apagar_views.apagar, 
+    url(r'^s1080-exclusao/apagar/(?P<pk>[0-9]+)/$',
+        s1080_exclusao_apagar_views.apagar,
         name='s1080_exclusao_apagar'),
 
     url(r'^s1080-exclusao/api/$',
@@ -172,28 +172,28 @@ urlpatterns = [
     url(r'^s1080-exclusao/api/(?P<pk>[0-9]+)/$',
         s1080_exclusao_api_views.s1080exclusaoDetail.as_view() ),
 
-    url(r'^s1080-exclusao/$', 
-        s1080_exclusao_listar_views.listar, 
+    url(r'^s1080-exclusao/$',
+        s1080_exclusao_listar_views.listar,
         name='s1080_exclusao'),
 
-    url(r'^s1080-exclusao/salvar/(?P<pk>[0-9]+)/$', 
-        s1080_exclusao_salvar_views.salvar, 
+    url(r'^s1080-exclusao/salvar/(?P<pk>[0-9]+)/$',
+        s1080_exclusao_salvar_views.salvar,
         name='s1080_exclusao_salvar'),
 
-    url(r'^s1080-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s1080_exclusao_salvar_views.salvar, 
+    url(r'^s1080-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s1080_exclusao_salvar_views.salvar,
         name='s1080_exclusao_salvar_tab'),
-        
-    url(r'^s1080-exclusao/cadastrar/$', 
-        s1080_exclusao_salvar_views.salvar, 
+
+    url(r'^s1080-exclusao/cadastrar/$',
+        s1080_exclusao_salvar_views.salvar,
         name='s1080_exclusao_cadastrar'),
 
-    url(r'^s1080-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s1080_exclusao_salvar_views.salvar, 
+    url(r'^s1080-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s1080_exclusao_salvar_views.salvar,
         name='s1080_exclusao_salvar_output'),
-        
-    url(r'^s1080-exclusao/(?P<output>[\w-]+)/$', 
-        s1080_exclusao_listar_views.listar, 
+
+    url(r'^s1080-exclusao/(?P<output>[\w-]+)/$',
+        s1080_exclusao_listar_views.listar,
         name='s1080_exclusao_output'),
 
 

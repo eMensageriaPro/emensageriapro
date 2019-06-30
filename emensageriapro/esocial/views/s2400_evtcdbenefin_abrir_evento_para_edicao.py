@@ -75,7 +75,7 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def abrir_evento_para_edicao(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import gravar_nome_arquivo
+    from emensageriapro.mensageiro.functions.funcoes import gravar_nome_arquivo
 
     if request.user.has_perm('esocial.can_open_s2400evtCdBenefIn'):
 
@@ -102,9 +102,9 @@ def abrir_evento_para_edicao(request, pk):
                 status=STATUS_EVENTO_CADASTRADO,
                 arquivo_original=0)
                                                       
-            arquivo = 'arquivos/Eventos/s2400_evtcdbenefin/%s.xml' % (s2400_evtcdbenefin.identidade)
+            arquivo = '/arquivos/Eventos/s2400_evtcdbenefin/%s.xml' % (s2400_evtcdbenefin.identidade)
 
-            if os.path.exists(BASE_DIR + '/' + arquivo):
+            if os.path.exists(BASE_DIR + arquivo):
 
                 data_hora_atual = str(datetime.now()).replace(':','_').replace(' ','_').replace('.','_')
                 dad = (BASE_DIR, s2400_evtcdbenefin.identidade, BASE_DIR, s2400_evtcdbenefin.identidade, data_hora_atual)

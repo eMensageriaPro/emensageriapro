@@ -2,7 +2,7 @@
 {% extends 'base.html' %}{% load templatetags %}
 {% block content %}
     {% if not output %}
-    <meta http-equiv="refresh" content="20">
+{#    <meta http-equiv="refresh" content="20">#}
     <section class="content-header">
         <h1>Importações
             <small>Mapa de Processamento</small>
@@ -46,7 +46,7 @@
            <div class="col-md-4">
                 <button type="button" class="btn btn-primary btn-block btn-lg" id="myBtn">
                     <i class="fa fa-file-zip-o"></i>&nbsp;
-                    Importar XML em arquivo compactado
+                    Upload de arquivo XML/ZIP
                 </button>
 
                <div class="modal fade" id="myModal" role="dialog">
@@ -66,7 +66,7 @@
                                                                    placeholder="arquivo" accept=".xml,.zip">
                                     </div>
                                     <button type="submit" class="btn btn-default btn-info btn-block">
-                                        Importar arquivo
+                                        Enviar arquivo
                                     </button>
                                 </form>
                             </div>
@@ -152,7 +152,7 @@
                                         <td>{{ a.get_status_display }}</td>
                                         <td>{{ a.data_hora }}</td>
                                         <td>
-                                            <a href="{% url 'arquivos_visualizacao' pk=a.id %}">
+                                            <a href="{% url 'importacao_visualizacao' pk=a.id %}" target="_blank">
                                                 <span class="btn btn-primary" title="Visualizar">
                                                     <i class="fa fa-fw fa-eye"></i>
                                                 </span>
@@ -193,7 +193,12 @@
                                         <td>{{ a.get_status_display }}</td>
                                         <td>{{ a.data_hora }}</td>
                                         <td>
-                                            <a href="{% url 'arquivos_visualizacao' pk=a.id %}">
+                                            <a href="{% url 'importacao_reprocessar' pk=a.id %}" target="_blank">
+                                                <span class="btn btn-warning" title="Reprocessar">
+                                                    <i class="fa fa-fw fa-recycle"></i>
+                                                </span>
+                                            </a>
+                                            <a href="{% url 'importacao_visualizacao' pk=a.id %}" target="_blank">
                                                 <span class="btn btn-primary" title="Visualizar">
                                                     <i class="fa fa-fw fa-eye"></i>
                                                 </span>
@@ -237,7 +242,7 @@
                                         <td>{{ a.get_status_display }}</td>
                                         <td>{{ a.data_hora }}</td>
                                         <td>
-                                            <a href="{% url 'arquivos_visualizacao' pk=a.id %}">
+                                            <a href="{% url 'importacao_visualizacao' pk=a.id %}" target="_blank">
                                                 <span class="btn btn-primary" title="Visualizar">
                                                     <i class="fa fa-fw fa-eye"></i>
                                                 </span>
@@ -265,6 +270,7 @@
                                     <th>Versão</th>
                                     <th>Identidade do evento</th>
                                     <th>Status</th>
+{#                                    <th>Verificação</th>#}
                                     <th>Data/Hora de Importação</th>
                                     <th>Ações</th>
                                 </tr>
@@ -276,9 +282,17 @@
                                         <td>{{ a.versao }}</td>
                                         <td>{{ a.identidade_evento }}</td>
                                         <td>{{ a.get_status_display }}</td>
+{#                                        <td>#}
+{#                                            <script type="text/javascript">#}
+{#                                            $(document).ready(function(){#}
+{#                                                    $("#{{ a.id }}verific").load('{% url 'mapa_importacoes_verificacao' pk=a.id %}');#}
+{#                                            });#}
+{#                                            </script>#}
+{#                                            <div id="#{{ a.id }}verific">Verificando...</div>#}
+{#                                        </td>#}
                                         <td>{{ a.data_hora }}</td>
                                         <td>
-                                            <a href="{% url 'arquivos_visualizacao' pk=a.id %}">
+                                            <a href="{% url 'importacao_visualizacao' pk=a.id %}" target="_blank">
                                                 <span class="btn btn-primary" title="Visualizar">
                                                     <i class="fa fa-fw fa-eye"></i>
                                                 </span>

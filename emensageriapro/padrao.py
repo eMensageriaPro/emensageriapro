@@ -51,7 +51,7 @@ def testar_importacao_xml(dicionario, chave, valor):
 
 def salvar_arquivo(arquivo, texto):
     from emensageriapro.settings import BASE_DIR
-    arquivo1 = BASE_DIR+'/'+arquivo
+    arquivo1 = BASE_DIR + arquivo
     # file = open(arquivo1, "w")
     # file.write( texto )
     # file.close()
@@ -64,7 +64,7 @@ def salvar_arquivo(arquivo, texto):
 
 def ler_arquivo(arquivo):
     from emensageriapro.settings import BASE_DIR
-    arquivo = BASE_DIR+'/'+arquivo
+    arquivo = BASE_DIR + arquivo
     # file = open(arquivo, 'r')
     # texto = file.read()
     # file.close()
@@ -77,13 +77,13 @@ def ler_arquivo(arquivo):
 
 def range_ano_mes():
     from datetime import datetime
-    anos = range(2010,datetime.now().year+1)
-    meses = ['01','02','03','04','05','06','07','08','09','10','11','12',]
-    meses_ext = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez',]
+    anos = range(2010, datetime.now().year+1)
+    meses = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+    meses_ext = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
     lista = []
     for a in anos: 
         for (m, me) in zip(meses, meses_ext): 
-            lista.append( (str(a)+'-'+m, me+'/'+str(a)) )
+            lista.append((str(a)+'-'+m, me+'/'+str(a)))
     # print lista
 
 

@@ -72,197 +72,205 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s2200(request, pk, versao=None):
+def gerar_xml_s2200_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s2200_evtadmissao = get_object_or_404(
+        s2200evtAdmissao,
+        id=pk)
 
-        s2200_evtadmissao = get_object_or_404(
-            s2200evtAdmissao,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s2200_evtadmissao.versao
 
-        if not versao or versao == '|':
-            versao = s2200_evtadmissao.versao
+    evento = 's2200evtAdmissao'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's2200evtAdmissao'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s2200_evtadmissao_lista = s2200evtAdmissao.objects. \
-            filter(id=pk).all()
+    s2200_evtadmissao_lista = s2200evtAdmissao.objects. \
+        filter(id=pk).all()
 
 
-        s2200_documentos_lista = s2200documentos.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_documentos_lista = s2200documentos.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_ctps_lista = s2200CTPS.objects. \
-            filter(s2200_documentos_id__in=listar_ids(s2200_documentos_lista)).all()
+    s2200_ctps_lista = s2200CTPS.objects. \
+        filter(s2200_documentos_id__in=listar_ids(s2200_documentos_lista)).all()
 
-        s2200_ric_lista = s2200RIC.objects. \
-            filter(s2200_documentos_id__in=listar_ids(s2200_documentos_lista)).all()
+    s2200_ric_lista = s2200RIC.objects. \
+        filter(s2200_documentos_id__in=listar_ids(s2200_documentos_lista)).all()
 
-        s2200_rg_lista = s2200RG.objects. \
-            filter(s2200_documentos_id__in=listar_ids(s2200_documentos_lista)).all()
+    s2200_rg_lista = s2200RG.objects. \
+        filter(s2200_documentos_id__in=listar_ids(s2200_documentos_lista)).all()
 
-        s2200_rne_lista = s2200RNE.objects. \
-            filter(s2200_documentos_id__in=listar_ids(s2200_documentos_lista)).all()
+    s2200_rne_lista = s2200RNE.objects. \
+        filter(s2200_documentos_id__in=listar_ids(s2200_documentos_lista)).all()
 
-        s2200_oc_lista = s2200OC.objects. \
-            filter(s2200_documentos_id__in=listar_ids(s2200_documentos_lista)).all()
+    s2200_oc_lista = s2200OC.objects. \
+        filter(s2200_documentos_id__in=listar_ids(s2200_documentos_lista)).all()
 
-        s2200_cnh_lista = s2200CNH.objects. \
-            filter(s2200_documentos_id__in=listar_ids(s2200_documentos_lista)).all()
+    s2200_cnh_lista = s2200CNH.objects. \
+        filter(s2200_documentos_id__in=listar_ids(s2200_documentos_lista)).all()
 
-        s2200_brasil_lista = s2200brasil.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_brasil_lista = s2200brasil.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_exterior_lista = s2200exterior.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_exterior_lista = s2200exterior.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_trabestrangeiro_lista = s2200trabEstrangeiro.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_trabestrangeiro_lista = s2200trabEstrangeiro.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_infodeficiencia_lista = s2200infoDeficiencia.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_infodeficiencia_lista = s2200infoDeficiencia.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_dependente_lista = s2200dependente.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_dependente_lista = s2200dependente.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_aposentadoria_lista = s2200aposentadoria.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_aposentadoria_lista = s2200aposentadoria.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_contato_lista = s2200contato.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_contato_lista = s2200contato.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_infoceletista_lista = s2200infoCeletista.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_infoceletista_lista = s2200infoCeletista.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_trabtemporario_lista = s2200trabTemporario.objects. \
-            filter(s2200_infoceletista_id__in=listar_ids(s2200_infoceletista_lista)).all()
+    s2200_trabtemporario_lista = s2200trabTemporario.objects. \
+        filter(s2200_infoceletista_id__in=listar_ids(s2200_infoceletista_lista)).all()
 
-        s2200_ideestabvinc_lista = s2200ideEstabVinc.objects. \
-            filter(s2200_trabtemporario_id__in=listar_ids(s2200_trabtemporario_lista)).all()
+    s2200_ideestabvinc_lista = s2200ideEstabVinc.objects. \
+        filter(s2200_trabtemporario_id__in=listar_ids(s2200_trabtemporario_lista)).all()
 
-        s2200_idetrabsubstituido_lista = s2200ideTrabSubstituido.objects. \
-            filter(s2200_trabtemporario_id__in=listar_ids(s2200_trabtemporario_lista)).all()
+    s2200_idetrabsubstituido_lista = s2200ideTrabSubstituido.objects. \
+        filter(s2200_trabtemporario_id__in=listar_ids(s2200_trabtemporario_lista)).all()
 
-        s2200_aprend_lista = s2200aprend.objects. \
-            filter(s2200_infoceletista_id__in=listar_ids(s2200_infoceletista_lista)).all()
+    s2200_aprend_lista = s2200aprend.objects. \
+        filter(s2200_infoceletista_id__in=listar_ids(s2200_infoceletista_lista)).all()
 
-        s2200_infoestatutario_lista = s2200infoEstatutario.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_infoestatutario_lista = s2200infoEstatutario.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_infodecjud_lista = s2200infoDecJud.objects. \
-            filter(s2200_infoestatutario_id__in=listar_ids(s2200_infoestatutario_lista)).all()
+    s2200_infodecjud_lista = s2200infoDecJud.objects. \
+        filter(s2200_infoestatutario_id__in=listar_ids(s2200_infoestatutario_lista)).all()
 
-        s2200_localtrabgeral_lista = s2200localTrabGeral.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_localtrabgeral_lista = s2200localTrabGeral.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_localtrabdom_lista = s2200localTrabDom.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_localtrabdom_lista = s2200localTrabDom.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_horcontratual_lista = s2200horContratual.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_horcontratual_lista = s2200horContratual.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_horario_lista = s2200horario.objects. \
-            filter(s2200_horcontratual_id__in=listar_ids(s2200_horcontratual_lista)).all()
+    s2200_horario_lista = s2200horario.objects. \
+        filter(s2200_horcontratual_id__in=listar_ids(s2200_horcontratual_lista)).all()
 
-        s2200_filiacaosindical_lista = s2200filiacaoSindical.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_filiacaosindical_lista = s2200filiacaoSindical.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_alvarajudicial_lista = s2200alvaraJudicial.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_alvarajudicial_lista = s2200alvaraJudicial.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_observacoes_lista = s2200observacoes.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_observacoes_lista = s2200observacoes.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_sucessaovinc_lista = s2200sucessaoVinc.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_sucessaovinc_lista = s2200sucessaoVinc.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_transfdom_lista = s2200transfDom.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_transfdom_lista = s2200transfDom.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_mudancacpf_lista = s2200mudancaCPF.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_mudancacpf_lista = s2200mudancaCPF.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_afastamento_lista = s2200afastamento.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_afastamento_lista = s2200afastamento.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_desligamento_lista = s2200desligamento.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_desligamento_lista = s2200desligamento.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
-        s2200_cessao_lista = s2200cessao.objects. \
-            filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
+    s2200_cessao_lista = s2200cessao.objects. \
+        filter(s2200_evtadmissao_id__in=listar_ids(s2200_evtadmissao_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s2200_evtadmissao,
-            's2200_evtadmissao_lista': s2200_evtadmissao_lista,
-            'pk': int(pk),
-            's2200_evtadmissao': s2200_evtadmissao,
-            's2200_documentos_lista': s2200_documentos_lista,
-            's2200_ctps_lista': s2200_ctps_lista,
-            's2200_ric_lista': s2200_ric_lista,
-            's2200_rg_lista': s2200_rg_lista,
-            's2200_rne_lista': s2200_rne_lista,
-            's2200_oc_lista': s2200_oc_lista,
-            's2200_cnh_lista': s2200_cnh_lista,
-            's2200_brasil_lista': s2200_brasil_lista,
-            's2200_exterior_lista': s2200_exterior_lista,
-            's2200_trabestrangeiro_lista': s2200_trabestrangeiro_lista,
-            's2200_infodeficiencia_lista': s2200_infodeficiencia_lista,
-            's2200_dependente_lista': s2200_dependente_lista,
-            's2200_aposentadoria_lista': s2200_aposentadoria_lista,
-            's2200_contato_lista': s2200_contato_lista,
-            's2200_infoceletista_lista': s2200_infoceletista_lista,
-            's2200_trabtemporario_lista': s2200_trabtemporario_lista,
-            's2200_ideestabvinc_lista': s2200_ideestabvinc_lista,
-            's2200_idetrabsubstituido_lista': s2200_idetrabsubstituido_lista,
-            's2200_aprend_lista': s2200_aprend_lista,
-            's2200_infoestatutario_lista': s2200_infoestatutario_lista,
-            's2200_infodecjud_lista': s2200_infodecjud_lista,
-            's2200_localtrabgeral_lista': s2200_localtrabgeral_lista,
-            's2200_localtrabdom_lista': s2200_localtrabdom_lista,
-            's2200_horcontratual_lista': s2200_horcontratual_lista,
-            's2200_horario_lista': s2200_horario_lista,
-            's2200_filiacaosindical_lista': s2200_filiacaosindical_lista,
-            's2200_alvarajudicial_lista': s2200_alvarajudicial_lista,
-            's2200_observacoes_lista': s2200_observacoes_lista,
-            's2200_sucessaovinc_lista': s2200_sucessaovinc_lista,
-            's2200_transfdom_lista': s2200_transfdom_lista,
-            's2200_mudancacpf_lista': s2200_mudancacpf_lista,
-            's2200_afastamento_lista': s2200_afastamento_lista,
-            's2200_desligamento_lista': s2200_desligamento_lista,
-            's2200_cessao_lista': s2200_cessao_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s2200_evtadmissao,
+        's2200_evtadmissao_lista': s2200_evtadmissao_lista,
+        'pk': int(pk),
+        's2200_evtadmissao': s2200_evtadmissao,
+        's2200_documentos_lista': s2200_documentos_lista,
+        's2200_ctps_lista': s2200_ctps_lista,
+        's2200_ric_lista': s2200_ric_lista,
+        's2200_rg_lista': s2200_rg_lista,
+        's2200_rne_lista': s2200_rne_lista,
+        's2200_oc_lista': s2200_oc_lista,
+        's2200_cnh_lista': s2200_cnh_lista,
+        's2200_brasil_lista': s2200_brasil_lista,
+        's2200_exterior_lista': s2200_exterior_lista,
+        's2200_trabestrangeiro_lista': s2200_trabestrangeiro_lista,
+        's2200_infodeficiencia_lista': s2200_infodeficiencia_lista,
+        's2200_dependente_lista': s2200_dependente_lista,
+        's2200_aposentadoria_lista': s2200_aposentadoria_lista,
+        's2200_contato_lista': s2200_contato_lista,
+        's2200_infoceletista_lista': s2200_infoceletista_lista,
+        's2200_trabtemporario_lista': s2200_trabtemporario_lista,
+        's2200_ideestabvinc_lista': s2200_ideestabvinc_lista,
+        's2200_idetrabsubstituido_lista': s2200_idetrabsubstituido_lista,
+        's2200_aprend_lista': s2200_aprend_lista,
+        's2200_infoestatutario_lista': s2200_infoestatutario_lista,
+        's2200_infodecjud_lista': s2200_infodecjud_lista,
+        's2200_localtrabgeral_lista': s2200_localtrabgeral_lista,
+        's2200_localtrabdom_lista': s2200_localtrabdom_lista,
+        's2200_horcontratual_lista': s2200_horcontratual_lista,
+        's2200_horario_lista': s2200_horario_lista,
+        's2200_filiacaosindical_lista': s2200_filiacaosindical_lista,
+        's2200_alvarajudicial_lista': s2200_alvarajudicial_lista,
+        's2200_observacoes_lista': s2200_observacoes_lista,
+        's2200_sucessaovinc_lista': s2200_sucessaovinc_lista,
+        's2200_transfdom_lista': s2200_transfdom_lista,
+        's2200_mudancacpf_lista': s2200_mudancacpf_lista,
+        's2200_afastamento_lista': s2200_afastamento_lista,
+        's2200_desligamento_lista': s2200_desligamento_lista,
+        's2200_cessao_lista': s2200_cessao_lista,
+    }
 
-        t = get_template('s2200_evtadmissao.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s2200_evtadmissao.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s2200(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s2200_evtadmissao = get_object_or_404(
+        s2200evtAdmissao,
+        id=pk)
+    return gerar_xml_s2200_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s2200_evtadmissao = get_object_or_404(
@@ -270,15 +278,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s2200_evtadmissao.arquivo_original:
-
         xml = ler_arquivo(s2200_evtadmissao.arquivo)
 
     else:
         xml = gerar_xml_s2200(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s2200evtAdmissao.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -308,16 +316,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s2200_evtadmissao.transmissor_lote_esocial_id)
 
-    if s2200_evtadmissao.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s2200evtAdmissao.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s2200evtAdmissao.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s2200_evtadmissao/%s.xml' % (s2200_evtadmissao.identidade)
+            s2200evtAdmissao.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s2200_evtadmissao/%s.xml' % (s2200_evtadmissao.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s2200_evtadmissao/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

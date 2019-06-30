@@ -279,7 +279,7 @@
 
     
 
-                            {% if perms.efdreinf.can_validate_r2098evtReabreEvPer and r2098_evtreabreevper_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            {% if perms.efdreinf.can_validate_r2098evtReabreEvPer and r2098_evtreabreevper_form.status.value == STATUS_EVENTO_CADASTRADO or r2098_evtreabreevper_form.status.value == STATUS_EVENTO_GERADO or r2098_evtreabreevper_form.status.value == STATUS_EVENTO_ASSINADO %}
                             <div class="col-md-3">
                                 <a href="{% url 'r2098_evtreabreevper_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">

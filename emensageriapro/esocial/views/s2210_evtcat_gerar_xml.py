@@ -72,81 +72,89 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s2210(request, pk, versao=None):
+def gerar_xml_s2210_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s2210_evtcat = get_object_or_404(
+        s2210evtCAT,
+        id=pk)
 
-        s2210_evtcat = get_object_or_404(
-            s2210evtCAT,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s2210_evtcat.versao
 
-        if not versao or versao == '|':
-            versao = s2210_evtcat.versao
+    evento = 's2210evtCAT'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's2210evtCAT'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s2210_evtcat_lista = s2210evtCAT.objects. \
-            filter(id=pk).all()
+    s2210_evtcat_lista = s2210evtCAT.objects. \
+        filter(id=pk).all()
 
 
-        s2210_idelocalacid_lista = s2210ideLocalAcid.objects. \
-            filter(s2210_evtcat_id__in=listar_ids(s2210_evtcat_lista)).all()
+    s2210_idelocalacid_lista = s2210ideLocalAcid.objects. \
+        filter(s2210_evtcat_id__in=listar_ids(s2210_evtcat_lista)).all()
 
-        s2210_parteatingida_lista = s2210parteAtingida.objects. \
-            filter(s2210_evtcat_id__in=listar_ids(s2210_evtcat_lista)).all()
+    s2210_parteatingida_lista = s2210parteAtingida.objects. \
+        filter(s2210_evtcat_id__in=listar_ids(s2210_evtcat_lista)).all()
 
-        s2210_agentecausador_lista = s2210agenteCausador.objects. \
-            filter(s2210_evtcat_id__in=listar_ids(s2210_evtcat_lista)).all()
+    s2210_agentecausador_lista = s2210agenteCausador.objects. \
+        filter(s2210_evtcat_id__in=listar_ids(s2210_evtcat_lista)).all()
 
-        s2210_atestado_lista = s2210atestado.objects. \
-            filter(s2210_evtcat_id__in=listar_ids(s2210_evtcat_lista)).all()
+    s2210_atestado_lista = s2210atestado.objects. \
+        filter(s2210_evtcat_id__in=listar_ids(s2210_evtcat_lista)).all()
 
-        s2210_catorigem_lista = s2210catOrigem.objects. \
-            filter(s2210_evtcat_id__in=listar_ids(s2210_evtcat_lista)).all()
+    s2210_catorigem_lista = s2210catOrigem.objects. \
+        filter(s2210_evtcat_id__in=listar_ids(s2210_evtcat_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s2210_evtcat,
-            's2210_evtcat_lista': s2210_evtcat_lista,
-            'pk': int(pk),
-            's2210_evtcat': s2210_evtcat,
-            's2210_idelocalacid_lista': s2210_idelocalacid_lista,
-            's2210_parteatingida_lista': s2210_parteatingida_lista,
-            's2210_agentecausador_lista': s2210_agentecausador_lista,
-            's2210_atestado_lista': s2210_atestado_lista,
-            's2210_catorigem_lista': s2210_catorigem_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s2210_evtcat,
+        's2210_evtcat_lista': s2210_evtcat_lista,
+        'pk': int(pk),
+        's2210_evtcat': s2210_evtcat,
+        's2210_idelocalacid_lista': s2210_idelocalacid_lista,
+        's2210_parteatingida_lista': s2210_parteatingida_lista,
+        's2210_agentecausador_lista': s2210_agentecausador_lista,
+        's2210_atestado_lista': s2210_atestado_lista,
+        's2210_catorigem_lista': s2210_catorigem_lista,
+    }
 
-        t = get_template('s2210_evtcat.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s2210_evtcat.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s2210(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s2210_evtcat = get_object_or_404(
+        s2210evtCAT,
+        id=pk)
+    return gerar_xml_s2210_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s2210_evtcat = get_object_or_404(
@@ -154,15 +162,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s2210_evtcat.arquivo_original:
-
         xml = ler_arquivo(s2210_evtcat.arquivo)
 
     else:
         xml = gerar_xml_s2210(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s2210evtCAT.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -192,16 +200,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s2210_evtcat.transmissor_lote_esocial_id)
 
-    if s2210_evtcat.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s2210evtCAT.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s2210evtCAT.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s2210_evtcat/%s.xml' % (s2210_evtcat.identidade)
+            s2210evtCAT.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s2210_evtcat/%s.xml' % (s2210_evtcat.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s2210_evtcat/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

@@ -72,69 +72,77 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s2250(request, pk, versao=None):
+def gerar_xml_s2250_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s2250_evtavprevio = get_object_or_404(
+        s2250evtAvPrevio,
+        id=pk)
 
-        s2250_evtavprevio = get_object_or_404(
-            s2250evtAvPrevio,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s2250_evtavprevio.versao
 
-        if not versao or versao == '|':
-            versao = s2250_evtavprevio.versao
+    evento = 's2250evtAvPrevio'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's2250evtAvPrevio'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s2250_evtavprevio_lista = s2250evtAvPrevio.objects. \
-            filter(id=pk).all()
+    s2250_evtavprevio_lista = s2250evtAvPrevio.objects. \
+        filter(id=pk).all()
 
 
-        s2250_detavprevio_lista = s2250detAvPrevio.objects. \
-            filter(s2250_evtavprevio_id__in=listar_ids(s2250_evtavprevio_lista)).all()
+    s2250_detavprevio_lista = s2250detAvPrevio.objects. \
+        filter(s2250_evtavprevio_id__in=listar_ids(s2250_evtavprevio_lista)).all()
 
-        s2250_cancavprevio_lista = s2250cancAvPrevio.objects. \
-            filter(s2250_evtavprevio_id__in=listar_ids(s2250_evtavprevio_lista)).all()
+    s2250_cancavprevio_lista = s2250cancAvPrevio.objects. \
+        filter(s2250_evtavprevio_id__in=listar_ids(s2250_evtavprevio_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s2250_evtavprevio,
-            's2250_evtavprevio_lista': s2250_evtavprevio_lista,
-            'pk': int(pk),
-            's2250_evtavprevio': s2250_evtavprevio,
-            's2250_detavprevio_lista': s2250_detavprevio_lista,
-            's2250_cancavprevio_lista': s2250_cancavprevio_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s2250_evtavprevio,
+        's2250_evtavprevio_lista': s2250_evtavprevio_lista,
+        'pk': int(pk),
+        's2250_evtavprevio': s2250_evtavprevio,
+        's2250_detavprevio_lista': s2250_detavprevio_lista,
+        's2250_cancavprevio_lista': s2250_cancavprevio_lista,
+    }
 
-        t = get_template('s2250_evtavprevio.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s2250_evtavprevio.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s2250(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s2250_evtavprevio = get_object_or_404(
+        s2250evtAvPrevio,
+        id=pk)
+    return gerar_xml_s2250_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s2250_evtavprevio = get_object_or_404(
@@ -142,15 +150,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s2250_evtavprevio.arquivo_original:
-
         xml = ler_arquivo(s2250_evtavprevio.arquivo)
 
     else:
         xml = gerar_xml_s2250(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s2250evtAvPrevio.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -180,16 +188,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s2250_evtavprevio.transmissor_lote_esocial_id)
 
-    if s2250_evtavprevio.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s2250evtAvPrevio.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s2250evtAvPrevio.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s2250_evtavprevio/%s.xml' % (s2250_evtavprevio.identidade)
+            s2250evtAvPrevio.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s2250_evtavprevio/%s.xml' % (s2250_evtavprevio.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s2250_evtavprevio/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

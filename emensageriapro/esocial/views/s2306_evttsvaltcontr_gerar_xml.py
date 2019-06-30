@@ -72,89 +72,97 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s2306(request, pk, versao=None):
+def gerar_xml_s2306_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s2306_evttsvaltcontr = get_object_or_404(
+        s2306evtTSVAltContr,
+        id=pk)
 
-        s2306_evttsvaltcontr = get_object_or_404(
-            s2306evtTSVAltContr,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s2306_evttsvaltcontr.versao
 
-        if not versao or versao == '|':
-            versao = s2306_evttsvaltcontr.versao
+    evento = 's2306evtTSVAltContr'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's2306evtTSVAltContr'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s2306_evttsvaltcontr_lista = s2306evtTSVAltContr.objects. \
-            filter(id=pk).all()
+    s2306_evttsvaltcontr_lista = s2306evtTSVAltContr.objects. \
+        filter(id=pk).all()
 
 
-        s2306_infocomplementares_lista = s2306infoComplementares.objects. \
-            filter(s2306_evttsvaltcontr_id__in=listar_ids(s2306_evttsvaltcontr_lista)).all()
+    s2306_infocomplementares_lista = s2306infoComplementares.objects. \
+        filter(s2306_evttsvaltcontr_id__in=listar_ids(s2306_evttsvaltcontr_lista)).all()
 
-        s2306_cargofuncao_lista = s2306cargoFuncao.objects. \
-            filter(s2306_infocomplementares_id__in=listar_ids(s2306_infocomplementares_lista)).all()
+    s2306_cargofuncao_lista = s2306cargoFuncao.objects. \
+        filter(s2306_infocomplementares_id__in=listar_ids(s2306_infocomplementares_lista)).all()
 
-        s2306_remuneracao_lista = s2306remuneracao.objects. \
-            filter(s2306_infocomplementares_id__in=listar_ids(s2306_infocomplementares_lista)).all()
+    s2306_remuneracao_lista = s2306remuneracao.objects. \
+        filter(s2306_infocomplementares_id__in=listar_ids(s2306_infocomplementares_lista)).all()
 
-        s2306_infotrabcedido_lista = s2306infoTrabCedido.objects. \
-            filter(s2306_infocomplementares_id__in=listar_ids(s2306_infocomplementares_lista)).all()
+    s2306_infotrabcedido_lista = s2306infoTrabCedido.objects. \
+        filter(s2306_infocomplementares_id__in=listar_ids(s2306_infocomplementares_lista)).all()
 
-        s2306_infoestagiario_lista = s2306infoEstagiario.objects. \
-            filter(s2306_infocomplementares_id__in=listar_ids(s2306_infocomplementares_lista)).all()
+    s2306_infoestagiario_lista = s2306infoEstagiario.objects. \
+        filter(s2306_infocomplementares_id__in=listar_ids(s2306_infocomplementares_lista)).all()
 
-        s2306_ageintegracao_lista = s2306ageIntegracao.objects. \
-            filter(s2306_infoestagiario_id__in=listar_ids(s2306_infoestagiario_lista)).all()
+    s2306_ageintegracao_lista = s2306ageIntegracao.objects. \
+        filter(s2306_infoestagiario_id__in=listar_ids(s2306_infoestagiario_lista)).all()
 
-        s2306_supervisorestagio_lista = s2306supervisorEstagio.objects. \
-            filter(s2306_infoestagiario_id__in=listar_ids(s2306_infoestagiario_lista)).all()
+    s2306_supervisorestagio_lista = s2306supervisorEstagio.objects. \
+        filter(s2306_infoestagiario_id__in=listar_ids(s2306_infoestagiario_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s2306_evttsvaltcontr,
-            's2306_evttsvaltcontr_lista': s2306_evttsvaltcontr_lista,
-            'pk': int(pk),
-            's2306_evttsvaltcontr': s2306_evttsvaltcontr,
-            's2306_infocomplementares_lista': s2306_infocomplementares_lista,
-            's2306_cargofuncao_lista': s2306_cargofuncao_lista,
-            's2306_remuneracao_lista': s2306_remuneracao_lista,
-            's2306_infotrabcedido_lista': s2306_infotrabcedido_lista,
-            's2306_infoestagiario_lista': s2306_infoestagiario_lista,
-            's2306_ageintegracao_lista': s2306_ageintegracao_lista,
-            's2306_supervisorestagio_lista': s2306_supervisorestagio_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s2306_evttsvaltcontr,
+        's2306_evttsvaltcontr_lista': s2306_evttsvaltcontr_lista,
+        'pk': int(pk),
+        's2306_evttsvaltcontr': s2306_evttsvaltcontr,
+        's2306_infocomplementares_lista': s2306_infocomplementares_lista,
+        's2306_cargofuncao_lista': s2306_cargofuncao_lista,
+        's2306_remuneracao_lista': s2306_remuneracao_lista,
+        's2306_infotrabcedido_lista': s2306_infotrabcedido_lista,
+        's2306_infoestagiario_lista': s2306_infoestagiario_lista,
+        's2306_ageintegracao_lista': s2306_ageintegracao_lista,
+        's2306_supervisorestagio_lista': s2306_supervisorestagio_lista,
+    }
 
-        t = get_template('s2306_evttsvaltcontr.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s2306_evttsvaltcontr.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s2306(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s2306_evttsvaltcontr = get_object_or_404(
+        s2306evtTSVAltContr,
+        id=pk)
+    return gerar_xml_s2306_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s2306_evttsvaltcontr = get_object_or_404(
@@ -162,15 +170,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s2306_evttsvaltcontr.arquivo_original:
-
         xml = ler_arquivo(s2306_evttsvaltcontr.arquivo)
 
     else:
         xml = gerar_xml_s2306(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s2306evtTSVAltContr.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -200,16 +208,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s2306_evttsvaltcontr.transmissor_lote_esocial_id)
 
-    if s2306_evttsvaltcontr.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s2306evtTSVAltContr.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s2306evtTSVAltContr.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s2306_evttsvaltcontr/%s.xml' % (s2306_evttsvaltcontr.identidade)
+            s2306evtTSVAltContr.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s2306_evttsvaltcontr/%s.xml' % (s2306_evttsvaltcontr.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s2306_evttsvaltcontr/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

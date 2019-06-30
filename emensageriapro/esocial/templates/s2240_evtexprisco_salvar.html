@@ -335,7 +335,7 @@
 
     
 
-                            {% if perms.esocial.can_validate_s2240evtExpRisco and s2240_evtexprisco_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            {% if perms.esocial.can_validate_s2240evtExpRisco and s2240_evtexprisco_form.status.value == STATUS_EVENTO_CADASTRADO or s2240_evtexprisco_form.status.value == STATUS_EVENTO_GERADO or s2240_evtexprisco_form.status.value == STATUS_EVENTO_ASSINADO %}
                             <div class="col-md-3">
                                 <a href="{% url 's2240_evtexprisco_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">

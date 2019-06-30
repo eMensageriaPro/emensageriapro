@@ -75,7 +75,7 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def abrir_evento_para_edicao(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import gravar_nome_arquivo
+    from emensageriapro.mensageiro.functions.funcoes import gravar_nome_arquivo
 
     if request.user.has_perm('esocial.can_open_s1040evtTabFuncao'):
 
@@ -102,9 +102,9 @@ def abrir_evento_para_edicao(request, pk):
                 status=STATUS_EVENTO_CADASTRADO,
                 arquivo_original=0)
                                                       
-            arquivo = 'arquivos/Eventos/s1040_evttabfuncao/%s.xml' % (s1040_evttabfuncao.identidade)
+            arquivo = '/arquivos/Eventos/s1040_evttabfuncao/%s.xml' % (s1040_evttabfuncao.identidade)
 
-            if os.path.exists(BASE_DIR + '/' + arquivo):
+            if os.path.exists(BASE_DIR + arquivo):
 
                 data_hora_atual = str(datetime.now()).replace(':','_').replace(' ','_').replace('.','_')
                 dad = (BASE_DIR, s1040_evttabfuncao.identidade, BASE_DIR, s1040_evttabfuncao.identidade, data_hora_atual)

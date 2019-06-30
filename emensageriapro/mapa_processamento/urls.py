@@ -10,6 +10,7 @@ from emensageriapro.mapa_processamento.views import mapa_efdreinf as mapa_efdrei
 from emensageriapro.mapa_processamento.views import funcoes_automaticas_esocial as funcoes_automaticas_esocial_views
 from emensageriapro.mapa_processamento.views import funcoes_automaticas_efdreinf as funcoes_automaticas_efdreinf_views
 from emensageriapro.mapa_processamento.views import visao_geral as visao_geral_views
+from emensageriapro.mapa_processamento.views import mapa_importacoes_verificacao as mapa_importacoes_verificacao_views
 
 
 
@@ -53,7 +54,7 @@ urlpatterns = [
     url(r'^importacoes/(?P<tab>[\w-]+)/$',
         mapa_importacoes_views.listar,
         name='mapa_importacoes'),
-       
+
     url(r'^importacoes/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
         mapa_importacoes_views.listar,
         name='mapa_importacoes_print'),
@@ -61,7 +62,7 @@ urlpatterns = [
     url(r'^esocial/(?P<tab>[\w-]+)/$',
         mapa_esocial_views.listar,
         name='mapa_esocial'),
-       
+
     url(r'^esocial/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
         mapa_esocial_views.listar,
         name='mapa_esocial_print'),
@@ -69,7 +70,7 @@ urlpatterns = [
     url(r'^efdreinf/(?P<tab>[\w-]+)/$',
         mapa_efdreinf_views.listar,
         name='mapa_efdreinf'),
-       
+
     url(r'^efdreinf/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
         mapa_efdreinf_views.listar,
         name='mapa_efdreinf_print'),
@@ -126,13 +127,17 @@ urlpatterns = [
         visao_geral_views.listar,
         name='visao_geral'),
 
-    
+    url(r'^importacoes/verificacao/(?P<pk>[0-9]+)/$',
+        mapa_importacoes_verificacao_views.verificacao_importacao,
+        name='mapa_importacoes_verificacao'),
 
-    
 
-    
 
-    
+
+
+
+
+
 
 
 ]

@@ -72,65 +72,73 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1299(request, pk, versao=None):
+def gerar_xml_s1299_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s1299_evtfechaevper = get_object_or_404(
+        s1299evtFechaEvPer,
+        id=pk)
 
-        s1299_evtfechaevper = get_object_or_404(
-            s1299evtFechaEvPer,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s1299_evtfechaevper.versao
 
-        if not versao or versao == '|':
-            versao = s1299_evtfechaevper.versao
+    evento = 's1299evtFechaEvPer'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's1299evtFechaEvPer'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s1299_evtfechaevper_lista = s1299evtFechaEvPer.objects. \
-            filter(id=pk).all()
+    s1299_evtfechaevper_lista = s1299evtFechaEvPer.objects. \
+        filter(id=pk).all()
 
 
-        s1299_iderespinf_lista = s1299ideRespInf.objects. \
-            filter(s1299_evtfechaevper_id__in=listar_ids(s1299_evtfechaevper_lista)).all()
+    s1299_iderespinf_lista = s1299ideRespInf.objects. \
+        filter(s1299_evtfechaevper_id__in=listar_ids(s1299_evtfechaevper_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s1299_evtfechaevper,
-            's1299_evtfechaevper_lista': s1299_evtfechaevper_lista,
-            'pk': int(pk),
-            's1299_evtfechaevper': s1299_evtfechaevper,
-            's1299_iderespinf_lista': s1299_iderespinf_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s1299_evtfechaevper,
+        's1299_evtfechaevper_lista': s1299_evtfechaevper_lista,
+        'pk': int(pk),
+        's1299_evtfechaevper': s1299_evtfechaevper,
+        's1299_iderespinf_lista': s1299_iderespinf_lista,
+    }
 
-        t = get_template('s1299_evtfechaevper.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s1299_evtfechaevper.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s1299(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s1299_evtfechaevper = get_object_or_404(
+        s1299evtFechaEvPer,
+        id=pk)
+    return gerar_xml_s1299_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s1299_evtfechaevper = get_object_or_404(
@@ -138,15 +146,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1299_evtfechaevper.arquivo_original:
-
         xml = ler_arquivo(s1299_evtfechaevper.arquivo)
 
     else:
         xml = gerar_xml_s1299(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s1299evtFechaEvPer.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -176,16 +184,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s1299_evtfechaevper.transmissor_lote_esocial_id)
 
-    if s1299_evtfechaevper.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s1299evtFechaEvPer.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s1299evtFechaEvPer.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s1299_evtfechaevper/%s.xml' % (s1299_evtfechaevper.identidade)
+            s1299evtFechaEvPer.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s1299_evtfechaevper/%s.xml' % (s1299_evtfechaevper.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1299_evtfechaevper/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

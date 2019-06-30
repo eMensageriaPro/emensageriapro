@@ -52,8 +52,8 @@ from emensageriapro.s3000.views import s3000_idefolhapagto_api as s3000_idefolha
 urlpatterns = [
 
 
-    url(r'^s3000-idetrabalhador/apagar/(?P<pk>[0-9]+)/$', 
-        s3000_idetrabalhador_apagar_views.apagar, 
+    url(r'^s3000-idetrabalhador/apagar/(?P<pk>[0-9]+)/$',
+        s3000_idetrabalhador_apagar_views.apagar,
         name='s3000_idetrabalhador_apagar'),
 
     url(r'^s3000-idetrabalhador/api/$',
@@ -62,32 +62,32 @@ urlpatterns = [
     url(r'^s3000-idetrabalhador/api/(?P<pk>[0-9]+)/$',
         s3000_idetrabalhador_api_views.s3000ideTrabalhadorDetail.as_view() ),
 
-    url(r'^s3000-idetrabalhador/$', 
-        s3000_idetrabalhador_listar_views.listar, 
+    url(r'^s3000-idetrabalhador/$',
+        s3000_idetrabalhador_listar_views.listar,
         name='s3000_idetrabalhador'),
 
-    url(r'^s3000-idetrabalhador/salvar/(?P<pk>[0-9]+)/$', 
-        s3000_idetrabalhador_salvar_views.salvar, 
+    url(r'^s3000-idetrabalhador/salvar/(?P<pk>[0-9]+)/$',
+        s3000_idetrabalhador_salvar_views.salvar,
         name='s3000_idetrabalhador_salvar'),
 
-    url(r'^s3000-idetrabalhador/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s3000_idetrabalhador_salvar_views.salvar, 
+    url(r'^s3000-idetrabalhador/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s3000_idetrabalhador_salvar_views.salvar,
         name='s3000_idetrabalhador_salvar_tab'),
-        
-    url(r'^s3000-idetrabalhador/cadastrar/$', 
-        s3000_idetrabalhador_salvar_views.salvar, 
+
+    url(r'^s3000-idetrabalhador/cadastrar/$',
+        s3000_idetrabalhador_salvar_views.salvar,
         name='s3000_idetrabalhador_cadastrar'),
 
-    url(r'^s3000-idetrabalhador/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s3000_idetrabalhador_salvar_views.salvar, 
+    url(r'^s3000-idetrabalhador/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s3000_idetrabalhador_salvar_views.salvar,
         name='s3000_idetrabalhador_salvar_output'),
-        
-    url(r'^s3000-idetrabalhador/(?P<output>[\w-]+)/$', 
-        s3000_idetrabalhador_listar_views.listar, 
+
+    url(r'^s3000-idetrabalhador/(?P<output>[\w-]+)/$',
+        s3000_idetrabalhador_listar_views.listar,
         name='s3000_idetrabalhador_output'),
 
-    url(r'^s3000-idefolhapagto/apagar/(?P<pk>[0-9]+)/$', 
-        s3000_idefolhapagto_apagar_views.apagar, 
+    url(r'^s3000-idefolhapagto/apagar/(?P<pk>[0-9]+)/$',
+        s3000_idefolhapagto_apagar_views.apagar,
         name='s3000_idefolhapagto_apagar'),
 
     url(r'^s3000-idefolhapagto/api/$',
@@ -96,28 +96,28 @@ urlpatterns = [
     url(r'^s3000-idefolhapagto/api/(?P<pk>[0-9]+)/$',
         s3000_idefolhapagto_api_views.s3000ideFolhaPagtoDetail.as_view() ),
 
-    url(r'^s3000-idefolhapagto/$', 
-        s3000_idefolhapagto_listar_views.listar, 
+    url(r'^s3000-idefolhapagto/$',
+        s3000_idefolhapagto_listar_views.listar,
         name='s3000_idefolhapagto'),
 
-    url(r'^s3000-idefolhapagto/salvar/(?P<pk>[0-9]+)/$', 
-        s3000_idefolhapagto_salvar_views.salvar, 
+    url(r'^s3000-idefolhapagto/salvar/(?P<pk>[0-9]+)/$',
+        s3000_idefolhapagto_salvar_views.salvar,
         name='s3000_idefolhapagto_salvar'),
 
-    url(r'^s3000-idefolhapagto/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s3000_idefolhapagto_salvar_views.salvar, 
+    url(r'^s3000-idefolhapagto/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s3000_idefolhapagto_salvar_views.salvar,
         name='s3000_idefolhapagto_salvar_tab'),
-        
-    url(r'^s3000-idefolhapagto/cadastrar/$', 
-        s3000_idefolhapagto_salvar_views.salvar, 
+
+    url(r'^s3000-idefolhapagto/cadastrar/$',
+        s3000_idefolhapagto_salvar_views.salvar,
         name='s3000_idefolhapagto_cadastrar'),
 
-    url(r'^s3000-idefolhapagto/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s3000_idefolhapagto_salvar_views.salvar, 
+    url(r'^s3000-idefolhapagto/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s3000_idefolhapagto_salvar_views.salvar,
         name='s3000_idefolhapagto_salvar_output'),
-        
-    url(r'^s3000-idefolhapagto/(?P<output>[\w-]+)/$', 
-        s3000_idefolhapagto_listar_views.listar, 
+
+    url(r'^s3000-idefolhapagto/(?P<output>[\w-]+)/$',
+        s3000_idefolhapagto_listar_views.listar,
         name='s3000_idefolhapagto_output'),
 
 

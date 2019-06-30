@@ -75,7 +75,7 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 def abrir_evento_para_edicao(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import gravar_nome_arquivo
+    from emensageriapro.mensageiro.functions.funcoes import gravar_nome_arquivo
 
     if request.user.has_perm('efdreinf.can_open_r2050evtComProd'):
 
@@ -102,9 +102,9 @@ def abrir_evento_para_edicao(request, pk):
                 status=STATUS_EVENTO_CADASTRADO,
                 arquivo_original=0)
                                                       
-            arquivo = 'arquivos/Eventos/r2050_evtcomprod/%s.xml' % (r2050_evtcomprod.identidade)
+            arquivo = '/arquivos/Eventos/r2050_evtcomprod/%s.xml' % (r2050_evtcomprod.identidade)
 
-            if os.path.exists(BASE_DIR + '/' + arquivo):
+            if os.path.exists(BASE_DIR + arquivo):
 
                 data_hora_atual = str(datetime.now()).replace(':','_').replace(' ','_').replace('.','_')
                 dad = (BASE_DIR, r2050_evtcomprod.identidade, BASE_DIR, r2050_evtcomprod.identidade, data_hora_atual)

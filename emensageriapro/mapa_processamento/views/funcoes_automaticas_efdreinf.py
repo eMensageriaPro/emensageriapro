@@ -40,46 +40,22 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 
 from constance import config
-import datetime
 from django.contrib import messages
-from django.http import HttpResponseNotFound
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate
+from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.authtoken.models import Token
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from rest_framework.status import (
-    HTTP_400_BAD_REQUEST,
     HTTP_404_NOT_FOUND,
     HTTP_200_OK
 )
-from rest_framework.response import Response
-from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
-from django.db.models import Count
-from emensageriapro.padrao import *
-from emensageriapro.mensageiro.forms import *
-from emensageriapro.mensageiro.models import *
+
 from emensageriapro.controle_de_acesso.models import *
-import base64
+from emensageriapro.esocial.models import STATUS_EVENTO_IMPORTADO, \
+    STATUS_EVENTO_VALIDADO, \
+    STATUS_EVENTO_AGUARD_ENVIO
+from emensageriapro.mensageiro.models import *
 
-#IMPORTACOES
-
-
-from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
-    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
-    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
-    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
-    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
-    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
-    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
-
-#
-# Acessando via webservice:
-#
-# curl -X GET http://localhost:8000/mapa-processamento/esocial-validar/ -H 'Authorization: Token XXXXXXX'
-#
 
 
 def get_grupo(model):
@@ -227,7 +203,7 @@ def enviar(request, tab=None):
 
     from emensageriapro.mensageiro.views.transmissor_lote_efdreinf_comunicacao import send_xml
     from django.apps import apps
-    from emensageriapro.mensageiro.models import TransmissorLote, TransmissorLoteEfdreinf, TransmissorEventosEfdreinf
+    from emensageriapro.mensageiro.models import TransmissorLoteEfdreinf
 
     texto = ''
 

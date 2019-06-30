@@ -60,8 +60,8 @@ from emensageriapro.s1260.views import s1260_infoprocjud_api as s1260_infoprocju
 urlpatterns = [
 
 
-    url(r'^s1260-tpcomerc/apagar/(?P<pk>[0-9]+)/$', 
-        s1260_tpcomerc_apagar_views.apagar, 
+    url(r'^s1260-tpcomerc/apagar/(?P<pk>[0-9]+)/$',
+        s1260_tpcomerc_apagar_views.apagar,
         name='s1260_tpcomerc_apagar'),
 
     url(r'^s1260-tpcomerc/api/$',
@@ -70,32 +70,32 @@ urlpatterns = [
     url(r'^s1260-tpcomerc/api/(?P<pk>[0-9]+)/$',
         s1260_tpcomerc_api_views.s1260tpComercDetail.as_view() ),
 
-    url(r'^s1260-tpcomerc/$', 
-        s1260_tpcomerc_listar_views.listar, 
+    url(r'^s1260-tpcomerc/$',
+        s1260_tpcomerc_listar_views.listar,
         name='s1260_tpcomerc'),
 
-    url(r'^s1260-tpcomerc/salvar/(?P<pk>[0-9]+)/$', 
-        s1260_tpcomerc_salvar_views.salvar, 
+    url(r'^s1260-tpcomerc/salvar/(?P<pk>[0-9]+)/$',
+        s1260_tpcomerc_salvar_views.salvar,
         name='s1260_tpcomerc_salvar'),
 
-    url(r'^s1260-tpcomerc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s1260_tpcomerc_salvar_views.salvar, 
+    url(r'^s1260-tpcomerc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s1260_tpcomerc_salvar_views.salvar,
         name='s1260_tpcomerc_salvar_tab'),
-        
-    url(r'^s1260-tpcomerc/cadastrar/$', 
-        s1260_tpcomerc_salvar_views.salvar, 
+
+    url(r'^s1260-tpcomerc/cadastrar/$',
+        s1260_tpcomerc_salvar_views.salvar,
         name='s1260_tpcomerc_cadastrar'),
 
-    url(r'^s1260-tpcomerc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s1260_tpcomerc_salvar_views.salvar, 
+    url(r'^s1260-tpcomerc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s1260_tpcomerc_salvar_views.salvar,
         name='s1260_tpcomerc_salvar_output'),
-        
-    url(r'^s1260-tpcomerc/(?P<output>[\w-]+)/$', 
-        s1260_tpcomerc_listar_views.listar, 
+
+    url(r'^s1260-tpcomerc/(?P<output>[\w-]+)/$',
+        s1260_tpcomerc_listar_views.listar,
         name='s1260_tpcomerc_output'),
 
-    url(r'^s1260-ideadquir/apagar/(?P<pk>[0-9]+)/$', 
-        s1260_ideadquir_apagar_views.apagar, 
+    url(r'^s1260-ideadquir/apagar/(?P<pk>[0-9]+)/$',
+        s1260_ideadquir_apagar_views.apagar,
         name='s1260_ideadquir_apagar'),
 
     url(r'^s1260-ideadquir/api/$',
@@ -104,32 +104,32 @@ urlpatterns = [
     url(r'^s1260-ideadquir/api/(?P<pk>[0-9]+)/$',
         s1260_ideadquir_api_views.s1260ideAdquirDetail.as_view() ),
 
-    url(r'^s1260-ideadquir/$', 
-        s1260_ideadquir_listar_views.listar, 
+    url(r'^s1260-ideadquir/$',
+        s1260_ideadquir_listar_views.listar,
         name='s1260_ideadquir'),
 
-    url(r'^s1260-ideadquir/salvar/(?P<pk>[0-9]+)/$', 
-        s1260_ideadquir_salvar_views.salvar, 
+    url(r'^s1260-ideadquir/salvar/(?P<pk>[0-9]+)/$',
+        s1260_ideadquir_salvar_views.salvar,
         name='s1260_ideadquir_salvar'),
 
-    url(r'^s1260-ideadquir/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s1260_ideadquir_salvar_views.salvar, 
+    url(r'^s1260-ideadquir/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s1260_ideadquir_salvar_views.salvar,
         name='s1260_ideadquir_salvar_tab'),
-        
-    url(r'^s1260-ideadquir/cadastrar/$', 
-        s1260_ideadquir_salvar_views.salvar, 
+
+    url(r'^s1260-ideadquir/cadastrar/$',
+        s1260_ideadquir_salvar_views.salvar,
         name='s1260_ideadquir_cadastrar'),
 
-    url(r'^s1260-ideadquir/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s1260_ideadquir_salvar_views.salvar, 
+    url(r'^s1260-ideadquir/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s1260_ideadquir_salvar_views.salvar,
         name='s1260_ideadquir_salvar_output'),
-        
-    url(r'^s1260-ideadquir/(?P<output>[\w-]+)/$', 
-        s1260_ideadquir_listar_views.listar, 
+
+    url(r'^s1260-ideadquir/(?P<output>[\w-]+)/$',
+        s1260_ideadquir_listar_views.listar,
         name='s1260_ideadquir_output'),
 
-    url(r'^s1260-nfs/apagar/(?P<pk>[0-9]+)/$', 
-        s1260_nfs_apagar_views.apagar, 
+    url(r'^s1260-nfs/apagar/(?P<pk>[0-9]+)/$',
+        s1260_nfs_apagar_views.apagar,
         name='s1260_nfs_apagar'),
 
     url(r'^s1260-nfs/api/$',
@@ -138,32 +138,32 @@ urlpatterns = [
     url(r'^s1260-nfs/api/(?P<pk>[0-9]+)/$',
         s1260_nfs_api_views.s1260nfsDetail.as_view() ),
 
-    url(r'^s1260-nfs/$', 
-        s1260_nfs_listar_views.listar, 
+    url(r'^s1260-nfs/$',
+        s1260_nfs_listar_views.listar,
         name='s1260_nfs'),
 
-    url(r'^s1260-nfs/salvar/(?P<pk>[0-9]+)/$', 
-        s1260_nfs_salvar_views.salvar, 
+    url(r'^s1260-nfs/salvar/(?P<pk>[0-9]+)/$',
+        s1260_nfs_salvar_views.salvar,
         name='s1260_nfs_salvar'),
 
-    url(r'^s1260-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s1260_nfs_salvar_views.salvar, 
+    url(r'^s1260-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s1260_nfs_salvar_views.salvar,
         name='s1260_nfs_salvar_tab'),
-        
-    url(r'^s1260-nfs/cadastrar/$', 
-        s1260_nfs_salvar_views.salvar, 
+
+    url(r'^s1260-nfs/cadastrar/$',
+        s1260_nfs_salvar_views.salvar,
         name='s1260_nfs_cadastrar'),
 
-    url(r'^s1260-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s1260_nfs_salvar_views.salvar, 
+    url(r'^s1260-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s1260_nfs_salvar_views.salvar,
         name='s1260_nfs_salvar_output'),
-        
-    url(r'^s1260-nfs/(?P<output>[\w-]+)/$', 
-        s1260_nfs_listar_views.listar, 
+
+    url(r'^s1260-nfs/(?P<output>[\w-]+)/$',
+        s1260_nfs_listar_views.listar,
         name='s1260_nfs_output'),
 
-    url(r'^s1260-infoprocjud/apagar/(?P<pk>[0-9]+)/$', 
-        s1260_infoprocjud_apagar_views.apagar, 
+    url(r'^s1260-infoprocjud/apagar/(?P<pk>[0-9]+)/$',
+        s1260_infoprocjud_apagar_views.apagar,
         name='s1260_infoprocjud_apagar'),
 
     url(r'^s1260-infoprocjud/api/$',
@@ -172,28 +172,28 @@ urlpatterns = [
     url(r'^s1260-infoprocjud/api/(?P<pk>[0-9]+)/$',
         s1260_infoprocjud_api_views.s1260infoProcJudDetail.as_view() ),
 
-    url(r'^s1260-infoprocjud/$', 
-        s1260_infoprocjud_listar_views.listar, 
+    url(r'^s1260-infoprocjud/$',
+        s1260_infoprocjud_listar_views.listar,
         name='s1260_infoprocjud'),
 
-    url(r'^s1260-infoprocjud/salvar/(?P<pk>[0-9]+)/$', 
-        s1260_infoprocjud_salvar_views.salvar, 
+    url(r'^s1260-infoprocjud/salvar/(?P<pk>[0-9]+)/$',
+        s1260_infoprocjud_salvar_views.salvar,
         name='s1260_infoprocjud_salvar'),
 
-    url(r'^s1260-infoprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s1260_infoprocjud_salvar_views.salvar, 
+    url(r'^s1260-infoprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s1260_infoprocjud_salvar_views.salvar,
         name='s1260_infoprocjud_salvar_tab'),
-        
-    url(r'^s1260-infoprocjud/cadastrar/$', 
-        s1260_infoprocjud_salvar_views.salvar, 
+
+    url(r'^s1260-infoprocjud/cadastrar/$',
+        s1260_infoprocjud_salvar_views.salvar,
         name='s1260_infoprocjud_cadastrar'),
 
-    url(r'^s1260-infoprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s1260_infoprocjud_salvar_views.salvar, 
+    url(r'^s1260-infoprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s1260_infoprocjud_salvar_views.salvar,
         name='s1260_infoprocjud_salvar_output'),
-        
-    url(r'^s1260-infoprocjud/(?P<output>[\w-]+)/$', 
-        s1260_infoprocjud_listar_views.listar, 
+
+    url(r'^s1260-infoprocjud/(?P<output>[\w-]+)/$',
+        s1260_infoprocjud_listar_views.listar,
         name='s1260_infoprocjud_output'),
 
 

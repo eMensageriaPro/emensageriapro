@@ -72,141 +72,149 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1000(request, pk, versao=None):
+def gerar_xml_s1000_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s1000_evtinfoempregador = get_object_or_404(
+        s1000evtInfoEmpregador,
+        id=pk)
 
-        s1000_evtinfoempregador = get_object_or_404(
-            s1000evtInfoEmpregador,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s1000_evtinfoempregador.versao
 
-        if not versao or versao == '|':
-            versao = s1000_evtinfoempregador.versao
+    evento = 's1000evtInfoEmpregador'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's1000evtInfoEmpregador'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s1000_evtinfoempregador_lista = s1000evtInfoEmpregador.objects. \
-            filter(id=pk).all()
+    s1000_evtinfoempregador_lista = s1000evtInfoEmpregador.objects. \
+        filter(id=pk).all()
 
 
-        s1000_inclusao_lista = s1000inclusao.objects. \
-            filter(s1000_evtinfoempregador_id__in=listar_ids(s1000_evtinfoempregador_lista)).all()
+    s1000_inclusao_lista = s1000inclusao.objects. \
+        filter(s1000_evtinfoempregador_id__in=listar_ids(s1000_evtinfoempregador_lista)).all()
 
-        s1000_inclusao_dadosisencao_lista = s1000inclusaodadosIsencao.objects. \
-            filter(s1000_inclusao_id__in=listar_ids(s1000_inclusao_lista)).all()
+    s1000_inclusao_dadosisencao_lista = s1000inclusaodadosIsencao.objects. \
+        filter(s1000_inclusao_id__in=listar_ids(s1000_inclusao_lista)).all()
 
-        s1000_inclusao_infoop_lista = s1000inclusaoinfoOP.objects. \
-            filter(s1000_inclusao_id__in=listar_ids(s1000_inclusao_lista)).all()
+    s1000_inclusao_infoop_lista = s1000inclusaoinfoOP.objects. \
+        filter(s1000_inclusao_id__in=listar_ids(s1000_inclusao_lista)).all()
 
-        s1000_inclusao_infoefr_lista = s1000inclusaoinfoEFR.objects. \
-            filter(s1000_inclusao_infoop_id__in=listar_ids(s1000_inclusao_infoop_lista)).all()
+    s1000_inclusao_infoefr_lista = s1000inclusaoinfoEFR.objects. \
+        filter(s1000_inclusao_infoop_id__in=listar_ids(s1000_inclusao_infoop_lista)).all()
 
-        s1000_inclusao_infoente_lista = s1000inclusaoinfoEnte.objects. \
-            filter(s1000_inclusao_infoop_id__in=listar_ids(s1000_inclusao_infoop_lista)).all()
+    s1000_inclusao_infoente_lista = s1000inclusaoinfoEnte.objects. \
+        filter(s1000_inclusao_infoop_id__in=listar_ids(s1000_inclusao_infoop_lista)).all()
 
-        s1000_inclusao_infoorginternacional_lista = s1000inclusaoinfoOrgInternacional.objects. \
-            filter(s1000_inclusao_id__in=listar_ids(s1000_inclusao_lista)).all()
+    s1000_inclusao_infoorginternacional_lista = s1000inclusaoinfoOrgInternacional.objects. \
+        filter(s1000_inclusao_id__in=listar_ids(s1000_inclusao_lista)).all()
 
-        s1000_inclusao_softwarehouse_lista = s1000inclusaosoftwareHouse.objects. \
-            filter(s1000_inclusao_id__in=listar_ids(s1000_inclusao_lista)).all()
+    s1000_inclusao_softwarehouse_lista = s1000inclusaosoftwareHouse.objects. \
+        filter(s1000_inclusao_id__in=listar_ids(s1000_inclusao_lista)).all()
 
-        s1000_inclusao_situacaopj_lista = s1000inclusaosituacaoPJ.objects. \
-            filter(s1000_inclusao_id__in=listar_ids(s1000_inclusao_lista)).all()
+    s1000_inclusao_situacaopj_lista = s1000inclusaosituacaoPJ.objects. \
+        filter(s1000_inclusao_id__in=listar_ids(s1000_inclusao_lista)).all()
 
-        s1000_inclusao_situacaopf_lista = s1000inclusaosituacaoPF.objects. \
-            filter(s1000_inclusao_id__in=listar_ids(s1000_inclusao_lista)).all()
+    s1000_inclusao_situacaopf_lista = s1000inclusaosituacaoPF.objects. \
+        filter(s1000_inclusao_id__in=listar_ids(s1000_inclusao_lista)).all()
 
-        s1000_alteracao_lista = s1000alteracao.objects. \
-            filter(s1000_evtinfoempregador_id__in=listar_ids(s1000_evtinfoempregador_lista)).all()
+    s1000_alteracao_lista = s1000alteracao.objects. \
+        filter(s1000_evtinfoempregador_id__in=listar_ids(s1000_evtinfoempregador_lista)).all()
 
-        s1000_alteracao_dadosisencao_lista = s1000alteracaodadosIsencao.objects. \
-            filter(s1000_alteracao_id__in=listar_ids(s1000_alteracao_lista)).all()
+    s1000_alteracao_dadosisencao_lista = s1000alteracaodadosIsencao.objects. \
+        filter(s1000_alteracao_id__in=listar_ids(s1000_alteracao_lista)).all()
 
-        s1000_alteracao_infoop_lista = s1000alteracaoinfoOP.objects. \
-            filter(s1000_alteracao_id__in=listar_ids(s1000_alteracao_lista)).all()
+    s1000_alteracao_infoop_lista = s1000alteracaoinfoOP.objects. \
+        filter(s1000_alteracao_id__in=listar_ids(s1000_alteracao_lista)).all()
 
-        s1000_alteracao_infoefr_lista = s1000alteracaoinfoEFR.objects. \
-            filter(s1000_alteracao_infoop_id__in=listar_ids(s1000_alteracao_infoop_lista)).all()
+    s1000_alteracao_infoefr_lista = s1000alteracaoinfoEFR.objects. \
+        filter(s1000_alteracao_infoop_id__in=listar_ids(s1000_alteracao_infoop_lista)).all()
 
-        s1000_alteracao_infoente_lista = s1000alteracaoinfoEnte.objects. \
-            filter(s1000_alteracao_infoop_id__in=listar_ids(s1000_alteracao_infoop_lista)).all()
+    s1000_alteracao_infoente_lista = s1000alteracaoinfoEnte.objects. \
+        filter(s1000_alteracao_infoop_id__in=listar_ids(s1000_alteracao_infoop_lista)).all()
 
-        s1000_alteracao_infoorginternacional_lista = s1000alteracaoinfoOrgInternacional.objects. \
-            filter(s1000_alteracao_id__in=listar_ids(s1000_alteracao_lista)).all()
+    s1000_alteracao_infoorginternacional_lista = s1000alteracaoinfoOrgInternacional.objects. \
+        filter(s1000_alteracao_id__in=listar_ids(s1000_alteracao_lista)).all()
 
-        s1000_alteracao_softwarehouse_lista = s1000alteracaosoftwareHouse.objects. \
-            filter(s1000_alteracao_id__in=listar_ids(s1000_alteracao_lista)).all()
+    s1000_alteracao_softwarehouse_lista = s1000alteracaosoftwareHouse.objects. \
+        filter(s1000_alteracao_id__in=listar_ids(s1000_alteracao_lista)).all()
 
-        s1000_alteracao_situacaopj_lista = s1000alteracaosituacaoPJ.objects. \
-            filter(s1000_alteracao_id__in=listar_ids(s1000_alteracao_lista)).all()
+    s1000_alteracao_situacaopj_lista = s1000alteracaosituacaoPJ.objects. \
+        filter(s1000_alteracao_id__in=listar_ids(s1000_alteracao_lista)).all()
 
-        s1000_alteracao_situacaopf_lista = s1000alteracaosituacaoPF.objects. \
-            filter(s1000_alteracao_id__in=listar_ids(s1000_alteracao_lista)).all()
+    s1000_alteracao_situacaopf_lista = s1000alteracaosituacaoPF.objects. \
+        filter(s1000_alteracao_id__in=listar_ids(s1000_alteracao_lista)).all()
 
-        s1000_alteracao_novavalidade_lista = s1000alteracaonovaValidade.objects. \
-            filter(s1000_alteracao_id__in=listar_ids(s1000_alteracao_lista)).all()
+    s1000_alteracao_novavalidade_lista = s1000alteracaonovaValidade.objects. \
+        filter(s1000_alteracao_id__in=listar_ids(s1000_alteracao_lista)).all()
 
-        s1000_exclusao_lista = s1000exclusao.objects. \
-            filter(s1000_evtinfoempregador_id__in=listar_ids(s1000_evtinfoempregador_lista)).all()
+    s1000_exclusao_lista = s1000exclusao.objects. \
+        filter(s1000_evtinfoempregador_id__in=listar_ids(s1000_evtinfoempregador_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s1000_evtinfoempregador,
-            's1000_evtinfoempregador_lista': s1000_evtinfoempregador_lista,
-            'pk': int(pk),
-            's1000_evtinfoempregador': s1000_evtinfoempregador,
-            's1000_inclusao_lista': s1000_inclusao_lista,
-            's1000_inclusao_dadosisencao_lista': s1000_inclusao_dadosisencao_lista,
-            's1000_inclusao_infoop_lista': s1000_inclusao_infoop_lista,
-            's1000_inclusao_infoefr_lista': s1000_inclusao_infoefr_lista,
-            's1000_inclusao_infoente_lista': s1000_inclusao_infoente_lista,
-            's1000_inclusao_infoorginternacional_lista': s1000_inclusao_infoorginternacional_lista,
-            's1000_inclusao_softwarehouse_lista': s1000_inclusao_softwarehouse_lista,
-            's1000_inclusao_situacaopj_lista': s1000_inclusao_situacaopj_lista,
-            's1000_inclusao_situacaopf_lista': s1000_inclusao_situacaopf_lista,
-            's1000_alteracao_lista': s1000_alteracao_lista,
-            's1000_alteracao_dadosisencao_lista': s1000_alteracao_dadosisencao_lista,
-            's1000_alteracao_infoop_lista': s1000_alteracao_infoop_lista,
-            's1000_alteracao_infoefr_lista': s1000_alteracao_infoefr_lista,
-            's1000_alteracao_infoente_lista': s1000_alteracao_infoente_lista,
-            's1000_alteracao_infoorginternacional_lista': s1000_alteracao_infoorginternacional_lista,
-            's1000_alteracao_softwarehouse_lista': s1000_alteracao_softwarehouse_lista,
-            's1000_alteracao_situacaopj_lista': s1000_alteracao_situacaopj_lista,
-            's1000_alteracao_situacaopf_lista': s1000_alteracao_situacaopf_lista,
-            's1000_alteracao_novavalidade_lista': s1000_alteracao_novavalidade_lista,
-            's1000_exclusao_lista': s1000_exclusao_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s1000_evtinfoempregador,
+        's1000_evtinfoempregador_lista': s1000_evtinfoempregador_lista,
+        'pk': int(pk),
+        's1000_evtinfoempregador': s1000_evtinfoempregador,
+        's1000_inclusao_lista': s1000_inclusao_lista,
+        's1000_inclusao_dadosisencao_lista': s1000_inclusao_dadosisencao_lista,
+        's1000_inclusao_infoop_lista': s1000_inclusao_infoop_lista,
+        's1000_inclusao_infoefr_lista': s1000_inclusao_infoefr_lista,
+        's1000_inclusao_infoente_lista': s1000_inclusao_infoente_lista,
+        's1000_inclusao_infoorginternacional_lista': s1000_inclusao_infoorginternacional_lista,
+        's1000_inclusao_softwarehouse_lista': s1000_inclusao_softwarehouse_lista,
+        's1000_inclusao_situacaopj_lista': s1000_inclusao_situacaopj_lista,
+        's1000_inclusao_situacaopf_lista': s1000_inclusao_situacaopf_lista,
+        's1000_alteracao_lista': s1000_alteracao_lista,
+        's1000_alteracao_dadosisencao_lista': s1000_alteracao_dadosisencao_lista,
+        's1000_alteracao_infoop_lista': s1000_alteracao_infoop_lista,
+        's1000_alteracao_infoefr_lista': s1000_alteracao_infoefr_lista,
+        's1000_alteracao_infoente_lista': s1000_alteracao_infoente_lista,
+        's1000_alteracao_infoorginternacional_lista': s1000_alteracao_infoorginternacional_lista,
+        's1000_alteracao_softwarehouse_lista': s1000_alteracao_softwarehouse_lista,
+        's1000_alteracao_situacaopj_lista': s1000_alteracao_situacaopj_lista,
+        's1000_alteracao_situacaopf_lista': s1000_alteracao_situacaopf_lista,
+        's1000_alteracao_novavalidade_lista': s1000_alteracao_novavalidade_lista,
+        's1000_exclusao_lista': s1000_exclusao_lista,
+    }
 
-        t = get_template('s1000_evtinfoempregador.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s1000_evtinfoempregador.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s1000(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s1000_evtinfoempregador = get_object_or_404(
+        s1000evtInfoEmpregador,
+        id=pk)
+    return gerar_xml_s1000_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s1000_evtinfoempregador = get_object_or_404(
@@ -214,15 +222,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1000_evtinfoempregador.arquivo_original:
-
         xml = ler_arquivo(s1000_evtinfoempregador.arquivo)
 
     else:
         xml = gerar_xml_s1000(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s1000evtInfoEmpregador.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -252,16 +260,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s1000_evtinfoempregador.transmissor_lote_esocial_id)
 
-    if s1000_evtinfoempregador.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s1000evtInfoEmpregador.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s1000evtInfoEmpregador.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s1000_evtinfoempregador/%s.xml' % (s1000_evtinfoempregador.identidade)
+            s1000evtInfoEmpregador.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s1000_evtinfoempregador/%s.xml' % (s1000_evtinfoempregador.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1000_evtinfoempregador/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

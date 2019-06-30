@@ -72,61 +72,69 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1298(request, pk, versao=None):
+def gerar_xml_s1298_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s1298_evtreabreevper = get_object_or_404(
+        s1298evtReabreEvPer,
+        id=pk)
 
-        s1298_evtreabreevper = get_object_or_404(
-            s1298evtReabreEvPer,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s1298_evtreabreevper.versao
 
-        if not versao or versao == '|':
-            versao = s1298_evtreabreevper.versao
+    evento = 's1298evtReabreEvPer'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's1298evtReabreEvPer'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s1298_evtreabreevper_lista = s1298evtReabreEvPer.objects. \
-            filter(id=pk).all()
+    s1298_evtreabreevper_lista = s1298evtReabreEvPer.objects. \
+        filter(id=pk).all()
 
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s1298_evtreabreevper,
-            's1298_evtreabreevper_lista': s1298_evtreabreevper_lista,
-            'pk': int(pk),
-            's1298_evtreabreevper': s1298_evtreabreevper,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s1298_evtreabreevper,
+        's1298_evtreabreevper_lista': s1298_evtreabreevper_lista,
+        'pk': int(pk),
+        's1298_evtreabreevper': s1298_evtreabreevper,
+    }
 
-        t = get_template('s1298_evtreabreevper.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s1298_evtreabreevper.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s1298(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s1298_evtreabreevper = get_object_or_404(
+        s1298evtReabreEvPer,
+        id=pk)
+    return gerar_xml_s1298_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s1298_evtreabreevper = get_object_or_404(
@@ -134,15 +142,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1298_evtreabreevper.arquivo_original:
-
         xml = ler_arquivo(s1298_evtreabreevper.arquivo)
 
     else:
         xml = gerar_xml_s1298(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s1298evtReabreEvPer.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -172,16 +180,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s1298_evtreabreevper.transmissor_lote_esocial_id)
 
-    if s1298_evtreabreevper.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s1298evtReabreEvPer.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s1298evtReabreEvPer.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s1298_evtreabreevper/%s.xml' % (s1298_evtreabreevper.identidade)
+            s1298evtReabreEvPer.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s1298_evtreabreevper/%s.xml' % (s1298_evtreabreevper.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1298_evtreabreevper/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

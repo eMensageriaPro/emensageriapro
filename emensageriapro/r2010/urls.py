@@ -60,8 +60,8 @@ from emensageriapro.r2010.views import r2010_infoprocretad_api as r2010_infoproc
 urlpatterns = [
 
 
-    url(r'^r2010-nfs/apagar/(?P<pk>[0-9]+)/$', 
-        r2010_nfs_apagar_views.apagar, 
+    url(r'^r2010-nfs/apagar/(?P<pk>[0-9]+)/$',
+        r2010_nfs_apagar_views.apagar,
         name='r2010_nfs_apagar'),
 
     url(r'^r2010-nfs/api/$',
@@ -70,32 +70,32 @@ urlpatterns = [
     url(r'^r2010-nfs/api/(?P<pk>[0-9]+)/$',
         r2010_nfs_api_views.r2010nfsDetail.as_view() ),
 
-    url(r'^r2010-nfs/$', 
-        r2010_nfs_listar_views.listar, 
+    url(r'^r2010-nfs/$',
+        r2010_nfs_listar_views.listar,
         name='r2010_nfs'),
 
-    url(r'^r2010-nfs/salvar/(?P<pk>[0-9]+)/$', 
-        r2010_nfs_salvar_views.salvar, 
+    url(r'^r2010-nfs/salvar/(?P<pk>[0-9]+)/$',
+        r2010_nfs_salvar_views.salvar,
         name='r2010_nfs_salvar'),
 
-    url(r'^r2010-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        r2010_nfs_salvar_views.salvar, 
+    url(r'^r2010-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r2010_nfs_salvar_views.salvar,
         name='r2010_nfs_salvar_tab'),
-        
-    url(r'^r2010-nfs/cadastrar/$', 
-        r2010_nfs_salvar_views.salvar, 
+
+    url(r'^r2010-nfs/cadastrar/$',
+        r2010_nfs_salvar_views.salvar,
         name='r2010_nfs_cadastrar'),
 
-    url(r'^r2010-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        r2010_nfs_salvar_views.salvar, 
+    url(r'^r2010-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        r2010_nfs_salvar_views.salvar,
         name='r2010_nfs_salvar_output'),
-        
-    url(r'^r2010-nfs/(?P<output>[\w-]+)/$', 
-        r2010_nfs_listar_views.listar, 
+
+    url(r'^r2010-nfs/(?P<output>[\w-]+)/$',
+        r2010_nfs_listar_views.listar,
         name='r2010_nfs_output'),
 
-    url(r'^r2010-infotpserv/apagar/(?P<pk>[0-9]+)/$', 
-        r2010_infotpserv_apagar_views.apagar, 
+    url(r'^r2010-infotpserv/apagar/(?P<pk>[0-9]+)/$',
+        r2010_infotpserv_apagar_views.apagar,
         name='r2010_infotpserv_apagar'),
 
     url(r'^r2010-infotpserv/api/$',
@@ -104,32 +104,32 @@ urlpatterns = [
     url(r'^r2010-infotpserv/api/(?P<pk>[0-9]+)/$',
         r2010_infotpserv_api_views.r2010infoTpServDetail.as_view() ),
 
-    url(r'^r2010-infotpserv/$', 
-        r2010_infotpserv_listar_views.listar, 
+    url(r'^r2010-infotpserv/$',
+        r2010_infotpserv_listar_views.listar,
         name='r2010_infotpserv'),
 
-    url(r'^r2010-infotpserv/salvar/(?P<pk>[0-9]+)/$', 
-        r2010_infotpserv_salvar_views.salvar, 
+    url(r'^r2010-infotpserv/salvar/(?P<pk>[0-9]+)/$',
+        r2010_infotpserv_salvar_views.salvar,
         name='r2010_infotpserv_salvar'),
 
-    url(r'^r2010-infotpserv/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        r2010_infotpserv_salvar_views.salvar, 
+    url(r'^r2010-infotpserv/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r2010_infotpserv_salvar_views.salvar,
         name='r2010_infotpserv_salvar_tab'),
-        
-    url(r'^r2010-infotpserv/cadastrar/$', 
-        r2010_infotpserv_salvar_views.salvar, 
+
+    url(r'^r2010-infotpserv/cadastrar/$',
+        r2010_infotpserv_salvar_views.salvar,
         name='r2010_infotpserv_cadastrar'),
 
-    url(r'^r2010-infotpserv/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        r2010_infotpserv_salvar_views.salvar, 
+    url(r'^r2010-infotpserv/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        r2010_infotpserv_salvar_views.salvar,
         name='r2010_infotpserv_salvar_output'),
-        
-    url(r'^r2010-infotpserv/(?P<output>[\w-]+)/$', 
-        r2010_infotpserv_listar_views.listar, 
+
+    url(r'^r2010-infotpserv/(?P<output>[\w-]+)/$',
+        r2010_infotpserv_listar_views.listar,
         name='r2010_infotpserv_output'),
 
-    url(r'^r2010-infoprocretpr/apagar/(?P<pk>[0-9]+)/$', 
-        r2010_infoprocretpr_apagar_views.apagar, 
+    url(r'^r2010-infoprocretpr/apagar/(?P<pk>[0-9]+)/$',
+        r2010_infoprocretpr_apagar_views.apagar,
         name='r2010_infoprocretpr_apagar'),
 
     url(r'^r2010-infoprocretpr/api/$',
@@ -138,32 +138,32 @@ urlpatterns = [
     url(r'^r2010-infoprocretpr/api/(?P<pk>[0-9]+)/$',
         r2010_infoprocretpr_api_views.r2010infoProcRetPrDetail.as_view() ),
 
-    url(r'^r2010-infoprocretpr/$', 
-        r2010_infoprocretpr_listar_views.listar, 
+    url(r'^r2010-infoprocretpr/$',
+        r2010_infoprocretpr_listar_views.listar,
         name='r2010_infoprocretpr'),
 
-    url(r'^r2010-infoprocretpr/salvar/(?P<pk>[0-9]+)/$', 
-        r2010_infoprocretpr_salvar_views.salvar, 
+    url(r'^r2010-infoprocretpr/salvar/(?P<pk>[0-9]+)/$',
+        r2010_infoprocretpr_salvar_views.salvar,
         name='r2010_infoprocretpr_salvar'),
 
-    url(r'^r2010-infoprocretpr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        r2010_infoprocretpr_salvar_views.salvar, 
+    url(r'^r2010-infoprocretpr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r2010_infoprocretpr_salvar_views.salvar,
         name='r2010_infoprocretpr_salvar_tab'),
-        
-    url(r'^r2010-infoprocretpr/cadastrar/$', 
-        r2010_infoprocretpr_salvar_views.salvar, 
+
+    url(r'^r2010-infoprocretpr/cadastrar/$',
+        r2010_infoprocretpr_salvar_views.salvar,
         name='r2010_infoprocretpr_cadastrar'),
 
-    url(r'^r2010-infoprocretpr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        r2010_infoprocretpr_salvar_views.salvar, 
+    url(r'^r2010-infoprocretpr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        r2010_infoprocretpr_salvar_views.salvar,
         name='r2010_infoprocretpr_salvar_output'),
-        
-    url(r'^r2010-infoprocretpr/(?P<output>[\w-]+)/$', 
-        r2010_infoprocretpr_listar_views.listar, 
+
+    url(r'^r2010-infoprocretpr/(?P<output>[\w-]+)/$',
+        r2010_infoprocretpr_listar_views.listar,
         name='r2010_infoprocretpr_output'),
 
-    url(r'^r2010-infoprocretad/apagar/(?P<pk>[0-9]+)/$', 
-        r2010_infoprocretad_apagar_views.apagar, 
+    url(r'^r2010-infoprocretad/apagar/(?P<pk>[0-9]+)/$',
+        r2010_infoprocretad_apagar_views.apagar,
         name='r2010_infoprocretad_apagar'),
 
     url(r'^r2010-infoprocretad/api/$',
@@ -172,28 +172,28 @@ urlpatterns = [
     url(r'^r2010-infoprocretad/api/(?P<pk>[0-9]+)/$',
         r2010_infoprocretad_api_views.r2010infoProcRetAdDetail.as_view() ),
 
-    url(r'^r2010-infoprocretad/$', 
-        r2010_infoprocretad_listar_views.listar, 
+    url(r'^r2010-infoprocretad/$',
+        r2010_infoprocretad_listar_views.listar,
         name='r2010_infoprocretad'),
 
-    url(r'^r2010-infoprocretad/salvar/(?P<pk>[0-9]+)/$', 
-        r2010_infoprocretad_salvar_views.salvar, 
+    url(r'^r2010-infoprocretad/salvar/(?P<pk>[0-9]+)/$',
+        r2010_infoprocretad_salvar_views.salvar,
         name='r2010_infoprocretad_salvar'),
 
-    url(r'^r2010-infoprocretad/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        r2010_infoprocretad_salvar_views.salvar, 
+    url(r'^r2010-infoprocretad/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r2010_infoprocretad_salvar_views.salvar,
         name='r2010_infoprocretad_salvar_tab'),
-        
-    url(r'^r2010-infoprocretad/cadastrar/$', 
-        r2010_infoprocretad_salvar_views.salvar, 
+
+    url(r'^r2010-infoprocretad/cadastrar/$',
+        r2010_infoprocretad_salvar_views.salvar,
         name='r2010_infoprocretad_cadastrar'),
 
-    url(r'^r2010-infoprocretad/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        r2010_infoprocretad_salvar_views.salvar, 
+    url(r'^r2010-infoprocretad/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        r2010_infoprocretad_salvar_views.salvar,
         name='r2010_infoprocretad_salvar_output'),
-        
-    url(r'^r2010-infoprocretad/(?P<output>[\w-]+)/$', 
-        r2010_infoprocretad_listar_views.listar, 
+
+    url(r'^r2010-infoprocretad/(?P<output>[\w-]+)/$',
+        r2010_infoprocretad_listar_views.listar,
         name='r2010_infoprocretad_output'),
 
 

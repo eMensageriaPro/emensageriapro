@@ -314,7 +314,7 @@
 
     
 
-                            {% if perms.esocial.can_validate_s1200evtRemun and s1200_evtremun_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            {% if perms.esocial.can_validate_s1200evtRemun and s1200_evtremun_form.status.value == STATUS_EVENTO_CADASTRADO or s1200_evtremun_form.status.value == STATUS_EVENTO_GERADO or s1200_evtremun_form.status.value == STATUS_EVENTO_ASSINADO %}
                             <div class="col-md-3">
                                 <a href="{% url 's1200_evtremun_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">

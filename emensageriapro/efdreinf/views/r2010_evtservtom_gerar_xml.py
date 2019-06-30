@@ -72,77 +72,85 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_r2010(request, pk, versao=None):
+def gerar_xml_r2010_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    r2010_evtservtom = get_object_or_404(
+        r2010evtServTom,
+        id=pk)
 
-        r2010_evtservtom = get_object_or_404(
-            r2010evtServTom,
-            id=pk)
+    if not versao or versao == '|':
+        versao = r2010_evtservtom.versao
 
-        if not versao or versao == '|':
-            versao = r2010_evtservtom.versao
+    evento = 'r2010evtServTom'[5:]
+    arquivo = '/xsd/efdreinf/%s/%s.xsd' % (versao, evento)
 
-        evento = 'r2010evtServTom'[5:]
-        arquivo = 'xsd/efdreinf/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        r2010_evtservtom_lista = r2010evtServTom.objects. \
-            filter(id=pk).all()
+    r2010_evtservtom_lista = r2010evtServTom.objects. \
+        filter(id=pk).all()
 
 
-        r2010_nfs_lista = r2010nfs.objects. \
-            filter(r2010_evtservtom_id__in=listar_ids(r2010_evtservtom_lista)).all()
+    r2010_nfs_lista = r2010nfs.objects. \
+        filter(r2010_evtservtom_id__in=listar_ids(r2010_evtservtom_lista)).all()
 
-        r2010_infotpserv_lista = r2010infoTpServ.objects. \
-            filter(r2010_nfs_id__in=listar_ids(r2010_nfs_lista)).all()
+    r2010_infotpserv_lista = r2010infoTpServ.objects. \
+        filter(r2010_nfs_id__in=listar_ids(r2010_nfs_lista)).all()
 
-        r2010_infoprocretpr_lista = r2010infoProcRetPr.objects. \
-            filter(r2010_evtservtom_id__in=listar_ids(r2010_evtservtom_lista)).all()
+    r2010_infoprocretpr_lista = r2010infoProcRetPr.objects. \
+        filter(r2010_evtservtom_id__in=listar_ids(r2010_evtservtom_lista)).all()
 
-        r2010_infoprocretad_lista = r2010infoProcRetAd.objects. \
-            filter(r2010_evtservtom_id__in=listar_ids(r2010_evtservtom_lista)).all()
+    r2010_infoprocretad_lista = r2010infoProcRetAd.objects. \
+        filter(r2010_evtservtom_id__in=listar_ids(r2010_evtservtom_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': r2010_evtservtom,
-            'r2010_evtservtom_lista': r2010_evtservtom_lista,
-            'pk': int(pk),
-            'r2010_evtservtom': r2010_evtservtom,
-            'r2010_nfs_lista': r2010_nfs_lista,
-            'r2010_infotpserv_lista': r2010_infotpserv_lista,
-            'r2010_infoprocretpr_lista': r2010_infoprocretpr_lista,
-            'r2010_infoprocretad_lista': r2010_infoprocretad_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': r2010_evtservtom,
+        'r2010_evtservtom_lista': r2010_evtservtom_lista,
+        'pk': int(pk),
+        'r2010_evtservtom': r2010_evtservtom,
+        'r2010_nfs_lista': r2010_nfs_lista,
+        'r2010_infotpserv_lista': r2010_infotpserv_lista,
+        'r2010_infoprocretpr_lista': r2010_infoprocretpr_lista,
+        'r2010_infoprocretad_lista': r2010_infoprocretad_lista,
+    }
 
-        t = get_template('r2010_evtservtom.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('r2010_evtservtom.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_r2010(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    r2010_evtservtom = get_object_or_404(
+        r2010evtServTom,
+        id=pk)
+    return gerar_xml_r2010_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_efdreinf import salvar_arquivo_efdreinf
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_efdreinf
     from emensageriapro.mensageiro.functions.funcoes_efdreinf import assinar_efdreinf
 
     r2010_evtservtom = get_object_or_404(
@@ -150,15 +158,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if r2010_evtservtom.arquivo_original:
-
         xml = ler_arquivo(r2010_evtservtom.arquivo)
 
     else:
         xml = gerar_xml_r2010(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        r2010evtServTom.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -188,16 +196,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             r2010_evtservtom.transmissor_lote_efdreinf_id)
 
-    if r2010_evtservtom.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        r2010evtServTom.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            r2010evtServTom.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/r2010_evtservtom/%s.xml' % (r2010_evtservtom.identidade)
+            r2010evtServTom.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/r2010_evtservtom/%s.xml' % (r2010_evtservtom.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/r2010_evtservtom/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

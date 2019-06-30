@@ -1,9 +1,5 @@
 #coding:utf-8
-import psycopg2
-import datetime
-import os
-from django.contrib import messages
-from emensageriapro.padrao import ler_arquivo, executar_sql
+from emensageriapro.padrao import executar_sql
 
 """
 
@@ -38,12 +34,34 @@ from emensageriapro.padrao import ler_arquivo, executar_sql
 
 """
 
-def testar_importacao_xml(dicionario, chave, valor):
-    try:
-        dicionario[chave] = valor
-    except:
-        pass
-    return dicionario
+TRANSMISSOR_STATUS_CADASTRADO = 0
+TRANSMISSOR_STATUS_ENVIADO = 1
+TRANSMISSOR_STATUS_ENVIADO_ERRO = 2
+TRANSMISSOR_STATUS_CONSULTADO = 3
+TRANSMISSOR_STATUS_CONSULTADO_ERRO = 4
+
+
+def create_folders():
+    import os
+    from emensageriapro.settings import BASE_DIR
+
+    services = [
+        'RecepcaoLoteReinf',
+        'ConsultasReinf',
+        'WsEnviarLoteEventos',
+        'WsConsultarLoteEventos',
+    ]
+
+    for service in services:
+        lista_pastas = [
+            '%s/arquivos/Comunicacao/%s/header/' % (BASE_DIR, service),
+            '%s/arquivos/Comunicacao/%s/request/' % (BASE_DIR, service),
+            '%s/arquivos/Comunicacao/%s/response/' % (BASE_DIR, service),
+        ]
+
+        for pasta in lista_pastas:
+            if not os.path.exists(pasta):
+                os.system('mkdir -p %s' % pasta)
 
 
 def create_insert(tabela, dados):
@@ -67,3 +85,122 @@ def create_insert(tabela, dados):
             valores += "Null, "
     texto = "INSERT INTO public.%s (%s, criado_em, criado_por_id, ativo) VALUES (%s now(), 1, True) RETURNING id;" % (tabela, ', '.join(variaveis), valores)
     return texto
+
+
+
+def gravar_nome_arquivo(arquivo, permite_recuperacao):
+    from datetime import datetime
+    from emensageriapro.mensageiro.models import Arquivos
+
+    dados = {}
+    dados['arquivo'] = arquivo.replace('//', '/').replace('//', '/')
+    dados['data_criacao'] = datetime.now()
+    dados['permite_recuperacao'] = permite_recuperacao
+    dados['criado_em'] = datetime.now()
+    dados['ativo'] = True
+    dados['criado_por_id'] = 1
+
+    obj = Arquivos(**dados)
+    obj.save(using='default')
+
+
+
+def salvar_arquivo_esocial(arquivo, texto, permite_recuperacao):
+
+    import codecs
+    from emensageriapro.settings import BASE_DIR
+
+    arquivo1 = BASE_DIR + arquivo
+
+    # file = open(arquivo1, "w")
+    # file.write(texto)
+    # file.close()
+
+    file = codecs.open(arquivo1, "w", "utf-8")
+    file.write(texto)
+    file.close()
+
+    gravar_nome_arquivo(arquivo, permite_recuperacao)
+
+
+
+
+def salvar_arquivo_efdreinf(arquivo, texto, permite_recuperacao):
+
+    import codecs
+    from emensageriapro.settings import BASE_DIR
+
+    arquivo1 = BASE_DIR + arquivo
+
+    file = codecs.open(arquivo1, "w", "utf-8")
+    file.write(texto)
+    file.close()
+
+    gravar_nome_arquivo(arquivo, permite_recuperacao)
+
+
+def ler_arquivo(arquivo):
+
+    import codecs
+    from emensageriapro.settings import BASE_DIR
+
+    arquivo = BASE_DIR + arquivo
+    file = codecs.open(arquivo, "r", "utf-8")
+    texto = file.read()
+    file.close()
+
+    return texto.encode('utf-8')
+
+
+def create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file):
+
+    import os.path
+    from emensageriapro.padrao import salvar_arquivo
+    from OpenSSL import crypto
+
+    pkcs12 = crypto.load_pkcs12(open(cert_host, 'rb').read(), cert_pass)
+
+    if not os.path.isfile(cert_pem_file):
+
+        cert_str = crypto.dump_certificate(crypto.FILETYPE_PEM, pkcs12.get_certificate())
+        salvar_arquivo(cert_pem_file, cert_str)
+
+    if not os.path.isfile(key_pem_file):
+
+        key_str = crypto.dump_privatekey(crypto.FILETYPE_PEM, pkcs12.get_privatekey())
+        salvar_arquivo(key_pem_file, key_str)
+
+
+def get_identidade_evento(xml):
+
+    a = xml.split('id="')
+    b = a[1].split('"')
+
+    return b[0]
+
+
+
+def get_transmissor_name(transmissor_id):
+    number = str(transmissor_id)
+    while len(number) < 9:
+        number = '0'+number
+    return number
+
+
+
+
+def send(dados):
+    import os
+    command = '''curl --connect-timeout %(timeout)s --insecure 
+                    --cert %(cert)s 
+                    --key %(key)s 
+                    --cacert %(cacert)s 
+                    -H "Content-Type: text/xml;charset=UTF-8" 
+                    -H "SOAPAction:%(action)s" 
+                    --dump-header %(header_completo)s 
+                    --output %(response_completo)s 
+                    -d@%(request_completo)s 
+                    %(url)s''' % dados
+
+    os.system(command.replace('\n', ''))
+

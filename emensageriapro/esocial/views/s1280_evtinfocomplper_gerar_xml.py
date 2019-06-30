@@ -72,73 +72,81 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1280(request, pk, versao=None):
+def gerar_xml_s1280_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s1280_evtinfocomplper = get_object_or_404(
+        s1280evtInfoComplPer,
+        id=pk)
 
-        s1280_evtinfocomplper = get_object_or_404(
-            s1280evtInfoComplPer,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s1280_evtinfocomplper.versao
 
-        if not versao or versao == '|':
-            versao = s1280_evtinfocomplper.versao
+    evento = 's1280evtInfoComplPer'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's1280evtInfoComplPer'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s1280_evtinfocomplper_lista = s1280evtInfoComplPer.objects. \
-            filter(id=pk).all()
+    s1280_evtinfocomplper_lista = s1280evtInfoComplPer.objects. \
+        filter(id=pk).all()
 
 
-        s1280_infosubstpatr_lista = s1280infoSubstPatr.objects. \
-            filter(s1280_evtinfocomplper_id__in=listar_ids(s1280_evtinfocomplper_lista)).all()
+    s1280_infosubstpatr_lista = s1280infoSubstPatr.objects. \
+        filter(s1280_evtinfocomplper_id__in=listar_ids(s1280_evtinfocomplper_lista)).all()
 
-        s1280_infosubstpatropport_lista = s1280infoSubstPatrOpPort.objects. \
-            filter(s1280_evtinfocomplper_id__in=listar_ids(s1280_evtinfocomplper_lista)).all()
+    s1280_infosubstpatropport_lista = s1280infoSubstPatrOpPort.objects. \
+        filter(s1280_evtinfocomplper_id__in=listar_ids(s1280_evtinfocomplper_lista)).all()
 
-        s1280_infoativconcom_lista = s1280infoAtivConcom.objects. \
-            filter(s1280_evtinfocomplper_id__in=listar_ids(s1280_evtinfocomplper_lista)).all()
+    s1280_infoativconcom_lista = s1280infoAtivConcom.objects. \
+        filter(s1280_evtinfocomplper_id__in=listar_ids(s1280_evtinfocomplper_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s1280_evtinfocomplper,
-            's1280_evtinfocomplper_lista': s1280_evtinfocomplper_lista,
-            'pk': int(pk),
-            's1280_evtinfocomplper': s1280_evtinfocomplper,
-            's1280_infosubstpatr_lista': s1280_infosubstpatr_lista,
-            's1280_infosubstpatropport_lista': s1280_infosubstpatropport_lista,
-            's1280_infoativconcom_lista': s1280_infoativconcom_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s1280_evtinfocomplper,
+        's1280_evtinfocomplper_lista': s1280_evtinfocomplper_lista,
+        'pk': int(pk),
+        's1280_evtinfocomplper': s1280_evtinfocomplper,
+        's1280_infosubstpatr_lista': s1280_infosubstpatr_lista,
+        's1280_infosubstpatropport_lista': s1280_infosubstpatropport_lista,
+        's1280_infoativconcom_lista': s1280_infoativconcom_lista,
+    }
 
-        t = get_template('s1280_evtinfocomplper.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s1280_evtinfocomplper.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s1280(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s1280_evtinfocomplper = get_object_or_404(
+        s1280evtInfoComplPer,
+        id=pk)
+    return gerar_xml_s1280_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s1280_evtinfocomplper = get_object_or_404(
@@ -146,15 +154,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1280_evtinfocomplper.arquivo_original:
-
         xml = ler_arquivo(s1280_evtinfocomplper.arquivo)
 
     else:
         xml = gerar_xml_s1280(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s1280evtInfoComplPer.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -184,16 +192,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s1280_evtinfocomplper.transmissor_lote_esocial_id)
 
-    if s1280_evtinfocomplper.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s1280evtInfoComplPer.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s1280evtInfoComplPer.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s1280_evtinfocomplper/%s.xml' % (s1280_evtinfocomplper.identidade)
+            s1280evtInfoComplPer.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s1280_evtinfocomplper/%s.xml' % (s1280_evtinfocomplper.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1280_evtinfocomplper/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

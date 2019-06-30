@@ -79,7 +79,7 @@ class ConfigPerfis(SoftDeletionModel):
             return ' - '.join(lista)
 
         else:
-            return self.id
+            return unicode(self.id)
 
     def save(self, *args, **kwargs):
         if self.id:

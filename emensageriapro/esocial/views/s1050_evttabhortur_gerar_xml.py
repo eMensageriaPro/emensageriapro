@@ -72,85 +72,93 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1050(request, pk, versao=None):
+def gerar_xml_s1050_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s1050_evttabhortur = get_object_or_404(
+        s1050evtTabHorTur,
+        id=pk)
 
-        s1050_evttabhortur = get_object_or_404(
-            s1050evtTabHorTur,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s1050_evttabhortur.versao
 
-        if not versao or versao == '|':
-            versao = s1050_evttabhortur.versao
+    evento = 's1050evtTabHorTur'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's1050evtTabHorTur'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s1050_evttabhortur_lista = s1050evtTabHorTur.objects. \
-            filter(id=pk).all()
+    s1050_evttabhortur_lista = s1050evtTabHorTur.objects. \
+        filter(id=pk).all()
 
 
-        s1050_inclusao_lista = s1050inclusao.objects. \
-            filter(s1050_evttabhortur_id__in=listar_ids(s1050_evttabhortur_lista)).all()
+    s1050_inclusao_lista = s1050inclusao.objects. \
+        filter(s1050_evttabhortur_id__in=listar_ids(s1050_evttabhortur_lista)).all()
 
-        s1050_inclusao_horariointervalo_lista = s1050inclusaohorarioIntervalo.objects. \
-            filter(s1050_inclusao_id__in=listar_ids(s1050_inclusao_lista)).all()
+    s1050_inclusao_horariointervalo_lista = s1050inclusaohorarioIntervalo.objects. \
+        filter(s1050_inclusao_id__in=listar_ids(s1050_inclusao_lista)).all()
 
-        s1050_alteracao_lista = s1050alteracao.objects. \
-            filter(s1050_evttabhortur_id__in=listar_ids(s1050_evttabhortur_lista)).all()
+    s1050_alteracao_lista = s1050alteracao.objects. \
+        filter(s1050_evttabhortur_id__in=listar_ids(s1050_evttabhortur_lista)).all()
 
-        s1050_alteracao_horariointervalo_lista = s1050alteracaohorarioIntervalo.objects. \
-            filter(s1050_alteracao_id__in=listar_ids(s1050_alteracao_lista)).all()
+    s1050_alteracao_horariointervalo_lista = s1050alteracaohorarioIntervalo.objects. \
+        filter(s1050_alteracao_id__in=listar_ids(s1050_alteracao_lista)).all()
 
-        s1050_alteracao_novavalidade_lista = s1050alteracaonovaValidade.objects. \
-            filter(s1050_alteracao_id__in=listar_ids(s1050_alteracao_lista)).all()
+    s1050_alteracao_novavalidade_lista = s1050alteracaonovaValidade.objects. \
+        filter(s1050_alteracao_id__in=listar_ids(s1050_alteracao_lista)).all()
 
-        s1050_exclusao_lista = s1050exclusao.objects. \
-            filter(s1050_evttabhortur_id__in=listar_ids(s1050_evttabhortur_lista)).all()
+    s1050_exclusao_lista = s1050exclusao.objects. \
+        filter(s1050_evttabhortur_id__in=listar_ids(s1050_evttabhortur_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s1050_evttabhortur,
-            's1050_evttabhortur_lista': s1050_evttabhortur_lista,
-            'pk': int(pk),
-            's1050_evttabhortur': s1050_evttabhortur,
-            's1050_inclusao_lista': s1050_inclusao_lista,
-            's1050_inclusao_horariointervalo_lista': s1050_inclusao_horariointervalo_lista,
-            's1050_alteracao_lista': s1050_alteracao_lista,
-            's1050_alteracao_horariointervalo_lista': s1050_alteracao_horariointervalo_lista,
-            's1050_alteracao_novavalidade_lista': s1050_alteracao_novavalidade_lista,
-            's1050_exclusao_lista': s1050_exclusao_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s1050_evttabhortur,
+        's1050_evttabhortur_lista': s1050_evttabhortur_lista,
+        'pk': int(pk),
+        's1050_evttabhortur': s1050_evttabhortur,
+        's1050_inclusao_lista': s1050_inclusao_lista,
+        's1050_inclusao_horariointervalo_lista': s1050_inclusao_horariointervalo_lista,
+        's1050_alteracao_lista': s1050_alteracao_lista,
+        's1050_alteracao_horariointervalo_lista': s1050_alteracao_horariointervalo_lista,
+        's1050_alteracao_novavalidade_lista': s1050_alteracao_novavalidade_lista,
+        's1050_exclusao_lista': s1050_exclusao_lista,
+    }
 
-        t = get_template('s1050_evttabhortur.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s1050_evttabhortur.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s1050(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s1050_evttabhortur = get_object_or_404(
+        s1050evtTabHorTur,
+        id=pk)
+    return gerar_xml_s1050_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s1050_evttabhortur = get_object_or_404(
@@ -158,15 +166,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1050_evttabhortur.arquivo_original:
-
         xml = ler_arquivo(s1050_evttabhortur.arquivo)
 
     else:
         xml = gerar_xml_s1050(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s1050evtTabHorTur.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -196,16 +204,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s1050_evttabhortur.transmissor_lote_esocial_id)
 
-    if s1050_evttabhortur.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s1050evtTabHorTur.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s1050evtTabHorTur.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s1050_evttabhortur/%s.xml' % (s1050_evttabhortur.identidade)
+            s1050evtTabHorTur.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s1050_evttabhortur/%s.xml' % (s1050_evttabhortur.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1050_evttabhortur/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

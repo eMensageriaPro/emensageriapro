@@ -60,8 +60,8 @@ from emensageriapro.s2405.views import s2405_dependente_api as s2405_dependente_
 urlpatterns = [
 
 
-    url(r'^s2405-endereco/apagar/(?P<pk>[0-9]+)/$', 
-        s2405_endereco_apagar_views.apagar, 
+    url(r'^s2405-endereco/apagar/(?P<pk>[0-9]+)/$',
+        s2405_endereco_apagar_views.apagar,
         name='s2405_endereco_apagar'),
 
     url(r'^s2405-endereco/api/$',
@@ -70,32 +70,32 @@ urlpatterns = [
     url(r'^s2405-endereco/api/(?P<pk>[0-9]+)/$',
         s2405_endereco_api_views.s2405enderecoDetail.as_view() ),
 
-    url(r'^s2405-endereco/$', 
-        s2405_endereco_listar_views.listar, 
+    url(r'^s2405-endereco/$',
+        s2405_endereco_listar_views.listar,
         name='s2405_endereco'),
 
-    url(r'^s2405-endereco/salvar/(?P<pk>[0-9]+)/$', 
-        s2405_endereco_salvar_views.salvar, 
+    url(r'^s2405-endereco/salvar/(?P<pk>[0-9]+)/$',
+        s2405_endereco_salvar_views.salvar,
         name='s2405_endereco_salvar'),
 
-    url(r'^s2405-endereco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2405_endereco_salvar_views.salvar, 
+    url(r'^s2405-endereco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2405_endereco_salvar_views.salvar,
         name='s2405_endereco_salvar_tab'),
-        
-    url(r'^s2405-endereco/cadastrar/$', 
-        s2405_endereco_salvar_views.salvar, 
+
+    url(r'^s2405-endereco/cadastrar/$',
+        s2405_endereco_salvar_views.salvar,
         name='s2405_endereco_cadastrar'),
 
-    url(r'^s2405-endereco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2405_endereco_salvar_views.salvar, 
+    url(r'^s2405-endereco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2405_endereco_salvar_views.salvar,
         name='s2405_endereco_salvar_output'),
-        
-    url(r'^s2405-endereco/(?P<output>[\w-]+)/$', 
-        s2405_endereco_listar_views.listar, 
+
+    url(r'^s2405-endereco/(?P<output>[\w-]+)/$',
+        s2405_endereco_listar_views.listar,
         name='s2405_endereco_output'),
 
-    url(r'^s2405-brasil/apagar/(?P<pk>[0-9]+)/$', 
-        s2405_brasil_apagar_views.apagar, 
+    url(r'^s2405-brasil/apagar/(?P<pk>[0-9]+)/$',
+        s2405_brasil_apagar_views.apagar,
         name='s2405_brasil_apagar'),
 
     url(r'^s2405-brasil/api/$',
@@ -104,32 +104,32 @@ urlpatterns = [
     url(r'^s2405-brasil/api/(?P<pk>[0-9]+)/$',
         s2405_brasil_api_views.s2405brasilDetail.as_view() ),
 
-    url(r'^s2405-brasil/$', 
-        s2405_brasil_listar_views.listar, 
+    url(r'^s2405-brasil/$',
+        s2405_brasil_listar_views.listar,
         name='s2405_brasil'),
 
-    url(r'^s2405-brasil/salvar/(?P<pk>[0-9]+)/$', 
-        s2405_brasil_salvar_views.salvar, 
+    url(r'^s2405-brasil/salvar/(?P<pk>[0-9]+)/$',
+        s2405_brasil_salvar_views.salvar,
         name='s2405_brasil_salvar'),
 
-    url(r'^s2405-brasil/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2405_brasil_salvar_views.salvar, 
+    url(r'^s2405-brasil/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2405_brasil_salvar_views.salvar,
         name='s2405_brasil_salvar_tab'),
-        
-    url(r'^s2405-brasil/cadastrar/$', 
-        s2405_brasil_salvar_views.salvar, 
+
+    url(r'^s2405-brasil/cadastrar/$',
+        s2405_brasil_salvar_views.salvar,
         name='s2405_brasil_cadastrar'),
 
-    url(r'^s2405-brasil/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2405_brasil_salvar_views.salvar, 
+    url(r'^s2405-brasil/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2405_brasil_salvar_views.salvar,
         name='s2405_brasil_salvar_output'),
-        
-    url(r'^s2405-brasil/(?P<output>[\w-]+)/$', 
-        s2405_brasil_listar_views.listar, 
+
+    url(r'^s2405-brasil/(?P<output>[\w-]+)/$',
+        s2405_brasil_listar_views.listar,
         name='s2405_brasil_output'),
 
-    url(r'^s2405-exterior/apagar/(?P<pk>[0-9]+)/$', 
-        s2405_exterior_apagar_views.apagar, 
+    url(r'^s2405-exterior/apagar/(?P<pk>[0-9]+)/$',
+        s2405_exterior_apagar_views.apagar,
         name='s2405_exterior_apagar'),
 
     url(r'^s2405-exterior/api/$',
@@ -138,32 +138,32 @@ urlpatterns = [
     url(r'^s2405-exterior/api/(?P<pk>[0-9]+)/$',
         s2405_exterior_api_views.s2405exteriorDetail.as_view() ),
 
-    url(r'^s2405-exterior/$', 
-        s2405_exterior_listar_views.listar, 
+    url(r'^s2405-exterior/$',
+        s2405_exterior_listar_views.listar,
         name='s2405_exterior'),
 
-    url(r'^s2405-exterior/salvar/(?P<pk>[0-9]+)/$', 
-        s2405_exterior_salvar_views.salvar, 
+    url(r'^s2405-exterior/salvar/(?P<pk>[0-9]+)/$',
+        s2405_exterior_salvar_views.salvar,
         name='s2405_exterior_salvar'),
 
-    url(r'^s2405-exterior/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2405_exterior_salvar_views.salvar, 
+    url(r'^s2405-exterior/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2405_exterior_salvar_views.salvar,
         name='s2405_exterior_salvar_tab'),
-        
-    url(r'^s2405-exterior/cadastrar/$', 
-        s2405_exterior_salvar_views.salvar, 
+
+    url(r'^s2405-exterior/cadastrar/$',
+        s2405_exterior_salvar_views.salvar,
         name='s2405_exterior_cadastrar'),
 
-    url(r'^s2405-exterior/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2405_exterior_salvar_views.salvar, 
+    url(r'^s2405-exterior/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2405_exterior_salvar_views.salvar,
         name='s2405_exterior_salvar_output'),
-        
-    url(r'^s2405-exterior/(?P<output>[\w-]+)/$', 
-        s2405_exterior_listar_views.listar, 
+
+    url(r'^s2405-exterior/(?P<output>[\w-]+)/$',
+        s2405_exterior_listar_views.listar,
         name='s2405_exterior_output'),
 
-    url(r'^s2405-dependente/apagar/(?P<pk>[0-9]+)/$', 
-        s2405_dependente_apagar_views.apagar, 
+    url(r'^s2405-dependente/apagar/(?P<pk>[0-9]+)/$',
+        s2405_dependente_apagar_views.apagar,
         name='s2405_dependente_apagar'),
 
     url(r'^s2405-dependente/api/$',
@@ -172,28 +172,28 @@ urlpatterns = [
     url(r'^s2405-dependente/api/(?P<pk>[0-9]+)/$',
         s2405_dependente_api_views.s2405dependenteDetail.as_view() ),
 
-    url(r'^s2405-dependente/$', 
-        s2405_dependente_listar_views.listar, 
+    url(r'^s2405-dependente/$',
+        s2405_dependente_listar_views.listar,
         name='s2405_dependente'),
 
-    url(r'^s2405-dependente/salvar/(?P<pk>[0-9]+)/$', 
-        s2405_dependente_salvar_views.salvar, 
+    url(r'^s2405-dependente/salvar/(?P<pk>[0-9]+)/$',
+        s2405_dependente_salvar_views.salvar,
         name='s2405_dependente_salvar'),
 
-    url(r'^s2405-dependente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2405_dependente_salvar_views.salvar, 
+    url(r'^s2405-dependente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2405_dependente_salvar_views.salvar,
         name='s2405_dependente_salvar_tab'),
-        
-    url(r'^s2405-dependente/cadastrar/$', 
-        s2405_dependente_salvar_views.salvar, 
+
+    url(r'^s2405-dependente/cadastrar/$',
+        s2405_dependente_salvar_views.salvar,
         name='s2405_dependente_cadastrar'),
 
-    url(r'^s2405-dependente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2405_dependente_salvar_views.salvar, 
+    url(r'^s2405-dependente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2405_dependente_salvar_views.salvar,
         name='s2405_dependente_salvar_output'),
-        
-    url(r'^s2405-dependente/(?P<output>[\w-]+)/$', 
-        s2405_dependente_listar_views.listar, 
+
+    url(r'^s2405-dependente/(?P<output>[\w-]+)/$',
+        s2405_dependente_listar_views.listar,
         name='s2405_dependente_output'),
 
 

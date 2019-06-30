@@ -92,7 +92,7 @@ class s2260localTrabInterm(SoftDeletionModel):
             else:
                 return ' - '.join(lista)
         else:
-            return self.id
+            return unicode(self.id)
 
     class Meta:
 

@@ -33,16 +33,7 @@
 
 """
 
-from emensageriapro.padrao import executar_sql
-
-
-from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
-    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
-    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
-    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
-    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
-    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
-    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
+from emensageriapro.esocial.models import STATUS_EVENTO_PROCESSADO
 
 
 def r1000_enviados():
@@ -227,21 +218,14 @@ def validar_precedencia(tipo, tabela, tabela_id):
     from emensageriapro.esocial.models import s1000evtInfoEmpregador, s1005evtTabEstab, \
         s1010evtTabRubrica, s1020evtTabLotacao, s1030evtTabCargo, s1035evtTabCarreira, \
         s1040evtTabFuncao, s1050evtTabHorTur, s1060evtTabAmbiente, s1070evtTabProcesso, \
-        s1080evtTabOperPort, s1200evtRemun, s1202evtRmnRPPS, s1207evtBenPrRP, \
-        s1210evtPgtos, s1250evtAqProd, s1260evtComProd, s1270evtContratAvNP, \
-        s1280evtInfoComplPer, s1295evtTotConting, s1298evtReabreEvPer, s1299evtFechaEvPer, \
-        s1300evtContrSindPatr, s2190evtAdmPrelim, s2200evtAdmissao, s2205evtAltCadastral, \
+        s1080evtTabOperPort, s2200evtAdmissao, s2205evtAltCadastral, \
         s2206evtAltContratual, s2210evtCAT, s2220evtMonit, s2230evtAfastTemp, s2240evtExpRisco, \
-        s2241evtInsApo, s2250evtAvPrevio, s2260evtConvInterm, s2298evtReintegr, s2299evtDeslig, \
-        s2300evtTSVInicio, s2306evtTSVAltContr, s2399evtTSVTermino, s2400evtCdBenefIn, s3000evtExclusao, \
-        s5001evtBasesTrab, s5002evtIrrfBenef, s5011evtCS, s5012evtIrrf
-    from emensageriapro.efdreinf.models import r1000evtInfoContri, r1070evtTabProcesso, r2010evtServTom, \
+        s2241evtInsApo, s2250evtAvPrevio, s2298evtReintegr, s2299evtDeslig, \
+        s2300evtTSVInicio, s2306evtTSVAltContr, s2399evtTSVTermino, s2400evtCdBenefIn
+    from emensageriapro.efdreinf.models import r1070evtTabProcesso, r2010evtServTom, \
         r2020evtServPrest, r2030evtAssocDespRec, r2040evtAssocDespRep, r2050evtComProd, \
         r2060evtCPRB, r2070evtPgtosDivs, r2098evtReabreEvPer, r2099evtFechaEvPer, \
-        r3010evtEspDesportivo, r5001evtTotal, r5011evtTotalContrib, r9000evtExclusao
-
-    from emensageriapro.s3000.models import s3000ideFolhaPagto, s3000ideTrabalhador
-
+        r3010evtEspDesportivo, r9000evtExclusao
 
     # tipo = eSocial ou Reinf
     db_slug = 'default'

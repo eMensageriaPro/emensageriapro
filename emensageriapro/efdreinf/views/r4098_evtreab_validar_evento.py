@@ -76,11 +76,12 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 def validar_evento_funcao(request, pk):
 
     from emensageriapro.padrao import executar_sql
-    from emensageriapro.mensageiro.functions.funcoes_importacao import get_versao_evento
+    from emensageriapro.functions import get_versao_evento
+    from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_validacoes_precedencia import validar_precedencia
     from emensageriapro.mensageiro.functions.funcoes_validacoes import get_schema_name, validar_schema
-    from emensageriapro.settings import BASE_DIR
     from emensageriapro.efdreinf.views.r4098_evtreab_gerar_xml import gerar_xml_assinado
+
     VERIFICAR_PREDECESSAO_ANTES_ENVIO = config.EFDREINF_VERIFICAR_PREDECESSAO_ANTES_ENVIO
 
     lista_validacoes = []
@@ -90,16 +91,16 @@ def validar_evento_funcao(request, pk):
     # Validações internas
     #
 
-    arquivo = 'arquivos/Eventos/r4098_evtreab/%s.xml' % (r4098_evtreab.identidade)
+    arquivo = '/arquivos/Eventos/r4098_evtreab/%s.xml' % (r4098_evtreab.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/r4098_evtreab/' % BASE_DIR)
     lista = []
     tipo = 'efdreinf'
 
-    if not os.path.exists(BASE_DIR + '/' + arquivo):
+    if not os.path.exists(BASE_DIR + arquivo):
 
         gerar_xml_assinado(request, pk)
 
-    if os.path.exists(BASE_DIR + '/' + arquivo):
+    if os.path.exists(BASE_DIR + arquivo):
 
         from emensageriapro.efdreinf.views.r4098_evtreab_validar import validacoes_r4098_evtreab
 

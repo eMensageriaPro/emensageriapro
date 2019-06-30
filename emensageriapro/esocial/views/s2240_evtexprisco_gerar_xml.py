@@ -72,121 +72,129 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s2240(request, pk, versao=None):
+def gerar_xml_s2240_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s2240_evtexprisco = get_object_or_404(
+        s2240evtExpRisco,
+        id=pk)
 
-        s2240_evtexprisco = get_object_or_404(
-            s2240evtExpRisco,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s2240_evtexprisco.versao
 
-        if not versao or versao == '|':
-            versao = s2240_evtexprisco.versao
+    evento = 's2240evtExpRisco'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's2240evtExpRisco'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s2240_evtexprisco_lista = s2240evtExpRisco.objects. \
-            filter(id=pk).all()
+    s2240_evtexprisco_lista = s2240evtExpRisco.objects. \
+        filter(id=pk).all()
 
 
-        s2240_iniexprisco_infoamb_lista = s2240iniExpRiscoinfoAmb.objects. \
-            filter(s2240_evtexprisco_id__in=listar_ids(s2240_evtexprisco_lista)).all()
+    s2240_iniexprisco_infoamb_lista = s2240iniExpRiscoinfoAmb.objects. \
+        filter(s2240_evtexprisco_id__in=listar_ids(s2240_evtexprisco_lista)).all()
 
-        s2240_iniexprisco_ativpericinsal_lista = s2240iniExpRiscoativPericInsal.objects. \
-            filter(s2240_evtexprisco_id__in=listar_ids(s2240_evtexprisco_lista)).all()
+    s2240_iniexprisco_ativpericinsal_lista = s2240iniExpRiscoativPericInsal.objects. \
+        filter(s2240_evtexprisco_id__in=listar_ids(s2240_evtexprisco_lista)).all()
 
-        s2240_iniexprisco_fatrisco_lista = s2240iniExpRiscofatRisco.objects. \
-            filter(s2240_evtexprisco_id__in=listar_ids(s2240_evtexprisco_lista)).all()
+    s2240_iniexprisco_fatrisco_lista = s2240iniExpRiscofatRisco.objects. \
+        filter(s2240_evtexprisco_id__in=listar_ids(s2240_evtexprisco_lista)).all()
 
-        s2240_iniexprisco_epc_lista = s2240iniExpRiscoepc.objects. \
-            filter(s2240_iniexprisco_fatrisco_id__in=listar_ids(s2240_iniexprisco_fatrisco_lista)).all()
+    s2240_iniexprisco_epc_lista = s2240iniExpRiscoepc.objects. \
+        filter(s2240_iniexprisco_fatrisco_id__in=listar_ids(s2240_iniexprisco_fatrisco_lista)).all()
 
-        s2240_iniexprisco_epi_lista = s2240iniExpRiscoepi.objects. \
-            filter(s2240_iniexprisco_fatrisco_id__in=listar_ids(s2240_iniexprisco_fatrisco_lista)).all()
+    s2240_iniexprisco_epi_lista = s2240iniExpRiscoepi.objects. \
+        filter(s2240_iniexprisco_fatrisco_id__in=listar_ids(s2240_iniexprisco_fatrisco_lista)).all()
 
-        s2240_iniexprisco_respreg_lista = s2240iniExpRiscorespReg.objects. \
-            filter(s2240_evtexprisco_id__in=listar_ids(s2240_evtexprisco_lista)).all()
+    s2240_iniexprisco_respreg_lista = s2240iniExpRiscorespReg.objects. \
+        filter(s2240_evtexprisco_id__in=listar_ids(s2240_evtexprisco_lista)).all()
 
-        s2240_iniexprisco_obs_lista = s2240iniExpRiscoobs.objects. \
-            filter(s2240_evtexprisco_id__in=listar_ids(s2240_evtexprisco_lista)).all()
+    s2240_iniexprisco_obs_lista = s2240iniExpRiscoobs.objects. \
+        filter(s2240_evtexprisco_id__in=listar_ids(s2240_evtexprisco_lista)).all()
 
-        s2240_altexprisco_lista = s2240altExpRisco.objects. \
-            filter(s2240_evtexprisco_id__in=listar_ids(s2240_evtexprisco_lista)).all()
+    s2240_altexprisco_lista = s2240altExpRisco.objects. \
+        filter(s2240_evtexprisco_id__in=listar_ids(s2240_evtexprisco_lista)).all()
 
-        s2240_altexprisco_infoamb_lista = s2240altExpRiscoinfoAmb.objects. \
-            filter(s2240_altexprisco_id__in=listar_ids(s2240_altexprisco_lista)).all()
+    s2240_altexprisco_infoamb_lista = s2240altExpRiscoinfoAmb.objects. \
+        filter(s2240_altexprisco_id__in=listar_ids(s2240_altexprisco_lista)).all()
 
-        s2240_altexprisco_fatrisco_lista = s2240altExpRiscofatRisco.objects. \
-            filter(s2240_altexprisco_infoamb_id__in=listar_ids(s2240_altexprisco_infoamb_lista)).all()
+    s2240_altexprisco_fatrisco_lista = s2240altExpRiscofatRisco.objects. \
+        filter(s2240_altexprisco_infoamb_id__in=listar_ids(s2240_altexprisco_infoamb_lista)).all()
 
-        s2240_altexprisco_epc_lista = s2240altExpRiscoepc.objects. \
-            filter(s2240_altexprisco_fatrisco_id__in=listar_ids(s2240_altexprisco_fatrisco_lista)).all()
+    s2240_altexprisco_epc_lista = s2240altExpRiscoepc.objects. \
+        filter(s2240_altexprisco_fatrisco_id__in=listar_ids(s2240_altexprisco_fatrisco_lista)).all()
 
-        s2240_altexprisco_epi_lista = s2240altExpRiscoepi.objects. \
-            filter(s2240_altexprisco_fatrisco_id__in=listar_ids(s2240_altexprisco_fatrisco_lista)).all()
+    s2240_altexprisco_epi_lista = s2240altExpRiscoepi.objects. \
+        filter(s2240_altexprisco_fatrisco_id__in=listar_ids(s2240_altexprisco_fatrisco_lista)).all()
 
-        s2240_fimexprisco_lista = s2240fimExpRisco.objects. \
-            filter(s2240_evtexprisco_id__in=listar_ids(s2240_evtexprisco_lista)).all()
+    s2240_fimexprisco_lista = s2240fimExpRisco.objects. \
+        filter(s2240_evtexprisco_id__in=listar_ids(s2240_evtexprisco_lista)).all()
 
-        s2240_fimexprisco_infoamb_lista = s2240fimExpRiscoinfoAmb.objects. \
-            filter(s2240_fimexprisco_id__in=listar_ids(s2240_fimexprisco_lista)).all()
+    s2240_fimexprisco_infoamb_lista = s2240fimExpRiscoinfoAmb.objects. \
+        filter(s2240_fimexprisco_id__in=listar_ids(s2240_fimexprisco_lista)).all()
 
-        s2240_fimexprisco_respreg_lista = s2240fimExpRiscorespReg.objects. \
-            filter(s2240_evtexprisco_id__in=listar_ids(s2240_evtexprisco_lista)).all()
+    s2240_fimexprisco_respreg_lista = s2240fimExpRiscorespReg.objects. \
+        filter(s2240_evtexprisco_id__in=listar_ids(s2240_evtexprisco_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s2240_evtexprisco,
-            's2240_evtexprisco_lista': s2240_evtexprisco_lista,
-            'pk': int(pk),
-            's2240_evtexprisco': s2240_evtexprisco,
-            's2240_iniexprisco_infoamb_lista': s2240_iniexprisco_infoamb_lista,
-            's2240_iniexprisco_ativpericinsal_lista': s2240_iniexprisco_ativpericinsal_lista,
-            's2240_iniexprisco_fatrisco_lista': s2240_iniexprisco_fatrisco_lista,
-            's2240_iniexprisco_epc_lista': s2240_iniexprisco_epc_lista,
-            's2240_iniexprisco_epi_lista': s2240_iniexprisco_epi_lista,
-            's2240_iniexprisco_respreg_lista': s2240_iniexprisco_respreg_lista,
-            's2240_iniexprisco_obs_lista': s2240_iniexprisco_obs_lista,
-            's2240_altexprisco_lista': s2240_altexprisco_lista,
-            's2240_altexprisco_infoamb_lista': s2240_altexprisco_infoamb_lista,
-            's2240_altexprisco_fatrisco_lista': s2240_altexprisco_fatrisco_lista,
-            's2240_altexprisco_epc_lista': s2240_altexprisco_epc_lista,
-            's2240_altexprisco_epi_lista': s2240_altexprisco_epi_lista,
-            's2240_fimexprisco_lista': s2240_fimexprisco_lista,
-            's2240_fimexprisco_infoamb_lista': s2240_fimexprisco_infoamb_lista,
-            's2240_fimexprisco_respreg_lista': s2240_fimexprisco_respreg_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s2240_evtexprisco,
+        's2240_evtexprisco_lista': s2240_evtexprisco_lista,
+        'pk': int(pk),
+        's2240_evtexprisco': s2240_evtexprisco,
+        's2240_iniexprisco_infoamb_lista': s2240_iniexprisco_infoamb_lista,
+        's2240_iniexprisco_ativpericinsal_lista': s2240_iniexprisco_ativpericinsal_lista,
+        's2240_iniexprisco_fatrisco_lista': s2240_iniexprisco_fatrisco_lista,
+        's2240_iniexprisco_epc_lista': s2240_iniexprisco_epc_lista,
+        's2240_iniexprisco_epi_lista': s2240_iniexprisco_epi_lista,
+        's2240_iniexprisco_respreg_lista': s2240_iniexprisco_respreg_lista,
+        's2240_iniexprisco_obs_lista': s2240_iniexprisco_obs_lista,
+        's2240_altexprisco_lista': s2240_altexprisco_lista,
+        's2240_altexprisco_infoamb_lista': s2240_altexprisco_infoamb_lista,
+        's2240_altexprisco_fatrisco_lista': s2240_altexprisco_fatrisco_lista,
+        's2240_altexprisco_epc_lista': s2240_altexprisco_epc_lista,
+        's2240_altexprisco_epi_lista': s2240_altexprisco_epi_lista,
+        's2240_fimexprisco_lista': s2240_fimexprisco_lista,
+        's2240_fimexprisco_infoamb_lista': s2240_fimexprisco_infoamb_lista,
+        's2240_fimexprisco_respreg_lista': s2240_fimexprisco_respreg_lista,
+    }
 
-        t = get_template('s2240_evtexprisco.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s2240_evtexprisco.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s2240(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s2240_evtexprisco = get_object_or_404(
+        s2240evtExpRisco,
+        id=pk)
+    return gerar_xml_s2240_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s2240_evtexprisco = get_object_or_404(
@@ -194,15 +202,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s2240_evtexprisco.arquivo_original:
-
         xml = ler_arquivo(s2240_evtexprisco.arquivo)
 
     else:
         xml = gerar_xml_s2240(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s2240evtExpRisco.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -232,16 +240,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s2240_evtexprisco.transmissor_lote_esocial_id)
 
-    if s2240_evtexprisco.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s2240evtExpRisco.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s2240evtExpRisco.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s2240_evtexprisco/%s.xml' % (s2240_evtexprisco.identidade)
+            s2240evtExpRisco.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s2240_evtexprisco/%s.xml' % (s2240_evtexprisco.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s2240_evtexprisco/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

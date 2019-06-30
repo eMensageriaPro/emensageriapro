@@ -72,93 +72,101 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_r1000(request, pk, versao=None):
+def gerar_xml_r1000_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    r1000_evtinfocontri = get_object_or_404(
+        r1000evtInfoContri,
+        id=pk)
 
-        r1000_evtinfocontri = get_object_or_404(
-            r1000evtInfoContri,
-            id=pk)
+    if not versao or versao == '|':
+        versao = r1000_evtinfocontri.versao
 
-        if not versao or versao == '|':
-            versao = r1000_evtinfocontri.versao
+    evento = 'r1000evtInfoContri'[5:]
+    arquivo = '/xsd/efdreinf/%s/%s.xsd' % (versao, evento)
 
-        evento = 'r1000evtInfoContri'[5:]
-        arquivo = 'xsd/efdreinf/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        r1000_evtinfocontri_lista = r1000evtInfoContri.objects. \
-            filter(id=pk).all()
+    r1000_evtinfocontri_lista = r1000evtInfoContri.objects. \
+        filter(id=pk).all()
 
 
-        r1000_inclusao_lista = r1000inclusao.objects. \
-            filter(r1000_evtinfocontri_id__in=listar_ids(r1000_evtinfocontri_lista)).all()
+    r1000_inclusao_lista = r1000inclusao.objects. \
+        filter(r1000_evtinfocontri_id__in=listar_ids(r1000_evtinfocontri_lista)).all()
 
-        r1000_inclusao_softhouse_lista = r1000inclusaosoftHouse.objects. \
-            filter(r1000_inclusao_id__in=listar_ids(r1000_inclusao_lista)).all()
+    r1000_inclusao_softhouse_lista = r1000inclusaosoftHouse.objects. \
+        filter(r1000_inclusao_id__in=listar_ids(r1000_inclusao_lista)).all()
 
-        r1000_inclusao_infoefr_lista = r1000inclusaoinfoEFR.objects. \
-            filter(r1000_inclusao_id__in=listar_ids(r1000_inclusao_lista)).all()
+    r1000_inclusao_infoefr_lista = r1000inclusaoinfoEFR.objects. \
+        filter(r1000_inclusao_id__in=listar_ids(r1000_inclusao_lista)).all()
 
-        r1000_alteracao_lista = r1000alteracao.objects. \
-            filter(r1000_evtinfocontri_id__in=listar_ids(r1000_evtinfocontri_lista)).all()
+    r1000_alteracao_lista = r1000alteracao.objects. \
+        filter(r1000_evtinfocontri_id__in=listar_ids(r1000_evtinfocontri_lista)).all()
 
-        r1000_alteracao_softhouse_lista = r1000alteracaosoftHouse.objects. \
-            filter(r1000_alteracao_id__in=listar_ids(r1000_alteracao_lista)).all()
+    r1000_alteracao_softhouse_lista = r1000alteracaosoftHouse.objects. \
+        filter(r1000_alteracao_id__in=listar_ids(r1000_alteracao_lista)).all()
 
-        r1000_alteracao_infoefr_lista = r1000alteracaoinfoEFR.objects. \
-            filter(r1000_alteracao_id__in=listar_ids(r1000_alteracao_lista)).all()
+    r1000_alteracao_infoefr_lista = r1000alteracaoinfoEFR.objects. \
+        filter(r1000_alteracao_id__in=listar_ids(r1000_alteracao_lista)).all()
 
-        r1000_alteracao_novavalidade_lista = r1000alteracaonovaValidade.objects. \
-            filter(r1000_alteracao_id__in=listar_ids(r1000_alteracao_lista)).all()
+    r1000_alteracao_novavalidade_lista = r1000alteracaonovaValidade.objects. \
+        filter(r1000_alteracao_id__in=listar_ids(r1000_alteracao_lista)).all()
 
-        r1000_exclusao_lista = r1000exclusao.objects. \
-            filter(r1000_evtinfocontri_id__in=listar_ids(r1000_evtinfocontri_lista)).all()
+    r1000_exclusao_lista = r1000exclusao.objects. \
+        filter(r1000_evtinfocontri_id__in=listar_ids(r1000_evtinfocontri_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': r1000_evtinfocontri,
-            'r1000_evtinfocontri_lista': r1000_evtinfocontri_lista,
-            'pk': int(pk),
-            'r1000_evtinfocontri': r1000_evtinfocontri,
-            'r1000_inclusao_lista': r1000_inclusao_lista,
-            'r1000_inclusao_softhouse_lista': r1000_inclusao_softhouse_lista,
-            'r1000_inclusao_infoefr_lista': r1000_inclusao_infoefr_lista,
-            'r1000_alteracao_lista': r1000_alteracao_lista,
-            'r1000_alteracao_softhouse_lista': r1000_alteracao_softhouse_lista,
-            'r1000_alteracao_infoefr_lista': r1000_alteracao_infoefr_lista,
-            'r1000_alteracao_novavalidade_lista': r1000_alteracao_novavalidade_lista,
-            'r1000_exclusao_lista': r1000_exclusao_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': r1000_evtinfocontri,
+        'r1000_evtinfocontri_lista': r1000_evtinfocontri_lista,
+        'pk': int(pk),
+        'r1000_evtinfocontri': r1000_evtinfocontri,
+        'r1000_inclusao_lista': r1000_inclusao_lista,
+        'r1000_inclusao_softhouse_lista': r1000_inclusao_softhouse_lista,
+        'r1000_inclusao_infoefr_lista': r1000_inclusao_infoefr_lista,
+        'r1000_alteracao_lista': r1000_alteracao_lista,
+        'r1000_alteracao_softhouse_lista': r1000_alteracao_softhouse_lista,
+        'r1000_alteracao_infoefr_lista': r1000_alteracao_infoefr_lista,
+        'r1000_alteracao_novavalidade_lista': r1000_alteracao_novavalidade_lista,
+        'r1000_exclusao_lista': r1000_exclusao_lista,
+    }
 
-        t = get_template('r1000_evtinfocontri.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('r1000_evtinfocontri.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_r1000(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    r1000_evtinfocontri = get_object_or_404(
+        r1000evtInfoContri,
+        id=pk)
+    return gerar_xml_r1000_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_efdreinf import salvar_arquivo_efdreinf
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_efdreinf
     from emensageriapro.mensageiro.functions.funcoes_efdreinf import assinar_efdreinf
 
     r1000_evtinfocontri = get_object_or_404(
@@ -166,15 +174,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if r1000_evtinfocontri.arquivo_original:
-
         xml = ler_arquivo(r1000_evtinfocontri.arquivo)
 
     else:
         xml = gerar_xml_r1000(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        r1000evtInfoContri.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -204,16 +212,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             r1000_evtinfocontri.transmissor_lote_efdreinf_id)
 
-    if r1000_evtinfocontri.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        r1000evtInfoContri.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            r1000evtInfoContri.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/r1000_evtinfocontri/%s.xml' % (r1000_evtinfocontri.identidade)
+            r1000evtInfoContri.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/r1000_evtinfocontri/%s.xml' % (r1000_evtinfocontri.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/r1000_evtinfocontri/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

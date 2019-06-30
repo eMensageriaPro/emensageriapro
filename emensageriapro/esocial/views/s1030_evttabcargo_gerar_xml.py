@@ -72,85 +72,93 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1030(request, pk, versao=None):
+def gerar_xml_s1030_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s1030_evttabcargo = get_object_or_404(
+        s1030evtTabCargo,
+        id=pk)
 
-        s1030_evttabcargo = get_object_or_404(
-            s1030evtTabCargo,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s1030_evttabcargo.versao
 
-        if not versao or versao == '|':
-            versao = s1030_evttabcargo.versao
+    evento = 's1030evtTabCargo'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's1030evtTabCargo'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s1030_evttabcargo_lista = s1030evtTabCargo.objects. \
-            filter(id=pk).all()
+    s1030_evttabcargo_lista = s1030evtTabCargo.objects. \
+        filter(id=pk).all()
 
 
-        s1030_inclusao_lista = s1030inclusao.objects. \
-            filter(s1030_evttabcargo_id__in=listar_ids(s1030_evttabcargo_lista)).all()
+    s1030_inclusao_lista = s1030inclusao.objects. \
+        filter(s1030_evttabcargo_id__in=listar_ids(s1030_evttabcargo_lista)).all()
 
-        s1030_inclusao_cargopublico_lista = s1030inclusaocargoPublico.objects. \
-            filter(s1030_inclusao_id__in=listar_ids(s1030_inclusao_lista)).all()
+    s1030_inclusao_cargopublico_lista = s1030inclusaocargoPublico.objects. \
+        filter(s1030_inclusao_id__in=listar_ids(s1030_inclusao_lista)).all()
 
-        s1030_alteracao_lista = s1030alteracao.objects. \
-            filter(s1030_evttabcargo_id__in=listar_ids(s1030_evttabcargo_lista)).all()
+    s1030_alteracao_lista = s1030alteracao.objects. \
+        filter(s1030_evttabcargo_id__in=listar_ids(s1030_evttabcargo_lista)).all()
 
-        s1030_alteracao_cargopublico_lista = s1030alteracaocargoPublico.objects. \
-            filter(s1030_alteracao_id__in=listar_ids(s1030_alteracao_lista)).all()
+    s1030_alteracao_cargopublico_lista = s1030alteracaocargoPublico.objects. \
+        filter(s1030_alteracao_id__in=listar_ids(s1030_alteracao_lista)).all()
 
-        s1030_alteracao_novavalidade_lista = s1030alteracaonovaValidade.objects. \
-            filter(s1030_alteracao_id__in=listar_ids(s1030_alteracao_lista)).all()
+    s1030_alteracao_novavalidade_lista = s1030alteracaonovaValidade.objects. \
+        filter(s1030_alteracao_id__in=listar_ids(s1030_alteracao_lista)).all()
 
-        s1030_exclusao_lista = s1030exclusao.objects. \
-            filter(s1030_evttabcargo_id__in=listar_ids(s1030_evttabcargo_lista)).all()
+    s1030_exclusao_lista = s1030exclusao.objects. \
+        filter(s1030_evttabcargo_id__in=listar_ids(s1030_evttabcargo_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s1030_evttabcargo,
-            's1030_evttabcargo_lista': s1030_evttabcargo_lista,
-            'pk': int(pk),
-            's1030_evttabcargo': s1030_evttabcargo,
-            's1030_inclusao_lista': s1030_inclusao_lista,
-            's1030_inclusao_cargopublico_lista': s1030_inclusao_cargopublico_lista,
-            's1030_alteracao_lista': s1030_alteracao_lista,
-            's1030_alteracao_cargopublico_lista': s1030_alteracao_cargopublico_lista,
-            's1030_alteracao_novavalidade_lista': s1030_alteracao_novavalidade_lista,
-            's1030_exclusao_lista': s1030_exclusao_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s1030_evttabcargo,
+        's1030_evttabcargo_lista': s1030_evttabcargo_lista,
+        'pk': int(pk),
+        's1030_evttabcargo': s1030_evttabcargo,
+        's1030_inclusao_lista': s1030_inclusao_lista,
+        's1030_inclusao_cargopublico_lista': s1030_inclusao_cargopublico_lista,
+        's1030_alteracao_lista': s1030_alteracao_lista,
+        's1030_alteracao_cargopublico_lista': s1030_alteracao_cargopublico_lista,
+        's1030_alteracao_novavalidade_lista': s1030_alteracao_novavalidade_lista,
+        's1030_exclusao_lista': s1030_exclusao_lista,
+    }
 
-        t = get_template('s1030_evttabcargo.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s1030_evttabcargo.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s1030(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s1030_evttabcargo = get_object_or_404(
+        s1030evtTabCargo,
+        id=pk)
+    return gerar_xml_s1030_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s1030_evttabcargo = get_object_or_404(
@@ -158,15 +166,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1030_evttabcargo.arquivo_original:
-
         xml = ler_arquivo(s1030_evttabcargo.arquivo)
 
     else:
         xml = gerar_xml_s1030(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s1030evtTabCargo.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -196,16 +204,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s1030_evttabcargo.transmissor_lote_esocial_id)
 
-    if s1030_evttabcargo.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s1030evtTabCargo.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s1030evtTabCargo.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s1030_evttabcargo/%s.xml' % (s1030_evttabcargo.identidade)
+            s1030evtTabCargo.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s1030_evttabcargo/%s.xml' % (s1030_evttabcargo.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1030_evttabcargo/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

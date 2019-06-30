@@ -300,7 +300,7 @@
 
     
 
-                            {% if perms.efdreinf.can_validate_r2020evtServPrest and r2020_evtservprest_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            {% if perms.efdreinf.can_validate_r2020evtServPrest and r2020_evtservprest_form.status.value == STATUS_EVENTO_CADASTRADO or r2020_evtservprest_form.status.value == STATUS_EVENTO_GERADO or r2020_evtservprest_form.status.value == STATUS_EVENTO_ASSINADO %}
                             <div class="col-md-3">
                                 <a href="{% url 'r2020_evtservprest_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">

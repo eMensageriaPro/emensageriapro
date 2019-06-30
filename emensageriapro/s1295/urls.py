@@ -48,8 +48,8 @@ from emensageriapro.s1295.views import s1295_iderespinf_api as s1295_iderespinf_
 urlpatterns = [
 
 
-    url(r'^s1295-iderespinf/apagar/(?P<pk>[0-9]+)/$', 
-        s1295_iderespinf_apagar_views.apagar, 
+    url(r'^s1295-iderespinf/apagar/(?P<pk>[0-9]+)/$',
+        s1295_iderespinf_apagar_views.apagar,
         name='s1295_iderespinf_apagar'),
 
     url(r'^s1295-iderespinf/api/$',
@@ -58,28 +58,28 @@ urlpatterns = [
     url(r'^s1295-iderespinf/api/(?P<pk>[0-9]+)/$',
         s1295_iderespinf_api_views.s1295ideRespInfDetail.as_view() ),
 
-    url(r'^s1295-iderespinf/$', 
-        s1295_iderespinf_listar_views.listar, 
+    url(r'^s1295-iderespinf/$',
+        s1295_iderespinf_listar_views.listar,
         name='s1295_iderespinf'),
 
-    url(r'^s1295-iderespinf/salvar/(?P<pk>[0-9]+)/$', 
-        s1295_iderespinf_salvar_views.salvar, 
+    url(r'^s1295-iderespinf/salvar/(?P<pk>[0-9]+)/$',
+        s1295_iderespinf_salvar_views.salvar,
         name='s1295_iderespinf_salvar'),
 
-    url(r'^s1295-iderespinf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s1295_iderespinf_salvar_views.salvar, 
+    url(r'^s1295-iderespinf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s1295_iderespinf_salvar_views.salvar,
         name='s1295_iderespinf_salvar_tab'),
-        
-    url(r'^s1295-iderespinf/cadastrar/$', 
-        s1295_iderespinf_salvar_views.salvar, 
+
+    url(r'^s1295-iderespinf/cadastrar/$',
+        s1295_iderespinf_salvar_views.salvar,
         name='s1295_iderespinf_cadastrar'),
 
-    url(r'^s1295-iderespinf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s1295_iderespinf_salvar_views.salvar, 
+    url(r'^s1295-iderespinf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s1295_iderespinf_salvar_views.salvar,
         name='s1295_iderespinf_salvar_output'),
-        
-    url(r'^s1295-iderespinf/(?P<output>[\w-]+)/$', 
-        s1295_iderespinf_listar_views.listar, 
+
+    url(r'^s1295-iderespinf/(?P<output>[\w-]+)/$',
+        s1295_iderespinf_listar_views.listar,
         name='s1295_iderespinf_output'),
 
 

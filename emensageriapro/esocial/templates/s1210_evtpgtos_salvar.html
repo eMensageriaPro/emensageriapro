@@ -293,7 +293,7 @@
 
     
 
-                            {% if perms.esocial.can_validate_s1210evtPgtos and s1210_evtpgtos_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            {% if perms.esocial.can_validate_s1210evtPgtos and s1210_evtpgtos_form.status.value == STATUS_EVENTO_CADASTRADO or s1210_evtpgtos_form.status.value == STATUS_EVENTO_GERADO or s1210_evtpgtos_form.status.value == STATUS_EVENTO_ASSINADO %}
                             <div class="col-md-3">
                                 <a href="{% url 's1210_evtpgtos_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">

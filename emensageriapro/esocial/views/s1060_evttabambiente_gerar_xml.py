@@ -72,77 +72,85 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1060(request, pk, versao=None):
+def gerar_xml_s1060_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s1060_evttabambiente = get_object_or_404(
+        s1060evtTabAmbiente,
+        id=pk)
 
-        s1060_evttabambiente = get_object_or_404(
-            s1060evtTabAmbiente,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s1060_evttabambiente.versao
 
-        if not versao or versao == '|':
-            versao = s1060_evttabambiente.versao
+    evento = 's1060evtTabAmbiente'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's1060evtTabAmbiente'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s1060_evttabambiente_lista = s1060evtTabAmbiente.objects. \
-            filter(id=pk).all()
+    s1060_evttabambiente_lista = s1060evtTabAmbiente.objects. \
+        filter(id=pk).all()
 
 
-        s1060_inclusao_lista = s1060inclusao.objects. \
-            filter(s1060_evttabambiente_id__in=listar_ids(s1060_evttabambiente_lista)).all()
+    s1060_inclusao_lista = s1060inclusao.objects. \
+        filter(s1060_evttabambiente_id__in=listar_ids(s1060_evttabambiente_lista)).all()
 
-        s1060_alteracao_lista = s1060alteracao.objects. \
-            filter(s1060_evttabambiente_id__in=listar_ids(s1060_evttabambiente_lista)).all()
+    s1060_alteracao_lista = s1060alteracao.objects. \
+        filter(s1060_evttabambiente_id__in=listar_ids(s1060_evttabambiente_lista)).all()
 
-        s1060_alteracao_novavalidade_lista = s1060alteracaonovaValidade.objects. \
-            filter(s1060_alteracao_id__in=listar_ids(s1060_alteracao_lista)).all()
+    s1060_alteracao_novavalidade_lista = s1060alteracaonovaValidade.objects. \
+        filter(s1060_alteracao_id__in=listar_ids(s1060_alteracao_lista)).all()
 
-        s1060_exclusao_lista = s1060exclusao.objects. \
-            filter(s1060_evttabambiente_id__in=listar_ids(s1060_evttabambiente_lista)).all()
+    s1060_exclusao_lista = s1060exclusao.objects. \
+        filter(s1060_evttabambiente_id__in=listar_ids(s1060_evttabambiente_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s1060_evttabambiente,
-            's1060_evttabambiente_lista': s1060_evttabambiente_lista,
-            'pk': int(pk),
-            's1060_evttabambiente': s1060_evttabambiente,
-            's1060_inclusao_lista': s1060_inclusao_lista,
-            's1060_alteracao_lista': s1060_alteracao_lista,
-            's1060_alteracao_novavalidade_lista': s1060_alteracao_novavalidade_lista,
-            's1060_exclusao_lista': s1060_exclusao_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s1060_evttabambiente,
+        's1060_evttabambiente_lista': s1060_evttabambiente_lista,
+        'pk': int(pk),
+        's1060_evttabambiente': s1060_evttabambiente,
+        's1060_inclusao_lista': s1060_inclusao_lista,
+        's1060_alteracao_lista': s1060_alteracao_lista,
+        's1060_alteracao_novavalidade_lista': s1060_alteracao_novavalidade_lista,
+        's1060_exclusao_lista': s1060_exclusao_lista,
+    }
 
-        t = get_template('s1060_evttabambiente.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s1060_evttabambiente.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s1060(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s1060_evttabambiente = get_object_or_404(
+        s1060evtTabAmbiente,
+        id=pk)
+    return gerar_xml_s1060_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s1060_evttabambiente = get_object_or_404(
@@ -150,15 +158,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1060_evttabambiente.arquivo_original:
-
         xml = ler_arquivo(s1060_evttabambiente.arquivo)
 
     else:
         xml = gerar_xml_s1060(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s1060evtTabAmbiente.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -188,16 +196,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s1060_evttabambiente.transmissor_lote_esocial_id)
 
-    if s1060_evttabambiente.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s1060evtTabAmbiente.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s1060evtTabAmbiente.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s1060_evttabambiente/%s.xml' % (s1060_evttabambiente.identidade)
+            s1060evtTabAmbiente.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s1060_evttabambiente/%s.xml' % (s1060_evttabambiente.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1060_evttabambiente/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

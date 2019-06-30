@@ -72,161 +72,169 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s2300(request, pk, versao=None):
+def gerar_xml_s2300_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s2300_evttsvinicio = get_object_or_404(
+        s2300evtTSVInicio,
+        id=pk)
 
-        s2300_evttsvinicio = get_object_or_404(
-            s2300evtTSVInicio,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s2300_evttsvinicio.versao
 
-        if not versao or versao == '|':
-            versao = s2300_evttsvinicio.versao
+    evento = 's2300evtTSVInicio'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's2300evtTSVInicio'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s2300_evttsvinicio_lista = s2300evtTSVInicio.objects. \
-            filter(id=pk).all()
+    s2300_evttsvinicio_lista = s2300evtTSVInicio.objects. \
+        filter(id=pk).all()
 
 
-        s2300_documentos_lista = s2300documentos.objects. \
-            filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
+    s2300_documentos_lista = s2300documentos.objects. \
+        filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
 
-        s2300_ctps_lista = s2300CTPS.objects. \
-            filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
+    s2300_ctps_lista = s2300CTPS.objects. \
+        filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
 
-        s2300_ric_lista = s2300RIC.objects. \
-            filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
+    s2300_ric_lista = s2300RIC.objects. \
+        filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
 
-        s2300_rg_lista = s2300RG.objects. \
-            filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
+    s2300_rg_lista = s2300RG.objects. \
+        filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
 
-        s2300_rne_lista = s2300RNE.objects. \
-            filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
+    s2300_rne_lista = s2300RNE.objects. \
+        filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
 
-        s2300_oc_lista = s2300OC.objects. \
-            filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
+    s2300_oc_lista = s2300OC.objects. \
+        filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
 
-        s2300_cnh_lista = s2300CNH.objects. \
-            filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
+    s2300_cnh_lista = s2300CNH.objects. \
+        filter(s2300_documentos_id__in=listar_ids(s2300_documentos_lista)).all()
 
-        s2300_brasil_lista = s2300brasil.objects. \
-            filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
+    s2300_brasil_lista = s2300brasil.objects. \
+        filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
 
-        s2300_exterior_lista = s2300exterior.objects. \
-            filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
+    s2300_exterior_lista = s2300exterior.objects. \
+        filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
 
-        s2300_trabestrangeiro_lista = s2300trabEstrangeiro.objects. \
-            filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
+    s2300_trabestrangeiro_lista = s2300trabEstrangeiro.objects. \
+        filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
 
-        s2300_infodeficiencia_lista = s2300infoDeficiencia.objects. \
-            filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
+    s2300_infodeficiencia_lista = s2300infoDeficiencia.objects. \
+        filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
 
-        s2300_dependente_lista = s2300dependente.objects. \
-            filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
+    s2300_dependente_lista = s2300dependente.objects. \
+        filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
 
-        s2300_contato_lista = s2300contato.objects. \
-            filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
+    s2300_contato_lista = s2300contato.objects. \
+        filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
 
-        s2300_infocomplementares_lista = s2300infoComplementares.objects. \
-            filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
+    s2300_infocomplementares_lista = s2300infoComplementares.objects. \
+        filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
 
-        s2300_cargofuncao_lista = s2300cargoFuncao.objects. \
-            filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
+    s2300_cargofuncao_lista = s2300cargoFuncao.objects. \
+        filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
 
-        s2300_remuneracao_lista = s2300remuneracao.objects. \
-            filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
+    s2300_remuneracao_lista = s2300remuneracao.objects. \
+        filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
 
-        s2300_fgts_lista = s2300fgts.objects. \
-            filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
+    s2300_fgts_lista = s2300fgts.objects. \
+        filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
 
-        s2300_infodirigentesindical_lista = s2300infoDirigenteSindical.objects. \
-            filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
+    s2300_infodirigentesindical_lista = s2300infoDirigenteSindical.objects. \
+        filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
 
-        s2300_infotrabcedido_lista = s2300infoTrabCedido.objects. \
-            filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
+    s2300_infotrabcedido_lista = s2300infoTrabCedido.objects. \
+        filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
 
-        s2300_infoestagiario_lista = s2300infoEstagiario.objects. \
-            filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
+    s2300_infoestagiario_lista = s2300infoEstagiario.objects. \
+        filter(s2300_infocomplementares_id__in=listar_ids(s2300_infocomplementares_lista)).all()
 
-        s2300_ageintegracao_lista = s2300ageIntegracao.objects. \
-            filter(s2300_infoestagiario_id__in=listar_ids(s2300_infoestagiario_lista)).all()
+    s2300_ageintegracao_lista = s2300ageIntegracao.objects. \
+        filter(s2300_infoestagiario_id__in=listar_ids(s2300_infoestagiario_lista)).all()
 
-        s2300_supervisorestagio_lista = s2300supervisorEstagio.objects. \
-            filter(s2300_infoestagiario_id__in=listar_ids(s2300_infoestagiario_lista)).all()
+    s2300_supervisorestagio_lista = s2300supervisorEstagio.objects. \
+        filter(s2300_infoestagiario_id__in=listar_ids(s2300_infoestagiario_lista)).all()
 
-        s2300_mudancacpf_lista = s2300mudancaCPF.objects. \
-            filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
+    s2300_mudancacpf_lista = s2300mudancaCPF.objects. \
+        filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
 
-        s2300_afastamento_lista = s2300afastamento.objects. \
-            filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
+    s2300_afastamento_lista = s2300afastamento.objects. \
+        filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
 
-        s2300_termino_lista = s2300termino.objects. \
-            filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
+    s2300_termino_lista = s2300termino.objects. \
+        filter(s2300_evttsvinicio_id__in=listar_ids(s2300_evttsvinicio_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s2300_evttsvinicio,
-            's2300_evttsvinicio_lista': s2300_evttsvinicio_lista,
-            'pk': int(pk),
-            's2300_evttsvinicio': s2300_evttsvinicio,
-            's2300_documentos_lista': s2300_documentos_lista,
-            's2300_ctps_lista': s2300_ctps_lista,
-            's2300_ric_lista': s2300_ric_lista,
-            's2300_rg_lista': s2300_rg_lista,
-            's2300_rne_lista': s2300_rne_lista,
-            's2300_oc_lista': s2300_oc_lista,
-            's2300_cnh_lista': s2300_cnh_lista,
-            's2300_brasil_lista': s2300_brasil_lista,
-            's2300_exterior_lista': s2300_exterior_lista,
-            's2300_trabestrangeiro_lista': s2300_trabestrangeiro_lista,
-            's2300_infodeficiencia_lista': s2300_infodeficiencia_lista,
-            's2300_dependente_lista': s2300_dependente_lista,
-            's2300_contato_lista': s2300_contato_lista,
-            's2300_infocomplementares_lista': s2300_infocomplementares_lista,
-            's2300_cargofuncao_lista': s2300_cargofuncao_lista,
-            's2300_remuneracao_lista': s2300_remuneracao_lista,
-            's2300_fgts_lista': s2300_fgts_lista,
-            's2300_infodirigentesindical_lista': s2300_infodirigentesindical_lista,
-            's2300_infotrabcedido_lista': s2300_infotrabcedido_lista,
-            's2300_infoestagiario_lista': s2300_infoestagiario_lista,
-            's2300_ageintegracao_lista': s2300_ageintegracao_lista,
-            's2300_supervisorestagio_lista': s2300_supervisorestagio_lista,
-            's2300_mudancacpf_lista': s2300_mudancacpf_lista,
-            's2300_afastamento_lista': s2300_afastamento_lista,
-            's2300_termino_lista': s2300_termino_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s2300_evttsvinicio,
+        's2300_evttsvinicio_lista': s2300_evttsvinicio_lista,
+        'pk': int(pk),
+        's2300_evttsvinicio': s2300_evttsvinicio,
+        's2300_documentos_lista': s2300_documentos_lista,
+        's2300_ctps_lista': s2300_ctps_lista,
+        's2300_ric_lista': s2300_ric_lista,
+        's2300_rg_lista': s2300_rg_lista,
+        's2300_rne_lista': s2300_rne_lista,
+        's2300_oc_lista': s2300_oc_lista,
+        's2300_cnh_lista': s2300_cnh_lista,
+        's2300_brasil_lista': s2300_brasil_lista,
+        's2300_exterior_lista': s2300_exterior_lista,
+        's2300_trabestrangeiro_lista': s2300_trabestrangeiro_lista,
+        's2300_infodeficiencia_lista': s2300_infodeficiencia_lista,
+        's2300_dependente_lista': s2300_dependente_lista,
+        's2300_contato_lista': s2300_contato_lista,
+        's2300_infocomplementares_lista': s2300_infocomplementares_lista,
+        's2300_cargofuncao_lista': s2300_cargofuncao_lista,
+        's2300_remuneracao_lista': s2300_remuneracao_lista,
+        's2300_fgts_lista': s2300_fgts_lista,
+        's2300_infodirigentesindical_lista': s2300_infodirigentesindical_lista,
+        's2300_infotrabcedido_lista': s2300_infotrabcedido_lista,
+        's2300_infoestagiario_lista': s2300_infoestagiario_lista,
+        's2300_ageintegracao_lista': s2300_ageintegracao_lista,
+        's2300_supervisorestagio_lista': s2300_supervisorestagio_lista,
+        's2300_mudancacpf_lista': s2300_mudancacpf_lista,
+        's2300_afastamento_lista': s2300_afastamento_lista,
+        's2300_termino_lista': s2300_termino_lista,
+    }
 
-        t = get_template('s2300_evttsvinicio.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s2300_evttsvinicio.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s2300(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s2300_evttsvinicio = get_object_or_404(
+        s2300evtTSVInicio,
+        id=pk)
+    return gerar_xml_s2300_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s2300_evttsvinicio = get_object_or_404(
@@ -234,15 +242,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s2300_evttsvinicio.arquivo_original:
-
         xml = ler_arquivo(s2300_evttsvinicio.arquivo)
 
     else:
         xml = gerar_xml_s2300(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s2300evtTSVInicio.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -272,16 +280,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s2300_evttsvinicio.transmissor_lote_esocial_id)
 
-    if s2300_evttsvinicio.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s2300evtTSVInicio.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s2300evtTSVInicio.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s2300_evttsvinicio/%s.xml' % (s2300_evttsvinicio.identidade)
+            s2300evtTSVInicio.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s2300_evttsvinicio/%s.xml' % (s2300_evttsvinicio.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s2300_evttsvinicio/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

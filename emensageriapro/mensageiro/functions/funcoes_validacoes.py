@@ -35,14 +35,6 @@
 
 from lxml import etree
 
-from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
-    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
-    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
-    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
-    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
-    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
-    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
-
 
 def validar_schema(request, file_schema_xsd, file_xml, lang=None):
 
@@ -121,7 +113,7 @@ def validar_schema(request, file_schema_xsd, file_xml, lang=None):
 
 
 def get_schema_name(arquivo):
-    from emensageriapro.mensageiro.functions.funcoes_importacao import get_versao_evento, get_evento_nome
+    from emensageriapro.functions import get_versao_evento, get_evento_nome
     from emensageriapro.padrao import ler_arquivo
 
     xml = ler_arquivo(arquivo).replace("s:", "")
@@ -133,15 +125,13 @@ def get_schema_name(arquivo):
         tipo = 'efdreinf'
 
     versao = get_versao_evento(xml)
-    schema_filename = ''
-
-    # if tipo == 'esocial':
 
     evento_nome = get_evento_nome(xml)
 
     schema_filename = '%s/%s/%s.xsd' % (tipo, versao, evento_nome)
 
     return schema_filename
+
 
 
 def validar_campo(validacoes_lista, evento_campo, valor, obrigatorio, valores_validos):

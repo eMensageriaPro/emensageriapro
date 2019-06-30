@@ -72,8 +72,8 @@ from emensageriapro.s2306.views import s2306_supervisorestagio_api as s2306_supe
 urlpatterns = [
 
 
-    url(r'^s2306-infocomplementares/apagar/(?P<pk>[0-9]+)/$', 
-        s2306_infocomplementares_apagar_views.apagar, 
+    url(r'^s2306-infocomplementares/apagar/(?P<pk>[0-9]+)/$',
+        s2306_infocomplementares_apagar_views.apagar,
         name='s2306_infocomplementares_apagar'),
 
     url(r'^s2306-infocomplementares/api/$',
@@ -82,32 +82,32 @@ urlpatterns = [
     url(r'^s2306-infocomplementares/api/(?P<pk>[0-9]+)/$',
         s2306_infocomplementares_api_views.s2306infoComplementaresDetail.as_view() ),
 
-    url(r'^s2306-infocomplementares/$', 
-        s2306_infocomplementares_listar_views.listar, 
+    url(r'^s2306-infocomplementares/$',
+        s2306_infocomplementares_listar_views.listar,
         name='s2306_infocomplementares'),
 
-    url(r'^s2306-infocomplementares/salvar/(?P<pk>[0-9]+)/$', 
-        s2306_infocomplementares_salvar_views.salvar, 
+    url(r'^s2306-infocomplementares/salvar/(?P<pk>[0-9]+)/$',
+        s2306_infocomplementares_salvar_views.salvar,
         name='s2306_infocomplementares_salvar'),
 
-    url(r'^s2306-infocomplementares/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2306_infocomplementares_salvar_views.salvar, 
+    url(r'^s2306-infocomplementares/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2306_infocomplementares_salvar_views.salvar,
         name='s2306_infocomplementares_salvar_tab'),
-        
-    url(r'^s2306-infocomplementares/cadastrar/$', 
-        s2306_infocomplementares_salvar_views.salvar, 
+
+    url(r'^s2306-infocomplementares/cadastrar/$',
+        s2306_infocomplementares_salvar_views.salvar,
         name='s2306_infocomplementares_cadastrar'),
 
-    url(r'^s2306-infocomplementares/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2306_infocomplementares_salvar_views.salvar, 
+    url(r'^s2306-infocomplementares/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2306_infocomplementares_salvar_views.salvar,
         name='s2306_infocomplementares_salvar_output'),
-        
-    url(r'^s2306-infocomplementares/(?P<output>[\w-]+)/$', 
-        s2306_infocomplementares_listar_views.listar, 
+
+    url(r'^s2306-infocomplementares/(?P<output>[\w-]+)/$',
+        s2306_infocomplementares_listar_views.listar,
         name='s2306_infocomplementares_output'),
 
-    url(r'^s2306-cargofuncao/apagar/(?P<pk>[0-9]+)/$', 
-        s2306_cargofuncao_apagar_views.apagar, 
+    url(r'^s2306-cargofuncao/apagar/(?P<pk>[0-9]+)/$',
+        s2306_cargofuncao_apagar_views.apagar,
         name='s2306_cargofuncao_apagar'),
 
     url(r'^s2306-cargofuncao/api/$',
@@ -116,32 +116,32 @@ urlpatterns = [
     url(r'^s2306-cargofuncao/api/(?P<pk>[0-9]+)/$',
         s2306_cargofuncao_api_views.s2306cargoFuncaoDetail.as_view() ),
 
-    url(r'^s2306-cargofuncao/$', 
-        s2306_cargofuncao_listar_views.listar, 
+    url(r'^s2306-cargofuncao/$',
+        s2306_cargofuncao_listar_views.listar,
         name='s2306_cargofuncao'),
 
-    url(r'^s2306-cargofuncao/salvar/(?P<pk>[0-9]+)/$', 
-        s2306_cargofuncao_salvar_views.salvar, 
+    url(r'^s2306-cargofuncao/salvar/(?P<pk>[0-9]+)/$',
+        s2306_cargofuncao_salvar_views.salvar,
         name='s2306_cargofuncao_salvar'),
 
-    url(r'^s2306-cargofuncao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2306_cargofuncao_salvar_views.salvar, 
+    url(r'^s2306-cargofuncao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2306_cargofuncao_salvar_views.salvar,
         name='s2306_cargofuncao_salvar_tab'),
-        
-    url(r'^s2306-cargofuncao/cadastrar/$', 
-        s2306_cargofuncao_salvar_views.salvar, 
+
+    url(r'^s2306-cargofuncao/cadastrar/$',
+        s2306_cargofuncao_salvar_views.salvar,
         name='s2306_cargofuncao_cadastrar'),
 
-    url(r'^s2306-cargofuncao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2306_cargofuncao_salvar_views.salvar, 
+    url(r'^s2306-cargofuncao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2306_cargofuncao_salvar_views.salvar,
         name='s2306_cargofuncao_salvar_output'),
-        
-    url(r'^s2306-cargofuncao/(?P<output>[\w-]+)/$', 
-        s2306_cargofuncao_listar_views.listar, 
+
+    url(r'^s2306-cargofuncao/(?P<output>[\w-]+)/$',
+        s2306_cargofuncao_listar_views.listar,
         name='s2306_cargofuncao_output'),
 
-    url(r'^s2306-remuneracao/apagar/(?P<pk>[0-9]+)/$', 
-        s2306_remuneracao_apagar_views.apagar, 
+    url(r'^s2306-remuneracao/apagar/(?P<pk>[0-9]+)/$',
+        s2306_remuneracao_apagar_views.apagar,
         name='s2306_remuneracao_apagar'),
 
     url(r'^s2306-remuneracao/api/$',
@@ -150,32 +150,32 @@ urlpatterns = [
     url(r'^s2306-remuneracao/api/(?P<pk>[0-9]+)/$',
         s2306_remuneracao_api_views.s2306remuneracaoDetail.as_view() ),
 
-    url(r'^s2306-remuneracao/$', 
-        s2306_remuneracao_listar_views.listar, 
+    url(r'^s2306-remuneracao/$',
+        s2306_remuneracao_listar_views.listar,
         name='s2306_remuneracao'),
 
-    url(r'^s2306-remuneracao/salvar/(?P<pk>[0-9]+)/$', 
-        s2306_remuneracao_salvar_views.salvar, 
+    url(r'^s2306-remuneracao/salvar/(?P<pk>[0-9]+)/$',
+        s2306_remuneracao_salvar_views.salvar,
         name='s2306_remuneracao_salvar'),
 
-    url(r'^s2306-remuneracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2306_remuneracao_salvar_views.salvar, 
+    url(r'^s2306-remuneracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2306_remuneracao_salvar_views.salvar,
         name='s2306_remuneracao_salvar_tab'),
-        
-    url(r'^s2306-remuneracao/cadastrar/$', 
-        s2306_remuneracao_salvar_views.salvar, 
+
+    url(r'^s2306-remuneracao/cadastrar/$',
+        s2306_remuneracao_salvar_views.salvar,
         name='s2306_remuneracao_cadastrar'),
 
-    url(r'^s2306-remuneracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2306_remuneracao_salvar_views.salvar, 
+    url(r'^s2306-remuneracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2306_remuneracao_salvar_views.salvar,
         name='s2306_remuneracao_salvar_output'),
-        
-    url(r'^s2306-remuneracao/(?P<output>[\w-]+)/$', 
-        s2306_remuneracao_listar_views.listar, 
+
+    url(r'^s2306-remuneracao/(?P<output>[\w-]+)/$',
+        s2306_remuneracao_listar_views.listar,
         name='s2306_remuneracao_output'),
 
-    url(r'^s2306-infotrabcedido/apagar/(?P<pk>[0-9]+)/$', 
-        s2306_infotrabcedido_apagar_views.apagar, 
+    url(r'^s2306-infotrabcedido/apagar/(?P<pk>[0-9]+)/$',
+        s2306_infotrabcedido_apagar_views.apagar,
         name='s2306_infotrabcedido_apagar'),
 
     url(r'^s2306-infotrabcedido/api/$',
@@ -184,32 +184,32 @@ urlpatterns = [
     url(r'^s2306-infotrabcedido/api/(?P<pk>[0-9]+)/$',
         s2306_infotrabcedido_api_views.s2306infoTrabCedidoDetail.as_view() ),
 
-    url(r'^s2306-infotrabcedido/$', 
-        s2306_infotrabcedido_listar_views.listar, 
+    url(r'^s2306-infotrabcedido/$',
+        s2306_infotrabcedido_listar_views.listar,
         name='s2306_infotrabcedido'),
 
-    url(r'^s2306-infotrabcedido/salvar/(?P<pk>[0-9]+)/$', 
-        s2306_infotrabcedido_salvar_views.salvar, 
+    url(r'^s2306-infotrabcedido/salvar/(?P<pk>[0-9]+)/$',
+        s2306_infotrabcedido_salvar_views.salvar,
         name='s2306_infotrabcedido_salvar'),
 
-    url(r'^s2306-infotrabcedido/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2306_infotrabcedido_salvar_views.salvar, 
+    url(r'^s2306-infotrabcedido/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2306_infotrabcedido_salvar_views.salvar,
         name='s2306_infotrabcedido_salvar_tab'),
-        
-    url(r'^s2306-infotrabcedido/cadastrar/$', 
-        s2306_infotrabcedido_salvar_views.salvar, 
+
+    url(r'^s2306-infotrabcedido/cadastrar/$',
+        s2306_infotrabcedido_salvar_views.salvar,
         name='s2306_infotrabcedido_cadastrar'),
 
-    url(r'^s2306-infotrabcedido/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2306_infotrabcedido_salvar_views.salvar, 
+    url(r'^s2306-infotrabcedido/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2306_infotrabcedido_salvar_views.salvar,
         name='s2306_infotrabcedido_salvar_output'),
-        
-    url(r'^s2306-infotrabcedido/(?P<output>[\w-]+)/$', 
-        s2306_infotrabcedido_listar_views.listar, 
+
+    url(r'^s2306-infotrabcedido/(?P<output>[\w-]+)/$',
+        s2306_infotrabcedido_listar_views.listar,
         name='s2306_infotrabcedido_output'),
 
-    url(r'^s2306-infoestagiario/apagar/(?P<pk>[0-9]+)/$', 
-        s2306_infoestagiario_apagar_views.apagar, 
+    url(r'^s2306-infoestagiario/apagar/(?P<pk>[0-9]+)/$',
+        s2306_infoestagiario_apagar_views.apagar,
         name='s2306_infoestagiario_apagar'),
 
     url(r'^s2306-infoestagiario/api/$',
@@ -218,32 +218,32 @@ urlpatterns = [
     url(r'^s2306-infoestagiario/api/(?P<pk>[0-9]+)/$',
         s2306_infoestagiario_api_views.s2306infoEstagiarioDetail.as_view() ),
 
-    url(r'^s2306-infoestagiario/$', 
-        s2306_infoestagiario_listar_views.listar, 
+    url(r'^s2306-infoestagiario/$',
+        s2306_infoestagiario_listar_views.listar,
         name='s2306_infoestagiario'),
 
-    url(r'^s2306-infoestagiario/salvar/(?P<pk>[0-9]+)/$', 
-        s2306_infoestagiario_salvar_views.salvar, 
+    url(r'^s2306-infoestagiario/salvar/(?P<pk>[0-9]+)/$',
+        s2306_infoestagiario_salvar_views.salvar,
         name='s2306_infoestagiario_salvar'),
 
-    url(r'^s2306-infoestagiario/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2306_infoestagiario_salvar_views.salvar, 
+    url(r'^s2306-infoestagiario/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2306_infoestagiario_salvar_views.salvar,
         name='s2306_infoestagiario_salvar_tab'),
-        
-    url(r'^s2306-infoestagiario/cadastrar/$', 
-        s2306_infoestagiario_salvar_views.salvar, 
+
+    url(r'^s2306-infoestagiario/cadastrar/$',
+        s2306_infoestagiario_salvar_views.salvar,
         name='s2306_infoestagiario_cadastrar'),
 
-    url(r'^s2306-infoestagiario/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2306_infoestagiario_salvar_views.salvar, 
+    url(r'^s2306-infoestagiario/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2306_infoestagiario_salvar_views.salvar,
         name='s2306_infoestagiario_salvar_output'),
-        
-    url(r'^s2306-infoestagiario/(?P<output>[\w-]+)/$', 
-        s2306_infoestagiario_listar_views.listar, 
+
+    url(r'^s2306-infoestagiario/(?P<output>[\w-]+)/$',
+        s2306_infoestagiario_listar_views.listar,
         name='s2306_infoestagiario_output'),
 
-    url(r'^s2306-ageintegracao/apagar/(?P<pk>[0-9]+)/$', 
-        s2306_ageintegracao_apagar_views.apagar, 
+    url(r'^s2306-ageintegracao/apagar/(?P<pk>[0-9]+)/$',
+        s2306_ageintegracao_apagar_views.apagar,
         name='s2306_ageintegracao_apagar'),
 
     url(r'^s2306-ageintegracao/api/$',
@@ -252,32 +252,32 @@ urlpatterns = [
     url(r'^s2306-ageintegracao/api/(?P<pk>[0-9]+)/$',
         s2306_ageintegracao_api_views.s2306ageIntegracaoDetail.as_view() ),
 
-    url(r'^s2306-ageintegracao/$', 
-        s2306_ageintegracao_listar_views.listar, 
+    url(r'^s2306-ageintegracao/$',
+        s2306_ageintegracao_listar_views.listar,
         name='s2306_ageintegracao'),
 
-    url(r'^s2306-ageintegracao/salvar/(?P<pk>[0-9]+)/$', 
-        s2306_ageintegracao_salvar_views.salvar, 
+    url(r'^s2306-ageintegracao/salvar/(?P<pk>[0-9]+)/$',
+        s2306_ageintegracao_salvar_views.salvar,
         name='s2306_ageintegracao_salvar'),
 
-    url(r'^s2306-ageintegracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2306_ageintegracao_salvar_views.salvar, 
+    url(r'^s2306-ageintegracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2306_ageintegracao_salvar_views.salvar,
         name='s2306_ageintegracao_salvar_tab'),
-        
-    url(r'^s2306-ageintegracao/cadastrar/$', 
-        s2306_ageintegracao_salvar_views.salvar, 
+
+    url(r'^s2306-ageintegracao/cadastrar/$',
+        s2306_ageintegracao_salvar_views.salvar,
         name='s2306_ageintegracao_cadastrar'),
 
-    url(r'^s2306-ageintegracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2306_ageintegracao_salvar_views.salvar, 
+    url(r'^s2306-ageintegracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2306_ageintegracao_salvar_views.salvar,
         name='s2306_ageintegracao_salvar_output'),
-        
-    url(r'^s2306-ageintegracao/(?P<output>[\w-]+)/$', 
-        s2306_ageintegracao_listar_views.listar, 
+
+    url(r'^s2306-ageintegracao/(?P<output>[\w-]+)/$',
+        s2306_ageintegracao_listar_views.listar,
         name='s2306_ageintegracao_output'),
 
-    url(r'^s2306-supervisorestagio/apagar/(?P<pk>[0-9]+)/$', 
-        s2306_supervisorestagio_apagar_views.apagar, 
+    url(r'^s2306-supervisorestagio/apagar/(?P<pk>[0-9]+)/$',
+        s2306_supervisorestagio_apagar_views.apagar,
         name='s2306_supervisorestagio_apagar'),
 
     url(r'^s2306-supervisorestagio/api/$',
@@ -286,28 +286,28 @@ urlpatterns = [
     url(r'^s2306-supervisorestagio/api/(?P<pk>[0-9]+)/$',
         s2306_supervisorestagio_api_views.s2306supervisorEstagioDetail.as_view() ),
 
-    url(r'^s2306-supervisorestagio/$', 
-        s2306_supervisorestagio_listar_views.listar, 
+    url(r'^s2306-supervisorestagio/$',
+        s2306_supervisorestagio_listar_views.listar,
         name='s2306_supervisorestagio'),
 
-    url(r'^s2306-supervisorestagio/salvar/(?P<pk>[0-9]+)/$', 
-        s2306_supervisorestagio_salvar_views.salvar, 
+    url(r'^s2306-supervisorestagio/salvar/(?P<pk>[0-9]+)/$',
+        s2306_supervisorestagio_salvar_views.salvar,
         name='s2306_supervisorestagio_salvar'),
 
-    url(r'^s2306-supervisorestagio/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2306_supervisorestagio_salvar_views.salvar, 
+    url(r'^s2306-supervisorestagio/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2306_supervisorestagio_salvar_views.salvar,
         name='s2306_supervisorestagio_salvar_tab'),
-        
-    url(r'^s2306-supervisorestagio/cadastrar/$', 
-        s2306_supervisorestagio_salvar_views.salvar, 
+
+    url(r'^s2306-supervisorestagio/cadastrar/$',
+        s2306_supervisorestagio_salvar_views.salvar,
         name='s2306_supervisorestagio_cadastrar'),
 
-    url(r'^s2306-supervisorestagio/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2306_supervisorestagio_salvar_views.salvar, 
+    url(r'^s2306-supervisorestagio/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2306_supervisorestagio_salvar_views.salvar,
         name='s2306_supervisorestagio_salvar_output'),
-        
-    url(r'^s2306-supervisorestagio/(?P<output>[\w-]+)/$', 
-        s2306_supervisorestagio_listar_views.listar, 
+
+    url(r'^s2306-supervisorestagio/(?P<output>[\w-]+)/$',
+        s2306_supervisorestagio_listar_views.listar,
         name='s2306_supervisorestagio_output'),
 
 

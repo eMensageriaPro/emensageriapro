@@ -293,7 +293,7 @@
 
     
 
-                            {% if perms.esocial.can_validate_s3000evtExclusao and s3000_evtexclusao_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            {% if perms.esocial.can_validate_s3000evtExclusao and s3000_evtexclusao_form.status.value == STATUS_EVENTO_CADASTRADO or s3000_evtexclusao_form.status.value == STATUS_EVENTO_GERADO or s3000_evtexclusao_form.status.value == STATUS_EVENTO_ASSINADO %}
                             <div class="col-md-3">
                                 <a href="{% url 's3000_evtexclusao_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">

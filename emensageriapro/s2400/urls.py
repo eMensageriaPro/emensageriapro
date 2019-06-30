@@ -60,8 +60,8 @@ from emensageriapro.s2400.views import s2400_dependente_api as s2400_dependente_
 urlpatterns = [
 
 
-    url(r'^s2400-endereco/apagar/(?P<pk>[0-9]+)/$', 
-        s2400_endereco_apagar_views.apagar, 
+    url(r'^s2400-endereco/apagar/(?P<pk>[0-9]+)/$',
+        s2400_endereco_apagar_views.apagar,
         name='s2400_endereco_apagar'),
 
     url(r'^s2400-endereco/api/$',
@@ -70,32 +70,32 @@ urlpatterns = [
     url(r'^s2400-endereco/api/(?P<pk>[0-9]+)/$',
         s2400_endereco_api_views.s2400enderecoDetail.as_view() ),
 
-    url(r'^s2400-endereco/$', 
-        s2400_endereco_listar_views.listar, 
+    url(r'^s2400-endereco/$',
+        s2400_endereco_listar_views.listar,
         name='s2400_endereco'),
 
-    url(r'^s2400-endereco/salvar/(?P<pk>[0-9]+)/$', 
-        s2400_endereco_salvar_views.salvar, 
+    url(r'^s2400-endereco/salvar/(?P<pk>[0-9]+)/$',
+        s2400_endereco_salvar_views.salvar,
         name='s2400_endereco_salvar'),
 
-    url(r'^s2400-endereco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2400_endereco_salvar_views.salvar, 
+    url(r'^s2400-endereco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2400_endereco_salvar_views.salvar,
         name='s2400_endereco_salvar_tab'),
-        
-    url(r'^s2400-endereco/cadastrar/$', 
-        s2400_endereco_salvar_views.salvar, 
+
+    url(r'^s2400-endereco/cadastrar/$',
+        s2400_endereco_salvar_views.salvar,
         name='s2400_endereco_cadastrar'),
 
-    url(r'^s2400-endereco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2400_endereco_salvar_views.salvar, 
+    url(r'^s2400-endereco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2400_endereco_salvar_views.salvar,
         name='s2400_endereco_salvar_output'),
-        
-    url(r'^s2400-endereco/(?P<output>[\w-]+)/$', 
-        s2400_endereco_listar_views.listar, 
+
+    url(r'^s2400-endereco/(?P<output>[\w-]+)/$',
+        s2400_endereco_listar_views.listar,
         name='s2400_endereco_output'),
 
-    url(r'^s2400-brasil/apagar/(?P<pk>[0-9]+)/$', 
-        s2400_brasil_apagar_views.apagar, 
+    url(r'^s2400-brasil/apagar/(?P<pk>[0-9]+)/$',
+        s2400_brasil_apagar_views.apagar,
         name='s2400_brasil_apagar'),
 
     url(r'^s2400-brasil/api/$',
@@ -104,32 +104,32 @@ urlpatterns = [
     url(r'^s2400-brasil/api/(?P<pk>[0-9]+)/$',
         s2400_brasil_api_views.s2400brasilDetail.as_view() ),
 
-    url(r'^s2400-brasil/$', 
-        s2400_brasil_listar_views.listar, 
+    url(r'^s2400-brasil/$',
+        s2400_brasil_listar_views.listar,
         name='s2400_brasil'),
 
-    url(r'^s2400-brasil/salvar/(?P<pk>[0-9]+)/$', 
-        s2400_brasil_salvar_views.salvar, 
+    url(r'^s2400-brasil/salvar/(?P<pk>[0-9]+)/$',
+        s2400_brasil_salvar_views.salvar,
         name='s2400_brasil_salvar'),
 
-    url(r'^s2400-brasil/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2400_brasil_salvar_views.salvar, 
+    url(r'^s2400-brasil/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2400_brasil_salvar_views.salvar,
         name='s2400_brasil_salvar_tab'),
-        
-    url(r'^s2400-brasil/cadastrar/$', 
-        s2400_brasil_salvar_views.salvar, 
+
+    url(r'^s2400-brasil/cadastrar/$',
+        s2400_brasil_salvar_views.salvar,
         name='s2400_brasil_cadastrar'),
 
-    url(r'^s2400-brasil/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2400_brasil_salvar_views.salvar, 
+    url(r'^s2400-brasil/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2400_brasil_salvar_views.salvar,
         name='s2400_brasil_salvar_output'),
-        
-    url(r'^s2400-brasil/(?P<output>[\w-]+)/$', 
-        s2400_brasil_listar_views.listar, 
+
+    url(r'^s2400-brasil/(?P<output>[\w-]+)/$',
+        s2400_brasil_listar_views.listar,
         name='s2400_brasil_output'),
 
-    url(r'^s2400-exterior/apagar/(?P<pk>[0-9]+)/$', 
-        s2400_exterior_apagar_views.apagar, 
+    url(r'^s2400-exterior/apagar/(?P<pk>[0-9]+)/$',
+        s2400_exterior_apagar_views.apagar,
         name='s2400_exterior_apagar'),
 
     url(r'^s2400-exterior/api/$',
@@ -138,32 +138,32 @@ urlpatterns = [
     url(r'^s2400-exterior/api/(?P<pk>[0-9]+)/$',
         s2400_exterior_api_views.s2400exteriorDetail.as_view() ),
 
-    url(r'^s2400-exterior/$', 
-        s2400_exterior_listar_views.listar, 
+    url(r'^s2400-exterior/$',
+        s2400_exterior_listar_views.listar,
         name='s2400_exterior'),
 
-    url(r'^s2400-exterior/salvar/(?P<pk>[0-9]+)/$', 
-        s2400_exterior_salvar_views.salvar, 
+    url(r'^s2400-exterior/salvar/(?P<pk>[0-9]+)/$',
+        s2400_exterior_salvar_views.salvar,
         name='s2400_exterior_salvar'),
 
-    url(r'^s2400-exterior/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2400_exterior_salvar_views.salvar, 
+    url(r'^s2400-exterior/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2400_exterior_salvar_views.salvar,
         name='s2400_exterior_salvar_tab'),
-        
-    url(r'^s2400-exterior/cadastrar/$', 
-        s2400_exterior_salvar_views.salvar, 
+
+    url(r'^s2400-exterior/cadastrar/$',
+        s2400_exterior_salvar_views.salvar,
         name='s2400_exterior_cadastrar'),
 
-    url(r'^s2400-exterior/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2400_exterior_salvar_views.salvar, 
+    url(r'^s2400-exterior/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2400_exterior_salvar_views.salvar,
         name='s2400_exterior_salvar_output'),
-        
-    url(r'^s2400-exterior/(?P<output>[\w-]+)/$', 
-        s2400_exterior_listar_views.listar, 
+
+    url(r'^s2400-exterior/(?P<output>[\w-]+)/$',
+        s2400_exterior_listar_views.listar,
         name='s2400_exterior_output'),
 
-    url(r'^s2400-dependente/apagar/(?P<pk>[0-9]+)/$', 
-        s2400_dependente_apagar_views.apagar, 
+    url(r'^s2400-dependente/apagar/(?P<pk>[0-9]+)/$',
+        s2400_dependente_apagar_views.apagar,
         name='s2400_dependente_apagar'),
 
     url(r'^s2400-dependente/api/$',
@@ -172,28 +172,28 @@ urlpatterns = [
     url(r'^s2400-dependente/api/(?P<pk>[0-9]+)/$',
         s2400_dependente_api_views.s2400dependenteDetail.as_view() ),
 
-    url(r'^s2400-dependente/$', 
-        s2400_dependente_listar_views.listar, 
+    url(r'^s2400-dependente/$',
+        s2400_dependente_listar_views.listar,
         name='s2400_dependente'),
 
-    url(r'^s2400-dependente/salvar/(?P<pk>[0-9]+)/$', 
-        s2400_dependente_salvar_views.salvar, 
+    url(r'^s2400-dependente/salvar/(?P<pk>[0-9]+)/$',
+        s2400_dependente_salvar_views.salvar,
         name='s2400_dependente_salvar'),
 
-    url(r'^s2400-dependente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s2400_dependente_salvar_views.salvar, 
+    url(r'^s2400-dependente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        s2400_dependente_salvar_views.salvar,
         name='s2400_dependente_salvar_tab'),
-        
-    url(r'^s2400-dependente/cadastrar/$', 
-        s2400_dependente_salvar_views.salvar, 
+
+    url(r'^s2400-dependente/cadastrar/$',
+        s2400_dependente_salvar_views.salvar,
         name='s2400_dependente_cadastrar'),
 
-    url(r'^s2400-dependente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s2400_dependente_salvar_views.salvar, 
+    url(r'^s2400-dependente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        s2400_dependente_salvar_views.salvar,
         name='s2400_dependente_salvar_output'),
-        
-    url(r'^s2400-dependente/(?P<output>[\w-]+)/$', 
-        s2400_dependente_listar_views.listar, 
+
+    url(r'^s2400-dependente/(?P<output>[\w-]+)/$',
+        s2400_dependente_listar_views.listar,
         name='s2400_dependente_output'),
 
 

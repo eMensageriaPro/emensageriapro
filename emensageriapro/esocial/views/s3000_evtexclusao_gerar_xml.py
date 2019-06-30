@@ -72,69 +72,77 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s3000(request, pk, versao=None):
+def gerar_xml_s3000_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s3000_evtexclusao = get_object_or_404(
+        s3000evtExclusao,
+        id=pk)
 
-        s3000_evtexclusao = get_object_or_404(
-            s3000evtExclusao,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s3000_evtexclusao.versao
 
-        if not versao or versao == '|':
-            versao = s3000_evtexclusao.versao
+    evento = 's3000evtExclusao'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's3000evtExclusao'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s3000_evtexclusao_lista = s3000evtExclusao.objects. \
-            filter(id=pk).all()
+    s3000_evtexclusao_lista = s3000evtExclusao.objects. \
+        filter(id=pk).all()
 
 
-        s3000_idetrabalhador_lista = s3000ideTrabalhador.objects. \
-            filter(s3000_evtexclusao_id__in=listar_ids(s3000_evtexclusao_lista)).all()
+    s3000_idetrabalhador_lista = s3000ideTrabalhador.objects. \
+        filter(s3000_evtexclusao_id__in=listar_ids(s3000_evtexclusao_lista)).all()
 
-        s3000_idefolhapagto_lista = s3000ideFolhaPagto.objects. \
-            filter(s3000_evtexclusao_id__in=listar_ids(s3000_evtexclusao_lista)).all()
+    s3000_idefolhapagto_lista = s3000ideFolhaPagto.objects. \
+        filter(s3000_evtexclusao_id__in=listar_ids(s3000_evtexclusao_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s3000_evtexclusao,
-            's3000_evtexclusao_lista': s3000_evtexclusao_lista,
-            'pk': int(pk),
-            's3000_evtexclusao': s3000_evtexclusao,
-            's3000_idetrabalhador_lista': s3000_idetrabalhador_lista,
-            's3000_idefolhapagto_lista': s3000_idefolhapagto_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s3000_evtexclusao,
+        's3000_evtexclusao_lista': s3000_evtexclusao_lista,
+        'pk': int(pk),
+        's3000_evtexclusao': s3000_evtexclusao,
+        's3000_idetrabalhador_lista': s3000_idetrabalhador_lista,
+        's3000_idefolhapagto_lista': s3000_idefolhapagto_lista,
+    }
 
-        t = get_template('s3000_evtexclusao.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s3000_evtexclusao.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s3000(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s3000_evtexclusao = get_object_or_404(
+        s3000evtExclusao,
+        id=pk)
+    return gerar_xml_s3000_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s3000_evtexclusao = get_object_or_404(
@@ -142,15 +150,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s3000_evtexclusao.arquivo_original:
-
         xml = ler_arquivo(s3000_evtexclusao.arquivo)
 
     else:
         xml = gerar_xml_s3000(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s3000evtExclusao.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -180,16 +188,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s3000_evtexclusao.transmissor_lote_esocial_id)
 
-    if s3000_evtexclusao.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s3000evtExclusao.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s3000evtExclusao.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s3000_evtexclusao/%s.xml' % (s3000_evtexclusao.identidade)
+            s3000evtExclusao.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s3000_evtexclusao/%s.xml' % (s3000_evtexclusao.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s3000_evtexclusao/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

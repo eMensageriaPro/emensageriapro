@@ -300,7 +300,7 @@
 
     
 
-                            {% if perms.efdreinf.can_validate_r1070evtTabProcesso and r1070_evttabprocesso_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            {% if perms.efdreinf.can_validate_r1070evtTabProcesso and r1070_evttabprocesso_form.status.value == STATUS_EVENTO_CADASTRADO or r1070_evttabprocesso_form.status.value == STATUS_EVENTO_GERADO or r1070_evttabprocesso_form.status.value == STATUS_EVENTO_ASSINADO %}
                             <div class="col-md-3">
                                 <a href="{% url 'r1070_evttabprocesso_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">

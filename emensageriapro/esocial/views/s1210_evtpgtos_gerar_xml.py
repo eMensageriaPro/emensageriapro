@@ -72,121 +72,129 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1210(request, pk, versao=None):
+def gerar_xml_s1210_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s1210_evtpgtos = get_object_or_404(
+        s1210evtPgtos,
+        id=pk)
 
-        s1210_evtpgtos = get_object_or_404(
-            s1210evtPgtos,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s1210_evtpgtos.versao
 
-        if not versao or versao == '|':
-            versao = s1210_evtpgtos.versao
+    evento = 's1210evtPgtos'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's1210evtPgtos'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s1210_evtpgtos_lista = s1210evtPgtos.objects. \
-            filter(id=pk).all()
+    s1210_evtpgtos_lista = s1210evtPgtos.objects. \
+        filter(id=pk).all()
 
 
-        s1210_deps_lista = s1210deps.objects. \
-            filter(s1210_evtpgtos_id__in=listar_ids(s1210_evtpgtos_lista)).all()
+    s1210_deps_lista = s1210deps.objects. \
+        filter(s1210_evtpgtos_id__in=listar_ids(s1210_evtpgtos_lista)).all()
 
-        s1210_infopgto_lista = s1210infoPgto.objects. \
-            filter(s1210_evtpgtos_id__in=listar_ids(s1210_evtpgtos_lista)).all()
+    s1210_infopgto_lista = s1210infoPgto.objects. \
+        filter(s1210_evtpgtos_id__in=listar_ids(s1210_evtpgtos_lista)).all()
 
-        s1210_detpgtofl_lista = s1210detPgtoFl.objects. \
-            filter(s1210_infopgto_id__in=listar_ids(s1210_infopgto_lista)).all()
+    s1210_detpgtofl_lista = s1210detPgtoFl.objects. \
+        filter(s1210_infopgto_id__in=listar_ids(s1210_infopgto_lista)).all()
 
-        s1210_detpgtofl_retpgtotot_lista = s1210detPgtoFlretPgtoTot.objects. \
-            filter(s1210_detpgtofl_id__in=listar_ids(s1210_detpgtofl_lista)).all()
+    s1210_detpgtofl_retpgtotot_lista = s1210detPgtoFlretPgtoTot.objects. \
+        filter(s1210_detpgtofl_id__in=listar_ids(s1210_detpgtofl_lista)).all()
 
-        s1210_detpgtofl_penalim_lista = s1210detPgtoFlpenAlim.objects. \
-            filter(s1210_detpgtofl_retpgtotot_id__in=listar_ids(s1210_detpgtofl_retpgtotot_lista)).all()
+    s1210_detpgtofl_penalim_lista = s1210detPgtoFlpenAlim.objects. \
+        filter(s1210_detpgtofl_retpgtotot_id__in=listar_ids(s1210_detpgtofl_retpgtotot_lista)).all()
 
-        s1210_detpgtofl_infopgtoparc_lista = s1210detPgtoFlinfoPgtoParc.objects. \
-            filter(s1210_detpgtofl_id__in=listar_ids(s1210_detpgtofl_lista)).all()
+    s1210_detpgtofl_infopgtoparc_lista = s1210detPgtoFlinfoPgtoParc.objects. \
+        filter(s1210_detpgtofl_id__in=listar_ids(s1210_detpgtofl_lista)).all()
 
-        s1210_detpgtobenpr_lista = s1210detPgtoBenPr.objects. \
-            filter(s1210_infopgto_id__in=listar_ids(s1210_infopgto_lista)).all()
+    s1210_detpgtobenpr_lista = s1210detPgtoBenPr.objects. \
+        filter(s1210_infopgto_id__in=listar_ids(s1210_infopgto_lista)).all()
 
-        s1210_detpgtobenpr_retpgtotot_lista = s1210detPgtoBenPrretPgtoTot.objects. \
-            filter(s1210_detpgtobenpr_id__in=listar_ids(s1210_detpgtobenpr_lista)).all()
+    s1210_detpgtobenpr_retpgtotot_lista = s1210detPgtoBenPrretPgtoTot.objects. \
+        filter(s1210_detpgtobenpr_id__in=listar_ids(s1210_detpgtobenpr_lista)).all()
 
-        s1210_detpgtobenpr_infopgtoparc_lista = s1210detPgtoBenPrinfoPgtoParc.objects. \
-            filter(s1210_detpgtobenpr_id__in=listar_ids(s1210_detpgtobenpr_lista)).all()
+    s1210_detpgtobenpr_infopgtoparc_lista = s1210detPgtoBenPrinfoPgtoParc.objects. \
+        filter(s1210_detpgtobenpr_id__in=listar_ids(s1210_detpgtobenpr_lista)).all()
 
-        s1210_detpgtofer_lista = s1210detPgtoFer.objects. \
-            filter(s1210_infopgto_id__in=listar_ids(s1210_infopgto_lista)).all()
+    s1210_detpgtofer_lista = s1210detPgtoFer.objects. \
+        filter(s1210_infopgto_id__in=listar_ids(s1210_infopgto_lista)).all()
 
-        s1210_detpgtofer_detrubrfer_lista = s1210detPgtoFerdetRubrFer.objects. \
-            filter(s1210_detpgtofer_id__in=listar_ids(s1210_detpgtofer_lista)).all()
+    s1210_detpgtofer_detrubrfer_lista = s1210detPgtoFerdetRubrFer.objects. \
+        filter(s1210_detpgtofer_id__in=listar_ids(s1210_detpgtofer_lista)).all()
 
-        s1210_detpgtofer_penalim_lista = s1210detPgtoFerpenAlim.objects. \
-            filter(s1210_detpgtofer_detrubrfer_id__in=listar_ids(s1210_detpgtofer_detrubrfer_lista)).all()
+    s1210_detpgtofer_penalim_lista = s1210detPgtoFerpenAlim.objects. \
+        filter(s1210_detpgtofer_detrubrfer_id__in=listar_ids(s1210_detpgtofer_detrubrfer_lista)).all()
 
-        s1210_detpgtoant_lista = s1210detPgtoAnt.objects. \
-            filter(s1210_infopgto_id__in=listar_ids(s1210_infopgto_lista)).all()
+    s1210_detpgtoant_lista = s1210detPgtoAnt.objects. \
+        filter(s1210_infopgto_id__in=listar_ids(s1210_infopgto_lista)).all()
 
-        s1210_detpgtoant_infopgtoant_lista = s1210detPgtoAntinfoPgtoAnt.objects. \
-            filter(s1210_detpgtoant_id__in=listar_ids(s1210_detpgtoant_lista)).all()
+    s1210_detpgtoant_infopgtoant_lista = s1210detPgtoAntinfoPgtoAnt.objects. \
+        filter(s1210_detpgtoant_id__in=listar_ids(s1210_detpgtoant_lista)).all()
 
-        s1210_idepgtoext_lista = s1210idePgtoExt.objects. \
-            filter(s1210_infopgto_id__in=listar_ids(s1210_infopgto_lista)).all()
+    s1210_idepgtoext_lista = s1210idePgtoExt.objects. \
+        filter(s1210_infopgto_id__in=listar_ids(s1210_infopgto_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s1210_evtpgtos,
-            's1210_evtpgtos_lista': s1210_evtpgtos_lista,
-            'pk': int(pk),
-            's1210_evtpgtos': s1210_evtpgtos,
-            's1210_deps_lista': s1210_deps_lista,
-            's1210_infopgto_lista': s1210_infopgto_lista,
-            's1210_detpgtofl_lista': s1210_detpgtofl_lista,
-            's1210_detpgtofl_retpgtotot_lista': s1210_detpgtofl_retpgtotot_lista,
-            's1210_detpgtofl_penalim_lista': s1210_detpgtofl_penalim_lista,
-            's1210_detpgtofl_infopgtoparc_lista': s1210_detpgtofl_infopgtoparc_lista,
-            's1210_detpgtobenpr_lista': s1210_detpgtobenpr_lista,
-            's1210_detpgtobenpr_retpgtotot_lista': s1210_detpgtobenpr_retpgtotot_lista,
-            's1210_detpgtobenpr_infopgtoparc_lista': s1210_detpgtobenpr_infopgtoparc_lista,
-            's1210_detpgtofer_lista': s1210_detpgtofer_lista,
-            's1210_detpgtofer_detrubrfer_lista': s1210_detpgtofer_detrubrfer_lista,
-            's1210_detpgtofer_penalim_lista': s1210_detpgtofer_penalim_lista,
-            's1210_detpgtoant_lista': s1210_detpgtoant_lista,
-            's1210_detpgtoant_infopgtoant_lista': s1210_detpgtoant_infopgtoant_lista,
-            's1210_idepgtoext_lista': s1210_idepgtoext_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s1210_evtpgtos,
+        's1210_evtpgtos_lista': s1210_evtpgtos_lista,
+        'pk': int(pk),
+        's1210_evtpgtos': s1210_evtpgtos,
+        's1210_deps_lista': s1210_deps_lista,
+        's1210_infopgto_lista': s1210_infopgto_lista,
+        's1210_detpgtofl_lista': s1210_detpgtofl_lista,
+        's1210_detpgtofl_retpgtotot_lista': s1210_detpgtofl_retpgtotot_lista,
+        's1210_detpgtofl_penalim_lista': s1210_detpgtofl_penalim_lista,
+        's1210_detpgtofl_infopgtoparc_lista': s1210_detpgtofl_infopgtoparc_lista,
+        's1210_detpgtobenpr_lista': s1210_detpgtobenpr_lista,
+        's1210_detpgtobenpr_retpgtotot_lista': s1210_detpgtobenpr_retpgtotot_lista,
+        's1210_detpgtobenpr_infopgtoparc_lista': s1210_detpgtobenpr_infopgtoparc_lista,
+        's1210_detpgtofer_lista': s1210_detpgtofer_lista,
+        's1210_detpgtofer_detrubrfer_lista': s1210_detpgtofer_detrubrfer_lista,
+        's1210_detpgtofer_penalim_lista': s1210_detpgtofer_penalim_lista,
+        's1210_detpgtoant_lista': s1210_detpgtoant_lista,
+        's1210_detpgtoant_infopgtoant_lista': s1210_detpgtoant_infopgtoant_lista,
+        's1210_idepgtoext_lista': s1210_idepgtoext_lista,
+    }
 
-        t = get_template('s1210_evtpgtos.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s1210_evtpgtos.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s1210(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s1210_evtpgtos = get_object_or_404(
+        s1210evtPgtos,
+        id=pk)
+    return gerar_xml_s1210_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s1210_evtpgtos = get_object_or_404(
@@ -194,15 +202,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1210_evtpgtos.arquivo_original:
-
         xml = ler_arquivo(s1210_evtpgtos.arquivo)
 
     else:
         xml = gerar_xml_s1210(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s1210evtPgtos.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -232,16 +240,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s1210_evtpgtos.transmissor_lote_esocial_id)
 
-    if s1210_evtpgtos.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s1210evtPgtos.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s1210evtPgtos.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s1210_evtpgtos/%s.xml' % (s1210_evtpgtos.identidade)
+            s1210evtPgtos.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s1210_evtpgtos/%s.xml' % (s1210_evtpgtos.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1210_evtpgtos/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

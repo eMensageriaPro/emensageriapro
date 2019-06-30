@@ -48,8 +48,8 @@ from emensageriapro.r2099.views import r2099_iderespinf_api as r2099_iderespinf_
 urlpatterns = [
 
 
-    url(r'^r2099-iderespinf/apagar/(?P<pk>[0-9]+)/$', 
-        r2099_iderespinf_apagar_views.apagar, 
+    url(r'^r2099-iderespinf/apagar/(?P<pk>[0-9]+)/$',
+        r2099_iderespinf_apagar_views.apagar,
         name='r2099_iderespinf_apagar'),
 
     url(r'^r2099-iderespinf/api/$',
@@ -58,28 +58,28 @@ urlpatterns = [
     url(r'^r2099-iderespinf/api/(?P<pk>[0-9]+)/$',
         r2099_iderespinf_api_views.r2099ideRespInfDetail.as_view() ),
 
-    url(r'^r2099-iderespinf/$', 
-        r2099_iderespinf_listar_views.listar, 
+    url(r'^r2099-iderespinf/$',
+        r2099_iderespinf_listar_views.listar,
         name='r2099_iderespinf'),
 
-    url(r'^r2099-iderespinf/salvar/(?P<pk>[0-9]+)/$', 
-        r2099_iderespinf_salvar_views.salvar, 
+    url(r'^r2099-iderespinf/salvar/(?P<pk>[0-9]+)/$',
+        r2099_iderespinf_salvar_views.salvar,
         name='r2099_iderespinf_salvar'),
 
-    url(r'^r2099-iderespinf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        r2099_iderespinf_salvar_views.salvar, 
+    url(r'^r2099-iderespinf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r2099_iderespinf_salvar_views.salvar,
         name='r2099_iderespinf_salvar_tab'),
-        
-    url(r'^r2099-iderespinf/cadastrar/$', 
-        r2099_iderespinf_salvar_views.salvar, 
+
+    url(r'^r2099-iderespinf/cadastrar/$',
+        r2099_iderespinf_salvar_views.salvar,
         name='r2099_iderespinf_cadastrar'),
 
-    url(r'^r2099-iderespinf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        r2099_iderespinf_salvar_views.salvar, 
+    url(r'^r2099-iderespinf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        r2099_iderespinf_salvar_views.salvar,
         name='r2099_iderespinf_salvar_output'),
-        
-    url(r'^r2099-iderespinf/(?P<output>[\w-]+)/$', 
-        r2099_iderespinf_listar_views.listar, 
+
+    url(r'^r2099-iderespinf/(?P<output>[\w-]+)/$',
+        r2099_iderespinf_listar_views.listar,
         name='r2099_iderespinf_output'),
 
 

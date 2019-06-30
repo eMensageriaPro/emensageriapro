@@ -72,81 +72,89 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1250(request, pk, versao=None):
+def gerar_xml_s1250_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s1250_evtaqprod = get_object_or_404(
+        s1250evtAqProd,
+        id=pk)
 
-        s1250_evtaqprod = get_object_or_404(
-            s1250evtAqProd,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s1250_evtaqprod.versao
 
-        if not versao or versao == '|':
-            versao = s1250_evtaqprod.versao
+    evento = 's1250evtAqProd'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's1250evtAqProd'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s1250_evtaqprod_lista = s1250evtAqProd.objects. \
-            filter(id=pk).all()
+    s1250_evtaqprod_lista = s1250evtAqProd.objects. \
+        filter(id=pk).all()
 
 
-        s1250_tpaquis_lista = s1250tpAquis.objects. \
-            filter(s1250_evtaqprod_id__in=listar_ids(s1250_evtaqprod_lista)).all()
+    s1250_tpaquis_lista = s1250tpAquis.objects. \
+        filter(s1250_evtaqprod_id__in=listar_ids(s1250_evtaqprod_lista)).all()
 
-        s1250_ideprodutor_lista = s1250ideProdutor.objects. \
-            filter(s1250_tpaquis_id__in=listar_ids(s1250_tpaquis_lista)).all()
+    s1250_ideprodutor_lista = s1250ideProdutor.objects. \
+        filter(s1250_tpaquis_id__in=listar_ids(s1250_tpaquis_lista)).all()
 
-        s1250_nfs_lista = s1250nfs.objects. \
-            filter(s1250_ideprodutor_id__in=listar_ids(s1250_ideprodutor_lista)).all()
+    s1250_nfs_lista = s1250nfs.objects. \
+        filter(s1250_ideprodutor_id__in=listar_ids(s1250_ideprodutor_lista)).all()
 
-        s1250_infoprocjud_lista = s1250infoProcJud.objects. \
-            filter(s1250_ideprodutor_id__in=listar_ids(s1250_ideprodutor_lista)).all()
+    s1250_infoprocjud_lista = s1250infoProcJud.objects. \
+        filter(s1250_ideprodutor_id__in=listar_ids(s1250_ideprodutor_lista)).all()
 
-        s1250_infoprocj_lista = s1250infoProcJ.objects. \
-            filter(s1250_tpaquis_id__in=listar_ids(s1250_tpaquis_lista)).all()
+    s1250_infoprocj_lista = s1250infoProcJ.objects. \
+        filter(s1250_tpaquis_id__in=listar_ids(s1250_tpaquis_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s1250_evtaqprod,
-            's1250_evtaqprod_lista': s1250_evtaqprod_lista,
-            'pk': int(pk),
-            's1250_evtaqprod': s1250_evtaqprod,
-            's1250_tpaquis_lista': s1250_tpaquis_lista,
-            's1250_ideprodutor_lista': s1250_ideprodutor_lista,
-            's1250_nfs_lista': s1250_nfs_lista,
-            's1250_infoprocjud_lista': s1250_infoprocjud_lista,
-            's1250_infoprocj_lista': s1250_infoprocj_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s1250_evtaqprod,
+        's1250_evtaqprod_lista': s1250_evtaqprod_lista,
+        'pk': int(pk),
+        's1250_evtaqprod': s1250_evtaqprod,
+        's1250_tpaquis_lista': s1250_tpaquis_lista,
+        's1250_ideprodutor_lista': s1250_ideprodutor_lista,
+        's1250_nfs_lista': s1250_nfs_lista,
+        's1250_infoprocjud_lista': s1250_infoprocjud_lista,
+        's1250_infoprocj_lista': s1250_infoprocj_lista,
+    }
 
-        t = get_template('s1250_evtaqprod.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s1250_evtaqprod.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s1250(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s1250_evtaqprod = get_object_or_404(
+        s1250evtAqProd,
+        id=pk)
+    return gerar_xml_s1250_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s1250_evtaqprod = get_object_or_404(
@@ -154,15 +162,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1250_evtaqprod.arquivo_original:
-
         xml = ler_arquivo(s1250_evtaqprod.arquivo)
 
     else:
         xml = gerar_xml_s1250(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s1250evtAqProd.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -192,16 +200,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s1250_evtaqprod.transmissor_lote_esocial_id)
 
-    if s1250_evtaqprod.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s1250evtAqProd.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s1250evtAqProd.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s1250_evtaqprod/%s.xml' % (s1250_evtaqprod.identidade)
+            s1250evtAqProd.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s1250_evtaqprod/%s.xml' % (s1250_evtaqprod.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1250_evtaqprod/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

@@ -72,117 +72,125 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_r4020(request, pk, versao=None):
+def gerar_xml_r4020_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    r4020_evtretpj = get_object_or_404(
+        r4020evtRetPJ,
+        id=pk)
 
-        r4020_evtretpj = get_object_or_404(
-            r4020evtRetPJ,
-            id=pk)
+    if not versao or versao == '|':
+        versao = r4020_evtretpj.versao
 
-        if not versao or versao == '|':
-            versao = r4020_evtretpj.versao
+    evento = 'r4020evtRetPJ'[5:]
+    arquivo = '/xsd/efdreinf/%s/%s.xsd' % (versao, evento)
 
-        evento = 'r4020evtRetPJ'[5:]
-        arquivo = 'xsd/efdreinf/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        r4020_evtretpj_lista = r4020evtRetPJ.objects. \
-            filter(id=pk).all()
+    r4020_evtretpj_lista = r4020evtRetPJ.objects. \
+        filter(id=pk).all()
 
 
-        r4020_idepgto_lista = r4020idePgto.objects. \
-            filter(r4020_evtretpj_id__in=listar_ids(r4020_evtretpj_lista)).all()
+    r4020_idepgto_lista = r4020idePgto.objects. \
+        filter(r4020_evtretpj_id__in=listar_ids(r4020_evtretpj_lista)).all()
 
-        r4020_infopgto_lista = r4020infoPgto.objects. \
-            filter(r4020_idepgto_id__in=listar_ids(r4020_idepgto_lista)).all()
+    r4020_infopgto_lista = r4020infoPgto.objects. \
+        filter(r4020_idepgto_id__in=listar_ids(r4020_idepgto_lista)).all()
 
-        r4020_ir_lista = r4020IR.objects. \
-            filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
+    r4020_ir_lista = r4020IR.objects. \
+        filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
 
-        r4020_csll_lista = r4020CSLL.objects. \
-            filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
+    r4020_csll_lista = r4020CSLL.objects. \
+        filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
 
-        r4020_cofins_lista = r4020Cofins.objects. \
-            filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
+    r4020_cofins_lista = r4020Cofins.objects. \
+        filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
 
-        r4020_pp_lista = r4020PP.objects. \
-            filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
+    r4020_pp_lista = r4020PP.objects. \
+        filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
 
-        r4020_fci_lista = r4020FCI.objects. \
-            filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
+    r4020_fci_lista = r4020FCI.objects. \
+        filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
 
-        r4020_scp_lista = r4020SCP.objects. \
-            filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
+    r4020_scp_lista = r4020SCP.objects. \
+        filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
 
-        r4020_infoprocret_lista = r4020infoProcRet.objects. \
-            filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
+    r4020_infoprocret_lista = r4020infoProcRet.objects. \
+        filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
 
-        r4020_infoprocjud_lista = r4020infoProcJud.objects. \
-            filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
+    r4020_infoprocjud_lista = r4020infoProcJud.objects. \
+        filter(r4020_infopgto_id__in=listar_ids(r4020_infopgto_lista)).all()
 
-        r4020_despprocjud_lista = r4020despProcJud.objects. \
-            filter(r4020_infoprocjud_id__in=listar_ids(r4020_infoprocjud_lista)).all()
+    r4020_despprocjud_lista = r4020despProcJud.objects. \
+        filter(r4020_infoprocjud_id__in=listar_ids(r4020_infoprocjud_lista)).all()
 
-        r4020_ideadv_lista = r4020ideAdv.objects. \
-            filter(r4020_despprocjud_id__in=listar_ids(r4020_despprocjud_lista)).all()
+    r4020_ideadv_lista = r4020ideAdv.objects. \
+        filter(r4020_despprocjud_id__in=listar_ids(r4020_despprocjud_lista)).all()
 
-        r4020_origemrec_lista = r4020origemRec.objects. \
-            filter(r4020_infoprocjud_id__in=listar_ids(r4020_infoprocjud_lista)).all()
+    r4020_origemrec_lista = r4020origemRec.objects. \
+        filter(r4020_infoprocjud_id__in=listar_ids(r4020_infoprocjud_lista)).all()
 
-        r4020_infopgtoext_lista = r4020infoPgtoExt.objects. \
-            filter(r4020_idepgto_id__in=listar_ids(r4020_idepgto_lista)).all()
+    r4020_infopgtoext_lista = r4020infoPgtoExt.objects. \
+        filter(r4020_idepgto_id__in=listar_ids(r4020_idepgto_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': r4020_evtretpj,
-            'r4020_evtretpj_lista': r4020_evtretpj_lista,
-            'pk': int(pk),
-            'r4020_evtretpj': r4020_evtretpj,
-            'r4020_idepgto_lista': r4020_idepgto_lista,
-            'r4020_infopgto_lista': r4020_infopgto_lista,
-            'r4020_ir_lista': r4020_ir_lista,
-            'r4020_csll_lista': r4020_csll_lista,
-            'r4020_cofins_lista': r4020_cofins_lista,
-            'r4020_pp_lista': r4020_pp_lista,
-            'r4020_fci_lista': r4020_fci_lista,
-            'r4020_scp_lista': r4020_scp_lista,
-            'r4020_infoprocret_lista': r4020_infoprocret_lista,
-            'r4020_infoprocjud_lista': r4020_infoprocjud_lista,
-            'r4020_despprocjud_lista': r4020_despprocjud_lista,
-            'r4020_ideadv_lista': r4020_ideadv_lista,
-            'r4020_origemrec_lista': r4020_origemrec_lista,
-            'r4020_infopgtoext_lista': r4020_infopgtoext_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': r4020_evtretpj,
+        'r4020_evtretpj_lista': r4020_evtretpj_lista,
+        'pk': int(pk),
+        'r4020_evtretpj': r4020_evtretpj,
+        'r4020_idepgto_lista': r4020_idepgto_lista,
+        'r4020_infopgto_lista': r4020_infopgto_lista,
+        'r4020_ir_lista': r4020_ir_lista,
+        'r4020_csll_lista': r4020_csll_lista,
+        'r4020_cofins_lista': r4020_cofins_lista,
+        'r4020_pp_lista': r4020_pp_lista,
+        'r4020_fci_lista': r4020_fci_lista,
+        'r4020_scp_lista': r4020_scp_lista,
+        'r4020_infoprocret_lista': r4020_infoprocret_lista,
+        'r4020_infoprocjud_lista': r4020_infoprocjud_lista,
+        'r4020_despprocjud_lista': r4020_despprocjud_lista,
+        'r4020_ideadv_lista': r4020_ideadv_lista,
+        'r4020_origemrec_lista': r4020_origemrec_lista,
+        'r4020_infopgtoext_lista': r4020_infopgtoext_lista,
+    }
 
-        t = get_template('r4020_evtretpj.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('r4020_evtretpj.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_r4020(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    r4020_evtretpj = get_object_or_404(
+        r4020evtRetPJ,
+        id=pk)
+    return gerar_xml_r4020_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_efdreinf import salvar_arquivo_efdreinf
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_efdreinf
     from emensageriapro.mensageiro.functions.funcoes_efdreinf import assinar_efdreinf
 
     r4020_evtretpj = get_object_or_404(
@@ -190,15 +198,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if r4020_evtretpj.arquivo_original:
-
         xml = ler_arquivo(r4020_evtretpj.arquivo)
 
     else:
         xml = gerar_xml_r4020(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        r4020evtRetPJ.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -228,16 +236,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             r4020_evtretpj.transmissor_lote_efdreinf_id)
 
-    if r4020_evtretpj.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        r4020evtRetPJ.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            r4020evtRetPJ.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/r4020_evtretpj/%s.xml' % (r4020_evtretpj.identidade)
+            r4020evtRetPJ.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/r4020_evtretpj/%s.xml' % (r4020_evtretpj.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/r4020_evtretpj/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

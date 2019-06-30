@@ -72,109 +72,117 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s2206(request, pk, versao=None):
+def gerar_xml_s2206_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s2206_evtaltcontratual = get_object_or_404(
+        s2206evtAltContratual,
+        id=pk)
 
-        s2206_evtaltcontratual = get_object_or_404(
-            s2206evtAltContratual,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s2206_evtaltcontratual.versao
 
-        if not versao or versao == '|':
-            versao = s2206_evtaltcontratual.versao
+    evento = 's2206evtAltContratual'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's2206evtAltContratual'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s2206_evtaltcontratual_lista = s2206evtAltContratual.objects. \
-            filter(id=pk).all()
+    s2206_evtaltcontratual_lista = s2206evtAltContratual.objects. \
+        filter(id=pk).all()
 
 
-        s2206_infoceletista_lista = s2206infoCeletista.objects. \
-            filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
+    s2206_infoceletista_lista = s2206infoCeletista.objects. \
+        filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
 
-        s2206_trabtemp_lista = s2206trabTemp.objects. \
-            filter(s2206_infoceletista_id__in=listar_ids(s2206_infoceletista_lista)).all()
+    s2206_trabtemp_lista = s2206trabTemp.objects. \
+        filter(s2206_infoceletista_id__in=listar_ids(s2206_infoceletista_lista)).all()
 
-        s2206_aprend_lista = s2206aprend.objects. \
-            filter(s2206_infoceletista_id__in=listar_ids(s2206_infoceletista_lista)).all()
+    s2206_aprend_lista = s2206aprend.objects. \
+        filter(s2206_infoceletista_id__in=listar_ids(s2206_infoceletista_lista)).all()
 
-        s2206_infoestatutario_lista = s2206infoEstatutario.objects. \
-            filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
+    s2206_infoestatutario_lista = s2206infoEstatutario.objects. \
+        filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
 
-        s2206_localtrabgeral_lista = s2206localTrabGeral.objects. \
-            filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
+    s2206_localtrabgeral_lista = s2206localTrabGeral.objects. \
+        filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
 
-        s2206_localtrabdom_lista = s2206localTrabDom.objects. \
-            filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
+    s2206_localtrabdom_lista = s2206localTrabDom.objects. \
+        filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
 
-        s2206_horcontratual_lista = s2206horContratual.objects. \
-            filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
+    s2206_horcontratual_lista = s2206horContratual.objects. \
+        filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
 
-        s2206_horario_lista = s2206horario.objects. \
-            filter(s2206_horcontratual_id__in=listar_ids(s2206_horcontratual_lista)).all()
+    s2206_horario_lista = s2206horario.objects. \
+        filter(s2206_horcontratual_id__in=listar_ids(s2206_horcontratual_lista)).all()
 
-        s2206_filiacaosindical_lista = s2206filiacaoSindical.objects. \
-            filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
+    s2206_filiacaosindical_lista = s2206filiacaoSindical.objects. \
+        filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
 
-        s2206_alvarajudicial_lista = s2206alvaraJudicial.objects. \
-            filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
+    s2206_alvarajudicial_lista = s2206alvaraJudicial.objects. \
+        filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
 
-        s2206_observacoes_lista = s2206observacoes.objects. \
-            filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
+    s2206_observacoes_lista = s2206observacoes.objects. \
+        filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
 
-        s2206_servpubl_lista = s2206servPubl.objects. \
-            filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
+    s2206_servpubl_lista = s2206servPubl.objects. \
+        filter(s2206_evtaltcontratual_id__in=listar_ids(s2206_evtaltcontratual_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s2206_evtaltcontratual,
-            's2206_evtaltcontratual_lista': s2206_evtaltcontratual_lista,
-            'pk': int(pk),
-            's2206_evtaltcontratual': s2206_evtaltcontratual,
-            's2206_infoceletista_lista': s2206_infoceletista_lista,
-            's2206_trabtemp_lista': s2206_trabtemp_lista,
-            's2206_aprend_lista': s2206_aprend_lista,
-            's2206_infoestatutario_lista': s2206_infoestatutario_lista,
-            's2206_localtrabgeral_lista': s2206_localtrabgeral_lista,
-            's2206_localtrabdom_lista': s2206_localtrabdom_lista,
-            's2206_horcontratual_lista': s2206_horcontratual_lista,
-            's2206_horario_lista': s2206_horario_lista,
-            's2206_filiacaosindical_lista': s2206_filiacaosindical_lista,
-            's2206_alvarajudicial_lista': s2206_alvarajudicial_lista,
-            's2206_observacoes_lista': s2206_observacoes_lista,
-            's2206_servpubl_lista': s2206_servpubl_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s2206_evtaltcontratual,
+        's2206_evtaltcontratual_lista': s2206_evtaltcontratual_lista,
+        'pk': int(pk),
+        's2206_evtaltcontratual': s2206_evtaltcontratual,
+        's2206_infoceletista_lista': s2206_infoceletista_lista,
+        's2206_trabtemp_lista': s2206_trabtemp_lista,
+        's2206_aprend_lista': s2206_aprend_lista,
+        's2206_infoestatutario_lista': s2206_infoestatutario_lista,
+        's2206_localtrabgeral_lista': s2206_localtrabgeral_lista,
+        's2206_localtrabdom_lista': s2206_localtrabdom_lista,
+        's2206_horcontratual_lista': s2206_horcontratual_lista,
+        's2206_horario_lista': s2206_horario_lista,
+        's2206_filiacaosindical_lista': s2206_filiacaosindical_lista,
+        's2206_alvarajudicial_lista': s2206_alvarajudicial_lista,
+        's2206_observacoes_lista': s2206_observacoes_lista,
+        's2206_servpubl_lista': s2206_servpubl_lista,
+    }
 
-        t = get_template('s2206_evtaltcontratual.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s2206_evtaltcontratual.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s2206(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s2206_evtaltcontratual = get_object_or_404(
+        s2206evtAltContratual,
+        id=pk)
+    return gerar_xml_s2206_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s2206_evtaltcontratual = get_object_or_404(
@@ -182,15 +190,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s2206_evtaltcontratual.arquivo_original:
-
         xml = ler_arquivo(s2206_evtaltcontratual.arquivo)
 
     else:
         xml = gerar_xml_s2206(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s2206evtAltContratual.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -220,16 +228,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s2206_evtaltcontratual.transmissor_lote_esocial_id)
 
-    if s2206_evtaltcontratual.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s2206evtAltContratual.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s2206evtAltContratual.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s2206_evtaltcontratual/%s.xml' % (s2206_evtaltcontratual.identidade)
+            s2206evtAltContratual.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s2206_evtaltcontratual/%s.xml' % (s2206_evtaltcontratual.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s2206_evtaltcontratual/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):

@@ -72,77 +72,85 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1260(request, pk, versao=None):
+def gerar_xml_s1260_func(pk, versao=None):
 
     from emensageriapro.settings import BASE_DIR
 
-    if pk:
+    s1260_evtcomprod = get_object_or_404(
+        s1260evtComProd,
+        id=pk)
 
-        s1260_evtcomprod = get_object_or_404(
-            s1260evtComProd,
-            id=pk)
+    if not versao or versao == '|':
+        versao = s1260_evtcomprod.versao
 
-        if not versao or versao == '|':
-            versao = s1260_evtcomprod.versao
+    evento = 's1260evtComProd'[5:]
+    arquivo = '/xsd/esocial/%s/%s.xsd' % (versao, evento)
 
-        evento = 's1260evtComProd'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+    import os.path
 
-        import os.path
+    if os.path.isfile(BASE_DIR + arquivo):
 
-        if os.path.isfile(BASE_DIR + '/' + arquivo):
+        xmlns = get_xmlns(arquivo)
 
-            xmlns = get_xmlns(arquivo)
+    else:
 
-        else:
+        from django.contrib import messages
 
-            from django.contrib import messages
+        messages.warning(request, '''
+            Não foi capturar o XMLNS pois o XSD do
+            evento não está contido na pasta!''')
 
-            messages.warning(request, '''
-                Não foi capturar o XMLNS pois o XSD do
-                evento não está contido na pasta!''')
+        xmlns = ''
 
-            xmlns = ''
-
-        s1260_evtcomprod_lista = s1260evtComProd.objects. \
-            filter(id=pk).all()
+    s1260_evtcomprod_lista = s1260evtComProd.objects. \
+        filter(id=pk).all()
 
 
-        s1260_tpcomerc_lista = s1260tpComerc.objects. \
-            filter(s1260_evtcomprod_id__in=listar_ids(s1260_evtcomprod_lista)).all()
+    s1260_tpcomerc_lista = s1260tpComerc.objects. \
+        filter(s1260_evtcomprod_id__in=listar_ids(s1260_evtcomprod_lista)).all()
 
-        s1260_ideadquir_lista = s1260ideAdquir.objects. \
-            filter(s1260_tpcomerc_id__in=listar_ids(s1260_tpcomerc_lista)).all()
+    s1260_ideadquir_lista = s1260ideAdquir.objects. \
+        filter(s1260_tpcomerc_id__in=listar_ids(s1260_tpcomerc_lista)).all()
 
-        s1260_nfs_lista = s1260nfs.objects. \
-            filter(s1260_ideadquir_id__in=listar_ids(s1260_ideadquir_lista)).all()
+    s1260_nfs_lista = s1260nfs.objects. \
+        filter(s1260_ideadquir_id__in=listar_ids(s1260_ideadquir_lista)).all()
 
-        s1260_infoprocjud_lista = s1260infoProcJud.objects. \
-            filter(s1260_tpcomerc_id__in=listar_ids(s1260_tpcomerc_lista)).all()
+    s1260_infoprocjud_lista = s1260infoProcJud.objects. \
+        filter(s1260_tpcomerc_id__in=listar_ids(s1260_tpcomerc_lista)).all()
 
 
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s1260_evtcomprod,
-            's1260_evtcomprod_lista': s1260_evtcomprod_lista,
-            'pk': int(pk),
-            's1260_evtcomprod': s1260_evtcomprod,
-            's1260_tpcomerc_lista': s1260_tpcomerc_lista,
-            's1260_ideadquir_lista': s1260_ideadquir_lista,
-            's1260_nfs_lista': s1260_nfs_lista,
-            's1260_infoprocjud_lista': s1260_infoprocjud_lista,
-        }
+    context = {
+        'xmlns': xmlns,
+        'versao': versao,
+        'base': s1260_evtcomprod,
+        's1260_evtcomprod_lista': s1260_evtcomprod_lista,
+        'pk': int(pk),
+        's1260_evtcomprod': s1260_evtcomprod,
+        's1260_tpcomerc_lista': s1260_tpcomerc_lista,
+        's1260_ideadquir_lista': s1260_ideadquir_lista,
+        's1260_nfs_lista': s1260_nfs_lista,
+        's1260_infoprocjud_lista': s1260_infoprocjud_lista,
+    }
 
-        t = get_template('s1260_evtcomprod.xml')
-        xml = t.render(context)
-        return xml
+    t = get_template('s1260_evtcomprod.xml')
+    xml = t.render(context)
+    return xml
+
+
+
+def gerar_xml_s1260(request, pk, versao=None):
+
+    from emensageriapro.settings import BASE_DIR
+    s1260_evtcomprod = get_object_or_404(
+        s1260evtComProd,
+        id=pk)
+    return gerar_xml_s1260_func(pk, versao)
 
 
 def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes import salvar_arquivo_esocial
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s1260_evtcomprod = get_object_or_404(
@@ -150,15 +158,15 @@ def gerar_xml_assinado(request, pk):
         id=pk)
 
     if s1260_evtcomprod.arquivo_original:
-
         xml = ler_arquivo(s1260_evtcomprod.arquivo)
 
     else:
         xml = gerar_xml_s1260(request, pk)
 
     if 'Signature' in xml:
-
         xml_assinado = xml
+        s1260evtComProd.objects.\
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     else:
 
@@ -188,16 +196,16 @@ def gerar_xml_assinado(request, pk):
             xml,
             s1260_evtcomprod.transmissor_lote_esocial_id)
 
-    if s1260_evtcomprod.status in (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO):
+        if 'Signature' in xml_assinado:
 
-        s1260evtComProd.objects.\
-            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+            s1260evtComProd.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
+        else:
 
-    arquivo = 'arquivos/Eventos/s1260_evtcomprod/%s.xml' % (s1260_evtcomprod.identidade)
+            s1260evtComProd.objects.\
+                filter(id=pk).update(status=STATUS_EVENTO_GERADO)
+
+    arquivo = '/arquivos/Eventos/s1260_evtcomprod/%s.xml' % (s1260_evtcomprod.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1260_evtcomprod/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
