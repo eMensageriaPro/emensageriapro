@@ -70,4 +70,5 @@ def admin_media(request):
         'STATUS_EVENTO_PROCESSADO': STATUS_EVENTO_PROCESSADO,
         'modulos': [],
         'output': None,
+        'is_popup': False,
     }

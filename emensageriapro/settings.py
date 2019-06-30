@@ -484,6 +484,10 @@ if not DEBUG:
                 'backupCount': 10,
             },
         },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
         'loggers': {
             'django': {
                 'handlers': ['applogfile'],
