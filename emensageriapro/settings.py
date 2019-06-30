@@ -490,7 +490,7 @@ if not DEBUG:
         },
         'loggers': {
             'django': {
-                'handlers': ['applogfile', 'mail_admins'],
+                'handlers': ['applogfile'],
                 'level': 'DEBUG',
                 'propagate': True,
             },
