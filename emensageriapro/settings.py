@@ -483,14 +483,14 @@ if not DEBUG:
                 'maxBytes': 1024*1024*15,  # 15MB
                 'backupCount': 10,
             },
-        },
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
+            'mail_admins': {
+                'level': 'ERROR',
+                'class': 'django.utils.log.AdminEmailHandler',
+            },
         },
         'loggers': {
             'django': {
-                'handlers': ['applogfile'],
+                'handlers': ['applogfile', 'mail_admins'],
                 'level': 'DEBUG',
                 'propagate': True,
             },
