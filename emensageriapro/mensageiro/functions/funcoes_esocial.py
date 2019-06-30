@@ -117,8 +117,8 @@ def assinar_esocial(request, xml, transmissor_id):
 
             cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.certificado.certificado)
             cert_pass = tra.transmissor.certificado.senha
-            cert_pem_file = 'certificado/cert_%s.pem' % tra.transmissor.certificado.id
-            key_pem_file = 'certificado/key_%s.pem' % tra.transmissor.certificado.id
+            cert_pem_file = '/certificado/cert_%s.pem' % tra.transmissor.certificado.id
+            key_pem_file = '/certificado/key_%s.pem' % tra.transmissor.certificado.id
 
             create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
             cert_str = ler_arquivo(cert_pem_file)
@@ -308,18 +308,18 @@ def send_xml(request, transmissor_id, service):
 
                 from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_envioLoteEventos, definir_status_evento
                 read_envioLoteEventos(dados['response'], transmissor_id)
-                definir_status_evento(transmissor_id)
                 TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).\
                     update(status=TRANSMISSOR_STATUS_ENVIADO)
+                definir_status_evento(transmissor_id)
                 messages.success(request, 'Lote enviado com sucesso!')
 
             elif service == 'WsConsultarLoteEventos':
 
                 from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_consultaLoteEventos, definir_status_evento
                 read_consultaLoteEventos(dados['response'], transmissor_id)
-                definir_status_evento(transmissor_id)
                 TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).\
                     update(status=TRANSMISSOR_STATUS_CONSULTADO)
+                definir_status_evento(transmissor_id)
                 messages.success(request, 'Lote consultado com sucesso!')
 
         elif (quant_eventos < transmissor_dados['esocial_lote_min'] and service == 'WsEnviarLoteEventos'):

@@ -98,8 +98,8 @@ def assinar_efdreinf(request, xml, transmissor_id):
 
             cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.certificado.certificado)
             cert_pass = tra.transmissor.certificado.senha
-            cert_pem_file = 'certificado/cert_%s.pem' % tra.transmissor.certificado.id
-            key_pem_file = 'certificado/key_%s.pem' % tra.transmissor.certificado.id
+            cert_pem_file = '/certificado/cert_%s.pem' % tra.transmissor.certificado.id
+            key_pem_file = '/certificado/key_%s.pem' % tra.transmissor.certificado.id
 
             create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
 
@@ -280,11 +280,11 @@ def send_xml(request, transmissor_id, service):
 
                 read_envioLoteEventos(request, dados['response'], transmissor_id)
                 messages.success(request, 'Lote enviado com sucesso!')
-                definir_status_evento(transmissor_id)
 
                 TransmissorLoteEfdreinf.objects.\
                     filter(id=transmissor_id).\
                     update(status=TRANSMISSOR_STATUS_ENVIADO)
+                definir_status_evento(transmissor_id)
 
             elif service == 'ConsultasReinf':
 
@@ -292,11 +292,11 @@ def send_xml(request, transmissor_id, service):
 
                 read_consultaLoteEventos(request, dados['response'], transmissor_id)
                 messages.success(request, 'Lote consultado com sucesso!')
-                definir_status_evento(transmissor_id)
 
                 TransmissorLoteEfdreinf.objects.\
                     filter(id=transmissor_id).\
                     update(status=TRANSMISSOR_STATUS_CONSULTADO)
+                definir_status_evento(transmissor_id)
 
         elif quant_eventos < dados['efdreinf_lote_min'] and service == 'RecepcaoLoteReinf':
 

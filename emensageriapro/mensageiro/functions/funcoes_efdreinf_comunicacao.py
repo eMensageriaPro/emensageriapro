@@ -174,8 +174,9 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
                             transmissor_lote_efdreinf_id=transmissor_lote_efdreinf_id). \
                             update(status=STATUS_EVENTO_ENVIADO_ERRO,
                                    ocorrencias=get_ocorrencias('r9001', retornos_evttotal.id),
-                                   retornos_r9001_id=retornos_evttotal.id,
-                                   transmissor_lote_efdreinf_id=None)
+                                   # retornos_r9001_id=retornos_evttotal.id,
+                                   transmissor_lote_efdreinf_id=None
+                                   )
 
                     elif retornos_evttotal.cdretorno == '0' and model._meta.object_name == 'r9001evtTotal':
 
@@ -184,7 +185,8 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
                             transmissor_lote_efdreinf_id=transmissor_lote_efdreinf_id). \
                             update(status=STATUS_EVENTO_ENVIADO,
                                    ocorrencias=get_ocorrencias('r9001', retornos_evttotal.id),
-                                   retornos_r9001_id=retornos_evttotal.id)
+                                   # retornos_r9001_id=retornos_evttotal.id
+                                   )
 
                 return retornos_evttotal
 
@@ -211,8 +213,9 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
                             transmissor_lote_efdreinf_id=transmissor_lote_efdreinf_id). \
                             update(status=STATUS_EVENTO_ENVIADO_ERRO,
                                    ocorrencias=get_ocorrencias('r9011', retornos_evttotalcontrib.id),
-                                   retornos_evttotalcontrib_id=retornos_evttotalcontrib.id,
-                                   transmissor_lote_efdreinf_id=None)
+                                   # retornos_evttotalcontrib_id=retornos_evttotalcontrib.id,
+                                   transmissor_lote_efdreinf_id=None
+                                   )
 
                     elif retornos_evttotalcontrib.cdretorno == '0' and model._meta.object_name == 'r9011evtTotalContrib':
 
@@ -221,7 +224,8 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
                             transmissor_lote_esocial_id=transmissor_lote_efdreinf_id). \
                             update(status=STATUS_EVENTO_PROCESSADO,
                                    ocorrencias=get_ocorrencias('r9011', retornos_evttotalcontrib.id),
-                                   retornos_evttotalcontrib_id=retornos_evttotalcontrib.id)
+                                   # retornos_evttotalcontrib_id=retornos_evttotalcontrib.id
+                                   )
 
                 return retornos_evttotalcontrib
 
