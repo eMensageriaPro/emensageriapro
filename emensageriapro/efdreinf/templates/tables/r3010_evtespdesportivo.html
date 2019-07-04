@@ -2,53 +2,119 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evtespdesportivo %}
+            <th>Evento Espetáculo Desportivo do qual participe ao menos uma equipe que mantenha equipe de futebol profissional</th>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <th>Identificação única do evento</th>
             {% endif %}
-            {% if show_fields.show_indretif or 1 %}
+            {% if show_fields.show_ideevento %}
+            <th>Informações de Identificação do Evento</th>
+            {% endif %}
+            {% if show_fields.show_indretif %}
             <th>Informe [1] para arquivo original ou [2] para arquivo de retificação</th>
             {% endif %}
-            {% if show_fields.show_dtapuracao or 1 %}
+            {% if show_fields.show_nrrecibo %}
+            <th>Preencher com o número do recibo do arquivo a ser retificado</th>
+            {% endif %}
+            {% if show_fields.show_dtapuracao %}
             <th>Informar a data de realização do espetáculo desportivo no formato AAAA- MM-DD</th>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_tpamb %}
             <th>Identificação do ambiente</th>
             {% endif %}
-            {% if show_fields.show_procemi or 1 %}
+            {% if show_fields.show_procemi %}
             <th>Processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_verproc or 1 %}
+            {% if show_fields.show_verproc %}
             <th>Versão do processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_idecontri %}
+            <th>Informações de identificação do contribuinte</th>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <th>Preencher com o código correspondente ao tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <th>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</th>
             {% endif %}
-            {% if show_fields.show_tpinscestab or 1 %}
+            {% if show_fields.show_ideestab %}
+            <th>Identificação dos estabelecimentos da associação desportiva que receberam os recursos</th>
+            {% endif %}
+            {% if show_fields.show_tpinscestab %}
             <th>Preencher com o código correspondente ao tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinscestab or 1 %}
+            {% if show_fields.show_nrinscestab %}
             <th>Informar o número de inscrição do estabelecimento de acordo com o tipo de inscrição indicado no campo {tpInscEstab}.</th>
             {% endif %}
-            {% if show_fields.show_vlrreceitatotal or 1 %}
+            {% if show_fields.show_receitatotal %}
+            <th>Totalização da Receita</th>
+            {% endif %}
+            {% if show_fields.show_vlrreceitatotal %}
             <th>Valor da receita bruta total</th>
             {% endif %}
-            {% if show_fields.show_vlrcp or 1 %}
+            {% if show_fields.show_vlrcp %}
             <th>Valor da contribuição previdenciária</th>
             {% endif %}
-            {% if show_fields.show_vlrreceitaclubes or 1 %}
+            {% if show_fields.show_vlrcpsusptotal %}
+            <th>Valor da Contribuição Previdenciária com exigibilidade suspensa</th>
+            {% endif %}
+            {% if show_fields.show_vlrreceitaclubes %}
             <th>Valor total da receita destinada aos clubes participantes</th>
             {% endif %}
-            {% if show_fields.show_vlrretparc or 1 %}
+            {% if show_fields.show_vlrretparc %}
             <th>Valor retido do clube para amortização do parcelamento especial da Lei 8.641/93, quando for o caso. Se não houver retenção, preencher com 0 (zero).</th>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_versao %}
+            <th>Versão</th>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_efdreinf %}
+            <th>Transmissor</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r5001 %}
+            <th>Retorno R5001</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r5011 %}
+            <th>Retorno R5011</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r9001 %}
+            <th>Retorno R9001</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r9002 %}
+            <th>Retorno R9002</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r9011 %}
+            <th>Retorno R9011</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r9012 %}
+            <th>Retorno R9012</th>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <th>Ocorrências</th>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <th>Validação de Precedência</th>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <th>Validações</th>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <th>Arquivo Original</th>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <th>Arquivo</th>
+            {% endif %}
+            {% if show_fields.show_status %}
             <th>Status</th>
             {% endif %}
-            {% if show_fields.show_cdretorno or 1 %}
+            {% if show_fields.show_cdretorno %}
             <th>Código do Retorno</th>
+            {% endif %}
+            {% if show_fields.show_descretorno %}
+            <th>Descrição do Retorno</th>
+            {% endif %}
+            {% if show_fields.show_dhprocess %}
+            <th>Data/Hora do Processamento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -59,63 +125,129 @@
     <tbody>
         {% for a in r3010_evtespdesportivo_lista %}
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evtespdesportivo %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <td>{{ a.identidade }}</td>
             {% endif %}
-            {% if show_fields.show_indretif or 1 %}
+            {% if show_fields.show_ideevento %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_indretif %}
             <td>{{ a.get_indretif_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtapuracao or 1 %}
+            {% if show_fields.show_nrrecibo %}
+            <td>{{ a.nrrecibo }}</td>
+            {% endif %}
+            {% if show_fields.show_dtapuracao %}
             <td><span style="display:none">{{ a.dtapuracao|date:"Y-m-d" }}</span>{{ a.dtapuracao|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_tpamb %}
             <td>{{ a.get_tpamb_display }}</td>
             {% endif %}
-            {% if show_fields.show_procemi or 1 %}
+            {% if show_fields.show_procemi %}
             <td>{{ a.get_procemi_display }}</td>
             {% endif %}
-            {% if show_fields.show_verproc or 1 %}
+            {% if show_fields.show_verproc %}
             <td>{{ a.verproc }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_idecontri %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <td>{{ a.tpinsc }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_tpinscestab or 1 %}
+            {% if show_fields.show_ideestab %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpinscestab %}
             <td>{{ a.get_tpinscestab_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinscestab or 1 %}
+            {% if show_fields.show_nrinscestab %}
             <td>{{ a.nrinscestab }}</td>
             {% endif %}
-            {% if show_fields.show_vlrreceitatotal or 1 %}
+            {% if show_fields.show_receitatotal %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_vlrreceitatotal %}
             <td>{{ a.vlrreceitatotal }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcp or 1 %}
+            {% if show_fields.show_vlrcp %}
             <td>{{ a.vlrcp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrreceitaclubes or 1 %}
+            {% if show_fields.show_vlrcpsusptotal %}
+            <td>{{ a.vlrcpsusptotal }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrreceitaclubes %}
             <td>{{ a.vlrreceitaclubes }}</td>
             {% endif %}
-            {% if show_fields.show_vlrretparc or 1 %}
+            {% if show_fields.show_vlrretparc %}
             <td>{{ a.vlrretparc }}</td>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_versao %}
+            <td>{{ a.get_versao_display }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_efdreinf %}
+            <td>{{ a.transmissor_lote_efdreinf }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r5001 %}
+            <td>{{ a.retornos_r5001 }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r5011 %}
+            <td>{{ a.retornos_r5011 }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r9001 %}
+            <td>{{ a.retornos_r9001 }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r9002 %}
+            <td>{{ a.retornos_r9002 }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r9011 %}
+            <td>{{ a.retornos_r9011 }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r9012 %}
+            <td>{{ a.retornos_r9012 }}</td>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <td>{{ a.ocorrencias }}</td>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <td>{{ a.get_validacao_precedencia_display }}</td>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <td>{{ a.validacoes }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <td>{{ a.get_arquivo_original_display }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <td>{{ a.arquivo }}</td>
+            {% endif %}
+            {% if show_fields.show_status %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
-            {% if show_fields.show_cdretorno or 1 %}
+            {% if show_fields.show_cdretorno %}
             <td>{{ a.cdretorno }}</td>
             {% endif %}
-            
+            {% if show_fields.show_descretorno %}
+            <td>{{ a.descretorno }}</td>
+            {% endif %}
+            {% if show_fields.show_dhprocess %}
+            <td><span style="display:none">{{ a.dhprocess|date:"Y-m-d H:i" }}</span>{{ a.dhprocess|date:"d/m/Y H:i" }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.efdreinf.change_r3010evtEspDesportivo or perms.efdreinf.add_r3010evtEspDesportivo %}
-                    
+
                         <a href="{% url 'r3010_evtespdesportivo_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r3010evtEspDesportivo %}
                                 <span class="btn btn-primary" title="Editar">
@@ -135,7 +267,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_infoprocjud_despprocjud or 1 %}
+            {% if show_fields.show_r4010_infoprocjud_despprocjud %}
             <th>Identificação do advogado</th>
             {% endif %}
-            {% if show_fields.show_tpinscadv or 1 %}
+            {% if show_fields.show_tpinscadv %}
             <th>Tipo de inscrição do advogado</th>
             {% endif %}
-            {% if show_fields.show_nrinscadv or 1 %}
+            {% if show_fields.show_nrinscadv %}
             <th>Informar o número de inscrição do advogado</th>
             {% endif %}
-            {% if show_fields.show_vlradv or 1 %}
+            {% if show_fields.show_vlradv %}
             <th>Valor da despesa com o advogado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +23,27 @@
     <tbody>
         {% for a in r4010_infoprocjud_ideadv_lista %}
         <tr>
-            {% if show_fields.show_r4010_infoprocjud_despprocjud or 1 %}
+            {% if show_fields.show_r4010_infoprocjud_despprocjud %}
             <td>{{ a.r4010_infoprocjud_despprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_tpinscadv or 1 %}
+            {% if show_fields.show_tpinscadv %}
             <td>{{ a.get_tpinscadv_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinscadv or 1 %}
+            {% if show_fields.show_nrinscadv %}
             <td>{{ a.nrinscadv }}</td>
             {% endif %}
-            {% if show_fields.show_vlradv or 1 %}
+            {% if show_fields.show_vlradv %}
             <td>{{ a.vlradv }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4010.change_r4010infoProcJudideAdv or perms.r4010.add_r4010infoProcJudideAdv %}
-                    
+
                         <a href="{% url 'r4010_infoprocjud_ideadv_salvar' pk=a.id %}">
                             {% if perms.r4010.change_r4010infoProcJudideAdv %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

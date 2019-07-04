@@ -71,10 +71,10 @@ def listar(request, output=None):
             'show_serie': 0,
             'show_nrdocto': 1,
             'show_dtemisnf': 1,
-            'show_vlrbruto': 1,
-            'show_vrcpdescpr': 1,
-            'show_vrratdescpr': 1,
-            'show_vrsenardesc': 1, }
+            'show_vlrbruto': 0,
+            'show_vrcpdescpr': 0,
+            'show_vrratdescpr': 0,
+            'show_vrsenardesc': 0, }
 
         post = False
 

@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2299_evtdeslig or 1 %}
+            {% if show_fields.show_s2299_evtdeslig %}
             <th>Grupo de informações da sucessão de vínculo trabalhista/estatutário</th>
             {% endif %}
-            {% if show_fields.show_tpinscsuc or 1 %}
+            {% if show_fields.show_tpinscsuc %}
             <th>Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05</th>
             {% endif %}
-            {% if show_fields.show_cnpjsucessora or 1 %}
+            {% if show_fields.show_cnpjsucessora %}
             <th>CNPJ sucessora</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +20,24 @@
     <tbody>
         {% for a in s2299_sucessaovinc_lista %}
         <tr>
-            {% if show_fields.show_s2299_evtdeslig or 1 %}
+            {% if show_fields.show_s2299_evtdeslig %}
             <td>{{ a.s2299_evtdeslig }}</td>
             {% endif %}
-            {% if show_fields.show_tpinscsuc or 1 %}
+            {% if show_fields.show_tpinscsuc %}
             <td>{{ a.get_tpinscsuc_display }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjsucessora or 1 %}
+            {% if show_fields.show_cnpjsucessora %}
             <td>{{ a.cnpjsucessora }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2299.change_s2299sucessaoVinc or perms.s2299.add_s2299sucessaoVinc %}
-                    
+
                         <a href="{% url 's2299_sucessaovinc_salvar' pk=a.id %}">
                             {% if perms.s2299.change_s2299sucessaoVinc %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

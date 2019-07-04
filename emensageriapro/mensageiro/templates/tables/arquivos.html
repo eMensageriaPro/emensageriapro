@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_arquivo or 1 %}
+            {% if show_fields.show_arquivo %}
             <th>Arquivo</th>
             {% endif %}
-            {% if show_fields.show_data_criacao or 1 %}
+            {% if show_fields.show_data_criacao %}
             <th>Data de Criação</th>
             {% endif %}
-            {% if show_fields.show_permite_recuperacao or 1 %}
+            {% if show_fields.show_permite_recuperacao %}
             <th>Permite Recuperação</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,16 +20,16 @@
     <tbody>
         {% for a in arquivos_lista %}
         <tr>
-            {% if show_fields.show_arquivo or 1 %}
+            {% if show_fields.show_arquivo %}
             <td>{{ a.arquivo }}</td>
             {% endif %}
-            {% if show_fields.show_data_criacao or 1 %}
+            {% if show_fields.show_data_criacao %}
             <td><span style="display:none">{{ a.data_criacao|date:"Y-m-d" }}</span>{{ a.data_criacao|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_permite_recuperacao or 1 %}
+            {% if show_fields.show_permite_recuperacao %}
             <td>{{ a.get_permite_recuperacao_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
@@ -37,7 +37,7 @@
                     {% if a.permite_recuperacao %}
     <a href="{% url 'arquivos_recuperacao' pk=a.id %}">
         <span class="btn btn-warning" title="Recuperar">
-            <i class="fa fa-fw fa-recycle"></i> 
+            <i class="fa fa-fw fa-recycle"></i>
         </span>
     </a>
 {% endif %}
@@ -45,7 +45,7 @@
        <span class="btn btn-primary" title="Visualizar">
            <i class="fa fa-fw fa-eye"></i>
    </a>
-                    
+
                 </div>
             </td>
             {% endif %}

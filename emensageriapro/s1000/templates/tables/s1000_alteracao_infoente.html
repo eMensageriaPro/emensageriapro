@@ -2,22 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1000_alteracao_infoop or 1 %}
+            {% if show_fields.show_s1000_alteracao_infoop %}
             <th>Informações relativas ao ente federativo estadual, distrital ou municipal</th>
             {% endif %}
-            {% if show_fields.show_nmente or 1 %}
+            {% if show_fields.show_nmente %}
             <th>Nome do EFR</th>
             {% endif %}
-            {% if show_fields.show_uf or 1 %}
+            {% if show_fields.show_uf %}
             <th>UF</th>
             {% endif %}
-            {% if show_fields.show_indrpps or 1 %}
+            {% if show_fields.show_codmunic %}
+            <th>Código do Município</th>
+            {% endif %}
+            {% if show_fields.show_indrpps %}
             <th>Possui RPPS</th>
             {% endif %}
-            {% if show_fields.show_subteto or 1 %}
+            {% if show_fields.show_subteto %}
             <th>Poder a que se refere o subteto</th>
             {% endif %}
-            {% if show_fields.show_vrsubteto or 1 %}
+            {% if show_fields.show_vrsubteto %}
             <th>Valor do subteto</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -29,33 +32,36 @@
     <tbody>
         {% for a in s1000_alteracao_infoente_lista %}
         <tr>
-            {% if show_fields.show_s1000_alteracao_infoop or 1 %}
+            {% if show_fields.show_s1000_alteracao_infoop %}
             <td>{{ a.s1000_alteracao_infoop }}</td>
             {% endif %}
-            {% if show_fields.show_nmente or 1 %}
+            {% if show_fields.show_nmente %}
             <td>{{ a.nmente }}</td>
             {% endif %}
-            {% if show_fields.show_uf or 1 %}
+            {% if show_fields.show_uf %}
             <td>{{ a.get_uf_display }}</td>
             {% endif %}
-            {% if show_fields.show_indrpps or 1 %}
+            {% if show_fields.show_codmunic %}
+            <td>{{ a.codmunic|valor }}</td>
+            {% endif %}
+            {% if show_fields.show_indrpps %}
             <td>{{ a.get_indrpps_display }}</td>
             {% endif %}
-            {% if show_fields.show_subteto or 1 %}
+            {% if show_fields.show_subteto %}
             <td>{{ a.get_subteto_display }}</td>
             {% endif %}
-            {% if show_fields.show_vrsubteto or 1 %}
+            {% if show_fields.show_vrsubteto %}
             <td>{{ a.vrsubteto }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1000.change_s1000alteracaoinfoEnte or perms.s1000.add_s1000alteracaoinfoEnte %}
-                    
+
                         <a href="{% url 's1000_alteracao_infoente_salvar' pk=a.id %}">
                             {% if perms.s1000.change_s1000alteracaoinfoEnte %}
                                 <span class="btn btn-primary" title="Editar">
@@ -75,7 +81,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

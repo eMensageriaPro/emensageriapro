@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2200_evtadmissao or 1 %}
+            {% if show_fields.show_s2200_evtadmissao %}
             <th>Informações dos documentos pessoais do trabalhador</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -14,18 +14,18 @@
     <tbody>
         {% for a in s2200_documentos_lista %}
         <tr>
-            {% if show_fields.show_s2200_evtadmissao or 1 %}
+            {% if show_fields.show_s2200_evtadmissao %}
             <td>{{ a.s2200_evtadmissao }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2200.change_s2200documentos or perms.s2200.add_s2200documentos %}
-                    
+
                         <a href="{% url 's2200_documentos_salvar' pk=a.id %}">
                             {% if perms.s2200.change_s2200documentos %}
                                 <span class="btn btn-primary" title="Editar">
@@ -45,7 +45,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,16 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r3010_evtespdesportivo or 1 %}
+            {% if show_fields.show_r3010_evtespdesportivo %}
             <th>Informações de processos relacionados a não retenção de contribuição previdenciária</th>
             {% endif %}
-            {% if show_fields.show_tpproc or 1 %}
+            {% if show_fields.show_tpproc %}
             <th>Preencher com o código correspondente ao tipo de processo</th>
             {% endif %}
-            {% if show_fields.show_nrproc or 1 %}
+            {% if show_fields.show_nrproc %}
             <th>Informar o número do processo administrativo/judicial</th>
             {% endif %}
-            {% if show_fields.show_vlrcpsusp or 1 %}
+            {% if show_fields.show_codsusp %}
+            <th>Código do Indicativo da Suspensão, atribuído pelo contribuinte</th>
+            {% endif %}
+            {% if show_fields.show_vlrcpsusp %}
             <th>Valor da Contribuição Previdenciária com exigibilidade suspensa</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +26,30 @@
     <tbody>
         {% for a in r3010_infoproc_lista %}
         <tr>
-            {% if show_fields.show_r3010_evtespdesportivo or 1 %}
+            {% if show_fields.show_r3010_evtespdesportivo %}
             <td>{{ a.r3010_evtespdesportivo }}</td>
             {% endif %}
-            {% if show_fields.show_tpproc or 1 %}
+            {% if show_fields.show_tpproc %}
             <td>{{ a.get_tpproc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrproc or 1 %}
+            {% if show_fields.show_nrproc %}
             <td>{{ a.nrproc }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcpsusp or 1 %}
+            {% if show_fields.show_codsusp %}
+            <td>{{ a.codsusp }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrcpsusp %}
             <td>{{ a.vlrcpsusp }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r3010.change_r3010infoProc or perms.r3010.add_r3010infoProc %}
-                    
+
                         <a href="{% url 'r3010_infoproc_salvar' pk=a.id %}">
                             {% if perms.r3010.change_r3010infoProc %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

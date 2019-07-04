@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2241_iniaposentesp_infoamb or 1 %}
+            {% if show_fields.show_s2241_iniaposentesp_infoamb %}
             <th>Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</th>
             {% endif %}
-            {% if show_fields.show_codfatris or 1 %}
+            {% if show_fields.show_codfatris %}
             <th>Código do Fator de Risco</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2241_iniaposentesp_fatrisco_lista %}
         <tr>
-            {% if show_fields.show_s2241_iniaposentesp_infoamb or 1 %}
+            {% if show_fields.show_s2241_iniaposentesp_infoamb %}
             <td>{{ a.s2241_iniaposentesp_infoamb }}</td>
             {% endif %}
-            {% if show_fields.show_codfatris or 1 %}
+            {% if show_fields.show_codfatris %}
             <td>{{ a.codfatris }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2241.change_s2241iniAposentEspfatRisco or perms.s2241.add_s2241iniAposentEspfatRisco %}
-                    
+
                         <a href="{% url 's2241_iniaposentesp_fatrisco_salvar' pk=a.id %}">
                             {% if perms.s2241.change_s2241iniAposentEspfatRisco %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

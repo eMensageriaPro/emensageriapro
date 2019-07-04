@@ -2,13 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1207_infoperant or 1 %}
+            {% if show_fields.show_s1207_infoperant %}
             <th>Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.</th>
             {% endif %}
-            {% if show_fields.show_tpacconv or 1 %}
+            {% if show_fields.show_dtacconv %}
+            <th>Data do vencimento da obrigação</th>
+            {% endif %}
+            {% if show_fields.show_tpacconv %}
             <th>Tipo</th>
             {% endif %}
-            {% if show_fields.show_dsc or 1 %}
+            {% if show_fields.show_compacconv %}
+            <th>Competência</th>
+            {% endif %}
+            {% if show_fields.show_dtefacconv %}
+            <th>Data do efeito</th>
+            {% endif %}
+            {% if show_fields.show_dsc %}
             <th>Descrição</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +29,33 @@
     <tbody>
         {% for a in s1207_infoperant_ideadc_lista %}
         <tr>
-            {% if show_fields.show_s1207_infoperant or 1 %}
+            {% if show_fields.show_s1207_infoperant %}
             <td>{{ a.s1207_infoperant }}</td>
             {% endif %}
-            {% if show_fields.show_tpacconv or 1 %}
+            {% if show_fields.show_dtacconv %}
+            <td><span style="display:none">{{ a.dtacconv|date:"Y-m-d" }}</span>{{ a.dtacconv|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_tpacconv %}
             <td>{{ a.get_tpacconv_display }}</td>
             {% endif %}
-            {% if show_fields.show_dsc or 1 %}
+            {% if show_fields.show_compacconv %}
+            <td>{{ a.compacconv }}</td>
+            {% endif %}
+            {% if show_fields.show_dtefacconv %}
+            <td><span style="display:none">{{ a.dtefacconv|date:"Y-m-d" }}</span>{{ a.dtefacconv|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_dsc %}
             <td>{{ a.dsc }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1207.change_s1207infoPerAntideADC or perms.s1207.add_s1207infoPerAntideADC %}
-                    
+
                         <a href="{% url 's1207_infoperant_ideadc_salvar' pk=a.id %}">
                             {% if perms.s1207.change_s1207infoPerAntideADC %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,67 +2,139 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evtmonit %}
+            <th>Evento Monitoramento da Saúde do Trabalhador</th>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <th>Identidade do Registro</th>
             {% endif %}
-            {% if show_fields.show_indretif or 1 %}
+            {% if show_fields.show_ideevento %}
+            <th>Informações de Identificação do Evento</th>
+            {% endif %}
+            {% if show_fields.show_indretif %}
             <th>Identificador de retificação</th>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_nrrecibo %}
+            <th>Número do recibo</th>
+            {% endif %}
+            {% if show_fields.show_tpamb %}
             <th>Identificação do ambiente</th>
             {% endif %}
-            {% if show_fields.show_procemi or 1 %}
+            {% if show_fields.show_procemi %}
             <th>Processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_verproc or 1 %}
+            {% if show_fields.show_verproc %}
             <th>Versão do processo</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_ideempregador %}
+            <th>Informações de identificação do empregador</th>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_idevinculo %}
+            <th>Informações de Identificação do Trabalhador e do Vínculo</th>
+            {% endif %}
+            {% if show_fields.show_cpftrab %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_tpexameocup or 1 %}
-            <th>Tipo do exame médico ocupacional</th>
-            {% endif %}
-            {% if show_fields.show_dtaso or 1 %}
-            <th>Data</th>
-            {% endif %}
-            {% if show_fields.show_tpaso or 1 %}
-            <th>Tipo ASO</th>
-            {% endif %}
-            {% if show_fields.show_resaso or 1 %}
-            <th>Resultado</th>
-            {% endif %}
-            {% if show_fields.show_nmmed or 1 %}
-            <th>Nome do Médico</th>
-            {% endif %}
-            {% if show_fields.show_nrcrm or 1 %}
-            <th>Número do CRM</th>
-            {% endif %}
-            {% if show_fields.show_ufcrm or 1 %}
-            <th>UF do Órgão de classe</th>
-            {% endif %}
-            {% if show_fields.show_nisresp or 1 %}
+            {% if show_fields.show_nistrab %}
             <th>NIS</th>
             {% endif %}
-            {% if show_fields.show_nrconsclasse or 1 %}
-            <th>Número de Inscrição</th>
+            {% if show_fields.show_matricula %}
+            <th>Matricula</th>
             {% endif %}
-            {% if show_fields.show_nmresp or 1 %}
-            <th>Nome do Responsável pelas Informações</th>
+            {% if show_fields.show_codcateg %}
+            <th>Código da Categoria</th>
             {% endif %}
-            {% if show_fields.show_nrcrm or 1 %}
+            {% if show_fields.show_exmedocup %}
+            <th>Detalhamento das informações do exame médico ocupacional</th>
+            {% endif %}
+            {% if show_fields.show_tpexameocup %}
+            <th>Tipo do exame médico ocupacional</th>
+            {% endif %}
+            {% if show_fields.show_aso %}
+            <th>Detalhamento das informações do ASO</th>
+            {% endif %}
+            {% if show_fields.show_dtaso %}
+            <th>Data</th>
+            {% endif %}
+            {% if show_fields.show_tpaso %}
+            <th>Tipo ASO</th>
+            {% endif %}
+            {% if show_fields.show_resaso %}
+            <th>Resultado</th>
+            {% endif %}
+            {% if show_fields.show_medico %}
+            <th>Médico responsável</th>
+            {% endif %}
+            {% if show_fields.show_cpfmed %}
+            <th>CPF do médico emitente do ASO</th>
+            {% endif %}
+            {% if show_fields.show_nismed %}
+            <th>Número de Identificação Social - NIS do médico emitente do ASO, o qual pode ser o PIS, PASEP ou NIT</th>
+            {% endif %}
+            {% if show_fields.show_nmmed %}
+            <th>Nome do Médico</th>
+            {% endif %}
+            {% if show_fields.show_nrcrm %}
             <th>Número do CRM</th>
             {% endif %}
-            {% if show_fields.show_ufcrm or 1 %}
+            {% if show_fields.show_ufcrm %}
             <th>UF do Órgão de classe</th>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_respmonit %}
+            <th>Registro onde são prestadas as informações sobre o profissional responsável pela monitoração biológica em atendimento aos requisitos das NR-07 e NR- 09 do MTE.</th>
+            {% endif %}
+            {% if show_fields.show_nisresp %}
+            <th>NIS</th>
+            {% endif %}
+            {% if show_fields.show_nrconsclasse %}
+            <th>Número de Inscrição</th>
+            {% endif %}
+            {% if show_fields.show_ufconsclasse %}
+            <th>UF do Órgão de classe</th>
+            {% endif %}
+            {% if show_fields.show_cpfresp %}
+            <th>CPF</th>
+            {% endif %}
+            {% if show_fields.show_nmresp %}
+            <th>Nome do Responsável pelas Informações</th>
+            {% endif %}
+            {% if show_fields.show_nrcrm %}
+            <th>Número do CRM</th>
+            {% endif %}
+            {% if show_fields.show_ufcrm %}
+            <th>UF do Órgão de classe</th>
+            {% endif %}
+            {% if show_fields.show_versao %}
+            <th>Versão</th>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial %}
+            <th>Transmissor</th>
+            {% endif %}
+            {% if show_fields.show_retornos_eventos %}
+            <th>Retorno do Evento</th>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <th>Ocorrências</th>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <th>Validação de Precedência</th>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <th>Validações</th>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <th>Arquivo Original</th>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <th>Arquivo</th>
+            {% endif %}
+            {% if show_fields.show_status %}
             <th>Status</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -74,78 +146,150 @@
     <tbody>
         {% for a in s2220_evtmonit_lista %}
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evtmonit %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <td>{{ a.identidade }}</td>
             {% endif %}
-            {% if show_fields.show_indretif or 1 %}
+            {% if show_fields.show_ideevento %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_indretif %}
             <td>{{ a.get_indretif_display }}</td>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_nrrecibo %}
+            <td>{{ a.nrrecibo }}</td>
+            {% endif %}
+            {% if show_fields.show_tpamb %}
             <td>{{ a.get_tpamb_display }}</td>
             {% endif %}
-            {% if show_fields.show_procemi or 1 %}
+            {% if show_fields.show_procemi %}
             <td>{{ a.get_procemi_display }}</td>
             {% endif %}
-            {% if show_fields.show_verproc or 1 %}
+            {% if show_fields.show_verproc %}
             <td>{{ a.verproc }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_ideempregador %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_idevinculo %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_cpftrab %}
             <td>{{ a.cpftrab }}</td>
             {% endif %}
-            {% if show_fields.show_tpexameocup or 1 %}
+            {% if show_fields.show_nistrab %}
+            <td>{{ a.nistrab }}</td>
+            {% endif %}
+            {% if show_fields.show_matricula %}
+            <td>{{ a.matricula }}</td>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
+            <td>{{ a.codcateg|valor }}</td>
+            {% endif %}
+            {% if show_fields.show_exmedocup %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpexameocup %}
             <td>{{ a.get_tpexameocup_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtaso or 1 %}
+            {% if show_fields.show_aso %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_dtaso %}
             <td><span style="display:none">{{ a.dtaso|date:"Y-m-d" }}</span>{{ a.dtaso|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tpaso or 1 %}
+            {% if show_fields.show_tpaso %}
             <td>{{ a.get_tpaso_display }}</td>
             {% endif %}
-            {% if show_fields.show_resaso or 1 %}
+            {% if show_fields.show_resaso %}
             <td>{{ a.get_resaso_display }}</td>
             {% endif %}
-            {% if show_fields.show_nmmed or 1 %}
+            {% if show_fields.show_medico %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_cpfmed %}
+            <td>{{ a.cpfmed }}</td>
+            {% endif %}
+            {% if show_fields.show_nismed %}
+            <td>{{ a.nismed }}</td>
+            {% endif %}
+            {% if show_fields.show_nmmed %}
             <td>{{ a.nmmed }}</td>
             {% endif %}
-            {% if show_fields.show_nrcrm or 1 %}
+            {% if show_fields.show_nrcrm %}
             <td>{{ a.nrcrm }}</td>
             {% endif %}
-            {% if show_fields.show_ufcrm or 1 %}
+            {% if show_fields.show_ufcrm %}
             <td>{{ a.get_ufcrm_display }}</td>
             {% endif %}
-            {% if show_fields.show_nisresp or 1 %}
+            {% if show_fields.show_respmonit %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_nisresp %}
             <td>{{ a.nisresp }}</td>
             {% endif %}
-            {% if show_fields.show_nrconsclasse or 1 %}
+            {% if show_fields.show_nrconsclasse %}
             <td>{{ a.nrconsclasse }}</td>
             {% endif %}
-            {% if show_fields.show_nmresp or 1 %}
+            {% if show_fields.show_ufconsclasse %}
+            <td>{{ a.get_ufconsclasse_display }}</td>
+            {% endif %}
+            {% if show_fields.show_cpfresp %}
+            <td>{{ a.cpfresp }}</td>
+            {% endif %}
+            {% if show_fields.show_nmresp %}
             <td>{{ a.nmresp }}</td>
             {% endif %}
-            {% if show_fields.show_nrcrm or 1 %}
+            {% if show_fields.show_nrcrm %}
             <td>{{ a.nrcrm }}</td>
             {% endif %}
-            {% if show_fields.show_ufcrm or 1 %}
+            {% if show_fields.show_ufcrm %}
             <td>{{ a.get_ufcrm_display }}</td>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_versao %}
+            <td>{{ a.get_versao_display }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial %}
+            <td>{{ a.transmissor_lote_esocial }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_eventos %}
+            <td>{{ a.retornos_eventos }}</td>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <td>{{ a.ocorrencias }}</td>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <td>{{ a.get_validacao_precedencia_display }}</td>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <td>{{ a.validacoes }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <td>{{ a.get_arquivo_original_display }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <td>{{ a.arquivo }}</td>
+            {% endif %}
+            {% if show_fields.show_status %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.esocial.change_s2220evtMonit or perms.esocial.add_s2220evtMonit %}
-                    
+
                         <a href="{% url 's2220_evtmonit_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s2220evtMonit %}
                                 <span class="btn btn-primary" title="Editar">
@@ -165,7 +309,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

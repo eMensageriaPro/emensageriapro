@@ -69,9 +69,9 @@ def listar(request, output=None):
         show_fields = {
             'show_s1000_alteracao': 1,
             'show_cnpjsofthouse': 1,
-            'show_nmrazao': 1,
+            'show_nmrazao': 0,
             'show_nmcont': 1,
-            'show_telefone': 1,
+            'show_telefone': 0,
             'show_email': 0, }
 
         post = False

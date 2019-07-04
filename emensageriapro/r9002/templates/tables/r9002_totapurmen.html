@@ -2,17 +2,23 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9002_infototal or 1 %}
+            {% if show_fields.show_r9002_infototal %}
             <th>Totalizador das bases de cálculo e das retenções dos tributos com período de apuração mensal</th>
             {% endif %}
-            {% if show_fields.show_crmen or 1 %}
+            {% if show_fields.show_crmen %}
             <th>Código de Receita - CR relativo ao tributo que possui período de apuração mensal</th>
             {% endif %}
-            {% if show_fields.show_vlrbasecrmen or 1 %}
+            {% if show_fields.show_vlrbasecrmen %}
             <th>Valor da base do tributo com período de apuração mensal</th>
             {% endif %}
-            {% if show_fields.show_vlrcrmen or 1 %}
+            {% if show_fields.show_vlrcrmen %}
             <th>Valor do tributo retido com período de apuração mensal, calculado segundo as regras estabelecidas na legislação em vigor</th>
+            {% endif %}
+            {% if show_fields.show_vlrbasecrmensusp %}
+            <th>Valor da base do tributo com período de apuração mensal, com exigibilidade suspensa</th>
+            {% endif %}
+            {% if show_fields.show_vlrcrmensusp %}
+            <th>Valor do tributo com período de apuração mensal, que deixou de ser retido</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -23,25 +29,31 @@
     <tbody>
         {% for a in r9002_totapurmen_lista %}
         <tr>
-            {% if show_fields.show_r9002_infototal or 1 %}
+            {% if show_fields.show_r9002_infototal %}
             <td>{{ a.r9002_infototal }}</td>
             {% endif %}
-            {% if show_fields.show_crmen or 1 %}
+            {% if show_fields.show_crmen %}
             <td>{{ a.crmen }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasecrmen or 1 %}
+            {% if show_fields.show_vlrbasecrmen %}
             <td>{{ a.vlrbasecrmen }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrmen or 1 %}
+            {% if show_fields.show_vlrcrmen %}
             <td>{{ a.vlrcrmen }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrbasecrmensusp %}
+            <td>{{ a.vlrbasecrmensusp }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrcrmensusp %}
+            <td>{{ a.vlrcrmensusp }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

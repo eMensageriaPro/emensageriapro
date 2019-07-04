@@ -2,20 +2,26 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9002_infototal or 1 %}
+            {% if show_fields.show_r9002_infototal %}
             <th>Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal</th>
             {% endif %}
-            {% if show_fields.show_perapursem or 1 %}
+            {% if show_fields.show_perapursem %}
             <th>Período de apuração semanal do Código de Receita - CR</th>
             {% endif %}
-            {% if show_fields.show_crsem or 1 %}
+            {% if show_fields.show_crsem %}
             <th>Código de Receita - CR relativo a tributo que possui período de apuração semanal</th>
             {% endif %}
-            {% if show_fields.show_vlrbasecrsem or 1 %}
+            {% if show_fields.show_vlrbasecrsem %}
             <th>Valor da base do tributo com período de apuração semanal</th>
             {% endif %}
-            {% if show_fields.show_vlrcrsem or 1 %}
+            {% if show_fields.show_vlrcrsem %}
             <th>Valor do tributo retido com período de apuração semanal, calculado segundo as regras estabelecidas na legislação em vigor</th>
+            {% endif %}
+            {% if show_fields.show_vlrbasecrsemsusp %}
+            <th>Valor da base do tributo com período de apuração semanal, com exigibilidade suspensa</th>
+            {% endif %}
+            {% if show_fields.show_vlrcrsemsusp %}
+            <th>Valor do tributo com período de apuração semanal, que deixou de ser retido</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -26,28 +32,34 @@
     <tbody>
         {% for a in r9002_totapursem_lista %}
         <tr>
-            {% if show_fields.show_r9002_infototal or 1 %}
+            {% if show_fields.show_r9002_infototal %}
             <td>{{ a.r9002_infototal }}</td>
             {% endif %}
-            {% if show_fields.show_perapursem or 1 %}
+            {% if show_fields.show_perapursem %}
             <td>{{ a.perapursem }}</td>
             {% endif %}
-            {% if show_fields.show_crsem or 1 %}
+            {% if show_fields.show_crsem %}
             <td>{{ a.crsem }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasecrsem or 1 %}
+            {% if show_fields.show_vlrbasecrsem %}
             <td>{{ a.vlrbasecrsem }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrsem or 1 %}
+            {% if show_fields.show_vlrcrsem %}
             <td>{{ a.vlrcrsem }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrbasecrsemsusp %}
+            <td>{{ a.vlrbasecrsemsusp }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrcrsemsusp %}
+            <td>{{ a.vlrcrsemsusp }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

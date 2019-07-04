@@ -11,15 +11,15 @@
     <tbody>
         {% for a in visao_geral_lista %}
         <tr>
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.mapa_processamento.change_VisaoGeral or perms.mapa_processamento.add_VisaoGeral %}
-                    
+
                         <a href="{% url 'visao_geral_salvar' pk=a.id %}">
                             {% if perms.mapa_processamento.change_VisaoGeral %}
                                 <span class="btn btn-primary" title="Editar">
@@ -39,7 +39,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
+            {% if show_fields.show_s2206_evtaltcontratual %}
             <th>Observações do contrato de trabalho</th>
             {% endif %}
-            {% if show_fields.show_observacao or 1 %}
+            {% if show_fields.show_observacao %}
             <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2206_observacoes_lista %}
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
+            {% if show_fields.show_s2206_evtaltcontratual %}
             <td>{{ a.s2206_evtaltcontratual }}</td>
             {% endif %}
-            {% if show_fields.show_observacao or 1 %}
+            {% if show_fields.show_observacao %}
             <td>{{ a.observacao }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2206.change_s2206observacoes or perms.s2206.add_s2206observacoes %}
-                    
+
                         <a href="{% url 's2206_observacoes_salvar' pk=a.id %}">
                             {% if perms.s2206.change_s2206observacoes %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

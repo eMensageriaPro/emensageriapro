@@ -2,8 +2,14 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_titulo or 1 %}
+            {% if show_fields.show_titulo %}
             <th>Título</th>
+            {% endif %}
+            {% if show_fields.show_campos %}
+            <th>Lista dos Campos (separados por vírgula)</th>
+            {% endif %}
+            {% if show_fields.show_sql %}
+            <th>SQL</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -14,10 +20,16 @@
     <tbody>
         {% for a in relatorios_lista %}
         <tr>
-            {% if show_fields.show_titulo or 1 %}
+            {% if show_fields.show_titulo %}
             <td>{{ a.titulo }}</td>
             {% endif %}
-            
+            {% if show_fields.show_campos %}
+            <td>{{ a.campos }}</td>
+            {% endif %}
+            {% if show_fields.show_sql %}
+            <td>{{ a.sql }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
@@ -42,9 +54,9 @@
                             <i class="fa fa-file-text-o"></i>
                         </span>
                     </a>
-                    
+
                         {% if perms.mensageiro.change_Relatorios or perms.mensageiro.add_Relatorios %}
-                    
+
                         <a href="{% url 'relatorios_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_Relatorios %}
                                 <span class="btn btn-primary" title="Editar">
@@ -64,7 +76,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

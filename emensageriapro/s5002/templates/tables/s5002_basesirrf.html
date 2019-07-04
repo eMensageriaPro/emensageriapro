@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5002_infoirrf or 1 %}
+            {% if show_fields.show_s5002_infoirrf %}
             <th>Bases, deduções, isenções e retenções do IRRF</th>
             {% endif %}
-            {% if show_fields.show_tpvalor or 1 %}
+            {% if show_fields.show_tpvalor %}
             <th>Tipo de Valor</th>
             {% endif %}
-            {% if show_fields.show_valor or 1 %}
+            {% if show_fields.show_valor %}
             <th>Valor da base de cálculo, dedução ou desconto da CP</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,22 +20,22 @@
     <tbody>
         {% for a in s5002_basesirrf_lista %}
         <tr>
-            {% if show_fields.show_s5002_infoirrf or 1 %}
+            {% if show_fields.show_s5002_infoirrf %}
             <td>{{ a.s5002_infoirrf }}</td>
             {% endif %}
-            {% if show_fields.show_tpvalor or 1 %}
+            {% if show_fields.show_tpvalor %}
             <td>{{ a.tpvalor|valor }}</td>
             {% endif %}
-            {% if show_fields.show_valor or 1 %}
+            {% if show_fields.show_valor %}
             <td>{{ a.valor }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

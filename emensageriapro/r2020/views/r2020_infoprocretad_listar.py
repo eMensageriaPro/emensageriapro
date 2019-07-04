@@ -71,7 +71,7 @@ def listar(request, output=None):
             'show_tpprocretadic': 1,
             'show_nrprocretadic': 1,
             'show_codsuspadic': 0,
-            'show_valoradic': 1, }
+            'show_valoradic': 0, }
 
         post = False
 

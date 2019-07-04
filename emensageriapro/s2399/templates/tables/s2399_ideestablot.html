@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2399_dmdev or 1 %}
+            {% if show_fields.show_s2399_dmdev %}
             <th>Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_tpinsc %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_codlotacao or 1 %}
+            {% if show_fields.show_codlotacao %}
             <th>Código da Lotação</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +23,27 @@
     <tbody>
         {% for a in s2399_ideestablot_lista %}
         <tr>
-            {% if show_fields.show_s2399_dmdev or 1 %}
+            {% if show_fields.show_s2399_dmdev %}
             <td>{{ a.s2399_dmdev }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_tpinsc %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_codlotacao or 1 %}
+            {% if show_fields.show_codlotacao %}
             <td>{{ a.codlotacao }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2399.change_s2399ideEstabLot or perms.s2399.add_s2399ideEstabLot %}
-                    
+
                         <a href="{% url 's2399_ideestablot_salvar' pk=a.id %}">
                             {% if perms.s2399.change_s2399ideEstabLot %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

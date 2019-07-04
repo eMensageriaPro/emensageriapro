@@ -403,7 +403,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_evtcdbenefalt" value="0" {% if show_fields|get_value_from_dict:'show_evtcdbenefalt' %}checked{% endif %} >Evento de cadastro de beneficiários - Alteração
+        <input type="checkbox" name="show_evtcdbenefalt" value="1" {% if show_fields|get_value_from_dict:'show_evtcdbenefalt' %}checked{% endif %} >Evento de cadastro de beneficiários - Alteração
     </div>
 </div>
 
@@ -415,7 +415,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_ideevento" value="0" {% if show_fields|get_value_from_dict:'show_ideevento' %}checked{% endif %} >Informações de Identificação do Evento
+        <input type="checkbox" name="show_ideevento" value="1" {% if show_fields|get_value_from_dict:'show_ideevento' %}checked{% endif %} >Informações de Identificação do Evento
     </div>
 </div>
 
@@ -427,7 +427,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_nrrecibo" value="0" {% if show_fields|get_value_from_dict:'show_nrrecibo' %}checked{% endif %} >Número do recibo
+        <input type="checkbox" name="show_nrrecibo" value="1" {% if show_fields|get_value_from_dict:'show_nrrecibo' %}checked{% endif %} >Número do recibo
     </div>
 </div>
 
@@ -451,7 +451,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_ideempregador" value="0" {% if show_fields|get_value_from_dict:'show_ideempregador' %}checked{% endif %} >Informações de identificação do empregador
+        <input type="checkbox" name="show_ideempregador" value="1" {% if show_fields|get_value_from_dict:'show_ideempregador' %}checked{% endif %} >Informações de identificação do empregador
     </div>
 </div>
 
@@ -469,7 +469,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_idebenef" value="0" {% if show_fields|get_value_from_dict:'show_idebenef' %}checked{% endif %} >Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.
+        <input type="checkbox" name="show_idebenef" value="1" {% if show_fields|get_value_from_dict:'show_idebenef' %}checked{% endif %} >Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.
     </div>
 </div>
 
@@ -481,7 +481,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_alteracao" value="0" {% if show_fields|get_value_from_dict:'show_alteracao' %}checked{% endif %} >Alteração das informações
+        <input type="checkbox" name="show_alteracao" value="1" {% if show_fields|get_value_from_dict:'show_alteracao' %}checked{% endif %} >Alteração das informações
     </div>
 </div>
 
@@ -493,13 +493,13 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_dadosbenef" value="0" {% if show_fields|get_value_from_dict:'show_dadosbenef' %}checked{% endif %} >Dados do beneficiário
+        <input type="checkbox" name="show_dadosbenef" value="1" {% if show_fields|get_value_from_dict:'show_dadosbenef' %}checked{% endif %} >Dados do beneficiário
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_nisbenef" value="0" {% if show_fields|get_value_from_dict:'show_nisbenef' %}checked{% endif %} >Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT
+        <input type="checkbox" name="show_nisbenef" value="1" {% if show_fields|get_value_from_dict:'show_nisbenef' %}checked{% endif %} >Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT
     </div>
 </div>
 
@@ -523,7 +523,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_estciv" value="0" {% if show_fields|get_value_from_dict:'show_estciv' %}checked{% endif %} >Estado Civil
+        <input type="checkbox" name="show_estciv" value="1" {% if show_fields|get_value_from_dict:'show_estciv' %}checked{% endif %} >Estado Civil
     </div>
 </div>
 
@@ -535,13 +535,13 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_dtincfismen" value="0" {% if show_fields|get_value_from_dict:'show_dtincfismen' %}checked{% endif %} >Preencher com a data do reconhecimento da incapacidade
+        <input type="checkbox" name="show_dtincfismen" value="1" {% if show_fields|get_value_from_dict:'show_dtincfismen' %}checked{% endif %} >Preencher com a data do reconhecimento da incapacidade
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_dadosnasc" value="0" {% if show_fields|get_value_from_dict:'show_dadosnasc' %}checked{% endif %} >Informações de nascimento do beneficiário
+        <input type="checkbox" name="show_dadosnasc" value="1" {% if show_fields|get_value_from_dict:'show_dadosnasc' %}checked{% endif %} >Informações de nascimento do beneficiário
     </div>
 </div>
 
@@ -553,25 +553,25 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_nmmae" value="0" {% if show_fields|get_value_from_dict:'show_nmmae' %}checked{% endif %} >Nome da Mãe
+        <input type="checkbox" name="show_nmmae" value="1" {% if show_fields|get_value_from_dict:'show_nmmae' %}checked{% endif %} >Nome da Mãe
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_nmpai" value="0" {% if show_fields|get_value_from_dict:'show_nmpai' %}checked{% endif %} >Nome do Pai
+        <input type="checkbox" name="show_nmpai" value="1" {% if show_fields|get_value_from_dict:'show_nmpai' %}checked{% endif %} >Nome do Pai
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_versao" value="0" {% if show_fields|get_value_from_dict:'show_versao' %}checked{% endif %} >Versão
+        <input type="checkbox" name="show_versao" value="1" {% if show_fields|get_value_from_dict:'show_versao' %}checked{% endif %} >Versão
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_transmissor_lote_esocial" value="0" {% if show_fields|get_value_from_dict:'show_transmissor_lote_esocial' %}checked{% endif %} >Transmissor
+        <input type="checkbox" name="show_transmissor_lote_esocial" value="1" {% if show_fields|get_value_from_dict:'show_transmissor_lote_esocial' %}checked{% endif %} >Transmissor
     </div>
 </div>
 

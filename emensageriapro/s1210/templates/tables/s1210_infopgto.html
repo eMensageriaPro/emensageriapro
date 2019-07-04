@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1210_evtpgtos or 1 %}
+            {% if show_fields.show_s1210_evtpgtos %}
             <th>Informações dos pagamentos efetuados</th>
             {% endif %}
-            {% if show_fields.show_dtpgto or 1 %}
+            {% if show_fields.show_dtpgto %}
             <th>Data de pagamento</th>
             {% endif %}
-            {% if show_fields.show_tppgto or 1 %}
+            {% if show_fields.show_tppgto %}
             <th>Tipo de Pagamento</th>
             {% endif %}
-            {% if show_fields.show_indresbr or 1 %}
+            {% if show_fields.show_indresbr %}
             <th>Indicador de residência</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +23,27 @@
     <tbody>
         {% for a in s1210_infopgto_lista %}
         <tr>
-            {% if show_fields.show_s1210_evtpgtos or 1 %}
+            {% if show_fields.show_s1210_evtpgtos %}
             <td>{{ a.s1210_evtpgtos }}</td>
             {% endif %}
-            {% if show_fields.show_dtpgto or 1 %}
+            {% if show_fields.show_dtpgto %}
             <td><span style="display:none">{{ a.dtpgto|date:"Y-m-d" }}</span>{{ a.dtpgto|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tppgto or 1 %}
+            {% if show_fields.show_tppgto %}
             <td>{{ a.get_tppgto_display }}</td>
             {% endif %}
-            {% if show_fields.show_indresbr or 1 %}
+            {% if show_fields.show_indresbr %}
             <td>{{ a.get_indresbr_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1210.change_s1210infoPgto or perms.s1210.add_s1210infoPgto %}
-                    
+
                         <a href="{% url 's1210_infopgto_salvar' pk=a.id %}">
                             {% if perms.s1210.change_s1210infoPgto %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

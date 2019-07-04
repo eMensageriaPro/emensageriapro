@@ -2,17 +2,20 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_ideestab or 1 %}
+            {% if show_fields.show_s5011_ideestab %}
             <th>Informações de identificação da lotação e validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_codlotacao or 1 %}
+            {% if show_fields.show_codlotacao %}
             <th>Código da Lotação</th>
             {% endif %}
-            {% if show_fields.show_fpas or 1 %}
+            {% if show_fields.show_fpas %}
             <th>FPAS</th>
             {% endif %}
-            {% if show_fields.show_codtercs or 1 %}
+            {% if show_fields.show_codtercs %}
             <th>Código de Terceiros</th>
+            {% endif %}
+            {% if show_fields.show_codtercssusp %}
+            <th>Código de Terceiros (Suspensão)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -23,25 +26,28 @@
     <tbody>
         {% for a in s5011_idelotacao_lista %}
         <tr>
-            {% if show_fields.show_s5011_ideestab or 1 %}
+            {% if show_fields.show_s5011_ideestab %}
             <td>{{ a.s5011_ideestab }}</td>
             {% endif %}
-            {% if show_fields.show_codlotacao or 1 %}
+            {% if show_fields.show_codlotacao %}
             <td>{{ a.codlotacao }}</td>
             {% endif %}
-            {% if show_fields.show_fpas or 1 %}
+            {% if show_fields.show_fpas %}
             <td>{{ a.fpas|valor }}</td>
             {% endif %}
-            {% if show_fields.show_codtercs or 1 %}
+            {% if show_fields.show_codtercs %}
             <td>{{ a.codtercs }}</td>
             {% endif %}
-            
+            {% if show_fields.show_codtercssusp %}
+            <td>{{ a.codtercssusp }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,8 +2,14 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_nome or 1 %}
+            {% if show_fields.show_nome %}
             <th>Nome</th>
+            {% endif %}
+            {% if show_fields.show_certificado %}
+            <th>Arquivo do Certificado</th>
+            {% endif %}
+            {% if show_fields.show_senha %}
+            <th>Senha</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -14,18 +20,24 @@
     <tbody>
         {% for a in certificados_lista %}
         <tr>
-            {% if show_fields.show_nome or 1 %}
+            {% if show_fields.show_nome %}
             <td>{{ a.nome }}</td>
             {% endif %}
-            
+            {% if show_fields.show_certificado %}
+            <td>{{ a.certificado }}</td>
+            {% endif %}
+            {% if show_fields.show_senha %}
+            <td>{{ a.senha }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.mensageiro.change_Certificados or perms.mensageiro.add_Certificados %}
-                    
+
                         <a href="{% url 'certificados_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_Certificados %}
                                 <span class="btn btn-primary" title="Editar">
@@ -45,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

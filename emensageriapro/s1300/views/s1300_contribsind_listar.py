@@ -70,7 +70,7 @@ def listar(request, output=None):
             'show_s1300_evtcontrsindpatr': 1,
             'show_cnpjsindic': 1,
             'show_tpcontribsind': 1,
-            'show_vlrcontribsind': 1, }
+            'show_vlrcontribsind': 0, }
 
         post = False
 

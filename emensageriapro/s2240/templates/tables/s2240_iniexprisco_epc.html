@@ -2,14 +2,17 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_iniexprisco_fatrisco or 1 %}
+            {% if show_fields.show_s2240_iniexprisco_fatrisco %}
             <th>Equipamentos de Proteção Coletiva - EPC</th>
             {% endif %}
-            {% if show_fields.show_codep or 1 %}
+            {% if show_fields.show_codep %}
             <th>Preencher com o código atribuído pela empresa ao Equipamento de Proteção</th>
             {% endif %}
-            {% if show_fields.show_dscepc or 1 %}
+            {% if show_fields.show_dscepc %}
             <th>Descrição do EPC</th>
+            {% endif %}
+            {% if show_fields.show_eficepc %}
+            <th>EPC é eficaz na neutralização</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +23,27 @@
     <tbody>
         {% for a in s2240_iniexprisco_epc_lista %}
         <tr>
-            {% if show_fields.show_s2240_iniexprisco_fatrisco or 1 %}
+            {% if show_fields.show_s2240_iniexprisco_fatrisco %}
             <td>{{ a.s2240_iniexprisco_fatrisco }}</td>
             {% endif %}
-            {% if show_fields.show_codep or 1 %}
+            {% if show_fields.show_codep %}
             <td>{{ a.codep }}</td>
             {% endif %}
-            {% if show_fields.show_dscepc or 1 %}
+            {% if show_fields.show_dscepc %}
             <td>{{ a.dscepc }}</td>
             {% endif %}
-            
+            {% if show_fields.show_eficepc %}
+            <td>{{ a.get_eficepc_display }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2240.change_s2240iniExpRiscoepc or perms.s2240.add_s2240iniExpRiscoepc %}
-                    
+
                         <a href="{% url 's2240_iniexprisco_epc_salvar' pk=a.id %}">
                             {% if perms.s2240.change_s2240iniExpRiscoepc %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
+            {% if show_fields.show_s2206_evtaltcontratual %}
             <th>Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</th>
             {% endif %}
-            {% if show_fields.show_nrprocjud or 1 %}
+            {% if show_fields.show_nrprocjud %}
             <th>Número do Processo Judicial</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2206_alvarajudicial_lista %}
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
+            {% if show_fields.show_s2206_evtaltcontratual %}
             <td>{{ a.s2206_evtaltcontratual }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocjud or 1 %}
+            {% if show_fields.show_nrprocjud %}
             <td>{{ a.nrprocjud }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2206.change_s2206alvaraJudicial or perms.s2206.add_s2206alvaraJudicial %}
-                    
+
                         <a href="{% url 's2206_alvarajudicial_salvar' pk=a.id %}">
                             {% if perms.s2206.change_s2206alvaraJudicial %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

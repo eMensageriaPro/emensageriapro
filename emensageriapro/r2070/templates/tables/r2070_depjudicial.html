@@ -2,8 +2,11 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_pgtopf or 1 %}
+            {% if show_fields.show_r2070_pgtopf %}
             <th>Depósito Judicial</th>
+            {% endif %}
+            {% if show_fields.show_vlrdepjudicial %}
+            <th>Preencher com o Valor do Depósito Judicial</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -14,18 +17,21 @@
     <tbody>
         {% for a in r2070_depjudicial_lista %}
         <tr>
-            {% if show_fields.show_r2070_pgtopf or 1 %}
+            {% if show_fields.show_r2070_pgtopf %}
             <td>{{ a.r2070_pgtopf }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrdepjudicial %}
+            <td>{{ a.vlrdepjudicial }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2070.change_r2070depJudicial or perms.r2070.add_r2070depJudicial %}
-                    
+
                         <a href="{% url 'r2070_depjudicial_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070depJudicial %}
                                 <span class="btn btn-primary" title="Editar">
@@ -45,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -70,7 +70,7 @@ def listar(request, output=None):
             'show_s1299_evtfechaevper': 1,
             'show_nmresp': 1,
             'show_cpfresp': 1,
-            'show_telefone': 1,
+            'show_telefone': 0,
             'show_email': 0, }
 
         post = False

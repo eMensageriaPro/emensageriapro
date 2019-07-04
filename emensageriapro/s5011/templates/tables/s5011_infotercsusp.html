@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_idelotacao or 1 %}
+            {% if show_fields.show_s5011_idelotacao %}
             <th>Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros).</th>
             {% endif %}
-            {% if show_fields.show_codterc or 1 %}
+            {% if show_fields.show_codterc %}
             <th>Código de Terceiros</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,19 +17,19 @@
     <tbody>
         {% for a in s5011_infotercsusp_lista %}
         <tr>
-            {% if show_fields.show_s5011_idelotacao or 1 %}
+            {% if show_fields.show_s5011_idelotacao %}
             <td>{{ a.s5011_idelotacao }}</td>
             {% endif %}
-            {% if show_fields.show_codterc or 1 %}
+            {% if show_fields.show_codterc %}
             <td>{{ a.codterc }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

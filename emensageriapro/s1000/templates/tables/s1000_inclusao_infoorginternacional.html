@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1000_inclusao or 1 %}
+            {% if show_fields.show_s1000_inclusao %}
             <th>Informações exclusivas de organismos internacionais e outras instituições extraterritoriais</th>
             {% endif %}
-            {% if show_fields.show_indacordoisenmulta or 1 %}
+            {% if show_fields.show_indacordoisenmulta %}
             <th>Acordo internacional</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s1000_inclusao_infoorginternacional_lista %}
         <tr>
-            {% if show_fields.show_s1000_inclusao or 1 %}
+            {% if show_fields.show_s1000_inclusao %}
             <td>{{ a.s1000_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_indacordoisenmulta or 1 %}
+            {% if show_fields.show_indacordoisenmulta %}
             <td>{{ a.get_indacordoisenmulta_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1000.change_s1000inclusaoinfoOrgInternacional or perms.s1000.add_s1000inclusaoinfoOrgInternacional %}
-                    
+
                         <a href="{% url 's1000_inclusao_infoorginternacional_salvar' pk=a.id %}">
                             {% if perms.s1000.change_s1000inclusaoinfoOrgInternacional %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

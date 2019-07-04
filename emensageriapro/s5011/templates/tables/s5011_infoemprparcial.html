@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_idelotacao or 1 %}
+            {% if show_fields.show_s5011_idelotacao %}
             <th>Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada</th>
             {% endif %}
-            {% if show_fields.show_tpinsccontrat or 1 %}
+            {% if show_fields.show_tpinsccontrat %}
             <th>Tipo de inscrição do Contratante</th>
             {% endif %}
-            {% if show_fields.show_nrinsccontrat or 1 %}
+            {% if show_fields.show_nrinsccontrat %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_tpinscprop or 1 %}
+            {% if show_fields.show_tpinscprop %}
             <th>Tipo de inscrição (Proprietário do CNO)</th>
             {% endif %}
-            {% if show_fields.show_nrinscprop or 1 %}
+            {% if show_fields.show_nrinscprop %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_cnoobra or 1 %}
+            {% if show_fields.show_cnoobra %}
             <th>Número do CNO da obra</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -29,31 +29,31 @@
     <tbody>
         {% for a in s5011_infoemprparcial_lista %}
         <tr>
-            {% if show_fields.show_s5011_idelotacao or 1 %}
+            {% if show_fields.show_s5011_idelotacao %}
             <td>{{ a.s5011_idelotacao }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsccontrat or 1 %}
+            {% if show_fields.show_tpinsccontrat %}
             <td>{{ a.get_tpinsccontrat_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsccontrat or 1 %}
+            {% if show_fields.show_nrinsccontrat %}
             <td>{{ a.nrinsccontrat }}</td>
             {% endif %}
-            {% if show_fields.show_tpinscprop or 1 %}
+            {% if show_fields.show_tpinscprop %}
             <td>{{ a.tpinscprop }}</td>
             {% endif %}
-            {% if show_fields.show_nrinscprop or 1 %}
+            {% if show_fields.show_nrinscprop %}
             <td>{{ a.nrinscprop }}</td>
             {% endif %}
-            {% if show_fields.show_cnoobra or 1 %}
+            {% if show_fields.show_cnoobra %}
             <td>{{ a.cnoobra }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

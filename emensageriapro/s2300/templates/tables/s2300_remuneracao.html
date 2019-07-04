@@ -2,14 +2,17 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_infocomplementares or 1 %}
+            {% if show_fields.show_s2300_infocomplementares %}
             <th>Informações da remuneração e periodicidade de pagamento</th>
             {% endif %}
-            {% if show_fields.show_vrsalfx or 1 %}
+            {% if show_fields.show_vrsalfx %}
             <th>Valor do Salário Fixo</th>
             {% endif %}
-            {% if show_fields.show_undsalfixo or 1 %}
+            {% if show_fields.show_undsalfixo %}
             <th>Unidade do Salário Fixo</th>
+            {% endif %}
+            {% if show_fields.show_dscsalvar %}
+            <th>Descrição do salário variável</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +23,27 @@
     <tbody>
         {% for a in s2300_remuneracao_lista %}
         <tr>
-            {% if show_fields.show_s2300_infocomplementares or 1 %}
+            {% if show_fields.show_s2300_infocomplementares %}
             <td>{{ a.s2300_infocomplementares }}</td>
             {% endif %}
-            {% if show_fields.show_vrsalfx or 1 %}
+            {% if show_fields.show_vrsalfx %}
             <td>{{ a.vrsalfx }}</td>
             {% endif %}
-            {% if show_fields.show_undsalfixo or 1 %}
+            {% if show_fields.show_undsalfixo %}
             <td>{{ a.get_undsalfixo_display }}</td>
             {% endif %}
-            
+            {% if show_fields.show_dscsalvar %}
+            <td>{{ a.dscsalvar }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2300.change_s2300remuneracao or perms.s2300.add_s2300remuneracao %}
-                    
+
                         <a href="{% url 's2300_remuneracao_salvar' pk=a.id %}">
                             {% if perms.s2300.change_s2300remuneracao %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

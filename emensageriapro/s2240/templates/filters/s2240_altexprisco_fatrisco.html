@@ -131,19 +131,19 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_intconc" value="0" {% if show_fields|get_value_from_dict:'show_intconc' %}checked{% endif %} >Concentração
+        <input type="checkbox" name="show_intconc" value="1" {% if show_fields|get_value_from_dict:'show_intconc' %}checked{% endif %} >Concentração
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_tecmedicao" value="0" {% if show_fields|get_value_from_dict:'show_tecmedicao' %}checked{% endif %} >Técnica de medição
+        <input type="checkbox" name="show_tecmedicao" value="1" {% if show_fields|get_value_from_dict:'show_tecmedicao' %}checked{% endif %} >Técnica de medição
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_epcepi" value="0" {% if show_fields|get_value_from_dict:'show_epcepi' %}checked{% endif %} >Informações relativas a Equipamentos de Proteção Coletiva - EPC e Equipamentos de Proteção Individual - EPI
+        <input type="checkbox" name="show_epcepi" value="1" {% if show_fields|get_value_from_dict:'show_epcepi' %}checked{% endif %} >Informações relativas a Equipamentos de Proteção Coletiva - EPC e Equipamentos de Proteção Individual - EPI
     </div>
 </div>
 

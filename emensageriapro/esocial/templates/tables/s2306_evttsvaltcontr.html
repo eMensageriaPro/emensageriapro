@@ -2,37 +2,85 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evttsvaltcontr %}
+            <th>Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual</th>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <th>Identidade do Registro</th>
             {% endif %}
-            {% if show_fields.show_indretif or 1 %}
+            {% if show_fields.show_ideevento %}
+            <th>Informações de Identificação do Evento</th>
+            {% endif %}
+            {% if show_fields.show_indretif %}
             <th>Identificador de retificação</th>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_nrrecibo %}
+            <th>Número do recibo</th>
+            {% endif %}
+            {% if show_fields.show_tpamb %}
             <th>Identificação do ambiente</th>
             {% endif %}
-            {% if show_fields.show_procemi or 1 %}
+            {% if show_fields.show_procemi %}
             <th>Processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_verproc or 1 %}
+            {% if show_fields.show_verproc %}
             <th>Versão do processo</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_ideempregador %}
+            <th>Informações de identificação do empregador</th>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_idetrabsemvinculo %}
+            <th>Identificação do Trabalhador Sem Vínculo de Emprego</th>
+            {% endif %}
+            {% if show_fields.show_cpftrab %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_codcateg or 1 %}
+            {% if show_fields.show_nistrab %}
+            <th>NIS</th>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
             <th>Código da Categoria</th>
             {% endif %}
-            {% if show_fields.show_dtalteracao or 1 %}
+            {% if show_fields.show_infotsvalteracao %}
+            <th>Trabalhador Sem Vínculo de Emprego - Alteração Contratual</th>
+            {% endif %}
+            {% if show_fields.show_dtalteracao %}
             <th>Data de alteração</th>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_natatividade %}
+            <th>Natureza da atividade</th>
+            {% endif %}
+            {% if show_fields.show_versao %}
+            <th>Versão</th>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial %}
+            <th>Transmissor</th>
+            {% endif %}
+            {% if show_fields.show_retornos_eventos %}
+            <th>Retorno do Evento</th>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <th>Ocorrências</th>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <th>Validação de Precedência</th>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <th>Validações</th>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <th>Arquivo Original</th>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <th>Arquivo</th>
+            {% endif %}
+            {% if show_fields.show_status %}
             <th>Status</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -44,48 +92,96 @@
     <tbody>
         {% for a in s2306_evttsvaltcontr_lista %}
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evttsvaltcontr %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <td>{{ a.identidade }}</td>
             {% endif %}
-            {% if show_fields.show_indretif or 1 %}
+            {% if show_fields.show_ideevento %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_indretif %}
             <td>{{ a.get_indretif_display }}</td>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_nrrecibo %}
+            <td>{{ a.nrrecibo }}</td>
+            {% endif %}
+            {% if show_fields.show_tpamb %}
             <td>{{ a.get_tpamb_display }}</td>
             {% endif %}
-            {% if show_fields.show_procemi or 1 %}
+            {% if show_fields.show_procemi %}
             <td>{{ a.get_procemi_display }}</td>
             {% endif %}
-            {% if show_fields.show_verproc or 1 %}
+            {% if show_fields.show_verproc %}
             <td>{{ a.verproc }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_ideempregador %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_idetrabsemvinculo %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_cpftrab %}
             <td>{{ a.cpftrab }}</td>
             {% endif %}
-            {% if show_fields.show_codcateg or 1 %}
+            {% if show_fields.show_nistrab %}
+            <td>{{ a.nistrab }}</td>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
             <td>{{ a.codcateg|valor }}</td>
             {% endif %}
-            {% if show_fields.show_dtalteracao or 1 %}
+            {% if show_fields.show_infotsvalteracao %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_dtalteracao %}
             <td><span style="display:none">{{ a.dtalteracao|date:"Y-m-d" }}</span>{{ a.dtalteracao|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_natatividade %}
+            <td>{{ a.get_natatividade_display }}</td>
+            {% endif %}
+            {% if show_fields.show_versao %}
+            <td>{{ a.get_versao_display }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial %}
+            <td>{{ a.transmissor_lote_esocial }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_eventos %}
+            <td>{{ a.retornos_eventos }}</td>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <td>{{ a.ocorrencias }}</td>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <td>{{ a.get_validacao_precedencia_display }}</td>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <td>{{ a.validacoes }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <td>{{ a.get_arquivo_original_display }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <td>{{ a.arquivo }}</td>
+            {% endif %}
+            {% if show_fields.show_status %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.esocial.change_s2306evtTSVAltContr or perms.esocial.add_s2306evtTSVAltContr %}
-                    
+
                         <a href="{% url 's2306_evttsvaltcontr_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s2306evtTSVAltContr %}
                                 <span class="btn btn-primary" title="Editar">
@@ -105,7 +201,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

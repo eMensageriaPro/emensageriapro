@@ -2,8 +2,17 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_evtexprisco or 1 %}
+            {% if show_fields.show_s2240_evtexprisco %}
             <th>Observações relativas a registros ambientais</th>
+            {% endif %}
+            {% if show_fields.show_meterg %}
+            <th>Descrição da metodologia utilizada para o levantamento dos riscos ergonômicos.</th>
+            {% endif %}
+            {% if show_fields.show_obscompl %}
+            <th>Observação(ões) complementar(es) referente(s) a registros ambientais. Validação: Preenchimento obrigatório se {metErg} não for informado.</th>
+            {% endif %}
+            {% if show_fields.show_observacao %}
+            <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -14,18 +23,27 @@
     <tbody>
         {% for a in s2240_iniexprisco_obs_lista %}
         <tr>
-            {% if show_fields.show_s2240_evtexprisco or 1 %}
+            {% if show_fields.show_s2240_evtexprisco %}
             <td>{{ a.s2240_evtexprisco }}</td>
             {% endif %}
-            
+            {% if show_fields.show_meterg %}
+            <td>{{ a.meterg }}</td>
+            {% endif %}
+            {% if show_fields.show_obscompl %}
+            <td>{{ a.obscompl }}</td>
+            {% endif %}
+            {% if show_fields.show_observacao %}
+            <td>{{ a.observacao }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2240.change_s2240iniExpRiscoobs or perms.s2240.add_s2240iniExpRiscoobs %}
-                    
+
                         <a href="{% url 's2240_iniexprisco_obs_salvar' pk=a.id %}">
                             {% if perms.s2240.change_s2240iniExpRiscoobs %}
                                 <span class="btn btn-primary" title="Editar">
@@ -45,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

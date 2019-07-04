@@ -2,11 +2,20 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_evtcs or 1 %}
+            {% if show_fields.show_s5011_evtcs %}
             <th>Informações complementares, exclusivas da Pessoa Jurídica.</th>
             {% endif %}
-            {% if show_fields.show_indconstr or 1 %}
+            {% if show_fields.show_indcoop %}
+            <th>Cooperativa?</th>
+            {% endif %}
+            {% if show_fields.show_indconstr %}
             <th>Construtora?</th>
+            {% endif %}
+            {% if show_fields.show_indsubstpatr %}
+            <th>Substituição da CP patronal</th>
+            {% endif %}
+            {% if show_fields.show_percredcontrib %}
+            <th>Percentual não substituído pela contribuição prevista na lei 12.546/2011</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -17,19 +26,28 @@
     <tbody>
         {% for a in s5011_infopj_lista %}
         <tr>
-            {% if show_fields.show_s5011_evtcs or 1 %}
+            {% if show_fields.show_s5011_evtcs %}
             <td>{{ a.s5011_evtcs }}</td>
             {% endif %}
-            {% if show_fields.show_indconstr or 1 %}
+            {% if show_fields.show_indcoop %}
+            <td>{{ a.get_indcoop_display }}</td>
+            {% endif %}
+            {% if show_fields.show_indconstr %}
             <td>{{ a.get_indconstr_display }}</td>
             {% endif %}
-            
+            {% if show_fields.show_indsubstpatr %}
+            <td>{{ a.get_indsubstpatr_display }}</td>
+            {% endif %}
+            {% if show_fields.show_percredcontrib %}
+            <td>{{ a.percredcontrib }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

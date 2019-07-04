@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4020_infoprocjud or 1 %}
+            {% if show_fields.show_r4020_infoprocjud %}
             <th>Informações sobre a origem dos recursos</th>
             {% endif %}
-            {% if show_fields.show_cnpjorigrecurso or 1 %}
+            {% if show_fields.show_cnpjorigrecurso %}
             <th>Preencher com o CNPJ da empresa que repassou recursos</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in r4020_origemrec_lista %}
         <tr>
-            {% if show_fields.show_r4020_infoprocjud or 1 %}
+            {% if show_fields.show_r4020_infoprocjud %}
             <td>{{ a.r4020_infoprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjorigrecurso or 1 %}
+            {% if show_fields.show_cnpjorigrecurso %}
             <td>{{ a.cnpjorigrecurso }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4020.change_r4020origemRec or perms.r4020.add_r4020origemRec %}
-                    
+
                         <a href="{% url 'r4020_origemrec_salvar' pk=a.id %}">
                             {% if perms.r4020.change_r4020origemRec %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

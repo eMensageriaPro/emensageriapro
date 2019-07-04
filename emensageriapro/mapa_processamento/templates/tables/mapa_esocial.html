@@ -11,15 +11,15 @@
     <tbody>
         {% for a in mapa_esocial_lista %}
         <tr>
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.mapa_processamento.change_MapaEsocial or perms.mapa_processamento.add_MapaEsocial %}
-                    
+
                         <a href="{% url 'mapa_esocial_salvar' pk=a.id %}">
                             {% if perms.mapa_processamento.change_MapaEsocial %}
                                 <span class="btn btn-primary" title="Editar">
@@ -39,7 +39,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

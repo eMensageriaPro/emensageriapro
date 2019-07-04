@@ -68,19 +68,19 @@ def listar(request, output=None):
         dict_fields = {}
         show_fields = {
             'show_r3010_evtespdesportivo': 1,
-            'show_nrboletim': 1,
-            'show_tpcompeticao': 1,
+            'show_nrboletim': 0,
+            'show_tpcompeticao': 0,
             'show_categevento': 1,
             'show_moddesportiva': 1,
-            'show_nomecompeticao': 1,
-            'show_cnpjmandante': 1,
+            'show_nomecompeticao': 0,
+            'show_cnpjmandante': 0,
             'show_cnpjvisitante': 0,
             'show_nomevisitante': 0,
-            'show_pracadesportiva': 1,
+            'show_pracadesportiva': 0,
             'show_codmunic': 0,
-            'show_uf': 1,
-            'show_qtdepagantes': 1,
-            'show_qtdenaopagantes': 1, }
+            'show_uf': 0,
+            'show_qtdepagantes': 0,
+            'show_qtdenaopagantes': 0, }
 
         post = False
 

@@ -72,7 +72,7 @@ def listar(request, output=None):
             'show_dtnascto': 0,
             'show_nome': 1,
             'show_reldep': 1,
-            'show_vlrsaude': 1, }
+            'show_vlrsaude': 0, }
 
         post = False
 

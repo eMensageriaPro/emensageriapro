@@ -11,15 +11,15 @@
     <tbody>
         {% for a in importacoes_lista %}
         <tr>
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.mensageiro.change_Importacoes or perms.mensageiro.add_Importacoes %}
-                    
+
                         <a href="{% url 'importacoes_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_Importacoes %}
                                 <span class="btn btn-primary" title="Editar">
@@ -39,7 +39,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

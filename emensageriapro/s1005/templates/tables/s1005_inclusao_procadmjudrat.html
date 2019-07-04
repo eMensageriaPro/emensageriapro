@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1005_inclusao or 1 %}
+            {% if show_fields.show_s1005_inclusao %}
             <th>Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.</th>
             {% endif %}
-            {% if show_fields.show_tpproc or 1 %}
+            {% if show_fields.show_tpproc %}
             <th>Processo RAT</th>
             {% endif %}
-            {% if show_fields.show_nrproc or 1 %}
+            {% if show_fields.show_nrproc %}
             <th>Número do Processo</th>
             {% endif %}
-            {% if show_fields.show_codsusp or 1 %}
+            {% if show_fields.show_codsusp %}
             <th>Código do Indicativo da Suspensão</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +23,27 @@
     <tbody>
         {% for a in s1005_inclusao_procadmjudrat_lista %}
         <tr>
-            {% if show_fields.show_s1005_inclusao or 1 %}
+            {% if show_fields.show_s1005_inclusao %}
             <td>{{ a.s1005_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_tpproc or 1 %}
+            {% if show_fields.show_tpproc %}
             <td>{{ a.get_tpproc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrproc or 1 %}
+            {% if show_fields.show_nrproc %}
             <td>{{ a.nrproc }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp or 1 %}
+            {% if show_fields.show_codsusp %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1005.change_s1005inclusaoprocAdmJudRat or perms.s1005.add_s1005inclusaoprocAdmJudRat %}
-                    
+
                         <a href="{% url 's1005_inclusao_procadmjudrat_salvar' pk=a.id %}">
                             {% if perms.s1005.change_s1005inclusaoprocAdmJudRat %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

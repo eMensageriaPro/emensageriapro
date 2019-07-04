@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_pgtopj_infoprocjud or 1 %}
+            {% if show_fields.show_r2070_pgtopj_infoprocjud %}
             <th>Identificação da origem dos recursos</th>
             {% endif %}
-            {% if show_fields.show_cnpjorigemrecursos or 1 %}
+            {% if show_fields.show_cnpjorigemrecursos %}
             <th>CNPJ da empresa de origem dos recursos</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in r2070_pgtopj_origemrecursos_lista %}
         <tr>
-            {% if show_fields.show_r2070_pgtopj_infoprocjud or 1 %}
+            {% if show_fields.show_r2070_pgtopj_infoprocjud %}
             <td>{{ a.r2070_pgtopj_infoprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjorigemrecursos or 1 %}
+            {% if show_fields.show_cnpjorigemrecursos %}
             <td>{{ a.cnpjorigemrecursos }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2070.change_r2070pgtoPJorigemRecursos or perms.r2070.add_r2070pgtoPJorigemRecursos %}
-                    
+
                         <a href="{% url 'r2070_pgtopj_origemrecursos_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070pgtoPJorigemRecursos %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

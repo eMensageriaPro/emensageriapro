@@ -2,14 +2,41 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4020_infopgto or 1 %}
+            {% if show_fields.show_r4020_infopgto %}
             <th>Informações de processos relacionados a não retenção de tributos ou depósitos judiciais</th>
             {% endif %}
-            {% if show_fields.show_tpprocret or 1 %}
+            {% if show_fields.show_tpprocret %}
             <th>Preencher com o código correspondente ao tipo de processo</th>
             {% endif %}
-            {% if show_fields.show_nrprocret or 1 %}
+            {% if show_fields.show_nrprocret %}
             <th>Informar o número do processo administrativo/judicial</th>
+            {% endif %}
+            {% if show_fields.show_codsusp %}
+            <th>Código do Indicativo da Suspensão, atribuído pelo contribuinte</th>
+            {% endif %}
+            {% if show_fields.show_nir %}
+            <th>Valor da retenção de IR que deixou de ser efetuada em função de processo informado em {nrProcRet}</th>
+            {% endif %}
+            {% if show_fields.show_depir %}
+            <th>Valor do depósito judicial do IR em função de processo administrativo ou judicial</th>
+            {% endif %}
+            {% if show_fields.show_ncsll %}
+            <th>Valor da retenção de CSLL que deixou de ser efetuada em função de processo informado em {nrProcRet}</th>
+            {% endif %}
+            {% if show_fields.show_depcsll %}
+            <th>Valor do depósito judicial da CSLL em função de processo administrativo ou judicial</th>
+            {% endif %}
+            {% if show_fields.show_ncofins %}
+            <th>Valor da retenção de Cofins que deixou de ser efetuada em função de processo informado em {nrProcRet}</th>
+            {% endif %}
+            {% if show_fields.show_depcofins %}
+            <th>Valor do depósito judicial da Cofins em função de processo administrativo ou judicial</th>
+            {% endif %}
+            {% if show_fields.show_npp %}
+            <th>Valor da retenção de PIS/PASEP que deixou de ser efetuada em função de processo informado em {nrProcRet}</th>
+            {% endif %}
+            {% if show_fields.show_deppp %}
+            <th>Valor do depósito judicial do PIS/PASEP em função de processo administrativo ou judicial</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +47,51 @@
     <tbody>
         {% for a in r4020_infoprocret_lista %}
         <tr>
-            {% if show_fields.show_r4020_infopgto or 1 %}
+            {% if show_fields.show_r4020_infopgto %}
             <td>{{ a.r4020_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_tpprocret or 1 %}
+            {% if show_fields.show_tpprocret %}
             <td>{{ a.get_tpprocret_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocret or 1 %}
+            {% if show_fields.show_nrprocret %}
             <td>{{ a.nrprocret }}</td>
             {% endif %}
-            
+            {% if show_fields.show_codsusp %}
+            <td>{{ a.codsusp }}</td>
+            {% endif %}
+            {% if show_fields.show_nir %}
+            <td>{{ a.nir }}</td>
+            {% endif %}
+            {% if show_fields.show_depir %}
+            <td>{{ a.depir }}</td>
+            {% endif %}
+            {% if show_fields.show_ncsll %}
+            <td>{{ a.ncsll }}</td>
+            {% endif %}
+            {% if show_fields.show_depcsll %}
+            <td>{{ a.depcsll }}</td>
+            {% endif %}
+            {% if show_fields.show_ncofins %}
+            <td>{{ a.ncofins }}</td>
+            {% endif %}
+            {% if show_fields.show_depcofins %}
+            <td>{{ a.depcofins }}</td>
+            {% endif %}
+            {% if show_fields.show_npp %}
+            <td>{{ a.npp }}</td>
+            {% endif %}
+            {% if show_fields.show_deppp %}
+            <td>{{ a.deppp }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4020.change_r4020infoProcRet or perms.r4020.add_r4020infoProcRet %}
-                    
+
                         <a href="{% url 'r4020_infoprocret_salvar' pk=a.id %}">
                             {% if perms.r4020.change_r4020infoProcRet %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +111,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

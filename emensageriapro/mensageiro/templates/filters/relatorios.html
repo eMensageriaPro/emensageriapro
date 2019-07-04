@@ -19,13 +19,13 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_campos" value="0" {% if show_fields|get_value_from_dict:'show_campos' %}checked{% endif %} >Lista dos Campos (separados por vírgula)
+        <input type="checkbox" name="show_campos" value="1" {% if show_fields|get_value_from_dict:'show_campos' %}checked{% endif %} >Lista dos Campos (separados por vírgula)
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_sql" value="0" {% if show_fields|get_value_from_dict:'show_sql' %}checked{% endif %} >SQL
+        <input type="checkbox" name="show_sql" value="1" {% if show_fields|get_value_from_dict:'show_sql' %}checked{% endif %} >SQL
     </div>
 </div>
 

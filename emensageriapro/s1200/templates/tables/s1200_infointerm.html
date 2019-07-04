@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1200_evtremun or 1 %}
+            {% if show_fields.show_s1200_evtremun %}
             <th>Informações relativas ao trabalho intermitente</th>
             {% endif %}
-            {% if show_fields.show_qtddiasinterm or 1 %}
+            {% if show_fields.show_qtddiasinterm %}
             <th>Quantidade de dias trabalhados no mês pelo empregado com contrato de trabalho intermitente</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s1200_infointerm_lista %}
         <tr>
-            {% if show_fields.show_s1200_evtremun or 1 %}
+            {% if show_fields.show_s1200_evtremun %}
             <td>{{ a.s1200_evtremun }}</td>
             {% endif %}
-            {% if show_fields.show_qtddiasinterm or 1 %}
+            {% if show_fields.show_qtddiasinterm %}
             <td>{{ a.qtddiasinterm }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1200.change_s1200infoInterm or perms.s1200.add_s1200infoInterm %}
-                    
+
                         <a href="{% url 's1200_infointerm_salvar' pk=a.id %}">
                             {% if perms.s1200.change_s1200infoInterm %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,17 +2,20 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2200_evtadmissao or 1 %}
+            {% if show_fields.show_s2200_evtadmissao %}
             <th>Informações de mudança de CPF do trabalhador.</th>
             {% endif %}
-            {% if show_fields.show_cpfant or 1 %}
+            {% if show_fields.show_cpfant %}
             <th>Preencher com o número do CPF antigo do trabalhador.</th>
             {% endif %}
-            {% if show_fields.show_matricant or 1 %}
+            {% if show_fields.show_matricant %}
             <th>Matricula anterior</th>
             {% endif %}
-            {% if show_fields.show_dtaltcpf or 1 %}
+            {% if show_fields.show_dtaltcpf %}
             <th>Data de alteração do CPF.</th>
+            {% endif %}
+            {% if show_fields.show_observacao %}
+            <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -23,27 +26,30 @@
     <tbody>
         {% for a in s2200_mudancacpf_lista %}
         <tr>
-            {% if show_fields.show_s2200_evtadmissao or 1 %}
+            {% if show_fields.show_s2200_evtadmissao %}
             <td>{{ a.s2200_evtadmissao }}</td>
             {% endif %}
-            {% if show_fields.show_cpfant or 1 %}
+            {% if show_fields.show_cpfant %}
             <td>{{ a.cpfant }}</td>
             {% endif %}
-            {% if show_fields.show_matricant or 1 %}
+            {% if show_fields.show_matricant %}
             <td>{{ a.matricant }}</td>
             {% endif %}
-            {% if show_fields.show_dtaltcpf or 1 %}
+            {% if show_fields.show_dtaltcpf %}
             <td><span style="display:none">{{ a.dtaltcpf|date:"Y-m-d" }}</span>{{ a.dtaltcpf|date:"d/m/Y" }}</td>
             {% endif %}
-            
+            {% if show_fields.show_observacao %}
+            <td>{{ a.observacao }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2200.change_s2200mudancaCPF or perms.s2200.add_s2200mudancaCPF %}
-                    
+
                         <a href="{% url 's2200_mudancacpf_salvar' pk=a.id %}">
                             {% if perms.s2200.change_s2200mudancaCPF %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

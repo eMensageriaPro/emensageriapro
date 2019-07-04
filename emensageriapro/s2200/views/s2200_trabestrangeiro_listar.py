@@ -71,7 +71,7 @@ def listar(request, output=None):
             'show_dtchegada': 0,
             'show_classtrabestrang': 1,
             'show_casadobr': 1,
-            'show_filhosbr': 1, }
+            'show_filhosbr': 0, }
 
         post = False
 

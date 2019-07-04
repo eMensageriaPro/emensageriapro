@@ -2,16 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
+            {% if show_fields.show_s2206_evtaltcontratual %}
             <th>Informações de Trabalhador Celetista</th>
             {% endif %}
-            {% if show_fields.show_tpregjor or 1 %}
+            {% if show_fields.show_tpregjor %}
             <th>Regime da Jornada</th>
             {% endif %}
-            {% if show_fields.show_natatividade or 1 %}
+            {% if show_fields.show_natatividade %}
             <th>Natureza da atividade</th>
             {% endif %}
-            {% if show_fields.show_cnpjsindcategprof or 1 %}
+            {% if show_fields.show_dtbase %}
+            <th>Data base da categoria profissional</th>
+            {% endif %}
+            {% if show_fields.show_cnpjsindcategprof %}
             <th>CNPJ do Sindicato</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +26,30 @@
     <tbody>
         {% for a in s2206_infoceletista_lista %}
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
+            {% if show_fields.show_s2206_evtaltcontratual %}
             <td>{{ a.s2206_evtaltcontratual }}</td>
             {% endif %}
-            {% if show_fields.show_tpregjor or 1 %}
+            {% if show_fields.show_tpregjor %}
             <td>{{ a.get_tpregjor_display }}</td>
             {% endif %}
-            {% if show_fields.show_natatividade or 1 %}
+            {% if show_fields.show_natatividade %}
             <td>{{ a.get_natatividade_display }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjsindcategprof or 1 %}
+            {% if show_fields.show_dtbase %}
+            <td>{{ a.dtbase }}</td>
+            {% endif %}
+            {% if show_fields.show_cnpjsindcategprof %}
             <td>{{ a.cnpjsindcategprof }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2206.change_s2206infoCeletista or perms.s2206.add_s2206infoCeletista %}
-                    
+
                         <a href="{% url 's2206_infoceletista_salvar' pk=a.id %}">
                             {% if perms.s2206.change_s2206infoCeletista %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

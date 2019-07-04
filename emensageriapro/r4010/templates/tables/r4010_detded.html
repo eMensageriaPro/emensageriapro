@@ -2,14 +2,20 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_infopgto or 1 %}
+            {% if show_fields.show_r4010_infopgto %}
             <th>Detalhamento das deduções</th>
             {% endif %}
-            {% if show_fields.show_indtpdeducao or 1 %}
+            {% if show_fields.show_indtpdeducao %}
             <th>Indicativo do Tipo de Dedução</th>
             {% endif %}
-            {% if show_fields.show_vlrdeducao or 1 %}
+            {% if show_fields.show_vlrdeducao %}
             <th>Preencher com o Valor da dedução da base de cálculo.</th>
+            {% endif %}
+            {% if show_fields.show_vlrdedsusp %}
+            <th>Valor da dedução da base de cálculo do Imposto de Renda, com exigibilidade suspensa</th>
+            {% endif %}
+            {% if show_fields.show_nrinscprevcomp %}
+            <th>Número de inscrição da entidade de previdência complementar</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +26,30 @@
     <tbody>
         {% for a in r4010_detded_lista %}
         <tr>
-            {% if show_fields.show_r4010_infopgto or 1 %}
+            {% if show_fields.show_r4010_infopgto %}
             <td>{{ a.r4010_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_indtpdeducao or 1 %}
+            {% if show_fields.show_indtpdeducao %}
             <td>{{ a.get_indtpdeducao_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrdeducao or 1 %}
+            {% if show_fields.show_vlrdeducao %}
             <td>{{ a.vlrdeducao }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrdedsusp %}
+            <td>{{ a.vlrdedsusp }}</td>
+            {% endif %}
+            {% if show_fields.show_nrinscprevcomp %}
+            <td>{{ a.nrinscprevcomp }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4010.change_r4010detDed or perms.r4010.add_r4010detDed %}
-                    
+
                         <a href="{% url 'r4010_detded_salvar' pk=a.id %}">
                             {% if perms.r4010.change_r4010detDed %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

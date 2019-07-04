@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_inforra_despprocjud or 1 %}
+            {% if show_fields.show_r2070_inforra_despprocjud %}
             <th>Identificação do Advogado</th>
             {% endif %}
-            {% if show_fields.show_tpinscadvogado or 1 %}
+            {% if show_fields.show_tpinscadvogado %}
             <th>Tipo de Inscrição do Advogado</th>
             {% endif %}
-            {% if show_fields.show_nrinscadvogado or 1 %}
+            {% if show_fields.show_nrinscadvogado %}
             <th>Preencher com o número de inscrição (CNPJ/CPF) do Advogado</th>
             {% endif %}
-            {% if show_fields.show_vlradvogado or 1 %}
+            {% if show_fields.show_vlradvogado %}
             <th>Valor da despesa com o advogado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +23,27 @@
     <tbody>
         {% for a in r2070_inforra_ideadvogado_lista %}
         <tr>
-            {% if show_fields.show_r2070_inforra_despprocjud or 1 %}
+            {% if show_fields.show_r2070_inforra_despprocjud %}
             <td>{{ a.r2070_inforra_despprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_tpinscadvogado or 1 %}
+            {% if show_fields.show_tpinscadvogado %}
             <td>{{ a.tpinscadvogado }}</td>
             {% endif %}
-            {% if show_fields.show_nrinscadvogado or 1 %}
+            {% if show_fields.show_nrinscadvogado %}
             <td>{{ a.nrinscadvogado }}</td>
             {% endif %}
-            {% if show_fields.show_vlradvogado or 1 %}
+            {% if show_fields.show_vlradvogado %}
             <td>{{ a.vlradvogado }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2070.change_r2070infoRRAideAdvogado or perms.r2070.add_r2070infoRRAideAdvogado %}
-                    
+
                         <a href="{% url 'r2070_inforra_ideadvogado_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070infoRRAideAdvogado %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

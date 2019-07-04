@@ -2,16 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1210_detpgtobenpr or 1 %}
+            {% if show_fields.show_s1210_detpgtobenpr %}
             <th>Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.</th>
             {% endif %}
-            {% if show_fields.show_codrubr or 1 %}
+            {% if show_fields.show_codrubr %}
             <th>Código da Rubrica</th>
             {% endif %}
-            {% if show_fields.show_idetabrubr or 1 %}
+            {% if show_fields.show_idetabrubr %}
             <th>Identificador tabela de rubricas</th>
             {% endif %}
-            {% if show_fields.show_vrrubr or 1 %}
+            {% if show_fields.show_qtdrubr %}
+            <th>Quantidade</th>
+            {% endif %}
+            {% if show_fields.show_fatorrubr %}
+            <th>Fator</th>
+            {% endif %}
+            {% if show_fields.show_vrunit %}
+            <th>Valor Unitário</th>
+            {% endif %}
+            {% if show_fields.show_vrrubr %}
             <th>Valor total</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +32,36 @@
     <tbody>
         {% for a in s1210_detpgtobenpr_retpgtotot_lista %}
         <tr>
-            {% if show_fields.show_s1210_detpgtobenpr or 1 %}
+            {% if show_fields.show_s1210_detpgtobenpr %}
             <td>{{ a.s1210_detpgtobenpr }}</td>
             {% endif %}
-            {% if show_fields.show_codrubr or 1 %}
+            {% if show_fields.show_codrubr %}
             <td>{{ a.codrubr }}</td>
             {% endif %}
-            {% if show_fields.show_idetabrubr or 1 %}
+            {% if show_fields.show_idetabrubr %}
             <td>{{ a.idetabrubr }}</td>
             {% endif %}
-            {% if show_fields.show_vrrubr or 1 %}
+            {% if show_fields.show_qtdrubr %}
+            <td>{{ a.qtdrubr }}</td>
+            {% endif %}
+            {% if show_fields.show_fatorrubr %}
+            <td>{{ a.fatorrubr }}</td>
+            {% endif %}
+            {% if show_fields.show_vrunit %}
+            <td>{{ a.vrunit }}</td>
+            {% endif %}
+            {% if show_fields.show_vrrubr %}
             <td>{{ a.vrrubr }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1210.change_s1210detPgtoBenPrretPgtoTot or perms.s1210.add_s1210detPgtoBenPrretPgtoTot %}
-                    
+
                         <a href="{% url 's1210_detpgtobenpr_retpgtotot_salvar' pk=a.id %}">
                             {% if perms.s1210.change_s1210detPgtoBenPrretPgtoTot %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +81,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

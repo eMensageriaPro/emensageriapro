@@ -2,20 +2,26 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9012_infototalcontrib or 1 %}
+            {% if show_fields.show_r9012_infototalcontrib %}
             <th>Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal</th>
             {% endif %}
-            {% if show_fields.show_perapurqui or 1 %}
+            {% if show_fields.show_perapurqui %}
             <th>Período de apuração quinzenal do Código de Receita - CR</th>
             {% endif %}
-            {% if show_fields.show_crqui or 1 %}
+            {% if show_fields.show_crqui %}
             <th>Código de Receita - CR relativo a tributo que possui período de apuração quinzenal</th>
             {% endif %}
-            {% if show_fields.show_vlrbasecrqui or 1 %}
+            {% if show_fields.show_vlrbasecrqui %}
             <th>Valor da base do tributo com período de apuração quinzenal</th>
             {% endif %}
-            {% if show_fields.show_vlrcrqui or 1 %}
+            {% if show_fields.show_vlrcrqui %}
             <th>Valor do tributo retido com período de apuração quinzenal, calculado segundo as regras estabelecidas na legislação em vigor</th>
+            {% endif %}
+            {% if show_fields.show_vlrbasecrquisusp %}
+            <th>Valor da base do tributo com período de apuração quinzenal, com exigibilidade suspensa</th>
+            {% endif %}
+            {% if show_fields.show_vlrcrquisusp %}
+            <th>Valor do tributo com período de apuração quinzenal, que deixou de ser retido</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -26,28 +32,34 @@
     <tbody>
         {% for a in r9012_totapurqui_lista %}
         <tr>
-            {% if show_fields.show_r9012_infototalcontrib or 1 %}
+            {% if show_fields.show_r9012_infototalcontrib %}
             <td>{{ a.r9012_infototalcontrib }}</td>
             {% endif %}
-            {% if show_fields.show_perapurqui or 1 %}
+            {% if show_fields.show_perapurqui %}
             <td>{{ a.get_perapurqui_display }}</td>
             {% endif %}
-            {% if show_fields.show_crqui or 1 %}
+            {% if show_fields.show_crqui %}
             <td>{{ a.crqui }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasecrqui or 1 %}
+            {% if show_fields.show_vlrbasecrqui %}
             <td>{{ a.vlrbasecrqui }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrqui or 1 %}
+            {% if show_fields.show_vlrcrqui %}
             <td>{{ a.vlrcrqui }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrbasecrquisusp %}
+            <td>{{ a.vlrbasecrquisusp }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrcrquisusp %}
+            <td>{{ a.vlrcrquisusp }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

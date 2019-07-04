@@ -2,17 +2,26 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1260_tpcomerc or 1 %}
+            {% if show_fields.show_s1260_tpcomerc %}
             <th>Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.</th>
             {% endif %}
-            {% if show_fields.show_tpproc or 1 %}
+            {% if show_fields.show_tpproc %}
             <th>Processo RAT</th>
             {% endif %}
-            {% if show_fields.show_nrproc or 1 %}
+            {% if show_fields.show_nrproc %}
             <th>Número do Processo</th>
             {% endif %}
-            {% if show_fields.show_codsusp or 1 %}
+            {% if show_fields.show_codsusp %}
             <th>Código do Indicativo da Suspensão</th>
+            {% endif %}
+            {% if show_fields.show_vrcpsusp %}
+            <th>Valor da CP com exigibilidade suspensa</th>
+            {% endif %}
+            {% if show_fields.show_vrratsusp %}
+            <th>Valor da CP para GILRAT com exigibilidade suspensa</th>
+            {% endif %}
+            {% if show_fields.show_vrsenarsusp %}
+            <th>Valor da contribição para SENAR com exigibilidade suspensa</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -23,27 +32,36 @@
     <tbody>
         {% for a in s1260_infoprocjud_lista %}
         <tr>
-            {% if show_fields.show_s1260_tpcomerc or 1 %}
+            {% if show_fields.show_s1260_tpcomerc %}
             <td>{{ a.s1260_tpcomerc }}</td>
             {% endif %}
-            {% if show_fields.show_tpproc or 1 %}
+            {% if show_fields.show_tpproc %}
             <td>{{ a.get_tpproc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrproc or 1 %}
+            {% if show_fields.show_nrproc %}
             <td>{{ a.nrproc }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp or 1 %}
+            {% if show_fields.show_codsusp %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vrcpsusp %}
+            <td>{{ a.vrcpsusp }}</td>
+            {% endif %}
+            {% if show_fields.show_vrratsusp %}
+            <td>{{ a.vrratsusp }}</td>
+            {% endif %}
+            {% if show_fields.show_vrsenarsusp %}
+            <td>{{ a.vrsenarsusp }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1260.change_s1260infoProcJud or perms.s1260.add_s1260infoProcJud %}
-                    
+
                         <a href="{% url 's1260_infoprocjud_salvar' pk=a.id %}">
                             {% if perms.s1260.change_s1260infoProcJud %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +81,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

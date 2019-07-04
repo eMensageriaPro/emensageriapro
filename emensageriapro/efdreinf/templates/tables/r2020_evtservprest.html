@@ -2,59 +2,134 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evtservprest %}
+            <th>Evento Serviços Prestados - Cessão de Mão de Obra ou Empreitada</th>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <th>Identificação única do evento</th>
             {% endif %}
-            {% if show_fields.show_indretif or 1 %}
+            {% if show_fields.show_ideevento %}
+            <th>Informações de Identificação do Evento</th>
+            {% endif %}
+            {% if show_fields.show_indretif %}
             <th>Informe [1] para arquivo original ou [2] para arquivo de retificação</th>
             {% endif %}
-            {% if show_fields.show_perapur or 1 %}
+            {% if show_fields.show_nrrecibo %}
+            <th>Preencher com o número do recibo do arquivo a ser retificado</th>
+            {% endif %}
+            {% if show_fields.show_perapur %}
             <th>Informar o ano/mês de referência das informações no formato AAAA-MM</th>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_tpamb %}
             <th>Identificação do ambiente</th>
             {% endif %}
-            {% if show_fields.show_procemi or 1 %}
+            {% if show_fields.show_procemi %}
             <th>Processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_verproc or 1 %}
+            {% if show_fields.show_verproc %}
             <th>Versão do processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_idecontri %}
+            <th>Informações de identificação do contribuinte</th>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <th>Preencher com o código correspondente ao tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <th>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</th>
             {% endif %}
-            {% if show_fields.show_tpinscestabprest or 1 %}
+            {% if show_fields.show_infoservprest %}
+            <th>Informação dos Serviços Prestados (Cessão de Mão de Obra ou Empreitada)</th>
+            {% endif %}
+            {% if show_fields.show_ideestabprest %}
+            <th>Registro que identifica o estabelecimento 'prestador' de serviços mediante cessão de mão de obra.</th>
+            {% endif %}
+            {% if show_fields.show_tpinscestabprest %}
             <th>Preencher com o código correspondente ao tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinscestabprest or 1 %}
+            {% if show_fields.show_nrinscestabprest %}
             <th>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInscEstabPrest}</th>
             {% endif %}
-            {% if show_fields.show_tpinsctomador or 1 %}
+            {% if show_fields.show_idetomador %}
+            <th>Identificação dos tomadores dos serviços</th>
+            {% endif %}
+            {% if show_fields.show_tpinsctomador %}
             <th>Preencher com o código correspondente ao tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsctomador or 1 %}
+            {% if show_fields.show_nrinsctomador %}
             <th>Indicar o número de inscrição do tomador, conforme indicado no campo {tpInscTomador}</th>
             {% endif %}
-            {% if show_fields.show_indobra or 1 %}
+            {% if show_fields.show_indobra %}
             <th>Indicativo de Prestação de Serviços em Obra de Construção Civil</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalbruto or 1 %}
+            {% if show_fields.show_vlrtotalbruto %}
             <th>Preencher com o valor bruto da(s) nota(s) fiscal(is) </th>
             {% endif %}
-            {% if show_fields.show_vlrtotalbaseret or 1 %}
+            {% if show_fields.show_vlrtotalbaseret %}
             <th>Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalretprinc or 1 %}
+            {% if show_fields.show_vlrtotalretprinc %}
             <th>Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante</th>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_vlrtotalretadic %}
+            <th>Soma do valor do adicional de retenção das notas fiscais</th>
+            {% endif %}
+            {% if show_fields.show_vlrtotalnretprinc %}
+            <th>Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial</th>
+            {% endif %}
+            {% if show_fields.show_vlrtotalnretadic %}
+            <th>Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial</th>
+            {% endif %}
+            {% if show_fields.show_versao %}
+            <th>Versão</th>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_efdreinf %}
+            <th>Transmissor</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r5001 %}
+            <th>Retorno R5001</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r5011 %}
+            <th>Retorno R5011</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r9001 %}
+            <th>Retorno R9001</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r9002 %}
+            <th>Retorno R9002</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r9011 %}
+            <th>Retorno R9011</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r9012 %}
+            <th>Retorno R9012</th>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <th>Ocorrências</th>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <th>Validação de Precedência</th>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <th>Validações</th>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <th>Arquivo Original</th>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <th>Arquivo</th>
+            {% endif %}
+            {% if show_fields.show_status %}
             <th>Status</th>
             {% endif %}
-            {% if show_fields.show_cdretorno or 1 %}
+            {% if show_fields.show_cdretorno %}
             <th>Código do Retorno</th>
+            {% endif %}
+            {% if show_fields.show_descretorno %}
+            <th>Descrição do Retorno</th>
+            {% endif %}
+            {% if show_fields.show_dhprocess %}
+            <th>Data/Hora do Processamento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -65,69 +140,144 @@
     <tbody>
         {% for a in r2020_evtservprest_lista %}
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evtservprest %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <td>{{ a.identidade }}</td>
             {% endif %}
-            {% if show_fields.show_indretif or 1 %}
+            {% if show_fields.show_ideevento %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_indretif %}
             <td>{{ a.get_indretif_display }}</td>
             {% endif %}
-            {% if show_fields.show_perapur or 1 %}
+            {% if show_fields.show_nrrecibo %}
+            <td>{{ a.nrrecibo }}</td>
+            {% endif %}
+            {% if show_fields.show_perapur %}
             <td>{{ a.perapur }}</td>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_tpamb %}
             <td>{{ a.get_tpamb_display }}</td>
             {% endif %}
-            {% if show_fields.show_procemi or 1 %}
+            {% if show_fields.show_procemi %}
             <td>{{ a.get_procemi_display }}</td>
             {% endif %}
-            {% if show_fields.show_verproc or 1 %}
+            {% if show_fields.show_verproc %}
             <td>{{ a.verproc }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_idecontri %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <td>{{ a.tpinsc }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_tpinscestabprest or 1 %}
+            {% if show_fields.show_infoservprest %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_ideestabprest %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpinscestabprest %}
             <td>{{ a.tpinscestabprest }}</td>
             {% endif %}
-            {% if show_fields.show_nrinscestabprest or 1 %}
+            {% if show_fields.show_nrinscestabprest %}
             <td>{{ a.nrinscestabprest }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsctomador or 1 %}
+            {% if show_fields.show_idetomador %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpinsctomador %}
             <td>{{ a.tpinsctomador }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsctomador or 1 %}
+            {% if show_fields.show_nrinsctomador %}
             <td>{{ a.nrinsctomador }}</td>
             {% endif %}
-            {% if show_fields.show_indobra or 1 %}
+            {% if show_fields.show_indobra %}
             <td>{{ a.get_indobra_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalbruto or 1 %}
+            {% if show_fields.show_vlrtotalbruto %}
             <td>{{ a.vlrtotalbruto }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalbaseret or 1 %}
+            {% if show_fields.show_vlrtotalbaseret %}
             <td>{{ a.vlrtotalbaseret }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalretprinc or 1 %}
+            {% if show_fields.show_vlrtotalretprinc %}
             <td>{{ a.vlrtotalretprinc }}</td>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_vlrtotalretadic %}
+            <td>{{ a.vlrtotalretadic }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrtotalnretprinc %}
+            <td>{{ a.vlrtotalnretprinc }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrtotalnretadic %}
+            <td>{{ a.vlrtotalnretadic }}</td>
+            {% endif %}
+            {% if show_fields.show_versao %}
+            <td>{{ a.get_versao_display }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_efdreinf %}
+            <td>{{ a.transmissor_lote_efdreinf }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r5001 %}
+            <td>{{ a.retornos_r5001 }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r5011 %}
+            <td>{{ a.retornos_r5011 }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r9001 %}
+            <td>{{ a.retornos_r9001 }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r9002 %}
+            <td>{{ a.retornos_r9002 }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r9011 %}
+            <td>{{ a.retornos_r9011 }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r9012 %}
+            <td>{{ a.retornos_r9012 }}</td>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <td>{{ a.ocorrencias }}</td>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <td>{{ a.get_validacao_precedencia_display }}</td>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <td>{{ a.validacoes }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <td>{{ a.get_arquivo_original_display }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <td>{{ a.arquivo }}</td>
+            {% endif %}
+            {% if show_fields.show_status %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
-            {% if show_fields.show_cdretorno or 1 %}
+            {% if show_fields.show_cdretorno %}
             <td>{{ a.cdretorno }}</td>
             {% endif %}
-            
+            {% if show_fields.show_descretorno %}
+            <td>{{ a.descretorno }}</td>
+            {% endif %}
+            {% if show_fields.show_dhprocess %}
+            <td><span style="display:none">{{ a.dhprocess|date:"Y-m-d H:i" }}</span>{{ a.dhprocess|date:"d/m/Y H:i" }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.efdreinf.change_r2020evtServPrest or perms.efdreinf.add_r2020evtServPrest %}
-                    
+
                         <a href="{% url 'r2020_evtservprest_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r2020evtServPrest %}
                                 <span class="btn btn-primary" title="Editar">
@@ -147,7 +297,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

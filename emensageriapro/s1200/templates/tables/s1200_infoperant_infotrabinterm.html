@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1200_infoperant_remunperant or 1 %}
+            {% if show_fields.show_s1200_infoperant_remunperant %}
             <th>Informações da(s) convocação(ões) de trabalho intermitente</th>
             {% endif %}
-            {% if show_fields.show_codconv or 1 %}
+            {% if show_fields.show_codconv %}
             <th>Preencher com o código atribuído pela empresa que identifica a convocação para trabalho intermitente</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s1200_infoperant_infotrabinterm_lista %}
         <tr>
-            {% if show_fields.show_s1200_infoperant_remunperant or 1 %}
+            {% if show_fields.show_s1200_infoperant_remunperant %}
             <td>{{ a.s1200_infoperant_remunperant }}</td>
             {% endif %}
-            {% if show_fields.show_codconv or 1 %}
+            {% if show_fields.show_codconv %}
             <td>{{ a.codconv }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1200.change_s1200infoPerAntinfoTrabInterm or perms.s1200.add_s1200infoPerAntinfoTrabInterm %}
-                    
+
                         <a href="{% url 's1200_infoperant_infotrabinterm_salvar' pk=a.id %}">
                             {% if perms.s1200.change_s1200infoPerAntinfoTrabInterm %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

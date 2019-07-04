@@ -2,11 +2,14 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r1000_inclusao or 1 %}
+            {% if show_fields.show_r1000_inclusao %}
             <th>Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR</th>
             {% endif %}
-            {% if show_fields.show_ideefr or 1 %}
+            {% if show_fields.show_ideefr %}
             <th>Informar se o Órgão Público é o Ente Federativo Responsável - EFR ou se é uma unidade administrativa autônoma vinculada a um EFR</th>
+            {% endif %}
+            {% if show_fields.show_cnpjefr %}
+            <th>CNPJ do Ente Federativo Responsável - EFR</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -17,21 +20,24 @@
     <tbody>
         {% for a in r1000_inclusao_infoefr_lista %}
         <tr>
-            {% if show_fields.show_r1000_inclusao or 1 %}
+            {% if show_fields.show_r1000_inclusao %}
             <td>{{ a.r1000_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_ideefr or 1 %}
+            {% if show_fields.show_ideefr %}
             <td>{{ a.get_ideefr_display }}</td>
             {% endif %}
-            
+            {% if show_fields.show_cnpjefr %}
+            <td>{{ a.cnpjefr }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r1000.change_r1000inclusaoinfoEFR or perms.r1000.add_r1000inclusaoinfoEFR %}
-                    
+
                         <a href="{% url 'r1000_inclusao_infoefr_salvar' pk=a.id %}">
                             {% if perms.r1000.change_r1000inclusaoinfoEFR %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -68,7 +68,7 @@ def listar(request, output=None):
         dict_fields = {}
         show_fields = {
             'show_s2206_evtaltcontratual': 1,
-            'show_tpregjor': 1,
+            'show_tpregjor': 0,
             'show_natatividade': 1,
             'show_dtbase': 0,
             'show_cnpjsindcategprof': 1, }

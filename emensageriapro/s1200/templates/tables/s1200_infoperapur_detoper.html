@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1200_infoperapur_infosaudecolet or 1 %}
+            {% if show_fields.show_s1200_infoperapur_infosaudecolet %}
             <th>Detalhamento dos valores pagos a Operadoras de Planos de Saúde.</th>
             {% endif %}
-            {% if show_fields.show_cnpjoper or 1 %}
+            {% if show_fields.show_cnpjoper %}
             <th>CNPJ da Operadora do Plano de Saúde</th>
             {% endif %}
-            {% if show_fields.show_regans or 1 %}
+            {% if show_fields.show_regans %}
             <th>Registro ANS</th>
             {% endif %}
-            {% if show_fields.show_vrpgtit or 1 %}
+            {% if show_fields.show_vrpgtit %}
             <th>Valor pago pelo titular</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +23,27 @@
     <tbody>
         {% for a in s1200_infoperapur_detoper_lista %}
         <tr>
-            {% if show_fields.show_s1200_infoperapur_infosaudecolet or 1 %}
+            {% if show_fields.show_s1200_infoperapur_infosaudecolet %}
             <td>{{ a.s1200_infoperapur_infosaudecolet }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjoper or 1 %}
+            {% if show_fields.show_cnpjoper %}
             <td>{{ a.cnpjoper }}</td>
             {% endif %}
-            {% if show_fields.show_regans or 1 %}
+            {% if show_fields.show_regans %}
             <td>{{ a.regans }}</td>
             {% endif %}
-            {% if show_fields.show_vrpgtit or 1 %}
+            {% if show_fields.show_vrpgtit %}
             <td>{{ a.vrpgtit }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1200.change_s1200infoPerApurdetOper or perms.s1200.add_s1200infoPerApurdetOper %}
-                    
+
                         <a href="{% url 's1200_infoperapur_detoper_salvar' pk=a.id %}">
                             {% if perms.s1200.change_s1200infoPerApurdetOper %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

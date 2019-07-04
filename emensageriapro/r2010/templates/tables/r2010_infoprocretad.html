@@ -2,16 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2010_evtservtom or 1 %}
+            {% if show_fields.show_r2010_evtservtom %}
             <th>Informações de processos relacionados a não retenção de contribuição previdenciária adicional</th>
             {% endif %}
-            {% if show_fields.show_tpprocretadic or 1 %}
+            {% if show_fields.show_tpprocretadic %}
             <th>Preencher com o código correspondente ao tipo de processo</th>
             {% endif %}
-            {% if show_fields.show_nrprocretadic or 1 %}
+            {% if show_fields.show_nrprocretadic %}
             <th>Informar o número do processo administrativo/judicial</th>
             {% endif %}
-            {% if show_fields.show_valoradic or 1 %}
+            {% if show_fields.show_codsuspadic %}
+            <th>Código do Indicativo da Suspensão, atribuído pelo contribuinte</th>
+            {% endif %}
+            {% if show_fields.show_valoradic %}
             <th>Valor da retenção de contribuição previdenciária adicional que deixou de ser efetuada em função de processo administrativo ou judicial.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +26,30 @@
     <tbody>
         {% for a in r2010_infoprocretad_lista %}
         <tr>
-            {% if show_fields.show_r2010_evtservtom or 1 %}
+            {% if show_fields.show_r2010_evtservtom %}
             <td>{{ a.r2010_evtservtom }}</td>
             {% endif %}
-            {% if show_fields.show_tpprocretadic or 1 %}
+            {% if show_fields.show_tpprocretadic %}
             <td>{{ a.get_tpprocretadic_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocretadic or 1 %}
+            {% if show_fields.show_nrprocretadic %}
             <td>{{ a.nrprocretadic }}</td>
             {% endif %}
-            {% if show_fields.show_valoradic or 1 %}
+            {% if show_fields.show_codsuspadic %}
+            <td>{{ a.codsuspadic }}</td>
+            {% endif %}
+            {% if show_fields.show_valoradic %}
             <td>{{ a.valoradic }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2010.change_r2010infoProcRetAd or perms.r2010.add_r2010infoProcRetAd %}
-                    
+
                         <a href="{% url 'r2010_infoprocretad_salvar' pk=a.id %}">
                             {% if perms.r2010.change_r2010infoProcRetAd %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

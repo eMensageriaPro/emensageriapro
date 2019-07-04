@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_infopgto or 1 %}
+            {% if show_fields.show_r4010_infopgto %}
             <th>Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo</th>
             {% endif %}
-            {% if show_fields.show_nrinscscp or 1 %}
+            {% if show_fields.show_nrinscscp %}
             <th>Número de inscrição no CNPJ da Sociedade em Conta de Participação da qual o beneficiário faça parte e o declarante seja sócio ostensivo</th>
             {% endif %}
-            {% if show_fields.show_percscp or 1 %}
+            {% if show_fields.show_percscp %}
             <th>Percentual que o beneficiário possui na Sociedade em Conta de Participação</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +20,24 @@
     <tbody>
         {% for a in r4010_scp_lista %}
         <tr>
-            {% if show_fields.show_r4010_infopgto or 1 %}
+            {% if show_fields.show_r4010_infopgto %}
             <td>{{ a.r4010_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_nrinscscp or 1 %}
+            {% if show_fields.show_nrinscscp %}
             <td>{{ a.nrinscscp }}</td>
             {% endif %}
-            {% if show_fields.show_percscp or 1 %}
+            {% if show_fields.show_percscp %}
             <td>{{ a.percscp }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4010.change_r4010SCP or perms.r4010.add_r4010SCP %}
-                    
+
                         <a href="{% url 'r4010_scp_salvar' pk=a.id %}">
                             {% if perms.r4010.change_r4010SCP %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

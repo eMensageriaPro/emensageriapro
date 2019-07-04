@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1300_evtcontrsindpatr or 1 %}
+            {% if show_fields.show_s1300_evtcontrsindpatr %}
             <th>Informações da contribuição sindical patronal</th>
             {% endif %}
-            {% if show_fields.show_cnpjsindic or 1 %}
+            {% if show_fields.show_cnpjsindic %}
             <th>CNPJ do Sindicato</th>
             {% endif %}
-            {% if show_fields.show_tpcontribsind or 1 %}
+            {% if show_fields.show_tpcontribsind %}
             <th>Tipo de Contribuição Sindical</th>
             {% endif %}
-            {% if show_fields.show_vlrcontribsind or 1 %}
+            {% if show_fields.show_vlrcontribsind %}
             <th>Valor</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +23,27 @@
     <tbody>
         {% for a in s1300_contribsind_lista %}
         <tr>
-            {% if show_fields.show_s1300_evtcontrsindpatr or 1 %}
+            {% if show_fields.show_s1300_evtcontrsindpatr %}
             <td>{{ a.s1300_evtcontrsindpatr }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjsindic or 1 %}
+            {% if show_fields.show_cnpjsindic %}
             <td>{{ a.cnpjsindic }}</td>
             {% endif %}
-            {% if show_fields.show_tpcontribsind or 1 %}
+            {% if show_fields.show_tpcontribsind %}
             <td>{{ a.get_tpcontribsind_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcontribsind or 1 %}
+            {% if show_fields.show_vlrcontribsind %}
             <td>{{ a.vlrcontribsind }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1300.change_s1300contribSind or perms.s1300.add_s1300contribSind %}
-                    
+
                         <a href="{% url 's1300_contribsind_salvar' pk=a.id %}">
                             {% if perms.s1300.change_s1300contribSind %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

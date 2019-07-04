@@ -2,22 +2,34 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1035_evttabcarreira or 1 %}
+            {% if show_fields.show_s1035_evttabcarreira %}
             <th>Alteração das informações</th>
             {% endif %}
-            {% if show_fields.show_codcarreira or 1 %}
+            {% if show_fields.show_idecarreira %}
+            <th>Informações de identificação da Carreira e validade das informações que estão sendo incluídas</th>
+            {% endif %}
+            {% if show_fields.show_codcarreira %}
             <th>Código da Carreira</th>
             {% endif %}
-            {% if show_fields.show_inivalid or 1 %}
+            {% if show_fields.show_inivalid %}
             <th>Início da Validade</th>
             {% endif %}
-            {% if show_fields.show_dsccarreira or 1 %}
+            {% if show_fields.show_fimvalid %}
+            <th>Fim da Validade</th>
+            {% endif %}
+            {% if show_fields.show_dadoscarreira %}
+            <th>Detalhamento das informações da Carreira que está sendo incluída</th>
+            {% endif %}
+            {% if show_fields.show_dsccarreira %}
             <th>Descrição</th>
             {% endif %}
-            {% if show_fields.show_dtleicarr or 1 %}
+            {% if show_fields.show_leicarr %}
+            <th>Número da lei</th>
+            {% endif %}
+            {% if show_fields.show_dtleicarr %}
             <th>Data da lei</th>
             {% endif %}
-            {% if show_fields.show_sitcarr or 1 %}
+            {% if show_fields.show_sitcarr %}
             <th>Situação gerada pela lei</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -29,33 +41,45 @@
     <tbody>
         {% for a in s1035_alteracao_lista %}
         <tr>
-            {% if show_fields.show_s1035_evttabcarreira or 1 %}
+            {% if show_fields.show_s1035_evttabcarreira %}
             <td>{{ a.s1035_evttabcarreira }}</td>
             {% endif %}
-            {% if show_fields.show_codcarreira or 1 %}
+            {% if show_fields.show_idecarreira %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_codcarreira %}
             <td>{{ a.codcarreira }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid or 1 %}
+            {% if show_fields.show_inivalid %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_dsccarreira or 1 %}
+            {% if show_fields.show_fimvalid %}
+            <td>{{ a.get_fimvalid_display }}</td>
+            {% endif %}
+            {% if show_fields.show_dadoscarreira %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_dsccarreira %}
             <td>{{ a.dsccarreira }}</td>
             {% endif %}
-            {% if show_fields.show_dtleicarr or 1 %}
+            {% if show_fields.show_leicarr %}
+            <td>{{ a.leicarr }}</td>
+            {% endif %}
+            {% if show_fields.show_dtleicarr %}
             <td><span style="display:none">{{ a.dtleicarr|date:"Y-m-d" }}</span>{{ a.dtleicarr|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_sitcarr or 1 %}
+            {% if show_fields.show_sitcarr %}
             <td>{{ a.get_sitcarr_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1035.change_s1035alteracao or perms.s1035.add_s1035alteracao %}
-                    
+
                         <a href="{% url 's1035_alteracao_salvar' pk=a.id %}">
                             {% if perms.s1035.change_s1035alteracao %}
                                 <span class="btn btn-primary" title="Editar">
@@ -75,7 +99,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

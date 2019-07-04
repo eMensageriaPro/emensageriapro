@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2210_evtcat or 1 %}
+            {% if show_fields.show_s2210_evtcat %}
             <th>Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.</th>
             {% endif %}
-            {% if show_fields.show_codparteating or 1 %}
+            {% if show_fields.show_codparteating %}
             <th>Parte Atingida</th>
             {% endif %}
-            {% if show_fields.show_lateralidade or 1 %}
+            {% if show_fields.show_lateralidade %}
             <th>Laterabilidade</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +20,24 @@
     <tbody>
         {% for a in s2210_parteatingida_lista %}
         <tr>
-            {% if show_fields.show_s2210_evtcat or 1 %}
+            {% if show_fields.show_s2210_evtcat %}
             <td>{{ a.s2210_evtcat }}</td>
             {% endif %}
-            {% if show_fields.show_codparteating or 1 %}
+            {% if show_fields.show_codparteating %}
             <td>{{ a.codparteating|valor }}</td>
             {% endif %}
-            {% if show_fields.show_lateralidade or 1 %}
+            {% if show_fields.show_lateralidade %}
             <td>{{ a.get_lateralidade_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2210.change_s2210parteAtingida or perms.s2210.add_s2210parteAtingida %}
-                    
+
                         <a href="{% url 's2210_parteatingida_salvar' pk=a.id %}">
                             {% if perms.s2210.change_s2210parteAtingida %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

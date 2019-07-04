@@ -73,11 +73,11 @@ def listar(request, output=None):
             'show_indnif': 1,
             'show_nifbenef': 0,
             'show_endext': 0,
-            'show_dsclograd': 1,
+            'show_dsclograd': 0,
             'show_nrlograd': 0,
             'show_complem': 0,
             'show_bairro': 0,
-            'show_nmcid': 1,
+            'show_nmcid': 0,
             'show_codpostal': 0, }
 
         post = False

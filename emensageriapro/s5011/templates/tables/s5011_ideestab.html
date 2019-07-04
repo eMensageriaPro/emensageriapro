@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_evtcs or 1 %}
+            {% if show_fields.show_s5011_evtcs %}
             <th>Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_tpinsc %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,22 +20,22 @@
     <tbody>
         {% for a in s5011_ideestab_lista %}
         <tr>
-            {% if show_fields.show_s5011_evtcs or 1 %}
+            {% if show_fields.show_s5011_evtcs %}
             <td>{{ a.s5011_evtcs }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_tpinsc %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

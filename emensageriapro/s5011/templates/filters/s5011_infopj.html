@@ -91,7 +91,7 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_indcoop" value="0" {% if show_fields|get_value_from_dict:'show_indcoop' %}checked{% endif %} >Cooperativa?
+        <input type="checkbox" name="show_indcoop" value="1" {% if show_fields|get_value_from_dict:'show_indcoop' %}checked{% endif %} >Cooperativa?
     </div>
 </div>
 
@@ -103,13 +103,13 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_indsubstpatr" value="0" {% if show_fields|get_value_from_dict:'show_indsubstpatr' %}checked{% endif %} >Substituição da CP patronal
+        <input type="checkbox" name="show_indsubstpatr" value="1" {% if show_fields|get_value_from_dict:'show_indsubstpatr' %}checked{% endif %} >Substituição da CP patronal
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_percredcontrib" value="0" {% if show_fields|get_value_from_dict:'show_percredcontrib' %}checked{% endif %} >Percentual não substituído pela contribuição prevista na lei 12.546/2011
+        <input type="checkbox" name="show_percredcontrib" value="1" {% if show_fields|get_value_from_dict:'show_percredcontrib' %}checked{% endif %} >Percentual não substituído pela contribuição prevista na lei 12.546/2011
     </div>
 </div>
 

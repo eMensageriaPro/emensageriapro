@@ -68,11 +68,11 @@ def listar(request, output=None):
         dict_fields = {}
         show_fields = {
             'show_r2070_pgtoresidbr': 1,
-            'show_dtpgto': 1,
+            'show_dtpgto': 0,
             'show_indsuspexig': 1,
             'show_inddecterceiro': 1,
-            'show_vlrrendtributavel': 1,
-            'show_vlrirrf': 1, }
+            'show_vlrrendtributavel': 0,
+            'show_vlrirrf': 0, }
 
         post = False
 

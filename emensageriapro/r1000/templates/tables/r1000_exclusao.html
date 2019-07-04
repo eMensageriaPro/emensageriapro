@@ -2,11 +2,17 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r1000_evtinfocontri or 1 %}
+            {% if show_fields.show_r1000_evtinfocontri %}
             <th>Exclusão das informações</th>
             {% endif %}
-            {% if show_fields.show_inivalid or 1 %}
+            {% if show_fields.show_ideperiodo %}
+            <th>Período de validade das informações incluídas</th>
+            {% endif %}
+            {% if show_fields.show_inivalid %}
             <th>Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM</th>
+            {% endif %}
+            {% if show_fields.show_fimvalid %}
+            <th>Preencher com o mês e ano de término da validade das informações, se houver</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -17,21 +23,27 @@
     <tbody>
         {% for a in r1000_exclusao_lista %}
         <tr>
-            {% if show_fields.show_r1000_evtinfocontri or 1 %}
+            {% if show_fields.show_r1000_evtinfocontri %}
             <td>{{ a.r1000_evtinfocontri }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid or 1 %}
+            {% if show_fields.show_ideperiodo %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_inivalid %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
-            
+            {% if show_fields.show_fimvalid %}
+            <td>{{ a.get_fimvalid_display }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r1000.change_r1000exclusao or perms.r1000.add_r1000exclusao %}
-                    
+
                         <a href="{% url 'r1000_exclusao_salvar' pk=a.id %}">
                             {% if perms.r1000.change_r1000exclusao %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

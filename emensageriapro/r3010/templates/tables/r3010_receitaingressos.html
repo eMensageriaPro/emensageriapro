@@ -2,28 +2,28 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r3010_boletim or 1 %}
+            {% if show_fields.show_r3010_boletim %}
             <th>Receita da Venda de Ingressos</th>
             {% endif %}
-            {% if show_fields.show_tpingresso or 1 %}
+            {% if show_fields.show_tpingresso %}
             <th>Tipo de Ingresso</th>
             {% endif %}
-            {% if show_fields.show_descingr or 1 %}
+            {% if show_fields.show_descingr %}
             <th>Descrição do tipo de ingresso</th>
             {% endif %}
-            {% if show_fields.show_qtdeingrvenda or 1 %}
+            {% if show_fields.show_qtdeingrvenda %}
             <th>Número de ingressos colocados à venda</th>
             {% endif %}
-            {% if show_fields.show_qtdeingrvendidos or 1 %}
+            {% if show_fields.show_qtdeingrvendidos %}
             <th>Número de ingressos vendidos</th>
             {% endif %}
-            {% if show_fields.show_qtdeingrdev or 1 %}
+            {% if show_fields.show_qtdeingrdev %}
             <th>Número de ingressos devolvidos</th>
             {% endif %}
-            {% if show_fields.show_precoindiv or 1 %}
+            {% if show_fields.show_precoindiv %}
             <th>Preço individual do ingresso</th>
             {% endif %}
-            {% if show_fields.show_vlrtotal or 1 %}
+            {% if show_fields.show_vlrtotal %}
             <th>Valor total arrecadado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -35,39 +35,39 @@
     <tbody>
         {% for a in r3010_receitaingressos_lista %}
         <tr>
-            {% if show_fields.show_r3010_boletim or 1 %}
+            {% if show_fields.show_r3010_boletim %}
             <td>{{ a.r3010_boletim }}</td>
             {% endif %}
-            {% if show_fields.show_tpingresso or 1 %}
+            {% if show_fields.show_tpingresso %}
             <td>{{ a.get_tpingresso_display }}</td>
             {% endif %}
-            {% if show_fields.show_descingr or 1 %}
+            {% if show_fields.show_descingr %}
             <td>{{ a.descingr }}</td>
             {% endif %}
-            {% if show_fields.show_qtdeingrvenda or 1 %}
+            {% if show_fields.show_qtdeingrvenda %}
             <td>{{ a.qtdeingrvenda }}</td>
             {% endif %}
-            {% if show_fields.show_qtdeingrvendidos or 1 %}
+            {% if show_fields.show_qtdeingrvendidos %}
             <td>{{ a.qtdeingrvendidos }}</td>
             {% endif %}
-            {% if show_fields.show_qtdeingrdev or 1 %}
+            {% if show_fields.show_qtdeingrdev %}
             <td>{{ a.qtdeingrdev }}</td>
             {% endif %}
-            {% if show_fields.show_precoindiv or 1 %}
+            {% if show_fields.show_precoindiv %}
             <td>{{ a.precoindiv }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotal or 1 %}
+            {% if show_fields.show_vlrtotal %}
             <td>{{ a.vlrtotal }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r3010.change_r3010receitaIngressos or perms.r3010.add_r3010receitaIngressos %}
-                    
+
                         <a href="{% url 'r3010_receitaingressos_salvar' pk=a.id %}">
                             {% if perms.r3010.change_r3010receitaIngressos %}
                                 <span class="btn btn-primary" title="Editar">
@@ -87,7 +87,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

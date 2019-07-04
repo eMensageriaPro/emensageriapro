@@ -68,16 +68,16 @@ def listar(request, output=None):
         dict_fields = {}
         show_fields = {
             'show_s1270_evtcontratavnp': 1,
-            'show_tpinsc': 1,
+            'show_tpinsc': 0,
             'show_nrinsc': 1,
             'show_codlotacao': 1,
-            'show_vrbccp00': 1,
-            'show_vrbccp15': 1,
-            'show_vrbccp20': 1,
-            'show_vrbccp25': 1,
-            'show_vrbccp13': 1,
-            'show_vrbcfgts': 1,
-            'show_vrdesccp': 1, }
+            'show_vrbccp00': 0,
+            'show_vrbccp15': 0,
+            'show_vrbccp20': 0,
+            'show_vrbccp25': 0,
+            'show_vrbccp13': 0,
+            'show_vrbcfgts': 0,
+            'show_vrdesccp': 0, }
 
         post = False
 

@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5001_infocategincid or 1 %}
+            {% if show_fields.show_s5001_infocategincid %}
             <th>Informações sobre bases de cálculo, descontos e deduções de contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos. Evento de origem (S-1200, S-2299 e S-2399).</th>
             {% endif %}
-            {% if show_fields.show_ind13 or 1 %}
+            {% if show_fields.show_ind13 %}
             <th>Indicativo de 13º salário</th>
             {% endif %}
-            {% if show_fields.show_tpvalor or 1 %}
+            {% if show_fields.show_tpvalor %}
             <th>Tipo de Valor</th>
             {% endif %}
-            {% if show_fields.show_valor or 1 %}
+            {% if show_fields.show_valor %}
             <th>Valor da base de cálculo, dedução ou desconto da CP</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,25 +23,25 @@
     <tbody>
         {% for a in s5001_infobasecs_lista %}
         <tr>
-            {% if show_fields.show_s5001_infocategincid or 1 %}
+            {% if show_fields.show_s5001_infocategincid %}
             <td>{{ a.s5001_infocategincid }}</td>
             {% endif %}
-            {% if show_fields.show_ind13 or 1 %}
+            {% if show_fields.show_ind13 %}
             <td>{{ a.get_ind13_display }}</td>
             {% endif %}
-            {% if show_fields.show_tpvalor or 1 %}
+            {% if show_fields.show_tpvalor %}
             <td>{{ a.tpvalor|valor }}</td>
             {% endif %}
-            {% if show_fields.show_valor or 1 %}
+            {% if show_fields.show_valor %}
             <td>{{ a.valor }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

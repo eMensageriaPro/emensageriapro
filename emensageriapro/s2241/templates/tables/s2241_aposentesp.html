@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2241_evtinsapo or 1 %}
+            {% if show_fields.show_s2241_evtinsapo %}
             <th>Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -14,18 +14,18 @@
     <tbody>
         {% for a in s2241_aposentesp_lista %}
         <tr>
-            {% if show_fields.show_s2241_evtinsapo or 1 %}
+            {% if show_fields.show_s2241_evtinsapo %}
             <td>{{ a.s2241_evtinsapo }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2241.change_s2241aposentEsp or perms.s2241.add_s2241aposentEsp %}
-                    
+
                         <a href="{% url 's2241_aposentesp_salvar' pk=a.id %}">
                             {% if perms.s2241.change_s2241aposentEsp %}
                                 <span class="btn btn-primary" title="Editar">
@@ -45,7 +45,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

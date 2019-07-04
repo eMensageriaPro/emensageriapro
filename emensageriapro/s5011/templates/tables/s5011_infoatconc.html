@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_infopj or 1 %}
+            {% if show_fields.show_s5011_infopj %}
             <th>Informações prestadas por empresa enquadrada no Regime de Tributação Simples Nacional com tributação previdenciária substituída e não substituída.</th>
             {% endif %}
-            {% if show_fields.show_fatormes or 1 %}
+            {% if show_fields.show_fatormes %}
             <th>Fator mês</th>
             {% endif %}
-            {% if show_fields.show_fator13 or 1 %}
+            {% if show_fields.show_fator13 %}
             <th>Fator decimo terceiro</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,22 +20,22 @@
     <tbody>
         {% for a in s5011_infoatconc_lista %}
         <tr>
-            {% if show_fields.show_s5011_infopj or 1 %}
+            {% if show_fields.show_s5011_infopj %}
             <td>{{ a.s5011_infopj }}</td>
             {% endif %}
-            {% if show_fields.show_fatormes or 1 %}
+            {% if show_fields.show_fatormes %}
             <td>{{ a.fatormes }}</td>
             {% endif %}
-            {% if show_fields.show_fator13 or 1 %}
+            {% if show_fields.show_fator13 %}
             <td>{{ a.fator13 }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

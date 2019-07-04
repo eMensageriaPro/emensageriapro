@@ -67,10 +67,10 @@ def listar(request, output=None):
 
         dict_fields = {}
         show_fields = {
-            'show_r2060_tipocod': 1,
+            'show_r2060_tipocod': 0,
             'show_tpajuste': 1,
-            'show_codajuste': 1,
-            'show_vlrajuste': 1,
+            'show_codajuste': 0,
+            'show_vlrajuste': 0,
             'show_descajuste': 1,
             'show_dtajuste': 1, }
 

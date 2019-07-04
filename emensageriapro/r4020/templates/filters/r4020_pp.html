@@ -113,19 +113,19 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrbasenpp" value="0" {% if show_fields|get_value_from_dict:'show_vlrbasenpp' %}checked{% endif %} >Valor da base do PIS/PASEP com exigibilidade suspensa
+        <input type="checkbox" name="show_vlrbasenpp" value="1" {% if show_fields|get_value_from_dict:'show_vlrbasenpp' %}checked{% endif %} >Valor da base do PIS/PASEP com exigibilidade suspensa
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrnpp" value="0" {% if show_fields|get_value_from_dict:'show_vlrnpp' %}checked{% endif %} >Valor do PIS/PASEP com exigibilidade suspensa, que deixou de ser retido
+        <input type="checkbox" name="show_vlrnpp" value="1" {% if show_fields|get_value_from_dict:'show_vlrnpp' %}checked{% endif %} >Valor do PIS/PASEP com exigibilidade suspensa, que deixou de ser retido
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrdeppp" value="0" {% if show_fields|get_value_from_dict:'show_vlrdeppp' %}checked{% endif %} >Valor depósito judicial de PIS/PASEP
+        <input type="checkbox" name="show_vlrdeppp" value="1" {% if show_fields|get_value_from_dict:'show_vlrdeppp' %}checked{% endif %} >Valor depósito judicial de PIS/PASEP
     </div>
 </div>
 

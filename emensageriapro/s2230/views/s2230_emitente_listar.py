@@ -69,7 +69,7 @@ def listar(request, output=None):
         show_fields = {
             'show_s2230_infoatestado': 1,
             'show_nmemit': 1,
-            'show_ideoc': 1,
+            'show_ideoc': 0,
             'show_nroc': 1,
             'show_ufoc': 0, }
 

@@ -2,37 +2,37 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1270_evtcontratavnp or 1 %}
+            {% if show_fields.show_s1270_evtcontratavnp %}
             <th>Registro que apresenta a remuneração dos trabalhadores avulsos não portuários, de forma totalizada por estabelecimento contratante.</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_tpinsc %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_codlotacao or 1 %}
+            {% if show_fields.show_codlotacao %}
             <th>Código da Lotação</th>
             {% endif %}
-            {% if show_fields.show_vrbccp00 or 1 %}
+            {% if show_fields.show_vrbccp00 %}
             <th>Valor da BC da CP</th>
             {% endif %}
-            {% if show_fields.show_vrbccp15 or 1 %}
+            {% if show_fields.show_vrbccp15 %}
             <th>Valor da BC da CP (15 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbccp20 or 1 %}
+            {% if show_fields.show_vrbccp20 %}
             <th>Valor da BC da CP (20 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbccp25 or 1 %}
+            {% if show_fields.show_vrbccp25 %}
             <th>Valor da BC da CP (25 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbccp13 or 1 %}
+            {% if show_fields.show_vrbccp13 %}
             <th>Valor da BC da CP (13 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbcfgts or 1 %}
+            {% if show_fields.show_vrbcfgts %}
             <th>Valor da BC do FGTS</th>
             {% endif %}
-            {% if show_fields.show_vrdesccp or 1 %}
+            {% if show_fields.show_vrdesccp %}
             <th>Valor total descontada dos segurados</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -44,48 +44,48 @@
     <tbody>
         {% for a in s1270_remunavnp_lista %}
         <tr>
-            {% if show_fields.show_s1270_evtcontratavnp or 1 %}
+            {% if show_fields.show_s1270_evtcontratavnp %}
             <td>{{ a.s1270_evtcontratavnp }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_tpinsc %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_codlotacao or 1 %}
+            {% if show_fields.show_codlotacao %}
             <td>{{ a.codlotacao }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp00 or 1 %}
+            {% if show_fields.show_vrbccp00 %}
             <td>{{ a.vrbccp00 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp15 or 1 %}
+            {% if show_fields.show_vrbccp15 %}
             <td>{{ a.vrbccp15 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp20 or 1 %}
+            {% if show_fields.show_vrbccp20 %}
             <td>{{ a.vrbccp20 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp25 or 1 %}
+            {% if show_fields.show_vrbccp25 %}
             <td>{{ a.vrbccp25 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp13 or 1 %}
+            {% if show_fields.show_vrbccp13 %}
             <td>{{ a.vrbccp13 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbcfgts or 1 %}
+            {% if show_fields.show_vrbcfgts %}
             <td>{{ a.vrbcfgts }}</td>
             {% endif %}
-            {% if show_fields.show_vrdesccp or 1 %}
+            {% if show_fields.show_vrdesccp %}
             <td>{{ a.vrdesccp }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1270.change_s1270remunAvNP or perms.s1270.add_s1270remunAvNP %}
-                    
+
                         <a href="{% url 's1270_remunavnp_salvar' pk=a.id %}">
                             {% if perms.s1270.change_s1270remunAvNP %}
                                 <span class="btn btn-primary" title="Editar">
@@ -105,7 +105,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

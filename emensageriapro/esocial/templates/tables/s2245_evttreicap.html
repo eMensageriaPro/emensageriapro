@@ -2,40 +2,109 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evttreicap %}
+            <th>Evento Treinamentos e Capacitações</th>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <th>Identidade do Registro</th>
             {% endif %}
-            {% if show_fields.show_indretif or 1 %}
+            {% if show_fields.show_ideevento %}
+            <th>Informações de Identificação do Evento</th>
+            {% endif %}
+            {% if show_fields.show_indretif %}
             <th>Identificador de retificação</th>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_nrrecibo %}
+            <th>Número do recibo</th>
+            {% endif %}
+            {% if show_fields.show_tpamb %}
             <th>Identificação do ambiente</th>
             {% endif %}
-            {% if show_fields.show_procemi or 1 %}
+            {% if show_fields.show_procemi %}
             <th>Processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_verproc or 1 %}
+            {% if show_fields.show_verproc %}
             <th>Versão do processo</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_ideempregador %}
+            <th>Informações de identificação do empregador</th>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_idevinculo %}
+            <th>Informações de Identificação do Trabalhador e do Vínculo</th>
+            {% endif %}
+            {% if show_fields.show_cpftrab %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_codtreicap or 1 %}
+            {% if show_fields.show_nistrab %}
+            <th>NIS</th>
+            {% endif %}
+            {% if show_fields.show_matricula %}
+            <th>Matricula</th>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
+            <th>Código da Categoria</th>
+            {% endif %}
+            {% if show_fields.show_treicap %}
+            <th>Treinamentos e Capacitações Específicas para Trabalho</th>
+            {% endif %}
+            {% if show_fields.show_codtreicap %}
             <th>Informar o código do treinamento/capacitação</th>
             {% endif %}
-            {% if show_fields.show_dttreicap or 1 %}
+            {% if show_fields.show_obstreicap %}
+            <th>Observação referente ao treinamento/capacitação/exercício simulado.</th>
+            {% endif %}
+            {% if show_fields.show_observacao %}
+            <th>Observações</th>
+            {% endif %}
+            {% if show_fields.show_infocomplem %}
+            <th>Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</th>
+            {% endif %}
+            {% if show_fields.show_dttreicap %}
             <th>Informar a data de início do treinamento/capacitação/autorização/exercício simulado ou a data de início da obrigatoriedade deste evento para o empregador no eSocial, a que for mais recente</th>
             {% endif %}
-            {% if show_fields.show_indtreinant or 1 %}
+            {% if show_fields.show_durtreicap %}
+            <th>Informar a duração do treinamento/capacitação, em horas.</th>
+            {% endif %}
+            {% if show_fields.show_modtreicap %}
+            <th>Modalidade do treinamento/capacitação</th>
+            {% endif %}
+            {% if show_fields.show_tptreicap %}
+            <th>Tipo de treinamento/capacitação</th>
+            {% endif %}
+            {% if show_fields.show_indtreinant %}
             <th>Indicar se o treinamento ocorreu antes da admissão, em outro empregador</th>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_versao %}
+            <th>Versão</th>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial %}
+            <th>Transmissor</th>
+            {% endif %}
+            {% if show_fields.show_retornos_eventos %}
+            <th>Retorno do Evento</th>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <th>Ocorrências</th>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <th>Validação de Precedência</th>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <th>Validações</th>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <th>Arquivo Original</th>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <th>Arquivo</th>
+            {% endif %}
+            {% if show_fields.show_status %}
             <th>Status</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -47,51 +116,120 @@
     <tbody>
         {% for a in s2245_evttreicap_lista %}
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evttreicap %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <td>{{ a.identidade }}</td>
             {% endif %}
-            {% if show_fields.show_indretif or 1 %}
+            {% if show_fields.show_ideevento %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_indretif %}
             <td>{{ a.get_indretif_display }}</td>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_nrrecibo %}
+            <td>{{ a.nrrecibo }}</td>
+            {% endif %}
+            {% if show_fields.show_tpamb %}
             <td>{{ a.get_tpamb_display }}</td>
             {% endif %}
-            {% if show_fields.show_procemi or 1 %}
+            {% if show_fields.show_procemi %}
             <td>{{ a.get_procemi_display }}</td>
             {% endif %}
-            {% if show_fields.show_verproc or 1 %}
+            {% if show_fields.show_verproc %}
             <td>{{ a.verproc }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_ideempregador %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_idevinculo %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_cpftrab %}
             <td>{{ a.cpftrab }}</td>
             {% endif %}
-            {% if show_fields.show_codtreicap or 1 %}
+            {% if show_fields.show_nistrab %}
+            <td>{{ a.nistrab }}</td>
+            {% endif %}
+            {% if show_fields.show_matricula %}
+            <td>{{ a.matricula }}</td>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
+            <td>{{ a.codcateg|valor }}</td>
+            {% endif %}
+            {% if show_fields.show_treicap %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_codtreicap %}
             <td>{{ a.codtreicap }}</td>
             {% endif %}
-            {% if show_fields.show_dttreicap or 1 %}
+            {% if show_fields.show_obstreicap %}
+            <td>{{ a.obstreicap }}</td>
+            {% endif %}
+            {% if show_fields.show_observacao %}
+            <td>{{ a.observacao }}</td>
+            {% endif %}
+            {% if show_fields.show_infocomplem %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_dttreicap %}
             <td><span style="display:none">{{ a.dttreicap|date:"Y-m-d" }}</span>{{ a.dttreicap|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_indtreinant or 1 %}
+            {% if show_fields.show_durtreicap %}
+            <td>{{ a.durtreicap }}</td>
+            {% endif %}
+            {% if show_fields.show_modtreicap %}
+            <td>{{ a.get_modtreicap_display }}</td>
+            {% endif %}
+            {% if show_fields.show_tptreicap %}
+            <td>{{ a.get_tptreicap_display }}</td>
+            {% endif %}
+            {% if show_fields.show_indtreinant %}
             <td>{{ a.get_indtreinant_display }}</td>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_versao %}
+            <td>{{ a.get_versao_display }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial %}
+            <td>{{ a.transmissor_lote_esocial }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_eventos %}
+            <td>{{ a.retornos_eventos }}</td>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <td>{{ a.ocorrencias }}</td>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <td>{{ a.get_validacao_precedencia_display }}</td>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <td>{{ a.validacoes }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <td>{{ a.get_arquivo_original_display }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <td>{{ a.arquivo }}</td>
+            {% endif %}
+            {% if show_fields.show_status %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.esocial.change_s2245evtTreiCap or perms.esocial.add_s2245evtTreiCap %}
-                    
+
                         <a href="{% url 's2245_evttreicap_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s2245evtTreiCap %}
                                 <span class="btn btn-primary" title="Editar">
@@ -111,7 +249,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

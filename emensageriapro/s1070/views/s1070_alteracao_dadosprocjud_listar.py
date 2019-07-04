@@ -70,7 +70,7 @@ def listar(request, output=None):
             'show_s1070_alteracao': 1,
             'show_ufvara': 1,
             'show_codmunic': 1,
-            'show_idvara': 1, }
+            'show_idvara': 0, }
 
         post = False
 

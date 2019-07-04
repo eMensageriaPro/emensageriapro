@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_evtcs or 1 %}
+            {% if show_fields.show_s5011_evtcs %}
             <th>Informações de contribuição previdenciária do Segurado</th>
             {% endif %}
-            {% if show_fields.show_vrdesccp or 1 %}
+            {% if show_fields.show_vrdesccp %}
             <th>Valor total descontada dos segurados</th>
             {% endif %}
-            {% if show_fields.show_vrcpseg or 1 %}
+            {% if show_fields.show_vrcpseg %}
             <th>Valor da contribuição do segurado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,22 +20,22 @@
     <tbody>
         {% for a in s5011_infocpseg_lista %}
         <tr>
-            {% if show_fields.show_s5011_evtcs or 1 %}
+            {% if show_fields.show_s5011_evtcs %}
             <td>{{ a.s5011_evtcs }}</td>
             {% endif %}
-            {% if show_fields.show_vrdesccp or 1 %}
+            {% if show_fields.show_vrdesccp %}
             <td>{{ a.vrdesccp }}</td>
             {% endif %}
-            {% if show_fields.show_vrcpseg or 1 %}
+            {% if show_fields.show_vrcpseg %}
             <td>{{ a.vrcpseg }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

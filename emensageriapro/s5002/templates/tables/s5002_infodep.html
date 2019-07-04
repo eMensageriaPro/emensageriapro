@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5002_evtirrfbenef or 1 %}
+            {% if show_fields.show_s5002_evtirrfbenef %}
             <th>Informações relativas a existência de dependentes do beneficiário do pagamento. Origem: S-1210 - registro {deps}</th>
             {% endif %}
-            {% if show_fields.show_vrdeddep or 1 %}
+            {% if show_fields.show_vrdeddep %}
             <th>Valor da dedução da BC do IRRF</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,19 +17,19 @@
     <tbody>
         {% for a in s5002_infodep_lista %}
         <tr>
-            {% if show_fields.show_s5002_evtirrfbenef or 1 %}
+            {% if show_fields.show_s5002_evtirrfbenef %}
             <td>{{ a.s5002_evtirrfbenef }}</td>
             {% endif %}
-            {% if show_fields.show_vrdeddep or 1 %}
+            {% if show_fields.show_vrdeddep %}
             <td>{{ a.vrdeddep }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

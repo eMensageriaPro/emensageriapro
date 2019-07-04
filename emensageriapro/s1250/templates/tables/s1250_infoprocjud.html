@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1250_ideprodutor or 1 %}
+            {% if show_fields.show_s1250_ideprodutor %}
             <th>Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.</th>
             {% endif %}
-            {% if show_fields.show_nrprocjud or 1 %}
+            {% if show_fields.show_nrprocjud %}
             <th>Número do Processo Judicial</th>
             {% endif %}
-            {% if show_fields.show_codsusp or 1 %}
+            {% if show_fields.show_codsusp %}
             <th>Código do Indicativo da Suspensão</th>
             {% endif %}
-            {% if show_fields.show_vrcpnret or 1 %}
+            {% if show_fields.show_vrcpnret %}
             <th>Valor da CP não retida</th>
             {% endif %}
-            {% if show_fields.show_vrratnret or 1 %}
+            {% if show_fields.show_vrratnret %}
             <th>Valor da GILRAT</th>
             {% endif %}
-            {% if show_fields.show_vrsenarnret or 1 %}
+            {% if show_fields.show_vrsenarnret %}
             <th>Valor da CP destinada ao SENAR não retida</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -29,33 +29,33 @@
     <tbody>
         {% for a in s1250_infoprocjud_lista %}
         <tr>
-            {% if show_fields.show_s1250_ideprodutor or 1 %}
+            {% if show_fields.show_s1250_ideprodutor %}
             <td>{{ a.s1250_ideprodutor }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocjud or 1 %}
+            {% if show_fields.show_nrprocjud %}
             <td>{{ a.nrprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp or 1 %}
+            {% if show_fields.show_codsusp %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
-            {% if show_fields.show_vrcpnret or 1 %}
+            {% if show_fields.show_vrcpnret %}
             <td>{{ a.vrcpnret }}</td>
             {% endif %}
-            {% if show_fields.show_vrratnret or 1 %}
+            {% if show_fields.show_vrratnret %}
             <td>{{ a.vrratnret }}</td>
             {% endif %}
-            {% if show_fields.show_vrsenarnret or 1 %}
+            {% if show_fields.show_vrsenarnret %}
             <td>{{ a.vrsenarnret }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1250.change_s1250infoProcJud or perms.s1250.add_s1250infoProcJud %}
-                    
+
                         <a href="{% url 's1250_infoprocjud_salvar' pk=a.id %}">
                             {% if perms.s1250.change_s1250infoProcJud %}
                                 <span class="btn btn-primary" title="Editar">
@@ -75,7 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2241_altaposentesp or 1 %}
+            {% if show_fields.show_s2241_altaposentesp %}
             <th>Informações sobre as condições de trabalho insalubre/periculoso.</th>
             {% endif %}
-            {% if show_fields.show_codamb or 1 %}
+            {% if show_fields.show_codamb %}
             <th>Código do Ambiente</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2241_altaposentesp_infoamb_lista %}
         <tr>
-            {% if show_fields.show_s2241_altaposentesp or 1 %}
+            {% if show_fields.show_s2241_altaposentesp %}
             <td>{{ a.s2241_altaposentesp }}</td>
             {% endif %}
-            {% if show_fields.show_codamb or 1 %}
+            {% if show_fields.show_codamb %}
             <td>{{ a.codamb }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2241.change_s2241altAposentEspinfoamb or perms.s2241.add_s2241altAposentEspinfoamb %}
-                    
+
                         <a href="{% url 's2241_altaposentesp_infoamb_salvar' pk=a.id %}">
                             {% if perms.s2241.change_s2241altAposentEspinfoamb %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

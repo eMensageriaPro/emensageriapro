@@ -70,10 +70,10 @@ def listar(request, output=None):
             'show_s1030_evttabcargo': 1,
             'show_idecargo': 0,
             'show_codcargo': 1,
-            'show_inivalid': 1,
+            'show_inivalid': 0,
             'show_fimvalid': 0,
             'show_dadoscargo': 0,
-            'show_nmcargo': 1,
+            'show_nmcargo': 0,
             'show_codcbo': 1, }
 
         post = False

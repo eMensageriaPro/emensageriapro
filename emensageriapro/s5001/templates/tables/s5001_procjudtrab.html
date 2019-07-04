@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5001_evtbasestrab or 1 %}
+            {% if show_fields.show_s5001_evtbasestrab %}
             <th>Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</th>
             {% endif %}
-            {% if show_fields.show_nrprocjud or 1 %}
+            {% if show_fields.show_nrprocjud %}
             <th>Número do Processo Judicial</th>
             {% endif %}
-            {% if show_fields.show_codsusp or 1 %}
+            {% if show_fields.show_codsusp %}
             <th>Código do Indicativo da Suspensão</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,22 +20,22 @@
     <tbody>
         {% for a in s5001_procjudtrab_lista %}
         <tr>
-            {% if show_fields.show_s5001_evtbasestrab or 1 %}
+            {% if show_fields.show_s5001_evtbasestrab %}
             <td>{{ a.s5001_evtbasestrab }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocjud or 1 %}
+            {% if show_fields.show_nrprocjud %}
             <td>{{ a.nrprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp or 1 %}
+            {% if show_fields.show_codsusp %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

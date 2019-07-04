@@ -2,11 +2,17 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2230_evtafasttemp or 1 %}
+            {% if show_fields.show_s2230_evtafasttemp %}
             <th>Informações de retificação do Afastamento Temporário</th>
             {% endif %}
-            {% if show_fields.show_origretif or 1 %}
+            {% if show_fields.show_origretif %}
             <th>Origem da retificação</th>
+            {% endif %}
+            {% if show_fields.show_tpproc %}
+            <th>Processo RAT</th>
+            {% endif %}
+            {% if show_fields.show_nrproc %}
+            <th>Número do Processo</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -17,21 +23,27 @@
     <tbody>
         {% for a in s2230_inforetif_lista %}
         <tr>
-            {% if show_fields.show_s2230_evtafasttemp or 1 %}
+            {% if show_fields.show_s2230_evtafasttemp %}
             <td>{{ a.s2230_evtafasttemp }}</td>
             {% endif %}
-            {% if show_fields.show_origretif or 1 %}
+            {% if show_fields.show_origretif %}
             <td>{{ a.get_origretif_display }}</td>
             {% endif %}
-            
+            {% if show_fields.show_tpproc %}
+            <td>{{ a.get_tpproc_display }}</td>
+            {% endif %}
+            {% if show_fields.show_nrproc %}
+            <td>{{ a.nrproc }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2230.change_s2230infoRetif or perms.s2230.add_s2230infoRetif %}
-                    
+
                         <a href="{% url 's2230_inforetif_salvar' pk=a.id %}">
                             {% if perms.s2230.change_s2230infoRetif %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

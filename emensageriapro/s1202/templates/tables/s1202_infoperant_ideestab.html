@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1202_infoperant_ideperiodo or 1 %}
+            {% if show_fields.show_s1202_infoperant_ideperiodo %}
             <th>Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_tpinsc %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +20,24 @@
     <tbody>
         {% for a in s1202_infoperant_ideestab_lista %}
         <tr>
-            {% if show_fields.show_s1202_infoperant_ideperiodo or 1 %}
+            {% if show_fields.show_s1202_infoperant_ideperiodo %}
             <td>{{ a.s1202_infoperant_ideperiodo }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_tpinsc %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1202.change_s1202infoPerAntideEstab or perms.s1202.add_s1202infoPerAntideEstab %}
-                    
+
                         <a href="{% url 's1202_infoperant_ideestab_salvar' pk=a.id %}">
                             {% if perms.s1202.change_s1202infoPerAntideEstab %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

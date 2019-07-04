@@ -2,11 +2,20 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_infocomplementares or 1 %}
+            {% if show_fields.show_s2300_infocomplementares %}
             <th>Empresa de Origem do Dirigente Sindical</th>
             {% endif %}
-            {% if show_fields.show_categorig or 1 %}
+            {% if show_fields.show_categorig %}
             <th>Categoria de origem do trabalhador</th>
+            {% endif %}
+            {% if show_fields.show_cnpjorigem %}
+            <th>CNPJ da empresa de origem do dirigente sindical</th>
+            {% endif %}
+            {% if show_fields.show_dtadmorig %}
+            <th>Data de admissão do dirigente sindical</th>
+            {% endif %}
+            {% if show_fields.show_matricorig %}
+            <th>Matricula do trabalhador no empregador origem</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -17,21 +26,30 @@
     <tbody>
         {% for a in s2300_infodirigentesindical_lista %}
         <tr>
-            {% if show_fields.show_s2300_infocomplementares or 1 %}
+            {% if show_fields.show_s2300_infocomplementares %}
             <td>{{ a.s2300_infocomplementares }}</td>
             {% endif %}
-            {% if show_fields.show_categorig or 1 %}
+            {% if show_fields.show_categorig %}
             <td>{{ a.categorig }}</td>
             {% endif %}
-            
+            {% if show_fields.show_cnpjorigem %}
+            <td>{{ a.cnpjorigem }}</td>
+            {% endif %}
+            {% if show_fields.show_dtadmorig %}
+            <td><span style="display:none">{{ a.dtadmorig|date:"Y-m-d" }}</span>{{ a.dtadmorig|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_matricorig %}
+            <td>{{ a.matricorig }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2300.change_s2300infoDirigenteSindical or perms.s2300.add_s2300infoDirigenteSindical %}
-                    
+
                         <a href="{% url 's2300_infodirigentesindical_salvar' pk=a.id %}">
                             {% if perms.s2300.change_s2300infoDirigenteSindical %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

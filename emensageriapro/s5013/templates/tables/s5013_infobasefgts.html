@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5013_evtfgts or 1 %}
+            {% if show_fields.show_s5013_evtfgts %}
             <th>Informações referentes a bases de cálculo do FGTS.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -14,16 +14,16 @@
     <tbody>
         {% for a in s5013_infobasefgts_lista %}
         <tr>
-            {% if show_fields.show_s5013_evtfgts or 1 %}
+            {% if show_fields.show_s5013_evtfgts %}
             <td>{{ a.s5013_evtfgts }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

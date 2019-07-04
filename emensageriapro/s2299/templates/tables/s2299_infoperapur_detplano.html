@@ -2,19 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2299_infoperapur_detoper or 1 %}
+            {% if show_fields.show_s2299_infoperapur_detoper %}
             <th>Informações do dependente do plano privado de saúde.</th>
             {% endif %}
-            {% if show_fields.show_tpdep or 1 %}
+            {% if show_fields.show_tpdep %}
             <th>Tipo</th>
             {% endif %}
-            {% if show_fields.show_nmdep or 1 %}
+            {% if show_fields.show_cpfdep %}
+            <th>CPF</th>
+            {% endif %}
+            {% if show_fields.show_nmdep %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_dtnascto or 1 %}
+            {% if show_fields.show_dtnascto %}
             <th>Data de nascimento</th>
             {% endif %}
-            {% if show_fields.show_vlrpgdep or 1 %}
+            {% if show_fields.show_vlrpgdep %}
             <th>Valor pago relativo ao plano de saúde do dependente</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -26,30 +29,33 @@
     <tbody>
         {% for a in s2299_infoperapur_detplano_lista %}
         <tr>
-            {% if show_fields.show_s2299_infoperapur_detoper or 1 %}
+            {% if show_fields.show_s2299_infoperapur_detoper %}
             <td>{{ a.s2299_infoperapur_detoper }}</td>
             {% endif %}
-            {% if show_fields.show_tpdep or 1 %}
+            {% if show_fields.show_tpdep %}
             <td>{{ a.get_tpdep_display }}</td>
             {% endif %}
-            {% if show_fields.show_nmdep or 1 %}
+            {% if show_fields.show_cpfdep %}
+            <td>{{ a.cpfdep }}</td>
+            {% endif %}
+            {% if show_fields.show_nmdep %}
             <td>{{ a.nmdep }}</td>
             {% endif %}
-            {% if show_fields.show_dtnascto or 1 %}
+            {% if show_fields.show_dtnascto %}
             <td><span style="display:none">{{ a.dtnascto|date:"Y-m-d" }}</span>{{ a.dtnascto|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_vlrpgdep or 1 %}
+            {% if show_fields.show_vlrpgdep %}
             <td>{{ a.vlrpgdep }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2299.change_s2299infoPerApurdetPlano or perms.s2299.add_s2299infoPerApurdetPlano %}
-                    
+
                         <a href="{% url 's2299_infoperapur_detplano_salvar' pk=a.id %}">
                             {% if perms.s2299.change_s2299infoPerApurdetPlano %}
                                 <span class="btn btn-primary" title="Editar">
@@ -69,7 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

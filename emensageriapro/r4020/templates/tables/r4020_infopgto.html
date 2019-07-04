@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4020_idepgto or 1 %}
+            {% if show_fields.show_r4020_idepgto %}
             <th>Informações do Pagamento</th>
             {% endif %}
-            {% if show_fields.show_dtfg or 1 %}
+            {% if show_fields.show_dtfg %}
             <th>Informar a data do fato gerador ou pagamento/crédito</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalpag or 1 %}
+            {% if show_fields.show_vlrtotalpag %}
             <th>Valor total pago</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalcred or 1 %}
+            {% if show_fields.show_vlrtotalcred %}
             <th>Valor total creditado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +23,27 @@
     <tbody>
         {% for a in r4020_infopgto_lista %}
         <tr>
-            {% if show_fields.show_r4020_idepgto or 1 %}
+            {% if show_fields.show_r4020_idepgto %}
             <td>{{ a.r4020_idepgto }}</td>
             {% endif %}
-            {% if show_fields.show_dtfg or 1 %}
+            {% if show_fields.show_dtfg %}
             <td><span style="display:none">{{ a.dtfg|date:"Y-m-d" }}</span>{{ a.dtfg|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalpag or 1 %}
+            {% if show_fields.show_vlrtotalpag %}
             <td>{{ a.vlrtotalpag }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalcred or 1 %}
+            {% if show_fields.show_vlrtotalcred %}
             <td>{{ a.vlrtotalcred }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4020.change_r4020infoPgto or perms.r4020.add_r4020infoPgto %}
-                    
+
                         <a href="{% url 'r4020_infopgto_salvar' pk=a.id %}">
                             {% if perms.r4020.change_r4020infoPgto %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

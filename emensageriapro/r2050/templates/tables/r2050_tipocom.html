@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2050_evtcomprod or 1 %}
+            {% if show_fields.show_r2050_evtcomprod %}
             <th>Registro que apresenta o valor total da Receita Bruta por 'tipo' de comercialização.</th>
             {% endif %}
-            {% if show_fields.show_indcom or 1 %}
+            {% if show_fields.show_indcom %}
             <th>Indicativo de Comercialização</th>
             {% endif %}
-            {% if show_fields.show_vlrrecbruta or 1 %}
+            {% if show_fields.show_vlrrecbruta %}
             <th>Preencher com o valor total da comercialização</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +20,24 @@
     <tbody>
         {% for a in r2050_tipocom_lista %}
         <tr>
-            {% if show_fields.show_r2050_evtcomprod or 1 %}
+            {% if show_fields.show_r2050_evtcomprod %}
             <td>{{ a.r2050_evtcomprod }}</td>
             {% endif %}
-            {% if show_fields.show_indcom or 1 %}
+            {% if show_fields.show_indcom %}
             <td>{{ a.get_indcom_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrrecbruta or 1 %}
+            {% if show_fields.show_vlrrecbruta %}
             <td>{{ a.vlrrecbruta }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2050.change_r2050tipoCom or perms.r2050.add_r2050tipoCom %}
-                    
+
                         <a href="{% url 'r2050_tipocom_salvar' pk=a.id %}">
                             {% if perms.r2050.change_r2050tipoCom %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

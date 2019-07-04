@@ -2,8 +2,20 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_evttsvinicio or 1 %}
+            {% if show_fields.show_s2300_evttsvinicio %}
             <th>Informações de contato</th>
+            {% endif %}
+            {% if show_fields.show_foneprinc %}
+            <th>Telefone Principal</th>
+            {% endif %}
+            {% if show_fields.show_fonealternat %}
+            <th>Telefone Alternativo</th>
+            {% endif %}
+            {% if show_fields.show_emailprinc %}
+            <th>E-mail principal</th>
+            {% endif %}
+            {% if show_fields.show_emailalternat %}
+            <th>E-mail alternativo</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -14,18 +26,30 @@
     <tbody>
         {% for a in s2300_contato_lista %}
         <tr>
-            {% if show_fields.show_s2300_evttsvinicio or 1 %}
+            {% if show_fields.show_s2300_evttsvinicio %}
             <td>{{ a.s2300_evttsvinicio }}</td>
             {% endif %}
-            
+            {% if show_fields.show_foneprinc %}
+            <td>{{ a.foneprinc }}</td>
+            {% endif %}
+            {% if show_fields.show_fonealternat %}
+            <td>{{ a.fonealternat }}</td>
+            {% endif %}
+            {% if show_fields.show_emailprinc %}
+            <td>{{ a.emailprinc }}</td>
+            {% endif %}
+            {% if show_fields.show_emailalternat %}
+            <td>{{ a.emailalternat }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2300.change_s2300contato or perms.s2300.add_s2300contato %}
-                    
+
                         <a href="{% url 's2300_contato_salvar' pk=a.id %}">
                             {% if perms.s2300.change_s2300contato %}
                                 <span class="btn btn-primary" title="Editar">
@@ -45,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -178,7 +178,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_obsproc" value="0" {% if show_fields|get_value_from_dict:'show_obsproc' %}checked{% endif %} >Observações sobre o procedimento médico
+        <input type="checkbox" name="show_obsproc" value="1" {% if show_fields|get_value_from_dict:'show_obsproc' %}checked{% endif %} >Observações sobre o procedimento médico
     </div>
 </div>
 
@@ -202,13 +202,13 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_dtfimmonit" value="0" {% if show_fields|get_value_from_dict:'show_dtfimmonit' %}checked{% endif %} >Data de término do monitoramento
+        <input type="checkbox" name="show_dtfimmonit" value="1" {% if show_fields|get_value_from_dict:'show_dtfimmonit' %}checked{% endif %} >Data de término do monitoramento
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_indresult" value="0" {% if show_fields|get_value_from_dict:'show_indresult' %}checked{% endif %} >Indicador de resultados
+        <input type="checkbox" name="show_indresult" value="1" {% if show_fields|get_value_from_dict:'show_indresult' %}checked{% endif %} >Indicador de resultados
     </div>
 </div>
 

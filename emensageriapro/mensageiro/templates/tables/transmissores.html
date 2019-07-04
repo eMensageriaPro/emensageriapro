@@ -2,20 +2,38 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_transmissor_tpinsc or 1 %}
+            {% if show_fields.show_transmissor_dados %}
+            <th>Dados do Transmissor</th>
+            {% endif %}
+            {% if show_fields.show_transmissor_tpinsc %}
             <th>Tipo de Inscrição</th>
             {% endif %}
-            {% if show_fields.show_transmissor_nrinsc or 1 %}
+            {% if show_fields.show_transmissor_nrinsc %}
             <th>CPF/CNPJ</th>
             {% endif %}
-            {% if show_fields.show_nome_empresa or 1 %}
+            {% if show_fields.show_empregador_dados %}
+            <th>Dados da Empresa</th>
+            {% endif %}
+            {% if show_fields.show_nome_empresa %}
             <th>Nome da Empresa</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_data_abertura %}
+            <th>Data de abertura</th>
+            {% endif %}
+            {% if show_fields.show_logotipo %}
+            <th>Logotipo</th>
+            {% endif %}
+            {% if show_fields.show_endereco_completo %}
+            <th>Endereço Completo</th>
+            {% endif %}
+            {% if show_fields.show_nrinsc %}
             <th>CPF/CNPJ (Empregador/Contribuinte)</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_tpinsc %}
             <th>Tipo de Inscrição (Empregador/Contribuinte)</th>
+            {% endif %}
+            {% if show_fields.show_certificado %}
+            <th>Certificado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -26,30 +44,48 @@
     <tbody>
         {% for a in transmissores_lista %}
         <tr>
-            {% if show_fields.show_transmissor_tpinsc or 1 %}
+            {% if show_fields.show_transmissor_dados %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_transmissor_tpinsc %}
             <td>{{ a.get_transmissor_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_transmissor_nrinsc or 1 %}
+            {% if show_fields.show_transmissor_nrinsc %}
             <td>{{ a.transmissor_nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_nome_empresa or 1 %}
+            {% if show_fields.show_empregador_dados %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_nome_empresa %}
             <td>{{ a.nome_empresa }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_data_abertura %}
+            <td><span style="display:none">{{ a.data_abertura|date:"Y-m-d" }}</span>{{ a.data_abertura|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_logotipo %}
+            <td>{{ a.logotipo }}</td>
+            {% endif %}
+            {% if show_fields.show_endereco_completo %}
+            <td>{{ a.endereco_completo }}</td>
+            {% endif %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_tpinsc %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            
+            {% if show_fields.show_certificado %}
+            <td>{{ a.certificado }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.mensageiro.change_TransmissorLote or perms.mensageiro.add_TransmissorLote %}
-                    
+
                         <a href="{% url 'transmissores_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_TransmissorLote %}
                                 <span class="btn btn-primary" title="Editar">
@@ -69,7 +105,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

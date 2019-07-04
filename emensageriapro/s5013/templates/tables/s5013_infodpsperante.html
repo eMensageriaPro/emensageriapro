@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5013_infodpsfgts or 1 %}
+            {% if show_fields.show_s5013_infodpsfgts %}
             <th>Informações referentes ao cálculo dos valores de FGTS de períodos anteriores quando {tpAcConv} = [E].</th>
             {% endif %}
-            {% if show_fields.show_perref or 1 %}
+            {% if show_fields.show_perref %}
             <th>Período de Referência</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,19 +17,19 @@
     <tbody>
         {% for a in s5013_infodpsperante_lista %}
         <tr>
-            {% if show_fields.show_s5013_infodpsfgts or 1 %}
+            {% if show_fields.show_s5013_infodpsfgts %}
             <td>{{ a.s5013_infodpsfgts }}</td>
             {% endif %}
-            {% if show_fields.show_perref or 1 %}
+            {% if show_fields.show_perref %}
             <td>{{ a.perref }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

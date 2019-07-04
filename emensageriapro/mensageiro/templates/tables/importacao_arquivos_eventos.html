@@ -2,20 +2,32 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_arquivo or 1 %}
+            {% if show_fields.show_importacao_arquivos %}
+            <th>Arquivo de Importação</th>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
             <th>Nome do Arquivo</th>
             {% endif %}
-            {% if show_fields.show_evento or 1 %}
+            {% if show_fields.show_evento %}
             <th>Evento</th>
             {% endif %}
-            {% if show_fields.show_identidade_evento or 1 %}
+            {% if show_fields.show_versao %}
+            <th>Versão</th>
+            {% endif %}
+            {% if show_fields.show_identidade_evento %}
             <th>Identidade do evento</th>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_identidade %}
+            <th>identidade da tabela</th>
+            {% endif %}
+            {% if show_fields.show_status %}
             <th>Status</th>
             {% endif %}
-            {% if show_fields.show_data_hora or 1 %}
+            {% if show_fields.show_data_hora %}
             <th>Data/Hora de Importação</th>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <th>Validações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -26,30 +38,42 @@
     <tbody>
         {% for a in importacao_arquivos_eventos_lista %}
         <tr>
-            {% if show_fields.show_arquivo or 1 %}
+            {% if show_fields.show_importacao_arquivos %}
+            <td>{{ a.importacao_arquivos }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
             <td>{{ a.arquivo }}</td>
             {% endif %}
-            {% if show_fields.show_evento or 1 %}
+            {% if show_fields.show_evento %}
             <td>{{ a.evento }}</td>
             {% endif %}
-            {% if show_fields.show_identidade_evento or 1 %}
+            {% if show_fields.show_versao %}
+            <td>{{ a.versao }}</td>
+            {% endif %}
+            {% if show_fields.show_identidade_evento %}
             <td>{{ a.identidade_evento }}</td>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_identidade %}
+            <td>{{ a.identidade }}</td>
+            {% endif %}
+            {% if show_fields.show_status %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
-            {% if show_fields.show_data_hora or 1 %}
+            {% if show_fields.show_data_hora %}
             <td><span style="display:none">{{ a.data_hora|date:"Y-m-d H:i" }}</span>{{ a.data_hora|date:"d/m/Y H:i" }}</td>
             {% endif %}
-            
+            {% if show_fields.show_validacoes %}
+            <td>{{ a.validacoes }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.mensageiro.change_ImportacaoArquivosEventos or perms.mensageiro.add_ImportacaoArquivosEventos %}
-                    
+
                         <a href="{% url 'importacao_arquivos_eventos_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_ImportacaoArquivosEventos %}
                                 <span class="btn btn-primary" title="Editar">
@@ -69,7 +93,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

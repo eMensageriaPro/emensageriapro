@@ -2,11 +2,14 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_infocomplementares or 1 %}
+            {% if show_fields.show_s2300_infocomplementares %}
             <th>Informações relativas ao FGTS.</th>
             {% endif %}
-            {% if show_fields.show_opcfgts or 1 %}
+            {% if show_fields.show_opcfgts %}
             <th>Opção pelo FGTS</th>
+            {% endif %}
+            {% if show_fields.show_dtopcfgts %}
+            <th>Data da opção pelo FGTS</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -17,21 +20,24 @@
     <tbody>
         {% for a in s2300_fgts_lista %}
         <tr>
-            {% if show_fields.show_s2300_infocomplementares or 1 %}
+            {% if show_fields.show_s2300_infocomplementares %}
             <td>{{ a.s2300_infocomplementares }}</td>
             {% endif %}
-            {% if show_fields.show_opcfgts or 1 %}
+            {% if show_fields.show_opcfgts %}
             <td>{{ a.get_opcfgts_display }}</td>
             {% endif %}
-            
+            {% if show_fields.show_dtopcfgts %}
+            <td><span style="display:none">{{ a.dtopcfgts|date:"Y-m-d" }}</span>{{ a.dtopcfgts|date:"d/m/Y" }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2300.change_s2300fgts or perms.s2300.add_s2300fgts %}
-                    
+
                         <a href="{% url 's2300_fgts_salvar' pk=a.id %}">
                             {% if perms.s2300.change_s2300fgts %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

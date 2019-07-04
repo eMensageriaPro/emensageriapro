@@ -2,13 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2200_evtadmissao or 1 %}
+            {% if show_fields.show_s2200_evtadmissao %}
             <th>Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].</th>
             {% endif %}
-            {% if show_fields.show_tpjornada or 1 %}
+            {% if show_fields.show_qtdhrssem %}
+            <th>Quant. de horas semanais</th>
+            {% endif %}
+            {% if show_fields.show_tpjornada %}
             <th>Tipo de jornada</th>
             {% endif %}
-            {% if show_fields.show_tmpparc or 1 %}
+            {% if show_fields.show_dsctpjorn %}
+            <th>Descrição do tipo de jornada</th>
+            {% endif %}
+            {% if show_fields.show_tmpparc %}
             <th>Contrato em tempo parcial</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +26,30 @@
     <tbody>
         {% for a in s2200_horcontratual_lista %}
         <tr>
-            {% if show_fields.show_s2200_evtadmissao or 1 %}
+            {% if show_fields.show_s2200_evtadmissao %}
             <td>{{ a.s2200_evtadmissao }}</td>
             {% endif %}
-            {% if show_fields.show_tpjornada or 1 %}
+            {% if show_fields.show_qtdhrssem %}
+            <td>{{ a.qtdhrssem }}</td>
+            {% endif %}
+            {% if show_fields.show_tpjornada %}
             <td>{{ a.get_tpjornada_display }}</td>
             {% endif %}
-            {% if show_fields.show_tmpparc or 1 %}
+            {% if show_fields.show_dsctpjorn %}
+            <td>{{ a.dsctpjorn }}</td>
+            {% endif %}
+            {% if show_fields.show_tmpparc %}
             <td>{{ a.get_tmpparc_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2200.change_s2200horContratual or perms.s2200.add_s2200horContratual %}
-                    
+
                         <a href="{% url 's2200_horcontratual_salvar' pk=a.id %}">
                             {% if perms.s2200.change_s2200horContratual %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

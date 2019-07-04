@@ -2,13 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9001_infototal or 1 %}
+            {% if show_fields.show_r9001_infototal %}
             <th>Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010</th>
             {% endif %}
-            {% if show_fields.show_cnpjprestador or 1 %}
+            {% if show_fields.show_cnpjprestador %}
             <th>Preencher com o CNPJ do Prestador de Serviços</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalbaseret or 1 %}
+            {% if show_fields.show_cno %}
+            <th>Número de inscrição no Cadastro Nacional de Obras - CNO</th>
+            {% endif %}
+            {% if show_fields.show_vlrtotalbaseret %}
             <th>Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,22 +23,25 @@
     <tbody>
         {% for a in r9001_rtom_lista %}
         <tr>
-            {% if show_fields.show_r9001_infototal or 1 %}
+            {% if show_fields.show_r9001_infototal %}
             <td>{{ a.r9001_infototal }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjprestador or 1 %}
+            {% if show_fields.show_cnpjprestador %}
             <td>{{ a.cnpjprestador }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalbaseret or 1 %}
+            {% if show_fields.show_cno %}
+            <td>{{ a.cno }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrtotalbaseret %}
             <td>{{ a.vlrtotalbaseret }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

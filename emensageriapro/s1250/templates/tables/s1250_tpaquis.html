@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1250_evtaqprod or 1 %}
+            {% if show_fields.show_s1250_evtaqprod %}
             <th>Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física</th>
             {% endif %}
-            {% if show_fields.show_indaquis or 1 %}
+            {% if show_fields.show_indaquis %}
             <th>Indicativo de aquisição</th>
             {% endif %}
-            {% if show_fields.show_vlrtotaquis or 1 %}
+            {% if show_fields.show_vlrtotaquis %}
             <th>Valor total da aquisição</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +20,24 @@
     <tbody>
         {% for a in s1250_tpaquis_lista %}
         <tr>
-            {% if show_fields.show_s1250_evtaqprod or 1 %}
+            {% if show_fields.show_s1250_evtaqprod %}
             <td>{{ a.s1250_evtaqprod }}</td>
             {% endif %}
-            {% if show_fields.show_indaquis or 1 %}
+            {% if show_fields.show_indaquis %}
             <td>{{ a.get_indaquis_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotaquis or 1 %}
+            {% if show_fields.show_vlrtotaquis %}
             <td>{{ a.vlrtotaquis }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1250.change_s1250tpAquis or perms.s1250.add_s1250tpAquis %}
-                    
+
                         <a href="{% url 's1250_tpaquis_salvar' pk=a.id %}">
                             {% if perms.s1250.change_s1250tpAquis %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

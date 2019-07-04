@@ -2,29 +2,32 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_infocomplementares or 1 %}
+            {% if show_fields.show_s2300_infocomplementares %}
             <th>Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.</th>
             {% endif %}
-            {% if show_fields.show_categorig or 1 %}
+            {% if show_fields.show_categorig %}
             <th>Categoria de origem do trabalhador</th>
             {% endif %}
-            {% if show_fields.show_cnpjcednt or 1 %}
+            {% if show_fields.show_cnpjcednt %}
             <th>CNPJ do empregador cedente</th>
             {% endif %}
-            {% if show_fields.show_matricced or 1 %}
+            {% if show_fields.show_matricced %}
             <th>Matricula do trabalhador no empregador cedente</th>
             {% endif %}
-            {% if show_fields.show_dtadmced or 1 %}
+            {% if show_fields.show_dtadmced %}
             <th>Data de admissão no empregador cedente</th>
             {% endif %}
-            {% if show_fields.show_tpregtrab or 1 %}
+            {% if show_fields.show_tpregtrab %}
             <th>Tipo de regime trabalhista</th>
             {% endif %}
-            {% if show_fields.show_tpregprev or 1 %}
+            {% if show_fields.show_tpregprev %}
             <th>Tipo de regime previdenciário</th>
             {% endif %}
-            {% if show_fields.show_infonus or 1 %}
+            {% if show_fields.show_infonus %}
             <th>Onus da cessão/requisição</th>
+            {% endif %}
+            {% if show_fields.show_indremuncargo %}
+            <th>Indicar se o servidor optou pela remuneração do cargo efetivo</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -35,39 +38,42 @@
     <tbody>
         {% for a in s2300_infotrabcedido_lista %}
         <tr>
-            {% if show_fields.show_s2300_infocomplementares or 1 %}
+            {% if show_fields.show_s2300_infocomplementares %}
             <td>{{ a.s2300_infocomplementares }}</td>
             {% endif %}
-            {% if show_fields.show_categorig or 1 %}
+            {% if show_fields.show_categorig %}
             <td>{{ a.categorig }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjcednt or 1 %}
+            {% if show_fields.show_cnpjcednt %}
             <td>{{ a.cnpjcednt }}</td>
             {% endif %}
-            {% if show_fields.show_matricced or 1 %}
+            {% if show_fields.show_matricced %}
             <td>{{ a.matricced }}</td>
             {% endif %}
-            {% if show_fields.show_dtadmced or 1 %}
+            {% if show_fields.show_dtadmced %}
             <td><span style="display:none">{{ a.dtadmced|date:"Y-m-d" }}</span>{{ a.dtadmced|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tpregtrab or 1 %}
+            {% if show_fields.show_tpregtrab %}
             <td>{{ a.get_tpregtrab_display }}</td>
             {% endif %}
-            {% if show_fields.show_tpregprev or 1 %}
+            {% if show_fields.show_tpregprev %}
             <td>{{ a.get_tpregprev_display }}</td>
             {% endif %}
-            {% if show_fields.show_infonus or 1 %}
+            {% if show_fields.show_infonus %}
             <td>{{ a.get_infonus_display }}</td>
             {% endif %}
-            
+            {% if show_fields.show_indremuncargo %}
+            <td>{{ a.get_indremuncargo_display }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2300.change_s2300infoTrabCedido or perms.s2300.add_s2300infoTrabCedido %}
-                    
+
                         <a href="{% url 's2300_infotrabcedido_salvar' pk=a.id %}">
                             {% if perms.s2300.change_s2300infoTrabCedido %}
                                 <span class="btn btn-primary" title="Editar">
@@ -87,7 +93,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

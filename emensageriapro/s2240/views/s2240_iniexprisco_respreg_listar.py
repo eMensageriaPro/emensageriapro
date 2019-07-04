@@ -70,11 +70,11 @@ def listar(request, output=None):
             'show_s2240_evtexprisco': 1,
             'show_cpfresp': 1,
             'show_nisresp': 1,
-            'show_nmresp': 1,
-            'show_ideoc': 1,
+            'show_nmresp': 0,
+            'show_ideoc': 0,
             'show_dscoc': 0,
-            'show_nroc': 1,
-            'show_ufoc': 1, }
+            'show_nroc': 0,
+            'show_ufoc': 0, }
 
         post = False
 

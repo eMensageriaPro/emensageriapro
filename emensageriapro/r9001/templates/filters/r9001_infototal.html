@@ -70,13 +70,13 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_nrrecarqbase" value="0" {% if show_fields|get_value_from_dict:'show_nrrecarqbase' %}checked{% endif %} >Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte
+        <input type="checkbox" name="show_nrrecarqbase" value="1" {% if show_fields|get_value_from_dict:'show_nrrecarqbase' %}checked{% endif %} >Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_ideestab" value="0" {% if show_fields|get_value_from_dict:'show_ideestab' %}checked{% endif %} >Identificação dos estabelecimentos da associação desportiva que receberam os recursos
+        <input type="checkbox" name="show_ideestab" value="1" {% if show_fields|get_value_from_dict:'show_ideestab' %}checked{% endif %} >Identificação dos estabelecimentos da associação desportiva que receberam os recursos
     </div>
 </div>
 

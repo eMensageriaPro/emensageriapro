@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r1070_alteracao or 1 %}
+            {% if show_fields.show_r1070_alteracao %}
             <th>Informações Complementares do Processo Judicial</th>
             {% endif %}
-            {% if show_fields.show_ufvara or 1 %}
+            {% if show_fields.show_ufvara %}
             <th>Identificação da Unidade da Federação - UF da Seção Judiciária</th>
             {% endif %}
-            {% if show_fields.show_codmunic or 1 %}
+            {% if show_fields.show_codmunic %}
             <th>Código do Município</th>
             {% endif %}
-            {% if show_fields.show_idvara or 1 %}
+            {% if show_fields.show_idvara %}
             <th>Código de Identificação da Vara.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +23,27 @@
     <tbody>
         {% for a in r1070_alteracao_dadosprocjud_lista %}
         <tr>
-            {% if show_fields.show_r1070_alteracao or 1 %}
+            {% if show_fields.show_r1070_alteracao %}
             <td>{{ a.r1070_alteracao }}</td>
             {% endif %}
-            {% if show_fields.show_ufvara or 1 %}
+            {% if show_fields.show_ufvara %}
             <td>{{ a.get_ufvara_display }}</td>
             {% endif %}
-            {% if show_fields.show_codmunic or 1 %}
-            <td>{{ a.codmunic }}</td>
+            {% if show_fields.show_codmunic %}
+            <td>{{ a.codmunic|valor }}</td>
             {% endif %}
-            {% if show_fields.show_idvara or 1 %}
+            {% if show_fields.show_idvara %}
             <td>{{ a.idvara }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r1070.change_r1070alteracaodadosProcJud or perms.r1070.add_r1070alteracaodadosProcJud %}
-                    
+
                         <a href="{% url 'r1070_alteracao_dadosprocjud_salvar' pk=a.id %}">
                             {% if perms.r1070.change_r1070alteracaodadosProcJud %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

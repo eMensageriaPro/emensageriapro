@@ -70,7 +70,7 @@ def listar(request, output=None):
             'show_s2250_evtavprevio': 1,
             'show_dtavprv': 1,
             'show_dtprevdeslig': 1,
-            'show_tpavprevio': 1,
+            'show_tpavprevio': 0,
             'show_observacao': 0, }
 
         post = False

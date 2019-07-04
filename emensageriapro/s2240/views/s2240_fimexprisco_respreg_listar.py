@@ -71,7 +71,7 @@ def listar(request, output=None):
             'show_dtini': 1,
             'show_dtfim': 0,
             'show_nisresp': 1,
-            'show_nroc': 1,
+            'show_nroc': 0,
             'show_ufoc': 0, }
 
         post = False

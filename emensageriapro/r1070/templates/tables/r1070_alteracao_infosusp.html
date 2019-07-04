@@ -2,16 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r1070_alteracao or 1 %}
+            {% if show_fields.show_r1070_alteracao %}
             <th>Informações de Suspensão de Exibilidade de tributos</th>
             {% endif %}
-            {% if show_fields.show_indsusp or 1 %}
+            {% if show_fields.show_codsusp %}
+            <th>Código do Indicativo da Suspensão, atribuído pelo contribuinte</th>
+            {% endif %}
+            {% if show_fields.show_indsusp %}
             <th>Indicativo de suspensão da exigibilidade</th>
             {% endif %}
-            {% if show_fields.show_dtdecisao or 1 %}
+            {% if show_fields.show_dtdecisao %}
             <th>Data da decisão, sentença ou despacho administrativo</th>
             {% endif %}
-            {% if show_fields.show_inddeposito or 1 %}
+            {% if show_fields.show_inddeposito %}
             <th>Indicativo de Depósito do Montante Integral</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +26,30 @@
     <tbody>
         {% for a in r1070_alteracao_infosusp_lista %}
         <tr>
-            {% if show_fields.show_r1070_alteracao or 1 %}
+            {% if show_fields.show_r1070_alteracao %}
             <td>{{ a.r1070_alteracao }}</td>
             {% endif %}
-            {% if show_fields.show_indsusp or 1 %}
+            {% if show_fields.show_codsusp %}
+            <td>{{ a.codsusp }}</td>
+            {% endif %}
+            {% if show_fields.show_indsusp %}
             <td>{{ a.get_indsusp_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtdecisao or 1 %}
+            {% if show_fields.show_dtdecisao %}
             <td><span style="display:none">{{ a.dtdecisao|date:"Y-m-d" }}</span>{{ a.dtdecisao|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_inddeposito or 1 %}
+            {% if show_fields.show_inddeposito %}
             <td>{{ a.get_inddeposito_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r1070.change_r1070alteracaoinfoSusp or perms.r1070.add_r1070alteracaoinfoSusp %}
-                    
+
                         <a href="{% url 'r1070_alteracao_infosusp_salvar' pk=a.id %}">
                             {% if perms.r1070.change_r1070alteracaoinfoSusp %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

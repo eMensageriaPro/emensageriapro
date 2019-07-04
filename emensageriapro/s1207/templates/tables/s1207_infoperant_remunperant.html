@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1207_infoperant_ideestab or 1 %}
+            {% if show_fields.show_s1207_infoperant_ideestab %}
             <th>Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -14,18 +14,18 @@
     <tbody>
         {% for a in s1207_infoperant_remunperant_lista %}
         <tr>
-            {% if show_fields.show_s1207_infoperant_ideestab or 1 %}
+            {% if show_fields.show_s1207_infoperant_ideestab %}
             <td>{{ a.s1207_infoperant_ideestab }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1207.change_s1207infoPerAntremunPerAnt or perms.s1207.add_s1207infoPerAntremunPerAnt %}
-                    
+
                         <a href="{% url 's1207_infoperant_remunperant_salvar' pk=a.id %}">
                             {% if perms.s1207.change_s1207infoPerAntremunPerAnt %}
                                 <span class="btn btn-primary" title="Editar">
@@ -45,7 +45,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

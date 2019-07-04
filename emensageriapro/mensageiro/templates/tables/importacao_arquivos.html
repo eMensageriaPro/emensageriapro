@@ -2,17 +2,32 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_arquivo or 1 %}
+            {% if show_fields.show_arquivo %}
             <th>Nome do Arquivo</th>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_status %}
             <th>Status</th>
             {% endif %}
-            {% if show_fields.show_data_hora or 1 %}
+            {% if show_fields.show_data_hora %}
             <th>Data/Hora de Importação</th>
             {% endif %}
-            {% if show_fields.show_importado_por or 1 %}
+            {% if show_fields.show_importado_por %}
             <th>Importado por</th>
+            {% endif %}
+            {% if show_fields.show_quant_total %}
+            <th>Quant. Total</th>
+            {% endif %}
+            {% if show_fields.show_quant_aguardando %}
+            <th>Quant. Aguardando Processamento</th>
+            {% endif %}
+            {% if show_fields.show_quant_processado %}
+            <th>Quant. Processada</th>
+            {% endif %}
+            {% if show_fields.show_quant_importado %}
+            <th>Quant. Importada</th>
+            {% endif %}
+            {% if show_fields.show_quant_erros %}
+            <th>Quant. com Erros</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -23,19 +38,34 @@
     <tbody>
         {% for a in importacao_arquivos_lista %}
         <tr>
-            {% if show_fields.show_arquivo or 1 %}
+            {% if show_fields.show_arquivo %}
             <td>{{ a.arquivo }}</td>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_status %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
-            {% if show_fields.show_data_hora or 1 %}
+            {% if show_fields.show_data_hora %}
             <td><span style="display:none">{{ a.data_hora|date:"Y-m-d H:i" }}</span>{{ a.data_hora|date:"d/m/Y H:i" }}</td>
             {% endif %}
-            {% if show_fields.show_importado_por or 1 %}
+            {% if show_fields.show_importado_por %}
             <td>{{ a.importado_por }}</td>
             {% endif %}
-            
+            {% if show_fields.show_quant_total %}
+            <td>{{ a.quant_total }}</td>
+            {% endif %}
+            {% if show_fields.show_quant_aguardando %}
+            <td>{{ a.quant_aguardando }}</td>
+            {% endif %}
+            {% if show_fields.show_quant_processado %}
+            <td>{{ a.quant_processado }}</td>
+            {% endif %}
+            {% if show_fields.show_quant_importado %}
+            <td>{{ a.quant_importado }}</td>
+            {% endif %}
+            {% if show_fields.show_quant_erros %}
+            <td>{{ a.quant_erros }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
@@ -45,9 +75,9 @@
         <i class="fa fa-fw fa-print"></i>
     </span>
 </a>
-                    
+
                         {% if perms.mensageiro.change_ImportacaoArquivos or perms.mensageiro.add_ImportacaoArquivos %}
-                    
+
                         <a href="{% url 'importacao_arquivos_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_ImportacaoArquivos %}
                                 <span class="btn btn-primary" title="Editar">
@@ -67,7 +97,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

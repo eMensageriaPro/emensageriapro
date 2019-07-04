@@ -2,20 +2,26 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9012_infototalcontrib or 1 %}
+            {% if show_fields.show_r9012_infototalcontrib %}
             <th>Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial</th>
             {% endif %}
-            {% if show_fields.show_perapurdec or 1 %}
+            {% if show_fields.show_perapurdec %}
             <th>Período de apuração decenal do Código de Receita - CR</th>
             {% endif %}
-            {% if show_fields.show_crdec or 1 %}
+            {% if show_fields.show_crdec %}
             <th>Código de Receita - CR relativo a tributo que possui período de apuração decendial</th>
             {% endif %}
-            {% if show_fields.show_vlrbasecrdec or 1 %}
+            {% if show_fields.show_vlrbasecrdec %}
             <th>Valor da base do tributo com período de apuração decendial</th>
             {% endif %}
-            {% if show_fields.show_vlrcrdec or 1 %}
+            {% if show_fields.show_vlrcrdec %}
             <th>Valor do tributo retido com período de apuração decendial, calculado segundo as regras estabelecidas na legislação em vigor</th>
+            {% endif %}
+            {% if show_fields.show_vlrbasecrdecsusp %}
+            <th>Valor da base do tributo com período de apuração decendial, com exigibilidade suspensa</th>
+            {% endif %}
+            {% if show_fields.show_vlrcrdecsusp %}
+            <th>Valor do tributo com período de apuração decendial, que deixou de ser retido</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -26,28 +32,34 @@
     <tbody>
         {% for a in r9012_totapurdec_lista %}
         <tr>
-            {% if show_fields.show_r9012_infototalcontrib or 1 %}
+            {% if show_fields.show_r9012_infototalcontrib %}
             <td>{{ a.r9012_infototalcontrib }}</td>
             {% endif %}
-            {% if show_fields.show_perapurdec or 1 %}
+            {% if show_fields.show_perapurdec %}
             <td>{{ a.get_perapurdec_display }}</td>
             {% endif %}
-            {% if show_fields.show_crdec or 1 %}
+            {% if show_fields.show_crdec %}
             <td>{{ a.crdec }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasecrdec or 1 %}
+            {% if show_fields.show_vlrbasecrdec %}
             <td>{{ a.vlrbasecrdec }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrdec or 1 %}
+            {% if show_fields.show_vlrcrdec %}
             <td>{{ a.vlrcrdec }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrbasecrdecsusp %}
+            <td>{{ a.vlrbasecrdecsusp }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrcrdecsusp %}
+            <td>{{ a.vlrcrdecsusp }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

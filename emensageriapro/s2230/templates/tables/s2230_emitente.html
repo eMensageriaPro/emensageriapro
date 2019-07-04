@@ -2,17 +2,20 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2230_infoatestado or 1 %}
+            {% if show_fields.show_s2230_infoatestado %}
             <th>Médico/Dentista que emitiu o atestado</th>
             {% endif %}
-            {% if show_fields.show_nmemit or 1 %}
+            {% if show_fields.show_nmemit %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_ideoc or 1 %}
+            {% if show_fields.show_ideoc %}
             <th>Órgão de Classe (OC)</th>
             {% endif %}
-            {% if show_fields.show_nroc or 1 %}
+            {% if show_fields.show_nroc %}
             <th>Número do OC</th>
+            {% endif %}
+            {% if show_fields.show_ufoc %}
+            <th>UF do OC</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -23,27 +26,30 @@
     <tbody>
         {% for a in s2230_emitente_lista %}
         <tr>
-            {% if show_fields.show_s2230_infoatestado or 1 %}
+            {% if show_fields.show_s2230_infoatestado %}
             <td>{{ a.s2230_infoatestado }}</td>
             {% endif %}
-            {% if show_fields.show_nmemit or 1 %}
+            {% if show_fields.show_nmemit %}
             <td>{{ a.nmemit }}</td>
             {% endif %}
-            {% if show_fields.show_ideoc or 1 %}
+            {% if show_fields.show_ideoc %}
             <td>{{ a.get_ideoc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nroc or 1 %}
+            {% if show_fields.show_nroc %}
             <td>{{ a.nroc }}</td>
             {% endif %}
-            
+            {% if show_fields.show_ufoc %}
+            <td>{{ a.get_ufoc_display }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2230.change_s2230emitente or perms.s2230.add_s2230emitente %}
-                    
+
                         <a href="{% url 's2230_emitente_salvar' pk=a.id %}">
                             {% if perms.s2230.change_s2230emitente %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

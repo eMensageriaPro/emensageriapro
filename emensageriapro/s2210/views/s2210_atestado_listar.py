@@ -69,20 +69,20 @@ def listar(request, output=None):
         show_fields = {
             'show_s2210_evtcat': 1,
             'show_codcnes': 0,
-            'show_dtatendimento': 1,
-            'show_hratendimento': 1,
-            'show_indinternacao': 1,
-            'show_durtrat': 1,
+            'show_dtatendimento': 0,
+            'show_hratendimento': 0,
+            'show_indinternacao': 0,
+            'show_durtrat': 0,
             'show_indafast': 1,
-            'show_dsclesao': 1,
+            'show_dsclesao': 0,
             'show_dsccomplesao': 0,
             'show_diagprovavel': 0,
             'show_codcid': 1,
             'show_observacao': 0,
             'show_emitente': 0,
-            'show_nmemit': 1,
-            'show_ideoc': 1,
-            'show_nroc': 1,
+            'show_nmemit': 0,
+            'show_ideoc': 0,
+            'show_nroc': 0,
             'show_ufoc': 0, }
 
         post = False

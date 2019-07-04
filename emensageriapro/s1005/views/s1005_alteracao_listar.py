@@ -69,9 +69,9 @@ def listar(request, output=None):
         show_fields = {
             'show_s1005_evttabestab': 1,
             'show_ideestab': 0,
-            'show_tpinsc': 1,
-            'show_nrinsc': 1,
-            'show_inivalid': 1,
+            'show_tpinsc': 0,
+            'show_nrinsc': 0,
+            'show_inivalid': 0,
             'show_fimvalid': 0,
             'show_dadosestab': 0,
             'show_cnaeprep': 1,
@@ -80,9 +80,9 @@ def listar(request, output=None):
             'show_fap': 0,
             'show_aliqratajust': 0,
             'show_infotrab': 0,
-            'show_regpt': 1,
+            'show_regpt': 0,
             'show_infoapr': 0,
-            'show_contapr': 1,
+            'show_contapr': 0,
             'show_nrprocjud': 0,
             'show_contented': 0, }
 

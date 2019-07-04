@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2299_evtdeslig or 1 %}
+            {% if show_fields.show_s2299_evtdeslig %}
             <th>Informações sobre operação de crédito consignado com garantia de FGTS</th>
             {% endif %}
-            {% if show_fields.show_insconsig or 1 %}
+            {% if show_fields.show_insconsig %}
             <th>Matrícula da Instituição Consignatária, cadastrada na Caixa Econômica Federal</th>
             {% endif %}
-            {% if show_fields.show_nrcontr or 1 %}
+            {% if show_fields.show_nrcontr %}
             <th>Número do contrato de empréstimo consignado existente na Instituição Consignatária</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +20,24 @@
     <tbody>
         {% for a in s2299_infotrabinterm_consigfgts_lista %}
         <tr>
-            {% if show_fields.show_s2299_evtdeslig or 1 %}
+            {% if show_fields.show_s2299_evtdeslig %}
             <td>{{ a.s2299_evtdeslig }}</td>
             {% endif %}
-            {% if show_fields.show_insconsig or 1 %}
+            {% if show_fields.show_insconsig %}
             <td>{{ a.insconsig }}</td>
             {% endif %}
-            {% if show_fields.show_nrcontr or 1 %}
+            {% if show_fields.show_nrcontr %}
             <td>{{ a.nrcontr }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2299.change_s2299infoTrabIntermconsigFGTS or perms.s2299.add_s2299infoTrabIntermconsigFGTS %}
-                    
+
                         <a href="{% url 's2299_infotrabinterm_consigfgts_salvar' pk=a.id %}">
                             {% if perms.s2299.change_s2299infoTrabIntermconsigFGTS %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

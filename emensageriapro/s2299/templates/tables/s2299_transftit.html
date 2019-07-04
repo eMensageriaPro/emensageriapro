@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2299_evtdeslig or 1 %}
+            {% if show_fields.show_s2299_evtdeslig %}
             <th>Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar</th>
             {% endif %}
-            {% if show_fields.show_cpfsubstituto or 1 %}
+            {% if show_fields.show_cpfsubstituto %}
             <th>Preencher com o CPF do novo titular</th>
             {% endif %}
-            {% if show_fields.show_dtnascto or 1 %}
+            {% if show_fields.show_dtnascto %}
             <th>Data de nascimento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +20,24 @@
     <tbody>
         {% for a in s2299_transftit_lista %}
         <tr>
-            {% if show_fields.show_s2299_evtdeslig or 1 %}
+            {% if show_fields.show_s2299_evtdeslig %}
             <td>{{ a.s2299_evtdeslig }}</td>
             {% endif %}
-            {% if show_fields.show_cpfsubstituto or 1 %}
+            {% if show_fields.show_cpfsubstituto %}
             <td>{{ a.cpfsubstituto }}</td>
             {% endif %}
-            {% if show_fields.show_dtnascto or 1 %}
+            {% if show_fields.show_dtnascto %}
             <td><span style="display:none">{{ a.dtnascto|date:"Y-m-d" }}</span>{{ a.dtnascto|date:"d/m/Y" }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2299.change_s2299transfTit or perms.s2299.add_s2299transfTit %}
-                    
+
                         <a href="{% url 's2299_transftit_salvar' pk=a.id %}">
                             {% if perms.s2299.change_s2299transfTit %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

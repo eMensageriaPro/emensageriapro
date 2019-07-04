@@ -2,37 +2,103 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evttoxic %}
+            <th>Evento Exame Toxicológico do Motorista Profissional</th>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <th>Identidade do Registro</th>
             {% endif %}
-            {% if show_fields.show_indretif or 1 %}
+            {% if show_fields.show_ideevento %}
+            <th>Informações de Identificação do Evento</th>
+            {% endif %}
+            {% if show_fields.show_indretif %}
             <th>Identificador de retificação</th>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_nrrecibo %}
+            <th>Número do recibo</th>
+            {% endif %}
+            {% if show_fields.show_tpamb %}
             <th>Identificação do ambiente</th>
             {% endif %}
-            {% if show_fields.show_procemi or 1 %}
+            {% if show_fields.show_procemi %}
             <th>Processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_verproc or 1 %}
+            {% if show_fields.show_verproc %}
             <th>Versão do processo</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_ideempregador %}
+            <th>Informações de identificação do empregador</th>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_idevinculo %}
+            <th>Informações de Identificação do Trabalhador e do Vínculo</th>
+            {% endif %}
+            {% if show_fields.show_cpftrab %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_dtexame or 1 %}
+            {% if show_fields.show_nistrab %}
+            <th>NIS</th>
+            {% endif %}
+            {% if show_fields.show_matricula %}
+            <th>Matricula</th>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
+            <th>Código da Categoria</th>
+            {% endif %}
+            {% if show_fields.show_toxicologico %}
+            <th>Detalhamento das informações do exame toxicológico do motorista profissional</th>
+            {% endif %}
+            {% if show_fields.show_dtexame %}
             <th>Data da realização do exame toxicológico</th>
             {% endif %}
-            {% if show_fields.show_indrecusa or 1 %}
+            {% if show_fields.show_cnpjlab %}
+            <th>CNPJ do laboratório responsável pela realização do exame</th>
+            {% endif %}
+            {% if show_fields.show_codseqexame %}
+            <th>Código do exame toxicológico. Deve ser informado no formato AA999999999, sendo AA o serial do sequencial e 999999999 o número sequencial do exame</th>
+            {% endif %}
+            {% if show_fields.show_nmmed %}
+            <th>Nome do Médico</th>
+            {% endif %}
+            {% if show_fields.show_nrcrm %}
+            <th>Número do CRM</th>
+            {% endif %}
+            {% if show_fields.show_ufcrm %}
+            <th>UF do Órgão de classe</th>
+            {% endif %}
+            {% if show_fields.show_indrecusa %}
             <th>Indicar se o trabalhador se recusou a realizar o exame toxicológico no desligamento: S - Sim; N - Não. Valores Válidos: S, N.</th>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_versao %}
+            <th>Versão</th>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial %}
+            <th>Transmissor</th>
+            {% endif %}
+            {% if show_fields.show_retornos_eventos %}
+            <th>Retorno do Evento</th>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <th>Ocorrências</th>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <th>Validação de Precedência</th>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <th>Validações</th>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <th>Arquivo Original</th>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <th>Arquivo</th>
+            {% endif %}
+            {% if show_fields.show_status %}
             <th>Status</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -44,48 +110,114 @@
     <tbody>
         {% for a in s2221_evttoxic_lista %}
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evttoxic %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <td>{{ a.identidade }}</td>
             {% endif %}
-            {% if show_fields.show_indretif or 1 %}
+            {% if show_fields.show_ideevento %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_indretif %}
             <td>{{ a.get_indretif_display }}</td>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_nrrecibo %}
+            <td>{{ a.nrrecibo }}</td>
+            {% endif %}
+            {% if show_fields.show_tpamb %}
             <td>{{ a.get_tpamb_display }}</td>
             {% endif %}
-            {% if show_fields.show_procemi or 1 %}
+            {% if show_fields.show_procemi %}
             <td>{{ a.get_procemi_display }}</td>
             {% endif %}
-            {% if show_fields.show_verproc or 1 %}
+            {% if show_fields.show_verproc %}
             <td>{{ a.verproc }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_ideempregador %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_idevinculo %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_cpftrab %}
             <td>{{ a.cpftrab }}</td>
             {% endif %}
-            {% if show_fields.show_dtexame or 1 %}
+            {% if show_fields.show_nistrab %}
+            <td>{{ a.nistrab }}</td>
+            {% endif %}
+            {% if show_fields.show_matricula %}
+            <td>{{ a.matricula }}</td>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
+            <td>{{ a.codcateg|valor }}</td>
+            {% endif %}
+            {% if show_fields.show_toxicologico %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_dtexame %}
             <td><span style="display:none">{{ a.dtexame|date:"Y-m-d" }}</span>{{ a.dtexame|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_indrecusa or 1 %}
+            {% if show_fields.show_cnpjlab %}
+            <td>{{ a.cnpjlab }}</td>
+            {% endif %}
+            {% if show_fields.show_codseqexame %}
+            <td>{{ a.codseqexame }}</td>
+            {% endif %}
+            {% if show_fields.show_nmmed %}
+            <td>{{ a.nmmed }}</td>
+            {% endif %}
+            {% if show_fields.show_nrcrm %}
+            <td>{{ a.nrcrm }}</td>
+            {% endif %}
+            {% if show_fields.show_ufcrm %}
+            <td>{{ a.get_ufcrm_display }}</td>
+            {% endif %}
+            {% if show_fields.show_indrecusa %}
             <td>{{ a.get_indrecusa_display }}</td>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_versao %}
+            <td>{{ a.get_versao_display }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial %}
+            <td>{{ a.transmissor_lote_esocial }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_eventos %}
+            <td>{{ a.retornos_eventos }}</td>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <td>{{ a.ocorrencias }}</td>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <td>{{ a.get_validacao_precedencia_display }}</td>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <td>{{ a.validacoes }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <td>{{ a.get_arquivo_original_display }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <td>{{ a.arquivo }}</td>
+            {% endif %}
+            {% if show_fields.show_status %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.esocial.change_s2221evtToxic or perms.esocial.add_s2221evtToxic %}
-                    
+
                         <a href="{% url 's2221_evttoxic_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s2221evtToxic %}
                                 <span class="btn btn-primary" title="Editar">
@@ -105,7 +237,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

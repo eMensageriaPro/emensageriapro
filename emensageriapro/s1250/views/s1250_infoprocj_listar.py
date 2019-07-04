@@ -70,9 +70,9 @@ def listar(request, output=None):
             'show_s1250_tpaquis': 1,
             'show_nrprocjud': 1,
             'show_codsusp': 1,
-            'show_vrcpnret': 1,
-            'show_vrratnret': 1,
-            'show_vrsenarnret': 1, }
+            'show_vrcpnret': 0,
+            'show_vrratnret': 0,
+            'show_vrsenarnret': 0, }
 
         post = False
 

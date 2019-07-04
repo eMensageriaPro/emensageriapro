@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5001_evtbasestrab or 1 %}
+            {% if show_fields.show_s5001_evtbasestrab %}
             <th>Cálculo da contribuição previdenciária do segurado, incidente sobre a Remuneração do Período de Apuração e de Períodos Anteriores informada nos eventos S-1200, S-2299 e S-2399.</th>
             {% endif %}
-            {% if show_fields.show_tpcr or 1 %}
+            {% if show_fields.show_tpcr %}
             <th>Código da Receita (CR)</th>
             {% endif %}
-            {% if show_fields.show_vrcpseg or 1 %}
+            {% if show_fields.show_vrcpseg %}
             <th>Valor da contribuição do segurado</th>
             {% endif %}
-            {% if show_fields.show_vrdescseg or 1 %}
+            {% if show_fields.show_vrdescseg %}
             <th>Valor efetivamente descontado do segurado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,25 +23,25 @@
     <tbody>
         {% for a in s5001_infocpcalc_lista %}
         <tr>
-            {% if show_fields.show_s5001_evtbasestrab or 1 %}
+            {% if show_fields.show_s5001_evtbasestrab %}
             <td>{{ a.s5001_evtbasestrab }}</td>
             {% endif %}
-            {% if show_fields.show_tpcr or 1 %}
+            {% if show_fields.show_tpcr %}
             <td>{{ a.get_tpcr_display }}</td>
             {% endif %}
-            {% if show_fields.show_vrcpseg or 1 %}
+            {% if show_fields.show_vrcpseg %}
             <td>{{ a.vrcpseg }}</td>
             {% endif %}
-            {% if show_fields.show_vrdescseg or 1 %}
+            {% if show_fields.show_vrdescseg %}
             <td>{{ a.vrdescseg }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

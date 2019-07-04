@@ -73,7 +73,7 @@ def listar(request, output=None):
             'show_tecmedicao': 0,
             'show_epcepi': 0,
             'show_utilizepc': 1,
-            'show_utilizepi': 1, }
+            'show_utilizepi': 0, }
 
         post = False
 

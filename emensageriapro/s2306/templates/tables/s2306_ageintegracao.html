@@ -2,25 +2,31 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2306_infoestagiario or 1 %}
+            {% if show_fields.show_s2306_infoestagiario %}
             <th>Agente de Integração</th>
             {% endif %}
-            {% if show_fields.show_cnpjagntinteg or 1 %}
+            {% if show_fields.show_cnpjagntinteg %}
             <th>CNPJ do Agente de Integração</th>
             {% endif %}
-            {% if show_fields.show_nmrazao or 1 %}
+            {% if show_fields.show_nmrazao %}
             <th>Razão Social</th>
             {% endif %}
-            {% if show_fields.show_dsclograd or 1 %}
+            {% if show_fields.show_dsclograd %}
             <th>Logradouro</th>
             {% endif %}
-            {% if show_fields.show_nrlograd or 1 %}
+            {% if show_fields.show_nrlograd %}
             <th>Número</th>
             {% endif %}
-            {% if show_fields.show_cep or 1 %}
+            {% if show_fields.show_bairro %}
+            <th>Bairro</th>
+            {% endif %}
+            {% if show_fields.show_cep %}
             <th>CEP</th>
             {% endif %}
-            {% if show_fields.show_uf or 1 %}
+            {% if show_fields.show_codmunic %}
+            <th>Código do Município</th>
+            {% endif %}
+            {% if show_fields.show_uf %}
             <th>UF</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -32,36 +38,42 @@
     <tbody>
         {% for a in s2306_ageintegracao_lista %}
         <tr>
-            {% if show_fields.show_s2306_infoestagiario or 1 %}
+            {% if show_fields.show_s2306_infoestagiario %}
             <td>{{ a.s2306_infoestagiario }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjagntinteg or 1 %}
+            {% if show_fields.show_cnpjagntinteg %}
             <td>{{ a.cnpjagntinteg }}</td>
             {% endif %}
-            {% if show_fields.show_nmrazao or 1 %}
+            {% if show_fields.show_nmrazao %}
             <td>{{ a.nmrazao }}</td>
             {% endif %}
-            {% if show_fields.show_dsclograd or 1 %}
+            {% if show_fields.show_dsclograd %}
             <td>{{ a.dsclograd }}</td>
             {% endif %}
-            {% if show_fields.show_nrlograd or 1 %}
+            {% if show_fields.show_nrlograd %}
             <td>{{ a.nrlograd }}</td>
             {% endif %}
-            {% if show_fields.show_cep or 1 %}
+            {% if show_fields.show_bairro %}
+            <td>{{ a.bairro }}</td>
+            {% endif %}
+            {% if show_fields.show_cep %}
             <td>{{ a.cep }}</td>
             {% endif %}
-            {% if show_fields.show_uf or 1 %}
+            {% if show_fields.show_codmunic %}
+            <td>{{ a.codmunic|valor }}</td>
+            {% endif %}
+            {% if show_fields.show_uf %}
             <td>{{ a.get_uf_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2306.change_s2306ageIntegracao or perms.s2306.add_s2306ageIntegracao %}
-                    
+
                         <a href="{% url 's2306_ageintegracao_salvar' pk=a.id %}">
                             {% if perms.s2306.change_s2306ageIntegracao %}
                                 <span class="btn btn-primary" title="Editar">
@@ -81,7 +93,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

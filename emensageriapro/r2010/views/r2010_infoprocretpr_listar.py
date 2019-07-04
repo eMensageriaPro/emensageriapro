@@ -71,7 +71,7 @@ def listar(request, output=None):
             'show_tpprocretprinc': 1,
             'show_nrprocretprinc': 1,
             'show_codsuspprinc': 0,
-            'show_valorprinc': 1, }
+            'show_valorprinc': 0, }
 
         post = False
 

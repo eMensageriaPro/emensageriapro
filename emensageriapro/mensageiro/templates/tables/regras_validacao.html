@@ -2,20 +2,53 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_evento or 1 %}
+            {% if show_fields.show_evento %}
             <th>Evento</th>
             {% endif %}
-            {% if show_fields.show_versao or 1 %}
+            {% if show_fields.show_versao %}
             <th>Versão</th>
             {% endif %}
-            {% if show_fields.show_numero or 1 %}
+            {% if show_fields.show_numero %}
             <th>Número</th>
             {% endif %}
-            {% if show_fields.show_registro_campo or 1 %}
+            {% if show_fields.show_registro_campo %}
             <th>Registro Campo</th>
             {% endif %}
-            {% if show_fields.show_registro_pai or 1 %}
+            {% if show_fields.show_registro_pai %}
             <th>Registro Pai</th>
+            {% endif %}
+            {% if show_fields.show_elemento %}
+            <th>Elemento</th>
+            {% endif %}
+            {% if show_fields.show_tipo %}
+            <th>Tipo</th>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <th>Ocorrências</th>
+            {% endif %}
+            {% if show_fields.show_tamanho %}
+            <th>Tamanho</th>
+            {% endif %}
+            {% if show_fields.show_casas_decimais %}
+            <th>Casas Decimais</th>
+            {% endif %}
+            {% if show_fields.show_obrigatorio %}
+            <th>Obrigatório</th>
+            {% endif %}
+            {% if show_fields.show_descricao %}
+            <th>Descrição</th>
+            {% endif %}
+            {% if show_fields.show_tabela %}
+            <th>Tabela</th>
+            {% endif %}
+            {% if show_fields.show_valores_validos %}
+            <th>Valores Válidos</th>
+            {% endif %}
+            {% if show_fields.show_validacoes_precedencia %}
+            <th>Validações de Precedência</th>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <th>Validações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -26,30 +59,63 @@
     <tbody>
         {% for a in regras_validacao_lista %}
         <tr>
-            {% if show_fields.show_evento or 1 %}
+            {% if show_fields.show_evento %}
             <td>{{ a.evento }}</td>
             {% endif %}
-            {% if show_fields.show_versao or 1 %}
+            {% if show_fields.show_versao %}
             <td>{{ a.versao }}</td>
             {% endif %}
-            {% if show_fields.show_numero or 1 %}
+            {% if show_fields.show_numero %}
             <td>{{ a.numero }}</td>
             {% endif %}
-            {% if show_fields.show_registro_campo or 1 %}
+            {% if show_fields.show_registro_campo %}
             <td>{{ a.registro_campo }}</td>
             {% endif %}
-            {% if show_fields.show_registro_pai or 1 %}
+            {% if show_fields.show_registro_pai %}
             <td>{{ a.registro_pai }}</td>
             {% endif %}
-            
+            {% if show_fields.show_elemento %}
+            <td>{{ a.elemento }}</td>
+            {% endif %}
+            {% if show_fields.show_tipo %}
+            <td>{{ a.tipo }}</td>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <td>{{ a.ocorrencias }}</td>
+            {% endif %}
+            {% if show_fields.show_tamanho %}
+            <td>{{ a.tamanho }}</td>
+            {% endif %}
+            {% if show_fields.show_casas_decimais %}
+            <td>{{ a.casas_decimais }}</td>
+            {% endif %}
+            {% if show_fields.show_obrigatorio %}
+            <td>{{ a.get_obrigatorio_display }}</td>
+            {% endif %}
+            {% if show_fields.show_descricao %}
+            <td>{{ a.descricao }}</td>
+            {% endif %}
+            {% if show_fields.show_tabela %}
+            <td>{{ a.tabela }}</td>
+            {% endif %}
+            {% if show_fields.show_valores_validos %}
+            <td>{{ a.valores_validos }}</td>
+            {% endif %}
+            {% if show_fields.show_validacoes_precedencia %}
+            <td>{{ a.validacoes_precedencia }}</td>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <td>{{ a.validacoes }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.mensageiro.change_RegrasDeValidacao or perms.mensageiro.add_RegrasDeValidacao %}
-                    
+
                         <a href="{% url 'regras_validacao_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_RegrasDeValidacao %}
                                 <span class="btn btn-primary" title="Editar">
@@ -69,7 +135,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

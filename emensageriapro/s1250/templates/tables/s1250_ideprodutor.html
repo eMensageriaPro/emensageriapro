@@ -2,28 +2,28 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1250_tpaquis or 1 %}
+            {% if show_fields.show_s1250_tpaquis %}
             <th>Registro que identifica os produtores rurais dos quais foi efetuada aquisição da produção pelo contribuinte declarante.</th>
             {% endif %}
-            {% if show_fields.show_tpinscprod or 1 %}
+            {% if show_fields.show_tpinscprod %}
             <th>Tipo de Inscrição Produtor</th>
             {% endif %}
-            {% if show_fields.show_nrinscprod or 1 %}
+            {% if show_fields.show_nrinscprod %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_vlrbruto or 1 %}
+            {% if show_fields.show_vlrbruto %}
             <th>Valor bruto</th>
             {% endif %}
-            {% if show_fields.show_vrcpdescpr or 1 %}
+            {% if show_fields.show_vrcpdescpr %}
             <th>Valor da CP descontada PR</th>
             {% endif %}
-            {% if show_fields.show_vrratdescpr or 1 %}
+            {% if show_fields.show_vrratdescpr %}
             <th>Valor RAT descontado do produtor rural</th>
             {% endif %}
-            {% if show_fields.show_vrsenardesc or 1 %}
+            {% if show_fields.show_vrsenardesc %}
             <th>Valor descontado destinado ao SENAR</th>
             {% endif %}
-            {% if show_fields.show_indopccp or 1 %}
+            {% if show_fields.show_indopccp %}
             <th>Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -35,39 +35,39 @@
     <tbody>
         {% for a in s1250_ideprodutor_lista %}
         <tr>
-            {% if show_fields.show_s1250_tpaquis or 1 %}
+            {% if show_fields.show_s1250_tpaquis %}
             <td>{{ a.s1250_tpaquis }}</td>
             {% endif %}
-            {% if show_fields.show_tpinscprod or 1 %}
+            {% if show_fields.show_tpinscprod %}
             <td>{{ a.tpinscprod }}</td>
             {% endif %}
-            {% if show_fields.show_nrinscprod or 1 %}
+            {% if show_fields.show_nrinscprod %}
             <td>{{ a.nrinscprod }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbruto or 1 %}
+            {% if show_fields.show_vlrbruto %}
             <td>{{ a.vlrbruto }}</td>
             {% endif %}
-            {% if show_fields.show_vrcpdescpr or 1 %}
+            {% if show_fields.show_vrcpdescpr %}
             <td>{{ a.vrcpdescpr }}</td>
             {% endif %}
-            {% if show_fields.show_vrratdescpr or 1 %}
+            {% if show_fields.show_vrratdescpr %}
             <td>{{ a.vrratdescpr }}</td>
             {% endif %}
-            {% if show_fields.show_vrsenardesc or 1 %}
+            {% if show_fields.show_vrsenardesc %}
             <td>{{ a.vrsenardesc }}</td>
             {% endif %}
-            {% if show_fields.show_indopccp or 1 %}
+            {% if show_fields.show_indopccp %}
             <td>{{ a.get_indopccp_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1250.change_s1250ideProdutor or perms.s1250.add_s1250ideProdutor %}
-                    
+
                         <a href="{% url 's1250_ideprodutor_salvar' pk=a.id %}">
                             {% if perms.s1250.change_s1250ideProdutor %}
                                 <span class="btn btn-primary" title="Editar">
@@ -87,7 +87,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

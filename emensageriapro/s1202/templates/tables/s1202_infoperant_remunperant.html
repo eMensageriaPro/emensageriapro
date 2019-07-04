@@ -2,10 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1202_infoperant_ideestab or 1 %}
+            {% if show_fields.show_s1202_infoperant_ideestab %}
             <th>Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração</th>
             {% endif %}
-            {% if show_fields.show_codcateg or 1 %}
+            {% if show_fields.show_matricula %}
+            <th>Matricula</th>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
             <th>Código da Categoria</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +20,24 @@
     <tbody>
         {% for a in s1202_infoperant_remunperant_lista %}
         <tr>
-            {% if show_fields.show_s1202_infoperant_ideestab or 1 %}
+            {% if show_fields.show_s1202_infoperant_ideestab %}
             <td>{{ a.s1202_infoperant_ideestab }}</td>
             {% endif %}
-            {% if show_fields.show_codcateg or 1 %}
+            {% if show_fields.show_matricula %}
+            <td>{{ a.matricula }}</td>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
             <td>{{ a.codcateg|valor }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1202.change_s1202infoPerAntremunPerAnt or perms.s1202.add_s1202infoPerAntremunPerAnt %}
-                    
+
                         <a href="{% url 's1202_infoperant_remunperant_salvar' pk=a.id %}">
                             {% if perms.s1202.change_s1202infoPerAntremunPerAnt %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

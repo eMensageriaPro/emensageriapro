@@ -70,7 +70,7 @@ def listar(request, output=None):
             'show_s1260_tpcomerc': 1,
             'show_tpinsc': 1,
             'show_nrinsc': 1,
-            'show_vrcomerc': 1, }
+            'show_vrcomerc': 0, }
 
         post = False
 

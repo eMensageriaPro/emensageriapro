@@ -233,7 +233,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_evtexclusao" value="0" {% if show_fields|get_value_from_dict:'show_evtexclusao' %}checked{% endif %} >Evento destinado a exclusão de eventos
+        <input type="checkbox" name="show_evtexclusao" value="1" {% if show_fields|get_value_from_dict:'show_evtexclusao' %}checked{% endif %} >Evento destinado a exclusão de eventos
     </div>
 </div>
 
@@ -245,7 +245,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_ideevento" value="0" {% if show_fields|get_value_from_dict:'show_ideevento' %}checked{% endif %} >Informações de Identificação do Evento
+        <input type="checkbox" name="show_ideevento" value="1" {% if show_fields|get_value_from_dict:'show_ideevento' %}checked{% endif %} >Informações de Identificação do Evento
     </div>
 </div>
 
@@ -269,7 +269,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_idecontri" value="0" {% if show_fields|get_value_from_dict:'show_idecontri' %}checked{% endif %} >Informações de identificação do contribuinte
+        <input type="checkbox" name="show_idecontri" value="1" {% if show_fields|get_value_from_dict:'show_idecontri' %}checked{% endif %} >Informações de identificação do contribuinte
     </div>
 </div>
 
@@ -287,7 +287,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_infoexclusao" value="0" {% if show_fields|get_value_from_dict:'show_infoexclusao' %}checked{% endif %} >Registro que identifica o evento objeto da exclusão
+        <input type="checkbox" name="show_infoexclusao" value="1" {% if show_fields|get_value_from_dict:'show_infoexclusao' %}checked{% endif %} >Registro que identifica o evento objeto da exclusão
     </div>
 </div>
 
@@ -311,13 +311,13 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_versao" value="0" {% if show_fields|get_value_from_dict:'show_versao' %}checked{% endif %} >Versão
+        <input type="checkbox" name="show_versao" value="1" {% if show_fields|get_value_from_dict:'show_versao' %}checked{% endif %} >Versão
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_transmissor_lote_efdreinf" value="0" {% if show_fields|get_value_from_dict:'show_transmissor_lote_efdreinf' %}checked{% endif %} >Transmissor
+        <input type="checkbox" name="show_transmissor_lote_efdreinf" value="1" {% if show_fields|get_value_from_dict:'show_transmissor_lote_efdreinf' %}checked{% endif %} >Transmissor
     </div>
 </div>
 

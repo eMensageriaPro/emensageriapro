@@ -70,10 +70,10 @@ def listar(request, output=None):
             'show_s2200_infoceletista': 1,
             'show_hipleg': 1,
             'show_justcontr': 1,
-            'show_tpinclcontr': 1,
+            'show_tpinclcontr': 0,
             'show_idetomadorserv': 0,
-            'show_tpinsc': 1,
-            'show_nrinsc': 1, }
+            'show_tpinsc': 0,
+            'show_nrinsc': 0, }
 
         post = False
 

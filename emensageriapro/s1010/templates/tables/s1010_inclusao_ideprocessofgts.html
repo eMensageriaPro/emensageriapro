@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1010_inclusao or 1 %}
+            {% if show_fields.show_s1010_inclusao %}
             <th>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</th>
             {% endif %}
-            {% if show_fields.show_nrproc or 1 %}
+            {% if show_fields.show_nrproc %}
             <th>Número do Processo</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s1010_inclusao_ideprocessofgts_lista %}
         <tr>
-            {% if show_fields.show_s1010_inclusao or 1 %}
+            {% if show_fields.show_s1010_inclusao %}
             <td>{{ a.s1010_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_nrproc or 1 %}
+            {% if show_fields.show_nrproc %}
             <td>{{ a.nrproc }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1010.change_s1010inclusaoideProcessoFGTS or perms.s1010.add_s1010inclusaoideProcessoFGTS %}
-                    
+
                         <a href="{% url 's1010_inclusao_ideprocessofgts_salvar' pk=a.id %}">
                             {% if perms.s1010.change_s1010inclusaoideProcessoFGTS %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

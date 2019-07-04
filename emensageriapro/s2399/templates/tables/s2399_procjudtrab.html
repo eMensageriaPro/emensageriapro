@@ -2,14 +2,17 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2399_verbasresc or 1 %}
+            {% if show_fields.show_s2399_verbasresc %}
             <th>Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</th>
             {% endif %}
-            {% if show_fields.show_tptrib or 1 %}
+            {% if show_fields.show_tptrib %}
             <th>Abrangência da Decisão</th>
             {% endif %}
-            {% if show_fields.show_nrprocjud or 1 %}
+            {% if show_fields.show_nrprocjud %}
             <th>Número do Processo Judicial</th>
+            {% endif %}
+            {% if show_fields.show_codsusp %}
+            <th>Código do Indicativo da Suspensão</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +23,27 @@
     <tbody>
         {% for a in s2399_procjudtrab_lista %}
         <tr>
-            {% if show_fields.show_s2399_verbasresc or 1 %}
+            {% if show_fields.show_s2399_verbasresc %}
             <td>{{ a.s2399_verbasresc }}</td>
             {% endif %}
-            {% if show_fields.show_tptrib or 1 %}
+            {% if show_fields.show_tptrib %}
             <td>{{ a.get_tptrib_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocjud or 1 %}
+            {% if show_fields.show_nrprocjud %}
             <td>{{ a.nrprocjud }}</td>
             {% endif %}
-            
+            {% if show_fields.show_codsusp %}
+            <td>{{ a.codsusp }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2399.change_s2399procJudTrab or perms.s2399.add_s2399procJudTrab %}
-                    
+
                         <a href="{% url 's2399_procjudtrab_salvar' pk=a.id %}">
                             {% if perms.s2399.change_s2399procJudTrab %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

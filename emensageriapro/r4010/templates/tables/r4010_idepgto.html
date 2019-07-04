@@ -2,14 +2,17 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_evtretpf or 1 %}
+            {% if show_fields.show_r4010_evtretpf %}
             <th>Identificação do rendimento</th>
             {% endif %}
-            {% if show_fields.show_natrend or 1 %}
+            {% if show_fields.show_natrend %}
             <th>Código da natureza do rendimento, conforme Tabela 01</th>
             {% endif %}
-            {% if show_fields.show_paisresid or 1 %}
+            {% if show_fields.show_paisresid %}
             <th>Preencher com o código do país de residência fiscal, conforme tabela 7</th>
+            {% endif %}
+            {% if show_fields.show_observ %}
+            <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +23,27 @@
     <tbody>
         {% for a in r4010_idepgto_lista %}
         <tr>
-            {% if show_fields.show_r4010_evtretpf or 1 %}
+            {% if show_fields.show_r4010_evtretpf %}
             <td>{{ a.r4010_evtretpf }}</td>
             {% endif %}
-            {% if show_fields.show_natrend or 1 %}
+            {% if show_fields.show_natrend %}
             <td>{{ a.natrend }}</td>
             {% endif %}
-            {% if show_fields.show_paisresid or 1 %}
+            {% if show_fields.show_paisresid %}
             <td>{{ a.paisresid }}</td>
             {% endif %}
-            
+            {% if show_fields.show_observ %}
+            <td>{{ a.observ }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4010.change_r4010idePgto or perms.r4010.add_r4010idePgto %}
-                    
+
                         <a href="{% url 'r4010_idepgto_salvar' pk=a.id %}">
                             {% if perms.r4010.change_r4010idePgto %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

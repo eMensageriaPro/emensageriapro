@@ -85,7 +85,7 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_foto" value="0" {% if show_fields|get_value_from_dict:'show_foto' %}checked{% endif %} >Foto
+        <input type="checkbox" name="show_foto" value="1" {% if show_fields|get_value_from_dict:'show_foto' %}checked{% endif %} >Foto
     </div>
 </div>
 
@@ -115,13 +115,13 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_is_superuser" value="0" {% if show_fields|get_value_from_dict:'show_is_superuser' %}checked{% endif %} >É Super usuário?
+        <input type="checkbox" name="show_is_superuser" value="1" {% if show_fields|get_value_from_dict:'show_is_superuser' %}checked{% endif %} >É Super usuário?
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_is_staff" value="0" {% if show_fields|get_value_from_dict:'show_is_staff' %}checked{% endif %} >É Administrador?
+        <input type="checkbox" name="show_is_staff" value="1" {% if show_fields|get_value_from_dict:'show_is_staff' %}checked{% endif %} >É Administrador?
     </div>
 </div>
 

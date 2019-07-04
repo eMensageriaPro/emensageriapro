@@ -2,20 +2,26 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9002_infototal or 1 %}
+            {% if show_fields.show_r9002_infototal %}
             <th>Totalizador das bases de cálculo e das retenções dos tributos com período de apuração diário</th>
             {% endif %}
-            {% if show_fields.show_perapurdia or 1 %}
+            {% if show_fields.show_perapurdia %}
             <th>Período de apuração diário do Código de Receita - CR</th>
             {% endif %}
-            {% if show_fields.show_crdia or 1 %}
+            {% if show_fields.show_crdia %}
             <th>Código de Receita - CR relativo a tributo que possui período de apuração diário</th>
             {% endif %}
-            {% if show_fields.show_vlrbasecrdia or 1 %}
+            {% if show_fields.show_vlrbasecrdia %}
             <th>Valor da base do tributo com período de apuração diário</th>
             {% endif %}
-            {% if show_fields.show_vlrcrdia or 1 %}
+            {% if show_fields.show_vlrcrdia %}
             <th>Valor do tributo retido com período de apuração diário, calculado segundo as regras estabelecidas na legislação em vigor</th>
+            {% endif %}
+            {% if show_fields.show_vlrbasecrdiasusp %}
+            <th>Valor da base do tributo com período de apuração diário, com exigibilidade suspensa</th>
+            {% endif %}
+            {% if show_fields.show_vlrcrdiasusp %}
+            <th>Valor do tributo com período de apuração diário, que deixou de ser retido</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -26,28 +32,34 @@
     <tbody>
         {% for a in r9002_totapurdia_lista %}
         <tr>
-            {% if show_fields.show_r9002_infototal or 1 %}
+            {% if show_fields.show_r9002_infototal %}
             <td>{{ a.r9002_infototal }}</td>
             {% endif %}
-            {% if show_fields.show_perapurdia or 1 %}
+            {% if show_fields.show_perapurdia %}
             <td>{{ a.perapurdia }}</td>
             {% endif %}
-            {% if show_fields.show_crdia or 1 %}
+            {% if show_fields.show_crdia %}
             <td>{{ a.crdia }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasecrdia or 1 %}
+            {% if show_fields.show_vlrbasecrdia %}
             <td>{{ a.vlrbasecrdia }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrdia or 1 %}
+            {% if show_fields.show_vlrcrdia %}
             <td>{{ a.vlrcrdia }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrbasecrdiasusp %}
+            <td>{{ a.vlrbasecrdiasusp }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrcrdiasusp %}
+            <td>{{ a.vlrcrdiasusp }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

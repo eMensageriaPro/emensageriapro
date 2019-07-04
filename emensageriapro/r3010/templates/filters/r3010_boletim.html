@@ -272,13 +272,13 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_cnpjvisitante" value="0" {% if show_fields|get_value_from_dict:'show_cnpjvisitante' %}checked{% endif %} >Preencher com o número de inscrição do clube visitante no CNPJ
+        <input type="checkbox" name="show_cnpjvisitante" value="1" {% if show_fields|get_value_from_dict:'show_cnpjvisitante' %}checked{% endif %} >Preencher com o número de inscrição do clube visitante no CNPJ
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_nomevisitante" value="0" {% if show_fields|get_value_from_dict:'show_nomevisitante' %}checked{% endif %} >Nome do clube visitante
+        <input type="checkbox" name="show_nomevisitante" value="1" {% if show_fields|get_value_from_dict:'show_nomevisitante' %}checked{% endif %} >Nome do clube visitante
     </div>
 </div>
 
@@ -290,7 +290,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_codmunic" value="0" {% if show_fields|get_value_from_dict:'show_codmunic' %}checked{% endif %} >Código do Município
+        <input type="checkbox" name="show_codmunic" value="1" {% if show_fields|get_value_from_dict:'show_codmunic' %}checked{% endif %} >Código do Município
     </div>
 </div>
 

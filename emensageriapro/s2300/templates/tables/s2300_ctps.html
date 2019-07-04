@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_documentos or 1 %}
+            {% if show_fields.show_s2300_documentos %}
             <th>Informações da Carteira de Trabalho e Previdência Social</th>
             {% endif %}
-            {% if show_fields.show_nrctps or 1 %}
+            {% if show_fields.show_nrctps %}
             <th>Número da CTPS</th>
             {% endif %}
-            {% if show_fields.show_seriectps or 1 %}
+            {% if show_fields.show_seriectps %}
             <th>Série da CTPS</th>
             {% endif %}
-            {% if show_fields.show_ufctps or 1 %}
+            {% if show_fields.show_ufctps %}
             <th>UF da CTPS</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +23,27 @@
     <tbody>
         {% for a in s2300_ctps_lista %}
         <tr>
-            {% if show_fields.show_s2300_documentos or 1 %}
+            {% if show_fields.show_s2300_documentos %}
             <td>{{ a.s2300_documentos }}</td>
             {% endif %}
-            {% if show_fields.show_nrctps or 1 %}
+            {% if show_fields.show_nrctps %}
             <td>{{ a.nrctps }}</td>
             {% endif %}
-            {% if show_fields.show_seriectps or 1 %}
+            {% if show_fields.show_seriectps %}
             <td>{{ a.seriectps }}</td>
             {% endif %}
-            {% if show_fields.show_ufctps or 1 %}
+            {% if show_fields.show_ufctps %}
             <td>{{ a.get_ufctps_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2300.change_s2300CTPS or perms.s2300.add_s2300CTPS %}
-                    
+
                         <a href="{% url 's2300_ctps_salvar' pk=a.id %}">
                             {% if perms.s2300.change_s2300CTPS %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

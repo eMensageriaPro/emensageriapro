@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2299_infoperant_ideestablot or 1 %}
+            {% if show_fields.show_s2299_infoperant_ideestablot %}
             <th>Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</th>
             {% endif %}
-            {% if show_fields.show_grauexp or 1 %}
+            {% if show_fields.show_grauexp %}
             <th>Código</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2299_infoperant_infoagnocivo_lista %}
         <tr>
-            {% if show_fields.show_s2299_infoperant_ideestablot or 1 %}
+            {% if show_fields.show_s2299_infoperant_ideestablot %}
             <td>{{ a.s2299_infoperant_ideestablot }}</td>
             {% endif %}
-            {% if show_fields.show_grauexp or 1 %}
+            {% if show_fields.show_grauexp %}
             <td>{{ a.get_grauexp_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2299.change_s2299infoPerAntinfoAgNocivo or perms.s2299.add_s2299infoPerAntinfoAgNocivo %}
-                    
+
                         <a href="{% url 's2299_infoperant_infoagnocivo_salvar' pk=a.id %}">
                             {% if perms.s2299.change_s2299infoPerAntinfoAgNocivo %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

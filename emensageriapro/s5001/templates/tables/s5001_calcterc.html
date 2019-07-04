@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5001_infocategincid or 1 %}
+            {% if show_fields.show_s5001_infocategincid %}
             <th>Cálculo das contribuições sociais devidas a Outras Entidades e Fundos.</th>
             {% endif %}
-            {% if show_fields.show_tpcr or 1 %}
+            {% if show_fields.show_tpcr %}
             <th>Código da Receita (CR)</th>
             {% endif %}
-            {% if show_fields.show_vrcssegterc or 1 %}
+            {% if show_fields.show_vrcssegterc %}
             <th>Valor da CS devida a outras entidades</th>
             {% endif %}
-            {% if show_fields.show_vrdescterc or 1 %}
+            {% if show_fields.show_vrdescterc %}
             <th>Valor total descontado do segurado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,25 +23,25 @@
     <tbody>
         {% for a in s5001_calcterc_lista %}
         <tr>
-            {% if show_fields.show_s5001_infocategincid or 1 %}
+            {% if show_fields.show_s5001_infocategincid %}
             <td>{{ a.s5001_infocategincid }}</td>
             {% endif %}
-            {% if show_fields.show_tpcr or 1 %}
+            {% if show_fields.show_tpcr %}
             <td>{{ a.get_tpcr_display }}</td>
             {% endif %}
-            {% if show_fields.show_vrcssegterc or 1 %}
+            {% if show_fields.show_vrcssegterc %}
             <td>{{ a.vrcssegterc }}</td>
             {% endif %}
-            {% if show_fields.show_vrdescterc or 1 %}
+            {% if show_fields.show_vrdescterc %}
             <td>{{ a.vrdescterc }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

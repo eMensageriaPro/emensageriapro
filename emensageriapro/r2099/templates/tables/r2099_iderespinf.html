@@ -2,14 +2,20 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2099_evtfechaevper or 1 %}
+            {% if show_fields.show_r2099_evtfechaevper %}
             <th>Responsável pelas informações</th>
             {% endif %}
-            {% if show_fields.show_nmresp or 1 %}
+            {% if show_fields.show_nmresp %}
             <th>Nome do responsável pelas informações.</th>
             {% endif %}
-            {% if show_fields.show_cpfresp or 1 %}
+            {% if show_fields.show_cpfresp %}
             <th>Preencher com o CPF do responsável</th>
+            {% endif %}
+            {% if show_fields.show_telefone %}
+            <th>Informar o número do telefone, com DDD</th>
+            {% endif %}
+            {% if show_fields.show_email %}
+            <th>Endereço eletrônico</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +26,30 @@
     <tbody>
         {% for a in r2099_iderespinf_lista %}
         <tr>
-            {% if show_fields.show_r2099_evtfechaevper or 1 %}
+            {% if show_fields.show_r2099_evtfechaevper %}
             <td>{{ a.r2099_evtfechaevper }}</td>
             {% endif %}
-            {% if show_fields.show_nmresp or 1 %}
+            {% if show_fields.show_nmresp %}
             <td>{{ a.nmresp }}</td>
             {% endif %}
-            {% if show_fields.show_cpfresp or 1 %}
+            {% if show_fields.show_cpfresp %}
             <td>{{ a.cpfresp }}</td>
             {% endif %}
-            
+            {% if show_fields.show_telefone %}
+            <td>{{ a.telefone }}</td>
+            {% endif %}
+            {% if show_fields.show_email %}
+            <td>{{ a.email }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2099.change_r2099ideRespInf or perms.r2099.add_r2099ideRespInf %}
-                    
+
                         <a href="{% url 'r2099_iderespinf_salvar' pk=a.id %}">
                             {% if perms.r2099.change_r2099ideRespInf %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,17 +2,20 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r5001_infototal or 1 %}
+            {% if show_fields.show_r5001_infototal %}
             <th>Totalizador da contribuição previdenciária incidente sobre Receitas de Espetáculos Desportivos, apuradas no evento R-3010.</th>
             {% endif %}
-            {% if show_fields.show_crrecespetdesp or 1 %}
+            {% if show_fields.show_crrecespetdesp %}
             <th>Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Receita de Espetáculos Desportivos, calculada segundo as regras estabelecidas na legislação em vigor</th>
             {% endif %}
-            {% if show_fields.show_vlrreceitatotal or 1 %}
+            {% if show_fields.show_vlrreceitatotal %}
             <th>Valor da receita bruta total</th>
             {% endif %}
-            {% if show_fields.show_vlrcrrecespetdesp or 1 %}
+            {% if show_fields.show_vlrcrrecespetdesp %}
             <th>Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem:R-3010</th>
+            {% endif %}
+            {% if show_fields.show_vlrcrrecespetdespsusp %}
+            <th>Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -23,25 +26,28 @@
     <tbody>
         {% for a in r5001_rrecespetdesp_lista %}
         <tr>
-            {% if show_fields.show_r5001_infototal or 1 %}
+            {% if show_fields.show_r5001_infototal %}
             <td>{{ a.r5001_infototal }}</td>
             {% endif %}
-            {% if show_fields.show_crrecespetdesp or 1 %}
+            {% if show_fields.show_crrecespetdesp %}
             <td>{{ a.crrecespetdesp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrreceitatotal or 1 %}
+            {% if show_fields.show_vlrreceitatotal %}
             <td>{{ a.vlrreceitatotal }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrrecespetdesp or 1 %}
+            {% if show_fields.show_vlrcrrecespetdesp %}
             <td>{{ a.vlrcrrecespetdesp }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrcrrecespetdespsusp %}
+            <td>{{ a.vlrcrrecespetdespsusp }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

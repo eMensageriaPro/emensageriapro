@@ -70,7 +70,7 @@ def listar(request, output=None):
             'show_r4020_despprocjud': 1,
             'show_tpinscadv': 1,
             'show_nrinscadv': 1,
-            'show_vlradv': 1, }
+            'show_vlradv': 0, }
 
         post = False
 

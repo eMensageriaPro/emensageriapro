@@ -2,8 +2,14 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_pgtopf or 1 %}
+            {% if show_fields.show_r2070_pgtopf %}
             <th>Compensação Judicial</th>
+            {% endif %}
+            {% if show_fields.show_vlrcompanocalend %}
+            <th>Compensação Judicial relativa ao ano calendário</th>
+            {% endif %}
+            {% if show_fields.show_vlrcompanoant %}
+            <th>Compensação Judicial relativa a anos anteriores ao ano calendário</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -14,18 +20,24 @@
     <tbody>
         {% for a in r2070_compjud_lista %}
         <tr>
-            {% if show_fields.show_r2070_pgtopf or 1 %}
+            {% if show_fields.show_r2070_pgtopf %}
             <td>{{ a.r2070_pgtopf }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrcompanocalend %}
+            <td>{{ a.vlrcompanocalend }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrcompanoant %}
+            <td>{{ a.vlrcompanoant }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2070.change_r2070compJud or perms.r2070.add_r2070compJud %}
-                    
+
                         <a href="{% url 'r2070_compjud_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070compJud %}
                                 <span class="btn btn-primary" title="Editar">
@@ -45,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

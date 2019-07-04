@@ -2,17 +2,20 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2250_evtavprevio or 1 %}
+            {% if show_fields.show_s2250_evtavprevio %}
             <th>Detalha as informações do evento trabalhista</th>
             {% endif %}
-            {% if show_fields.show_dtavprv or 1 %}
+            {% if show_fields.show_dtavprv %}
             <th>Data do aviso prévio</th>
             {% endif %}
-            {% if show_fields.show_dtprevdeslig or 1 %}
+            {% if show_fields.show_dtprevdeslig %}
             <th>Data prevista para o desligamento</th>
             {% endif %}
-            {% if show_fields.show_tpavprevio or 1 %}
+            {% if show_fields.show_tpavprevio %}
             <th>Tipo de aviso prévio</th>
+            {% endif %}
+            {% if show_fields.show_observacao %}
+            <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -23,27 +26,30 @@
     <tbody>
         {% for a in s2250_detavprevio_lista %}
         <tr>
-            {% if show_fields.show_s2250_evtavprevio or 1 %}
+            {% if show_fields.show_s2250_evtavprevio %}
             <td>{{ a.s2250_evtavprevio }}</td>
             {% endif %}
-            {% if show_fields.show_dtavprv or 1 %}
+            {% if show_fields.show_dtavprv %}
             <td><span style="display:none">{{ a.dtavprv|date:"Y-m-d" }}</span>{{ a.dtavprv|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtprevdeslig or 1 %}
+            {% if show_fields.show_dtprevdeslig %}
             <td><span style="display:none">{{ a.dtprevdeslig|date:"Y-m-d" }}</span>{{ a.dtprevdeslig|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tpavprevio or 1 %}
+            {% if show_fields.show_tpavprevio %}
             <td>{{ a.get_tpavprevio_display }}</td>
             {% endif %}
-            
+            {% if show_fields.show_observacao %}
+            <td>{{ a.observacao }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2250.change_s2250detAvPrevio or perms.s2250.add_s2250detAvPrevio %}
-                    
+
                         <a href="{% url 's2250_detavprevio_salvar' pk=a.id %}">
                             {% if perms.s2250.change_s2250detAvPrevio %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

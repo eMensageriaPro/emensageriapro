@@ -2,19 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r1070_evttabprocesso or 1 %}
+            {% if show_fields.show_r1070_evttabprocesso %}
             <th>Inclusão de novas informações</th>
             {% endif %}
-            {% if show_fields.show_tpproc or 1 %}
+            {% if show_fields.show_ideprocesso %}
+            <th>Informações de identificação do Processo e validade das informações que estão sendo incluídas</th>
+            {% endif %}
+            {% if show_fields.show_tpproc %}
             <th>Preencher com o código correspondente ao tipo de processo</th>
             {% endif %}
-            {% if show_fields.show_nrproc or 1 %}
+            {% if show_fields.show_nrproc %}
             <th>Informar o número do processo administrativo/judicial</th>
             {% endif %}
-            {% if show_fields.show_inivalid or 1 %}
+            {% if show_fields.show_inivalid %}
             <th>Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM</th>
             {% endif %}
-            {% if show_fields.show_indautoria or 1 %}
+            {% if show_fields.show_fimvalid %}
+            <th>Preencher com o mês e ano de término da validade das informações, se houver</th>
+            {% endif %}
+            {% if show_fields.show_indautoria %}
             <th>Indicativo da autoria da ação judicial</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -26,30 +32,36 @@
     <tbody>
         {% for a in r1070_inclusao_lista %}
         <tr>
-            {% if show_fields.show_r1070_evttabprocesso or 1 %}
+            {% if show_fields.show_r1070_evttabprocesso %}
             <td>{{ a.r1070_evttabprocesso }}</td>
             {% endif %}
-            {% if show_fields.show_tpproc or 1 %}
+            {% if show_fields.show_ideprocesso %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpproc %}
             <td>{{ a.get_tpproc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrproc or 1 %}
+            {% if show_fields.show_nrproc %}
             <td>{{ a.nrproc }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid or 1 %}
+            {% if show_fields.show_inivalid %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_indautoria or 1 %}
+            {% if show_fields.show_fimvalid %}
+            <td>{{ a.get_fimvalid_display }}</td>
+            {% endif %}
+            {% if show_fields.show_indautoria %}
             <td>{{ a.get_indautoria_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r1070.change_r1070inclusao or perms.r1070.add_r1070inclusao %}
-                    
+
                         <a href="{% url 'r1070_inclusao_salvar' pk=a.id %}">
                             {% if perms.r1070.change_r1070inclusao %}
                                 <span class="btn btn-primary" title="Editar">
@@ -69,7 +81,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

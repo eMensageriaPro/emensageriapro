@@ -118,13 +118,13 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrbasecrmensusp" value="0" {% if show_fields|get_value_from_dict:'show_vlrbasecrmensusp' %}checked{% endif %} >Valor da base do tributo com período de apuração mensal, com exigibilidade suspensa
+        <input type="checkbox" name="show_vlrbasecrmensusp" value="1" {% if show_fields|get_value_from_dict:'show_vlrbasecrmensusp' %}checked{% endif %} >Valor da base do tributo com período de apuração mensal, com exigibilidade suspensa
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrcrmensusp" value="0" {% if show_fields|get_value_from_dict:'show_vlrcrmensusp' %}checked{% endif %} >Valor do tributo com período de apuração mensal, que deixou de ser retido
+        <input type="checkbox" name="show_vlrcrmensusp" value="1" {% if show_fields|get_value_from_dict:'show_vlrcrmensusp' %}checked{% endif %} >Valor do tributo com período de apuração mensal, que deixou de ser retido
     </div>
 </div>
 

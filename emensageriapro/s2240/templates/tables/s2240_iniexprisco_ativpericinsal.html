@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_evtexprisco or 1 %}
+            {% if show_fields.show_s2240_evtexprisco %}
             <th>Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)</th>
             {% endif %}
-            {% if show_fields.show_codativ or 1 %}
+            {% if show_fields.show_codativ %}
             <th>Atividade desempenhada</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2240_iniexprisco_ativpericinsal_lista %}
         <tr>
-            {% if show_fields.show_s2240_evtexprisco or 1 %}
+            {% if show_fields.show_s2240_evtexprisco %}
             <td>{{ a.s2240_evtexprisco }}</td>
             {% endif %}
-            {% if show_fields.show_codativ or 1 %}
+            {% if show_fields.show_codativ %}
             <td>{{ a.codativ }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2240.change_s2240iniExpRiscoativPericInsal or perms.s2240.add_s2240iniExpRiscoativPericInsal %}
-                    
+
                         <a href="{% url 's2240_iniexprisco_ativpericinsal_salvar' pk=a.id %}">
                             {% if perms.s2240.change_s2240iniExpRiscoativPericInsal %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

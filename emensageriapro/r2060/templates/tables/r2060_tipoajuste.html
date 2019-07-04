@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2060_tipocod or 1 %}
+            {% if show_fields.show_r2060_tipocod %}
             <th>Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.</th>
             {% endif %}
-            {% if show_fields.show_tpajuste or 1 %}
+            {% if show_fields.show_tpajuste %}
             <th>Preencher com o código correspondente ao tipo de ajuste</th>
             {% endif %}
-            {% if show_fields.show_codajuste or 1 %}
+            {% if show_fields.show_codajuste %}
             <th>Preencher com o código de ajuste</th>
             {% endif %}
-            {% if show_fields.show_vlrajuste or 1 %}
+            {% if show_fields.show_vlrajuste %}
             <th>Valor do ajuste</th>
             {% endif %}
-            {% if show_fields.show_descajuste or 1 %}
+            {% if show_fields.show_descajuste %}
             <th>Descrição resumida do ajuste</th>
             {% endif %}
-            {% if show_fields.show_dtajuste or 1 %}
+            {% if show_fields.show_dtajuste %}
             <th>Informar o mês/ano (formato AAAA-MM) de referência do ajuste</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -29,33 +29,33 @@
     <tbody>
         {% for a in r2060_tipoajuste_lista %}
         <tr>
-            {% if show_fields.show_r2060_tipocod or 1 %}
+            {% if show_fields.show_r2060_tipocod %}
             <td>{{ a.r2060_tipocod }}</td>
             {% endif %}
-            {% if show_fields.show_tpajuste or 1 %}
+            {% if show_fields.show_tpajuste %}
             <td>{{ a.get_tpajuste_display }}</td>
             {% endif %}
-            {% if show_fields.show_codajuste or 1 %}
+            {% if show_fields.show_codajuste %}
             <td>{{ a.get_codajuste_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrajuste or 1 %}
+            {% if show_fields.show_vlrajuste %}
             <td>{{ a.vlrajuste }}</td>
             {% endif %}
-            {% if show_fields.show_descajuste or 1 %}
+            {% if show_fields.show_descajuste %}
             <td>{{ a.descajuste }}</td>
             {% endif %}
-            {% if show_fields.show_dtajuste or 1 %}
+            {% if show_fields.show_dtajuste %}
             <td>{{ a.dtajuste }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2060.change_r2060tipoAjuste or perms.r2060.add_r2060tipoAjuste %}
-                    
+
                         <a href="{% url 'r2060_tipoajuste_salvar' pk=a.id %}">
                             {% if perms.r2060.change_r2060tipoAjuste %}
                                 <span class="btn btn-primary" title="Editar">
@@ -75,7 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2399_verbasresc or 1 %}
+            {% if show_fields.show_s2399_verbasresc %}
             <th>Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</th>
             {% endif %}
-            {% if show_fields.show_indmv or 1 %}
+            {% if show_fields.show_indmv %}
             <th>Desconto de Contribuição Previdenciária (Outros vinculos)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2399_infomv_lista %}
         <tr>
-            {% if show_fields.show_s2399_verbasresc or 1 %}
+            {% if show_fields.show_s2399_verbasresc %}
             <td>{{ a.s2399_verbasresc }}</td>
             {% endif %}
-            {% if show_fields.show_indmv or 1 %}
+            {% if show_fields.show_indmv %}
             <td>{{ a.get_indmv_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2399.change_s2399infoMV or perms.s2399.add_s2399infoMV %}
-                    
+
                         <a href="{% url 's2399_infomv_salvar' pk=a.id %}">
                             {% if perms.s2399.change_s2399infoMV %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

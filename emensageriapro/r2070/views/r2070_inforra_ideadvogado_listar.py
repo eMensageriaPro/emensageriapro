@@ -70,7 +70,7 @@ def listar(request, output=None):
             'show_r2070_inforra_despprocjud': 1,
             'show_tpinscadvogado': 1,
             'show_nrinscadvogado': 1,
-            'show_vlradvogado': 1, }
+            'show_vlradvogado': 0, }
 
         post = False
 

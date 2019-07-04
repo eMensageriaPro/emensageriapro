@@ -70,7 +70,7 @@ def listar(request, output=None):
             'show_s2200_documentos': 1,
             'show_nrctps': 1,
             'show_seriectps': 1,
-            'show_ufctps': 1, }
+            'show_ufctps': 0, }
 
         post = False
 

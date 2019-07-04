@@ -2,23 +2,32 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2220_evtmonit or 1 %}
+            {% if show_fields.show_s2220_evtmonit %}
             <th>Registro que detalha os exames complementares porventura realizados pelo trabalhador em virtude do determinado no Quadro II da NR 07 do MTE, além de outros solicitados pelo médico e os referentes ao ASO</th>
             {% endif %}
-            {% if show_fields.show_dtexm or 1 %}
+            {% if show_fields.show_dtexm %}
             <th>Data do exame</th>
             {% endif %}
-            {% if show_fields.show_procrealizado or 1 %}
+            {% if show_fields.show_procrealizado %}
             <th>Procedimento Médico</th>
             {% endif %}
-            {% if show_fields.show_interprexm or 1 %}
+            {% if show_fields.show_obsproc %}
+            <th>Observações sobre o procedimento médico</th>
+            {% endif %}
+            {% if show_fields.show_interprexm %}
             <th>Interpretador</th>
             {% endif %}
-            {% if show_fields.show_ordexame or 1 %}
+            {% if show_fields.show_ordexame %}
             <th>Ordem</th>
             {% endif %}
-            {% if show_fields.show_dtinimonit or 1 %}
+            {% if show_fields.show_dtinimonit %}
             <th>Data de início do monitoramento</th>
+            {% endif %}
+            {% if show_fields.show_dtfimmonit %}
+            <th>Data de término do monitoramento</th>
+            {% endif %}
+            {% if show_fields.show_indresult %}
+            <th>Indicador de resultados</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -29,33 +38,42 @@
     <tbody>
         {% for a in s2220_exame_lista %}
         <tr>
-            {% if show_fields.show_s2220_evtmonit or 1 %}
+            {% if show_fields.show_s2220_evtmonit %}
             <td>{{ a.s2220_evtmonit }}</td>
             {% endif %}
-            {% if show_fields.show_dtexm or 1 %}
+            {% if show_fields.show_dtexm %}
             <td><span style="display:none">{{ a.dtexm|date:"Y-m-d" }}</span>{{ a.dtexm|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_procrealizado or 1 %}
+            {% if show_fields.show_procrealizado %}
             <td>{{ a.procrealizado|valor }}</td>
             {% endif %}
-            {% if show_fields.show_interprexm or 1 %}
+            {% if show_fields.show_obsproc %}
+            <td>{{ a.obsproc }}</td>
+            {% endif %}
+            {% if show_fields.show_interprexm %}
             <td>{{ a.get_interprexm_display }}</td>
             {% endif %}
-            {% if show_fields.show_ordexame or 1 %}
+            {% if show_fields.show_ordexame %}
             <td>{{ a.get_ordexame_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtinimonit or 1 %}
+            {% if show_fields.show_dtinimonit %}
             <td><span style="display:none">{{ a.dtinimonit|date:"Y-m-d" }}</span>{{ a.dtinimonit|date:"d/m/Y" }}</td>
             {% endif %}
-            
+            {% if show_fields.show_dtfimmonit %}
+            <td><span style="display:none">{{ a.dtfimmonit|date:"Y-m-d" }}</span>{{ a.dtfimmonit|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_indresult %}
+            <td>{{ a.get_indresult_display }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2220.change_s2220exame or perms.s2220.add_s2220exame %}
-                    
+
                         <a href="{% url 's2220_exame_salvar' pk=a.id %}">
                             {% if perms.s2220.change_s2220exame %}
                                 <span class="btn btn-primary" title="Editar">
@@ -75,7 +93,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

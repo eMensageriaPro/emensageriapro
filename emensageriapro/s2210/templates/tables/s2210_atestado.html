@@ -2,38 +2,56 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2210_evtcat or 1 %}
+            {% if show_fields.show_s2210_evtcat %}
             <th>Atestado Médico</th>
             {% endif %}
-            {% if show_fields.show_dtatendimento or 1 %}
+            {% if show_fields.show_codcnes %}
+            <th>CNES da unidade de atendimento</th>
+            {% endif %}
+            {% if show_fields.show_dtatendimento %}
             <th>Data do atendimento</th>
             {% endif %}
-            {% if show_fields.show_hratendimento or 1 %}
+            {% if show_fields.show_hratendimento %}
             <th>Hora do atendimento</th>
             {% endif %}
-            {% if show_fields.show_indinternacao or 1 %}
+            {% if show_fields.show_indinternacao %}
             <th>Internação</th>
             {% endif %}
-            {% if show_fields.show_durtrat or 1 %}
+            {% if show_fields.show_durtrat %}
             <th>Duração do tratamento</th>
             {% endif %}
-            {% if show_fields.show_indafast or 1 %}
+            {% if show_fields.show_indafast %}
             <th>Afastamento</th>
             {% endif %}
-            {% if show_fields.show_dsclesao or 1 %}
+            {% if show_fields.show_dsclesao %}
             <th>Descrição da Lesão</th>
             {% endif %}
-            {% if show_fields.show_codcid or 1 %}
+            {% if show_fields.show_dsccomplesao %}
+            <th>Descrição complementar da lesão</th>
+            {% endif %}
+            {% if show_fields.show_diagprovavel %}
+            <th>Diagnóstivo provável</th>
+            {% endif %}
+            {% if show_fields.show_codcid %}
             <th>CID</th>
             {% endif %}
-            {% if show_fields.show_nmemit or 1 %}
+            {% if show_fields.show_observacao %}
+            <th>Observações</th>
+            {% endif %}
+            {% if show_fields.show_emitente %}
+            <th>Médico/Dentista que emitiu o atestado</th>
+            {% endif %}
+            {% if show_fields.show_nmemit %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_ideoc or 1 %}
+            {% if show_fields.show_ideoc %}
             <th>Órgão de Classe (OC)</th>
             {% endif %}
-            {% if show_fields.show_nroc or 1 %}
+            {% if show_fields.show_nroc %}
             <th>Número de Inscrição no órgão de classe.</th>
+            {% endif %}
+            {% if show_fields.show_ufoc %}
+            <th>UF do OC</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -44,48 +62,66 @@
     <tbody>
         {% for a in s2210_atestado_lista %}
         <tr>
-            {% if show_fields.show_s2210_evtcat or 1 %}
+            {% if show_fields.show_s2210_evtcat %}
             <td>{{ a.s2210_evtcat }}</td>
             {% endif %}
-            {% if show_fields.show_dtatendimento or 1 %}
+            {% if show_fields.show_codcnes %}
+            <td>{{ a.codcnes }}</td>
+            {% endif %}
+            {% if show_fields.show_dtatendimento %}
             <td><span style="display:none">{{ a.dtatendimento|date:"Y-m-d" }}</span>{{ a.dtatendimento|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_hratendimento or 1 %}
+            {% if show_fields.show_hratendimento %}
             <td>{{ a.hratendimento }}</td>
             {% endif %}
-            {% if show_fields.show_indinternacao or 1 %}
+            {% if show_fields.show_indinternacao %}
             <td>{{ a.get_indinternacao_display }}</td>
             {% endif %}
-            {% if show_fields.show_durtrat or 1 %}
+            {% if show_fields.show_durtrat %}
             <td>{{ a.durtrat }}</td>
             {% endif %}
-            {% if show_fields.show_indafast or 1 %}
+            {% if show_fields.show_indafast %}
             <td>{{ a.get_indafast_display }}</td>
             {% endif %}
-            {% if show_fields.show_dsclesao or 1 %}
+            {% if show_fields.show_dsclesao %}
             <td>{{ a.dsclesao|valor }}</td>
             {% endif %}
-            {% if show_fields.show_codcid or 1 %}
+            {% if show_fields.show_dsccomplesao %}
+            <td>{{ a.dsccomplesao }}</td>
+            {% endif %}
+            {% if show_fields.show_diagprovavel %}
+            <td>{{ a.diagprovavel }}</td>
+            {% endif %}
+            {% if show_fields.show_codcid %}
             <td>{{ a.codcid }}</td>
             {% endif %}
-            {% if show_fields.show_nmemit or 1 %}
+            {% if show_fields.show_observacao %}
+            <td>{{ a.observacao }}</td>
+            {% endif %}
+            {% if show_fields.show_emitente %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_nmemit %}
             <td>{{ a.nmemit }}</td>
             {% endif %}
-            {% if show_fields.show_ideoc or 1 %}
+            {% if show_fields.show_ideoc %}
             <td>{{ a.get_ideoc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nroc or 1 %}
+            {% if show_fields.show_nroc %}
             <td>{{ a.nroc }}</td>
             {% endif %}
-            
+            {% if show_fields.show_ufoc %}
+            <td>{{ a.get_ufoc_display }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2210.change_s2210atestado or perms.s2210.add_s2210atestado %}
-                    
+
                         <a href="{% url 's2210_atestado_salvar' pk=a.id %}">
                             {% if perms.s2210.change_s2210atestado %}
                                 <span class="btn btn-primary" title="Editar">
@@ -105,7 +141,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

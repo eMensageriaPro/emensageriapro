@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_pgtoresidbr or 1 %}
+            {% if show_fields.show_r2070_pgtoresidbr %}
             <th>Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil</th>
             {% endif %}
-            {% if show_fields.show_dtpagto or 1 %}
+            {% if show_fields.show_dtpagto %}
             <th>Informar a data de pagamento ou crédito, base para retenção</th>
             {% endif %}
-            {% if show_fields.show_vlrrendtributavel or 1 %}
+            {% if show_fields.show_vlrrendtributavel %}
             <th>Valor do rendimento tributável</th>
             {% endif %}
-            {% if show_fields.show_vlrret or 1 %}
+            {% if show_fields.show_vlrret %}
             <th>Preencher com o valor da retenção na Fonte relativamente a IR, CSLL, Cofins, PIS/PASEP.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +23,27 @@
     <tbody>
         {% for a in r2070_pgtopj_lista %}
         <tr>
-            {% if show_fields.show_r2070_pgtoresidbr or 1 %}
+            {% if show_fields.show_r2070_pgtoresidbr %}
             <td>{{ a.r2070_pgtoresidbr }}</td>
             {% endif %}
-            {% if show_fields.show_dtpagto or 1 %}
+            {% if show_fields.show_dtpagto %}
             <td><span style="display:none">{{ a.dtpagto|date:"Y-m-d" }}</span>{{ a.dtpagto|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_vlrrendtributavel or 1 %}
+            {% if show_fields.show_vlrrendtributavel %}
             <td>{{ a.vlrrendtributavel }}</td>
             {% endif %}
-            {% if show_fields.show_vlrret or 1 %}
+            {% if show_fields.show_vlrret %}
             <td>{{ a.vlrret }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2070.change_r2070pgtoPJ or perms.r2070.add_r2070pgtoPJ %}
-                    
+
                         <a href="{% url 'r2070_pgtopj_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070pgtoPJ %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -11,15 +11,15 @@
     <tbody>
         {% for a in login_alteracao_senha_lista %}
         <tr>
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.controle_de_acesso.change_AlterarSenha or perms.controle_de_acesso.add_AlterarSenha %}
-                    
+
                         <a href="{% url 'login_alteracao_senha_salvar' pk=a.id %}">
                             {% if perms.controle_de_acesso.change_AlterarSenha %}
                                 <span class="btn btn-primary" title="Editar">
@@ -39,7 +39,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

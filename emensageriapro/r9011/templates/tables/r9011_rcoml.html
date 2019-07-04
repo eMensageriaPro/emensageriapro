@@ -2,14 +2,17 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9011_infototalcontrib or 1 %}
+            {% if show_fields.show_r9011_infototalcontrib %}
             <th>Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050</th>
             {% endif %}
-            {% if show_fields.show_crcoml or 1 %}
+            {% if show_fields.show_crcoml %}
             <th>Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Comercialização de Produção, calculada segundo as regras estabelecidas na legislação em vigor</th>
             {% endif %}
-            {% if show_fields.show_vlrcrcoml or 1 %}
+            {% if show_fields.show_vlrcrcoml %}
             <th>Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050</th>
+            {% endif %}
+            {% if show_fields.show_vlrcrcomlsusp %}
+            <th>Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,22 +23,25 @@
     <tbody>
         {% for a in r9011_rcoml_lista %}
         <tr>
-            {% if show_fields.show_r9011_infototalcontrib or 1 %}
+            {% if show_fields.show_r9011_infototalcontrib %}
             <td>{{ a.r9011_infototalcontrib }}</td>
             {% endif %}
-            {% if show_fields.show_crcoml or 1 %}
+            {% if show_fields.show_crcoml %}
             <td>{{ a.crcoml }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrcoml or 1 %}
+            {% if show_fields.show_vlrcrcoml %}
             <td>{{ a.vlrcrcoml }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrcrcomlsusp %}
+            <td>{{ a.vlrcrcomlsusp }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

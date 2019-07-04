@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_pgtopf or 1 %}
+            {% if show_fields.show_r2070_pgtopf %}
             <th>Detalhamento das Deduções</th>
             {% endif %}
-            {% if show_fields.show_indtpdeducao or 1 %}
+            {% if show_fields.show_indtpdeducao %}
             <th>Indicativo do Tipo de Dedução</th>
             {% endif %}
-            {% if show_fields.show_vlrdeducao or 1 %}
+            {% if show_fields.show_vlrdeducao %}
             <th>Preencher com o Valor da dedução da base de cálculo.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +20,24 @@
     <tbody>
         {% for a in r2070_detdeducao_lista %}
         <tr>
-            {% if show_fields.show_r2070_pgtopf or 1 %}
+            {% if show_fields.show_r2070_pgtopf %}
             <td>{{ a.r2070_pgtopf }}</td>
             {% endif %}
-            {% if show_fields.show_indtpdeducao or 1 %}
+            {% if show_fields.show_indtpdeducao %}
             <td>{{ a.get_indtpdeducao_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrdeducao or 1 %}
+            {% if show_fields.show_vlrdeducao %}
             <td>{{ a.vlrdeducao }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2070.change_r2070detDeducao or perms.r2070.add_r2070detDeducao %}
-                    
+
                         <a href="{% url 'r2070_detdeducao_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070detDeducao %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

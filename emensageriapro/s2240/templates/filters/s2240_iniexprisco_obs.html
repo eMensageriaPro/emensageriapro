@@ -64,19 +64,19 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_meterg" value="0" {% if show_fields|get_value_from_dict:'show_meterg' %}checked{% endif %} >Descrição da metodologia utilizada para o levantamento dos riscos ergonômicos.
+        <input type="checkbox" name="show_meterg" value="1" {% if show_fields|get_value_from_dict:'show_meterg' %}checked{% endif %} >Descrição da metodologia utilizada para o levantamento dos riscos ergonômicos.
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_obscompl" value="0" {% if show_fields|get_value_from_dict:'show_obscompl' %}checked{% endif %} >Observação(ões) complementar(es) referente(s) a registros ambientais. Validação: Preenchimento obrigatório se {metErg} não for informado.
+        <input type="checkbox" name="show_obscompl" value="1" {% if show_fields|get_value_from_dict:'show_obscompl' %}checked{% endif %} >Observação(ões) complementar(es) referente(s) a registros ambientais. Validação: Preenchimento obrigatório se {metErg} não for informado.
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_observacao" value="0" {% if show_fields|get_value_from_dict:'show_observacao' %}checked{% endif %} >Observações
+        <input type="checkbox" name="show_observacao" value="1" {% if show_fields|get_value_from_dict:'show_observacao' %}checked{% endif %} >Observações
     </div>
 </div>
 

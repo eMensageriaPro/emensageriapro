@@ -131,19 +131,19 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_infomesmomtv" value="0" {% if show_fields|get_value_from_dict:'show_infomesmomtv' %}checked{% endif %} >Mesmo motivo do afastamento anterior
+        <input type="checkbox" name="show_infomesmomtv" value="1" {% if show_fields|get_value_from_dict:'show_infomesmomtv' %}checked{% endif %} >Mesmo motivo do afastamento anterior
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_tpacidtransito" value="0" {% if show_fields|get_value_from_dict:'show_tpacidtransito' %}checked{% endif %} >Tipo de acidente de trânsito
+        <input type="checkbox" name="show_tpacidtransito" value="1" {% if show_fields|get_value_from_dict:'show_tpacidtransito' %}checked{% endif %} >Tipo de acidente de trânsito
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_observacao" value="0" {% if show_fields|get_value_from_dict:'show_observacao' %}checked{% endif %} >Observações
+        <input type="checkbox" name="show_observacao" value="1" {% if show_fields|get_value_from_dict:'show_observacao' %}checked{% endif %} >Observações
     </div>
 </div>
 

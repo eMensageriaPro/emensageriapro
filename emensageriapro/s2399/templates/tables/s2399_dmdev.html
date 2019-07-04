@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2399_verbasresc or 1 %}
+            {% if show_fields.show_s2399_verbasresc %}
             <th>Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</th>
             {% endif %}
-            {% if show_fields.show_idedmdev or 1 %}
+            {% if show_fields.show_idedmdev %}
             <th>Identificador dos demostrativos de pagamento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2399_dmdev_lista %}
         <tr>
-            {% if show_fields.show_s2399_verbasresc or 1 %}
+            {% if show_fields.show_s2399_verbasresc %}
             <td>{{ a.s2399_verbasresc }}</td>
             {% endif %}
-            {% if show_fields.show_idedmdev or 1 %}
+            {% if show_fields.show_idedmdev %}
             <td>{{ a.idedmdev }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2399.change_s2399dmDev or perms.s2399.add_s2399dmDev %}
-                    
+
                         <a href="{% url 's2399_dmdev_salvar' pk=a.id %}">
                             {% if perms.s2399.change_s2399dmDev %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

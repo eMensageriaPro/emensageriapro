@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2399_evttsvtermino or 1 %}
+            {% if show_fields.show_s2399_evttsvtermino %}
             <th>Informações sobre a 'quarentena' remunerada de trabalhador desligado</th>
             {% endif %}
-            {% if show_fields.show_dtfimquar or 1 %}
+            {% if show_fields.show_dtfimquar %}
             <th>Data do término da quarentena</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2399_quarentena_lista %}
         <tr>
-            {% if show_fields.show_s2399_evttsvtermino or 1 %}
+            {% if show_fields.show_s2399_evttsvtermino %}
             <td>{{ a.s2399_evttsvtermino }}</td>
             {% endif %}
-            {% if show_fields.show_dtfimquar or 1 %}
+            {% if show_fields.show_dtfimquar %}
             <td><span style="display:none">{{ a.dtfimquar|date:"Y-m-d" }}</span>{{ a.dtfimquar|date:"d/m/Y" }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2399.change_s2399quarentena or perms.s2399.add_s2399quarentena %}
-                    
+
                         <a href="{% url 's2399_quarentena_salvar' pk=a.id %}">
                             {% if perms.s2399.change_s2399quarentena %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,25 +2,43 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_username or 1 %}
+            {% if show_fields.show_foto %}
+            <th>Foto</th>
+            {% endif %}
+            {% if show_fields.show_username %}
             <th>Usuário (Utilizado no Login)</th>
             {% endif %}
-            {% if show_fields.show_first_name or 1 %}
+            {% if show_fields.show_password %}
+            <th>Senha</th>
+            {% endif %}
+            {% if show_fields.show_first_name %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_last_name or 1 %}
+            {% if show_fields.show_last_name %}
             <th>Sobrenome</th>
             {% endif %}
-            {% if show_fields.show_email or 1 %}
+            {% if show_fields.show_email %}
             <th>Email</th>
             {% endif %}
-            {% if show_fields.show_is_active or 1 %}
+            {% if show_fields.show_is_superuser %}
+            <th>É Super usuário?</th>
+            {% endif %}
+            {% if show_fields.show_is_staff %}
+            <th>É Administrador?</th>
+            {% endif %}
+            {% if show_fields.show_is_active %}
             <th>Ativo?</th>
             {% endif %}
-            {% if show_fields.show_config_perfis or 1 %}
+            {% if show_fields.show_last_login %}
+            <th>Último Login</th>
+            {% endif %}
+            {% if show_fields.show_date_joined %}
+            <th>Data de Inclusão</th>
+            {% endif %}
+            {% if show_fields.show_config_perfis %}
             <th>Perfil</th>
             {% endif %}
-            {% if show_fields.show_name or 1 %}
+            {% if show_fields.show_name %}
             <th>Nome Completo</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -32,36 +50,54 @@
     <tbody>
         {% for a in usuarios_lista %}
         <tr>
-            {% if show_fields.show_username or 1 %}
+            {% if show_fields.show_foto %}
+            <td>{{ a.foto }}</td>
+            {% endif %}
+            {% if show_fields.show_username %}
             <td>{{ a.username }}</td>
             {% endif %}
-            {% if show_fields.show_first_name or 1 %}
+            {% if show_fields.show_password %}
+            <td>{{ a.password }}</td>
+            {% endif %}
+            {% if show_fields.show_first_name %}
             <td>{{ a.first_name }}</td>
             {% endif %}
-            {% if show_fields.show_last_name or 1 %}
+            {% if show_fields.show_last_name %}
             <td>{{ a.last_name }}</td>
             {% endif %}
-            {% if show_fields.show_email or 1 %}
+            {% if show_fields.show_email %}
             <td>{{ a.email }}</td>
             {% endif %}
-            {% if show_fields.show_is_active or 1 %}
+            {% if show_fields.show_is_superuser %}
+            <td>{% if a.is_superuser %}<span class="badge bg-green">Sim</span>{% else %}<span class="badge bg-red">Não</span>{% endif %}</td>
+            {% endif %}
+            {% if show_fields.show_is_staff %}
+            <td>{% if a.is_staff %}<span class="badge bg-green">Sim</span>{% else %}<span class="badge bg-red">Não</span>{% endif %}</td>
+            {% endif %}
+            {% if show_fields.show_is_active %}
             <td>{% if a.is_active %}<span class="badge bg-green">Sim</span>{% else %}<span class="badge bg-red">Não</span>{% endif %}</td>
             {% endif %}
-            {% if show_fields.show_config_perfis or 1 %}
+            {% if show_fields.show_last_login %}
+            <td><span style="display:none">{{ a.last_login|date:"Y-m-d H:i" }}</span>{{ a.last_login|date:"d/m/Y H:i" }}</td>
+            {% endif %}
+            {% if show_fields.show_date_joined %}
+            <td><span style="display:none">{{ a.date_joined|date:"Y-m-d" }}</span>{{ a.date_joined|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_config_perfis %}
             <td>{{ a.config_perfis }}</td>
             {% endif %}
-            {% if show_fields.show_name or 1 %}
+            {% if show_fields.show_name %}
             <td>{{ a.name }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.controle_de_acesso.change_Usuarios or perms.controle_de_acesso.add_Usuarios %}
-                    
+
                         <a href="{% url 'usuarios_salvar' pk=a.id %}">
                             {% if perms.controle_de_acesso.change_Usuarios %}
                                 <span class="btn btn-primary" title="Editar">
@@ -81,7 +117,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

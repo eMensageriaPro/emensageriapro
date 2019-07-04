@@ -70,7 +70,7 @@ def listar(request, output=None):
             'show_r2070_pgtopf': 1,
             'show_indperreferencia': 1,
             'show_perrefpagto': 1,
-            'show_vlrrendtributavel': 1, }
+            'show_vlrrendtributavel': 0, }
 
         post = False
 

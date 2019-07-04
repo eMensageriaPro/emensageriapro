@@ -2,32 +2,194 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_transmissor_lote_esocial or 1 %}
+            {% if show_fields.show_transmissor_lote_esocial %}
             <th>Transmissor</th>
             {% endif %}
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_identidade %}
             <th>Identidade do Registro</th>
             {% endif %}
-            {% if show_fields.show_processamento_codigo_resposta or 1 %}
+            {% if show_fields.show_processamento %}
+            <th>Recepção</th>
+            {% endif %}
+            {% if show_fields.show_recepcao_tp_amb %}
+            <th>Tipo de Ambiente</th>
+            {% endif %}
+            {% if show_fields.show_recepcao_data_hora %}
+            <th>Data/Hora</th>
+            {% endif %}
+            {% if show_fields.show_recepcao_versao_app %}
+            <th>Versão do Aplicativo</th>
+            {% endif %}
+            {% if show_fields.show_recepcao_protocolo_envio_lote %}
+            <th>Protocolo do Lote de Envio</th>
+            {% endif %}
+            {% if show_fields.show_processamento %}
+            <th>Processamento</th>
+            {% endif %}
+            {% if show_fields.show_processamento_codigo_resposta %}
             <th>Código de Resposta</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_processamento_descricao_resposta %}
+            <th>Descrição</th>
+            {% endif %}
+            {% if show_fields.show_processamento_versao_app_processamento %}
+            <th>Versão do Aplicativo</th>
+            {% endif %}
+            {% if show_fields.show_processamento_data_hora %}
+            <th>Data/Hora</th>
+            {% endif %}
+            {% if show_fields.show_recibo %}
+            <th>Recibo</th>
+            {% endif %}
+            {% if show_fields.show_recibo_numero %}
+            <th>Número do Recibo</th>
+            {% endif %}
+            {% if show_fields.show_recibo_hash %}
+            <th>Hash do Recibo</th>
+            {% endif %}
+            {% if show_fields.show_empregador %}
+            <th>Empregador</th>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <th>Tipo de Inscrição</th>
             {% endif %}
-            {% if show_fields.show_empregador_tpinsc or 1 %}
+            {% if show_fields.show_empregador_tpinsc %}
             <th>Tipo de Inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <th>Número de Inscrição</th>
             {% endif %}
-            {% if show_fields.show_empregador_nrinsc or 1 %}
+            {% if show_fields.show_empregador_nrinsc %}
             <th>Número de Inscrição</th>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_trabalhador %}
+            <th>Trabalhador</th>
+            {% endif %}
+            {% if show_fields.show_cpftrab %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_nmtrab or 1 %}
+            {% if show_fields.show_nistrab %}
+            <th>NIS</th>
+            {% endif %}
+            {% if show_fields.show_nmtrab %}
             <th>Nome</th>
+            {% endif %}
+            {% if show_fields.show_deficiencia %}
+            <th>Deficiência</th>
+            {% endif %}
+            {% if show_fields.show_infocota %}
+            <th>Informação de Cota</th>
+            {% endif %}
+            {% if show_fields.show_vinculo %}
+            <th>Vinculo</th>
+            {% endif %}
+            {% if show_fields.show_matricula %}
+            <th>Matricula</th>
+            {% endif %}
+            {% if show_fields.show_celetista %}
+            <th>Informação de Celetista</th>
+            {% endif %}
+            {% if show_fields.show_dtadm %}
+            <th>Data de Admissão</th>
+            {% endif %}
+            {% if show_fields.show_tpregjor %}
+            <th>Tipo de Regime de Jornada</th>
+            {% endif %}
+            {% if show_fields.show_dtbase %}
+            <th>Data Base</th>
+            {% endif %}
+            {% if show_fields.show_cnpjsindcategprof %}
+            <th>CNPJ Sindicato</th>
+            {% endif %}
+            {% if show_fields.show_estatutario %}
+            <th>Informação de Estatutário</th>
+            {% endif %}
+            {% if show_fields.show_dtposse %}
+            <th>Data de Posse</th>
+            {% endif %}
+            {% if show_fields.show_dtexercicio %}
+            <th>Data de Exercício</th>
+            {% endif %}
+            {% if show_fields.show_cargo %}
+            <th>Cargo</th>
+            {% endif %}
+            {% if show_fields.show_codcargo %}
+            <th>Código</th>
+            {% endif %}
+            {% if show_fields.show_nmcargo %}
+            <th>Nome</th>
+            {% endif %}
+            {% if show_fields.show_codcbocargo %}
+            <th>CBO</th>
+            {% endif %}
+            {% if show_fields.show_funcao %}
+            <th>Função</th>
+            {% endif %}
+            {% if show_fields.show_codfuncao %}
+            <th>Código</th>
+            {% endif %}
+            {% if show_fields.show_dscfuncao %}
+            <th>Descrição</th>
+            {% endif %}
+            {% if show_fields.show_codcbofuncao %}
+            <th>CBO</th>
+            {% endif %}
+            {% if show_fields.show_categoria %}
+            <th>Categoria</th>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
+            <th>Código</th>
+            {% endif %}
+            {% if show_fields.show_remuneracao %}
+            <th>Remuneração</th>
+            {% endif %}
+            {% if show_fields.show_vrsalfx %}
+            <th>Valor do Salário Fixo</th>
+            {% endif %}
+            {% if show_fields.show_undsalfixo %}
+            <th>Unidade do Salário Fixo</th>
+            {% endif %}
+            {% if show_fields.show_dscsalvar %}
+            <th>Descrição do salário variável</th>
+            {% endif %}
+            {% if show_fields.show_duracao %}
+            <th>Duração</th>
+            {% endif %}
+            {% if show_fields.show_tpcontr %}
+            <th>Tipo de Contrato</th>
+            {% endif %}
+            {% if show_fields.show_dtterm %}
+            <th>Data de Término</th>
+            {% endif %}
+            {% if show_fields.show_clauasseg %}
+            <th>Clausula Asseguratória</th>
+            {% endif %}
+            {% if show_fields.show_local_trab %}
+            <th>Local de Trabalho Geral</th>
+            {% endif %}
+            {% if show_fields.show_local_tpinsc %}
+            <th>Tipo de Inscrição</th>
+            {% endif %}
+            {% if show_fields.show_local_nrinsc %}
+            <th>Número de Inscrição</th>
+            {% endif %}
+            {% if show_fields.show_local_cnae %}
+            <th>CNAE</th>
+            {% endif %}
+            {% if show_fields.show_horarios_contratuais %}
+            <th>Horários Contratuais</th>
+            {% endif %}
+            {% if show_fields.show_qtdhrssem %}
+            <th>Quant. de horas semanais</th>
+            {% endif %}
+            {% if show_fields.show_tpjornada %}
+            <th>Tipo de jornada</th>
+            {% endif %}
+            {% if show_fields.show_dsctpjorn %}
+            <th>Descrição do tipo de jornada</th>
+            {% endif %}
+            {% if show_fields.show_tmpparc %}
+            <th>Contrato em tempo parcial</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -38,42 +200,204 @@
     <tbody>
         {% for a in retornos_eventos_lista %}
         <tr>
-            {% if show_fields.show_transmissor_lote_esocial or 1 %}
+            {% if show_fields.show_transmissor_lote_esocial %}
             <td>{{ a.transmissor_lote_esocial }}</td>
             {% endif %}
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_identidade %}
             <td>{{ a.identidade }}</td>
             {% endif %}
-            {% if show_fields.show_processamento_codigo_resposta or 1 %}
+            {% if show_fields.show_processamento %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_recepcao_tp_amb %}
+            <td>{{ a.get_recepcao_tp_amb_display }}</td>
+            {% endif %}
+            {% if show_fields.show_recepcao_data_hora %}
+            <td><span style="display:none">{{ a.recepcao_data_hora|date:"Y-m-d H:i" }}</span>{{ a.recepcao_data_hora|date:"d/m/Y H:i" }}</td>
+            {% endif %}
+            {% if show_fields.show_recepcao_versao_app %}
+            <td>{{ a.recepcao_versao_app }}</td>
+            {% endif %}
+            {% if show_fields.show_recepcao_protocolo_envio_lote %}
+            <td>{{ a.recepcao_protocolo_envio_lote }}</td>
+            {% endif %}
+            {% if show_fields.show_processamento %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_processamento_codigo_resposta %}
             <td>{{ a.processamento_codigo_resposta }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_processamento_descricao_resposta %}
+            <td>{{ a.processamento_descricao_resposta }}</td>
+            {% endif %}
+            {% if show_fields.show_processamento_versao_app_processamento %}
+            <td>{{ a.processamento_versao_app_processamento }}</td>
+            {% endif %}
+            {% if show_fields.show_processamento_data_hora %}
+            <td><span style="display:none">{{ a.processamento_data_hora|date:"Y-m-d H:i" }}</span>{{ a.processamento_data_hora|date:"d/m/Y H:i" }}</td>
+            {% endif %}
+            {% if show_fields.show_recibo %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_recibo_numero %}
+            <td>{{ a.recibo_numero }}</td>
+            {% endif %}
+            {% if show_fields.show_recibo_hash %}
+            <td>{{ a.recibo_hash }}</td>
+            {% endif %}
+            {% if show_fields.show_empregador %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_empregador_tpinsc or 1 %}
+            {% if show_fields.show_empregador_tpinsc %}
             <td>{{ a.get_empregador_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_empregador_nrinsc or 1 %}
+            {% if show_fields.show_empregador_nrinsc %}
             <td>{{ a.empregador_nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_trabalhador %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_cpftrab %}
             <td>{{ a.cpftrab }}</td>
             {% endif %}
-            {% if show_fields.show_nmtrab or 1 %}
+            {% if show_fields.show_nistrab %}
+            <td>{{ a.nistrab }}</td>
+            {% endif %}
+            {% if show_fields.show_nmtrab %}
             <td>{{ a.nmtrab }}</td>
             {% endif %}
-            
+            {% if show_fields.show_deficiencia %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_infocota %}
+            <td>{{ a.get_infocota_display }}</td>
+            {% endif %}
+            {% if show_fields.show_vinculo %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_matricula %}
+            <td>{{ a.matricula }}</td>
+            {% endif %}
+            {% if show_fields.show_celetista %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_dtadm %}
+            <td><span style="display:none">{{ a.dtadm|date:"Y-m-d" }}</span>{{ a.dtadm|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_tpregjor %}
+            <td>{{ a.get_tpregjor_display }}</td>
+            {% endif %}
+            {% if show_fields.show_dtbase %}
+            <td>{{ a.dtbase }}</td>
+            {% endif %}
+            {% if show_fields.show_cnpjsindcategprof %}
+            <td>{{ a.cnpjsindcategprof }}</td>
+            {% endif %}
+            {% if show_fields.show_estatutario %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_dtposse %}
+            <td><span style="display:none">{{ a.dtposse|date:"Y-m-d" }}</span>{{ a.dtposse|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_dtexercicio %}
+            <td><span style="display:none">{{ a.dtexercicio|date:"Y-m-d" }}</span>{{ a.dtexercicio|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_cargo %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_codcargo %}
+            <td>{{ a.codcargo }}</td>
+            {% endif %}
+            {% if show_fields.show_nmcargo %}
+            <td>{{ a.nmcargo }}</td>
+            {% endif %}
+            {% if show_fields.show_codcbocargo %}
+            <td>{{ a.codcbocargo }}</td>
+            {% endif %}
+            {% if show_fields.show_funcao %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_codfuncao %}
+            <td>{{ a.codfuncao }}</td>
+            {% endif %}
+            {% if show_fields.show_dscfuncao %}
+            <td>{{ a.dscfuncao }}</td>
+            {% endif %}
+            {% if show_fields.show_codcbofuncao %}
+            <td>{{ a.codcbofuncao }}</td>
+            {% endif %}
+            {% if show_fields.show_categoria %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
+            <td>{{ a.codcateg }}</td>
+            {% endif %}
+            {% if show_fields.show_remuneracao %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_vrsalfx %}
+            <td>{{ a.vrsalfx }}</td>
+            {% endif %}
+            {% if show_fields.show_undsalfixo %}
+            <td>{{ a.get_undsalfixo_display }}</td>
+            {% endif %}
+            {% if show_fields.show_dscsalvar %}
+            <td>{{ a.dscsalvar }}</td>
+            {% endif %}
+            {% if show_fields.show_duracao %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpcontr %}
+            <td>{{ a.get_tpcontr_display }}</td>
+            {% endif %}
+            {% if show_fields.show_dtterm %}
+            <td><span style="display:none">{{ a.dtterm|date:"Y-m-d" }}</span>{{ a.dtterm|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_clauasseg %}
+            <td>{{ a.clauasseg }}</td>
+            {% endif %}
+            {% if show_fields.show_local_trab %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_local_tpinsc %}
+            <td>{{ a.get_local_tpinsc_display }}</td>
+            {% endif %}
+            {% if show_fields.show_local_nrinsc %}
+            <td>{{ a.local_nrinsc }}</td>
+            {% endif %}
+            {% if show_fields.show_local_cnae %}
+            <td>{{ a.local_cnae }}</td>
+            {% endif %}
+            {% if show_fields.show_horarios_contratuais %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_qtdhrssem %}
+            <td>{{ a.qtdhrssem }}</td>
+            {% endif %}
+            {% if show_fields.show_tpjornada %}
+            <td>{{ a.get_tpjornada_display }}</td>
+            {% endif %}
+            {% if show_fields.show_dsctpjorn %}
+            <td>{{ a.dsctpjorn }}</td>
+            {% endif %}
+            {% if show_fields.show_tmpparc %}
+            <td>{{ a.get_tmpparc_display }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.mensageiro.change_RetornosEventos or perms.mensageiro.add_RetornosEventos %}
-                    
+
                         <a href="{% url 'retornos_eventos_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_RetornosEventos %}
                                 <span class="btn btn-primary" title="Editar">
@@ -93,7 +417,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

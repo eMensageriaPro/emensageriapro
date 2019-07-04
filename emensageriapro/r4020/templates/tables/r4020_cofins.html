@@ -2,14 +2,23 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4020_infopgto or 1 %}
+            {% if show_fields.show_r4020_infopgto %}
             <th>Informações relativas à Cofins</th>
             {% endif %}
-            {% if show_fields.show_vlrbasecofins or 1 %}
+            {% if show_fields.show_vlrbasecofins %}
             <th>Valor da base Cofins</th>
             {% endif %}
-            {% if show_fields.show_vlrcofins or 1 %}
+            {% if show_fields.show_vlrcofins %}
             <th>Valor da retenção relativa a Cofins</th>
+            {% endif %}
+            {% if show_fields.show_vlrbasencofins %}
+            <th>Valor da base de cálculo da Cofins com exibilidade suspensa</th>
+            {% endif %}
+            {% if show_fields.show_vlrncofins %}
+            <th>Valor da Cofins com exigibilidade suspensa, que deixou de ser retida</th>
+            {% endif %}
+            {% if show_fields.show_vlrdepcofins %}
+            <th>Valor relativo a depósito judicial de Cofins</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +29,33 @@
     <tbody>
         {% for a in r4020_cofins_lista %}
         <tr>
-            {% if show_fields.show_r4020_infopgto or 1 %}
+            {% if show_fields.show_r4020_infopgto %}
             <td>{{ a.r4020_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasecofins or 1 %}
+            {% if show_fields.show_vlrbasecofins %}
             <td>{{ a.vlrbasecofins }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcofins or 1 %}
+            {% if show_fields.show_vlrcofins %}
             <td>{{ a.vlrcofins }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrbasencofins %}
+            <td>{{ a.vlrbasencofins }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrncofins %}
+            <td>{{ a.vlrncofins }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrdepcofins %}
+            <td>{{ a.vlrdepcofins }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4020.change_r4020Cofins or perms.r4020.add_r4020Cofins %}
-                    
+
                         <a href="{% url 'r4020_cofins_salvar' pk=a.id %}">
                             {% if perms.r4020.change_r4020Cofins %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

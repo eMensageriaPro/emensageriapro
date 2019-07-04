@@ -2,11 +2,17 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9011_rtom or 1 %}
+            {% if show_fields.show_r9011_rtom %}
             <th>Totalizador das retenções de contribuição previdenciária sobre serviços tomados</th>
             {% endif %}
-            {% if show_fields.show_crtom or 1 %}
+            {% if show_fields.show_crtom %}
             <th>Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social sobre serviços tomados</th>
+            {% endif %}
+            {% if show_fields.show_vlrcrtom %}
+            <th>Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRTom}</th>
+            {% endif %}
+            {% if show_fields.show_vlrcrtomsusp %}
+            <th>Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao código de Receita - CR informado em {CRTom}</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -17,19 +23,25 @@
     <tbody>
         {% for a in r9011_infocrtom_lista %}
         <tr>
-            {% if show_fields.show_r9011_rtom or 1 %}
+            {% if show_fields.show_r9011_rtom %}
             <td>{{ a.r9011_rtom }}</td>
             {% endif %}
-            {% if show_fields.show_crtom or 1 %}
+            {% if show_fields.show_crtom %}
             <td>{{ a.crtom }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrcrtom %}
+            <td>{{ a.vlrcrtom }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrcrtomsusp %}
+            <td>{{ a.vlrcrtomsusp }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

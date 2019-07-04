@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4020_despprocjud or 1 %}
+            {% if show_fields.show_r4020_despprocjud %}
             <th>Identificação do advogado</th>
             {% endif %}
-            {% if show_fields.show_tpinscadv or 1 %}
+            {% if show_fields.show_tpinscadv %}
             <th>Tipo de inscrição do advogado</th>
             {% endif %}
-            {% if show_fields.show_nrinscadv or 1 %}
+            {% if show_fields.show_nrinscadv %}
             <th>Informar o número de inscrição do advogado</th>
             {% endif %}
-            {% if show_fields.show_vlradv or 1 %}
+            {% if show_fields.show_vlradv %}
             <th>Valor da despesa com o advogado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +23,27 @@
     <tbody>
         {% for a in r4020_ideadv_lista %}
         <tr>
-            {% if show_fields.show_r4020_despprocjud or 1 %}
+            {% if show_fields.show_r4020_despprocjud %}
             <td>{{ a.r4020_despprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_tpinscadv or 1 %}
+            {% if show_fields.show_tpinscadv %}
             <td>{{ a.get_tpinscadv_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinscadv or 1 %}
+            {% if show_fields.show_nrinscadv %}
             <td>{{ a.nrinscadv }}</td>
             {% endif %}
-            {% if show_fields.show_vlradv or 1 %}
+            {% if show_fields.show_vlradv %}
             <td>{{ a.vlradv }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4020.change_r4020ideAdv or perms.r4020.add_r4020ideAdv %}
-                    
+
                         <a href="{% url 'r4020_ideadv_salvar' pk=a.id %}">
                             {% if perms.r4020.change_r4020ideAdv %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

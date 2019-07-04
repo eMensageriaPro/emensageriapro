@@ -168,7 +168,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_idepais" value="0" {% if show_fields|get_value_from_dict:'show_idepais' %}checked{% endif %} >Identificação do País onde foi efetuado o pagamento
+        <input type="checkbox" name="show_idepais" value="1" {% if show_fields|get_value_from_dict:'show_idepais' %}checked{% endif %} >Identificação do País onde foi efetuado o pagamento
     </div>
 </div>
 
@@ -186,13 +186,13 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_nifbenef" value="0" {% if show_fields|get_value_from_dict:'show_nifbenef' %}checked{% endif %} >Número do NIF
+        <input type="checkbox" name="show_nifbenef" value="1" {% if show_fields|get_value_from_dict:'show_nifbenef' %}checked{% endif %} >Número do NIF
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_endext" value="0" {% if show_fields|get_value_from_dict:'show_endext' %}checked{% endif %} >Informações complementares de endereço do beneficiário.
+        <input type="checkbox" name="show_endext" value="1" {% if show_fields|get_value_from_dict:'show_endext' %}checked{% endif %} >Informações complementares de endereço do beneficiário.
     </div>
 </div>
 
@@ -204,19 +204,19 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_nrlograd" value="0" {% if show_fields|get_value_from_dict:'show_nrlograd' %}checked{% endif %} >Número
+        <input type="checkbox" name="show_nrlograd" value="1" {% if show_fields|get_value_from_dict:'show_nrlograd' %}checked{% endif %} >Número
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_complem" value="0" {% if show_fields|get_value_from_dict:'show_complem' %}checked{% endif %} >Complemento
+        <input type="checkbox" name="show_complem" value="1" {% if show_fields|get_value_from_dict:'show_complem' %}checked{% endif %} >Complemento
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_bairro" value="0" {% if show_fields|get_value_from_dict:'show_bairro' %}checked{% endif %} >Bairro
+        <input type="checkbox" name="show_bairro" value="1" {% if show_fields|get_value_from_dict:'show_bairro' %}checked{% endif %} >Bairro
     </div>
 </div>
 
@@ -228,7 +228,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_codpostal" value="0" {% if show_fields|get_value_from_dict:'show_codpostal' %}checked{% endif %} >Código Postal
+        <input type="checkbox" name="show_codpostal" value="1" {% if show_fields|get_value_from_dict:'show_codpostal' %}checked{% endif %} >Código Postal
     </div>
 </div>
 

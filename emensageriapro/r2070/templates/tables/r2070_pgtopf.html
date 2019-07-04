@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_pgtoresidbr or 1 %}
+            {% if show_fields.show_r2070_pgtoresidbr %}
             <th>Beneficiário Pessoa Física - Residente no Brasil</th>
             {% endif %}
-            {% if show_fields.show_dtpgto or 1 %}
+            {% if show_fields.show_dtpgto %}
             <th>Informar a data de pagamento ou crédito, base para retenção</th>
             {% endif %}
-            {% if show_fields.show_indsuspexig or 1 %}
+            {% if show_fields.show_indsuspexig %}
             <th>Indicativo de Exigibilidade Suspensa</th>
             {% endif %}
-            {% if show_fields.show_inddecterceiro or 1 %}
+            {% if show_fields.show_inddecterceiro %}
             <th>Indicativo de 13o Salário</th>
             {% endif %}
-            {% if show_fields.show_vlrrendtributavel or 1 %}
+            {% if show_fields.show_vlrrendtributavel %}
             <th>Valor do rendimento tributável</th>
             {% endif %}
-            {% if show_fields.show_vlrirrf or 1 %}
+            {% if show_fields.show_vlrirrf %}
             <th>Valor do Imposto Retido na Fonte.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -29,33 +29,33 @@
     <tbody>
         {% for a in r2070_pgtopf_lista %}
         <tr>
-            {% if show_fields.show_r2070_pgtoresidbr or 1 %}
+            {% if show_fields.show_r2070_pgtoresidbr %}
             <td>{{ a.r2070_pgtoresidbr }}</td>
             {% endif %}
-            {% if show_fields.show_dtpgto or 1 %}
+            {% if show_fields.show_dtpgto %}
             <td><span style="display:none">{{ a.dtpgto|date:"Y-m-d" }}</span>{{ a.dtpgto|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_indsuspexig or 1 %}
+            {% if show_fields.show_indsuspexig %}
             <td>{{ a.get_indsuspexig_display }}</td>
             {% endif %}
-            {% if show_fields.show_inddecterceiro or 1 %}
+            {% if show_fields.show_inddecterceiro %}
             <td>{{ a.get_inddecterceiro_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrrendtributavel or 1 %}
+            {% if show_fields.show_vlrrendtributavel %}
             <td>{{ a.vlrrendtributavel }}</td>
             {% endif %}
-            {% if show_fields.show_vlrirrf or 1 %}
+            {% if show_fields.show_vlrirrf %}
             <td>{{ a.vlrirrf }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2070.change_r2070pgtoPF or perms.r2070.add_r2070pgtoPF %}
-                    
+
                         <a href="{% url 'r2070_pgtopf_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070pgtoPF %}
                                 <span class="btn btn-primary" title="Editar">
@@ -75,7 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5013_infodpsperante or 1 %}
+            {% if show_fields.show_s5013_infodpsperante %}
             <th>Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração de períodos anteriores quando {tpAcConv} = [E].</th>
             {% endif %}
-            {% if show_fields.show_tpdpse or 1 %}
+            {% if show_fields.show_tpdpse %}
             <th>Tipo de depósito</th>
             {% endif %}
-            {% if show_fields.show_vrfgtse or 1 %}
+            {% if show_fields.show_vrfgtse %}
             <th>Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,22 +20,22 @@
     <tbody>
         {% for a in s5013_dpsperante_lista %}
         <tr>
-            {% if show_fields.show_s5013_infodpsperante or 1 %}
+            {% if show_fields.show_s5013_infodpsperante %}
             <td>{{ a.s5013_infodpsperante }}</td>
             {% endif %}
-            {% if show_fields.show_tpdpse or 1 %}
+            {% if show_fields.show_tpdpse %}
             <td>{{ a.get_tpdpse_display }}</td>
             {% endif %}
-            {% if show_fields.show_vrfgtse or 1 %}
+            {% if show_fields.show_vrfgtse %}
             <td>{{ a.vrfgtse }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

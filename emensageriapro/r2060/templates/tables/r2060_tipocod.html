@@ -2,23 +2,29 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2060_evtcprb or 1 %}
+            {% if show_fields.show_r2060_evtcprb %}
             <th>Registro que apresenta o valor total da receita por tipo de código de atividade econômica.</th>
             {% endif %}
-            {% if show_fields.show_codativecon or 1 %}
+            {% if show_fields.show_codativecon %}
             <th>Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09</th>
             {% endif %}
-            {% if show_fields.show_vlrrecbrutaativ or 1 %}
+            {% if show_fields.show_vlrrecbrutaativ %}
             <th>Preencher com o valor total da receita da atividade</th>
             {% endif %}
-            {% if show_fields.show_vlrexcrecbruta or 1 %}
+            {% if show_fields.show_vlrexcrecbruta %}
             <th>Preencher com o Valor total das Exclusões da Receita Bruta previstas em lei</th>
             {% endif %}
-            {% if show_fields.show_vlradicrecbruta or 1 %}
+            {% if show_fields.show_vlradicrecbruta %}
             <th>Preencher com o Valor total das Adições da Receita Bruta previstas em lei</th>
             {% endif %}
-            {% if show_fields.show_vlrbccprb or 1 %}
+            {% if show_fields.show_vlrbccprb %}
             <th>Preencher com o Valor da Base de Cálculo da Contribuição Previdenciária sobre a Receita Bruta</th>
+            {% endif %}
+            {% if show_fields.show_vlrcprbapur %}
+            <th>Preencher com o Valor Contribuição Previdenciária sobre a Receita Bruta.</th>
+            {% endif %}
+            {% if show_fields.show_observ %}
+            <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -29,33 +35,39 @@
     <tbody>
         {% for a in r2060_tipocod_lista %}
         <tr>
-            {% if show_fields.show_r2060_evtcprb or 1 %}
+            {% if show_fields.show_r2060_evtcprb %}
             <td>{{ a.r2060_evtcprb }}</td>
             {% endif %}
-            {% if show_fields.show_codativecon or 1 %}
+            {% if show_fields.show_codativecon %}
             <td>{{ a.codativecon }}</td>
             {% endif %}
-            {% if show_fields.show_vlrrecbrutaativ or 1 %}
+            {% if show_fields.show_vlrrecbrutaativ %}
             <td>{{ a.vlrrecbrutaativ }}</td>
             {% endif %}
-            {% if show_fields.show_vlrexcrecbruta or 1 %}
+            {% if show_fields.show_vlrexcrecbruta %}
             <td>{{ a.vlrexcrecbruta }}</td>
             {% endif %}
-            {% if show_fields.show_vlradicrecbruta or 1 %}
+            {% if show_fields.show_vlradicrecbruta %}
             <td>{{ a.vlradicrecbruta }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbccprb or 1 %}
+            {% if show_fields.show_vlrbccprb %}
             <td>{{ a.vlrbccprb }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrcprbapur %}
+            <td>{{ a.vlrcprbapur }}</td>
+            {% endif %}
+            {% if show_fields.show_observ %}
+            <td>{{ a.observ }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2060.change_r2060tipoCod or perms.r2060.add_r2060tipoCod %}
-                    
+
                         <a href="{% url 'r2060_tipocod_salvar' pk=a.id %}">
                             {% if perms.r2060.change_r2060tipoCod %}
                                 <span class="btn btn-primary" title="Editar">
@@ -75,7 +87,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

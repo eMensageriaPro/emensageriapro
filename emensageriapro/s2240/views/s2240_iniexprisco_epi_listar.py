@@ -71,12 +71,12 @@ def listar(request, output=None):
             'show_caepi': 0,
             'show_dscepi': 0,
             'show_eficepi': 1,
-            'show_medprotecao': 1,
+            'show_medprotecao': 0,
             'show_condfuncto': 1,
-            'show_usoinint': 1,
-            'show_przvalid': 1,
-            'show_periodictroca': 1,
-            'show_higienizacao': 1, }
+            'show_usoinint': 0,
+            'show_przvalid': 0,
+            'show_periodictroca': 0,
+            'show_higienizacao': 0, }
 
         post = False
 

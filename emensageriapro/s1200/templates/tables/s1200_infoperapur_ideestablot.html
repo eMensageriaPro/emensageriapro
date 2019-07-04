@@ -2,17 +2,20 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1200_infoperapur or 1 %}
+            {% if show_fields.show_s1200_infoperapur %}
             <th>Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_tpinsc %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_codlotacao or 1 %}
+            {% if show_fields.show_codlotacao %}
             <th>Código da Lotação</th>
+            {% endif %}
+            {% if show_fields.show_qtddiasav %}
+            <th>Quant. de dias trabalhados (trab. avulso)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -23,27 +26,30 @@
     <tbody>
         {% for a in s1200_infoperapur_ideestablot_lista %}
         <tr>
-            {% if show_fields.show_s1200_infoperapur or 1 %}
+            {% if show_fields.show_s1200_infoperapur %}
             <td>{{ a.s1200_infoperapur }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_tpinsc %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_codlotacao or 1 %}
+            {% if show_fields.show_codlotacao %}
             <td>{{ a.codlotacao }}</td>
             {% endif %}
-            
+            {% if show_fields.show_qtddiasav %}
+            <td>{{ a.qtddiasav }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1200.change_s1200infoPerApurideEstabLot or perms.s1200.add_s1200infoPerApurideEstabLot %}
-                    
+
                         <a href="{% url 's1200_infoperapur_ideestablot_salvar' pk=a.id %}">
                             {% if perms.s1200.change_s1200infoPerApurideEstabLot %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

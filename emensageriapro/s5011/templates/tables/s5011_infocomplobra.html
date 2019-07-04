@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_infoestab or 1 %}
+            {% if show_fields.show_s5011_infoestab %}
             <th>Informações complementares relativas a obras de construção civil</th>
             {% endif %}
-            {% if show_fields.show_indsubstpatrobra or 1 %}
+            {% if show_fields.show_indsubstpatrobra %}
             <th>Substituição de CP patronal de Obra</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,19 +17,19 @@
     <tbody>
         {% for a in s5011_infocomplobra_lista %}
         <tr>
-            {% if show_fields.show_s5011_infoestab or 1 %}
+            {% if show_fields.show_s5011_infoestab %}
             <td>{{ a.s5011_infoestab }}</td>
             {% endif %}
-            {% if show_fields.show_indsubstpatrobra or 1 %}
+            {% if show_fields.show_indsubstpatrobra %}
             <td>{{ a.get_indsubstpatrobra_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

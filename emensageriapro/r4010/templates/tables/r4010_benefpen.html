@@ -2,14 +2,23 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_detded or 1 %}
+            {% if show_fields.show_r4010_detded %}
             <th>Informação dos beneficiários da pensão alimentícia</th>
             {% endif %}
-            {% if show_fields.show_nome or 1 %}
+            {% if show_fields.show_cpf %}
+            <th>Número do CPF do dependente</th>
+            {% endif %}
+            {% if show_fields.show_dtnascto %}
+            <th>Informar a data de nascimento do dependente</th>
+            {% endif %}
+            {% if show_fields.show_nome %}
             <th>Nome do dependente</th>
             {% endif %}
-            {% if show_fields.show_reldep or 1 %}
+            {% if show_fields.show_reldep %}
             <th>Relação de dependência</th>
+            {% endif %}
+            {% if show_fields.show_descrdep %}
+            <th>Informar a descrição da dependência</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +29,33 @@
     <tbody>
         {% for a in r4010_benefpen_lista %}
         <tr>
-            {% if show_fields.show_r4010_detded or 1 %}
+            {% if show_fields.show_r4010_detded %}
             <td>{{ a.r4010_detded }}</td>
             {% endif %}
-            {% if show_fields.show_nome or 1 %}
+            {% if show_fields.show_cpf %}
+            <td>{{ a.cpf }}</td>
+            {% endif %}
+            {% if show_fields.show_dtnascto %}
+            <td><span style="display:none">{{ a.dtnascto|date:"Y-m-d" }}</span>{{ a.dtnascto|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_nome %}
             <td>{{ a.nome }}</td>
             {% endif %}
-            {% if show_fields.show_reldep or 1 %}
+            {% if show_fields.show_reldep %}
             <td>{{ a.get_reldep_display }}</td>
             {% endif %}
-            
+            {% if show_fields.show_descrdep %}
+            <td>{{ a.descrdep }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4010.change_r4010benefPen or perms.r4010.add_r4010benefPen %}
-                    
+
                         <a href="{% url 'r4010_benefpen_salvar' pk=a.id %}">
                             {% if perms.r4010.change_r4010benefPen %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

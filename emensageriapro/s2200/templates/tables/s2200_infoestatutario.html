@@ -2,26 +2,44 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2200_evtadmissao or 1 %}
+            {% if show_fields.show_s2200_evtadmissao %}
             <th>Informações de Trabalhador Estatutário</th>
             {% endif %}
-            {% if show_fields.show_indprovim or 1 %}
+            {% if show_fields.show_indprovim %}
             <th>Indicador de Provimento</th>
             {% endif %}
-            {% if show_fields.show_tpprov or 1 %}
+            {% if show_fields.show_tpprov %}
             <th>Tipo de Provimento</th>
             {% endif %}
-            {% if show_fields.show_dtnomeacao or 1 %}
+            {% if show_fields.show_dtnomeacao %}
             <th>Data de nomeação</th>
             {% endif %}
-            {% if show_fields.show_dtposse or 1 %}
+            {% if show_fields.show_dtposse %}
             <th>Data de posse</th>
             {% endif %}
-            {% if show_fields.show_dtexercicio or 1 %}
+            {% if show_fields.show_dtexercicio %}
             <th>Data de exercício</th>
             {% endif %}
-            {% if show_fields.show_dtingsvpub or 1 %}
+            {% if show_fields.show_dtingsvpub %}
             <th>Data de ingresso no serviço público</th>
+            {% endif %}
+            {% if show_fields.show_tpplanrp %}
+            <th>Tipo de plano de segregação de massa</th>
+            {% endif %}
+            {% if show_fields.show_indtetorgps %}
+            <th>Informar se o servidor está sujeito ao Teto do Regime Geral pela instituição do regime de previdência complementar</th>
+            {% endif %}
+            {% if show_fields.show_indabonoperm %}
+            <th>Indicar se o servidor recebe abono permanência</th>
+            {% endif %}
+            {% if show_fields.show_dtiniabono %}
+            <th>Informar a data de inicio do abono permanência</th>
+            {% endif %}
+            {% if show_fields.show_indparcremun %}
+            <th>Informar se o servidor fez a opção pela inclusão na base de cálculo da contribuição de parcelas remuneratórias percebidas em decorrência de local de trabalho e do exercício de cargo em comissão ou de função comissionada ou gratificada, conforme art. 4º, § 2º, da Lei nº 10.887/2004</th>
+            {% endif %}
+            {% if show_fields.show_dtiniparc %}
+            <th>Informar a data de inicio da opção do servidor pelas parcelas remuneratórias</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -32,36 +50,54 @@
     <tbody>
         {% for a in s2200_infoestatutario_lista %}
         <tr>
-            {% if show_fields.show_s2200_evtadmissao or 1 %}
+            {% if show_fields.show_s2200_evtadmissao %}
             <td>{{ a.s2200_evtadmissao }}</td>
             {% endif %}
-            {% if show_fields.show_indprovim or 1 %}
+            {% if show_fields.show_indprovim %}
             <td>{{ a.get_indprovim_display }}</td>
             {% endif %}
-            {% if show_fields.show_tpprov or 1 %}
+            {% if show_fields.show_tpprov %}
             <td>{{ a.get_tpprov_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtnomeacao or 1 %}
+            {% if show_fields.show_dtnomeacao %}
             <td><span style="display:none">{{ a.dtnomeacao|date:"Y-m-d" }}</span>{{ a.dtnomeacao|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtposse or 1 %}
+            {% if show_fields.show_dtposse %}
             <td><span style="display:none">{{ a.dtposse|date:"Y-m-d" }}</span>{{ a.dtposse|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtexercicio or 1 %}
+            {% if show_fields.show_dtexercicio %}
             <td><span style="display:none">{{ a.dtexercicio|date:"Y-m-d" }}</span>{{ a.dtexercicio|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtingsvpub or 1 %}
+            {% if show_fields.show_dtingsvpub %}
             <td><span style="display:none">{{ a.dtingsvpub|date:"Y-m-d" }}</span>{{ a.dtingsvpub|date:"d/m/Y" }}</td>
             {% endif %}
-            
+            {% if show_fields.show_tpplanrp %}
+            <td>{{ a.get_tpplanrp_display }}</td>
+            {% endif %}
+            {% if show_fields.show_indtetorgps %}
+            <td>{{ a.get_indtetorgps_display }}</td>
+            {% endif %}
+            {% if show_fields.show_indabonoperm %}
+            <td>{{ a.get_indabonoperm_display }}</td>
+            {% endif %}
+            {% if show_fields.show_dtiniabono %}
+            <td><span style="display:none">{{ a.dtiniabono|date:"Y-m-d" }}</span>{{ a.dtiniabono|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_indparcremun %}
+            <td>{{ a.get_indparcremun_display }}</td>
+            {% endif %}
+            {% if show_fields.show_dtiniparc %}
+            <td><span style="display:none">{{ a.dtiniparc|date:"Y-m-d" }}</span>{{ a.dtiniparc|date:"d/m/Y" }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2200.change_s2200infoEstatutario or perms.s2200.add_s2200infoEstatutario %}
-                    
+
                         <a href="{% url 's2200_infoestatutario_salvar' pk=a.id %}">
                             {% if perms.s2200.change_s2200infoEstatutario %}
                                 <span class="btn btn-primary" title="Editar">
@@ -81,7 +117,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

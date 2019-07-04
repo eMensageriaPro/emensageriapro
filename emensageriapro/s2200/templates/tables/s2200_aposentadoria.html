@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2200_evtadmissao or 1 %}
+            {% if show_fields.show_s2200_evtadmissao %}
             <th>Informação de aposentadoria do trabalhador</th>
             {% endif %}
-            {% if show_fields.show_trabaposent or 1 %}
+            {% if show_fields.show_trabaposent %}
             <th>Aposentado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2200_aposentadoria_lista %}
         <tr>
-            {% if show_fields.show_s2200_evtadmissao or 1 %}
+            {% if show_fields.show_s2200_evtadmissao %}
             <td>{{ a.s2200_evtadmissao }}</td>
             {% endif %}
-            {% if show_fields.show_trabaposent or 1 %}
+            {% if show_fields.show_trabaposent %}
             <td>{{ a.get_trabaposent_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2200.change_s2200aposentadoria or perms.s2200.add_s2200aposentadoria %}
-                    
+
                         <a href="{% url 's2200_aposentadoria_salvar' pk=a.id %}">
                             {% if perms.s2200.change_s2200aposentadoria %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

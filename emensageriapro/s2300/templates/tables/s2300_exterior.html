@@ -2,20 +2,29 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_evttsvinicio or 1 %}
+            {% if show_fields.show_s2300_evttsvinicio %}
             <th>Preenchido em caso de trabalhador residente no exterior.</th>
             {% endif %}
-            {% if show_fields.show_paisresid or 1 %}
+            {% if show_fields.show_paisresid %}
             <th>País</th>
             {% endif %}
-            {% if show_fields.show_dsclograd or 1 %}
+            {% if show_fields.show_dsclograd %}
             <th>Logradouro</th>
             {% endif %}
-            {% if show_fields.show_nrlograd or 1 %}
+            {% if show_fields.show_nrlograd %}
             <th>Número</th>
             {% endif %}
-            {% if show_fields.show_nmcid or 1 %}
+            {% if show_fields.show_complemento %}
+            <th>Complemento</th>
+            {% endif %}
+            {% if show_fields.show_bairro %}
+            <th>Bairro</th>
+            {% endif %}
+            {% if show_fields.show_nmcid %}
             <th>Nome da Cidade</th>
+            {% endif %}
+            {% if show_fields.show_codpostal %}
+            <th>Código Postal</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -26,30 +35,39 @@
     <tbody>
         {% for a in s2300_exterior_lista %}
         <tr>
-            {% if show_fields.show_s2300_evttsvinicio or 1 %}
+            {% if show_fields.show_s2300_evttsvinicio %}
             <td>{{ a.s2300_evttsvinicio }}</td>
             {% endif %}
-            {% if show_fields.show_paisresid or 1 %}
+            {% if show_fields.show_paisresid %}
             <td>{{ a.paisresid }}</td>
             {% endif %}
-            {% if show_fields.show_dsclograd or 1 %}
+            {% if show_fields.show_dsclograd %}
             <td>{{ a.dsclograd }}</td>
             {% endif %}
-            {% if show_fields.show_nrlograd or 1 %}
+            {% if show_fields.show_nrlograd %}
             <td>{{ a.nrlograd }}</td>
             {% endif %}
-            {% if show_fields.show_nmcid or 1 %}
+            {% if show_fields.show_complemento %}
+            <td>{{ a.complemento }}</td>
+            {% endif %}
+            {% if show_fields.show_bairro %}
+            <td>{{ a.bairro }}</td>
+            {% endif %}
+            {% if show_fields.show_nmcid %}
             <td>{{ a.nmcid }}</td>
             {% endif %}
-            
+            {% if show_fields.show_codpostal %}
+            <td>{{ a.codpostal }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2300.change_s2300exterior or perms.s2300.add_s2300exterior %}
-                    
+
                         <a href="{% url 's2300_exterior_salvar' pk=a.id %}">
                             {% if perms.s2300.change_s2300exterior %}
                                 <span class="btn btn-primary" title="Editar">
@@ -69,7 +87,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5002_infoirrf or 1 %}
+            {% if show_fields.show_s5002_infoirrf %}
             <th>Informações relativas ao Imposto de Renda Retido na Fonte</th>
             {% endif %}
-            {% if show_fields.show_tpcr or 1 %}
+            {% if show_fields.show_tpcr %}
             <th>Código da Receita (CR)</th>
             {% endif %}
-            {% if show_fields.show_vrirrfdesc or 1 %}
+            {% if show_fields.show_vrirrfdesc %}
             <th>Valor efetivamente descontado IRRF</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,22 +20,22 @@
     <tbody>
         {% for a in s5002_irrf_lista %}
         <tr>
-            {% if show_fields.show_s5002_infoirrf or 1 %}
+            {% if show_fields.show_s5002_infoirrf %}
             <td>{{ a.s5002_infoirrf }}</td>
             {% endif %}
-            {% if show_fields.show_tpcr or 1 %}
+            {% if show_fields.show_tpcr %}
             <td>{{ a.get_tpcr_display }}</td>
             {% endif %}
-            {% if show_fields.show_vrirrfdesc or 1 %}
+            {% if show_fields.show_vrirrfdesc %}
             <td>{{ a.vrirrfdesc }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

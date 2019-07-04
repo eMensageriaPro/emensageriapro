@@ -71,7 +71,7 @@ def listar(request, output=None):
             'show_cpfbenef': 1,
             'show_dtnasctobenef': 0,
             'show_nmbenefic': 1,
-            'show_vlrpensao': 1, }
+            'show_vlrpensao': 0, }
 
         post = False
 

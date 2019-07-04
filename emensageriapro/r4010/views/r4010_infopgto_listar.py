@@ -70,7 +70,7 @@ def listar(request, output=None):
             'show_r4010_idepgto': 1,
             'show_dtfg': 1,
             'show_inddecterc': 1,
-            'show_vlrrendbruto': 1,
+            'show_vlrrendbruto': 0,
             'show_vlrrendtrib': 0,
             'show_vlrir': 0,
             'show_vlrrendsusp': 0,

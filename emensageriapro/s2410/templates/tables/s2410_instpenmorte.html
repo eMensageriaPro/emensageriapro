@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2410_infopenmorte or 1 %}
+            {% if show_fields.show_s2410_infopenmorte %}
             <th>Informações do instituidor da pensão por morte</th>
             {% endif %}
-            {% if show_fields.show_cpfinst or 1 %}
+            {% if show_fields.show_cpfinst %}
             <th>CPF do instituidor</th>
             {% endif %}
-            {% if show_fields.show_dtinst or 1 %}
+            {% if show_fields.show_dtinst %}
             <th>Data de óbito do instituidor da pensão por morte.</th>
             {% endif %}
-            {% if show_fields.show_intaposentado or 1 %}
+            {% if show_fields.show_intaposentado %}
             <th>Informar se o instituidor da pensão por morte era aposentado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +23,27 @@
     <tbody>
         {% for a in s2410_instpenmorte_lista %}
         <tr>
-            {% if show_fields.show_s2410_infopenmorte or 1 %}
+            {% if show_fields.show_s2410_infopenmorte %}
             <td>{{ a.s2410_infopenmorte }}</td>
             {% endif %}
-            {% if show_fields.show_cpfinst or 1 %}
+            {% if show_fields.show_cpfinst %}
             <td>{{ a.cpfinst }}</td>
             {% endif %}
-            {% if show_fields.show_dtinst or 1 %}
+            {% if show_fields.show_dtinst %}
             <td><span style="display:none">{{ a.dtinst|date:"Y-m-d" }}</span>{{ a.dtinst|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_intaposentado or 1 %}
+            {% if show_fields.show_intaposentado %}
             <td>{{ a.get_intaposentado_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2410.change_s2410instPenMorte or perms.s2410.add_s2410instPenMorte %}
-                    
+
                         <a href="{% url 's2410_instpenmorte_salvar' pk=a.id %}">
                             {% if perms.s2410.change_s2410instPenMorte %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -11,15 +11,15 @@
     <tbody>
         {% for a in relatorios_imprimir_lista %}
         <tr>
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.mensageiro.change_RelatoriosImprimir or perms.mensageiro.add_RelatoriosImprimir %}
-                    
+
                         <a href="{% url 'relatorios_imprimir_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_RelatoriosImprimir %}
                                 <span class="btn btn-primary" title="Editar">
@@ -39,7 +39,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

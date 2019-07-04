@@ -2,16 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2299_infoperant_ideestablot or 1 %}
+            {% if show_fields.show_s2299_infoperant_ideestablot %}
             <th>Detalhamento das verbas rescisórias devidas ao trabalhador</th>
             {% endif %}
-            {% if show_fields.show_codrubr or 1 %}
+            {% if show_fields.show_codrubr %}
             <th>Código da Rubrica</th>
             {% endif %}
-            {% if show_fields.show_idetabrubr or 1 %}
+            {% if show_fields.show_idetabrubr %}
             <th>Identificador tabela de rubricas</th>
             {% endif %}
-            {% if show_fields.show_vrrubr or 1 %}
+            {% if show_fields.show_qtdrubr %}
+            <th>Quantidade</th>
+            {% endif %}
+            {% if show_fields.show_fatorrubr %}
+            <th>Fator</th>
+            {% endif %}
+            {% if show_fields.show_vrunit %}
+            <th>Valor Unitário</th>
+            {% endif %}
+            {% if show_fields.show_vrrubr %}
             <th>Valor total</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +32,36 @@
     <tbody>
         {% for a in s2299_infoperant_detverbas_lista %}
         <tr>
-            {% if show_fields.show_s2299_infoperant_ideestablot or 1 %}
+            {% if show_fields.show_s2299_infoperant_ideestablot %}
             <td>{{ a.s2299_infoperant_ideestablot }}</td>
             {% endif %}
-            {% if show_fields.show_codrubr or 1 %}
+            {% if show_fields.show_codrubr %}
             <td>{{ a.codrubr }}</td>
             {% endif %}
-            {% if show_fields.show_idetabrubr or 1 %}
+            {% if show_fields.show_idetabrubr %}
             <td>{{ a.idetabrubr }}</td>
             {% endif %}
-            {% if show_fields.show_vrrubr or 1 %}
+            {% if show_fields.show_qtdrubr %}
+            <td>{{ a.qtdrubr }}</td>
+            {% endif %}
+            {% if show_fields.show_fatorrubr %}
+            <td>{{ a.fatorrubr }}</td>
+            {% endif %}
+            {% if show_fields.show_vrunit %}
+            <td>{{ a.vrunit }}</td>
+            {% endif %}
+            {% if show_fields.show_vrrubr %}
             <td>{{ a.vrrubr }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2299.change_s2299infoPerAntdetVerbas or perms.s2299.add_s2299infoPerAntdetVerbas %}
-                    
+
                         <a href="{% url 's2299_infoperant_detverbas_salvar' pk=a.id %}">
                             {% if perms.s2299.change_s2299infoPerAntdetVerbas %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +81,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

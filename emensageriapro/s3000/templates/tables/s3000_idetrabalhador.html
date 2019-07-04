@@ -2,11 +2,14 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s3000_evtexclusao or 1 %}
+            {% if show_fields.show_s3000_evtexclusao %}
             <th>Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.</th>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_cpftrab %}
             <th>CPF</th>
+            {% endif %}
+            {% if show_fields.show_nistrab %}
+            <th>NIS</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -17,21 +20,24 @@
     <tbody>
         {% for a in s3000_idetrabalhador_lista %}
         <tr>
-            {% if show_fields.show_s3000_evtexclusao or 1 %}
+            {% if show_fields.show_s3000_evtexclusao %}
             <td>{{ a.s3000_evtexclusao }}</td>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_cpftrab %}
             <td>{{ a.cpftrab }}</td>
             {% endif %}
-            
+            {% if show_fields.show_nistrab %}
+            <td>{{ a.nistrab }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s3000.change_s3000ideTrabalhador or perms.s3000.add_s3000ideTrabalhador %}
-                    
+
                         <a href="{% url 's3000_idetrabalhador_salvar' pk=a.id %}">
                             {% if perms.s3000.change_s3000ideTrabalhador %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

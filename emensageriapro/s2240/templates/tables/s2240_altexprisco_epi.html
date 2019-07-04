@@ -2,25 +2,28 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_altexprisco_fatrisco or 1 %}
+            {% if show_fields.show_s2240_altexprisco_fatrisco %}
             <th>Equipamentos de Proteção Individual - EPI</th>
             {% endif %}
-            {% if show_fields.show_eficepi or 1 %}
+            {% if show_fields.show_caepi %}
+            <th>Certificado de Aprovação do EPI</th>
+            {% endif %}
+            {% if show_fields.show_eficepi %}
             <th>EPI é eficaz na neutralização</th>
             {% endif %}
-            {% if show_fields.show_medprotecao or 1 %}
+            {% if show_fields.show_medprotecao %}
             <th>Medidas de proteção coletiva</th>
             {% endif %}
-            {% if show_fields.show_condfuncto or 1 %}
+            {% if show_fields.show_condfuncto %}
             <th>Condição de funcionamento e uso ininterrupto</th>
             {% endif %}
-            {% if show_fields.show_przvalid or 1 %}
+            {% if show_fields.show_przvalid %}
             <th>Observado Prazo de validade</th>
             {% endif %}
-            {% if show_fields.show_periodictroca or 1 %}
+            {% if show_fields.show_periodictroca %}
             <th>Observado periodicidade de troca</th>
             {% endif %}
-            {% if show_fields.show_higienizacao or 1 %}
+            {% if show_fields.show_higienizacao %}
             <th>Observada higienização</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -32,36 +35,39 @@
     <tbody>
         {% for a in s2240_altexprisco_epi_lista %}
         <tr>
-            {% if show_fields.show_s2240_altexprisco_fatrisco or 1 %}
+            {% if show_fields.show_s2240_altexprisco_fatrisco %}
             <td>{{ a.s2240_altexprisco_fatrisco }}</td>
             {% endif %}
-            {% if show_fields.show_eficepi or 1 %}
+            {% if show_fields.show_caepi %}
+            <td>{{ a.caepi }}</td>
+            {% endif %}
+            {% if show_fields.show_eficepi %}
             <td>{{ a.get_eficepi_display }}</td>
             {% endif %}
-            {% if show_fields.show_medprotecao or 1 %}
+            {% if show_fields.show_medprotecao %}
             <td>{{ a.get_medprotecao_display }}</td>
             {% endif %}
-            {% if show_fields.show_condfuncto or 1 %}
+            {% if show_fields.show_condfuncto %}
             <td>{{ a.get_condfuncto_display }}</td>
             {% endif %}
-            {% if show_fields.show_przvalid or 1 %}
+            {% if show_fields.show_przvalid %}
             <td>{{ a.get_przvalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_periodictroca or 1 %}
+            {% if show_fields.show_periodictroca %}
             <td>{{ a.get_periodictroca_display }}</td>
             {% endif %}
-            {% if show_fields.show_higienizacao or 1 %}
+            {% if show_fields.show_higienizacao %}
             <td>{{ a.get_higienizacao_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2240.change_s2240altExpRiscoepi or perms.s2240.add_s2240altExpRiscoepi %}
-                    
+
                         <a href="{% url 's2240_altexprisco_epi_salvar' pk=a.id %}">
                             {% if perms.s2240.change_s2240altExpRiscoepi %}
                                 <span class="btn btn-primary" title="Editar">
@@ -81,7 +87,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

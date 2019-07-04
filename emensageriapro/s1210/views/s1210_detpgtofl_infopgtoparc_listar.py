@@ -74,7 +74,7 @@ def listar(request, output=None):
             'show_qtdrubr': 0,
             'show_fatorrubr': 0,
             'show_vrunit': 0,
-            'show_vrrubr': 1, }
+            'show_vrrubr': 0, }
 
         post = False
 

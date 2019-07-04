@@ -2,14 +2,17 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_ideestab or 1 %}
+            {% if show_fields.show_s5011_ideestab %}
             <th>Informações das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, consolidadas por estabelecimento e por código de Receita - CR.</th>
             {% endif %}
-            {% if show_fields.show_tpcr or 1 %}
+            {% if show_fields.show_tpcr %}
             <th>Código da Receita (CR)</th>
             {% endif %}
-            {% if show_fields.show_vrcr or 1 %}
+            {% if show_fields.show_vrcr %}
             <th>Valor do CR apurado</th>
+            {% endif %}
+            {% if show_fields.show_vrsuspcr %}
+            <th>Valor suspenso correspondente ao CR</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,22 +23,25 @@
     <tbody>
         {% for a in s5011_infocrestab_lista %}
         <tr>
-            {% if show_fields.show_s5011_ideestab or 1 %}
+            {% if show_fields.show_s5011_ideestab %}
             <td>{{ a.s5011_ideestab }}</td>
             {% endif %}
-            {% if show_fields.show_tpcr or 1 %}
+            {% if show_fields.show_tpcr %}
             <td>{{ a.tpcr }}</td>
             {% endif %}
-            {% if show_fields.show_vrcr or 1 %}
+            {% if show_fields.show_vrcr %}
             <td>{{ a.vrcr }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vrsuspcr %}
+            <td>{{ a.vrsuspcr }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

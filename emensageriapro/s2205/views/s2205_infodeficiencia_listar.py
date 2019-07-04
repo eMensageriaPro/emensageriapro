@@ -69,11 +69,11 @@ def listar(request, output=None):
         show_fields = {
             'show_s2205_evtaltcadastral': 1,
             'show_deffisica': 1,
-            'show_defvisual': 1,
+            'show_defvisual': 0,
             'show_defauditiva': 1,
-            'show_defmental': 1,
-            'show_defintelectual': 1,
-            'show_reabreadap': 1,
+            'show_defmental': 0,
+            'show_defintelectual': 0,
+            'show_reabreadap': 0,
             'show_infocota': 0,
             'show_observacao': 0, }
 

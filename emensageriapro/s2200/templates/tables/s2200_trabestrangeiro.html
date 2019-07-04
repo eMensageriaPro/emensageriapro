@@ -2,16 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2200_evtadmissao or 1 %}
+            {% if show_fields.show_s2200_evtadmissao %}
             <th>Grupo de informações do Trabalhador Estrangeiro</th>
             {% endif %}
-            {% if show_fields.show_classtrabestrang or 1 %}
+            {% if show_fields.show_dtchegada %}
+            <th>Data de chegada</th>
+            {% endif %}
+            {% if show_fields.show_classtrabestrang %}
             <th>Classificação da condição de trabalho</th>
             {% endif %}
-            {% if show_fields.show_casadobr or 1 %}
+            {% if show_fields.show_casadobr %}
             <th>Casado com Brasileiro(a)</th>
             {% endif %}
-            {% if show_fields.show_filhosbr or 1 %}
+            {% if show_fields.show_filhosbr %}
             <th>Possui filho(s) brasileiro(s)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +26,30 @@
     <tbody>
         {% for a in s2200_trabestrangeiro_lista %}
         <tr>
-            {% if show_fields.show_s2200_evtadmissao or 1 %}
+            {% if show_fields.show_s2200_evtadmissao %}
             <td>{{ a.s2200_evtadmissao }}</td>
             {% endif %}
-            {% if show_fields.show_classtrabestrang or 1 %}
+            {% if show_fields.show_dtchegada %}
+            <td><span style="display:none">{{ a.dtchegada|date:"Y-m-d" }}</span>{{ a.dtchegada|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_classtrabestrang %}
             <td>{{ a.get_classtrabestrang_display }}</td>
             {% endif %}
-            {% if show_fields.show_casadobr or 1 %}
+            {% if show_fields.show_casadobr %}
             <td>{{ a.get_casadobr_display }}</td>
             {% endif %}
-            {% if show_fields.show_filhosbr or 1 %}
+            {% if show_fields.show_filhosbr %}
             <td>{{ a.get_filhosbr_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2200.change_s2200trabEstrangeiro or perms.s2200.add_s2200trabEstrangeiro %}
-                    
+
                         <a href="{% url 's2200_trabestrangeiro_salvar' pk=a.id %}">
                             {% if perms.s2200.change_s2200trabEstrangeiro %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

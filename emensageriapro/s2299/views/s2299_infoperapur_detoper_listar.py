@@ -70,7 +70,7 @@ def listar(request, output=None):
             'show_s2299_infoperapur_infosaudecolet': 1,
             'show_cnpjoper': 1,
             'show_regans': 1,
-            'show_vrpgtit': 1, }
+            'show_vrpgtit': 0, }
 
         post = False
 

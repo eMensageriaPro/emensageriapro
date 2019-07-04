@@ -2,11 +2,17 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5001_ideestablot or 1 %}
+            {% if show_fields.show_s5001_ideestablot %}
             <th>Informações relativas à matrícula e categoria do trabalhador e tipos de incidências.</th>
             {% endif %}
-            {% if show_fields.show_codcateg or 1 %}
+            {% if show_fields.show_matricula %}
+            <th>Matricula</th>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
             <th>Código da Categoria</th>
+            {% endif %}
+            {% if show_fields.show_indsimples %}
+            <th>Contribuição Substituída</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -17,19 +23,25 @@
     <tbody>
         {% for a in s5001_infocategincid_lista %}
         <tr>
-            {% if show_fields.show_s5001_ideestablot or 1 %}
+            {% if show_fields.show_s5001_ideestablot %}
             <td>{{ a.s5001_ideestablot }}</td>
             {% endif %}
-            {% if show_fields.show_codcateg or 1 %}
+            {% if show_fields.show_matricula %}
+            <td>{{ a.matricula }}</td>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
             <td>{{ a.codcateg|valor }}</td>
             {% endif %}
-            
+            {% if show_fields.show_indsimples %}
+            <td>{{ a.get_indsimples_display }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

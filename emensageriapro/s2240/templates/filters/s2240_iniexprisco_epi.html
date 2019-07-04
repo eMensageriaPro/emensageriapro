@@ -160,13 +160,13 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_caepi" value="0" {% if show_fields|get_value_from_dict:'show_caepi' %}checked{% endif %} >Certificado de Aprovação do EPI
+        <input type="checkbox" name="show_caepi" value="1" {% if show_fields|get_value_from_dict:'show_caepi' %}checked{% endif %} >Certificado de Aprovação do EPI
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_dscepi" value="0" {% if show_fields|get_value_from_dict:'show_dscepi' %}checked{% endif %} >Descrição do EPI. Validação: Preenchimento obrigatório e exclusivo se {caEPI} não for informado.
+        <input type="checkbox" name="show_dscepi" value="1" {% if show_fields|get_value_from_dict:'show_dscepi' %}checked{% endif %} >Descrição do EPI. Validação: Preenchimento obrigatório e exclusivo se {caEPI} não for informado.
     </div>
 </div>
 

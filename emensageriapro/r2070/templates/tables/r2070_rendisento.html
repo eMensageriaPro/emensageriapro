@@ -2,14 +2,17 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_pgtopf or 1 %}
+            {% if show_fields.show_r2070_pgtopf %}
             <th>Rendimentos Isentos/Não Tributáveis</th>
             {% endif %}
-            {% if show_fields.show_tpisencao or 1 %}
+            {% if show_fields.show_tpisencao %}
             <th>Tipo de Isenção</th>
             {% endif %}
-            {% if show_fields.show_vlrisento or 1 %}
+            {% if show_fields.show_vlrisento %}
             <th>Valor da Parcela Isenta</th>
+            {% endif %}
+            {% if show_fields.show_descrendimento %}
+            <th>Descrição do rendimento isento/Não tributável</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +23,27 @@
     <tbody>
         {% for a in r2070_rendisento_lista %}
         <tr>
-            {% if show_fields.show_r2070_pgtopf or 1 %}
+            {% if show_fields.show_r2070_pgtopf %}
             <td>{{ a.r2070_pgtopf }}</td>
             {% endif %}
-            {% if show_fields.show_tpisencao or 1 %}
+            {% if show_fields.show_tpisencao %}
             <td>{{ a.get_tpisencao_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrisento or 1 %}
+            {% if show_fields.show_vlrisento %}
             <td>{{ a.vlrisento }}</td>
             {% endif %}
-            
+            {% if show_fields.show_descrendimento %}
+            <td>{{ a.descrendimento }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2070.change_r2070rendIsento or perms.r2070.add_r2070rendIsento %}
-                    
+
                         <a href="{% url 'r2070_rendisento_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070rendIsento %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

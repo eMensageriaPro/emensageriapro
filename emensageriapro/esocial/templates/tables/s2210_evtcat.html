@@ -2,67 +2,160 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evtcat %}
+            <th>Evento Comunicação de Acidente de Trabalho</th>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <th>Identidade do Registro</th>
             {% endif %}
-            {% if show_fields.show_indretif or 1 %}
+            {% if show_fields.show_ideevento %}
+            <th>Informações de Identificação do Evento</th>
+            {% endif %}
+            {% if show_fields.show_indretif %}
             <th>Identificador de retificação</th>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_nrrecibo %}
+            <th>Número do recibo</th>
+            {% endif %}
+            {% if show_fields.show_tpamb %}
             <th>Identificação do ambiente</th>
             {% endif %}
-            {% if show_fields.show_procemi or 1 %}
+            {% if show_fields.show_procemi %}
             <th>Processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_verproc or 1 %}
+            {% if show_fields.show_verproc %}
             <th>Versão do processo</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_ideempregador %}
+            <th>Informações de identificação do empregador</th>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_idevinculo %}
+            <th>Informações de Identificação do Trabalhador e do Vínculo</th>
+            {% endif %}
+            {% if show_fields.show_cpftrab %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_dtacid or 1 %}
+            {% if show_fields.show_nistrab %}
+            <th>NIS</th>
+            {% endif %}
+            {% if show_fields.show_matricula %}
+            <th>Matricula</th>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
+            <th>Código da Categoria</th>
+            {% endif %}
+            {% if show_fields.show_cat %}
+            <th>Comunicação de Acidente de Trabalho.</th>
+            {% endif %}
+            {% if show_fields.show_dtacid %}
             <th>Data do Acidente</th>
             {% endif %}
-            {% if show_fields.show_tpacid or 1 %}
+            {% if show_fields.show_tpacid %}
             <th>Tipo de acidente</th>
             {% endif %}
-            {% if show_fields.show_hrstrabantesacid or 1 %}
+            {% if show_fields.show_hracid %}
+            <th>Hora do acidente</th>
+            {% endif %}
+            {% if show_fields.show_hrstrabantesacid %}
             <th>Quant. de horas trabalhadas antes do acidente</th>
             {% endif %}
-            {% if show_fields.show_tpcat or 1 %}
+            {% if show_fields.show_tpcat %}
             <th>Tipo de CAT</th>
             {% endif %}
-            {% if show_fields.show_indcatobito or 1 %}
+            {% if show_fields.show_indcatobito %}
             <th>Houve óbito</th>
             {% endif %}
-            {% if show_fields.show_indcomunpolicia or 1 %}
+            {% if show_fields.show_dtobito %}
+            <th>Data do óbito</th>
+            {% endif %}
+            {% if show_fields.show_indcomunpolicia %}
             <th>Houve comunicação a autoridade policial</th>
             {% endif %}
-            {% if show_fields.show_codsitgeradora or 1 %}
+            {% if show_fields.show_codsitgeradora %}
             <th>Situação Geradora</th>
             {% endif %}
-            {% if show_fields.show_iniciatcat or 1 %}
+            {% if show_fields.show_iniciatcat %}
             <th>Emitido por</th>
             {% endif %}
-            {% if show_fields.show_tplocal or 1 %}
+            {% if show_fields.show_obscat %}
+            <th>Observação.</th>
+            {% endif %}
+            {% if show_fields.show_observacao %}
+            <th>Observações</th>
+            {% endif %}
+            {% if show_fields.show_localacidente %}
+            <th>Local do Acidente</th>
+            {% endif %}
+            {% if show_fields.show_tplocal %}
             <th>Tipo de logradouro</th>
             {% endif %}
-            {% if show_fields.show_tplograd or 1 %}
+            {% if show_fields.show_dsclocal %}
+            <th>Descrição</th>
+            {% endif %}
+            {% if show_fields.show_codamb %}
+            <th>Código do Ambiente</th>
+            {% endif %}
+            {% if show_fields.show_tplograd %}
             <th>Tipo de logradouro</th>
             {% endif %}
-            {% if show_fields.show_dsclograd or 1 %}
+            {% if show_fields.show_dsclograd %}
             <th>Logradouro</th>
             {% endif %}
-            {% if show_fields.show_nrlograd or 1 %}
+            {% if show_fields.show_nrlograd %}
             <th>Número</th>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_complemento %}
+            <th>Complemento</th>
+            {% endif %}
+            {% if show_fields.show_bairro %}
+            <th>Bairro</th>
+            {% endif %}
+            {% if show_fields.show_cep %}
+            <th>CEP</th>
+            {% endif %}
+            {% if show_fields.show_codmunic %}
+            <th>Código do Município</th>
+            {% endif %}
+            {% if show_fields.show_uf %}
+            <th>UF</th>
+            {% endif %}
+            {% if show_fields.show_pais %}
+            <th>Pais</th>
+            {% endif %}
+            {% if show_fields.show_codpostal %}
+            <th>Código Postal</th>
+            {% endif %}
+            {% if show_fields.show_versao %}
+            <th>Versão</th>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial %}
+            <th>Transmissor</th>
+            {% endif %}
+            {% if show_fields.show_retornos_eventos %}
+            <th>Retorno do Evento</th>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <th>Ocorrências</th>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <th>Validação de Precedência</th>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <th>Validações</th>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <th>Arquivo Original</th>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <th>Arquivo</th>
+            {% endif %}
+            {% if show_fields.show_status %}
             <th>Status</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -74,78 +167,171 @@
     <tbody>
         {% for a in s2210_evtcat_lista %}
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evtcat %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <td>{{ a.identidade }}</td>
             {% endif %}
-            {% if show_fields.show_indretif or 1 %}
+            {% if show_fields.show_ideevento %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_indretif %}
             <td>{{ a.get_indretif_display }}</td>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_nrrecibo %}
+            <td>{{ a.nrrecibo }}</td>
+            {% endif %}
+            {% if show_fields.show_tpamb %}
             <td>{{ a.get_tpamb_display }}</td>
             {% endif %}
-            {% if show_fields.show_procemi or 1 %}
+            {% if show_fields.show_procemi %}
             <td>{{ a.get_procemi_display }}</td>
             {% endif %}
-            {% if show_fields.show_verproc or 1 %}
+            {% if show_fields.show_verproc %}
             <td>{{ a.verproc }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_ideempregador %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_idevinculo %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_cpftrab %}
             <td>{{ a.cpftrab }}</td>
             {% endif %}
-            {% if show_fields.show_dtacid or 1 %}
+            {% if show_fields.show_nistrab %}
+            <td>{{ a.nistrab }}</td>
+            {% endif %}
+            {% if show_fields.show_matricula %}
+            <td>{{ a.matricula }}</td>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
+            <td>{{ a.codcateg|valor }}</td>
+            {% endif %}
+            {% if show_fields.show_cat %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_dtacid %}
             <td><span style="display:none">{{ a.dtacid|date:"Y-m-d" }}</span>{{ a.dtacid|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tpacid or 1 %}
+            {% if show_fields.show_tpacid %}
             <td>{{ a.tpacid }}</td>
             {% endif %}
-            {% if show_fields.show_hrstrabantesacid or 1 %}
+            {% if show_fields.show_hracid %}
+            <td>{{ a.hracid }}</td>
+            {% endif %}
+            {% if show_fields.show_hrstrabantesacid %}
             <td>{{ a.hrstrabantesacid }}</td>
             {% endif %}
-            {% if show_fields.show_tpcat or 1 %}
+            {% if show_fields.show_tpcat %}
             <td>{{ a.get_tpcat_display }}</td>
             {% endif %}
-            {% if show_fields.show_indcatobito or 1 %}
+            {% if show_fields.show_indcatobito %}
             <td>{{ a.get_indcatobito_display }}</td>
             {% endif %}
-            {% if show_fields.show_indcomunpolicia or 1 %}
+            {% if show_fields.show_dtobito %}
+            <td><span style="display:none">{{ a.dtobito|date:"Y-m-d" }}</span>{{ a.dtobito|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_indcomunpolicia %}
             <td>{{ a.get_indcomunpolicia_display }}</td>
             {% endif %}
-            {% if show_fields.show_codsitgeradora or 1 %}
+            {% if show_fields.show_codsitgeradora %}
             <td>{{ a.codsitgeradora|valor }}</td>
             {% endif %}
-            {% if show_fields.show_iniciatcat or 1 %}
+            {% if show_fields.show_iniciatcat %}
             <td>{{ a.get_iniciatcat_display }}</td>
             {% endif %}
-            {% if show_fields.show_tplocal or 1 %}
+            {% if show_fields.show_obscat %}
+            <td>{{ a.obscat }}</td>
+            {% endif %}
+            {% if show_fields.show_observacao %}
+            <td>{{ a.observacao }}</td>
+            {% endif %}
+            {% if show_fields.show_localacidente %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tplocal %}
             <td>{{ a.get_tplocal_display }}</td>
             {% endif %}
-            {% if show_fields.show_tplograd or 1 %}
+            {% if show_fields.show_dsclocal %}
+            <td>{{ a.dsclocal }}</td>
+            {% endif %}
+            {% if show_fields.show_codamb %}
+            <td>{{ a.codamb }}</td>
+            {% endif %}
+            {% if show_fields.show_tplograd %}
             <td>{{ a.tplograd }}</td>
             {% endif %}
-            {% if show_fields.show_dsclograd or 1 %}
+            {% if show_fields.show_dsclograd %}
             <td>{{ a.dsclograd }}</td>
             {% endif %}
-            {% if show_fields.show_nrlograd or 1 %}
+            {% if show_fields.show_nrlograd %}
             <td>{{ a.nrlograd }}</td>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_complemento %}
+            <td>{{ a.complemento }}</td>
+            {% endif %}
+            {% if show_fields.show_bairro %}
+            <td>{{ a.bairro }}</td>
+            {% endif %}
+            {% if show_fields.show_cep %}
+            <td>{{ a.cep }}</td>
+            {% endif %}
+            {% if show_fields.show_codmunic %}
+            <td>{{ a.codmunic|valor }}</td>
+            {% endif %}
+            {% if show_fields.show_uf %}
+            <td>{{ a.get_uf_display }}</td>
+            {% endif %}
+            {% if show_fields.show_pais %}
+            <td>{{ a.pais }}</td>
+            {% endif %}
+            {% if show_fields.show_codpostal %}
+            <td>{{ a.codpostal }}</td>
+            {% endif %}
+            {% if show_fields.show_versao %}
+            <td>{{ a.get_versao_display }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial %}
+            <td>{{ a.transmissor_lote_esocial }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_eventos %}
+            <td>{{ a.retornos_eventos }}</td>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <td>{{ a.ocorrencias }}</td>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <td>{{ a.get_validacao_precedencia_display }}</td>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <td>{{ a.validacoes }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <td>{{ a.get_arquivo_original_display }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <td>{{ a.arquivo }}</td>
+            {% endif %}
+            {% if show_fields.show_status %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.esocial.change_s2210evtCAT or perms.esocial.add_s2210evtCAT %}
-                    
+
                         <a href="{% url 's2210_evtcat_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s2210evtCAT %}
                                 <span class="btn btn-primary" title="Editar">
@@ -165,7 +351,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

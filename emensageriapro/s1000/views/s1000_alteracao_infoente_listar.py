@@ -69,11 +69,11 @@ def listar(request, output=None):
         show_fields = {
             'show_s1000_alteracao_infoop': 1,
             'show_nmente': 1,
-            'show_uf': 1,
+            'show_uf': 0,
             'show_codmunic': 0,
-            'show_indrpps': 1,
+            'show_indrpps': 0,
             'show_subteto': 1,
-            'show_vrsubteto': 1, }
+            'show_vrsubteto': 0, }
 
         post = False
 

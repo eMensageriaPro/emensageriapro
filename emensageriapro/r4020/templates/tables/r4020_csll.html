@@ -2,14 +2,23 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4020_infopgto or 1 %}
+            {% if show_fields.show_r4020_infopgto %}
             <th>Informações relativas à CSLL</th>
             {% endif %}
-            {% if show_fields.show_vlrbasecsll or 1 %}
+            {% if show_fields.show_vlrbasecsll %}
             <th>Valor da base da Contribuição Social sobre Lucro Líquido - CSLL, conforme previsto na legislação</th>
             {% endif %}
-            {% if show_fields.show_vlrcsll or 1 %}
+            {% if show_fields.show_vlrcsll %}
             <th>Valor da retenção da Contribuição Social sobre Lucro Líquido - CSLL, conforme previsto na legislação</th>
+            {% endif %}
+            {% if show_fields.show_vlrbasencsll %}
+            <th>Valor da base da Contribuição Social sobre Lucro Líquido - CSLL, com exigibilidade suspensa</th>
+            {% endif %}
+            {% if show_fields.show_vlrncsll %}
+            <th>Valor da retenção da Contribuição Social sobre Lucro Líquido - CSLL, com exigibilidade suspensa, que deixou de ser efetuada</th>
+            {% endif %}
+            {% if show_fields.show_vlrdepcsll %}
+            <th>Valor relativo a depósito judicial de Contribuição Social sobre Lucro Líquido - CSLL</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +29,33 @@
     <tbody>
         {% for a in r4020_csll_lista %}
         <tr>
-            {% if show_fields.show_r4020_infopgto or 1 %}
+            {% if show_fields.show_r4020_infopgto %}
             <td>{{ a.r4020_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasecsll or 1 %}
+            {% if show_fields.show_vlrbasecsll %}
             <td>{{ a.vlrbasecsll }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcsll or 1 %}
+            {% if show_fields.show_vlrcsll %}
             <td>{{ a.vlrcsll }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrbasencsll %}
+            <td>{{ a.vlrbasencsll }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrncsll %}
+            <td>{{ a.vlrncsll }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrdepcsll %}
+            <td>{{ a.vlrdepcsll }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4020.change_r4020CSLL or perms.r4020.add_r4020CSLL %}
-                    
+
                         <a href="{% url 'r4020_csll_salvar' pk=a.id %}">
                             {% if perms.r4020.change_r4020CSLL %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

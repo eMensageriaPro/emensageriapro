@@ -113,19 +113,19 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrbasencofins" value="0" {% if show_fields|get_value_from_dict:'show_vlrbasencofins' %}checked{% endif %} >Valor da base de cálculo da Cofins com exibilidade suspensa
+        <input type="checkbox" name="show_vlrbasencofins" value="1" {% if show_fields|get_value_from_dict:'show_vlrbasencofins' %}checked{% endif %} >Valor da base de cálculo da Cofins com exibilidade suspensa
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrncofins" value="0" {% if show_fields|get_value_from_dict:'show_vlrncofins' %}checked{% endif %} >Valor da Cofins com exigibilidade suspensa, que deixou de ser retida
+        <input type="checkbox" name="show_vlrncofins" value="1" {% if show_fields|get_value_from_dict:'show_vlrncofins' %}checked{% endif %} >Valor da Cofins com exigibilidade suspensa, que deixou de ser retida
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrdepcofins" value="0" {% if show_fields|get_value_from_dict:'show_vlrdepcofins' %}checked{% endif %} >Valor relativo a depósito judicial de Cofins
+        <input type="checkbox" name="show_vlrdepcofins" value="1" {% if show_fields|get_value_from_dict:'show_vlrdepcofins' %}checked{% endif %} >Valor relativo a depósito judicial de Cofins
     </div>
 </div>
 

@@ -70,7 +70,7 @@ def listar(request, output=None):
             'show_r4010_ideopsaude': 1,
             'show_tpinsc': 1,
             'show_nrinsc': 1,
-            'show_vlrreemb': 1,
+            'show_vlrreemb': 0,
             'show_vlrreembant': 0, }
 
         post = False

@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5013_infobaseperante or 1 %}
+            {% if show_fields.show_s5013_infobaseperante %}
             <th>Informações sobre bases de cálculo do FGTS referentes à remuneração de períodos anteriores quando {tpAcConv} = [E]. Origem: S-1200 ou S-2299.</th>
             {% endif %}
-            {% if show_fields.show_tpvalore or 1 %}
+            {% if show_fields.show_tpvalore %}
             <th>Tipo de valor que influi na apuração do FGTS</th>
             {% endif %}
-            {% if show_fields.show_basefgtse or 1 %}
+            {% if show_fields.show_basefgtse %}
             <th>Remuneração (valor da base de cálculo) do FGTS</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,22 +20,22 @@
     <tbody>
         {% for a in s5013_baseperante_lista %}
         <tr>
-            {% if show_fields.show_s5013_infobaseperante or 1 %}
+            {% if show_fields.show_s5013_infobaseperante %}
             <td>{{ a.s5013_infobaseperante }}</td>
             {% endif %}
-            {% if show_fields.show_tpvalore or 1 %}
+            {% if show_fields.show_tpvalore %}
             <td>{{ a.get_tpvalore_display }}</td>
             {% endif %}
-            {% if show_fields.show_basefgtse or 1 %}
+            {% if show_fields.show_basefgtse %}
             <td>{{ a.basefgtse }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

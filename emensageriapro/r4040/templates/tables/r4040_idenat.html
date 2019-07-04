@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4040_evtbenefnid or 1 %}
+            {% if show_fields.show_r4040_evtbenefnid %}
             <th>Identificação da natureza do rendimento</th>
             {% endif %}
-            {% if show_fields.show_natrendim or 1 %}
+            {% if show_fields.show_natrendim %}
             <th>Informar a natureza dos rendimentos pagos a beneficiários não identificados</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in r4040_idenat_lista %}
         <tr>
-            {% if show_fields.show_r4040_evtbenefnid or 1 %}
+            {% if show_fields.show_r4040_evtbenefnid %}
             <td>{{ a.r4040_evtbenefnid }}</td>
             {% endif %}
-            {% if show_fields.show_natrendim or 1 %}
+            {% if show_fields.show_natrendim %}
             <td>{{ a.get_natrendim_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4040.change_r4040ideNat or perms.r4040.add_r4040ideNat %}
-                    
+
                         <a href="{% url 'r4040_idenat_salvar' pk=a.id %}">
                             {% if perms.r4040.change_r4040ideNat %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

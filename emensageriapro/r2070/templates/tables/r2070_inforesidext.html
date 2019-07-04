@@ -2,17 +2,44 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_evtpgtosdivs or 1 %}
+            {% if show_fields.show_r2070_evtpgtosdivs %}
             <th>Informações complementares de beneficiário residente ou domiciliado no exterior</th>
             {% endif %}
-            {% if show_fields.show_paisresid or 1 %}
+            {% if show_fields.show_infoender %}
+            <th>Endereço de beneficiário residente ou domiciliado no exterior</th>
+            {% endif %}
+            {% if show_fields.show_paisresid %}
             <th>Preencher com o código do país de residência fiscal, conforme tabela 7</th>
             {% endif %}
-            {% if show_fields.show_dsclograd or 1 %}
+            {% if show_fields.show_dsclograd %}
             <th>Descrição do logradouro</th>
             {% endif %}
-            {% if show_fields.show_indnif or 1 %}
+            {% if show_fields.show_nrlograd %}
+            <th>Número do logradouro.</th>
+            {% endif %}
+            {% if show_fields.show_complem %}
+            <th>Complemento do logradouro.</th>
+            {% endif %}
+            {% if show_fields.show_bairro %}
+            <th>Nome do bairro/distrito</th>
+            {% endif %}
+            {% if show_fields.show_cidade %}
+            <th>Nome da cidade</th>
+            {% endif %}
+            {% if show_fields.show_codpostal %}
+            <th>Código de Endereçamento Postal</th>
+            {% endif %}
+            {% if show_fields.show_infofiscal %}
+            <th>Informações fiscais de beneficiário residente ou domiciliado no exterior</th>
+            {% endif %}
+            {% if show_fields.show_indnif %}
             <th>Indicativo do Número de Identificação Fiscal</th>
+            {% endif %}
+            {% if show_fields.show_nifbenef %}
+            <th>Número de Identificação Fiscal - NIF</th>
+            {% endif %}
+            {% if show_fields.show_relfontepagad %}
+            <th>Relação fonte pagadora pessoa jurídica e beneficiário pessoa jurídica, conforme Tabela 05 - Informações sobre os Beneficiários dos Rendimentos</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -23,27 +50,54 @@
     <tbody>
         {% for a in r2070_inforesidext_lista %}
         <tr>
-            {% if show_fields.show_r2070_evtpgtosdivs or 1 %}
+            {% if show_fields.show_r2070_evtpgtosdivs %}
             <td>{{ a.r2070_evtpgtosdivs }}</td>
             {% endif %}
-            {% if show_fields.show_paisresid or 1 %}
+            {% if show_fields.show_infoender %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_paisresid %}
             <td>{{ a.paisresid }}</td>
             {% endif %}
-            {% if show_fields.show_dsclograd or 1 %}
+            {% if show_fields.show_dsclograd %}
             <td>{{ a.dsclograd }}</td>
             {% endif %}
-            {% if show_fields.show_indnif or 1 %}
+            {% if show_fields.show_nrlograd %}
+            <td>{{ a.nrlograd }}</td>
+            {% endif %}
+            {% if show_fields.show_complem %}
+            <td>{{ a.complem }}</td>
+            {% endif %}
+            {% if show_fields.show_bairro %}
+            <td>{{ a.bairro }}</td>
+            {% endif %}
+            {% if show_fields.show_cidade %}
+            <td>{{ a.cidade }}</td>
+            {% endif %}
+            {% if show_fields.show_codpostal %}
+            <td>{{ a.codpostal }}</td>
+            {% endif %}
+            {% if show_fields.show_infofiscal %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_indnif %}
             <td>{{ a.get_indnif_display }}</td>
             {% endif %}
-            
+            {% if show_fields.show_nifbenef %}
+            <td>{{ a.nifbenef }}</td>
+            {% endif %}
+            {% if show_fields.show_relfontepagad %}
+            <td>{{ a.get_relfontepagad_display }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2070.change_r2070infoResidExt or perms.r2070.add_r2070infoResidExt %}
-                    
+
                         <a href="{% url 'r2070_inforesidext_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070infoResidExt %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +117,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

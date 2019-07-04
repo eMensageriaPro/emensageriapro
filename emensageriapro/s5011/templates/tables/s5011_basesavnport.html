@@ -2,28 +2,28 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_idelotacao or 1 %}
+            {% if show_fields.show_s5011_idelotacao %}
             <th>Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários</th>
             {% endif %}
-            {% if show_fields.show_vrbccp00 or 1 %}
+            {% if show_fields.show_vrbccp00 %}
             <th>Valor da BC da CP</th>
             {% endif %}
-            {% if show_fields.show_vrbccp15 or 1 %}
+            {% if show_fields.show_vrbccp15 %}
             <th>Valor da BC da CP (15 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbccp20 or 1 %}
+            {% if show_fields.show_vrbccp20 %}
             <th>Valor da BC da CP (20 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbccp25 or 1 %}
+            {% if show_fields.show_vrbccp25 %}
             <th>Valor da BC da CP (25 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbccp13 or 1 %}
+            {% if show_fields.show_vrbccp13 %}
             <th>Valor da BC da CP (13 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbcfgts or 1 %}
+            {% if show_fields.show_vrbcfgts %}
             <th>Valor da BC do FGTS</th>
             {% endif %}
-            {% if show_fields.show_vrdesccp or 1 %}
+            {% if show_fields.show_vrdesccp %}
             <th>Valor total descontada dos segurados</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -35,37 +35,37 @@
     <tbody>
         {% for a in s5011_basesavnport_lista %}
         <tr>
-            {% if show_fields.show_s5011_idelotacao or 1 %}
+            {% if show_fields.show_s5011_idelotacao %}
             <td>{{ a.s5011_idelotacao }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp00 or 1 %}
+            {% if show_fields.show_vrbccp00 %}
             <td>{{ a.vrbccp00 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp15 or 1 %}
+            {% if show_fields.show_vrbccp15 %}
             <td>{{ a.vrbccp15 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp20 or 1 %}
+            {% if show_fields.show_vrbccp20 %}
             <td>{{ a.vrbccp20 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp25 or 1 %}
+            {% if show_fields.show_vrbccp25 %}
             <td>{{ a.vrbccp25 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp13 or 1 %}
+            {% if show_fields.show_vrbccp13 %}
             <td>{{ a.vrbccp13 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbcfgts or 1 %}
+            {% if show_fields.show_vrbcfgts %}
             <td>{{ a.vrbcfgts }}</td>
             {% endif %}
-            {% if show_fields.show_vrdesccp or 1 %}
+            {% if show_fields.show_vrdesccp %}
             <td>{{ a.vrdesccp }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

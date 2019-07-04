@@ -2,13 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_pgtopj or 1 %}
+            {% if show_fields.show_r2070_pgtopj %}
             <th>Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</th>
             {% endif %}
-            {% if show_fields.show_nrprocjud or 1 %}
+            {% if show_fields.show_nrprocjud %}
             <th>Preencher com o número do processo judicial</th>
             {% endif %}
-            {% if show_fields.show_indorigemrecursos or 1 %}
+            {% if show_fields.show_codsusp %}
+            <th>Código do Indicativo da Suspensão, atribuído pelo contribuinte</th>
+            {% endif %}
+            {% if show_fields.show_indorigemrecursos %}
             <th>Indicativo da origem dos recursos</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +23,27 @@
     <tbody>
         {% for a in r2070_pgtopj_infoprocjud_lista %}
         <tr>
-            {% if show_fields.show_r2070_pgtopj or 1 %}
+            {% if show_fields.show_r2070_pgtopj %}
             <td>{{ a.r2070_pgtopj }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocjud or 1 %}
+            {% if show_fields.show_nrprocjud %}
             <td>{{ a.nrprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_indorigemrecursos or 1 %}
+            {% if show_fields.show_codsusp %}
+            <td>{{ a.codsusp }}</td>
+            {% endif %}
+            {% if show_fields.show_indorigemrecursos %}
             <td>{{ a.get_indorigemrecursos_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2070.change_r2070pgtoPJinfoProcJud or perms.r2070.add_r2070pgtoPJinfoProcJud %}
-                    
+
                         <a href="{% url 'r2070_pgtopj_infoprocjud_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070pgtoPJinfoProcJud %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

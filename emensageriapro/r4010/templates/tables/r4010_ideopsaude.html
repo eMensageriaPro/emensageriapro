@@ -2,13 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_evtretpf or 1 %}
+            {% if show_fields.show_r4010_evtretpf %}
             <th>Identificação da operadora do plano privado coletivo empresarial de assistência à saúde</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <th>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</th>
             {% endif %}
-            {% if show_fields.show_vlrsaude or 1 %}
+            {% if show_fields.show_regans %}
+            <th>Registro na Agência Nacional de Saúde - ANS</th>
+            {% endif %}
+            {% if show_fields.show_vlrsaude %}
             <th>Valor pago ao plano de saúde</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +23,27 @@
     <tbody>
         {% for a in r4010_ideopsaude_lista %}
         <tr>
-            {% if show_fields.show_r4010_evtretpf or 1 %}
+            {% if show_fields.show_r4010_evtretpf %}
             <td>{{ a.r4010_evtretpf }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_vlrsaude or 1 %}
+            {% if show_fields.show_regans %}
+            <td>{{ a.regans }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrsaude %}
             <td>{{ a.vlrsaude }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4010.change_r4010ideOpSaude or perms.r4010.add_r4010ideOpSaude %}
-                    
+
                         <a href="{% url 'r4010_ideopsaude_salvar' pk=a.id %}">
                             {% if perms.r4010.change_r4010ideOpSaude %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

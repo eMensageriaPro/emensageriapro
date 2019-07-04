@@ -2,23 +2,56 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_contribuinte_tpinsc or 1 %}
+            {% if show_fields.show_transmissor %}
+            <th>Transmissor</th>
+            {% endif %}
+            {% if show_fields.show_contribuinte_tpinsc %}
             <th>Tipo de Inscrição do Contribuinte</th>
             {% endif %}
-            {% if show_fields.show_contribuinte_nrinsc or 1 %}
+            {% if show_fields.show_contribuinte_nrinsc %}
             <th>Número de Inscrição do Contribuinte</th>
             {% endif %}
-            {% if show_fields.show_grupo or 1 %}
+            {% if show_fields.show_grupo %}
             <th>Grupo</th>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_status %}
             <th>Status</th>
             {% endif %}
-            {% if show_fields.show_identidade_transmissor or 1 %}
+            {% if show_fields.show_identidade_transmissor %}
             <th>Identidade do Transmissor</th>
             {% endif %}
-            {% if show_fields.show_codigo_status or 1 %}
+            {% if show_fields.show_codigo_status %}
             <th>Código da Resposta</th>
+            {% endif %}
+            {% if show_fields.show_retorno_descricao %}
+            <th>Descrição da Resposta</th>
+            {% endif %}
+            {% if show_fields.show_recepcao_data_hora %}
+            <th>Data/Hora de Recepção</th>
+            {% endif %}
+            {% if show_fields.show_recepcao_versao_aplicativo %}
+            <th>Versão do Aplicativo de Recepção</th>
+            {% endif %}
+            {% if show_fields.show_protocolo %}
+            <th>Protocolo de Envio</th>
+            {% endif %}
+            {% if show_fields.show_numero_protocolo_fechamento %}
+            <th>Número do Protocolo de Fechamento</th>
+            {% endif %}
+            {% if show_fields.show_processamento_versao_aplicativo %}
+            <th>Versão do Aplicativo de Processamento</th>
+            {% endif %}
+            {% if show_fields.show_tempo_estimado_conclusao %}
+            <th>Tempo Estimado de Conclusão</th>
+            {% endif %}
+            {% if show_fields.show_arquivo_header %}
+            <th>Arquivo Header</th>
+            {% endif %}
+            {% if show_fields.show_arquivo_request %}
+            <th>Arquivo Request</th>
+            {% endif %}
+            {% if show_fields.show_arquivo_response %}
+            <th>Arquivo Response</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -29,25 +62,58 @@
     <tbody>
         {% for a in transmissor_lote_efdreinf_lista %}
         <tr>
-            {% if show_fields.show_contribuinte_tpinsc or 1 %}
+            {% if show_fields.show_transmissor %}
+            <td>{{ a.transmissor }}</td>
+            {% endif %}
+            {% if show_fields.show_contribuinte_tpinsc %}
             <td>{{ a.get_contribuinte_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_contribuinte_nrinsc or 1 %}
+            {% if show_fields.show_contribuinte_nrinsc %}
             <td>{{ a.contribuinte_nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_grupo or 1 %}
+            {% if show_fields.show_grupo %}
             <td>{{ a.get_grupo_display }}</td>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_status %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
-            {% if show_fields.show_identidade_transmissor or 1 %}
+            {% if show_fields.show_identidade_transmissor %}
             <td>{{ a.identidade_transmissor }}</td>
             {% endif %}
-            {% if show_fields.show_codigo_status or 1 %}
+            {% if show_fields.show_codigo_status %}
             <td>{{ a.get_codigo_status_display }}</td>
             {% endif %}
-            
+            {% if show_fields.show_retorno_descricao %}
+            <td>{{ a.retorno_descricao }}</td>
+            {% endif %}
+            {% if show_fields.show_recepcao_data_hora %}
+            <td><span style="display:none">{{ a.recepcao_data_hora|date:"Y-m-d H:i" }}</span>{{ a.recepcao_data_hora|date:"d/m/Y H:i" }}</td>
+            {% endif %}
+            {% if show_fields.show_recepcao_versao_aplicativo %}
+            <td>{{ a.recepcao_versao_aplicativo }}</td>
+            {% endif %}
+            {% if show_fields.show_protocolo %}
+            <td>{{ a.protocolo }}</td>
+            {% endif %}
+            {% if show_fields.show_numero_protocolo_fechamento %}
+            <td>{{ a.numero_protocolo_fechamento }}</td>
+            {% endif %}
+            {% if show_fields.show_processamento_versao_aplicativo %}
+            <td>{{ a.processamento_versao_aplicativo }}</td>
+            {% endif %}
+            {% if show_fields.show_tempo_estimado_conclusao %}
+            <td>{{ a.tempo_estimado_conclusao }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo_header %}
+            <td>{{ a.arquivo_header }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo_request %}
+            <td>{{ a.arquivo_request }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo_response %}
+            <td>{{ a.arquivo_response }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
@@ -73,9 +139,9 @@
         </span>
     </a>
     {% endif %}
-                    
+
                         {% if perms.mensageiro.change_TransmissorLoteEfdreinf or perms.mensageiro.add_TransmissorLoteEfdreinf %}
-                    
+
                         <a href="{% url 'transmissor_lote_efdreinf_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_TransmissorLoteEfdreinf %}
                                 <span class="btn btn-primary" title="Editar">
@@ -95,7 +161,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

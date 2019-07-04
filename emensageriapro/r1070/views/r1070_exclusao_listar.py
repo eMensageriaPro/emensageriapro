@@ -71,7 +71,7 @@ def listar(request, output=None):
             'show_ideprocesso': 0,
             'show_tpproc': 1,
             'show_nrproc': 1,
-            'show_inivalid': 1,
+            'show_inivalid': 0,
             'show_fimvalid': 0, }
 
         post = False

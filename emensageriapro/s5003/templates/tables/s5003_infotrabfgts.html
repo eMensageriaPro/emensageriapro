@@ -2,11 +2,32 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5003_ideestablot or 1 %}
+            {% if show_fields.show_s5003_ideestablot %}
             <th>Informações relativas à matrícula e categoria do trabalhador.</th>
             {% endif %}
-            {% if show_fields.show_codcateg or 1 %}
+            {% if show_fields.show_matricula %}
+            <th>Matricula</th>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
             <th>Código da Categoria</th>
+            {% endif %}
+            {% if show_fields.show_dtadm %}
+            <th>Data de admissão</th>
+            {% endif %}
+            {% if show_fields.show_dtdeslig %}
+            <th>Data de desligamento</th>
+            {% endif %}
+            {% if show_fields.show_dtinicio %}
+            <th>Data de início</th>
+            {% endif %}
+            {% if show_fields.show_mtvdeslig %}
+            <th>Motivo do desligamento</th>
+            {% endif %}
+            {% if show_fields.show_dtterm %}
+            <th>Data de Término do contrato de trabalho</th>
+            {% endif %}
+            {% if show_fields.show_mtvdesligtsv %}
+            <th>Motivo do término</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -17,19 +38,40 @@
     <tbody>
         {% for a in s5003_infotrabfgts_lista %}
         <tr>
-            {% if show_fields.show_s5003_ideestablot or 1 %}
+            {% if show_fields.show_s5003_ideestablot %}
             <td>{{ a.s5003_ideestablot }}</td>
             {% endif %}
-            {% if show_fields.show_codcateg or 1 %}
+            {% if show_fields.show_matricula %}
+            <td>{{ a.matricula }}</td>
+            {% endif %}
+            {% if show_fields.show_codcateg %}
             <td>{{ a.codcateg|valor }}</td>
             {% endif %}
-            
+            {% if show_fields.show_dtadm %}
+            <td><span style="display:none">{{ a.dtadm|date:"Y-m-d" }}</span>{{ a.dtadm|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_dtdeslig %}
+            <td><span style="display:none">{{ a.dtdeslig|date:"Y-m-d" }}</span>{{ a.dtdeslig|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_dtinicio %}
+            <td><span style="display:none">{{ a.dtinicio|date:"Y-m-d" }}</span>{{ a.dtinicio|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_mtvdeslig %}
+            <td>{{ a.mtvdeslig }}</td>
+            {% endif %}
+            {% if show_fields.show_dtterm %}
+            <td><span style="display:none">{{ a.dtterm|date:"Y-m-d" }}</span>{{ a.dtterm|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_mtvdesligtsv %}
+            <td>{{ a.get_mtvdesligtsv_display }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

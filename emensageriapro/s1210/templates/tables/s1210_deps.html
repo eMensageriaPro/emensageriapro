@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1210_evtpgtos or 1 %}
+            {% if show_fields.show_s1210_evtpgtos %}
             <th>Informações de dependentes do beneficiário do pagamento</th>
             {% endif %}
-            {% if show_fields.show_vrdeddep or 1 %}
+            {% if show_fields.show_vrdeddep %}
             <th>Valor da dedução da BC do IRRF</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s1210_deps_lista %}
         <tr>
-            {% if show_fields.show_s1210_evtpgtos or 1 %}
+            {% if show_fields.show_s1210_evtpgtos %}
             <td>{{ a.s1210_evtpgtos }}</td>
             {% endif %}
-            {% if show_fields.show_vrdeddep or 1 %}
+            {% if show_fields.show_vrdeddep %}
             <td>{{ a.vrdeddep }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1210.change_s1210deps or perms.s1210.add_s1210deps %}
-                    
+
                         <a href="{% url 's1210_deps_salvar' pk=a.id %}">
                             {% if perms.s1210.change_s1210deps %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

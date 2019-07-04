@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4040_idenat or 1 %}
+            {% if show_fields.show_r4040_idenat %}
             <th>Informações do Pagamento</th>
             {% endif %}
-            {% if show_fields.show_dtfg or 1 %}
+            {% if show_fields.show_dtfg %}
             <th>Informar a data do fato gerador ou pagamento/crédito</th>
             {% endif %}
-            {% if show_fields.show_vlrliq or 1 %}
+            {% if show_fields.show_vlrliq %}
             <th>Valor líquido do pagamento</th>
             {% endif %}
-            {% if show_fields.show_vlrreaj or 1 %}
+            {% if show_fields.show_vlrreaj %}
             <th>Valor reajustado, considerado como valor bruto da base de cálculo do IRRF</th>
             {% endif %}
-            {% if show_fields.show_vlrir or 1 %}
+            {% if show_fields.show_vlrir %}
             <th>Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação</th>
             {% endif %}
-            {% if show_fields.show_descr or 1 %}
+            {% if show_fields.show_descr %}
             <th>Descrição do pagamento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -29,33 +29,33 @@
     <tbody>
         {% for a in r4040_infopgto_lista %}
         <tr>
-            {% if show_fields.show_r4040_idenat or 1 %}
+            {% if show_fields.show_r4040_idenat %}
             <td>{{ a.r4040_idenat }}</td>
             {% endif %}
-            {% if show_fields.show_dtfg or 1 %}
+            {% if show_fields.show_dtfg %}
             <td><span style="display:none">{{ a.dtfg|date:"Y-m-d" }}</span>{{ a.dtfg|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_vlrliq or 1 %}
+            {% if show_fields.show_vlrliq %}
             <td>{{ a.vlrliq }}</td>
             {% endif %}
-            {% if show_fields.show_vlrreaj or 1 %}
+            {% if show_fields.show_vlrreaj %}
             <td>{{ a.vlrreaj }}</td>
             {% endif %}
-            {% if show_fields.show_vlrir or 1 %}
+            {% if show_fields.show_vlrir %}
             <td>{{ a.vlrir }}</td>
             {% endif %}
-            {% if show_fields.show_descr or 1 %}
+            {% if show_fields.show_descr %}
             <td>{{ a.descr }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4040.change_r4040infoPgto or perms.r4040.add_r4040infoPgto %}
-                    
+
                         <a href="{% url 'r4040_infopgto_salvar' pk=a.id %}">
                             {% if perms.r4040.change_r4040infoPgto %}
                                 <span class="btn btn-primary" title="Editar">
@@ -75,7 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

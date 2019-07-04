@@ -70,7 +70,7 @@ def listar(request, output=None):
             'show_r2030_evtassocdesprec': 1,
             'show_cnpjorigrecurso': 1,
             'show_vlrtotalrec': 1,
-            'show_vlrtotalret': 1,
+            'show_vlrtotalret': 0,
             'show_vlrtotalnret': 0, }
 
         post = False

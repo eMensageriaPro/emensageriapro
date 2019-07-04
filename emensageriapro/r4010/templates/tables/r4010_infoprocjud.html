@@ -2,14 +2,17 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_infopgto or 1 %}
+            {% if show_fields.show_r4010_infopgto %}
             <th>Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</th>
             {% endif %}
-            {% if show_fields.show_nrproc or 1 %}
+            {% if show_fields.show_nrproc %}
             <th>Informar o número do processo administrativo/judicial</th>
             {% endif %}
-            {% if show_fields.show_indorigrec or 1 %}
+            {% if show_fields.show_indorigrec %}
             <th>Indicativo da origem dos recursos</th>
+            {% endif %}
+            {% if show_fields.show_desc %}
+            <th>Descrição</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +23,27 @@
     <tbody>
         {% for a in r4010_infoprocjud_lista %}
         <tr>
-            {% if show_fields.show_r4010_infopgto or 1 %}
+            {% if show_fields.show_r4010_infopgto %}
             <td>{{ a.r4010_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_nrproc or 1 %}
+            {% if show_fields.show_nrproc %}
             <td>{{ a.nrproc }}</td>
             {% endif %}
-            {% if show_fields.show_indorigrec or 1 %}
+            {% if show_fields.show_indorigrec %}
             <td>{{ a.get_indorigrec_display }}</td>
             {% endif %}
-            
+            {% if show_fields.show_desc %}
+            <td>{{ a.desc }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4010.change_r4010infoProcJud or perms.r4010.add_r4010infoProcJud %}
-                    
+
                         <a href="{% url 'r4010_infoprocjud_salvar' pk=a.id %}">
                             {% if perms.r4010.change_r4010infoProcJud %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

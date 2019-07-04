@@ -2,25 +2,31 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
+            {% if show_fields.show_s2206_evtaltcontratual %}
             <th>Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</th>
             {% endif %}
-            {% if show_fields.show_tplograd or 1 %}
+            {% if show_fields.show_tplograd %}
             <th>Tipo de logradouro</th>
             {% endif %}
-            {% if show_fields.show_dsclograd or 1 %}
+            {% if show_fields.show_dsclograd %}
             <th>Logradouro</th>
             {% endif %}
-            {% if show_fields.show_nrlograd or 1 %}
+            {% if show_fields.show_nrlograd %}
             <th>Número</th>
             {% endif %}
-            {% if show_fields.show_cep or 1 %}
+            {% if show_fields.show_complemento %}
+            <th>Complemento</th>
+            {% endif %}
+            {% if show_fields.show_bairro %}
+            <th>Bairro</th>
+            {% endif %}
+            {% if show_fields.show_cep %}
             <th>CEP</th>
             {% endif %}
-            {% if show_fields.show_codmunic or 1 %}
+            {% if show_fields.show_codmunic %}
             <th>Código do Município</th>
             {% endif %}
-            {% if show_fields.show_uf or 1 %}
+            {% if show_fields.show_uf %}
             <th>UF</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -32,36 +38,42 @@
     <tbody>
         {% for a in s2206_localtrabdom_lista %}
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
+            {% if show_fields.show_s2206_evtaltcontratual %}
             <td>{{ a.s2206_evtaltcontratual }}</td>
             {% endif %}
-            {% if show_fields.show_tplograd or 1 %}
+            {% if show_fields.show_tplograd %}
             <td>{{ a.tplograd }}</td>
             {% endif %}
-            {% if show_fields.show_dsclograd or 1 %}
+            {% if show_fields.show_dsclograd %}
             <td>{{ a.dsclograd }}</td>
             {% endif %}
-            {% if show_fields.show_nrlograd or 1 %}
+            {% if show_fields.show_nrlograd %}
             <td>{{ a.nrlograd }}</td>
             {% endif %}
-            {% if show_fields.show_cep or 1 %}
+            {% if show_fields.show_complemento %}
+            <td>{{ a.complemento }}</td>
+            {% endif %}
+            {% if show_fields.show_bairro %}
+            <td>{{ a.bairro }}</td>
+            {% endif %}
+            {% if show_fields.show_cep %}
             <td>{{ a.cep }}</td>
             {% endif %}
-            {% if show_fields.show_codmunic or 1 %}
-            <td>{{ a.codmunic }}</td>
+            {% if show_fields.show_codmunic %}
+            <td>{{ a.codmunic|valor }}</td>
             {% endif %}
-            {% if show_fields.show_uf or 1 %}
+            {% if show_fields.show_uf %}
             <td>{{ a.get_uf_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2206.change_s2206localTrabDom or perms.s2206.add_s2206localTrabDom %}
-                    
+
                         <a href="{% url 's2206_localtrabdom_salvar' pk=a.id %}">
                             {% if perms.s2206.change_s2206localTrabDom %}
                                 <span class="btn btn-primary" title="Editar">
@@ -81,7 +93,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

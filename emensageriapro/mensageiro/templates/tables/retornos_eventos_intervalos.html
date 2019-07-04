@@ -2,14 +2,20 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_retornos_eventos_horarios or 1 %}
+            {% if show_fields.show_retornos_eventos_horarios %}
             <th>Retornos - Eventos - Horários</th>
             {% endif %}
-            {% if show_fields.show_tpinterv or 1 %}
+            {% if show_fields.show_tpinterv %}
             <th>Tipo de intervalo da jornada</th>
             {% endif %}
-            {% if show_fields.show_durinterv or 1 %}
+            {% if show_fields.show_durinterv %}
             <th>Duração do intervalo (min)</th>
+            {% endif %}
+            {% if show_fields.show_iniinterv %}
+            <th>Hora de início</th>
+            {% endif %}
+            {% if show_fields.show_terminterv %}
+            <th>Hora de término</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +26,30 @@
     <tbody>
         {% for a in retornos_eventos_intervalos_lista %}
         <tr>
-            {% if show_fields.show_retornos_eventos_horarios or 1 %}
+            {% if show_fields.show_retornos_eventos_horarios %}
             <td>{{ a.retornos_eventos_horarios }}</td>
             {% endif %}
-            {% if show_fields.show_tpinterv or 1 %}
+            {% if show_fields.show_tpinterv %}
             <td>{{ a.get_tpinterv_display }}</td>
             {% endif %}
-            {% if show_fields.show_durinterv or 1 %}
+            {% if show_fields.show_durinterv %}
             <td>{{ a.durinterv }}</td>
             {% endif %}
-            
+            {% if show_fields.show_iniinterv %}
+            <td>{{ a.iniinterv }}</td>
+            {% endif %}
+            {% if show_fields.show_terminterv %}
+            <td>{{ a.terminterv }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.mensageiro.change_RetornosEventosIntervalos or perms.mensageiro.add_RetornosEventosIntervalos %}
-                    
+
                         <a href="{% url 'retornos_eventos_intervalos_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_RetornosEventosIntervalos %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,17 +2,38 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2020_nfs or 1 %}
+            {% if show_fields.show_r2020_nfs %}
             <th>Informações sobre os tipos de Serviços constantes da Nota Fiscal</th>
             {% endif %}
-            {% if show_fields.show_tpservico or 1 %}
+            {% if show_fields.show_tpservico %}
             <th>Informar o tipo de serviço, conforme tabela 6</th>
             {% endif %}
-            {% if show_fields.show_vlrbaseret or 1 %}
+            {% if show_fields.show_vlrbaseret %}
             <th>Valor da Base de cálculo da retenção da contribuição previdenciária.</th>
             {% endif %}
-            {% if show_fields.show_vlrretencao or 1 %}
+            {% if show_fields.show_vlrretencao %}
             <th>Preencher com o valor da retenção apurada de acordo com o que determina a legislação vigente relativa aos serviços contidos na nota fiscal/fatura</th>
+            {% endif %}
+            {% if show_fields.show_vlrretsub %}
+            <th>Informar o valor da retenção destacada na nota fiscal relativo aos serviços subcontratados, se houver, desde que todos os documentos envolvidos se refiram à mesma competência e ao mesmo serviço, conforme disciplina a legislação</th>
+            {% endif %}
+            {% if show_fields.show_vlrnretprinc %}
+            <th>Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa</th>
+            {% endif %}
+            {% if show_fields.show_vlrservicos15 %}
+            <th>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição</th>
+            {% endif %}
+            {% if show_fields.show_vlrservicos20 %}
+            <th>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição</th>
+            {% endif %}
+            {% if show_fields.show_vlrservicos25 %}
+            <th>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição</th>
+            {% endif %}
+            {% if show_fields.show_vlradicional %}
+            <th>Adicional apurado de retenção da nota fiscal</th>
+            {% endif %}
+            {% if show_fields.show_vlrnretadic %}
+            <th>Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -23,27 +44,48 @@
     <tbody>
         {% for a in r2020_infotpserv_lista %}
         <tr>
-            {% if show_fields.show_r2020_nfs or 1 %}
+            {% if show_fields.show_r2020_nfs %}
             <td>{{ a.r2020_nfs }}</td>
             {% endif %}
-            {% if show_fields.show_tpservico or 1 %}
+            {% if show_fields.show_tpservico %}
             <td>{{ a.tpservico|valor }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbaseret or 1 %}
+            {% if show_fields.show_vlrbaseret %}
             <td>{{ a.vlrbaseret }}</td>
             {% endif %}
-            {% if show_fields.show_vlrretencao or 1 %}
+            {% if show_fields.show_vlrretencao %}
             <td>{{ a.vlrretencao }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrretsub %}
+            <td>{{ a.vlrretsub }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrnretprinc %}
+            <td>{{ a.vlrnretprinc }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrservicos15 %}
+            <td>{{ a.vlrservicos15 }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrservicos20 %}
+            <td>{{ a.vlrservicos20 }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrservicos25 %}
+            <td>{{ a.vlrservicos25 }}</td>
+            {% endif %}
+            {% if show_fields.show_vlradicional %}
+            <td>{{ a.vlradicional }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrnretadic %}
+            <td>{{ a.vlrnretadic }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2020.change_r2020infoTpServ or perms.r2020.add_r2020infoTpServ %}
-                    
+
                         <a href="{% url 'r2020_infotpserv_salvar' pk=a.id %}">
                             {% if perms.r2020.change_r2020infoTpServ %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +105,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

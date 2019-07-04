@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2210_evtcat or 1 %}
+            {% if show_fields.show_s2210_evtcat %}
             <th>Detalhamento do(s) agente(s) causador(es) do acidente de trabalho</th>
             {% endif %}
-            {% if show_fields.show_codagntcausador or 1 %}
+            {% if show_fields.show_codagntcausador %}
             <th>Agente Causador</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2210_agentecausador_lista %}
         <tr>
-            {% if show_fields.show_s2210_evtcat or 1 %}
+            {% if show_fields.show_s2210_evtcat %}
             <td>{{ a.s2210_evtcat }}</td>
             {% endif %}
-            {% if show_fields.show_codagntcausador or 1 %}
+            {% if show_fields.show_codagntcausador %}
             <td>{{ a.codagntcausador|valor }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2210.change_s2210agenteCausador or perms.s2210.add_s2210agenteCausador %}
-                    
+
                         <a href="{% url 's2210_agentecausador_salvar' pk=a.id %}">
                             {% if perms.s2210.change_s2210agenteCausador %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

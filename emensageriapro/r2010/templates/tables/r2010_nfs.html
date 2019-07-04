@@ -2,20 +2,23 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2010_evtservtom or 1 %}
+            {% if show_fields.show_r2010_evtservtom %}
             <th>Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior</th>
             {% endif %}
-            {% if show_fields.show_serie or 1 %}
+            {% if show_fields.show_serie %}
             <th>Informar o número de série da nota fiscal/fatura ou do Recibo Provisório de Serviço - RPS</th>
             {% endif %}
-            {% if show_fields.show_numdocto or 1 %}
+            {% if show_fields.show_numdocto %}
             <th>Número da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS.</th>
             {% endif %}
-            {% if show_fields.show_dtemissaonf or 1 %}
+            {% if show_fields.show_dtemissaonf %}
             <th>Data de Emissão da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS</th>
             {% endif %}
-            {% if show_fields.show_vlrbruto or 1 %}
+            {% if show_fields.show_vlrbruto %}
             <th>Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS</th>
+            {% endif %}
+            {% if show_fields.show_obs %}
+            <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -26,30 +29,33 @@
     <tbody>
         {% for a in r2010_nfs_lista %}
         <tr>
-            {% if show_fields.show_r2010_evtservtom or 1 %}
+            {% if show_fields.show_r2010_evtservtom %}
             <td>{{ a.r2010_evtservtom }}</td>
             {% endif %}
-            {% if show_fields.show_serie or 1 %}
+            {% if show_fields.show_serie %}
             <td>{{ a.serie }}</td>
             {% endif %}
-            {% if show_fields.show_numdocto or 1 %}
+            {% if show_fields.show_numdocto %}
             <td>{{ a.numdocto }}</td>
             {% endif %}
-            {% if show_fields.show_dtemissaonf or 1 %}
+            {% if show_fields.show_dtemissaonf %}
             <td><span style="display:none">{{ a.dtemissaonf|date:"Y-m-d" }}</span>{{ a.dtemissaonf|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbruto or 1 %}
+            {% if show_fields.show_vlrbruto %}
             <td>{{ a.vlrbruto }}</td>
             {% endif %}
-            
+            {% if show_fields.show_obs %}
+            <td>{{ a.obs }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2010.change_r2010nfs or perms.r2010.add_r2010nfs %}
-                    
+
                         <a href="{% url 'r2010_nfs_salvar' pk=a.id %}">
                             {% if perms.r2010.change_r2010nfs %}
                                 <span class="btn btn-primary" title="Editar">
@@ -69,7 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

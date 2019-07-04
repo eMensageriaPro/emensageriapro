@@ -68,7 +68,7 @@ def listar(request, output=None):
         dict_fields = {}
         show_fields = {
             'show_s1207_evtbenprrp': 1,
-            'show_tpbenef': 1,
+            'show_tpbenef': 0,
             'show_nrbenefic': 1,
             'show_idedmdev': 1, }
 

@@ -71,7 +71,7 @@ def listar(request, output=None):
             'show_iderubrica': 0,
             'show_codrubr': 1,
             'show_idetabrubr': 1,
-            'show_inivalid': 1,
+            'show_inivalid': 0,
             'show_fimvalid': 0, }
 
         post = False

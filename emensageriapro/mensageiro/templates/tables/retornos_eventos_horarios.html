@@ -2,11 +2,26 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_retornos_eventos or 1 %}
+            {% if show_fields.show_retornos_eventos %}
             <th>Retornos</th>
             {% endif %}
-            {% if show_fields.show_codhorcontrat or 1 %}
+            {% if show_fields.show_dia %}
+            <th>Dia</th>
+            {% endif %}
+            {% if show_fields.show_codhorcontrat %}
             <th>Código do Horário Contratual</th>
+            {% endif %}
+            {% if show_fields.show_hrentr %}
+            <th>Hora de Entrada</th>
+            {% endif %}
+            {% if show_fields.show_hrsaida %}
+            <th>Hora de Saída</th>
+            {% endif %}
+            {% if show_fields.show_durjornada %}
+            <th>Duração da jornada (min)</th>
+            {% endif %}
+            {% if show_fields.show_perhorflexivel %}
+            <th>Horário Flexivel</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -17,21 +32,36 @@
     <tbody>
         {% for a in retornos_eventos_horarios_lista %}
         <tr>
-            {% if show_fields.show_retornos_eventos or 1 %}
+            {% if show_fields.show_retornos_eventos %}
             <td>{{ a.retornos_eventos }}</td>
             {% endif %}
-            {% if show_fields.show_codhorcontrat or 1 %}
+            {% if show_fields.show_dia %}
+            <td>{{ a.get_dia_display }}</td>
+            {% endif %}
+            {% if show_fields.show_codhorcontrat %}
             <td>{{ a.codhorcontrat }}</td>
             {% endif %}
-            
+            {% if show_fields.show_hrentr %}
+            <td>{{ a.hrentr }}</td>
+            {% endif %}
+            {% if show_fields.show_hrsaida %}
+            <td>{{ a.hrsaida }}</td>
+            {% endif %}
+            {% if show_fields.show_durjornada %}
+            <td>{{ a.durjornada }}</td>
+            {% endif %}
+            {% if show_fields.show_perhorflexivel %}
+            <td>{{ a.get_perhorflexivel_display }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.mensageiro.change_RetornosEventosHorarios or perms.mensageiro.add_RetornosEventosHorarios %}
-                    
+
                         <a href="{% url 'retornos_eventos_horarios_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_RetornosEventosHorarios %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +81,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

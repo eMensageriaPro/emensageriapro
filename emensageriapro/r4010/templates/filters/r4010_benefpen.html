@@ -101,13 +101,13 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_cpf" value="0" {% if show_fields|get_value_from_dict:'show_cpf' %}checked{% endif %} >Número do CPF do dependente
+        <input type="checkbox" name="show_cpf" value="1" {% if show_fields|get_value_from_dict:'show_cpf' %}checked{% endif %} >Número do CPF do dependente
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_dtnascto" value="0" {% if show_fields|get_value_from_dict:'show_dtnascto' %}checked{% endif %} >Informar a data de nascimento do dependente
+        <input type="checkbox" name="show_dtnascto" value="1" {% if show_fields|get_value_from_dict:'show_dtnascto' %}checked{% endif %} >Informar a data de nascimento do dependente
     </div>
 </div>
 
@@ -125,7 +125,7 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_descrdep" value="0" {% if show_fields|get_value_from_dict:'show_descrdep' %}checked{% endif %} >Informar a descrição da dependência
+        <input type="checkbox" name="show_descrdep" value="1" {% if show_fields|get_value_from_dict:'show_descrdep' %}checked{% endif %} >Informar a descrição da dependência
     </div>
 </div>
 

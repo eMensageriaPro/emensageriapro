@@ -2,20 +2,53 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_infocomplementares or 1 %}
+            {% if show_fields.show_s2300_infocomplementares %}
             <th>Informações relativas ao estagiário</th>
             {% endif %}
-            {% if show_fields.show_natestagio or 1 %}
+            {% if show_fields.show_natestagio %}
             <th>Natureza do estágio</th>
             {% endif %}
-            {% if show_fields.show_nivestagio or 1 %}
+            {% if show_fields.show_nivestagio %}
             <th>Nível</th>
             {% endif %}
-            {% if show_fields.show_dtprevterm or 1 %}
+            {% if show_fields.show_areaatuacao %}
+            <th>Área de Atuação</th>
+            {% endif %}
+            {% if show_fields.show_nrapol %}
+            <th>Número da Apolice de seguro</th>
+            {% endif %}
+            {% if show_fields.show_vlrbolsa %}
+            <th>Valor da Bolsa</th>
+            {% endif %}
+            {% if show_fields.show_dtprevterm %}
             <th>Data prevista para o término</th>
             {% endif %}
-            {% if show_fields.show_nmrazao or 1 %}
+            {% if show_fields.show_instensino %}
+            <th>Instituição de Ensino</th>
+            {% endif %}
+            {% if show_fields.show_cnpjinstensino %}
+            <th>CNPJ da instituição de ensino</th>
+            {% endif %}
+            {% if show_fields.show_nmrazao %}
             <th>Razão Social</th>
+            {% endif %}
+            {% if show_fields.show_dsclograd %}
+            <th>Logradouro</th>
+            {% endif %}
+            {% if show_fields.show_nrlograd %}
+            <th>Número</th>
+            {% endif %}
+            {% if show_fields.show_bairro %}
+            <th>Bairro</th>
+            {% endif %}
+            {% if show_fields.show_cep %}
+            <th>CEP</th>
+            {% endif %}
+            {% if show_fields.show_codmunic %}
+            <th>Código do Município</th>
+            {% endif %}
+            {% if show_fields.show_uf %}
+            <th>UF</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -26,30 +59,63 @@
     <tbody>
         {% for a in s2300_infoestagiario_lista %}
         <tr>
-            {% if show_fields.show_s2300_infocomplementares or 1 %}
+            {% if show_fields.show_s2300_infocomplementares %}
             <td>{{ a.s2300_infocomplementares }}</td>
             {% endif %}
-            {% if show_fields.show_natestagio or 1 %}
+            {% if show_fields.show_natestagio %}
             <td>{{ a.get_natestagio_display }}</td>
             {% endif %}
-            {% if show_fields.show_nivestagio or 1 %}
+            {% if show_fields.show_nivestagio %}
             <td>{{ a.get_nivestagio_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtprevterm or 1 %}
+            {% if show_fields.show_areaatuacao %}
+            <td>{{ a.areaatuacao }}</td>
+            {% endif %}
+            {% if show_fields.show_nrapol %}
+            <td>{{ a.nrapol }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrbolsa %}
+            <td>{{ a.vlrbolsa }}</td>
+            {% endif %}
+            {% if show_fields.show_dtprevterm %}
             <td><span style="display:none">{{ a.dtprevterm|date:"Y-m-d" }}</span>{{ a.dtprevterm|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_nmrazao or 1 %}
+            {% if show_fields.show_instensino %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_cnpjinstensino %}
+            <td>{{ a.cnpjinstensino }}</td>
+            {% endif %}
+            {% if show_fields.show_nmrazao %}
             <td>{{ a.nmrazao }}</td>
             {% endif %}
-            
+            {% if show_fields.show_dsclograd %}
+            <td>{{ a.dsclograd }}</td>
+            {% endif %}
+            {% if show_fields.show_nrlograd %}
+            <td>{{ a.nrlograd }}</td>
+            {% endif %}
+            {% if show_fields.show_bairro %}
+            <td>{{ a.bairro }}</td>
+            {% endif %}
+            {% if show_fields.show_cep %}
+            <td>{{ a.cep }}</td>
+            {% endif %}
+            {% if show_fields.show_codmunic %}
+            <td>{{ a.codmunic|valor }}</td>
+            {% endif %}
+            {% if show_fields.show_uf %}
+            <td>{{ a.get_uf_display }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2300.change_s2300infoEstagiario or perms.s2300.add_s2300infoEstagiario %}
-                    
+
                         <a href="{% url 's2300_infoestagiario_salvar' pk=a.id %}">
                             {% if perms.s2300.change_s2300infoEstagiario %}
                                 <span class="btn btn-primary" title="Editar">
@@ -69,7 +135,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

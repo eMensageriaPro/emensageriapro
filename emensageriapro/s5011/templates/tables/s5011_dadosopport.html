@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_idelotacao or 1 %}
+            {% if show_fields.show_s5011_idelotacao %}
             <th>Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).</th>
             {% endif %}
-            {% if show_fields.show_cnpjopportuario or 1 %}
+            {% if show_fields.show_cnpjopportuario %}
             <th>CNPJ do Operador Portuário</th>
             {% endif %}
-            {% if show_fields.show_aliqrat or 1 %}
+            {% if show_fields.show_aliqrat %}
             <th>Alíquota RAT</th>
             {% endif %}
-            {% if show_fields.show_fap or 1 %}
+            {% if show_fields.show_fap %}
             <th>FAP</th>
             {% endif %}
-            {% if show_fields.show_aliqratajust or 1 %}
+            {% if show_fields.show_aliqratajust %}
             <th>Alíquota RAT (Ajustada)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -26,28 +26,28 @@
     <tbody>
         {% for a in s5011_dadosopport_lista %}
         <tr>
-            {% if show_fields.show_s5011_idelotacao or 1 %}
+            {% if show_fields.show_s5011_idelotacao %}
             <td>{{ a.s5011_idelotacao }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjopportuario or 1 %}
+            {% if show_fields.show_cnpjopportuario %}
             <td>{{ a.cnpjopportuario }}</td>
             {% endif %}
-            {% if show_fields.show_aliqrat or 1 %}
+            {% if show_fields.show_aliqrat %}
             <td>{{ a.get_aliqrat_display }}</td>
             {% endif %}
-            {% if show_fields.show_fap or 1 %}
+            {% if show_fields.show_fap %}
             <td>{{ a.fap }}</td>
             {% endif %}
-            {% if show_fields.show_aliqratajust or 1 %}
+            {% if show_fields.show_aliqratajust %}
             <td>{{ a.aliqratajust }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

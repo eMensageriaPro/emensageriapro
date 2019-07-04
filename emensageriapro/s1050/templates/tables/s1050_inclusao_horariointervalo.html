@@ -2,14 +2,20 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1050_inclusao or 1 %}
+            {% if show_fields.show_s1050_inclusao %}
             <th>Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.</th>
             {% endif %}
-            {% if show_fields.show_tpinterv or 1 %}
+            {% if show_fields.show_tpinterv %}
             <th>Tipo de intervalo da jornada</th>
             {% endif %}
-            {% if show_fields.show_durinterv or 1 %}
+            {% if show_fields.show_durinterv %}
             <th>Duração do intervalo (min)</th>
+            {% endif %}
+            {% if show_fields.show_iniinterv %}
+            <th>Hora de início</th>
+            {% endif %}
+            {% if show_fields.show_terminterv %}
+            <th>Hora de término</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +26,30 @@
     <tbody>
         {% for a in s1050_inclusao_horariointervalo_lista %}
         <tr>
-            {% if show_fields.show_s1050_inclusao or 1 %}
+            {% if show_fields.show_s1050_inclusao %}
             <td>{{ a.s1050_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_tpinterv or 1 %}
+            {% if show_fields.show_tpinterv %}
             <td>{{ a.get_tpinterv_display }}</td>
             {% endif %}
-            {% if show_fields.show_durinterv or 1 %}
+            {% if show_fields.show_durinterv %}
             <td>{{ a.durinterv }}</td>
             {% endif %}
-            
+            {% if show_fields.show_iniinterv %}
+            <td>{{ a.iniinterv }}</td>
+            {% endif %}
+            {% if show_fields.show_terminterv %}
+            <td>{{ a.terminterv }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1050.change_s1050inclusaohorarioIntervalo or perms.s1050.add_s1050inclusaohorarioIntervalo %}
-                    
+
                         <a href="{% url 's1050_inclusao_horariointervalo_salvar' pk=a.id %}">
                             {% if perms.s1050.change_s1050inclusaohorarioIntervalo %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

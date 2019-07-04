@@ -2,28 +2,31 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2400_evtcdbenefin or 1 %}
+            {% if show_fields.show_s2400_evtcdbenefin %}
             <th>Informações dos dependentes</th>
             {% endif %}
-            {% if show_fields.show_tpdep or 1 %}
+            {% if show_fields.show_tpdep %}
             <th>Tipo</th>
             {% endif %}
-            {% if show_fields.show_nmdep or 1 %}
+            {% if show_fields.show_nmdep %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_dtnascto or 1 %}
+            {% if show_fields.show_dtnascto %}
             <th>Data de nascimento</th>
             {% endif %}
-            {% if show_fields.show_sexodep or 1 %}
+            {% if show_fields.show_cpfdep %}
+            <th>CPF</th>
+            {% endif %}
+            {% if show_fields.show_sexodep %}
             <th>Sexo do dependente</th>
             {% endif %}
-            {% if show_fields.show_depirrf or 1 %}
+            {% if show_fields.show_depirrf %}
             <th>Dependente de IRRF</th>
             {% endif %}
-            {% if show_fields.show_incfismen or 1 %}
+            {% if show_fields.show_incfismen %}
             <th>Informar se o beneficiário é pessoa com doença incapacitante, na forma da lei</th>
             {% endif %}
-            {% if show_fields.show_depfinsprev or 1 %}
+            {% if show_fields.show_depfinsprev %}
             <th>Informar se é dependente para fins previdenciários</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -35,39 +38,42 @@
     <tbody>
         {% for a in s2400_dependente_lista %}
         <tr>
-            {% if show_fields.show_s2400_evtcdbenefin or 1 %}
+            {% if show_fields.show_s2400_evtcdbenefin %}
             <td>{{ a.s2400_evtcdbenefin }}</td>
             {% endif %}
-            {% if show_fields.show_tpdep or 1 %}
+            {% if show_fields.show_tpdep %}
             <td>{{ a.get_tpdep_display }}</td>
             {% endif %}
-            {% if show_fields.show_nmdep or 1 %}
+            {% if show_fields.show_nmdep %}
             <td>{{ a.nmdep }}</td>
             {% endif %}
-            {% if show_fields.show_dtnascto or 1 %}
+            {% if show_fields.show_dtnascto %}
             <td><span style="display:none">{{ a.dtnascto|date:"Y-m-d" }}</span>{{ a.dtnascto|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_sexodep or 1 %}
+            {% if show_fields.show_cpfdep %}
+            <td>{{ a.cpfdep }}</td>
+            {% endif %}
+            {% if show_fields.show_sexodep %}
             <td>{{ a.get_sexodep_display }}</td>
             {% endif %}
-            {% if show_fields.show_depirrf or 1 %}
+            {% if show_fields.show_depirrf %}
             <td>{{ a.get_depirrf_display }}</td>
             {% endif %}
-            {% if show_fields.show_incfismen or 1 %}
+            {% if show_fields.show_incfismen %}
             <td>{{ a.get_incfismen_display }}</td>
             {% endif %}
-            {% if show_fields.show_depfinsprev or 1 %}
+            {% if show_fields.show_depfinsprev %}
             <td>{{ a.get_depfinsprev_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2400.change_s2400dependente or perms.s2400.add_s2400dependente %}
-                    
+
                         <a href="{% url 's2400_dependente_salvar' pk=a.id %}">
                             {% if perms.s2400.change_s2400dependente %}
                                 <span class="btn btn-primary" title="Editar">
@@ -87,7 +93,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

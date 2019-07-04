@@ -2,14 +2,23 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_ideestab or 1 %}
+            {% if show_fields.show_s5011_ideestab %}
             <th>Informações de bases de cálculo relativas à comercialização da produção rural da Pessoa Física. Informações desse grupo conforme informado pelo contribuinte em S-1260.</th>
             {% endif %}
-            {% if show_fields.show_indcomerc or 1 %}
+            {% if show_fields.show_indcomerc %}
             <th>Indicativo de comercialização</th>
             {% endif %}
-            {% if show_fields.show_vrbccompr or 1 %}
+            {% if show_fields.show_vrbccompr %}
             <th>Valor da BC da comercialização da PR</th>
+            {% endif %}
+            {% if show_fields.show_vrcpsusp %}
+            <th>Valor da CP com exigibilidade suspensa</th>
+            {% endif %}
+            {% if show_fields.show_vrratsusp %}
+            <th>Valor da CP para GILRAT com exigibilidade suspensa</th>
+            {% endif %}
+            {% if show_fields.show_vrsenarsusp %}
+            <th>Valor da contribição para SENAR com exigibilidade suspensa</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,22 +29,31 @@
     <tbody>
         {% for a in s5011_basescomerc_lista %}
         <tr>
-            {% if show_fields.show_s5011_ideestab or 1 %}
+            {% if show_fields.show_s5011_ideestab %}
             <td>{{ a.s5011_ideestab }}</td>
             {% endif %}
-            {% if show_fields.show_indcomerc or 1 %}
+            {% if show_fields.show_indcomerc %}
             <td>{{ a.get_indcomerc_display }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccompr or 1 %}
+            {% if show_fields.show_vrbccompr %}
             <td>{{ a.vrbccompr }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vrcpsusp %}
+            <td>{{ a.vrcpsusp }}</td>
+            {% endif %}
+            {% if show_fields.show_vrratsusp %}
+            <td>{{ a.vrratsusp }}</td>
+            {% endif %}
+            {% if show_fields.show_vrsenarsusp %}
+            <td>{{ a.vrsenarsusp }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

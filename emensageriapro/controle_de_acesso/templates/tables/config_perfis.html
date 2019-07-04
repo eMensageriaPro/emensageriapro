@@ -2,8 +2,11 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_titulo or 1 %}
+            {% if show_fields.show_titulo %}
             <th>Título</th>
+            {% endif %}
+            {% if show_fields.show_grupos %}
+            <th>Grupos</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -14,18 +17,21 @@
     <tbody>
         {% for a in config_perfis_lista %}
         <tr>
-            {% if show_fields.show_titulo or 1 %}
+            {% if show_fields.show_titulo %}
             <td>{{ a.titulo }}</td>
             {% endif %}
-            
+            {% if show_fields.show_grupos %}
+            <td></td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.controle_de_acesso.change_ConfigPerfis or perms.controle_de_acesso.add_ConfigPerfis %}
-                    
+
                         <a href="{% url 'config_perfis_salvar' pk=a.id %}">
                             {% if perms.controle_de_acesso.change_ConfigPerfis %}
                                 <span class="btn btn-primary" title="Editar">
@@ -45,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

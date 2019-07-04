@@ -72,7 +72,7 @@ def listar(request, output=None):
             'show_evento': 1,
             'show_versao': 0,
             'show_identidade_evento': 1,
-            'show_identidade': 0,
+            'show_identidade': 1,
             'show_status': 1,
             'show_data_hora': 1,
             'show_validacoes': 0, }

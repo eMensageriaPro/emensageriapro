@@ -69,7 +69,7 @@ def listar(request, output=None):
         show_fields = {
             'show_s1005_evttabestab': 1,
             'show_ideestab': 0,
-            'show_tpinsc': 1,
+            'show_tpinsc': 0,
             'show_nrinsc': 1,
             'show_inivalid': 1,
             'show_fimvalid': 0, }

@@ -71,7 +71,7 @@ def listar(request, output=None):
             'show_tpproc': 1,
             'show_nrproc': 1,
             'show_codsusp': 0,
-            'show_vlrcprbsusp': 1, }
+            'show_vlrcprbsusp': 0, }
 
         post = False
 

@@ -2,14 +2,23 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4020_infopgto or 1 %}
+            {% if show_fields.show_r4020_infopgto %}
             <th>Informações relativas ao PIS/PASEP</th>
             {% endif %}
-            {% if show_fields.show_vlrbasepp or 1 %}
+            {% if show_fields.show_vlrbasepp %}
             <th>Valor da base do PIS/PASEP, conforme previsto na legislação</th>
             {% endif %}
-            {% if show_fields.show_vlrpp or 1 %}
+            {% if show_fields.show_vlrpp %}
             <th>Valor da retenção do PIS/PASEP, conforme previsto na legislação</th>
+            {% endif %}
+            {% if show_fields.show_vlrbasenpp %}
+            <th>Valor da base do PIS/PASEP com exigibilidade suspensa</th>
+            {% endif %}
+            {% if show_fields.show_vlrnpp %}
+            <th>Valor do PIS/PASEP com exigibilidade suspensa, que deixou de ser retido</th>
+            {% endif %}
+            {% if show_fields.show_vlrdeppp %}
+            <th>Valor depósito judicial de PIS/PASEP</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +29,33 @@
     <tbody>
         {% for a in r4020_pp_lista %}
         <tr>
-            {% if show_fields.show_r4020_infopgto or 1 %}
+            {% if show_fields.show_r4020_infopgto %}
             <td>{{ a.r4020_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasepp or 1 %}
+            {% if show_fields.show_vlrbasepp %}
             <td>{{ a.vlrbasepp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrpp or 1 %}
+            {% if show_fields.show_vlrpp %}
             <td>{{ a.vlrpp }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrbasenpp %}
+            <td>{{ a.vlrbasenpp }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrnpp %}
+            <td>{{ a.vlrnpp }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrdeppp %}
+            <td>{{ a.vlrdeppp }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4020.change_r4020PP or perms.r4020.add_r4020PP %}
-                    
+
                         <a href="{% url 'r4020_pp_salvar' pk=a.id %}">
                             {% if perms.r4020.change_r4020PP %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

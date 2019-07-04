@@ -2,17 +2,23 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1200_infocomplem or 1 %}
+            {% if show_fields.show_s1200_infocomplem %}
             <th>Grupo de informações da sucessão de vínculo trabalhista/estatutário</th>
             {% endif %}
-            {% if show_fields.show_tpinscant or 1 %}
+            {% if show_fields.show_tpinscant %}
             <th>Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05</th>
             {% endif %}
-            {% if show_fields.show_cnpjempregant or 1 %}
+            {% if show_fields.show_cnpjempregant %}
             <th>CNPJ Empregador Anterior</th>
             {% endif %}
-            {% if show_fields.show_dtadm or 1 %}
+            {% if show_fields.show_matricant %}
+            <th>Matricula anterior</th>
+            {% endif %}
+            {% if show_fields.show_dtadm %}
             <th>Data de admissão</th>
+            {% endif %}
+            {% if show_fields.show_observacao %}
+            <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -23,27 +29,33 @@
     <tbody>
         {% for a in s1200_sucessaovinc_lista %}
         <tr>
-            {% if show_fields.show_s1200_infocomplem or 1 %}
+            {% if show_fields.show_s1200_infocomplem %}
             <td>{{ a.s1200_infocomplem }}</td>
             {% endif %}
-            {% if show_fields.show_tpinscant or 1 %}
+            {% if show_fields.show_tpinscant %}
             <td>{{ a.get_tpinscant_display }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjempregant or 1 %}
+            {% if show_fields.show_cnpjempregant %}
             <td>{{ a.cnpjempregant }}</td>
             {% endif %}
-            {% if show_fields.show_dtadm or 1 %}
+            {% if show_fields.show_matricant %}
+            <td>{{ a.matricant }}</td>
+            {% endif %}
+            {% if show_fields.show_dtadm %}
             <td><span style="display:none">{{ a.dtadm|date:"Y-m-d" }}</span>{{ a.dtadm|date:"d/m/Y" }}</td>
             {% endif %}
-            
+            {% if show_fields.show_observacao %}
+            <td>{{ a.observacao }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1200.change_s1200sucessaoVinc or perms.s1200.add_s1200sucessaoVinc %}
-                    
+
                         <a href="{% url 's1200_sucessaovinc_salvar' pk=a.id %}">
                             {% if perms.s1200.change_s1200sucessaoVinc %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,11 +2,20 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
+            {% if show_fields.show_s2206_evtaltcontratual %}
             <th>Informações de Trabalhador Estatutário</th>
             {% endif %}
-            {% if show_fields.show_tpplanrp or 1 %}
+            {% if show_fields.show_tpplanrp %}
             <th>Tipo de plano de segregação de massa</th>
+            {% endif %}
+            {% if show_fields.show_indtetorgps %}
+            <th>Informar se o servidor está sujeito ao Teto do Regime Geral pela instituição do regime de previdência complementar</th>
+            {% endif %}
+            {% if show_fields.show_indabonoperm %}
+            <th>Indicar se o servidor recebe abono permanência</th>
+            {% endif %}
+            {% if show_fields.show_indparcremun %}
+            <th>Informar se o servidor fez a opção pela inclusão na base de cálculo da contribuição de parcelas remuneratórias percebidas em decorrência de local de trabalho e do exercício de cargo em comissão ou de função comissionada ou gratificada, conforme art. 4º, § 2º, da Lei nº 10.887/2004</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -17,21 +26,30 @@
     <tbody>
         {% for a in s2206_infoestatutario_lista %}
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
+            {% if show_fields.show_s2206_evtaltcontratual %}
             <td>{{ a.s2206_evtaltcontratual }}</td>
             {% endif %}
-            {% if show_fields.show_tpplanrp or 1 %}
+            {% if show_fields.show_tpplanrp %}
             <td>{{ a.get_tpplanrp_display }}</td>
             {% endif %}
-            
+            {% if show_fields.show_indtetorgps %}
+            <td>{{ a.get_indtetorgps_display }}</td>
+            {% endif %}
+            {% if show_fields.show_indabonoperm %}
+            <td>{{ a.get_indabonoperm_display }}</td>
+            {% endif %}
+            {% if show_fields.show_indparcremun %}
+            <td>{{ a.get_indparcremun_display }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2206.change_s2206infoEstatutario or perms.s2206.add_s2206infoEstatutario %}
-                    
+
                         <a href="{% url 's2206_infoestatutario_salvar' pk=a.id %}">
                             {% if perms.s2206.change_s2206infoEstatutario %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

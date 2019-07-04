@@ -186,13 +186,13 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_cpfdep" value="0" {% if show_fields|get_value_from_dict:'show_cpfdep' %}checked{% endif %} >CPF
+        <input type="checkbox" name="show_cpfdep" value="1" {% if show_fields|get_value_from_dict:'show_cpfdep' %}checked{% endif %} >CPF
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_sexodep" value="0" {% if show_fields|get_value_from_dict:'show_sexodep' %}checked{% endif %} >Sexo do dependente
+        <input type="checkbox" name="show_sexodep" value="1" {% if show_fields|get_value_from_dict:'show_sexodep' %}checked{% endif %} >Sexo do dependente
     </div>
 </div>
 
@@ -216,7 +216,7 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_depfinsprev" value="0" {% if show_fields|get_value_from_dict:'show_depfinsprev' %}checked{% endif %} >Informar se é dependente para fins previdenciários
+        <input type="checkbox" name="show_depfinsprev" value="1" {% if show_fields|get_value_from_dict:'show_depfinsprev' %}checked{% endif %} >Informar se é dependente para fins previdenciários
     </div>
 </div>
 

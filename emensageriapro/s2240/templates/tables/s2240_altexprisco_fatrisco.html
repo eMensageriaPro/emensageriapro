@@ -2,16 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_altexprisco_infoamb or 1 %}
+            {% if show_fields.show_s2240_altexprisco_infoamb %}
             <th>Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</th>
             {% endif %}
-            {% if show_fields.show_codfatris or 1 %}
+            {% if show_fields.show_codfatris %}
             <th>Código do Fator de Risco</th>
             {% endif %}
-            {% if show_fields.show_utilizepc or 1 %}
+            {% if show_fields.show_intconc %}
+            <th>Concentração</th>
+            {% endif %}
+            {% if show_fields.show_tecmedicao %}
+            <th>Técnica de medição</th>
+            {% endif %}
+            {% if show_fields.show_epcepi %}
+            <th>Informações relativas a Equipamentos de Proteção Coletiva - EPC e Equipamentos de Proteção Individual - EPI</th>
+            {% endif %}
+            {% if show_fields.show_utilizepc %}
             <th>Utiliza EPC</th>
             {% endif %}
-            {% if show_fields.show_utilizepi or 1 %}
+            {% if show_fields.show_utilizepi %}
             <th>Utiliza EPI</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +32,36 @@
     <tbody>
         {% for a in s2240_altexprisco_fatrisco_lista %}
         <tr>
-            {% if show_fields.show_s2240_altexprisco_infoamb or 1 %}
+            {% if show_fields.show_s2240_altexprisco_infoamb %}
             <td>{{ a.s2240_altexprisco_infoamb }}</td>
             {% endif %}
-            {% if show_fields.show_codfatris or 1 %}
+            {% if show_fields.show_codfatris %}
             <td>{{ a.codfatris }}</td>
             {% endif %}
-            {% if show_fields.show_utilizepc or 1 %}
+            {% if show_fields.show_intconc %}
+            <td>{{ a.intconc }}</td>
+            {% endif %}
+            {% if show_fields.show_tecmedicao %}
+            <td>{{ a.tecmedicao }}</td>
+            {% endif %}
+            {% if show_fields.show_epcepi %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_utilizepc %}
             <td>{{ a.get_utilizepc_display }}</td>
             {% endif %}
-            {% if show_fields.show_utilizepi or 1 %}
+            {% if show_fields.show_utilizepi %}
             <td>{{ a.get_utilizepi_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2240.change_s2240altExpRiscofatRisco or perms.s2240.add_s2240altExpRiscofatRisco %}
-                    
+
                         <a href="{% url 's2240_altexprisco_fatrisco_salvar' pk=a.id %}">
                             {% if perms.s2240.change_s2240altExpRiscofatRisco %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +81,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

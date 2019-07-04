@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2299_evtdeslig or 1 %}
+            {% if show_fields.show_s2299_evtdeslig %}
             <th>Observações do contrato de trabalho</th>
             {% endif %}
-            {% if show_fields.show_observacao or 1 %}
+            {% if show_fields.show_observacao %}
             <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2299_observacoes_lista %}
         <tr>
-            {% if show_fields.show_s2299_evtdeslig or 1 %}
+            {% if show_fields.show_s2299_evtdeslig %}
             <td>{{ a.s2299_evtdeslig }}</td>
             {% endif %}
-            {% if show_fields.show_observacao or 1 %}
+            {% if show_fields.show_observacao %}
             <td>{{ a.observacao }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2299.change_s2299observacoes or perms.s2299.add_s2299observacoes %}
-                    
+
                         <a href="{% url 's2299_observacoes_salvar' pk=a.id %}">
                             {% if perms.s2299.change_s2299observacoes %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

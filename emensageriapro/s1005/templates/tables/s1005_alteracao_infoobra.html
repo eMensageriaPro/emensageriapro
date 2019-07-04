@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1005_alteracao or 1 %}
+            {% if show_fields.show_s1005_alteracao %}
             <th>Registro preenchido exclusivamente por empresa construtora enquadrada nos Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.</th>
             {% endif %}
-            {% if show_fields.show_indsubstpatrobra or 1 %}
+            {% if show_fields.show_indsubstpatrobra %}
             <th>Substituição de CP patronal de Obra</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s1005_alteracao_infoobra_lista %}
         <tr>
-            {% if show_fields.show_s1005_alteracao or 1 %}
+            {% if show_fields.show_s1005_alteracao %}
             <td>{{ a.s1005_alteracao }}</td>
             {% endif %}
-            {% if show_fields.show_indsubstpatrobra or 1 %}
+            {% if show_fields.show_indsubstpatrobra %}
             <td>{{ a.get_indsubstpatrobra_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1005.change_s1005alteracaoinfoObra or perms.s1005.add_s1005alteracaoinfoObra %}
-                    
+
                         <a href="{% url 's1005_alteracao_infoobra_salvar' pk=a.id %}">
                             {% if perms.s1005.change_s1005alteracaoinfoObra %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -412,7 +412,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_evtdeslig" value="0" {% if show_fields|get_value_from_dict:'show_evtdeslig' %}checked{% endif %} >Evento Desligamento
+        <input type="checkbox" name="show_evtdeslig" value="1" {% if show_fields|get_value_from_dict:'show_evtdeslig' %}checked{% endif %} >Evento Desligamento
     </div>
 </div>
 
@@ -424,7 +424,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_ideevento" value="0" {% if show_fields|get_value_from_dict:'show_ideevento' %}checked{% endif %} >Informações de Identificação do Evento
+        <input type="checkbox" name="show_ideevento" value="1" {% if show_fields|get_value_from_dict:'show_ideevento' %}checked{% endif %} >Informações de Identificação do Evento
     </div>
 </div>
 
@@ -436,7 +436,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_nrrecibo" value="0" {% if show_fields|get_value_from_dict:'show_nrrecibo' %}checked{% endif %} >Número do recibo
+        <input type="checkbox" name="show_nrrecibo" value="1" {% if show_fields|get_value_from_dict:'show_nrrecibo' %}checked{% endif %} >Número do recibo
     </div>
 </div>
 
@@ -460,7 +460,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_ideempregador" value="0" {% if show_fields|get_value_from_dict:'show_ideempregador' %}checked{% endif %} >Informações de identificação do empregador
+        <input type="checkbox" name="show_ideempregador" value="1" {% if show_fields|get_value_from_dict:'show_ideempregador' %}checked{% endif %} >Informações de identificação do empregador
     </div>
 </div>
 
@@ -478,7 +478,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_idevinculo" value="0" {% if show_fields|get_value_from_dict:'show_idevinculo' %}checked{% endif %} >Informações de Identificação do Trabalhador e do Vínculo
+        <input type="checkbox" name="show_idevinculo" value="1" {% if show_fields|get_value_from_dict:'show_idevinculo' %}checked{% endif %} >Informações de Identificação do Trabalhador e do Vínculo
     </div>
 </div>
 
@@ -502,7 +502,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_infodeslig" value="0" {% if show_fields|get_value_from_dict:'show_infodeslig' %}checked{% endif %} >Apresenta as informações relativas ao desligamento do vínculo identificado no registro superior.
+        <input type="checkbox" name="show_infodeslig" value="1" {% if show_fields|get_value_from_dict:'show_infodeslig' %}checked{% endif %} >Apresenta as informações relativas ao desligamento do vínculo identificado no registro superior.
     </div>
 </div>
 
@@ -526,7 +526,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_dtprojfimapi" value="0" {% if show_fields|get_value_from_dict:'show_dtprojfimapi' %}checked{% endif %} >Data projetada para o término do aviso prévio
+        <input type="checkbox" name="show_dtprojfimapi" value="1" {% if show_fields|get_value_from_dict:'show_dtprojfimapi' %}checked{% endif %} >Data projetada para o término do aviso prévio
     </div>
 </div>
 
@@ -538,25 +538,25 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_percaliment" value="0" {% if show_fields|get_value_from_dict:'show_percaliment' %}checked{% endif %} >Percentual da Pensão Alimentícia
+        <input type="checkbox" name="show_percaliment" value="1" {% if show_fields|get_value_from_dict:'show_percaliment' %}checked{% endif %} >Percentual da Pensão Alimentícia
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vralim" value="0" {% if show_fields|get_value_from_dict:'show_vralim' %}checked{% endif %} >Valor da Pensão alimentícia
+        <input type="checkbox" name="show_vralim" value="1" {% if show_fields|get_value_from_dict:'show_vralim' %}checked{% endif %} >Valor da Pensão alimentícia
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_nrcertobito" value="0" {% if show_fields|get_value_from_dict:'show_nrcertobito' %}checked{% endif %} >Número da certidão de óbito
+        <input type="checkbox" name="show_nrcertobito" value="1" {% if show_fields|get_value_from_dict:'show_nrcertobito' %}checked{% endif %} >Número da certidão de óbito
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_nrproctrab" value="0" {% if show_fields|get_value_from_dict:'show_nrproctrab' %}checked{% endif %} >Número do Processo Trabalhista
+        <input type="checkbox" name="show_nrproctrab" value="1" {% if show_fields|get_value_from_dict:'show_nrproctrab' %}checked{% endif %} >Número do Processo Trabalhista
     </div>
 </div>
 
@@ -568,19 +568,19 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_qtddiasinterm" value="0" {% if show_fields|get_value_from_dict:'show_qtddiasinterm' %}checked{% endif %} >Quantidade de dias trabalhados no mês pelo empregado com contrato de trabalho intermitente
+        <input type="checkbox" name="show_qtddiasinterm" value="1" {% if show_fields|get_value_from_dict:'show_qtddiasinterm' %}checked{% endif %} >Quantidade de dias trabalhados no mês pelo empregado com contrato de trabalho intermitente
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_versao" value="0" {% if show_fields|get_value_from_dict:'show_versao' %}checked{% endif %} >Versão
+        <input type="checkbox" name="show_versao" value="1" {% if show_fields|get_value_from_dict:'show_versao' %}checked{% endif %} >Versão
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_transmissor_lote_esocial" value="0" {% if show_fields|get_value_from_dict:'show_transmissor_lote_esocial' %}checked{% endif %} >Transmissor
+        <input type="checkbox" name="show_transmissor_lote_esocial" value="1" {% if show_fields|get_value_from_dict:'show_transmissor_lote_esocial' %}checked{% endif %} >Transmissor
     </div>
 </div>
 

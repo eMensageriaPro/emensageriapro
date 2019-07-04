@@ -2,25 +2,28 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_evtexprisco or 1 %}
+            {% if show_fields.show_s2240_evtexprisco %}
             <th>Informações relativas ao responsável pelos registros ambientais</th>
             {% endif %}
-            {% if show_fields.show_cpfresp or 1 %}
+            {% if show_fields.show_cpfresp %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_nisresp or 1 %}
+            {% if show_fields.show_nisresp %}
             <th>NIS</th>
             {% endif %}
-            {% if show_fields.show_nmresp or 1 %}
+            {% if show_fields.show_nmresp %}
             <th>Nome do Responsável pelas Informações</th>
             {% endif %}
-            {% if show_fields.show_ideoc or 1 %}
+            {% if show_fields.show_ideoc %}
             <th>Órgão de Classe (OC)</th>
             {% endif %}
-            {% if show_fields.show_nroc or 1 %}
+            {% if show_fields.show_dscoc %}
+            <th>Descrição (sigla) do órgão de classe ao qual o responsável pelos registros ambientais está vinculado</th>
+            {% endif %}
+            {% if show_fields.show_nroc %}
             <th>Número de Inscrição no órgão de classe.</th>
             {% endif %}
-            {% if show_fields.show_ufoc or 1 %}
+            {% if show_fields.show_ufoc %}
             <th>UF do OC</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -32,36 +35,39 @@
     <tbody>
         {% for a in s2240_iniexprisco_respreg_lista %}
         <tr>
-            {% if show_fields.show_s2240_evtexprisco or 1 %}
+            {% if show_fields.show_s2240_evtexprisco %}
             <td>{{ a.s2240_evtexprisco }}</td>
             {% endif %}
-            {% if show_fields.show_cpfresp or 1 %}
+            {% if show_fields.show_cpfresp %}
             <td>{{ a.cpfresp }}</td>
             {% endif %}
-            {% if show_fields.show_nisresp or 1 %}
+            {% if show_fields.show_nisresp %}
             <td>{{ a.nisresp }}</td>
             {% endif %}
-            {% if show_fields.show_nmresp or 1 %}
+            {% if show_fields.show_nmresp %}
             <td>{{ a.nmresp }}</td>
             {% endif %}
-            {% if show_fields.show_ideoc or 1 %}
+            {% if show_fields.show_ideoc %}
             <td>{{ a.get_ideoc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nroc or 1 %}
+            {% if show_fields.show_dscoc %}
+            <td>{{ a.dscoc }}</td>
+            {% endif %}
+            {% if show_fields.show_nroc %}
             <td>{{ a.nroc }}</td>
             {% endif %}
-            {% if show_fields.show_ufoc or 1 %}
+            {% if show_fields.show_ufoc %}
             <td>{{ a.get_ufoc_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2240.change_s2240iniExpRiscorespReg or perms.s2240.add_s2240iniExpRiscorespReg %}
-                    
+
                         <a href="{% url 's2240_iniexprisco_respreg_salvar' pk=a.id %}">
                             {% if perms.s2240.change_s2240iniExpRiscorespReg %}
                                 <span class="btn btn-primary" title="Editar">
@@ -81,7 +87,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2306_infoestagiario or 1 %}
+            {% if show_fields.show_s2306_infoestagiario %}
             <th>Supervisor do Estágio</th>
             {% endif %}
-            {% if show_fields.show_cpfsupervisor or 1 %}
+            {% if show_fields.show_cpfsupervisor %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_nmsuperv or 1 %}
+            {% if show_fields.show_nmsuperv %}
             <th>Nome do Supervisor do Estágio</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +20,24 @@
     <tbody>
         {% for a in s2306_supervisorestagio_lista %}
         <tr>
-            {% if show_fields.show_s2306_infoestagiario or 1 %}
+            {% if show_fields.show_s2306_infoestagiario %}
             <td>{{ a.s2306_infoestagiario }}</td>
             {% endif %}
-            {% if show_fields.show_cpfsupervisor or 1 %}
+            {% if show_fields.show_cpfsupervisor %}
             <td>{{ a.cpfsupervisor }}</td>
             {% endif %}
-            {% if show_fields.show_nmsuperv or 1 %}
+            {% if show_fields.show_nmsuperv %}
             <td>{{ a.nmsuperv }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2306.change_s2306supervisorEstagio or perms.s2306.add_s2306supervisorEstagio %}
-                    
+
                         <a href="{% url 's2306_supervisorestagio_salvar' pk=a.id %}">
                             {% if perms.s2306.change_s2306supervisorEstagio %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

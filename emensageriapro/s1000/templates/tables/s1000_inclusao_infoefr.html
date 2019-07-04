@@ -2,16 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1000_inclusao_infoop or 1 %}
+            {% if show_fields.show_s1000_inclusao_infoop %}
             <th>Informações relativas a Ente Federativo Responsável - EFR</th>
             {% endif %}
-            {% if show_fields.show_ideefr or 1 %}
+            {% if show_fields.show_ideefr %}
             <th>É Ente Federativo Responsável?</th>
             {% endif %}
-            {% if show_fields.show_indrpps or 1 %}
+            {% if show_fields.show_cnpjefr %}
+            <th>CNPJ do EFR</th>
+            {% endif %}
+            {% if show_fields.show_indrpps %}
             <th>Possui RPPS</th>
             {% endif %}
-            {% if show_fields.show_prevcomp or 1 %}
+            {% if show_fields.show_prevcomp %}
             <th>Informar se o EFR instituiu regime de previdência complementar</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +26,30 @@
     <tbody>
         {% for a in s1000_inclusao_infoefr_lista %}
         <tr>
-            {% if show_fields.show_s1000_inclusao_infoop or 1 %}
+            {% if show_fields.show_s1000_inclusao_infoop %}
             <td>{{ a.s1000_inclusao_infoop }}</td>
             {% endif %}
-            {% if show_fields.show_ideefr or 1 %}
+            {% if show_fields.show_ideefr %}
             <td>{{ a.get_ideefr_display }}</td>
             {% endif %}
-            {% if show_fields.show_indrpps or 1 %}
+            {% if show_fields.show_cnpjefr %}
+            <td>{{ a.cnpjefr }}</td>
+            {% endif %}
+            {% if show_fields.show_indrpps %}
             <td>{{ a.get_indrpps_display }}</td>
             {% endif %}
-            {% if show_fields.show_prevcomp or 1 %}
+            {% if show_fields.show_prevcomp %}
             <td>{{ a.get_prevcomp_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1000.change_s1000inclusaoinfoEFR or perms.s1000.add_s1000inclusaoinfoEFR %}
-                    
+
                         <a href="{% url 's1000_inclusao_infoefr_salvar' pk=a.id %}">
                             {% if perms.s1000.change_s1000inclusaoinfoEFR %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

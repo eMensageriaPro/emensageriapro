@@ -79,9 +79,9 @@ def listar(request, output=None):
             'show_aposentesp': 0,
             'show_dscfatrisc': 0,
             'show_epcepi': 0,
-            'show_utilizepc': 1,
+            'show_utilizepc': 0,
             'show_eficepc': 0,
-            'show_utilizepi': 1, }
+            'show_utilizepi': 0, }
 
         post = False
 

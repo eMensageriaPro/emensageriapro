@@ -70,7 +70,7 @@ def listar(request, output=None):
             'show_s1207_dmdev': 1,
             'show_codrubr': 1,
             'show_idetabrubr': 1,
-            'show_vrrubr': 1, }
+            'show_vrrubr': 0, }
 
         post = False
 

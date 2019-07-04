@@ -71,8 +71,8 @@ def listar(request, output=None):
             'show_codcateg': 1,
             'show_matricula': 0,
             'show_dtinigoz': 1,
-            'show_qtdias': 1,
-            'show_vrliq': 1, }
+            'show_qtdias': 0,
+            'show_vrliq': 0, }
 
         post = False
 

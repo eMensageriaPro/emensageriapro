@@ -2,38 +2,95 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evtexclusao %}
+            <th>Evento destinado a exclusão de eventos</th>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <th>Identificação única do evento</th>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_ideevento %}
+            <th>Informações de Identificação do Evento</th>
+            {% endif %}
+            {% if show_fields.show_tpamb %}
             <th>Identificação do ambiente</th>
             {% endif %}
-            {% if show_fields.show_procemi or 1 %}
+            {% if show_fields.show_procemi %}
             <th>Processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_verproc or 1 %}
+            {% if show_fields.show_verproc %}
             <th>Versão do processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_idecontri %}
+            <th>Informações de identificação do contribuinte</th>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <th>Preencher com o código correspondente ao tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <th>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</th>
             {% endif %}
-            {% if show_fields.show_tpevento or 1 %}
+            {% if show_fields.show_infoexclusao %}
+            <th>Registro que identifica o evento objeto da exclusão</th>
+            {% endif %}
+            {% if show_fields.show_tpevento %}
             <th>Preencher com o tipo de evento, conforme tabela 10</th>
             {% endif %}
-            {% if show_fields.show_nrrecevt or 1 %}
+            {% if show_fields.show_nrrecevt %}
             <th>Preencher com o número do recibo do evento que será excluído</th>
             {% endif %}
-            {% if show_fields.show_perapur or 1 %}
+            {% if show_fields.show_perapur %}
             <th>Informar o ano/mês de referência das informações no formato AAAA-MM</th>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_versao %}
+            <th>Versão</th>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_efdreinf %}
+            <th>Transmissor</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r5001 %}
+            <th>Retorno R5001</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r5011 %}
+            <th>Retorno R5011</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r9001 %}
+            <th>Retorno R9001</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r9002 %}
+            <th>Retorno R9002</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r9011 %}
+            <th>Retorno R9011</th>
+            {% endif %}
+            {% if show_fields.show_retornos_r9012 %}
+            <th>Retorno R9012</th>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <th>Ocorrências</th>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <th>Validação de Precedência</th>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <th>Validações</th>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <th>Arquivo Original</th>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <th>Arquivo</th>
+            {% endif %}
+            {% if show_fields.show_status %}
             <th>Status</th>
             {% endif %}
-            {% if show_fields.show_cdretorno or 1 %}
+            {% if show_fields.show_cdretorno %}
             <th>Código do Retorno</th>
+            {% endif %}
+            {% if show_fields.show_descretorno %}
+            <th>Descrição do Retorno</th>
+            {% endif %}
+            {% if show_fields.show_dhprocess %}
+            <th>Data/Hora do Processamento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -44,48 +101,105 @@
     <tbody>
         {% for a in r9000_evtexclusao_lista %}
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evtexclusao %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <td>{{ a.identidade }}</td>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_ideevento %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpamb %}
             <td>{{ a.get_tpamb_display }}</td>
             {% endif %}
-            {% if show_fields.show_procemi or 1 %}
+            {% if show_fields.show_procemi %}
             <td>{{ a.get_procemi_display }}</td>
             {% endif %}
-            {% if show_fields.show_verproc or 1 %}
+            {% if show_fields.show_verproc %}
             <td>{{ a.verproc }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_idecontri %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <td>{{ a.tpinsc }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_tpevento or 1 %}
+            {% if show_fields.show_infoexclusao %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpevento %}
             <td>{{ a.tpevento }}</td>
             {% endif %}
-            {% if show_fields.show_nrrecevt or 1 %}
+            {% if show_fields.show_nrrecevt %}
             <td>{{ a.nrrecevt }}</td>
             {% endif %}
-            {% if show_fields.show_perapur or 1 %}
+            {% if show_fields.show_perapur %}
             <td>{{ a.perapur }}</td>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_versao %}
+            <td>{{ a.get_versao_display }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_efdreinf %}
+            <td>{{ a.transmissor_lote_efdreinf }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r5001 %}
+            <td>{{ a.retornos_r5001 }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r5011 %}
+            <td>{{ a.retornos_r5011 }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r9001 %}
+            <td>{{ a.retornos_r9001 }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r9002 %}
+            <td>{{ a.retornos_r9002 }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r9011 %}
+            <td>{{ a.retornos_r9011 }}</td>
+            {% endif %}
+            {% if show_fields.show_retornos_r9012 %}
+            <td>{{ a.retornos_r9012 }}</td>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <td>{{ a.ocorrencias }}</td>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <td>{{ a.get_validacao_precedencia_display }}</td>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <td>{{ a.validacoes }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <td>{{ a.get_arquivo_original_display }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <td>{{ a.arquivo }}</td>
+            {% endif %}
+            {% if show_fields.show_status %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
-            {% if show_fields.show_cdretorno or 1 %}
+            {% if show_fields.show_cdretorno %}
             <td>{{ a.cdretorno }}</td>
             {% endif %}
-            
+            {% if show_fields.show_descretorno %}
+            <td>{{ a.descretorno }}</td>
+            {% endif %}
+            {% if show_fields.show_dhprocess %}
+            <td><span style="display:none">{{ a.dhprocess|date:"Y-m-d H:i" }}</span>{{ a.dhprocess|date:"d/m/Y H:i" }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.efdreinf.change_r9000evtExclusao or perms.efdreinf.add_r9000evtExclusao %}
-                    
+
                         <a href="{% url 'r9000_evtexclusao_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r9000evtExclusao %}
                                 <span class="btn btn-primary" title="Editar">
@@ -105,7 +219,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

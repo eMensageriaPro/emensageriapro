@@ -2,38 +2,56 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1010_evttabrubrica or 1 %}
+            {% if show_fields.show_s1010_evttabrubrica %}
             <th>Inclusão de novas informações</th>
             {% endif %}
-            {% if show_fields.show_codrubr or 1 %}
+            {% if show_fields.show_iderubrica %}
+            <th>Informações de identificação da rubrica e validade das informações que estão sendo incluídas</th>
+            {% endif %}
+            {% if show_fields.show_codrubr %}
             <th>Código da Rubrica</th>
             {% endif %}
-            {% if show_fields.show_idetabrubr or 1 %}
+            {% if show_fields.show_idetabrubr %}
             <th>Identificador tabela de rubricas</th>
             {% endif %}
-            {% if show_fields.show_inivalid or 1 %}
+            {% if show_fields.show_inivalid %}
             <th>Início da Validade</th>
             {% endif %}
-            {% if show_fields.show_dscrubr or 1 %}
+            {% if show_fields.show_fimvalid %}
+            <th>Fim da Validade</th>
+            {% endif %}
+            {% if show_fields.show_dadosrubrica %}
+            <th>Detalhamento das informações da rubrica que está sendo incluída</th>
+            {% endif %}
+            {% if show_fields.show_dscrubr %}
             <th>Descrição</th>
             {% endif %}
-            {% if show_fields.show_natrubr or 1 %}
+            {% if show_fields.show_natrubr %}
             <th>Natureza da Rubrica</th>
             {% endif %}
-            {% if show_fields.show_tprubr or 1 %}
+            {% if show_fields.show_tprubr %}
             <th>Tipo de rubrica</th>
             {% endif %}
-            {% if show_fields.show_codinccp or 1 %}
+            {% if show_fields.show_codinccp %}
             <th>Código Incidência CP</th>
             {% endif %}
-            {% if show_fields.show_codincirrf or 1 %}
+            {% if show_fields.show_codincirrf %}
             <th>Código Incidência IRRF</th>
             {% endif %}
-            {% if show_fields.show_codincfgts or 1 %}
+            {% if show_fields.show_codincfgts %}
             <th>Código Incidência FGTS</th>
             {% endif %}
-            {% if show_fields.show_codincsind or 1 %}
+            {% if show_fields.show_codincsind %}
             <th>Código Incidência SIND</th>
+            {% endif %}
+            {% if show_fields.show_codinccprp %}
+            <th>Código de incidência da rubrica para as contribuições do RPPS/regime militar</th>
+            {% endif %}
+            {% if show_fields.show_tetoremun %}
+            <th>Informar se a rubrica compõe o teto remuneratório específico (art. 37, XI, da CF/1988)</th>
+            {% endif %}
+            {% if show_fields.show_observacao %}
+            <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -44,48 +62,66 @@
     <tbody>
         {% for a in s1010_inclusao_lista %}
         <tr>
-            {% if show_fields.show_s1010_evttabrubrica or 1 %}
+            {% if show_fields.show_s1010_evttabrubrica %}
             <td>{{ a.s1010_evttabrubrica }}</td>
             {% endif %}
-            {% if show_fields.show_codrubr or 1 %}
+            {% if show_fields.show_iderubrica %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_codrubr %}
             <td>{{ a.codrubr }}</td>
             {% endif %}
-            {% if show_fields.show_idetabrubr or 1 %}
+            {% if show_fields.show_idetabrubr %}
             <td>{{ a.idetabrubr }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid or 1 %}
+            {% if show_fields.show_inivalid %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_dscrubr or 1 %}
+            {% if show_fields.show_fimvalid %}
+            <td>{{ a.get_fimvalid_display }}</td>
+            {% endif %}
+            {% if show_fields.show_dadosrubrica %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_dscrubr %}
             <td>{{ a.dscrubr }}</td>
             {% endif %}
-            {% if show_fields.show_natrubr or 1 %}
+            {% if show_fields.show_natrubr %}
             <td>{{ a.natrubr|valor }}</td>
             {% endif %}
-            {% if show_fields.show_tprubr or 1 %}
+            {% if show_fields.show_tprubr %}
             <td>{{ a.get_tprubr_display }}</td>
             {% endif %}
-            {% if show_fields.show_codinccp or 1 %}
+            {% if show_fields.show_codinccp %}
             <td>{{ a.codinccp }}</td>
             {% endif %}
-            {% if show_fields.show_codincirrf or 1 %}
+            {% if show_fields.show_codincirrf %}
             <td>{{ a.codincirrf }}</td>
             {% endif %}
-            {% if show_fields.show_codincfgts or 1 %}
+            {% if show_fields.show_codincfgts %}
             <td>{{ a.get_codincfgts_display }}</td>
             {% endif %}
-            {% if show_fields.show_codincsind or 1 %}
+            {% if show_fields.show_codincsind %}
             <td>{{ a.get_codincsind_display }}</td>
             {% endif %}
-            
+            {% if show_fields.show_codinccprp %}
+            <td>{{ a.codinccprp }}</td>
+            {% endif %}
+            {% if show_fields.show_tetoremun %}
+            <td>{{ a.get_tetoremun_display }}</td>
+            {% endif %}
+            {% if show_fields.show_observacao %}
+            <td>{{ a.observacao }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1010.change_s1010inclusao or perms.s1010.add_s1010inclusao %}
-                    
+
                         <a href="{% url 's1010_inclusao_salvar' pk=a.id %}">
                             {% if perms.s1010.change_s1010inclusao %}
                                 <span class="btn btn-primary" title="Editar">
@@ -105,7 +141,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

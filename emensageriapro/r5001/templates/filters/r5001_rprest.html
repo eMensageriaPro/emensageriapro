@@ -147,19 +147,19 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrtotalretadic" value="0" {% if show_fields|get_value_from_dict:'show_vlrtotalretadic' %}checked{% endif %} >Soma do valor do adicional de retenção das notas fiscais
+        <input type="checkbox" name="show_vlrtotalretadic" value="1" {% if show_fields|get_value_from_dict:'show_vlrtotalretadic' %}checked{% endif %} >Soma do valor do adicional de retenção das notas fiscais
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrtotalnretprinc" value="0" {% if show_fields|get_value_from_dict:'show_vlrtotalnretprinc' %}checked{% endif %} >Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial
+        <input type="checkbox" name="show_vlrtotalnretprinc" value="1" {% if show_fields|get_value_from_dict:'show_vlrtotalnretprinc' %}checked{% endif %} >Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrtotalnretadic" value="0" {% if show_fields|get_value_from_dict:'show_vlrtotalnretadic' %}checked{% endif %} >Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial
+        <input type="checkbox" name="show_vlrtotalnretadic" value="1" {% if show_fields|get_value_from_dict:'show_vlrtotalnretadic' %}checked{% endif %} >Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial
     </div>
 </div>
 

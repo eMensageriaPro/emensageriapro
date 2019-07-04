@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5003_infotrabdps or 1 %}
+            {% if show_fields.show_s5003_infotrabdps %}
             <th>Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E].</th>
             {% endif %}
-            {% if show_fields.show_tpdps or 1 %}
+            {% if show_fields.show_tpdps %}
             <th>Tipo de depósito</th>
             {% endif %}
-            {% if show_fields.show_dpsfgts or 1 %}
+            {% if show_fields.show_dpsfgts %}
             <th>Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador, conforme definido no campo {tpDps}</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,22 +20,22 @@
     <tbody>
         {% for a in s5003_dpsperapur_lista %}
         <tr>
-            {% if show_fields.show_s5003_infotrabdps or 1 %}
+            {% if show_fields.show_s5003_infotrabdps %}
             <td>{{ a.s5003_infotrabdps }}</td>
             {% endif %}
-            {% if show_fields.show_tpdps or 1 %}
+            {% if show_fields.show_tpdps %}
             <td>{{ a.get_tpdps_display }}</td>
             {% endif %}
-            {% if show_fields.show_dpsfgts or 1 %}
+            {% if show_fields.show_dpsfgts %}
             <td>{{ a.dpsfgts }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

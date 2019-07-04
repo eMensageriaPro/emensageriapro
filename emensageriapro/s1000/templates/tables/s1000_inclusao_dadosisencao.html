@@ -2,20 +2,32 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1000_inclusao or 1 %}
+            {% if show_fields.show_s1000_inclusao %}
             <th>Informações Complementares - Empresas Isentas - Dados da Isenção</th>
             {% endif %}
-            {% if show_fields.show_ideminlei or 1 %}
+            {% if show_fields.show_ideminlei %}
             <th>Lei que concedeu a isenção</th>
             {% endif %}
-            {% if show_fields.show_nrcertif or 1 %}
+            {% if show_fields.show_nrcertif %}
             <th>Número certificado</th>
             {% endif %}
-            {% if show_fields.show_dtemiscertif or 1 %}
+            {% if show_fields.show_dtemiscertif %}
             <th>Data de emissao certificado</th>
             {% endif %}
-            {% if show_fields.show_dtvenccertif or 1 %}
+            {% if show_fields.show_dtvenccertif %}
             <th>Data de vencimento certificado</th>
+            {% endif %}
+            {% if show_fields.show_nrprotrenov %}
+            <th>Número protocolo do pedido renovação</th>
+            {% endif %}
+            {% if show_fields.show_dtprotrenov %}
+            <th>Data do protocolo do pedido de renovação</th>
+            {% endif %}
+            {% if show_fields.show_dtdou %}
+            <th>Data de publicação DOU</th>
+            {% endif %}
+            {% if show_fields.show_pagdou %}
+            <th>Página de publicação DOU</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -26,30 +38,42 @@
     <tbody>
         {% for a in s1000_inclusao_dadosisencao_lista %}
         <tr>
-            {% if show_fields.show_s1000_inclusao or 1 %}
+            {% if show_fields.show_s1000_inclusao %}
             <td>{{ a.s1000_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_ideminlei or 1 %}
+            {% if show_fields.show_ideminlei %}
             <td>{{ a.ideminlei }}</td>
             {% endif %}
-            {% if show_fields.show_nrcertif or 1 %}
+            {% if show_fields.show_nrcertif %}
             <td>{{ a.nrcertif }}</td>
             {% endif %}
-            {% if show_fields.show_dtemiscertif or 1 %}
+            {% if show_fields.show_dtemiscertif %}
             <td><span style="display:none">{{ a.dtemiscertif|date:"Y-m-d" }}</span>{{ a.dtemiscertif|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtvenccertif or 1 %}
+            {% if show_fields.show_dtvenccertif %}
             <td><span style="display:none">{{ a.dtvenccertif|date:"Y-m-d" }}</span>{{ a.dtvenccertif|date:"d/m/Y" }}</td>
             {% endif %}
-            
+            {% if show_fields.show_nrprotrenov %}
+            <td>{{ a.nrprotrenov }}</td>
+            {% endif %}
+            {% if show_fields.show_dtprotrenov %}
+            <td><span style="display:none">{{ a.dtprotrenov|date:"Y-m-d" }}</span>{{ a.dtprotrenov|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_dtdou %}
+            <td><span style="display:none">{{ a.dtdou|date:"Y-m-d" }}</span>{{ a.dtdou|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_pagdou %}
+            <td>{{ a.pagdou }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1000.change_s1000inclusaodadosIsencao or perms.s1000.add_s1000inclusaodadosIsencao %}
-                    
+
                         <a href="{% url 's1000_inclusao_dadosisencao_salvar' pk=a.id %}">
                             {% if perms.s1000.change_s1000inclusaodadosIsencao %}
                                 <span class="btn btn-primary" title="Editar">
@@ -69,7 +93,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

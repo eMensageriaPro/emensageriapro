@@ -2,40 +2,40 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_ideestab or 1 %}
+            {% if show_fields.show_s5011_ideestab %}
             <th>Informações de bases de cálculo relativas a aquisição de produção rural</th>
             {% endif %}
-            {% if show_fields.show_indaquis or 1 %}
+            {% if show_fields.show_indaquis %}
             <th>Indicativo de aquisição</th>
             {% endif %}
-            {% if show_fields.show_vlraquis or 1 %}
+            {% if show_fields.show_vlraquis %}
             <th>Valor total da aquisição</th>
             {% endif %}
-            {% if show_fields.show_vrcpdescpr or 1 %}
+            {% if show_fields.show_vrcpdescpr %}
             <th>Valor da CP descontada PR</th>
             {% endif %}
-            {% if show_fields.show_vrcpnret or 1 %}
+            {% if show_fields.show_vrcpnret %}
             <th>Valor da CP não retida</th>
             {% endif %}
-            {% if show_fields.show_vrratnret or 1 %}
+            {% if show_fields.show_vrratnret %}
             <th>Valor da GILRAT</th>
             {% endif %}
-            {% if show_fields.show_vrsenarnret or 1 %}
+            {% if show_fields.show_vrsenarnret %}
             <th>Valor da CP destinada ao SENAR não retida</th>
             {% endif %}
-            {% if show_fields.show_vrcpcalcpr or 1 %}
+            {% if show_fields.show_vrcpcalcpr %}
             <th>Valor calculado da CP do produtor rural</th>
             {% endif %}
-            {% if show_fields.show_vrratdescpr or 1 %}
+            {% if show_fields.show_vrratdescpr %}
             <th>Valor RAT descontado do produtor rural</th>
             {% endif %}
-            {% if show_fields.show_vrratcalcpr or 1 %}
+            {% if show_fields.show_vrratcalcpr %}
             <th>Valor RAT calculado do produtor rural</th>
             {% endif %}
-            {% if show_fields.show_vrsenardesc or 1 %}
+            {% if show_fields.show_vrsenardesc %}
             <th>Valor descontado destinado ao SENAR</th>
             {% endif %}
-            {% if show_fields.show_vrsenarcalc or 1 %}
+            {% if show_fields.show_vrsenarcalc %}
             <th>Valor calculado destinado ao SENAR</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -47,49 +47,49 @@
     <tbody>
         {% for a in s5011_basesaquis_lista %}
         <tr>
-            {% if show_fields.show_s5011_ideestab or 1 %}
+            {% if show_fields.show_s5011_ideestab %}
             <td>{{ a.s5011_ideestab }}</td>
             {% endif %}
-            {% if show_fields.show_indaquis or 1 %}
+            {% if show_fields.show_indaquis %}
             <td>{{ a.get_indaquis_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlraquis or 1 %}
+            {% if show_fields.show_vlraquis %}
             <td>{{ a.vlraquis }}</td>
             {% endif %}
-            {% if show_fields.show_vrcpdescpr or 1 %}
+            {% if show_fields.show_vrcpdescpr %}
             <td>{{ a.vrcpdescpr }}</td>
             {% endif %}
-            {% if show_fields.show_vrcpnret or 1 %}
+            {% if show_fields.show_vrcpnret %}
             <td>{{ a.vrcpnret }}</td>
             {% endif %}
-            {% if show_fields.show_vrratnret or 1 %}
+            {% if show_fields.show_vrratnret %}
             <td>{{ a.vrratnret }}</td>
             {% endif %}
-            {% if show_fields.show_vrsenarnret or 1 %}
+            {% if show_fields.show_vrsenarnret %}
             <td>{{ a.vrsenarnret }}</td>
             {% endif %}
-            {% if show_fields.show_vrcpcalcpr or 1 %}
+            {% if show_fields.show_vrcpcalcpr %}
             <td>{{ a.vrcpcalcpr }}</td>
             {% endif %}
-            {% if show_fields.show_vrratdescpr or 1 %}
+            {% if show_fields.show_vrratdescpr %}
             <td>{{ a.vrratdescpr }}</td>
             {% endif %}
-            {% if show_fields.show_vrratcalcpr or 1 %}
+            {% if show_fields.show_vrratcalcpr %}
             <td>{{ a.vrratcalcpr }}</td>
             {% endif %}
-            {% if show_fields.show_vrsenardesc or 1 %}
+            {% if show_fields.show_vrsenardesc %}
             <td>{{ a.vrsenardesc }}</td>
             {% endif %}
-            {% if show_fields.show_vrsenarcalc or 1 %}
+            {% if show_fields.show_vrsenarcalc %}
             <td>{{ a.vrsenarcalc }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

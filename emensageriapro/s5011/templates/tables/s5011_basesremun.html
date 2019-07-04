@@ -2,55 +2,58 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_idelotacao or 1 %}
+            {% if show_fields.show_s5011_idelotacao %}
             <th>Bases de cálculo da contribuição previdenciária incidente sobre remunerações, por categoria.</th>
             {% endif %}
-            {% if show_fields.show_indincid or 1 %}
+            {% if show_fields.show_indincid %}
             <th>Incidência</th>
             {% endif %}
-            {% if show_fields.show_codcateg or 1 %}
+            {% if show_fields.show_codcateg %}
             <th>Código da Categoria</th>
             {% endif %}
-            {% if show_fields.show_vrbccp00 or 1 %}
+            {% if show_fields.show_basescp %}
+            <th>Valores correspondentes às bases, contribuições do segurado e deduções da contribuição previdenciária.</th>
+            {% endif %}
+            {% if show_fields.show_vrbccp00 %}
             <th>Valor da BC da CP</th>
             {% endif %}
-            {% if show_fields.show_vrbccp15 or 1 %}
+            {% if show_fields.show_vrbccp15 %}
             <th>Valor da BC da CP (15 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbccp20 or 1 %}
+            {% if show_fields.show_vrbccp20 %}
             <th>Valor da BC da CP (20 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbccp25 or 1 %}
+            {% if show_fields.show_vrbccp25 %}
             <th>Valor da BC da CP (25 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrsuspbccp00 or 1 %}
+            {% if show_fields.show_vrsuspbccp00 %}
             <th>Valor da BC da CP suspenso</th>
             {% endif %}
-            {% if show_fields.show_vrsuspbccp15 or 1 %}
+            {% if show_fields.show_vrsuspbccp15 %}
             <th>Valor da BC da CP suspenso (15 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrsuspbccp20 or 1 %}
+            {% if show_fields.show_vrsuspbccp20 %}
             <th>Valor da BC da CP suspenso (20 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrsuspbccp25 or 1 %}
+            {% if show_fields.show_vrsuspbccp25 %}
             <th>Valor da BC da CP suspenso (25 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrdescsest or 1 %}
+            {% if show_fields.show_vrdescsest %}
             <th>Valor total descontado ao SEST</th>
             {% endif %}
-            {% if show_fields.show_vrcalcsest or 1 %}
+            {% if show_fields.show_vrcalcsest %}
             <th>Valor calculado descontado ao SEST</th>
             {% endif %}
-            {% if show_fields.show_vrdescsenat or 1 %}
+            {% if show_fields.show_vrdescsenat %}
             <th>Valor total descontado ao SENAT</th>
             {% endif %}
-            {% if show_fields.show_vrcalcsenat or 1 %}
+            {% if show_fields.show_vrcalcsenat %}
             <th>Valor calculado descontado ao SENAT</th>
             {% endif %}
-            {% if show_fields.show_vrsalfam or 1 %}
+            {% if show_fields.show_vrsalfam %}
             <th>Valor do salário-família</th>
             {% endif %}
-            {% if show_fields.show_vrsalmat or 1 %}
+            {% if show_fields.show_vrsalmat %}
             <th>Valor do salário-maternidade</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -62,64 +65,67 @@
     <tbody>
         {% for a in s5011_basesremun_lista %}
         <tr>
-            {% if show_fields.show_s5011_idelotacao or 1 %}
+            {% if show_fields.show_s5011_idelotacao %}
             <td>{{ a.s5011_idelotacao }}</td>
             {% endif %}
-            {% if show_fields.show_indincid or 1 %}
+            {% if show_fields.show_indincid %}
             <td>{{ a.get_indincid_display }}</td>
             {% endif %}
-            {% if show_fields.show_codcateg or 1 %}
+            {% if show_fields.show_codcateg %}
             <td>{{ a.codcateg|valor }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp00 or 1 %}
+            {% if show_fields.show_basescp %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_vrbccp00 %}
             <td>{{ a.vrbccp00 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp15 or 1 %}
+            {% if show_fields.show_vrbccp15 %}
             <td>{{ a.vrbccp15 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp20 or 1 %}
+            {% if show_fields.show_vrbccp20 %}
             <td>{{ a.vrbccp20 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp25 or 1 %}
+            {% if show_fields.show_vrbccp25 %}
             <td>{{ a.vrbccp25 }}</td>
             {% endif %}
-            {% if show_fields.show_vrsuspbccp00 or 1 %}
+            {% if show_fields.show_vrsuspbccp00 %}
             <td>{{ a.vrsuspbccp00 }}</td>
             {% endif %}
-            {% if show_fields.show_vrsuspbccp15 or 1 %}
+            {% if show_fields.show_vrsuspbccp15 %}
             <td>{{ a.vrsuspbccp15 }}</td>
             {% endif %}
-            {% if show_fields.show_vrsuspbccp20 or 1 %}
+            {% if show_fields.show_vrsuspbccp20 %}
             <td>{{ a.vrsuspbccp20 }}</td>
             {% endif %}
-            {% if show_fields.show_vrsuspbccp25 or 1 %}
+            {% if show_fields.show_vrsuspbccp25 %}
             <td>{{ a.vrsuspbccp25 }}</td>
             {% endif %}
-            {% if show_fields.show_vrdescsest or 1 %}
+            {% if show_fields.show_vrdescsest %}
             <td>{{ a.vrdescsest }}</td>
             {% endif %}
-            {% if show_fields.show_vrcalcsest or 1 %}
+            {% if show_fields.show_vrcalcsest %}
             <td>{{ a.vrcalcsest }}</td>
             {% endif %}
-            {% if show_fields.show_vrdescsenat or 1 %}
+            {% if show_fields.show_vrdescsenat %}
             <td>{{ a.vrdescsenat }}</td>
             {% endif %}
-            {% if show_fields.show_vrcalcsenat or 1 %}
+            {% if show_fields.show_vrcalcsenat %}
             <td>{{ a.vrcalcsenat }}</td>
             {% endif %}
-            {% if show_fields.show_vrsalfam or 1 %}
+            {% if show_fields.show_vrsalfam %}
             <td>{{ a.vrsalfam }}</td>
             {% endif %}
-            {% if show_fields.show_vrsalmat or 1 %}
+            {% if show_fields.show_vrsalmat %}
             <td>{{ a.vrsalmat }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

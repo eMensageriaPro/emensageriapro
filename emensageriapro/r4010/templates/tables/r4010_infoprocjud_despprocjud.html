@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_infoprocjud or 1 %}
+            {% if show_fields.show_r4010_infoprocjud %}
             <th>Detalhamento das despesas de processo judicial</th>
             {% endif %}
-            {% if show_fields.show_vlrdespcustas or 1 %}
+            {% if show_fields.show_vlrdespcustas %}
             <th>Preencher com o Valor da despesa com custas judiciais</th>
             {% endif %}
-            {% if show_fields.show_vlrdespadvogados or 1 %}
+            {% if show_fields.show_vlrdespadvogados %}
             <th>Preencher com o Valor da despesa com advogado(s)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +20,24 @@
     <tbody>
         {% for a in r4010_infoprocjud_despprocjud_lista %}
         <tr>
-            {% if show_fields.show_r4010_infoprocjud or 1 %}
+            {% if show_fields.show_r4010_infoprocjud %}
             <td>{{ a.r4010_infoprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_vlrdespcustas or 1 %}
+            {% if show_fields.show_vlrdespcustas %}
             <td>{{ a.vlrdespcustas }}</td>
             {% endif %}
-            {% if show_fields.show_vlrdespadvogados or 1 %}
+            {% if show_fields.show_vlrdespadvogados %}
             <td>{{ a.vlrdespadvogados }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4010.change_r4010infoProcJuddespProcJud or perms.r4010.add_r4010infoProcJuddespProcJud %}
-                    
+
                         <a href="{% url 'r4010_infoprocjud_despprocjud_salvar' pk=a.id %}">
                             {% if perms.r4010.change_r4010infoProcJuddespProcJud %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

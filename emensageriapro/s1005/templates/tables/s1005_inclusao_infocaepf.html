@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1005_inclusao or 1 %}
+            {% if show_fields.show_s1005_inclusao %}
             <th>Informações relativas ao Cadastro da Atividade Econômica da Pessoa Física - CAEPF.</th>
             {% endif %}
-            {% if show_fields.show_tpcaepf or 1 %}
+            {% if show_fields.show_tpcaepf %}
             <th>Tipo CAEPF (Cadastro Atividade Econômica de Pessoa Física)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s1005_inclusao_infocaepf_lista %}
         <tr>
-            {% if show_fields.show_s1005_inclusao or 1 %}
+            {% if show_fields.show_s1005_inclusao %}
             <td>{{ a.s1005_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_tpcaepf or 1 %}
+            {% if show_fields.show_tpcaepf %}
             <td>{{ a.get_tpcaepf_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1005.change_s1005inclusaoinfoCaepf or perms.s1005.add_s1005inclusaoinfoCaepf %}
-                    
+
                         <a href="{% url 's1005_inclusao_infocaepf_salvar' pk=a.id %}">
                             {% if perms.s1005.change_s1005inclusaoinfoCaepf %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

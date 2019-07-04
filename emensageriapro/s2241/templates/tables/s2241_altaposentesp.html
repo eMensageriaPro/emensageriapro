@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2241_aposentesp or 1 %}
+            {% if show_fields.show_s2241_aposentesp %}
             <th>Condições do ambiente de trabalho que ensejam aposentadoria especial - Alteração</th>
             {% endif %}
-            {% if show_fields.show_dtaltcondicao or 1 %}
+            {% if show_fields.show_dtaltcondicao %}
             <th>Data de alteração de condição</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2241_altaposentesp_lista %}
         <tr>
-            {% if show_fields.show_s2241_aposentesp or 1 %}
+            {% if show_fields.show_s2241_aposentesp %}
             <td>{{ a.s2241_aposentesp }}</td>
             {% endif %}
-            {% if show_fields.show_dtaltcondicao or 1 %}
+            {% if show_fields.show_dtaltcondicao %}
             <td><span style="display:none">{{ a.dtaltcondicao|date:"Y-m-d" }}</span>{{ a.dtaltcondicao|date:"d/m/Y" }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2241.change_s2241altAposentEsp or perms.s2241.add_s2241altAposentEsp %}
-                    
+
                         <a href="{% url 's2241_altaposentesp_salvar' pk=a.id %}">
                             {% if perms.s2241.change_s2241altAposentEsp %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

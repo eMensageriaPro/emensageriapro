@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2230_iniafastamento or 1 %}
+            {% if show_fields.show_s2230_iniafastamento %}
             <th>Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador.</th>
             {% endif %}
-            {% if show_fields.show_cnpjcess or 1 %}
+            {% if show_fields.show_cnpjcess %}
             <th>CNPJ do Cessionário</th>
             {% endif %}
-            {% if show_fields.show_infonus or 1 %}
+            {% if show_fields.show_infonus %}
             <th>Onus da cessão/requisição</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +20,24 @@
     <tbody>
         {% for a in s2230_infocessao_lista %}
         <tr>
-            {% if show_fields.show_s2230_iniafastamento or 1 %}
+            {% if show_fields.show_s2230_iniafastamento %}
             <td>{{ a.s2230_iniafastamento }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjcess or 1 %}
+            {% if show_fields.show_cnpjcess %}
             <td>{{ a.cnpjcess }}</td>
             {% endif %}
-            {% if show_fields.show_infonus or 1 %}
+            {% if show_fields.show_infonus %}
             <td>{{ a.get_infonus_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2230.change_s2230infoCessao or perms.s2230.add_s2230infoCessao %}
-                    
+
                         <a href="{% url 's2230_infocessao_salvar' pk=a.id %}">
                             {% if perms.s2230.change_s2230infoCessao %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

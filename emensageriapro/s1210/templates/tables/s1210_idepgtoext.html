@@ -2,20 +2,41 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1210_infopgto or 1 %}
+            {% if show_fields.show_s1210_infopgto %}
             <th>Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.</th>
             {% endif %}
-            {% if show_fields.show_codpais or 1 %}
+            {% if show_fields.show_idepais %}
+            <th>Identificação do País onde foi efetuado o pagamento</th>
+            {% endif %}
+            {% if show_fields.show_codpais %}
             <th>Código do País</th>
             {% endif %}
-            {% if show_fields.show_indnif or 1 %}
+            {% if show_fields.show_indnif %}
             <th>Indicador do NIF</th>
             {% endif %}
-            {% if show_fields.show_dsclograd or 1 %}
+            {% if show_fields.show_nifbenef %}
+            <th>Número do NIF</th>
+            {% endif %}
+            {% if show_fields.show_endext %}
+            <th>Informações complementares de endereço do beneficiário.</th>
+            {% endif %}
+            {% if show_fields.show_dsclograd %}
             <th>Logradouro</th>
             {% endif %}
-            {% if show_fields.show_nmcid or 1 %}
+            {% if show_fields.show_nrlograd %}
+            <th>Número</th>
+            {% endif %}
+            {% if show_fields.show_complem %}
+            <th>Complemento</th>
+            {% endif %}
+            {% if show_fields.show_bairro %}
+            <th>Bairro</th>
+            {% endif %}
+            {% if show_fields.show_nmcid %}
             <th>Nome da Cidade</th>
+            {% endif %}
+            {% if show_fields.show_codpostal %}
+            <th>Código Postal</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -26,30 +47,51 @@
     <tbody>
         {% for a in s1210_idepgtoext_lista %}
         <tr>
-            {% if show_fields.show_s1210_infopgto or 1 %}
+            {% if show_fields.show_s1210_infopgto %}
             <td>{{ a.s1210_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_codpais or 1 %}
+            {% if show_fields.show_idepais %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_codpais %}
             <td>{{ a.codpais }}</td>
             {% endif %}
-            {% if show_fields.show_indnif or 1 %}
+            {% if show_fields.show_indnif %}
             <td>{{ a.get_indnif_display }}</td>
             {% endif %}
-            {% if show_fields.show_dsclograd or 1 %}
+            {% if show_fields.show_nifbenef %}
+            <td>{{ a.nifbenef }}</td>
+            {% endif %}
+            {% if show_fields.show_endext %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_dsclograd %}
             <td>{{ a.dsclograd }}</td>
             {% endif %}
-            {% if show_fields.show_nmcid or 1 %}
+            {% if show_fields.show_nrlograd %}
+            <td>{{ a.nrlograd }}</td>
+            {% endif %}
+            {% if show_fields.show_complem %}
+            <td>{{ a.complem }}</td>
+            {% endif %}
+            {% if show_fields.show_bairro %}
+            <td>{{ a.bairro }}</td>
+            {% endif %}
+            {% if show_fields.show_nmcid %}
             <td>{{ a.nmcid }}</td>
             {% endif %}
-            
+            {% if show_fields.show_codpostal %}
+            <td>{{ a.codpostal }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1210.change_s1210idePgtoExt or perms.s1210.add_s1210idePgtoExt %}
-                    
+
                         <a href="{% url 's1210_idepgtoext_salvar' pk=a.id %}">
                             {% if perms.s1210.change_s1210idePgtoExt %}
                                 <span class="btn btn-primary" title="Editar">
@@ -69,7 +111,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

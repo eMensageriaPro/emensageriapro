@@ -11,15 +11,15 @@
     <tbody>
         {% for a in mapa_importacoes_lista %}
         <tr>
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.mapa_processamento.change_MapaImportações or perms.mapa_processamento.add_MapaImportações %}
-                    
+
                         <a href="{% url 'mapa_importacoes_salvar' pk=a.id %}">
                             {% if perms.mapa_processamento.change_MapaImportações %}
                                 <span class="btn btn-primary" title="Editar">
@@ -39,7 +39,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -68,9 +68,9 @@ def listar(request, output=None):
         dict_fields = {}
         show_fields = {
             'show_s2205_documentos': 1,
-            'show_nrregcnh': 1,
+            'show_nrregcnh': 0,
             'show_dtexped': 0,
-            'show_ufcnh': 1,
+            'show_ufcnh': 0,
             'show_dtvalid': 1,
             'show_dtprihab': 0,
             'show_categoriacnh': 1, }

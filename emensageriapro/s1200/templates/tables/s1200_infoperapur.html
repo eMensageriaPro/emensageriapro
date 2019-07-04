@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1200_dmdev or 1 %}
+            {% if show_fields.show_s1200_dmdev %}
             <th>Remuneração no período de apuração</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -14,18 +14,18 @@
     <tbody>
         {% for a in s1200_infoperapur_lista %}
         <tr>
-            {% if show_fields.show_s1200_dmdev or 1 %}
+            {% if show_fields.show_s1200_dmdev %}
             <td>{{ a.s1200_dmdev }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1200.change_s1200infoPerApur or perms.s1200.add_s1200infoPerApur %}
-                    
+
                         <a href="{% url 's1200_infoperapur_salvar' pk=a.id %}">
                             {% if perms.s1200.change_s1200infoPerApur %}
                                 <span class="btn btn-primary" title="Editar">
@@ -45,7 +45,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

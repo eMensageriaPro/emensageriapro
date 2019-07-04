@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1200_infoperant_ideadc or 1 %}
+            {% if show_fields.show_s1200_infoperant_ideadc %}
             <th>Período de validade das informações incluídas</th>
             {% endif %}
-            {% if show_fields.show_perref or 1 %}
+            {% if show_fields.show_perref %}
             <th>Período de Referência</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s1200_infoperant_ideperiodo_lista %}
         <tr>
-            {% if show_fields.show_s1200_infoperant_ideadc or 1 %}
+            {% if show_fields.show_s1200_infoperant_ideadc %}
             <td>{{ a.s1200_infoperant_ideadc }}</td>
             {% endif %}
-            {% if show_fields.show_perref or 1 %}
+            {% if show_fields.show_perref %}
             <td>{{ a.perref }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1200.change_s1200infoPerAntidePeriodo or perms.s1200.add_s1200infoPerAntidePeriodo %}
-                    
+
                         <a href="{% url 's1200_infoperant_ideperiodo_salvar' pk=a.id %}">
                             {% if perms.s1200.change_s1200infoPerAntidePeriodo %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -135,13 +135,13 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrbasecrdiasusp" value="0" {% if show_fields|get_value_from_dict:'show_vlrbasecrdiasusp' %}checked{% endif %} >Valor da base do tributo com período de apuração diário, com exigibilidade suspensa
+        <input type="checkbox" name="show_vlrbasecrdiasusp" value="1" {% if show_fields|get_value_from_dict:'show_vlrbasecrdiasusp' %}checked{% endif %} >Valor da base do tributo com período de apuração diário, com exigibilidade suspensa
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrcrdiasusp" value="0" {% if show_fields|get_value_from_dict:'show_vlrcrdiasusp' %}checked{% endif %} >Valor do tributo com período de apuração diário, que deixou de ser retido
+        <input type="checkbox" name="show_vlrcrdiasusp" value="1" {% if show_fields|get_value_from_dict:'show_vlrcrdiasusp' %}checked{% endif %} >Valor do tributo com período de apuração diário, que deixou de ser retido
     </div>
 </div>
 

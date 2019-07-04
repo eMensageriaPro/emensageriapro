@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2399_evttsvtermino or 1 %}
+            {% if show_fields.show_s2399_evttsvtermino %}
             <th>Informações de mudança de CPF do trabalhador.</th>
             {% endif %}
-            {% if show_fields.show_novocpf or 1 %}
+            {% if show_fields.show_novocpf %}
             <th>Preencher com o novo CPF do trabalhador. Validação: Deve ser um CPF válido e diferente do CPF do empregador e do antigo CPF do trabalhador.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2399_mudancacpf_lista %}
         <tr>
-            {% if show_fields.show_s2399_evttsvtermino or 1 %}
+            {% if show_fields.show_s2399_evttsvtermino %}
             <td>{{ a.s2399_evttsvtermino }}</td>
             {% endif %}
-            {% if show_fields.show_novocpf or 1 %}
+            {% if show_fields.show_novocpf %}
             <td>{{ a.novocpf }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2399.change_s2399mudancaCPF or perms.s2399.add_s2399mudancaCPF %}
-                    
+
                         <a href="{% url 's2399_mudancacpf_salvar' pk=a.id %}">
                             {% if perms.s2399.change_s2399mudancaCPF %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

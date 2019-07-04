@@ -78,13 +78,13 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrcrtom" value="0" {% if show_fields|get_value_from_dict:'show_vlrcrtom' %}checked{% endif %} >Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRTom}
+        <input type="checkbox" name="show_vlrcrtom" value="1" {% if show_fields|get_value_from_dict:'show_vlrcrtom' %}checked{% endif %} >Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRTom}
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrcrtomsusp" value="0" {% if show_fields|get_value_from_dict:'show_vlrcrtomsusp' %}checked{% endif %} >Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao código de Receita - CR informado em {CRTom}
+        <input type="checkbox" name="show_vlrcrtomsusp" value="1" {% if show_fields|get_value_from_dict:'show_vlrcrtomsusp' %}checked{% endif %} >Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao código de Receita - CR informado em {CRTom}
     </div>
 </div>
 

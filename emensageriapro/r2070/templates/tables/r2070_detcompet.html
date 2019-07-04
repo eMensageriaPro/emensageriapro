@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_pgtopf or 1 %}
+            {% if show_fields.show_r2070_pgtopf %}
             <th>Detalhamento das Competências</th>
             {% endif %}
-            {% if show_fields.show_indperreferencia or 1 %}
+            {% if show_fields.show_indperreferencia %}
             <th>Indicativo de período de referência</th>
             {% endif %}
-            {% if show_fields.show_perrefpagto or 1 %}
+            {% if show_fields.show_perrefpagto %}
             <th>Informar o período ao qual se refere o pagamento do rendimento, no formato AAAA-MM, no caso de pagamento de folha mensal, ou AAAA, no caso específico do 13º salário</th>
             {% endif %}
-            {% if show_fields.show_vlrrendtributavel or 1 %}
+            {% if show_fields.show_vlrrendtributavel %}
             <th>Valor do rendimento tributável</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +23,27 @@
     <tbody>
         {% for a in r2070_detcompet_lista %}
         <tr>
-            {% if show_fields.show_r2070_pgtopf or 1 %}
+            {% if show_fields.show_r2070_pgtopf %}
             <td>{{ a.r2070_pgtopf }}</td>
             {% endif %}
-            {% if show_fields.show_indperreferencia or 1 %}
+            {% if show_fields.show_indperreferencia %}
             <td>{{ a.get_indperreferencia_display }}</td>
             {% endif %}
-            {% if show_fields.show_perrefpagto or 1 %}
+            {% if show_fields.show_perrefpagto %}
             <td>{{ a.perrefpagto }}</td>
             {% endif %}
-            {% if show_fields.show_vlrrendtributavel or 1 %}
+            {% if show_fields.show_vlrrendtributavel %}
             <td>{{ a.vlrrendtributavel }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2070.change_r2070detCompet or perms.r2070.add_r2070detCompet %}
-                    
+
                         <a href="{% url 'r2070_detcompet_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070detCompet %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

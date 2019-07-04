@@ -68,10 +68,10 @@ def listar(request, output=None):
         dict_fields = {}
         show_fields = {
             'show_s1210_infopgto': 1,
-            'show_perref': 1,
+            'show_perref': 0,
             'show_idedmdev': 1,
             'show_indpgtott': 1,
-            'show_vrliq': 1, }
+            'show_vrliq': 0, }
 
         post = False
 

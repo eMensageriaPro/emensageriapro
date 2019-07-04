@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2299_dmdev or 1 %}
+            {% if show_fields.show_s2299_dmdev %}
             <th>Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -14,18 +14,18 @@
     <tbody>
         {% for a in s2299_infoperant_lista %}
         <tr>
-            {% if show_fields.show_s2299_dmdev or 1 %}
+            {% if show_fields.show_s2299_dmdev %}
             <td>{{ a.s2299_dmdev }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2299.change_s2299infoPerAnt or perms.s2299.add_s2299infoPerAnt %}
-                    
+
                         <a href="{% url 's2299_infoperant_salvar' pk=a.id %}">
                             {% if perms.s2299.change_s2299infoPerAnt %}
                                 <span class="btn btn-primary" title="Editar">
@@ -45,7 +45,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

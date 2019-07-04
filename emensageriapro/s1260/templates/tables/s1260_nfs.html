@@ -2,25 +2,28 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1260_ideadquir or 1 %}
+            {% if show_fields.show_s1260_ideadquir %}
             <th>Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.</th>
             {% endif %}
-            {% if show_fields.show_nrdocto or 1 %}
+            {% if show_fields.show_serie %}
+            <th>Número de Série da NF/Fatura</th>
+            {% endif %}
+            {% if show_fields.show_nrdocto %}
             <th>Número da NF</th>
             {% endif %}
-            {% if show_fields.show_dtemisnf or 1 %}
+            {% if show_fields.show_dtemisnf %}
             <th>Data de emissão da NF</th>
             {% endif %}
-            {% if show_fields.show_vlrbruto or 1 %}
+            {% if show_fields.show_vlrbruto %}
             <th>Valor bruto</th>
             {% endif %}
-            {% if show_fields.show_vrcpdescpr or 1 %}
+            {% if show_fields.show_vrcpdescpr %}
             <th>Valor da CP descontada PR</th>
             {% endif %}
-            {% if show_fields.show_vrratdescpr or 1 %}
+            {% if show_fields.show_vrratdescpr %}
             <th>Valor RAT descontado do produtor rural</th>
             {% endif %}
-            {% if show_fields.show_vrsenardesc or 1 %}
+            {% if show_fields.show_vrsenardesc %}
             <th>Valor descontado destinado ao SENAR</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -32,36 +35,39 @@
     <tbody>
         {% for a in s1260_nfs_lista %}
         <tr>
-            {% if show_fields.show_s1260_ideadquir or 1 %}
+            {% if show_fields.show_s1260_ideadquir %}
             <td>{{ a.s1260_ideadquir }}</td>
             {% endif %}
-            {% if show_fields.show_nrdocto or 1 %}
+            {% if show_fields.show_serie %}
+            <td>{{ a.serie }}</td>
+            {% endif %}
+            {% if show_fields.show_nrdocto %}
             <td>{{ a.nrdocto }}</td>
             {% endif %}
-            {% if show_fields.show_dtemisnf or 1 %}
+            {% if show_fields.show_dtemisnf %}
             <td><span style="display:none">{{ a.dtemisnf|date:"Y-m-d" }}</span>{{ a.dtemisnf|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbruto or 1 %}
+            {% if show_fields.show_vlrbruto %}
             <td>{{ a.vlrbruto }}</td>
             {% endif %}
-            {% if show_fields.show_vrcpdescpr or 1 %}
+            {% if show_fields.show_vrcpdescpr %}
             <td>{{ a.vrcpdescpr }}</td>
             {% endif %}
-            {% if show_fields.show_vrratdescpr or 1 %}
+            {% if show_fields.show_vrratdescpr %}
             <td>{{ a.vrratdescpr }}</td>
             {% endif %}
-            {% if show_fields.show_vrsenardesc or 1 %}
+            {% if show_fields.show_vrsenardesc %}
             <td>{{ a.vrsenardesc }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1260.change_s1260nfs or perms.s1260.add_s1260nfs %}
-                    
+
                         <a href="{% url 's1260_nfs_salvar' pk=a.id %}">
                             {% if perms.s1260.change_s1260nfs %}
                                 <span class="btn btn-primary" title="Editar">
@@ -81,7 +87,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

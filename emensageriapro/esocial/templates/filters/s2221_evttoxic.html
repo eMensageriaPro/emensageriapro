@@ -387,7 +387,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_evttoxic" value="0" {% if show_fields|get_value_from_dict:'show_evttoxic' %}checked{% endif %} >Evento Exame Toxicológico do Motorista Profissional
+        <input type="checkbox" name="show_evttoxic" value="1" {% if show_fields|get_value_from_dict:'show_evttoxic' %}checked{% endif %} >Evento Exame Toxicológico do Motorista Profissional
     </div>
 </div>
 
@@ -399,7 +399,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_ideevento" value="0" {% if show_fields|get_value_from_dict:'show_ideevento' %}checked{% endif %} >Informações de Identificação do Evento
+        <input type="checkbox" name="show_ideevento" value="1" {% if show_fields|get_value_from_dict:'show_ideevento' %}checked{% endif %} >Informações de Identificação do Evento
     </div>
 </div>
 
@@ -411,7 +411,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_nrrecibo" value="0" {% if show_fields|get_value_from_dict:'show_nrrecibo' %}checked{% endif %} >Número do recibo
+        <input type="checkbox" name="show_nrrecibo" value="1" {% if show_fields|get_value_from_dict:'show_nrrecibo' %}checked{% endif %} >Número do recibo
     </div>
 </div>
 
@@ -435,7 +435,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_ideempregador" value="0" {% if show_fields|get_value_from_dict:'show_ideempregador' %}checked{% endif %} >Informações de identificação do empregador
+        <input type="checkbox" name="show_ideempregador" value="1" {% if show_fields|get_value_from_dict:'show_ideempregador' %}checked{% endif %} >Informações de identificação do empregador
     </div>
 </div>
 
@@ -453,7 +453,7 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_idevinculo" value="0" {% if show_fields|get_value_from_dict:'show_idevinculo' %}checked{% endif %} >Informações de Identificação do Trabalhador e do Vínculo
+        <input type="checkbox" name="show_idevinculo" value="1" {% if show_fields|get_value_from_dict:'show_idevinculo' %}checked{% endif %} >Informações de Identificação do Trabalhador e do Vínculo
     </div>
 </div>
 
@@ -465,25 +465,25 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_nistrab" value="0" {% if show_fields|get_value_from_dict:'show_nistrab' %}checked{% endif %} >NIS
+        <input type="checkbox" name="show_nistrab" value="1" {% if show_fields|get_value_from_dict:'show_nistrab' %}checked{% endif %} >NIS
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_matricula" value="0" {% if show_fields|get_value_from_dict:'show_matricula' %}checked{% endif %} >Matricula
+        <input type="checkbox" name="show_matricula" value="1" {% if show_fields|get_value_from_dict:'show_matricula' %}checked{% endif %} >Matricula
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_codcateg" value="0" {% if show_fields|get_value_from_dict:'show_codcateg' %}checked{% endif %} >Código da Categoria
+        <input type="checkbox" name="show_codcateg" value="1" {% if show_fields|get_value_from_dict:'show_codcateg' %}checked{% endif %} >Código da Categoria
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_toxicologico" value="0" {% if show_fields|get_value_from_dict:'show_toxicologico' %}checked{% endif %} >Detalhamento das informações do exame toxicológico do motorista profissional
+        <input type="checkbox" name="show_toxicologico" value="1" {% if show_fields|get_value_from_dict:'show_toxicologico' %}checked{% endif %} >Detalhamento das informações do exame toxicológico do motorista profissional
     </div>
 </div>
 
@@ -495,31 +495,31 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_cnpjlab" value="0" {% if show_fields|get_value_from_dict:'show_cnpjlab' %}checked{% endif %} >CNPJ do laboratório responsável pela realização do exame
+        <input type="checkbox" name="show_cnpjlab" value="1" {% if show_fields|get_value_from_dict:'show_cnpjlab' %}checked{% endif %} >CNPJ do laboratório responsável pela realização do exame
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_codseqexame" value="0" {% if show_fields|get_value_from_dict:'show_codseqexame' %}checked{% endif %} >Código do exame toxicológico. Deve ser informado no formato AA999999999, sendo AA o serial do sequencial e 999999999 o número sequencial do exame
+        <input type="checkbox" name="show_codseqexame" value="1" {% if show_fields|get_value_from_dict:'show_codseqexame' %}checked{% endif %} >Código do exame toxicológico. Deve ser informado no formato AA999999999, sendo AA o serial do sequencial e 999999999 o número sequencial do exame
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_nmmed" value="0" {% if show_fields|get_value_from_dict:'show_nmmed' %}checked{% endif %} >Nome do Médico
+        <input type="checkbox" name="show_nmmed" value="1" {% if show_fields|get_value_from_dict:'show_nmmed' %}checked{% endif %} >Nome do Médico
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_nrcrm" value="0" {% if show_fields|get_value_from_dict:'show_nrcrm' %}checked{% endif %} >Número do CRM
+        <input type="checkbox" name="show_nrcrm" value="1" {% if show_fields|get_value_from_dict:'show_nrcrm' %}checked{% endif %} >Número do CRM
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_ufcrm" value="0" {% if show_fields|get_value_from_dict:'show_ufcrm' %}checked{% endif %} >UF do Órgão de classe
+        <input type="checkbox" name="show_ufcrm" value="1" {% if show_fields|get_value_from_dict:'show_ufcrm' %}checked{% endif %} >UF do Órgão de classe
     </div>
 </div>
 
@@ -531,13 +531,13 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_versao" value="0" {% if show_fields|get_value_from_dict:'show_versao' %}checked{% endif %} >Versão
+        <input type="checkbox" name="show_versao" value="1" {% if show_fields|get_value_from_dict:'show_versao' %}checked{% endif %} >Versão
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_transmissor_lote_esocial" value="0" {% if show_fields|get_value_from_dict:'show_transmissor_lote_esocial' %}checked{% endif %} >Transmissor
+        <input type="checkbox" name="show_transmissor_lote_esocial" value="1" {% if show_fields|get_value_from_dict:'show_transmissor_lote_esocial' %}checked{% endif %} >Transmissor
     </div>
 </div>
 

@@ -2,16 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2020_evtservprest or 1 %}
+            {% if show_fields.show_r2020_evtservprest %}
             <th>Informações de processos relacionados a não retenção de contribuição previdenciária</th>
             {% endif %}
-            {% if show_fields.show_tpprocretprinc or 1 %}
+            {% if show_fields.show_tpprocretprinc %}
             <th>Preencher com o código correspondente ao tipo de processo</th>
             {% endif %}
-            {% if show_fields.show_nrprocretprinc or 1 %}
+            {% if show_fields.show_nrprocretprinc %}
             <th>Informar o número do processo administrativo/judicial</th>
             {% endif %}
-            {% if show_fields.show_valorprinc or 1 %}
+            {% if show_fields.show_codsuspprinc %}
+            <th>Código do Indicativo da Suspensão, atribuído pelo contribuinte</th>
+            {% endif %}
+            {% if show_fields.show_valorprinc %}
             <th>Valor da retenção de contribuição previdenciária principal que deixou de ser efetuada em função de processo administrativo ou judicial.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +26,30 @@
     <tbody>
         {% for a in r2020_infoprocretpr_lista %}
         <tr>
-            {% if show_fields.show_r2020_evtservprest or 1 %}
+            {% if show_fields.show_r2020_evtservprest %}
             <td>{{ a.r2020_evtservprest }}</td>
             {% endif %}
-            {% if show_fields.show_tpprocretprinc or 1 %}
+            {% if show_fields.show_tpprocretprinc %}
             <td>{{ a.get_tpprocretprinc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocretprinc or 1 %}
+            {% if show_fields.show_nrprocretprinc %}
             <td>{{ a.nrprocretprinc }}</td>
             {% endif %}
-            {% if show_fields.show_valorprinc or 1 %}
+            {% if show_fields.show_codsuspprinc %}
+            <td>{{ a.codsuspprinc }}</td>
+            {% endif %}
+            {% if show_fields.show_valorprinc %}
             <td>{{ a.valorprinc }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r2020.change_r2020infoProcRetPr or perms.r2020.add_r2020infoProcRetPr %}
-                    
+
                         <a href="{% url 'r2020_infoprocretpr_salvar' pk=a.id %}">
                             {% if perms.r2020.change_r2020infoProcRetPr %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

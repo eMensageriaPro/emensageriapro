@@ -2,17 +2,38 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_idepgto or 1 %}
+            {% if show_fields.show_r4010_idepgto %}
             <th>Informações do Pagamento</th>
             {% endif %}
-            {% if show_fields.show_dtfg or 1 %}
+            {% if show_fields.show_dtfg %}
             <th>Informar a data do fato gerador ou pagamento/crédito</th>
             {% endif %}
-            {% if show_fields.show_inddecterc or 1 %}
+            {% if show_fields.show_inddecterc %}
             <th>Indicativo de décimo terceiro salário</th>
             {% endif %}
-            {% if show_fields.show_vlrrendbruto or 1 %}
+            {% if show_fields.show_vlrrendbruto %}
             <th>Valor do rendimento bruto, inclusive os rendimentos não tributáveis ou isentos</th>
+            {% endif %}
+            {% if show_fields.show_vlrrendtrib %}
+            <th>Valor do rendimento tributável, conforme previsto na legislação</th>
+            {% endif %}
+            {% if show_fields.show_vlrir %}
+            <th>Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação</th>
+            {% endif %}
+            {% if show_fields.show_vlrrendsusp %}
+            <th>Valor do rendimento com exigibilidade suspensa</th>
+            {% endif %}
+            {% if show_fields.show_vlrnir %}
+            <th>Valor da retenção que deixou de ser efetuada, relativo ao Imposto de Renda Retido na Fonte</th>
+            {% endif %}
+            {% if show_fields.show_vlrdeposito %}
+            <th>Valor do depósito judicial</th>
+            {% endif %}
+            {% if show_fields.show_vlrcompanocalend %}
+            <th>Compensação Judicial relativa ao ano calendário</th>
+            {% endif %}
+            {% if show_fields.show_vlrcompanoant %}
+            <th>Compensação Judicial relativa a anos anteriores ao ano calendário</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -23,27 +44,48 @@
     <tbody>
         {% for a in r4010_infopgto_lista %}
         <tr>
-            {% if show_fields.show_r4010_idepgto or 1 %}
+            {% if show_fields.show_r4010_idepgto %}
             <td>{{ a.r4010_idepgto }}</td>
             {% endif %}
-            {% if show_fields.show_dtfg or 1 %}
+            {% if show_fields.show_dtfg %}
             <td><span style="display:none">{{ a.dtfg|date:"Y-m-d" }}</span>{{ a.dtfg|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_inddecterc or 1 %}
+            {% if show_fields.show_inddecterc %}
             <td>{{ a.get_inddecterc_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrrendbruto or 1 %}
+            {% if show_fields.show_vlrrendbruto %}
             <td>{{ a.vlrrendbruto }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrrendtrib %}
+            <td>{{ a.vlrrendtrib }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrir %}
+            <td>{{ a.vlrir }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrrendsusp %}
+            <td>{{ a.vlrrendsusp }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrnir %}
+            <td>{{ a.vlrnir }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrdeposito %}
+            <td>{{ a.vlrdeposito }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrcompanocalend %}
+            <td>{{ a.vlrcompanocalend }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrcompanoant %}
+            <td>{{ a.vlrcompanoant }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4010.change_r4010infoPgto or perms.r4010.add_r4010infoPgto %}
-                    
+
                         <a href="{% url 'r4010_infopgto_salvar' pk=a.id %}">
                             {% if perms.r4010.change_r4010infoPgto %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +105,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

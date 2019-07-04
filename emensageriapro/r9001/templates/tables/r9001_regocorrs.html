@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9001_evttotal or 1 %}
+            {% if show_fields.show_r9001_evttotal %}
             <th>Informações de ocorrências registradas</th>
             {% endif %}
-            {% if show_fields.show_tpocorr or 1 %}
+            {% if show_fields.show_tpocorr %}
             <th>Tipo da ocorrência</th>
             {% endif %}
-            {% if show_fields.show_localerroaviso or 1 %}
+            {% if show_fields.show_localerroaviso %}
             <th>Campo que originou o erro ou aviso</th>
             {% endif %}
-            {% if show_fields.show_codresp or 1 %}
+            {% if show_fields.show_codresp %}
             <th>Código do status da resposta do processamento da consulta</th>
             {% endif %}
-            {% if show_fields.show_dscresp or 1 %}
+            {% if show_fields.show_dscresp %}
             <th>Descrição literal da resposta do processamento da consulta</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -26,28 +26,28 @@
     <tbody>
         {% for a in r9001_regocorrs_lista %}
         <tr>
-            {% if show_fields.show_r9001_evttotal or 1 %}
+            {% if show_fields.show_r9001_evttotal %}
             <td>{{ a.r9001_evttotal }}</td>
             {% endif %}
-            {% if show_fields.show_tpocorr or 1 %}
+            {% if show_fields.show_tpocorr %}
             <td>{{ a.get_tpocorr_display }}</td>
             {% endif %}
-            {% if show_fields.show_localerroaviso or 1 %}
+            {% if show_fields.show_localerroaviso %}
             <td>{{ a.localerroaviso }}</td>
             {% endif %}
-            {% if show_fields.show_codresp or 1 %}
+            {% if show_fields.show_codresp %}
             <td>{{ a.codresp }}</td>
             {% endif %}
-            {% if show_fields.show_dscresp or 1 %}
+            {% if show_fields.show_dscresp %}
             <td>{{ a.dscresp }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

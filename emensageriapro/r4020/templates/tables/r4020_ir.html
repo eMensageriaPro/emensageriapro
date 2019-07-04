@@ -2,14 +2,23 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4020_infopgto or 1 %}
+            {% if show_fields.show_r4020_infopgto %}
             <th>Informações relativas ao Imposto de Renda</th>
             {% endif %}
-            {% if show_fields.show_vlrbaseir or 1 %}
+            {% if show_fields.show_vlrbaseir %}
             <th>Valor da base do IR, conforme previsto na legislação</th>
             {% endif %}
-            {% if show_fields.show_vlrir or 1 %}
+            {% if show_fields.show_vlrir %}
             <th>Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação</th>
+            {% endif %}
+            {% if show_fields.show_vlrbasenir %}
+            <th>Valor da base do IR com exigibilidade suspensa</th>
+            {% endif %}
+            {% if show_fields.show_vlrnir %}
+            <th>Valor da retenção que deixou de ser efetuada, relativo ao Imposto de Renda Retido na Fonte</th>
+            {% endif %}
+            {% if show_fields.show_vlrdepir %}
+            <th>Valor do depósito judicial de IR</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +29,33 @@
     <tbody>
         {% for a in r4020_ir_lista %}
         <tr>
-            {% if show_fields.show_r4020_infopgto or 1 %}
+            {% if show_fields.show_r4020_infopgto %}
             <td>{{ a.r4020_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbaseir or 1 %}
+            {% if show_fields.show_vlrbaseir %}
             <td>{{ a.vlrbaseir }}</td>
             {% endif %}
-            {% if show_fields.show_vlrir or 1 %}
+            {% if show_fields.show_vlrir %}
             <td>{{ a.vlrir }}</td>
             {% endif %}
-            
+            {% if show_fields.show_vlrbasenir %}
+            <td>{{ a.vlrbasenir }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrnir %}
+            <td>{{ a.vlrnir }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrdepir %}
+            <td>{{ a.vlrdepir }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4020.change_r4020IR or perms.r4020.add_r4020IR %}
-                    
+
                         <a href="{% url 'r4020_ir_salvar' pk=a.id %}">
                             {% if perms.r4020.change_r4020IR %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

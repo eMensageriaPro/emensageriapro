@@ -2,16 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_ideopsaude or 1 %}
+            {% if show_fields.show_r4010_ideopsaude %}
             <th>Informações de dependente do plano de saúde coletivo empresarial</th>
             {% endif %}
-            {% if show_fields.show_nome or 1 %}
+            {% if show_fields.show_cpf %}
+            <th>Número do CPF do dependente</th>
+            {% endif %}
+            {% if show_fields.show_dtnascto %}
+            <th>Informar a data de nascimento do dependente</th>
+            {% endif %}
+            {% if show_fields.show_nome %}
             <th>Nome do dependente</th>
             {% endif %}
-            {% if show_fields.show_reldep or 1 %}
+            {% if show_fields.show_reldep %}
             <th>Relação de dependência</th>
             {% endif %}
-            {% if show_fields.show_vlrsaude or 1 %}
+            {% if show_fields.show_vlrsaude %}
             <th>Valor pago ao plano de saúde</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +29,33 @@
     <tbody>
         {% for a in r4010_infodependpl_lista %}
         <tr>
-            {% if show_fields.show_r4010_ideopsaude or 1 %}
+            {% if show_fields.show_r4010_ideopsaude %}
             <td>{{ a.r4010_ideopsaude }}</td>
             {% endif %}
-            {% if show_fields.show_nome or 1 %}
+            {% if show_fields.show_cpf %}
+            <td>{{ a.cpf }}</td>
+            {% endif %}
+            {% if show_fields.show_dtnascto %}
+            <td><span style="display:none">{{ a.dtnascto|date:"Y-m-d" }}</span>{{ a.dtnascto|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_nome %}
             <td>{{ a.nome }}</td>
             {% endif %}
-            {% if show_fields.show_reldep or 1 %}
+            {% if show_fields.show_reldep %}
             <td>{{ a.get_reldep_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrsaude or 1 %}
+            {% if show_fields.show_vlrsaude %}
             <td>{{ a.vlrsaude }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4010.change_r4010infoDependPl or perms.r4010.add_r4010infoDependPl %}
-                    
+
                         <a href="{% url 'r4010_infodependpl_salvar' pk=a.id %}">
                             {% if perms.r4010.change_r4010infoDependPl %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,11 +2,14 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1005_alteracao or 1 %}
+            {% if show_fields.show_s1005_alteracao %}
             <th>Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.</th>
             {% endif %}
-            {% if show_fields.show_contpcd or 1 %}
+            {% if show_fields.show_contpcd %}
             <th>Situação PCD</th>
+            {% endif %}
+            {% if show_fields.show_nrprocjud %}
+            <th>Número do Processo Judicial</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -17,21 +20,24 @@
     <tbody>
         {% for a in s1005_alteracao_infopcd_lista %}
         <tr>
-            {% if show_fields.show_s1005_alteracao or 1 %}
+            {% if show_fields.show_s1005_alteracao %}
             <td>{{ a.s1005_alteracao }}</td>
             {% endif %}
-            {% if show_fields.show_contpcd or 1 %}
+            {% if show_fields.show_contpcd %}
             <td>{{ a.get_contpcd_display }}</td>
             {% endif %}
-            
+            {% if show_fields.show_nrprocjud %}
+            <td>{{ a.nrprocjud }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1005.change_s1005alteracaoinfoPCD or perms.s1005.add_s1005alteracaoinfoPCD %}
-                    
+
                         <a href="{% url 's1005_alteracao_infopcd_salvar' pk=a.id %}">
                             {% if perms.s1005.change_s1005alteracaoinfoPCD %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

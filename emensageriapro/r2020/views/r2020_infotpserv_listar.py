@@ -69,7 +69,7 @@ def listar(request, output=None):
         show_fields = {
             'show_r2020_nfs': 1,
             'show_tpservico': 1,
-            'show_vlrbaseret': 1,
+            'show_vlrbaseret': 0,
             'show_vlrretencao': 1,
             'show_vlrretsub': 0,
             'show_vlrnretprinc': 0,

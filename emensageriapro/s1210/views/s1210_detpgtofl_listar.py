@@ -71,7 +71,7 @@ def listar(request, output=None):
             'show_perref': 0,
             'show_idedmdev': 1,
             'show_indpgtott': 1,
-            'show_vrliq': 1,
+            'show_vrliq': 0,
             'show_nrrecarq': 0, }
 
         post = False

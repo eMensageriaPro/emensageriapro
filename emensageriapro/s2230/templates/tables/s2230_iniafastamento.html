@@ -2,14 +2,23 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2230_evtafasttemp or 1 %}
+            {% if show_fields.show_s2230_evtafasttemp %}
             <th>Informações do Afastamento Temporário - Início</th>
             {% endif %}
-            {% if show_fields.show_dtiniafast or 1 %}
+            {% if show_fields.show_dtiniafast %}
             <th>Data de início do afastamento</th>
             {% endif %}
-            {% if show_fields.show_codmotafast or 1 %}
+            {% if show_fields.show_codmotafast %}
             <th>Afastamento</th>
+            {% endif %}
+            {% if show_fields.show_infomesmomtv %}
+            <th>Mesmo motivo do afastamento anterior</th>
+            {% endif %}
+            {% if show_fields.show_tpacidtransito %}
+            <th>Tipo de acidente de trânsito</th>
+            {% endif %}
+            {% if show_fields.show_observacao %}
+            <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +29,33 @@
     <tbody>
         {% for a in s2230_iniafastamento_lista %}
         <tr>
-            {% if show_fields.show_s2230_evtafasttemp or 1 %}
+            {% if show_fields.show_s2230_evtafasttemp %}
             <td>{{ a.s2230_evtafasttemp }}</td>
             {% endif %}
-            {% if show_fields.show_dtiniafast or 1 %}
+            {% if show_fields.show_dtiniafast %}
             <td><span style="display:none">{{ a.dtiniafast|date:"Y-m-d" }}</span>{{ a.dtiniafast|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_codmotafast or 1 %}
+            {% if show_fields.show_codmotafast %}
             <td>{{ a.codmotafast }}</td>
             {% endif %}
-            
+            {% if show_fields.show_infomesmomtv %}
+            <td>{{ a.get_infomesmomtv_display }}</td>
+            {% endif %}
+            {% if show_fields.show_tpacidtransito %}
+            <td>{{ a.get_tpacidtransito_display }}</td>
+            {% endif %}
+            {% if show_fields.show_observacao %}
+            <td>{{ a.observacao }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2230.change_s2230iniAfastamento or perms.s2230.add_s2230iniAfastamento %}
-                    
+
                         <a href="{% url 's2230_iniafastamento_salvar' pk=a.id %}">
                             {% if perms.s2230.change_s2230iniAfastamento %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

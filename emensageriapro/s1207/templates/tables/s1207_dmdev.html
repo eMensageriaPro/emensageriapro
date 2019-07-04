@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1207_evtbenprrp or 1 %}
+            {% if show_fields.show_s1207_evtbenprrp %}
             <th>Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</th>
             {% endif %}
-            {% if show_fields.show_tpbenef or 1 %}
+            {% if show_fields.show_tpbenef %}
             <th>Tipo de benefício</th>
             {% endif %}
-            {% if show_fields.show_nrbenefic or 1 %}
+            {% if show_fields.show_nrbenefic %}
             <th>Número do benefício</th>
             {% endif %}
-            {% if show_fields.show_idedmdev or 1 %}
+            {% if show_fields.show_idedmdev %}
             <th>Identificador dos demostrativos de pagamento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +23,27 @@
     <tbody>
         {% for a in s1207_dmdev_lista %}
         <tr>
-            {% if show_fields.show_s1207_evtbenprrp or 1 %}
+            {% if show_fields.show_s1207_evtbenprrp %}
             <td>{{ a.s1207_evtbenprrp }}</td>
             {% endif %}
-            {% if show_fields.show_tpbenef or 1 %}
+            {% if show_fields.show_tpbenef %}
             <td>{{ a.tpbenef|valor }}</td>
             {% endif %}
-            {% if show_fields.show_nrbenefic or 1 %}
+            {% if show_fields.show_nrbenefic %}
             <td>{{ a.nrbenefic }}</td>
             {% endif %}
-            {% if show_fields.show_idedmdev or 1 %}
+            {% if show_fields.show_idedmdev %}
             <td>{{ a.idedmdev }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s1207.change_s1207dmDev or perms.s1207.add_s1207dmDev %}
-                    
+
                         <a href="{% url 's1207_dmdev_salvar' pk=a.id %}">
                             {% if perms.s1207.change_s1207dmDev %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

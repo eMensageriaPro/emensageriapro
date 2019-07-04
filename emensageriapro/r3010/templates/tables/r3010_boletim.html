@@ -2,37 +2,46 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r3010_evtespdesportivo or 1 %}
+            {% if show_fields.show_r3010_evtespdesportivo %}
             <th>Boletim do Espetáculo Desportivo</th>
             {% endif %}
-            {% if show_fields.show_nrboletim or 1 %}
+            {% if show_fields.show_nrboletim %}
             <th>Número do boletim relativo ao espetáculo desportivo</th>
             {% endif %}
-            {% if show_fields.show_tpcompeticao or 1 %}
+            {% if show_fields.show_tpcompeticao %}
             <th>Tipo de Competição</th>
             {% endif %}
-            {% if show_fields.show_categevento or 1 %}
+            {% if show_fields.show_categevento %}
             <th>Categoria do evento</th>
             {% endif %}
-            {% if show_fields.show_moddesportiva or 1 %}
+            {% if show_fields.show_moddesportiva %}
             <th>Descrição da modalidade do evento desportivo</th>
             {% endif %}
-            {% if show_fields.show_nomecompeticao or 1 %}
+            {% if show_fields.show_nomecompeticao %}
             <th>Nome da competição. (Campeonato Brasileiro, Copa do Brasil, Campeonato Estadual, entre outras)</th>
             {% endif %}
-            {% if show_fields.show_cnpjmandante or 1 %}
+            {% if show_fields.show_cnpjmandante %}
             <th>Preencher com o CNPJ do clube mandante</th>
             {% endif %}
-            {% if show_fields.show_pracadesportiva or 1 %}
+            {% if show_fields.show_cnpjvisitante %}
+            <th>Preencher com o número de inscrição do clube visitante no CNPJ</th>
+            {% endif %}
+            {% if show_fields.show_nomevisitante %}
+            <th>Nome do clube visitante</th>
+            {% endif %}
+            {% if show_fields.show_pracadesportiva %}
             <th>Praça desportiva do local do evento</th>
             {% endif %}
-            {% if show_fields.show_uf or 1 %}
+            {% if show_fields.show_codmunic %}
+            <th>Código do Município</th>
+            {% endif %}
+            {% if show_fields.show_uf %}
             <th>Preencher com a sigla da Unidade da Federação</th>
             {% endif %}
-            {% if show_fields.show_qtdepagantes or 1 %}
+            {% if show_fields.show_qtdepagantes %}
             <th>Quantidade de espectadores pagantes do evento</th>
             {% endif %}
-            {% if show_fields.show_qtdenaopagantes or 1 %}
+            {% if show_fields.show_qtdenaopagantes %}
             <th>Quantidade de espectadores não pagantes do evento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -44,48 +53,57 @@
     <tbody>
         {% for a in r3010_boletim_lista %}
         <tr>
-            {% if show_fields.show_r3010_evtespdesportivo or 1 %}
+            {% if show_fields.show_r3010_evtespdesportivo %}
             <td>{{ a.r3010_evtespdesportivo }}</td>
             {% endif %}
-            {% if show_fields.show_nrboletim or 1 %}
+            {% if show_fields.show_nrboletim %}
             <td>{{ a.nrboletim }}</td>
             {% endif %}
-            {% if show_fields.show_tpcompeticao or 1 %}
+            {% if show_fields.show_tpcompeticao %}
             <td>{{ a.get_tpcompeticao_display }}</td>
             {% endif %}
-            {% if show_fields.show_categevento or 1 %}
+            {% if show_fields.show_categevento %}
             <td>{{ a.get_categevento_display }}</td>
             {% endif %}
-            {% if show_fields.show_moddesportiva or 1 %}
+            {% if show_fields.show_moddesportiva %}
             <td>{{ a.moddesportiva }}</td>
             {% endif %}
-            {% if show_fields.show_nomecompeticao or 1 %}
+            {% if show_fields.show_nomecompeticao %}
             <td>{{ a.nomecompeticao }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjmandante or 1 %}
+            {% if show_fields.show_cnpjmandante %}
             <td>{{ a.cnpjmandante }}</td>
             {% endif %}
-            {% if show_fields.show_pracadesportiva or 1 %}
+            {% if show_fields.show_cnpjvisitante %}
+            <td>{{ a.cnpjvisitante }}</td>
+            {% endif %}
+            {% if show_fields.show_nomevisitante %}
+            <td>{{ a.nomevisitante }}</td>
+            {% endif %}
+            {% if show_fields.show_pracadesportiva %}
             <td>{{ a.pracadesportiva }}</td>
             {% endif %}
-            {% if show_fields.show_uf or 1 %}
+            {% if show_fields.show_codmunic %}
+            <td>{{ a.codmunic|valor }}</td>
+            {% endif %}
+            {% if show_fields.show_uf %}
             <td>{{ a.get_uf_display }}</td>
             {% endif %}
-            {% if show_fields.show_qtdepagantes or 1 %}
+            {% if show_fields.show_qtdepagantes %}
             <td>{{ a.qtdepagantes }}</td>
             {% endif %}
-            {% if show_fields.show_qtdenaopagantes or 1 %}
+            {% if show_fields.show_qtdenaopagantes %}
             <td>{{ a.qtdenaopagantes }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r3010.change_r3010boletim or perms.r3010.add_r3010boletim %}
-                    
+
                         <a href="{% url 'r3010_boletim_salvar' pk=a.id %}">
                             {% if perms.r3010.change_r3010boletim %}
                                 <span class="btn btn-primary" title="Editar">
@@ -105,7 +123,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

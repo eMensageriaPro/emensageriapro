@@ -2,10 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9011_evttotalcontrib or 1 %}
+            {% if show_fields.show_r9011_evttotalcontrib %}
             <th>Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos</th>
             {% endif %}
-            {% if show_fields.show_indexistinfo or 1 %}
+            {% if show_fields.show_nrrecarqbase %}
+            <th>Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte</th>
+            {% endif %}
+            {% if show_fields.show_indexistinfo %}
             <th>Indicativo de existência de valores de bases ou de tributos</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,19 +20,22 @@
     <tbody>
         {% for a in r9011_infototalcontrib_lista %}
         <tr>
-            {% if show_fields.show_r9011_evttotalcontrib or 1 %}
+            {% if show_fields.show_r9011_evttotalcontrib %}
             <td>{{ a.r9011_evttotalcontrib }}</td>
             {% endif %}
-            {% if show_fields.show_indexistinfo or 1 %}
+            {% if show_fields.show_nrrecarqbase %}
+            <td>{{ a.nrrecarqbase }}</td>
+            {% endif %}
+            {% if show_fields.show_indexistinfo %}
             <td>{{ a.get_indexistinfo_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

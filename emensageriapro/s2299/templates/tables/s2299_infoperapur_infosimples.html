@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2299_infoperapur_ideestablot or 1 %}
+            {% if show_fields.show_s2299_infoperapur_ideestablot %}
             <th>Informação relativa a empresas enquadradas no Regime de Tributação Simples</th>
             {% endif %}
-            {% if show_fields.show_indsimples or 1 %}
+            {% if show_fields.show_indsimples %}
             <th>Contribuição Substituída</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2299_infoperapur_infosimples_lista %}
         <tr>
-            {% if show_fields.show_s2299_infoperapur_ideestablot or 1 %}
+            {% if show_fields.show_s2299_infoperapur_ideestablot %}
             <td>{{ a.s2299_infoperapur_ideestablot }}</td>
             {% endif %}
-            {% if show_fields.show_indsimples or 1 %}
+            {% if show_fields.show_indsimples %}
             <td>{{ a.get_indsimples_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2299.change_s2299infoPerApurinfoSimples or perms.s2299.add_s2299infoPerApurinfoSimples %}
-                    
+
                         <a href="{% url 's2299_infoperapur_infosimples_salvar' pk=a.id %}">
                             {% if perms.s2299.change_s2299infoPerApurinfoSimples %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,10 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5002_evtirrfbenef or 1 %}
+            {% if show_fields.show_s5002_evtirrfbenef %}
             <th>Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo</th>
             {% endif %}
-            {% if show_fields.show_indresbr or 1 %}
+            {% if show_fields.show_codcateg %}
+            <th>Código da Categoria</th>
+            {% endif %}
+            {% if show_fields.show_indresbr %}
             <th>Indicador de residência</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,19 +20,22 @@
     <tbody>
         {% for a in s5002_infoirrf_lista %}
         <tr>
-            {% if show_fields.show_s5002_evtirrfbenef or 1 %}
+            {% if show_fields.show_s5002_evtirrfbenef %}
             <td>{{ a.s5002_evtirrfbenef }}</td>
             {% endif %}
-            {% if show_fields.show_indresbr or 1 %}
+            {% if show_fields.show_codcateg %}
+            <td>{{ a.codcateg|valor }}</td>
+            {% endif %}
+            {% if show_fields.show_indresbr %}
             <td>{{ a.get_indresbr_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

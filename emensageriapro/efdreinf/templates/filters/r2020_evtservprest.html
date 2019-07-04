@@ -372,7 +372,7 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_evtservprest" value="0" {% if show_fields|get_value_from_dict:'show_evtservprest' %}checked{% endif %} >Evento Serviços Prestados - Cessão de Mão de Obra ou Empreitada
+        <input type="checkbox" name="show_evtservprest" value="1" {% if show_fields|get_value_from_dict:'show_evtservprest' %}checked{% endif %} >Evento Serviços Prestados - Cessão de Mão de Obra ou Empreitada
     </div>
 </div>
 
@@ -384,7 +384,7 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_ideevento" value="0" {% if show_fields|get_value_from_dict:'show_ideevento' %}checked{% endif %} >Informações de Identificação do Evento
+        <input type="checkbox" name="show_ideevento" value="1" {% if show_fields|get_value_from_dict:'show_ideevento' %}checked{% endif %} >Informações de Identificação do Evento
     </div>
 </div>
 
@@ -396,7 +396,7 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_nrrecibo" value="0" {% if show_fields|get_value_from_dict:'show_nrrecibo' %}checked{% endif %} >Preencher com o número do recibo do arquivo a ser retificado
+        <input type="checkbox" name="show_nrrecibo" value="1" {% if show_fields|get_value_from_dict:'show_nrrecibo' %}checked{% endif %} >Preencher com o número do recibo do arquivo a ser retificado
     </div>
 </div>
 
@@ -426,7 +426,7 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_idecontri" value="0" {% if show_fields|get_value_from_dict:'show_idecontri' %}checked{% endif %} >Informações de identificação do contribuinte
+        <input type="checkbox" name="show_idecontri" value="1" {% if show_fields|get_value_from_dict:'show_idecontri' %}checked{% endif %} >Informações de identificação do contribuinte
     </div>
 </div>
 
@@ -444,13 +444,13 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_infoservprest" value="0" {% if show_fields|get_value_from_dict:'show_infoservprest' %}checked{% endif %} >Informação dos Serviços Prestados (Cessão de Mão de Obra ou Empreitada)
+        <input type="checkbox" name="show_infoservprest" value="1" {% if show_fields|get_value_from_dict:'show_infoservprest' %}checked{% endif %} >Informação dos Serviços Prestados (Cessão de Mão de Obra ou Empreitada)
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_ideestabprest" value="0" {% if show_fields|get_value_from_dict:'show_ideestabprest' %}checked{% endif %} >Registro que identifica o estabelecimento 'prestador' de serviços mediante cessão de mão de obra.
+        <input type="checkbox" name="show_ideestabprest" value="1" {% if show_fields|get_value_from_dict:'show_ideestabprest' %}checked{% endif %} >Registro que identifica o estabelecimento 'prestador' de serviços mediante cessão de mão de obra.
     </div>
 </div>
 
@@ -468,7 +468,7 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_idetomador" value="0" {% if show_fields|get_value_from_dict:'show_idetomador' %}checked{% endif %} >Identificação dos tomadores dos serviços
+        <input type="checkbox" name="show_idetomador" value="1" {% if show_fields|get_value_from_dict:'show_idetomador' %}checked{% endif %} >Identificação dos tomadores dos serviços
     </div>
 </div>
 
@@ -492,7 +492,7 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrtotalbruto" value="1" {% if show_fields|get_value_from_dict:'show_vlrtotalbruto' %}checked{% endif %} >Preencher com o valor bruto da(s) nota(s) fiscal(is) 
+        <input type="checkbox" name="show_vlrtotalbruto" value="1" {% if show_fields|get_value_from_dict:'show_vlrtotalbruto' %}checked{% endif %} >Preencher com o valor bruto da(s) nota(s) fiscal(is)
     </div>
 </div>
 
@@ -510,31 +510,31 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrtotalretadic" value="0" {% if show_fields|get_value_from_dict:'show_vlrtotalretadic' %}checked{% endif %} >Soma do valor do adicional de retenção das notas fiscais
+        <input type="checkbox" name="show_vlrtotalretadic" value="1" {% if show_fields|get_value_from_dict:'show_vlrtotalretadic' %}checked{% endif %} >Soma do valor do adicional de retenção das notas fiscais
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrtotalnretprinc" value="0" {% if show_fields|get_value_from_dict:'show_vlrtotalnretprinc' %}checked{% endif %} >Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial
+        <input type="checkbox" name="show_vlrtotalnretprinc" value="1" {% if show_fields|get_value_from_dict:'show_vlrtotalnretprinc' %}checked{% endif %} >Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_vlrtotalnretadic" value="0" {% if show_fields|get_value_from_dict:'show_vlrtotalnretadic' %}checked{% endif %} >Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial
+        <input type="checkbox" name="show_vlrtotalnretadic" value="1" {% if show_fields|get_value_from_dict:'show_vlrtotalnretadic' %}checked{% endif %} >Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_versao" value="0" {% if show_fields|get_value_from_dict:'show_versao' %}checked{% endif %} >Versão
+        <input type="checkbox" name="show_versao" value="1" {% if show_fields|get_value_from_dict:'show_versao' %}checked{% endif %} >Versão
     </div>
 </div>
 
 <div class="col-md-3">
     <div class="form-group">
-        <input type="checkbox" name="show_transmissor_lote_efdreinf" value="0" {% if show_fields|get_value_from_dict:'show_transmissor_lote_efdreinf' %}checked{% endif %} >Transmissor
+        <input type="checkbox" name="show_transmissor_lote_efdreinf" value="1" {% if show_fields|get_value_from_dict:'show_transmissor_lote_efdreinf' %}checked{% endif %} >Transmissor
     </div>
 </div>
 

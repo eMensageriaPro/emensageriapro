@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2410_evtcdbenin or 1 %}
+            {% if show_fields.show_s2410_evtcdbenin %}
             <th>Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas</th>
             {% endif %}
-            {% if show_fields.show_dthomol or 1 %}
+            {% if show_fields.show_dthomol %}
             <th>Data da homologação do benefício pelo Tribunal de Contas</th>
             {% endif %}
-            {% if show_fields.show_nratolegal or 1 %}
+            {% if show_fields.show_nratolegal %}
             <th>Informar o número do ato legal de registro ou homologação do Tribunal de Contas.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +20,24 @@
     <tbody>
         {% for a in s2410_homologtc_lista %}
         <tr>
-            {% if show_fields.show_s2410_evtcdbenin or 1 %}
+            {% if show_fields.show_s2410_evtcdbenin %}
             <td>{{ a.s2410_evtcdbenin }}</td>
             {% endif %}
-            {% if show_fields.show_dthomol or 1 %}
+            {% if show_fields.show_dthomol %}
             <td><span style="display:none">{{ a.dthomol|date:"Y-m-d" }}</span>{{ a.dthomol|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_nratolegal or 1 %}
+            {% if show_fields.show_nratolegal %}
             <td>{{ a.nratolegal }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2410.change_s2410homologTC or perms.s2410.add_s2410homologTC %}
-                    
+
                         <a href="{% url 's2410_homologtc_salvar' pk=a.id %}">
                             {% if perms.s2410.change_s2410homologTC %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -2,41 +2,89 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evtret %}
+            <th>Evento Totalização</th>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <th>Identificação única do evento</th>
             {% endif %}
-            {% if show_fields.show_perref or 1 %}
+            {% if show_fields.show_ideevento %}
+            <th>Informações de Identificação do Evento</th>
+            {% endif %}
+            {% if show_fields.show_perref %}
             <th>Informar o ano/mês no formato AAAA-MM de referência das informações</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_idecontri %}
+            <th>Informações de identificação do contribuinte</th>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <th>Preencher com o código correspondente ao tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <th>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</th>
             {% endif %}
-            {% if show_fields.show_cdretorno or 1 %}
+            {% if show_fields.show_iderecretorno %}
+            <th>Informações do Recibo de Retorno</th>
+            {% endif %}
+            {% if show_fields.show_idestatus %}
+            <th>Situação atual do evento</th>
+            {% endif %}
+            {% if show_fields.show_cdretorno %}
             <th>Código do Retorno</th>
             {% endif %}
-            {% if show_fields.show_descretorno or 1 %}
+            {% if show_fields.show_descretorno %}
             <th>Descrição do retorno</th>
             {% endif %}
-            {% if show_fields.show_dhprocess or 1 %}
+            {% if show_fields.show_inforecev %}
+            <th>Informações de processamento dos eventos</th>
+            {% endif %}
+            {% if show_fields.show_nrprotentr %}
+            <th>Número do protocolo de entrega do evento</th>
+            {% endif %}
+            {% if show_fields.show_dhprocess %}
             <th>Data e hora do início do processamento da consulta</th>
             {% endif %}
-            {% if show_fields.show_tpev or 1 %}
+            {% if show_fields.show_tpev %}
             <th>Tipo do Evento</th>
             {% endif %}
-            {% if show_fields.show_idev or 1 %}
+            {% if show_fields.show_idev %}
             <th>ID do Evento</th>
             {% endif %}
-            {% if show_fields.show_hash or 1 %}
+            {% if show_fields.show_hash %}
             <th>Hash do arquivo processado</th>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_versao %}
+            <th>Versão</th>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_efdreinf %}
+            <th>Transmissor</th>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <th>Ocorrências</th>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <th>Validação de Precedência</th>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <th>Validações</th>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <th>Arquivo Original</th>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <th>Arquivo</th>
+            {% endif %}
+            {% if show_fields.show_status %}
             <th>Status</th>
             {% endif %}
-            {% if show_fields.show_cdretorno or 1 %}
+            {% if show_fields.show_cdretorno %}
             <th>Código do Retorno</th>
+            {% endif %}
+            {% if show_fields.show_descretorno %}
+            <th>Descrição do Retorno</th>
+            {% endif %}
+            {% if show_fields.show_dhprocess %}
+            <th>Data/Hora do Processamento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -47,49 +95,97 @@
     <tbody>
         {% for a in r9002_evtret_lista %}
         <tr>
-            {% if show_fields.show_identidade or 1 %}
+            {% if show_fields.show_evtret %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_identidade %}
             <td>{{ a.identidade }}</td>
             {% endif %}
-            {% if show_fields.show_perref or 1 %}
+            {% if show_fields.show_ideevento %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_perref %}
             <td>{{ a.perref }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 1 %}
+            {% if show_fields.show_idecontri %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_tpinsc %}
             <td>{{ a.tpinsc }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 1 %}
+            {% if show_fields.show_nrinsc %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_cdretorno or 1 %}
+            {% if show_fields.show_iderecretorno %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_idestatus %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_cdretorno %}
             <td>{{ a.get_cdretorno_display }}</td>
             {% endif %}
-            {% if show_fields.show_descretorno or 1 %}
+            {% if show_fields.show_descretorno %}
             <td>{{ a.descretorno }}</td>
             {% endif %}
-            {% if show_fields.show_dhprocess or 1 %}
+            {% if show_fields.show_inforecev %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_nrprotentr %}
+            <td>{{ a.nrprotentr }}</td>
+            {% endif %}
+            {% if show_fields.show_dhprocess %}
             <td><span style="display:none">{{ a.dhprocess|date:"Y-m-d" }}</span>{{ a.dhprocess|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tpev or 1 %}
+            {% if show_fields.show_tpev %}
             <td>{{ a.tpev }}</td>
             {% endif %}
-            {% if show_fields.show_idev or 1 %}
+            {% if show_fields.show_idev %}
             <td>{{ a.idev }}</td>
             {% endif %}
-            {% if show_fields.show_hash or 1 %}
+            {% if show_fields.show_hash %}
             <td>{{ a.hash }}</td>
             {% endif %}
-            {% if show_fields.show_status or 1 %}
+            {% if show_fields.show_versao %}
+            <td>{{ a.get_versao_display }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_efdreinf %}
+            <td>{{ a.transmissor_lote_efdreinf }}</td>
+            {% endif %}
+            {% if show_fields.show_ocorrencias %}
+            <td>{{ a.ocorrencias }}</td>
+            {% endif %}
+            {% if show_fields.show_validacao_precedencia %}
+            <td>{{ a.get_validacao_precedencia_display }}</td>
+            {% endif %}
+            {% if show_fields.show_validacoes %}
+            <td>{{ a.validacoes }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo_original %}
+            <td>{{ a.get_arquivo_original_display }}</td>
+            {% endif %}
+            {% if show_fields.show_arquivo %}
+            <td>{{ a.arquivo }}</td>
+            {% endif %}
+            {% if show_fields.show_status %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
-            {% if show_fields.show_cdretorno or 1 %}
+            {% if show_fields.show_cdretorno %}
             <td>{{ a.cdretorno }}</td>
             {% endif %}
-            
+            {% if show_fields.show_descretorno %}
+            <td>{{ a.descretorno }}</td>
+            {% endif %}
+            {% if show_fields.show_dhprocess %}
+            <td><span style="display:none">{{ a.dhprocess|date:"Y-m-d H:i" }}</span>{{ a.dhprocess|date:"d/m/Y H:i" }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                 </div>
             </td>
             {% endif %}

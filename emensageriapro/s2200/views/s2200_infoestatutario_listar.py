@@ -67,11 +67,11 @@ def listar(request, output=None):
 
         dict_fields = {}
         show_fields = {
-            'show_s2200_evtadmissao': 1,
-            'show_indprovim': 1,
-            'show_tpprov': 1,
+            'show_s2200_evtadmissao': 0,
+            'show_indprovim': 0,
+            'show_tpprov': 0,
             'show_dtnomeacao': 1,
-            'show_dtposse': 1,
+            'show_dtposse': 0,
             'show_dtexercicio': 1,
             'show_dtingsvpub': 1,
             'show_tpplanrp': 0,

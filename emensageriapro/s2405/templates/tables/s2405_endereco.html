@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2405_evtcdbenefalt or 1 %}
+            {% if show_fields.show_s2405_evtcdbenefalt %}
             <th>Grupo de informações do endereço do Trabalhador</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -14,18 +14,18 @@
     <tbody>
         {% for a in s2405_endereco_lista %}
         <tr>
-            {% if show_fields.show_s2405_evtcdbenefalt or 1 %}
+            {% if show_fields.show_s2405_evtcdbenefalt %}
             <td>{{ a.s2405_evtcdbenefalt }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2405.change_s2405endereco or perms.s2405.add_s2405endereco %}
-                    
+
                         <a href="{% url 's2405_endereco_salvar' pk=a.id %}">
                             {% if perms.s2405.change_s2405endereco %}
                                 <span class="btn btn-primary" title="Editar">
@@ -45,7 +45,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

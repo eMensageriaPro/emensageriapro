@@ -2,19 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_infopgto or 1 %}
+            {% if show_fields.show_r4010_infopgto %}
             <th>Informações Complementares - Rendimentos Recebidos Acumuladamente</th>
             {% endif %}
-            {% if show_fields.show_tpprocrra or 1 %}
+            {% if show_fields.show_tpprocrra %}
             <th>Preencher com o código correspondente ao tipo de processo</th>
             {% endif %}
-            {% if show_fields.show_indorigrec or 1 %}
+            {% if show_fields.show_nrprocrra %}
+            <th>Informar o número do processo/requerimento administrativo/judicial</th>
+            {% endif %}
+            {% if show_fields.show_indorigrec %}
             <th>Indicativo da origem dos recursos</th>
             {% endif %}
-            {% if show_fields.show_descrra or 1 %}
+            {% if show_fields.show_descrra %}
             <th>Descrição dos Rendimentos Recebidos Acumuladamente - RRA</th>
             {% endif %}
-            {% if show_fields.show_qtdmesesrra or 1 %}
+            {% if show_fields.show_qtdmesesrra %}
             <th>Quantidade de meses</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -26,30 +29,33 @@
     <tbody>
         {% for a in r4010_inforra_lista %}
         <tr>
-            {% if show_fields.show_r4010_infopgto or 1 %}
+            {% if show_fields.show_r4010_infopgto %}
             <td>{{ a.r4010_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_tpprocrra or 1 %}
+            {% if show_fields.show_tpprocrra %}
             <td>{{ a.get_tpprocrra_display }}</td>
             {% endif %}
-            {% if show_fields.show_indorigrec or 1 %}
+            {% if show_fields.show_nrprocrra %}
+            <td>{{ a.nrprocrra }}</td>
+            {% endif %}
+            {% if show_fields.show_indorigrec %}
             <td>{{ a.get_indorigrec_display }}</td>
             {% endif %}
-            {% if show_fields.show_descrra or 1 %}
+            {% if show_fields.show_descrra %}
             <td>{{ a.descrra }}</td>
             {% endif %}
-            {% if show_fields.show_qtdmesesrra or 1 %}
+            {% if show_fields.show_qtdmesesrra %}
             <td>{{ a.qtdmesesrra }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r4010.change_r4010infoRRA or perms.r4010.add_r4010infoRRA %}
-                    
+
                         <a href="{% url 'r4010_inforra_salvar' pk=a.id %}">
                             {% if perms.r4010.change_r4010infoRRA %}
                                 <span class="btn btn-primary" title="Editar">
@@ -69,7 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

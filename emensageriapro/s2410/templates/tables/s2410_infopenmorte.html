@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2410_evtcdbenin or 1 %}
+            {% if show_fields.show_s2410_evtcdbenin %}
             <th>Informações relativas a pensão por morte</th>
             {% endif %}
-            {% if show_fields.show_tppenmorte or 1 %}
+            {% if show_fields.show_tppenmorte %}
             <th>Tipo de pensão por morte</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2410_infopenmorte_lista %}
         <tr>
-            {% if show_fields.show_s2410_evtcdbenin or 1 %}
+            {% if show_fields.show_s2410_evtcdbenin %}
             <td>{{ a.s2410_evtcdbenin }}</td>
             {% endif %}
-            {% if show_fields.show_tppenmorte or 1 %}
+            {% if show_fields.show_tppenmorte %}
             <td>{{ a.get_tppenmorte_display }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2410.change_s2410infoPenMorte or perms.s2410.add_s2410infoPenMorte %}
-                    
+
                         <a href="{% url 's2410_infopenmorte_salvar' pk=a.id %}">
                             {% if perms.s2410.change_s2410infoPenMorte %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

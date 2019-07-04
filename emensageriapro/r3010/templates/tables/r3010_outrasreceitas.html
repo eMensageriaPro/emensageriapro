@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r3010_boletim or 1 %}
+            {% if show_fields.show_r3010_boletim %}
             <th>Outras receitas do espetáculo</th>
             {% endif %}
-            {% if show_fields.show_tpreceita or 1 %}
+            {% if show_fields.show_tpreceita %}
             <th>Tipo de receita</th>
             {% endif %}
-            {% if show_fields.show_vlrreceita or 1 %}
+            {% if show_fields.show_vlrreceita %}
             <th>Valor da receita auferida</th>
             {% endif %}
-            {% if show_fields.show_descreceita or 1 %}
+            {% if show_fields.show_descreceita %}
             <th>Descrição da receita</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,27 +23,27 @@
     <tbody>
         {% for a in r3010_outrasreceitas_lista %}
         <tr>
-            {% if show_fields.show_r3010_boletim or 1 %}
+            {% if show_fields.show_r3010_boletim %}
             <td>{{ a.r3010_boletim }}</td>
             {% endif %}
-            {% if show_fields.show_tpreceita or 1 %}
+            {% if show_fields.show_tpreceita %}
             <td>{{ a.get_tpreceita_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrreceita or 1 %}
+            {% if show_fields.show_vlrreceita %}
             <td>{{ a.vlrreceita }}</td>
             {% endif %}
-            {% if show_fields.show_descreceita or 1 %}
+            {% if show_fields.show_descreceita %}
             <td>{{ a.descreceita }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.r3010.change_r3010outrasReceitas or perms.r3010.add_r3010outrasReceitas %}
-                    
+
                         <a href="{% url 'r3010_outrasreceitas_salvar' pk=a.id %}">
                             {% if perms.r3010.change_r3010outrasReceitas %}
                                 <span class="btn btn-primary" title="Editar">
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

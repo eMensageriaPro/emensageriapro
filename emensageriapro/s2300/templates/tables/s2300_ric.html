@@ -2,14 +2,17 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_documentos or 1 %}
+            {% if show_fields.show_s2300_documentos %}
             <th>Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)</th>
             {% endif %}
-            {% if show_fields.show_nrric or 1 %}
+            {% if show_fields.show_nrric %}
             <th>Número do RIC</th>
             {% endif %}
-            {% if show_fields.show_orgaoemissor or 1 %}
+            {% if show_fields.show_orgaoemissor %}
             <th>Órgão Emissor do RIC</th>
+            {% endif %}
+            {% if show_fields.show_dtexped %}
+            <th>Data de Expedição do RIC</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -20,24 +23,27 @@
     <tbody>
         {% for a in s2300_ric_lista %}
         <tr>
-            {% if show_fields.show_s2300_documentos or 1 %}
+            {% if show_fields.show_s2300_documentos %}
             <td>{{ a.s2300_documentos }}</td>
             {% endif %}
-            {% if show_fields.show_nrric or 1 %}
+            {% if show_fields.show_nrric %}
             <td>{{ a.nrric }}</td>
             {% endif %}
-            {% if show_fields.show_orgaoemissor or 1 %}
+            {% if show_fields.show_orgaoemissor %}
             <td>{{ a.orgaoemissor }}</td>
             {% endif %}
-            
+            {% if show_fields.show_dtexped %}
+            <td><span style="display:none">{{ a.dtexped|date:"Y-m-d" }}</span>{{ a.dtexped|date:"d/m/Y" }}</td>
+            {% endif %}
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2300.change_s2300RIC or perms.s2300.add_s2300RIC %}
-                    
+
                         <a href="{% url 's2300_ric_salvar' pk=a.id %}">
                             {% if perms.s2300.change_s2300RIC %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

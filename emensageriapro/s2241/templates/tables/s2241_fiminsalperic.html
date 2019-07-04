@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2241_insalperic or 1 %}
+            {% if show_fields.show_s2241_insalperic %}
             <th>Condições do ambiente de trabalho insalubre/periculoso - Fim</th>
             {% endif %}
-            {% if show_fields.show_dtfimcondicao or 1 %}
+            {% if show_fields.show_dtfimcondicao %}
             <th>Data do termino da condição</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -17,21 +17,21 @@
     <tbody>
         {% for a in s2241_fiminsalperic_lista %}
         <tr>
-            {% if show_fields.show_s2241_insalperic or 1 %}
+            {% if show_fields.show_s2241_insalperic %}
             <td>{{ a.s2241_insalperic }}</td>
             {% endif %}
-            {% if show_fields.show_dtfimcondicao or 1 %}
+            {% if show_fields.show_dtfimcondicao %}
             <td><span style="display:none">{{ a.dtfimcondicao|date:"Y-m-d" }}</span>{{ a.dtfimcondicao|date:"d/m/Y" }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2241.change_s2241fimInsalPeric or perms.s2241.add_s2241fimInsalPeric %}
-                    
+
                         <a href="{% url 's2241_fiminsalperic_salvar' pk=a.id %}">
                             {% if perms.s2241.change_s2241fimInsalPeric %}
                                 <span class="btn btn-primary" title="Editar">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

@@ -69,9 +69,9 @@ def listar(request, output=None):
         show_fields = {
             'show_r4040_idenat': 1,
             'show_dtfg': 1,
-            'show_vlrliq': 1,
-            'show_vlrreaj': 1,
-            'show_vlrir': 1,
+            'show_vlrliq': 0,
+            'show_vlrreaj': 0,
+            'show_vlrir': 0,
             'show_descr': 1, }
 
         post = False

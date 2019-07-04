@@ -2,13 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_altexprisco or 1 %}
+            {% if show_fields.show_s2240_altexprisco %}
             <th>Informações relativas ao ambiente de trabalho</th>
             {% endif %}
-            {% if show_fields.show_codamb or 1 %}
+            {% if show_fields.show_codamb %}
             <th>Código do Ambiente</th>
             {% endif %}
-            {% if show_fields.show_dscativdes or 1 %}
+            {% if show_fields.show_infoativ %}
+            <th>Descrição das Atividades Desempenhadas</th>
+            {% endif %}
+            {% if show_fields.show_dscativdes %}
             <th>Descrição das atividades desempenhadas</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -20,24 +23,27 @@
     <tbody>
         {% for a in s2240_altexprisco_infoamb_lista %}
         <tr>
-            {% if show_fields.show_s2240_altexprisco or 1 %}
+            {% if show_fields.show_s2240_altexprisco %}
             <td>{{ a.s2240_altexprisco }}</td>
             {% endif %}
-            {% if show_fields.show_codamb or 1 %}
+            {% if show_fields.show_codamb %}
             <td>{{ a.codamb }}</td>
             {% endif %}
-            {% if show_fields.show_dscativdes or 1 %}
+            {% if show_fields.show_infoativ %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_dscativdes %}
             <td>{{ a.dscativdes }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2240.change_s2240altExpRiscoinfoAmb or perms.s2240.add_s2240altExpRiscoinfoAmb %}
-                    
+
                         <a href="{% url 's2240_altexprisco_infoamb_salvar' pk=a.id %}">
                             {% if perms.s2240.change_s2240altExpRiscoinfoAmb %}
                                 <span class="btn btn-primary" title="Editar">
@@ -57,7 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}

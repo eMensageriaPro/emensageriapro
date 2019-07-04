@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2399_ideestablot or 1 %}
+            {% if show_fields.show_s2399_ideestablot %}
             <th>Informações de plano privado coletivo empresarial de assistência à saúde</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -14,18 +14,18 @@
     <tbody>
         {% for a in s2399_infosaudecolet_lista %}
         <tr>
-            {% if show_fields.show_s2399_ideestablot or 1 %}
+            {% if show_fields.show_s2399_ideestablot %}
             <td>{{ a.s2399_ideestablot }}</td>
             {% endif %}
-            
+
             <!-- colunas especiais -->
             {% if not output %}
             <td>
                 <div class="btn-group">
                     <!-- botões especiais -->
-                    
+
                         {% if perms.s2399.change_s2399infoSaudeColet or perms.s2399.add_s2399infoSaudeColet %}
-                    
+
                         <a href="{% url 's2399_infosaudecolet_salvar' pk=a.id %}">
                             {% if perms.s2399.change_s2399infoSaudeColet %}
                                 <span class="btn btn-primary" title="Editar">
@@ -45,7 +45,7 @@
                             </span>
                         </a>
                         {% endif %}
-                    
+
                 </div>
             </td>
             {% endif %}
