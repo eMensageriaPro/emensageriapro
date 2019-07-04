@@ -259,8 +259,6 @@ def importacao_visualizacao(request, pk):
 @login_required
 def importacao_reprocessar(request, pk):
 
-    import os
-    from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_importacao import importar_arquivo
 
     arquivos = get_object_or_404(ImportacaoArquivosEventos, id=pk)
@@ -299,8 +297,6 @@ def scripts_salvar_arquivos(request, tab='master'):
     from datetime import datetime
     from emensageriapro.settings import BASE_DIR
     from django.core.files.storage import FileSystemStorage
-
-    # tipos: 1-pdf; 2-xls, 3-csv
 
     if request.method == 'POST' and request.FILES['arquivo']:
 
