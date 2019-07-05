@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual %}
+            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
             <th>Informações de Trabalhador Estatutário</th>
             {% endif %}
-            {% if show_fields.show_tpplanrp %}
+            {% if show_fields.show_tpplanrp or 1 %}
             <th>Tipo de plano de segregação de massa</th>
             {% endif %}
-            {% if show_fields.show_indtetorgps %}
+            {% if show_fields.show_indtetorgps or 0 %}
             <th>Informar se o servidor está sujeito ao Teto do Regime Geral pela instituição do regime de previdência complementar</th>
             {% endif %}
-            {% if show_fields.show_indabonoperm %}
+            {% if show_fields.show_indabonoperm or 0 %}
             <th>Indicar se o servidor recebe abono permanência</th>
             {% endif %}
-            {% if show_fields.show_indparcremun %}
+            {% if show_fields.show_indparcremun or 0 %}
             <th>Informar se o servidor fez a opção pela inclusão na base de cálculo da contribuição de parcelas remuneratórias percebidas em decorrência de local de trabalho e do exercício de cargo em comissão ou de função comissionada ou gratificada, conforme art. 4º, § 2º, da Lei nº 10.887/2004</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

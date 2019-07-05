@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_pgtopj_infoprocjud %}
+            {% if show_fields.show_r2070_pgtopj_infoprocjud or 1 %}
             <th>Identificação da origem dos recursos</th>
             {% endif %}
-            {% if show_fields.show_cnpjorigemrecursos %}
+            {% if show_fields.show_cnpjorigemrecursos or 1 %}
             <th>CNPJ da empresa de origem dos recursos</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

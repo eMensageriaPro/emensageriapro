@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2200_evtadmissao %}
+            {% if show_fields.show_s2200_evtadmissao or 1 %}
             <th>Informações de mudança de CPF do trabalhador.</th>
             {% endif %}
-            {% if show_fields.show_cpfant %}
+            {% if show_fields.show_cpfant or 0 %}
             <th>Preencher com o número do CPF antigo do trabalhador.</th>
             {% endif %}
-            {% if show_fields.show_matricant %}
+            {% if show_fields.show_matricant or 1 %}
             <th>Matricula anterior</th>
             {% endif %}
-            {% if show_fields.show_dtaltcpf %}
+            {% if show_fields.show_dtaltcpf or 1 %}
             <th>Data de alteração do CPF.</th>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

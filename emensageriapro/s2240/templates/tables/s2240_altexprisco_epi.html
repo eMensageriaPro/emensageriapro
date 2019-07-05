@@ -2,28 +2,28 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_altexprisco_fatrisco %}
+            {% if show_fields.show_s2240_altexprisco_fatrisco or 1 %}
             <th>Equipamentos de Proteção Individual - EPI</th>
             {% endif %}
-            {% if show_fields.show_caepi %}
+            {% if show_fields.show_caepi or 0 %}
             <th>Certificado de Aprovação do EPI</th>
             {% endif %}
-            {% if show_fields.show_eficepi %}
+            {% if show_fields.show_eficepi or 1 %}
             <th>EPI é eficaz na neutralização</th>
             {% endif %}
-            {% if show_fields.show_medprotecao %}
+            {% if show_fields.show_medprotecao or 0 %}
             <th>Medidas de proteção coletiva</th>
             {% endif %}
-            {% if show_fields.show_condfuncto %}
+            {% if show_fields.show_condfuncto or 1 %}
             <th>Condição de funcionamento e uso ininterrupto</th>
             {% endif %}
-            {% if show_fields.show_przvalid %}
+            {% if show_fields.show_przvalid or 0 %}
             <th>Observado Prazo de validade</th>
             {% endif %}
-            {% if show_fields.show_periodictroca %}
+            {% if show_fields.show_periodictroca or 0 %}
             <th>Observado periodicidade de troca</th>
             {% endif %}
-            {% if show_fields.show_higienizacao %}
+            {% if show_fields.show_higienizacao or 0 %}
             <th>Observada higienização</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

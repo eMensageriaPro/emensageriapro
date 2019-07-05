@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_pgtopf %}
+            {% if show_fields.show_r2070_pgtopf or 1 %}
             <th>Rendimentos Isentos/Não Tributáveis</th>
             {% endif %}
-            {% if show_fields.show_tpisencao %}
+            {% if show_fields.show_tpisencao or 1 %}
             <th>Tipo de Isenção</th>
             {% endif %}
-            {% if show_fields.show_vlrisento %}
+            {% if show_fields.show_vlrisento or 1 %}
             <th>Valor da Parcela Isenta</th>
             {% endif %}
-            {% if show_fields.show_descrendimento %}
+            {% if show_fields.show_descrendimento or 0 %}
             <th>Descrição do rendimento isento/Não tributável</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

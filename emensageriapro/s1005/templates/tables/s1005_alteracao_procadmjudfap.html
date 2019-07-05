@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1005_alteracao %}
+            {% if show_fields.show_s1005_alteracao or 0 %}
             <th>Registro que identifica, em caso de existência, o processo administrativo/judicial em que houve decisão ou sentença favorável ao contribuinte suspendendo ou alterando a alíquota FAP aplicável ao contribuinte.</th>
             {% endif %}
-            {% if show_fields.show_tpproc %}
+            {% if show_fields.show_tpproc or 1 %}
             <th>Processo RAT</th>
             {% endif %}
-            {% if show_fields.show_nrproc %}
+            {% if show_fields.show_nrproc or 1 %}
             <th>Número do Processo</th>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 1 %}
             <th>Código do Indicativo da Suspensão</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

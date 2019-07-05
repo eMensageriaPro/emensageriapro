@@ -2,106 +2,106 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_evtconvinterm %}
+            {% if show_fields.show_evtconvinterm or 0 %}
             <th>Evento Convocação para Trabalho Intermitente</th>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <th>Identidade do Registro</th>
             {% endif %}
-            {% if show_fields.show_ideevento %}
+            {% if show_fields.show_ideevento or 0 %}
             <th>Informações de Identificação do Evento</th>
             {% endif %}
-            {% if show_fields.show_indretif %}
+            {% if show_fields.show_indretif or 0 %}
             <th>Identificador de retificação</th>
             {% endif %}
-            {% if show_fields.show_nrrecibo %}
+            {% if show_fields.show_nrrecibo or 0 %}
             <th>Número do recibo</th>
             {% endif %}
-            {% if show_fields.show_tpamb %}
+            {% if show_fields.show_tpamb or 0 %}
             <th>Identificação do ambiente</th>
             {% endif %}
-            {% if show_fields.show_procemi %}
+            {% if show_fields.show_procemi or 0 %}
             <th>Processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_verproc %}
+            {% if show_fields.show_verproc or 0 %}
             <th>Versão do processo</th>
             {% endif %}
-            {% if show_fields.show_ideempregador %}
+            {% if show_fields.show_ideempregador or 0 %}
             <th>Informações de identificação do empregador</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_idevinculo %}
+            {% if show_fields.show_idevinculo or 0 %}
             <th>Informações de Identificação do Trabalhador e do Vínculo</th>
             {% endif %}
-            {% if show_fields.show_cpftrab %}
+            {% if show_fields.show_cpftrab or 1 %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_nistrab %}
+            {% if show_fields.show_nistrab or 0 %}
             <th>NIS</th>
             {% endif %}
-            {% if show_fields.show_matricula %}
+            {% if show_fields.show_matricula or 0 %}
             <th>Matricula</th>
             {% endif %}
-            {% if show_fields.show_infoconvinterm %}
+            {% if show_fields.show_infoconvinterm or 0 %}
             <th>Informações da convocação para trabalho intermitente</th>
             {% endif %}
-            {% if show_fields.show_codconv %}
+            {% if show_fields.show_codconv or 0 %}
             <th>Preencher com o código atribuído pela empresa que identifica a convocação para trabalho intermitente</th>
             {% endif %}
-            {% if show_fields.show_dtinicio %}
+            {% if show_fields.show_dtinicio or 1 %}
             <th>Data de início</th>
             {% endif %}
-            {% if show_fields.show_dtfim %}
+            {% if show_fields.show_dtfim or 1 %}
             <th>Data de término da responsabilidade</th>
             {% endif %}
-            {% if show_fields.show_dtprevpgto %}
+            {% if show_fields.show_dtprevpgto or 0 %}
             <th>Preencher com a data prevista para o pagamento da remuneração</th>
             {% endif %}
-            {% if show_fields.show_jornada %}
+            {% if show_fields.show_jornada or 0 %}
             <th>Informações da(s) jornada(s) diária(s) da prestação de trabalho intermitente</th>
             {% endif %}
-            {% if show_fields.show_codhorcontrat %}
+            {% if show_fields.show_codhorcontrat or 0 %}
             <th>Código do Horário Contratual</th>
             {% endif %}
-            {% if show_fields.show_dscjornada %}
+            {% if show_fields.show_dscjornada or 0 %}
             <th>Descrição das jornadas e dos dias da prestação de trabalho intermitente</th>
             {% endif %}
-            {% if show_fields.show_localtrab %}
+            {% if show_fields.show_localtrab or 0 %}
             <th>Informações do local da prestação de trabalho intermitente</th>
             {% endif %}
-            {% if show_fields.show_indlocal %}
+            {% if show_fields.show_indlocal or 0 %}
             <th>Indicativo do local da prestação de trabalho intermitente</th>
             {% endif %}
-            {% if show_fields.show_versao %}
+            {% if show_fields.show_versao or 0 %}
             <th>Versão</th>
             {% endif %}
-            {% if show_fields.show_transmissor_lote_esocial %}
+            {% if show_fields.show_transmissor_lote_esocial or 0 %}
             <th>Transmissor</th>
             {% endif %}
-            {% if show_fields.show_retornos_eventos %}
+            {% if show_fields.show_retornos_eventos or 0 %}
             <th>Retorno do Evento</th>
             {% endif %}
-            {% if show_fields.show_ocorrencias %}
+            {% if show_fields.show_ocorrencias or 0 %}
             <th>Ocorrências</th>
             {% endif %}
-            {% if show_fields.show_validacao_precedencia %}
+            {% if show_fields.show_validacao_precedencia or 0 %}
             <th>Validação de Precedência</th>
             {% endif %}
-            {% if show_fields.show_validacoes %}
+            {% if show_fields.show_validacoes or 0 %}
             <th>Validações</th>
             {% endif %}
-            {% if show_fields.show_arquivo_original %}
+            {% if show_fields.show_arquivo_original or 0 %}
             <th>Arquivo Original</th>
             {% endif %}
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 0 %}
             <th>Arquivo</th>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

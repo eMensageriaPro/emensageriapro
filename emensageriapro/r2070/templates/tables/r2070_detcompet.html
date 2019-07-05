@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_pgtopf %}
+            {% if show_fields.show_r2070_pgtopf or 1 %}
             <th>Detalhamento das Competências</th>
             {% endif %}
-            {% if show_fields.show_indperreferencia %}
+            {% if show_fields.show_indperreferencia or 1 %}
             <th>Indicativo de período de referência</th>
             {% endif %}
-            {% if show_fields.show_perrefpagto %}
+            {% if show_fields.show_perrefpagto or 1 %}
             <th>Informar o período ao qual se refere o pagamento do rendimento, no formato AAAA-MM, no caso de pagamento de folha mensal, ou AAAA, no caso específico do 13º salário</th>
             {% endif %}
-            {% if show_fields.show_vlrrendtributavel %}
+            {% if show_fields.show_vlrrendtributavel or 0 %}
             <th>Valor do rendimento tributável</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

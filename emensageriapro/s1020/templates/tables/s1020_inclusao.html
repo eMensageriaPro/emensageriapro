@@ -2,43 +2,43 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1020_evttablotacao %}
+            {% if show_fields.show_s1020_evttablotacao or 0 %}
             <th>Inclusão de novas informações</th>
             {% endif %}
-            {% if show_fields.show_idelotacao %}
+            {% if show_fields.show_idelotacao or 0 %}
             <th>Informações de identificação da lotação e validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_codlotacao %}
+            {% if show_fields.show_codlotacao or 1 %}
             <th>Código da Lotação</th>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 0 %}
             <th>Início da Validade</th>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <th>Fim da Validade</th>
             {% endif %}
-            {% if show_fields.show_dadoslotacao %}
+            {% if show_fields.show_dadoslotacao or 0 %}
             <th>Detalhamento das informações da lotação que está sendo incluída</th>
             {% endif %}
-            {% if show_fields.show_tplotacao %}
+            {% if show_fields.show_tplotacao or 0 %}
             <th>Tipo de Lotação</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_fpaslotacao %}
+            {% if show_fields.show_fpaslotacao or 0 %}
             <th>Informações de FPAS e Terceiros relativas à lotação tributária</th>
             {% endif %}
-            {% if show_fields.show_fpas %}
+            {% if show_fields.show_fpas or 1 %}
             <th>FPAS</th>
             {% endif %}
-            {% if show_fields.show_codtercs %}
+            {% if show_fields.show_codtercs or 1 %}
             <th>Código de Terceiros</th>
             {% endif %}
-            {% if show_fields.show_codtercssusp %}
+            {% if show_fields.show_codtercssusp or 0 %}
             <th>Código de Terceiros (Suspensão)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9001_evttotal %}
+            {% if show_fields.show_r9001_evttotal or 1 %}
             <th>Informações relativas a totalizadores de bases e tributos</th>
             {% endif %}
-            {% if show_fields.show_nrrecarqbase %}
+            {% if show_fields.show_nrrecarqbase or 0 %}
             <th>Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte</th>
             {% endif %}
-            {% if show_fields.show_ideestab %}
+            {% if show_fields.show_ideestab or 0 %}
             <th>Identificação dos estabelecimentos da associação desportiva que receberam os recursos</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 1 %}
             <th>Preencher com o código correspondente ao tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <th>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

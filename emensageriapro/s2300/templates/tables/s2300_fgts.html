@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_infocomplementares %}
+            {% if show_fields.show_s2300_infocomplementares or 1 %}
             <th>Informações relativas ao FGTS.</th>
             {% endif %}
-            {% if show_fields.show_opcfgts %}
+            {% if show_fields.show_opcfgts or 1 %}
             <th>Opção pelo FGTS</th>
             {% endif %}
-            {% if show_fields.show_dtopcfgts %}
+            {% if show_fields.show_dtopcfgts or 0 %}
             <th>Data da opção pelo FGTS</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

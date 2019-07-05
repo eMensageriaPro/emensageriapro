@@ -2,28 +2,28 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_evtexprisco %}
+            {% if show_fields.show_s2240_evtexprisco or 1 %}
             <th>Informações relativas ao responsável pelos registros ambientais</th>
             {% endif %}
-            {% if show_fields.show_cpfresp %}
+            {% if show_fields.show_cpfresp or 1 %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_nisresp %}
+            {% if show_fields.show_nisresp or 1 %}
             <th>NIS</th>
             {% endif %}
-            {% if show_fields.show_nmresp %}
+            {% if show_fields.show_nmresp or 0 %}
             <th>Nome do Responsável pelas Informações</th>
             {% endif %}
-            {% if show_fields.show_ideoc %}
+            {% if show_fields.show_ideoc or 0 %}
             <th>Órgão de Classe (OC)</th>
             {% endif %}
-            {% if show_fields.show_dscoc %}
+            {% if show_fields.show_dscoc or 0 %}
             <th>Descrição (sigla) do órgão de classe ao qual o responsável pelos registros ambientais está vinculado</th>
             {% endif %}
-            {% if show_fields.show_nroc %}
+            {% if show_fields.show_nroc or 0 %}
             <th>Número de Inscrição no órgão de classe.</th>
             {% endif %}
-            {% if show_fields.show_ufoc %}
+            {% if show_fields.show_ufoc or 0 %}
             <th>UF do OC</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

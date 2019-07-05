@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2230_evtafasttemp %}
+            {% if show_fields.show_s2230_evtafasttemp or 1 %}
             <th>Informações de retificação do Afastamento Temporário</th>
             {% endif %}
-            {% if show_fields.show_origretif %}
+            {% if show_fields.show_origretif or 1 %}
             <th>Origem da retificação</th>
             {% endif %}
-            {% if show_fields.show_tpproc %}
+            {% if show_fields.show_tpproc or 0 %}
             <th>Processo RAT</th>
             {% endif %}
-            {% if show_fields.show_nrproc %}
+            {% if show_fields.show_nrproc or 0 %}
             <th>Número do Processo</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

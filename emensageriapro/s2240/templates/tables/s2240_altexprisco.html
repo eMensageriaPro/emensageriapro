@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_evtexprisco %}
+            {% if show_fields.show_s2240_evtexprisco or 1 %}
             <th>Condições ambientais do trabalho - Alteração</th>
             {% endif %}
-            {% if show_fields.show_dtaltcondicao %}
+            {% if show_fields.show_dtaltcondicao or 1 %}
             <th>Data de alteração de condição</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual %}
+            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
             <th>Alterações inerentes ao servidor público</th>
             {% endif %}
-            {% if show_fields.show_mtvalter %}
+            {% if show_fields.show_mtvalter or 1 %}
             <th>Motivo da alteração do cargo/função</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,49 +2,49 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_evtexprisco %}
+            {% if show_fields.show_s2240_evtexprisco or 1 %}
             <th>Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</th>
             {% endif %}
-            {% if show_fields.show_codfatris %}
+            {% if show_fields.show_codfatris or 1 %}
             <th>Código do Fator de Risco</th>
             {% endif %}
-            {% if show_fields.show_tpaval %}
+            {% if show_fields.show_tpaval or 1 %}
             <th>Tipo de avaliação do fator de risco</th>
             {% endif %}
-            {% if show_fields.show_intconc %}
+            {% if show_fields.show_intconc or 0 %}
             <th>Concentração</th>
             {% endif %}
-            {% if show_fields.show_limtol %}
+            {% if show_fields.show_limtol or 0 %}
             <th>Limite de tolerância calculado para agentes específicos, conforme técnica de medição exigida na legislação</th>
             {% endif %}
-            {% if show_fields.show_unmed %}
+            {% if show_fields.show_unmed or 0 %}
             <th>Unidade de medida da intensidade ou concentração</th>
             {% endif %}
-            {% if show_fields.show_tecmedicao %}
+            {% if show_fields.show_tecmedicao or 0 %}
             <th>Técnica de medição</th>
             {% endif %}
-            {% if show_fields.show_insalubridade %}
+            {% if show_fields.show_insalubridade or 0 %}
             <th>A exposição ao fator de risco/execução da atividade configura trabalho insalubre?</th>
             {% endif %}
-            {% if show_fields.show_periculosidade %}
+            {% if show_fields.show_periculosidade or 0 %}
             <th>A exposição ao fator de risco/execução da atividade configura trabalho periculoso?</th>
             {% endif %}
-            {% if show_fields.show_aposentesp %}
+            {% if show_fields.show_aposentesp or 0 %}
             <th>Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.</th>
             {% endif %}
-            {% if show_fields.show_dscfatrisc %}
+            {% if show_fields.show_dscfatrisc or 0 %}
             <th>Descrição do fator de risco</th>
             {% endif %}
-            {% if show_fields.show_epcepi %}
+            {% if show_fields.show_epcepi or 0 %}
             <th>Informações relativas a Equipamentos de Proteção Coletiva - EPC e Equipamentos de Proteção Individual - EPI</th>
             {% endif %}
-            {% if show_fields.show_utilizepc %}
+            {% if show_fields.show_utilizepc or 0 %}
             <th>Utiliza EPC</th>
             {% endif %}
-            {% if show_fields.show_eficepc %}
+            {% if show_fields.show_eficepc or 0 %}
             <th>EPC é eficaz na neutralização</th>
             {% endif %}
-            {% if show_fields.show_utilizepi %}
+            {% if show_fields.show_utilizepi or 0 %}
             <th>Utiliza EPI</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

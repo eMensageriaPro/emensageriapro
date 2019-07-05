@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1200_infoperant_ideperiodo %}
+            {% if show_fields.show_s1200_infoperant_ideperiodo or 1 %}
             <th>Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_codlotacao %}
+            {% if show_fields.show_codlotacao or 1 %}
             <th>Código da Lotação</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

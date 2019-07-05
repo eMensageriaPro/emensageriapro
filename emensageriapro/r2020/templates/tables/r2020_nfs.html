@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2020_evtservprest %}
+            {% if show_fields.show_r2020_evtservprest or 1 %}
             <th>Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior</th>
             {% endif %}
-            {% if show_fields.show_serie %}
+            {% if show_fields.show_serie or 1 %}
             <th>Informar o número de série da nota fiscal/fatura ou do Recibo Provisório de Serviço - RPS</th>
             {% endif %}
-            {% if show_fields.show_numdocto %}
+            {% if show_fields.show_numdocto or 0 %}
             <th>Número da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS.</th>
             {% endif %}
-            {% if show_fields.show_dtemissaonf %}
+            {% if show_fields.show_dtemissaonf or 1 %}
             <th>Data de Emissão da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS</th>
             {% endif %}
-            {% if show_fields.show_vlrbruto %}
+            {% if show_fields.show_vlrbruto or 0 %}
             <th>Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS</th>
             {% endif %}
-            {% if show_fields.show_obs %}
+            {% if show_fields.show_obs or 0 %}
             <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

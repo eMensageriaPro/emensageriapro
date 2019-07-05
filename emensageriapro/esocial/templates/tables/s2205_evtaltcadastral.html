@@ -2,127 +2,127 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_evtaltcadastral %}
+            {% if show_fields.show_evtaltcadastral or 0 %}
             <th>Evento Alteração Cadastral do Trabalhador</th>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <th>Identidade do Registro</th>
             {% endif %}
-            {% if show_fields.show_ideevento %}
+            {% if show_fields.show_ideevento or 0 %}
             <th>Informações de Identificação do Evento</th>
             {% endif %}
-            {% if show_fields.show_indretif %}
+            {% if show_fields.show_indretif or 0 %}
             <th>Identificador de retificação</th>
             {% endif %}
-            {% if show_fields.show_nrrecibo %}
+            {% if show_fields.show_nrrecibo or 0 %}
             <th>Número do recibo</th>
             {% endif %}
-            {% if show_fields.show_tpamb %}
+            {% if show_fields.show_tpamb or 0 %}
             <th>Identificação do ambiente</th>
             {% endif %}
-            {% if show_fields.show_procemi %}
+            {% if show_fields.show_procemi or 0 %}
             <th>Processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_verproc %}
+            {% if show_fields.show_verproc or 0 %}
             <th>Versão do processo</th>
             {% endif %}
-            {% if show_fields.show_ideempregador %}
+            {% if show_fields.show_ideempregador or 0 %}
             <th>Informações de identificação do empregador</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_idetrabalhador %}
+            {% if show_fields.show_idetrabalhador or 0 %}
             <th>Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.</th>
             {% endif %}
-            {% if show_fields.show_cpftrab %}
+            {% if show_fields.show_cpftrab or 1 %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_alteracao %}
+            {% if show_fields.show_alteracao or 0 %}
             <th>Alteração das informações</th>
             {% endif %}
-            {% if show_fields.show_dtalteracao %}
+            {% if show_fields.show_dtalteracao or 1 %}
             <th>Data de alteração</th>
             {% endif %}
-            {% if show_fields.show_dadostrabalhador %}
+            {% if show_fields.show_dadostrabalhador or 0 %}
             <th>Informações Pessoais do Trabalhador</th>
             {% endif %}
-            {% if show_fields.show_nistrab %}
+            {% if show_fields.show_nistrab or 0 %}
             <th>NIS</th>
             {% endif %}
-            {% if show_fields.show_nmtrab %}
+            {% if show_fields.show_nmtrab or 0 %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_sexo %}
+            {% if show_fields.show_sexo or 0 %}
             <th>Sexo</th>
             {% endif %}
-            {% if show_fields.show_racacor %}
+            {% if show_fields.show_racacor or 0 %}
             <th>Raça/Cor</th>
             {% endif %}
-            {% if show_fields.show_estciv %}
+            {% if show_fields.show_estciv or 0 %}
             <th>Estado Civil</th>
             {% endif %}
-            {% if show_fields.show_grauinstr %}
+            {% if show_fields.show_grauinstr or 0 %}
             <th>Grau de Instrução</th>
             {% endif %}
-            {% if show_fields.show_nmsoc %}
+            {% if show_fields.show_nmsoc or 0 %}
             <th>Nome Social</th>
             {% endif %}
-            {% if show_fields.show_nascimento %}
+            {% if show_fields.show_nascimento or 0 %}
             <th>Grupo de informações do nascimento do trabalhador</th>
             {% endif %}
-            {% if show_fields.show_dtnascto %}
+            {% if show_fields.show_dtnascto or 1 %}
             <th>Data de nascimento</th>
             {% endif %}
-            {% if show_fields.show_codmunic %}
+            {% if show_fields.show_codmunic or 0 %}
             <th>Código do Município</th>
             {% endif %}
-            {% if show_fields.show_uf %}
+            {% if show_fields.show_uf or 0 %}
             <th>UF</th>
             {% endif %}
-            {% if show_fields.show_paisnascto %}
+            {% if show_fields.show_paisnascto or 0 %}
             <th>País de nascimento</th>
             {% endif %}
-            {% if show_fields.show_paisnac %}
+            {% if show_fields.show_paisnac or 0 %}
             <th>País de nacionalidade</th>
             {% endif %}
-            {% if show_fields.show_nmmae %}
+            {% if show_fields.show_nmmae or 0 %}
             <th>Nome da Mãe</th>
             {% endif %}
-            {% if show_fields.show_nmpai %}
+            {% if show_fields.show_nmpai or 0 %}
             <th>Nome do Pai</th>
             {% endif %}
-            {% if show_fields.show_endereco %}
+            {% if show_fields.show_endereco or 0 %}
             <th>Grupo de informações do endereço do Trabalhador</th>
             {% endif %}
-            {% if show_fields.show_versao %}
+            {% if show_fields.show_versao or 0 %}
             <th>Versão</th>
             {% endif %}
-            {% if show_fields.show_transmissor_lote_esocial %}
+            {% if show_fields.show_transmissor_lote_esocial or 0 %}
             <th>Transmissor</th>
             {% endif %}
-            {% if show_fields.show_retornos_eventos %}
+            {% if show_fields.show_retornos_eventos or 0 %}
             <th>Retorno do Evento</th>
             {% endif %}
-            {% if show_fields.show_ocorrencias %}
+            {% if show_fields.show_ocorrencias or 0 %}
             <th>Ocorrências</th>
             {% endif %}
-            {% if show_fields.show_validacao_precedencia %}
+            {% if show_fields.show_validacao_precedencia or 0 %}
             <th>Validação de Precedência</th>
             {% endif %}
-            {% if show_fields.show_validacoes %}
+            {% if show_fields.show_validacoes or 0 %}
             <th>Validações</th>
             {% endif %}
-            {% if show_fields.show_arquivo_original %}
+            {% if show_fields.show_arquivo_original or 0 %}
             <th>Arquivo Original</th>
             {% endif %}
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 0 %}
             <th>Arquivo</th>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

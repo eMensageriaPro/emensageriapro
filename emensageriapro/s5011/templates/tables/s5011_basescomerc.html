@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_ideestab %}
+            {% if show_fields.show_s5011_ideestab or 1 %}
             <th>Informações de bases de cálculo relativas à comercialização da produção rural da Pessoa Física. Informações desse grupo conforme informado pelo contribuinte em S-1260.</th>
             {% endif %}
-            {% if show_fields.show_indcomerc %}
+            {% if show_fields.show_indcomerc or 1 %}
             <th>Indicativo de comercialização</th>
             {% endif %}
-            {% if show_fields.show_vrbccompr %}
+            {% if show_fields.show_vrbccompr or 1 %}
             <th>Valor da BC da comercialização da PR</th>
             {% endif %}
-            {% if show_fields.show_vrcpsusp %}
+            {% if show_fields.show_vrcpsusp or 0 %}
             <th>Valor da CP com exigibilidade suspensa</th>
             {% endif %}
-            {% if show_fields.show_vrratsusp %}
+            {% if show_fields.show_vrratsusp or 0 %}
             <th>Valor da CP para GILRAT com exigibilidade suspensa</th>
             {% endif %}
-            {% if show_fields.show_vrsenarsusp %}
+            {% if show_fields.show_vrsenarsusp or 0 %}
             <th>Valor da contribição para SENAR com exigibilidade suspensa</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2299_evtdeslig %}
+            {% if show_fields.show_s2299_evtdeslig or 1 %}
             <th>Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar</th>
             {% endif %}
-            {% if show_fields.show_cpfsubstituto %}
+            {% if show_fields.show_cpfsubstituto or 1 %}
             <th>Preencher com o CPF do novo titular</th>
             {% endif %}
-            {% if show_fields.show_dtnascto %}
+            {% if show_fields.show_dtnascto or 1 %}
             <th>Data de nascimento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

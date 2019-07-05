@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2241_insalperic %}
+            {% if show_fields.show_s2241_insalperic or 1 %}
             <th>Condições do ambiente de trabalho insalubre/periculoso - Fim</th>
             {% endif %}
-            {% if show_fields.show_dtfimcondicao %}
+            {% if show_fields.show_dtfimcondicao or 1 %}
             <th>Data do termino da condição</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

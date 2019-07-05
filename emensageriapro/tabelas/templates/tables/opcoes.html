@@ -2,25 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_opcoes_slug %}
+            {% if show_fields.show_opcoes_slug or 1 %}
             <th>Slug da Opção</th>
             {% endif %}
-            {% if show_fields.show_opcoes_id %}
+            {% if show_fields.show_opcoes_id or 1 %}
             <th>Identificador da Opção</th>
             {% endif %}
-            {% if show_fields.show_codigo %}
+            {% if show_fields.show_codigo or 1 %}
             <th>Código</th>
             {% endif %}
-            {% if show_fields.show_titulo %}
+            {% if show_fields.show_titulo or 1 %}
             <th>Título</th>
             {% endif %}
-            {% if show_fields.show_descricao %}
+            {% if show_fields.show_descricao or 1 %}
             <th>Descrição</th>
             {% endif %}
-            {% if show_fields.show_data_inicio %}
+            {% if show_fields.show_data_inicio or 1 %}
             <th>Data de Início da Validade</th>
             {% endif %}
-            {% if show_fields.show_data_termino %}
+            {% if show_fields.show_data_termino or 1 %}
             <th>Data de Término da Validade</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,31 +2,31 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_importacao_arquivos %}
+            {% if show_fields.show_importacao_arquivos or 0 %}
             <th>Arquivo de Importação</th>
             {% endif %}
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 1 %}
             <th>Nome do Arquivo</th>
             {% endif %}
-            {% if show_fields.show_evento %}
+            {% if show_fields.show_evento or 1 %}
             <th>Evento</th>
             {% endif %}
-            {% if show_fields.show_versao %}
+            {% if show_fields.show_versao or 0 %}
             <th>Versão</th>
             {% endif %}
-            {% if show_fields.show_identidade_evento %}
+            {% if show_fields.show_identidade_evento or 1 %}
             <th>Identidade do evento</th>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <th>identidade da tabela</th>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
-            {% if show_fields.show_data_hora %}
+            {% if show_fields.show_data_hora or 1 %}
             <th>Data/Hora de Importação</th>
             {% endif %}
-            {% if show_fields.show_validacoes %}
+            {% if show_fields.show_validacoes or 0 %}
             <th>Validações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

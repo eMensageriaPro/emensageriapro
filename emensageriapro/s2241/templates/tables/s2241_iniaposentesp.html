@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2241_aposentesp %}
+            {% if show_fields.show_s2241_aposentesp or 1 %}
             <th>Condições do ambiente de trabalho que ensejam aposentadoria especial - Início</th>
             {% endif %}
-            {% if show_fields.show_dtinicondicao %}
+            {% if show_fields.show_dtinicondicao or 1 %}
             <th>Data de início da condição</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

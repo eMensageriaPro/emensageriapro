@@ -2,34 +2,34 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1035_evttabcarreira %}
+            {% if show_fields.show_s1035_evttabcarreira or 0 %}
             <th>Inclusão de novas informações</th>
             {% endif %}
-            {% if show_fields.show_idecarreira %}
+            {% if show_fields.show_idecarreira or 0 %}
             <th>Informações de identificação da Carreira e validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_codcarreira %}
+            {% if show_fields.show_codcarreira or 1 %}
             <th>Código da Carreira</th>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 0 %}
             <th>Início da Validade</th>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <th>Fim da Validade</th>
             {% endif %}
-            {% if show_fields.show_dadoscarreira %}
+            {% if show_fields.show_dadoscarreira or 0 %}
             <th>Detalhamento das informações da Carreira que está sendo incluída</th>
             {% endif %}
-            {% if show_fields.show_dsccarreira %}
+            {% if show_fields.show_dsccarreira or 1 %}
             <th>Descrição</th>
             {% endif %}
-            {% if show_fields.show_leicarr %}
+            {% if show_fields.show_leicarr or 0 %}
             <th>Número da lei</th>
             {% endif %}
-            {% if show_fields.show_dtleicarr %}
+            {% if show_fields.show_dtleicarr or 1 %}
             <th>Data da lei</th>
             {% endif %}
-            {% if show_fields.show_sitcarr %}
+            {% if show_fields.show_sitcarr or 0 %}
             <th>Situação gerada pela lei</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

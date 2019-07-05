@@ -2,25 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1000_alteracao_infoop %}
+            {% if show_fields.show_s1000_alteracao_infoop or 1 %}
             <th>Informações relativas ao ente federativo estadual, distrital ou municipal</th>
             {% endif %}
-            {% if show_fields.show_nmente %}
+            {% if show_fields.show_nmente or 1 %}
             <th>Nome do EFR</th>
             {% endif %}
-            {% if show_fields.show_uf %}
+            {% if show_fields.show_uf or 0 %}
             <th>UF</th>
             {% endif %}
-            {% if show_fields.show_codmunic %}
+            {% if show_fields.show_codmunic or 0 %}
             <th>Código do Município</th>
             {% endif %}
-            {% if show_fields.show_indrpps %}
+            {% if show_fields.show_indrpps or 0 %}
             <th>Possui RPPS</th>
             {% endif %}
-            {% if show_fields.show_subteto %}
+            {% if show_fields.show_subteto or 1 %}
             <th>Poder a que se refere o subteto</th>
             {% endif %}
-            {% if show_fields.show_vrsubteto %}
+            {% if show_fields.show_vrsubteto or 0 %}
             <th>Valor do subteto</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

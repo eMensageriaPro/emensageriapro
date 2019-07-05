@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2230_infoatestado %}
+            {% if show_fields.show_s2230_infoatestado or 1 %}
             <th>Médico/Dentista que emitiu o atestado</th>
             {% endif %}
-            {% if show_fields.show_nmemit %}
+            {% if show_fields.show_nmemit or 1 %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_ideoc %}
+            {% if show_fields.show_ideoc or 0 %}
             <th>Órgão de Classe (OC)</th>
             {% endif %}
-            {% if show_fields.show_nroc %}
+            {% if show_fields.show_nroc or 1 %}
             <th>Número do OC</th>
             {% endif %}
-            {% if show_fields.show_ufoc %}
+            {% if show_fields.show_ufoc or 0 %}
             <th>UF do OC</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_inforra_despprocjud %}
+            {% if show_fields.show_r2070_inforra_despprocjud or 1 %}
             <th>Identificação do Advogado</th>
             {% endif %}
-            {% if show_fields.show_tpinscadvogado %}
+            {% if show_fields.show_tpinscadvogado or 1 %}
             <th>Tipo de Inscrição do Advogado</th>
             {% endif %}
-            {% if show_fields.show_nrinscadvogado %}
+            {% if show_fields.show_nrinscadvogado or 1 %}
             <th>Preencher com o número de inscrição (CNPJ/CPF) do Advogado</th>
             {% endif %}
-            {% if show_fields.show_vlradvogado %}
+            {% if show_fields.show_vlradvogado or 0 %}
             <th>Valor da despesa com o advogado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

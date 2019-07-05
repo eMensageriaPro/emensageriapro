@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4020_infopgto %}
+            {% if show_fields.show_r4020_infopgto or 1 %}
             <th>Informações relativas à CSLL</th>
             {% endif %}
-            {% if show_fields.show_vlrbasecsll %}
+            {% if show_fields.show_vlrbasecsll or 1 %}
             <th>Valor da base da Contribuição Social sobre Lucro Líquido - CSLL, conforme previsto na legislação</th>
             {% endif %}
-            {% if show_fields.show_vlrcsll %}
+            {% if show_fields.show_vlrcsll or 1 %}
             <th>Valor da retenção da Contribuição Social sobre Lucro Líquido - CSLL, conforme previsto na legislação</th>
             {% endif %}
-            {% if show_fields.show_vlrbasencsll %}
+            {% if show_fields.show_vlrbasencsll or 0 %}
             <th>Valor da base da Contribuição Social sobre Lucro Líquido - CSLL, com exigibilidade suspensa</th>
             {% endif %}
-            {% if show_fields.show_vlrncsll %}
+            {% if show_fields.show_vlrncsll or 0 %}
             <th>Valor da retenção da Contribuição Social sobre Lucro Líquido - CSLL, com exigibilidade suspensa, que deixou de ser efetuada</th>
             {% endif %}
-            {% if show_fields.show_vlrdepcsll %}
+            {% if show_fields.show_vlrdepcsll or 0 %}
             <th>Valor relativo a depósito judicial de Contribuição Social sobre Lucro Líquido - CSLL</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

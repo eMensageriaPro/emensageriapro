@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1000_inclusao %}
+            {% if show_fields.show_s1000_inclusao or 1 %}
             <th>Informações relativas ao desenvolvedor do software que gerou o arquivo xml.</th>
             {% endif %}
-            {% if show_fields.show_cnpjsofthouse %}
+            {% if show_fields.show_cnpjsofthouse or 1 %}
             <th>CNPJ</th>
             {% endif %}
-            {% if show_fields.show_nmrazao %}
+            {% if show_fields.show_nmrazao or 0 %}
             <th>Razão Social</th>
             {% endif %}
-            {% if show_fields.show_nmcont %}
+            {% if show_fields.show_nmcont or 1 %}
             <th>Nome do Contato</th>
             {% endif %}
-            {% if show_fields.show_telefone %}
+            {% if show_fields.show_telefone or 0 %}
             <th>Telefone</th>
             {% endif %}
-            {% if show_fields.show_email %}
+            {% if show_fields.show_email or 0 %}
             <th>E-mail</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

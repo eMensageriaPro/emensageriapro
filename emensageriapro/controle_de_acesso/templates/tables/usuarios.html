@@ -2,43 +2,43 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_foto %}
+            {% if show_fields.show_foto or 0 %}
             <th>Foto</th>
             {% endif %}
-            {% if show_fields.show_username %}
+            {% if show_fields.show_username or 1 %}
             <th>Usuário (Utilizado no Login)</th>
             {% endif %}
-            {% if show_fields.show_password %}
+            {% if show_fields.show_password or 0 %}
             <th>Senha</th>
             {% endif %}
-            {% if show_fields.show_first_name %}
+            {% if show_fields.show_first_name or 1 %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_last_name %}
+            {% if show_fields.show_last_name or 1 %}
             <th>Sobrenome</th>
             {% endif %}
-            {% if show_fields.show_email %}
+            {% if show_fields.show_email or 1 %}
             <th>Email</th>
             {% endif %}
-            {% if show_fields.show_is_superuser %}
+            {% if show_fields.show_is_superuser or 0 %}
             <th>É Super usuário?</th>
             {% endif %}
-            {% if show_fields.show_is_staff %}
+            {% if show_fields.show_is_staff or 0 %}
             <th>É Administrador?</th>
             {% endif %}
-            {% if show_fields.show_is_active %}
+            {% if show_fields.show_is_active or 1 %}
             <th>Ativo?</th>
             {% endif %}
-            {% if show_fields.show_last_login %}
+            {% if show_fields.show_last_login or 0 %}
             <th>Último Login</th>
             {% endif %}
-            {% if show_fields.show_date_joined %}
+            {% if show_fields.show_date_joined or 0 %}
             <th>Data de Inclusão</th>
             {% endif %}
-            {% if show_fields.show_config_perfis %}
+            {% if show_fields.show_config_perfis or 1 %}
             <th>Perfil</th>
             {% endif %}
-            {% if show_fields.show_name %}
+            {% if show_fields.show_name or 1 %}
             <th>Nome Completo</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

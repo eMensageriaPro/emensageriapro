@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2410_infopenmorte %}
+            {% if show_fields.show_s2410_infopenmorte or 0 %}
             <th>Informações do instituidor da pensão por morte</th>
             {% endif %}
-            {% if show_fields.show_cpfinst %}
+            {% if show_fields.show_cpfinst or 1 %}
             <th>CPF do instituidor</th>
             {% endif %}
-            {% if show_fields.show_dtinst %}
+            {% if show_fields.show_dtinst or 1 %}
             <th>Data de óbito do instituidor da pensão por morte.</th>
             {% endif %}
-            {% if show_fields.show_intaposentado %}
+            {% if show_fields.show_intaposentado or 1 %}
             <th>Informar se o instituidor da pensão por morte era aposentado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

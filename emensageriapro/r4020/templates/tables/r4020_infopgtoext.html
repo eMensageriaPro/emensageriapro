@@ -2,49 +2,49 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4020_idepgto %}
+            {% if show_fields.show_r4020_idepgto or 0 %}
             <th>Informações complementares relativas a pagamentos a residente fiscal no Exterior</th>
             {% endif %}
-            {% if show_fields.show_endext %}
+            {% if show_fields.show_endext or 0 %}
             <th>Endereço do beneficiário residente ou domiciliado no exterior</th>
             {% endif %}
-            {% if show_fields.show_dsclograd %}
+            {% if show_fields.show_dsclograd or 1 %}
             <th>Descrição do logradouro</th>
             {% endif %}
-            {% if show_fields.show_nrlograd %}
+            {% if show_fields.show_nrlograd or 0 %}
             <th>Número do logradouro.</th>
             {% endif %}
-            {% if show_fields.show_complem %}
+            {% if show_fields.show_complem or 0 %}
             <th>Complemento do logradouro.</th>
             {% endif %}
-            {% if show_fields.show_bairro %}
+            {% if show_fields.show_bairro or 0 %}
             <th>Nome do bairro/distrito</th>
             {% endif %}
-            {% if show_fields.show_cidade %}
+            {% if show_fields.show_cidade or 0 %}
             <th>Nome da cidade</th>
             {% endif %}
-            {% if show_fields.show_estado %}
+            {% if show_fields.show_estado or 0 %}
             <th>Nome da província/estado</th>
             {% endif %}
-            {% if show_fields.show_codpostal %}
+            {% if show_fields.show_codpostal or 0 %}
             <th>Código de Endereçamento Postal</th>
             {% endif %}
-            {% if show_fields.show_telef %}
+            {% if show_fields.show_telef or 0 %}
             <th>Número do telefone</th>
             {% endif %}
-            {% if show_fields.show_infofiscal %}
+            {% if show_fields.show_infofiscal or 0 %}
             <th>Informações fiscais de beneficiário residente ou domiciliado no exterior</th>
             {% endif %}
-            {% if show_fields.show_indnif %}
+            {% if show_fields.show_indnif or 1 %}
             <th>Indicativo do Número de Identificação Fiscal</th>
             {% endif %}
-            {% if show_fields.show_nifbenef %}
+            {% if show_fields.show_nifbenef or 0 %}
             <th>Número de Identificação Fiscal - NIF</th>
             {% endif %}
-            {% if show_fields.show_relfontpg %}
+            {% if show_fields.show_relfontpg or 0 %}
             <th>Relação da fonte pagadora com o beneficiário, conforme Tabela 03</th>
             {% endif %}
-            {% if show_fields.show_frmtribut %}
+            {% if show_fields.show_frmtribut or 1 %}
             <th>Forma de tributação, conforme tabela de informações sobre os rendimentos constante na Tabela 02</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

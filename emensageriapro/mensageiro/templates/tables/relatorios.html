@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_titulo %}
+            {% if show_fields.show_titulo or 1 %}
             <th>Título</th>
             {% endif %}
-            {% if show_fields.show_campos %}
+            {% if show_fields.show_campos or 0 %}
             <th>Lista dos Campos (separados por vírgula)</th>
             {% endif %}
-            {% if show_fields.show_sql %}
+            {% if show_fields.show_sql or 0 %}
             <th>SQL</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

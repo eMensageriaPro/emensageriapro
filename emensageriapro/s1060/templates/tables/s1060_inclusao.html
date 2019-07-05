@@ -2,40 +2,40 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1060_evttabambiente %}
+            {% if show_fields.show_s1060_evttabambiente or 1 %}
             <th>Inclusão de novas informações</th>
             {% endif %}
-            {% if show_fields.show_ideambiente %}
+            {% if show_fields.show_ideambiente or 0 %}
             <th>Informações de identificação do ambiente de trabalho do empregador e de validade das informações.</th>
             {% endif %}
-            {% if show_fields.show_codamb %}
+            {% if show_fields.show_codamb or 1 %}
             <th>Código do Ambiente</th>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 0 %}
             <th>Início da Validade</th>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <th>Fim da Validade</th>
             {% endif %}
-            {% if show_fields.show_dadosambiente %}
+            {% if show_fields.show_dadosambiente or 0 %}
             <th>Informações do ambiente de trabalho</th>
             {% endif %}
-            {% if show_fields.show_nmamb %}
+            {% if show_fields.show_nmamb or 0 %}
             <th>Informar o nome do ambiente de trabalho.</th>
             {% endif %}
-            {% if show_fields.show_dscamb %}
+            {% if show_fields.show_dscamb or 1 %}
             <th>Descrição</th>
             {% endif %}
-            {% if show_fields.show_localamb %}
+            {% if show_fields.show_localamb or 0 %}
             <th>Local</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_codlotacao %}
+            {% if show_fields.show_codlotacao or 0 %}
             <th>Código da Lotação</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

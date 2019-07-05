@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2230_iniafastamento %}
+            {% if show_fields.show_s2230_iniafastamento or 1 %}
             <th>Informações Complementares - afastamento para exercício de mandato sindical</th>
             {% endif %}
-            {% if show_fields.show_cnpjsind %}
+            {% if show_fields.show_cnpjsind or 1 %}
             <th>CNPJ do Sindicato</th>
             {% endif %}
-            {% if show_fields.show_infonusremun %}
+            {% if show_fields.show_infonusremun or 1 %}
             <th>Ônus da remuneração</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

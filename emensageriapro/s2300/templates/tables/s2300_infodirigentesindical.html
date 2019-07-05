@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_infocomplementares %}
+            {% if show_fields.show_s2300_infocomplementares or 1 %}
             <th>Empresa de Origem do Dirigente Sindical</th>
             {% endif %}
-            {% if show_fields.show_categorig %}
+            {% if show_fields.show_categorig or 1 %}
             <th>Categoria de origem do trabalhador</th>
             {% endif %}
-            {% if show_fields.show_cnpjorigem %}
+            {% if show_fields.show_cnpjorigem or 0 %}
             <th>CNPJ da empresa de origem do dirigente sindical</th>
             {% endif %}
-            {% if show_fields.show_dtadmorig %}
+            {% if show_fields.show_dtadmorig or 0 %}
             <th>Data de admissão do dirigente sindical</th>
             {% endif %}
-            {% if show_fields.show_matricorig %}
+            {% if show_fields.show_matricorig or 0 %}
             <th>Matricula do trabalhador no empregador origem</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

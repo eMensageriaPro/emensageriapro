@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9001_infototal %}
+            {% if show_fields.show_r9001_infototal or 1 %}
             <th>Totalizador da contribuição previdenciária incidente sobre Receitas de Espetáculos Desportivos, apuradas no evento R-3010.</th>
             {% endif %}
-            {% if show_fields.show_crrecespetdesp %}
+            {% if show_fields.show_crrecespetdesp or 1 %}
             <th>Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Receita de Espetáculos Desportivos, calculada segundo as regras estabelecidas na legislação em vigor</th>
             {% endif %}
-            {% if show_fields.show_vlrreceitatotal %}
+            {% if show_fields.show_vlrreceitatotal or 0 %}
             <th>Valor da receita bruta total</th>
             {% endif %}
-            {% if show_fields.show_vlrcrrecespetdesp %}
+            {% if show_fields.show_vlrcrrecespetdesp or 1 %}
             <th>Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem:R-3010</th>
             {% endif %}
-            {% if show_fields.show_vlrcrrecespetdespsusp %}
+            {% if show_fields.show_vlrcrrecespetdespsusp or 0 %}
             <th>Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

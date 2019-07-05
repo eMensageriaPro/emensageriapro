@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2299_verbasresc %}
+            {% if show_fields.show_s2299_verbasresc or 1 %}
             <th>Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</th>
             {% endif %}
-            {% if show_fields.show_indmv %}
+            {% if show_fields.show_indmv or 1 %}
             <th>Desconto de Contribuição Previdenciária (Outros vinculos)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

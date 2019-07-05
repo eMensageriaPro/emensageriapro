@@ -2,28 +2,28 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1260_ideadquir %}
+            {% if show_fields.show_s1260_ideadquir or 1 %}
             <th>Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.</th>
             {% endif %}
-            {% if show_fields.show_serie %}
+            {% if show_fields.show_serie or 0 %}
             <th>Número de Série da NF/Fatura</th>
             {% endif %}
-            {% if show_fields.show_nrdocto %}
+            {% if show_fields.show_nrdocto or 1 %}
             <th>Número da NF</th>
             {% endif %}
-            {% if show_fields.show_dtemisnf %}
+            {% if show_fields.show_dtemisnf or 1 %}
             <th>Data de emissão da NF</th>
             {% endif %}
-            {% if show_fields.show_vlrbruto %}
+            {% if show_fields.show_vlrbruto or 0 %}
             <th>Valor bruto</th>
             {% endif %}
-            {% if show_fields.show_vrcpdescpr %}
+            {% if show_fields.show_vrcpdescpr or 0 %}
             <th>Valor da CP descontada PR</th>
             {% endif %}
-            {% if show_fields.show_vrratdescpr %}
+            {% if show_fields.show_vrratdescpr or 0 %}
             <th>Valor RAT descontado do produtor rural</th>
             {% endif %}
-            {% if show_fields.show_vrsenardesc %}
+            {% if show_fields.show_vrsenardesc or 0 %}
             <th>Valor descontado destinado ao SENAR</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

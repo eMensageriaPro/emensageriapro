@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4020_infopgto %}
+            {% if show_fields.show_r4020_infopgto or 1 %}
             <th>Informações relativas ao PIS/PASEP</th>
             {% endif %}
-            {% if show_fields.show_vlrbasepp %}
+            {% if show_fields.show_vlrbasepp or 1 %}
             <th>Valor da base do PIS/PASEP, conforme previsto na legislação</th>
             {% endif %}
-            {% if show_fields.show_vlrpp %}
+            {% if show_fields.show_vlrpp or 1 %}
             <th>Valor da retenção do PIS/PASEP, conforme previsto na legislação</th>
             {% endif %}
-            {% if show_fields.show_vlrbasenpp %}
+            {% if show_fields.show_vlrbasenpp or 0 %}
             <th>Valor da base do PIS/PASEP com exigibilidade suspensa</th>
             {% endif %}
-            {% if show_fields.show_vlrnpp %}
+            {% if show_fields.show_vlrnpp or 0 %}
             <th>Valor do PIS/PASEP com exigibilidade suspensa, que deixou de ser retido</th>
             {% endif %}
-            {% if show_fields.show_vlrdeppp %}
+            {% if show_fields.show_vlrdeppp or 0 %}
             <th>Valor depósito judicial de PIS/PASEP</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

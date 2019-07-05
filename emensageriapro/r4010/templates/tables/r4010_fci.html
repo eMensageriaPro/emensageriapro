@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_infopgto %}
+            {% if show_fields.show_r4010_infopgto or 1 %}
             <th>Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante</th>
             {% endif %}
-            {% if show_fields.show_nrinscfci %}
+            {% if show_fields.show_nrinscfci or 1 %}
             <th>Número de inscrição no CNPJ do fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

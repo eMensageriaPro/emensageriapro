@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_evtcs %}
+            {% if show_fields.show_s5011_evtcs or 1 %}
             <th>Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 1 %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_evttsvinicio %}
+            {% if show_fields.show_s2300_evttsvinicio or 1 %}
             <th>Grupo de informações do Trabalhador Estrangeiro</th>
             {% endif %}
-            {% if show_fields.show_dtchegada %}
+            {% if show_fields.show_dtchegada or 0 %}
             <th>Data de chegada</th>
             {% endif %}
-            {% if show_fields.show_classtrabestrang %}
+            {% if show_fields.show_classtrabestrang or 1 %}
             <th>Classificação da condição de trabalho</th>
             {% endif %}
-            {% if show_fields.show_casadobr %}
+            {% if show_fields.show_casadobr or 1 %}
             <th>Casado com Brasileiro(a)</th>
             {% endif %}
-            {% if show_fields.show_filhosbr %}
+            {% if show_fields.show_filhosbr or 0 %}
             <th>Possui filho(s) brasileiro(s)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

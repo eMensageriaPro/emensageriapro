@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1210_infopgto %}
+            {% if show_fields.show_s1210_infopgto or 1 %}
             <th>Detalhamento dos pagamentos efetuados relativos a férias</th>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 1 %}
             <th>Código da Categoria</th>
             {% endif %}
-            {% if show_fields.show_matricula %}
+            {% if show_fields.show_matricula or 0 %}
             <th>Matricula</th>
             {% endif %}
-            {% if show_fields.show_dtinigoz %}
+            {% if show_fields.show_dtinigoz or 1 %}
             <th>Data de início do gozo de férias</th>
             {% endif %}
-            {% if show_fields.show_qtdias %}
+            {% if show_fields.show_qtdias or 0 %}
             <th>Quant. de dias de férias gozadas</th>
             {% endif %}
-            {% if show_fields.show_vrliq %}
+            {% if show_fields.show_vrliq or 0 %}
             <th>Valor liquido</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2050_evtcomprod %}
+            {% if show_fields.show_r2050_evtcomprod or 1 %}
             <th>Registro que apresenta o valor total da Receita Bruta por 'tipo' de comercialização.</th>
             {% endif %}
-            {% if show_fields.show_indcom %}
+            {% if show_fields.show_indcom or 1 %}
             <th>Indicativo de Comercialização</th>
             {% endif %}
-            {% if show_fields.show_vlrrecbruta %}
+            {% if show_fields.show_vlrrecbruta or 1 %}
             <th>Preencher com o valor total da comercialização</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

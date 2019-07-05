@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1200_dmdev %}
+            {% if show_fields.show_s1200_dmdev or 1 %}
             <th>Registro preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente (CPF + categoria).</th>
             {% endif %}
-            {% if show_fields.show_codcbo %}
+            {% if show_fields.show_codcbo or 1 %}
             <th>CBO</th>
             {% endif %}
-            {% if show_fields.show_natatividade %}
+            {% if show_fields.show_natatividade or 0 %}
             <th>Natureza da atividade</th>
             {% endif %}
-            {% if show_fields.show_qtddiastrab %}
+            {% if show_fields.show_qtddiastrab or 0 %}
             <th>Quant. de dias trabalhados</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

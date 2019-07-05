@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5001_evtbasestrab %}
+            {% if show_fields.show_s5001_evtbasestrab or 1 %}
             <th>Cálculo da contribuição previdenciária do segurado, incidente sobre a Remuneração do Período de Apuração e de Períodos Anteriores informada nos eventos S-1200, S-2299 e S-2399.</th>
             {% endif %}
-            {% if show_fields.show_tpcr %}
+            {% if show_fields.show_tpcr or 1 %}
             <th>Código da Receita (CR)</th>
             {% endif %}
-            {% if show_fields.show_vrcpseg %}
+            {% if show_fields.show_vrcpseg or 1 %}
             <th>Valor da contribuição do segurado</th>
             {% endif %}
-            {% if show_fields.show_vrdescseg %}
+            {% if show_fields.show_vrdescseg or 0 %}
             <th>Valor efetivamente descontado do segurado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

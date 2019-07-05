@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1210_detpgtoant %}
+            {% if show_fields.show_s1210_detpgtoant or 1 %}
             <th>Detalhamento do pagamento</th>
             {% endif %}
-            {% if show_fields.show_tpbcirrf %}
+            {% if show_fields.show_tpbcirrf or 1 %}
             <th>Tipo de BC IRRF</th>
             {% endif %}
-            {% if show_fields.show_vrbcirrf %}
+            {% if show_fields.show_vrbcirrf or 1 %}
             <th>Valor da BC do IRRF</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2200_evtadmissao %}
+            {% if show_fields.show_s2200_evtadmissao or 1 %}
             <th>Informações do desligamento do trabalhador</th>
             {% endif %}
-            {% if show_fields.show_dtdeslig %}
+            {% if show_fields.show_dtdeslig or 1 %}
             <th>Data de desligamento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

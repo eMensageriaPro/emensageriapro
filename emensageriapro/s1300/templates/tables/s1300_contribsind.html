@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1300_evtcontrsindpatr %}
+            {% if show_fields.show_s1300_evtcontrsindpatr or 1 %}
             <th>Informações da contribuição sindical patronal</th>
             {% endif %}
-            {% if show_fields.show_cnpjsindic %}
+            {% if show_fields.show_cnpjsindic or 1 %}
             <th>CNPJ do Sindicato</th>
             {% endif %}
-            {% if show_fields.show_tpcontribsind %}
+            {% if show_fields.show_tpcontribsind or 1 %}
             <th>Tipo de Contribuição Sindical</th>
             {% endif %}
-            {% if show_fields.show_vlrcontribsind %}
+            {% if show_fields.show_vlrcontribsind or 0 %}
             <th>Valor</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

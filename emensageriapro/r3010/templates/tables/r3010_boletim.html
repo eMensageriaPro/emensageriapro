@@ -2,46 +2,46 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r3010_evtespdesportivo %}
+            {% if show_fields.show_r3010_evtespdesportivo or 1 %}
             <th>Boletim do Espetáculo Desportivo</th>
             {% endif %}
-            {% if show_fields.show_nrboletim %}
+            {% if show_fields.show_nrboletim or 0 %}
             <th>Número do boletim relativo ao espetáculo desportivo</th>
             {% endif %}
-            {% if show_fields.show_tpcompeticao %}
+            {% if show_fields.show_tpcompeticao or 0 %}
             <th>Tipo de Competição</th>
             {% endif %}
-            {% if show_fields.show_categevento %}
+            {% if show_fields.show_categevento or 1 %}
             <th>Categoria do evento</th>
             {% endif %}
-            {% if show_fields.show_moddesportiva %}
+            {% if show_fields.show_moddesportiva or 1 %}
             <th>Descrição da modalidade do evento desportivo</th>
             {% endif %}
-            {% if show_fields.show_nomecompeticao %}
+            {% if show_fields.show_nomecompeticao or 0 %}
             <th>Nome da competição. (Campeonato Brasileiro, Copa do Brasil, Campeonato Estadual, entre outras)</th>
             {% endif %}
-            {% if show_fields.show_cnpjmandante %}
+            {% if show_fields.show_cnpjmandante or 0 %}
             <th>Preencher com o CNPJ do clube mandante</th>
             {% endif %}
-            {% if show_fields.show_cnpjvisitante %}
+            {% if show_fields.show_cnpjvisitante or 0 %}
             <th>Preencher com o número de inscrição do clube visitante no CNPJ</th>
             {% endif %}
-            {% if show_fields.show_nomevisitante %}
+            {% if show_fields.show_nomevisitante or 0 %}
             <th>Nome do clube visitante</th>
             {% endif %}
-            {% if show_fields.show_pracadesportiva %}
+            {% if show_fields.show_pracadesportiva or 0 %}
             <th>Praça desportiva do local do evento</th>
             {% endif %}
-            {% if show_fields.show_codmunic %}
+            {% if show_fields.show_codmunic or 0 %}
             <th>Código do Município</th>
             {% endif %}
-            {% if show_fields.show_uf %}
+            {% if show_fields.show_uf or 0 %}
             <th>Preencher com a sigla da Unidade da Federação</th>
             {% endif %}
-            {% if show_fields.show_qtdepagantes %}
+            {% if show_fields.show_qtdepagantes or 0 %}
             <th>Quantidade de espectadores pagantes do evento</th>
             {% endif %}
-            {% if show_fields.show_qtdenaopagantes %}
+            {% if show_fields.show_qtdenaopagantes or 0 %}
             <th>Quantidade de espectadores não pagantes do evento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

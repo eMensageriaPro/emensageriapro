@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1070_inclusao %}
+            {% if show_fields.show_s1070_inclusao or 1 %}
             <th>Informações Complementares do Processo Judicial</th>
             {% endif %}
-            {% if show_fields.show_ufvara %}
+            {% if show_fields.show_ufvara or 1 %}
             <th>UF da seção jucidial</th>
             {% endif %}
-            {% if show_fields.show_codmunic %}
+            {% if show_fields.show_codmunic or 1 %}
             <th>Código do Município</th>
             {% endif %}
-            {% if show_fields.show_idvara %}
+            {% if show_fields.show_idvara or 0 %}
             <th>Vara</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

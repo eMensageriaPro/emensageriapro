@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_idelotacao %}
+            {% if show_fields.show_s5011_idelotacao or 0 %}
             <th>Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).</th>
             {% endif %}
-            {% if show_fields.show_cnpjopportuario %}
+            {% if show_fields.show_cnpjopportuario or 1 %}
             <th>CNPJ do Operador Portuário</th>
             {% endif %}
-            {% if show_fields.show_aliqrat %}
+            {% if show_fields.show_aliqrat or 1 %}
             <th>Alíquota RAT</th>
             {% endif %}
-            {% if show_fields.show_fap %}
+            {% if show_fields.show_fap or 0 %}
             <th>FAP</th>
             {% endif %}
-            {% if show_fields.show_aliqratajust %}
+            {% if show_fields.show_aliqratajust or 1 %}
             <th>Alíquota RAT (Ajustada)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

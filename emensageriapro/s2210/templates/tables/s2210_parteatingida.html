@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2210_evtcat %}
+            {% if show_fields.show_s2210_evtcat or 1 %}
             <th>Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.</th>
             {% endif %}
-            {% if show_fields.show_codparteating %}
+            {% if show_fields.show_codparteating or 1 %}
             <th>Parte Atingida</th>
             {% endif %}
-            {% if show_fields.show_lateralidade %}
+            {% if show_fields.show_lateralidade or 1 %}
             <th>Laterabilidade</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,55 +2,55 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1010_evttabrubrica %}
+            {% if show_fields.show_s1010_evttabrubrica or 0 %}
             <th>Inclusão de novas informações</th>
             {% endif %}
-            {% if show_fields.show_iderubrica %}
+            {% if show_fields.show_iderubrica or 0 %}
             <th>Informações de identificação da rubrica e validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_codrubr %}
+            {% if show_fields.show_codrubr or 0 %}
             <th>Código da Rubrica</th>
             {% endif %}
-            {% if show_fields.show_idetabrubr %}
+            {% if show_fields.show_idetabrubr or 0 %}
             <th>Identificador tabela de rubricas</th>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 0 %}
             <th>Início da Validade</th>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <th>Fim da Validade</th>
             {% endif %}
-            {% if show_fields.show_dadosrubrica %}
+            {% if show_fields.show_dadosrubrica or 0 %}
             <th>Detalhamento das informações da rubrica que está sendo incluída</th>
             {% endif %}
-            {% if show_fields.show_dscrubr %}
+            {% if show_fields.show_dscrubr or 0 %}
             <th>Descrição</th>
             {% endif %}
-            {% if show_fields.show_natrubr %}
+            {% if show_fields.show_natrubr or 0 %}
             <th>Natureza da Rubrica</th>
             {% endif %}
-            {% if show_fields.show_tprubr %}
+            {% if show_fields.show_tprubr or 0 %}
             <th>Tipo de rubrica</th>
             {% endif %}
-            {% if show_fields.show_codinccp %}
+            {% if show_fields.show_codinccp or 1 %}
             <th>Código Incidência CP</th>
             {% endif %}
-            {% if show_fields.show_codincirrf %}
+            {% if show_fields.show_codincirrf or 1 %}
             <th>Código Incidência IRRF</th>
             {% endif %}
-            {% if show_fields.show_codincfgts %}
+            {% if show_fields.show_codincfgts or 1 %}
             <th>Código Incidência FGTS</th>
             {% endif %}
-            {% if show_fields.show_codincsind %}
+            {% if show_fields.show_codincsind or 0 %}
             <th>Código Incidência SIND</th>
             {% endif %}
-            {% if show_fields.show_codinccprp %}
+            {% if show_fields.show_codinccprp or 0 %}
             <th>Código de incidência da rubrica para as contribuições do RPPS/regime militar</th>
             {% endif %}
-            {% if show_fields.show_tetoremun %}
+            {% if show_fields.show_tetoremun or 0 %}
             <th>Informar se a rubrica compõe o teto remuneratório específico (art. 37, XI, da CF/1988)</th>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

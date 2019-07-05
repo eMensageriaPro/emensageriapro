@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2205_documentos %}
+            {% if show_fields.show_s2205_documentos or 1 %}
             <th>Informações da Carteira de Trabalho e Previdência Social</th>
             {% endif %}
-            {% if show_fields.show_nrctps %}
+            {% if show_fields.show_nrctps or 1 %}
             <th>Número da CTPS</th>
             {% endif %}
-            {% if show_fields.show_seriectps %}
+            {% if show_fields.show_seriectps or 1 %}
             <th>Série da CTPS</th>
             {% endif %}
-            {% if show_fields.show_ufctps %}
+            {% if show_fields.show_ufctps or 0 %}
             <th>UF da CTPS</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

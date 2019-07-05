@@ -2,25 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9002_infototal %}
+            {% if show_fields.show_r9002_infototal or 1 %}
             <th>Totalizador das bases de cálculo e das retenções dos tributos com período de apuração diário</th>
             {% endif %}
-            {% if show_fields.show_perapurdia %}
+            {% if show_fields.show_perapurdia or 1 %}
             <th>Período de apuração diário do Código de Receita - CR</th>
             {% endif %}
-            {% if show_fields.show_crdia %}
+            {% if show_fields.show_crdia or 1 %}
             <th>Código de Receita - CR relativo a tributo que possui período de apuração diário</th>
             {% endif %}
-            {% if show_fields.show_vlrbasecrdia %}
+            {% if show_fields.show_vlrbasecrdia or 0 %}
             <th>Valor da base do tributo com período de apuração diário</th>
             {% endif %}
-            {% if show_fields.show_vlrcrdia %}
+            {% if show_fields.show_vlrcrdia or 0 %}
             <th>Valor do tributo retido com período de apuração diário, calculado segundo as regras estabelecidas na legislação em vigor</th>
             {% endif %}
-            {% if show_fields.show_vlrbasecrdiasusp %}
+            {% if show_fields.show_vlrbasecrdiasusp or 0 %}
             <th>Valor da base do tributo com período de apuração diário, com exigibilidade suspensa</th>
             {% endif %}
-            {% if show_fields.show_vlrcrdiasusp %}
+            {% if show_fields.show_vlrcrdiasusp or 0 %}
             <th>Valor do tributo com período de apuração diário, que deixou de ser retido</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

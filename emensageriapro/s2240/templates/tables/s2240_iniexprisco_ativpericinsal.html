@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_evtexprisco %}
+            {% if show_fields.show_s2240_evtexprisco or 1 %}
             <th>Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)</th>
             {% endif %}
-            {% if show_fields.show_codativ %}
+            {% if show_fields.show_codativ or 1 %}
             <th>Atividade desempenhada</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

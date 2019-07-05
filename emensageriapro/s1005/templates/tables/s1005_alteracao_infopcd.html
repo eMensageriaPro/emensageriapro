@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1005_alteracao %}
+            {% if show_fields.show_s1005_alteracao or 1 %}
             <th>Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.</th>
             {% endif %}
-            {% if show_fields.show_contpcd %}
+            {% if show_fields.show_contpcd or 1 %}
             <th>Situação PCD</th>
             {% endif %}
-            {% if show_fields.show_nrprocjud %}
+            {% if show_fields.show_nrprocjud or 0 %}
             <th>Número do Processo Judicial</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

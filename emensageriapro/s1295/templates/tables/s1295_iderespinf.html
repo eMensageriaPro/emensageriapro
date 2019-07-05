@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1295_evttotconting %}
+            {% if show_fields.show_s1295_evttotconting or 1 %}
             <th>Responsável pelas informações</th>
             {% endif %}
-            {% if show_fields.show_nmresp %}
+            {% if show_fields.show_nmresp or 1 %}
             <th>Nome do Responsável pelas Informações</th>
             {% endif %}
-            {% if show_fields.show_cpfresp %}
+            {% if show_fields.show_cpfresp or 1 %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_telefone %}
+            {% if show_fields.show_telefone or 0 %}
             <th>Telefone</th>
             {% endif %}
-            {% if show_fields.show_email %}
+            {% if show_fields.show_email or 0 %}
             <th>E-mail</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

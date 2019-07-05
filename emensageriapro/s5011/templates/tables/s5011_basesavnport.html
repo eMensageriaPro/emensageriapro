@@ -2,28 +2,28 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_idelotacao %}
+            {% if show_fields.show_s5011_idelotacao or 1 %}
             <th>Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários</th>
             {% endif %}
-            {% if show_fields.show_vrbccp00 %}
+            {% if show_fields.show_vrbccp00 or 1 %}
             <th>Valor da BC da CP</th>
             {% endif %}
-            {% if show_fields.show_vrbccp15 %}
+            {% if show_fields.show_vrbccp15 or 0 %}
             <th>Valor da BC da CP (15 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbccp20 %}
+            {% if show_fields.show_vrbccp20 or 0 %}
             <th>Valor da BC da CP (20 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbccp25 %}
+            {% if show_fields.show_vrbccp25 or 0 %}
             <th>Valor da BC da CP (25 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbccp13 %}
+            {% if show_fields.show_vrbccp13 or 1 %}
             <th>Valor da BC da CP (13 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbcfgts %}
+            {% if show_fields.show_vrbcfgts or 0 %}
             <th>Valor da BC do FGTS</th>
             {% endif %}
-            {% if show_fields.show_vrdesccp %}
+            {% if show_fields.show_vrdesccp or 0 %}
             <th>Valor total descontada dos segurados</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

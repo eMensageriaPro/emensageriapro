@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_infopgto %}
+            {% if show_fields.show_r4010_infopgto or 1 %}
             <th>Detalhamento das deduções</th>
             {% endif %}
-            {% if show_fields.show_indtpdeducao %}
+            {% if show_fields.show_indtpdeducao or 1 %}
             <th>Indicativo do Tipo de Dedução</th>
             {% endif %}
-            {% if show_fields.show_vlrdeducao %}
+            {% if show_fields.show_vlrdeducao or 1 %}
             <th>Preencher com o Valor da dedução da base de cálculo.</th>
             {% endif %}
-            {% if show_fields.show_vlrdedsusp %}
+            {% if show_fields.show_vlrdedsusp or 0 %}
             <th>Valor da dedução da base de cálculo do Imposto de Renda, com exigibilidade suspensa</th>
             {% endif %}
-            {% if show_fields.show_nrinscprevcomp %}
+            {% if show_fields.show_nrinscprevcomp or 0 %}
             <th>Número de inscrição da entidade de previdência complementar</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

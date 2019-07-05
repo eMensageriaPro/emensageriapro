@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2416_evtcdbenalt %}
+            {% if show_fields.show_s2416_evtcdbenalt or 1 %}
             <th>Informações referentes à suspensão do benefício</th>
             {% endif %}
-            {% if show_fields.show_mtvsuspensao %}
+            {% if show_fields.show_mtvsuspensao or 1 %}
             <th>Motivo da suspensão do benefício</th>
             {% endif %}
-            {% if show_fields.show_dscsuspensao %}
+            {% if show_fields.show_dscsuspensao or 0 %}
             <th>Descrição do motivo da suspensão do benefício</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

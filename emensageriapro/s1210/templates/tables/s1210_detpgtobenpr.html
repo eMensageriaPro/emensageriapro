@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1210_infopgto %}
+            {% if show_fields.show_s1210_infopgto or 1 %}
             <th>Detalhamento de pagamentos relativos a benefícios previdenciários</th>
             {% endif %}
-            {% if show_fields.show_perref %}
+            {% if show_fields.show_perref or 0 %}
             <th>Período de Referência</th>
             {% endif %}
-            {% if show_fields.show_idedmdev %}
+            {% if show_fields.show_idedmdev or 1 %}
             <th>Identificador dos demostrativos de pagamento</th>
             {% endif %}
-            {% if show_fields.show_indpgtott %}
+            {% if show_fields.show_indpgtott or 1 %}
             <th>Indicador de pagamento total ou parcial</th>
             {% endif %}
-            {% if show_fields.show_vrliq %}
+            {% if show_fields.show_vrliq or 0 %}
             <th>Valor liquido</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

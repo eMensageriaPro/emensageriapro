@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r1070_alteracao %}
+            {% if show_fields.show_r1070_alteracao or 0 %}
             <th>Informações Complementares do Processo Judicial</th>
             {% endif %}
-            {% if show_fields.show_ufvara %}
+            {% if show_fields.show_ufvara or 1 %}
             <th>Identificação da Unidade da Federação - UF da Seção Judiciária</th>
             {% endif %}
-            {% if show_fields.show_codmunic %}
+            {% if show_fields.show_codmunic or 1 %}
             <th>Código do Município</th>
             {% endif %}
-            {% if show_fields.show_idvara %}
+            {% if show_fields.show_idvara or 1 %}
             <th>Código de Identificação da Vara.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

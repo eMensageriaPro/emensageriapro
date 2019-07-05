@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2210_evtcat %}
+            {% if show_fields.show_s2210_evtcat or 1 %}
             <th>Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito</th>
             {% endif %}
-            {% if show_fields.show_dtcatorig %}
+            {% if show_fields.show_dtcatorig or 1 %}
             <th>Data do CAT de origem</th>
             {% endif %}
-            {% if show_fields.show_nrreccatorig %}
+            {% if show_fields.show_nrreccatorig or 1 %}
             <th>Informar o número do recibo da última CAT referente ao mesmo acidente/doença relacionada ao trabalho</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,43 +2,43 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2200_evtadmissao %}
+            {% if show_fields.show_s2200_evtadmissao or 0 %}
             <th>Informações de Trabalhador Estatutário</th>
             {% endif %}
-            {% if show_fields.show_indprovim %}
+            {% if show_fields.show_indprovim or 0 %}
             <th>Indicador de Provimento</th>
             {% endif %}
-            {% if show_fields.show_tpprov %}
+            {% if show_fields.show_tpprov or 0 %}
             <th>Tipo de Provimento</th>
             {% endif %}
-            {% if show_fields.show_dtnomeacao %}
+            {% if show_fields.show_dtnomeacao or 1 %}
             <th>Data de nomeação</th>
             {% endif %}
-            {% if show_fields.show_dtposse %}
+            {% if show_fields.show_dtposse or 0 %}
             <th>Data de posse</th>
             {% endif %}
-            {% if show_fields.show_dtexercicio %}
+            {% if show_fields.show_dtexercicio or 1 %}
             <th>Data de exercício</th>
             {% endif %}
-            {% if show_fields.show_dtingsvpub %}
+            {% if show_fields.show_dtingsvpub or 1 %}
             <th>Data de ingresso no serviço público</th>
             {% endif %}
-            {% if show_fields.show_tpplanrp %}
+            {% if show_fields.show_tpplanrp or 0 %}
             <th>Tipo de plano de segregação de massa</th>
             {% endif %}
-            {% if show_fields.show_indtetorgps %}
+            {% if show_fields.show_indtetorgps or 0 %}
             <th>Informar se o servidor está sujeito ao Teto do Regime Geral pela instituição do regime de previdência complementar</th>
             {% endif %}
-            {% if show_fields.show_indabonoperm %}
+            {% if show_fields.show_indabonoperm or 0 %}
             <th>Indicar se o servidor recebe abono permanência</th>
             {% endif %}
-            {% if show_fields.show_dtiniabono %}
+            {% if show_fields.show_dtiniabono or 0 %}
             <th>Informar a data de inicio do abono permanência</th>
             {% endif %}
-            {% if show_fields.show_indparcremun %}
+            {% if show_fields.show_indparcremun or 0 %}
             <th>Informar se o servidor fez a opção pela inclusão na base de cálculo da contribuição de parcelas remuneratórias percebidas em decorrência de local de trabalho e do exercício de cargo em comissão ou de função comissionada ou gratificada, conforme art. 4º, § 2º, da Lei nº 10.887/2004</th>
             {% endif %}
-            {% if show_fields.show_dtiniparc %}
+            {% if show_fields.show_dtiniparc or 0 %}
             <th>Informar a data de inicio da opção do servidor pelas parcelas remuneratórias</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

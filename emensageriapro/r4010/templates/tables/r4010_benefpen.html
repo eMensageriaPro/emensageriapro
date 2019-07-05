@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_detded %}
+            {% if show_fields.show_r4010_detded or 1 %}
             <th>Informação dos beneficiários da pensão alimentícia</th>
             {% endif %}
-            {% if show_fields.show_cpf %}
+            {% if show_fields.show_cpf or 0 %}
             <th>Número do CPF do dependente</th>
             {% endif %}
-            {% if show_fields.show_dtnascto %}
+            {% if show_fields.show_dtnascto or 0 %}
             <th>Informar a data de nascimento do dependente</th>
             {% endif %}
-            {% if show_fields.show_nome %}
+            {% if show_fields.show_nome or 1 %}
             <th>Nome do dependente</th>
             {% endif %}
-            {% if show_fields.show_reldep %}
+            {% if show_fields.show_reldep or 1 %}
             <th>Relação de dependência</th>
             {% endif %}
-            {% if show_fields.show_descrdep %}
+            {% if show_fields.show_descrdep or 0 %}
             <th>Informar a descrição da dependência</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

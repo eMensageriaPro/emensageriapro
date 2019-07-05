@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2399_evttsvtermino %}
+            {% if show_fields.show_s2399_evttsvtermino or 1 %}
             <th>Informações sobre a 'quarentena' remunerada de trabalhador desligado</th>
             {% endif %}
-            {% if show_fields.show_dtfimquar %}
+            {% if show_fields.show_dtfimquar or 1 %}
             <th>Data do término da quarentena</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

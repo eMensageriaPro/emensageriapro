@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1200_infoperant_ideestablot %}
+            {% if show_fields.show_s1200_infoperant_ideestablot or 1 %}
             <th>Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração</th>
             {% endif %}
-            {% if show_fields.show_matricula %}
+            {% if show_fields.show_matricula or 0 %}
             <th>Matricula</th>
             {% endif %}
-            {% if show_fields.show_indsimples %}
+            {% if show_fields.show_indsimples or 0 %}
             <th>Contribuição Substituída</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

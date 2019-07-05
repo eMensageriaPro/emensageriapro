@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1280_evtinfocomplper %}
+            {% if show_fields.show_s1280_evtinfocomplper or 1 %}
             <th>Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador.</th>
             {% endif %}
-            {% if show_fields.show_indsubstpatr %}
+            {% if show_fields.show_indsubstpatr or 1 %}
             <th>Substituição da CP patronal</th>
             {% endif %}
-            {% if show_fields.show_percredcontrib %}
+            {% if show_fields.show_percredcontrib or 1 %}
             <th>Percentual não substituído pela contribuição prevista na lei 12.546/2011</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

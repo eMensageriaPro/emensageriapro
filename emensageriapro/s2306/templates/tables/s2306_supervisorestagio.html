@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2306_infoestagiario %}
+            {% if show_fields.show_s2306_infoestagiario or 1 %}
             <th>Supervisor do Estágio</th>
             {% endif %}
-            {% if show_fields.show_cpfsupervisor %}
+            {% if show_fields.show_cpfsupervisor or 1 %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_nmsuperv %}
+            {% if show_fields.show_nmsuperv or 1 %}
             <th>Nome do Supervisor do Estágio</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

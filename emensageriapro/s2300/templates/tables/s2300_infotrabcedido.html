@@ -2,31 +2,31 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_infocomplementares %}
+            {% if show_fields.show_s2300_infocomplementares or 0 %}
             <th>Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.</th>
             {% endif %}
-            {% if show_fields.show_categorig %}
+            {% if show_fields.show_categorig or 1 %}
             <th>Categoria de origem do trabalhador</th>
             {% endif %}
-            {% if show_fields.show_cnpjcednt %}
+            {% if show_fields.show_cnpjcednt or 1 %}
             <th>CNPJ do empregador cedente</th>
             {% endif %}
-            {% if show_fields.show_matricced %}
+            {% if show_fields.show_matricced or 0 %}
             <th>Matricula do trabalhador no empregador cedente</th>
             {% endif %}
-            {% if show_fields.show_dtadmced %}
+            {% if show_fields.show_dtadmced or 1 %}
             <th>Data de admissão no empregador cedente</th>
             {% endif %}
-            {% if show_fields.show_tpregtrab %}
+            {% if show_fields.show_tpregtrab or 0 %}
             <th>Tipo de regime trabalhista</th>
             {% endif %}
-            {% if show_fields.show_tpregprev %}
+            {% if show_fields.show_tpregprev or 0 %}
             <th>Tipo de regime previdenciário</th>
             {% endif %}
-            {% if show_fields.show_infonus %}
+            {% if show_fields.show_infonus or 0 %}
             <th>Onus da cessão/requisição</th>
             {% endif %}
-            {% if show_fields.show_indremuncargo %}
+            {% if show_fields.show_indremuncargo or 0 %}
             <th>Indicar se o servidor optou pela remuneração do cargo efetivo</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

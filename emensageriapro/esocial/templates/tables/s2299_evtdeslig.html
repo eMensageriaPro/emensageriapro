@@ -2,112 +2,112 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_evtdeslig %}
+            {% if show_fields.show_evtdeslig or 0 %}
             <th>Evento Desligamento</th>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <th>Identidade do Registro</th>
             {% endif %}
-            {% if show_fields.show_ideevento %}
+            {% if show_fields.show_ideevento or 0 %}
             <th>Informações de Identificação do Evento</th>
             {% endif %}
-            {% if show_fields.show_indretif %}
+            {% if show_fields.show_indretif or 0 %}
             <th>Identificador de retificação</th>
             {% endif %}
-            {% if show_fields.show_nrrecibo %}
+            {% if show_fields.show_nrrecibo or 0 %}
             <th>Número do recibo</th>
             {% endif %}
-            {% if show_fields.show_tpamb %}
+            {% if show_fields.show_tpamb or 0 %}
             <th>Identificação do ambiente</th>
             {% endif %}
-            {% if show_fields.show_procemi %}
+            {% if show_fields.show_procemi or 0 %}
             <th>Processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_verproc %}
+            {% if show_fields.show_verproc or 0 %}
             <th>Versão do processo</th>
             {% endif %}
-            {% if show_fields.show_ideempregador %}
+            {% if show_fields.show_ideempregador or 0 %}
             <th>Informações de identificação do empregador</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_idevinculo %}
+            {% if show_fields.show_idevinculo or 0 %}
             <th>Informações de Identificação do Trabalhador e do Vínculo</th>
             {% endif %}
-            {% if show_fields.show_cpftrab %}
+            {% if show_fields.show_cpftrab or 1 %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_nistrab %}
+            {% if show_fields.show_nistrab or 0 %}
             <th>NIS</th>
             {% endif %}
-            {% if show_fields.show_matricula %}
+            {% if show_fields.show_matricula or 0 %}
             <th>Matricula</th>
             {% endif %}
-            {% if show_fields.show_infodeslig %}
+            {% if show_fields.show_infodeslig or 0 %}
             <th>Apresenta as informações relativas ao desligamento do vínculo identificado no registro superior.</th>
             {% endif %}
-            {% if show_fields.show_mtvdeslig %}
+            {% if show_fields.show_mtvdeslig or 0 %}
             <th>Motivo do desligamento</th>
             {% endif %}
-            {% if show_fields.show_dtdeslig %}
+            {% if show_fields.show_dtdeslig or 1 %}
             <th>Data de desligamento</th>
             {% endif %}
-            {% if show_fields.show_indpagtoapi %}
+            {% if show_fields.show_indpagtoapi or 0 %}
             <th>Indicador de pagamento de aviso prévio indenizado</th>
             {% endif %}
-            {% if show_fields.show_dtprojfimapi %}
+            {% if show_fields.show_dtprojfimapi or 0 %}
             <th>Data projetada para o término do aviso prévio</th>
             {% endif %}
-            {% if show_fields.show_pensalim %}
+            {% if show_fields.show_pensalim or 0 %}
             <th>Pensão Alimentícia</th>
             {% endif %}
-            {% if show_fields.show_percaliment %}
+            {% if show_fields.show_percaliment or 0 %}
             <th>Percentual da Pensão Alimentícia</th>
             {% endif %}
-            {% if show_fields.show_vralim %}
+            {% if show_fields.show_vralim or 0 %}
             <th>Valor da Pensão alimentícia</th>
             {% endif %}
-            {% if show_fields.show_nrcertobito %}
+            {% if show_fields.show_nrcertobito or 0 %}
             <th>Número da certidão de óbito</th>
             {% endif %}
-            {% if show_fields.show_nrproctrab %}
+            {% if show_fields.show_nrproctrab or 0 %}
             <th>Número do Processo Trabalhista</th>
             {% endif %}
-            {% if show_fields.show_indcumprparc %}
+            {% if show_fields.show_indcumprparc or 1 %}
             <th>Cumprimento parcial do aviso prévio</th>
             {% endif %}
-            {% if show_fields.show_qtddiasinterm %}
+            {% if show_fields.show_qtddiasinterm or 0 %}
             <th>Quantidade de dias trabalhados no mês pelo empregado com contrato de trabalho intermitente</th>
             {% endif %}
-            {% if show_fields.show_versao %}
+            {% if show_fields.show_versao or 0 %}
             <th>Versão</th>
             {% endif %}
-            {% if show_fields.show_transmissor_lote_esocial %}
+            {% if show_fields.show_transmissor_lote_esocial or 0 %}
             <th>Transmissor</th>
             {% endif %}
-            {% if show_fields.show_retornos_eventos %}
+            {% if show_fields.show_retornos_eventos or 0 %}
             <th>Retorno do Evento</th>
             {% endif %}
-            {% if show_fields.show_ocorrencias %}
+            {% if show_fields.show_ocorrencias or 0 %}
             <th>Ocorrências</th>
             {% endif %}
-            {% if show_fields.show_validacao_precedencia %}
+            {% if show_fields.show_validacao_precedencia or 0 %}
             <th>Validação de Precedência</th>
             {% endif %}
-            {% if show_fields.show_validacoes %}
+            {% if show_fields.show_validacoes or 0 %}
             <th>Validações</th>
             {% endif %}
-            {% if show_fields.show_arquivo_original %}
+            {% if show_fields.show_arquivo_original or 0 %}
             <th>Arquivo Original</th>
             {% endif %}
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 0 %}
             <th>Arquivo</th>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

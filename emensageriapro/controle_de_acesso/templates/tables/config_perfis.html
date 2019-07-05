@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_titulo %}
+            {% if show_fields.show_titulo or 1 %}
             <th>Título</th>
             {% endif %}
-            {% if show_fields.show_grupos %}
+            {% if show_fields.show_grupos or 0 %}
             <th>Grupos</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

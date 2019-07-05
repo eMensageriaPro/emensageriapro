@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1250_tpaquis %}
+            {% if show_fields.show_s1250_tpaquis or 1 %}
             <th>Registro preenchido quando houver processo judicial do adquirente ou de terceiros e que abranja a totalidade dos produtores identificados em {ideProdutor} com decisão/sentença determinando a não retenção pelo adquirente, das contribuições incidentes sobre a aquisição de produção.</th>
             {% endif %}
-            {% if show_fields.show_nrprocjud %}
+            {% if show_fields.show_nrprocjud or 1 %}
             <th>Número do Processo Judicial</th>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 1 %}
             <th>Código do Indicativo da Suspensão</th>
             {% endif %}
-            {% if show_fields.show_vrcpnret %}
+            {% if show_fields.show_vrcpnret or 0 %}
             <th>Valor da CP não retida</th>
             {% endif %}
-            {% if show_fields.show_vrratnret %}
+            {% if show_fields.show_vrratnret or 0 %}
             <th>Valor da GILRAT</th>
             {% endif %}
-            {% if show_fields.show_vrsenarnret %}
+            {% if show_fields.show_vrsenarnret or 0 %}
             <th>Valor da CP destinada ao SENAR não retida</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

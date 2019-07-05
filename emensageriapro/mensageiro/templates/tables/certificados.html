@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_nome %}
+            {% if show_fields.show_nome or 1 %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_certificado %}
+            {% if show_fields.show_certificado or 0 %}
             <th>Arquivo do Certificado</th>
             {% endif %}
-            {% if show_fields.show_senha %}
+            {% if show_fields.show_senha or 0 %}
             <th>Senha</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r5001_rtom %}
+            {% if show_fields.show_r5001_rtom or 1 %}
             <th>Totalizador das retenções de contribuição previdenciária sobre serviços tomados</th>
             {% endif %}
-            {% if show_fields.show_crtom %}
+            {% if show_fields.show_crtom or 1 %}
             <th>Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social sobre serviços tomados</th>
             {% endif %}
-            {% if show_fields.show_vlrcrtom %}
+            {% if show_fields.show_vlrcrtom or 0 %}
             <th>Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRTom}</th>
             {% endif %}
-            {% if show_fields.show_vlrcrtomsusp %}
+            {% if show_fields.show_vlrcrtomsusp or 0 %}
             <th>Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao código de Receita - CR informado em {CRTom}</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

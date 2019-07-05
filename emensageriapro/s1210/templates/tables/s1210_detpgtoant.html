@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1210_infopgto %}
+            {% if show_fields.show_s1210_infopgto or 1 %}
             <th>Pagamento relativo a competências anteriores ao início de obrigatoriedade do eSocial</th>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 1 %}
             <th>Código da Categoria</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

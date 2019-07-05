@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1010_evttabrubrica %}
+            {% if show_fields.show_s1010_evttabrubrica or 1 %}
             <th>Exclusão das informações</th>
             {% endif %}
-            {% if show_fields.show_iderubrica %}
+            {% if show_fields.show_iderubrica or 0 %}
             <th>Informações de identificação da rubrica e validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_codrubr %}
+            {% if show_fields.show_codrubr or 1 %}
             <th>Código da Rubrica</th>
             {% endif %}
-            {% if show_fields.show_idetabrubr %}
+            {% if show_fields.show_idetabrubr or 1 %}
             <th>Identificador tabela de rubricas</th>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 0 %}
             <th>Início da Validade</th>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <th>Fim da Validade</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

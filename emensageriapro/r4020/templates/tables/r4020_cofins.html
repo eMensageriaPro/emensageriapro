@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4020_infopgto %}
+            {% if show_fields.show_r4020_infopgto or 1 %}
             <th>Informações relativas à Cofins</th>
             {% endif %}
-            {% if show_fields.show_vlrbasecofins %}
+            {% if show_fields.show_vlrbasecofins or 1 %}
             <th>Valor da base Cofins</th>
             {% endif %}
-            {% if show_fields.show_vlrcofins %}
+            {% if show_fields.show_vlrcofins or 1 %}
             <th>Valor da retenção relativa a Cofins</th>
             {% endif %}
-            {% if show_fields.show_vlrbasencofins %}
+            {% if show_fields.show_vlrbasencofins or 0 %}
             <th>Valor da base de cálculo da Cofins com exibilidade suspensa</th>
             {% endif %}
-            {% if show_fields.show_vlrncofins %}
+            {% if show_fields.show_vlrncofins or 0 %}
             <th>Valor da Cofins com exigibilidade suspensa, que deixou de ser retida</th>
             {% endif %}
-            {% if show_fields.show_vlrdepcofins %}
+            {% if show_fields.show_vlrdepcofins or 0 %}
             <th>Valor relativo a depósito judicial de Cofins</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

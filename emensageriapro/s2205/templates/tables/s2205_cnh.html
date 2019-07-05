@@ -2,25 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2205_documentos %}
+            {% if show_fields.show_s2205_documentos or 1 %}
             <th>Informações da Carteira Nacional de Habilitação (CNH)</th>
             {% endif %}
-            {% if show_fields.show_nrregcnh %}
+            {% if show_fields.show_nrregcnh or 0 %}
             <th>Número do CNH</th>
             {% endif %}
-            {% if show_fields.show_dtexped %}
+            {% if show_fields.show_dtexped or 0 %}
             <th>Data de Expedição do RIC</th>
             {% endif %}
-            {% if show_fields.show_ufcnh %}
+            {% if show_fields.show_ufcnh or 0 %}
             <th>UF do CNH</th>
             {% endif %}
-            {% if show_fields.show_dtvalid %}
+            {% if show_fields.show_dtvalid or 1 %}
             <th>Data de Validade do OC</th>
             {% endif %}
-            {% if show_fields.show_dtprihab %}
+            {% if show_fields.show_dtprihab or 0 %}
             <th>Data da Primeira Habilitação do CNH</th>
             {% endif %}
-            {% if show_fields.show_categoriacnh %}
+            {% if show_fields.show_categoriacnh or 1 %}
             <th>Categoria do CNH</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

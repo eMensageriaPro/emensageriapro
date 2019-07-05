@@ -2,25 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_altexprisco_infoamb %}
+            {% if show_fields.show_s2240_altexprisco_infoamb or 1 %}
             <th>Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</th>
             {% endif %}
-            {% if show_fields.show_codfatris %}
+            {% if show_fields.show_codfatris or 1 %}
             <th>Código do Fator de Risco</th>
             {% endif %}
-            {% if show_fields.show_intconc %}
+            {% if show_fields.show_intconc or 0 %}
             <th>Concentração</th>
             {% endif %}
-            {% if show_fields.show_tecmedicao %}
+            {% if show_fields.show_tecmedicao or 0 %}
             <th>Técnica de medição</th>
             {% endif %}
-            {% if show_fields.show_epcepi %}
+            {% if show_fields.show_epcepi or 0 %}
             <th>Informações relativas a Equipamentos de Proteção Coletiva - EPC e Equipamentos de Proteção Individual - EPI</th>
             {% endif %}
-            {% if show_fields.show_utilizepc %}
+            {% if show_fields.show_utilizepc or 1 %}
             <th>Utiliza EPC</th>
             {% endif %}
-            {% if show_fields.show_utilizepi %}
+            {% if show_fields.show_utilizepi or 0 %}
             <th>Utiliza EPI</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1202_evtrmnrpps %}
+            {% if show_fields.show_s1202_evtrmnrpps or 1 %}
             <th>Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</th>
             {% endif %}
-            {% if show_fields.show_idedmdev %}
+            {% if show_fields.show_idedmdev or 1 %}
             <th>Identificador dos demostrativos de pagamento</th>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 1 %}
             <th>Código da Categoria</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

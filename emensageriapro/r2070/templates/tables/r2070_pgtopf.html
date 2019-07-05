@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_pgtoresidbr %}
+            {% if show_fields.show_r2070_pgtoresidbr or 1 %}
             <th>Beneficiário Pessoa Física - Residente no Brasil</th>
             {% endif %}
-            {% if show_fields.show_dtpgto %}
+            {% if show_fields.show_dtpgto or 0 %}
             <th>Informar a data de pagamento ou crédito, base para retenção</th>
             {% endif %}
-            {% if show_fields.show_indsuspexig %}
+            {% if show_fields.show_indsuspexig or 1 %}
             <th>Indicativo de Exigibilidade Suspensa</th>
             {% endif %}
-            {% if show_fields.show_inddecterceiro %}
+            {% if show_fields.show_inddecterceiro or 1 %}
             <th>Indicativo de 13o Salário</th>
             {% endif %}
-            {% if show_fields.show_vlrrendtributavel %}
+            {% if show_fields.show_vlrrendtributavel or 0 %}
             <th>Valor do rendimento tributável</th>
             {% endif %}
-            {% if show_fields.show_vlrirrf %}
+            {% if show_fields.show_vlrirrf or 0 %}
             <th>Valor do Imposto Retido na Fonte.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

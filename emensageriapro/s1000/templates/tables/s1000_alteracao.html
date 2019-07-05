@@ -2,73 +2,73 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1000_evtinfoempregador %}
+            {% if show_fields.show_s1000_evtinfoempregador or 1 %}
             <th>Alteração das informações</th>
             {% endif %}
-            {% if show_fields.show_ideperiodo %}
+            {% if show_fields.show_ideperiodo or 0 %}
             <th>Período de validade das informações incluídas</th>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 0 %}
             <th>Início da Validade</th>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <th>Fim da Validade</th>
             {% endif %}
-            {% if show_fields.show_infocadastro %}
+            {% if show_fields.show_infocadastro or 0 %}
             <th>Informações do empregador</th>
             {% endif %}
-            {% if show_fields.show_nmrazao %}
+            {% if show_fields.show_nmrazao or 0 %}
             <th>Razão Social</th>
             {% endif %}
-            {% if show_fields.show_classtrib %}
+            {% if show_fields.show_classtrib or 1 %}
             <th>Classificação tributária</th>
             {% endif %}
-            {% if show_fields.show_natjurid %}
+            {% if show_fields.show_natjurid or 0 %}
             <th>Natureza juridica</th>
             {% endif %}
-            {% if show_fields.show_indcoop %}
+            {% if show_fields.show_indcoop or 0 %}
             <th>Cooperativa?</th>
             {% endif %}
-            {% if show_fields.show_indconstr %}
+            {% if show_fields.show_indconstr or 0 %}
             <th>Construtora?</th>
             {% endif %}
-            {% if show_fields.show_inddesfolha %}
+            {% if show_fields.show_inddesfolha or 0 %}
             <th>Desoneração de folha?</th>
             {% endif %}
-            {% if show_fields.show_indopccp %}
+            {% if show_fields.show_indopccp or 0 %}
             <th>Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária</th>
             {% endif %}
-            {% if show_fields.show_indoptregeletron %}
+            {% if show_fields.show_indoptregeletron or 0 %}
             <th>Indicador de opção pelo registro eletrônico de empregados?</th>
             {% endif %}
-            {% if show_fields.show_indented %}
+            {% if show_fields.show_indented or 0 %}
             <th>Entidade educativa sem fins lucrativos?</th>
             {% endif %}
-            {% if show_fields.show_indett %}
+            {% if show_fields.show_indett or 0 %}
             <th>Empresa de trabalho temporário?</th>
             {% endif %}
-            {% if show_fields.show_nrregett %}
+            {% if show_fields.show_nrregett or 0 %}
             <th>Número do registro da empresa de trabalho temporário</th>
             {% endif %}
-            {% if show_fields.show_contato %}
+            {% if show_fields.show_contato or 0 %}
             <th>Informações de contato</th>
             {% endif %}
-            {% if show_fields.show_nmctt %}
+            {% if show_fields.show_nmctt or 0 %}
             <th>Nome do Contato</th>
             {% endif %}
-            {% if show_fields.show_cpfctt %}
+            {% if show_fields.show_cpfctt or 1 %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_fonefixo %}
+            {% if show_fields.show_fonefixo or 0 %}
             <th>Telefone</th>
             {% endif %}
-            {% if show_fields.show_fonecel %}
+            {% if show_fields.show_fonecel or 0 %}
             <th>Celular</th>
             {% endif %}
-            {% if show_fields.show_email %}
+            {% if show_fields.show_email or 0 %}
             <th>E-mail</th>
             {% endif %}
-            {% if show_fields.show_infocomplementares %}
+            {% if show_fields.show_infocomplementares or 0 %}
             <th>Informações complementares sobre o declarante</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

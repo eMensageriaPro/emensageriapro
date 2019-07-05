@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1260_tpcomerc %}
+            {% if show_fields.show_s1260_tpcomerc or 1 %}
             <th>Identificação dos Adquirentes da Produção.</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 1 %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_vrcomerc %}
+            {% if show_fields.show_vrcomerc or 0 %}
             <th>Valor bruto da comercialização</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

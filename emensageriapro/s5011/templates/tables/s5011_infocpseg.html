@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_evtcs %}
+            {% if show_fields.show_s5011_evtcs or 1 %}
             <th>Informações de contribuição previdenciária do Segurado</th>
             {% endif %}
-            {% if show_fields.show_vrdesccp %}
+            {% if show_fields.show_vrdesccp or 1 %}
             <th>Valor total descontada dos segurados</th>
             {% endif %}
-            {% if show_fields.show_vrcpseg %}
+            {% if show_fields.show_vrcpseg or 1 %}
             <th>Valor da contribuição do segurado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

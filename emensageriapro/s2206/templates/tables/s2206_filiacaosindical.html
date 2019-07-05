@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual %}
+            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
             <th>Filiação Sindical do Trabalhador</th>
             {% endif %}
-            {% if show_fields.show_cnpjsindtrab %}
+            {% if show_fields.show_cnpjsindtrab or 1 %}
             <th>CNPJ do Sindicato</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

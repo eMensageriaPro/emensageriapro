@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_pgtoresidbr %}
+            {% if show_fields.show_r2070_pgtoresidbr or 1 %}
             <th>Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil</th>
             {% endif %}
-            {% if show_fields.show_dtpagto %}
+            {% if show_fields.show_dtpagto or 1 %}
             <th>Informar a data de pagamento ou crédito, base para retenção</th>
             {% endif %}
-            {% if show_fields.show_vlrrendtributavel %}
+            {% if show_fields.show_vlrrendtributavel or 0 %}
             <th>Valor do rendimento tributável</th>
             {% endif %}
-            {% if show_fields.show_vlrret %}
+            {% if show_fields.show_vlrret or 1 %}
             <th>Preencher com o valor da retenção na Fonte relativamente a IR, CSLL, Cofins, PIS/PASEP.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2230_evtafasttemp %}
+            {% if show_fields.show_s2230_evtafasttemp or 1 %}
             <th>Informações do Afastamento Temporário - Início</th>
             {% endif %}
-            {% if show_fields.show_dtiniafast %}
+            {% if show_fields.show_dtiniafast or 1 %}
             <th>Data de início do afastamento</th>
             {% endif %}
-            {% if show_fields.show_codmotafast %}
+            {% if show_fields.show_codmotafast or 1 %}
             <th>Afastamento</th>
             {% endif %}
-            {% if show_fields.show_infomesmomtv %}
+            {% if show_fields.show_infomesmomtv or 0 %}
             <th>Mesmo motivo do afastamento anterior</th>
             {% endif %}
-            {% if show_fields.show_tpacidtransito %}
+            {% if show_fields.show_tpacidtransito or 0 %}
             <th>Tipo de acidente de trânsito</th>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

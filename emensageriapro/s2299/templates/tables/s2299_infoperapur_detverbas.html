@@ -2,25 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2299_infoperapur_ideestablot %}
+            {% if show_fields.show_s2299_infoperapur_ideestablot or 1 %}
             <th>Detalhamento das verbas rescisórias devidas ao trabalhador</th>
             {% endif %}
-            {% if show_fields.show_codrubr %}
+            {% if show_fields.show_codrubr or 1 %}
             <th>Código da Rubrica</th>
             {% endif %}
-            {% if show_fields.show_idetabrubr %}
+            {% if show_fields.show_idetabrubr or 1 %}
             <th>Identificador tabela de rubricas</th>
             {% endif %}
-            {% if show_fields.show_qtdrubr %}
+            {% if show_fields.show_qtdrubr or 0 %}
             <th>Quantidade</th>
             {% endif %}
-            {% if show_fields.show_fatorrubr %}
+            {% if show_fields.show_fatorrubr or 0 %}
             <th>Fator</th>
             {% endif %}
-            {% if show_fields.show_vrunit %}
+            {% if show_fields.show_vrunit or 0 %}
             <th>Valor Unitário</th>
             {% endif %}
-            {% if show_fields.show_vrrubr %}
+            {% if show_fields.show_vrrubr or 0 %}
             <th>Valor total</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

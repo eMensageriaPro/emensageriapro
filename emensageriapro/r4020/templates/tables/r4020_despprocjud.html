@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4020_infoprocjud %}
+            {% if show_fields.show_r4020_infoprocjud or 1 %}
             <th>Detalhamento das despesas de processo judicial</th>
             {% endif %}
-            {% if show_fields.show_vlrdespcustas %}
+            {% if show_fields.show_vlrdespcustas or 1 %}
             <th>Preencher com o Valor da despesa com custas judiciais</th>
             {% endif %}
-            {% if show_fields.show_vlrdespadvogados %}
+            {% if show_fields.show_vlrdespadvogados or 1 %}
             <th>Preencher com o Valor da despesa com advogado(s)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

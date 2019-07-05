@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5003_infodpsperante %}
+            {% if show_fields.show_s5003_infodpsperante or 1 %}
             <th>Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração de períodos anteriores quando {tpAcConv} = [E].</th>
             {% endif %}
-            {% if show_fields.show_tpdpse %}
+            {% if show_fields.show_tpdpse or 1 %}
             <th>Tipo de depósito</th>
             {% endif %}
-            {% if show_fields.show_dpsfgtse %}
+            {% if show_fields.show_dpsfgtse or 1 %}
             <th>Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador, conforme definido no campo {tpDpsE}</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

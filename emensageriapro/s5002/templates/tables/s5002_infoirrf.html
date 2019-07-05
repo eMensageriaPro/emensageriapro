@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5002_evtirrfbenef %}
+            {% if show_fields.show_s5002_evtirrfbenef or 1 %}
             <th>Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo</th>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 0 %}
             <th>Código da Categoria</th>
             {% endif %}
-            {% if show_fields.show_indresbr %}
+            {% if show_fields.show_indresbr or 1 %}
             <th>Indicador de residência</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

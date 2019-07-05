@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1000_alteracao %}
+            {% if show_fields.show_s1000_alteracao or 1 %}
             <th>Informações Complementares - Pessoa Física</th>
             {% endif %}
-            {% if show_fields.show_indsitpf %}
+            {% if show_fields.show_indsitpf or 1 %}
             <th>Situação PF</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,37 +2,37 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2010_nfs %}
+            {% if show_fields.show_r2010_nfs or 1 %}
             <th>Informações sobre os tipos de Serviços constantes da Nota Fiscal</th>
             {% endif %}
-            {% if show_fields.show_tpservico %}
+            {% if show_fields.show_tpservico or 1 %}
             <th>Informar o tipo de serviço, conforme tabela 6</th>
             {% endif %}
-            {% if show_fields.show_vlrbaseret %}
+            {% if show_fields.show_vlrbaseret or 0 %}
             <th>Valor da Base de cálculo da retenção da contribuição previdenciária.</th>
             {% endif %}
-            {% if show_fields.show_vlrretencao %}
+            {% if show_fields.show_vlrretencao or 1 %}
             <th>Preencher com o valor da retenção apurada de acordo com o que determina a legislação vigente relativa aos serviços contidos na nota fiscal/fatura</th>
             {% endif %}
-            {% if show_fields.show_vlrretsub %}
+            {% if show_fields.show_vlrretsub or 0 %}
             <th>Informar o valor da retenção destacada na nota fiscal relativo aos serviços subcontratados, se houver, desde que todos os documentos envolvidos se refiram à mesma competência e ao mesmo serviço, conforme disciplina a legislação</th>
             {% endif %}
-            {% if show_fields.show_vlrnretprinc %}
+            {% if show_fields.show_vlrnretprinc or 0 %}
             <th>Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa</th>
             {% endif %}
-            {% if show_fields.show_vlrservicos15 %}
+            {% if show_fields.show_vlrservicos15 or 0 %}
             <th>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição</th>
             {% endif %}
-            {% if show_fields.show_vlrservicos20 %}
+            {% if show_fields.show_vlrservicos20 or 0 %}
             <th>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição</th>
             {% endif %}
-            {% if show_fields.show_vlrservicos25 %}
+            {% if show_fields.show_vlrservicos25 or 0 %}
             <th>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição</th>
             {% endif %}
-            {% if show_fields.show_vlradicional %}
+            {% if show_fields.show_vlradicional or 0 %}
             <th>Adicional apurado de retenção da nota fiscal</th>
             {% endif %}
-            {% if show_fields.show_vlrnretadic %}
+            {% if show_fields.show_vlrnretadic or 0 %}
             <th>Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1020_inclusao_infoprocjudterceiros %}
+            {% if show_fields.show_s1020_inclusao_infoprocjudterceiros or 1 %}
             <th>Identificação do Processo Judicial</th>
             {% endif %}
-            {% if show_fields.show_codterc %}
+            {% if show_fields.show_codterc or 1 %}
             <th>Código de Terceiros</th>
             {% endif %}
-            {% if show_fields.show_nrprocjud %}
+            {% if show_fields.show_nrprocjud or 0 %}
             <th>Número do Processo Judicial</th>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 1 %}
             <th>Código do Indicativo da Suspensão</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

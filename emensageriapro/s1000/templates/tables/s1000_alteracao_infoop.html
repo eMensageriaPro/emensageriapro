@@ -2,28 +2,28 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1000_alteracao %}
+            {% if show_fields.show_s1000_alteracao or 1 %}
             <th>Informações relativas a Órgãos Públicos</th>
             {% endif %}
-            {% if show_fields.show_nrsiafi %}
+            {% if show_fields.show_nrsiafi or 0 %}
             <th>Número do SIAFI</th>
             {% endif %}
-            {% if show_fields.show_indugrpps %}
+            {% if show_fields.show_indugrpps or 1 %}
             <th>Informar se o Órgão Público é uma Unidade Gestora do Regime Próprio de Previdência Social - RPPS</th>
             {% endif %}
-            {% if show_fields.show_esferaop %}
+            {% if show_fields.show_esferaop or 0 %}
             <th>Preencher com a esfera administrativa do Órgão Público</th>
             {% endif %}
-            {% if show_fields.show_poderop %}
+            {% if show_fields.show_poderop or 0 %}
             <th>Preencher com o poder/instituição do Órgão Público</th>
             {% endif %}
-            {% if show_fields.show_vrtetorem %}
+            {% if show_fields.show_vrtetorem or 1 %}
             <th>Informar o valor do teto remuneratório específico (art. 37, XI, da CF/1988).</th>
             {% endif %}
-            {% if show_fields.show_ideefr %}
+            {% if show_fields.show_ideefr or 0 %}
             <th>É Ente Federativo Responsável?</th>
             {% endif %}
-            {% if show_fields.show_cnpjefr %}
+            {% if show_fields.show_cnpjefr or 0 %}
             <th>CNPJ do EFR</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

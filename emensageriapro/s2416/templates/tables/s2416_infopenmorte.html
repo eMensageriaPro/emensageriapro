@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2416_evtcdbenalt %}
+            {% if show_fields.show_s2416_evtcdbenalt or 1 %}
             <th>Informações relativas a pensão por morte</th>
             {% endif %}
-            {% if show_fields.show_tppenmorte %}
+            {% if show_fields.show_tppenmorte or 1 %}
             <th>Tipo de pensão por morte</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

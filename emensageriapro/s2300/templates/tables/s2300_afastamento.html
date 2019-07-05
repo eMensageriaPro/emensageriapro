@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_evttsvinicio %}
+            {% if show_fields.show_s2300_evttsvinicio or 1 %}
             <th>Informações de afastamento do trabalhador</th>
             {% endif %}
-            {% if show_fields.show_dtiniafast %}
+            {% if show_fields.show_dtiniafast or 1 %}
             <th>Data de início do afastamento</th>
             {% endif %}
-            {% if show_fields.show_codmotafast %}
+            {% if show_fields.show_codmotafast or 1 %}
             <th>Afastamento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

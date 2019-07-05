@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual %}
+            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
             <th>Informações de Trabalhador Celetista</th>
             {% endif %}
-            {% if show_fields.show_tpregjor %}
+            {% if show_fields.show_tpregjor or 0 %}
             <th>Regime da Jornada</th>
             {% endif %}
-            {% if show_fields.show_natatividade %}
+            {% if show_fields.show_natatividade or 1 %}
             <th>Natureza da atividade</th>
             {% endif %}
-            {% if show_fields.show_dtbase %}
+            {% if show_fields.show_dtbase or 0 %}
             <th>Data base da categoria profissional</th>
             {% endif %}
-            {% if show_fields.show_cnpjsindcategprof %}
+            {% if show_fields.show_cnpjsindcategprof or 1 %}
             <th>CNPJ do Sindicato</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,52 +2,52 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_evento %}
+            {% if show_fields.show_evento or 1 %}
             <th>Evento</th>
             {% endif %}
-            {% if show_fields.show_versao %}
+            {% if show_fields.show_versao or 1 %}
             <th>Versão</th>
             {% endif %}
-            {% if show_fields.show_numero %}
+            {% if show_fields.show_numero or 1 %}
             <th>Número</th>
             {% endif %}
-            {% if show_fields.show_registro_campo %}
+            {% if show_fields.show_registro_campo or 1 %}
             <th>Registro Campo</th>
             {% endif %}
-            {% if show_fields.show_registro_pai %}
+            {% if show_fields.show_registro_pai or 1 %}
             <th>Registro Pai</th>
             {% endif %}
-            {% if show_fields.show_elemento %}
+            {% if show_fields.show_elemento or 0 %}
             <th>Elemento</th>
             {% endif %}
-            {% if show_fields.show_tipo %}
+            {% if show_fields.show_tipo or 0 %}
             <th>Tipo</th>
             {% endif %}
-            {% if show_fields.show_ocorrencias %}
+            {% if show_fields.show_ocorrencias or 0 %}
             <th>Ocorrências</th>
             {% endif %}
-            {% if show_fields.show_tamanho %}
+            {% if show_fields.show_tamanho or 0 %}
             <th>Tamanho</th>
             {% endif %}
-            {% if show_fields.show_casas_decimais %}
+            {% if show_fields.show_casas_decimais or 0 %}
             <th>Casas Decimais</th>
             {% endif %}
-            {% if show_fields.show_obrigatorio %}
+            {% if show_fields.show_obrigatorio or 0 %}
             <th>Obrigatório</th>
             {% endif %}
-            {% if show_fields.show_descricao %}
+            {% if show_fields.show_descricao or 0 %}
             <th>Descrição</th>
             {% endif %}
-            {% if show_fields.show_tabela %}
+            {% if show_fields.show_tabela or 0 %}
             <th>Tabela</th>
             {% endif %}
-            {% if show_fields.show_valores_validos %}
+            {% if show_fields.show_valores_validos or 0 %}
             <th>Valores Válidos</th>
             {% endif %}
-            {% if show_fields.show_validacoes_precedencia %}
+            {% if show_fields.show_validacoes_precedencia or 0 %}
             <th>Validações de Precedência</th>
             {% endif %}
-            {% if show_fields.show_validacoes %}
+            {% if show_fields.show_validacoes or 0 %}
             <th>Validações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

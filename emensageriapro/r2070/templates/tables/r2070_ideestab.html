@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_evtpgtosdivs %}
+            {% if show_fields.show_r2070_evtpgtosdivs or 1 %}
             <th>Identificação dos estabelecimentos da associação desportiva que receberam os recursos</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 1 %}
             <th>Preencher com o código correspondente ao tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <th>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

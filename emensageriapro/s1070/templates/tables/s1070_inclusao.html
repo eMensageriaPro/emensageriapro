@@ -2,34 +2,34 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1070_evttabprocesso %}
+            {% if show_fields.show_s1070_evttabprocesso or 1 %}
             <th>Inclusão de novas informações</th>
             {% endif %}
-            {% if show_fields.show_ideprocesso %}
+            {% if show_fields.show_ideprocesso or 0 %}
             <th>Informações de identificação do Processo e validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_tpproc %}
+            {% if show_fields.show_tpproc or 0 %}
             <th>Processo RAT</th>
             {% endif %}
-            {% if show_fields.show_nrproc %}
+            {% if show_fields.show_nrproc or 0 %}
             <th>Número do Processo</th>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 1 %}
             <th>Início da Validade</th>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <th>Fim da Validade</th>
             {% endif %}
-            {% if show_fields.show_dadosproc %}
+            {% if show_fields.show_dadosproc or 0 %}
             <th>Dados do processo</th>
             {% endif %}
-            {% if show_fields.show_indautoria %}
+            {% if show_fields.show_indautoria or 0 %}
             <th>Autoria</th>
             {% endif %}
-            {% if show_fields.show_indmatproc %}
+            {% if show_fields.show_indmatproc or 1 %}
             <th>Matéria</th>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

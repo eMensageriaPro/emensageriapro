@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2250_evtavprevio %}
+            {% if show_fields.show_s2250_evtavprevio or 1 %}
             <th>Detalha as informações do evento trabalhista</th>
             {% endif %}
-            {% if show_fields.show_dtavprv %}
+            {% if show_fields.show_dtavprv or 1 %}
             <th>Data do aviso prévio</th>
             {% endif %}
-            {% if show_fields.show_dtprevdeslig %}
+            {% if show_fields.show_dtprevdeslig or 1 %}
             <th>Data prevista para o desligamento</th>
             {% endif %}
-            {% if show_fields.show_tpavprevio %}
+            {% if show_fields.show_tpavprevio or 0 %}
             <th>Tipo de aviso prévio</th>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

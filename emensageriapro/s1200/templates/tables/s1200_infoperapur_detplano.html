@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1200_infoperapur_detoper %}
+            {% if show_fields.show_s1200_infoperapur_detoper or 1 %}
             <th>Informações do dependente do plano privado de saúde.</th>
             {% endif %}
-            {% if show_fields.show_tpdep %}
+            {% if show_fields.show_tpdep or 0 %}
             <th>Tipo</th>
             {% endif %}
-            {% if show_fields.show_cpfdep %}
+            {% if show_fields.show_cpfdep or 0 %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_nmdep %}
+            {% if show_fields.show_nmdep or 1 %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_dtnascto %}
+            {% if show_fields.show_dtnascto or 1 %}
             <th>Data de nascimento</th>
             {% endif %}
-            {% if show_fields.show_vlrpgdep %}
+            {% if show_fields.show_vlrpgdep or 0 %}
             <th>Valor pago relativo ao plano de saúde do dependente</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

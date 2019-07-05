@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2205_documentos %}
+            {% if show_fields.show_s2205_documentos or 1 %}
             <th>Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)</th>
             {% endif %}
-            {% if show_fields.show_nrric %}
+            {% if show_fields.show_nrric or 1 %}
             <th>Número do RIC</th>
             {% endif %}
-            {% if show_fields.show_orgaoemissor %}
+            {% if show_fields.show_orgaoemissor or 1 %}
             <th>Órgão Emissor do RIC</th>
             {% endif %}
-            {% if show_fields.show_dtexped %}
+            {% if show_fields.show_dtexped or 0 %}
             <th>Data de Expedição do RIC</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

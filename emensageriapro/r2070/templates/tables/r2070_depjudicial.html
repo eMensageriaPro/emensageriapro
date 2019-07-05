@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_pgtopf %}
+            {% if show_fields.show_r2070_pgtopf or 1 %}
             <th>Depósito Judicial</th>
             {% endif %}
-            {% if show_fields.show_vlrdepjudicial %}
+            {% if show_fields.show_vlrdepjudicial or 0 %}
             <th>Preencher com o Valor do Depósito Judicial</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_transmissor_lote_efdreinf %}
+            {% if show_fields.show_transmissor_lote_efdreinf or 1 %}
             <th>Transmissor</th>
             {% endif %}
-            {% if show_fields.show_resposta_codigo %}
+            {% if show_fields.show_resposta_codigo or 1 %}
             <th>Código</th>
             {% endif %}
-            {% if show_fields.show_descricao %}
+            {% if show_fields.show_descricao or 1 %}
             <th>Descrição</th>
             {% endif %}
-            {% if show_fields.show_tipo %}
+            {% if show_fields.show_tipo or 0 %}
             <th>Tipo</th>
             {% endif %}
-            {% if show_fields.show_localizacao %}
+            {% if show_fields.show_localizacao or 1 %}
             <th>Localização</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

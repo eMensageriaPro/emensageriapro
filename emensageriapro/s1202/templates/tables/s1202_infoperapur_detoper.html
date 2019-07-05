@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1202_infoperapur_infosaudecolet %}
+            {% if show_fields.show_s1202_infoperapur_infosaudecolet or 1 %}
             <th>Detalhamento dos valores pagos a Operadoras de Planos de Saúde.</th>
             {% endif %}
-            {% if show_fields.show_cnpjoper %}
+            {% if show_fields.show_cnpjoper or 1 %}
             <th>CNPJ da Operadora do Plano de Saúde</th>
             {% endif %}
-            {% if show_fields.show_regans %}
+            {% if show_fields.show_regans or 1 %}
             <th>Registro ANS</th>
             {% endif %}
-            {% if show_fields.show_vrpgtit %}
+            {% if show_fields.show_vrpgtit or 0 %}
             <th>Valor pago pelo titular</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

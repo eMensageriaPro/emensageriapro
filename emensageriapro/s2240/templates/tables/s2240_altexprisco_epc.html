@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_altexprisco_fatrisco %}
+            {% if show_fields.show_s2240_altexprisco_fatrisco or 1 %}
             <th>Equipamentos de Proteção Coletiva - EPC</th>
             {% endif %}
-            {% if show_fields.show_dscepc %}
+            {% if show_fields.show_dscepc or 1 %}
             <th>Descrição do EPC</th>
             {% endif %}
-            {% if show_fields.show_eficepc %}
+            {% if show_fields.show_eficepc or 0 %}
             <th>EPC é eficaz na neutralização</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

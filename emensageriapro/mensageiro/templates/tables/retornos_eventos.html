@@ -2,193 +2,193 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_transmissor_lote_esocial %}
+            {% if show_fields.show_transmissor_lote_esocial or 1 %}
             <th>Transmissor</th>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <th>Identidade do Registro</th>
             {% endif %}
-            {% if show_fields.show_processamento %}
+            {% if show_fields.show_processamento or 0 %}
             <th>Recepção</th>
             {% endif %}
-            {% if show_fields.show_recepcao_tp_amb %}
+            {% if show_fields.show_recepcao_tp_amb or 0 %}
             <th>Tipo de Ambiente</th>
             {% endif %}
-            {% if show_fields.show_recepcao_data_hora %}
+            {% if show_fields.show_recepcao_data_hora or 0 %}
             <th>Data/Hora</th>
             {% endif %}
-            {% if show_fields.show_recepcao_versao_app %}
+            {% if show_fields.show_recepcao_versao_app or 0 %}
             <th>Versão do Aplicativo</th>
             {% endif %}
-            {% if show_fields.show_recepcao_protocolo_envio_lote %}
+            {% if show_fields.show_recepcao_protocolo_envio_lote or 0 %}
             <th>Protocolo do Lote de Envio</th>
             {% endif %}
-            {% if show_fields.show_processamento %}
+            {% if show_fields.show_processamento or 0 %}
             <th>Processamento</th>
             {% endif %}
-            {% if show_fields.show_processamento_codigo_resposta %}
+            {% if show_fields.show_processamento_codigo_resposta or 1 %}
             <th>Código de Resposta</th>
             {% endif %}
-            {% if show_fields.show_processamento_descricao_resposta %}
+            {% if show_fields.show_processamento_descricao_resposta or 0 %}
             <th>Descrição</th>
             {% endif %}
-            {% if show_fields.show_processamento_versao_app_processamento %}
+            {% if show_fields.show_processamento_versao_app_processamento or 0 %}
             <th>Versão do Aplicativo</th>
             {% endif %}
-            {% if show_fields.show_processamento_data_hora %}
+            {% if show_fields.show_processamento_data_hora or 0 %}
             <th>Data/Hora</th>
             {% endif %}
-            {% if show_fields.show_recibo %}
+            {% if show_fields.show_recibo or 0 %}
             <th>Recibo</th>
             {% endif %}
-            {% if show_fields.show_recibo_numero %}
+            {% if show_fields.show_recibo_numero or 0 %}
             <th>Número do Recibo</th>
             {% endif %}
-            {% if show_fields.show_recibo_hash %}
+            {% if show_fields.show_recibo_hash or 0 %}
             <th>Hash do Recibo</th>
             {% endif %}
-            {% if show_fields.show_empregador %}
+            {% if show_fields.show_empregador or 0 %}
             <th>Empregador</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 1 %}
             <th>Tipo de Inscrição</th>
             {% endif %}
-            {% if show_fields.show_empregador_tpinsc %}
+            {% if show_fields.show_empregador_tpinsc or 1 %}
             <th>Tipo de Inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <th>Número de Inscrição</th>
             {% endif %}
-            {% if show_fields.show_empregador_nrinsc %}
+            {% if show_fields.show_empregador_nrinsc or 1 %}
             <th>Número de Inscrição</th>
             {% endif %}
-            {% if show_fields.show_trabalhador %}
+            {% if show_fields.show_trabalhador or 0 %}
             <th>Trabalhador</th>
             {% endif %}
-            {% if show_fields.show_cpftrab %}
+            {% if show_fields.show_cpftrab or 1 %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_nistrab %}
+            {% if show_fields.show_nistrab or 0 %}
             <th>NIS</th>
             {% endif %}
-            {% if show_fields.show_nmtrab %}
+            {% if show_fields.show_nmtrab or 1 %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_deficiencia %}
+            {% if show_fields.show_deficiencia or 0 %}
             <th>Deficiência</th>
             {% endif %}
-            {% if show_fields.show_infocota %}
+            {% if show_fields.show_infocota or 0 %}
             <th>Informação de Cota</th>
             {% endif %}
-            {% if show_fields.show_vinculo %}
+            {% if show_fields.show_vinculo or 0 %}
             <th>Vinculo</th>
             {% endif %}
-            {% if show_fields.show_matricula %}
+            {% if show_fields.show_matricula or 0 %}
             <th>Matricula</th>
             {% endif %}
-            {% if show_fields.show_celetista %}
+            {% if show_fields.show_celetista or 0 %}
             <th>Informação de Celetista</th>
             {% endif %}
-            {% if show_fields.show_dtadm %}
+            {% if show_fields.show_dtadm or 0 %}
             <th>Data de Admissão</th>
             {% endif %}
-            {% if show_fields.show_tpregjor %}
+            {% if show_fields.show_tpregjor or 0 %}
             <th>Tipo de Regime de Jornada</th>
             {% endif %}
-            {% if show_fields.show_dtbase %}
+            {% if show_fields.show_dtbase or 0 %}
             <th>Data Base</th>
             {% endif %}
-            {% if show_fields.show_cnpjsindcategprof %}
+            {% if show_fields.show_cnpjsindcategprof or 0 %}
             <th>CNPJ Sindicato</th>
             {% endif %}
-            {% if show_fields.show_estatutario %}
+            {% if show_fields.show_estatutario or 0 %}
             <th>Informação de Estatutário</th>
             {% endif %}
-            {% if show_fields.show_dtposse %}
+            {% if show_fields.show_dtposse or 0 %}
             <th>Data de Posse</th>
             {% endif %}
-            {% if show_fields.show_dtexercicio %}
+            {% if show_fields.show_dtexercicio or 0 %}
             <th>Data de Exercício</th>
             {% endif %}
-            {% if show_fields.show_cargo %}
+            {% if show_fields.show_cargo or 0 %}
             <th>Cargo</th>
             {% endif %}
-            {% if show_fields.show_codcargo %}
+            {% if show_fields.show_codcargo or 0 %}
             <th>Código</th>
             {% endif %}
-            {% if show_fields.show_nmcargo %}
+            {% if show_fields.show_nmcargo or 0 %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_codcbocargo %}
+            {% if show_fields.show_codcbocargo or 0 %}
             <th>CBO</th>
             {% endif %}
-            {% if show_fields.show_funcao %}
+            {% if show_fields.show_funcao or 0 %}
             <th>Função</th>
             {% endif %}
-            {% if show_fields.show_codfuncao %}
+            {% if show_fields.show_codfuncao or 0 %}
             <th>Código</th>
             {% endif %}
-            {% if show_fields.show_dscfuncao %}
+            {% if show_fields.show_dscfuncao or 0 %}
             <th>Descrição</th>
             {% endif %}
-            {% if show_fields.show_codcbofuncao %}
+            {% if show_fields.show_codcbofuncao or 0 %}
             <th>CBO</th>
             {% endif %}
-            {% if show_fields.show_categoria %}
+            {% if show_fields.show_categoria or 0 %}
             <th>Categoria</th>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 0 %}
             <th>Código</th>
             {% endif %}
-            {% if show_fields.show_remuneracao %}
+            {% if show_fields.show_remuneracao or 0 %}
             <th>Remuneração</th>
             {% endif %}
-            {% if show_fields.show_vrsalfx %}
+            {% if show_fields.show_vrsalfx or 0 %}
             <th>Valor do Salário Fixo</th>
             {% endif %}
-            {% if show_fields.show_undsalfixo %}
+            {% if show_fields.show_undsalfixo or 0 %}
             <th>Unidade do Salário Fixo</th>
             {% endif %}
-            {% if show_fields.show_dscsalvar %}
+            {% if show_fields.show_dscsalvar or 0 %}
             <th>Descrição do salário variável</th>
             {% endif %}
-            {% if show_fields.show_duracao %}
+            {% if show_fields.show_duracao or 0 %}
             <th>Duração</th>
             {% endif %}
-            {% if show_fields.show_tpcontr %}
+            {% if show_fields.show_tpcontr or 0 %}
             <th>Tipo de Contrato</th>
             {% endif %}
-            {% if show_fields.show_dtterm %}
+            {% if show_fields.show_dtterm or 0 %}
             <th>Data de Término</th>
             {% endif %}
-            {% if show_fields.show_clauasseg %}
+            {% if show_fields.show_clauasseg or 0 %}
             <th>Clausula Asseguratória</th>
             {% endif %}
-            {% if show_fields.show_local_trab %}
+            {% if show_fields.show_local_trab or 0 %}
             <th>Local de Trabalho Geral</th>
             {% endif %}
-            {% if show_fields.show_local_tpinsc %}
+            {% if show_fields.show_local_tpinsc or 0 %}
             <th>Tipo de Inscrição</th>
             {% endif %}
-            {% if show_fields.show_local_nrinsc %}
+            {% if show_fields.show_local_nrinsc or 0 %}
             <th>Número de Inscrição</th>
             {% endif %}
-            {% if show_fields.show_local_cnae %}
+            {% if show_fields.show_local_cnae or 0 %}
             <th>CNAE</th>
             {% endif %}
-            {% if show_fields.show_horarios_contratuais %}
+            {% if show_fields.show_horarios_contratuais or 0 %}
             <th>Horários Contratuais</th>
             {% endif %}
-            {% if show_fields.show_qtdhrssem %}
+            {% if show_fields.show_qtdhrssem or 0 %}
             <th>Quant. de horas semanais</th>
             {% endif %}
-            {% if show_fields.show_tpjornada %}
+            {% if show_fields.show_tpjornada or 0 %}
             <th>Tipo de jornada</th>
             {% endif %}
-            {% if show_fields.show_dsctpjorn %}
+            {% if show_fields.show_dsctpjorn or 0 %}
             <th>Descrição do tipo de jornada</th>
             {% endif %}
-            {% if show_fields.show_tmpparc %}
+            {% if show_fields.show_tmpparc or 0 %}
             <th>Contrato em tempo parcial</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

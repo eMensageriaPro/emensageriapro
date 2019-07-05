@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2416_evtcdbenalt %}
+            {% if show_fields.show_s2416_evtcdbenalt or 1 %}
             <th>Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas</th>
             {% endif %}
-            {% if show_fields.show_nratolegal %}
+            {% if show_fields.show_nratolegal or 1 %}
             <th>Informar o número do ato legal de registro ou homologação do Tribunal de Contas.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

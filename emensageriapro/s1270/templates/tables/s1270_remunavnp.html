@@ -2,37 +2,37 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1270_evtcontratavnp %}
+            {% if show_fields.show_s1270_evtcontratavnp or 1 %}
             <th>Registro que apresenta a remuneração dos trabalhadores avulsos não portuários, de forma totalizada por estabelecimento contratante.</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_codlotacao %}
+            {% if show_fields.show_codlotacao or 1 %}
             <th>Código da Lotação</th>
             {% endif %}
-            {% if show_fields.show_vrbccp00 %}
+            {% if show_fields.show_vrbccp00 or 0 %}
             <th>Valor da BC da CP</th>
             {% endif %}
-            {% if show_fields.show_vrbccp15 %}
+            {% if show_fields.show_vrbccp15 or 0 %}
             <th>Valor da BC da CP (15 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbccp20 %}
+            {% if show_fields.show_vrbccp20 or 0 %}
             <th>Valor da BC da CP (20 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbccp25 %}
+            {% if show_fields.show_vrbccp25 or 0 %}
             <th>Valor da BC da CP (25 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbccp13 %}
+            {% if show_fields.show_vrbccp13 or 0 %}
             <th>Valor da BC da CP (13 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbcfgts %}
+            {% if show_fields.show_vrbcfgts or 0 %}
             <th>Valor da BC do FGTS</th>
             {% endif %}
-            {% if show_fields.show_vrdesccp %}
+            {% if show_fields.show_vrdesccp or 0 %}
             <th>Valor total descontada dos segurados</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

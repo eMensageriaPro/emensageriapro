@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_infoprocjud %}
+            {% if show_fields.show_r4010_infoprocjud or 1 %}
             <th>Informações sobre a origem dos recursos</th>
             {% endif %}
-            {% if show_fields.show_cnpjorigrecurso %}
+            {% if show_fields.show_cnpjorigrecurso or 1 %}
             <th>Preencher com o CNPJ da empresa que repassou recursos</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

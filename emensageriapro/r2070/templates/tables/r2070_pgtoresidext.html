@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_ideestab %}
+            {% if show_fields.show_r2070_ideestab or 1 %}
             <th>Pagamento a não residente ou domiciliado no exterior</th>
             {% endif %}
-            {% if show_fields.show_dtpagto %}
+            {% if show_fields.show_dtpagto or 1 %}
             <th>Informar a data de pagamento ou crédito, base para retenção</th>
             {% endif %}
-            {% if show_fields.show_tprendimento %}
+            {% if show_fields.show_tprendimento or 0 %}
             <th>Tipo de Rendimento, conforme tabela 03 - Rendimentos de Beneficiários no Exterior</th>
             {% endif %}
-            {% if show_fields.show_formatributacao %}
+            {% if show_fields.show_formatributacao or 1 %}
             <th>Forma de tributação, conforme tabela de informações sobre os rendimentos constante na Tabela 04 - Formas de Tributação para Rendimentos de Beneficiários no Exterior</th>
             {% endif %}
-            {% if show_fields.show_vlrpgto %}
+            {% if show_fields.show_vlrpgto or 0 %}
             <th>Valor pago</th>
             {% endif %}
-            {% if show_fields.show_vlrret %}
+            {% if show_fields.show_vlrret or 0 %}
             <th>Preencher com o valor da retenção na Fonte relativamente a IR, CSLL, Cofins, PIS/PASEP.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

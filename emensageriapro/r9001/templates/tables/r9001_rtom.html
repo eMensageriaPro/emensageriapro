@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9001_infototal %}
+            {% if show_fields.show_r9001_infototal or 1 %}
             <th>Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010</th>
             {% endif %}
-            {% if show_fields.show_cnpjprestador %}
+            {% if show_fields.show_cnpjprestador or 1 %}
             <th>Preencher com o CNPJ do Prestador de Serviços</th>
             {% endif %}
-            {% if show_fields.show_cno %}
+            {% if show_fields.show_cno or 0 %}
             <th>Número de inscrição no Cadastro Nacional de Obras - CNO</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalbaseret %}
+            {% if show_fields.show_vlrtotalbaseret or 1 %}
             <th>Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

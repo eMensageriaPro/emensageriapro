@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r5011_evttotalcontrib %}
+            {% if show_fields.show_r5011_evttotalcontrib or 0 %}
             <th>Informações de ocorrências registradas</th>
             {% endif %}
-            {% if show_fields.show_tpocorr %}
+            {% if show_fields.show_tpocorr or 0 %}
             <th>Tipo da ocorrência</th>
             {% endif %}
-            {% if show_fields.show_localerroaviso %}
+            {% if show_fields.show_localerroaviso or 1 %}
             <th>Campo que originou o erro ou aviso</th>
             {% endif %}
-            {% if show_fields.show_codresp %}
+            {% if show_fields.show_codresp or 1 %}
             <th>Código do status da resposta do processamento da consulta</th>
             {% endif %}
-            {% if show_fields.show_dscresp %}
+            {% if show_fields.show_dscresp or 1 %}
             <th>Descrição literal da resposta do processamento da consulta</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

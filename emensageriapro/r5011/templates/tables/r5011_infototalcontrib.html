@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r5011_evttotalcontrib %}
+            {% if show_fields.show_r5011_evttotalcontrib or 1 %}
             <th>Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos</th>
             {% endif %}
-            {% if show_fields.show_nrrecarqbase %}
+            {% if show_fields.show_nrrecarqbase or 0 %}
             <th>Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte</th>
             {% endif %}
-            {% if show_fields.show_indexistinfo %}
+            {% if show_fields.show_indexistinfo or 1 %}
             <th>Indicativo de existência de valores de bases ou de tributos</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

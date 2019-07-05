@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1210_detpgtofl_retpgtotot %}
+            {% if show_fields.show_s1210_detpgtofl_retpgtotot or 1 %}
             <th>Informações sobre beneficiários de pensão alimentícia.</th>
             {% endif %}
-            {% if show_fields.show_cpfbenef %}
+            {% if show_fields.show_cpfbenef or 1 %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_dtnasctobenef %}
+            {% if show_fields.show_dtnasctobenef or 0 %}
             <th>Data de nascimento beneficiarios</th>
             {% endif %}
-            {% if show_fields.show_nmbenefic %}
+            {% if show_fields.show_nmbenefic or 1 %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_vlrpensao %}
+            {% if show_fields.show_vlrpensao or 0 %}
             <th>Valor da Pensão alimentícia</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

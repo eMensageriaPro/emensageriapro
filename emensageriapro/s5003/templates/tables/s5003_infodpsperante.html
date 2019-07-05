@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5003_infotrabdps %}
+            {% if show_fields.show_s5003_infotrabdps or 1 %}
             <th>Informações referentes ao cálculo dos valores de FGTS de períodos anteriores quando {tpAcConv} = [E].</th>
             {% endif %}
-            {% if show_fields.show_perref %}
+            {% if show_fields.show_perref or 1 %}
             <th>Período de Referência</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2299_evtdeslig %}
+            {% if show_fields.show_s2299_evtdeslig or 1 %}
             <th>Grupo de informações da sucessão de vínculo trabalhista/estatutário</th>
             {% endif %}
-            {% if show_fields.show_tpinscsuc %}
+            {% if show_fields.show_tpinscsuc or 1 %}
             <th>Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05</th>
             {% endif %}
-            {% if show_fields.show_cnpjsucessora %}
+            {% if show_fields.show_cnpjsucessora or 1 %}
             <th>CNPJ sucessora</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

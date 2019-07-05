@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2241_iniaposentesp_infoamb %}
+            {% if show_fields.show_s2241_iniaposentesp_infoamb or 1 %}
             <th>Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</th>
             {% endif %}
-            {% if show_fields.show_codfatris %}
+            {% if show_fields.show_codfatris or 1 %}
             <th>Código do Fator de Risco</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

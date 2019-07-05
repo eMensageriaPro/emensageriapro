@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2299_infoperant %}
+            {% if show_fields.show_s2299_infoperant or 0 %}
             <th>Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.</th>
             {% endif %}
-            {% if show_fields.show_dtacconv %}
+            {% if show_fields.show_dtacconv or 1 %}
             <th>Data do vencimento da obrigação</th>
             {% endif %}
-            {% if show_fields.show_tpacconv %}
+            {% if show_fields.show_tpacconv or 0 %}
             <th>Tipo</th>
             {% endif %}
-            {% if show_fields.show_compacconv %}
+            {% if show_fields.show_compacconv or 0 %}
             <th>Competência</th>
             {% endif %}
-            {% if show_fields.show_dtefacconv %}
+            {% if show_fields.show_dtefacconv or 1 %}
             <th>Data do efeito</th>
             {% endif %}
-            {% if show_fields.show_dsc %}
+            {% if show_fields.show_dsc or 1 %}
             <th>Descrição</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

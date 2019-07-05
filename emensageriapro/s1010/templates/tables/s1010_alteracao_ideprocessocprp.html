@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1010_alteracao %}
+            {% if show_fields.show_s1010_alteracao or 1 %}
             <th>Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</th>
             {% endif %}
-            {% if show_fields.show_tpproc %}
+            {% if show_fields.show_tpproc or 0 %}
             <th>Processo RAT</th>
             {% endif %}
-            {% if show_fields.show_nrproc %}
+            {% if show_fields.show_nrproc or 1 %}
             <th>Número do Processo</th>
             {% endif %}
-            {% if show_fields.show_extdecisao %}
+            {% if show_fields.show_extdecisao or 1 %}
             <th>Extensão da Decisão (caso favorável CP)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

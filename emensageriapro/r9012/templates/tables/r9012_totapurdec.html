@@ -2,25 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9012_infototalcontrib %}
+            {% if show_fields.show_r9012_infototalcontrib or 1 %}
             <th>Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial</th>
             {% endif %}
-            {% if show_fields.show_perapurdec %}
+            {% if show_fields.show_perapurdec or 1 %}
             <th>Período de apuração decenal do Código de Receita - CR</th>
             {% endif %}
-            {% if show_fields.show_crdec %}
+            {% if show_fields.show_crdec or 1 %}
             <th>Código de Receita - CR relativo a tributo que possui período de apuração decendial</th>
             {% endif %}
-            {% if show_fields.show_vlrbasecrdec %}
+            {% if show_fields.show_vlrbasecrdec or 0 %}
             <th>Valor da base do tributo com período de apuração decendial</th>
             {% endif %}
-            {% if show_fields.show_vlrcrdec %}
+            {% if show_fields.show_vlrcrdec or 0 %}
             <th>Valor do tributo retido com período de apuração decendial, calculado segundo as regras estabelecidas na legislação em vigor</th>
             {% endif %}
-            {% if show_fields.show_vlrbasecrdecsusp %}
+            {% if show_fields.show_vlrbasecrdecsusp or 0 %}
             <th>Valor da base do tributo com período de apuração decendial, com exigibilidade suspensa</th>
             {% endif %}
-            {% if show_fields.show_vlrcrdecsusp %}
+            {% if show_fields.show_vlrcrdecsusp or 0 %}
             <th>Valor do tributo com período de apuração decendial, que deixou de ser retido</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

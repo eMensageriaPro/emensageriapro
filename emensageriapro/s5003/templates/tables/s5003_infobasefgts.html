@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5003_infotrabfgts %}
+            {% if show_fields.show_s5003_infotrabfgts or 1 %}
             <th>Informações referentes a bases de cálculo do FGTS.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

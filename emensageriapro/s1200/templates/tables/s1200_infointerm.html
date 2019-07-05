@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1200_evtremun %}
+            {% if show_fields.show_s1200_evtremun or 1 %}
             <th>Informações relativas ao trabalho intermitente</th>
             {% endif %}
-            {% if show_fields.show_qtddiasinterm %}
+            {% if show_fields.show_qtddiasinterm or 1 %}
             <th>Quantidade de dias trabalhados no mês pelo empregado com contrato de trabalho intermitente</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

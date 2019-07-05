@@ -2,25 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1260_tpcomerc %}
+            {% if show_fields.show_s1260_tpcomerc or 0 %}
             <th>Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.</th>
             {% endif %}
-            {% if show_fields.show_tpproc %}
+            {% if show_fields.show_tpproc or 1 %}
             <th>Processo RAT</th>
             {% endif %}
-            {% if show_fields.show_nrproc %}
+            {% if show_fields.show_nrproc or 1 %}
             <th>Número do Processo</th>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 1 %}
             <th>Código do Indicativo da Suspensão</th>
             {% endif %}
-            {% if show_fields.show_vrcpsusp %}
+            {% if show_fields.show_vrcpsusp or 0 %}
             <th>Valor da CP com exigibilidade suspensa</th>
             {% endif %}
-            {% if show_fields.show_vrratsusp %}
+            {% if show_fields.show_vrratsusp or 0 %}
             <th>Valor da CP para GILRAT com exigibilidade suspensa</th>
             {% endif %}
-            {% if show_fields.show_vrsenarsusp %}
+            {% if show_fields.show_vrsenarsusp or 0 %}
             <th>Valor da contribição para SENAR com exigibilidade suspensa</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

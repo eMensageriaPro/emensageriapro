@@ -2,31 +2,31 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 1 %}
             <th>Nome do Arquivo</th>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
-            {% if show_fields.show_data_hora %}
+            {% if show_fields.show_data_hora or 1 %}
             <th>Data/Hora de Importação</th>
             {% endif %}
-            {% if show_fields.show_importado_por %}
+            {% if show_fields.show_importado_por or 1 %}
             <th>Importado por</th>
             {% endif %}
-            {% if show_fields.show_quant_total %}
+            {% if show_fields.show_quant_total or 0 %}
             <th>Quant. Total</th>
             {% endif %}
-            {% if show_fields.show_quant_aguardando %}
+            {% if show_fields.show_quant_aguardando or 0 %}
             <th>Quant. Aguardando Processamento</th>
             {% endif %}
-            {% if show_fields.show_quant_processado %}
+            {% if show_fields.show_quant_processado or 0 %}
             <th>Quant. Processada</th>
             {% endif %}
-            {% if show_fields.show_quant_importado %}
+            {% if show_fields.show_quant_importado or 0 %}
             <th>Quant. Importada</th>
             {% endif %}
-            {% if show_fields.show_quant_erros %}
+            {% if show_fields.show_quant_erros or 0 %}
             <th>Quant. com Erros</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

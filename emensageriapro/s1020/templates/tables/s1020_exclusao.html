@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1020_evttablotacao %}
+            {% if show_fields.show_s1020_evttablotacao or 1 %}
             <th>Exclusão das informações</th>
             {% endif %}
-            {% if show_fields.show_idelotacao %}
+            {% if show_fields.show_idelotacao or 0 %}
             <th>Informações de identificação da lotação e validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_codlotacao %}
+            {% if show_fields.show_codlotacao or 1 %}
             <th>Código da Lotação</th>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 1 %}
             <th>Início da Validade</th>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <th>Fim da Validade</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

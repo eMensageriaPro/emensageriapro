@@ -2,100 +2,100 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_evtcdbenalt %}
+            {% if show_fields.show_evtcdbenalt or 0 %}
             <th>Evento de cadastro de benefícios - Alteração</th>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <th>Identidade do Registro</th>
             {% endif %}
-            {% if show_fields.show_ideevento %}
+            {% if show_fields.show_ideevento or 0 %}
             <th>Informações de Identificação do Evento</th>
             {% endif %}
-            {% if show_fields.show_indretif %}
+            {% if show_fields.show_indretif or 0 %}
             <th>Identificador de retificação</th>
             {% endif %}
-            {% if show_fields.show_nrrecibo %}
+            {% if show_fields.show_nrrecibo or 0 %}
             <th>Número do recibo</th>
             {% endif %}
-            {% if show_fields.show_tpamb %}
+            {% if show_fields.show_tpamb or 0 %}
             <th>Identificação do ambiente</th>
             {% endif %}
-            {% if show_fields.show_procemi %}
+            {% if show_fields.show_procemi or 0 %}
             <th>Processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_verproc %}
+            {% if show_fields.show_verproc or 0 %}
             <th>Versão do processo</th>
             {% endif %}
-            {% if show_fields.show_ideempregador %}
+            {% if show_fields.show_ideempregador or 0 %}
             <th>Informações de identificação do empregador</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_idebeneficio %}
+            {% if show_fields.show_idebeneficio or 0 %}
             <th>Identificação do beneficiário e do benefício</th>
             {% endif %}
-            {% if show_fields.show_cpfbenef %}
+            {% if show_fields.show_cpfbenef or 1 %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_nrbeneficio %}
+            {% if show_fields.show_nrbeneficio or 0 %}
             <th>Preencher com o número do benefício</th>
             {% endif %}
-            {% if show_fields.show_infobenalteracao %}
+            {% if show_fields.show_infobenalteracao or 0 %}
             <th>Informações do benefício - Alteração</th>
             {% endif %}
-            {% if show_fields.show_dtaltbeneficio %}
+            {% if show_fields.show_dtaltbeneficio or 1 %}
             <th>Data de alteração das informações relativas ao benefício</th>
             {% endif %}
-            {% if show_fields.show_dadosbeneficio %}
+            {% if show_fields.show_dadosbeneficio or 0 %}
             <th>Dados relativos ao benefício</th>
             {% endif %}
-            {% if show_fields.show_tpbeneficio %}
+            {% if show_fields.show_tpbeneficio or 0 %}
             <th>Tipo de benefício</th>
             {% endif %}
-            {% if show_fields.show_tpplanrp %}
+            {% if show_fields.show_tpplanrp or 0 %}
             <th>Tipo de plano de segregação de massa</th>
             {% endif %}
-            {% if show_fields.show_dsc %}
+            {% if show_fields.show_dsc or 0 %}
             <th>Descrição</th>
             {% endif %}
-            {% if show_fields.show_inddecjud %}
+            {% if show_fields.show_inddecjud or 0 %}
             <th>Informar se o benefício foi concedido por determinação judicial</th>
             {% endif %}
-            {% if show_fields.show_indhomologtc %}
+            {% if show_fields.show_indhomologtc or 0 %}
             <th>Indicativo de homologação do benefício pelo Tribunal de Contas</th>
             {% endif %}
-            {% if show_fields.show_indsuspensao %}
+            {% if show_fields.show_indsuspensao or 0 %}
             <th>Indicativo de suspensão do benefício</th>
             {% endif %}
-            {% if show_fields.show_versao %}
+            {% if show_fields.show_versao or 0 %}
             <th>Versão</th>
             {% endif %}
-            {% if show_fields.show_transmissor_lote_esocial %}
+            {% if show_fields.show_transmissor_lote_esocial or 0 %}
             <th>Transmissor</th>
             {% endif %}
-            {% if show_fields.show_retornos_eventos %}
+            {% if show_fields.show_retornos_eventos or 0 %}
             <th>Retorno do Evento</th>
             {% endif %}
-            {% if show_fields.show_ocorrencias %}
+            {% if show_fields.show_ocorrencias or 0 %}
             <th>Ocorrências</th>
             {% endif %}
-            {% if show_fields.show_validacao_precedencia %}
+            {% if show_fields.show_validacao_precedencia or 0 %}
             <th>Validação de Precedência</th>
             {% endif %}
-            {% if show_fields.show_validacoes %}
+            {% if show_fields.show_validacoes or 0 %}
             <th>Validações</th>
             {% endif %}
-            {% if show_fields.show_arquivo_original %}
+            {% if show_fields.show_arquivo_original or 0 %}
             <th>Arquivo Original</th>
             {% endif %}
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 0 %}
             <th>Arquivo</th>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

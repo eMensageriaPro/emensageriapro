@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_idelotacao %}
+            {% if show_fields.show_s5011_idelotacao or 1 %}
             <th>Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada</th>
             {% endif %}
-            {% if show_fields.show_tpinsccontrat %}
+            {% if show_fields.show_tpinsccontrat or 0 %}
             <th>Tipo de inscrição do Contratante</th>
             {% endif %}
-            {% if show_fields.show_nrinsccontrat %}
+            {% if show_fields.show_nrinsccontrat or 1 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_tpinscprop %}
+            {% if show_fields.show_tpinscprop or 0 %}
             <th>Tipo de inscrição (Proprietário do CNO)</th>
             {% endif %}
-            {% if show_fields.show_nrinscprop %}
+            {% if show_fields.show_nrinscprop or 1 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_cnoobra %}
+            {% if show_fields.show_cnoobra or 0 %}
             <th>Número do CNO da obra</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

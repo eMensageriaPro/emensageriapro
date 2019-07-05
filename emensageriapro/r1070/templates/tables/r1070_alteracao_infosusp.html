@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r1070_alteracao %}
+            {% if show_fields.show_r1070_alteracao or 0 %}
             <th>Informações de Suspensão de Exibilidade de tributos</th>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 0 %}
             <th>Código do Indicativo da Suspensão, atribuído pelo contribuinte</th>
             {% endif %}
-            {% if show_fields.show_indsusp %}
+            {% if show_fields.show_indsusp or 1 %}
             <th>Indicativo de suspensão da exigibilidade</th>
             {% endif %}
-            {% if show_fields.show_dtdecisao %}
+            {% if show_fields.show_dtdecisao or 1 %}
             <th>Data da decisão, sentença ou despacho administrativo</th>
             {% endif %}
-            {% if show_fields.show_inddeposito %}
+            {% if show_fields.show_inddeposito or 1 %}
             <th>Indicativo de Depósito do Montante Integral</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

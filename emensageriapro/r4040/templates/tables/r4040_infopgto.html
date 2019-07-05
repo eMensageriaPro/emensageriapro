@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4040_idenat %}
+            {% if show_fields.show_r4040_idenat or 1 %}
             <th>Informações do Pagamento</th>
             {% endif %}
-            {% if show_fields.show_dtfg %}
+            {% if show_fields.show_dtfg or 1 %}
             <th>Informar a data do fato gerador ou pagamento/crédito</th>
             {% endif %}
-            {% if show_fields.show_vlrliq %}
+            {% if show_fields.show_vlrliq or 0 %}
             <th>Valor líquido do pagamento</th>
             {% endif %}
-            {% if show_fields.show_vlrreaj %}
+            {% if show_fields.show_vlrreaj or 0 %}
             <th>Valor reajustado, considerado como valor bruto da base de cálculo do IRRF</th>
             {% endif %}
-            {% if show_fields.show_vlrir %}
+            {% if show_fields.show_vlrir or 0 %}
             <th>Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação</th>
             {% endif %}
-            {% if show_fields.show_descr %}
+            {% if show_fields.show_descr or 1 %}
             <th>Descrição do pagamento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

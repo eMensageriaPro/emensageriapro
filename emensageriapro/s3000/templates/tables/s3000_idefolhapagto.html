@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s3000_evtexclusao %}
+            {% if show_fields.show_s3000_evtexclusao or 1 %}
             <th>Registro que identifica a qual folha de pagamento pertence o evento que será excluído</th>
             {% endif %}
-            {% if show_fields.show_indapuracao %}
+            {% if show_fields.show_indapuracao or 1 %}
             <th>Indicativo do periodo de apuração</th>
             {% endif %}
-            {% if show_fields.show_perapur %}
+            {% if show_fields.show_perapur or 1 %}
             <th>Período de Apuração</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

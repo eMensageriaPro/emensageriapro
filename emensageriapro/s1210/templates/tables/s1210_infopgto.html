@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1210_evtpgtos %}
+            {% if show_fields.show_s1210_evtpgtos or 1 %}
             <th>Informações dos pagamentos efetuados</th>
             {% endif %}
-            {% if show_fields.show_dtpgto %}
+            {% if show_fields.show_dtpgto or 1 %}
             <th>Data de pagamento</th>
             {% endif %}
-            {% if show_fields.show_tppgto %}
+            {% if show_fields.show_tppgto or 0 %}
             <th>Tipo de Pagamento</th>
             {% endif %}
-            {% if show_fields.show_indresbr %}
+            {% if show_fields.show_indresbr or 1 %}
             <th>Indicador de residência</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5013_infobaseperante %}
+            {% if show_fields.show_s5013_infobaseperante or 1 %}
             <th>Informações sobre bases de cálculo do FGTS referentes à remuneração de períodos anteriores quando {tpAcConv} = [E]. Origem: S-1200 ou S-2299.</th>
             {% endif %}
-            {% if show_fields.show_tpvalore %}
+            {% if show_fields.show_tpvalore or 1 %}
             <th>Tipo de valor que influi na apuração do FGTS</th>
             {% endif %}
-            {% if show_fields.show_basefgtse %}
+            {% if show_fields.show_basefgtse or 1 %}
             <th>Remuneração (valor da base de cálculo) do FGTS</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

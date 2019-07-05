@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1207_dmdev %}
+            {% if show_fields.show_s1207_dmdev or 1 %}
             <th>Detalhamento dos valores devidos ao beneficiário</th>
             {% endif %}
-            {% if show_fields.show_codrubr %}
+            {% if show_fields.show_codrubr or 1 %}
             <th>Código da Rubrica</th>
             {% endif %}
-            {% if show_fields.show_idetabrubr %}
+            {% if show_fields.show_idetabrubr or 1 %}
             <th>Identificador tabela de rubricas</th>
             {% endif %}
-            {% if show_fields.show_vrrubr %}
+            {% if show_fields.show_vrrubr or 0 %}
             <th>Valor total</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

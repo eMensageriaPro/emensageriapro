@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2200_evtadmissao %}
+            {% if show_fields.show_s2200_evtadmissao or 1 %}
             <th>Informações do empregado doméstico transferido de outro representante da mesma unidade familiar</th>
             {% endif %}
-            {% if show_fields.show_cpfsubstituido %}
+            {% if show_fields.show_cpfsubstituido or 1 %}
             <th>Preencher com o número do CPF do representante anterior da unidade familiar</th>
             {% endif %}
-            {% if show_fields.show_matricant %}
+            {% if show_fields.show_matricant or 0 %}
             <th>Matricula anterior</th>
             {% endif %}
-            {% if show_fields.show_dttransf %}
+            {% if show_fields.show_dttransf or 1 %}
             <th>Preencher com a data da transferência do empregado para o empregador declarante</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

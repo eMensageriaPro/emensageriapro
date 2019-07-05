@@ -2,139 +2,139 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_evtmonit %}
+            {% if show_fields.show_evtmonit or 0 %}
             <th>Evento Monitoramento da Saúde do Trabalhador</th>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <th>Identidade do Registro</th>
             {% endif %}
-            {% if show_fields.show_ideevento %}
+            {% if show_fields.show_ideevento or 0 %}
             <th>Informações de Identificação do Evento</th>
             {% endif %}
-            {% if show_fields.show_indretif %}
+            {% if show_fields.show_indretif or 0 %}
             <th>Identificador de retificação</th>
             {% endif %}
-            {% if show_fields.show_nrrecibo %}
+            {% if show_fields.show_nrrecibo or 0 %}
             <th>Número do recibo</th>
             {% endif %}
-            {% if show_fields.show_tpamb %}
+            {% if show_fields.show_tpamb or 0 %}
             <th>Identificação do ambiente</th>
             {% endif %}
-            {% if show_fields.show_procemi %}
+            {% if show_fields.show_procemi or 0 %}
             <th>Processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_verproc %}
+            {% if show_fields.show_verproc or 0 %}
             <th>Versão do processo</th>
             {% endif %}
-            {% if show_fields.show_ideempregador %}
+            {% if show_fields.show_ideempregador or 0 %}
             <th>Informações de identificação do empregador</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_idevinculo %}
+            {% if show_fields.show_idevinculo or 0 %}
             <th>Informações de Identificação do Trabalhador e do Vínculo</th>
             {% endif %}
-            {% if show_fields.show_cpftrab %}
+            {% if show_fields.show_cpftrab or 1 %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_nistrab %}
+            {% if show_fields.show_nistrab or 0 %}
             <th>NIS</th>
             {% endif %}
-            {% if show_fields.show_matricula %}
+            {% if show_fields.show_matricula or 0 %}
             <th>Matricula</th>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 0 %}
             <th>Código da Categoria</th>
             {% endif %}
-            {% if show_fields.show_exmedocup %}
+            {% if show_fields.show_exmedocup or 0 %}
             <th>Detalhamento das informações do exame médico ocupacional</th>
             {% endif %}
-            {% if show_fields.show_tpexameocup %}
+            {% if show_fields.show_tpexameocup or 0 %}
             <th>Tipo do exame médico ocupacional</th>
             {% endif %}
-            {% if show_fields.show_aso %}
+            {% if show_fields.show_aso or 0 %}
             <th>Detalhamento das informações do ASO</th>
             {% endif %}
-            {% if show_fields.show_dtaso %}
+            {% if show_fields.show_dtaso or 1 %}
             <th>Data</th>
             {% endif %}
-            {% if show_fields.show_tpaso %}
+            {% if show_fields.show_tpaso or 0 %}
             <th>Tipo ASO</th>
             {% endif %}
-            {% if show_fields.show_resaso %}
+            {% if show_fields.show_resaso or 0 %}
             <th>Resultado</th>
             {% endif %}
-            {% if show_fields.show_medico %}
+            {% if show_fields.show_medico or 0 %}
             <th>Médico responsável</th>
             {% endif %}
-            {% if show_fields.show_cpfmed %}
+            {% if show_fields.show_cpfmed or 0 %}
             <th>CPF do médico emitente do ASO</th>
             {% endif %}
-            {% if show_fields.show_nismed %}
+            {% if show_fields.show_nismed or 0 %}
             <th>Número de Identificação Social - NIS do médico emitente do ASO, o qual pode ser o PIS, PASEP ou NIT</th>
             {% endif %}
-            {% if show_fields.show_nmmed %}
+            {% if show_fields.show_nmmed or 0 %}
             <th>Nome do Médico</th>
             {% endif %}
-            {% if show_fields.show_nrcrm %}
+            {% if show_fields.show_nrcrm or 0 %}
             <th>Número do CRM</th>
             {% endif %}
-            {% if show_fields.show_ufcrm %}
+            {% if show_fields.show_ufcrm or 0 %}
             <th>UF do Órgão de classe</th>
             {% endif %}
-            {% if show_fields.show_respmonit %}
+            {% if show_fields.show_respmonit or 0 %}
             <th>Registro onde são prestadas as informações sobre o profissional responsável pela monitoração biológica em atendimento aos requisitos das NR-07 e NR- 09 do MTE.</th>
             {% endif %}
-            {% if show_fields.show_nisresp %}
+            {% if show_fields.show_nisresp or 0 %}
             <th>NIS</th>
             {% endif %}
-            {% if show_fields.show_nrconsclasse %}
+            {% if show_fields.show_nrconsclasse or 0 %}
             <th>Número de Inscrição</th>
             {% endif %}
-            {% if show_fields.show_ufconsclasse %}
+            {% if show_fields.show_ufconsclasse or 0 %}
             <th>UF do Órgão de classe</th>
             {% endif %}
-            {% if show_fields.show_cpfresp %}
+            {% if show_fields.show_cpfresp or 0 %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_nmresp %}
+            {% if show_fields.show_nmresp or 0 %}
             <th>Nome do Responsável pelas Informações</th>
             {% endif %}
-            {% if show_fields.show_nrcrm %}
+            {% if show_fields.show_nrcrm or 0 %}
             <th>Número do CRM</th>
             {% endif %}
-            {% if show_fields.show_ufcrm %}
+            {% if show_fields.show_ufcrm or 0 %}
             <th>UF do Órgão de classe</th>
             {% endif %}
-            {% if show_fields.show_versao %}
+            {% if show_fields.show_versao or 0 %}
             <th>Versão</th>
             {% endif %}
-            {% if show_fields.show_transmissor_lote_esocial %}
+            {% if show_fields.show_transmissor_lote_esocial or 0 %}
             <th>Transmissor</th>
             {% endif %}
-            {% if show_fields.show_retornos_eventos %}
+            {% if show_fields.show_retornos_eventos or 0 %}
             <th>Retorno do Evento</th>
             {% endif %}
-            {% if show_fields.show_ocorrencias %}
+            {% if show_fields.show_ocorrencias or 0 %}
             <th>Ocorrências</th>
             {% endif %}
-            {% if show_fields.show_validacao_precedencia %}
+            {% if show_fields.show_validacao_precedencia or 0 %}
             <th>Validação de Precedência</th>
             {% endif %}
-            {% if show_fields.show_validacoes %}
+            {% if show_fields.show_validacoes or 0 %}
             <th>Validações</th>
             {% endif %}
-            {% if show_fields.show_arquivo_original %}
+            {% if show_fields.show_arquivo_original or 0 %}
             <th>Arquivo Original</th>
             {% endif %}
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 0 %}
             <th>Arquivo</th>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

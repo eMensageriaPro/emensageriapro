@@ -2,31 +2,31 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1000_alteracao %}
+            {% if show_fields.show_s1000_alteracao or 1 %}
             <th>Informações Complementares - Empresas Isentas - Dados da Isenção</th>
             {% endif %}
-            {% if show_fields.show_ideminlei %}
+            {% if show_fields.show_ideminlei or 0 %}
             <th>Lei que concedeu a isenção</th>
             {% endif %}
-            {% if show_fields.show_nrcertif %}
+            {% if show_fields.show_nrcertif or 0 %}
             <th>Número certificado</th>
             {% endif %}
-            {% if show_fields.show_dtemiscertif %}
+            {% if show_fields.show_dtemiscertif or 1 %}
             <th>Data de emissao certificado</th>
             {% endif %}
-            {% if show_fields.show_dtvenccertif %}
+            {% if show_fields.show_dtvenccertif or 1 %}
             <th>Data de vencimento certificado</th>
             {% endif %}
-            {% if show_fields.show_nrprotrenov %}
+            {% if show_fields.show_nrprotrenov or 0 %}
             <th>Número protocolo do pedido renovação</th>
             {% endif %}
-            {% if show_fields.show_dtprotrenov %}
+            {% if show_fields.show_dtprotrenov or 0 %}
             <th>Data do protocolo do pedido de renovação</th>
             {% endif %}
-            {% if show_fields.show_dtdou %}
+            {% if show_fields.show_dtdou or 0 %}
             <th>Data de publicação DOU</th>
             {% endif %}
-            {% if show_fields.show_pagdou %}
+            {% if show_fields.show_pagdou or 0 %}
             <th>Página de publicação DOU</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

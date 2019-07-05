@@ -2,103 +2,103 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_evttoxic %}
+            {% if show_fields.show_evttoxic or 0 %}
             <th>Evento Exame Toxicológico do Motorista Profissional</th>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <th>Identidade do Registro</th>
             {% endif %}
-            {% if show_fields.show_ideevento %}
+            {% if show_fields.show_ideevento or 0 %}
             <th>Informações de Identificação do Evento</th>
             {% endif %}
-            {% if show_fields.show_indretif %}
+            {% if show_fields.show_indretif or 0 %}
             <th>Identificador de retificação</th>
             {% endif %}
-            {% if show_fields.show_nrrecibo %}
+            {% if show_fields.show_nrrecibo or 0 %}
             <th>Número do recibo</th>
             {% endif %}
-            {% if show_fields.show_tpamb %}
+            {% if show_fields.show_tpamb or 0 %}
             <th>Identificação do ambiente</th>
             {% endif %}
-            {% if show_fields.show_procemi %}
+            {% if show_fields.show_procemi or 0 %}
             <th>Processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_verproc %}
+            {% if show_fields.show_verproc or 0 %}
             <th>Versão do processo</th>
             {% endif %}
-            {% if show_fields.show_ideempregador %}
+            {% if show_fields.show_ideempregador or 0 %}
             <th>Informações de identificação do empregador</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_idevinculo %}
+            {% if show_fields.show_idevinculo or 0 %}
             <th>Informações de Identificação do Trabalhador e do Vínculo</th>
             {% endif %}
-            {% if show_fields.show_cpftrab %}
+            {% if show_fields.show_cpftrab or 1 %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_nistrab %}
+            {% if show_fields.show_nistrab or 0 %}
             <th>NIS</th>
             {% endif %}
-            {% if show_fields.show_matricula %}
+            {% if show_fields.show_matricula or 0 %}
             <th>Matricula</th>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 0 %}
             <th>Código da Categoria</th>
             {% endif %}
-            {% if show_fields.show_toxicologico %}
+            {% if show_fields.show_toxicologico or 0 %}
             <th>Detalhamento das informações do exame toxicológico do motorista profissional</th>
             {% endif %}
-            {% if show_fields.show_dtexame %}
+            {% if show_fields.show_dtexame or 1 %}
             <th>Data da realização do exame toxicológico</th>
             {% endif %}
-            {% if show_fields.show_cnpjlab %}
+            {% if show_fields.show_cnpjlab or 0 %}
             <th>CNPJ do laboratório responsável pela realização do exame</th>
             {% endif %}
-            {% if show_fields.show_codseqexame %}
+            {% if show_fields.show_codseqexame or 0 %}
             <th>Código do exame toxicológico. Deve ser informado no formato AA999999999, sendo AA o serial do sequencial e 999999999 o número sequencial do exame</th>
             {% endif %}
-            {% if show_fields.show_nmmed %}
+            {% if show_fields.show_nmmed or 0 %}
             <th>Nome do Médico</th>
             {% endif %}
-            {% if show_fields.show_nrcrm %}
+            {% if show_fields.show_nrcrm or 0 %}
             <th>Número do CRM</th>
             {% endif %}
-            {% if show_fields.show_ufcrm %}
+            {% if show_fields.show_ufcrm or 0 %}
             <th>UF do Órgão de classe</th>
             {% endif %}
-            {% if show_fields.show_indrecusa %}
+            {% if show_fields.show_indrecusa or 0 %}
             <th>Indicar se o trabalhador se recusou a realizar o exame toxicológico no desligamento: S - Sim; N - Não. Valores Válidos: S, N.</th>
             {% endif %}
-            {% if show_fields.show_versao %}
+            {% if show_fields.show_versao or 0 %}
             <th>Versão</th>
             {% endif %}
-            {% if show_fields.show_transmissor_lote_esocial %}
+            {% if show_fields.show_transmissor_lote_esocial or 0 %}
             <th>Transmissor</th>
             {% endif %}
-            {% if show_fields.show_retornos_eventos %}
+            {% if show_fields.show_retornos_eventos or 0 %}
             <th>Retorno do Evento</th>
             {% endif %}
-            {% if show_fields.show_ocorrencias %}
+            {% if show_fields.show_ocorrencias or 0 %}
             <th>Ocorrências</th>
             {% endif %}
-            {% if show_fields.show_validacao_precedencia %}
+            {% if show_fields.show_validacao_precedencia or 0 %}
             <th>Validação de Precedência</th>
             {% endif %}
-            {% if show_fields.show_validacoes %}
+            {% if show_fields.show_validacoes or 0 %}
             <th>Validações</th>
             {% endif %}
-            {% if show_fields.show_arquivo_original %}
+            {% if show_fields.show_arquivo_original or 0 %}
             <th>Arquivo Original</th>
             {% endif %}
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 0 %}
             <th>Arquivo</th>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

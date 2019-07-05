@@ -2,142 +2,142 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_evtaltcontratual %}
+            {% if show_fields.show_evtaltcontratual or 0 %}
             <th>Evento Alteração Contratual</th>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <th>Identidade do Registro</th>
             {% endif %}
-            {% if show_fields.show_ideevento %}
+            {% if show_fields.show_ideevento or 0 %}
             <th>Informações de Identificação do Evento</th>
             {% endif %}
-            {% if show_fields.show_indretif %}
+            {% if show_fields.show_indretif or 0 %}
             <th>Identificador de retificação</th>
             {% endif %}
-            {% if show_fields.show_nrrecibo %}
+            {% if show_fields.show_nrrecibo or 0 %}
             <th>Número do recibo</th>
             {% endif %}
-            {% if show_fields.show_tpamb %}
+            {% if show_fields.show_tpamb or 0 %}
             <th>Identificação do ambiente</th>
             {% endif %}
-            {% if show_fields.show_procemi %}
+            {% if show_fields.show_procemi or 0 %}
             <th>Processo de emissão do evento</th>
             {% endif %}
-            {% if show_fields.show_verproc %}
+            {% if show_fields.show_verproc or 0 %}
             <th>Versão do processo</th>
             {% endif %}
-            {% if show_fields.show_ideempregador %}
+            {% if show_fields.show_ideempregador or 0 %}
             <th>Informações de identificação do empregador</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_idevinculo %}
+            {% if show_fields.show_idevinculo or 0 %}
             <th>Informações de Identificação do Trabalhador e do Vínculo</th>
             {% endif %}
-            {% if show_fields.show_cpftrab %}
+            {% if show_fields.show_cpftrab or 1 %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_nistrab %}
+            {% if show_fields.show_nistrab or 0 %}
             <th>NIS</th>
             {% endif %}
-            {% if show_fields.show_matricula %}
+            {% if show_fields.show_matricula or 0 %}
             <th>Matricula</th>
             {% endif %}
-            {% if show_fields.show_altcontratual %}
+            {% if show_fields.show_altcontratual or 0 %}
             <th>Informações do Contrato de Trabalho</th>
             {% endif %}
-            {% if show_fields.show_dtalteracao %}
+            {% if show_fields.show_dtalteracao or 1 %}
             <th>Data de alteração</th>
             {% endif %}
-            {% if show_fields.show_dtef %}
+            {% if show_fields.show_dtef or 0 %}
             <th>Data de efetivação da alteração (lei)</th>
             {% endif %}
-            {% if show_fields.show_dscalt %}
+            {% if show_fields.show_dscalt or 0 %}
             <th>Descrição da Alteração</th>
             {% endif %}
-            {% if show_fields.show_vinculo %}
+            {% if show_fields.show_vinculo or 0 %}
             <th>Grupo de informações do vínculo</th>
             {% endif %}
-            {% if show_fields.show_tpregprev %}
+            {% if show_fields.show_tpregprev or 0 %}
             <th>Tipo de regime previdenciário</th>
             {% endif %}
-            {% if show_fields.show_inforegimetrab %}
+            {% if show_fields.show_inforegimetrab or 0 %}
             <th>Informações do regime trabalhista</th>
             {% endif %}
-            {% if show_fields.show_infocontrato %}
+            {% if show_fields.show_infocontrato or 0 %}
             <th>Informações do Contrato de Trabalho</th>
             {% endif %}
-            {% if show_fields.show_codcargo %}
+            {% if show_fields.show_codcargo or 0 %}
             <th>Código do Cargo</th>
             {% endif %}
-            {% if show_fields.show_codfuncao %}
+            {% if show_fields.show_codfuncao or 0 %}
             <th>Código da Função</th>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 1 %}
             <th>Código da Categoria</th>
             {% endif %}
-            {% if show_fields.show_codcarreira %}
+            {% if show_fields.show_codcarreira or 0 %}
             <th>Código da Carreira</th>
             {% endif %}
-            {% if show_fields.show_dtingrcarr %}
+            {% if show_fields.show_dtingrcarr or 0 %}
             <th>Data de ingresso na carreira</th>
             {% endif %}
-            {% if show_fields.show_remuneracao %}
+            {% if show_fields.show_remuneracao or 0 %}
             <th>Informações da remuneração e periodicidade de pagamento</th>
             {% endif %}
-            {% if show_fields.show_vrsalfx %}
+            {% if show_fields.show_vrsalfx or 0 %}
             <th>Valor do Salário Fixo</th>
             {% endif %}
-            {% if show_fields.show_undsalfixo %}
+            {% if show_fields.show_undsalfixo or 0 %}
             <th>Unidade do Salário Fixo</th>
             {% endif %}
-            {% if show_fields.show_dscsalvar %}
+            {% if show_fields.show_dscsalvar or 0 %}
             <th>Descrição do salário variável</th>
             {% endif %}
-            {% if show_fields.show_duracao %}
+            {% if show_fields.show_duracao or 0 %}
             <th>Duração do Contrato de Trabalho</th>
             {% endif %}
-            {% if show_fields.show_tpcontr %}
+            {% if show_fields.show_tpcontr or 0 %}
             <th>Tipo de contrato de trabalho</th>
             {% endif %}
-            {% if show_fields.show_dtterm %}
+            {% if show_fields.show_dtterm or 0 %}
             <th>Data de Término do contrato de trabalho</th>
             {% endif %}
-            {% if show_fields.show_objdet %}
+            {% if show_fields.show_objdet or 0 %}
             <th>Indicação do objeto determinante da contratação por prazo determinado (obra, serviço, safra, etc.). Validação: O preenchimento é obrigatório e exclusivo se {tpContr} = [3].</th>
             {% endif %}
-            {% if show_fields.show_localtrabalho %}
+            {% if show_fields.show_localtrabalho or 0 %}
             <th>Informações do local de trabalho</th>
             {% endif %}
-            {% if show_fields.show_versao %}
+            {% if show_fields.show_versao or 0 %}
             <th>Versão</th>
             {% endif %}
-            {% if show_fields.show_transmissor_lote_esocial %}
+            {% if show_fields.show_transmissor_lote_esocial or 0 %}
             <th>Transmissor</th>
             {% endif %}
-            {% if show_fields.show_retornos_eventos %}
+            {% if show_fields.show_retornos_eventos or 0 %}
             <th>Retorno do Evento</th>
             {% endif %}
-            {% if show_fields.show_ocorrencias %}
+            {% if show_fields.show_ocorrencias or 0 %}
             <th>Ocorrências</th>
             {% endif %}
-            {% if show_fields.show_validacao_precedencia %}
+            {% if show_fields.show_validacao_precedencia or 0 %}
             <th>Validação de Precedência</th>
             {% endif %}
-            {% if show_fields.show_validacoes %}
+            {% if show_fields.show_validacoes or 0 %}
             <th>Validações</th>
             {% endif %}
-            {% if show_fields.show_arquivo_original %}
+            {% if show_fields.show_arquivo_original or 0 %}
             <th>Arquivo Original</th>
             {% endif %}
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 0 %}
             <th>Arquivo</th>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

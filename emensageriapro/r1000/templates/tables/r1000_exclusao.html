@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r1000_evtinfocontri %}
+            {% if show_fields.show_r1000_evtinfocontri or 1 %}
             <th>Exclusão das informações</th>
             {% endif %}
-            {% if show_fields.show_ideperiodo %}
+            {% if show_fields.show_ideperiodo or 0 %}
             <th>Período de validade das informações incluídas</th>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 1 %}
             <th>Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM</th>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <th>Preencher com o mês e ano de término da validade das informações, se houver</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

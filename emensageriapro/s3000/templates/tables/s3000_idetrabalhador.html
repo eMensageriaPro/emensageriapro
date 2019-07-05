@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s3000_evtexclusao %}
+            {% if show_fields.show_s3000_evtexclusao or 1 %}
             <th>Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.</th>
             {% endif %}
-            {% if show_fields.show_cpftrab %}
+            {% if show_fields.show_cpftrab or 1 %}
             <th>CPF</th>
             {% endif %}
-            {% if show_fields.show_nistrab %}
+            {% if show_fields.show_nistrab or 0 %}
             <th>NIS</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

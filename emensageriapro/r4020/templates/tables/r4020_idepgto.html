@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4020_evtretpj %}
+            {% if show_fields.show_r4020_evtretpj or 1 %}
             <th>Identificação do rendimento</th>
             {% endif %}
-            {% if show_fields.show_natrend %}
+            {% if show_fields.show_natrend or 1 %}
             <th>Código da natureza do rendimento, conforme Tabela 01</th>
             {% endif %}
-            {% if show_fields.show_paisresid %}
+            {% if show_fields.show_paisresid or 1 %}
             <th>Preencher com o código do país de residência fiscal, conforme tabela 7</th>
             {% endif %}
-            {% if show_fields.show_observ %}
+            {% if show_fields.show_observ or 0 %}
             <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

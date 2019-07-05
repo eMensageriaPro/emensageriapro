@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2299_dmdev %}
+            {% if show_fields.show_s2299_dmdev or 1 %}
             <th>Informações da(s) convocação(ões) de trabalho intermitente</th>
             {% endif %}
-            {% if show_fields.show_codconv %}
+            {% if show_fields.show_codconv or 1 %}
             <th>Preencher com o código atribuído pela empresa que identifica a convocação para trabalho intermitente</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1000_alteracao %}
+            {% if show_fields.show_s1000_alteracao or 1 %}
             <th>Informações exclusivas de organismos internacionais e outras instituições extraterritoriais</th>
             {% endif %}
-            {% if show_fields.show_indacordoisenmulta %}
+            {% if show_fields.show_indacordoisenmulta or 1 %}
             <th>Acordo internacional</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

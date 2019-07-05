@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r5011_infototalcontrib %}
+            {% if show_fields.show_r5011_infototalcontrib or 1 %}
             <th>Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060</th>
             {% endif %}
-            {% if show_fields.show_crcprb %}
+            {% if show_fields.show_crcprb or 1 %}
             <th>Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre a Receita Bruta - CPRB</th>
             {% endif %}
-            {% if show_fields.show_vlrcrcprb %}
+            {% if show_fields.show_vlrcrcprb or 1 %}
             <th>Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB, calculada segundo as regras estabelecidas na legislação em vigor.</th>
             {% endif %}
-            {% if show_fields.show_vlrcrcprbsusp %}
+            {% if show_fields.show_vlrcrcprbsusp or 0 %}
             <th>Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB com exigibilidade suspensa. Origem: R-2060</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

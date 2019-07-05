@@ -2,40 +2,40 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_ideestab %}
+            {% if show_fields.show_s5011_ideestab or 1 %}
             <th>Informações de bases de cálculo relativas a aquisição de produção rural</th>
             {% endif %}
-            {% if show_fields.show_indaquis %}
+            {% if show_fields.show_indaquis or 1 %}
             <th>Indicativo de aquisição</th>
             {% endif %}
-            {% if show_fields.show_vlraquis %}
+            {% if show_fields.show_vlraquis or 0 %}
             <th>Valor total da aquisição</th>
             {% endif %}
-            {% if show_fields.show_vrcpdescpr %}
+            {% if show_fields.show_vrcpdescpr or 0 %}
             <th>Valor da CP descontada PR</th>
             {% endif %}
-            {% if show_fields.show_vrcpnret %}
+            {% if show_fields.show_vrcpnret or 0 %}
             <th>Valor da CP não retida</th>
             {% endif %}
-            {% if show_fields.show_vrratnret %}
+            {% if show_fields.show_vrratnret or 0 %}
             <th>Valor da GILRAT</th>
             {% endif %}
-            {% if show_fields.show_vrsenarnret %}
+            {% if show_fields.show_vrsenarnret or 0 %}
             <th>Valor da CP destinada ao SENAR não retida</th>
             {% endif %}
-            {% if show_fields.show_vrcpcalcpr %}
+            {% if show_fields.show_vrcpcalcpr or 0 %}
             <th>Valor calculado da CP do produtor rural</th>
             {% endif %}
-            {% if show_fields.show_vrratdescpr %}
+            {% if show_fields.show_vrratdescpr or 0 %}
             <th>Valor RAT descontado do produtor rural</th>
             {% endif %}
-            {% if show_fields.show_vrratcalcpr %}
+            {% if show_fields.show_vrratcalcpr or 1 %}
             <th>Valor RAT calculado do produtor rural</th>
             {% endif %}
-            {% if show_fields.show_vrsenardesc %}
+            {% if show_fields.show_vrsenardesc or 0 %}
             <th>Valor descontado destinado ao SENAR</th>
             {% endif %}
-            {% if show_fields.show_vrsenarcalc %}
+            {% if show_fields.show_vrsenarcalc or 0 %}
             <th>Valor calculado destinado ao SENAR</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

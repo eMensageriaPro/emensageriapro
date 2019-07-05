@@ -2,58 +2,58 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_idelotacao %}
+            {% if show_fields.show_s5011_idelotacao or 1 %}
             <th>Bases de cálculo da contribuição previdenciária incidente sobre remunerações, por categoria.</th>
             {% endif %}
-            {% if show_fields.show_indincid %}
+            {% if show_fields.show_indincid or 1 %}
             <th>Incidência</th>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 1 %}
             <th>Código da Categoria</th>
             {% endif %}
-            {% if show_fields.show_basescp %}
+            {% if show_fields.show_basescp or 0 %}
             <th>Valores correspondentes às bases, contribuições do segurado e deduções da contribuição previdenciária.</th>
             {% endif %}
-            {% if show_fields.show_vrbccp00 %}
+            {% if show_fields.show_vrbccp00 or 0 %}
             <th>Valor da BC da CP</th>
             {% endif %}
-            {% if show_fields.show_vrbccp15 %}
+            {% if show_fields.show_vrbccp15 or 0 %}
             <th>Valor da BC da CP (15 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbccp20 %}
+            {% if show_fields.show_vrbccp20 or 0 %}
             <th>Valor da BC da CP (20 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrbccp25 %}
+            {% if show_fields.show_vrbccp25 or 0 %}
             <th>Valor da BC da CP (25 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrsuspbccp00 %}
+            {% if show_fields.show_vrsuspbccp00 or 0 %}
             <th>Valor da BC da CP suspenso</th>
             {% endif %}
-            {% if show_fields.show_vrsuspbccp15 %}
+            {% if show_fields.show_vrsuspbccp15 or 0 %}
             <th>Valor da BC da CP suspenso (15 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrsuspbccp20 %}
+            {% if show_fields.show_vrsuspbccp20 or 0 %}
             <th>Valor da BC da CP suspenso (20 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrsuspbccp25 %}
+            {% if show_fields.show_vrsuspbccp25 or 0 %}
             <th>Valor da BC da CP suspenso (25 anos)</th>
             {% endif %}
-            {% if show_fields.show_vrdescsest %}
+            {% if show_fields.show_vrdescsest or 0 %}
             <th>Valor total descontado ao SEST</th>
             {% endif %}
-            {% if show_fields.show_vrcalcsest %}
+            {% if show_fields.show_vrcalcsest or 0 %}
             <th>Valor calculado descontado ao SEST</th>
             {% endif %}
-            {% if show_fields.show_vrdescsenat %}
+            {% if show_fields.show_vrdescsenat or 0 %}
             <th>Valor total descontado ao SENAT</th>
             {% endif %}
-            {% if show_fields.show_vrcalcsenat %}
+            {% if show_fields.show_vrcalcsenat or 0 %}
             <th>Valor calculado descontado ao SENAT</th>
             {% endif %}
-            {% if show_fields.show_vrsalfam %}
+            {% if show_fields.show_vrsalfam or 0 %}
             <th>Valor do salário-família</th>
             {% endif %}
-            {% if show_fields.show_vrsalmat %}
+            {% if show_fields.show_vrsalmat or 0 %}
             <th>Valor do salário-maternidade</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

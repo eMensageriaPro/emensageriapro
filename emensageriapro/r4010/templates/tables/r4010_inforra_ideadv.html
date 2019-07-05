@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_inforra_despprocjud %}
+            {% if show_fields.show_r4010_inforra_despprocjud or 1 %}
             <th>Identificação do advogado</th>
             {% endif %}
-            {% if show_fields.show_tpinscadv %}
+            {% if show_fields.show_tpinscadv or 1 %}
             <th>Tipo de inscrição do advogado</th>
             {% endif %}
-            {% if show_fields.show_nrinscadv %}
+            {% if show_fields.show_nrinscadv or 1 %}
             <th>Informar o número de inscrição do advogado</th>
             {% endif %}
-            {% if show_fields.show_vlradv %}
+            {% if show_fields.show_vlradv or 0 %}
             <th>Valor da despesa com o advogado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

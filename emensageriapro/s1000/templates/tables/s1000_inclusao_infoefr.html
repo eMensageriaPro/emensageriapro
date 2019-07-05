@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1000_inclusao_infoop %}
+            {% if show_fields.show_s1000_inclusao_infoop or 1 %}
             <th>Informações relativas a Ente Federativo Responsável - EFR</th>
             {% endif %}
-            {% if show_fields.show_ideefr %}
+            {% if show_fields.show_ideefr or 0 %}
             <th>É Ente Federativo Responsável?</th>
             {% endif %}
-            {% if show_fields.show_cnpjefr %}
+            {% if show_fields.show_cnpjefr or 0 %}
             <th>CNPJ do EFR</th>
             {% endif %}
-            {% if show_fields.show_indrpps %}
+            {% if show_fields.show_indrpps or 1 %}
             <th>Possui RPPS</th>
             {% endif %}
-            {% if show_fields.show_prevcomp %}
+            {% if show_fields.show_prevcomp or 1 %}
             <th>Informar se o EFR instituiu regime de previdência complementar</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

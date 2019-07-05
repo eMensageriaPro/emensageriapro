@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2070_pgtopj %}
+            {% if show_fields.show_r2070_pgtopj or 1 %}
             <th>Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</th>
             {% endif %}
-            {% if show_fields.show_nrprocjud %}
+            {% if show_fields.show_nrprocjud or 1 %}
             <th>Preencher com o número do processo judicial</th>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 0 %}
             <th>Código do Indicativo da Suspensão, atribuído pelo contribuinte</th>
             {% endif %}
-            {% if show_fields.show_indorigemrecursos %}
+            {% if show_fields.show_indorigemrecursos or 1 %}
             <th>Indicativo da origem dos recursos</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

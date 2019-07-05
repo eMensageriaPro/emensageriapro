@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5002_evtirrfbenef %}
+            {% if show_fields.show_s5002_evtirrfbenef or 1 %}
             <th>Informações relativas a existência de dependentes do beneficiário do pagamento. Origem: S-1210 - registro {deps}</th>
             {% endif %}
-            {% if show_fields.show_vrdeddep %}
+            {% if show_fields.show_vrdeddep or 1 %}
             <th>Valor da dedução da BC do IRRF</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

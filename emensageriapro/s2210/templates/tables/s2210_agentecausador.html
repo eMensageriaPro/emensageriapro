@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2210_evtcat %}
+            {% if show_fields.show_s2210_evtcat or 1 %}
             <th>Detalhamento do(s) agente(s) causador(es) do acidente de trabalho</th>
             {% endif %}
-            {% if show_fields.show_codagntcausador %}
+            {% if show_fields.show_codagntcausador or 1 %}
             <th>Agente Causador</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

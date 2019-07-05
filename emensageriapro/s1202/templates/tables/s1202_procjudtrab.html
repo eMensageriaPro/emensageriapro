@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1202_evtrmnrpps %}
+            {% if show_fields.show_s1202_evtrmnrpps or 1 %}
             <th>Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</th>
             {% endif %}
-            {% if show_fields.show_tptrib %}
+            {% if show_fields.show_tptrib or 1 %}
             <th>Abrangência da Decisão</th>
             {% endif %}
-            {% if show_fields.show_nrprocjud %}
+            {% if show_fields.show_nrprocjud or 1 %}
             <th>Número do Processo Judicial</th>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 0 %}
             <th>Código do Indicativo da Suspensão</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

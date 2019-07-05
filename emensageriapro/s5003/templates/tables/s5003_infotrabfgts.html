@@ -2,31 +2,31 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5003_ideestablot %}
+            {% if show_fields.show_s5003_ideestablot or 1 %}
             <th>Informações relativas à matrícula e categoria do trabalhador.</th>
             {% endif %}
-            {% if show_fields.show_matricula %}
+            {% if show_fields.show_matricula or 0 %}
             <th>Matricula</th>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 1 %}
             <th>Código da Categoria</th>
             {% endif %}
-            {% if show_fields.show_dtadm %}
+            {% if show_fields.show_dtadm or 0 %}
             <th>Data de admissão</th>
             {% endif %}
-            {% if show_fields.show_dtdeslig %}
+            {% if show_fields.show_dtdeslig or 0 %}
             <th>Data de desligamento</th>
             {% endif %}
-            {% if show_fields.show_dtinicio %}
+            {% if show_fields.show_dtinicio or 0 %}
             <th>Data de início</th>
             {% endif %}
-            {% if show_fields.show_mtvdeslig %}
+            {% if show_fields.show_mtvdeslig or 0 %}
             <th>Motivo do desligamento</th>
             {% endif %}
-            {% if show_fields.show_dtterm %}
+            {% if show_fields.show_dtterm or 0 %}
             <th>Data de Término do contrato de trabalho</th>
             {% endif %}
-            {% if show_fields.show_mtvdesligtsv %}
+            {% if show_fields.show_mtvdesligtsv or 0 %}
             <th>Motivo do término</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

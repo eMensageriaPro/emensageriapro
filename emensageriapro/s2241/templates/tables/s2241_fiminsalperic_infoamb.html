@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2241_fiminsalperic %}
+            {% if show_fields.show_s2241_fiminsalperic or 1 %}
             <th>Informações relativas ao ambiente de trabalho</th>
             {% endif %}
-            {% if show_fields.show_codamb %}
+            {% if show_fields.show_codamb or 1 %}
             <th>Código do Ambiente</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

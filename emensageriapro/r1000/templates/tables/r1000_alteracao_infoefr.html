@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r1000_alteracao %}
+            {% if show_fields.show_r1000_alteracao or 1 %}
             <th>Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR</th>
             {% endif %}
-            {% if show_fields.show_ideefr %}
+            {% if show_fields.show_ideefr or 1 %}
             <th>Informar se o Órgão Público é o Ente Federativo Responsável - EFR ou se é uma unidade administrativa autônoma vinculada a um EFR</th>
             {% endif %}
-            {% if show_fields.show_cnpjefr %}
+            {% if show_fields.show_cnpjefr or 0 %}
             <th>CNPJ do Ente Federativo Responsável - EFR</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

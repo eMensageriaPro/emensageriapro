@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2231_evtcessao %}
+            {% if show_fields.show_s2231_evtcessao or 1 %}
             <th>Informações de término da cessão/exercício em outro órgão</th>
             {% endif %}
-            {% if show_fields.show_dttermcessao %}
+            {% if show_fields.show_dttermcessao or 1 %}
             <th>Preencher com a data de término da cessão/exercício em outro órgão</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1005_inclusao %}
+            {% if show_fields.show_s1005_inclusao or 1 %}
             <th>Informações relativas ao Cadastro da Atividade Econômica da Pessoa Física - CAEPF.</th>
             {% endif %}
-            {% if show_fields.show_tpcaepf %}
+            {% if show_fields.show_tpcaepf or 1 %}
             <th>Tipo CAEPF (Cadastro Atividade Econômica de Pessoa Física)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

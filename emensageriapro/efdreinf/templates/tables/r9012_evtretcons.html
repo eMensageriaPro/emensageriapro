@@ -2,88 +2,88 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_evtretcons %}
+            {% if show_fields.show_evtretcons or 0 %}
             <th>Evento totalizador por contribuinte</th>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <th>Identificação única do evento</th>
             {% endif %}
-            {% if show_fields.show_ideevento %}
+            {% if show_fields.show_ideevento or 0 %}
             <th>Informações de Identificação do Evento</th>
             {% endif %}
-            {% if show_fields.show_perapur %}
+            {% if show_fields.show_perapur or 0 %}
             <th>Informar o ano/mês de referência das informações no formato AAAA-MM</th>
             {% endif %}
-            {% if show_fields.show_idecontri %}
+            {% if show_fields.show_idecontri or 0 %}
             <th>Informações de identificação do contribuinte</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <th>Preencher com o código correspondente ao tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <th>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</th>
             {% endif %}
-            {% if show_fields.show_iderecretorno %}
+            {% if show_fields.show_iderecretorno or 0 %}
             <th>Informações do Recibo de Retorno</th>
             {% endif %}
-            {% if show_fields.show_idestatus %}
+            {% if show_fields.show_idestatus or 0 %}
             <th>Situação atual do evento</th>
             {% endif %}
-            {% if show_fields.show_cdretorno %}
+            {% if show_fields.show_cdretorno or 1 %}
             <th>Código do Retorno</th>
             {% endif %}
-            {% if show_fields.show_descretorno %}
+            {% if show_fields.show_descretorno or 0 %}
             <th>Descrição do retorno</th>
             {% endif %}
-            {% if show_fields.show_inforecev %}
+            {% if show_fields.show_inforecev or 0 %}
             <th>Informações de processamento dos eventos</th>
             {% endif %}
-            {% if show_fields.show_nrprotentr %}
+            {% if show_fields.show_nrprotentr or 0 %}
             <th>Número do protocolo de entrega do evento</th>
             {% endif %}
-            {% if show_fields.show_dhprocess %}
+            {% if show_fields.show_dhprocess or 1 %}
             <th>Data e hora do início do processamento da consulta</th>
             {% endif %}
-            {% if show_fields.show_tpev %}
+            {% if show_fields.show_tpev or 0 %}
             <th>Tipo do Evento</th>
             {% endif %}
-            {% if show_fields.show_idev %}
+            {% if show_fields.show_idev or 0 %}
             <th>ID do Evento</th>
             {% endif %}
-            {% if show_fields.show_hash %}
+            {% if show_fields.show_hash or 0 %}
             <th>Hash do arquivo processado</th>
             {% endif %}
-            {% if show_fields.show_versao %}
+            {% if show_fields.show_versao or 0 %}
             <th>Versão</th>
             {% endif %}
-            {% if show_fields.show_transmissor_lote_efdreinf %}
+            {% if show_fields.show_transmissor_lote_efdreinf or 0 %}
             <th>Transmissor</th>
             {% endif %}
-            {% if show_fields.show_ocorrencias %}
+            {% if show_fields.show_ocorrencias or 0 %}
             <th>Ocorrências</th>
             {% endif %}
-            {% if show_fields.show_validacao_precedencia %}
+            {% if show_fields.show_validacao_precedencia or 0 %}
             <th>Validação de Precedência</th>
             {% endif %}
-            {% if show_fields.show_validacoes %}
+            {% if show_fields.show_validacoes or 0 %}
             <th>Validações</th>
             {% endif %}
-            {% if show_fields.show_arquivo_original %}
+            {% if show_fields.show_arquivo_original or 0 %}
             <th>Arquivo Original</th>
             {% endif %}
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 0 %}
             <th>Arquivo</th>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
-            {% if show_fields.show_cdretorno %}
+            {% if show_fields.show_cdretorno or 0 %}
             <th>Código do Retorno</th>
             {% endif %}
-            {% if show_fields.show_descretorno %}
+            {% if show_fields.show_descretorno or 0 %}
             <th>Descrição do Retorno</th>
             {% endif %}
-            {% if show_fields.show_dhprocess %}
+            {% if show_fields.show_dhprocess or 0 %}
             <th>Data/Hora do Processamento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

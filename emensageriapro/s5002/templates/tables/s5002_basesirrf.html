@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5002_infoirrf %}
+            {% if show_fields.show_s5002_infoirrf or 1 %}
             <th>Bases, deduções, isenções e retenções do IRRF</th>
             {% endif %}
-            {% if show_fields.show_tpvalor %}
+            {% if show_fields.show_tpvalor or 1 %}
             <th>Tipo de Valor</th>
             {% endif %}
-            {% if show_fields.show_valor %}
+            {% if show_fields.show_valor or 1 %}
             <th>Valor da base de cálculo, dedução ou desconto da CP</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

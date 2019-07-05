@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_altexprisco %}
+            {% if show_fields.show_s2240_altexprisco or 1 %}
             <th>Informações relativas ao ambiente de trabalho</th>
             {% endif %}
-            {% if show_fields.show_codamb %}
+            {% if show_fields.show_codamb or 1 %}
             <th>Código do Ambiente</th>
             {% endif %}
-            {% if show_fields.show_infoativ %}
+            {% if show_fields.show_infoativ or 0 %}
             <th>Descrição das Atividades Desempenhadas</th>
             {% endif %}
-            {% if show_fields.show_dscativdes %}
+            {% if show_fields.show_dscativdes or 1 %}
             <th>Descrição das atividades desempenhadas</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

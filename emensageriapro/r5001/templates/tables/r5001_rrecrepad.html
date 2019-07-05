@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r5001_infototal %}
+            {% if show_fields.show_r5001_infototal or 0 %}
             <th>Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040</th>
             {% endif %}
-            {% if show_fields.show_cnpjassocdesp %}
+            {% if show_fields.show_cnpjassocdesp or 1 %}
             <th>Preencher com o CNPJ da associação desportiva que mantém clube de futebol para a qual foi efetuado o repasse</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalrep %}
+            {% if show_fields.show_vlrtotalrep or 1 %}
             <th>Preencher com o valor bruto dos recursos repassados</th>
             {% endif %}
-            {% if show_fields.show_crrecrepad %}
+            {% if show_fields.show_crrecrepad or 1 %}
             <th>Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre recursos repassados a Associação Desportiva que mantenha equipe de futebol profissional, calculada segundo as regras estabelecidas na legislação em vigor</th>
             {% endif %}
-            {% if show_fields.show_vlrcrrecrepad %}
+            {% if show_fields.show_vlrcrrecrepad or 0 %}
             <th>Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-2040</th>
             {% endif %}
-            {% if show_fields.show_vlrcrrecrepadsusp %}
+            {% if show_fields.show_vlrcrrecrepadsusp or 0 %}
             <th>Valor da retenção da contribuição previdenciária que deixou de ser efetuada ou que foi depositada em juízo em decorência de decisão judicial/administrativa, correspondente ao Código de Receita - CR informado em {CRRecRepAD}</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

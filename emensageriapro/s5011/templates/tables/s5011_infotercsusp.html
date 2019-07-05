@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_idelotacao %}
+            {% if show_fields.show_s5011_idelotacao or 1 %}
             <th>Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros).</th>
             {% endif %}
-            {% if show_fields.show_codterc %}
+            {% if show_fields.show_codterc or 1 %}
             <th>Código de Terceiros</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

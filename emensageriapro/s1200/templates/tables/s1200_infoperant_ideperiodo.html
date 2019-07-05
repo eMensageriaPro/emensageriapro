@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1200_infoperant_ideadc %}
+            {% if show_fields.show_s1200_infoperant_ideadc or 1 %}
             <th>Período de validade das informações incluídas</th>
             {% endif %}
-            {% if show_fields.show_perref %}
+            {% if show_fields.show_perref or 1 %}
             <th>Período de Referência</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

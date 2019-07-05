@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2306_infocomplementares %}
+            {% if show_fields.show_s2306_infocomplementares or 1 %}
             <th>Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.</th>
             {% endif %}
-            {% if show_fields.show_indremuncargo %}
+            {% if show_fields.show_indremuncargo or 1 %}
             <th>Indicar se o servidor optou pela remuneração do cargo efetivo</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

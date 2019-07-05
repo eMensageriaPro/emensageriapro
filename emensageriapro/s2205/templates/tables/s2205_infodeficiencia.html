@@ -2,31 +2,31 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2205_evtaltcadastral %}
+            {% if show_fields.show_s2205_evtaltcadastral or 1 %}
             <th>Pessoa com Deficiência</th>
             {% endif %}
-            {% if show_fields.show_deffisica %}
+            {% if show_fields.show_deffisica or 1 %}
             <th>Possui Deficiência Física</th>
             {% endif %}
-            {% if show_fields.show_defvisual %}
+            {% if show_fields.show_defvisual or 0 %}
             <th>Possui Deficiência Visual</th>
             {% endif %}
-            {% if show_fields.show_defauditiva %}
+            {% if show_fields.show_defauditiva or 1 %}
             <th>Possui Deficiência Auditiva</th>
             {% endif %}
-            {% if show_fields.show_defmental %}
+            {% if show_fields.show_defmental or 0 %}
             <th>Possui Deficiência Mental</th>
             {% endif %}
-            {% if show_fields.show_defintelectual %}
+            {% if show_fields.show_defintelectual or 0 %}
             <th>Possui Deficiência Intelectual</th>
             {% endif %}
-            {% if show_fields.show_reabreadap %}
+            {% if show_fields.show_reabreadap or 0 %}
             <th>Reabilitado ou Readaptado</th>
             {% endif %}
-            {% if show_fields.show_infocota %}
+            {% if show_fields.show_infocota or 0 %}
             <th>Preenche cota de pessoas com deficientes</th>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,28 +2,28 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1030_evttabcargo %}
+            {% if show_fields.show_s1030_evttabcargo or 1 %}
             <th>Alteração das informações</th>
             {% endif %}
-            {% if show_fields.show_idecargo %}
+            {% if show_fields.show_idecargo or 0 %}
             <th>Informações de identificação do cargo e validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_codcargo %}
+            {% if show_fields.show_codcargo or 1 %}
             <th>Código do Cargo</th>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 0 %}
             <th>Início da Validade</th>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <th>Fim da Validade</th>
             {% endif %}
-            {% if show_fields.show_dadoscargo %}
+            {% if show_fields.show_dadoscargo or 0 %}
             <th>Detalhamento das informações do cargo que está sendo incluído</th>
             {% endif %}
-            {% if show_fields.show_nmcargo %}
+            {% if show_fields.show_nmcargo or 0 %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_codcbo %}
+            {% if show_fields.show_codcbo or 1 %}
             <th>CBO</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

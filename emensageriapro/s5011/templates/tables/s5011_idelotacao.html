@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_ideestab %}
+            {% if show_fields.show_s5011_ideestab or 0 %}
             <th>Informações de identificação da lotação e validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_codlotacao %}
+            {% if show_fields.show_codlotacao or 1 %}
             <th>Código da Lotação</th>
             {% endif %}
-            {% if show_fields.show_fpas %}
+            {% if show_fields.show_fpas or 1 %}
             <th>FPAS</th>
             {% endif %}
-            {% if show_fields.show_codtercs %}
+            {% if show_fields.show_codtercs or 1 %}
             <th>Código de Terceiros</th>
             {% endif %}
-            {% if show_fields.show_codtercssusp %}
+            {% if show_fields.show_codtercssusp or 0 %}
             <th>Código de Terceiros (Suspensão)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

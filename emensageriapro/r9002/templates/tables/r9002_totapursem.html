@@ -2,25 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9002_infototal %}
+            {% if show_fields.show_r9002_infototal or 1 %}
             <th>Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal</th>
             {% endif %}
-            {% if show_fields.show_perapursem %}
+            {% if show_fields.show_perapursem or 1 %}
             <th>Período de apuração semanal do Código de Receita - CR</th>
             {% endif %}
-            {% if show_fields.show_crsem %}
+            {% if show_fields.show_crsem or 1 %}
             <th>Código de Receita - CR relativo a tributo que possui período de apuração semanal</th>
             {% endif %}
-            {% if show_fields.show_vlrbasecrsem %}
+            {% if show_fields.show_vlrbasecrsem or 0 %}
             <th>Valor da base do tributo com período de apuração semanal</th>
             {% endif %}
-            {% if show_fields.show_vlrcrsem %}
+            {% if show_fields.show_vlrcrsem or 0 %}
             <th>Valor do tributo retido com período de apuração semanal, calculado segundo as regras estabelecidas na legislação em vigor</th>
             {% endif %}
-            {% if show_fields.show_vlrbasecrsemsusp %}
+            {% if show_fields.show_vlrbasecrsemsusp or 0 %}
             <th>Valor da base do tributo com período de apuração semanal, com exigibilidade suspensa</th>
             {% endif %}
-            {% if show_fields.show_vlrcrsemsusp %}
+            {% if show_fields.show_vlrcrsemsusp or 0 %}
             <th>Valor do tributo com período de apuração semanal, que deixou de ser retido</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_evttsvinicio %}
+            {% if show_fields.show_s2300_evttsvinicio or 1 %}
             <th>Informações de término do TSVE</th>
             {% endif %}
-            {% if show_fields.show_dtterm %}
+            {% if show_fields.show_dtterm or 1 %}
             <th>Data de Término do contrato de trabalho</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

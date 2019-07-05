@@ -2,55 +2,55 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2210_evtcat %}
+            {% if show_fields.show_s2210_evtcat or 1 %}
             <th>Atestado Médico</th>
             {% endif %}
-            {% if show_fields.show_codcnes %}
+            {% if show_fields.show_codcnes or 0 %}
             <th>CNES da unidade de atendimento</th>
             {% endif %}
-            {% if show_fields.show_dtatendimento %}
+            {% if show_fields.show_dtatendimento or 0 %}
             <th>Data do atendimento</th>
             {% endif %}
-            {% if show_fields.show_hratendimento %}
+            {% if show_fields.show_hratendimento or 0 %}
             <th>Hora do atendimento</th>
             {% endif %}
-            {% if show_fields.show_indinternacao %}
+            {% if show_fields.show_indinternacao or 0 %}
             <th>Internação</th>
             {% endif %}
-            {% if show_fields.show_durtrat %}
+            {% if show_fields.show_durtrat or 0 %}
             <th>Duração do tratamento</th>
             {% endif %}
-            {% if show_fields.show_indafast %}
+            {% if show_fields.show_indafast or 1 %}
             <th>Afastamento</th>
             {% endif %}
-            {% if show_fields.show_dsclesao %}
+            {% if show_fields.show_dsclesao or 0 %}
             <th>Descrição da Lesão</th>
             {% endif %}
-            {% if show_fields.show_dsccomplesao %}
+            {% if show_fields.show_dsccomplesao or 0 %}
             <th>Descrição complementar da lesão</th>
             {% endif %}
-            {% if show_fields.show_diagprovavel %}
+            {% if show_fields.show_diagprovavel or 0 %}
             <th>Diagnóstivo provável</th>
             {% endif %}
-            {% if show_fields.show_codcid %}
+            {% if show_fields.show_codcid or 1 %}
             <th>CID</th>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <th>Observações</th>
             {% endif %}
-            {% if show_fields.show_emitente %}
+            {% if show_fields.show_emitente or 0 %}
             <th>Médico/Dentista que emitiu o atestado</th>
             {% endif %}
-            {% if show_fields.show_nmemit %}
+            {% if show_fields.show_nmemit or 0 %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_ideoc %}
+            {% if show_fields.show_ideoc or 0 %}
             <th>Órgão de Classe (OC)</th>
             {% endif %}
-            {% if show_fields.show_nroc %}
+            {% if show_fields.show_nroc or 0 %}
             <th>Número de Inscrição no órgão de classe.</th>
             {% endif %}
-            {% if show_fields.show_ufoc %}
+            {% if show_fields.show_ufoc or 0 %}
             <th>UF do OC</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

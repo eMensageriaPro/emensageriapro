@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5012_evtirrf %}
+            {% if show_fields.show_s5012_evtirrf or 1 %}
             <th>Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.</th>
             {% endif %}
-            {% if show_fields.show_tpcr %}
+            {% if show_fields.show_tpcr or 1 %}
             <th>Código da Receita (CR)</th>
             {% endif %}
-            {% if show_fields.show_vrcr %}
+            {% if show_fields.show_vrcr or 1 %}
             <th>Valor do CR apurado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

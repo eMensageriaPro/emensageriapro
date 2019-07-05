@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2231_evtcessao %}
+            {% if show_fields.show_s2231_evtcessao or 0 %}
             <th>Informações de início da cessão/exercício em outro órgão</th>
             {% endif %}
-            {% if show_fields.show_dtinicessao %}
+            {% if show_fields.show_dtinicessao or 1 %}
             <th>Data de início da cessão/exercício em outro órgão</th>
             {% endif %}
-            {% if show_fields.show_cnpjcess %}
+            {% if show_fields.show_cnpjcess or 1 %}
             <th>CNPJ do Cessionário</th>
             {% endif %}
-            {% if show_fields.show_infonus %}
+            {% if show_fields.show_infonus or 0 %}
             <th>Onus da cessão/requisição</th>
             {% endif %}
-            {% if show_fields.show_indcessao %}
+            {% if show_fields.show_indcessao or 1 %}
             <th>Indicativo de cessão/exercício em outro órgão</th>
             {% endif %}
-            {% if show_fields.show_dscsituacao %}
+            {% if show_fields.show_dscsituacao or 0 %}
             <th>Descrição da situação relativa a exercício em outro órgão, em caso diferente de cessão</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

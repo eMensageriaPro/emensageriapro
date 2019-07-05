@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5013_evtfgts %}
+            {% if show_fields.show_s5013_evtfgts or 1 %}
             <th>Informações sobre valores de FGTS.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

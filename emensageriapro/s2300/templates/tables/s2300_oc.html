@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_documentos %}
+            {% if show_fields.show_s2300_documentos or 1 %}
             <th>Informações do número de registro em Órgão de Classe (OC)</th>
             {% endif %}
-            {% if show_fields.show_nroc %}
+            {% if show_fields.show_nroc or 1 %}
             <th>Número do OC</th>
             {% endif %}
-            {% if show_fields.show_orgaoemissor %}
+            {% if show_fields.show_orgaoemissor or 1 %}
             <th>Órgão Emissor do RIC</th>
             {% endif %}
-            {% if show_fields.show_dtexped %}
+            {% if show_fields.show_dtexped or 0 %}
             <th>Data de Expedição do RIC</th>
             {% endif %}
-            {% if show_fields.show_dtvalid %}
+            {% if show_fields.show_dtvalid or 0 %}
             <th>Data de Validade do OC</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

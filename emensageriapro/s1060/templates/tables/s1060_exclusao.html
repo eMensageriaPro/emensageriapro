@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1060_evttabambiente %}
+            {% if show_fields.show_s1060_evttabambiente or 1 %}
             <th>Exclusão das informações</th>
             {% endif %}
-            {% if show_fields.show_ideambiente %}
+            {% if show_fields.show_ideambiente or 0 %}
             <th>Informações de identificação do ambiente de trabalho do empregador e de validade das informações.</th>
             {% endif %}
-            {% if show_fields.show_codamb %}
+            {% if show_fields.show_codamb or 1 %}
             <th>Código do Ambiente</th>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 1 %}
             <th>Início da Validade</th>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <th>Fim da Validade</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

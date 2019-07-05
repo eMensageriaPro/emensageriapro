@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2230_iniafastamento %}
+            {% if show_fields.show_s2230_iniafastamento or 1 %}
             <th>Informações complementares relativas ao atestado médico</th>
             {% endif %}
-            {% if show_fields.show_codcid %}
+            {% if show_fields.show_codcid or 0 %}
             <th>CID</th>
             {% endif %}
-            {% if show_fields.show_qtddiasafast %}
+            {% if show_fields.show_qtddiasafast or 1 %}
             <th>Quant. de dias afastados</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

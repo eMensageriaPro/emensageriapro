@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2040_recursosrep %}
+            {% if show_fields.show_r2040_recursosrep or 1 %}
             <th>Detalhamento dos recursos recebidos.</th>
             {% endif %}
-            {% if show_fields.show_tprepasse %}
+            {% if show_fields.show_tprepasse or 0 %}
             <th>Tipo de repasse, conforme tabela abaixo</th>
             {% endif %}
-            {% if show_fields.show_descrecurso %}
+            {% if show_fields.show_descrecurso or 1 %}
             <th>Descrição resumida do recurso recebido</th>
             {% endif %}
-            {% if show_fields.show_vlrbruto %}
+            {% if show_fields.show_vlrbruto or 1 %}
             <th>Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS</th>
             {% endif %}
-            {% if show_fields.show_vlrretapur %}
+            {% if show_fields.show_vlrretapur or 0 %}
             <th>Preencher com o valor da retenção de contribuição previdenciária.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

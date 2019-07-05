@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1260_evtcomprod %}
+            {% if show_fields.show_s1260_evtcomprod or 1 %}
             <th>Registro que apresenta o valor total da comercialização por 'tipo' de comercialização</th>
             {% endif %}
-            {% if show_fields.show_indcomerc %}
+            {% if show_fields.show_indcomerc or 1 %}
             <th>Indicativo de comercialização</th>
             {% endif %}
-            {% if show_fields.show_vrtotcom %}
+            {% if show_fields.show_vrtotcom or 1 %}
             <th>Valor total da comercialização</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,34 +2,34 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1050_evttabhortur %}
+            {% if show_fields.show_s1050_evttabhortur or 0 %}
             <th>Inclusão de novas informações</th>
             {% endif %}
-            {% if show_fields.show_idehorcontratual %}
+            {% if show_fields.show_idehorcontratual or 0 %}
             <th>Grupo de informações de identificação do horário contratual, apresentando o código e período de validade do registro cujas informações estão sendo incluídas.</th>
             {% endif %}
-            {% if show_fields.show_codhorcontrat %}
+            {% if show_fields.show_codhorcontrat or 1 %}
             <th>Código do Horário Contratual</th>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 0 %}
             <th>Início da Validade</th>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <th>Fim da Validade</th>
             {% endif %}
-            {% if show_fields.show_dadoshorcontratual %}
+            {% if show_fields.show_dadoshorcontratual or 0 %}
             <th>Detalhamento das informações do horário contratual que está sendo incluído.</th>
             {% endif %}
-            {% if show_fields.show_hrentr %}
+            {% if show_fields.show_hrentr or 1 %}
             <th>Hora de Entrada</th>
             {% endif %}
-            {% if show_fields.show_hrsaida %}
+            {% if show_fields.show_hrsaida or 0 %}
             <th>Hora de Saída</th>
             {% endif %}
-            {% if show_fields.show_durjornada %}
+            {% if show_fields.show_durjornada or 1 %}
             <th>Duração da jornada (min)</th>
             {% endif %}
-            {% if show_fields.show_perhorflexivel %}
+            {% if show_fields.show_perhorflexivel or 0 %}
             <th>Horário Flexivel</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

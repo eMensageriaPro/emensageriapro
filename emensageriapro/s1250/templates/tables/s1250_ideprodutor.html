@@ -2,28 +2,28 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1250_tpaquis %}
+            {% if show_fields.show_s1250_tpaquis or 1 %}
             <th>Registro que identifica os produtores rurais dos quais foi efetuada aquisição da produção pelo contribuinte declarante.</th>
             {% endif %}
-            {% if show_fields.show_tpinscprod %}
+            {% if show_fields.show_tpinscprod or 0 %}
             <th>Tipo de Inscrição Produtor</th>
             {% endif %}
-            {% if show_fields.show_nrinscprod %}
+            {% if show_fields.show_nrinscprod or 1 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_vlrbruto %}
+            {% if show_fields.show_vlrbruto or 0 %}
             <th>Valor bruto</th>
             {% endif %}
-            {% if show_fields.show_vrcpdescpr %}
+            {% if show_fields.show_vrcpdescpr or 0 %}
             <th>Valor da CP descontada PR</th>
             {% endif %}
-            {% if show_fields.show_vrratdescpr %}
+            {% if show_fields.show_vrratdescpr or 0 %}
             <th>Valor RAT descontado do produtor rural</th>
             {% endif %}
-            {% if show_fields.show_vrsenardesc %}
+            {% if show_fields.show_vrsenardesc or 0 %}
             <th>Valor descontado destinado ao SENAR</th>
             {% endif %}
-            {% if show_fields.show_indopccp %}
+            {% if show_fields.show_indopccp or 1 %}
             <th>Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

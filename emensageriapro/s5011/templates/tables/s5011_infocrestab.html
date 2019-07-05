@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_ideestab %}
+            {% if show_fields.show_s5011_ideestab or 1 %}
             <th>Informações das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, consolidadas por estabelecimento e por código de Receita - CR.</th>
             {% endif %}
-            {% if show_fields.show_tpcr %}
+            {% if show_fields.show_tpcr or 1 %}
             <th>Código da Receita (CR)</th>
             {% endif %}
-            {% if show_fields.show_vrcr %}
+            {% if show_fields.show_vrcr or 1 %}
             <th>Valor do CR apurado</th>
             {% endif %}
-            {% if show_fields.show_vrsuspcr %}
+            {% if show_fields.show_vrsuspcr or 0 %}
             <th>Valor suspenso correspondente ao CR</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

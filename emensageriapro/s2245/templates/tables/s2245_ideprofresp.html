@@ -2,25 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2245_evttreicap %}
+            {% if show_fields.show_s2245_evttreicap or 0 %}
             <th>Informações relativas ao profissional responsável pelo treinamento/capacitação</th>
             {% endif %}
-            {% if show_fields.show_cpfprof %}
+            {% if show_fields.show_cpfprof or 0 %}
             <th>Preencher com o CPF do profissional responsável pelo treinamento/capacitação</th>
             {% endif %}
-            {% if show_fields.show_nmprof %}
+            {% if show_fields.show_nmprof or 0 %}
             <th>Nome do profissional responsável pelo treinamento/capacitação.</th>
             {% endif %}
-            {% if show_fields.show_tpprof %}
+            {% if show_fields.show_tpprof or 0 %}
             <th>O treinamento/capacitação foi ministrado por</th>
             {% endif %}
-            {% if show_fields.show_formprof %}
+            {% if show_fields.show_formprof or 1 %}
             <th>Formação do profissional responsável pelo treinamento/capacitação (seja acadêmica, prática ou outra forma).</th>
             {% endif %}
-            {% if show_fields.show_codcbo %}
+            {% if show_fields.show_codcbo or 1 %}
             <th>CBO</th>
             {% endif %}
-            {% if show_fields.show_nacprof %}
+            {% if show_fields.show_nacprof or 1 %}
             <th>Indicativo da nacionalidade do profissional responsável pelo treinamento/capacitação/exercício simulado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_evtexprisco %}
+            {% if show_fields.show_s2240_evtexprisco or 1 %}
             <th>Observações relativas a registros ambientais</th>
             {% endif %}
-            {% if show_fields.show_meterg %}
+            {% if show_fields.show_meterg or 0 %}
             <th>Descrição da metodologia utilizada para o levantamento dos riscos ergonômicos.</th>
             {% endif %}
-            {% if show_fields.show_obscompl %}
+            {% if show_fields.show_obscompl or 0 %}
             <th>Observação(ões) complementar(es) referente(s) a registros ambientais. Validação: Preenchimento obrigatório se {metErg} não for informado.</th>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

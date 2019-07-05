@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2206_horcontratual %}
+            {% if show_fields.show_s2206_horcontratual or 1 %}
             <th>Informações diárias do horário contratual</th>
             {% endif %}
-            {% if show_fields.show_dia %}
+            {% if show_fields.show_dia or 1 %}
             <th>Dia</th>
             {% endif %}
-            {% if show_fields.show_codhorcontrat %}
+            {% if show_fields.show_codhorcontrat or 1 %}
             <th>Código do Horário Contratual</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

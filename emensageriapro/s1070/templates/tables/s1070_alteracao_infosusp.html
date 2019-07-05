@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1070_alteracao %}
+            {% if show_fields.show_s1070_alteracao or 0 %}
             <th>Informações de suspensão de exigibilidade de tributos e FGTS em virtude de processo administrativo ou judicial.</th>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 1 %}
             <th>Código do Indicativo da Suspensão</th>
             {% endif %}
-            {% if show_fields.show_indsusp %}
+            {% if show_fields.show_indsusp or 0 %}
             <th>Suspensão de exigibilidade</th>
             {% endif %}
-            {% if show_fields.show_dtdecisao %}
+            {% if show_fields.show_dtdecisao or 1 %}
             <th>Data da decisão</th>
             {% endif %}
-            {% if show_fields.show_inddeposito %}
+            {% if show_fields.show_inddeposito or 1 %}
             <th>Depósito do montante integral</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

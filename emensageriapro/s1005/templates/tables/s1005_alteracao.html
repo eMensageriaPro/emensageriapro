@@ -2,58 +2,58 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1005_evttabestab %}
+            {% if show_fields.show_s1005_evttabestab or 1 %}
             <th>Alteração das informações</th>
             {% endif %}
-            {% if show_fields.show_ideestab %}
+            {% if show_fields.show_ideestab or 0 %}
             <th>Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 0 %}
             <th>Início da Validade</th>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <th>Fim da Validade</th>
             {% endif %}
-            {% if show_fields.show_dadosestab %}
+            {% if show_fields.show_dadosestab or 0 %}
             <th>Detalhamento das informações do estabelecimento, obra ou órgão público que está sendo incluído.</th>
             {% endif %}
-            {% if show_fields.show_cnaeprep %}
+            {% if show_fields.show_cnaeprep or 1 %}
             <th>CNAE preponderante</th>
             {% endif %}
-            {% if show_fields.show_aliqgilrat %}
+            {% if show_fields.show_aliqgilrat or 0 %}
             <th>Informações de Apuração da alíquota Gilrat do Estabelecimento</th>
             {% endif %}
-            {% if show_fields.show_aliqrat %}
+            {% if show_fields.show_aliqrat or 1 %}
             <th>Alíquota RAT</th>
             {% endif %}
-            {% if show_fields.show_fap %}
+            {% if show_fields.show_fap or 0 %}
             <th>FAP</th>
             {% endif %}
-            {% if show_fields.show_aliqratajust %}
+            {% if show_fields.show_aliqratajust or 0 %}
             <th>Alíquota RAT (Ajustada)</th>
             {% endif %}
-            {% if show_fields.show_infotrab %}
+            {% if show_fields.show_infotrab or 0 %}
             <th>Informações Trabalhistas relativas ao estabelecimento</th>
             {% endif %}
-            {% if show_fields.show_regpt %}
+            {% if show_fields.show_regpt or 0 %}
             <th>Registro de Ponto (Horário)</th>
             {% endif %}
-            {% if show_fields.show_infoapr %}
+            {% if show_fields.show_infoapr or 0 %}
             <th>Informações relacionadas à contratação de aprendiz</th>
             {% endif %}
-            {% if show_fields.show_contapr %}
+            {% if show_fields.show_contapr or 0 %}
             <th>Indicativo de contratação de aprendiz</th>
             {% endif %}
-            {% if show_fields.show_nrprocjud %}
+            {% if show_fields.show_nrprocjud or 0 %}
             <th>Número do Processo Judicial</th>
             {% endif %}
-            {% if show_fields.show_contented %}
+            {% if show_fields.show_contented or 0 %}
             <th>Entidade educativa sem fins lucrativos</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

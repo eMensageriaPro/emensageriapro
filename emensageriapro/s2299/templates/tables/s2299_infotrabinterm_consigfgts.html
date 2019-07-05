@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2299_evtdeslig %}
+            {% if show_fields.show_s2299_evtdeslig or 1 %}
             <th>Informações sobre operação de crédito consignado com garantia de FGTS</th>
             {% endif %}
-            {% if show_fields.show_insconsig %}
+            {% if show_fields.show_insconsig or 1 %}
             <th>Matrícula da Instituição Consignatária, cadastrada na Caixa Econômica Federal</th>
             {% endif %}
-            {% if show_fields.show_nrcontr %}
+            {% if show_fields.show_nrcontr or 1 %}
             <th>Número do contrato de empréstimo consignado existente na Instituição Consignatária</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

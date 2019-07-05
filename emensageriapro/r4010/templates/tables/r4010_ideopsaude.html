@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_evtretpf %}
+            {% if show_fields.show_r4010_evtretpf or 1 %}
             <th>Identificação da operadora do plano privado coletivo empresarial de assistência à saúde</th>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <th>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</th>
             {% endif %}
-            {% if show_fields.show_regans %}
+            {% if show_fields.show_regans or 0 %}
             <th>Registro na Agência Nacional de Saúde - ANS</th>
             {% endif %}
-            {% if show_fields.show_vlrsaude %}
+            {% if show_fields.show_vlrsaude or 1 %}
             <th>Valor pago ao plano de saúde</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

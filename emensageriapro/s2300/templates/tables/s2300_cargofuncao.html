@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_infocomplementares %}
+            {% if show_fields.show_s2300_infocomplementares or 1 %}
             <th>Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo</th>
             {% endif %}
-            {% if show_fields.show_codcargo %}
+            {% if show_fields.show_codcargo or 1 %}
             <th>Código do Cargo</th>
             {% endif %}
-            {% if show_fields.show_codfuncao %}
+            {% if show_fields.show_codfuncao or 0 %}
             <th>Código da Função</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

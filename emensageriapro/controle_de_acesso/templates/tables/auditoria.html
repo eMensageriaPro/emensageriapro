@@ -2,25 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_tabela %}
+            {% if show_fields.show_tabela or 1 %}
             <th>Tabela</th>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <th>Identidade do Registro</th>
             {% endif %}
-            {% if show_fields.show_situacao_anterior %}
+            {% if show_fields.show_situacao_anterior or 1 %}
             <th>Situação anterior a alteração</th>
             {% endif %}
-            {% if show_fields.show_situacao_posterior %}
+            {% if show_fields.show_situacao_posterior or 1 %}
             <th>Situação posterior a alteração</th>
             {% endif %}
-            {% if show_fields.show_operador %}
+            {% if show_fields.show_operador or 1 %}
             <th>Operador</th>
             {% endif %}
-            {% if show_fields.show_data_hora %}
+            {% if show_fields.show_data_hora or 1 %}
             <th>Data de Hora da Operação</th>
             {% endif %}
-            {% if show_fields.show_tipo %}
+            {% if show_fields.show_tipo or 1 %}
             <th>Tipo</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

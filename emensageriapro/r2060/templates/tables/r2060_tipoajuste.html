@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2060_tipocod %}
+            {% if show_fields.show_r2060_tipocod or 0 %}
             <th>Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.</th>
             {% endif %}
-            {% if show_fields.show_tpajuste %}
+            {% if show_fields.show_tpajuste or 1 %}
             <th>Preencher com o código correspondente ao tipo de ajuste</th>
             {% endif %}
-            {% if show_fields.show_codajuste %}
+            {% if show_fields.show_codajuste or 0 %}
             <th>Preencher com o código de ajuste</th>
             {% endif %}
-            {% if show_fields.show_vlrajuste %}
+            {% if show_fields.show_vlrajuste or 0 %}
             <th>Valor do ajuste</th>
             {% endif %}
-            {% if show_fields.show_descajuste %}
+            {% if show_fields.show_descajuste or 1 %}
             <th>Descrição resumida do ajuste</th>
             {% endif %}
-            {% if show_fields.show_dtajuste %}
+            {% if show_fields.show_dtajuste or 1 %}
             <th>Informar o mês/ano (formato AAAA-MM) de referência do ajuste</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1200_infocomplem %}
+            {% if show_fields.show_s1200_infocomplem or 1 %}
             <th>Grupo de informações da sucessão de vínculo trabalhista/estatutário</th>
             {% endif %}
-            {% if show_fields.show_tpinscant %}
+            {% if show_fields.show_tpinscant or 0 %}
             <th>Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05</th>
             {% endif %}
-            {% if show_fields.show_cnpjempregant %}
+            {% if show_fields.show_cnpjempregant or 1 %}
             <th>CNPJ Empregador Anterior</th>
             {% endif %}
-            {% if show_fields.show_matricant %}
+            {% if show_fields.show_matricant or 0 %}
             <th>Matricula anterior</th>
             {% endif %}
-            {% if show_fields.show_dtadm %}
+            {% if show_fields.show_dtadm or 1 %}
             <th>Data de admissão</th>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

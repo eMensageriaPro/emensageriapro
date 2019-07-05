@@ -2,55 +2,55 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_transmissor %}
+            {% if show_fields.show_transmissor or 0 %}
             <th>Transmissor</th>
             {% endif %}
-            {% if show_fields.show_contribuinte_tpinsc %}
+            {% if show_fields.show_contribuinte_tpinsc or 1 %}
             <th>Tipo de Inscrição do Contribuinte</th>
             {% endif %}
-            {% if show_fields.show_contribuinte_nrinsc %}
+            {% if show_fields.show_contribuinte_nrinsc or 1 %}
             <th>Número de Inscrição do Contribuinte</th>
             {% endif %}
-            {% if show_fields.show_grupo %}
+            {% if show_fields.show_grupo or 1 %}
             <th>Grupo</th>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
-            {% if show_fields.show_identidade_transmissor %}
+            {% if show_fields.show_identidade_transmissor or 1 %}
             <th>Identidade do Transmissor</th>
             {% endif %}
-            {% if show_fields.show_codigo_status %}
+            {% if show_fields.show_codigo_status or 1 %}
             <th>Código da Resposta</th>
             {% endif %}
-            {% if show_fields.show_retorno_descricao %}
+            {% if show_fields.show_retorno_descricao or 0 %}
             <th>Descrição da Resposta</th>
             {% endif %}
-            {% if show_fields.show_recepcao_data_hora %}
+            {% if show_fields.show_recepcao_data_hora or 0 %}
             <th>Data/Hora de Recepção</th>
             {% endif %}
-            {% if show_fields.show_recepcao_versao_aplicativo %}
+            {% if show_fields.show_recepcao_versao_aplicativo or 0 %}
             <th>Versão do Aplicativo de Recepção</th>
             {% endif %}
-            {% if show_fields.show_protocolo %}
+            {% if show_fields.show_protocolo or 0 %}
             <th>Protocolo de Envio</th>
             {% endif %}
-            {% if show_fields.show_numero_protocolo_fechamento %}
+            {% if show_fields.show_numero_protocolo_fechamento or 0 %}
             <th>Número do Protocolo de Fechamento</th>
             {% endif %}
-            {% if show_fields.show_processamento_versao_aplicativo %}
+            {% if show_fields.show_processamento_versao_aplicativo or 0 %}
             <th>Versão do Aplicativo de Processamento</th>
             {% endif %}
-            {% if show_fields.show_tempo_estimado_conclusao %}
+            {% if show_fields.show_tempo_estimado_conclusao or 0 %}
             <th>Tempo Estimado de Conclusão</th>
             {% endif %}
-            {% if show_fields.show_arquivo_header %}
+            {% if show_fields.show_arquivo_header or 0 %}
             <th>Arquivo Header</th>
             {% endif %}
-            {% if show_fields.show_arquivo_request %}
+            {% if show_fields.show_arquivo_request or 0 %}
             <th>Arquivo Request</th>
             {% endif %}
-            {% if show_fields.show_arquivo_response %}
+            {% if show_fields.show_arquivo_response or 0 %}
             <th>Arquivo Response</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

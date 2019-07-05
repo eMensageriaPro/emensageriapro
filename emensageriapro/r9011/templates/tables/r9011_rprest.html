@@ -2,28 +2,28 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9011_infototalcontrib %}
+            {% if show_fields.show_r9011_infototalcontrib or 0 %}
             <th>Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020</th>
             {% endif %}
-            {% if show_fields.show_tpinsctomador %}
+            {% if show_fields.show_tpinsctomador or 1 %}
             <th>Preencher com o código correspondente ao tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsctomador %}
+            {% if show_fields.show_nrinsctomador or 1 %}
             <th>Indicar o número de inscrição do tomador, conforme indicado no campo {tpInscTomador}</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalbaseret %}
+            {% if show_fields.show_vlrtotalbaseret or 1 %}
             <th>Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalretprinc %}
+            {% if show_fields.show_vlrtotalretprinc or 0 %}
             <th>Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalretadic %}
+            {% if show_fields.show_vlrtotalretadic or 0 %}
             <th>Soma do valor do adicional de retenção das notas fiscais</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalnretprinc %}
+            {% if show_fields.show_vlrtotalnretprinc or 0 %}
             <th>Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalnretadic %}
+            {% if show_fields.show_vlrtotalnretadic or 0 %}
             <th>Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

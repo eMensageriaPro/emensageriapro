@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r3010_evtespdesportivo %}
+            {% if show_fields.show_r3010_evtespdesportivo or 1 %}
             <th>Informações de processos relacionados a não retenção de contribuição previdenciária</th>
             {% endif %}
-            {% if show_fields.show_tpproc %}
+            {% if show_fields.show_tpproc or 1 %}
             <th>Preencher com o código correspondente ao tipo de processo</th>
             {% endif %}
-            {% if show_fields.show_nrproc %}
+            {% if show_fields.show_nrproc or 1 %}
             <th>Informar o número do processo administrativo/judicial</th>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 0 %}
             <th>Código do Indicativo da Suspensão, atribuído pelo contribuinte</th>
             {% endif %}
-            {% if show_fields.show_vlrcpsusp %}
+            {% if show_fields.show_vlrcpsusp or 0 %}
             <th>Valor da Contribuição Previdenciária com exigibilidade suspensa</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

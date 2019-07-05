@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 1 %}
             <th>Arquivo</th>
             {% endif %}
-            {% if show_fields.show_data_criacao %}
+            {% if show_fields.show_data_criacao or 1 %}
             <th>Data de Criação</th>
             {% endif %}
-            {% if show_fields.show_permite_recuperacao %}
+            {% if show_fields.show_permite_recuperacao or 1 %}
             <th>Permite Recuperação</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

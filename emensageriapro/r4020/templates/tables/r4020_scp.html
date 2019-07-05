@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4020_infopgto %}
+            {% if show_fields.show_r4020_infopgto or 1 %}
             <th>Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo</th>
             {% endif %}
-            {% if show_fields.show_nrinscscp %}
+            {% if show_fields.show_nrinscscp or 1 %}
             <th>Número de inscrição no CNPJ da Sociedade em Conta de Participação da qual o beneficiário faça parte e o declarante seja sócio ostensivo</th>
             {% endif %}
-            {% if show_fields.show_percscp %}
+            {% if show_fields.show_percscp or 1 %}
             <th>Percentual que o beneficiário possui na Sociedade em Conta de Participação</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_infoestab %}
+            {% if show_fields.show_s5011_infoestab or 1 %}
             <th>Informações complementares relativas a obras de construção civil</th>
             {% endif %}
-            {% if show_fields.show_indsubstpatrobra %}
+            {% if show_fields.show_indsubstpatrobra or 1 %}
             <th>Substituição de CP patronal de Obra</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

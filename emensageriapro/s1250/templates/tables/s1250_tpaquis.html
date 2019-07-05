@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1250_evtaqprod %}
+            {% if show_fields.show_s1250_evtaqprod or 1 %}
             <th>Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física</th>
             {% endif %}
-            {% if show_fields.show_indaquis %}
+            {% if show_fields.show_indaquis or 1 %}
             <th>Indicativo de aquisição</th>
             {% endif %}
-            {% if show_fields.show_vlrtotaquis %}
+            {% if show_fields.show_vlrtotaquis or 1 %}
             <th>Valor total da aquisição</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

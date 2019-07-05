@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2205_evtaltcadastral %}
+            {% if show_fields.show_s2205_evtaltcadastral or 1 %}
             <th>Informação de aposentadoria do trabalhador</th>
             {% endif %}
-            {% if show_fields.show_trabaposent %}
+            {% if show_fields.show_trabaposent or 1 %}
             <th>Aposentado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

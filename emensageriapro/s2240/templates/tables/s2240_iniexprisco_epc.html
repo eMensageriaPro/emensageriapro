@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_iniexprisco_fatrisco %}
+            {% if show_fields.show_s2240_iniexprisco_fatrisco or 1 %}
             <th>Equipamentos de Proteção Coletiva - EPC</th>
             {% endif %}
-            {% if show_fields.show_codep %}
+            {% if show_fields.show_codep or 1 %}
             <th>Preencher com o código atribuído pela empresa ao Equipamento de Proteção</th>
             {% endif %}
-            {% if show_fields.show_dscepc %}
+            {% if show_fields.show_dscepc or 1 %}
             <th>Descrição do EPC</th>
             {% endif %}
-            {% if show_fields.show_eficepc %}
+            {% if show_fields.show_eficepc or 0 %}
             <th>EPC é eficaz na neutralização</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

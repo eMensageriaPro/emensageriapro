@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4040_evtbenefnid %}
+            {% if show_fields.show_r4040_evtbenefnid or 1 %}
             <th>Identificação da natureza do rendimento</th>
             {% endif %}
-            {% if show_fields.show_natrendim %}
+            {% if show_fields.show_natrendim or 1 %}
             <th>Informar a natureza dos rendimentos pagos a beneficiários não identificados</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

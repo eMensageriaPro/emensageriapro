@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4020_idepgto %}
+            {% if show_fields.show_r4020_idepgto or 1 %}
             <th>Informações do Pagamento</th>
             {% endif %}
-            {% if show_fields.show_dtfg %}
+            {% if show_fields.show_dtfg or 1 %}
             <th>Informar a data do fato gerador ou pagamento/crédito</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalpag %}
+            {% if show_fields.show_vlrtotalpag or 0 %}
             <th>Valor total pago</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalcred %}
+            {% if show_fields.show_vlrtotalcred or 1 %}
             <th>Valor total creditado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

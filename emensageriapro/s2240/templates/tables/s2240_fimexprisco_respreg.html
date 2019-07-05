@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2240_evtexprisco %}
+            {% if show_fields.show_s2240_evtexprisco or 1 %}
             <th>Informações relativas ao responsável pelos registros ambientais</th>
             {% endif %}
-            {% if show_fields.show_dtini %}
+            {% if show_fields.show_dtini or 1 %}
             <th>Data de início da responsabilidade</th>
             {% endif %}
-            {% if show_fields.show_dtfim %}
+            {% if show_fields.show_dtfim or 0 %}
             <th>Data de término da responsabilidade</th>
             {% endif %}
-            {% if show_fields.show_nisresp %}
+            {% if show_fields.show_nisresp or 1 %}
             <th>NIS</th>
             {% endif %}
-            {% if show_fields.show_nroc %}
+            {% if show_fields.show_nroc or 0 %}
             <th>Número do OC</th>
             {% endif %}
-            {% if show_fields.show_ufoc %}
+            {% if show_fields.show_ufoc or 0 %}
             <th>UF do OC</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

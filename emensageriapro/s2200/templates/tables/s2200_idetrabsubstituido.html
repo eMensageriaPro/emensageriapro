@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2200_trabtemporario %}
+            {% if show_fields.show_s2200_trabtemporario or 1 %}
             <th>Identificação do(s) trabalhador(es) substituído(s)</th>
             {% endif %}
-            {% if show_fields.show_cpftrabsubst %}
+            {% if show_fields.show_cpftrabsubst or 1 %}
             <th>CPF</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2200_infoestatutario %}
+            {% if show_fields.show_s2200_infoestatutario or 1 %}
             <th>Informações sobre os dados da decisão judicial</th>
             {% endif %}
-            {% if show_fields.show_nrprocjud %}
+            {% if show_fields.show_nrprocjud or 1 %}
             <th>Número do Processo Judicial</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->

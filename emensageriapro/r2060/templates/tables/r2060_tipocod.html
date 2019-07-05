@@ -2,28 +2,28 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2060_evtcprb %}
+            {% if show_fields.show_r2060_evtcprb or 0 %}
             <th>Registro que apresenta o valor total da receita por tipo de código de atividade econômica.</th>
             {% endif %}
-            {% if show_fields.show_codativecon %}
+            {% if show_fields.show_codativecon or 1 %}
             <th>Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09</th>
             {% endif %}
-            {% if show_fields.show_vlrrecbrutaativ %}
+            {% if show_fields.show_vlrrecbrutaativ or 0 %}
             <th>Preencher com o valor total da receita da atividade</th>
             {% endif %}
-            {% if show_fields.show_vlrexcrecbruta %}
+            {% if show_fields.show_vlrexcrecbruta or 0 %}
             <th>Preencher com o Valor total das Exclusões da Receita Bruta previstas em lei</th>
             {% endif %}
-            {% if show_fields.show_vlradicrecbruta %}
+            {% if show_fields.show_vlradicrecbruta or 1 %}
             <th>Preencher com o Valor total das Adições da Receita Bruta previstas em lei</th>
             {% endif %}
-            {% if show_fields.show_vlrbccprb %}
+            {% if show_fields.show_vlrbccprb or 1 %}
             <th>Preencher com o Valor da Base de Cálculo da Contribuição Previdenciária sobre a Receita Bruta</th>
             {% endif %}
-            {% if show_fields.show_vlrcprbapur %}
+            {% if show_fields.show_vlrcprbapur or 0 %}
             <th>Preencher com o Valor Contribuição Previdenciária sobre a Receita Bruta.</th>
             {% endif %}
-            {% if show_fields.show_observ %}
+            {% if show_fields.show_observ or 0 %}
             <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
