@@ -94,12 +94,6 @@ def gerar_xml_s2230_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     s2230_evtafasttemp_lista = s2230evtAfastTemp.objects. \

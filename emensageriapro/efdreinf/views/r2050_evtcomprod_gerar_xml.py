@@ -94,12 +94,6 @@ def gerar_xml_r2050_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     r2050_evtcomprod_lista = r2050evtComProd.objects. \

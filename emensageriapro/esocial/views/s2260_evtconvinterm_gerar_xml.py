@@ -94,12 +94,6 @@ def gerar_xml_s2260_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     s2260_evtconvinterm_lista = s2260evtConvInterm.objects. \

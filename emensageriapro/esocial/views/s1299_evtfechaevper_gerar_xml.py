@@ -94,12 +94,6 @@ def gerar_xml_s1299_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     s1299_evtfechaevper_lista = s1299evtFechaEvPer.objects. \

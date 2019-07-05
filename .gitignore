@@ -2,6 +2,7 @@
 *.pyc
 *.zip
 .env
+.env_dev
 .env_localhost
 .env_web
 certificado/*.pfx

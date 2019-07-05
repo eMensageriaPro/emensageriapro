@@ -65,10 +65,28 @@ class r2098evtReabreEvPerList(generics.ListCreateAPIView):
     serializer_class = r2098evtReabreEvPerSerializer
 
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user)
+        from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+        from constance import config
+        serializer.save(
+            criado_por=self.request.user,
+            tpamb=config.EFDREINF_TP_AMB,
+            verproc=VERSAO_EMENSAGERIA,
+            procemi=1,
+            versao=VERSAO_LAYOUT_EFDREINF,
+            arquivo_original=0,
+            status=0)
 
     def perform_update(self, serializer):
-        serializer.save(modificado_por=self.request.user)
+        from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+        from constance import config
+        serializer.save(
+            modificado_por=self.request.user,
+            tpamb=config.EFDREINF_TP_AMB,
+            verproc=VERSAO_EMENSAGERIA,
+            procemi=1,
+            versao=VERSAO_LAYOUT_EFDREINF,
+            arquivo_original=0,
+            status=0)
 
 
 
@@ -78,7 +96,25 @@ class r2098evtReabreEvPerDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = r2098evtReabreEvPerSerializer
 
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user)
+        from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+        from constance import config
+        serializer.save(
+            criado_por=self.request.user,
+            tpamb=config.EFDREINF_TP_AMB,
+            verproc=VERSAO_EMENSAGERIA,
+            procemi=1,
+            versao=VERSAO_LAYOUT_EFDREINF,
+            arquivo_original=0,
+            status=0)
 
     def perform_update(self, serializer):
-        serializer.save(modificado_por=self.request.user)
+        from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+        from constance import config
+        serializer.save(
+            modificado_por=self.request.user,
+            tpamb=config.EFDREINF_TP_AMB,
+            verproc=VERSAO_EMENSAGERIA,
+            procemi=1,
+            versao=VERSAO_LAYOUT_EFDREINF,
+            arquivo_original=0,
+            status=0)

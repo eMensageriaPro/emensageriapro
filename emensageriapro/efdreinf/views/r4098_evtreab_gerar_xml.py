@@ -94,12 +94,6 @@ def gerar_xml_r4098_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     r4098_evtreab_lista = r4098evtReab.objects. \

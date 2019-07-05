@@ -94,12 +94,6 @@ def gerar_xml_r2099_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     r2099_evtfechaevper_lista = r2099evtFechaEvPer.objects. \

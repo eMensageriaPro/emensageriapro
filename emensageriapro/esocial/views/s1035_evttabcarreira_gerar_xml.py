@@ -94,12 +94,6 @@ def gerar_xml_s1035_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     s1035_evttabcarreira_lista = s1035evtTabCarreira.objects. \

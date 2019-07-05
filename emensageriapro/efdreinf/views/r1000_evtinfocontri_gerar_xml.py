@@ -94,12 +94,6 @@ def gerar_xml_r1000_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     r1000_evtinfocontri_lista = r1000evtInfoContri.objects. \

@@ -94,12 +94,6 @@ def gerar_xml_s2416_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     s2416_evtcdbenalt_lista = s2416evtCdBenAlt.objects. \

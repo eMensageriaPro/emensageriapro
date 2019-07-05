@@ -94,12 +94,6 @@ def gerar_xml_r9000_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     r9000_evtexclusao_lista = r9000evtExclusao.objects. \

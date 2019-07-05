@@ -158,17 +158,6 @@ class r1000evtInfoContri(SoftDeletionModel):
 
 class r1000evtInfoContriSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
 
         model = r1000evtInfoContri
@@ -269,17 +258,6 @@ class r1070evtTabProcesso(SoftDeletionModel):
 
 
 class r1070evtTabProcessoSerializer(ModelSerializer):
-
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
 
@@ -403,17 +381,6 @@ class r2010evtServTom(SoftDeletionModel):
 
 class r2010evtServTomSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
 
         model = r2010evtServTom
@@ -536,17 +503,6 @@ class r2020evtServPrest(SoftDeletionModel):
 
 class r2020evtServPrestSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
 
         model = r2020evtServPrest
@@ -654,17 +610,6 @@ class r2030evtAssocDespRec(SoftDeletionModel):
 
 class r2030evtAssocDespRecSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
 
         model = r2030evtAssocDespRec
@@ -771,17 +716,6 @@ class r2040evtAssocDespRep(SoftDeletionModel):
 
 
 class r2040evtAssocDespRepSerializer(ModelSerializer):
-
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
 
@@ -901,17 +835,6 @@ class r2050evtComProd(SoftDeletionModel):
 
 class r2050evtComProdSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
 
         model = r2050evtComProd
@@ -1024,17 +947,6 @@ class r2060evtCPRB(SoftDeletionModel):
 
 class r2060evtCPRBSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
 
         model = r2060evtCPRB
@@ -1144,17 +1056,6 @@ class r2070evtPgtosDivs(SoftDeletionModel):
 
 class r2070evtPgtosDivsSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
 
         model = r2070evtPgtosDivs
@@ -1254,17 +1155,6 @@ class r2098evtReabreEvPer(SoftDeletionModel):
 
 
 class r2098evtReabreEvPerSerializer(ModelSerializer):
-
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
 
@@ -1379,17 +1269,6 @@ class r2099evtFechaEvPer(SoftDeletionModel):
 
 
 class r2099evtFechaEvPerSerializer(ModelSerializer):
-
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
 
@@ -1507,17 +1386,6 @@ class r3010evtEspDesportivo(SoftDeletionModel):
 
 class r3010evtEspDesportivoSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
 
         model = r3010evtEspDesportivo
@@ -1626,17 +1494,6 @@ class r4010evtRetPF(SoftDeletionModel):
 
 
 class r4010evtRetPFSerializer(ModelSerializer):
-
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
 
@@ -1749,17 +1606,6 @@ class r4020evtRetPJ(SoftDeletionModel):
 
 class r4020evtRetPJSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
 
         model = r4020evtRetPJ
@@ -1867,17 +1713,6 @@ class r4040evtBenefNId(SoftDeletionModel):
 
 class r4040evtBenefNIdSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
 
         model = r4040evtBenefNId
@@ -1977,17 +1812,6 @@ class r4098evtReab(SoftDeletionModel):
 
 
 class r4098evtReabSerializer(ModelSerializer):
-
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
 
@@ -2091,17 +1915,6 @@ class r4099evtFech(SoftDeletionModel):
 
 
 class r4099evtFechSerializer(ModelSerializer):
-
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
 
@@ -2341,17 +2154,6 @@ class r9000evtExclusao(SoftDeletionModel):
 
 
 class r9000evtExclusaoSerializer(ModelSerializer):
-
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
 
     class Meta:
 

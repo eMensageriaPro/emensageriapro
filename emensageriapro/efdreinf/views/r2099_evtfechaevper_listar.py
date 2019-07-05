@@ -100,7 +100,7 @@ def listar(request, output=None):
             'show_arquivo_original': 0,
             'show_arquivo': 0,
             'show_status': 1,
-            'show_cdretorno': 1,
+            'show_cdretorno': 0,
             'show_descretorno': 0,
             'show_dhprocess': 0, }
 

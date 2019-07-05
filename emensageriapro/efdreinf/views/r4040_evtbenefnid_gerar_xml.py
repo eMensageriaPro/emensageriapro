@@ -94,12 +94,6 @@ def gerar_xml_r4040_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     r4040_evtbenefnid_lista = r4040evtBenefNId.objects. \

@@ -94,12 +94,6 @@ def gerar_xml_s1210_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     s1210_evtpgtos_lista = s1210evtPgtos.objects. \

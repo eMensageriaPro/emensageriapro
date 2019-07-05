@@ -94,12 +94,6 @@ def gerar_xml_s2405_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     s2405_evtcdbenefalt_lista = s2405evtCdBenefAlt.objects. \

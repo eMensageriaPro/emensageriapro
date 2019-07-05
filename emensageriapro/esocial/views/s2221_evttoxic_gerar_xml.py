@@ -94,12 +94,6 @@ def gerar_xml_s2221_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     s2221_evttoxic_lista = s2221evtToxic.objects. \

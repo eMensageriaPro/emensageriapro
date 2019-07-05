@@ -94,12 +94,6 @@ def gerar_xml_s2231_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     s2231_evtcessao_lista = s2231evtCessao.objects. \

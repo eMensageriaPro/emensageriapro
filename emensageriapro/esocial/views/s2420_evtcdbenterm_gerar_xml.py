@@ -94,12 +94,6 @@ def gerar_xml_s2420_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     s2420_evtcdbenterm_lista = s2420evtCdBenTerm.objects. \

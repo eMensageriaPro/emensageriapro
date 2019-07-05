@@ -94,12 +94,6 @@ def gerar_xml_s1005_func(pk, versao=None):
 
     else:
 
-        from django.contrib import messages
-
-        messages.warning(request, '''
-            Não foi capturar o XMLNS pois o XSD do
-            evento não está contido na pasta!''')
-
         xmlns = ''
 
     s1005_evttabestab_lista = s1005evtTabEstab.objects. \
