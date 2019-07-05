@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s3000_idefolhapagto_lista %}
         <tr>
-            {% if show_fields.show_s3000_evtexclusao %}
+            {% if show_fields.show_s3000_evtexclusao or 1 %}
             <td>{{ a.s3000_evtexclusao }}</td>
             {% endif %}
-            {% if show_fields.show_indapuracao %}
+            {% if show_fields.show_indapuracao or 1 %}
             <td>{{ a.get_indapuracao_display }}</td>
             {% endif %}
-            {% if show_fields.show_perapur %}
+            {% if show_fields.show_perapur or 1 %}
             <td>{{ a.perapur }}</td>
             {% endif %}
 

@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2241_fiminsalperic_infoamb_lista %}
         <tr>
-            {% if show_fields.show_s2241_fiminsalperic %}
+            {% if show_fields.show_s2241_fiminsalperic or 1 %}
             <td>{{ a.s2241_fiminsalperic }}</td>
             {% endif %}
-            {% if show_fields.show_codamb %}
+            {% if show_fields.show_codamb or 1 %}
             <td>{{ a.codamb }}</td>
             {% endif %}
 

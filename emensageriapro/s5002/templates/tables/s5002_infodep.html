@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s5002_infodep_lista %}
         <tr>
-            {% if show_fields.show_s5002_evtirrfbenef %}
+            {% if show_fields.show_s5002_evtirrfbenef or 1 %}
             <td>{{ a.s5002_evtirrfbenef }}</td>
             {% endif %}
-            {% if show_fields.show_vrdeddep %}
+            {% if show_fields.show_vrdeddep or 1 %}
             <td>{{ a.vrdeddep }}</td>
             {% endif %}
 

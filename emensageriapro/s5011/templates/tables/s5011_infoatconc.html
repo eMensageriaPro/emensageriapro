@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s5011_infoatconc_lista %}
         <tr>
-            {% if show_fields.show_s5011_infopj %}
+            {% if show_fields.show_s5011_infopj or 1 %}
             <td>{{ a.s5011_infopj }}</td>
             {% endif %}
-            {% if show_fields.show_fatormes %}
+            {% if show_fields.show_fatormes or 1 %}
             <td>{{ a.fatormes }}</td>
             {% endif %}
-            {% if show_fields.show_fator13 %}
+            {% if show_fields.show_fator13 or 1 %}
             <td>{{ a.fator13 }}</td>
             {% endif %}
 

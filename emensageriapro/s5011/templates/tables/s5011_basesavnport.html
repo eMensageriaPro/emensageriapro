@@ -35,28 +35,28 @@
     <tbody>
         {% for a in s5011_basesavnport_lista %}
         <tr>
-            {% if show_fields.show_s5011_idelotacao %}
+            {% if show_fields.show_s5011_idelotacao or 1 %}
             <td>{{ a.s5011_idelotacao }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp00 %}
+            {% if show_fields.show_vrbccp00 or 1 %}
             <td>{{ a.vrbccp00 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp15 %}
+            {% if show_fields.show_vrbccp15 or 0 %}
             <td>{{ a.vrbccp15 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp20 %}
+            {% if show_fields.show_vrbccp20 or 0 %}
             <td>{{ a.vrbccp20 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp25 %}
+            {% if show_fields.show_vrbccp25 or 0 %}
             <td>{{ a.vrbccp25 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp13 %}
+            {% if show_fields.show_vrbccp13 or 1 %}
             <td>{{ a.vrbccp13 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbcfgts %}
+            {% if show_fields.show_vrbcfgts or 0 %}
             <td>{{ a.vrbcfgts }}</td>
             {% endif %}
-            {% if show_fields.show_vrdesccp %}
+            {% if show_fields.show_vrdesccp or 0 %}
             <td>{{ a.vrdesccp }}</td>
             {% endif %}
 

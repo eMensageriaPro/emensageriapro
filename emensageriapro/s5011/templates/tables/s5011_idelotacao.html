@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s5011_idelotacao_lista %}
         <tr>
-            {% if show_fields.show_s5011_ideestab %}
+            {% if show_fields.show_s5011_ideestab or 0 %}
             <td>{{ a.s5011_ideestab }}</td>
             {% endif %}
-            {% if show_fields.show_codlotacao %}
+            {% if show_fields.show_codlotacao or 1 %}
             <td>{{ a.codlotacao }}</td>
             {% endif %}
-            {% if show_fields.show_fpas %}
+            {% if show_fields.show_fpas or 1 %}
             <td>{{ a.fpas|valor }}</td>
             {% endif %}
-            {% if show_fields.show_codtercs %}
+            {% if show_fields.show_codtercs or 1 %}
             <td>{{ a.codtercs }}</td>
             {% endif %}
-            {% if show_fields.show_codtercssusp %}
+            {% if show_fields.show_codtercssusp or 0 %}
             <td>{{ a.codtercssusp }}</td>
             {% endif %}
 

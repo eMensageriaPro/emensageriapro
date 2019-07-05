@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s1005_alteracao_infoobra_lista %}
         <tr>
-            {% if show_fields.show_s1005_alteracao %}
+            {% if show_fields.show_s1005_alteracao or 1 %}
             <td>{{ a.s1005_alteracao }}</td>
             {% endif %}
-            {% if show_fields.show_indsubstpatrobra %}
+            {% if show_fields.show_indsubstpatrobra or 1 %}
             <td>{{ a.get_indsubstpatrobra_display }}</td>
             {% endif %}
 

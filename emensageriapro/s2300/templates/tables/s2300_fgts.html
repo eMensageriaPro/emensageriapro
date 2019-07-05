@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s2300_fgts_lista %}
         <tr>
-            {% if show_fields.show_s2300_infocomplementares %}
+            {% if show_fields.show_s2300_infocomplementares or 1 %}
             <td>{{ a.s2300_infocomplementares }}</td>
             {% endif %}
-            {% if show_fields.show_opcfgts %}
+            {% if show_fields.show_opcfgts or 1 %}
             <td>{{ a.get_opcfgts_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtopcfgts %}
+            {% if show_fields.show_dtopcfgts or 0 %}
             <td><span style="display:none">{{ a.dtopcfgts|date:"Y-m-d" }}</span>{{ a.dtopcfgts|date:"d/m/Y" }}</td>
             {% endif %}
 

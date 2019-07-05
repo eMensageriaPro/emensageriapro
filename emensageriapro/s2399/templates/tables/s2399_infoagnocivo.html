@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2399_infoagnocivo_lista %}
         <tr>
-            {% if show_fields.show_s2399_ideestablot %}
+            {% if show_fields.show_s2399_ideestablot or 1 %}
             <td>{{ a.s2399_ideestablot }}</td>
             {% endif %}
-            {% if show_fields.show_grauexp %}
+            {% if show_fields.show_grauexp or 1 %}
             <td>{{ a.get_grauexp_display }}</td>
             {% endif %}
 

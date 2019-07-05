@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2241_altinsalperic_fatrisco_lista %}
         <tr>
-            {% if show_fields.show_s2241_altinsalperic_infoamb %}
+            {% if show_fields.show_s2241_altinsalperic_infoamb or 1 %}
             <td>{{ a.s2241_altinsalperic_infoamb }}</td>
             {% endif %}
-            {% if show_fields.show_codfatris %}
+            {% if show_fields.show_codfatris or 1 %}
             <td>{{ a.codfatris }}</td>
             {% endif %}
 

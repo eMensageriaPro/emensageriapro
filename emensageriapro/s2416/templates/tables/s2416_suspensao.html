@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s2416_suspensao_lista %}
         <tr>
-            {% if show_fields.show_s2416_evtcdbenalt %}
+            {% if show_fields.show_s2416_evtcdbenalt or 1 %}
             <td>{{ a.s2416_evtcdbenalt }}</td>
             {% endif %}
-            {% if show_fields.show_mtvsuspensao %}
+            {% if show_fields.show_mtvsuspensao or 1 %}
             <td>{{ a.get_mtvsuspensao_display }}</td>
             {% endif %}
-            {% if show_fields.show_dscsuspensao %}
+            {% if show_fields.show_dscsuspensao or 0 %}
             <td>{{ a.dscsuspensao }}</td>
             {% endif %}
 

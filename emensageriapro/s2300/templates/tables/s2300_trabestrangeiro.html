@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s2300_trabestrangeiro_lista %}
         <tr>
-            {% if show_fields.show_s2300_evttsvinicio %}
+            {% if show_fields.show_s2300_evttsvinicio or 1 %}
             <td>{{ a.s2300_evttsvinicio }}</td>
             {% endif %}
-            {% if show_fields.show_dtchegada %}
+            {% if show_fields.show_dtchegada or 0 %}
             <td><span style="display:none">{{ a.dtchegada|date:"Y-m-d" }}</span>{{ a.dtchegada|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_classtrabestrang %}
+            {% if show_fields.show_classtrabestrang or 1 %}
             <td>{{ a.get_classtrabestrang_display }}</td>
             {% endif %}
-            {% if show_fields.show_casadobr %}
+            {% if show_fields.show_casadobr or 1 %}
             <td>{{ a.get_casadobr_display }}</td>
             {% endif %}
-            {% if show_fields.show_filhosbr %}
+            {% if show_fields.show_filhosbr or 0 %}
             <td>{{ a.get_filhosbr_display }}</td>
             {% endif %}
 

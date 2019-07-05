@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s2230_infoatestado_lista %}
         <tr>
-            {% if show_fields.show_s2230_iniafastamento %}
+            {% if show_fields.show_s2230_iniafastamento or 1 %}
             <td>{{ a.s2230_iniafastamento }}</td>
             {% endif %}
-            {% if show_fields.show_codcid %}
+            {% if show_fields.show_codcid or 0 %}
             <td>{{ a.codcid }}</td>
             {% endif %}
-            {% if show_fields.show_qtddiasafast %}
+            {% if show_fields.show_qtddiasafast or 1 %}
             <td>{{ a.qtddiasafast }}</td>
             {% endif %}
 

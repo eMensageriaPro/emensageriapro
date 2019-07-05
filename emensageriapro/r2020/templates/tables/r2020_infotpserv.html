@@ -44,37 +44,37 @@
     <tbody>
         {% for a in r2020_infotpserv_lista %}
         <tr>
-            {% if show_fields.show_r2020_nfs %}
+            {% if show_fields.show_r2020_nfs or 1 %}
             <td>{{ a.r2020_nfs }}</td>
             {% endif %}
-            {% if show_fields.show_tpservico %}
+            {% if show_fields.show_tpservico or 1 %}
             <td>{{ a.tpservico|valor }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbaseret %}
+            {% if show_fields.show_vlrbaseret or 0 %}
             <td>{{ a.vlrbaseret }}</td>
             {% endif %}
-            {% if show_fields.show_vlrretencao %}
+            {% if show_fields.show_vlrretencao or 1 %}
             <td>{{ a.vlrretencao }}</td>
             {% endif %}
-            {% if show_fields.show_vlrretsub %}
+            {% if show_fields.show_vlrretsub or 0 %}
             <td>{{ a.vlrretsub }}</td>
             {% endif %}
-            {% if show_fields.show_vlrnretprinc %}
+            {% if show_fields.show_vlrnretprinc or 0 %}
             <td>{{ a.vlrnretprinc }}</td>
             {% endif %}
-            {% if show_fields.show_vlrservicos15 %}
+            {% if show_fields.show_vlrservicos15 or 0 %}
             <td>{{ a.vlrservicos15 }}</td>
             {% endif %}
-            {% if show_fields.show_vlrservicos20 %}
+            {% if show_fields.show_vlrservicos20 or 0 %}
             <td>{{ a.vlrservicos20 }}</td>
             {% endif %}
-            {% if show_fields.show_vlrservicos25 %}
+            {% if show_fields.show_vlrservicos25 or 0 %}
             <td>{{ a.vlrservicos25 }}</td>
             {% endif %}
-            {% if show_fields.show_vlradicional %}
+            {% if show_fields.show_vlradicional or 0 %}
             <td>{{ a.vlradicional }}</td>
             {% endif %}
-            {% if show_fields.show_vlrnretadic %}
+            {% if show_fields.show_vlrnretadic or 0 %}
             <td>{{ a.vlrnretadic }}</td>
             {% endif %}
 

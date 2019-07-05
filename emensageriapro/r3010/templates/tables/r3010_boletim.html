@@ -53,46 +53,46 @@
     <tbody>
         {% for a in r3010_boletim_lista %}
         <tr>
-            {% if show_fields.show_r3010_evtespdesportivo %}
+            {% if show_fields.show_r3010_evtespdesportivo or 1 %}
             <td>{{ a.r3010_evtespdesportivo }}</td>
             {% endif %}
-            {% if show_fields.show_nrboletim %}
+            {% if show_fields.show_nrboletim or 0 %}
             <td>{{ a.nrboletim }}</td>
             {% endif %}
-            {% if show_fields.show_tpcompeticao %}
+            {% if show_fields.show_tpcompeticao or 0 %}
             <td>{{ a.get_tpcompeticao_display }}</td>
             {% endif %}
-            {% if show_fields.show_categevento %}
+            {% if show_fields.show_categevento or 1 %}
             <td>{{ a.get_categevento_display }}</td>
             {% endif %}
-            {% if show_fields.show_moddesportiva %}
+            {% if show_fields.show_moddesportiva or 1 %}
             <td>{{ a.moddesportiva }}</td>
             {% endif %}
-            {% if show_fields.show_nomecompeticao %}
+            {% if show_fields.show_nomecompeticao or 0 %}
             <td>{{ a.nomecompeticao }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjmandante %}
+            {% if show_fields.show_cnpjmandante or 0 %}
             <td>{{ a.cnpjmandante }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjvisitante %}
+            {% if show_fields.show_cnpjvisitante or 0 %}
             <td>{{ a.cnpjvisitante }}</td>
             {% endif %}
-            {% if show_fields.show_nomevisitante %}
+            {% if show_fields.show_nomevisitante or 0 %}
             <td>{{ a.nomevisitante }}</td>
             {% endif %}
-            {% if show_fields.show_pracadesportiva %}
+            {% if show_fields.show_pracadesportiva or 0 %}
             <td>{{ a.pracadesportiva }}</td>
             {% endif %}
-            {% if show_fields.show_codmunic %}
+            {% if show_fields.show_codmunic or 0 %}
             <td>{{ a.codmunic|valor }}</td>
             {% endif %}
-            {% if show_fields.show_uf %}
+            {% if show_fields.show_uf or 0 %}
             <td>{{ a.get_uf_display }}</td>
             {% endif %}
-            {% if show_fields.show_qtdepagantes %}
+            {% if show_fields.show_qtdepagantes or 0 %}
             <td>{{ a.qtdepagantes }}</td>
             {% endif %}
-            {% if show_fields.show_qtdenaopagantes %}
+            {% if show_fields.show_qtdenaopagantes or 0 %}
             <td>{{ a.qtdenaopagantes }}</td>
             {% endif %}
 

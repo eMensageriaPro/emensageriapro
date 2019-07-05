@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2410_infopenmorte_lista %}
         <tr>
-            {% if show_fields.show_s2410_evtcdbenin %}
+            {% if show_fields.show_s2410_evtcdbenin or 1 %}
             <td>{{ a.s2410_evtcdbenin }}</td>
             {% endif %}
-            {% if show_fields.show_tppenmorte %}
+            {% if show_fields.show_tppenmorte or 1 %}
             <td>{{ a.get_tppenmorte_display }}</td>
             {% endif %}
 

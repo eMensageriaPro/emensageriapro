@@ -32,25 +32,25 @@
     <tbody>
         {% for a in r1070_alteracao_lista %}
         <tr>
-            {% if show_fields.show_r1070_evttabprocesso %}
+            {% if show_fields.show_r1070_evttabprocesso or 1 %}
             <td>{{ a.r1070_evttabprocesso }}</td>
             {% endif %}
-            {% if show_fields.show_ideprocesso %}
+            {% if show_fields.show_ideprocesso or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpproc %}
+            {% if show_fields.show_tpproc or 0 %}
             <td>{{ a.get_tpproc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrproc %}
+            {% if show_fields.show_nrproc or 1 %}
             <td>{{ a.nrproc }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 0 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <td>{{ a.get_fimvalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_indautoria %}
+            {% if show_fields.show_indautoria or 1 %}
             <td>{{ a.get_indautoria_display }}</td>
             {% endif %}
 

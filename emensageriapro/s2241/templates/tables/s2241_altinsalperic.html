@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2241_altinsalperic_lista %}
         <tr>
-            {% if show_fields.show_s2241_insalperic %}
+            {% if show_fields.show_s2241_insalperic or 1 %}
             <td>{{ a.s2241_insalperic }}</td>
             {% endif %}
-            {% if show_fields.show_dtaltcondicao %}
+            {% if show_fields.show_dtaltcondicao or 1 %}
             <td><span style="display:none">{{ a.dtaltcondicao|date:"Y-m-d" }}</span>{{ a.dtaltcondicao|date:"d/m/Y" }}</td>
             {% endif %}
 

@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s5013_dpsperapur_lista %}
         <tr>
-            {% if show_fields.show_s5013_infodpsfgts %}
+            {% if show_fields.show_s5013_infodpsfgts or 1 %}
             <td>{{ a.s5013_infodpsfgts }}</td>
             {% endif %}
-            {% if show_fields.show_tpdps %}
+            {% if show_fields.show_tpdps or 1 %}
             <td>{{ a.get_tpdps_display }}</td>
             {% endif %}
-            {% if show_fields.show_vrfgts %}
+            {% if show_fields.show_vrfgts or 1 %}
             <td>{{ a.vrfgts }}</td>
             {% endif %}
 

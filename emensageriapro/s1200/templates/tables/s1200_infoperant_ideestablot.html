@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s1200_infoperant_ideestablot_lista %}
         <tr>
-            {% if show_fields.show_s1200_infoperant_ideperiodo %}
+            {% if show_fields.show_s1200_infoperant_ideperiodo or 1 %}
             <td>{{ a.s1200_infoperant_ideperiodo }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_codlotacao %}
+            {% if show_fields.show_codlotacao or 1 %}
             <td>{{ a.codlotacao }}</td>
             {% endif %}
 

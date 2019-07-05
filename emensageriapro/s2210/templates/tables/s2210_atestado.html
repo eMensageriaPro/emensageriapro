@@ -62,55 +62,55 @@
     <tbody>
         {% for a in s2210_atestado_lista %}
         <tr>
-            {% if show_fields.show_s2210_evtcat %}
+            {% if show_fields.show_s2210_evtcat or 1 %}
             <td>{{ a.s2210_evtcat }}</td>
             {% endif %}
-            {% if show_fields.show_codcnes %}
+            {% if show_fields.show_codcnes or 0 %}
             <td>{{ a.codcnes }}</td>
             {% endif %}
-            {% if show_fields.show_dtatendimento %}
+            {% if show_fields.show_dtatendimento or 0 %}
             <td><span style="display:none">{{ a.dtatendimento|date:"Y-m-d" }}</span>{{ a.dtatendimento|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_hratendimento %}
+            {% if show_fields.show_hratendimento or 0 %}
             <td>{{ a.hratendimento }}</td>
             {% endif %}
-            {% if show_fields.show_indinternacao %}
+            {% if show_fields.show_indinternacao or 0 %}
             <td>{{ a.get_indinternacao_display }}</td>
             {% endif %}
-            {% if show_fields.show_durtrat %}
+            {% if show_fields.show_durtrat or 0 %}
             <td>{{ a.durtrat }}</td>
             {% endif %}
-            {% if show_fields.show_indafast %}
+            {% if show_fields.show_indafast or 1 %}
             <td>{{ a.get_indafast_display }}</td>
             {% endif %}
-            {% if show_fields.show_dsclesao %}
+            {% if show_fields.show_dsclesao or 0 %}
             <td>{{ a.dsclesao|valor }}</td>
             {% endif %}
-            {% if show_fields.show_dsccomplesao %}
+            {% if show_fields.show_dsccomplesao or 0 %}
             <td>{{ a.dsccomplesao }}</td>
             {% endif %}
-            {% if show_fields.show_diagprovavel %}
+            {% if show_fields.show_diagprovavel or 0 %}
             <td>{{ a.diagprovavel }}</td>
             {% endif %}
-            {% if show_fields.show_codcid %}
+            {% if show_fields.show_codcid or 1 %}
             <td>{{ a.codcid }}</td>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <td>{{ a.observacao }}</td>
             {% endif %}
-            {% if show_fields.show_emitente %}
+            {% if show_fields.show_emitente or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_nmemit %}
+            {% if show_fields.show_nmemit or 0 %}
             <td>{{ a.nmemit }}</td>
             {% endif %}
-            {% if show_fields.show_ideoc %}
+            {% if show_fields.show_ideoc or 0 %}
             <td>{{ a.get_ideoc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nroc %}
+            {% if show_fields.show_nroc or 0 %}
             <td>{{ a.nroc }}</td>
             {% endif %}
-            {% if show_fields.show_ufoc %}
+            {% if show_fields.show_ufoc or 0 %}
             <td>{{ a.get_ufoc_display }}</td>
             {% endif %}
 

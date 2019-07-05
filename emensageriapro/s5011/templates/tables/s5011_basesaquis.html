@@ -47,40 +47,40 @@
     <tbody>
         {% for a in s5011_basesaquis_lista %}
         <tr>
-            {% if show_fields.show_s5011_ideestab %}
+            {% if show_fields.show_s5011_ideestab or 1 %}
             <td>{{ a.s5011_ideestab }}</td>
             {% endif %}
-            {% if show_fields.show_indaquis %}
+            {% if show_fields.show_indaquis or 1 %}
             <td>{{ a.get_indaquis_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlraquis %}
+            {% if show_fields.show_vlraquis or 0 %}
             <td>{{ a.vlraquis }}</td>
             {% endif %}
-            {% if show_fields.show_vrcpdescpr %}
+            {% if show_fields.show_vrcpdescpr or 0 %}
             <td>{{ a.vrcpdescpr }}</td>
             {% endif %}
-            {% if show_fields.show_vrcpnret %}
+            {% if show_fields.show_vrcpnret or 0 %}
             <td>{{ a.vrcpnret }}</td>
             {% endif %}
-            {% if show_fields.show_vrratnret %}
+            {% if show_fields.show_vrratnret or 0 %}
             <td>{{ a.vrratnret }}</td>
             {% endif %}
-            {% if show_fields.show_vrsenarnret %}
+            {% if show_fields.show_vrsenarnret or 0 %}
             <td>{{ a.vrsenarnret }}</td>
             {% endif %}
-            {% if show_fields.show_vrcpcalcpr %}
+            {% if show_fields.show_vrcpcalcpr or 0 %}
             <td>{{ a.vrcpcalcpr }}</td>
             {% endif %}
-            {% if show_fields.show_vrratdescpr %}
+            {% if show_fields.show_vrratdescpr or 0 %}
             <td>{{ a.vrratdescpr }}</td>
             {% endif %}
-            {% if show_fields.show_vrratcalcpr %}
+            {% if show_fields.show_vrratcalcpr or 1 %}
             <td>{{ a.vrratcalcpr }}</td>
             {% endif %}
-            {% if show_fields.show_vrsenardesc %}
+            {% if show_fields.show_vrsenardesc or 0 %}
             <td>{{ a.vrsenardesc }}</td>
             {% endif %}
-            {% if show_fields.show_vrsenarcalc %}
+            {% if show_fields.show_vrsenarcalc or 0 %}
             <td>{{ a.vrsenarcalc }}</td>
             {% endif %}
 

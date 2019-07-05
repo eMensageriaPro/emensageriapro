@@ -23,16 +23,16 @@
     <tbody>
         {% for a in r9011_rrecrepad_lista %}
         <tr>
-            {% if show_fields.show_r9011_infototalcontrib %}
+            {% if show_fields.show_r9011_infototalcontrib or 1 %}
             <td>{{ a.r9011_infototalcontrib }}</td>
             {% endif %}
-            {% if show_fields.show_crrecrepad %}
+            {% if show_fields.show_crrecrepad or 1 %}
             <td>{{ a.crrecrepad }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrrecrepad %}
+            {% if show_fields.show_vlrcrrecrepad or 1 %}
             <td>{{ a.vlrcrrecrepad }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrrecrepadsusp %}
+            {% if show_fields.show_vlrcrrecrepadsusp or 0 %}
             <td>{{ a.vlrcrrecrepadsusp }}</td>
             {% endif %}
 

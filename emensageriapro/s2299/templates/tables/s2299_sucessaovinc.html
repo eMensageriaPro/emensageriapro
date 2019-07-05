@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s2299_sucessaovinc_lista %}
         <tr>
-            {% if show_fields.show_s2299_evtdeslig %}
+            {% if show_fields.show_s2299_evtdeslig or 1 %}
             <td>{{ a.s2299_evtdeslig }}</td>
             {% endif %}
-            {% if show_fields.show_tpinscsuc %}
+            {% if show_fields.show_tpinscsuc or 1 %}
             <td>{{ a.get_tpinscsuc_display }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjsucessora %}
+            {% if show_fields.show_cnpjsucessora or 1 %}
             <td>{{ a.cnpjsucessora }}</td>
             {% endif %}
 

@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s2250_cancavprevio_lista %}
         <tr>
-            {% if show_fields.show_s2250_evtavprevio %}
+            {% if show_fields.show_s2250_evtavprevio or 1 %}
             <td>{{ a.s2250_evtavprevio }}</td>
             {% endif %}
-            {% if show_fields.show_dtcancavprv %}
+            {% if show_fields.show_dtcancavprv or 1 %}
             <td><span style="display:none">{{ a.dtcancavprv|date:"Y-m-d" }}</span>{{ a.dtcancavprv|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <td>{{ a.observacao }}</td>
             {% endif %}
-            {% if show_fields.show_mtvcancavprevio %}
+            {% if show_fields.show_mtvcancavprevio or 1 %}
             <td>{{ a.get_mtvcancavprevio_display }}</td>
             {% endif %}
 

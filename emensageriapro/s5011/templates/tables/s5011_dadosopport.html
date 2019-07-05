@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s5011_dadosopport_lista %}
         <tr>
-            {% if show_fields.show_s5011_idelotacao %}
+            {% if show_fields.show_s5011_idelotacao or 0 %}
             <td>{{ a.s5011_idelotacao }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjopportuario %}
+            {% if show_fields.show_cnpjopportuario or 1 %}
             <td>{{ a.cnpjopportuario }}</td>
             {% endif %}
-            {% if show_fields.show_aliqrat %}
+            {% if show_fields.show_aliqrat or 1 %}
             <td>{{ a.get_aliqrat_display }}</td>
             {% endif %}
-            {% if show_fields.show_fap %}
+            {% if show_fields.show_fap or 0 %}
             <td>{{ a.fap }}</td>
             {% endif %}
-            {% if show_fields.show_aliqratajust %}
+            {% if show_fields.show_aliqratajust or 1 %}
             <td>{{ a.aliqratajust }}</td>
             {% endif %}
 

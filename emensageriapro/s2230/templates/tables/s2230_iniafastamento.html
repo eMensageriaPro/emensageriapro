@@ -29,22 +29,22 @@
     <tbody>
         {% for a in s2230_iniafastamento_lista %}
         <tr>
-            {% if show_fields.show_s2230_evtafasttemp %}
+            {% if show_fields.show_s2230_evtafasttemp or 1 %}
             <td>{{ a.s2230_evtafasttemp }}</td>
             {% endif %}
-            {% if show_fields.show_dtiniafast %}
+            {% if show_fields.show_dtiniafast or 1 %}
             <td><span style="display:none">{{ a.dtiniafast|date:"Y-m-d" }}</span>{{ a.dtiniafast|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_codmotafast %}
+            {% if show_fields.show_codmotafast or 1 %}
             <td>{{ a.codmotafast }}</td>
             {% endif %}
-            {% if show_fields.show_infomesmomtv %}
+            {% if show_fields.show_infomesmomtv or 0 %}
             <td>{{ a.get_infomesmomtv_display }}</td>
             {% endif %}
-            {% if show_fields.show_tpacidtransito %}
+            {% if show_fields.show_tpacidtransito or 0 %}
             <td>{{ a.get_tpacidtransito_display }}</td>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <td>{{ a.observacao }}</td>
             {% endif %}
 

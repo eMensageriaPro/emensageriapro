@@ -20,13 +20,13 @@
     <tbody>
         {% for a in r2070_compjud_lista %}
         <tr>
-            {% if show_fields.show_r2070_pgtopf %}
+            {% if show_fields.show_r2070_pgtopf or 1 %}
             <td>{{ a.r2070_pgtopf }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcompanocalend %}
+            {% if show_fields.show_vlrcompanocalend or 0 %}
             <td>{{ a.vlrcompanocalend }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcompanoant %}
+            {% if show_fields.show_vlrcompanoant or 0 %}
             <td>{{ a.vlrcompanoant }}</td>
             {% endif %}
 

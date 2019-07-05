@@ -44,37 +44,37 @@
     <tbody>
         {% for a in r4010_infopgto_lista %}
         <tr>
-            {% if show_fields.show_r4010_idepgto %}
+            {% if show_fields.show_r4010_idepgto or 1 %}
             <td>{{ a.r4010_idepgto }}</td>
             {% endif %}
-            {% if show_fields.show_dtfg %}
+            {% if show_fields.show_dtfg or 1 %}
             <td><span style="display:none">{{ a.dtfg|date:"Y-m-d" }}</span>{{ a.dtfg|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_inddecterc %}
+            {% if show_fields.show_inddecterc or 1 %}
             <td>{{ a.get_inddecterc_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrrendbruto %}
+            {% if show_fields.show_vlrrendbruto or 0 %}
             <td>{{ a.vlrrendbruto }}</td>
             {% endif %}
-            {% if show_fields.show_vlrrendtrib %}
+            {% if show_fields.show_vlrrendtrib or 0 %}
             <td>{{ a.vlrrendtrib }}</td>
             {% endif %}
-            {% if show_fields.show_vlrir %}
+            {% if show_fields.show_vlrir or 0 %}
             <td>{{ a.vlrir }}</td>
             {% endif %}
-            {% if show_fields.show_vlrrendsusp %}
+            {% if show_fields.show_vlrrendsusp or 0 %}
             <td>{{ a.vlrrendsusp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrnir %}
+            {% if show_fields.show_vlrnir or 0 %}
             <td>{{ a.vlrnir }}</td>
             {% endif %}
-            {% if show_fields.show_vlrdeposito %}
+            {% if show_fields.show_vlrdeposito or 0 %}
             <td>{{ a.vlrdeposito }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcompanocalend %}
+            {% if show_fields.show_vlrcompanocalend or 0 %}
             <td>{{ a.vlrcompanocalend }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcompanoant %}
+            {% if show_fields.show_vlrcompanoant or 0 %}
             <td>{{ a.vlrcompanoant }}</td>
             {% endif %}
 

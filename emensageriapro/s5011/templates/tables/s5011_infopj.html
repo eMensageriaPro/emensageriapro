@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s5011_infopj_lista %}
         <tr>
-            {% if show_fields.show_s5011_evtcs %}
+            {% if show_fields.show_s5011_evtcs or 1 %}
             <td>{{ a.s5011_evtcs }}</td>
             {% endif %}
-            {% if show_fields.show_indcoop %}
+            {% if show_fields.show_indcoop or 0 %}
             <td>{{ a.get_indcoop_display }}</td>
             {% endif %}
-            {% if show_fields.show_indconstr %}
+            {% if show_fields.show_indconstr or 1 %}
             <td>{{ a.get_indconstr_display }}</td>
             {% endif %}
-            {% if show_fields.show_indsubstpatr %}
+            {% if show_fields.show_indsubstpatr or 0 %}
             <td>{{ a.get_indsubstpatr_display }}</td>
             {% endif %}
-            {% if show_fields.show_percredcontrib %}
+            {% if show_fields.show_percredcontrib or 0 %}
             <td>{{ a.percredcontrib }}</td>
             {% endif %}
 

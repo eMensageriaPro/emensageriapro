@@ -29,22 +29,22 @@
     <tbody>
         {% for a in s2240_fimexprisco_respreg_lista %}
         <tr>
-            {% if show_fields.show_s2240_evtexprisco %}
+            {% if show_fields.show_s2240_evtexprisco or 1 %}
             <td>{{ a.s2240_evtexprisco }}</td>
             {% endif %}
-            {% if show_fields.show_dtini %}
+            {% if show_fields.show_dtini or 1 %}
             <td><span style="display:none">{{ a.dtini|date:"Y-m-d" }}</span>{{ a.dtini|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtfim %}
+            {% if show_fields.show_dtfim or 0 %}
             <td><span style="display:none">{{ a.dtfim|date:"Y-m-d" }}</span>{{ a.dtfim|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_nisresp %}
+            {% if show_fields.show_nisresp or 1 %}
             <td>{{ a.nisresp }}</td>
             {% endif %}
-            {% if show_fields.show_nroc %}
+            {% if show_fields.show_nroc or 0 %}
             <td>{{ a.nroc }}</td>
             {% endif %}
-            {% if show_fields.show_ufoc %}
+            {% if show_fields.show_ufoc or 0 %}
             <td>{{ a.get_ufoc_display }}</td>
             {% endif %}
 

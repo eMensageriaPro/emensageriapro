@@ -35,28 +35,28 @@
     <tbody>
         {% for a in s1030_alteracao_lista %}
         <tr>
-            {% if show_fields.show_s1030_evttabcargo %}
+            {% if show_fields.show_s1030_evttabcargo or 1 %}
             <td>{{ a.s1030_evttabcargo }}</td>
             {% endif %}
-            {% if show_fields.show_idecargo %}
+            {% if show_fields.show_idecargo or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_codcargo %}
+            {% if show_fields.show_codcargo or 1 %}
             <td>{{ a.codcargo }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 0 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <td>{{ a.get_fimvalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_dadoscargo %}
+            {% if show_fields.show_dadoscargo or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_nmcargo %}
+            {% if show_fields.show_nmcargo or 0 %}
             <td>{{ a.nmcargo }}</td>
             {% endif %}
-            {% if show_fields.show_codcbo %}
+            {% if show_fields.show_codcbo or 1 %}
             <td>{{ a.codcbo }}</td>
             {% endif %}
 

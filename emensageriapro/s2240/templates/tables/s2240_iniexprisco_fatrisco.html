@@ -56,49 +56,49 @@
     <tbody>
         {% for a in s2240_iniexprisco_fatrisco_lista %}
         <tr>
-            {% if show_fields.show_s2240_evtexprisco %}
+            {% if show_fields.show_s2240_evtexprisco or 1 %}
             <td>{{ a.s2240_evtexprisco }}</td>
             {% endif %}
-            {% if show_fields.show_codfatris %}
+            {% if show_fields.show_codfatris or 1 %}
             <td>{{ a.codfatris }}</td>
             {% endif %}
-            {% if show_fields.show_tpaval %}
+            {% if show_fields.show_tpaval or 1 %}
             <td>{{ a.get_tpaval_display }}</td>
             {% endif %}
-            {% if show_fields.show_intconc %}
+            {% if show_fields.show_intconc or 0 %}
             <td>{{ a.intconc }}</td>
             {% endif %}
-            {% if show_fields.show_limtol %}
+            {% if show_fields.show_limtol or 0 %}
             <td>{{ a.limtol }}</td>
             {% endif %}
-            {% if show_fields.show_unmed %}
+            {% if show_fields.show_unmed or 0 %}
             <td>{{ a.unmed|valor }}</td>
             {% endif %}
-            {% if show_fields.show_tecmedicao %}
+            {% if show_fields.show_tecmedicao or 0 %}
             <td>{{ a.tecmedicao }}</td>
             {% endif %}
-            {% if show_fields.show_insalubridade %}
+            {% if show_fields.show_insalubridade or 0 %}
             <td>{{ a.get_insalubridade_display }}</td>
             {% endif %}
-            {% if show_fields.show_periculosidade %}
+            {% if show_fields.show_periculosidade or 0 %}
             <td>{{ a.get_periculosidade_display }}</td>
             {% endif %}
-            {% if show_fields.show_aposentesp %}
+            {% if show_fields.show_aposentesp or 0 %}
             <td>{{ a.get_aposentesp_display }}</td>
             {% endif %}
-            {% if show_fields.show_dscfatrisc %}
+            {% if show_fields.show_dscfatrisc or 0 %}
             <td>{{ a.dscfatrisc }}</td>
             {% endif %}
-            {% if show_fields.show_epcepi %}
+            {% if show_fields.show_epcepi or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_utilizepc %}
+            {% if show_fields.show_utilizepc or 0 %}
             <td>{{ a.get_utilizepc_display }}</td>
             {% endif %}
-            {% if show_fields.show_eficepc %}
+            {% if show_fields.show_eficepc or 0 %}
             <td>{{ a.get_eficepc_display }}</td>
             {% endif %}
-            {% if show_fields.show_utilizepi %}
+            {% if show_fields.show_utilizepi or 0 %}
             <td>{{ a.get_utilizepi_display }}</td>
             {% endif %}
 

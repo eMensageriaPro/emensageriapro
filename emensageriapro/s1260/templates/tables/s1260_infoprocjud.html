@@ -32,25 +32,25 @@
     <tbody>
         {% for a in s1260_infoprocjud_lista %}
         <tr>
-            {% if show_fields.show_s1260_tpcomerc %}
+            {% if show_fields.show_s1260_tpcomerc or 0 %}
             <td>{{ a.s1260_tpcomerc }}</td>
             {% endif %}
-            {% if show_fields.show_tpproc %}
+            {% if show_fields.show_tpproc or 1 %}
             <td>{{ a.get_tpproc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrproc %}
+            {% if show_fields.show_nrproc or 1 %}
             <td>{{ a.nrproc }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 1 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
-            {% if show_fields.show_vrcpsusp %}
+            {% if show_fields.show_vrcpsusp or 0 %}
             <td>{{ a.vrcpsusp }}</td>
             {% endif %}
-            {% if show_fields.show_vrratsusp %}
+            {% if show_fields.show_vrratsusp or 0 %}
             <td>{{ a.vrratsusp }}</td>
             {% endif %}
-            {% if show_fields.show_vrsenarsusp %}
+            {% if show_fields.show_vrsenarsusp or 0 %}
             <td>{{ a.vrsenarsusp }}</td>
             {% endif %}
 

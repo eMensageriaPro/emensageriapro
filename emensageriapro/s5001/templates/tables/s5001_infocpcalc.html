@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s5001_infocpcalc_lista %}
         <tr>
-            {% if show_fields.show_s5001_evtbasestrab %}
+            {% if show_fields.show_s5001_evtbasestrab or 1 %}
             <td>{{ a.s5001_evtbasestrab }}</td>
             {% endif %}
-            {% if show_fields.show_tpcr %}
+            {% if show_fields.show_tpcr or 1 %}
             <td>{{ a.get_tpcr_display }}</td>
             {% endif %}
-            {% if show_fields.show_vrcpseg %}
+            {% if show_fields.show_vrcpseg or 1 %}
             <td>{{ a.vrcpseg }}</td>
             {% endif %}
-            {% if show_fields.show_vrdescseg %}
+            {% if show_fields.show_vrdescseg or 0 %}
             <td>{{ a.vrdescseg }}</td>
             {% endif %}
 

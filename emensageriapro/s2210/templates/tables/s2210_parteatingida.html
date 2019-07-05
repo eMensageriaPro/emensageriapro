@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s2210_parteatingida_lista %}
         <tr>
-            {% if show_fields.show_s2210_evtcat %}
+            {% if show_fields.show_s2210_evtcat or 1 %}
             <td>{{ a.s2210_evtcat }}</td>
             {% endif %}
-            {% if show_fields.show_codparteating %}
+            {% if show_fields.show_codparteating or 1 %}
             <td>{{ a.codparteating|valor }}</td>
             {% endif %}
-            {% if show_fields.show_lateralidade %}
+            {% if show_fields.show_lateralidade or 1 %}
             <td>{{ a.get_lateralidade_display }}</td>
             {% endif %}
 

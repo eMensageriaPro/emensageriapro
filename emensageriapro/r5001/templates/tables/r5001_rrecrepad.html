@@ -29,22 +29,22 @@
     <tbody>
         {% for a in r5001_rrecrepad_lista %}
         <tr>
-            {% if show_fields.show_r5001_infototal %}
+            {% if show_fields.show_r5001_infototal or 0 %}
             <td>{{ a.r5001_infototal }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjassocdesp %}
+            {% if show_fields.show_cnpjassocdesp or 1 %}
             <td>{{ a.cnpjassocdesp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalrep %}
+            {% if show_fields.show_vlrtotalrep or 1 %}
             <td>{{ a.vlrtotalrep }}</td>
             {% endif %}
-            {% if show_fields.show_crrecrepad %}
+            {% if show_fields.show_crrecrepad or 1 %}
             <td>{{ a.crrecrepad }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrrecrepad %}
+            {% if show_fields.show_vlrcrrecrepad or 0 %}
             <td>{{ a.vlrcrrecrepad }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrrecrepadsusp %}
+            {% if show_fields.show_vlrcrrecrepadsusp or 0 %}
             <td>{{ a.vlrcrrecrepadsusp }}</td>
             {% endif %}
 

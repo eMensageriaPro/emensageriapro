@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s1200_dmdev_lista %}
         <tr>
-            {% if show_fields.show_s1200_evtremun %}
+            {% if show_fields.show_s1200_evtremun or 1 %}
             <td>{{ a.s1200_evtremun }}</td>
             {% endif %}
-            {% if show_fields.show_idedmdev %}
+            {% if show_fields.show_idedmdev or 1 %}
             <td>{{ a.idedmdev }}</td>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 1 %}
             <td>{{ a.codcateg|valor }}</td>
             {% endif %}
 

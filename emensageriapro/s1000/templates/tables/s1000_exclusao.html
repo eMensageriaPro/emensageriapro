@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s1000_exclusao_lista %}
         <tr>
-            {% if show_fields.show_s1000_evtinfoempregador %}
+            {% if show_fields.show_s1000_evtinfoempregador or 1 %}
             <td>{{ a.s1000_evtinfoempregador }}</td>
             {% endif %}
-            {% if show_fields.show_ideperiodo %}
+            {% if show_fields.show_ideperiodo or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 1 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <td>{{ a.get_fimvalid_display }}</td>
             {% endif %}
 

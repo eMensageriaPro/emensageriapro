@@ -32,25 +32,25 @@
     <tbody>
         {% for a in r9002_totapurqui_lista %}
         <tr>
-            {% if show_fields.show_r9002_infototal %}
+            {% if show_fields.show_r9002_infototal or 1 %}
             <td>{{ a.r9002_infototal }}</td>
             {% endif %}
-            {% if show_fields.show_perapurqui %}
+            {% if show_fields.show_perapurqui or 1 %}
             <td>{{ a.get_perapurqui_display }}</td>
             {% endif %}
-            {% if show_fields.show_crqui %}
+            {% if show_fields.show_crqui or 1 %}
             <td>{{ a.crqui }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasecrqui %}
+            {% if show_fields.show_vlrbasecrqui or 0 %}
             <td>{{ a.vlrbasecrqui }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrqui %}
+            {% if show_fields.show_vlrcrqui or 0 %}
             <td>{{ a.vlrcrqui }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasecrquisusp %}
+            {% if show_fields.show_vlrbasecrquisusp or 0 %}
             <td>{{ a.vlrbasecrquisusp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrquisusp %}
+            {% if show_fields.show_vlrcrquisusp or 0 %}
             <td>{{ a.vlrcrquisusp }}</td>
             {% endif %}
 

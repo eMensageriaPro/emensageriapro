@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s2306_cargofuncao_lista %}
         <tr>
-            {% if show_fields.show_s2306_infocomplementares %}
+            {% if show_fields.show_s2306_infocomplementares or 1 %}
             <td>{{ a.s2306_infocomplementares }}</td>
             {% endif %}
-            {% if show_fields.show_codcargo %}
+            {% if show_fields.show_codcargo or 1 %}
             <td>{{ a.codcargo }}</td>
             {% endif %}
-            {% if show_fields.show_codfuncao %}
+            {% if show_fields.show_codfuncao or 0 %}
             <td>{{ a.codfuncao }}</td>
             {% endif %}
 

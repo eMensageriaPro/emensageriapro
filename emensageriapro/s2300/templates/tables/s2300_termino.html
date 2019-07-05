@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2300_termino_lista %}
         <tr>
-            {% if show_fields.show_s2300_evttsvinicio %}
+            {% if show_fields.show_s2300_evttsvinicio or 1 %}
             <td>{{ a.s2300_evttsvinicio }}</td>
             {% endif %}
-            {% if show_fields.show_dtterm %}
+            {% if show_fields.show_dtterm or 1 %}
             <td><span style="display:none">{{ a.dtterm|date:"Y-m-d" }}</span>{{ a.dtterm|date:"d/m/Y" }}</td>
             {% endif %}
 

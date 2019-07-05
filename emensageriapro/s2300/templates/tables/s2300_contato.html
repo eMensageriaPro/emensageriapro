@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s2300_contato_lista %}
         <tr>
-            {% if show_fields.show_s2300_evttsvinicio %}
+            {% if show_fields.show_s2300_evttsvinicio or 1 %}
             <td>{{ a.s2300_evttsvinicio }}</td>
             {% endif %}
-            {% if show_fields.show_foneprinc %}
+            {% if show_fields.show_foneprinc or 0 %}
             <td>{{ a.foneprinc }}</td>
             {% endif %}
-            {% if show_fields.show_fonealternat %}
+            {% if show_fields.show_fonealternat or 0 %}
             <td>{{ a.fonealternat }}</td>
             {% endif %}
-            {% if show_fields.show_emailprinc %}
+            {% if show_fields.show_emailprinc or 0 %}
             <td>{{ a.emailprinc }}</td>
             {% endif %}
-            {% if show_fields.show_emailalternat %}
+            {% if show_fields.show_emailalternat or 0 %}
             <td>{{ a.emailalternat }}</td>
             {% endif %}
 

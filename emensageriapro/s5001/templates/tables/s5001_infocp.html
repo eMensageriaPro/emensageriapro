@@ -14,7 +14,7 @@
     <tbody>
         {% for a in s5001_infocp_lista %}
         <tr>
-            {% if show_fields.show_s5001_evtbasestrab %}
+            {% if show_fields.show_s5001_evtbasestrab or 1 %}
             <td>{{ a.s5001_evtbasestrab }}</td>
             {% endif %}
 

@@ -29,22 +29,22 @@
     <tbody>
         {% for a in s2231_inicessao_lista %}
         <tr>
-            {% if show_fields.show_s2231_evtcessao %}
+            {% if show_fields.show_s2231_evtcessao or 0 %}
             <td>{{ a.s2231_evtcessao }}</td>
             {% endif %}
-            {% if show_fields.show_dtinicessao %}
+            {% if show_fields.show_dtinicessao or 1 %}
             <td><span style="display:none">{{ a.dtinicessao|date:"Y-m-d" }}</span>{{ a.dtinicessao|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjcess %}
+            {% if show_fields.show_cnpjcess or 1 %}
             <td>{{ a.cnpjcess }}</td>
             {% endif %}
-            {% if show_fields.show_infonus %}
+            {% if show_fields.show_infonus or 0 %}
             <td>{{ a.get_infonus_display }}</td>
             {% endif %}
-            {% if show_fields.show_indcessao %}
+            {% if show_fields.show_indcessao or 1 %}
             <td>{{ a.get_indcessao_display }}</td>
             {% endif %}
-            {% if show_fields.show_dscsituacao %}
+            {% if show_fields.show_dscsituacao or 0 %}
             <td>{{ a.dscsituacao }}</td>
             {% endif %}
 

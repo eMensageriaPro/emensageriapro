@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s2206_infoceletista_lista %}
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual %}
+            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
             <td>{{ a.s2206_evtaltcontratual }}</td>
             {% endif %}
-            {% if show_fields.show_tpregjor %}
+            {% if show_fields.show_tpregjor or 0 %}
             <td>{{ a.get_tpregjor_display }}</td>
             {% endif %}
-            {% if show_fields.show_natatividade %}
+            {% if show_fields.show_natatividade or 1 %}
             <td>{{ a.get_natatividade_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtbase %}
+            {% if show_fields.show_dtbase or 0 %}
             <td>{{ a.dtbase }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjsindcategprof %}
+            {% if show_fields.show_cnpjsindcategprof or 1 %}
             <td>{{ a.cnpjsindcategprof }}</td>
             {% endif %}
 

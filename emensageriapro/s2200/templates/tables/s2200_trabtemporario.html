@@ -32,25 +32,25 @@
     <tbody>
         {% for a in s2200_trabtemporario_lista %}
         <tr>
-            {% if show_fields.show_s2200_infoceletista %}
+            {% if show_fields.show_s2200_infoceletista or 1 %}
             <td>{{ a.s2200_infoceletista }}</td>
             {% endif %}
-            {% if show_fields.show_hipleg %}
+            {% if show_fields.show_hipleg or 1 %}
             <td>{{ a.get_hipleg_display }}</td>
             {% endif %}
-            {% if show_fields.show_justcontr %}
+            {% if show_fields.show_justcontr or 1 %}
             <td>{{ a.justcontr }}</td>
             {% endif %}
-            {% if show_fields.show_tpinclcontr %}
+            {% if show_fields.show_tpinclcontr or 0 %}
             <td>{{ a.get_tpinclcontr_display }}</td>
             {% endif %}
-            {% if show_fields.show_idetomadorserv %}
+            {% if show_fields.show_idetomadorserv or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
 

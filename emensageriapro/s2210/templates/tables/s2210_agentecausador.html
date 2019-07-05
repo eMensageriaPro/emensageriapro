@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2210_agentecausador_lista %}
         <tr>
-            {% if show_fields.show_s2210_evtcat %}
+            {% if show_fields.show_s2210_evtcat or 1 %}
             <td>{{ a.s2210_evtcat }}</td>
             {% endif %}
-            {% if show_fields.show_codagntcausador %}
+            {% if show_fields.show_codagntcausador or 1 %}
             <td>{{ a.codagntcausador|valor }}</td>
             {% endif %}
 

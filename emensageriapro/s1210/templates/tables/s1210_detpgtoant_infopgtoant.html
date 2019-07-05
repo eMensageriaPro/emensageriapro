@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s1210_detpgtoant_infopgtoant_lista %}
         <tr>
-            {% if show_fields.show_s1210_detpgtoant %}
+            {% if show_fields.show_s1210_detpgtoant or 1 %}
             <td>{{ a.s1210_detpgtoant }}</td>
             {% endif %}
-            {% if show_fields.show_tpbcirrf %}
+            {% if show_fields.show_tpbcirrf or 1 %}
             <td>{{ a.tpbcirrf }}</td>
             {% endif %}
-            {% if show_fields.show_vrbcirrf %}
+            {% if show_fields.show_vrbcirrf or 1 %}
             <td>{{ a.vrbcirrf }}</td>
             {% endif %}
 

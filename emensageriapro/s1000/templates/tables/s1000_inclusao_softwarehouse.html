@@ -29,22 +29,22 @@
     <tbody>
         {% for a in s1000_inclusao_softwarehouse_lista %}
         <tr>
-            {% if show_fields.show_s1000_inclusao %}
+            {% if show_fields.show_s1000_inclusao or 1 %}
             <td>{{ a.s1000_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjsofthouse %}
+            {% if show_fields.show_cnpjsofthouse or 1 %}
             <td>{{ a.cnpjsofthouse }}</td>
             {% endif %}
-            {% if show_fields.show_nmrazao %}
+            {% if show_fields.show_nmrazao or 0 %}
             <td>{{ a.nmrazao }}</td>
             {% endif %}
-            {% if show_fields.show_nmcont %}
+            {% if show_fields.show_nmcont or 1 %}
             <td>{{ a.nmcont }}</td>
             {% endif %}
-            {% if show_fields.show_telefone %}
+            {% if show_fields.show_telefone or 0 %}
             <td>{{ a.telefone }}</td>
             {% endif %}
-            {% if show_fields.show_email %}
+            {% if show_fields.show_email or 0 %}
             <td>{{ a.email }}</td>
             {% endif %}
 

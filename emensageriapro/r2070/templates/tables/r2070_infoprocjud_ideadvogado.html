@@ -23,16 +23,16 @@
     <tbody>
         {% for a in r2070_infoprocjud_ideadvogado_lista %}
         <tr>
-            {% if show_fields.show_r2070_infoprocjud_despprocjud %}
+            {% if show_fields.show_r2070_infoprocjud_despprocjud or 1 %}
             <td>{{ a.r2070_infoprocjud_despprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_tpinscadvogado %}
+            {% if show_fields.show_tpinscadvogado or 1 %}
             <td>{{ a.tpinscadvogado }}</td>
             {% endif %}
-            {% if show_fields.show_nrinscadvogado %}
+            {% if show_fields.show_nrinscadvogado or 1 %}
             <td>{{ a.nrinscadvogado }}</td>
             {% endif %}
-            {% if show_fields.show_vlradvogado %}
+            {% if show_fields.show_vlradvogado or 0 %}
             <td>{{ a.vlradvogado }}</td>
             {% endif %}
 

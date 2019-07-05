@@ -20,13 +20,13 @@
     <tbody>
         {% for a in r4020_despprocjud_lista %}
         <tr>
-            {% if show_fields.show_r4020_infoprocjud %}
+            {% if show_fields.show_r4020_infoprocjud or 1 %}
             <td>{{ a.r4020_infoprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_vlrdespcustas %}
+            {% if show_fields.show_vlrdespcustas or 1 %}
             <td>{{ a.vlrdespcustas }}</td>
             {% endif %}
-            {% if show_fields.show_vlrdespadvogados %}
+            {% if show_fields.show_vlrdespadvogados or 1 %}
             <td>{{ a.vlrdespadvogados }}</td>
             {% endif %}
 

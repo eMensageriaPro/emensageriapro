@@ -23,16 +23,16 @@
     <tbody>
         {% for a in r4010_inforra_ideadv_lista %}
         <tr>
-            {% if show_fields.show_r4010_inforra_despprocjud %}
+            {% if show_fields.show_r4010_inforra_despprocjud or 1 %}
             <td>{{ a.r4010_inforra_despprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_tpinscadv %}
+            {% if show_fields.show_tpinscadv or 1 %}
             <td>{{ a.get_tpinscadv_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinscadv %}
+            {% if show_fields.show_nrinscadv or 1 %}
             <td>{{ a.nrinscadv }}</td>
             {% endif %}
-            {% if show_fields.show_vlradv %}
+            {% if show_fields.show_vlradv or 0 %}
             <td>{{ a.vlradv }}</td>
             {% endif %}
 

@@ -29,22 +29,22 @@
     <tbody>
         {% for a in s1210_detpgtofl_lista %}
         <tr>
-            {% if show_fields.show_s1210_infopgto %}
+            {% if show_fields.show_s1210_infopgto or 1 %}
             <td>{{ a.s1210_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_perref %}
+            {% if show_fields.show_perref or 0 %}
             <td>{{ a.perref }}</td>
             {% endif %}
-            {% if show_fields.show_idedmdev %}
+            {% if show_fields.show_idedmdev or 1 %}
             <td>{{ a.idedmdev }}</td>
             {% endif %}
-            {% if show_fields.show_indpgtott %}
+            {% if show_fields.show_indpgtott or 1 %}
             <td>{{ a.get_indpgtott_display }}</td>
             {% endif %}
-            {% if show_fields.show_vrliq %}
+            {% if show_fields.show_vrliq or 0 %}
             <td>{{ a.vrliq }}</td>
             {% endif %}
-            {% if show_fields.show_nrrecarq %}
+            {% if show_fields.show_nrrecarq or 0 %}
             <td>{{ a.nrrecarq }}</td>
             {% endif %}
 

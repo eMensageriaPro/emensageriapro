@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s2300_mudancacpf_lista %}
         <tr>
-            {% if show_fields.show_s2300_evttsvinicio %}
+            {% if show_fields.show_s2300_evttsvinicio or 1 %}
             <td>{{ a.s2300_evttsvinicio }}</td>
             {% endif %}
-            {% if show_fields.show_cpfant %}
+            {% if show_fields.show_cpfant or 1 %}
             <td>{{ a.cpfant }}</td>
             {% endif %}
-            {% if show_fields.show_dtaltcpf %}
+            {% if show_fields.show_dtaltcpf or 1 %}
             <td><span style="display:none">{{ a.dtaltcpf|date:"Y-m-d" }}</span>{{ a.dtaltcpf|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <td>{{ a.observacao }}</td>
             {% endif %}
 

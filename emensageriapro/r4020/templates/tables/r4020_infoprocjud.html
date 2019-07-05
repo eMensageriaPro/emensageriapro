@@ -23,16 +23,16 @@
     <tbody>
         {% for a in r4020_infoprocjud_lista %}
         <tr>
-            {% if show_fields.show_r4020_infopgto %}
+            {% if show_fields.show_r4020_infopgto or 1 %}
             <td>{{ a.r4020_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_nrproc %}
+            {% if show_fields.show_nrproc or 1 %}
             <td>{{ a.nrproc }}</td>
             {% endif %}
-            {% if show_fields.show_indorigemrecursos %}
+            {% if show_fields.show_indorigemrecursos or 1 %}
             <td>{{ a.get_indorigemrecursos_display }}</td>
             {% endif %}
-            {% if show_fields.show_desc %}
+            {% if show_fields.show_desc or 0 %}
             <td>{{ a.desc }}</td>
             {% endif %}
 

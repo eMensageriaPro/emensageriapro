@@ -38,31 +38,31 @@
     <tbody>
         {% for a in s1030_inclusao_cargopublico_lista %}
         <tr>
-            {% if show_fields.show_s1030_inclusao %}
+            {% if show_fields.show_s1030_inclusao or 0 %}
             <td>{{ a.s1030_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_acumcargo %}
+            {% if show_fields.show_acumcargo or 0 %}
             <td>{{ a.get_acumcargo_display }}</td>
             {% endif %}
-            {% if show_fields.show_contagemesp %}
+            {% if show_fields.show_contagemesp or 1 %}
             <td>{{ a.get_contagemesp_display }}</td>
             {% endif %}
-            {% if show_fields.show_dedicexcl %}
+            {% if show_fields.show_dedicexcl or 1 %}
             <td>{{ a.get_dedicexcl_display }}</td>
             {% endif %}
-            {% if show_fields.show_codcarreira %}
+            {% if show_fields.show_codcarreira or 0 %}
             <td>{{ a.codcarreira }}</td>
             {% endif %}
-            {% if show_fields.show_leicargo %}
+            {% if show_fields.show_leicargo or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_nrlei %}
+            {% if show_fields.show_nrlei or 0 %}
             <td>{{ a.nrlei }}</td>
             {% endif %}
-            {% if show_fields.show_dtlei %}
+            {% if show_fields.show_dtlei or 1 %}
             <td><span style="display:none">{{ a.dtlei|date:"Y-m-d" }}</span>{{ a.dtlei|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_sitcargo %}
+            {% if show_fields.show_sitcargo or 0 %}
             <td>{{ a.get_sitcargo_display }}</td>
             {% endif %}
 

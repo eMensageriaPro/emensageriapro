@@ -17,10 +17,10 @@
     <tbody>
         {% for a in r2070_pgtopj_origemrecursos_lista %}
         <tr>
-            {% if show_fields.show_r2070_pgtopj_infoprocjud %}
+            {% if show_fields.show_r2070_pgtopj_infoprocjud or 1 %}
             <td>{{ a.r2070_pgtopj_infoprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjorigemrecursos %}
+            {% if show_fields.show_cnpjorigemrecursos or 1 %}
             <td>{{ a.cnpjorigemrecursos }}</td>
             {% endif %}
 

@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s2399_procjudtrab_lista %}
         <tr>
-            {% if show_fields.show_s2399_verbasresc %}
+            {% if show_fields.show_s2399_verbasresc or 1 %}
             <td>{{ a.s2399_verbasresc }}</td>
             {% endif %}
-            {% if show_fields.show_tptrib %}
+            {% if show_fields.show_tptrib or 1 %}
             <td>{{ a.get_tptrib_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocjud %}
+            {% if show_fields.show_nrprocjud or 1 %}
             <td>{{ a.nrprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 0 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
 

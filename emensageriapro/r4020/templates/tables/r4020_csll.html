@@ -29,22 +29,22 @@
     <tbody>
         {% for a in r4020_csll_lista %}
         <tr>
-            {% if show_fields.show_r4020_infopgto %}
+            {% if show_fields.show_r4020_infopgto or 1 %}
             <td>{{ a.r4020_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasecsll %}
+            {% if show_fields.show_vlrbasecsll or 1 %}
             <td>{{ a.vlrbasecsll }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcsll %}
+            {% if show_fields.show_vlrcsll or 1 %}
             <td>{{ a.vlrcsll }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasencsll %}
+            {% if show_fields.show_vlrbasencsll or 0 %}
             <td>{{ a.vlrbasencsll }}</td>
             {% endif %}
-            {% if show_fields.show_vlrncsll %}
+            {% if show_fields.show_vlrncsll or 0 %}
             <td>{{ a.vlrncsll }}</td>
             {% endif %}
-            {% if show_fields.show_vlrdepcsll %}
+            {% if show_fields.show_vlrdepcsll or 0 %}
             <td>{{ a.vlrdepcsll }}</td>
             {% endif %}
 

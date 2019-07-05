@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s2399_ideestablot_lista %}
         <tr>
-            {% if show_fields.show_s2399_dmdev %}
+            {% if show_fields.show_s2399_dmdev or 1 %}
             <td>{{ a.s2399_dmdev }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_codlotacao %}
+            {% if show_fields.show_codlotacao or 1 %}
             <td>{{ a.codlotacao }}</td>
             {% endif %}
 

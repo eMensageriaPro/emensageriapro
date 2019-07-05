@@ -23,16 +23,16 @@
     <tbody>
         {% for a in r4020_idepgto_lista %}
         <tr>
-            {% if show_fields.show_r4020_evtretpj %}
+            {% if show_fields.show_r4020_evtretpj or 1 %}
             <td>{{ a.r4020_evtretpj }}</td>
             {% endif %}
-            {% if show_fields.show_natrend %}
+            {% if show_fields.show_natrend or 1 %}
             <td>{{ a.natrend }}</td>
             {% endif %}
-            {% if show_fields.show_paisresid %}
+            {% if show_fields.show_paisresid or 1 %}
             <td>{{ a.paisresid }}</td>
             {% endif %}
-            {% if show_fields.show_observ %}
+            {% if show_fields.show_observ or 0 %}
             <td>{{ a.observ }}</td>
             {% endif %}
 

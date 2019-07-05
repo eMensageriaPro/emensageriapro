@@ -26,19 +26,19 @@
     <tbody>
         {% for a in r3010_infoproc_lista %}
         <tr>
-            {% if show_fields.show_r3010_evtespdesportivo %}
+            {% if show_fields.show_r3010_evtespdesportivo or 1 %}
             <td>{{ a.r3010_evtespdesportivo }}</td>
             {% endif %}
-            {% if show_fields.show_tpproc %}
+            {% if show_fields.show_tpproc or 1 %}
             <td>{{ a.get_tpproc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrproc %}
+            {% if show_fields.show_nrproc or 1 %}
             <td>{{ a.nrproc }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 0 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcpsusp %}
+            {% if show_fields.show_vlrcpsusp or 0 %}
             <td>{{ a.vlrcpsusp }}</td>
             {% endif %}
 

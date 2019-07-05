@@ -20,13 +20,13 @@
     <tbody>
         {% for a in r4010_scp_lista %}
         <tr>
-            {% if show_fields.show_r4010_infopgto %}
+            {% if show_fields.show_r4010_infopgto or 1 %}
             <td>{{ a.r4010_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_nrinscscp %}
+            {% if show_fields.show_nrinscscp or 1 %}
             <td>{{ a.nrinscscp }}</td>
             {% endif %}
-            {% if show_fields.show_percscp %}
+            {% if show_fields.show_percscp or 1 %}
             <td>{{ a.percscp }}</td>
             {% endif %}
 

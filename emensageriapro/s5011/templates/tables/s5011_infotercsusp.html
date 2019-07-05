@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s5011_infotercsusp_lista %}
         <tr>
-            {% if show_fields.show_s5011_idelotacao %}
+            {% if show_fields.show_s5011_idelotacao or 1 %}
             <td>{{ a.s5011_idelotacao }}</td>
             {% endif %}
-            {% if show_fields.show_codterc %}
+            {% if show_fields.show_codterc or 1 %}
             <td>{{ a.codterc }}</td>
             {% endif %}
 

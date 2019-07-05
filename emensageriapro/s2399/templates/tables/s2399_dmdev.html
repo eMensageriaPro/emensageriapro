@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2399_dmdev_lista %}
         <tr>
-            {% if show_fields.show_s2399_verbasresc %}
+            {% if show_fields.show_s2399_verbasresc or 1 %}
             <td>{{ a.s2399_verbasresc }}</td>
             {% endif %}
-            {% if show_fields.show_idedmdev %}
+            {% if show_fields.show_idedmdev or 1 %}
             <td>{{ a.idedmdev }}</td>
             {% endif %}
 

@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s1200_infoperant_infotrabinterm_lista %}
         <tr>
-            {% if show_fields.show_s1200_infoperant_remunperant %}
+            {% if show_fields.show_s1200_infoperant_remunperant or 1 %}
             <td>{{ a.s1200_infoperant_remunperant }}</td>
             {% endif %}
-            {% if show_fields.show_codconv %}
+            {% if show_fields.show_codconv or 1 %}
             <td>{{ a.codconv }}</td>
             {% endif %}
 

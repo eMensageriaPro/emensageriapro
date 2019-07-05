@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s1260_ideadquir_lista %}
         <tr>
-            {% if show_fields.show_s1260_tpcomerc %}
+            {% if show_fields.show_s1260_tpcomerc or 1 %}
             <td>{{ a.s1260_tpcomerc }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 1 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_vrcomerc %}
+            {% if show_fields.show_vrcomerc or 0 %}
             <td>{{ a.vrcomerc }}</td>
             {% endif %}
 

@@ -50,43 +50,43 @@
     <tbody>
         {% for a in usuarios_lista %}
         <tr>
-            {% if show_fields.show_foto %}
+            {% if show_fields.show_foto or 0 %}
             <td>{{ a.foto }}</td>
             {% endif %}
-            {% if show_fields.show_username %}
+            {% if show_fields.show_username or 1 %}
             <td>{{ a.username }}</td>
             {% endif %}
-            {% if show_fields.show_password %}
+            {% if show_fields.show_password or 0 %}
             <td>{{ a.password }}</td>
             {% endif %}
-            {% if show_fields.show_first_name %}
+            {% if show_fields.show_first_name or 1 %}
             <td>{{ a.first_name }}</td>
             {% endif %}
-            {% if show_fields.show_last_name %}
+            {% if show_fields.show_last_name or 1 %}
             <td>{{ a.last_name }}</td>
             {% endif %}
-            {% if show_fields.show_email %}
+            {% if show_fields.show_email or 1 %}
             <td>{{ a.email }}</td>
             {% endif %}
-            {% if show_fields.show_is_superuser %}
+            {% if show_fields.show_is_superuser or 0 %}
             <td>{% if a.is_superuser %}<span class="badge bg-green">Sim</span>{% else %}<span class="badge bg-red">Não</span>{% endif %}</td>
             {% endif %}
-            {% if show_fields.show_is_staff %}
+            {% if show_fields.show_is_staff or 0 %}
             <td>{% if a.is_staff %}<span class="badge bg-green">Sim</span>{% else %}<span class="badge bg-red">Não</span>{% endif %}</td>
             {% endif %}
-            {% if show_fields.show_is_active %}
+            {% if show_fields.show_is_active or 1 %}
             <td>{% if a.is_active %}<span class="badge bg-green">Sim</span>{% else %}<span class="badge bg-red">Não</span>{% endif %}</td>
             {% endif %}
-            {% if show_fields.show_last_login %}
+            {% if show_fields.show_last_login or 0 %}
             <td><span style="display:none">{{ a.last_login|date:"Y-m-d H:i" }}</span>{{ a.last_login|date:"d/m/Y H:i" }}</td>
             {% endif %}
-            {% if show_fields.show_date_joined %}
+            {% if show_fields.show_date_joined or 0 %}
             <td><span style="display:none">{{ a.date_joined|date:"Y-m-d" }}</span>{{ a.date_joined|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_config_perfis %}
+            {% if show_fields.show_config_perfis or 1 %}
             <td>{{ a.config_perfis }}</td>
             {% endif %}
-            {% if show_fields.show_name %}
+            {% if show_fields.show_name or 1 %}
             <td>{{ a.name }}</td>
             {% endif %}
 

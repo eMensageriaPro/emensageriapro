@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2206_filiacaosindical_lista %}
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual %}
+            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
             <td>{{ a.s2206_evtaltcontratual }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjsindtrab %}
+            {% if show_fields.show_cnpjsindtrab or 1 %}
             <td>{{ a.cnpjsindtrab }}</td>
             {% endif %}
 

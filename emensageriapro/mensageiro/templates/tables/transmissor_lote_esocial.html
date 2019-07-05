@@ -56,49 +56,49 @@
     <tbody>
         {% for a in transmissor_lote_esocial_lista %}
         <tr>
-            {% if show_fields.show_transmissor %}
+            {% if show_fields.show_transmissor or 0 %}
             <td>{{ a.transmissor }}</td>
             {% endif %}
-            {% if show_fields.show_empregador_tpinsc %}
+            {% if show_fields.show_empregador_tpinsc or 1 %}
             <td>{{ a.get_empregador_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_empregador_nrinsc %}
+            {% if show_fields.show_empregador_nrinsc or 1 %}
             <td>{{ a.empregador_nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_grupo %}
+            {% if show_fields.show_grupo or 1 %}
             <td>{{ a.get_grupo_display }}</td>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
-            {% if show_fields.show_resposta_codigo %}
+            {% if show_fields.show_resposta_codigo or 1 %}
             <td>{{ a.get_resposta_codigo_display }}</td>
             {% endif %}
-            {% if show_fields.show_resposta_descricao %}
+            {% if show_fields.show_resposta_descricao or 0 %}
             <td>{{ a.resposta_descricao }}</td>
             {% endif %}
-            {% if show_fields.show_recepcao_data_hora %}
+            {% if show_fields.show_recepcao_data_hora or 0 %}
             <td><span style="display:none">{{ a.recepcao_data_hora|date:"Y-m-d H:i" }}</span>{{ a.recepcao_data_hora|date:"d/m/Y H:i" }}</td>
             {% endif %}
-            {% if show_fields.show_recepcao_versao_aplicativo %}
+            {% if show_fields.show_recepcao_versao_aplicativo or 0 %}
             <td>{{ a.recepcao_versao_aplicativo }}</td>
             {% endif %}
-            {% if show_fields.show_protocolo %}
+            {% if show_fields.show_protocolo or 0 %}
             <td>{{ a.protocolo }}</td>
             {% endif %}
-            {% if show_fields.show_processamento_versao_aplicativo %}
+            {% if show_fields.show_processamento_versao_aplicativo or 0 %}
             <td>{{ a.processamento_versao_aplicativo }}</td>
             {% endif %}
-            {% if show_fields.show_tempo_estimado_conclusao %}
+            {% if show_fields.show_tempo_estimado_conclusao or 0 %}
             <td>{{ a.tempo_estimado_conclusao }}</td>
             {% endif %}
-            {% if show_fields.show_arquivo_header %}
+            {% if show_fields.show_arquivo_header or 0 %}
             <td>{{ a.arquivo_header }}</td>
             {% endif %}
-            {% if show_fields.show_arquivo_request %}
+            {% if show_fields.show_arquivo_request or 0 %}
             <td>{{ a.arquivo_request }}</td>
             {% endif %}
-            {% if show_fields.show_arquivo_response %}
+            {% if show_fields.show_arquivo_response or 0 %}
             <td>{{ a.arquivo_response }}</td>
             {% endif %}
 

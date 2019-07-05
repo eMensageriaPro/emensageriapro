@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2241_iniaposentesp_infoamb_lista %}
         <tr>
-            {% if show_fields.show_s2241_iniaposentesp %}
+            {% if show_fields.show_s2241_iniaposentesp or 1 %}
             <td>{{ a.s2241_iniaposentesp }}</td>
             {% endif %}
-            {% if show_fields.show_codamb %}
+            {% if show_fields.show_codamb or 1 %}
             <td>{{ a.codamb }}</td>
             {% endif %}
 

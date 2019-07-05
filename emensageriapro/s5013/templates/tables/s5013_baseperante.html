@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s5013_baseperante_lista %}
         <tr>
-            {% if show_fields.show_s5013_infobaseperante %}
+            {% if show_fields.show_s5013_infobaseperante or 1 %}
             <td>{{ a.s5013_infobaseperante }}</td>
             {% endif %}
-            {% if show_fields.show_tpvalore %}
+            {% if show_fields.show_tpvalore or 1 %}
             <td>{{ a.get_tpvalore_display }}</td>
             {% endif %}
-            {% if show_fields.show_basefgtse %}
+            {% if show_fields.show_basefgtse or 1 %}
             <td>{{ a.basefgtse }}</td>
             {% endif %}
 

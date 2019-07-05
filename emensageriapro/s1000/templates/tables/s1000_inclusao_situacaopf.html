@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s1000_inclusao_situacaopf_lista %}
         <tr>
-            {% if show_fields.show_s1000_inclusao %}
+            {% if show_fields.show_s1000_inclusao or 1 %}
             <td>{{ a.s1000_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_indsitpf %}
+            {% if show_fields.show_indsitpf or 1 %}
             <td>{{ a.get_indsitpf_display }}</td>
             {% endif %}
 

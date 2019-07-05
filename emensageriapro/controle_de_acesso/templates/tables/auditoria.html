@@ -32,25 +32,25 @@
     <tbody>
         {% for a in auditoria_lista %}
         <tr>
-            {% if show_fields.show_tabela %}
+            {% if show_fields.show_tabela or 1 %}
             <td>{{ a.tabela }}</td>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <td>{{ a.identidade }}</td>
             {% endif %}
-            {% if show_fields.show_situacao_anterior %}
+            {% if show_fields.show_situacao_anterior or 1 %}
             <td>{{ a.situacao_anterior }}</td>
             {% endif %}
-            {% if show_fields.show_situacao_posterior %}
+            {% if show_fields.show_situacao_posterior or 1 %}
             <td>{{ a.situacao_posterior }}</td>
             {% endif %}
-            {% if show_fields.show_operador %}
+            {% if show_fields.show_operador or 1 %}
             <td>{{ a.operador }}</td>
             {% endif %}
-            {% if show_fields.show_data_hora %}
+            {% if show_fields.show_data_hora or 1 %}
             <td><span style="display:none">{{ a.data_hora|date:"Y-m-d H:i" }}</span>{{ a.data_hora|date:"d/m/Y H:i" }}</td>
             {% endif %}
-            {% if show_fields.show_tipo %}
+            {% if show_fields.show_tipo or 1 %}
             <td>{{ a.get_tipo_display }}</td>
             {% endif %}
 

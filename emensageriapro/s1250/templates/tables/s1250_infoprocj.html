@@ -29,22 +29,22 @@
     <tbody>
         {% for a in s1250_infoprocj_lista %}
         <tr>
-            {% if show_fields.show_s1250_tpaquis %}
+            {% if show_fields.show_s1250_tpaquis or 1 %}
             <td>{{ a.s1250_tpaquis }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocjud %}
+            {% if show_fields.show_nrprocjud or 1 %}
             <td>{{ a.nrprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 1 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
-            {% if show_fields.show_vrcpnret %}
+            {% if show_fields.show_vrcpnret or 0 %}
             <td>{{ a.vrcpnret }}</td>
             {% endif %}
-            {% if show_fields.show_vrratnret %}
+            {% if show_fields.show_vrratnret or 0 %}
             <td>{{ a.vrratnret }}</td>
             {% endif %}
-            {% if show_fields.show_vrsenarnret %}
+            {% if show_fields.show_vrsenarnret or 0 %}
             <td>{{ a.vrsenarnret }}</td>
             {% endif %}
 

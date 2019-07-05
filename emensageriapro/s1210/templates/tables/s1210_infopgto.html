@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s1210_infopgto_lista %}
         <tr>
-            {% if show_fields.show_s1210_evtpgtos %}
+            {% if show_fields.show_s1210_evtpgtos or 1 %}
             <td>{{ a.s1210_evtpgtos }}</td>
             {% endif %}
-            {% if show_fields.show_dtpgto %}
+            {% if show_fields.show_dtpgto or 1 %}
             <td><span style="display:none">{{ a.dtpgto|date:"Y-m-d" }}</span>{{ a.dtpgto|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tppgto %}
+            {% if show_fields.show_tppgto or 0 %}
             <td>{{ a.get_tppgto_display }}</td>
             {% endif %}
-            {% if show_fields.show_indresbr %}
+            {% if show_fields.show_indresbr or 1 %}
             <td>{{ a.get_indresbr_display }}</td>
             {% endif %}
 

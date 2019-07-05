@@ -116,109 +116,109 @@
     <tbody>
         {% for a in s2410_evtcdbenin_lista %}
         <tr>
-            {% if show_fields.show_evtcdbenin %}
+            {% if show_fields.show_evtcdbenin or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <td>{{ a.identidade }}</td>
             {% endif %}
-            {% if show_fields.show_ideevento %}
+            {% if show_fields.show_ideevento or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_indretif %}
+            {% if show_fields.show_indretif or 0 %}
             <td>{{ a.get_indretif_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrrecibo %}
+            {% if show_fields.show_nrrecibo or 0 %}
             <td>{{ a.nrrecibo }}</td>
             {% endif %}
-            {% if show_fields.show_tpamb %}
+            {% if show_fields.show_tpamb or 0 %}
             <td>{{ a.get_tpamb_display }}</td>
             {% endif %}
-            {% if show_fields.show_procemi %}
+            {% if show_fields.show_procemi or 0 %}
             <td>{{ a.get_procemi_display }}</td>
             {% endif %}
-            {% if show_fields.show_verproc %}
+            {% if show_fields.show_verproc or 0 %}
             <td>{{ a.verproc }}</td>
             {% endif %}
-            {% if show_fields.show_ideempregador %}
+            {% if show_fields.show_ideempregador or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_beneficiario %}
+            {% if show_fields.show_beneficiario or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_cpfbenef %}
+            {% if show_fields.show_cpfbenef or 1 %}
             <td>{{ a.cpfbenef }}</td>
             {% endif %}
-            {% if show_fields.show_matricula %}
+            {% if show_fields.show_matricula or 0 %}
             <td>{{ a.matricula }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjorigem %}
+            {% if show_fields.show_cnpjorigem or 0 %}
             <td>{{ a.cnpjorigem }}</td>
             {% endif %}
-            {% if show_fields.show_infobeninicio %}
+            {% if show_fields.show_infobeninicio or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_cadini %}
+            {% if show_fields.show_cadini or 0 %}
             <td>{{ a.get_cadini_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrbeneficio %}
+            {% if show_fields.show_nrbeneficio or 0 %}
             <td>{{ a.nrbeneficio }}</td>
             {% endif %}
-            {% if show_fields.show_dtinibeneficio %}
+            {% if show_fields.show_dtinibeneficio or 1 %}
             <td><span style="display:none">{{ a.dtinibeneficio|date:"Y-m-d" }}</span>{{ a.dtinibeneficio|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dadosbeneficio %}
+            {% if show_fields.show_dadosbeneficio or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpbeneficio %}
+            {% if show_fields.show_tpbeneficio or 0 %}
             <td>{{ a.tpbeneficio }}</td>
             {% endif %}
-            {% if show_fields.show_vrbeneficio %}
+            {% if show_fields.show_vrbeneficio or 0 %}
             <td>{{ a.vrbeneficio }}</td>
             {% endif %}
-            {% if show_fields.show_tpplanrp %}
+            {% if show_fields.show_tpplanrp or 0 %}
             <td>{{ a.get_tpplanrp_display }}</td>
             {% endif %}
-            {% if show_fields.show_dsc %}
+            {% if show_fields.show_dsc or 0 %}
             <td>{{ a.dsc }}</td>
             {% endif %}
-            {% if show_fields.show_inddecjud %}
+            {% if show_fields.show_inddecjud or 0 %}
             <td>{{ a.get_inddecjud_display }}</td>
             {% endif %}
-            {% if show_fields.show_indhomologtc %}
+            {% if show_fields.show_indhomologtc or 0 %}
             <td>{{ a.get_indhomologtc_display }}</td>
             {% endif %}
-            {% if show_fields.show_versao %}
+            {% if show_fields.show_versao or 0 %}
             <td>{{ a.get_versao_display }}</td>
             {% endif %}
-            {% if show_fields.show_transmissor_lote_esocial %}
+            {% if show_fields.show_transmissor_lote_esocial or 0 %}
             <td>{{ a.transmissor_lote_esocial }}</td>
             {% endif %}
-            {% if show_fields.show_retornos_eventos %}
+            {% if show_fields.show_retornos_eventos or 0 %}
             <td>{{ a.retornos_eventos }}</td>
             {% endif %}
-            {% if show_fields.show_ocorrencias %}
+            {% if show_fields.show_ocorrencias or 0 %}
             <td>{{ a.ocorrencias }}</td>
             {% endif %}
-            {% if show_fields.show_validacao_precedencia %}
+            {% if show_fields.show_validacao_precedencia or 0 %}
             <td>{{ a.get_validacao_precedencia_display }}</td>
             {% endif %}
-            {% if show_fields.show_validacoes %}
+            {% if show_fields.show_validacoes or 0 %}
             <td>{{ a.validacoes }}</td>
             {% endif %}
-            {% if show_fields.show_arquivo_original %}
+            {% if show_fields.show_arquivo_original or 0 %}
             <td>{{ a.get_arquivo_original_display }}</td>
             {% endif %}
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 0 %}
             <td>{{ a.arquivo }}</td>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
 

@@ -23,16 +23,16 @@
     <tbody>
         {% for a in r5001_rcprb_lista %}
         <tr>
-            {% if show_fields.show_r5001_infototal %}
+            {% if show_fields.show_r5001_infototal or 1 %}
             <td>{{ a.r5001_infototal }}</td>
             {% endif %}
-            {% if show_fields.show_crcprb %}
+            {% if show_fields.show_crcprb or 1 %}
             <td>{{ a.crcprb }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrcprb %}
+            {% if show_fields.show_vlrcrcprb or 1 %}
             <td>{{ a.vlrcrcprb }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrcprbsusp %}
+            {% if show_fields.show_vlrcrcprbsusp or 0 %}
             <td>{{ a.vlrcrcprbsusp }}</td>
             {% endif %}
 

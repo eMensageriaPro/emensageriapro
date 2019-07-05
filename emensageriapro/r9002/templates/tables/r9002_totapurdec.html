@@ -32,25 +32,25 @@
     <tbody>
         {% for a in r9002_totapurdec_lista %}
         <tr>
-            {% if show_fields.show_r9002_infototal %}
+            {% if show_fields.show_r9002_infototal or 1 %}
             <td>{{ a.r9002_infototal }}</td>
             {% endif %}
-            {% if show_fields.show_perapurdec %}
+            {% if show_fields.show_perapurdec or 1 %}
             <td>{{ a.get_perapurdec_display }}</td>
             {% endif %}
-            {% if show_fields.show_crdec %}
+            {% if show_fields.show_crdec or 1 %}
             <td>{{ a.crdec }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasecrdec %}
+            {% if show_fields.show_vlrbasecrdec or 0 %}
             <td>{{ a.vlrbasecrdec }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrdec %}
+            {% if show_fields.show_vlrcrdec or 0 %}
             <td>{{ a.vlrcrdec }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasecrdecsusp %}
+            {% if show_fields.show_vlrbasecrdecsusp or 0 %}
             <td>{{ a.vlrbasecrdecsusp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrdecsusp %}
+            {% if show_fields.show_vlrcrdecsusp or 0 %}
             <td>{{ a.vlrcrdecsusp }}</td>
             {% endif %}
 

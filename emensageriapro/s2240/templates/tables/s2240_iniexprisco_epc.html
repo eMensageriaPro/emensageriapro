@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s2240_iniexprisco_epc_lista %}
         <tr>
-            {% if show_fields.show_s2240_iniexprisco_fatrisco %}
+            {% if show_fields.show_s2240_iniexprisco_fatrisco or 1 %}
             <td>{{ a.s2240_iniexprisco_fatrisco }}</td>
             {% endif %}
-            {% if show_fields.show_codep %}
+            {% if show_fields.show_codep or 1 %}
             <td>{{ a.codep }}</td>
             {% endif %}
-            {% if show_fields.show_dscepc %}
+            {% if show_fields.show_dscepc or 1 %}
             <td>{{ a.dscepc }}</td>
             {% endif %}
-            {% if show_fields.show_eficepc %}
+            {% if show_fields.show_eficepc or 0 %}
             <td>{{ a.get_eficepc_display }}</td>
             {% endif %}
 

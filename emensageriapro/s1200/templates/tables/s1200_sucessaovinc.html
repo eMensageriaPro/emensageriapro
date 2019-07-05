@@ -29,22 +29,22 @@
     <tbody>
         {% for a in s1200_sucessaovinc_lista %}
         <tr>
-            {% if show_fields.show_s1200_infocomplem %}
+            {% if show_fields.show_s1200_infocomplem or 1 %}
             <td>{{ a.s1200_infocomplem }}</td>
             {% endif %}
-            {% if show_fields.show_tpinscant %}
+            {% if show_fields.show_tpinscant or 0 %}
             <td>{{ a.get_tpinscant_display }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjempregant %}
+            {% if show_fields.show_cnpjempregant or 1 %}
             <td>{{ a.cnpjempregant }}</td>
             {% endif %}
-            {% if show_fields.show_matricant %}
+            {% if show_fields.show_matricant or 0 %}
             <td>{{ a.matricant }}</td>
             {% endif %}
-            {% if show_fields.show_dtadm %}
+            {% if show_fields.show_dtadm or 1 %}
             <td><span style="display:none">{{ a.dtadm|date:"Y-m-d" }}</span>{{ a.dtadm|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <td>{{ a.observacao }}</td>
             {% endif %}
 

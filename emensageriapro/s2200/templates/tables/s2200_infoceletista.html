@@ -44,37 +44,37 @@
     <tbody>
         {% for a in s2200_infoceletista_lista %}
         <tr>
-            {% if show_fields.show_s2200_evtadmissao %}
+            {% if show_fields.show_s2200_evtadmissao or 0 %}
             <td>{{ a.s2200_evtadmissao }}</td>
             {% endif %}
-            {% if show_fields.show_dtadm %}
+            {% if show_fields.show_dtadm or 1 %}
             <td><span style="display:none">{{ a.dtadm|date:"Y-m-d" }}</span>{{ a.dtadm|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tpadmissao %}
+            {% if show_fields.show_tpadmissao or 0 %}
             <td>{{ a.get_tpadmissao_display }}</td>
             {% endif %}
-            {% if show_fields.show_indadmissao %}
+            {% if show_fields.show_indadmissao or 1 %}
             <td>{{ a.get_indadmissao_display }}</td>
             {% endif %}
-            {% if show_fields.show_tpregjor %}
+            {% if show_fields.show_tpregjor or 0 %}
             <td>{{ a.get_tpregjor_display }}</td>
             {% endif %}
-            {% if show_fields.show_natatividade %}
+            {% if show_fields.show_natatividade or 0 %}
             <td>{{ a.get_natatividade_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtbase %}
+            {% if show_fields.show_dtbase or 0 %}
             <td>{{ a.dtbase }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjsindcategprof %}
+            {% if show_fields.show_cnpjsindcategprof or 1 %}
             <td>{{ a.cnpjsindcategprof }}</td>
             {% endif %}
-            {% if show_fields.show_fgts %}
+            {% if show_fields.show_fgts or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_opcfgts %}
+            {% if show_fields.show_opcfgts or 0 %}
             <td>{{ a.get_opcfgts_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtopcfgts %}
+            {% if show_fields.show_dtopcfgts or 0 %}
             <td><span style="display:none">{{ a.dtopcfgts|date:"Y-m-d" }}</span>{{ a.dtopcfgts|date:"d/m/Y" }}</td>
             {% endif %}
 

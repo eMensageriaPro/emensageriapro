@@ -89,82 +89,82 @@
     <tbody>
         {% for a in s2230_evtafasttemp_lista %}
         <tr>
-            {% if show_fields.show_evtafasttemp %}
+            {% if show_fields.show_evtafasttemp or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <td>{{ a.identidade }}</td>
             {% endif %}
-            {% if show_fields.show_ideevento %}
+            {% if show_fields.show_ideevento or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_indretif %}
+            {% if show_fields.show_indretif or 1 %}
             <td>{{ a.get_indretif_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrrecibo %}
+            {% if show_fields.show_nrrecibo or 0 %}
             <td>{{ a.nrrecibo }}</td>
             {% endif %}
-            {% if show_fields.show_tpamb %}
+            {% if show_fields.show_tpamb or 0 %}
             <td>{{ a.get_tpamb_display }}</td>
             {% endif %}
-            {% if show_fields.show_procemi %}
+            {% if show_fields.show_procemi or 0 %}
             <td>{{ a.get_procemi_display }}</td>
             {% endif %}
-            {% if show_fields.show_verproc %}
+            {% if show_fields.show_verproc or 0 %}
             <td>{{ a.verproc }}</td>
             {% endif %}
-            {% if show_fields.show_ideempregador %}
+            {% if show_fields.show_ideempregador or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_idevinculo %}
+            {% if show_fields.show_idevinculo or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_cpftrab %}
+            {% if show_fields.show_cpftrab or 1 %}
             <td>{{ a.cpftrab }}</td>
             {% endif %}
-            {% if show_fields.show_nistrab %}
+            {% if show_fields.show_nistrab or 0 %}
             <td>{{ a.nistrab }}</td>
             {% endif %}
-            {% if show_fields.show_matricula %}
+            {% if show_fields.show_matricula or 0 %}
             <td>{{ a.matricula }}</td>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 0 %}
             <td>{{ a.codcateg|valor }}</td>
             {% endif %}
-            {% if show_fields.show_infoafastamento %}
+            {% if show_fields.show_infoafastamento or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_versao %}
+            {% if show_fields.show_versao or 0 %}
             <td>{{ a.get_versao_display }}</td>
             {% endif %}
-            {% if show_fields.show_transmissor_lote_esocial %}
+            {% if show_fields.show_transmissor_lote_esocial or 0 %}
             <td>{{ a.transmissor_lote_esocial }}</td>
             {% endif %}
-            {% if show_fields.show_retornos_eventos %}
+            {% if show_fields.show_retornos_eventos or 0 %}
             <td>{{ a.retornos_eventos }}</td>
             {% endif %}
-            {% if show_fields.show_ocorrencias %}
+            {% if show_fields.show_ocorrencias or 0 %}
             <td>{{ a.ocorrencias }}</td>
             {% endif %}
-            {% if show_fields.show_validacao_precedencia %}
+            {% if show_fields.show_validacao_precedencia or 0 %}
             <td>{{ a.get_validacao_precedencia_display }}</td>
             {% endif %}
-            {% if show_fields.show_validacoes %}
+            {% if show_fields.show_validacoes or 0 %}
             <td>{{ a.validacoes }}</td>
             {% endif %}
-            {% if show_fields.show_arquivo_original %}
+            {% if show_fields.show_arquivo_original or 0 %}
             <td>{{ a.get_arquivo_original_display }}</td>
             {% endif %}
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 0 %}
             <td>{{ a.arquivo }}</td>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
 

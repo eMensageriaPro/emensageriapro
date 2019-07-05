@@ -20,13 +20,13 @@
     <tbody>
         {% for a in relatorios_lista %}
         <tr>
-            {% if show_fields.show_titulo %}
+            {% if show_fields.show_titulo or 1 %}
             <td>{{ a.titulo }}</td>
             {% endif %}
-            {% if show_fields.show_campos %}
+            {% if show_fields.show_campos or 0 %}
             <td>{{ a.campos }}</td>
             {% endif %}
-            {% if show_fields.show_sql %}
+            {% if show_fields.show_sql or 0 %}
             <td>{{ a.sql }}</td>
             {% endif %}
 

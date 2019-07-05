@@ -29,22 +29,22 @@
     <tbody>
         {% for a in r4040_infopgto_lista %}
         <tr>
-            {% if show_fields.show_r4040_idenat %}
+            {% if show_fields.show_r4040_idenat or 1 %}
             <td>{{ a.r4040_idenat }}</td>
             {% endif %}
-            {% if show_fields.show_dtfg %}
+            {% if show_fields.show_dtfg or 1 %}
             <td><span style="display:none">{{ a.dtfg|date:"Y-m-d" }}</span>{{ a.dtfg|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_vlrliq %}
+            {% if show_fields.show_vlrliq or 0 %}
             <td>{{ a.vlrliq }}</td>
             {% endif %}
-            {% if show_fields.show_vlrreaj %}
+            {% if show_fields.show_vlrreaj or 0 %}
             <td>{{ a.vlrreaj }}</td>
             {% endif %}
-            {% if show_fields.show_vlrir %}
+            {% if show_fields.show_vlrir or 0 %}
             <td>{{ a.vlrir }}</td>
             {% endif %}
-            {% if show_fields.show_descr %}
+            {% if show_fields.show_descr or 1 %}
             <td>{{ a.descr }}</td>
             {% endif %}
 

@@ -20,13 +20,13 @@
     <tbody>
         {% for a in r2050_tipocom_lista %}
         <tr>
-            {% if show_fields.show_r2050_evtcomprod %}
+            {% if show_fields.show_r2050_evtcomprod or 1 %}
             <td>{{ a.r2050_evtcomprod }}</td>
             {% endif %}
-            {% if show_fields.show_indcom %}
+            {% if show_fields.show_indcom or 1 %}
             <td>{{ a.get_indcom_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrrecbruta %}
+            {% if show_fields.show_vlrrecbruta or 1 %}
             <td>{{ a.vlrrecbruta }}</td>
             {% endif %}
 

@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s1207_infoperant_ideperiodo_lista %}
         <tr>
-            {% if show_fields.show_s1207_infoperant_ideadc %}
+            {% if show_fields.show_s1207_infoperant_ideadc or 1 %}
             <td>{{ a.s1207_infoperant_ideadc }}</td>
             {% endif %}
-            {% if show_fields.show_perref %}
+            {% if show_fields.show_perref or 1 %}
             <td>{{ a.perref }}</td>
             {% endif %}
 

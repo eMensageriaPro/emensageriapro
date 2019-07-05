@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s2200_ctps_lista %}
         <tr>
-            {% if show_fields.show_s2200_documentos %}
+            {% if show_fields.show_s2200_documentos or 1 %}
             <td>{{ a.s2200_documentos }}</td>
             {% endif %}
-            {% if show_fields.show_nrctps %}
+            {% if show_fields.show_nrctps or 1 %}
             <td>{{ a.nrctps }}</td>
             {% endif %}
-            {% if show_fields.show_seriectps %}
+            {% if show_fields.show_seriectps or 1 %}
             <td>{{ a.seriectps }}</td>
             {% endif %}
-            {% if show_fields.show_ufctps %}
+            {% if show_fields.show_ufctps or 0 %}
             <td>{{ a.get_ufctps_display }}</td>
             {% endif %}
 

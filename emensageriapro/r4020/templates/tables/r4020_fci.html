@@ -17,10 +17,10 @@
     <tbody>
         {% for a in r4020_fci_lista %}
         <tr>
-            {% if show_fields.show_r4020_infopgto %}
+            {% if show_fields.show_r4020_infopgto or 1 %}
             <td>{{ a.r4020_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_nrinscfci %}
+            {% if show_fields.show_nrinscfci or 1 %}
             <td>{{ a.nrinscfci }}</td>
             {% endif %}
 

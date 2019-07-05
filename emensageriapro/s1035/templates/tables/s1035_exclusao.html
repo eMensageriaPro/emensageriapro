@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s1035_exclusao_lista %}
         <tr>
-            {% if show_fields.show_s1035_evttabcarreira %}
+            {% if show_fields.show_s1035_evttabcarreira or 1 %}
             <td>{{ a.s1035_evttabcarreira }}</td>
             {% endif %}
-            {% if show_fields.show_idecarreira %}
+            {% if show_fields.show_idecarreira or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_codcarreira %}
+            {% if show_fields.show_codcarreira or 1 %}
             <td>{{ a.codcarreira }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 1 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <td>{{ a.get_fimvalid_display }}</td>
             {% endif %}
 

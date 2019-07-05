@@ -32,25 +32,25 @@
     <tbody>
         {% for a in s1000_inclusao_infoente_lista %}
         <tr>
-            {% if show_fields.show_s1000_inclusao_infoop %}
+            {% if show_fields.show_s1000_inclusao_infoop or 1 %}
             <td>{{ a.s1000_inclusao_infoop }}</td>
             {% endif %}
-            {% if show_fields.show_nmente %}
+            {% if show_fields.show_nmente or 1 %}
             <td>{{ a.nmente }}</td>
             {% endif %}
-            {% if show_fields.show_uf %}
+            {% if show_fields.show_uf or 0 %}
             <td>{{ a.get_uf_display }}</td>
             {% endif %}
-            {% if show_fields.show_codmunic %}
+            {% if show_fields.show_codmunic or 0 %}
             <td>{{ a.codmunic|valor }}</td>
             {% endif %}
-            {% if show_fields.show_indrpps %}
+            {% if show_fields.show_indrpps or 0 %}
             <td>{{ a.get_indrpps_display }}</td>
             {% endif %}
-            {% if show_fields.show_subteto %}
+            {% if show_fields.show_subteto or 1 %}
             <td>{{ a.get_subteto_display }}</td>
             {% endif %}
-            {% if show_fields.show_vrsubteto %}
+            {% if show_fields.show_vrsubteto or 0 %}
             <td>{{ a.vrsubteto }}</td>
             {% endif %}
 

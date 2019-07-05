@@ -29,22 +29,22 @@
     <tbody>
         {% for a in r4010_inforra_lista %}
         <tr>
-            {% if show_fields.show_r4010_infopgto %}
+            {% if show_fields.show_r4010_infopgto or 1 %}
             <td>{{ a.r4010_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_tpprocrra %}
+            {% if show_fields.show_tpprocrra or 0 %}
             <td>{{ a.get_tpprocrra_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocrra %}
+            {% if show_fields.show_nrprocrra or 0 %}
             <td>{{ a.nrprocrra }}</td>
             {% endif %}
-            {% if show_fields.show_indorigrec %}
+            {% if show_fields.show_indorigrec or 1 %}
             <td>{{ a.get_indorigrec_display }}</td>
             {% endif %}
-            {% if show_fields.show_descrra %}
+            {% if show_fields.show_descrra or 1 %}
             <td>{{ a.descrra }}</td>
             {% endif %}
-            {% if show_fields.show_qtdmesesrra %}
+            {% if show_fields.show_qtdmesesrra or 0 %}
             <td>{{ a.qtdmesesrra }}</td>
             {% endif %}
 

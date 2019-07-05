@@ -20,13 +20,13 @@
     <tbody>
         {% for a in arquivos_lista %}
         <tr>
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 1 %}
             <td>{{ a.arquivo }}</td>
             {% endif %}
-            {% if show_fields.show_data_criacao %}
+            {% if show_fields.show_data_criacao or 1 %}
             <td><span style="display:none">{{ a.data_criacao|date:"Y-m-d" }}</span>{{ a.data_criacao|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_permite_recuperacao %}
+            {% if show_fields.show_permite_recuperacao or 1 %}
             <td>{{ a.get_permite_recuperacao_display }}</td>
             {% endif %}
 

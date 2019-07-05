@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2200_desligamento_lista %}
         <tr>
-            {% if show_fields.show_s2200_evtadmissao %}
+            {% if show_fields.show_s2200_evtadmissao or 1 %}
             <td>{{ a.s2200_evtadmissao }}</td>
             {% endif %}
-            {% if show_fields.show_dtdeslig %}
+            {% if show_fields.show_dtdeslig or 1 %}
             <td><span style="display:none">{{ a.dtdeslig|date:"Y-m-d" }}</span>{{ a.dtdeslig|date:"d/m/Y" }}</td>
             {% endif %}
 

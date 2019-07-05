@@ -23,16 +23,16 @@
     <tbody>
         {% for a in r2070_infoprocjud_lista %}
         <tr>
-            {% if show_fields.show_r2070_pgtopf %}
+            {% if show_fields.show_r2070_pgtopf or 1 %}
             <td>{{ a.r2070_pgtopf }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocjud %}
+            {% if show_fields.show_nrprocjud or 1 %}
             <td>{{ a.nrprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 0 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
-            {% if show_fields.show_indorigemrecursos %}
+            {% if show_fields.show_indorigemrecursos or 1 %}
             <td>{{ a.get_indorigemrecursos_display }}</td>
             {% endif %}
 

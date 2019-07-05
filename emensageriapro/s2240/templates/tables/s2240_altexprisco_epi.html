@@ -35,28 +35,28 @@
     <tbody>
         {% for a in s2240_altexprisco_epi_lista %}
         <tr>
-            {% if show_fields.show_s2240_altexprisco_fatrisco %}
+            {% if show_fields.show_s2240_altexprisco_fatrisco or 1 %}
             <td>{{ a.s2240_altexprisco_fatrisco }}</td>
             {% endif %}
-            {% if show_fields.show_caepi %}
+            {% if show_fields.show_caepi or 0 %}
             <td>{{ a.caepi }}</td>
             {% endif %}
-            {% if show_fields.show_eficepi %}
+            {% if show_fields.show_eficepi or 1 %}
             <td>{{ a.get_eficepi_display }}</td>
             {% endif %}
-            {% if show_fields.show_medprotecao %}
+            {% if show_fields.show_medprotecao or 0 %}
             <td>{{ a.get_medprotecao_display }}</td>
             {% endif %}
-            {% if show_fields.show_condfuncto %}
+            {% if show_fields.show_condfuncto or 1 %}
             <td>{{ a.get_condfuncto_display }}</td>
             {% endif %}
-            {% if show_fields.show_przvalid %}
+            {% if show_fields.show_przvalid or 0 %}
             <td>{{ a.get_przvalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_periodictroca %}
+            {% if show_fields.show_periodictroca or 0 %}
             <td>{{ a.get_periodictroca_display }}</td>
             {% endif %}
-            {% if show_fields.show_higienizacao %}
+            {% if show_fields.show_higienizacao or 0 %}
             <td>{{ a.get_higienizacao_display }}</td>
             {% endif %}
 

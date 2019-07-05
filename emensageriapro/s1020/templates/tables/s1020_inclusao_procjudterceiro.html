@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s1020_inclusao_procjudterceiro_lista %}
         <tr>
-            {% if show_fields.show_s1020_inclusao_infoprocjudterceiros %}
+            {% if show_fields.show_s1020_inclusao_infoprocjudterceiros or 1 %}
             <td>{{ a.s1020_inclusao_infoprocjudterceiros }}</td>
             {% endif %}
-            {% if show_fields.show_codterc %}
+            {% if show_fields.show_codterc or 1 %}
             <td>{{ a.codterc }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocjud %}
+            {% if show_fields.show_nrprocjud or 0 %}
             <td>{{ a.nrprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 1 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
 

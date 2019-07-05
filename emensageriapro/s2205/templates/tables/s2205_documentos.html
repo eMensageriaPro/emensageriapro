@@ -14,7 +14,7 @@
     <tbody>
         {% for a in s2205_documentos_lista %}
         <tr>
-            {% if show_fields.show_s2205_evtaltcadastral %}
+            {% if show_fields.show_s2205_evtaltcadastral or 1 %}
             <td>{{ a.s2205_evtaltcadastral }}</td>
             {% endif %}
 

@@ -38,31 +38,31 @@
     <tbody>
         {% for a in s5003_infotrabfgts_lista %}
         <tr>
-            {% if show_fields.show_s5003_ideestablot %}
+            {% if show_fields.show_s5003_ideestablot or 1 %}
             <td>{{ a.s5003_ideestablot }}</td>
             {% endif %}
-            {% if show_fields.show_matricula %}
+            {% if show_fields.show_matricula or 0 %}
             <td>{{ a.matricula }}</td>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 1 %}
             <td>{{ a.codcateg|valor }}</td>
             {% endif %}
-            {% if show_fields.show_dtadm %}
+            {% if show_fields.show_dtadm or 0 %}
             <td><span style="display:none">{{ a.dtadm|date:"Y-m-d" }}</span>{{ a.dtadm|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtdeslig %}
+            {% if show_fields.show_dtdeslig or 0 %}
             <td><span style="display:none">{{ a.dtdeslig|date:"Y-m-d" }}</span>{{ a.dtdeslig|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtinicio %}
+            {% if show_fields.show_dtinicio or 0 %}
             <td><span style="display:none">{{ a.dtinicio|date:"Y-m-d" }}</span>{{ a.dtinicio|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_mtvdeslig %}
+            {% if show_fields.show_mtvdeslig or 0 %}
             <td>{{ a.mtvdeslig }}</td>
             {% endif %}
-            {% if show_fields.show_dtterm %}
+            {% if show_fields.show_dtterm or 0 %}
             <td><span style="display:none">{{ a.dtterm|date:"Y-m-d" }}</span>{{ a.dtterm|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_mtvdesligtsv %}
+            {% if show_fields.show_mtvdesligtsv or 0 %}
             <td>{{ a.get_mtvdesligtsv_display }}</td>
             {% endif %}
 

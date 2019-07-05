@@ -17,10 +17,10 @@
     <tbody>
         {% for a in r4040_idenat_lista %}
         <tr>
-            {% if show_fields.show_r4040_evtbenefnid %}
+            {% if show_fields.show_r4040_evtbenefnid or 1 %}
             <td>{{ a.r4040_evtbenefnid }}</td>
             {% endif %}
-            {% if show_fields.show_natrendim %}
+            {% if show_fields.show_natrendim or 1 %}
             <td>{{ a.get_natrendim_display }}</td>
             {% endif %}
 

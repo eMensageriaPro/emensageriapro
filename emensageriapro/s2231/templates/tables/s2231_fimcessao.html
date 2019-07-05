@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2231_fimcessao_lista %}
         <tr>
-            {% if show_fields.show_s2231_evtcessao %}
+            {% if show_fields.show_s2231_evtcessao or 1 %}
             <td>{{ a.s2231_evtcessao }}</td>
             {% endif %}
-            {% if show_fields.show_dttermcessao %}
+            {% if show_fields.show_dttermcessao or 1 %}
             <td><span style="display:none">{{ a.dttermcessao|date:"Y-m-d" }}</span>{{ a.dttermcessao|date:"d/m/Y" }}</td>
             {% endif %}
 

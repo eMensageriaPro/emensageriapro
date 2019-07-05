@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2241_altaposentesp_infoamb_lista %}
         <tr>
-            {% if show_fields.show_s2241_altaposentesp %}
+            {% if show_fields.show_s2241_altaposentesp or 1 %}
             <td>{{ a.s2241_altaposentesp }}</td>
             {% endif %}
-            {% if show_fields.show_codamb %}
+            {% if show_fields.show_codamb or 1 %}
             <td>{{ a.codamb }}</td>
             {% endif %}
 

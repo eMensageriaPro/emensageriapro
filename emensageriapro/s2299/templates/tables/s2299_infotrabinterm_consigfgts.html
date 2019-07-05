@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s2299_infotrabinterm_consigfgts_lista %}
         <tr>
-            {% if show_fields.show_s2299_evtdeslig %}
+            {% if show_fields.show_s2299_evtdeslig or 1 %}
             <td>{{ a.s2299_evtdeslig }}</td>
             {% endif %}
-            {% if show_fields.show_insconsig %}
+            {% if show_fields.show_insconsig or 1 %}
             <td>{{ a.insconsig }}</td>
             {% endif %}
-            {% if show_fields.show_nrcontr %}
+            {% if show_fields.show_nrcontr or 1 %}
             <td>{{ a.nrcontr }}</td>
             {% endif %}
 

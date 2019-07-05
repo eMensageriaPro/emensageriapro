@@ -26,19 +26,19 @@
     <tbody>
         {% for a in r2030_recursosrec_lista %}
         <tr>
-            {% if show_fields.show_r2030_evtassocdesprec %}
+            {% if show_fields.show_r2030_evtassocdesprec or 1 %}
             <td>{{ a.r2030_evtassocdesprec }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjorigrecurso %}
+            {% if show_fields.show_cnpjorigrecurso or 1 %}
             <td>{{ a.cnpjorigrecurso }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalrec %}
+            {% if show_fields.show_vlrtotalrec or 1 %}
             <td>{{ a.vlrtotalrec }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalret %}
+            {% if show_fields.show_vlrtotalret or 0 %}
             <td>{{ a.vlrtotalret }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalnret %}
+            {% if show_fields.show_vlrtotalnret or 0 %}
             <td>{{ a.vlrtotalnret }}</td>
             {% endif %}
 

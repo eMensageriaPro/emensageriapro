@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s2240_altexprisco_infoamb_lista %}
         <tr>
-            {% if show_fields.show_s2240_altexprisco %}
+            {% if show_fields.show_s2240_altexprisco or 1 %}
             <td>{{ a.s2240_altexprisco }}</td>
             {% endif %}
-            {% if show_fields.show_codamb %}
+            {% if show_fields.show_codamb or 1 %}
             <td>{{ a.codamb }}</td>
             {% endif %}
-            {% if show_fields.show_infoativ %}
+            {% if show_fields.show_infoativ or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_dscativdes %}
+            {% if show_fields.show_dscativdes or 1 %}
             <td>{{ a.dscativdes }}</td>
             {% endif %}
 

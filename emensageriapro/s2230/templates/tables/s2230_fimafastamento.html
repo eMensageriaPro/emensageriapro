@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2230_fimafastamento_lista %}
         <tr>
-            {% if show_fields.show_s2230_evtafasttemp %}
+            {% if show_fields.show_s2230_evtafasttemp or 1 %}
             <td>{{ a.s2230_evtafasttemp }}</td>
             {% endif %}
-            {% if show_fields.show_dttermafast %}
+            {% if show_fields.show_dttermafast or 1 %}
             <td><span style="display:none">{{ a.dttermafast|date:"Y-m-d" }}</span>{{ a.dttermafast|date:"d/m/Y" }}</td>
             {% endif %}
 

@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2240_fimexprisco_infoamb_lista %}
         <tr>
-            {% if show_fields.show_s2240_fimexprisco %}
+            {% if show_fields.show_s2240_fimexprisco or 1 %}
             <td>{{ a.s2240_fimexprisco }}</td>
             {% endif %}
-            {% if show_fields.show_codamb %}
+            {% if show_fields.show_codamb or 1 %}
             <td>{{ a.codamb }}</td>
             {% endif %}
 

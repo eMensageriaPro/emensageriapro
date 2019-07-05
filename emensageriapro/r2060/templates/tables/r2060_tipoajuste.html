@@ -29,22 +29,22 @@
     <tbody>
         {% for a in r2060_tipoajuste_lista %}
         <tr>
-            {% if show_fields.show_r2060_tipocod %}
+            {% if show_fields.show_r2060_tipocod or 0 %}
             <td>{{ a.r2060_tipocod }}</td>
             {% endif %}
-            {% if show_fields.show_tpajuste %}
+            {% if show_fields.show_tpajuste or 1 %}
             <td>{{ a.get_tpajuste_display }}</td>
             {% endif %}
-            {% if show_fields.show_codajuste %}
+            {% if show_fields.show_codajuste or 0 %}
             <td>{{ a.get_codajuste_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrajuste %}
+            {% if show_fields.show_vlrajuste or 0 %}
             <td>{{ a.vlrajuste }}</td>
             {% endif %}
-            {% if show_fields.show_descajuste %}
+            {% if show_fields.show_descajuste or 1 %}
             <td>{{ a.descajuste }}</td>
             {% endif %}
-            {% if show_fields.show_dtajuste %}
+            {% if show_fields.show_dtajuste or 1 %}
             <td>{{ a.dtajuste }}</td>
             {% endif %}
 

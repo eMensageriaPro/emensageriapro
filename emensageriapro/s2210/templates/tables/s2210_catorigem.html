@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s2210_catorigem_lista %}
         <tr>
-            {% if show_fields.show_s2210_evtcat %}
+            {% if show_fields.show_s2210_evtcat or 1 %}
             <td>{{ a.s2210_evtcat }}</td>
             {% endif %}
-            {% if show_fields.show_dtcatorig %}
+            {% if show_fields.show_dtcatorig or 1 %}
             <td><span style="display:none">{{ a.dtcatorig|date:"Y-m-d" }}</span>{{ a.dtcatorig|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_nrreccatorig %}
+            {% if show_fields.show_nrreccatorig or 1 %}
             <td>{{ a.nrreccatorig }}</td>
             {% endif %}
 

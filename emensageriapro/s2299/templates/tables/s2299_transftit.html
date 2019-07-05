@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s2299_transftit_lista %}
         <tr>
-            {% if show_fields.show_s2299_evtdeslig %}
+            {% if show_fields.show_s2299_evtdeslig or 1 %}
             <td>{{ a.s2299_evtdeslig }}</td>
             {% endif %}
-            {% if show_fields.show_cpfsubstituto %}
+            {% if show_fields.show_cpfsubstituto or 1 %}
             <td>{{ a.cpfsubstituto }}</td>
             {% endif %}
-            {% if show_fields.show_dtnascto %}
+            {% if show_fields.show_dtnascto or 1 %}
             <td><span style="display:none">{{ a.dtnascto|date:"Y-m-d" }}</span>{{ a.dtnascto|date:"d/m/Y" }}</td>
             {% endif %}
 

@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s2410_homologtc_lista %}
         <tr>
-            {% if show_fields.show_s2410_evtcdbenin %}
+            {% if show_fields.show_s2410_evtcdbenin or 1 %}
             <td>{{ a.s2410_evtcdbenin }}</td>
             {% endif %}
-            {% if show_fields.show_dthomol %}
+            {% if show_fields.show_dthomol or 1 %}
             <td><span style="display:none">{{ a.dthomol|date:"Y-m-d" }}</span>{{ a.dthomol|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_nratolegal %}
+            {% if show_fields.show_nratolegal or 1 %}
             <td>{{ a.nratolegal }}</td>
             {% endif %}
 

@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s5003_infotrabdps_lista %}
         <tr>
-            {% if show_fields.show_s5003_infodpsfgts %}
+            {% if show_fields.show_s5003_infodpsfgts or 1 %}
             <td>{{ a.s5003_infodpsfgts }}</td>
             {% endif %}
-            {% if show_fields.show_matricula %}
+            {% if show_fields.show_matricula or 0 %}
             <td>{{ a.matricula }}</td>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 1 %}
             <td>{{ a.codcateg|valor }}</td>
             {% endif %}
 

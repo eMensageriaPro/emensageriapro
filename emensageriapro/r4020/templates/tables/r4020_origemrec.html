@@ -17,10 +17,10 @@
     <tbody>
         {% for a in r4020_origemrec_lista %}
         <tr>
-            {% if show_fields.show_r4020_infoprocjud %}
+            {% if show_fields.show_r4020_infoprocjud or 1 %}
             <td>{{ a.r4020_infoprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjorigrecurso %}
+            {% if show_fields.show_cnpjorigrecurso or 1 %}
             <td>{{ a.cnpjorigrecurso }}</td>
             {% endif %}
 

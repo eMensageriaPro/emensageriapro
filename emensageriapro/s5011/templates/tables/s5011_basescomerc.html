@@ -29,22 +29,22 @@
     <tbody>
         {% for a in s5011_basescomerc_lista %}
         <tr>
-            {% if show_fields.show_s5011_ideestab %}
+            {% if show_fields.show_s5011_ideestab or 1 %}
             <td>{{ a.s5011_ideestab }}</td>
             {% endif %}
-            {% if show_fields.show_indcomerc %}
+            {% if show_fields.show_indcomerc or 1 %}
             <td>{{ a.get_indcomerc_display }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccompr %}
+            {% if show_fields.show_vrbccompr or 1 %}
             <td>{{ a.vrbccompr }}</td>
             {% endif %}
-            {% if show_fields.show_vrcpsusp %}
+            {% if show_fields.show_vrcpsusp or 0 %}
             <td>{{ a.vrcpsusp }}</td>
             {% endif %}
-            {% if show_fields.show_vrratsusp %}
+            {% if show_fields.show_vrratsusp or 0 %}
             <td>{{ a.vrratsusp }}</td>
             {% endif %}
-            {% if show_fields.show_vrsenarsusp %}
+            {% if show_fields.show_vrsenarsusp or 0 %}
             <td>{{ a.vrsenarsusp }}</td>
             {% endif %}
 

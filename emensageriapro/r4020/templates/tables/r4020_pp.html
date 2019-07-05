@@ -29,22 +29,22 @@
     <tbody>
         {% for a in r4020_pp_lista %}
         <tr>
-            {% if show_fields.show_r4020_infopgto %}
+            {% if show_fields.show_r4020_infopgto or 1 %}
             <td>{{ a.r4020_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasepp %}
+            {% if show_fields.show_vlrbasepp or 1 %}
             <td>{{ a.vlrbasepp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrpp %}
+            {% if show_fields.show_vlrpp or 1 %}
             <td>{{ a.vlrpp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasenpp %}
+            {% if show_fields.show_vlrbasenpp or 0 %}
             <td>{{ a.vlrbasenpp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrnpp %}
+            {% if show_fields.show_vlrnpp or 0 %}
             <td>{{ a.vlrnpp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrdeppp %}
+            {% if show_fields.show_vlrdeppp or 0 %}
             <td>{{ a.vlrdeppp }}</td>
             {% endif %}
 

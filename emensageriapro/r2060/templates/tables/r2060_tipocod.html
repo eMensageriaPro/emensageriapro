@@ -35,28 +35,28 @@
     <tbody>
         {% for a in r2060_tipocod_lista %}
         <tr>
-            {% if show_fields.show_r2060_evtcprb %}
+            {% if show_fields.show_r2060_evtcprb or 0 %}
             <td>{{ a.r2060_evtcprb }}</td>
             {% endif %}
-            {% if show_fields.show_codativecon %}
+            {% if show_fields.show_codativecon or 1 %}
             <td>{{ a.codativecon }}</td>
             {% endif %}
-            {% if show_fields.show_vlrrecbrutaativ %}
+            {% if show_fields.show_vlrrecbrutaativ or 0 %}
             <td>{{ a.vlrrecbrutaativ }}</td>
             {% endif %}
-            {% if show_fields.show_vlrexcrecbruta %}
+            {% if show_fields.show_vlrexcrecbruta or 0 %}
             <td>{{ a.vlrexcrecbruta }}</td>
             {% endif %}
-            {% if show_fields.show_vlradicrecbruta %}
+            {% if show_fields.show_vlradicrecbruta or 1 %}
             <td>{{ a.vlradicrecbruta }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbccprb %}
+            {% if show_fields.show_vlrbccprb or 1 %}
             <td>{{ a.vlrbccprb }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcprbapur %}
+            {% if show_fields.show_vlrcprbapur or 0 %}
             <td>{{ a.vlrcprbapur }}</td>
             {% endif %}
-            {% if show_fields.show_observ %}
+            {% if show_fields.show_observ or 0 %}
             <td>{{ a.observ }}</td>
             {% endif %}
 

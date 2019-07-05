@@ -23,16 +23,16 @@
     <tbody>
         {% for a in r2070_pgtopj_lista %}
         <tr>
-            {% if show_fields.show_r2070_pgtoresidbr %}
+            {% if show_fields.show_r2070_pgtoresidbr or 1 %}
             <td>{{ a.r2070_pgtoresidbr }}</td>
             {% endif %}
-            {% if show_fields.show_dtpagto %}
+            {% if show_fields.show_dtpagto or 1 %}
             <td><span style="display:none">{{ a.dtpagto|date:"Y-m-d" }}</span>{{ a.dtpagto|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_vlrrendtributavel %}
+            {% if show_fields.show_vlrrendtributavel or 0 %}
             <td>{{ a.vlrrendtributavel }}</td>
             {% endif %}
-            {% if show_fields.show_vlrret %}
+            {% if show_fields.show_vlrret or 1 %}
             <td>{{ a.vlrret }}</td>
             {% endif %}
 

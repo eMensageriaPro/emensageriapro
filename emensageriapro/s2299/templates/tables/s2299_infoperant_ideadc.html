@@ -29,22 +29,22 @@
     <tbody>
         {% for a in s2299_infoperant_ideadc_lista %}
         <tr>
-            {% if show_fields.show_s2299_infoperant %}
+            {% if show_fields.show_s2299_infoperant or 0 %}
             <td>{{ a.s2299_infoperant }}</td>
             {% endif %}
-            {% if show_fields.show_dtacconv %}
+            {% if show_fields.show_dtacconv or 1 %}
             <td><span style="display:none">{{ a.dtacconv|date:"Y-m-d" }}</span>{{ a.dtacconv|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tpacconv %}
+            {% if show_fields.show_tpacconv or 0 %}
             <td>{{ a.get_tpacconv_display }}</td>
             {% endif %}
-            {% if show_fields.show_compacconv %}
+            {% if show_fields.show_compacconv or 0 %}
             <td>{{ a.compacconv }}</td>
             {% endif %}
-            {% if show_fields.show_dtefacconv %}
+            {% if show_fields.show_dtefacconv or 1 %}
             <td><span style="display:none">{{ a.dtefacconv|date:"Y-m-d" }}</span>{{ a.dtefacconv|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dsc %}
+            {% if show_fields.show_dsc or 1 %}
             <td>{{ a.dsc }}</td>
             {% endif %}
 

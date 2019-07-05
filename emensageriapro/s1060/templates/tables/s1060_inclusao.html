@@ -47,40 +47,40 @@
     <tbody>
         {% for a in s1060_inclusao_lista %}
         <tr>
-            {% if show_fields.show_s1060_evttabambiente %}
+            {% if show_fields.show_s1060_evttabambiente or 1 %}
             <td>{{ a.s1060_evttabambiente }}</td>
             {% endif %}
-            {% if show_fields.show_ideambiente %}
+            {% if show_fields.show_ideambiente or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_codamb %}
+            {% if show_fields.show_codamb or 1 %}
             <td>{{ a.codamb }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 0 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <td>{{ a.get_fimvalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_dadosambiente %}
+            {% if show_fields.show_dadosambiente or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_nmamb %}
+            {% if show_fields.show_nmamb or 0 %}
             <td>{{ a.nmamb }}</td>
             {% endif %}
-            {% if show_fields.show_dscamb %}
+            {% if show_fields.show_dscamb or 1 %}
             <td>{{ a.dscamb }}</td>
             {% endif %}
-            {% if show_fields.show_localamb %}
+            {% if show_fields.show_localamb or 0 %}
             <td>{{ a.get_localamb_display }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_codlotacao %}
+            {% if show_fields.show_codlotacao or 0 %}
             <td>{{ a.codlotacao }}</td>
             {% endif %}
 

@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s1070_inclusao_infosusp_lista %}
         <tr>
-            {% if show_fields.show_s1070_inclusao %}
+            {% if show_fields.show_s1070_inclusao or 0 %}
             <td>{{ a.s1070_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 1 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
-            {% if show_fields.show_indsusp %}
+            {% if show_fields.show_indsusp or 0 %}
             <td>{{ a.get_indsusp_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtdecisao %}
+            {% if show_fields.show_dtdecisao or 1 %}
             <td><span style="display:none">{{ a.dtdecisao|date:"Y-m-d" }}</span>{{ a.dtdecisao|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_inddeposito %}
+            {% if show_fields.show_inddeposito or 1 %}
             <td>{{ a.get_inddeposito_display }}</td>
             {% endif %}
 

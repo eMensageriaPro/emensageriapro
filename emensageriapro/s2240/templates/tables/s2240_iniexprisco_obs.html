@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s2240_iniexprisco_obs_lista %}
         <tr>
-            {% if show_fields.show_s2240_evtexprisco %}
+            {% if show_fields.show_s2240_evtexprisco or 1 %}
             <td>{{ a.s2240_evtexprisco }}</td>
             {% endif %}
-            {% if show_fields.show_meterg %}
+            {% if show_fields.show_meterg or 0 %}
             <td>{{ a.meterg }}</td>
             {% endif %}
-            {% if show_fields.show_obscompl %}
+            {% if show_fields.show_obscompl or 0 %}
             <td>{{ a.obscompl }}</td>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <td>{{ a.observacao }}</td>
             {% endif %}
 

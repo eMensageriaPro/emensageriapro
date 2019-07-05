@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s1005_inclusao_infocaepf_lista %}
         <tr>
-            {% if show_fields.show_s1005_inclusao %}
+            {% if show_fields.show_s1005_inclusao or 1 %}
             <td>{{ a.s1005_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_tpcaepf %}
+            {% if show_fields.show_tpcaepf or 1 %}
             <td>{{ a.get_tpcaepf_display }}</td>
             {% endif %}
 

@@ -26,19 +26,19 @@
     <tbody>
         {% for a in transmissor_lote_esocial_ocorrencias_lista %}
         <tr>
-            {% if show_fields.show_transmissor_lote_esocial %}
+            {% if show_fields.show_transmissor_lote_esocial or 1 %}
             <td>{{ a.transmissor_lote_esocial }}</td>
             {% endif %}
-            {% if show_fields.show_resposta_codigo %}
+            {% if show_fields.show_resposta_codigo or 1 %}
             <td>{{ a.resposta_codigo }}</td>
             {% endif %}
-            {% if show_fields.show_descricao %}
+            {% if show_fields.show_descricao or 1 %}
             <td>{{ a.descricao }}</td>
             {% endif %}
-            {% if show_fields.show_tipo %}
+            {% if show_fields.show_tipo or 0 %}
             <td>{{ a.get_tipo_display }}</td>
             {% endif %}
-            {% if show_fields.show_localizacao %}
+            {% if show_fields.show_localizacao or 1 %}
             <td>{{ a.localizacao }}</td>
             {% endif %}
 

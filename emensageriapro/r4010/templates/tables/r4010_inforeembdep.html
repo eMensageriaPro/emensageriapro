@@ -26,19 +26,19 @@
     <tbody>
         {% for a in r4010_inforeembdep_lista %}
         <tr>
-            {% if show_fields.show_r4010_infodependpl %}
+            {% if show_fields.show_r4010_infodependpl or 1 %}
             <td>{{ a.r4010_infodependpl }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 1 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_vlrreemb %}
+            {% if show_fields.show_vlrreemb or 0 %}
             <td>{{ a.vlrreemb }}</td>
             {% endif %}
-            {% if show_fields.show_vlrreembant %}
+            {% if show_fields.show_vlrreembant or 0 %}
             <td>{{ a.vlrreembant }}</td>
             {% endif %}
 

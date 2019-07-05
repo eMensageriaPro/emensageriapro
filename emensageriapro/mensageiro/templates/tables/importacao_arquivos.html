@@ -38,31 +38,31 @@
     <tbody>
         {% for a in importacao_arquivos_lista %}
         <tr>
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 1 %}
             <td>{{ a.arquivo }}</td>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
-            {% if show_fields.show_data_hora %}
+            {% if show_fields.show_data_hora or 1 %}
             <td><span style="display:none">{{ a.data_hora|date:"Y-m-d H:i" }}</span>{{ a.data_hora|date:"d/m/Y H:i" }}</td>
             {% endif %}
-            {% if show_fields.show_importado_por %}
+            {% if show_fields.show_importado_por or 1 %}
             <td>{{ a.importado_por }}</td>
             {% endif %}
-            {% if show_fields.show_quant_total %}
+            {% if show_fields.show_quant_total or 0 %}
             <td>{{ a.quant_total }}</td>
             {% endif %}
-            {% if show_fields.show_quant_aguardando %}
+            {% if show_fields.show_quant_aguardando or 0 %}
             <td>{{ a.quant_aguardando }}</td>
             {% endif %}
-            {% if show_fields.show_quant_processado %}
+            {% if show_fields.show_quant_processado or 0 %}
             <td>{{ a.quant_processado }}</td>
             {% endif %}
-            {% if show_fields.show_quant_importado %}
+            {% if show_fields.show_quant_importado or 0 %}
             <td>{{ a.quant_importado }}</td>
             {% endif %}
-            {% if show_fields.show_quant_erros %}
+            {% if show_fields.show_quant_erros or 0 %}
             <td>{{ a.quant_erros }}</td>
             {% endif %}
 

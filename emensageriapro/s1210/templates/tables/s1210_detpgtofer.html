@@ -29,22 +29,22 @@
     <tbody>
         {% for a in s1210_detpgtofer_lista %}
         <tr>
-            {% if show_fields.show_s1210_infopgto %}
+            {% if show_fields.show_s1210_infopgto or 1 %}
             <td>{{ a.s1210_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 1 %}
             <td>{{ a.codcateg|valor }}</td>
             {% endif %}
-            {% if show_fields.show_matricula %}
+            {% if show_fields.show_matricula or 0 %}
             <td>{{ a.matricula }}</td>
             {% endif %}
-            {% if show_fields.show_dtinigoz %}
+            {% if show_fields.show_dtinigoz or 1 %}
             <td><span style="display:none">{{ a.dtinigoz|date:"Y-m-d" }}</span>{{ a.dtinigoz|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_qtdias %}
+            {% if show_fields.show_qtdias or 0 %}
             <td>{{ a.qtdias }}</td>
             {% endif %}
-            {% if show_fields.show_vrliq %}
+            {% if show_fields.show_vrliq or 0 %}
             <td>{{ a.vrliq }}</td>
             {% endif %}
 

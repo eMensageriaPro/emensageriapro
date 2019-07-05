@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2299_infotrabinterm_quarentena_lista %}
         <tr>
-            {% if show_fields.show_s2299_evtdeslig %}
+            {% if show_fields.show_s2299_evtdeslig or 1 %}
             <td>{{ a.s2299_evtdeslig }}</td>
             {% endif %}
-            {% if show_fields.show_dtfimquar %}
+            {% if show_fields.show_dtfimquar or 1 %}
             <td><span style="display:none">{{ a.dtfimquar|date:"Y-m-d" }}</span>{{ a.dtfimquar|date:"d/m/Y" }}</td>
             {% endif %}
 

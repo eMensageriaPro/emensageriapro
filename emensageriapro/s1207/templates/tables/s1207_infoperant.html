@@ -14,7 +14,7 @@
     <tbody>
         {% for a in s1207_infoperant_lista %}
         <tr>
-            {% if show_fields.show_s1207_dmdev %}
+            {% if show_fields.show_s1207_dmdev or 1 %}
             <td>{{ a.s1207_dmdev }}</td>
             {% endif %}
 

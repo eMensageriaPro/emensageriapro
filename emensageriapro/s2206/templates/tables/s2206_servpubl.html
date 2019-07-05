@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2206_servpubl_lista %}
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual %}
+            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
             <td>{{ a.s2206_evtaltcontratual }}</td>
             {% endif %}
-            {% if show_fields.show_mtvalter %}
+            {% if show_fields.show_mtvalter or 1 %}
             <td>{{ a.get_mtvalter_display }}</td>
             {% endif %}
 

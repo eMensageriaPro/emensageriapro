@@ -35,28 +35,28 @@
     <tbody>
         {% for a in r9001_rprest_lista %}
         <tr>
-            {% if show_fields.show_r9001_infototal %}
+            {% if show_fields.show_r9001_infototal or 0 %}
             <td>{{ a.r9001_infototal }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsctomador %}
+            {% if show_fields.show_tpinsctomador or 1 %}
             <td>{{ a.tpinsctomador }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsctomador %}
+            {% if show_fields.show_nrinsctomador or 1 %}
             <td>{{ a.nrinsctomador }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalbaseret %}
+            {% if show_fields.show_vlrtotalbaseret or 1 %}
             <td>{{ a.vlrtotalbaseret }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalretprinc %}
+            {% if show_fields.show_vlrtotalretprinc or 0 %}
             <td>{{ a.vlrtotalretprinc }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalretadic %}
+            {% if show_fields.show_vlrtotalretadic or 0 %}
             <td>{{ a.vlrtotalretadic }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalnretprinc %}
+            {% if show_fields.show_vlrtotalnretprinc or 0 %}
             <td>{{ a.vlrtotalnretprinc }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalnretadic %}
+            {% if show_fields.show_vlrtotalnretadic or 0 %}
             <td>{{ a.vlrtotalnretadic }}</td>
             {% endif %}
 

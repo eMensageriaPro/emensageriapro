@@ -47,40 +47,40 @@
     <tbody>
         {% for a in r4020_infoprocret_lista %}
         <tr>
-            {% if show_fields.show_r4020_infopgto %}
+            {% if show_fields.show_r4020_infopgto or 1 %}
             <td>{{ a.r4020_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_tpprocret %}
+            {% if show_fields.show_tpprocret or 1 %}
             <td>{{ a.get_tpprocret_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocret %}
+            {% if show_fields.show_nrprocret or 1 %}
             <td>{{ a.nrprocret }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 0 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
-            {% if show_fields.show_nir %}
+            {% if show_fields.show_nir or 0 %}
             <td>{{ a.nir }}</td>
             {% endif %}
-            {% if show_fields.show_depir %}
+            {% if show_fields.show_depir or 0 %}
             <td>{{ a.depir }}</td>
             {% endif %}
-            {% if show_fields.show_ncsll %}
+            {% if show_fields.show_ncsll or 0 %}
             <td>{{ a.ncsll }}</td>
             {% endif %}
-            {% if show_fields.show_depcsll %}
+            {% if show_fields.show_depcsll or 0 %}
             <td>{{ a.depcsll }}</td>
             {% endif %}
-            {% if show_fields.show_ncofins %}
+            {% if show_fields.show_ncofins or 0 %}
             <td>{{ a.ncofins }}</td>
             {% endif %}
-            {% if show_fields.show_depcofins %}
+            {% if show_fields.show_depcofins or 0 %}
             <td>{{ a.depcofins }}</td>
             {% endif %}
-            {% if show_fields.show_npp %}
+            {% if show_fields.show_npp or 0 %}
             <td>{{ a.npp }}</td>
             {% endif %}
-            {% if show_fields.show_deppp %}
+            {% if show_fields.show_deppp or 0 %}
             <td>{{ a.deppp }}</td>
             {% endif %}
 

@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2306_infotrabcedido_lista %}
         <tr>
-            {% if show_fields.show_s2306_infocomplementares %}
+            {% if show_fields.show_s2306_infocomplementares or 1 %}
             <td>{{ a.s2306_infocomplementares }}</td>
             {% endif %}
-            {% if show_fields.show_indremuncargo %}
+            {% if show_fields.show_indremuncargo or 1 %}
             <td>{{ a.get_indremuncargo_display }}</td>
             {% endif %}
 

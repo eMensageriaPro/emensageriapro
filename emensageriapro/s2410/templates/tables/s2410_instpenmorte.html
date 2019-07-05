@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s2410_instpenmorte_lista %}
         <tr>
-            {% if show_fields.show_s2410_infopenmorte %}
+            {% if show_fields.show_s2410_infopenmorte or 0 %}
             <td>{{ a.s2410_infopenmorte }}</td>
             {% endif %}
-            {% if show_fields.show_cpfinst %}
+            {% if show_fields.show_cpfinst or 1 %}
             <td>{{ a.cpfinst }}</td>
             {% endif %}
-            {% if show_fields.show_dtinst %}
+            {% if show_fields.show_dtinst or 1 %}
             <td><span style="display:none">{{ a.dtinst|date:"Y-m-d" }}</span>{{ a.dtinst|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_intaposentado %}
+            {% if show_fields.show_intaposentado or 1 %}
             <td>{{ a.get_intaposentado_display }}</td>
             {% endif %}
 

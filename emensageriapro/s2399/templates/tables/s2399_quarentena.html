@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2399_quarentena_lista %}
         <tr>
-            {% if show_fields.show_s2399_evttsvtermino %}
+            {% if show_fields.show_s2399_evttsvtermino or 1 %}
             <td>{{ a.s2399_evttsvtermino }}</td>
             {% endif %}
-            {% if show_fields.show_dtfimquar %}
+            {% if show_fields.show_dtfimquar or 1 %}
             <td><span style="display:none">{{ a.dtfimquar|date:"Y-m-d" }}</span>{{ a.dtfimquar|date:"d/m/Y" }}</td>
             {% endif %}
 

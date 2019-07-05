@@ -14,7 +14,7 @@
     <tbody>
         {% for a in s1020_inclusao_infoprocjudterceiros_lista %}
         <tr>
-            {% if show_fields.show_s1020_inclusao %}
+            {% if show_fields.show_s1020_inclusao or 1 %}
             <td>{{ a.s1020_inclusao }}</td>
             {% endif %}
 

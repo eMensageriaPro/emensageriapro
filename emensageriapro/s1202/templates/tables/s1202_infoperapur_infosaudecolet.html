@@ -14,7 +14,7 @@
     <tbody>
         {% for a in s1202_infoperapur_infosaudecolet_lista %}
         <tr>
-            {% if show_fields.show_s1202_infoperapur_remunperapur %}
+            {% if show_fields.show_s1202_infoperapur_remunperapur or 1 %}
             <td>{{ a.s1202_infoperapur_remunperapur }}</td>
             {% endif %}
 

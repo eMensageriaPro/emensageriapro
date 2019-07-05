@@ -26,19 +26,19 @@
     <tbody>
         {% for a in r2010_infoprocretad_lista %}
         <tr>
-            {% if show_fields.show_r2010_evtservtom %}
+            {% if show_fields.show_r2010_evtservtom or 1 %}
             <td>{{ a.r2010_evtservtom }}</td>
             {% endif %}
-            {% if show_fields.show_tpprocretadic %}
+            {% if show_fields.show_tpprocretadic or 1 %}
             <td>{{ a.get_tpprocretadic_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocretadic %}
+            {% if show_fields.show_nrprocretadic or 1 %}
             <td>{{ a.nrprocretadic }}</td>
             {% endif %}
-            {% if show_fields.show_codsuspadic %}
+            {% if show_fields.show_codsuspadic or 0 %}
             <td>{{ a.codsuspadic }}</td>
             {% endif %}
-            {% if show_fields.show_valoradic %}
+            {% if show_fields.show_valoradic or 0 %}
             <td>{{ a.valoradic }}</td>
             {% endif %}
 

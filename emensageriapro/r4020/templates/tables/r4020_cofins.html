@@ -29,22 +29,22 @@
     <tbody>
         {% for a in r4020_cofins_lista %}
         <tr>
-            {% if show_fields.show_r4020_infopgto %}
+            {% if show_fields.show_r4020_infopgto or 1 %}
             <td>{{ a.r4020_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasecofins %}
+            {% if show_fields.show_vlrbasecofins or 1 %}
             <td>{{ a.vlrbasecofins }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcofins %}
+            {% if show_fields.show_vlrcofins or 1 %}
             <td>{{ a.vlrcofins }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasencofins %}
+            {% if show_fields.show_vlrbasencofins or 0 %}
             <td>{{ a.vlrbasencofins }}</td>
             {% endif %}
-            {% if show_fields.show_vlrncofins %}
+            {% if show_fields.show_vlrncofins or 0 %}
             <td>{{ a.vlrncofins }}</td>
             {% endif %}
-            {% if show_fields.show_vlrdepcofins %}
+            {% if show_fields.show_vlrdepcofins or 0 %}
             <td>{{ a.vlrdepcofins }}</td>
             {% endif %}
 

@@ -41,34 +41,34 @@
     <tbody>
         {% for a in s1035_inclusao_lista %}
         <tr>
-            {% if show_fields.show_s1035_evttabcarreira %}
+            {% if show_fields.show_s1035_evttabcarreira or 0 %}
             <td>{{ a.s1035_evttabcarreira }}</td>
             {% endif %}
-            {% if show_fields.show_idecarreira %}
+            {% if show_fields.show_idecarreira or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_codcarreira %}
+            {% if show_fields.show_codcarreira or 1 %}
             <td>{{ a.codcarreira }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 0 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <td>{{ a.get_fimvalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_dadoscarreira %}
+            {% if show_fields.show_dadoscarreira or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_dsccarreira %}
+            {% if show_fields.show_dsccarreira or 1 %}
             <td>{{ a.dsccarreira }}</td>
             {% endif %}
-            {% if show_fields.show_leicarr %}
+            {% if show_fields.show_leicarr or 0 %}
             <td>{{ a.leicarr }}</td>
             {% endif %}
-            {% if show_fields.show_dtleicarr %}
+            {% if show_fields.show_dtleicarr or 1 %}
             <td><span style="display:none">{{ a.dtleicarr|date:"Y-m-d" }}</span>{{ a.dtleicarr|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_sitcarr %}
+            {% if show_fields.show_sitcarr or 0 %}
             <td>{{ a.get_sitcarr_display }}</td>
             {% endif %}
 

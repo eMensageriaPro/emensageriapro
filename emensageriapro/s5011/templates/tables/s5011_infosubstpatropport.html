@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s5011_infosubstpatropport_lista %}
         <tr>
-            {% if show_fields.show_s5011_idelotacao %}
+            {% if show_fields.show_s5011_idelotacao or 1 %}
             <td>{{ a.s5011_idelotacao }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjopportuario %}
+            {% if show_fields.show_cnpjopportuario or 1 %}
             <td>{{ a.cnpjopportuario }}</td>
             {% endif %}
 

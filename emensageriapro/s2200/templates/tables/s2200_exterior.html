@@ -35,28 +35,28 @@
     <tbody>
         {% for a in s2200_exterior_lista %}
         <tr>
-            {% if show_fields.show_s2200_evtadmissao %}
+            {% if show_fields.show_s2200_evtadmissao or 0 %}
             <td>{{ a.s2200_evtadmissao }}</td>
             {% endif %}
-            {% if show_fields.show_paisresid %}
+            {% if show_fields.show_paisresid or 0 %}
             <td>{{ a.paisresid }}</td>
             {% endif %}
-            {% if show_fields.show_dsclograd %}
+            {% if show_fields.show_dsclograd or 1 %}
             <td>{{ a.dsclograd }}</td>
             {% endif %}
-            {% if show_fields.show_nrlograd %}
+            {% if show_fields.show_nrlograd or 1 %}
             <td>{{ a.nrlograd }}</td>
             {% endif %}
-            {% if show_fields.show_complemento %}
+            {% if show_fields.show_complemento or 0 %}
             <td>{{ a.complemento }}</td>
             {% endif %}
-            {% if show_fields.show_bairro %}
+            {% if show_fields.show_bairro or 0 %}
             <td>{{ a.bairro }}</td>
             {% endif %}
-            {% if show_fields.show_nmcid %}
+            {% if show_fields.show_nmcid or 1 %}
             <td>{{ a.nmcid }}</td>
             {% endif %}
-            {% if show_fields.show_codpostal %}
+            {% if show_fields.show_codpostal or 0 %}
             <td>{{ a.codpostal }}</td>
             {% endif %}
 

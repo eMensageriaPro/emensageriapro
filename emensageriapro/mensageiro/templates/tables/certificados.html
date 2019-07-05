@@ -20,13 +20,13 @@
     <tbody>
         {% for a in certificados_lista %}
         <tr>
-            {% if show_fields.show_nome %}
+            {% if show_fields.show_nome or 1 %}
             <td>{{ a.nome }}</td>
             {% endif %}
-            {% if show_fields.show_certificado %}
+            {% if show_fields.show_certificado or 0 %}
             <td>{{ a.certificado }}</td>
             {% endif %}
-            {% if show_fields.show_senha %}
+            {% if show_fields.show_senha or 0 %}
             <td>{{ a.senha }}</td>
             {% endif %}
 

@@ -20,13 +20,13 @@
     <tbody>
         {% for a in r9012_infototalcontrib_lista %}
         <tr>
-            {% if show_fields.show_r9012_evtretcons %}
+            {% if show_fields.show_r9012_evtretcons or 1 %}
             <td>{{ a.r9012_evtretcons }}</td>
             {% endif %}
-            {% if show_fields.show_nrrecarqbase %}
+            {% if show_fields.show_nrrecarqbase or 0 %}
             <td>{{ a.nrrecarqbase }}</td>
             {% endif %}
-            {% if show_fields.show_indexistinfo %}
+            {% if show_fields.show_indexistinfo or 1 %}
             <td>{{ a.get_indexistinfo_display }}</td>
             {% endif %}
 

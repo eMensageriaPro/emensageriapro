@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s2200_horcontratual_lista %}
         <tr>
-            {% if show_fields.show_s2200_evtadmissao %}
+            {% if show_fields.show_s2200_evtadmissao or 1 %}
             <td>{{ a.s2200_evtadmissao }}</td>
             {% endif %}
-            {% if show_fields.show_qtdhrssem %}
+            {% if show_fields.show_qtdhrssem or 0 %}
             <td>{{ a.qtdhrssem }}</td>
             {% endif %}
-            {% if show_fields.show_tpjornada %}
+            {% if show_fields.show_tpjornada or 1 %}
             <td>{{ a.get_tpjornada_display }}</td>
             {% endif %}
-            {% if show_fields.show_dsctpjorn %}
+            {% if show_fields.show_dsctpjorn or 0 %}
             <td>{{ a.dsctpjorn }}</td>
             {% endif %}
-            {% if show_fields.show_tmpparc %}
+            {% if show_fields.show_tmpparc or 1 %}
             <td>{{ a.get_tmpparc_display }}</td>
             {% endif %}
 

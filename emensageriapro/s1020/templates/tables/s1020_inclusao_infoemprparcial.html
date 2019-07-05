@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s1020_inclusao_infoemprparcial_lista %}
         <tr>
-            {% if show_fields.show_s1020_inclusao %}
+            {% if show_fields.show_s1020_inclusao or 1 %}
             <td>{{ a.s1020_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsccontrat %}
+            {% if show_fields.show_tpinsccontrat or 0 %}
             <td>{{ a.get_tpinsccontrat_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsccontrat %}
+            {% if show_fields.show_nrinsccontrat or 1 %}
             <td>{{ a.nrinsccontrat }}</td>
             {% endif %}
-            {% if show_fields.show_tpinscprop %}
+            {% if show_fields.show_tpinscprop or 0 %}
             <td>{{ a.tpinscprop }}</td>
             {% endif %}
-            {% if show_fields.show_nrinscprop %}
+            {% if show_fields.show_nrinscprop or 1 %}
             <td>{{ a.nrinscprop }}</td>
             {% endif %}
 

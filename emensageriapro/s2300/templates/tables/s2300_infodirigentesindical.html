@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s2300_infodirigentesindical_lista %}
         <tr>
-            {% if show_fields.show_s2300_infocomplementares %}
+            {% if show_fields.show_s2300_infocomplementares or 1 %}
             <td>{{ a.s2300_infocomplementares }}</td>
             {% endif %}
-            {% if show_fields.show_categorig %}
+            {% if show_fields.show_categorig or 1 %}
             <td>{{ a.categorig }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjorigem %}
+            {% if show_fields.show_cnpjorigem or 0 %}
             <td>{{ a.cnpjorigem }}</td>
             {% endif %}
-            {% if show_fields.show_dtadmorig %}
+            {% if show_fields.show_dtadmorig or 0 %}
             <td><span style="display:none">{{ a.dtadmorig|date:"Y-m-d" }}</span>{{ a.dtadmorig|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_matricorig %}
+            {% if show_fields.show_matricorig or 0 %}
             <td>{{ a.matricorig }}</td>
             {% endif %}
 

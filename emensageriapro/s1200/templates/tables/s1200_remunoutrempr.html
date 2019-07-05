@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s1200_remunoutrempr_lista %}
         <tr>
-            {% if show_fields.show_s1200_infomv %}
+            {% if show_fields.show_s1200_infomv or 1 %}
             <td>{{ a.s1200_infomv }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 1 %}
             <td>{{ a.codcateg|valor }}</td>
             {% endif %}
-            {% if show_fields.show_vlrremunoe %}
+            {% if show_fields.show_vlrremunoe or 0 %}
             <td>{{ a.vlrremunoe }}</td>
             {% endif %}
 

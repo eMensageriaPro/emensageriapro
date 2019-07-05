@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2206_trabtemp_lista %}
         <tr>
-            {% if show_fields.show_s2206_infoceletista %}
+            {% if show_fields.show_s2206_infoceletista or 1 %}
             <td>{{ a.s2206_infoceletista }}</td>
             {% endif %}
-            {% if show_fields.show_justprorr %}
+            {% if show_fields.show_justprorr or 1 %}
             <td>{{ a.justprorr }}</td>
             {% endif %}
 

@@ -32,25 +32,25 @@
     <tbody>
         {% for a in s2240_altexprisco_fatrisco_lista %}
         <tr>
-            {% if show_fields.show_s2240_altexprisco_infoamb %}
+            {% if show_fields.show_s2240_altexprisco_infoamb or 1 %}
             <td>{{ a.s2240_altexprisco_infoamb }}</td>
             {% endif %}
-            {% if show_fields.show_codfatris %}
+            {% if show_fields.show_codfatris or 1 %}
             <td>{{ a.codfatris }}</td>
             {% endif %}
-            {% if show_fields.show_intconc %}
+            {% if show_fields.show_intconc or 0 %}
             <td>{{ a.intconc }}</td>
             {% endif %}
-            {% if show_fields.show_tecmedicao %}
+            {% if show_fields.show_tecmedicao or 0 %}
             <td>{{ a.tecmedicao }}</td>
             {% endif %}
-            {% if show_fields.show_epcepi %}
+            {% if show_fields.show_epcepi or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_utilizepc %}
+            {% if show_fields.show_utilizepc or 1 %}
             <td>{{ a.get_utilizepc_display }}</td>
             {% endif %}
-            {% if show_fields.show_utilizepi %}
+            {% if show_fields.show_utilizepi or 0 %}
             <td>{{ a.get_utilizepi_display }}</td>
             {% endif %}
 

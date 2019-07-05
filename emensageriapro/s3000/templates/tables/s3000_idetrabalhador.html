@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s3000_idetrabalhador_lista %}
         <tr>
-            {% if show_fields.show_s3000_evtexclusao %}
+            {% if show_fields.show_s3000_evtexclusao or 1 %}
             <td>{{ a.s3000_evtexclusao }}</td>
             {% endif %}
-            {% if show_fields.show_cpftrab %}
+            {% if show_fields.show_cpftrab or 1 %}
             <td>{{ a.cpftrab }}</td>
             {% endif %}
-            {% if show_fields.show_nistrab %}
+            {% if show_fields.show_nistrab or 0 %}
             <td>{{ a.nistrab }}</td>
             {% endif %}
 

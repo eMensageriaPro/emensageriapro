@@ -38,31 +38,31 @@
     <tbody>
         {% for a in importacao_arquivos_eventos_lista %}
         <tr>
-            {% if show_fields.show_importacao_arquivos %}
+            {% if show_fields.show_importacao_arquivos or 0 %}
             <td>{{ a.importacao_arquivos }}</td>
             {% endif %}
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 1 %}
             <td>{{ a.arquivo }}</td>
             {% endif %}
-            {% if show_fields.show_evento %}
+            {% if show_fields.show_evento or 1 %}
             <td>{{ a.evento }}</td>
             {% endif %}
-            {% if show_fields.show_versao %}
+            {% if show_fields.show_versao or 0 %}
             <td>{{ a.versao }}</td>
             {% endif %}
-            {% if show_fields.show_identidade_evento %}
+            {% if show_fields.show_identidade_evento or 1 %}
             <td>{{ a.identidade_evento }}</td>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <td>{{ a.identidade }}</td>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
-            {% if show_fields.show_data_hora %}
+            {% if show_fields.show_data_hora or 1 %}
             <td><span style="display:none">{{ a.data_hora|date:"Y-m-d H:i" }}</span>{{ a.data_hora|date:"d/m/Y H:i" }}</td>
             {% endif %}
-            {% if show_fields.show_validacoes %}
+            {% if show_fields.show_validacoes or 0 %}
             <td>{{ a.validacoes }}</td>
             {% endif %}
 

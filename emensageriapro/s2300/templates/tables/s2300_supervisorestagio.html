@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s2300_supervisorestagio_lista %}
         <tr>
-            {% if show_fields.show_s2300_infoestagiario %}
+            {% if show_fields.show_s2300_infoestagiario or 1 %}
             <td>{{ a.s2300_infoestagiario }}</td>
             {% endif %}
-            {% if show_fields.show_cpfsupervisor %}
+            {% if show_fields.show_cpfsupervisor or 1 %}
             <td>{{ a.cpfsupervisor }}</td>
             {% endif %}
-            {% if show_fields.show_nmsuperv %}
+            {% if show_fields.show_nmsuperv or 1 %}
             <td>{{ a.nmsuperv }}</td>
             {% endif %}
 

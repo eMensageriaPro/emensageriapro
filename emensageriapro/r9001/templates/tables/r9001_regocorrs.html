@@ -26,19 +26,19 @@
     <tbody>
         {% for a in r9001_regocorrs_lista %}
         <tr>
-            {% if show_fields.show_r9001_evttotal %}
+            {% if show_fields.show_r9001_evttotal or 0 %}
             <td>{{ a.r9001_evttotal }}</td>
             {% endif %}
-            {% if show_fields.show_tpocorr %}
+            {% if show_fields.show_tpocorr or 0 %}
             <td>{{ a.get_tpocorr_display }}</td>
             {% endif %}
-            {% if show_fields.show_localerroaviso %}
+            {% if show_fields.show_localerroaviso or 1 %}
             <td>{{ a.localerroaviso }}</td>
             {% endif %}
-            {% if show_fields.show_codresp %}
+            {% if show_fields.show_codresp or 1 %}
             <td>{{ a.codresp }}</td>
             {% endif %}
-            {% if show_fields.show_dscresp %}
+            {% if show_fields.show_dscresp or 1 %}
             <td>{{ a.dscresp }}</td>
             {% endif %}
 

@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2416_homologtc_lista %}
         <tr>
-            {% if show_fields.show_s2416_evtcdbenalt %}
+            {% if show_fields.show_s2416_evtcdbenalt or 1 %}
             <td>{{ a.s2416_evtcdbenalt }}</td>
             {% endif %}
-            {% if show_fields.show_nratolegal %}
+            {% if show_fields.show_nratolegal or 1 %}
             <td>{{ a.nratolegal }}</td>
             {% endif %}
 

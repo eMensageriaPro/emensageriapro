@@ -23,16 +23,16 @@
     <tbody>
         {% for a in r3010_outrasreceitas_lista %}
         <tr>
-            {% if show_fields.show_r3010_boletim %}
+            {% if show_fields.show_r3010_boletim or 1 %}
             <td>{{ a.r3010_boletim }}</td>
             {% endif %}
-            {% if show_fields.show_tpreceita %}
+            {% if show_fields.show_tpreceita or 1 %}
             <td>{{ a.get_tpreceita_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrreceita %}
+            {% if show_fields.show_vlrreceita or 0 %}
             <td>{{ a.vlrreceita }}</td>
             {% endif %}
-            {% if show_fields.show_descreceita %}
+            {% if show_fields.show_descreceita or 1 %}
             <td>{{ a.descreceita }}</td>
             {% endif %}
 

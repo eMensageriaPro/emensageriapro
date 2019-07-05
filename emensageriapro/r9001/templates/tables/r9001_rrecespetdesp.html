@@ -26,19 +26,19 @@
     <tbody>
         {% for a in r9001_rrecespetdesp_lista %}
         <tr>
-            {% if show_fields.show_r9001_infototal %}
+            {% if show_fields.show_r9001_infototal or 1 %}
             <td>{{ a.r9001_infototal }}</td>
             {% endif %}
-            {% if show_fields.show_crrecespetdesp %}
+            {% if show_fields.show_crrecespetdesp or 1 %}
             <td>{{ a.crrecespetdesp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrreceitatotal %}
+            {% if show_fields.show_vlrreceitatotal or 0 %}
             <td>{{ a.vlrreceitatotal }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrrecespetdesp %}
+            {% if show_fields.show_vlrcrrecespetdesp or 1 %}
             <td>{{ a.vlrcrrecespetdesp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrrecespetdespsusp %}
+            {% if show_fields.show_vlrcrrecespetdespsusp or 0 %}
             <td>{{ a.vlrcrrecespetdespsusp }}</td>
             {% endif %}
 

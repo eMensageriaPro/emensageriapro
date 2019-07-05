@@ -50,43 +50,43 @@
     <tbody>
         {% for a in s2200_infoestatutario_lista %}
         <tr>
-            {% if show_fields.show_s2200_evtadmissao %}
+            {% if show_fields.show_s2200_evtadmissao or 0 %}
             <td>{{ a.s2200_evtadmissao }}</td>
             {% endif %}
-            {% if show_fields.show_indprovim %}
+            {% if show_fields.show_indprovim or 0 %}
             <td>{{ a.get_indprovim_display }}</td>
             {% endif %}
-            {% if show_fields.show_tpprov %}
+            {% if show_fields.show_tpprov or 0 %}
             <td>{{ a.get_tpprov_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtnomeacao %}
+            {% if show_fields.show_dtnomeacao or 1 %}
             <td><span style="display:none">{{ a.dtnomeacao|date:"Y-m-d" }}</span>{{ a.dtnomeacao|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtposse %}
+            {% if show_fields.show_dtposse or 0 %}
             <td><span style="display:none">{{ a.dtposse|date:"Y-m-d" }}</span>{{ a.dtposse|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtexercicio %}
+            {% if show_fields.show_dtexercicio or 1 %}
             <td><span style="display:none">{{ a.dtexercicio|date:"Y-m-d" }}</span>{{ a.dtexercicio|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtingsvpub %}
+            {% if show_fields.show_dtingsvpub or 1 %}
             <td><span style="display:none">{{ a.dtingsvpub|date:"Y-m-d" }}</span>{{ a.dtingsvpub|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tpplanrp %}
+            {% if show_fields.show_tpplanrp or 0 %}
             <td>{{ a.get_tpplanrp_display }}</td>
             {% endif %}
-            {% if show_fields.show_indtetorgps %}
+            {% if show_fields.show_indtetorgps or 0 %}
             <td>{{ a.get_indtetorgps_display }}</td>
             {% endif %}
-            {% if show_fields.show_indabonoperm %}
+            {% if show_fields.show_indabonoperm or 0 %}
             <td>{{ a.get_indabonoperm_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtiniabono %}
+            {% if show_fields.show_dtiniabono or 0 %}
             <td><span style="display:none">{{ a.dtiniabono|date:"Y-m-d" }}</span>{{ a.dtiniabono|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_indparcremun %}
+            {% if show_fields.show_indparcremun or 0 %}
             <td>{{ a.get_indparcremun_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtiniparc %}
+            {% if show_fields.show_dtiniparc or 0 %}
             <td><span style="display:none">{{ a.dtiniparc|date:"Y-m-d" }}</span>{{ a.dtiniparc|date:"d/m/Y" }}</td>
             {% endif %}
 

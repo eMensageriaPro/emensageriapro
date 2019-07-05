@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s1210_detpgtofer_penalim_lista %}
         <tr>
-            {% if show_fields.show_s1210_detpgtofer_detrubrfer %}
+            {% if show_fields.show_s1210_detpgtofer_detrubrfer or 1 %}
             <td>{{ a.s1210_detpgtofer_detrubrfer }}</td>
             {% endif %}
-            {% if show_fields.show_cpfbenef %}
+            {% if show_fields.show_cpfbenef or 1 %}
             <td>{{ a.cpfbenef }}</td>
             {% endif %}
-            {% if show_fields.show_dtnasctobenef %}
+            {% if show_fields.show_dtnasctobenef or 0 %}
             <td><span style="display:none">{{ a.dtnasctobenef|date:"Y-m-d" }}</span>{{ a.dtnasctobenef|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_nmbenefic %}
+            {% if show_fields.show_nmbenefic or 1 %}
             <td>{{ a.nmbenefic }}</td>
             {% endif %}
-            {% if show_fields.show_vlrpensao %}
+            {% if show_fields.show_vlrpensao or 0 %}
             <td>{{ a.vlrpensao }}</td>
             {% endif %}
 

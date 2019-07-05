@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s1250_tpaquis_lista %}
         <tr>
-            {% if show_fields.show_s1250_evtaqprod %}
+            {% if show_fields.show_s1250_evtaqprod or 1 %}
             <td>{{ a.s1250_evtaqprod }}</td>
             {% endif %}
-            {% if show_fields.show_indaquis %}
+            {% if show_fields.show_indaquis or 1 %}
             <td>{{ a.get_indaquis_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotaquis %}
+            {% if show_fields.show_vlrtotaquis or 1 %}
             <td>{{ a.vlrtotaquis }}</td>
             {% endif %}
 

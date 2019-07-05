@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2299_observacoes_lista %}
         <tr>
-            {% if show_fields.show_s2299_evtdeslig %}
+            {% if show_fields.show_s2299_evtdeslig or 1 %}
             <td>{{ a.s2299_evtdeslig }}</td>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 1 %}
             <td>{{ a.observacao }}</td>
             {% endif %}
 

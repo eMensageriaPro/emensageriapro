@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s2206_aprend_lista %}
         <tr>
-            {% if show_fields.show_s2206_infoceletista %}
+            {% if show_fields.show_s2206_infoceletista or 1 %}
             <td>{{ a.s2206_infoceletista }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 1 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
 

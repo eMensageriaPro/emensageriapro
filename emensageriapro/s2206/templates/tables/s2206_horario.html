@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s2206_horario_lista %}
         <tr>
-            {% if show_fields.show_s2206_horcontratual %}
+            {% if show_fields.show_s2206_horcontratual or 1 %}
             <td>{{ a.s2206_horcontratual }}</td>
             {% endif %}
-            {% if show_fields.show_dia %}
+            {% if show_fields.show_dia or 1 %}
             <td>{{ a.get_dia_display }}</td>
             {% endif %}
-            {% if show_fields.show_codhorcontrat %}
+            {% if show_fields.show_codhorcontrat or 1 %}
             <td>{{ a.codhorcontrat }}</td>
             {% endif %}
 

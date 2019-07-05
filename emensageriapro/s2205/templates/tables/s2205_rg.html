@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s2205_rg_lista %}
         <tr>
-            {% if show_fields.show_s2205_documentos %}
+            {% if show_fields.show_s2205_documentos or 1 %}
             <td>{{ a.s2205_documentos }}</td>
             {% endif %}
-            {% if show_fields.show_nrrg %}
+            {% if show_fields.show_nrrg or 1 %}
             <td>{{ a.nrrg }}</td>
             {% endif %}
-            {% if show_fields.show_orgaoemissor %}
+            {% if show_fields.show_orgaoemissor or 1 %}
             <td>{{ a.orgaoemissor }}</td>
             {% endif %}
-            {% if show_fields.show_dtexped %}
+            {% if show_fields.show_dtexped or 0 %}
             <td><span style="display:none">{{ a.dtexped|date:"Y-m-d" }}</span>{{ a.dtexped|date:"d/m/Y" }}</td>
             {% endif %}
 

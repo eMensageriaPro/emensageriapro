@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2241_fimaposentesp_lista %}
         <tr>
-            {% if show_fields.show_s2241_aposentesp %}
+            {% if show_fields.show_s2241_aposentesp or 1 %}
             <td>{{ a.s2241_aposentesp }}</td>
             {% endif %}
-            {% if show_fields.show_dtfimcondicao %}
+            {% if show_fields.show_dtfimcondicao or 1 %}
             <td><span style="display:none">{{ a.dtfimcondicao|date:"Y-m-d" }}</span>{{ a.dtfimcondicao|date:"d/m/Y" }}</td>
             {% endif %}
 

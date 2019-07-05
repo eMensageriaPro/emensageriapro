@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s1020_exclusao_lista %}
         <tr>
-            {% if show_fields.show_s1020_evttablotacao %}
+            {% if show_fields.show_s1020_evttablotacao or 1 %}
             <td>{{ a.s1020_evttablotacao }}</td>
             {% endif %}
-            {% if show_fields.show_idelotacao %}
+            {% if show_fields.show_idelotacao or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_codlotacao %}
+            {% if show_fields.show_codlotacao or 1 %}
             <td>{{ a.codlotacao }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 1 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <td>{{ a.get_fimvalid_display }}</td>
             {% endif %}
 

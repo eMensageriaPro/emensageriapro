@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2299_infotrabinterm_lista %}
         <tr>
-            {% if show_fields.show_s2299_dmdev %}
+            {% if show_fields.show_s2299_dmdev or 1 %}
             <td>{{ a.s2299_dmdev }}</td>
             {% endif %}
-            {% if show_fields.show_codconv %}
+            {% if show_fields.show_codconv or 1 %}
             <td>{{ a.codconv }}</td>
             {% endif %}
 

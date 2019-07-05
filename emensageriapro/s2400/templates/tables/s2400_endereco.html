@@ -14,7 +14,7 @@
     <tbody>
         {% for a in s2400_endereco_lista %}
         <tr>
-            {% if show_fields.show_s2400_evtcdbenefin %}
+            {% if show_fields.show_s2400_evtcdbenefin or 1 %}
             <td>{{ a.s2400_evtcdbenefin }}</td>
             {% endif %}
 

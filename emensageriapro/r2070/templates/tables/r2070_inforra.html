@@ -29,22 +29,22 @@
     <tbody>
         {% for a in r2070_inforra_lista %}
         <tr>
-            {% if show_fields.show_r2070_pgtopf %}
+            {% if show_fields.show_r2070_pgtopf or 1 %}
             <td>{{ a.r2070_pgtopf }}</td>
             {% endif %}
-            {% if show_fields.show_tpprocrra %}
+            {% if show_fields.show_tpprocrra or 0 %}
             <td>{{ a.get_tpprocrra_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocrra %}
+            {% if show_fields.show_nrprocrra or 0 %}
             <td>{{ a.nrprocrra }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 0 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
-            {% if show_fields.show_natrra %}
+            {% if show_fields.show_natrra or 0 %}
             <td>{{ a.natrra }}</td>
             {% endif %}
-            {% if show_fields.show_qtdmesesrra %}
+            {% if show_fields.show_qtdmesesrra or 0 %}
             <td>{{ a.qtdmesesrra }}</td>
             {% endif %}
 

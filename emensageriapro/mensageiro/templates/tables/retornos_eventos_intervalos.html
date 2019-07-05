@@ -26,19 +26,19 @@
     <tbody>
         {% for a in retornos_eventos_intervalos_lista %}
         <tr>
-            {% if show_fields.show_retornos_eventos_horarios %}
+            {% if show_fields.show_retornos_eventos_horarios or 1 %}
             <td>{{ a.retornos_eventos_horarios }}</td>
             {% endif %}
-            {% if show_fields.show_tpinterv %}
+            {% if show_fields.show_tpinterv or 1 %}
             <td>{{ a.get_tpinterv_display }}</td>
             {% endif %}
-            {% if show_fields.show_durinterv %}
+            {% if show_fields.show_durinterv or 1 %}
             <td>{{ a.durinterv }}</td>
             {% endif %}
-            {% if show_fields.show_iniinterv %}
+            {% if show_fields.show_iniinterv or 0 %}
             <td>{{ a.iniinterv }}</td>
             {% endif %}
-            {% if show_fields.show_terminterv %}
+            {% if show_fields.show_terminterv or 0 %}
             <td>{{ a.terminterv }}</td>
             {% endif %}
 

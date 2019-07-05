@@ -29,22 +29,22 @@
     <tbody>
         {% for a in r2070_pgtoresidext_lista %}
         <tr>
-            {% if show_fields.show_r2070_ideestab %}
+            {% if show_fields.show_r2070_ideestab or 1 %}
             <td>{{ a.r2070_ideestab }}</td>
             {% endif %}
-            {% if show_fields.show_dtpagto %}
+            {% if show_fields.show_dtpagto or 1 %}
             <td><span style="display:none">{{ a.dtpagto|date:"Y-m-d" }}</span>{{ a.dtpagto|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tprendimento %}
+            {% if show_fields.show_tprendimento or 0 %}
             <td>{{ a.tprendimento }}</td>
             {% endif %}
-            {% if show_fields.show_formatributacao %}
+            {% if show_fields.show_formatributacao or 1 %}
             <td>{{ a.get_formatributacao_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrpgto %}
+            {% if show_fields.show_vlrpgto or 0 %}
             <td>{{ a.vlrpgto }}</td>
             {% endif %}
-            {% if show_fields.show_vlrret %}
+            {% if show_fields.show_vlrret or 0 %}
             <td>{{ a.vlrret }}</td>
             {% endif %}
 

@@ -38,31 +38,31 @@
     <tbody>
         {% for a in s2205_infodeficiencia_lista %}
         <tr>
-            {% if show_fields.show_s2205_evtaltcadastral %}
+            {% if show_fields.show_s2205_evtaltcadastral or 1 %}
             <td>{{ a.s2205_evtaltcadastral }}</td>
             {% endif %}
-            {% if show_fields.show_deffisica %}
+            {% if show_fields.show_deffisica or 1 %}
             <td>{{ a.get_deffisica_display }}</td>
             {% endif %}
-            {% if show_fields.show_defvisual %}
+            {% if show_fields.show_defvisual or 0 %}
             <td>{{ a.get_defvisual_display }}</td>
             {% endif %}
-            {% if show_fields.show_defauditiva %}
+            {% if show_fields.show_defauditiva or 1 %}
             <td>{{ a.get_defauditiva_display }}</td>
             {% endif %}
-            {% if show_fields.show_defmental %}
+            {% if show_fields.show_defmental or 0 %}
             <td>{{ a.get_defmental_display }}</td>
             {% endif %}
-            {% if show_fields.show_defintelectual %}
+            {% if show_fields.show_defintelectual or 0 %}
             <td>{{ a.get_defintelectual_display }}</td>
             {% endif %}
-            {% if show_fields.show_reabreadap %}
+            {% if show_fields.show_reabreadap or 0 %}
             <td>{{ a.get_reabreadap_display }}</td>
             {% endif %}
-            {% if show_fields.show_infocota %}
+            {% if show_fields.show_infocota or 0 %}
             <td>{{ a.get_infocota_display }}</td>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <td>{{ a.observacao }}</td>
             {% endif %}
 

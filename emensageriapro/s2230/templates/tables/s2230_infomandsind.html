@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s2230_infomandsind_lista %}
         <tr>
-            {% if show_fields.show_s2230_iniafastamento %}
+            {% if show_fields.show_s2230_iniafastamento or 1 %}
             <td>{{ a.s2230_iniafastamento }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjsind %}
+            {% if show_fields.show_cnpjsind or 1 %}
             <td>{{ a.cnpjsind }}</td>
             {% endif %}
-            {% if show_fields.show_infonusremun %}
+            {% if show_fields.show_infonusremun or 1 %}
             <td>{{ a.get_infonusremun_display }}</td>
             {% endif %}
 

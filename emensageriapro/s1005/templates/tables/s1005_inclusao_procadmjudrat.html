@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s1005_inclusao_procadmjudrat_lista %}
         <tr>
-            {% if show_fields.show_s1005_inclusao %}
+            {% if show_fields.show_s1005_inclusao or 0 %}
             <td>{{ a.s1005_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_tpproc %}
+            {% if show_fields.show_tpproc or 1 %}
             <td>{{ a.get_tpproc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrproc %}
+            {% if show_fields.show_nrproc or 1 %}
             <td>{{ a.nrproc }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 1 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
 

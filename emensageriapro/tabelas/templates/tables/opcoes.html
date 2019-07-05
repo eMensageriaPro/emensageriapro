@@ -32,25 +32,25 @@
     <tbody>
         {% for a in opcoes_lista %}
         <tr>
-            {% if show_fields.show_opcoes_slug %}
+            {% if show_fields.show_opcoes_slug or 1 %}
             <td>{{ a.opcoes_slug }}</td>
             {% endif %}
-            {% if show_fields.show_opcoes_id %}
+            {% if show_fields.show_opcoes_id or 1 %}
             <td>{{ a.opcoes_id }}</td>
             {% endif %}
-            {% if show_fields.show_codigo %}
+            {% if show_fields.show_codigo or 1 %}
             <td>{{ a.codigo }}</td>
             {% endif %}
-            {% if show_fields.show_titulo %}
+            {% if show_fields.show_titulo or 1 %}
             <td>{{ a.titulo }}</td>
             {% endif %}
-            {% if show_fields.show_descricao %}
+            {% if show_fields.show_descricao or 1 %}
             <td>{{ a.descricao }}</td>
             {% endif %}
-            {% if show_fields.show_data_inicio %}
+            {% if show_fields.show_data_inicio or 1 %}
             <td><span style="display:none">{{ a.data_inicio|date:"Y-m-d" }}</span>{{ a.data_inicio|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_data_termino %}
+            {% if show_fields.show_data_termino or 1 %}
             <td><span style="display:none">{{ a.data_termino|date:"Y-m-d" }}</span>{{ a.data_termino|date:"d/m/Y" }}</td>
             {% endif %}
 

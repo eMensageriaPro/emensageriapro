@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s2250_detavprevio_lista %}
         <tr>
-            {% if show_fields.show_s2250_evtavprevio %}
+            {% if show_fields.show_s2250_evtavprevio or 1 %}
             <td>{{ a.s2250_evtavprevio }}</td>
             {% endif %}
-            {% if show_fields.show_dtavprv %}
+            {% if show_fields.show_dtavprv or 1 %}
             <td><span style="display:none">{{ a.dtavprv|date:"Y-m-d" }}</span>{{ a.dtavprv|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtprevdeslig %}
+            {% if show_fields.show_dtprevdeslig or 1 %}
             <td><span style="display:none">{{ a.dtprevdeslig|date:"Y-m-d" }}</span>{{ a.dtprevdeslig|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tpavprevio %}
+            {% if show_fields.show_tpavprevio or 0 %}
             <td>{{ a.get_tpavprevio_display }}</td>
             {% endif %}
-            {% if show_fields.show_observacao %}
+            {% if show_fields.show_observacao or 0 %}
             <td>{{ a.observacao }}</td>
             {% endif %}
 

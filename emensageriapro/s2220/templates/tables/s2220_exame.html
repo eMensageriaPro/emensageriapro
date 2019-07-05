@@ -38,31 +38,31 @@
     <tbody>
         {% for a in s2220_exame_lista %}
         <tr>
-            {% if show_fields.show_s2220_evtmonit %}
+            {% if show_fields.show_s2220_evtmonit or 0 %}
             <td>{{ a.s2220_evtmonit }}</td>
             {% endif %}
-            {% if show_fields.show_dtexm %}
+            {% if show_fields.show_dtexm or 1 %}
             <td><span style="display:none">{{ a.dtexm|date:"Y-m-d" }}</span>{{ a.dtexm|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_procrealizado %}
+            {% if show_fields.show_procrealizado or 0 %}
             <td>{{ a.procrealizado|valor }}</td>
             {% endif %}
-            {% if show_fields.show_obsproc %}
+            {% if show_fields.show_obsproc or 0 %}
             <td>{{ a.obsproc }}</td>
             {% endif %}
-            {% if show_fields.show_interprexm %}
+            {% if show_fields.show_interprexm or 1 %}
             <td>{{ a.get_interprexm_display }}</td>
             {% endif %}
-            {% if show_fields.show_ordexame %}
+            {% if show_fields.show_ordexame or 0 %}
             <td>{{ a.get_ordexame_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtinimonit %}
+            {% if show_fields.show_dtinimonit or 1 %}
             <td><span style="display:none">{{ a.dtinimonit|date:"Y-m-d" }}</span>{{ a.dtinimonit|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtfimmonit %}
+            {% if show_fields.show_dtfimmonit or 0 %}
             <td><span style="display:none">{{ a.dtfimmonit|date:"Y-m-d" }}</span>{{ a.dtfimmonit|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_indresult %}
+            {% if show_fields.show_indresult or 0 %}
             <td>{{ a.get_indresult_display }}</td>
             {% endif %}
 

@@ -26,19 +26,19 @@
     <tbody>
         {% for a in r4010_detded_lista %}
         <tr>
-            {% if show_fields.show_r4010_infopgto %}
+            {% if show_fields.show_r4010_infopgto or 1 %}
             <td>{{ a.r4010_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_indtpdeducao %}
+            {% if show_fields.show_indtpdeducao or 1 %}
             <td>{{ a.get_indtpdeducao_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrdeducao %}
+            {% if show_fields.show_vlrdeducao or 1 %}
             <td>{{ a.vlrdeducao }}</td>
             {% endif %}
-            {% if show_fields.show_vlrdedsusp %}
+            {% if show_fields.show_vlrdedsusp or 0 %}
             <td>{{ a.vlrdedsusp }}</td>
             {% endif %}
-            {% if show_fields.show_nrinscprevcomp %}
+            {% if show_fields.show_nrinscprevcomp or 0 %}
             <td>{{ a.nrinscprevcomp }}</td>
             {% endif %}
 

@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s5011_infocpseg_lista %}
         <tr>
-            {% if show_fields.show_s5011_evtcs %}
+            {% if show_fields.show_s5011_evtcs or 1 %}
             <td>{{ a.s5011_evtcs }}</td>
             {% endif %}
-            {% if show_fields.show_vrdesccp %}
+            {% if show_fields.show_vrdesccp or 1 %}
             <td>{{ a.vrdesccp }}</td>
             {% endif %}
-            {% if show_fields.show_vrcpseg %}
+            {% if show_fields.show_vrcpseg or 1 %}
             <td>{{ a.vrcpseg }}</td>
             {% endif %}
 

@@ -23,16 +23,16 @@
     <tbody>
         {% for a in r9011_infocrtom_lista %}
         <tr>
-            {% if show_fields.show_r9011_rtom %}
+            {% if show_fields.show_r9011_rtom or 1 %}
             <td>{{ a.r9011_rtom }}</td>
             {% endif %}
-            {% if show_fields.show_crtom %}
+            {% if show_fields.show_crtom or 1 %}
             <td>{{ a.crtom }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrtom %}
+            {% if show_fields.show_vlrcrtom or 0 %}
             <td>{{ a.vlrcrtom }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrtomsusp %}
+            {% if show_fields.show_vlrcrtomsusp or 0 %}
             <td>{{ a.vlrcrtomsusp }}</td>
             {% endif %}
 

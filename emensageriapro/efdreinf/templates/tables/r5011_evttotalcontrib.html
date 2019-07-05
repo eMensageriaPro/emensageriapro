@@ -95,88 +95,88 @@
     <tbody>
         {% for a in r5011_evttotalcontrib_lista %}
         <tr>
-            {% if show_fields.show_evttotalcontrib %}
+            {% if show_fields.show_evttotalcontrib or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <td>{{ a.identidade }}</td>
             {% endif %}
-            {% if show_fields.show_ideevento %}
+            {% if show_fields.show_ideevento or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_perapur %}
+            {% if show_fields.show_perapur or 0 %}
             <td>{{ a.perapur }}</td>
             {% endif %}
-            {% if show_fields.show_idecontri %}
+            {% if show_fields.show_idecontri or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <td>{{ a.tpinsc }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_iderecretorno %}
+            {% if show_fields.show_iderecretorno or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_idestatus %}
+            {% if show_fields.show_idestatus or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_cdretorno %}
+            {% if show_fields.show_cdretorno or 1 %}
             <td>{{ a.cdretorno }}</td>
             {% endif %}
-            {% if show_fields.show_descretorno %}
+            {% if show_fields.show_descretorno or 0 %}
             <td>{{ a.descretorno }}</td>
             {% endif %}
-            {% if show_fields.show_inforecev %}
+            {% if show_fields.show_inforecev or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_nrprotentr %}
+            {% if show_fields.show_nrprotentr or 0 %}
             <td>{{ a.nrprotentr }}</td>
             {% endif %}
-            {% if show_fields.show_dhprocess %}
+            {% if show_fields.show_dhprocess or 1 %}
             <td><span style="display:none">{{ a.dhprocess|date:"Y-m-d" }}</span>{{ a.dhprocess|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tpev %}
+            {% if show_fields.show_tpev or 0 %}
             <td>{{ a.tpev }}</td>
             {% endif %}
-            {% if show_fields.show_idev %}
+            {% if show_fields.show_idev or 0 %}
             <td>{{ a.idev }}</td>
             {% endif %}
-            {% if show_fields.show_hash %}
+            {% if show_fields.show_hash or 0 %}
             <td>{{ a.hash }}</td>
             {% endif %}
-            {% if show_fields.show_versao %}
+            {% if show_fields.show_versao or 0 %}
             <td>{{ a.get_versao_display }}</td>
             {% endif %}
-            {% if show_fields.show_transmissor_lote_efdreinf %}
+            {% if show_fields.show_transmissor_lote_efdreinf or 0 %}
             <td>{{ a.transmissor_lote_efdreinf }}</td>
             {% endif %}
-            {% if show_fields.show_ocorrencias %}
+            {% if show_fields.show_ocorrencias or 0 %}
             <td>{{ a.ocorrencias }}</td>
             {% endif %}
-            {% if show_fields.show_validacao_precedencia %}
+            {% if show_fields.show_validacao_precedencia or 0 %}
             <td>{{ a.get_validacao_precedencia_display }}</td>
             {% endif %}
-            {% if show_fields.show_validacoes %}
+            {% if show_fields.show_validacoes or 0 %}
             <td>{{ a.validacoes }}</td>
             {% endif %}
-            {% if show_fields.show_arquivo_original %}
+            {% if show_fields.show_arquivo_original or 0 %}
             <td>{{ a.get_arquivo_original_display }}</td>
             {% endif %}
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 0 %}
             <td>{{ a.arquivo }}</td>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
-            {% if show_fields.show_cdretorno %}
+            {% if show_fields.show_cdretorno or 0 %}
             <td>{{ a.cdretorno }}</td>
             {% endif %}
-            {% if show_fields.show_descretorno %}
+            {% if show_fields.show_descretorno or 0 %}
             <td>{{ a.descretorno }}</td>
             {% endif %}
-            {% if show_fields.show_dhprocess %}
+            {% if show_fields.show_dhprocess or 0 %}
             <td><span style="display:none">{{ a.dhprocess|date:"Y-m-d H:i" }}</span>{{ a.dhprocess|date:"d/m/Y H:i" }}</td>
             {% endif %}
 

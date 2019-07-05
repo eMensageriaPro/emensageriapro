@@ -38,31 +38,31 @@
     <tbody>
         {% for a in s1000_alteracao_dadosisencao_lista %}
         <tr>
-            {% if show_fields.show_s1000_alteracao %}
+            {% if show_fields.show_s1000_alteracao or 1 %}
             <td>{{ a.s1000_alteracao }}</td>
             {% endif %}
-            {% if show_fields.show_ideminlei %}
+            {% if show_fields.show_ideminlei or 0 %}
             <td>{{ a.ideminlei }}</td>
             {% endif %}
-            {% if show_fields.show_nrcertif %}
+            {% if show_fields.show_nrcertif or 0 %}
             <td>{{ a.nrcertif }}</td>
             {% endif %}
-            {% if show_fields.show_dtemiscertif %}
+            {% if show_fields.show_dtemiscertif or 1 %}
             <td><span style="display:none">{{ a.dtemiscertif|date:"Y-m-d" }}</span>{{ a.dtemiscertif|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtvenccertif %}
+            {% if show_fields.show_dtvenccertif or 1 %}
             <td><span style="display:none">{{ a.dtvenccertif|date:"Y-m-d" }}</span>{{ a.dtvenccertif|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_nrprotrenov %}
+            {% if show_fields.show_nrprotrenov or 0 %}
             <td>{{ a.nrprotrenov }}</td>
             {% endif %}
-            {% if show_fields.show_dtprotrenov %}
+            {% if show_fields.show_dtprotrenov or 0 %}
             <td><span style="display:none">{{ a.dtprotrenov|date:"Y-m-d" }}</span>{{ a.dtprotrenov|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtdou %}
+            {% if show_fields.show_dtdou or 0 %}
             <td><span style="display:none">{{ a.dtdou|date:"Y-m-d" }}</span>{{ a.dtdou|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_pagdou %}
+            {% if show_fields.show_pagdou or 0 %}
             <td>{{ a.pagdou }}</td>
             {% endif %}
 

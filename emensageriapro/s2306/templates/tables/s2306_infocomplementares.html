@@ -14,7 +14,7 @@
     <tbody>
         {% for a in s2306_infocomplementares_lista %}
         <tr>
-            {% if show_fields.show_s2306_evttsvaltcontr %}
+            {% if show_fields.show_s2306_evttsvaltcontr or 1 %}
             <td>{{ a.s2306_evttsvaltcontr }}</td>
             {% endif %}
 

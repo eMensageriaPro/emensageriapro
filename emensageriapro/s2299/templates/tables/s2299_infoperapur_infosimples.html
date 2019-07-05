@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2299_infoperapur_infosimples_lista %}
         <tr>
-            {% if show_fields.show_s2299_infoperapur_ideestablot %}
+            {% if show_fields.show_s2299_infoperapur_ideestablot or 1 %}
             <td>{{ a.s2299_infoperapur_ideestablot }}</td>
             {% endif %}
-            {% if show_fields.show_indsimples %}
+            {% if show_fields.show_indsimples or 1 %}
             <td>{{ a.get_indsimples_display }}</td>
             {% endif %}
 

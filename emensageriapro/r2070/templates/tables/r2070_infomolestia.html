@@ -17,10 +17,10 @@
     <tbody>
         {% for a in r2070_infomolestia_lista %}
         <tr>
-            {% if show_fields.show_r2070_evtpgtosdivs %}
+            {% if show_fields.show_r2070_evtpgtosdivs or 1 %}
             <td>{{ a.r2070_evtpgtosdivs }}</td>
             {% endif %}
-            {% if show_fields.show_dtlaudo %}
+            {% if show_fields.show_dtlaudo or 1 %}
             <td><span style="display:none">{{ a.dtlaudo|date:"Y-m-d" }}</span>{{ a.dtlaudo|date:"d/m/Y" }}</td>
             {% endif %}
 

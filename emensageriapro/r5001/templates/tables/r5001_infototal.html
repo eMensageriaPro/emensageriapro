@@ -26,19 +26,19 @@
     <tbody>
         {% for a in r5001_infototal_lista %}
         <tr>
-            {% if show_fields.show_r5001_evttotal %}
+            {% if show_fields.show_r5001_evttotal or 1 %}
             <td>{{ a.r5001_evttotal }}</td>
             {% endif %}
-            {% if show_fields.show_nrrecarqbase %}
+            {% if show_fields.show_nrrecarqbase or 0 %}
             <td>{{ a.nrrecarqbase }}</td>
             {% endif %}
-            {% if show_fields.show_ideestab %}
+            {% if show_fields.show_ideestab or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 1 %}
             <td>{{ a.tpinsc }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
 

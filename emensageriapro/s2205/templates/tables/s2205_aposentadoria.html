@@ -17,10 +17,10 @@
     <tbody>
         {% for a in s2205_aposentadoria_lista %}
         <tr>
-            {% if show_fields.show_s2205_evtaltcadastral %}
+            {% if show_fields.show_s2205_evtaltcadastral or 1 %}
             <td>{{ a.s2205_evtaltcadastral }}</td>
             {% endif %}
-            {% if show_fields.show_trabaposent %}
+            {% if show_fields.show_trabaposent or 1 %}
             <td>{{ a.get_trabaposent_display }}</td>
             {% endif %}
 

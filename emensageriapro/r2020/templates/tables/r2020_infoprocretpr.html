@@ -26,19 +26,19 @@
     <tbody>
         {% for a in r2020_infoprocretpr_lista %}
         <tr>
-            {% if show_fields.show_r2020_evtservprest %}
+            {% if show_fields.show_r2020_evtservprest or 1 %}
             <td>{{ a.r2020_evtservprest }}</td>
             {% endif %}
-            {% if show_fields.show_tpprocretprinc %}
+            {% if show_fields.show_tpprocretprinc or 1 %}
             <td>{{ a.get_tpprocretprinc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocretprinc %}
+            {% if show_fields.show_nrprocretprinc or 1 %}
             <td>{{ a.nrprocretprinc }}</td>
             {% endif %}
-            {% if show_fields.show_codsuspprinc %}
+            {% if show_fields.show_codsuspprinc or 0 %}
             <td>{{ a.codsuspprinc }}</td>
             {% endif %}
-            {% if show_fields.show_valorprinc %}
+            {% if show_fields.show_valorprinc or 0 %}
             <td>{{ a.valorprinc }}</td>
             {% endif %}
 

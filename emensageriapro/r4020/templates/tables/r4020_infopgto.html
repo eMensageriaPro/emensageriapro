@@ -23,16 +23,16 @@
     <tbody>
         {% for a in r4020_infopgto_lista %}
         <tr>
-            {% if show_fields.show_r4020_idepgto %}
+            {% if show_fields.show_r4020_idepgto or 1 %}
             <td>{{ a.r4020_idepgto }}</td>
             {% endif %}
-            {% if show_fields.show_dtfg %}
+            {% if show_fields.show_dtfg or 1 %}
             <td><span style="display:none">{{ a.dtfg|date:"Y-m-d" }}</span>{{ a.dtfg|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalpag %}
+            {% if show_fields.show_vlrtotalpag or 0 %}
             <td>{{ a.vlrtotalpag }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalcred %}
+            {% if show_fields.show_vlrtotalcred or 1 %}
             <td>{{ a.vlrtotalcred }}</td>
             {% endif %}
 

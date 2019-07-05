@@ -29,22 +29,22 @@
     <tbody>
         {% for a in s1005_exclusao_lista %}
         <tr>
-            {% if show_fields.show_s1005_evttabestab %}
+            {% if show_fields.show_s1005_evttabestab or 1 %}
             <td>{{ a.s1005_evttabestab }}</td>
             {% endif %}
-            {% if show_fields.show_ideestab %}
+            {% if show_fields.show_ideestab or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 1 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <td>{{ a.get_fimvalid_display }}</td>
             {% endif %}
 

@@ -14,7 +14,7 @@
     <tbody>
         {% for a in r2070_pgtoresidbr_lista %}
         <tr>
-            {% if show_fields.show_r2070_ideestab %}
+            {% if show_fields.show_r2070_ideestab or 1 %}
             <td>{{ a.r2070_ideestab }}</td>
             {% endif %}
 

@@ -23,16 +23,16 @@
     <tbody>
         {% for a in r5011_rcoml_lista %}
         <tr>
-            {% if show_fields.show_r5011_infototalcontrib %}
+            {% if show_fields.show_r5011_infototalcontrib or 1 %}
             <td>{{ a.r5011_infototalcontrib }}</td>
             {% endif %}
-            {% if show_fields.show_crcoml %}
+            {% if show_fields.show_crcoml or 1 %}
             <td>{{ a.crcoml }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrcoml %}
+            {% if show_fields.show_vlrcrcoml or 1 %}
             <td>{{ a.vlrcrcoml }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrcomlsusp %}
+            {% if show_fields.show_vlrcrcomlsusp or 0 %}
             <td>{{ a.vlrcrcomlsusp }}</td>
             {% endif %}
 

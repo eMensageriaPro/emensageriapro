@@ -14,7 +14,7 @@
     <tbody>
         {% for a in s5013_infodpsfgts_lista %}
         <tr>
-            {% if show_fields.show_s5013_evtfgts %}
+            {% if show_fields.show_s5013_evtfgts or 1 %}
             <td>{{ a.s5013_evtfgts }}</td>
             {% endif %}
 

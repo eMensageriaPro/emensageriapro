@@ -20,13 +20,13 @@
     <tbody>
         {% for a in r1000_inclusao_infoefr_lista %}
         <tr>
-            {% if show_fields.show_r1000_inclusao %}
+            {% if show_fields.show_r1000_inclusao or 1 %}
             <td>{{ a.r1000_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_ideefr %}
+            {% if show_fields.show_ideefr or 1 %}
             <td>{{ a.get_ideefr_display }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjefr %}
+            {% if show_fields.show_cnpjefr or 0 %}
             <td>{{ a.cnpjefr }}</td>
             {% endif %}
 

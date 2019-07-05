@@ -80,73 +80,73 @@
     <tbody>
         {% for a in s1000_inclusao_lista %}
         <tr>
-            {% if show_fields.show_s1000_evtinfoempregador %}
+            {% if show_fields.show_s1000_evtinfoempregador or 0 %}
             <td>{{ a.s1000_evtinfoempregador }}</td>
             {% endif %}
-            {% if show_fields.show_ideperiodo %}
+            {% if show_fields.show_ideperiodo or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 0 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <td>{{ a.get_fimvalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_infocadastro %}
+            {% if show_fields.show_infocadastro or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_nmrazao %}
+            {% if show_fields.show_nmrazao or 0 %}
             <td>{{ a.nmrazao }}</td>
             {% endif %}
-            {% if show_fields.show_classtrib %}
+            {% if show_fields.show_classtrib or 1 %}
             <td>{{ a.get_classtrib_display }}</td>
             {% endif %}
-            {% if show_fields.show_natjurid %}
+            {% if show_fields.show_natjurid or 0 %}
             <td>{{ a.natjurid }}</td>
             {% endif %}
-            {% if show_fields.show_indcoop %}
+            {% if show_fields.show_indcoop or 0 %}
             <td>{{ a.get_indcoop_display }}</td>
             {% endif %}
-            {% if show_fields.show_indconstr %}
+            {% if show_fields.show_indconstr or 0 %}
             <td>{{ a.get_indconstr_display }}</td>
             {% endif %}
-            {% if show_fields.show_inddesfolha %}
+            {% if show_fields.show_inddesfolha or 1 %}
             <td>{{ a.get_inddesfolha_display }}</td>
             {% endif %}
-            {% if show_fields.show_indopccp %}
+            {% if show_fields.show_indopccp or 0 %}
             <td>{{ a.get_indopccp_display }}</td>
             {% endif %}
-            {% if show_fields.show_indoptregeletron %}
+            {% if show_fields.show_indoptregeletron or 0 %}
             <td>{{ a.get_indoptregeletron_display }}</td>
             {% endif %}
-            {% if show_fields.show_indented %}
+            {% if show_fields.show_indented or 0 %}
             <td>{{ a.get_indented_display }}</td>
             {% endif %}
-            {% if show_fields.show_indett %}
+            {% if show_fields.show_indett or 0 %}
             <td>{{ a.get_indett_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrregett %}
+            {% if show_fields.show_nrregett or 0 %}
             <td>{{ a.nrregett }}</td>
             {% endif %}
-            {% if show_fields.show_contato %}
+            {% if show_fields.show_contato or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_nmctt %}
+            {% if show_fields.show_nmctt or 0 %}
             <td>{{ a.nmctt }}</td>
             {% endif %}
-            {% if show_fields.show_cpfctt %}
+            {% if show_fields.show_cpfctt or 1 %}
             <td>{{ a.cpfctt }}</td>
             {% endif %}
-            {% if show_fields.show_fonefixo %}
+            {% if show_fields.show_fonefixo or 0 %}
             <td>{{ a.fonefixo }}</td>
             {% endif %}
-            {% if show_fields.show_fonecel %}
+            {% if show_fields.show_fonecel or 0 %}
             <td>{{ a.fonecel }}</td>
             {% endif %}
-            {% if show_fields.show_email %}
+            {% if show_fields.show_email or 0 %}
             <td>{{ a.email }}</td>
             {% endif %}
-            {% if show_fields.show_infocomplementares %}
+            {% if show_fields.show_infocomplementares or 0 %}
             <td></td>
             {% endif %}
 

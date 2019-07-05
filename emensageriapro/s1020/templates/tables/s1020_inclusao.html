@@ -50,43 +50,43 @@
     <tbody>
         {% for a in s1020_inclusao_lista %}
         <tr>
-            {% if show_fields.show_s1020_evttablotacao %}
+            {% if show_fields.show_s1020_evttablotacao or 0 %}
             <td>{{ a.s1020_evttablotacao }}</td>
             {% endif %}
-            {% if show_fields.show_idelotacao %}
+            {% if show_fields.show_idelotacao or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_codlotacao %}
+            {% if show_fields.show_codlotacao or 1 %}
             <td>{{ a.codlotacao }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid %}
+            {% if show_fields.show_inivalid or 0 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_fimvalid %}
+            {% if show_fields.show_fimvalid or 0 %}
             <td>{{ a.get_fimvalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_dadoslotacao %}
+            {% if show_fields.show_dadoslotacao or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tplotacao %}
+            {% if show_fields.show_tplotacao or 0 %}
             <td>{{ a.get_tplotacao_display }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_fpaslotacao %}
+            {% if show_fields.show_fpaslotacao or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_fpas %}
+            {% if show_fields.show_fpas or 1 %}
             <td>{{ a.fpas|valor }}</td>
             {% endif %}
-            {% if show_fields.show_codtercs %}
+            {% if show_fields.show_codtercs or 1 %}
             <td>{{ a.codtercs }}</td>
             {% endif %}
-            {% if show_fields.show_codtercssusp %}
+            {% if show_fields.show_codtercssusp or 0 %}
             <td>{{ a.codtercssusp }}</td>
             {% endif %}
 

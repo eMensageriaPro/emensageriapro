@@ -38,31 +38,31 @@
     <tbody>
         {% for a in s2400_dependente_lista %}
         <tr>
-            {% if show_fields.show_s2400_evtcdbenefin %}
+            {% if show_fields.show_s2400_evtcdbenefin or 0 %}
             <td>{{ a.s2400_evtcdbenefin }}</td>
             {% endif %}
-            {% if show_fields.show_tpdep %}
+            {% if show_fields.show_tpdep or 0 %}
             <td>{{ a.get_tpdep_display }}</td>
             {% endif %}
-            {% if show_fields.show_nmdep %}
+            {% if show_fields.show_nmdep or 0 %}
             <td>{{ a.nmdep }}</td>
             {% endif %}
-            {% if show_fields.show_dtnascto %}
+            {% if show_fields.show_dtnascto or 1 %}
             <td><span style="display:none">{{ a.dtnascto|date:"Y-m-d" }}</span>{{ a.dtnascto|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_cpfdep %}
+            {% if show_fields.show_cpfdep or 0 %}
             <td>{{ a.cpfdep }}</td>
             {% endif %}
-            {% if show_fields.show_sexodep %}
+            {% if show_fields.show_sexodep or 0 %}
             <td>{{ a.get_sexodep_display }}</td>
             {% endif %}
-            {% if show_fields.show_depirrf %}
+            {% if show_fields.show_depirrf or 1 %}
             <td>{{ a.get_depirrf_display }}</td>
             {% endif %}
-            {% if show_fields.show_incfismen %}
+            {% if show_fields.show_incfismen or 1 %}
             <td>{{ a.get_incfismen_display }}</td>
             {% endif %}
-            {% if show_fields.show_depfinsprev %}
+            {% if show_fields.show_depfinsprev or 0 %}
             <td>{{ a.get_depfinsprev_display }}</td>
             {% endif %}
 

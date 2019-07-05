@@ -32,25 +32,25 @@
     <tbody>
         {% for a in s2205_cnh_lista %}
         <tr>
-            {% if show_fields.show_s2205_documentos %}
+            {% if show_fields.show_s2205_documentos or 1 %}
             <td>{{ a.s2205_documentos }}</td>
             {% endif %}
-            {% if show_fields.show_nrregcnh %}
+            {% if show_fields.show_nrregcnh or 0 %}
             <td>{{ a.nrregcnh }}</td>
             {% endif %}
-            {% if show_fields.show_dtexped %}
+            {% if show_fields.show_dtexped or 0 %}
             <td><span style="display:none">{{ a.dtexped|date:"Y-m-d" }}</span>{{ a.dtexped|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_ufcnh %}
+            {% if show_fields.show_ufcnh or 0 %}
             <td>{{ a.get_ufcnh_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtvalid %}
+            {% if show_fields.show_dtvalid or 1 %}
             <td><span style="display:none">{{ a.dtvalid|date:"Y-m-d" }}</span>{{ a.dtvalid|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtprihab %}
+            {% if show_fields.show_dtprihab or 0 %}
             <td><span style="display:none">{{ a.dtprihab|date:"Y-m-d" }}</span>{{ a.dtprihab|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_categoriacnh %}
+            {% if show_fields.show_categoriacnh or 1 %}
             <td>{{ a.get_categoriacnh_display }}</td>
             {% endif %}
 

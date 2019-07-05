@@ -59,52 +59,52 @@
     <tbody>
         {% for a in regras_validacao_lista %}
         <tr>
-            {% if show_fields.show_evento %}
+            {% if show_fields.show_evento or 1 %}
             <td>{{ a.evento }}</td>
             {% endif %}
-            {% if show_fields.show_versao %}
+            {% if show_fields.show_versao or 1 %}
             <td>{{ a.versao }}</td>
             {% endif %}
-            {% if show_fields.show_numero %}
+            {% if show_fields.show_numero or 1 %}
             <td>{{ a.numero }}</td>
             {% endif %}
-            {% if show_fields.show_registro_campo %}
+            {% if show_fields.show_registro_campo or 1 %}
             <td>{{ a.registro_campo }}</td>
             {% endif %}
-            {% if show_fields.show_registro_pai %}
+            {% if show_fields.show_registro_pai or 1 %}
             <td>{{ a.registro_pai }}</td>
             {% endif %}
-            {% if show_fields.show_elemento %}
+            {% if show_fields.show_elemento or 0 %}
             <td>{{ a.elemento }}</td>
             {% endif %}
-            {% if show_fields.show_tipo %}
+            {% if show_fields.show_tipo or 0 %}
             <td>{{ a.tipo }}</td>
             {% endif %}
-            {% if show_fields.show_ocorrencias %}
+            {% if show_fields.show_ocorrencias or 0 %}
             <td>{{ a.ocorrencias }}</td>
             {% endif %}
-            {% if show_fields.show_tamanho %}
+            {% if show_fields.show_tamanho or 0 %}
             <td>{{ a.tamanho }}</td>
             {% endif %}
-            {% if show_fields.show_casas_decimais %}
+            {% if show_fields.show_casas_decimais or 0 %}
             <td>{{ a.casas_decimais }}</td>
             {% endif %}
-            {% if show_fields.show_obrigatorio %}
+            {% if show_fields.show_obrigatorio or 0 %}
             <td>{{ a.get_obrigatorio_display }}</td>
             {% endif %}
-            {% if show_fields.show_descricao %}
+            {% if show_fields.show_descricao or 0 %}
             <td>{{ a.descricao }}</td>
             {% endif %}
-            {% if show_fields.show_tabela %}
+            {% if show_fields.show_tabela or 0 %}
             <td>{{ a.tabela }}</td>
             {% endif %}
-            {% if show_fields.show_valores_validos %}
+            {% if show_fields.show_valores_validos or 0 %}
             <td>{{ a.valores_validos }}</td>
             {% endif %}
-            {% if show_fields.show_validacoes_precedencia %}
+            {% if show_fields.show_validacoes_precedencia or 0 %}
             <td>{{ a.validacoes_precedencia }}</td>
             {% endif %}
-            {% if show_fields.show_validacoes %}
+            {% if show_fields.show_validacoes or 0 %}
             <td>{{ a.validacoes }}</td>
             {% endif %}
 

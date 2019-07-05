@@ -68,61 +68,61 @@
     <tbody>
         {% for a in s5001_evtbasestrab_lista %}
         <tr>
-            {% if show_fields.show_evtbasestrab %}
+            {% if show_fields.show_evtbasestrab or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_identidade %}
+            {% if show_fields.show_identidade or 1 %}
             <td>{{ a.identidade }}</td>
             {% endif %}
-            {% if show_fields.show_ideevento %}
+            {% if show_fields.show_ideevento or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_nrrecarqbase %}
+            {% if show_fields.show_nrrecarqbase or 0 %}
             <td>{{ a.nrrecarqbase }}</td>
             {% endif %}
-            {% if show_fields.show_indapuracao %}
+            {% if show_fields.show_indapuracao or 1 %}
             <td>{{ a.get_indapuracao_display }}</td>
             {% endif %}
-            {% if show_fields.show_perapur %}
+            {% if show_fields.show_perapur or 0 %}
             <td>{{ a.perapur }}</td>
             {% endif %}
-            {% if show_fields.show_ideempregador %}
+            {% if show_fields.show_ideempregador or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 0 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_idetrabalhador %}
+            {% if show_fields.show_idetrabalhador or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_cpftrab %}
+            {% if show_fields.show_cpftrab or 1 %}
             <td>{{ a.cpftrab }}</td>
             {% endif %}
-            {% if show_fields.show_versao %}
+            {% if show_fields.show_versao or 0 %}
             <td>{{ a.get_versao_display }}</td>
             {% endif %}
-            {% if show_fields.show_transmissor_lote_esocial %}
+            {% if show_fields.show_transmissor_lote_esocial or 0 %}
             <td>{{ a.transmissor_lote_esocial }}</td>
             {% endif %}
-            {% if show_fields.show_ocorrencias %}
+            {% if show_fields.show_ocorrencias or 0 %}
             <td>{{ a.ocorrencias }}</td>
             {% endif %}
-            {% if show_fields.show_validacao_precedencia %}
+            {% if show_fields.show_validacao_precedencia or 0 %}
             <td>{{ a.get_validacao_precedencia_display }}</td>
             {% endif %}
-            {% if show_fields.show_validacoes %}
+            {% if show_fields.show_validacoes or 0 %}
             <td>{{ a.validacoes }}</td>
             {% endif %}
-            {% if show_fields.show_arquivo_original %}
+            {% if show_fields.show_arquivo_original or 0 %}
             <td>{{ a.get_arquivo_original_display }}</td>
             {% endif %}
-            {% if show_fields.show_arquivo %}
+            {% if show_fields.show_arquivo or 0 %}
             <td>{{ a.arquivo }}</td>
             {% endif %}
-            {% if show_fields.show_status %}
+            {% if show_fields.show_status or 1 %}
             <td>{{ a.get_status_display }}</td>
             {% endif %}
 

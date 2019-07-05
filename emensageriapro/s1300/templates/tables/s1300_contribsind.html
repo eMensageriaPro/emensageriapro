@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s1300_contribsind_lista %}
         <tr>
-            {% if show_fields.show_s1300_evtcontrsindpatr %}
+            {% if show_fields.show_s1300_evtcontrsindpatr or 1 %}
             <td>{{ a.s1300_evtcontrsindpatr }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjsindic %}
+            {% if show_fields.show_cnpjsindic or 1 %}
             <td>{{ a.cnpjsindic }}</td>
             {% endif %}
-            {% if show_fields.show_tpcontribsind %}
+            {% if show_fields.show_tpcontribsind or 1 %}
             <td>{{ a.get_tpcontribsind_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcontribsind %}
+            {% if show_fields.show_vlrcontribsind or 0 %}
             <td>{{ a.vlrcontribsind }}</td>
             {% endif %}
 

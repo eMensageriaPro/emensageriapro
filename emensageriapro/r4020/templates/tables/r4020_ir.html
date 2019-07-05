@@ -29,22 +29,22 @@
     <tbody>
         {% for a in r4020_ir_lista %}
         <tr>
-            {% if show_fields.show_r4020_infopgto %}
+            {% if show_fields.show_r4020_infopgto or 1 %}
             <td>{{ a.r4020_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbaseir %}
+            {% if show_fields.show_vlrbaseir or 1 %}
             <td>{{ a.vlrbaseir }}</td>
             {% endif %}
-            {% if show_fields.show_vlrir %}
+            {% if show_fields.show_vlrir or 1 %}
             <td>{{ a.vlrir }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasenir %}
+            {% if show_fields.show_vlrbasenir or 0 %}
             <td>{{ a.vlrbasenir }}</td>
             {% endif %}
-            {% if show_fields.show_vlrnir %}
+            {% if show_fields.show_vlrnir or 0 %}
             <td>{{ a.vlrnir }}</td>
             {% endif %}
-            {% if show_fields.show_vlrdepir %}
+            {% if show_fields.show_vlrdepir or 0 %}
             <td>{{ a.vlrdepir }}</td>
             {% endif %}
 

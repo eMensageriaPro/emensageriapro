@@ -23,16 +23,16 @@
     <tbody>
         {% for a in r4010_ideopsaude_lista %}
         <tr>
-            {% if show_fields.show_r4010_evtretpf %}
+            {% if show_fields.show_r4010_evtretpf or 1 %}
             <td>{{ a.r4010_evtretpf }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_regans %}
+            {% if show_fields.show_regans or 0 %}
             <td>{{ a.regans }}</td>
             {% endif %}
-            {% if show_fields.show_vlrsaude %}
+            {% if show_fields.show_vlrsaude or 1 %}
             <td>{{ a.vlrsaude }}</td>
             {% endif %}
 

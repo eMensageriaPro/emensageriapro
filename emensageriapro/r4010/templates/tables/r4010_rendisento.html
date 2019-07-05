@@ -26,19 +26,19 @@
     <tbody>
         {% for a in r4010_rendisento_lista %}
         <tr>
-            {% if show_fields.show_r4010_infopgto %}
+            {% if show_fields.show_r4010_infopgto or 1 %}
             <td>{{ a.r4010_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_tpisencao %}
+            {% if show_fields.show_tpisencao or 1 %}
             <td>{{ a.get_tpisencao_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrisento %}
+            {% if show_fields.show_vlrisento or 1 %}
             <td>{{ a.vlrisento }}</td>
             {% endif %}
-            {% if show_fields.show_descrendimento %}
+            {% if show_fields.show_descrendimento or 0 %}
             <td>{{ a.descrendimento }}</td>
             {% endif %}
-            {% if show_fields.show_dtlaudo %}
+            {% if show_fields.show_dtlaudo or 0 %}
             <td><span style="display:none">{{ a.dtlaudo|date:"Y-m-d" }}</span>{{ a.dtlaudo|date:"d/m/Y" }}</td>
             {% endif %}
 

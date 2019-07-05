@@ -14,7 +14,7 @@
     <tbody>
         {% for a in s5003_infodpsfgts_lista %}
         <tr>
-            {% if show_fields.show_s5003_evtbasesfgts %}
+            {% if show_fields.show_s5003_evtbasesfgts or 1 %}
             <td>{{ a.s5003_evtbasesfgts }}</td>
             {% endif %}
 

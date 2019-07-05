@@ -38,31 +38,31 @@
     <tbody>
         {% for a in s2300_infotrabcedido_lista %}
         <tr>
-            {% if show_fields.show_s2300_infocomplementares %}
+            {% if show_fields.show_s2300_infocomplementares or 0 %}
             <td>{{ a.s2300_infocomplementares }}</td>
             {% endif %}
-            {% if show_fields.show_categorig %}
+            {% if show_fields.show_categorig or 1 %}
             <td>{{ a.categorig }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjcednt %}
+            {% if show_fields.show_cnpjcednt or 1 %}
             <td>{{ a.cnpjcednt }}</td>
             {% endif %}
-            {% if show_fields.show_matricced %}
+            {% if show_fields.show_matricced or 0 %}
             <td>{{ a.matricced }}</td>
             {% endif %}
-            {% if show_fields.show_dtadmced %}
+            {% if show_fields.show_dtadmced or 1 %}
             <td><span style="display:none">{{ a.dtadmced|date:"Y-m-d" }}</span>{{ a.dtadmced|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tpregtrab %}
+            {% if show_fields.show_tpregtrab or 0 %}
             <td>{{ a.get_tpregtrab_display }}</td>
             {% endif %}
-            {% if show_fields.show_tpregprev %}
+            {% if show_fields.show_tpregprev or 0 %}
             <td>{{ a.get_tpregprev_display }}</td>
             {% endif %}
-            {% if show_fields.show_infonus %}
+            {% if show_fields.show_infonus or 0 %}
             <td>{{ a.get_infonus_display }}</td>
             {% endif %}
-            {% if show_fields.show_indremuncargo %}
+            {% if show_fields.show_indremuncargo or 0 %}
             <td>{{ a.get_indremuncargo_display }}</td>
             {% endif %}
 

@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s1260_tpcomerc_lista %}
         <tr>
-            {% if show_fields.show_s1260_evtcomprod %}
+            {% if show_fields.show_s1260_evtcomprod or 1 %}
             <td>{{ a.s1260_evtcomprod }}</td>
             {% endif %}
-            {% if show_fields.show_indcomerc %}
+            {% if show_fields.show_indcomerc or 1 %}
             <td>{{ a.get_indcomerc_display }}</td>
             {% endif %}
-            {% if show_fields.show_vrtotcom %}
+            {% if show_fields.show_vrtotcom or 1 %}
             <td>{{ a.vrtotcom }}</td>
             {% endif %}
 

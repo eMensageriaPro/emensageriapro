@@ -32,25 +32,25 @@
     <tbody>
         {% for a in retornos_eventos_horarios_lista %}
         <tr>
-            {% if show_fields.show_retornos_eventos %}
+            {% if show_fields.show_retornos_eventos or 1 %}
             <td>{{ a.retornos_eventos }}</td>
             {% endif %}
-            {% if show_fields.show_dia %}
+            {% if show_fields.show_dia or 0 %}
             <td>{{ a.get_dia_display }}</td>
             {% endif %}
-            {% if show_fields.show_codhorcontrat %}
+            {% if show_fields.show_codhorcontrat or 1 %}
             <td>{{ a.codhorcontrat }}</td>
             {% endif %}
-            {% if show_fields.show_hrentr %}
+            {% if show_fields.show_hrentr or 0 %}
             <td>{{ a.hrentr }}</td>
             {% endif %}
-            {% if show_fields.show_hrsaida %}
+            {% if show_fields.show_hrsaida or 0 %}
             <td>{{ a.hrsaida }}</td>
             {% endif %}
-            {% if show_fields.show_durjornada %}
+            {% if show_fields.show_durjornada or 0 %}
             <td>{{ a.durjornada }}</td>
             {% endif %}
-            {% if show_fields.show_perhorflexivel %}
+            {% if show_fields.show_perhorflexivel or 0 %}
             <td>{{ a.get_perhorflexivel_display }}</td>
             {% endif %}
 

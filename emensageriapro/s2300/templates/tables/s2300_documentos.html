@@ -14,7 +14,7 @@
     <tbody>
         {% for a in s2300_documentos_lista %}
         <tr>
-            {% if show_fields.show_s2300_evttsvinicio %}
+            {% if show_fields.show_s2300_evttsvinicio or 1 %}
             <td>{{ a.s2300_evttsvinicio }}</td>
             {% endif %}
 

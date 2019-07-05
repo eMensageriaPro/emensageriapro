@@ -44,37 +44,37 @@
     <tbody>
         {% for a in s1270_remunavnp_lista %}
         <tr>
-            {% if show_fields.show_s1270_evtcontratavnp %}
+            {% if show_fields.show_s1270_evtcontratavnp or 1 %}
             <td>{{ a.s1270_evtcontratavnp }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 0 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_codlotacao %}
+            {% if show_fields.show_codlotacao or 1 %}
             <td>{{ a.codlotacao }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp00 %}
+            {% if show_fields.show_vrbccp00 or 0 %}
             <td>{{ a.vrbccp00 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp15 %}
+            {% if show_fields.show_vrbccp15 or 0 %}
             <td>{{ a.vrbccp15 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp20 %}
+            {% if show_fields.show_vrbccp20 or 0 %}
             <td>{{ a.vrbccp20 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp25 %}
+            {% if show_fields.show_vrbccp25 or 0 %}
             <td>{{ a.vrbccp25 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbccp13 %}
+            {% if show_fields.show_vrbccp13 or 0 %}
             <td>{{ a.vrbccp13 }}</td>
             {% endif %}
-            {% if show_fields.show_vrbcfgts %}
+            {% if show_fields.show_vrbcfgts or 0 %}
             <td>{{ a.vrbcfgts }}</td>
             {% endif %}
-            {% if show_fields.show_vrdesccp %}
+            {% if show_fields.show_vrdesccp or 0 %}
             <td>{{ a.vrdesccp }}</td>
             {% endif %}
 

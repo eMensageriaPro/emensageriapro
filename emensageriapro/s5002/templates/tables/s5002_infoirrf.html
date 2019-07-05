@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s5002_infoirrf_lista %}
         <tr>
-            {% if show_fields.show_s5002_evtirrfbenef %}
+            {% if show_fields.show_s5002_evtirrfbenef or 1 %}
             <td>{{ a.s5002_evtirrfbenef }}</td>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 0 %}
             <td>{{ a.codcateg|valor }}</td>
             {% endif %}
-            {% if show_fields.show_indresbr %}
+            {% if show_fields.show_indresbr or 1 %}
             <td>{{ a.get_indresbr_display }}</td>
             {% endif %}
 

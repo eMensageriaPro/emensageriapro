@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s1207_itens_lista %}
         <tr>
-            {% if show_fields.show_s1207_dmdev %}
+            {% if show_fields.show_s1207_dmdev or 1 %}
             <td>{{ a.s1207_dmdev }}</td>
             {% endif %}
-            {% if show_fields.show_codrubr %}
+            {% if show_fields.show_codrubr or 1 %}
             <td>{{ a.codrubr }}</td>
             {% endif %}
-            {% if show_fields.show_idetabrubr %}
+            {% if show_fields.show_idetabrubr or 1 %}
             <td>{{ a.idetabrubr }}</td>
             {% endif %}
-            {% if show_fields.show_vrrubr %}
+            {% if show_fields.show_vrrubr or 0 %}
             <td>{{ a.vrrubr }}</td>
             {% endif %}
 

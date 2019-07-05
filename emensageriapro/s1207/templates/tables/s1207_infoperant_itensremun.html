@@ -32,25 +32,25 @@
     <tbody>
         {% for a in s1207_infoperant_itensremun_lista %}
         <tr>
-            {% if show_fields.show_s1207_infoperant_remunperant %}
+            {% if show_fields.show_s1207_infoperant_remunperant or 1 %}
             <td>{{ a.s1207_infoperant_remunperant }}</td>
             {% endif %}
-            {% if show_fields.show_codrubr %}
+            {% if show_fields.show_codrubr or 1 %}
             <td>{{ a.codrubr }}</td>
             {% endif %}
-            {% if show_fields.show_idetabrubr %}
+            {% if show_fields.show_idetabrubr or 1 %}
             <td>{{ a.idetabrubr }}</td>
             {% endif %}
-            {% if show_fields.show_qtdrubr %}
+            {% if show_fields.show_qtdrubr or 0 %}
             <td>{{ a.qtdrubr }}</td>
             {% endif %}
-            {% if show_fields.show_fatorrubr %}
+            {% if show_fields.show_fatorrubr or 0 %}
             <td>{{ a.fatorrubr }}</td>
             {% endif %}
-            {% if show_fields.show_vrunit %}
+            {% if show_fields.show_vrunit or 0 %}
             <td>{{ a.vrunit }}</td>
             {% endif %}
-            {% if show_fields.show_vrrubr %}
+            {% if show_fields.show_vrrubr or 0 %}
             <td>{{ a.vrrubr }}</td>
             {% endif %}
 

@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s5003_dpsperante_lista %}
         <tr>
-            {% if show_fields.show_s5003_infodpsperante %}
+            {% if show_fields.show_s5003_infodpsperante or 1 %}
             <td>{{ a.s5003_infodpsperante }}</td>
             {% endif %}
-            {% if show_fields.show_tpdpse %}
+            {% if show_fields.show_tpdpse or 1 %}
             <td>{{ a.get_tpdpse_display }}</td>
             {% endif %}
-            {% if show_fields.show_dpsfgtse %}
+            {% if show_fields.show_dpsfgtse or 1 %}
             <td>{{ a.dpsfgtse }}</td>
             {% endif %}
 

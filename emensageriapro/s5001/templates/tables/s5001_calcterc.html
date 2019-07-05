@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s5001_calcterc_lista %}
         <tr>
-            {% if show_fields.show_s5001_infocategincid %}
+            {% if show_fields.show_s5001_infocategincid or 1 %}
             <td>{{ a.s5001_infocategincid }}</td>
             {% endif %}
-            {% if show_fields.show_tpcr %}
+            {% if show_fields.show_tpcr or 1 %}
             <td>{{ a.get_tpcr_display }}</td>
             {% endif %}
-            {% if show_fields.show_vrcssegterc %}
+            {% if show_fields.show_vrcssegterc or 1 %}
             <td>{{ a.vrcssegterc }}</td>
             {% endif %}
-            {% if show_fields.show_vrdescterc %}
+            {% if show_fields.show_vrdescterc or 0 %}
             <td>{{ a.vrdescterc }}</td>
             {% endif %}
 

@@ -29,22 +29,22 @@
     <tbody>
         {% for a in s1202_infoperapur_detplano_lista %}
         <tr>
-            {% if show_fields.show_s1202_infoperapur_detoper %}
+            {% if show_fields.show_s1202_infoperapur_detoper or 1 %}
             <td>{{ a.s1202_infoperapur_detoper }}</td>
             {% endif %}
-            {% if show_fields.show_tpdep %}
+            {% if show_fields.show_tpdep or 0 %}
             <td>{{ a.get_tpdep_display }}</td>
             {% endif %}
-            {% if show_fields.show_cpfdep %}
+            {% if show_fields.show_cpfdep or 0 %}
             <td>{{ a.cpfdep }}</td>
             {% endif %}
-            {% if show_fields.show_nmdep %}
+            {% if show_fields.show_nmdep or 1 %}
             <td>{{ a.nmdep }}</td>
             {% endif %}
-            {% if show_fields.show_dtnascto %}
+            {% if show_fields.show_dtnascto or 1 %}
             <td><span style="display:none">{{ a.dtnascto|date:"Y-m-d" }}</span>{{ a.dtnascto|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_vlrpgdep %}
+            {% if show_fields.show_vlrpgdep or 0 %}
             <td>{{ a.vlrpgdep }}</td>
             {% endif %}
 

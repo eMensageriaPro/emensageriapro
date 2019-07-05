@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s1207_dmdev_lista %}
         <tr>
-            {% if show_fields.show_s1207_evtbenprrp %}
+            {% if show_fields.show_s1207_evtbenprrp or 1 %}
             <td>{{ a.s1207_evtbenprrp }}</td>
             {% endif %}
-            {% if show_fields.show_tpbenef %}
+            {% if show_fields.show_tpbenef or 0 %}
             <td>{{ a.tpbenef|valor }}</td>
             {% endif %}
-            {% if show_fields.show_nrbenefic %}
+            {% if show_fields.show_nrbenefic or 1 %}
             <td>{{ a.nrbenefic }}</td>
             {% endif %}
-            {% if show_fields.show_idedmdev %}
+            {% if show_fields.show_idedmdev or 1 %}
             <td>{{ a.idedmdev }}</td>
             {% endif %}
 

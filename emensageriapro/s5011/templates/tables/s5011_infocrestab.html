@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s5011_infocrestab_lista %}
         <tr>
-            {% if show_fields.show_s5011_ideestab %}
+            {% if show_fields.show_s5011_ideestab or 1 %}
             <td>{{ a.s5011_ideestab }}</td>
             {% endif %}
-            {% if show_fields.show_tpcr %}
+            {% if show_fields.show_tpcr or 1 %}
             <td>{{ a.tpcr }}</td>
             {% endif %}
-            {% if show_fields.show_vrcr %}
+            {% if show_fields.show_vrcr or 1 %}
             <td>{{ a.vrcr }}</td>
             {% endif %}
-            {% if show_fields.show_vrsuspcr %}
+            {% if show_fields.show_vrsuspcr or 0 %}
             <td>{{ a.vrsuspcr }}</td>
             {% endif %}
 

@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s5001_procjudtrab_lista %}
         <tr>
-            {% if show_fields.show_s5001_evtbasestrab %}
+            {% if show_fields.show_s5001_evtbasestrab or 1 %}
             <td>{{ a.s5001_evtbasestrab }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocjud %}
+            {% if show_fields.show_nrprocjud or 1 %}
             <td>{{ a.nrprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 1 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
 

@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s5011_ideestab_lista %}
         <tr>
-            {% if show_fields.show_s5011_evtcs %}
+            {% if show_fields.show_s5011_evtcs or 1 %}
             <td>{{ a.s5011_evtcs }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 1 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
 

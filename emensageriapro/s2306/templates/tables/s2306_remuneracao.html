@@ -23,16 +23,16 @@
     <tbody>
         {% for a in s2306_remuneracao_lista %}
         <tr>
-            {% if show_fields.show_s2306_infocomplementares %}
+            {% if show_fields.show_s2306_infocomplementares or 1 %}
             <td>{{ a.s2306_infocomplementares }}</td>
             {% endif %}
-            {% if show_fields.show_vrsalfx %}
+            {% if show_fields.show_vrsalfx or 1 %}
             <td>{{ a.vrsalfx }}</td>
             {% endif %}
-            {% if show_fields.show_undsalfixo %}
+            {% if show_fields.show_undsalfixo or 1 %}
             <td>{{ a.get_undsalfixo_display }}</td>
             {% endif %}
-            {% if show_fields.show_dscsalvar %}
+            {% if show_fields.show_dscsalvar or 0 %}
             <td>{{ a.dscsalvar }}</td>
             {% endif %}
 

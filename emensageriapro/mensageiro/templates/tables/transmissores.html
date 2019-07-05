@@ -44,37 +44,37 @@
     <tbody>
         {% for a in transmissores_lista %}
         <tr>
-            {% if show_fields.show_transmissor_dados %}
+            {% if show_fields.show_transmissor_dados or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_transmissor_tpinsc %}
+            {% if show_fields.show_transmissor_tpinsc or 1 %}
             <td>{{ a.get_transmissor_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_transmissor_nrinsc %}
+            {% if show_fields.show_transmissor_nrinsc or 1 %}
             <td>{{ a.transmissor_nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_empregador_dados %}
+            {% if show_fields.show_empregador_dados or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_nome_empresa %}
+            {% if show_fields.show_nome_empresa or 1 %}
             <td>{{ a.nome_empresa }}</td>
             {% endif %}
-            {% if show_fields.show_data_abertura %}
+            {% if show_fields.show_data_abertura or 0 %}
             <td><span style="display:none">{{ a.data_abertura|date:"Y-m-d" }}</span>{{ a.data_abertura|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_logotipo %}
+            {% if show_fields.show_logotipo or 0 %}
             <td>{{ a.logotipo }}</td>
             {% endif %}
-            {% if show_fields.show_endereco_completo %}
+            {% if show_fields.show_endereco_completo or 0 %}
             <td>{{ a.endereco_completo }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc %}
+            {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc %}
+            {% if show_fields.show_tpinsc or 1 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_certificado %}
+            {% if show_fields.show_certificado or 0 %}
             <td>{{ a.certificado }}</td>
             {% endif %}
 

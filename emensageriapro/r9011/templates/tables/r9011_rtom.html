@@ -23,16 +23,16 @@
     <tbody>
         {% for a in r9011_rtom_lista %}
         <tr>
-            {% if show_fields.show_r9011_infototalcontrib %}
+            {% if show_fields.show_r9011_infototalcontrib or 1 %}
             <td>{{ a.r9011_infototalcontrib }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjprestador %}
+            {% if show_fields.show_cnpjprestador or 1 %}
             <td>{{ a.cnpjprestador }}</td>
             {% endif %}
-            {% if show_fields.show_cno %}
+            {% if show_fields.show_cno or 0 %}
             <td>{{ a.cno }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalbaseret %}
+            {% if show_fields.show_vlrtotalbaseret or 1 %}
             <td>{{ a.vlrtotalbaseret }}</td>
             {% endif %}
 

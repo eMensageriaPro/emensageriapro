@@ -26,19 +26,19 @@
     <tbody>
         {% for a in r2030_infoproc_lista %}
         <tr>
-            {% if show_fields.show_r2030_recursosrec %}
+            {% if show_fields.show_r2030_recursosrec or 1 %}
             <td>{{ a.r2030_recursosrec }}</td>
             {% endif %}
-            {% if show_fields.show_tpproc %}
+            {% if show_fields.show_tpproc or 1 %}
             <td>{{ a.get_tpproc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrproc %}
+            {% if show_fields.show_nrproc or 1 %}
             <td>{{ a.nrproc }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp %}
+            {% if show_fields.show_codsusp or 0 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrnret %}
+            {% if show_fields.show_vlrnret or 0 %}
             <td>{{ a.vlrnret }}</td>
             {% endif %}
 

@@ -35,28 +35,28 @@
     <tbody>
         {% for a in s1000_alteracao_infoop_lista %}
         <tr>
-            {% if show_fields.show_s1000_alteracao %}
+            {% if show_fields.show_s1000_alteracao or 1 %}
             <td>{{ a.s1000_alteracao }}</td>
             {% endif %}
-            {% if show_fields.show_nrsiafi %}
+            {% if show_fields.show_nrsiafi or 0 %}
             <td>{{ a.nrsiafi }}</td>
             {% endif %}
-            {% if show_fields.show_indugrpps %}
+            {% if show_fields.show_indugrpps or 1 %}
             <td>{{ a.get_indugrpps_display }}</td>
             {% endif %}
-            {% if show_fields.show_esferaop %}
+            {% if show_fields.show_esferaop or 0 %}
             <td>{{ a.get_esferaop_display }}</td>
             {% endif %}
-            {% if show_fields.show_poderop %}
+            {% if show_fields.show_poderop or 0 %}
             <td>{{ a.get_poderop_display }}</td>
             {% endif %}
-            {% if show_fields.show_vrtetorem %}
+            {% if show_fields.show_vrtetorem or 1 %}
             <td>{{ a.vrtetorem }}</td>
             {% endif %}
-            {% if show_fields.show_ideefr %}
+            {% if show_fields.show_ideefr or 0 %}
             <td>{{ a.get_ideefr_display }}</td>
             {% endif %}
-            {% if show_fields.show_cnpjefr %}
+            {% if show_fields.show_cnpjefr or 0 %}
             <td>{{ a.cnpjefr }}</td>
             {% endif %}
 

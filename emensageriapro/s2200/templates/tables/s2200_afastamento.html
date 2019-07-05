@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s2200_afastamento_lista %}
         <tr>
-            {% if show_fields.show_s2200_evtadmissao %}
+            {% if show_fields.show_s2200_evtadmissao or 1 %}
             <td>{{ a.s2200_evtadmissao }}</td>
             {% endif %}
-            {% if show_fields.show_dtiniafast %}
+            {% if show_fields.show_dtiniafast or 1 %}
             <td><span style="display:none">{{ a.dtiniafast|date:"Y-m-d" }}</span>{{ a.dtiniafast|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_codmotafast %}
+            {% if show_fields.show_codmotafast or 1 %}
             <td>{{ a.codmotafast }}</td>
             {% endif %}
 

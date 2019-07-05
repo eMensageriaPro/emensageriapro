@@ -29,22 +29,22 @@
     <tbody>
         {% for a in r4010_infodependpl_lista %}
         <tr>
-            {% if show_fields.show_r4010_ideopsaude %}
+            {% if show_fields.show_r4010_ideopsaude or 1 %}
             <td>{{ a.r4010_ideopsaude }}</td>
             {% endif %}
-            {% if show_fields.show_cpf %}
+            {% if show_fields.show_cpf or 0 %}
             <td>{{ a.cpf }}</td>
             {% endif %}
-            {% if show_fields.show_dtnascto %}
+            {% if show_fields.show_dtnascto or 0 %}
             <td><span style="display:none">{{ a.dtnascto|date:"Y-m-d" }}</span>{{ a.dtnascto|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_nome %}
+            {% if show_fields.show_nome or 1 %}
             <td>{{ a.nome }}</td>
             {% endif %}
-            {% if show_fields.show_reldep %}
+            {% if show_fields.show_reldep or 1 %}
             <td>{{ a.get_reldep_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrsaude %}
+            {% if show_fields.show_vlrsaude or 0 %}
             <td>{{ a.vlrsaude }}</td>
             {% endif %}
 

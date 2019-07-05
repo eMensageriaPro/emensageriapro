@@ -20,13 +20,13 @@
     <tbody>
         {% for a in s1202_infoperapur_remunperapur_lista %}
         <tr>
-            {% if show_fields.show_s1202_infoperapur_ideestab %}
+            {% if show_fields.show_s1202_infoperapur_ideestab or 1 %}
             <td>{{ a.s1202_infoperapur_ideestab }}</td>
             {% endif %}
-            {% if show_fields.show_matricula %}
+            {% if show_fields.show_matricula or 0 %}
             <td>{{ a.matricula }}</td>
             {% endif %}
-            {% if show_fields.show_codcateg %}
+            {% if show_fields.show_codcateg or 1 %}
             <td>{{ a.codcateg|valor }}</td>
             {% endif %}
 

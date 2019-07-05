@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s2206_infoestatutario_lista %}
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual %}
+            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
             <td>{{ a.s2206_evtaltcontratual }}</td>
             {% endif %}
-            {% if show_fields.show_tpplanrp %}
+            {% if show_fields.show_tpplanrp or 1 %}
             <td>{{ a.get_tpplanrp_display }}</td>
             {% endif %}
-            {% if show_fields.show_indtetorgps %}
+            {% if show_fields.show_indtetorgps or 0 %}
             <td>{{ a.get_indtetorgps_display }}</td>
             {% endif %}
-            {% if show_fields.show_indabonoperm %}
+            {% if show_fields.show_indabonoperm or 0 %}
             <td>{{ a.get_indabonoperm_display }}</td>
             {% endif %}
-            {% if show_fields.show_indparcremun %}
+            {% if show_fields.show_indparcremun or 0 %}
             <td>{{ a.get_indparcremun_display }}</td>
             {% endif %}
 

@@ -29,22 +29,22 @@
     <tbody>
         {% for a in r2010_nfs_lista %}
         <tr>
-            {% if show_fields.show_r2010_evtservtom %}
+            {% if show_fields.show_r2010_evtservtom or 1 %}
             <td>{{ a.r2010_evtservtom }}</td>
             {% endif %}
-            {% if show_fields.show_serie %}
+            {% if show_fields.show_serie or 1 %}
             <td>{{ a.serie }}</td>
             {% endif %}
-            {% if show_fields.show_numdocto %}
+            {% if show_fields.show_numdocto or 0 %}
             <td>{{ a.numdocto }}</td>
             {% endif %}
-            {% if show_fields.show_dtemissaonf %}
+            {% if show_fields.show_dtemissaonf or 1 %}
             <td><span style="display:none">{{ a.dtemissaonf|date:"Y-m-d" }}</span>{{ a.dtemissaonf|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbruto %}
+            {% if show_fields.show_vlrbruto or 0 %}
             <td>{{ a.vlrbruto }}</td>
             {% endif %}
-            {% if show_fields.show_obs %}
+            {% if show_fields.show_obs or 0 %}
             <td>{{ a.obs }}</td>
             {% endif %}
 

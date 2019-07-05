@@ -29,22 +29,22 @@
     <tbody>
         {% for a in r9012_totapurmen_lista %}
         <tr>
-            {% if show_fields.show_r9012_infototalcontrib %}
+            {% if show_fields.show_r9012_infototalcontrib or 1 %}
             <td>{{ a.r9012_infototalcontrib }}</td>
             {% endif %}
-            {% if show_fields.show_crmen %}
+            {% if show_fields.show_crmen or 1 %}
             <td>{{ a.crmen }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasecrmen %}
+            {% if show_fields.show_vlrbasecrmen or 1 %}
             <td>{{ a.vlrbasecrmen }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrmen %}
+            {% if show_fields.show_vlrcrmen or 0 %}
             <td>{{ a.vlrcrmen }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbasecrmensusp %}
+            {% if show_fields.show_vlrbasecrmensusp or 0 %}
             <td>{{ a.vlrbasecrmensusp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrmensusp %}
+            {% if show_fields.show_vlrcrmensusp or 0 %}
             <td>{{ a.vlrcrmensusp }}</td>
             {% endif %}
 

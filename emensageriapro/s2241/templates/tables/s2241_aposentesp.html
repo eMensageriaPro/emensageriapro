@@ -14,7 +14,7 @@
     <tbody>
         {% for a in s2241_aposentesp_lista %}
         <tr>
-            {% if show_fields.show_s2241_evtinsapo %}
+            {% if show_fields.show_s2241_evtinsapo or 1 %}
             <td>{{ a.s2241_evtinsapo }}</td>
             {% endif %}
 

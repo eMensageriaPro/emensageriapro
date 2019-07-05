@@ -26,19 +26,19 @@
     <tbody>
         {% for a in r2030_inforecurso_lista %}
         <tr>
-            {% if show_fields.show_r2030_recursosrec %}
+            {% if show_fields.show_r2030_recursosrec or 1 %}
             <td>{{ a.r2030_recursosrec }}</td>
             {% endif %}
-            {% if show_fields.show_tprepasse %}
+            {% if show_fields.show_tprepasse or 0 %}
             <td>{{ a.get_tprepasse_display }}</td>
             {% endif %}
-            {% if show_fields.show_descrecurso %}
+            {% if show_fields.show_descrecurso or 1 %}
             <td>{{ a.descrecurso }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbruto %}
+            {% if show_fields.show_vlrbruto or 1 %}
             <td>{{ a.vlrbruto }}</td>
             {% endif %}
-            {% if show_fields.show_vlrretapur %}
+            {% if show_fields.show_vlrretapur or 0 %}
             <td>{{ a.vlrretapur }}</td>
             {% endif %}
 
