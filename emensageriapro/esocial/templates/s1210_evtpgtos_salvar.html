@@ -542,11 +542,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s1210_evtpgtos.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de dependentes do beneficiário do pagamento</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s1210_evtpgtos.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s1210.add_s1210deps or perms.s1210.can_see_list_s1210deps %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -557,9 +558,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s1210_evtpgtos.status == STATUS_EVENTO_CADASTRADO and perms.s1210.add_s1210deps %}
@@ -652,11 +653,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s1210_evtpgtos.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações dos pagamentos efetuados</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s1210_evtpgtos.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s1210.add_s1210infoPgto or perms.s1210.can_see_list_s1210infoPgto %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -667,9 +669,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s1210_evtpgtos.status == STATUS_EVENTO_CADASTRADO and perms.s1210.add_s1210infoPgto %}

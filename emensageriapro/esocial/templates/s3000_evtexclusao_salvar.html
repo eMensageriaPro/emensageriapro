@@ -542,11 +542,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s3000_evtexclusao.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s3000_evtexclusao.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s3000.add_s3000ideTrabalhador or perms.s3000.can_see_list_s3000ideTrabalhador %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -557,9 +558,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s3000_evtexclusao.status == STATUS_EVENTO_CADASTRADO and perms.s3000.add_s3000ideTrabalhador %}
@@ -652,11 +653,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s3000_evtexclusao.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro que identifica a qual folha de pagamento pertence o evento que será excluído</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s3000_evtexclusao.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s3000.add_s3000ideFolhaPagto or perms.s3000.can_see_list_s3000ideFolhaPagto %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -667,9 +669,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s3000_evtexclusao.status == STATUS_EVENTO_CADASTRADO and perms.s3000.add_s3000ideFolhaPagto %}

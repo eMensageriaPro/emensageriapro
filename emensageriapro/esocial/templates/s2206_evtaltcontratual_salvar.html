@@ -591,11 +591,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de Trabalhador Celetista</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2206.add_s2206infoCeletista or perms.s2206.can_see_list_s2206infoCeletista %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -606,9 +607,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206infoCeletista %}
@@ -701,11 +702,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de Trabalhador Estatutário</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2206.add_s2206infoEstatutario or perms.s2206.can_see_list_s2206infoEstatutario %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -716,9 +718,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206infoEstatutario %}
@@ -811,11 +813,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2206.add_s2206localTrabGeral or perms.s2206.can_see_list_s2206localTrabGeral %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -826,9 +829,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206localTrabGeral %}
@@ -921,11 +924,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2206.add_s2206localTrabDom or perms.s2206.can_see_list_s2206localTrabDom %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -936,9 +940,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206localTrabDom %}
@@ -1031,11 +1035,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2206.add_s2206horContratual or perms.s2206.can_see_list_s2206horContratual %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -1046,9 +1051,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206horContratual %}
@@ -1141,11 +1146,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Filiação Sindical do Trabalhador</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2206.add_s2206filiacaoSindical or perms.s2206.can_see_list_s2206filiacaoSindical %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -1156,9 +1162,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206filiacaoSindical %}
@@ -1251,11 +1257,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2206.add_s2206alvaraJudicial or perms.s2206.can_see_list_s2206alvaraJudicial %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -1266,9 +1273,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206alvaraJudicial %}
@@ -1361,11 +1368,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Observações do contrato de trabalho</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2206.add_s2206observacoes or perms.s2206.can_see_list_s2206observacoes %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -1376,9 +1384,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206observacoes %}
@@ -1471,11 +1479,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Alterações inerentes ao servidor público</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2206.add_s2206servPubl or perms.s2206.can_see_list_s2206servPubl %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -1486,9 +1495,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206servPubl %}

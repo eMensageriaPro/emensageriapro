@@ -542,11 +542,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2231_evtcessao.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de início da cessão/exercício em outro órgão</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2231_evtcessao.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2231.add_s2231iniCessao or perms.s2231.can_see_list_s2231iniCessao %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -557,9 +558,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2231_evtcessao.status == STATUS_EVENTO_CADASTRADO and perms.s2231.add_s2231iniCessao %}
@@ -652,11 +653,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2231_evtcessao.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de término da cessão/exercício em outro órgão</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2231_evtcessao.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2231.add_s2231fimCessao or perms.s2231.can_see_list_s2231fimCessao %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -667,9 +669,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2231_evtcessao.status == STATUS_EVENTO_CADASTRADO and perms.s2231.add_s2231fimCessao %}

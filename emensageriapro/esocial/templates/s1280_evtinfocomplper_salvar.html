@@ -549,11 +549,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador.</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s1280.add_s1280infoSubstPatr or perms.s1280.can_see_list_s1280infoSubstPatr %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -564,9 +565,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO and perms.s1280.add_s1280infoSubstPatr %}
@@ -659,11 +660,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s1280.add_s1280infoSubstPatrOpPort or perms.s1280.can_see_list_s1280infoSubstPatrOpPort %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -674,9 +676,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO and perms.s1280.add_s1280infoSubstPatrOpPort %}
@@ -769,11 +771,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída.</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s1280.add_s1280infoAtivConcom or perms.s1280.can_see_list_s1280infoAtivConcom %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -784,9 +787,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO and perms.s1280.add_s1280infoAtivConcom %}

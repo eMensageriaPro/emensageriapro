@@ -577,11 +577,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Observações do contrato de trabalho</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2299.add_s2299observacoes or perms.s2299.can_see_list_s2299observacoes %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -592,9 +593,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299observacoes %}
@@ -687,11 +688,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Grupo de informações da sucessão de vínculo trabalhista/estatutário</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2299.add_s2299sucessaoVinc or perms.s2299.can_see_list_s2299sucessaoVinc %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -702,9 +704,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299sucessaoVinc %}
@@ -797,11 +799,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2299.add_s2299transfTit or perms.s2299.can_see_list_s2299transfTit %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -812,9 +815,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299transfTit %}
@@ -907,11 +910,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de mudança de CPF do trabalhador.</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2299.add_s2299mudancaCPF or perms.s2299.can_see_list_s2299mudancaCPF %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -922,9 +926,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299mudancaCPF %}
@@ -1017,11 +1021,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2299.add_s2299verbasResc or perms.s2299.can_see_list_s2299verbasResc %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -1032,9 +1037,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299verbasResc %}
@@ -1127,11 +1132,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações sobre a 'quarentena' remunerada de trabalhador desligado</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2299.add_s2299infoTrabIntermquarentena or perms.s2299.can_see_list_s2299infoTrabIntermquarentena %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -1142,9 +1148,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoTrabIntermquarentena %}
@@ -1237,11 +1243,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações sobre operação de crédito consignado com garantia de FGTS</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2299.add_s2299infoTrabIntermconsigFGTS or perms.s2299.can_see_list_s2299infoTrabIntermconsigFGTS %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -1252,9 +1259,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoTrabIntermconsigFGTS %}

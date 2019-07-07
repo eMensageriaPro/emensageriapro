@@ -563,11 +563,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s1200.add_s1200infoMV or perms.s1200.can_see_list_s1200infoMV %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -578,9 +579,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoMV %}
@@ -673,11 +674,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s1200.add_s1200infoComplem or perms.s1200.can_see_list_s1200infoComplem %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -688,9 +690,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoComplem %}
@@ -783,11 +785,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s1200.add_s1200procJudTrab or perms.s1200.can_see_list_s1200procJudTrab %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -798,9 +801,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200procJudTrab %}
@@ -893,11 +896,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações relativas ao trabalho intermitente</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s1200.add_s1200infoInterm or perms.s1200.can_see_list_s1200infoInterm %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -908,9 +912,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoInterm %}
@@ -1003,11 +1007,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s1200.add_s1200dmDev or perms.s1200.can_see_list_s1200dmDev %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -1018,9 +1023,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200dmDev %}

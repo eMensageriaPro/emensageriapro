@@ -584,11 +584,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações relativas ao ambiente de trabalho</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2240.add_s2240iniExpRiscoinfoAmb or perms.s2240.can_see_list_s2240iniExpRiscoinfoAmb %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -599,9 +600,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240iniExpRiscoinfoAmb %}
@@ -694,11 +695,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2240.add_s2240iniExpRiscoativPericInsal or perms.s2240.can_see_list_s2240iniExpRiscoativPericInsal %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -709,9 +711,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240iniExpRiscoativPericInsal %}
@@ -804,11 +806,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2240.add_s2240iniExpRiscofatRisco or perms.s2240.can_see_list_s2240iniExpRiscofatRisco %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -819,9 +822,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240iniExpRiscofatRisco %}
@@ -914,11 +917,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações relativas ao responsável pelos registros ambientais</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2240.add_s2240iniExpRiscorespReg or perms.s2240.can_see_list_s2240iniExpRiscorespReg %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -929,9 +933,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240iniExpRiscorespReg %}
@@ -1024,11 +1028,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Observações relativas a registros ambientais</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2240.add_s2240iniExpRiscoobs or perms.s2240.can_see_list_s2240iniExpRiscoobs %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -1039,9 +1044,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240iniExpRiscoobs %}
@@ -1134,11 +1139,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Condições ambientais do trabalho - Alteração</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2240.add_s2240altExpRisco or perms.s2240.can_see_list_s2240altExpRisco %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -1149,9 +1155,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240altExpRisco %}
@@ -1244,11 +1250,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Condições ambientais do trabalho - Fim</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2240.add_s2240fimExpRisco or perms.s2240.can_see_list_s2240fimExpRisco %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -1259,9 +1266,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240fimExpRisco %}
@@ -1354,11 +1361,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações relativas ao responsável pelos registros ambientais</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2240.add_s2240fimExpRiscorespReg or perms.s2240.can_see_list_s2240fimExpRiscorespReg %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -1369,9 +1377,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240fimExpRiscorespReg %}

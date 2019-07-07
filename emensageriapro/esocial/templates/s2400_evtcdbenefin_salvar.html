@@ -542,11 +542,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2400_evtcdbenefin.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Grupo de informações do endereço do Trabalhador</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2400_evtcdbenefin.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2400.add_s2400endereco or perms.s2400.can_see_list_s2400endereco %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -557,9 +558,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2400_evtcdbenefin.status == STATUS_EVENTO_CADASTRADO and perms.s2400.add_s2400endereco %}
@@ -652,11 +653,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2400_evtcdbenefin.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações dos dependentes</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2400_evtcdbenefin.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2400.add_s2400dependente or perms.s2400.can_see_list_s2400dependente %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -667,9 +669,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2400_evtcdbenefin.status == STATUS_EVENTO_CADASTRADO and perms.s2400.add_s2400dependente %}

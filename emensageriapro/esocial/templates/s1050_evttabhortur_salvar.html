@@ -549,11 +549,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s1050_evttabhortur.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Inclusão de novas informações</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s1050_evttabhortur.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s1050.add_s1050inclusao or perms.s1050.can_see_list_s1050inclusao %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -564,9 +565,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s1050_evttabhortur.status == STATUS_EVENTO_CADASTRADO and perms.s1050.add_s1050inclusao %}
@@ -659,11 +660,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s1050_evttabhortur.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Alteração das informações</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s1050_evttabhortur.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s1050.add_s1050alteracao or perms.s1050.can_see_list_s1050alteracao %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -674,9 +676,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s1050_evttabhortur.status == STATUS_EVENTO_CADASTRADO and perms.s1050.add_s1050alteracao %}
@@ -769,11 +771,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s1050_evttabhortur.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Exclusão das informações</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s1050_evttabhortur.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s1050.add_s1050exclusao or perms.s1050.can_see_list_s1050exclusao %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -784,9 +787,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s1050_evttabhortur.status == STATUS_EVENTO_CADASTRADO and perms.s1050.add_s1050exclusao %}

@@ -535,11 +535,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2245_evttreicap.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações relativas ao profissional responsável pelo treinamento/capacitação</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2245_evttreicap.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2245.add_s2245ideProfResp or perms.s2245.can_see_list_s2245ideProfResp %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -550,9 +551,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2245_evttreicap.status == STATUS_EVENTO_CADASTRADO and perms.s2245.add_s2245ideProfResp %}

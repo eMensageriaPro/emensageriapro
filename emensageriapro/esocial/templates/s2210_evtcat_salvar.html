@@ -563,11 +563,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Identificação do local onde ocorreu o acidente</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2210.add_s2210ideLocalAcid or perms.s2210.can_see_list_s2210ideLocalAcid %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -578,9 +579,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO and perms.s2210.add_s2210ideLocalAcid %}
@@ -673,11 +674,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2210.add_s2210parteAtingida or perms.s2210.can_see_list_s2210parteAtingida %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -688,9 +690,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO and perms.s2210.add_s2210parteAtingida %}
@@ -783,11 +785,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Detalhamento do(s) agente(s) causador(es) do acidente de trabalho</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2210.add_s2210agenteCausador or perms.s2210.can_see_list_s2210agenteCausador %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -798,9 +801,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO and perms.s2210.add_s2210agenteCausador %}
@@ -893,11 +896,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Atestado Médico</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2210.add_s2210atestado or perms.s2210.can_see_list_s2210atestado %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -908,9 +912,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO and perms.s2210.add_s2210atestado %}
@@ -1003,11 +1007,12 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO %}
+        
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito</h3>
                                     <div class="pull-right box-tools">
+                                    {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO %}
                                     {% if perms.s2210.add_s2210catOrigem or perms.s2210.can_see_list_s2210catOrigem %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
@@ -1018,9 +1023,9 @@
                                         </div>
                                         </button>
                                     {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% endif %}
                             <div class="box-body" >
 
                                 {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO and perms.s2210.add_s2210catOrigem %}
