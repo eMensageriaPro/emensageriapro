@@ -71,15 +71,14 @@ def apagar(request, pk):
         #retornos_eventos_apagar_custom
         messages.success(request, u'Apagado com sucesso!')
 
-        if 'retornos_eventos' in request.session['return_page']:
-
+        if 'retornos-eventos' in request.session['return']:
             return redirect('retornos_eventos')
 
         else:
+            return HttpResponseRedirect(request.session['return'])
 
-            return redirect(
-                request.session['return_page'],
-                pk=request.session['return_pk'])
+    else:
+        request.session['return'] = request.META.get('HTTP_REFERER')
 
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),

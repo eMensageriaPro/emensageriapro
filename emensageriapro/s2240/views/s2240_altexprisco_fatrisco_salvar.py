@@ -94,45 +94,10 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 obj = s2240_altexprisco_fatrisco_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-
-                #if not pk:
-                #
-                #    gravar_auditoria(
-                #        '{}',
-                #        json.dumps(
-                #            model_to_dict(obj),
-                #            indent=4,
-                #            sort_keys=True,
-                #            default=str),
-                #        's2240_altexprisco_fatrisco',
-                #        obj.id,
-                #        request.user.id, 1)
-                #
-                #else:
-                #
-                #    gravar_auditoria(
-                #        json.dumps(
-                #            model_to_dict(s2240_altexprisco_fatrisco),
-                #            indent=4,
-                #            sort_keys=True,
-                #            default=str),
-                #        json.dumps(
-                #            model_to_dict(obj),
-                #            indent=4,
-                #            sort_keys=True,
-                #            default=str),
-                #        's2240_altexprisco_fatrisco',
-                #        pk,
-                #        request.user.id, 2)
                  
-                if request.session['return_page'] not in (
-                    's2240_altexprisco_fatrisco_apagar',
-                    's2240_altexprisco_fatrisco_salvar',
-                    's2240_altexprisco_fatrisco'):
+                if 's2240-altexprisco-fatrisco' not in request.session['return']:
 
-                    return redirect(
-                        request.session['return_page'],
-                        pk=request.session['return_pk'])
+                    return HttpResponseRedirect(request.session['return'])
 
                 if pk != obj.id:
 
@@ -187,13 +152,16 @@ def salvar(request, pk=None, tab='master', output=None):
 
         tabelas_secundarias = []
 
-        if tab or 's2240_altexprisco_fatrisco' in request.session['return_page']:
-
-            request.session['return_pk'] = pk
-            request.session['return_tab'] = tab
-            request.session['return_page'] = 's2240_altexprisco_fatrisco_salvar'
+        #if tab or 's2240_altexprisco_fatrisco' in request.session['return_page']:
+        #
+        #    request.session['return_pk'] = pk
+        #    request.session['return_tab'] = tab
+        #    request.session['return_page'] = 's2240_altexprisco_fatrisco_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2240_altexprisco_fatrisco').all()
+
+        if not request.POST:
+            request.session['return'] = request.META.get('HTTP_REFERER')
 
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),

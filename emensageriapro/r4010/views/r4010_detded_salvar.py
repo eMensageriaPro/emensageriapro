@@ -92,45 +92,10 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 obj = r4010_detded_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-
-                #if not pk:
-                #
-                #    gravar_auditoria(
-                #        '{}',
-                #        json.dumps(
-                #            model_to_dict(obj),
-                #            indent=4,
-                #            sort_keys=True,
-                #            default=str),
-                #        'r4010_detded',
-                #        obj.id,
-                #        request.user.id, 1)
-                #
-                #else:
-                #
-                #    gravar_auditoria(
-                #        json.dumps(
-                #            model_to_dict(r4010_detded),
-                #            indent=4,
-                #            sort_keys=True,
-                #            default=str),
-                #        json.dumps(
-                #            model_to_dict(obj),
-                #            indent=4,
-                #            sort_keys=True,
-                #            default=str),
-                #        'r4010_detded',
-                #        pk,
-                #        request.user.id, 2)
                  
-                if request.session['return_page'] not in (
-                    'r4010_detded_apagar',
-                    'r4010_detded_salvar',
-                    'r4010_detded'):
+                if 'r4010-detded' not in request.session['return']:
 
-                    return redirect(
-                        request.session['return_page'],
-                        pk=request.session['return_pk'])
+                    return HttpResponseRedirect(request.session['return'])
 
                 if pk != obj.id:
 
@@ -177,13 +142,16 @@ def salvar(request, pk=None, tab='master', output=None):
 
         tabelas_secundarias = []
 
-        if tab or 'r4010_detded' in request.session['return_page']:
-
-            request.session['return_pk'] = pk
-            request.session['return_tab'] = tab
-            request.session['return_page'] = 'r4010_detded_salvar'
+        #if tab or 'r4010_detded' in request.session['return_page']:
+        #
+        #    request.session['return_pk'] = pk
+        #    request.session['return_tab'] = tab
+        #    request.session['return_page'] = 'r4010_detded_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r4010_detded').all()
+
+        if not request.POST:
+            request.session['return'] = request.META.get('HTTP_REFERER')
 
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),

@@ -94,45 +94,10 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 obj = r2040_recursosrep_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-
-                #if not pk:
-                #
-                #    gravar_auditoria(
-                #        '{}',
-                #        json.dumps(
-                #            model_to_dict(obj),
-                #            indent=4,
-                #            sort_keys=True,
-                #            default=str),
-                #        'r2040_recursosrep',
-                #        obj.id,
-                #        request.user.id, 1)
-                #
-                #else:
-                #
-                #    gravar_auditoria(
-                #        json.dumps(
-                #            model_to_dict(r2040_recursosrep),
-                #            indent=4,
-                #            sort_keys=True,
-                #            default=str),
-                #        json.dumps(
-                #            model_to_dict(obj),
-                #            indent=4,
-                #            sort_keys=True,
-                #            default=str),
-                #        'r2040_recursosrep',
-                #        pk,
-                #        request.user.id, 2)
                  
-                if request.session['return_page'] not in (
-                    'r2040_recursosrep_apagar',
-                    'r2040_recursosrep_salvar',
-                    'r2040_recursosrep'):
+                if 'r2040-recursosrep' not in request.session['return']:
 
-                    return redirect(
-                        request.session['return_page'],
-                        pk=request.session['return_pk'])
+                    return HttpResponseRedirect(request.session['return'])
 
                 if pk != obj.id:
 
@@ -187,13 +152,16 @@ def salvar(request, pk=None, tab='master', output=None):
 
         tabelas_secundarias = []
 
-        if tab or 'r2040_recursosrep' in request.session['return_page']:
-
-            request.session['return_pk'] = pk
-            request.session['return_tab'] = tab
-            request.session['return_page'] = 'r2040_recursosrep_salvar'
+        #if tab or 'r2040_recursosrep' in request.session['return_page']:
+        #
+        #    request.session['return_pk'] = pk
+        #    request.session['return_tab'] = tab
+        #    request.session['return_page'] = 'r2040_recursosrep_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r2040_recursosrep').all()
+
+        if not request.POST:
+            request.session['return'] = request.META.get('HTTP_REFERER')
 
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),

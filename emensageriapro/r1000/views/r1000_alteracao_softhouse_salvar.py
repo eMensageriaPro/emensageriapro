@@ -90,45 +90,10 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 obj = r1000_alteracao_softhouse_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-
-                #if not pk:
-                #
-                #    gravar_auditoria(
-                #        '{}',
-                #        json.dumps(
-                #            model_to_dict(obj),
-                #            indent=4,
-                #            sort_keys=True,
-                #            default=str),
-                #        'r1000_alteracao_softhouse',
-                #        obj.id,
-                #        request.user.id, 1)
-                #
-                #else:
-                #
-                #    gravar_auditoria(
-                #        json.dumps(
-                #            model_to_dict(r1000_alteracao_softhouse),
-                #            indent=4,
-                #            sort_keys=True,
-                #            default=str),
-                #        json.dumps(
-                #            model_to_dict(obj),
-                #            indent=4,
-                #            sort_keys=True,
-                #            default=str),
-                #        'r1000_alteracao_softhouse',
-                #        pk,
-                #        request.user.id, 2)
                  
-                if request.session['return_page'] not in (
-                    'r1000_alteracao_softhouse_apagar',
-                    'r1000_alteracao_softhouse_salvar',
-                    'r1000_alteracao_softhouse'):
+                if 'r1000-alteracao-softhouse' not in request.session['return']:
 
-                    return redirect(
-                        request.session['return_page'],
-                        pk=request.session['return_pk'])
+                    return HttpResponseRedirect(request.session['return'])
 
                 if pk != obj.id:
 
@@ -167,13 +132,16 @@ def salvar(request, pk=None, tab='master', output=None):
 
         tabelas_secundarias = []
 
-        if tab or 'r1000_alteracao_softhouse' in request.session['return_page']:
-
-            request.session['return_pk'] = pk
-            request.session['return_tab'] = tab
-            request.session['return_page'] = 'r1000_alteracao_softhouse_salvar'
+        #if tab or 'r1000_alteracao_softhouse' in request.session['return_page']:
+        #
+        #    request.session['return_pk'] = pk
+        #    request.session['return_tab'] = tab
+        #    request.session['return_page'] = 'r1000_alteracao_softhouse_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r1000_alteracao_softhouse').all()
+
+        if not request.POST:
+            request.session['return'] = request.META.get('HTTP_REFERER')
 
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),

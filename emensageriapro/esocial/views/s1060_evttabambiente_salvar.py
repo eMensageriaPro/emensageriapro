@@ -110,24 +110,10 @@ def salvar(request, pk=None, tab='master', output=None):
 
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
-
-                #    gravar_auditoria('{}',
-                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                #                 's1060_evttabambiente', obj.id, request.user.id, 1)
-                #else:
-                #
-                #    gravar_auditoria(json.dumps(model_to_dict(s1060_evttabambiente), indent=4, sort_keys=True, default=str),
-                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                #                     's1060_evttabambiente', pk, request.user.id, 2)
              
-                if request.session['return_page'] not in (
-                    's1060_evttabambiente_apagar',
-                    's1060_evttabambiente_salvar',
-                    's1060_evttabambiente'):
+                if 's1060-evttabambiente' not in request.session['return']:
 
-                    return redirect(
-                        request.session['return_page'],
-                        pk=request.session['return_pk'])
+                    return HttpResponseRedirect(request.session['return'])
 
                 if pk != obj.id:
 
@@ -200,13 +186,16 @@ def salvar(request, pk=None, tab='master', output=None):
         else:
             evento_totalizador = False
 
-        if tab or 's1060_evttabambiente' in request.session['return_page']:
-
-            request.session['return_pk'] = pk
-            request.session['return_tab'] = tab
-            request.session['return_page'] = 's1060_evttabambiente_salvar'
+        #if tab or 's1060_evttabambiente' in request.session['return_page']:
+        #
+        #    request.session['return_pk'] = pk
+        #    request.session['return_tab'] = tab
+        #    request.session['return_page'] = 's1060_evttabambiente_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1060_evttabambiente').all()
+
+        if not request.POST:
+            request.session['return'] = request.META.get('HTTP_REFERER')
 
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),

@@ -91,15 +91,14 @@ def apagar(request, pk):
 
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
 
-        if 's1010_inclusao_ideprocessocp' in request.session['return_page']:
-
+        if 's1010-inclusao-ideprocessocp' in request.session['return']:
             return redirect('s1010_inclusao_ideprocessocp')
 
         else:
+            return HttpResponseRedirect(request.session['return'])
 
-            return redirect(
-                request.session['return_page'],
-                pk=request.session['return_pk'])
+    else:
+        request.session['return'] = request.META.get('HTTP_REFERER')
 
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),

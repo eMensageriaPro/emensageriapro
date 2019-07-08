@@ -90,45 +90,10 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 obj = s1070_alteracao_novavalidade_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
-
-                #if not pk:
-                #
-                #    gravar_auditoria(
-                #        '{}',
-                #        json.dumps(
-                #            model_to_dict(obj),
-                #            indent=4,
-                #            sort_keys=True,
-                #            default=str),
-                #        's1070_alteracao_novavalidade',
-                #        obj.id,
-                #        request.user.id, 1)
-                #
-                #else:
-                #
-                #    gravar_auditoria(
-                #        json.dumps(
-                #            model_to_dict(s1070_alteracao_novavalidade),
-                #            indent=4,
-                #            sort_keys=True,
-                #            default=str),
-                #        json.dumps(
-                #            model_to_dict(obj),
-                #            indent=4,
-                #            sort_keys=True,
-                #            default=str),
-                #        's1070_alteracao_novavalidade',
-                #        pk,
-                #        request.user.id, 2)
                  
-                if request.session['return_page'] not in (
-                    's1070_alteracao_novavalidade_apagar',
-                    's1070_alteracao_novavalidade_salvar',
-                    's1070_alteracao_novavalidade'):
+                if 's1070-alteracao-novavalidade' not in request.session['return']:
 
-                    return redirect(
-                        request.session['return_page'],
-                        pk=request.session['return_pk'])
+                    return HttpResponseRedirect(request.session['return'])
 
                 if pk != obj.id:
 
@@ -167,13 +132,16 @@ def salvar(request, pk=None, tab='master', output=None):
 
         tabelas_secundarias = []
 
-        if tab or 's1070_alteracao_novavalidade' in request.session['return_page']:
-
-            request.session['return_pk'] = pk
-            request.session['return_tab'] = tab
-            request.session['return_page'] = 's1070_alteracao_novavalidade_salvar'
+        #if tab or 's1070_alteracao_novavalidade' in request.session['return_page']:
+        #
+        #    request.session['return_pk'] = pk
+        #    request.session['return_tab'] = tab
+        #    request.session['return_page'] = 's1070_alteracao_novavalidade_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1070_alteracao_novavalidade').all()
+
+        if not request.POST:
+            request.session['return'] = request.META.get('HTTP_REFERER')
 
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),

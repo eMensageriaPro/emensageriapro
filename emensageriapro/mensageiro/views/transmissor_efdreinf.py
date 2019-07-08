@@ -29,7 +29,7 @@ def desvincular_eventos_efdreinf(request, pk):
     cursor.execute("UPDATE %s SET transmissor_lote_efdreinf_id=Null WHERE id=%s" % (a.tabela, a.id))
     messages.success(request, 'Evento desvinculado com sucesso!')
 
-    return redirect('transmissor_lote_efdreinf_salvar', pk=a.pk, tab='transmissor_eventos_efdreinf')
+    return redirect('transmissor_lote_efdreinf_salvar_tab', pk=a.pk, tab='transmissor_eventos_efdreinf')
 
 
 @login_required
@@ -59,4 +59,4 @@ def vincular_eventos_efdreinf(request, pk):
 
     messages.success(request, '%s eventos foram vinculados com sucesso a este transmissor!' % n)
 
-    return redirect('transmissor_lote_efdreinf_salvar', pk=pk, tab='transmissor_eventos_efdreinf')
+    return redirect('transmissor_lote_efdreinf_salvar_tab', pk=pk, tab='transmissor_eventos_efdreinf')

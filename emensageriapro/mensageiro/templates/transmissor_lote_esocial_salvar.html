@@ -61,12 +61,12 @@
                         </li>
                         {% endif %}
                         <li {% if tab == 'transmissor_eventos_esocial' %}class="active"{% endif %}>
-    <a href="{% url 'transmissor_lote_esocial_salvar' pk=pk tab='transmissor_eventos_esocial' %}">
+    <a href="{% url 'transmissor_lote_esocial_salvar_tab' pk=pk tab='transmissor_eventos_esocial' %}">
         Eventos
     </a>
 </li>
 <li {% if tab == 'transmissor_eventos_esocial_totalizacoes' %}class="active"{% endif %}>
-    <a href="{% url 'transmissor_lote_esocial_salvar' pk=pk tab='transmissor_eventos_esocial_totalizacoes' %}">
+    <a href="{% url 'transmissor_lote_esocial_salvar_tab' pk=pk tab='transmissor_eventos_esocial_totalizacoes' %}">
         Totalizações
     </a>
 </li>
@@ -318,7 +318,7 @@
                                             {% if not output %}
                                                 <td>
                                                     <div>
-                                                        <a href="{% url a.tabela_salvar pk=a.id tab='master' %}">
+                                                        <a href="{% url a.tabela_salvar_tab pk=a.id tab='master' %}">
                                                             <button class="btn btn-primary">
                                                                 <i class="fa fa-fw fa-edit"></i>
                                                             </button>

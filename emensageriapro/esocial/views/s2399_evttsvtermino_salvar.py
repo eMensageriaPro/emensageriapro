@@ -110,24 +110,10 @@ def salvar(request, pk=None, tab='master', output=None):
 
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
-
-                #    gravar_auditoria('{}',
-                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                #                 's2399_evttsvtermino', obj.id, request.user.id, 1)
-                #else:
-                #
-                #    gravar_auditoria(json.dumps(model_to_dict(s2399_evttsvtermino), indent=4, sort_keys=True, default=str),
-                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                #                     's2399_evttsvtermino', pk, request.user.id, 2)
              
-                if request.session['return_page'] not in (
-                    's2399_evttsvtermino_apagar',
-                    's2399_evttsvtermino_salvar',
-                    's2399_evttsvtermino'):
+                if 's2399-evttsvtermino' not in request.session['return']:
 
-                    return redirect(
-                        request.session['return_page'],
-                        pk=request.session['return_pk'])
+                    return HttpResponseRedirect(request.session['return'])
 
                 if pk != obj.id:
 
@@ -200,13 +186,16 @@ def salvar(request, pk=None, tab='master', output=None):
         else:
             evento_totalizador = False
 
-        if tab or 's2399_evttsvtermino' in request.session['return_page']:
-
-            request.session['return_pk'] = pk
-            request.session['return_tab'] = tab
-            request.session['return_page'] = 's2399_evttsvtermino_salvar'
+        #if tab or 's2399_evttsvtermino' in request.session['return_page']:
+        #
+        #    request.session['return_pk'] = pk
+        #    request.session['return_tab'] = tab
+        #    request.session['return_page'] = 's2399_evttsvtermino_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2399_evttsvtermino').all()
+
+        if not request.POST:
+            request.session['return'] = request.META.get('HTTP_REFERER')
 
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),

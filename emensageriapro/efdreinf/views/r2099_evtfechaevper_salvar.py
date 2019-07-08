@@ -106,24 +106,10 @@ def salvar(request, pk=None, tab='master', output=None):
 
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
-
-                #    gravar_auditoria('{}',
-                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                #                 'r2099_evtfechaevper', obj.id, request.user.id, 1)
-                #else:
-                #
-                #    gravar_auditoria(json.dumps(model_to_dict(r2099_evtfechaevper), indent=4, sort_keys=True, default=str),
-                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                #                     'r2099_evtfechaevper', pk, request.user.id, 2)
              
-                if request.session['return_page'] not in (
-                    'r2099_evtfechaevper_apagar',
-                    'r2099_evtfechaevper_salvar',
-                    'r2099_evtfechaevper'):
+                if 'r2099-evtfechaevper' not in request.session['return']:
 
-                    return redirect(
-                        request.session['return_page'],
-                        pk=request.session['return_pk'])
+                    return HttpResponseRedirect(request.session['return'])
 
                 if pk != obj.id:
 
@@ -182,13 +168,16 @@ def salvar(request, pk=None, tab='master', output=None):
         else:
             evento_totalizador = False
 
-        if tab or 'r2099_evtfechaevper' in request.session['return_page']:
-
-            request.session['return_pk'] = pk
-            request.session['return_tab'] = tab
-            request.session['return_page'] = 'r2099_evtfechaevper_salvar'
+        #if tab or 'r2099_evtfechaevper' in request.session['return_page']:
+        #
+        #    request.session['return_pk'] = pk
+        #    request.session['return_tab'] = tab
+        #    request.session['return_page'] = 'r2099_evtfechaevper_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r2099_evtfechaevper').all()
+
+        if not request.POST:
+            request.session['return'] = request.META.get('HTTP_REFERER')
 
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),

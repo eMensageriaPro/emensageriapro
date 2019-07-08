@@ -29,7 +29,7 @@ def desvincular_eventos_esocial(request, pk):
     cursor.execute("UPDATE %s SET transmissor_lote_esocial_id=Null WHERE id=%s" % (a.tabela, a.id))
     messages.success(request, 'Evento desvinculado com sucesso!')
 
-    return redirect('transmissor_lote_esocial_salvar', pk=a.pk, tab='transmissor_eventos_esocial')
+    return redirect('transmissor_lote_esocial_salvar_tab', pk=a.pk, tab='transmissor_eventos_esocial')
 
 
 @login_required
@@ -58,4 +58,4 @@ def vincular_eventos_esocial(request, pk):
 
     messages.success(request, '%s eventos foram vinculados com sucesso a este transmissor!' % n)
 
-    return redirect('transmissor_lote_esocial_salvar', pk=pk, tab='transmissor_eventos_esocial')
+    return redirect('transmissor_lote_esocial_salvar_tab', pk=pk, tab='transmissor_eventos_esocial')

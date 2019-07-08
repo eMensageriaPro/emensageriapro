@@ -113,32 +113,39 @@ def assinar_esocial(request, xml, transmissor_id):
         tra = TransmissorLoteEsocial.objects. \
             get(id=transmissor_id)
 
-        if tra.transmissor.certificado:
+        if tra.transmissor:
 
-            cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.certificado.certificado)
-            cert_pass = tra.transmissor.certificado.senha
-            cert_pem_file = '/certificado/cert_%s.pem' % tra.transmissor.certificado.id
-            key_pem_file = '/certificado/key_%s.pem' % tra.transmissor.certificado.id
+            if tra.transmissor.certificado:
 
-            create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
-            cert_str = ler_arquivo(cert_pem_file)
-            key_str = ler_arquivo(key_pem_file)
-            root = etree.fromstring(xml)
+                cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.certificado.certificado)
+                cert_pass = tra.transmissor.certificado.senha
+                cert_pem_file = '/certificado/cert_%s.pem' % tra.transmissor.certificado.id
+                key_pem_file = '/certificado/key_%s.pem' % tra.transmissor.certificado.id
 
-            signed_root = XMLSigner(
-                method=methods.enveloped,
-                signature_algorithm='rsa-sha256',
-                digest_algorithm='sha256',
-                c14n_algorithm='http://www.w3.org/TR/2001/REC-xml-c14n-20010315').\
-                    sign(root, key=key_str, cert=cert_str)
+                create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
+                cert_str = ler_arquivo(cert_pem_file)
+                key_str = ler_arquivo(key_pem_file)
+                root = etree.fromstring(xml)
 
-            return etree.tostring(signed_root)
+                signed_root = XMLSigner(
+                    method=methods.enveloped,
+                    signature_algorithm='rsa-sha256',
+                    digest_algorithm='sha256',
+                    c14n_algorithm='http://www.w3.org/TR/2001/REC-xml-c14n-20010315').\
+                        sign(root, key=key_str, cert=cert_str)
+
+                return etree.tostring(signed_root)
+
+            else:
+
+                messages.error(request,
+                    '''O certificado não está configurado, 
+                       configure pelo menos um transmissor para o respectivo empregador!''')
 
         else:
 
             messages.error(request,
-                '''O certificado não está configurado, 
-                   configure pelo menos um transmissor para o respectivo empregador!''')
+                           '''O transmissor não está configurado!''')
 
     return xml
 
@@ -228,22 +235,27 @@ def send_xml(request, transmissor_id, service):
     tle = TransmissorLoteEsocial.objects. \
         get(id=transmissor_id)
 
-    if tle.transmissor.certificado:
+    if tle.transmissor:
 
-        cert_host = '%s/certificado/%s' % (BASE_DIR, tle.transmissor.certificado.certificado)
-        cert_pass = tle.transmissor.certificado.senha
-        cert_pem_file = '/certificado/cert_%s.pem' % tle.transmissor.certificado.id
-        key_pem_file = '/certificado/key_%s.pem' % tle.transmissor.certificado.id
+        if tle.transmissor.certificado:
 
-        create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
+            cert_host = '%s/certificado/%s' % (BASE_DIR, tle.transmissor.certificado.certificado)
+            cert_pass = tle.transmissor.certificado.senha
+            cert_pem_file = '/certificado/cert_%s.pem' % tle.transmissor.certificado.id
+            key_pem_file = '/certificado/key_%s.pem' % tle.transmissor.certificado.id
 
+            create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
+
+        else:
+
+            messages.error(request,
+                           'O certificado não está configurado ou não possuem eventos validados para envio neste lote!')
+            return None
     else:
 
         messages.error(request,
-                       'O certificado não está configurado ou não possuem eventos validados para envio neste lote!')
-
+                       'O Transmissor não está configurado!')
         return None
-
 
     transmissor_dados = {}
     transmissor_dados['empregador_tpinsc'] = tle.empregador_tpinsc

@@ -94,37 +94,44 @@ def assinar_efdreinf(request, xml, transmissor_id):
         tra = TransmissorLoteEfdreinf.objects. \
             get(id=transmissor_id)
 
-        if tra.transmissor.certificado:
+        if tra.transmissor:
 
-            cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.certificado.certificado)
-            cert_pass = tra.transmissor.certificado.senha
-            cert_pem_file = '/certificado/cert_%s.pem' % tra.transmissor.certificado.id
-            key_pem_file = '/certificado/key_%s.pem' % tra.transmissor.certificado.id
+            if tra.transmissor.certificado:
 
-            create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
+                cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.certificado.certificado)
+                cert_pass = tra.transmissor.certificado.senha
+                cert_pem_file = '/certificado/cert_%s.pem' % tra.transmissor.certificado.id
+                key_pem_file = '/certificado/key_%s.pem' % tra.transmissor.certificado.id
 
-            cert_str = ler_arquivo(cert_pem_file)
-            key_str = ler_arquivo(key_pem_file)
-            root = etree.fromstring(xml)
-            identidade = get_identidade_evento(xml)
+                create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
 
-            signed_root = XMLSigner(
-                method=methods.enveloped,
-                signature_algorithm=u'rsa-sha256',
-                digest_algorithm=u'sha256',
-                c14n_algorithm=u'http://www.w3.org/TR/2001/REC-xml-c14n-20010315'
-                ).sign(root,
-                       reference_uri='#' + identidade,
-                       key=key_str,
-                       cert=cert_str)
+                cert_str = ler_arquivo(cert_pem_file)
+                key_str = ler_arquivo(key_pem_file)
+                root = etree.fromstring(xml)
+                identidade = get_identidade_evento(xml)
 
-            return etree.tostring(signed_root)
+                signed_root = XMLSigner(
+                    method=methods.enveloped,
+                    signature_algorithm=u'rsa-sha256',
+                    digest_algorithm=u'sha256',
+                    c14n_algorithm=u'http://www.w3.org/TR/2001/REC-xml-c14n-20010315'
+                    ).sign(root,
+                           reference_uri='#' + identidade,
+                           key=key_str,
+                           cert=cert_str)
+
+                return etree.tostring(signed_root)
+
+            else:
+
+                messages.error(request,
+                               '''O certificado não está configurado,
+                                  configure pelo menos um transmissor para o respectivo empregador!''')
 
         else:
 
             messages.error(request,
-                           '''O certificado não está configurado,
-                              configure pelo menos um transmissor para o respectivo empregador!''')
+                           '''O transmissor não está configurado!''')
 
     return xml
 
@@ -204,21 +211,30 @@ def send_xml(request, transmissor_id, service):
     tra = TransmissorLoteEfdreinf.objects.\
             get(id=transmissor_id)
 
-    if tra.transmissor.certificado:
+    if tra.transmissor:
 
-        cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.certificado.certificado)
-        cert_pass = tra.transmissor.certificado.senha
-        cert_pem_file = '/certificado/cert_%s.pem' % tra.transmissor.certificado.id
-        key_pem_file = '/certificado/key_%s.pem' % tra.transmissor.certificado.id
+        if tra.transmissor.certificado:
 
-        create_pem_files(cert_host, cert_pass,
-                         cert_pem_file, key_pem_file)
+            cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.certificado.certificado)
+            cert_pass = tra.transmissor.certificado.senha
+            cert_pem_file = '/certificado/cert_%s.pem' % tra.transmissor.certificado.id
+            key_pem_file = '/certificado/key_%s.pem' % tra.transmissor.certificado.id
+
+            create_pem_files(cert_host, cert_pass,
+                             cert_pem_file, key_pem_file)
+
+        else:
+
+            messages.error(request, 'O certificado não está configurado ou não possuem eventos validados para envio neste lote!')
+
+            return None
 
     else:
 
-        messages.error(request, 'O certificado não está configurado ou não possuem eventos validados para envio neste lote!')
-
+        messages.error(request,
+                       'O Transmissor não está configurado!')
         return None
+
 
     dados = {}
     dados['contribuinte_tpinsc'] = tra.contribuinte_tpinsc

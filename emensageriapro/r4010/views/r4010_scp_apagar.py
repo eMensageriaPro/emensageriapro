@@ -91,15 +91,14 @@ def apagar(request, pk):
 
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
 
-        if 'r4010_scp' in request.session['return_page']:
-
+        if 'r4010-scp' in request.session['return']:
             return redirect('r4010_scp')
 
         else:
+            return HttpResponseRedirect(request.session['return'])
 
-            return redirect(
-                request.session['return_page'],
-                pk=request.session['return_pk'])
+    else:
+        request.session['return'] = request.META.get('HTTP_REFERER')
 
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),

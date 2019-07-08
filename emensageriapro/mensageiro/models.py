@@ -978,6 +978,9 @@ class TransmissorEventosEsocial(SoftDeletionModel):
     def tabela_validar_api(self):
         return self.tabela + '_validar_evento_api'
 
+    def tabela_salvar_tab(self):
+        return self.tabela + '_salvar_tab'
+
     def tabela_validar(self):
         return self.tabela + '_validar_evento'
 
@@ -1033,6 +1036,9 @@ class TransmissorEventosEfdreinf(SoftDeletionModel):
 
     def tabela_validar_api(self):
         return self.tabela + '_validar_evento_api'
+
+    def tabela_salvar_tab(self):
+        return self.tabela + '_salvar_tab'
 
     def tabela_validar(self):
         return self.tabela + '_validar_evento'

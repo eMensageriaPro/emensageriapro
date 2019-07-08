@@ -91,15 +91,14 @@ def apagar(request, pk):
 
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
 
-        if 's1210_detpgtofer_penalim' in request.session['return_page']:
-
+        if 's1210-detpgtofer-penalim' in request.session['return']:
             return redirect('s1210_detpgtofer_penalim')
 
         else:
+            return HttpResponseRedirect(request.session['return'])
 
-            return redirect(
-                request.session['return_page'],
-                pk=request.session['return_pk'])
+    else:
+        request.session['return'] = request.META.get('HTTP_REFERER')
 
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),

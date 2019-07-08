@@ -183,14 +183,9 @@ def salvar(request, pk=None, tab='master', output=None):
                 messages.success(request, 'Salvo com sucesso!')
                 #retornos_eventos_campos_multiple_passo2
 
-                if request.session['return_page'] not in (
-                    'retornos_eventos_apagar',
-                    'retornos_eventos_salvar',
-                    'retornos_eventos'):
+                if 'retornos-eventos' not in request.session['return']:
 
-                    return redirect(
-                        request.session['return_page'],
-                        pk=request.session['return_pk'])
+                    return HttpResponseRedirect(request.session['return'])
 
                 if pk != obj.id:
 
@@ -608,11 +603,14 @@ def salvar(request, pk=None, tab='master', output=None):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
 
-        if tab or 'retornos_eventos' in request.session['return_page']:
+        #if tab or 'retornos_eventos' in request.session['return_page']:
+        #
+        #     request.session['return_pk'] = pk
+        #     request.session['return_tab'] = tab
+        #     request.session['return_page'] = 'retornos_eventos_salvar'
 
-            request.session['return_pk'] = pk
-            request.session['return_tab'] = tab
-            request.session['return_page'] = 'retornos_eventos_salvar'
+        if not request.POST:
+            request.session['return'] = request.META.get('HTTP_REFERER')
 
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
