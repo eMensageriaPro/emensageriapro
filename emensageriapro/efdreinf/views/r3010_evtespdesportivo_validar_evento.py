@@ -92,6 +92,7 @@ def validar_evento_funcao(request, pk):
     #
 
     arquivo = '/arquivos/Eventos/r3010_evtespdesportivo/%s.xml' % (r3010_evtespdesportivo.identidade)
+
     os.system('mkdir -p %s/arquivos/Eventos/r3010_evtespdesportivo/' % BASE_DIR)
     lista = []
     tipo = 'efdreinf'

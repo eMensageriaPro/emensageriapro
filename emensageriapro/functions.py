@@ -171,8 +171,8 @@ def identidade_evento(obj):
 
 
 def get_xmlns(arquivo):
+    # Capturando XMLNS do XSD
     from emensageriapro.padrao import ler_arquivo
-
     texto = ler_arquivo(arquivo)
     b = texto.split('xmlns="')
     c = b[1].split('"')
@@ -180,17 +180,28 @@ def get_xmlns(arquivo):
 
 
 def get_evento_nome(texto):
-    texto = texto.replace('/">', '">').replace('id="', 'Id="')
-    a = texto.split(' Id="')
-    b = a[0].split('"><')
-    return b[len(b)-1]
+    import untangle
+    if 'eSocial' in texto:
+        doc = untangle.parse(texto)
+        xmlns_lista = doc.eSocial['xmlns'].split('/')
+        return xmlns_lista[len(xmlns_lista)-2]
+    elif 'Reinf' in texto:
+        doc = untangle.parse(texto)
+        xmlns_lista = doc.Reinf['xmlns'].split('/')
+        return xmlns_lista[len(xmlns_lista)-2]
 
 
 def get_versao_evento(texto):
     texto = texto.replace('/">', '">')
-    a = texto.split('">')
-    b = a[0].split('/')
-    return b[len(b)-1]
+    import untangle
+    if 'eSocial' in texto:
+        doc = untangle.parse(texto)
+        xmlns_lista = doc.eSocial['xmlns'].split('/')
+        return xmlns_lista[len(xmlns_lista)-1]
+    elif 'Reinf' in texto:
+        doc = untangle.parse(texto)
+        xmlns_lista = doc.Reinf['xmlns'].split('/')
+        return xmlns_lista[len(xmlns_lista)-1]
 
 
 def get_identidade_evento(texto):

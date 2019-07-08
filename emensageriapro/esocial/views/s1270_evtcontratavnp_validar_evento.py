@@ -92,6 +92,7 @@ def validar_evento_funcao(request, pk):
     #
 
     arquivo = '/arquivos/Eventos/s1270_evtcontratavnp/%s.xml' % (s1270_evtcontratavnp.identidade)
+
     os.system('mkdir -p %s/arquivos/Eventos/s1270_evtcontratavnp/' % BASE_DIR)
     lista = []
     tipo = 'esocial'

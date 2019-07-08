@@ -112,12 +112,11 @@ def salvar_arquivo_esocial(arquivo, texto, permite_recuperacao):
 
     arquivo1 = BASE_DIR + arquivo
 
-    # file = open(arquivo1, "w")
-    # file.write(texto)
-    # file.close()
-
     file = codecs.open(arquivo1, "w", "utf-8")
-    file.write(texto)
+    try:
+        file.write(texto)
+    except:
+        file.write(texto.decode())
     file.close()
 
     gravar_nome_arquivo(arquivo, permite_recuperacao)
@@ -133,7 +132,10 @@ def salvar_arquivo_efdreinf(arquivo, texto, permite_recuperacao):
     arquivo1 = BASE_DIR + arquivo
 
     file = codecs.open(arquivo1, "w", "utf-8")
-    file.write(texto)
+    try:
+        file.write(texto)
+    except:
+        file.write(texto.decode())
     file.close()
 
     gravar_nome_arquivo(arquivo, permite_recuperacao)
@@ -174,6 +176,7 @@ def create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file):
 
 def get_identidade_evento(xml):
 
+    xml = xml.replace('Id="', 'id="')
     a = xml.split('id="')
     b = a[1].split('"')
 

@@ -92,6 +92,7 @@ def validar_evento_funcao(request, pk):
     #
 
     arquivo = '/arquivos/Eventos/s2416_evtcdbenalt/%s.xml' % (s2416_evtcdbenalt.identidade)
+
     os.system('mkdir -p %s/arquivos/Eventos/s2416_evtcdbenalt/' % BASE_DIR)
     lista = []
     tipo = 'esocial'

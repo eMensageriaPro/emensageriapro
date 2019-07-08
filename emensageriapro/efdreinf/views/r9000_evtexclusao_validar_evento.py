@@ -92,6 +92,7 @@ def validar_evento_funcao(request, pk):
     #
 
     arquivo = '/arquivos/Eventos/r9000_evtexclusao/%s.xml' % (r9000_evtexclusao.identidade)
+
     os.system('mkdir -p %s/arquivos/Eventos/r9000_evtexclusao/' % BASE_DIR)
     lista = []
     tipo = 'efdreinf'

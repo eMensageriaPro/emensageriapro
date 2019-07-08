@@ -84,11 +84,15 @@ def multiply(value, arg):
     return value*arg
 
 
+
 @register.filter(name='get_opcoes_titulo')
 def get_opcoes_titulo(codigo, opcoes_id):
     from emensageriapro.tabelas.models import Opcoes
-    opcao = Opcoes.objects.get(opcoes_id=opcoes_id, codigo=codigo)
-    return '%(codigo)s - %(titulo)s' % opcao.__dict__
+    try:
+        opcao = Opcoes.objects.get(opcoes_id=opcoes_id, codigo=codigo)
+        return '%(codigo)s - %(titulo)s' % opcao.__dict__
+    except:
+        return codigo
 
 
 @register.filter(name='lista_json_table_esocial')

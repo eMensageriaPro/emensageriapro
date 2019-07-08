@@ -42,11 +42,13 @@ def validar_schema(request, file_schema_xsd, file_xml, lang=None):
     from googletrans import Translator
     import os.path
 
-    file_schema_xsd = BASE_DIR+'/xsd/' + file_schema_xsd
+    file_schema_xsd = BASE_DIR + '/xsd/' + file_schema_xsd
+
+    # print file_schema_xsd
 
     if os.path.isfile(file_schema_xsd):
 
-        file_xml = BASE_DIR+'/'+file_xml
+        file_xml = BASE_DIR + '/' + file_xml
 
         schema = etree.parse(file_schema_xsd)
         xmlschema = etree.XMLSchema(schema)

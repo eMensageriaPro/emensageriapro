@@ -92,6 +92,7 @@ def validar_evento_funcao(request, pk):
     #
 
     arquivo = '/arquivos/Eventos/s2240_evtexprisco/%s.xml' % (s2240_evtexprisco.identidade)
+
     os.system('mkdir -p %s/arquivos/Eventos/s2240_evtexprisco/' % BASE_DIR)
     lista = []
     tipo = 'esocial'

@@ -196,7 +196,7 @@ def scripts_processar_arquivos(request, tab):
 
                 if not quant_erros or (quant_erros == 1 and 'Signature' in str(error_list)):
 
-                    dados_importacao = importar_arquivo(arquivo, request, 1)
+                    dados_importacao = importar_arquivo(arquivo, request, False)
 
                     dados_eventos['evento'] = dados_importacao['evento']
                     dados_eventos['status'] = STATUS_IMPORT_PROCESSADO

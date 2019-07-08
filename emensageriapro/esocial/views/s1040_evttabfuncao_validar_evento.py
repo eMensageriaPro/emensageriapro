@@ -92,6 +92,7 @@ def validar_evento_funcao(request, pk):
     #
 
     arquivo = '/arquivos/Eventos/s1040_evttabfuncao/%s.xml' % (s1040_evttabfuncao.identidade)
+
     os.system('mkdir -p %s/arquivos/Eventos/s1040_evttabfuncao/' % BASE_DIR)
     lista = []
     tipo = 'esocial'

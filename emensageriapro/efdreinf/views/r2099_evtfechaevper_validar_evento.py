@@ -92,6 +92,7 @@ def validar_evento_funcao(request, pk):
     #
 
     arquivo = '/arquivos/Eventos/r2099_evtfechaevper/%s.xml' % (r2099_evtfechaevper.identidade)
+
     os.system('mkdir -p %s/arquivos/Eventos/r2099_evtfechaevper/' % BASE_DIR)
     lista = []
     tipo = 'efdreinf'
