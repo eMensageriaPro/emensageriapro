@@ -51,9 +51,7 @@
     </style>
 </head>
 <body>
-<h1>
-    Importação de Arquivos
-</h1>
+<h3>Importação de Arquivos</h3>
 Gerado em <strong>{{ data|date:"SHORT_DATE_FORMAT" }}</strong>
 por <strong>{{ user.first_name }} {{ user.last_name }}</strong>
 <br><br>
@@ -86,32 +84,32 @@ por <strong>{{ user.first_name }} {{ user.last_name }}</strong>
                 </font>
             </td>
         </tr>
-        <tr>
-            <td colspan="3">
-                Aguardando:<br>
-                <font size="11px">
-                    <strong>{{ arquivo.quant_aquardando }}</strong>
-                </font>
-            </td>
-            <td colspan="3">
-                Processado:<br>
-                <font size="11px">
-                    <strong>{{ arquivo.quant_processado }}</strong>
-                </font>
-            </td>
-            <td colspan="3">
-                Erros:<br>
-                <font size="11px">
-                    <strong>{{ arquivo.quant_error }}</strong>
-                </font>
-            </td>
-            <td colspan="3">
-                Total:<br>
-                <font size="11px">
-                    <strong>{{ arquivo.quant_total }}</strong>
-                </font>
-            </td>
-        </tr>
+{#        <tr>#}
+{#            <td colspan="3">#}
+{#                Aguardando:<br>#}
+{#                <font size="11px">#}
+{#                    <strong>{{ arquivo.quant_aquardando }}</strong>#}
+{#                </font>#}
+{#            </td>#}
+{#            <td colspan="3">#}
+{#                Processado:<br>#}
+{#                <font size="11px">#}
+{#                    <strong>{{ arquivo.quant_processado }}</strong>#}
+{#                </font>#}
+{#            </td>#}
+{#            <td colspan="3">#}
+{#                Erros:<br>#}
+{#                <font size="11px">#}
+{#                    <strong>{{ arquivo.quant_error }}</strong>#}
+{#                </font>#}
+{#            </td>#}
+{#            <td colspan="3">#}
+{#                Total:<br>#}
+{#                <font size="11px">#}
+{#                    <strong>{{ arquivo.quant_total }}</strong>#}
+{#                </font>#}
+{#            </td>#}
+{#        </tr>#}
     </table>
 
 
