@@ -1076,10 +1076,13 @@ class TransmissorEventosEsocialTotalizacoes(SoftDeletionModel):
     ordem = models.IntegerField()
     tpinsc = models.CharField(max_length=1, choices=TPINSC_TRANSMISSOR_EVENTOS)
     nrinsc = models.CharField(max_length=15)
-    url_recibo = models.CharField(max_length=100, blank=True, null=True)
+    # url_recibo = models.CharField(max_length=100, blank=True, null=True)
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+
+    def url_recibo(self):
+        return None
 
     def tabela_verificar(self):
         return self.tabela + '_verificar'
@@ -1113,10 +1116,13 @@ class TransmissorEventosEfdreinfTotalizacoes(SoftDeletionModel):
     ordem = models.IntegerField()
     tpinsc = models.CharField(max_length=1, choices=TPINSC_TRANSMISSOR_EVENTOS)
     nrinsc = models.CharField(max_length=15)
-    url_recibo = models.CharField(max_length=100, blank=True, null=True)
+    # url_recibo = models.CharField(max_length=100, blank=True, null=True)
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+
+    def url_recibo(self):
+        return None
 
     def tabela_verificar(self):
         return self.tabela + '_verificar'
