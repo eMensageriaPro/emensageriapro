@@ -1087,6 +1087,9 @@ class TransmissorEventosEsocialTotalizacoes(SoftDeletionModel):
     def tabela_verificar(self):
         return self.tabela + '_verificar'
 
+    def tabela_salvar_tab(self):
+        return self.tabela + '_salvar_tab'
+
     def tabela_recibo(self):
         return self.tabela + '_recibo'
 
@@ -1126,6 +1129,9 @@ class TransmissorEventosEfdreinfTotalizacoes(SoftDeletionModel):
 
     def tabela_verificar(self):
         return self.tabela + '_verificar'
+
+    def tabela_salvar_tab(self):
+        return self.tabela + '_salvar_tab'
 
     def tabela_recibo(self):
         return self.tabela + '_recibo'
