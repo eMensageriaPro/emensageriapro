@@ -4,32 +4,11 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
-
-
-import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
-from django.db.models import Count
-from emensageriapro.padrao import *
-from emensageriapro.mensageiro.forms import *
+from django.shortcuts import redirect, get_object_or_404
+
 from emensageriapro.mensageiro.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios
-import base64
-
-
-@login_required
-def desvincular_eventos_efdreinf(request, pk):
-
-    from django.db import connections
-        
-    a = TransmissorEventosEfdreinf.objects.get(identidade=pk)
-    cursor = connections['default'].cursor()
-    cursor.execute("UPDATE %s SET transmissor_lote_efdreinf_id=Null WHERE id=%s" % (a.tabela, a.id))
-    messages.success(request, 'Evento desvinculado com sucesso!')
-
-    return redirect('transmissor_lote_efdreinf_salvar_tab', pk=a.pk, tab='transmissor_eventos_efdreinf')
 
 
 @login_required
