@@ -61,12 +61,12 @@
                         </li>
                         {% endif %}
                         <li {% if tab == 'transmissor_eventos_efdreinf' %}class="active"{% endif %}>
-    <a href="{% url 'transmissor_lote_efdreinf_salvar_tab'  pk=pk tab='transmissor_eventos_efdreinf' %}">
+    <a href="{% url 'transmissor_lote_efdreinf_salvar_tab' pk=pk tab='transmissor_eventos_efdreinf' %}">
         Eventos
     </a>
 </li>
 <li {% if tab == 'transmissor_eventos_efdreinf_totalizacoes' %}class="active"{% endif %}>
-    <a href="{% url 'transmissor_lote_efdreinf_salvar_tab'  pk=pk tab='transmissor_eventos_efdreinf_totalizacoes' %}">
+    <a href="{% url 'transmissor_lote_efdreinf_salvar_tab' pk=pk tab='transmissor_eventos_efdreinf_totalizacoes' %}">
         Totalizações
     </a>
 </li>
@@ -319,7 +319,7 @@
                                                                 <i class="fa fa-fw fa-edit"></i>
                                                             </button>
                                                         </a>
-                                                        <a href="{% url 'desvincular_eventos_efdreinf' pk=a.identidade %}">
+                                                        <a href="{% url a.tabela_desvincular_evento pk=a.id %}">
                                                             <button class="btn btn-danger">
                                                                 <i class="fa fa-fw fa-unlink"></i>
                                                             </button>
@@ -373,11 +373,6 @@
                                                         <a href="{% url a.tabela_salvar_tab pk=a.id tab='master' %}">
                                                             <button class="btn btn-primary">
                                                                 <i class="fa fa-fw fa-edit"></i>
-                                                            </button>
-                                                        </a>
-                                                        <a href="{% url 'desvincular_eventos_efdreinf' pk=a.identidade %}">
-                                                            <button class="btn btn-danger">
-                                                                <i class="fa fa-fw fa-unlink"></i>
                                                             </button>
                                                         </a>
                                                     </div>

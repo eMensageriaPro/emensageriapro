@@ -975,6 +975,9 @@ class TransmissorEventosEsocial(SoftDeletionModel):
     validacoes = models.TextField(blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, default=0)
 
+    def tabela_desvincular_evento(self):
+        return self.tabela + '_desvincular_evento'
+
     def tabela_validar_api(self):
         return self.tabela + '_validar_evento_api'
 
@@ -1034,6 +1037,9 @@ class TransmissorEventosEfdreinf(SoftDeletionModel):
     retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
         related_name='%(class)s_retornos_r9012', blank=True, null=True)
 
+    def tabela_desvincular_evento(self):
+        return self.tabela + '_desvincular_evento'
+
     def tabela_validar_api(self):
         return self.tabela + '_validar_evento_api'
 
@@ -1076,7 +1082,6 @@ class TransmissorEventosEsocialTotalizacoes(SoftDeletionModel):
     ordem = models.IntegerField()
     tpinsc = models.CharField(max_length=1, choices=TPINSC_TRANSMISSOR_EVENTOS)
     nrinsc = models.CharField(max_length=15)
-    # url_recibo = models.CharField(max_length=100, blank=True, null=True)
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, default=0)
@@ -1119,7 +1124,6 @@ class TransmissorEventosEfdreinfTotalizacoes(SoftDeletionModel):
     ordem = models.IntegerField()
     tpinsc = models.CharField(max_length=1, choices=TPINSC_TRANSMISSOR_EVENTOS)
     nrinsc = models.CharField(max_length=15)
-    # url_recibo = models.CharField(max_length=100, blank=True, null=True)
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, default=0)

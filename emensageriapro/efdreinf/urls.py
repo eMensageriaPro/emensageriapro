@@ -21,6 +21,7 @@ from emensageriapro.efdreinf.views import r1000_evtinfocontri_alterar_identidade
 from emensageriapro.efdreinf.views import r1000_evtinfocontri_criar_exclusao as r1000_evtinfocontri_criar_exclusao_views
 from emensageriapro.efdreinf.views import r1000_evtinfocontri_duplicar as r1000_evtinfocontri_duplicar_views
 from emensageriapro.efdreinf.views import r1000_evtinfocontri_alterar_status_para_importado as r1000_evtinfocontri_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r1000_evtinfocontri_desvincular_evento as r1000_evtinfocontri_desvincular_evento_views
 from emensageriapro.efdreinf.views import r1070_evttabprocesso_apagar as r1070_evttabprocesso_apagar_views
 from emensageriapro.efdreinf.views import r1070_evttabprocesso_listar as r1070_evttabprocesso_listar_views
 from emensageriapro.efdreinf.views import r1070_evttabprocesso_salvar as r1070_evttabprocesso_salvar_views
@@ -38,6 +39,7 @@ from emensageriapro.efdreinf.views import r1070_evttabprocesso_alterar_identidad
 from emensageriapro.efdreinf.views import r1070_evttabprocesso_criar_exclusao as r1070_evttabprocesso_criar_exclusao_views
 from emensageriapro.efdreinf.views import r1070_evttabprocesso_duplicar as r1070_evttabprocesso_duplicar_views
 from emensageriapro.efdreinf.views import r1070_evttabprocesso_alterar_status_para_importado as r1070_evttabprocesso_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r1070_evttabprocesso_desvincular_evento as r1070_evttabprocesso_desvincular_evento_views
 from emensageriapro.efdreinf.views import r2010_evtservtom_apagar as r2010_evtservtom_apagar_views
 from emensageriapro.efdreinf.views import r2010_evtservtom_listar as r2010_evtservtom_listar_views
 from emensageriapro.efdreinf.views import r2010_evtservtom_salvar as r2010_evtservtom_salvar_views
@@ -55,6 +57,7 @@ from emensageriapro.efdreinf.views import r2010_evtservtom_alterar_identidade as
 from emensageriapro.efdreinf.views import r2010_evtservtom_criar_exclusao as r2010_evtservtom_criar_exclusao_views
 from emensageriapro.efdreinf.views import r2010_evtservtom_duplicar as r2010_evtservtom_duplicar_views
 from emensageriapro.efdreinf.views import r2010_evtservtom_alterar_status_para_importado as r2010_evtservtom_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r2010_evtservtom_desvincular_evento as r2010_evtservtom_desvincular_evento_views
 from emensageriapro.efdreinf.views import r2020_evtservprest_apagar as r2020_evtservprest_apagar_views
 from emensageriapro.efdreinf.views import r2020_evtservprest_listar as r2020_evtservprest_listar_views
 from emensageriapro.efdreinf.views import r2020_evtservprest_salvar as r2020_evtservprest_salvar_views
@@ -72,6 +75,7 @@ from emensageriapro.efdreinf.views import r2020_evtservprest_alterar_identidade 
 from emensageriapro.efdreinf.views import r2020_evtservprest_criar_exclusao as r2020_evtservprest_criar_exclusao_views
 from emensageriapro.efdreinf.views import r2020_evtservprest_duplicar as r2020_evtservprest_duplicar_views
 from emensageriapro.efdreinf.views import r2020_evtservprest_alterar_status_para_importado as r2020_evtservprest_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r2020_evtservprest_desvincular_evento as r2020_evtservprest_desvincular_evento_views
 from emensageriapro.efdreinf.views import r2030_evtassocdesprec_apagar as r2030_evtassocdesprec_apagar_views
 from emensageriapro.efdreinf.views import r2030_evtassocdesprec_listar as r2030_evtassocdesprec_listar_views
 from emensageriapro.efdreinf.views import r2030_evtassocdesprec_salvar as r2030_evtassocdesprec_salvar_views
@@ -89,6 +93,7 @@ from emensageriapro.efdreinf.views import r2030_evtassocdesprec_alterar_identida
 from emensageriapro.efdreinf.views import r2030_evtassocdesprec_criar_exclusao as r2030_evtassocdesprec_criar_exclusao_views
 from emensageriapro.efdreinf.views import r2030_evtassocdesprec_duplicar as r2030_evtassocdesprec_duplicar_views
 from emensageriapro.efdreinf.views import r2030_evtassocdesprec_alterar_status_para_importado as r2030_evtassocdesprec_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r2030_evtassocdesprec_desvincular_evento as r2030_evtassocdesprec_desvincular_evento_views
 from emensageriapro.efdreinf.views import r2040_evtassocdesprep_apagar as r2040_evtassocdesprep_apagar_views
 from emensageriapro.efdreinf.views import r2040_evtassocdesprep_listar as r2040_evtassocdesprep_listar_views
 from emensageriapro.efdreinf.views import r2040_evtassocdesprep_salvar as r2040_evtassocdesprep_salvar_views
@@ -106,6 +111,7 @@ from emensageriapro.efdreinf.views import r2040_evtassocdesprep_alterar_identida
 from emensageriapro.efdreinf.views import r2040_evtassocdesprep_criar_exclusao as r2040_evtassocdesprep_criar_exclusao_views
 from emensageriapro.efdreinf.views import r2040_evtassocdesprep_duplicar as r2040_evtassocdesprep_duplicar_views
 from emensageriapro.efdreinf.views import r2040_evtassocdesprep_alterar_status_para_importado as r2040_evtassocdesprep_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r2040_evtassocdesprep_desvincular_evento as r2040_evtassocdesprep_desvincular_evento_views
 from emensageriapro.efdreinf.views import r2050_evtcomprod_apagar as r2050_evtcomprod_apagar_views
 from emensageriapro.efdreinf.views import r2050_evtcomprod_listar as r2050_evtcomprod_listar_views
 from emensageriapro.efdreinf.views import r2050_evtcomprod_salvar as r2050_evtcomprod_salvar_views
@@ -123,6 +129,7 @@ from emensageriapro.efdreinf.views import r2050_evtcomprod_alterar_identidade as
 from emensageriapro.efdreinf.views import r2050_evtcomprod_criar_exclusao as r2050_evtcomprod_criar_exclusao_views
 from emensageriapro.efdreinf.views import r2050_evtcomprod_duplicar as r2050_evtcomprod_duplicar_views
 from emensageriapro.efdreinf.views import r2050_evtcomprod_alterar_status_para_importado as r2050_evtcomprod_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r2050_evtcomprod_desvincular_evento as r2050_evtcomprod_desvincular_evento_views
 from emensageriapro.efdreinf.views import r2060_evtcprb_apagar as r2060_evtcprb_apagar_views
 from emensageriapro.efdreinf.views import r2060_evtcprb_listar as r2060_evtcprb_listar_views
 from emensageriapro.efdreinf.views import r2060_evtcprb_salvar as r2060_evtcprb_salvar_views
@@ -140,6 +147,7 @@ from emensageriapro.efdreinf.views import r2060_evtcprb_alterar_identidade as r2
 from emensageriapro.efdreinf.views import r2060_evtcprb_criar_exclusao as r2060_evtcprb_criar_exclusao_views
 from emensageriapro.efdreinf.views import r2060_evtcprb_duplicar as r2060_evtcprb_duplicar_views
 from emensageriapro.efdreinf.views import r2060_evtcprb_alterar_status_para_importado as r2060_evtcprb_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r2060_evtcprb_desvincular_evento as r2060_evtcprb_desvincular_evento_views
 from emensageriapro.efdreinf.views import r2070_evtpgtosdivs_apagar as r2070_evtpgtosdivs_apagar_views
 from emensageriapro.efdreinf.views import r2070_evtpgtosdivs_listar as r2070_evtpgtosdivs_listar_views
 from emensageriapro.efdreinf.views import r2070_evtpgtosdivs_salvar as r2070_evtpgtosdivs_salvar_views
@@ -157,6 +165,7 @@ from emensageriapro.efdreinf.views import r2070_evtpgtosdivs_alterar_identidade 
 from emensageriapro.efdreinf.views import r2070_evtpgtosdivs_criar_exclusao as r2070_evtpgtosdivs_criar_exclusao_views
 from emensageriapro.efdreinf.views import r2070_evtpgtosdivs_duplicar as r2070_evtpgtosdivs_duplicar_views
 from emensageriapro.efdreinf.views import r2070_evtpgtosdivs_alterar_status_para_importado as r2070_evtpgtosdivs_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r2070_evtpgtosdivs_desvincular_evento as r2070_evtpgtosdivs_desvincular_evento_views
 from emensageriapro.efdreinf.views import r2098_evtreabreevper_apagar as r2098_evtreabreevper_apagar_views
 from emensageriapro.efdreinf.views import r2098_evtreabreevper_listar as r2098_evtreabreevper_listar_views
 from emensageriapro.efdreinf.views import r2098_evtreabreevper_salvar as r2098_evtreabreevper_salvar_views
@@ -174,6 +183,7 @@ from emensageriapro.efdreinf.views import r2098_evtreabreevper_alterar_identidad
 from emensageriapro.efdreinf.views import r2098_evtreabreevper_criar_exclusao as r2098_evtreabreevper_criar_exclusao_views
 from emensageriapro.efdreinf.views import r2098_evtreabreevper_duplicar as r2098_evtreabreevper_duplicar_views
 from emensageriapro.efdreinf.views import r2098_evtreabreevper_alterar_status_para_importado as r2098_evtreabreevper_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r2098_evtreabreevper_desvincular_evento as r2098_evtreabreevper_desvincular_evento_views
 from emensageriapro.efdreinf.views import r2099_evtfechaevper_apagar as r2099_evtfechaevper_apagar_views
 from emensageriapro.efdreinf.views import r2099_evtfechaevper_listar as r2099_evtfechaevper_listar_views
 from emensageriapro.efdreinf.views import r2099_evtfechaevper_salvar as r2099_evtfechaevper_salvar_views
@@ -191,6 +201,7 @@ from emensageriapro.efdreinf.views import r2099_evtfechaevper_alterar_identidade
 from emensageriapro.efdreinf.views import r2099_evtfechaevper_criar_exclusao as r2099_evtfechaevper_criar_exclusao_views
 from emensageriapro.efdreinf.views import r2099_evtfechaevper_duplicar as r2099_evtfechaevper_duplicar_views
 from emensageriapro.efdreinf.views import r2099_evtfechaevper_alterar_status_para_importado as r2099_evtfechaevper_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r2099_evtfechaevper_desvincular_evento as r2099_evtfechaevper_desvincular_evento_views
 from emensageriapro.efdreinf.views import r3010_evtespdesportivo_apagar as r3010_evtespdesportivo_apagar_views
 from emensageriapro.efdreinf.views import r3010_evtespdesportivo_listar as r3010_evtespdesportivo_listar_views
 from emensageriapro.efdreinf.views import r3010_evtespdesportivo_salvar as r3010_evtespdesportivo_salvar_views
@@ -208,6 +219,7 @@ from emensageriapro.efdreinf.views import r3010_evtespdesportivo_alterar_identid
 from emensageriapro.efdreinf.views import r3010_evtespdesportivo_criar_exclusao as r3010_evtespdesportivo_criar_exclusao_views
 from emensageriapro.efdreinf.views import r3010_evtespdesportivo_duplicar as r3010_evtespdesportivo_duplicar_views
 from emensageriapro.efdreinf.views import r3010_evtespdesportivo_alterar_status_para_importado as r3010_evtespdesportivo_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r3010_evtespdesportivo_desvincular_evento as r3010_evtespdesportivo_desvincular_evento_views
 from emensageriapro.efdreinf.views import r4010_evtretpf_apagar as r4010_evtretpf_apagar_views
 from emensageriapro.efdreinf.views import r4010_evtretpf_listar as r4010_evtretpf_listar_views
 from emensageriapro.efdreinf.views import r4010_evtretpf_salvar as r4010_evtretpf_salvar_views
@@ -225,6 +237,7 @@ from emensageriapro.efdreinf.views import r4010_evtretpf_alterar_identidade as r
 from emensageriapro.efdreinf.views import r4010_evtretpf_criar_exclusao as r4010_evtretpf_criar_exclusao_views
 from emensageriapro.efdreinf.views import r4010_evtretpf_duplicar as r4010_evtretpf_duplicar_views
 from emensageriapro.efdreinf.views import r4010_evtretpf_alterar_status_para_importado as r4010_evtretpf_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r4010_evtretpf_desvincular_evento as r4010_evtretpf_desvincular_evento_views
 from emensageriapro.efdreinf.views import r4020_evtretpj_apagar as r4020_evtretpj_apagar_views
 from emensageriapro.efdreinf.views import r4020_evtretpj_listar as r4020_evtretpj_listar_views
 from emensageriapro.efdreinf.views import r4020_evtretpj_salvar as r4020_evtretpj_salvar_views
@@ -242,6 +255,7 @@ from emensageriapro.efdreinf.views import r4020_evtretpj_alterar_identidade as r
 from emensageriapro.efdreinf.views import r4020_evtretpj_criar_exclusao as r4020_evtretpj_criar_exclusao_views
 from emensageriapro.efdreinf.views import r4020_evtretpj_duplicar as r4020_evtretpj_duplicar_views
 from emensageriapro.efdreinf.views import r4020_evtretpj_alterar_status_para_importado as r4020_evtretpj_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r4020_evtretpj_desvincular_evento as r4020_evtretpj_desvincular_evento_views
 from emensageriapro.efdreinf.views import r4040_evtbenefnid_apagar as r4040_evtbenefnid_apagar_views
 from emensageriapro.efdreinf.views import r4040_evtbenefnid_listar as r4040_evtbenefnid_listar_views
 from emensageriapro.efdreinf.views import r4040_evtbenefnid_salvar as r4040_evtbenefnid_salvar_views
@@ -259,6 +273,7 @@ from emensageriapro.efdreinf.views import r4040_evtbenefnid_alterar_identidade a
 from emensageriapro.efdreinf.views import r4040_evtbenefnid_criar_exclusao as r4040_evtbenefnid_criar_exclusao_views
 from emensageriapro.efdreinf.views import r4040_evtbenefnid_duplicar as r4040_evtbenefnid_duplicar_views
 from emensageriapro.efdreinf.views import r4040_evtbenefnid_alterar_status_para_importado as r4040_evtbenefnid_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r4040_evtbenefnid_desvincular_evento as r4040_evtbenefnid_desvincular_evento_views
 from emensageriapro.efdreinf.views import r4098_evtreab_apagar as r4098_evtreab_apagar_views
 from emensageriapro.efdreinf.views import r4098_evtreab_listar as r4098_evtreab_listar_views
 from emensageriapro.efdreinf.views import r4098_evtreab_salvar as r4098_evtreab_salvar_views
@@ -276,6 +291,7 @@ from emensageriapro.efdreinf.views import r4098_evtreab_alterar_identidade as r4
 from emensageriapro.efdreinf.views import r4098_evtreab_criar_exclusao as r4098_evtreab_criar_exclusao_views
 from emensageriapro.efdreinf.views import r4098_evtreab_duplicar as r4098_evtreab_duplicar_views
 from emensageriapro.efdreinf.views import r4098_evtreab_alterar_status_para_importado as r4098_evtreab_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r4098_evtreab_desvincular_evento as r4098_evtreab_desvincular_evento_views
 from emensageriapro.efdreinf.views import r4099_evtfech_apagar as r4099_evtfech_apagar_views
 from emensageriapro.efdreinf.views import r4099_evtfech_listar as r4099_evtfech_listar_views
 from emensageriapro.efdreinf.views import r4099_evtfech_salvar as r4099_evtfech_salvar_views
@@ -293,6 +309,7 @@ from emensageriapro.efdreinf.views import r4099_evtfech_alterar_identidade as r4
 from emensageriapro.efdreinf.views import r4099_evtfech_criar_exclusao as r4099_evtfech_criar_exclusao_views
 from emensageriapro.efdreinf.views import r4099_evtfech_duplicar as r4099_evtfech_duplicar_views
 from emensageriapro.efdreinf.views import r4099_evtfech_alterar_status_para_importado as r4099_evtfech_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r4099_evtfech_desvincular_evento as r4099_evtfech_desvincular_evento_views
 from emensageriapro.efdreinf.views import r5001_evttotal_api as r5001_evttotal_api_views
 from emensageriapro.efdreinf.views import r5001_evttotal_listar as r5001_evttotal_listar_views
 from emensageriapro.efdreinf.views import r5001_evttotal_recibos as r5001_evttotal_recibos_views
@@ -318,6 +335,7 @@ from emensageriapro.efdreinf.views import r9000_evtexclusao_alterar_identidade a
 from emensageriapro.efdreinf.views import r9000_evtexclusao_criar_exclusao as r9000_evtexclusao_criar_exclusao_views
 from emensageriapro.efdreinf.views import r9000_evtexclusao_duplicar as r9000_evtexclusao_duplicar_views
 from emensageriapro.efdreinf.views import r9000_evtexclusao_alterar_status_para_importado as r9000_evtexclusao_alterar_status_para_importado_views
+from emensageriapro.efdreinf.views import r9000_evtexclusao_desvincular_evento as r9000_evtexclusao_desvincular_evento_views
 from emensageriapro.efdreinf.views import r9001_evttotal_api as r9001_evttotal_api_views
 from emensageriapro.efdreinf.views import r9001_evttotal_listar as r9001_evttotal_listar_views
 from emensageriapro.efdreinf.views import r9001_evttotal_recibos as r9001_evttotal_recibos_views
@@ -420,6 +438,10 @@ urlpatterns = [
         r1000_evtinfocontri_alterar_identidade_views.alterar_identidade,
         name='r1000_evtinfocontri_alterar_identidade'),
 
+    url(r'^r1000-evtinfocontri/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r1000_evtinfocontri_desvincular_evento_views.desvincular_evento,
+        name='r1000_evtinfocontri_desvincular_evento'),
+
     url(r'^r1000-evtinfocontri/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r1000_evtinfocontri_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='r1000_evtinfocontri_abrir_evento_para_edicao'),
@@ -505,6 +527,10 @@ urlpatterns = [
     url(r'^r1070-evttabprocesso/alterar-identidade/(?P<pk>[0-9]+)/$',
         r1070_evttabprocesso_alterar_identidade_views.alterar_identidade,
         name='r1070_evttabprocesso_alterar_identidade'),
+
+    url(r'^r1070-evttabprocesso/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r1070_evttabprocesso_desvincular_evento_views.desvincular_evento,
+        name='r1070_evttabprocesso_desvincular_evento'),
 
     url(r'^r1070-evttabprocesso/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r1070_evttabprocesso_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
@@ -592,6 +618,10 @@ urlpatterns = [
         r2010_evtservtom_alterar_identidade_views.alterar_identidade,
         name='r2010_evtservtom_alterar_identidade'),
 
+    url(r'^r2010-evtservtom/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r2010_evtservtom_desvincular_evento_views.desvincular_evento,
+        name='r2010_evtservtom_desvincular_evento'),
+
     url(r'^r2010-evtservtom/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r2010_evtservtom_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='r2010_evtservtom_abrir_evento_para_edicao'),
@@ -677,6 +707,10 @@ urlpatterns = [
     url(r'^r2020-evtservprest/alterar-identidade/(?P<pk>[0-9]+)/$',
         r2020_evtservprest_alterar_identidade_views.alterar_identidade,
         name='r2020_evtservprest_alterar_identidade'),
+
+    url(r'^r2020-evtservprest/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r2020_evtservprest_desvincular_evento_views.desvincular_evento,
+        name='r2020_evtservprest_desvincular_evento'),
 
     url(r'^r2020-evtservprest/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r2020_evtservprest_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
@@ -764,6 +798,10 @@ urlpatterns = [
         r2030_evtassocdesprec_alterar_identidade_views.alterar_identidade,
         name='r2030_evtassocdesprec_alterar_identidade'),
 
+    url(r'^r2030-evtassocdesprec/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r2030_evtassocdesprec_desvincular_evento_views.desvincular_evento,
+        name='r2030_evtassocdesprec_desvincular_evento'),
+
     url(r'^r2030-evtassocdesprec/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r2030_evtassocdesprec_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='r2030_evtassocdesprec_abrir_evento_para_edicao'),
@@ -849,6 +887,10 @@ urlpatterns = [
     url(r'^r2040-evtassocdesprep/alterar-identidade/(?P<pk>[0-9]+)/$',
         r2040_evtassocdesprep_alterar_identidade_views.alterar_identidade,
         name='r2040_evtassocdesprep_alterar_identidade'),
+
+    url(r'^r2040-evtassocdesprep/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r2040_evtassocdesprep_desvincular_evento_views.desvincular_evento,
+        name='r2040_evtassocdesprep_desvincular_evento'),
 
     url(r'^r2040-evtassocdesprep/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r2040_evtassocdesprep_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
@@ -936,6 +978,10 @@ urlpatterns = [
         r2050_evtcomprod_alterar_identidade_views.alterar_identidade,
         name='r2050_evtcomprod_alterar_identidade'),
 
+    url(r'^r2050-evtcomprod/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r2050_evtcomprod_desvincular_evento_views.desvincular_evento,
+        name='r2050_evtcomprod_desvincular_evento'),
+
     url(r'^r2050-evtcomprod/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r2050_evtcomprod_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='r2050_evtcomprod_abrir_evento_para_edicao'),
@@ -1021,6 +1067,10 @@ urlpatterns = [
     url(r'^r2060-evtcprb/alterar-identidade/(?P<pk>[0-9]+)/$',
         r2060_evtcprb_alterar_identidade_views.alterar_identidade,
         name='r2060_evtcprb_alterar_identidade'),
+
+    url(r'^r2060-evtcprb/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r2060_evtcprb_desvincular_evento_views.desvincular_evento,
+        name='r2060_evtcprb_desvincular_evento'),
 
     url(r'^r2060-evtcprb/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r2060_evtcprb_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
@@ -1108,6 +1158,10 @@ urlpatterns = [
         r2070_evtpgtosdivs_alterar_identidade_views.alterar_identidade,
         name='r2070_evtpgtosdivs_alterar_identidade'),
 
+    url(r'^r2070-evtpgtosdivs/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r2070_evtpgtosdivs_desvincular_evento_views.desvincular_evento,
+        name='r2070_evtpgtosdivs_desvincular_evento'),
+
     url(r'^r2070-evtpgtosdivs/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r2070_evtpgtosdivs_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='r2070_evtpgtosdivs_abrir_evento_para_edicao'),
@@ -1193,6 +1247,10 @@ urlpatterns = [
     url(r'^r2098-evtreabreevper/alterar-identidade/(?P<pk>[0-9]+)/$',
         r2098_evtreabreevper_alterar_identidade_views.alterar_identidade,
         name='r2098_evtreabreevper_alterar_identidade'),
+
+    url(r'^r2098-evtreabreevper/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r2098_evtreabreevper_desvincular_evento_views.desvincular_evento,
+        name='r2098_evtreabreevper_desvincular_evento'),
 
     url(r'^r2098-evtreabreevper/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r2098_evtreabreevper_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
@@ -1280,6 +1338,10 @@ urlpatterns = [
         r2099_evtfechaevper_alterar_identidade_views.alterar_identidade,
         name='r2099_evtfechaevper_alterar_identidade'),
 
+    url(r'^r2099-evtfechaevper/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r2099_evtfechaevper_desvincular_evento_views.desvincular_evento,
+        name='r2099_evtfechaevper_desvincular_evento'),
+
     url(r'^r2099-evtfechaevper/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r2099_evtfechaevper_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='r2099_evtfechaevper_abrir_evento_para_edicao'),
@@ -1365,6 +1427,10 @@ urlpatterns = [
     url(r'^r3010-evtespdesportivo/alterar-identidade/(?P<pk>[0-9]+)/$',
         r3010_evtespdesportivo_alterar_identidade_views.alterar_identidade,
         name='r3010_evtespdesportivo_alterar_identidade'),
+
+    url(r'^r3010-evtespdesportivo/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r3010_evtespdesportivo_desvincular_evento_views.desvincular_evento,
+        name='r3010_evtespdesportivo_desvincular_evento'),
 
     url(r'^r3010-evtespdesportivo/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r3010_evtespdesportivo_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
@@ -1452,6 +1518,10 @@ urlpatterns = [
         r4010_evtretpf_alterar_identidade_views.alterar_identidade,
         name='r4010_evtretpf_alterar_identidade'),
 
+    url(r'^r4010-evtretpf/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r4010_evtretpf_desvincular_evento_views.desvincular_evento,
+        name='r4010_evtretpf_desvincular_evento'),
+
     url(r'^r4010-evtretpf/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r4010_evtretpf_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='r4010_evtretpf_abrir_evento_para_edicao'),
@@ -1537,6 +1607,10 @@ urlpatterns = [
     url(r'^r4020-evtretpj/alterar-identidade/(?P<pk>[0-9]+)/$',
         r4020_evtretpj_alterar_identidade_views.alterar_identidade,
         name='r4020_evtretpj_alterar_identidade'),
+
+    url(r'^r4020-evtretpj/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r4020_evtretpj_desvincular_evento_views.desvincular_evento,
+        name='r4020_evtretpj_desvincular_evento'),
 
     url(r'^r4020-evtretpj/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r4020_evtretpj_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
@@ -1624,6 +1698,10 @@ urlpatterns = [
         r4040_evtbenefnid_alterar_identidade_views.alterar_identidade,
         name='r4040_evtbenefnid_alterar_identidade'),
 
+    url(r'^r4040-evtbenefnid/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r4040_evtbenefnid_desvincular_evento_views.desvincular_evento,
+        name='r4040_evtbenefnid_desvincular_evento'),
+
     url(r'^r4040-evtbenefnid/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r4040_evtbenefnid_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='r4040_evtbenefnid_abrir_evento_para_edicao'),
@@ -1710,6 +1788,10 @@ urlpatterns = [
         r4098_evtreab_alterar_identidade_views.alterar_identidade,
         name='r4098_evtreab_alterar_identidade'),
 
+    url(r'^r4098-evtreab/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r4098_evtreab_desvincular_evento_views.desvincular_evento,
+        name='r4098_evtreab_desvincular_evento'),
+
     url(r'^r4098-evtreab/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r4098_evtreab_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='r4098_evtreab_abrir_evento_para_edicao'),
@@ -1795,6 +1877,10 @@ urlpatterns = [
     url(r'^r4099-evtfech/alterar-identidade/(?P<pk>[0-9]+)/$',
         r4099_evtfech_alterar_identidade_views.alterar_identidade,
         name='r4099_evtfech_alterar_identidade'),
+
+    url(r'^r4099-evtfech/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r4099_evtfech_desvincular_evento_views.desvincular_evento,
+        name='r4099_evtfech_desvincular_evento'),
 
     url(r'^r4099-evtfech/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r4099_evtfech_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
@@ -1917,6 +2003,10 @@ urlpatterns = [
     url(r'^r9000-evtexclusao/alterar-identidade/(?P<pk>[0-9]+)/$',
         r9000_evtexclusao_alterar_identidade_views.alterar_identidade,
         name='r9000_evtexclusao_alterar_identidade'),
+
+    url(r'^r9000-evtexclusao/desvincular-evento/(?P<pk>[0-9]+)/$',
+        r9000_evtexclusao_desvincular_evento_views.desvincular_evento,
+        name='r9000_evtexclusao_desvincular_evento'),
 
     url(r'^r9000-evtexclusao/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         r9000_evtexclusao_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
