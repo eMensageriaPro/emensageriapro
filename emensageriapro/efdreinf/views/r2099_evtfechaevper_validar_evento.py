@@ -87,6 +87,11 @@ def validar_evento_funcao(request, pk):
     lista_validacoes = []
     r2099_evtfechaevper = get_object_or_404(r2099evtFechaEvPer, id=pk)
 
+    if not r2099_evtfechaevper.identidade:
+        from emensageriapro.functions import identidade_evento
+        ident = identidade_evento(r2099_evtfechaevper)
+        r2099_evtfechaevper = get_object_or_404(r2099evtFechaEvPer, id=pk)
+
     #
     # Validações internas
     #

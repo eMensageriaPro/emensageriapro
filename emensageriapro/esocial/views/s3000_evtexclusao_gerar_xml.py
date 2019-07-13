@@ -140,8 +140,12 @@ def gerar_xml_assinado(request, pk):
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s3000_evtexclusao = get_object_or_404(
-        s3000evtExclusao,
-        id=pk)
+        s3000evtExclusao, id=pk)
+
+    if not s3000_evtexclusao.identidade:
+        from emensageriapro.functions import identidade_evento
+        ident = identidade_evento(s3000_evtexclusao)
+        s3000_evtexclusao = get_object_or_404(s3000evtExclusao, id=pk)
 
     if s3000_evtexclusao.arquivo_original:
         xml = ler_arquivo(s3000_evtexclusao.arquivo)

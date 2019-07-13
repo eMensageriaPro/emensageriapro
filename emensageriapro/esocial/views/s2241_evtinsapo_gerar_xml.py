@@ -204,8 +204,12 @@ def gerar_xml_assinado(request, pk):
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s2241_evtinsapo = get_object_or_404(
-        s2241evtInsApo,
-        id=pk)
+        s2241evtInsApo, id=pk)
+
+    if not s2241_evtinsapo.identidade:
+        from emensageriapro.functions import identidade_evento
+        ident = identidade_evento(s2241_evtinsapo)
+        s2241_evtinsapo = get_object_or_404(s2241evtInsApo, id=pk)
 
     if s2241_evtinsapo.arquivo_original:
         xml = ler_arquivo(s2241_evtinsapo.arquivo)

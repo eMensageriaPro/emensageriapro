@@ -180,8 +180,12 @@ def gerar_xml_assinado(request, pk):
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s2206_evtaltcontratual = get_object_or_404(
-        s2206evtAltContratual,
-        id=pk)
+        s2206evtAltContratual, id=pk)
+
+    if not s2206_evtaltcontratual.identidade:
+        from emensageriapro.functions import identidade_evento
+        ident = identidade_evento(s2206_evtaltcontratual)
+        s2206_evtaltcontratual = get_object_or_404(s2206evtAltContratual, id=pk)
 
     if s2206_evtaltcontratual.arquivo_original:
         xml = ler_arquivo(s2206_evtaltcontratual.arquivo)

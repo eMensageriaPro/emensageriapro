@@ -132,8 +132,12 @@ def gerar_xml_assinado(request, pk):
     from emensageriapro.mensageiro.functions.funcoes_efdreinf import assinar_efdreinf
 
     r9000_evtexclusao = get_object_or_404(
-        r9000evtExclusao,
-        id=pk)
+        r9000evtExclusao, id=pk)
+
+    if not r9000_evtexclusao.identidade:
+        from emensageriapro.functions import identidade_evento
+        ident = identidade_evento(r9000_evtexclusao)
+        r9000_evtexclusao = get_object_or_404(r9000evtExclusao, id=pk)
 
     if r9000_evtexclusao.arquivo_original:
         xml = ler_arquivo(r9000_evtexclusao.arquivo)

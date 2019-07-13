@@ -136,8 +136,12 @@ def gerar_xml_assinado(request, pk):
     from emensageriapro.mensageiro.functions.funcoes_efdreinf import assinar_efdreinf
 
     r4099_evtfech = get_object_or_404(
-        r4099evtFech,
-        id=pk)
+        r4099evtFech, id=pk)
+
+    if not r4099_evtfech.identidade:
+        from emensageriapro.functions import identidade_evento
+        ident = identidade_evento(r4099_evtfech)
+        r4099_evtfech = get_object_or_404(r4099evtFech, id=pk)
 
     if r4099_evtfech.arquivo_original:
         xml = ler_arquivo(r4099_evtfech.arquivo)

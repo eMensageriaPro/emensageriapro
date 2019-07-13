@@ -87,6 +87,11 @@ def validar_evento_funcao(request, pk):
     lista_validacoes = []
     s2231_evtcessao = get_object_or_404(s2231evtCessao, id=pk)
 
+    if not s2231_evtcessao.identidade:
+        from emensageriapro.functions import identidade_evento
+        ident = identidade_evento(s2231_evtcessao)
+        s2231_evtcessao = get_object_or_404(s2231evtCessao, id=pk)
+
     #
     # Validações internas
     #

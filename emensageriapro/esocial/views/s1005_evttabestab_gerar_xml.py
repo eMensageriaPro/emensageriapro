@@ -196,8 +196,12 @@ def gerar_xml_assinado(request, pk):
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s1005_evttabestab = get_object_or_404(
-        s1005evtTabEstab,
-        id=pk)
+        s1005evtTabEstab, id=pk)
+
+    if not s1005_evttabestab.identidade:
+        from emensageriapro.functions import identidade_evento
+        ident = identidade_evento(s1005_evttabestab)
+        s1005_evttabestab = get_object_or_404(s1005evtTabEstab, id=pk)
 
     if s1005_evttabestab.arquivo_original:
         xml = ler_arquivo(s1005_evttabestab.arquivo)

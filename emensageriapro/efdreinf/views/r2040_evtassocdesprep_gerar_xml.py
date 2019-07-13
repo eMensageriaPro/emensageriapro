@@ -144,8 +144,12 @@ def gerar_xml_assinado(request, pk):
     from emensageriapro.mensageiro.functions.funcoes_efdreinf import assinar_efdreinf
 
     r2040_evtassocdesprep = get_object_or_404(
-        r2040evtAssocDespRep,
-        id=pk)
+        r2040evtAssocDespRep, id=pk)
+
+    if not r2040_evtassocdesprep.identidade:
+        from emensageriapro.functions import identidade_evento
+        ident = identidade_evento(r2040_evtassocdesprep)
+        r2040_evtassocdesprep = get_object_or_404(r2040evtAssocDespRep, id=pk)
 
     if r2040_evtassocdesprep.arquivo_original:
         xml = ler_arquivo(r2040_evtassocdesprep.arquivo)
