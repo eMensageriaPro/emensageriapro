@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -74,17 +66,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s2231_evtcessao = get_object_or_404(s2231evtCessao, id=pk)
 
-        #if s2231_evtcessao.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s2231_evtcessao_apagar'] = 0
-        #    dict_permissoes['s2231_evtcessao_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s2231evtCessao'):
 
         if pk:
 
-            s2231_evtcessao_form = form_s2231_evtcessao(request.POST or None, instance = s2231_evtcessao,
+            s2231_evtcessao_form = form_s2231_evtcessao(request.POST or None, instance=s2231_evtcessao,
                                          initial={'ativo': True})
                      
         else:
@@ -107,7 +93,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's2231-evtcessao' not in request.session['return']:
 
@@ -132,8 +118,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 s2231_evtcessao_form = disabled_form_fields(s2231_evtcessao_form, False)
 
-        #s2231_evtcessao_campos_multiple_passo3
-
         for field in s2231_evtcessao_form.fields.keys():
 
             s2231_evtcessao_form.fields[field].widget.attrs['ng-model'] = 's2231_evtcessao_'+field
@@ -153,12 +137,12 @@ def salvar(request, pk=None, tab='master', output=None):
             s2231_evtcessao = get_object_or_404(s2231evtCessao, id=pk)
 
             s2231_inicessao_form = form_s2231_inicessao(
-                initial={ 's2231_evtcessao': s2231_evtcessao })
+                initial={'s2231_evtcessao': s2231_evtcessao})
             s2231_inicessao_form.fields['s2231_evtcessao'].widget.attrs['readonly'] = True
             s2231_inicessao_lista = s2231iniCessao.objects.\
                 filter(s2231_evtcessao_id=s2231_evtcessao.id).all()
             s2231_fimcessao_form = form_s2231_fimcessao(
-                initial={ 's2231_evtcessao': s2231_evtcessao })
+                initial={'s2231_evtcessao': s2231_evtcessao})
             s2231_fimcessao_form.fields['s2231_evtcessao'].widget.attrs['readonly'] = True
             s2231_fimcessao_lista = s2231fimCessao.objects.\
                 filter(s2231_evtcessao_id=s2231_evtcessao.id).all()
@@ -167,21 +151,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s2231_evtcessao = None
 
-        #s2231_evtcessao_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's2231_evtcessao'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's2231_evtcessao' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's2231_evtcessao_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2231_evtcessao').all()
 
@@ -192,7 +162,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's2231_evtcessao': s2231_evtcessao,
             's2231_evtcessao_form': s2231_evtcessao_form,
@@ -206,9 +176,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2231_evtcessao', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s2231_evtcessao_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

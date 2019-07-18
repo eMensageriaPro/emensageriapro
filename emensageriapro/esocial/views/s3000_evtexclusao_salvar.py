@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -74,17 +66,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s3000_evtexclusao = get_object_or_404(s3000evtExclusao, id=pk)
 
-        #if s3000_evtexclusao.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s3000_evtexclusao_apagar'] = 0
-        #    dict_permissoes['s3000_evtexclusao_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s3000evtExclusao'):
 
         if pk:
 
-            s3000_evtexclusao_form = form_s3000_evtexclusao(request.POST or None, instance = s3000_evtexclusao,
+            s3000_evtexclusao_form = form_s3000_evtexclusao(request.POST or None, instance=s3000_evtexclusao,
                                          initial={'ativo': True})
                      
         else:
@@ -107,7 +93,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's3000-evtexclusao' not in request.session['return']:
 
@@ -132,8 +118,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 s3000_evtexclusao_form = disabled_form_fields(s3000_evtexclusao_form, False)
 
-        #s3000_evtexclusao_campos_multiple_passo3
-
         for field in s3000_evtexclusao_form.fields.keys():
 
             s3000_evtexclusao_form.fields[field].widget.attrs['ng-model'] = 's3000_evtexclusao_'+field
@@ -153,12 +137,12 @@ def salvar(request, pk=None, tab='master', output=None):
             s3000_evtexclusao = get_object_or_404(s3000evtExclusao, id=pk)
 
             s3000_idetrabalhador_form = form_s3000_idetrabalhador(
-                initial={ 's3000_evtexclusao': s3000_evtexclusao })
+                initial={'s3000_evtexclusao': s3000_evtexclusao})
             s3000_idetrabalhador_form.fields['s3000_evtexclusao'].widget.attrs['readonly'] = True
             s3000_idetrabalhador_lista = s3000ideTrabalhador.objects.\
                 filter(s3000_evtexclusao_id=s3000_evtexclusao.id).all()
             s3000_idefolhapagto_form = form_s3000_idefolhapagto(
-                initial={ 's3000_evtexclusao': s3000_evtexclusao })
+                initial={'s3000_evtexclusao': s3000_evtexclusao})
             s3000_idefolhapagto_form.fields['s3000_evtexclusao'].widget.attrs['readonly'] = True
             s3000_idefolhapagto_lista = s3000ideFolhaPagto.objects.\
                 filter(s3000_evtexclusao_id=s3000_evtexclusao.id).all()
@@ -167,21 +151,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s3000_evtexclusao = None
 
-        #s3000_evtexclusao_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's3000_evtexclusao'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's3000_evtexclusao' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's3000_evtexclusao_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s3000_evtexclusao').all()
 
@@ -192,7 +162,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's3000_evtexclusao': s3000_evtexclusao,
             's3000_evtexclusao_form': s3000_evtexclusao_form,
@@ -206,9 +176,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s3000_evtexclusao', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s3000_evtexclusao_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

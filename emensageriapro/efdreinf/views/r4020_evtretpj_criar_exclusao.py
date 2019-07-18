@@ -89,7 +89,7 @@ def criar_exclusao(request, pk):
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_r4020_evtretpj_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(r4020_evtretpj)
+        nova_identidade = identidade_evento(r4020_evtretpj, 'efdreinf')
 
         r4020evtRetPJ.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

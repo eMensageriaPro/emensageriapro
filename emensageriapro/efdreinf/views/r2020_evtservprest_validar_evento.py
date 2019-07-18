@@ -89,7 +89,7 @@ def validar_evento_funcao(request, pk):
 
     if not r2020_evtservprest.identidade:
         from emensageriapro.functions import identidade_evento
-        ident = identidade_evento(r2020_evtservprest)
+        ident = identidade_evento(r2020_evtservprest, 'efdreinf')
         r2020_evtservprest = get_object_or_404(r2020evtServPrest, id=pk)
 
     #
@@ -151,9 +151,11 @@ def validar_evento_funcao(request, pk):
 
     else:
 
-        if VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+        from emensageriapro.mensageiro.functions.funcoes_validacoes_precedencia import EVENTOS_SEM_PREDECESSAO, validar_precedencia
 
-            quant = validar_precedencia('efdreinf', 'r2020_evtservprest', pk)
+        if VERIFICAR_PREDECESSAO_ANTES_ENVIO and 'r2020_evtservprest' not in EVENTOS_SEM_PREDECESSAO:
+
+            quant = validar_precedencia('r2020_evtservprest', pk)
 
             if quant <= 0:
 

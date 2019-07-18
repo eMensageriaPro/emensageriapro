@@ -87,7 +87,7 @@ def criar_alteracao(request, pk):
         texto = gerar_xml_s2220(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_s2220_evtmonit_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s2220_evtmonit)
+        nova_identidade = identidade_evento(s2220_evtmonit, 'esocial')
 
         s2220evtMonit.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

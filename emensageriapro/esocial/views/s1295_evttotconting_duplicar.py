@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_s1295(request, pk, versao="|")
             dados = read_s1295_evttotconting_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s1295_evttotconting)
+            nova_identidade = identidade_evento(s1295_evttotconting, 'esocial')
 
             s1295evtTotConting.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

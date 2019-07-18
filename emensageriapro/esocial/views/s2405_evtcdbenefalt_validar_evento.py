@@ -89,7 +89,7 @@ def validar_evento_funcao(request, pk):
 
     if not s2405_evtcdbenefalt.identidade:
         from emensageriapro.functions import identidade_evento
-        ident = identidade_evento(s2405_evtcdbenefalt)
+        ident = identidade_evento(s2405_evtcdbenefalt, 'esocial')
         s2405_evtcdbenefalt = get_object_or_404(s2405evtCdBenefAlt, id=pk)
 
     #
@@ -151,9 +151,11 @@ def validar_evento_funcao(request, pk):
 
     else:
 
-        if VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+        from emensageriapro.mensageiro.functions.funcoes_validacoes_precedencia import EVENTOS_SEM_PREDECESSAO, validar_precedencia
 
-            quant = validar_precedencia('esocial', 's2405_evtcdbenefalt', pk)
+        if VERIFICAR_PREDECESSAO_ANTES_ENVIO and 's2405_evtcdbenefalt' not in EVENTOS_SEM_PREDECESSAO:
+
+            quant = validar_precedencia('s2405_evtcdbenefalt', pk)
 
             if quant <= 0:
 

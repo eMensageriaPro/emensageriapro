@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_s2250(request, pk, versao="|")
             dados = read_s2250_evtavprevio_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s2250_evtavprevio)
+            nova_identidade = identidade_evento(s2250_evtavprevio, 'esocial')
 
             s2250evtAvPrevio.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

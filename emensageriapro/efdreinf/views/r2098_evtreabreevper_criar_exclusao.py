@@ -89,7 +89,7 @@ def criar_exclusao(request, pk):
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_r2098_evtreabreevper_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(r2098_evtreabreevper)
+        nova_identidade = identidade_evento(r2098_evtreabreevper, 'efdreinf')
 
         r2098evtReabreEvPer.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

@@ -87,7 +87,7 @@ def criar_alteracao(request, pk):
         texto = gerar_xml_s2300(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_s2300_evttsvinicio_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s2300_evttsvinicio)
+        nova_identidade = identidade_evento(s2300_evttsvinicio, 'esocial')
 
         s2300evtTSVInicio.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

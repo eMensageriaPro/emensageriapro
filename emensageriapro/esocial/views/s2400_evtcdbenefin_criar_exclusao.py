@@ -89,7 +89,7 @@ def criar_exclusao(request, pk):
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_s2400_evtcdbenefin_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s2400_evtcdbenefin)
+        nova_identidade = identidade_evento(s2400_evtcdbenefin, 'esocial')
 
         s2400evtCdBenefIn.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

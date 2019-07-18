@@ -89,7 +89,7 @@ def criar_exclusao(request, pk):
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_s1060_evttabambiente_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s1060_evttabambiente)
+        nova_identidade = identidade_evento(s1060_evttabambiente, 'esocial')
 
         s1060evtTabAmbiente.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

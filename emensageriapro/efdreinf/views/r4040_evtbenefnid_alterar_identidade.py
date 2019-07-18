@@ -84,7 +84,7 @@ def alterar_identidade(request, pk):
 
         if r4040_evtbenefnid.status == STATUS_EVENTO_CADASTRADO:
 
-            nova_identidade = identidade_evento(r4040_evtbenefnid)
+            nova_identidade = identidade_evento(r4040_evtbenefnid, 'efdreinf')
             messages.success(request, u'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
             return_pk = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % pk )
 

@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
@@ -76,17 +68,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         r2020_evtservprest = get_object_or_404(r2020evtServPrest, id=pk)
 
-        #if r2020_evtservprest.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['r2020_evtservprest_apagar'] = 0
-        #    dict_permissoes['r2020_evtservprest_editar'] = 0
-
     if request.user.has_perm('efdreinf.can_see_r2020evtServPrest'):
 
         if pk:
 
-            r2020_evtservprest_form = form_r2020_evtservprest(request.POST or None, instance = r2020_evtservprest,
+            r2020_evtservprest_form = form_r2020_evtservprest(request.POST or None, instance=r2020_evtservprest,
                                          initial={'ativo': True})
                      
         else:
@@ -109,7 +95,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'efdreinf')
              
                 if 'r2020-evtservprest' not in request.session['return']:
 
@@ -134,8 +120,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 r2020_evtservprest_form = disabled_form_fields(r2020_evtservprest_form, False)
 
-        #r2020_evtservprest_campos_multiple_passo3
-
         for field in r2020_evtservprest_form.fields.keys():
 
             r2020_evtservprest_form.fields[field].widget.attrs['ng-model'] = 'r2020_evtservprest_'+field
@@ -157,17 +141,17 @@ def salvar(request, pk=None, tab='master', output=None):
             r2020_evtservprest = get_object_or_404(r2020evtServPrest, id=pk)
 
             r2020_nfs_form = form_r2020_nfs(
-                initial={ 'r2020_evtservprest': r2020_evtservprest })
+                initial={'r2020_evtservprest': r2020_evtservprest})
             r2020_nfs_form.fields['r2020_evtservprest'].widget.attrs['readonly'] = True
             r2020_nfs_lista = r2020nfs.objects.\
                 filter(r2020_evtservprest_id=r2020_evtservprest.id).all()
             r2020_infoprocretpr_form = form_r2020_infoprocretpr(
-                initial={ 'r2020_evtservprest': r2020_evtservprest })
+                initial={'r2020_evtservprest': r2020_evtservprest})
             r2020_infoprocretpr_form.fields['r2020_evtservprest'].widget.attrs['readonly'] = True
             r2020_infoprocretpr_lista = r2020infoProcRetPr.objects.\
                 filter(r2020_evtservprest_id=r2020_evtservprest.id).all()
             r2020_infoprocretad_form = form_r2020_infoprocretad(
-                initial={ 'r2020_evtservprest': r2020_evtservprest })
+                initial={'r2020_evtservprest': r2020_evtservprest})
             r2020_infoprocretad_form.fields['r2020_evtservprest'].widget.attrs['readonly'] = True
             r2020_infoprocretad_lista = r2020infoProcRetAd.objects.\
                 filter(r2020_evtservprest_id=r2020_evtservprest.id).all()
@@ -176,21 +160,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             r2020_evtservprest = None
 
-        #r2020_evtservprest_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 'r2020_evtservprest'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 'r2020_evtservprest' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 'r2020_evtservprest_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r2020_evtservprest').all()
 
@@ -201,7 +171,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             'r2020_evtservprest': r2020_evtservprest,
             'r2020_evtservprest_form': r2020_evtservprest_form,
@@ -217,9 +187,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r2020_evtservprest', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #r2020_evtservprest_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

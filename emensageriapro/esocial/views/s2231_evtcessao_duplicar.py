@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_s2231(request, pk, versao="|")
             dados = read_s2231_evtcessao_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s2231_evtcessao)
+            nova_identidade = identidade_evento(s2231_evtcessao, 'esocial')
 
             s2231evtCessao.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

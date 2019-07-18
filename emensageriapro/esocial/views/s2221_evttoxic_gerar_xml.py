@@ -44,22 +44,14 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 
 import os
-import base64
 from datetime import datetime
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from emensageriapro.padrao import *
-from emensageriapro.esocial.forms import *
-from emensageriapro.esocial.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios
-from emensageriapro.s2221.models import *
-from emensageriapro.s2221.forms import *
-from emensageriapro.functions import render_to_pdf, txt_xml
-from wkhtmltopdf.views import PDFTemplateResponse
 from django.template.loader import get_template
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from emensageriapro.padrao import *
+from emensageriapro.esocial.models import *
+from emensageriapro.s2221.forms import *
 from emensageriapro.functions import get_xmlns
 
 
@@ -118,10 +110,10 @@ def gerar_xml_s2221_func(pk, versao=None):
 
 def gerar_xml_s2221(request, pk, versao=None):
 
-    from emensageriapro.settings import BASE_DIR
     s2221_evttoxic = get_object_or_404(
         s2221evtToxic,
         id=pk)
+
     return gerar_xml_s2221_func(pk, versao)
 
 
@@ -136,7 +128,7 @@ def gerar_xml_assinado(request, pk):
 
     if not s2221_evttoxic.identidade:
         from emensageriapro.functions import identidade_evento
-        ident = identidade_evento(s2221_evttoxic)
+        ident = identidade_evento(s2221_evttoxic, 'esocial')
         s2221_evttoxic = get_object_or_404(s2221evtToxic, id=pk)
 
     if s2221_evttoxic.arquivo_original:
@@ -145,7 +137,13 @@ def gerar_xml_assinado(request, pk):
     else:
         xml = gerar_xml_s2221(request, pk)
 
-    if 'Signature' in xml:
+    STATUS_ANT = [
+            STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO,
+            STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO
+    ]
+
+    if 'Signature' in xml and s2221_evttoxic.status in STATUS_ANT:
+
         xml_assinado = xml
         s2221evtToxic.objects.\
             filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
@@ -178,11 +176,13 @@ def gerar_xml_assinado(request, pk):
             xml,
             s2221_evttoxic.transmissor_lote_esocial_id)
 
-        if 'Signature' in xml_assinado:
+
+        if 'Signature' in xml_assinado and s2221_evttoxic.status in STATUS_ANT:
 
             s2221evtToxic.objects.\
                 filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
-        else:
+
+        elif s1000evtInfoEmpregador.status in STATUS_ANT:
 
             s2221evtToxic.objects.\
                 filter(id=pk).update(status=STATUS_EVENTO_GERADO)

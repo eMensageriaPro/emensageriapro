@@ -87,7 +87,7 @@ def criar_alteracao(request, pk):
         texto = gerar_xml_s2400(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_s2400_evtcdbenefin_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s2400_evtcdbenefin)
+        nova_identidade = identidade_evento(s2400_evtcdbenefin, 'esocial')
 
         s2400evtCdBenefIn.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

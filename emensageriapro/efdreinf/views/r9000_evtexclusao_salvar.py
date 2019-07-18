@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
@@ -70,17 +62,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         r9000_evtexclusao = get_object_or_404(r9000evtExclusao, id=pk)
 
-        #if r9000_evtexclusao.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['r9000_evtexclusao_apagar'] = 0
-        #    dict_permissoes['r9000_evtexclusao_editar'] = 0
-
     if request.user.has_perm('efdreinf.can_see_r9000evtExclusao'):
 
         if pk:
 
-            r9000_evtexclusao_form = form_r9000_evtexclusao(request.POST or None, instance = r9000_evtexclusao,
+            r9000_evtexclusao_form = form_r9000_evtexclusao(request.POST or None, instance=r9000_evtexclusao,
                                          initial={'ativo': True})
                      
         else:
@@ -103,7 +89,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'efdreinf')
              
                 if 'r9000-evtexclusao' not in request.session['return']:
 
@@ -128,8 +114,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 r9000_evtexclusao_form = disabled_form_fields(r9000_evtexclusao_form, False)
 
-        #r9000_evtexclusao_campos_multiple_passo3
-
         for field in r9000_evtexclusao_form.fields.keys():
 
             r9000_evtexclusao_form.fields[field].widget.attrs['ng-model'] = 'r9000_evtexclusao_'+field
@@ -149,21 +133,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             r9000_evtexclusao = None
 
-        #r9000_evtexclusao_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 'r9000_evtexclusao'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 'r9000_evtexclusao' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 'r9000_evtexclusao_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r9000_evtexclusao').all()
 
@@ -174,7 +144,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             'r9000_evtexclusao': r9000_evtexclusao,
             'r9000_evtexclusao_form': r9000_evtexclusao_form,
@@ -184,9 +154,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r9000_evtexclusao', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #r9000_evtexclusao_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

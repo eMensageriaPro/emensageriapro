@@ -87,7 +87,7 @@ def criar_alteracao(request, pk):
         texto = gerar_xml_r2030(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_r2030_evtassocdesprec_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(r2030_evtassocdesprec)
+        nova_identidade = identidade_evento(r2030_evtassocdesprec, 'efdreinf')
 
         r2030evtAssocDespRec.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

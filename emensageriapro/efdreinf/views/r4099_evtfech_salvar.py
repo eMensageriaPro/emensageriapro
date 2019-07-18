@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
@@ -72,17 +64,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         r4099_evtfech = get_object_or_404(r4099evtFech, id=pk)
 
-        #if r4099_evtfech.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['r4099_evtfech_apagar'] = 0
-        #    dict_permissoes['r4099_evtfech_editar'] = 0
-
     if request.user.has_perm('efdreinf.can_see_r4099evtFech'):
 
         if pk:
 
-            r4099_evtfech_form = form_r4099_evtfech(request.POST or None, instance = r4099_evtfech,
+            r4099_evtfech_form = form_r4099_evtfech(request.POST or None, instance=r4099_evtfech,
                                          initial={'ativo': True})
                      
         else:
@@ -105,7 +91,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'efdreinf')
              
                 if 'r4099-evtfech' not in request.session['return']:
 
@@ -130,8 +116,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 r4099_evtfech_form = disabled_form_fields(r4099_evtfech_form, False)
 
-        #r4099_evtfech_campos_multiple_passo3
-
         for field in r4099_evtfech_form.fields.keys():
 
             r4099_evtfech_form.fields[field].widget.attrs['ng-model'] = 'r4099_evtfech_'+field
@@ -149,7 +133,7 @@ def salvar(request, pk=None, tab='master', output=None):
             r4099_evtfech = get_object_or_404(r4099evtFech, id=pk)
 
             r4099_iderespinf_form = form_r4099_iderespinf(
-                initial={ 'r4099_evtfech': r4099_evtfech })
+                initial={'r4099_evtfech': r4099_evtfech})
             r4099_iderespinf_form.fields['r4099_evtfech'].widget.attrs['readonly'] = True
             r4099_iderespinf_lista = r4099ideRespInf.objects.\
                 filter(r4099_evtfech_id=r4099_evtfech.id).all()
@@ -158,21 +142,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             r4099_evtfech = None
 
-        #r4099_evtfech_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 'r4099_evtfech'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 'r4099_evtfech' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 'r4099_evtfech_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r4099_evtfech').all()
 
@@ -183,7 +153,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             'r4099_evtfech': r4099_evtfech,
             'r4099_evtfech_form': r4099_evtfech_form,
@@ -195,9 +165,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r4099_evtfech', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #r4099_evtfech_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

@@ -89,7 +89,7 @@ def criar_exclusao(request, pk):
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_r3010_evtespdesportivo_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(r3010_evtespdesportivo)
+        nova_identidade = identidade_evento(r3010_evtespdesportivo, 'efdreinf')
 
         r3010evtEspDesportivo.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

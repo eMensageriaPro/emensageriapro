@@ -89,7 +89,7 @@ def criar_exclusao(request, pk):
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_s2220_evtmonit_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s2220_evtmonit)
+        nova_identidade = identidade_evento(s2220_evtmonit, 'esocial')
 
         s2220evtMonit.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

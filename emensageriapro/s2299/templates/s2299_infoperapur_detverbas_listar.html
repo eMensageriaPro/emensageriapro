@@ -194,24 +194,14 @@ $(document).ready(function() {
 
 {% else %}
 
-<section class="invoice">
-    <div class="row">
-        <div class="col-xs-12">
-            <h2 class="page-header">
-            s2299infoPerApurdetVerbas
-            <small class="pull-right">Usuário: {{ usuario.nome }}<br>
-                Data: {{ data }}
-            </small>
-            </h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 table-responsive">
+    <h2 class="page-header">
+        s2299infoPerApurdetVerbas
+        <small class="pull-right" style="width: 20%">
+            Usuário: {{ user.first_name }} {{ user.last_name }}<br>
+            Data: {{ data|date:"SHORT_DATE_FORMAT" }}
+        </small>
+    </h2>
+    {% include 'tables/s2299_infoperapur_detverbas.html' %}
 
-{% include 'tables/s2299_infoperapur_detverbas.html' %}
-
-        </div>
-    </div>
-</section>
 {% endif %}
 {% endblock content %}

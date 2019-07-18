@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_r1000(request, pk, versao="|")
             dados = read_r1000_evtinfocontri_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(r1000_evtinfocontri)
+            nova_identidade = identidade_evento(r1000_evtinfocontri, 'efdreinf')
 
             r1000evtInfoContri.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

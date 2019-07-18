@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -92,17 +84,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s2300_evttsvinicio = get_object_or_404(s2300evtTSVInicio, id=pk)
 
-        #if s2300_evttsvinicio.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s2300_evttsvinicio_apagar'] = 0
-        #    dict_permissoes['s2300_evttsvinicio_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s2300evtTSVInicio'):
 
         if pk:
 
-            s2300_evttsvinicio_form = form_s2300_evttsvinicio(request.POST or None, instance = s2300_evttsvinicio,
+            s2300_evttsvinicio_form = form_s2300_evttsvinicio(request.POST or None, instance=s2300_evttsvinicio,
                                          initial={'ativo': True})
                      
         else:
@@ -125,7 +111,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's2300-evttsvinicio' not in request.session['return']:
 
@@ -149,8 +135,6 @@ def salvar(request, pk=None, tab='master', output=None):
             if s2300_evttsvinicio.status != 0:
 
                 s2300_evttsvinicio_form = disabled_form_fields(s2300_evttsvinicio_form, False)
-
-        #s2300_evttsvinicio_campos_multiple_passo3
 
         for field in s2300_evttsvinicio_form.fields.keys():
 
@@ -189,57 +173,57 @@ def salvar(request, pk=None, tab='master', output=None):
             s2300_evttsvinicio = get_object_or_404(s2300evtTSVInicio, id=pk)
 
             s2300_documentos_form = form_s2300_documentos(
-                initial={ 's2300_evttsvinicio': s2300_evttsvinicio })
+                initial={'s2300_evttsvinicio': s2300_evttsvinicio})
             s2300_documentos_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
             s2300_documentos_lista = s2300documentos.objects.\
                 filter(s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
             s2300_brasil_form = form_s2300_brasil(
-                initial={ 's2300_evttsvinicio': s2300_evttsvinicio })
+                initial={'s2300_evttsvinicio': s2300_evttsvinicio})
             s2300_brasil_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
             s2300_brasil_lista = s2300brasil.objects.\
                 filter(s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
             s2300_exterior_form = form_s2300_exterior(
-                initial={ 's2300_evttsvinicio': s2300_evttsvinicio })
+                initial={'s2300_evttsvinicio': s2300_evttsvinicio})
             s2300_exterior_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
             s2300_exterior_lista = s2300exterior.objects.\
                 filter(s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
             s2300_trabestrangeiro_form = form_s2300_trabestrangeiro(
-                initial={ 's2300_evttsvinicio': s2300_evttsvinicio })
+                initial={'s2300_evttsvinicio': s2300_evttsvinicio})
             s2300_trabestrangeiro_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
             s2300_trabestrangeiro_lista = s2300trabEstrangeiro.objects.\
                 filter(s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
             s2300_infodeficiencia_form = form_s2300_infodeficiencia(
-                initial={ 's2300_evttsvinicio': s2300_evttsvinicio })
+                initial={'s2300_evttsvinicio': s2300_evttsvinicio})
             s2300_infodeficiencia_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
             s2300_infodeficiencia_lista = s2300infoDeficiencia.objects.\
                 filter(s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
             s2300_dependente_form = form_s2300_dependente(
-                initial={ 's2300_evttsvinicio': s2300_evttsvinicio })
+                initial={'s2300_evttsvinicio': s2300_evttsvinicio})
             s2300_dependente_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
             s2300_dependente_lista = s2300dependente.objects.\
                 filter(s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
             s2300_contato_form = form_s2300_contato(
-                initial={ 's2300_evttsvinicio': s2300_evttsvinicio })
+                initial={'s2300_evttsvinicio': s2300_evttsvinicio})
             s2300_contato_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
             s2300_contato_lista = s2300contato.objects.\
                 filter(s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
             s2300_infocomplementares_form = form_s2300_infocomplementares(
-                initial={ 's2300_evttsvinicio': s2300_evttsvinicio })
+                initial={'s2300_evttsvinicio': s2300_evttsvinicio})
             s2300_infocomplementares_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
             s2300_infocomplementares_lista = s2300infoComplementares.objects.\
                 filter(s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
             s2300_mudancacpf_form = form_s2300_mudancacpf(
-                initial={ 's2300_evttsvinicio': s2300_evttsvinicio })
+                initial={'s2300_evttsvinicio': s2300_evttsvinicio})
             s2300_mudancacpf_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
             s2300_mudancacpf_lista = s2300mudancaCPF.objects.\
                 filter(s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
             s2300_afastamento_form = form_s2300_afastamento(
-                initial={ 's2300_evttsvinicio': s2300_evttsvinicio })
+                initial={'s2300_evttsvinicio': s2300_evttsvinicio})
             s2300_afastamento_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
             s2300_afastamento_lista = s2300afastamento.objects.\
                 filter(s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
             s2300_termino_form = form_s2300_termino(
-                initial={ 's2300_evttsvinicio': s2300_evttsvinicio })
+                initial={'s2300_evttsvinicio': s2300_evttsvinicio})
             s2300_termino_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
             s2300_termino_lista = s2300termino.objects.\
                 filter(s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
@@ -248,21 +232,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s2300_evttsvinicio = None
 
-        #s2300_evttsvinicio_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's2300_evttsvinicio'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's2300_evttsvinicio' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's2300_evttsvinicio_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2300_evttsvinicio').all()
 
@@ -273,7 +243,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's2300_evttsvinicio': s2300_evttsvinicio,
             's2300_evttsvinicio_form': s2300_evttsvinicio_form,
@@ -305,9 +275,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2300_evttsvinicio', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s2300_evttsvinicio_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

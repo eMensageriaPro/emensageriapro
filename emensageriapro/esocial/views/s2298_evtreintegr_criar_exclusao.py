@@ -89,7 +89,7 @@ def criar_exclusao(request, pk):
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_s2298_evtreintegr_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s2298_evtreintegr)
+        nova_identidade = identidade_evento(s2298_evtreintegr, 'esocial')
 
         s2298evtReintegr.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

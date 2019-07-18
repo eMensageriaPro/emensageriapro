@@ -89,7 +89,7 @@ def validar_evento_funcao(request, pk):
 
     if not s2221_evttoxic.identidade:
         from emensageriapro.functions import identidade_evento
-        ident = identidade_evento(s2221_evttoxic)
+        ident = identidade_evento(s2221_evttoxic, 'esocial')
         s2221_evttoxic = get_object_or_404(s2221evtToxic, id=pk)
 
     #
@@ -151,9 +151,11 @@ def validar_evento_funcao(request, pk):
 
     else:
 
-        if VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+        from emensageriapro.mensageiro.functions.funcoes_validacoes_precedencia import EVENTOS_SEM_PREDECESSAO, validar_precedencia
 
-            quant = validar_precedencia('esocial', 's2221_evttoxic', pk)
+        if VERIFICAR_PREDECESSAO_ANTES_ENVIO and 's2221_evttoxic' not in EVENTOS_SEM_PREDECESSAO:
+
+            quant = validar_precedencia('s2221_evttoxic', pk)
 
             if quant <= 0:
 

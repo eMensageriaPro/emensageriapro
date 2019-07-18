@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_s1070(request, pk, versao="|")
             dados = read_s1070_evttabprocesso_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s1070_evttabprocesso)
+            nova_identidade = identidade_evento(s1070_evttabprocesso, 'esocial')
 
             s1070evtTabProcesso.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

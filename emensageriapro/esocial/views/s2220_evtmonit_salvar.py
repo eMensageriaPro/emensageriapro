@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -72,17 +64,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s2220_evtmonit = get_object_or_404(s2220evtMonit, id=pk)
 
-        #if s2220_evtmonit.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s2220_evtmonit_apagar'] = 0
-        #    dict_permissoes['s2220_evtmonit_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s2220evtMonit'):
 
         if pk:
 
-            s2220_evtmonit_form = form_s2220_evtmonit(request.POST or None, instance = s2220_evtmonit,
+            s2220_evtmonit_form = form_s2220_evtmonit(request.POST or None, instance=s2220_evtmonit,
                                          initial={'ativo': True})
                      
         else:
@@ -105,7 +91,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's2220-evtmonit' not in request.session['return']:
 
@@ -130,8 +116,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 s2220_evtmonit_form = disabled_form_fields(s2220_evtmonit_form, False)
 
-        #s2220_evtmonit_campos_multiple_passo3
-
         for field in s2220_evtmonit_form.fields.keys():
 
             s2220_evtmonit_form.fields[field].widget.attrs['ng-model'] = 's2220_evtmonit_'+field
@@ -149,7 +133,7 @@ def salvar(request, pk=None, tab='master', output=None):
             s2220_evtmonit = get_object_or_404(s2220evtMonit, id=pk)
 
             s2220_exame_form = form_s2220_exame(
-                initial={ 's2220_evtmonit': s2220_evtmonit })
+                initial={'s2220_evtmonit': s2220_evtmonit})
             s2220_exame_form.fields['s2220_evtmonit'].widget.attrs['readonly'] = True
             s2220_exame_lista = s2220exame.objects.\
                 filter(s2220_evtmonit_id=s2220_evtmonit.id).all()
@@ -158,21 +142,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s2220_evtmonit = None
 
-        #s2220_evtmonit_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's2220_evtmonit'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's2220_evtmonit' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's2220_evtmonit_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2220_evtmonit').all()
 
@@ -183,7 +153,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's2220_evtmonit': s2220_evtmonit,
             's2220_evtmonit_form': s2220_evtmonit_form,
@@ -195,9 +165,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2220_evtmonit', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s2220_evtmonit_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

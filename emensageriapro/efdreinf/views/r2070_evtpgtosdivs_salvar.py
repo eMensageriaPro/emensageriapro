@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
@@ -76,17 +68,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         r2070_evtpgtosdivs = get_object_or_404(r2070evtPgtosDivs, id=pk)
 
-        #if r2070_evtpgtosdivs.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['r2070_evtpgtosdivs_apagar'] = 0
-        #    dict_permissoes['r2070_evtpgtosdivs_editar'] = 0
-
     if request.user.has_perm('efdreinf.can_see_r2070evtPgtosDivs'):
 
         if pk:
 
-            r2070_evtpgtosdivs_form = form_r2070_evtpgtosdivs(request.POST or None, instance = r2070_evtpgtosdivs,
+            r2070_evtpgtosdivs_form = form_r2070_evtpgtosdivs(request.POST or None, instance=r2070_evtpgtosdivs,
                                          initial={'ativo': True})
                      
         else:
@@ -109,7 +95,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'efdreinf')
              
                 if 'r2070-evtpgtosdivs' not in request.session['return']:
 
@@ -134,8 +120,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 r2070_evtpgtosdivs_form = disabled_form_fields(r2070_evtpgtosdivs_form, False)
 
-        #r2070_evtpgtosdivs_campos_multiple_passo3
-
         for field in r2070_evtpgtosdivs_form.fields.keys():
 
             r2070_evtpgtosdivs_form.fields[field].widget.attrs['ng-model'] = 'r2070_evtpgtosdivs_'+field
@@ -157,17 +141,17 @@ def salvar(request, pk=None, tab='master', output=None):
             r2070_evtpgtosdivs = get_object_or_404(r2070evtPgtosDivs, id=pk)
 
             r2070_inforesidext_form = form_r2070_inforesidext(
-                initial={ 'r2070_evtpgtosdivs': r2070_evtpgtosdivs })
+                initial={'r2070_evtpgtosdivs': r2070_evtpgtosdivs})
             r2070_inforesidext_form.fields['r2070_evtpgtosdivs'].widget.attrs['readonly'] = True
             r2070_inforesidext_lista = r2070infoResidExt.objects.\
                 filter(r2070_evtpgtosdivs_id=r2070_evtpgtosdivs.id).all()
             r2070_infomolestia_form = form_r2070_infomolestia(
-                initial={ 'r2070_evtpgtosdivs': r2070_evtpgtosdivs })
+                initial={'r2070_evtpgtosdivs': r2070_evtpgtosdivs})
             r2070_infomolestia_form.fields['r2070_evtpgtosdivs'].widget.attrs['readonly'] = True
             r2070_infomolestia_lista = r2070infoMolestia.objects.\
                 filter(r2070_evtpgtosdivs_id=r2070_evtpgtosdivs.id).all()
             r2070_ideestab_form = form_r2070_ideestab(
-                initial={ 'r2070_evtpgtosdivs': r2070_evtpgtosdivs })
+                initial={'r2070_evtpgtosdivs': r2070_evtpgtosdivs})
             r2070_ideestab_form.fields['r2070_evtpgtosdivs'].widget.attrs['readonly'] = True
             r2070_ideestab_lista = r2070ideEstab.objects.\
                 filter(r2070_evtpgtosdivs_id=r2070_evtpgtosdivs.id).all()
@@ -176,21 +160,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             r2070_evtpgtosdivs = None
 
-        #r2070_evtpgtosdivs_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 'r2070_evtpgtosdivs'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 'r2070_evtpgtosdivs' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 'r2070_evtpgtosdivs_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r2070_evtpgtosdivs').all()
 
@@ -201,7 +171,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             'r2070_evtpgtosdivs': r2070_evtpgtosdivs,
             'r2070_evtpgtosdivs_form': r2070_evtpgtosdivs_form,
@@ -217,9 +187,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r2070_evtpgtosdivs', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #r2070_evtpgtosdivs_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

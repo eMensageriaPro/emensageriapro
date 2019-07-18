@@ -87,7 +87,7 @@ def criar_alteracao(request, pk):
         texto = gerar_xml_s1005(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_s1005_evttabestab_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s1005_evttabestab)
+        nova_identidade = identidade_evento(s1005_evttabestab, 'esocial')
 
         s1005evtTabEstab.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

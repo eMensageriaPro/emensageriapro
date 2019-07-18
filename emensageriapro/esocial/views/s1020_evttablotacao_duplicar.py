@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_s1020(request, pk, versao="|")
             dados = read_s1020_evttablotacao_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s1020_evttablotacao)
+            nova_identidade = identidade_evento(s1020_evttablotacao, 'esocial')
 
             s1020evtTabLotacao.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

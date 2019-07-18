@@ -87,7 +87,7 @@ def criar_alteracao(request, pk):
         texto = gerar_xml_r4099(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_r4099_evtfech_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(r4099_evtfech)
+        nova_identidade = identidade_evento(r4099_evtfech, 'efdreinf')
 
         r4099evtFech.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -86,17 +78,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s2205_evtaltcadastral = get_object_or_404(s2205evtAltCadastral, id=pk)
 
-        #if s2205_evtaltcadastral.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s2205_evtaltcadastral_apagar'] = 0
-        #    dict_permissoes['s2205_evtaltcadastral_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s2205evtAltCadastral'):
 
         if pk:
 
-            s2205_evtaltcadastral_form = form_s2205_evtaltcadastral(request.POST or None, instance = s2205_evtaltcadastral,
+            s2205_evtaltcadastral_form = form_s2205_evtaltcadastral(request.POST or None, instance=s2205_evtaltcadastral,
                                          initial={'ativo': True})
                      
         else:
@@ -119,7 +105,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's2205-evtaltcadastral' not in request.session['return']:
 
@@ -143,8 +129,6 @@ def salvar(request, pk=None, tab='master', output=None):
             if s2205_evtaltcadastral.status != 0:
 
                 s2205_evtaltcadastral_form = disabled_form_fields(s2205_evtaltcadastral_form, False)
-
-        #s2205_evtaltcadastral_campos_multiple_passo3
 
         for field in s2205_evtaltcadastral_form.fields.keys():
 
@@ -177,42 +161,42 @@ def salvar(request, pk=None, tab='master', output=None):
             s2205_evtaltcadastral = get_object_or_404(s2205evtAltCadastral, id=pk)
 
             s2205_documentos_form = form_s2205_documentos(
-                initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral })
+                initial={'s2205_evtaltcadastral': s2205_evtaltcadastral})
             s2205_documentos_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_documentos_lista = s2205documentos.objects.\
                 filter(s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
             s2205_brasil_form = form_s2205_brasil(
-                initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral })
+                initial={'s2205_evtaltcadastral': s2205_evtaltcadastral})
             s2205_brasil_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_brasil_lista = s2205brasil.objects.\
                 filter(s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
             s2205_exterior_form = form_s2205_exterior(
-                initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral })
+                initial={'s2205_evtaltcadastral': s2205_evtaltcadastral})
             s2205_exterior_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_exterior_lista = s2205exterior.objects.\
                 filter(s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
             s2205_trabestrangeiro_form = form_s2205_trabestrangeiro(
-                initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral })
+                initial={'s2205_evtaltcadastral': s2205_evtaltcadastral})
             s2205_trabestrangeiro_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_trabestrangeiro_lista = s2205trabEstrangeiro.objects.\
                 filter(s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
             s2205_infodeficiencia_form = form_s2205_infodeficiencia(
-                initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral })
+                initial={'s2205_evtaltcadastral': s2205_evtaltcadastral})
             s2205_infodeficiencia_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_infodeficiencia_lista = s2205infoDeficiencia.objects.\
                 filter(s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
             s2205_dependente_form = form_s2205_dependente(
-                initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral })
+                initial={'s2205_evtaltcadastral': s2205_evtaltcadastral})
             s2205_dependente_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_dependente_lista = s2205dependente.objects.\
                 filter(s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
             s2205_aposentadoria_form = form_s2205_aposentadoria(
-                initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral })
+                initial={'s2205_evtaltcadastral': s2205_evtaltcadastral})
             s2205_aposentadoria_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_aposentadoria_lista = s2205aposentadoria.objects.\
                 filter(s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
             s2205_contato_form = form_s2205_contato(
-                initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral })
+                initial={'s2205_evtaltcadastral': s2205_evtaltcadastral})
             s2205_contato_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_contato_lista = s2205contato.objects.\
                 filter(s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
@@ -221,21 +205,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s2205_evtaltcadastral = None
 
-        #s2205_evtaltcadastral_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's2205_evtaltcadastral'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's2205_evtaltcadastral' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's2205_evtaltcadastral_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2205_evtaltcadastral').all()
 
@@ -246,7 +216,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's2205_evtaltcadastral': s2205_evtaltcadastral,
             's2205_evtaltcadastral_form': s2205_evtaltcadastral_form,
@@ -272,9 +242,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2205_evtaltcadastral', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s2205_evtaltcadastral_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

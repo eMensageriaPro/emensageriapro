@@ -89,7 +89,7 @@ def validar_evento_funcao(request, pk):
 
     if not s2241_evtinsapo.identidade:
         from emensageriapro.functions import identidade_evento
-        ident = identidade_evento(s2241_evtinsapo)
+        ident = identidade_evento(s2241_evtinsapo, 'esocial')
         s2241_evtinsapo = get_object_or_404(s2241evtInsApo, id=pk)
 
     #
@@ -151,9 +151,11 @@ def validar_evento_funcao(request, pk):
 
     else:
 
-        if VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+        from emensageriapro.mensageiro.functions.funcoes_validacoes_precedencia import EVENTOS_SEM_PREDECESSAO, validar_precedencia
 
-            quant = validar_precedencia('esocial', 's2241_evtinsapo', pk)
+        if VERIFICAR_PREDECESSAO_ANTES_ENVIO and 's2241_evtinsapo' not in EVENTOS_SEM_PREDECESSAO:
+
+            quant = validar_precedencia('s2241_evtinsapo', pk)
 
             if quant <= 0:
 

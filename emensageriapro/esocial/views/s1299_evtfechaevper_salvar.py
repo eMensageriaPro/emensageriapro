@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -72,17 +64,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s1299_evtfechaevper = get_object_or_404(s1299evtFechaEvPer, id=pk)
 
-        #if s1299_evtfechaevper.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s1299_evtfechaevper_apagar'] = 0
-        #    dict_permissoes['s1299_evtfechaevper_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s1299evtFechaEvPer'):
 
         if pk:
 
-            s1299_evtfechaevper_form = form_s1299_evtfechaevper(request.POST or None, instance = s1299_evtfechaevper,
+            s1299_evtfechaevper_form = form_s1299_evtfechaevper(request.POST or None, instance=s1299_evtfechaevper,
                                          initial={'ativo': True})
                      
         else:
@@ -105,7 +91,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's1299-evtfechaevper' not in request.session['return']:
 
@@ -130,8 +116,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 s1299_evtfechaevper_form = disabled_form_fields(s1299_evtfechaevper_form, False)
 
-        #s1299_evtfechaevper_campos_multiple_passo3
-
         for field in s1299_evtfechaevper_form.fields.keys():
 
             s1299_evtfechaevper_form.fields[field].widget.attrs['ng-model'] = 's1299_evtfechaevper_'+field
@@ -149,7 +133,7 @@ def salvar(request, pk=None, tab='master', output=None):
             s1299_evtfechaevper = get_object_or_404(s1299evtFechaEvPer, id=pk)
 
             s1299_iderespinf_form = form_s1299_iderespinf(
-                initial={ 's1299_evtfechaevper': s1299_evtfechaevper })
+                initial={'s1299_evtfechaevper': s1299_evtfechaevper})
             s1299_iderespinf_form.fields['s1299_evtfechaevper'].widget.attrs['readonly'] = True
             s1299_iderespinf_lista = s1299ideRespInf.objects.\
                 filter(s1299_evtfechaevper_id=s1299_evtfechaevper.id).all()
@@ -158,21 +142,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s1299_evtfechaevper = None
 
-        #s1299_evtfechaevper_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's1299_evtfechaevper'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's1299_evtfechaevper' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's1299_evtfechaevper_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1299_evtfechaevper').all()
 
@@ -183,7 +153,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's1299_evtfechaevper': s1299_evtfechaevper,
             's1299_evtfechaevper_form': s1299_evtfechaevper_form,
@@ -195,9 +165,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1299_evtfechaevper', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s1299_evtfechaevper_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

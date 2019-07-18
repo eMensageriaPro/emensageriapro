@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -76,17 +68,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s1080_evttaboperport = get_object_or_404(s1080evtTabOperPort, id=pk)
 
-        #if s1080_evttaboperport.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s1080_evttaboperport_apagar'] = 0
-        #    dict_permissoes['s1080_evttaboperport_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s1080evtTabOperPort'):
 
         if pk:
 
-            s1080_evttaboperport_form = form_s1080_evttaboperport(request.POST or None, instance = s1080_evttaboperport,
+            s1080_evttaboperport_form = form_s1080_evttaboperport(request.POST or None, instance=s1080_evttaboperport,
                                          initial={'ativo': True})
                      
         else:
@@ -109,7 +95,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's1080-evttaboperport' not in request.session['return']:
 
@@ -134,8 +120,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 s1080_evttaboperport_form = disabled_form_fields(s1080_evttaboperport_form, False)
 
-        #s1080_evttaboperport_campos_multiple_passo3
-
         for field in s1080_evttaboperport_form.fields.keys():
 
             s1080_evttaboperport_form.fields[field].widget.attrs['ng-model'] = 's1080_evttaboperport_'+field
@@ -157,17 +141,17 @@ def salvar(request, pk=None, tab='master', output=None):
             s1080_evttaboperport = get_object_or_404(s1080evtTabOperPort, id=pk)
 
             s1080_inclusao_form = form_s1080_inclusao(
-                initial={ 's1080_evttaboperport': s1080_evttaboperport })
+                initial={'s1080_evttaboperport': s1080_evttaboperport})
             s1080_inclusao_form.fields['s1080_evttaboperport'].widget.attrs['readonly'] = True
             s1080_inclusao_lista = s1080inclusao.objects.\
                 filter(s1080_evttaboperport_id=s1080_evttaboperport.id).all()
             s1080_alteracao_form = form_s1080_alteracao(
-                initial={ 's1080_evttaboperport': s1080_evttaboperport })
+                initial={'s1080_evttaboperport': s1080_evttaboperport})
             s1080_alteracao_form.fields['s1080_evttaboperport'].widget.attrs['readonly'] = True
             s1080_alteracao_lista = s1080alteracao.objects.\
                 filter(s1080_evttaboperport_id=s1080_evttaboperport.id).all()
             s1080_exclusao_form = form_s1080_exclusao(
-                initial={ 's1080_evttaboperport': s1080_evttaboperport })
+                initial={'s1080_evttaboperport': s1080_evttaboperport})
             s1080_exclusao_form.fields['s1080_evttaboperport'].widget.attrs['readonly'] = True
             s1080_exclusao_lista = s1080exclusao.objects.\
                 filter(s1080_evttaboperport_id=s1080_evttaboperport.id).all()
@@ -176,21 +160,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s1080_evttaboperport = None
 
-        #s1080_evttaboperport_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's1080_evttaboperport'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's1080_evttaboperport' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's1080_evttaboperport_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1080_evttaboperport').all()
 
@@ -201,7 +171,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's1080_evttaboperport': s1080_evttaboperport,
             's1080_evttaboperport_form': s1080_evttaboperport_form,
@@ -217,9 +187,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1080_evttaboperport', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s1080_evttaboperport_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

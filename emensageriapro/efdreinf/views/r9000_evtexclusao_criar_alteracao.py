@@ -87,7 +87,7 @@ def criar_alteracao(request, pk):
         texto = gerar_xml_r9000(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_r9000_evtexclusao_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(r9000_evtexclusao)
+        nova_identidade = identidade_evento(r9000_evtexclusao, 'efdreinf')
 
         r9000evtExclusao.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

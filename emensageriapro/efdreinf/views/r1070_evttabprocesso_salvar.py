@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
@@ -76,17 +68,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         r1070_evttabprocesso = get_object_or_404(r1070evtTabProcesso, id=pk)
 
-        #if r1070_evttabprocesso.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['r1070_evttabprocesso_apagar'] = 0
-        #    dict_permissoes['r1070_evttabprocesso_editar'] = 0
-
     if request.user.has_perm('efdreinf.can_see_r1070evtTabProcesso'):
 
         if pk:
 
-            r1070_evttabprocesso_form = form_r1070_evttabprocesso(request.POST or None, instance = r1070_evttabprocesso,
+            r1070_evttabprocesso_form = form_r1070_evttabprocesso(request.POST or None, instance=r1070_evttabprocesso,
                                          initial={'ativo': True})
                      
         else:
@@ -109,7 +95,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'efdreinf')
              
                 if 'r1070-evttabprocesso' not in request.session['return']:
 
@@ -134,8 +120,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 r1070_evttabprocesso_form = disabled_form_fields(r1070_evttabprocesso_form, False)
 
-        #r1070_evttabprocesso_campos_multiple_passo3
-
         for field in r1070_evttabprocesso_form.fields.keys():
 
             r1070_evttabprocesso_form.fields[field].widget.attrs['ng-model'] = 'r1070_evttabprocesso_'+field
@@ -157,17 +141,17 @@ def salvar(request, pk=None, tab='master', output=None):
             r1070_evttabprocesso = get_object_or_404(r1070evtTabProcesso, id=pk)
 
             r1070_inclusao_form = form_r1070_inclusao(
-                initial={ 'r1070_evttabprocesso': r1070_evttabprocesso })
+                initial={'r1070_evttabprocesso': r1070_evttabprocesso})
             r1070_inclusao_form.fields['r1070_evttabprocesso'].widget.attrs['readonly'] = True
             r1070_inclusao_lista = r1070inclusao.objects.\
                 filter(r1070_evttabprocesso_id=r1070_evttabprocesso.id).all()
             r1070_alteracao_form = form_r1070_alteracao(
-                initial={ 'r1070_evttabprocesso': r1070_evttabprocesso })
+                initial={'r1070_evttabprocesso': r1070_evttabprocesso})
             r1070_alteracao_form.fields['r1070_evttabprocesso'].widget.attrs['readonly'] = True
             r1070_alteracao_lista = r1070alteracao.objects.\
                 filter(r1070_evttabprocesso_id=r1070_evttabprocesso.id).all()
             r1070_exclusao_form = form_r1070_exclusao(
-                initial={ 'r1070_evttabprocesso': r1070_evttabprocesso })
+                initial={'r1070_evttabprocesso': r1070_evttabprocesso})
             r1070_exclusao_form.fields['r1070_evttabprocesso'].widget.attrs['readonly'] = True
             r1070_exclusao_lista = r1070exclusao.objects.\
                 filter(r1070_evttabprocesso_id=r1070_evttabprocesso.id).all()
@@ -176,21 +160,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             r1070_evttabprocesso = None
 
-        #r1070_evttabprocesso_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 'r1070_evttabprocesso'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 'r1070_evttabprocesso' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 'r1070_evttabprocesso_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r1070_evttabprocesso').all()
 
@@ -201,7 +171,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             'r1070_evttabprocesso': r1070_evttabprocesso,
             'r1070_evttabprocesso_form': r1070_evttabprocesso_form,
@@ -217,9 +187,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r1070_evttabprocesso', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #r1070_evttabprocesso_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

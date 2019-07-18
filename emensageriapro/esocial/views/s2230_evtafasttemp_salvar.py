@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -76,17 +68,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s2230_evtafasttemp = get_object_or_404(s2230evtAfastTemp, id=pk)
 
-        #if s2230_evtafasttemp.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s2230_evtafasttemp_apagar'] = 0
-        #    dict_permissoes['s2230_evtafasttemp_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s2230evtAfastTemp'):
 
         if pk:
 
-            s2230_evtafasttemp_form = form_s2230_evtafasttemp(request.POST or None, instance = s2230_evtafasttemp,
+            s2230_evtafasttemp_form = form_s2230_evtafasttemp(request.POST or None, instance=s2230_evtafasttemp,
                                          initial={'ativo': True})
                      
         else:
@@ -109,7 +95,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's2230-evtafasttemp' not in request.session['return']:
 
@@ -134,8 +120,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 s2230_evtafasttemp_form = disabled_form_fields(s2230_evtafasttemp_form, False)
 
-        #s2230_evtafasttemp_campos_multiple_passo3
-
         for field in s2230_evtafasttemp_form.fields.keys():
 
             s2230_evtafasttemp_form.fields[field].widget.attrs['ng-model'] = 's2230_evtafasttemp_'+field
@@ -157,17 +141,17 @@ def salvar(request, pk=None, tab='master', output=None):
             s2230_evtafasttemp = get_object_or_404(s2230evtAfastTemp, id=pk)
 
             s2230_iniafastamento_form = form_s2230_iniafastamento(
-                initial={ 's2230_evtafasttemp': s2230_evtafasttemp })
+                initial={'s2230_evtafasttemp': s2230_evtafasttemp})
             s2230_iniafastamento_form.fields['s2230_evtafasttemp'].widget.attrs['readonly'] = True
             s2230_iniafastamento_lista = s2230iniAfastamento.objects.\
                 filter(s2230_evtafasttemp_id=s2230_evtafasttemp.id).all()
             s2230_inforetif_form = form_s2230_inforetif(
-                initial={ 's2230_evtafasttemp': s2230_evtafasttemp })
+                initial={'s2230_evtafasttemp': s2230_evtafasttemp})
             s2230_inforetif_form.fields['s2230_evtafasttemp'].widget.attrs['readonly'] = True
             s2230_inforetif_lista = s2230infoRetif.objects.\
                 filter(s2230_evtafasttemp_id=s2230_evtafasttemp.id).all()
             s2230_fimafastamento_form = form_s2230_fimafastamento(
-                initial={ 's2230_evtafasttemp': s2230_evtafasttemp })
+                initial={'s2230_evtafasttemp': s2230_evtafasttemp})
             s2230_fimafastamento_form.fields['s2230_evtafasttemp'].widget.attrs['readonly'] = True
             s2230_fimafastamento_lista = s2230fimAfastamento.objects.\
                 filter(s2230_evtafasttemp_id=s2230_evtafasttemp.id).all()
@@ -176,21 +160,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s2230_evtafasttemp = None
 
-        #s2230_evtafasttemp_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's2230_evtafasttemp'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's2230_evtafasttemp' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's2230_evtafasttemp_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2230_evtafasttemp').all()
 
@@ -201,7 +171,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's2230_evtafasttemp': s2230_evtafasttemp,
             's2230_evtafasttemp_form': s2230_evtafasttemp_form,
@@ -217,9 +187,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2230_evtafasttemp', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s2230_evtafasttemp_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

@@ -89,7 +89,7 @@ def criar_exclusao(request, pk):
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_s2221_evttoxic_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s2221_evttoxic)
+        nova_identidade = identidade_evento(s2221_evttoxic, 'esocial')
 
         s2221evtToxic.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

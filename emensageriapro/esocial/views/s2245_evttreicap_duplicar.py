@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_s2245(request, pk, versao="|")
             dados = read_s2245_evttreicap_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s2245_evttreicap)
+            nova_identidade = identidade_evento(s2245_evttreicap, 'esocial')
 
             s2245evtTreiCap.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

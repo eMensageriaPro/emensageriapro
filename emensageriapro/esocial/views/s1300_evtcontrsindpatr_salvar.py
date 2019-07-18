@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -72,17 +64,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s1300_evtcontrsindpatr = get_object_or_404(s1300evtContrSindPatr, id=pk)
 
-        #if s1300_evtcontrsindpatr.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s1300_evtcontrsindpatr_apagar'] = 0
-        #    dict_permissoes['s1300_evtcontrsindpatr_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s1300evtContrSindPatr'):
 
         if pk:
 
-            s1300_evtcontrsindpatr_form = form_s1300_evtcontrsindpatr(request.POST or None, instance = s1300_evtcontrsindpatr,
+            s1300_evtcontrsindpatr_form = form_s1300_evtcontrsindpatr(request.POST or None, instance=s1300_evtcontrsindpatr,
                                          initial={'ativo': True})
                      
         else:
@@ -105,7 +91,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's1300-evtcontrsindpatr' not in request.session['return']:
 
@@ -130,8 +116,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 s1300_evtcontrsindpatr_form = disabled_form_fields(s1300_evtcontrsindpatr_form, False)
 
-        #s1300_evtcontrsindpatr_campos_multiple_passo3
-
         for field in s1300_evtcontrsindpatr_form.fields.keys():
 
             s1300_evtcontrsindpatr_form.fields[field].widget.attrs['ng-model'] = 's1300_evtcontrsindpatr_'+field
@@ -149,7 +133,7 @@ def salvar(request, pk=None, tab='master', output=None):
             s1300_evtcontrsindpatr = get_object_or_404(s1300evtContrSindPatr, id=pk)
 
             s1300_contribsind_form = form_s1300_contribsind(
-                initial={ 's1300_evtcontrsindpatr': s1300_evtcontrsindpatr })
+                initial={'s1300_evtcontrsindpatr': s1300_evtcontrsindpatr})
             s1300_contribsind_form.fields['s1300_evtcontrsindpatr'].widget.attrs['readonly'] = True
             s1300_contribsind_lista = s1300contribSind.objects.\
                 filter(s1300_evtcontrsindpatr_id=s1300_evtcontrsindpatr.id).all()
@@ -158,21 +142,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s1300_evtcontrsindpatr = None
 
-        #s1300_evtcontrsindpatr_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's1300_evtcontrsindpatr'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's1300_evtcontrsindpatr' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's1300_evtcontrsindpatr_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1300_evtcontrsindpatr').all()
 
@@ -183,7 +153,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's1300_evtcontrsindpatr': s1300_evtcontrsindpatr,
             's1300_evtcontrsindpatr_form': s1300_evtcontrsindpatr_form,
@@ -195,9 +165,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1300_evtcontrsindpatr', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s1300_evtcontrsindpatr_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

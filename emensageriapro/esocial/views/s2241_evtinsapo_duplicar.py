@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_s2241(request, pk, versao="|")
             dados = read_s2241_evtinsapo_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s2241_evtinsapo)
+            nova_identidade = identidade_evento(s2241_evtinsapo, 'esocial')
 
             s2241evtInsApo.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

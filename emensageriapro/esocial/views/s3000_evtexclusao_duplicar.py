@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_s3000(request, pk, versao="|")
             dados = read_s3000_evtexclusao_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s3000_evtexclusao)
+            nova_identidade = identidade_evento(s3000_evtexclusao, 'esocial')
 
             s3000evtExclusao.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

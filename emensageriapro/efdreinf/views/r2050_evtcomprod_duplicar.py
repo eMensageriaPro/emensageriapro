@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_r2050(request, pk, versao="|")
             dados = read_r2050_evtcomprod_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(r2050_evtcomprod)
+            nova_identidade = identidade_evento(r2050_evtcomprod, 'efdreinf')
 
             r2050evtComProd.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

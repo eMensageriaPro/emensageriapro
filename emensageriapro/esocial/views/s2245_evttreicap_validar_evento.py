@@ -89,7 +89,7 @@ def validar_evento_funcao(request, pk):
 
     if not s2245_evttreicap.identidade:
         from emensageriapro.functions import identidade_evento
-        ident = identidade_evento(s2245_evttreicap)
+        ident = identidade_evento(s2245_evttreicap, 'esocial')
         s2245_evttreicap = get_object_or_404(s2245evtTreiCap, id=pk)
 
     #
@@ -151,9 +151,11 @@ def validar_evento_funcao(request, pk):
 
     else:
 
-        if VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+        from emensageriapro.mensageiro.functions.funcoes_validacoes_precedencia import EVENTOS_SEM_PREDECESSAO, validar_precedencia
 
-            quant = validar_precedencia('esocial', 's2245_evttreicap', pk)
+        if VERIFICAR_PREDECESSAO_ANTES_ENVIO and 's2245_evttreicap' not in EVENTOS_SEM_PREDECESSAO:
+
+            quant = validar_precedencia('s2245_evttreicap', pk)
 
             if quant <= 0:
 

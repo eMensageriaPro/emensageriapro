@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
@@ -72,17 +64,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         r2040_evtassocdesprep = get_object_or_404(r2040evtAssocDespRep, id=pk)
 
-        #if r2040_evtassocdesprep.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['r2040_evtassocdesprep_apagar'] = 0
-        #    dict_permissoes['r2040_evtassocdesprep_editar'] = 0
-
     if request.user.has_perm('efdreinf.can_see_r2040evtAssocDespRep'):
 
         if pk:
 
-            r2040_evtassocdesprep_form = form_r2040_evtassocdesprep(request.POST or None, instance = r2040_evtassocdesprep,
+            r2040_evtassocdesprep_form = form_r2040_evtassocdesprep(request.POST or None, instance=r2040_evtassocdesprep,
                                          initial={'ativo': True})
                      
         else:
@@ -105,7 +91,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'efdreinf')
              
                 if 'r2040-evtassocdesprep' not in request.session['return']:
 
@@ -130,8 +116,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 r2040_evtassocdesprep_form = disabled_form_fields(r2040_evtassocdesprep_form, False)
 
-        #r2040_evtassocdesprep_campos_multiple_passo3
-
         for field in r2040_evtassocdesprep_form.fields.keys():
 
             r2040_evtassocdesprep_form.fields[field].widget.attrs['ng-model'] = 'r2040_evtassocdesprep_'+field
@@ -149,7 +133,7 @@ def salvar(request, pk=None, tab='master', output=None):
             r2040_evtassocdesprep = get_object_or_404(r2040evtAssocDespRep, id=pk)
 
             r2040_recursosrep_form = form_r2040_recursosrep(
-                initial={ 'r2040_evtassocdesprep': r2040_evtassocdesprep })
+                initial={'r2040_evtassocdesprep': r2040_evtassocdesprep})
             r2040_recursosrep_form.fields['r2040_evtassocdesprep'].widget.attrs['readonly'] = True
             r2040_recursosrep_lista = r2040recursosRep.objects.\
                 filter(r2040_evtassocdesprep_id=r2040_evtassocdesprep.id).all()
@@ -158,21 +142,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             r2040_evtassocdesprep = None
 
-        #r2040_evtassocdesprep_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 'r2040_evtassocdesprep'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 'r2040_evtassocdesprep' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 'r2040_evtassocdesprep_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r2040_evtassocdesprep').all()
 
@@ -183,7 +153,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             'r2040_evtassocdesprep': r2040_evtassocdesprep,
             'r2040_evtassocdesprep_form': r2040_evtassocdesprep_form,
@@ -195,9 +165,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r2040_evtassocdesprep', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #r2040_evtassocdesprep_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

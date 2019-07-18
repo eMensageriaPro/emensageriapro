@@ -89,7 +89,7 @@ def criar_exclusao(request, pk):
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_r4099_evtfech_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(r4099_evtfech)
+        nova_identidade = identidade_evento(r4099_evtfech, 'efdreinf')
 
         r4099evtFech.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

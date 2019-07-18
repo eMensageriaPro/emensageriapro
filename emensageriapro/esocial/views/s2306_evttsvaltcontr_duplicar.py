@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_s2306(request, pk, versao="|")
             dados = read_s2306_evttsvaltcontr_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s2306_evttsvaltcontr)
+            nova_identidade = identidade_evento(s2306_evttsvaltcontr, 'esocial')
 
             s2306evtTSVAltContr.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

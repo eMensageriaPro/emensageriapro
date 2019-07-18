@@ -84,7 +84,7 @@ def alterar_identidade(request, pk):
 
         if s1298_evtreabreevper.status == STATUS_EVENTO_CADASTRADO:
 
-            nova_identidade = identidade_evento(s1298_evtreabreevper)
+            nova_identidade = identidade_evento(s1298_evtreabreevper, 'esocial')
             messages.success(request, u'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
             return_pk = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % pk )
 

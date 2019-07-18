@@ -89,7 +89,7 @@ def validar_evento_funcao(request, pk):
 
     if not s1035_evttabcarreira.identidade:
         from emensageriapro.functions import identidade_evento
-        ident = identidade_evento(s1035_evttabcarreira)
+        ident = identidade_evento(s1035_evttabcarreira, 'esocial')
         s1035_evttabcarreira = get_object_or_404(s1035evtTabCarreira, id=pk)
 
     #
@@ -151,9 +151,11 @@ def validar_evento_funcao(request, pk):
 
     else:
 
-        if VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+        from emensageriapro.mensageiro.functions.funcoes_validacoes_precedencia import EVENTOS_SEM_PREDECESSAO, validar_precedencia
 
-            quant = validar_precedencia('esocial', 's1035_evttabcarreira', pk)
+        if VERIFICAR_PREDECESSAO_ANTES_ENVIO and 's1035_evttabcarreira' not in EVENTOS_SEM_PREDECESSAO:
+
+            quant = validar_precedencia('s1035_evttabcarreira', pk)
 
             if quant <= 0:
 

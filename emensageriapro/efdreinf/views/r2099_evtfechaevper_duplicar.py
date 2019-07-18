@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_r2099(request, pk, versao="|")
             dados = read_r2099_evtfechaevper_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(r2099_evtfechaevper)
+            nova_identidade = identidade_evento(r2099_evtfechaevper, 'efdreinf')
 
             r2099evtFechaEvPer.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

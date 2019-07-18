@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
@@ -76,17 +68,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         r1000_evtinfocontri = get_object_or_404(r1000evtInfoContri, id=pk)
 
-        #if r1000_evtinfocontri.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['r1000_evtinfocontri_apagar'] = 0
-        #    dict_permissoes['r1000_evtinfocontri_editar'] = 0
-
     if request.user.has_perm('efdreinf.can_see_r1000evtInfoContri'):
 
         if pk:
 
-            r1000_evtinfocontri_form = form_r1000_evtinfocontri(request.POST or None, instance = r1000_evtinfocontri,
+            r1000_evtinfocontri_form = form_r1000_evtinfocontri(request.POST or None, instance=r1000_evtinfocontri,
                                          initial={'ativo': True})
                      
         else:
@@ -109,7 +95,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'efdreinf')
              
                 if 'r1000-evtinfocontri' not in request.session['return']:
 
@@ -134,8 +120,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 r1000_evtinfocontri_form = disabled_form_fields(r1000_evtinfocontri_form, False)
 
-        #r1000_evtinfocontri_campos_multiple_passo3
-
         for field in r1000_evtinfocontri_form.fields.keys():
 
             r1000_evtinfocontri_form.fields[field].widget.attrs['ng-model'] = 'r1000_evtinfocontri_'+field
@@ -157,17 +141,17 @@ def salvar(request, pk=None, tab='master', output=None):
             r1000_evtinfocontri = get_object_or_404(r1000evtInfoContri, id=pk)
 
             r1000_inclusao_form = form_r1000_inclusao(
-                initial={ 'r1000_evtinfocontri': r1000_evtinfocontri })
+                initial={'r1000_evtinfocontri': r1000_evtinfocontri})
             r1000_inclusao_form.fields['r1000_evtinfocontri'].widget.attrs['readonly'] = True
             r1000_inclusao_lista = r1000inclusao.objects.\
                 filter(r1000_evtinfocontri_id=r1000_evtinfocontri.id).all()
             r1000_alteracao_form = form_r1000_alteracao(
-                initial={ 'r1000_evtinfocontri': r1000_evtinfocontri })
+                initial={'r1000_evtinfocontri': r1000_evtinfocontri})
             r1000_alteracao_form.fields['r1000_evtinfocontri'].widget.attrs['readonly'] = True
             r1000_alteracao_lista = r1000alteracao.objects.\
                 filter(r1000_evtinfocontri_id=r1000_evtinfocontri.id).all()
             r1000_exclusao_form = form_r1000_exclusao(
-                initial={ 'r1000_evtinfocontri': r1000_evtinfocontri })
+                initial={'r1000_evtinfocontri': r1000_evtinfocontri})
             r1000_exclusao_form.fields['r1000_evtinfocontri'].widget.attrs['readonly'] = True
             r1000_exclusao_lista = r1000exclusao.objects.\
                 filter(r1000_evtinfocontri_id=r1000_evtinfocontri.id).all()
@@ -176,21 +160,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             r1000_evtinfocontri = None
 
-        #r1000_evtinfocontri_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 'r1000_evtinfocontri'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 'r1000_evtinfocontri' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 'r1000_evtinfocontri_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r1000_evtinfocontri').all()
 
@@ -201,7 +171,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             'r1000_evtinfocontri': r1000_evtinfocontri,
             'r1000_evtinfocontri_form': r1000_evtinfocontri_form,
@@ -217,9 +187,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r1000_evtinfocontri', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #r1000_evtinfocontri_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

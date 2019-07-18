@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -114,17 +106,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s2200_evtadmissao = get_object_or_404(s2200evtAdmissao, id=pk)
 
-        #if s2200_evtadmissao.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s2200_evtadmissao_apagar'] = 0
-        #    dict_permissoes['s2200_evtadmissao_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s2200evtAdmissao'):
 
         if pk:
 
-            s2200_evtadmissao_form = form_s2200_evtadmissao(request.POST or None, instance = s2200_evtadmissao,
+            s2200_evtadmissao_form = form_s2200_evtadmissao(request.POST or None, instance=s2200_evtadmissao,
                                          initial={'ativo': True})
                      
         else:
@@ -147,7 +133,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's2200-evtadmissao' not in request.session['return']:
 
@@ -171,8 +157,6 @@ def salvar(request, pk=None, tab='master', output=None):
             if s2200_evtadmissao.status != 0:
 
                 s2200_evtadmissao_form = disabled_form_fields(s2200_evtadmissao_form, False)
-
-        #s2200_evtadmissao_campos_multiple_passo3
 
         for field in s2200_evtadmissao_form.fields.keys():
 
@@ -233,112 +217,112 @@ def salvar(request, pk=None, tab='master', output=None):
             s2200_evtadmissao = get_object_or_404(s2200evtAdmissao, id=pk)
 
             s2200_documentos_form = form_s2200_documentos(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_documentos_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_documentos_lista = s2200documentos.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_brasil_form = form_s2200_brasil(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_brasil_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_brasil_lista = s2200brasil.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_exterior_form = form_s2200_exterior(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_exterior_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_exterior_lista = s2200exterior.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_trabestrangeiro_form = form_s2200_trabestrangeiro(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_trabestrangeiro_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_trabestrangeiro_lista = s2200trabEstrangeiro.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_infodeficiencia_form = form_s2200_infodeficiencia(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_infodeficiencia_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_infodeficiencia_lista = s2200infoDeficiencia.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_dependente_form = form_s2200_dependente(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_dependente_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_dependente_lista = s2200dependente.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_aposentadoria_form = form_s2200_aposentadoria(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_aposentadoria_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_aposentadoria_lista = s2200aposentadoria.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_contato_form = form_s2200_contato(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_contato_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_contato_lista = s2200contato.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_infoceletista_form = form_s2200_infoceletista(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_infoceletista_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_infoceletista_lista = s2200infoCeletista.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_infoestatutario_form = form_s2200_infoestatutario(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_infoestatutario_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_infoestatutario_lista = s2200infoEstatutario.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_localtrabgeral_form = form_s2200_localtrabgeral(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_localtrabgeral_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_localtrabgeral_lista = s2200localTrabGeral.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_localtrabdom_form = form_s2200_localtrabdom(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_localtrabdom_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_localtrabdom_lista = s2200localTrabDom.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_horcontratual_form = form_s2200_horcontratual(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_horcontratual_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_horcontratual_lista = s2200horContratual.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_filiacaosindical_form = form_s2200_filiacaosindical(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_filiacaosindical_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_filiacaosindical_lista = s2200filiacaoSindical.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_alvarajudicial_form = form_s2200_alvarajudicial(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_alvarajudicial_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_alvarajudicial_lista = s2200alvaraJudicial.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_observacoes_form = form_s2200_observacoes(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_observacoes_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_observacoes_lista = s2200observacoes.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_sucessaovinc_form = form_s2200_sucessaovinc(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_sucessaovinc_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_sucessaovinc_lista = s2200sucessaoVinc.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_transfdom_form = form_s2200_transfdom(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_transfdom_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_transfdom_lista = s2200transfDom.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_mudancacpf_form = form_s2200_mudancacpf(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_mudancacpf_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_mudancacpf_lista = s2200mudancaCPF.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_afastamento_form = form_s2200_afastamento(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_afastamento_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_afastamento_lista = s2200afastamento.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_desligamento_form = form_s2200_desligamento(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_desligamento_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_desligamento_lista = s2200desligamento.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_cessao_form = form_s2200_cessao(
-                initial={ 's2200_evtadmissao': s2200_evtadmissao })
+                initial={'s2200_evtadmissao': s2200_evtadmissao})
             s2200_cessao_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_cessao_lista = s2200cessao.objects.\
                 filter(s2200_evtadmissao_id=s2200_evtadmissao.id).all()
@@ -347,21 +331,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s2200_evtadmissao = None
 
-        #s2200_evtadmissao_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's2200_evtadmissao'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's2200_evtadmissao' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's2200_evtadmissao_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2200_evtadmissao').all()
 
@@ -372,7 +342,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's2200_evtadmissao': s2200_evtadmissao,
             's2200_evtadmissao_form': s2200_evtadmissao_form,
@@ -426,9 +396,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2200_evtadmissao', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s2200_evtadmissao_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

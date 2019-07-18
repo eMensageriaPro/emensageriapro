@@ -270,10 +270,10 @@ def send_xml(request, transmissor_id, service):
 
     dados = {}
     dados['transmissor_id'] = transmissor_id
-    dados['header'] = '/arquivos/Comunicacao/%s/header/%s_%s.xml' % (service, name, data_atual)
+    dados['header'] = '/arquivos/Comunicacao/%s/header/%s_%s.txt' % (service, name, data_atual)
     dados['request'] = '/arquivos/Comunicacao/%s/request/%s_%s.xml' % (service, name, data_atual)
     dados['response'] = '/arquivos/Comunicacao/%s/response/%s_%s.xml' % (service, name, data_atual)
-    dados['header_completo'] = '%s/arquivos/Comunicacao/%s/header/%s_%s.xml' % (BASE_DIR, service, name, data_atual)
+    dados['header_completo'] = '%s/arquivos/Comunicacao/%s/header/%s_%s.txt' % (BASE_DIR, service, name, data_atual)
     dados['request_completo'] = '%s/arquivos/Comunicacao/%s/request/%s_%s.xml' % (BASE_DIR, service, name, data_atual)
     dados['response_completo'] = '%s/arquivos/Comunicacao/%s/response/%s_%s.xml' % (BASE_DIR, service, name, data_atual)
     dados['service'] = service

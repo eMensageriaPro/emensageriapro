@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_s2410(request, pk, versao="|")
             dados = read_s2410_evtcdbenin_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s2410_evtcdbenin)
+            nova_identidade = identidade_evento(s2410_evtcdbenin, 'esocial')
 
             s2410evtCdBenIn.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

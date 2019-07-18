@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
@@ -70,17 +62,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         r2098_evtreabreevper = get_object_or_404(r2098evtReabreEvPer, id=pk)
 
-        #if r2098_evtreabreevper.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['r2098_evtreabreevper_apagar'] = 0
-        #    dict_permissoes['r2098_evtreabreevper_editar'] = 0
-
     if request.user.has_perm('efdreinf.can_see_r2098evtReabreEvPer'):
 
         if pk:
 
-            r2098_evtreabreevper_form = form_r2098_evtreabreevper(request.POST or None, instance = r2098_evtreabreevper,
+            r2098_evtreabreevper_form = form_r2098_evtreabreevper(request.POST or None, instance=r2098_evtreabreevper,
                                          initial={'ativo': True})
                      
         else:
@@ -103,7 +89,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'efdreinf')
              
                 if 'r2098-evtreabreevper' not in request.session['return']:
 
@@ -128,8 +114,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 r2098_evtreabreevper_form = disabled_form_fields(r2098_evtreabreevper_form, False)
 
-        #r2098_evtreabreevper_campos_multiple_passo3
-
         for field in r2098_evtreabreevper_form.fields.keys():
 
             r2098_evtreabreevper_form.fields[field].widget.attrs['ng-model'] = 'r2098_evtreabreevper_'+field
@@ -149,21 +133,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             r2098_evtreabreevper = None
 
-        #r2098_evtreabreevper_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 'r2098_evtreabreevper'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 'r2098_evtreabreevper' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 'r2098_evtreabreevper_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r2098_evtreabreevper').all()
 
@@ -174,7 +144,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             'r2098_evtreabreevper': r2098_evtreabreevper,
             'r2098_evtreabreevper_form': r2098_evtreabreevper_form,
@@ -184,9 +154,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r2098_evtreabreevper', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #r2098_evtreabreevper_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -84,17 +76,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s2299_evtdeslig = get_object_or_404(s2299evtDeslig, id=pk)
 
-        #if s2299_evtdeslig.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s2299_evtdeslig_apagar'] = 0
-        #    dict_permissoes['s2299_evtdeslig_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s2299evtDeslig'):
 
         if pk:
 
-            s2299_evtdeslig_form = form_s2299_evtdeslig(request.POST or None, instance = s2299_evtdeslig,
+            s2299_evtdeslig_form = form_s2299_evtdeslig(request.POST or None, instance=s2299_evtdeslig,
                                          initial={'ativo': True})
                      
         else:
@@ -117,7 +103,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's2299-evtdeslig' not in request.session['return']:
 
@@ -141,8 +127,6 @@ def salvar(request, pk=None, tab='master', output=None):
             if s2299_evtdeslig.status != 0:
 
                 s2299_evtdeslig_form = disabled_form_fields(s2299_evtdeslig_form, False)
-
-        #s2299_evtdeslig_campos_multiple_passo3
 
         for field in s2299_evtdeslig_form.fields.keys():
 
@@ -173,37 +157,37 @@ def salvar(request, pk=None, tab='master', output=None):
             s2299_evtdeslig = get_object_or_404(s2299evtDeslig, id=pk)
 
             s2299_observacoes_form = form_s2299_observacoes(
-                initial={ 's2299_evtdeslig': s2299_evtdeslig })
+                initial={'s2299_evtdeslig': s2299_evtdeslig})
             s2299_observacoes_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
             s2299_observacoes_lista = s2299observacoes.objects.\
                 filter(s2299_evtdeslig_id=s2299_evtdeslig.id).all()
             s2299_sucessaovinc_form = form_s2299_sucessaovinc(
-                initial={ 's2299_evtdeslig': s2299_evtdeslig })
+                initial={'s2299_evtdeslig': s2299_evtdeslig})
             s2299_sucessaovinc_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
             s2299_sucessaovinc_lista = s2299sucessaoVinc.objects.\
                 filter(s2299_evtdeslig_id=s2299_evtdeslig.id).all()
             s2299_transftit_form = form_s2299_transftit(
-                initial={ 's2299_evtdeslig': s2299_evtdeslig })
+                initial={'s2299_evtdeslig': s2299_evtdeslig})
             s2299_transftit_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
             s2299_transftit_lista = s2299transfTit.objects.\
                 filter(s2299_evtdeslig_id=s2299_evtdeslig.id).all()
             s2299_mudancacpf_form = form_s2299_mudancacpf(
-                initial={ 's2299_evtdeslig': s2299_evtdeslig })
+                initial={'s2299_evtdeslig': s2299_evtdeslig})
             s2299_mudancacpf_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
             s2299_mudancacpf_lista = s2299mudancaCPF.objects.\
                 filter(s2299_evtdeslig_id=s2299_evtdeslig.id).all()
             s2299_verbasresc_form = form_s2299_verbasresc(
-                initial={ 's2299_evtdeslig': s2299_evtdeslig })
+                initial={'s2299_evtdeslig': s2299_evtdeslig})
             s2299_verbasresc_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
             s2299_verbasresc_lista = s2299verbasResc.objects.\
                 filter(s2299_evtdeslig_id=s2299_evtdeslig.id).all()
             s2299_infotrabinterm_quarentena_form = form_s2299_infotrabinterm_quarentena(
-                initial={ 's2299_evtdeslig': s2299_evtdeslig })
+                initial={'s2299_evtdeslig': s2299_evtdeslig})
             s2299_infotrabinterm_quarentena_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
             s2299_infotrabinterm_quarentena_lista = s2299infoTrabIntermquarentena.objects.\
                 filter(s2299_evtdeslig_id=s2299_evtdeslig.id).all()
             s2299_infotrabinterm_consigfgts_form = form_s2299_infotrabinterm_consigfgts(
-                initial={ 's2299_evtdeslig': s2299_evtdeslig })
+                initial={'s2299_evtdeslig': s2299_evtdeslig})
             s2299_infotrabinterm_consigfgts_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
             s2299_infotrabinterm_consigfgts_lista = s2299infoTrabIntermconsigFGTS.objects.\
                 filter(s2299_evtdeslig_id=s2299_evtdeslig.id).all()
@@ -212,21 +196,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s2299_evtdeslig = None
 
-        #s2299_evtdeslig_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's2299_evtdeslig'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's2299_evtdeslig' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's2299_evtdeslig_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2299_evtdeslig').all()
 
@@ -237,7 +207,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's2299_evtdeslig': s2299_evtdeslig,
             's2299_evtdeslig_form': s2299_evtdeslig_form,
@@ -261,9 +231,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2299_evtdeslig', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s2299_evtdeslig_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

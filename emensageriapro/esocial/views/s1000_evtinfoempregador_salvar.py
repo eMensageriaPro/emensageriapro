@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -76,17 +68,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s1000_evtinfoempregador = get_object_or_404(s1000evtInfoEmpregador, id=pk)
 
-        #if s1000_evtinfoempregador.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s1000_evtinfoempregador_apagar'] = 0
-        #    dict_permissoes['s1000_evtinfoempregador_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s1000evtInfoEmpregador'):
 
         if pk:
 
-            s1000_evtinfoempregador_form = form_s1000_evtinfoempregador(request.POST or None, instance = s1000_evtinfoempregador,
+            s1000_evtinfoempregador_form = form_s1000_evtinfoempregador(request.POST or None, instance=s1000_evtinfoempregador,
                                          initial={'ativo': True})
                      
         else:
@@ -109,7 +95,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's1000-evtinfoempregador' not in request.session['return']:
 
@@ -134,8 +120,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 s1000_evtinfoempregador_form = disabled_form_fields(s1000_evtinfoempregador_form, False)
 
-        #s1000_evtinfoempregador_campos_multiple_passo3
-
         for field in s1000_evtinfoempregador_form.fields.keys():
 
             s1000_evtinfoempregador_form.fields[field].widget.attrs['ng-model'] = 's1000_evtinfoempregador_'+field
@@ -157,17 +141,17 @@ def salvar(request, pk=None, tab='master', output=None):
             s1000_evtinfoempregador = get_object_or_404(s1000evtInfoEmpregador, id=pk)
 
             s1000_inclusao_form = form_s1000_inclusao(
-                initial={ 's1000_evtinfoempregador': s1000_evtinfoempregador })
+                initial={'s1000_evtinfoempregador': s1000_evtinfoempregador})
             s1000_inclusao_form.fields['s1000_evtinfoempregador'].widget.attrs['readonly'] = True
             s1000_inclusao_lista = s1000inclusao.objects.\
                 filter(s1000_evtinfoempregador_id=s1000_evtinfoempregador.id).all()
             s1000_alteracao_form = form_s1000_alteracao(
-                initial={ 's1000_evtinfoempregador': s1000_evtinfoempregador })
+                initial={'s1000_evtinfoempregador': s1000_evtinfoempregador})
             s1000_alteracao_form.fields['s1000_evtinfoempregador'].widget.attrs['readonly'] = True
             s1000_alteracao_lista = s1000alteracao.objects.\
                 filter(s1000_evtinfoempregador_id=s1000_evtinfoempregador.id).all()
             s1000_exclusao_form = form_s1000_exclusao(
-                initial={ 's1000_evtinfoempregador': s1000_evtinfoempregador })
+                initial={'s1000_evtinfoempregador': s1000_evtinfoempregador})
             s1000_exclusao_form.fields['s1000_evtinfoempregador'].widget.attrs['readonly'] = True
             s1000_exclusao_lista = s1000exclusao.objects.\
                 filter(s1000_evtinfoempregador_id=s1000_evtinfoempregador.id).all()
@@ -176,21 +160,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s1000_evtinfoempregador = None
 
-        #s1000_evtinfoempregador_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's1000_evtinfoempregador'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's1000_evtinfoempregador' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's1000_evtinfoempregador_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1000_evtinfoempregador').all()
 
@@ -201,7 +171,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's1000_evtinfoempregador': s1000_evtinfoempregador,
             's1000_evtinfoempregador_form': s1000_evtinfoempregador_form,
@@ -217,9 +187,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1000_evtinfoempregador', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s1000_evtinfoempregador_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

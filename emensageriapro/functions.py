@@ -103,12 +103,13 @@ def txt_xml(texto):
 
 
 
-def identidade_evento(obj):
-    from emensageriapro.mensageiro.models import TransmissorEventosEsocial
+def identidade_evento(obj, tipo):
+    from emensageriapro.mensageiro.models import TransmissorEventosEsocial, TransmissorEventosEfdreinf
 
     identidade = 'ID'
-    identidade += str(obj.tpinsc)
-    nr_insc = obj.nrinsc
+    tpinsc = obj.tpinsc or '0'
+    identidade += str(tpinsc)
+    nr_insc = obj.nrinsc or '0'
 
     while len(nr_insc) != 14:
         nr_insc = nr_insc+'0'
@@ -158,9 +159,15 @@ def identidade_evento(obj):
 
         identidade_temp = identidade + sequencial
 
-        lista_eventos = TransmissorEventosEsocial.objects.\
-            filter(criado_em=obj.criado_em,
-                   identidade=identidade_temp).all()
+        if tipo == 'esocial':
+
+            lista_eventos = TransmissorEventosEsocial.objects.\
+                filter(identidade=identidade_temp).all()
+
+        else:
+
+            lista_eventos = TransmissorEventosEfdreinf.objects.\
+                filter(identidade=identidade_temp).all()
 
         if not lista_eventos:
             obj.identidade = identidade_temp

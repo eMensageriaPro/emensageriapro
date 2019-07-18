@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
@@ -74,17 +66,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo, id=pk)
 
-        #if r3010_evtespdesportivo.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['r3010_evtespdesportivo_apagar'] = 0
-        #    dict_permissoes['r3010_evtespdesportivo_editar'] = 0
-
     if request.user.has_perm('efdreinf.can_see_r3010evtEspDesportivo'):
 
         if pk:
 
-            r3010_evtespdesportivo_form = form_r3010_evtespdesportivo(request.POST or None, instance = r3010_evtespdesportivo,
+            r3010_evtespdesportivo_form = form_r3010_evtespdesportivo(request.POST or None, instance=r3010_evtespdesportivo,
                                          initial={'ativo': True})
                      
         else:
@@ -107,7 +93,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'efdreinf')
              
                 if 'r3010-evtespdesportivo' not in request.session['return']:
 
@@ -132,8 +118,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 r3010_evtespdesportivo_form = disabled_form_fields(r3010_evtespdesportivo_form, False)
 
-        #r3010_evtespdesportivo_campos_multiple_passo3
-
         for field in r3010_evtespdesportivo_form.fields.keys():
 
             r3010_evtespdesportivo_form.fields[field].widget.attrs['ng-model'] = 'r3010_evtespdesportivo_'+field
@@ -153,12 +137,12 @@ def salvar(request, pk=None, tab='master', output=None):
             r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo, id=pk)
 
             r3010_boletim_form = form_r3010_boletim(
-                initial={ 'r3010_evtespdesportivo': r3010_evtespdesportivo })
+                initial={'r3010_evtespdesportivo': r3010_evtespdesportivo})
             r3010_boletim_form.fields['r3010_evtespdesportivo'].widget.attrs['readonly'] = True
             r3010_boletim_lista = r3010boletim.objects.\
                 filter(r3010_evtespdesportivo_id=r3010_evtespdesportivo.id).all()
             r3010_infoproc_form = form_r3010_infoproc(
-                initial={ 'r3010_evtespdesportivo': r3010_evtespdesportivo })
+                initial={'r3010_evtespdesportivo': r3010_evtespdesportivo})
             r3010_infoproc_form.fields['r3010_evtespdesportivo'].widget.attrs['readonly'] = True
             r3010_infoproc_lista = r3010infoProc.objects.\
                 filter(r3010_evtespdesportivo_id=r3010_evtespdesportivo.id).all()
@@ -167,21 +151,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             r3010_evtespdesportivo = None
 
-        #r3010_evtespdesportivo_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 'r3010_evtespdesportivo'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 'r3010_evtespdesportivo' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 'r3010_evtespdesportivo_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r3010_evtespdesportivo').all()
 
@@ -192,7 +162,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             'r3010_evtespdesportivo': r3010_evtespdesportivo,
             'r3010_evtespdesportivo_form': r3010_evtespdesportivo_form,
@@ -206,9 +176,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['r3010_evtespdesportivo', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #r3010_evtespdesportivo_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -76,17 +68,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s1005_evttabestab = get_object_or_404(s1005evtTabEstab, id=pk)
 
-        #if s1005_evttabestab.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s1005_evttabestab_apagar'] = 0
-        #    dict_permissoes['s1005_evttabestab_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s1005evtTabEstab'):
 
         if pk:
 
-            s1005_evttabestab_form = form_s1005_evttabestab(request.POST or None, instance = s1005_evttabestab,
+            s1005_evttabestab_form = form_s1005_evttabestab(request.POST or None, instance=s1005_evttabestab,
                                          initial={'ativo': True})
                      
         else:
@@ -109,7 +95,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's1005-evttabestab' not in request.session['return']:
 
@@ -134,8 +120,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 s1005_evttabestab_form = disabled_form_fields(s1005_evttabestab_form, False)
 
-        #s1005_evttabestab_campos_multiple_passo3
-
         for field in s1005_evttabestab_form.fields.keys():
 
             s1005_evttabestab_form.fields[field].widget.attrs['ng-model'] = 's1005_evttabestab_'+field
@@ -157,17 +141,17 @@ def salvar(request, pk=None, tab='master', output=None):
             s1005_evttabestab = get_object_or_404(s1005evtTabEstab, id=pk)
 
             s1005_inclusao_form = form_s1005_inclusao(
-                initial={ 's1005_evttabestab': s1005_evttabestab })
+                initial={'s1005_evttabestab': s1005_evttabestab})
             s1005_inclusao_form.fields['s1005_evttabestab'].widget.attrs['readonly'] = True
             s1005_inclusao_lista = s1005inclusao.objects.\
                 filter(s1005_evttabestab_id=s1005_evttabestab.id).all()
             s1005_alteracao_form = form_s1005_alteracao(
-                initial={ 's1005_evttabestab': s1005_evttabestab })
+                initial={'s1005_evttabestab': s1005_evttabestab})
             s1005_alteracao_form.fields['s1005_evttabestab'].widget.attrs['readonly'] = True
             s1005_alteracao_lista = s1005alteracao.objects.\
                 filter(s1005_evttabestab_id=s1005_evttabestab.id).all()
             s1005_exclusao_form = form_s1005_exclusao(
-                initial={ 's1005_evttabestab': s1005_evttabestab })
+                initial={'s1005_evttabestab': s1005_evttabestab})
             s1005_exclusao_form.fields['s1005_evttabestab'].widget.attrs['readonly'] = True
             s1005_exclusao_lista = s1005exclusao.objects.\
                 filter(s1005_evttabestab_id=s1005_evttabestab.id).all()
@@ -176,21 +160,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s1005_evttabestab = None
 
-        #s1005_evttabestab_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's1005_evttabestab'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's1005_evttabestab' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's1005_evttabestab_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1005_evttabestab').all()
 
@@ -201,7 +171,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's1005_evttabestab': s1005_evttabestab,
             's1005_evttabestab_form': s1005_evttabestab_form,
@@ -217,9 +187,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1005_evttabestab', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s1005_evttabestab_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

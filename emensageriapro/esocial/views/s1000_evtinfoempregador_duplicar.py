@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_s1000(request, pk, versao="|")
             dados = read_s1000_evtinfoempregador_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s1000_evtinfoempregador)
+            nova_identidade = identidade_evento(s1000_evtinfoempregador, 'esocial')
 
             s1000evtInfoEmpregador.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

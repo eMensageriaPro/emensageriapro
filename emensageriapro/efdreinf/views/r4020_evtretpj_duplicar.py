@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_r4020(request, pk, versao="|")
             dados = read_r4020_evtretpj_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(r4020_evtretpj)
+            nova_identidade = identidade_evento(r4020_evtretpj, 'efdreinf')
 
             r4020evtRetPJ.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

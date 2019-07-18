@@ -160,4 +160,10 @@ def arquivos_visualizacao(request, pk):
 
     xml = ler_arquivo(arquivos.arquivo)
 
-    return HttpResponse(xml, content_type='text/xml')
+    if '.xml' in arquivos.arquivo:
+
+        return HttpResponse(xml, content_type='text/xml')
+
+    else:
+
+        return HttpResponse(xml, content_type='text/txt')

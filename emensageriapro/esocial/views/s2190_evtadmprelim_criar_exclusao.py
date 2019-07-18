@@ -89,7 +89,7 @@ def criar_exclusao(request, pk):
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_s2190_evtadmprelim_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s2190_evtadmprelim)
+        nova_identidade = identidade_evento(s2190_evtadmprelim, 'esocial')
 
         s2190evtAdmPrelim.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

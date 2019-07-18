@@ -63,6 +63,6 @@ from emensageriapro.functions import identidade_evento
 def gerar_identidade(request, pk):
 
     obj = get_object_or_404(s2250evtAvPrevio, id=pk)
-    ident = identidade_evento(obj)
+    ident = identidade_evento(obj, 'esocial')
 
     return HttpResponse(ident)

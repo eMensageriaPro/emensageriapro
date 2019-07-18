@@ -84,7 +84,7 @@ def alterar_identidade(request, pk):
 
         if s2220_evtmonit.status == STATUS_EVENTO_CADASTRADO:
 
-            nova_identidade = identidade_evento(s2220_evtmonit)
+            nova_identidade = identidade_evento(s2220_evtmonit, 'esocial')
             messages.success(request, u'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
             return_pk = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % pk )
 

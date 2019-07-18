@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -76,17 +68,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s1010_evttabrubrica = get_object_or_404(s1010evtTabRubrica, id=pk)
 
-        #if s1010_evttabrubrica.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s1010_evttabrubrica_apagar'] = 0
-        #    dict_permissoes['s1010_evttabrubrica_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s1010evtTabRubrica'):
 
         if pk:
 
-            s1010_evttabrubrica_form = form_s1010_evttabrubrica(request.POST or None, instance = s1010_evttabrubrica,
+            s1010_evttabrubrica_form = form_s1010_evttabrubrica(request.POST or None, instance=s1010_evttabrubrica,
                                          initial={'ativo': True})
                      
         else:
@@ -109,7 +95,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's1010-evttabrubrica' not in request.session['return']:
 
@@ -134,8 +120,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 s1010_evttabrubrica_form = disabled_form_fields(s1010_evttabrubrica_form, False)
 
-        #s1010_evttabrubrica_campos_multiple_passo3
-
         for field in s1010_evttabrubrica_form.fields.keys():
 
             s1010_evttabrubrica_form.fields[field].widget.attrs['ng-model'] = 's1010_evttabrubrica_'+field
@@ -157,17 +141,17 @@ def salvar(request, pk=None, tab='master', output=None):
             s1010_evttabrubrica = get_object_or_404(s1010evtTabRubrica, id=pk)
 
             s1010_inclusao_form = form_s1010_inclusao(
-                initial={ 's1010_evttabrubrica': s1010_evttabrubrica })
+                initial={'s1010_evttabrubrica': s1010_evttabrubrica})
             s1010_inclusao_form.fields['s1010_evttabrubrica'].widget.attrs['readonly'] = True
             s1010_inclusao_lista = s1010inclusao.objects.\
                 filter(s1010_evttabrubrica_id=s1010_evttabrubrica.id).all()
             s1010_alteracao_form = form_s1010_alteracao(
-                initial={ 's1010_evttabrubrica': s1010_evttabrubrica })
+                initial={'s1010_evttabrubrica': s1010_evttabrubrica})
             s1010_alteracao_form.fields['s1010_evttabrubrica'].widget.attrs['readonly'] = True
             s1010_alteracao_lista = s1010alteracao.objects.\
                 filter(s1010_evttabrubrica_id=s1010_evttabrubrica.id).all()
             s1010_exclusao_form = form_s1010_exclusao(
-                initial={ 's1010_evttabrubrica': s1010_evttabrubrica })
+                initial={'s1010_evttabrubrica': s1010_evttabrubrica})
             s1010_exclusao_form.fields['s1010_evttabrubrica'].widget.attrs['readonly'] = True
             s1010_exclusao_lista = s1010exclusao.objects.\
                 filter(s1010_evttabrubrica_id=s1010_evttabrubrica.id).all()
@@ -176,21 +160,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s1010_evttabrubrica = None
 
-        #s1010_evttabrubrica_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's1010_evttabrubrica'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's1010_evttabrubrica' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's1010_evttabrubrica_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1010_evttabrubrica').all()
 
@@ -201,7 +171,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's1010_evttabrubrica': s1010_evttabrubrica,
             's1010_evttabrubrica_form': s1010_evttabrubrica_form,
@@ -217,9 +187,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1010_evttabrubrica', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s1010_evttabrubrica_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

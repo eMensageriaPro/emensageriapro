@@ -87,7 +87,7 @@ def criar_alteracao(request, pk):
         texto = gerar_xml_s2221(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_s2221_evttoxic_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s2221_evttoxic)
+        nova_identidade = identidade_evento(s2221_evttoxic, 'esocial')
 
         s2221evtToxic.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

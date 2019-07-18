@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -88,17 +80,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s2206_evtaltcontratual = get_object_or_404(s2206evtAltContratual, id=pk)
 
-        #if s2206_evtaltcontratual.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s2206_evtaltcontratual_apagar'] = 0
-        #    dict_permissoes['s2206_evtaltcontratual_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s2206evtAltContratual'):
 
         if pk:
 
-            s2206_evtaltcontratual_form = form_s2206_evtaltcontratual(request.POST or None, instance = s2206_evtaltcontratual,
+            s2206_evtaltcontratual_form = form_s2206_evtaltcontratual(request.POST or None, instance=s2206_evtaltcontratual,
                                          initial={'ativo': True})
                      
         else:
@@ -121,7 +107,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's2206-evtaltcontratual' not in request.session['return']:
 
@@ -145,8 +131,6 @@ def salvar(request, pk=None, tab='master', output=None):
             if s2206_evtaltcontratual.status != 0:
 
                 s2206_evtaltcontratual_form = disabled_form_fields(s2206_evtaltcontratual_form, False)
-
-        #s2206_evtaltcontratual_campos_multiple_passo3
 
         for field in s2206_evtaltcontratual_form.fields.keys():
 
@@ -181,47 +165,47 @@ def salvar(request, pk=None, tab='master', output=None):
             s2206_evtaltcontratual = get_object_or_404(s2206evtAltContratual, id=pk)
 
             s2206_infoceletista_form = form_s2206_infoceletista(
-                initial={ 's2206_evtaltcontratual': s2206_evtaltcontratual })
+                initial={'s2206_evtaltcontratual': s2206_evtaltcontratual})
             s2206_infoceletista_form.fields['s2206_evtaltcontratual'].widget.attrs['readonly'] = True
             s2206_infoceletista_lista = s2206infoCeletista.objects.\
                 filter(s2206_evtaltcontratual_id=s2206_evtaltcontratual.id).all()
             s2206_infoestatutario_form = form_s2206_infoestatutario(
-                initial={ 's2206_evtaltcontratual': s2206_evtaltcontratual })
+                initial={'s2206_evtaltcontratual': s2206_evtaltcontratual})
             s2206_infoestatutario_form.fields['s2206_evtaltcontratual'].widget.attrs['readonly'] = True
             s2206_infoestatutario_lista = s2206infoEstatutario.objects.\
                 filter(s2206_evtaltcontratual_id=s2206_evtaltcontratual.id).all()
             s2206_localtrabgeral_form = form_s2206_localtrabgeral(
-                initial={ 's2206_evtaltcontratual': s2206_evtaltcontratual })
+                initial={'s2206_evtaltcontratual': s2206_evtaltcontratual})
             s2206_localtrabgeral_form.fields['s2206_evtaltcontratual'].widget.attrs['readonly'] = True
             s2206_localtrabgeral_lista = s2206localTrabGeral.objects.\
                 filter(s2206_evtaltcontratual_id=s2206_evtaltcontratual.id).all()
             s2206_localtrabdom_form = form_s2206_localtrabdom(
-                initial={ 's2206_evtaltcontratual': s2206_evtaltcontratual })
+                initial={'s2206_evtaltcontratual': s2206_evtaltcontratual})
             s2206_localtrabdom_form.fields['s2206_evtaltcontratual'].widget.attrs['readonly'] = True
             s2206_localtrabdom_lista = s2206localTrabDom.objects.\
                 filter(s2206_evtaltcontratual_id=s2206_evtaltcontratual.id).all()
             s2206_horcontratual_form = form_s2206_horcontratual(
-                initial={ 's2206_evtaltcontratual': s2206_evtaltcontratual })
+                initial={'s2206_evtaltcontratual': s2206_evtaltcontratual})
             s2206_horcontratual_form.fields['s2206_evtaltcontratual'].widget.attrs['readonly'] = True
             s2206_horcontratual_lista = s2206horContratual.objects.\
                 filter(s2206_evtaltcontratual_id=s2206_evtaltcontratual.id).all()
             s2206_filiacaosindical_form = form_s2206_filiacaosindical(
-                initial={ 's2206_evtaltcontratual': s2206_evtaltcontratual })
+                initial={'s2206_evtaltcontratual': s2206_evtaltcontratual})
             s2206_filiacaosindical_form.fields['s2206_evtaltcontratual'].widget.attrs['readonly'] = True
             s2206_filiacaosindical_lista = s2206filiacaoSindical.objects.\
                 filter(s2206_evtaltcontratual_id=s2206_evtaltcontratual.id).all()
             s2206_alvarajudicial_form = form_s2206_alvarajudicial(
-                initial={ 's2206_evtaltcontratual': s2206_evtaltcontratual })
+                initial={'s2206_evtaltcontratual': s2206_evtaltcontratual})
             s2206_alvarajudicial_form.fields['s2206_evtaltcontratual'].widget.attrs['readonly'] = True
             s2206_alvarajudicial_lista = s2206alvaraJudicial.objects.\
                 filter(s2206_evtaltcontratual_id=s2206_evtaltcontratual.id).all()
             s2206_observacoes_form = form_s2206_observacoes(
-                initial={ 's2206_evtaltcontratual': s2206_evtaltcontratual })
+                initial={'s2206_evtaltcontratual': s2206_evtaltcontratual})
             s2206_observacoes_form.fields['s2206_evtaltcontratual'].widget.attrs['readonly'] = True
             s2206_observacoes_lista = s2206observacoes.objects.\
                 filter(s2206_evtaltcontratual_id=s2206_evtaltcontratual.id).all()
             s2206_servpubl_form = form_s2206_servpubl(
-                initial={ 's2206_evtaltcontratual': s2206_evtaltcontratual })
+                initial={'s2206_evtaltcontratual': s2206_evtaltcontratual})
             s2206_servpubl_form.fields['s2206_evtaltcontratual'].widget.attrs['readonly'] = True
             s2206_servpubl_lista = s2206servPubl.objects.\
                 filter(s2206_evtaltcontratual_id=s2206_evtaltcontratual.id).all()
@@ -230,21 +214,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s2206_evtaltcontratual = None
 
-        #s2206_evtaltcontratual_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's2206_evtaltcontratual'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's2206_evtaltcontratual' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's2206_evtaltcontratual_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2206_evtaltcontratual').all()
 
@@ -255,7 +225,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's2206_evtaltcontratual': s2206_evtaltcontratual,
             's2206_evtaltcontratual_form': s2206_evtaltcontratual_form,
@@ -283,9 +253,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2206_evtaltcontratual', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s2206_evtaltcontratual_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

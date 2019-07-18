@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_s1299(request, pk, versao="|")
             dados = read_s1299_evtfechaevper_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s1299_evtfechaevper)
+            nova_identidade = identidade_evento(s1299_evtfechaevper, 'esocial')
 
             s1299evtFechaEvPer.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

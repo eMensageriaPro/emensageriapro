@@ -89,7 +89,7 @@ def duplicar(request, pk):
 
             texto = gerar_xml_s1080(request, pk, versao="|")
             dados = read_s1080_evttaboperport_string(request, {}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s1080_evttaboperport)
+            nova_identidade = identidade_evento(s1080_evttaboperport, 'esocial')
 
             s1080evtTabOperPort.objects.filter(id=dados['id']).\
                 update(status=STATUS_EVENTO_CADASTRADO,

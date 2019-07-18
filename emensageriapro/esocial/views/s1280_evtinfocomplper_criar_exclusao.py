@@ -89,7 +89,7 @@ def criar_exclusao(request, pk):
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_s1280_evtinfocomplper_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s1280_evtinfocomplper)
+        nova_identidade = identidade_evento(s1280_evtinfocomplper, 'esocial')
 
         s1280evtInfoComplPer.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

@@ -87,7 +87,7 @@ def criar_alteracao(request, pk):
         texto = gerar_xml_r4010(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_r4010_evtretpf_string(request, {}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(r4010_evtretpf)
+        nova_identidade = identidade_evento(r4010_evtretpf, 'efdreinf')
 
         r4010evtRetPF.objects.filter(id=dados['id']).\
             update(status=STATUS_EVENTO_CADASTRADO,

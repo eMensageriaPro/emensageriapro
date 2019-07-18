@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -74,17 +66,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s1202_evtrmnrpps = get_object_or_404(s1202evtRmnRPPS, id=pk)
 
-        #if s1202_evtrmnrpps.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s1202_evtrmnrpps_apagar'] = 0
-        #    dict_permissoes['s1202_evtrmnrpps_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s1202evtRmnRPPS'):
 
         if pk:
 
-            s1202_evtrmnrpps_form = form_s1202_evtrmnrpps(request.POST or None, instance = s1202_evtrmnrpps,
+            s1202_evtrmnrpps_form = form_s1202_evtrmnrpps(request.POST or None, instance=s1202_evtrmnrpps,
                                          initial={'ativo': True})
                      
         else:
@@ -107,7 +93,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's1202-evtrmnrpps' not in request.session['return']:
 
@@ -132,8 +118,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 s1202_evtrmnrpps_form = disabled_form_fields(s1202_evtrmnrpps_form, False)
 
-        #s1202_evtrmnrpps_campos_multiple_passo3
-
         for field in s1202_evtrmnrpps_form.fields.keys():
 
             s1202_evtrmnrpps_form.fields[field].widget.attrs['ng-model'] = 's1202_evtrmnrpps_'+field
@@ -153,12 +137,12 @@ def salvar(request, pk=None, tab='master', output=None):
             s1202_evtrmnrpps = get_object_or_404(s1202evtRmnRPPS, id=pk)
 
             s1202_procjudtrab_form = form_s1202_procjudtrab(
-                initial={ 's1202_evtrmnrpps': s1202_evtrmnrpps })
+                initial={'s1202_evtrmnrpps': s1202_evtrmnrpps})
             s1202_procjudtrab_form.fields['s1202_evtrmnrpps'].widget.attrs['readonly'] = True
             s1202_procjudtrab_lista = s1202procJudTrab.objects.\
                 filter(s1202_evtrmnrpps_id=s1202_evtrmnrpps.id).all()
             s1202_dmdev_form = form_s1202_dmdev(
-                initial={ 's1202_evtrmnrpps': s1202_evtrmnrpps })
+                initial={'s1202_evtrmnrpps': s1202_evtrmnrpps})
             s1202_dmdev_form.fields['s1202_evtrmnrpps'].widget.attrs['readonly'] = True
             s1202_dmdev_lista = s1202dmDev.objects.\
                 filter(s1202_evtrmnrpps_id=s1202_evtrmnrpps.id).all()
@@ -167,21 +151,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s1202_evtrmnrpps = None
 
-        #s1202_evtrmnrpps_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's1202_evtrmnrpps'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's1202_evtrmnrpps' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's1202_evtrmnrpps_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1202_evtrmnrpps').all()
 
@@ -192,7 +162,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's1202_evtrmnrpps': s1202_evtrmnrpps,
             's1202_evtrmnrpps_form': s1202_evtrmnrpps_form,
@@ -206,9 +176,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s1202_evtrmnrpps', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s1202_evtrmnrpps_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 

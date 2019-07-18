@@ -39,20 +39,12 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
 from constance import config
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -72,17 +64,11 @@ def salvar(request, pk=None, tab='master', output=None):
 
         s2306_evttsvaltcontr = get_object_or_404(s2306evtTSVAltContr, id=pk)
 
-        #if s2306_evttsvaltcontr.status != STATUS_EVENTO_CADASTRADO:
-        #
-        #    dict_permissoes = {}
-        #    dict_permissoes['s2306_evttsvaltcontr_apagar'] = 0
-        #    dict_permissoes['s2306_evttsvaltcontr_editar'] = 0
-
     if request.user.has_perm('esocial.can_see_s2306evtTSVAltContr'):
 
         if pk:
 
-            s2306_evttsvaltcontr_form = form_s2306_evttsvaltcontr(request.POST or None, instance = s2306_evttsvaltcontr,
+            s2306_evttsvaltcontr_form = form_s2306_evttsvaltcontr(request.POST or None, instance=s2306_evttsvaltcontr,
                                          initial={'ativo': True})
                      
         else:
@@ -105,7 +91,7 @@ def salvar(request, pk=None, tab='master', output=None):
                 if not pk:
 
                     from emensageriapro.functions import identidade_evento
-                    identidade_evento(obj)
+                    identidade_evento(obj, 'esocial')
              
                 if 's2306-evttsvaltcontr' not in request.session['return']:
 
@@ -130,8 +116,6 @@ def salvar(request, pk=None, tab='master', output=None):
 
                 s2306_evttsvaltcontr_form = disabled_form_fields(s2306_evttsvaltcontr_form, False)
 
-        #s2306_evttsvaltcontr_campos_multiple_passo3
-
         for field in s2306_evttsvaltcontr_form.fields.keys():
 
             s2306_evttsvaltcontr_form.fields[field].widget.attrs['ng-model'] = 's2306_evttsvaltcontr_'+field
@@ -149,7 +133,7 @@ def salvar(request, pk=None, tab='master', output=None):
             s2306_evttsvaltcontr = get_object_or_404(s2306evtTSVAltContr, id=pk)
 
             s2306_infocomplementares_form = form_s2306_infocomplementares(
-                initial={ 's2306_evttsvaltcontr': s2306_evttsvaltcontr })
+                initial={'s2306_evttsvaltcontr': s2306_evttsvaltcontr})
             s2306_infocomplementares_form.fields['s2306_evttsvaltcontr'].widget.attrs['readonly'] = True
             s2306_infocomplementares_lista = s2306infoComplementares.objects.\
                 filter(s2306_evttsvaltcontr_id=s2306_evttsvaltcontr.id).all()
@@ -158,21 +142,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
             s2306_evttsvaltcontr = None
 
-        #s2306_evttsvaltcontr_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-
-        if 's2306_evttsvaltcontr'[1] == '5':
-            evento_totalizador = True
-
-        else:
-            evento_totalizador = False
-
-        #if tab or 's2306_evttsvaltcontr' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's2306_evttsvaltcontr_salvar'
 
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2306_evttsvaltcontr').all()
 
@@ -183,7 +153,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'evento_totalizador': evento_totalizador,
+            'evento_totalizador': False,
             'controle_alteracoes': controle_alteracoes,
             's2306_evttsvaltcontr': s2306_evttsvaltcontr,
             's2306_evttsvaltcontr_form': s2306_evttsvaltcontr_form,
@@ -195,9 +165,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['s2306_evttsvaltcontr', ],
             'tabelas_secundarias': tabelas_secundarias,
             'tab': tab,
-            #s2306_evttsvaltcontr_salvar_custom_variaveis_context#
         }
-
 
         if output == 'pdf':
 
