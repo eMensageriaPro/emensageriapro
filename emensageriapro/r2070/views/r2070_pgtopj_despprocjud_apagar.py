@@ -62,7 +62,7 @@ def apagar(request, pk):
 
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
 
-            situacao_anterior = json.dumps(model_to_dict(r2070_pgtopj_despprocjud), indent=4, sort_keys=True, default=str)
+            situacao_anterior = json.dumps(model_to_dict(r2070_pgtopj_despprocjud), sort_keys=True, default=str)
             obj = r2070pgtoPJdespProcJud.objects.get(id=pk)
             obj.delete(request=request)
 

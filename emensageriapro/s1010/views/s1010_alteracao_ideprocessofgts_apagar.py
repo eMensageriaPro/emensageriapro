@@ -62,7 +62,7 @@ def apagar(request, pk):
 
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
 
-            situacao_anterior = json.dumps(model_to_dict(s1010_alteracao_ideprocessofgts), indent=4, sort_keys=True, default=str)
+            situacao_anterior = json.dumps(model_to_dict(s1010_alteracao_ideprocessofgts), sort_keys=True, default=str)
             obj = s1010alteracaoideProcessoFGTS.objects.get(id=pk)
             obj.delete(request=request)
 

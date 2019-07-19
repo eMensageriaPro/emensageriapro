@@ -57,7 +57,7 @@ def apagar(request, pk):
 
         if r2010_evtservtom.status == STATUS_EVENTO_CADASTRADO:
 
-            situacao_anterior = json.dumps(model_to_dict(r2010_evtservtom), indent=4, sort_keys=True, default=str)
+            situacao_anterior = json.dumps(model_to_dict(r2010_evtservtom), sort_keys=True, default=str)
             obj = r2010evtServTom.objects.get(id=pk)
             obj.delete(request=request)
 

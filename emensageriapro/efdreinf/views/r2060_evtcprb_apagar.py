@@ -57,7 +57,7 @@ def apagar(request, pk):
 
         if r2060_evtcprb.status == STATUS_EVENTO_CADASTRADO:
 
-            situacao_anterior = json.dumps(model_to_dict(r2060_evtcprb), indent=4, sort_keys=True, default=str)
+            situacao_anterior = json.dumps(model_to_dict(r2060_evtcprb), sort_keys=True, default=str)
             obj = r2060evtCPRB.objects.get(id=pk)
             obj.delete(request=request)
 

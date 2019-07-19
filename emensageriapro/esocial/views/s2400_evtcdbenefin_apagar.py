@@ -57,7 +57,7 @@ def apagar(request, pk):
 
         if s2400_evtcdbenefin.status == STATUS_EVENTO_CADASTRADO:
 
-            situacao_anterior = json.dumps(model_to_dict(s2400_evtcdbenefin), indent=4, sort_keys=True, default=str)
+            situacao_anterior = json.dumps(model_to_dict(s2400_evtcdbenefin), sort_keys=True, default=str)
             obj = s2400evtCdBenefIn.objects.get(id=pk)
             obj.delete(request=request)
 

@@ -62,7 +62,7 @@ def apagar(request, pk):
 
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
 
-            situacao_anterior = json.dumps(model_to_dict(s1200_remunoutrempr), indent=4, sort_keys=True, default=str)
+            situacao_anterior = json.dumps(model_to_dict(s1200_remunoutrempr), sort_keys=True, default=str)
             obj = s1200remunOutrEmpr.objects.get(id=pk)
             obj.delete(request=request)
 

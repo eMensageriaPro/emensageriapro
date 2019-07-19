@@ -57,7 +57,7 @@ def apagar(request, pk):
 
         if r3010_evtespdesportivo.status == STATUS_EVENTO_CADASTRADO:
 
-            situacao_anterior = json.dumps(model_to_dict(r3010_evtespdesportivo), indent=4, sort_keys=True, default=str)
+            situacao_anterior = json.dumps(model_to_dict(r3010_evtespdesportivo), sort_keys=True, default=str)
             obj = r3010evtEspDesportivo.objects.get(id=pk)
             obj.delete(request=request)
 
