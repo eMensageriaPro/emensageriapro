@@ -39,35 +39,23 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
 import json
-import base64
-import json
+from django.db import connection
+from django.http import HttpResponseRedirect
 from django.forms.models import model_to_dict
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
-from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from django.shortcuts import render, redirect, get_object_or_404
 from emensageriapro.padrao import *
-from emensageriapro.r2070.forms import *
-from emensageriapro.r2070.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.r2070.models import r2070pgtoResidBR
 
 
 @login_required
 def apagar(request, pk):
 
-    from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-
     r2070_pgtoresidbr = get_object_or_404(r2070pgtoResidBR, id=pk)
 
-    dados_evento = {}
     dados_evento = r2070_pgtoresidbr.evento()
 
     if request.method == 'POST':
@@ -77,8 +65,11 @@ def apagar(request, pk):
             situacao_anterior = json.dumps(model_to_dict(r2070_pgtoresidbr), indent=4, sort_keys=True, default=str)
             obj = r2070pgtoResidBR.objects.get(id=pk)
             obj.delete(request=request)
-            #r2070_pgtoresidbr_apagar_custom
-            #r2070_pgtoresidbr_apagar_custom
+
+            sql_softdelete = ler_arquivo('/database/sql/r2070_softdelete_cascade.sql')
+            with connection.cursor() as cursor:
+                cursor.execute(sql_softdelete)
+
             messages.success(request, u'Apagado com sucesso!')
 
             gravar_auditoria(situacao_anterior,

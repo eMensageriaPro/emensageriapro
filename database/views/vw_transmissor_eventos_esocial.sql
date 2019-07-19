@@ -27,7 +27,7 @@ CREATE OR REPLACE VIEW public.vw_transmissor_eventos_esocial AS SELECT s1000_evt
     s1000_evtinfoempregador.ocorrencias
    FROM s1000_evtinfoempregador
   WHERE s1000_evtinfoempregador.ativo = true
- UNION 
+ UNION
 SELECT s1005_evttabestab.id,
     's1005'::text AS evento,
     s1005_evttabestab.identidade,
@@ -53,7 +53,7 @@ SELECT s1005_evttabestab.id,
     s1005_evttabestab.ocorrencias
    FROM s1005_evttabestab
   WHERE s1005_evttabestab.ativo = true
- UNION 
+ UNION
 SELECT s1010_evttabrubrica.id,
     's1010'::text AS evento,
     s1010_evttabrubrica.identidade,
@@ -79,7 +79,7 @@ SELECT s1010_evttabrubrica.id,
     s1010_evttabrubrica.ocorrencias
    FROM s1010_evttabrubrica
   WHERE s1010_evttabrubrica.ativo = true
- UNION 
+ UNION
 SELECT s1020_evttablotacao.id,
     's1020'::text AS evento,
     s1020_evttablotacao.identidade,
@@ -105,7 +105,7 @@ SELECT s1020_evttablotacao.id,
     s1020_evttablotacao.ocorrencias
    FROM s1020_evttablotacao
   WHERE s1020_evttablotacao.ativo = true
- UNION 
+ UNION
 SELECT s1030_evttabcargo.id,
     's1030'::text AS evento,
     s1030_evttabcargo.identidade,
@@ -131,7 +131,7 @@ SELECT s1030_evttabcargo.id,
     s1030_evttabcargo.ocorrencias
    FROM s1030_evttabcargo
   WHERE s1030_evttabcargo.ativo = true
- UNION 
+ UNION
 SELECT s1035_evttabcarreira.id,
     's1035'::text AS evento,
     s1035_evttabcarreira.identidade,
@@ -157,7 +157,7 @@ SELECT s1035_evttabcarreira.id,
     s1035_evttabcarreira.ocorrencias
    FROM s1035_evttabcarreira
   WHERE s1035_evttabcarreira.ativo = true
- UNION 
+ UNION
 SELECT s1040_evttabfuncao.id,
     's1040'::text AS evento,
     s1040_evttabfuncao.identidade,
@@ -183,7 +183,7 @@ SELECT s1040_evttabfuncao.id,
     s1040_evttabfuncao.ocorrencias
    FROM s1040_evttabfuncao
   WHERE s1040_evttabfuncao.ativo = true
- UNION 
+ UNION
 SELECT s1050_evttabhortur.id,
     's1050'::text AS evento,
     s1050_evttabhortur.identidade,
@@ -209,7 +209,7 @@ SELECT s1050_evttabhortur.id,
     s1050_evttabhortur.ocorrencias
    FROM s1050_evttabhortur
   WHERE s1050_evttabhortur.ativo = true
- UNION 
+ UNION
 SELECT s1060_evttabambiente.id,
     's1060'::text AS evento,
     s1060_evttabambiente.identidade,
@@ -235,7 +235,7 @@ SELECT s1060_evttabambiente.id,
     s1060_evttabambiente.ocorrencias
    FROM s1060_evttabambiente
   WHERE s1060_evttabambiente.ativo = true
- UNION 
+ UNION
 SELECT s1070_evttabprocesso.id,
     's1070'::text AS evento,
     s1070_evttabprocesso.identidade,
@@ -261,7 +261,7 @@ SELECT s1070_evttabprocesso.id,
     s1070_evttabprocesso.ocorrencias
    FROM s1070_evttabprocesso
   WHERE s1070_evttabprocesso.ativo = true
- UNION 
+ UNION
 SELECT s1080_evttaboperport.id,
     's1080'::text AS evento,
     s1080_evttaboperport.identidade,
@@ -287,7 +287,7 @@ SELECT s1080_evttaboperport.id,
     s1080_evttaboperport.ocorrencias
    FROM s1080_evttaboperport
   WHERE s1080_evttaboperport.ativo = true
- UNION 
+ UNION
 SELECT s1200_evtremun.id,
     's1200'::text AS evento,
     s1200_evtremun.identidade,
@@ -313,7 +313,7 @@ SELECT s1200_evtremun.id,
     s1200_evtremun.ocorrencias
    FROM s1200_evtremun
   WHERE s1200_evtremun.ativo = true
- UNION 
+ UNION
 SELECT s1202_evtrmnrpps.id,
     's1202'::text AS evento,
     s1202_evtrmnrpps.identidade,
@@ -339,7 +339,7 @@ SELECT s1202_evtrmnrpps.id,
     s1202_evtrmnrpps.ocorrencias
    FROM s1202_evtrmnrpps
   WHERE s1202_evtrmnrpps.ativo = true
- UNION 
+ UNION
 SELECT s1207_evtbenprrp.id,
     's1207'::text AS evento,
     s1207_evtbenprrp.identidade,
@@ -365,7 +365,7 @@ SELECT s1207_evtbenprrp.id,
     s1207_evtbenprrp.ocorrencias
    FROM s1207_evtbenprrp
   WHERE s1207_evtbenprrp.ativo = true
- UNION 
+ UNION
 SELECT s1210_evtpgtos.id,
     's1210'::text AS evento,
     s1210_evtpgtos.identidade,
@@ -391,7 +391,7 @@ SELECT s1210_evtpgtos.id,
     s1210_evtpgtos.ocorrencias
    FROM s1210_evtpgtos
   WHERE s1210_evtpgtos.ativo = true
- UNION 
+ UNION
 SELECT s1250_evtaqprod.id,
     's1250'::text AS evento,
     s1250_evtaqprod.identidade,
@@ -417,7 +417,7 @@ SELECT s1250_evtaqprod.id,
     s1250_evtaqprod.ocorrencias
    FROM s1250_evtaqprod
   WHERE s1250_evtaqprod.ativo = true
- UNION 
+ UNION
 SELECT s1260_evtcomprod.id,
     's1260'::text AS evento,
     s1260_evtcomprod.identidade,
@@ -443,7 +443,7 @@ SELECT s1260_evtcomprod.id,
     s1260_evtcomprod.ocorrencias
    FROM s1260_evtcomprod
   WHERE s1260_evtcomprod.ativo = true
- UNION 
+ UNION
 SELECT s1270_evtcontratavnp.id,
     's1270'::text AS evento,
     s1270_evtcontratavnp.identidade,
@@ -469,7 +469,7 @@ SELECT s1270_evtcontratavnp.id,
     s1270_evtcontratavnp.ocorrencias
    FROM s1270_evtcontratavnp
   WHERE s1270_evtcontratavnp.ativo = true
- UNION 
+ UNION
 SELECT s1280_evtinfocomplper.id,
     's1280'::text AS evento,
     s1280_evtinfocomplper.identidade,
@@ -495,7 +495,7 @@ SELECT s1280_evtinfocomplper.id,
     s1280_evtinfocomplper.ocorrencias
    FROM s1280_evtinfocomplper
   WHERE s1280_evtinfocomplper.ativo = true
- UNION 
+ UNION
 SELECT s1295_evttotconting.id,
     's1295'::text AS evento,
     s1295_evttotconting.identidade,
@@ -521,7 +521,7 @@ SELECT s1295_evttotconting.id,
     s1295_evttotconting.ocorrencias
    FROM s1295_evttotconting
   WHERE s1295_evttotconting.ativo = true
- UNION 
+ UNION
 SELECT s1298_evtreabreevper.id,
     's1298'::text AS evento,
     s1298_evtreabreevper.identidade,
@@ -547,7 +547,7 @@ SELECT s1298_evtreabreevper.id,
     s1298_evtreabreevper.ocorrencias
    FROM s1298_evtreabreevper
   WHERE s1298_evtreabreevper.ativo = true
- UNION 
+ UNION
 SELECT s1299_evtfechaevper.id,
     's1299'::text AS evento,
     s1299_evtfechaevper.identidade,
@@ -573,7 +573,7 @@ SELECT s1299_evtfechaevper.id,
     s1299_evtfechaevper.ocorrencias
    FROM s1299_evtfechaevper
   WHERE s1299_evtfechaevper.ativo = true
- UNION 
+ UNION
 SELECT s1300_evtcontrsindpatr.id,
     's1300'::text AS evento,
     s1300_evtcontrsindpatr.identidade,
@@ -599,7 +599,7 @@ SELECT s1300_evtcontrsindpatr.id,
     s1300_evtcontrsindpatr.ocorrencias
    FROM s1300_evtcontrsindpatr
   WHERE s1300_evtcontrsindpatr.ativo = true
- UNION 
+ UNION
 SELECT s2190_evtadmprelim.id,
     's2190'::text AS evento,
     s2190_evtadmprelim.identidade,
@@ -625,7 +625,7 @@ SELECT s2190_evtadmprelim.id,
     s2190_evtadmprelim.ocorrencias
    FROM s2190_evtadmprelim
   WHERE s2190_evtadmprelim.ativo = true
- UNION 
+ UNION
 SELECT s2200_evtadmissao.id,
     's2200'::text AS evento,
     s2200_evtadmissao.identidade,
@@ -651,7 +651,7 @@ SELECT s2200_evtadmissao.id,
     s2200_evtadmissao.ocorrencias
    FROM s2200_evtadmissao
   WHERE s2200_evtadmissao.ativo = true
- UNION 
+ UNION
 SELECT s2205_evtaltcadastral.id,
     's2205'::text AS evento,
     s2205_evtaltcadastral.identidade,
@@ -677,7 +677,7 @@ SELECT s2205_evtaltcadastral.id,
     s2205_evtaltcadastral.ocorrencias
    FROM s2205_evtaltcadastral
   WHERE s2205_evtaltcadastral.ativo = true
- UNION 
+ UNION
 SELECT s2206_evtaltcontratual.id,
     's2206'::text AS evento,
     s2206_evtaltcontratual.identidade,
@@ -703,7 +703,7 @@ SELECT s2206_evtaltcontratual.id,
     s2206_evtaltcontratual.ocorrencias
    FROM s2206_evtaltcontratual
   WHERE s2206_evtaltcontratual.ativo = true
- UNION 
+ UNION
 SELECT s2210_evtcat.id,
     's2210'::text AS evento,
     s2210_evtcat.identidade,
@@ -729,7 +729,7 @@ SELECT s2210_evtcat.id,
     s2210_evtcat.ocorrencias
    FROM s2210_evtcat
   WHERE s2210_evtcat.ativo = true
- UNION 
+ UNION
 SELECT s2220_evtmonit.id,
     's2220'::text AS evento,
     s2220_evtmonit.identidade,
@@ -755,7 +755,7 @@ SELECT s2220_evtmonit.id,
     s2220_evtmonit.ocorrencias
    FROM s2220_evtmonit
   WHERE s2220_evtmonit.ativo = true
- UNION 
+ UNION
 SELECT s2221_evttoxic.id,
     's2221'::text AS evento,
     s2221_evttoxic.identidade,
@@ -781,7 +781,7 @@ SELECT s2221_evttoxic.id,
     s2221_evttoxic.ocorrencias
    FROM s2221_evttoxic
   WHERE s2221_evttoxic.ativo = true
- UNION 
+ UNION
 SELECT s2230_evtafasttemp.id,
     's2230'::text AS evento,
     s2230_evtafasttemp.identidade,
@@ -807,7 +807,7 @@ SELECT s2230_evtafasttemp.id,
     s2230_evtafasttemp.ocorrencias
    FROM s2230_evtafasttemp
   WHERE s2230_evtafasttemp.ativo = true
- UNION 
+ UNION
 SELECT s2231_evtcessao.id,
     's2231'::text AS evento,
     s2231_evtcessao.identidade,
@@ -833,7 +833,7 @@ SELECT s2231_evtcessao.id,
     s2231_evtcessao.ocorrencias
    FROM s2231_evtcessao
   WHERE s2231_evtcessao.ativo = true
- UNION 
+ UNION
 SELECT s2240_evtexprisco.id,
     's2240'::text AS evento,
     s2240_evtexprisco.identidade,
@@ -859,7 +859,7 @@ SELECT s2240_evtexprisco.id,
     s2240_evtexprisco.ocorrencias
    FROM s2240_evtexprisco
   WHERE s2240_evtexprisco.ativo = true
- UNION 
+ UNION
 SELECT s2241_evtinsapo.id,
     's2241'::text AS evento,
     s2241_evtinsapo.identidade,
@@ -885,7 +885,7 @@ SELECT s2241_evtinsapo.id,
     s2241_evtinsapo.ocorrencias
    FROM s2241_evtinsapo
   WHERE s2241_evtinsapo.ativo = true
- UNION 
+ UNION
 SELECT s2245_evttreicap.id,
     's2245'::text AS evento,
     s2245_evttreicap.identidade,
@@ -911,7 +911,7 @@ SELECT s2245_evttreicap.id,
     s2245_evttreicap.ocorrencias
    FROM s2245_evttreicap
   WHERE s2245_evttreicap.ativo = true
- UNION 
+ UNION
 SELECT s2250_evtavprevio.id,
     's2250'::text AS evento,
     s2250_evtavprevio.identidade,
@@ -937,7 +937,7 @@ SELECT s2250_evtavprevio.id,
     s2250_evtavprevio.ocorrencias
    FROM s2250_evtavprevio
   WHERE s2250_evtavprevio.ativo = true
- UNION 
+ UNION
 SELECT s2260_evtconvinterm.id,
     's2260'::text AS evento,
     s2260_evtconvinterm.identidade,
@@ -963,7 +963,7 @@ SELECT s2260_evtconvinterm.id,
     s2260_evtconvinterm.ocorrencias
    FROM s2260_evtconvinterm
   WHERE s2260_evtconvinterm.ativo = true
- UNION 
+ UNION
 SELECT s2298_evtreintegr.id,
     's2298'::text AS evento,
     s2298_evtreintegr.identidade,
@@ -989,7 +989,7 @@ SELECT s2298_evtreintegr.id,
     s2298_evtreintegr.ocorrencias
    FROM s2298_evtreintegr
   WHERE s2298_evtreintegr.ativo = true
- UNION 
+ UNION
 SELECT s2299_evtdeslig.id,
     's2299'::text AS evento,
     s2299_evtdeslig.identidade,
@@ -1015,7 +1015,7 @@ SELECT s2299_evtdeslig.id,
     s2299_evtdeslig.ocorrencias
    FROM s2299_evtdeslig
   WHERE s2299_evtdeslig.ativo = true
- UNION 
+ UNION
 SELECT s2300_evttsvinicio.id,
     's2300'::text AS evento,
     s2300_evttsvinicio.identidade,
@@ -1041,7 +1041,7 @@ SELECT s2300_evttsvinicio.id,
     s2300_evttsvinicio.ocorrencias
    FROM s2300_evttsvinicio
   WHERE s2300_evttsvinicio.ativo = true
- UNION 
+ UNION
 SELECT s2306_evttsvaltcontr.id,
     's2306'::text AS evento,
     s2306_evttsvaltcontr.identidade,
@@ -1067,7 +1067,7 @@ SELECT s2306_evttsvaltcontr.id,
     s2306_evttsvaltcontr.ocorrencias
    FROM s2306_evttsvaltcontr
   WHERE s2306_evttsvaltcontr.ativo = true
- UNION 
+ UNION
 SELECT s2399_evttsvtermino.id,
     's2399'::text AS evento,
     s2399_evttsvtermino.identidade,
@@ -1093,7 +1093,7 @@ SELECT s2399_evttsvtermino.id,
     s2399_evttsvtermino.ocorrencias
    FROM s2399_evttsvtermino
   WHERE s2399_evttsvtermino.ativo = true
- UNION 
+ UNION
 SELECT s2400_evtcdbenefin.id,
     's2400'::text AS evento,
     s2400_evtcdbenefin.identidade,
@@ -1119,7 +1119,7 @@ SELECT s2400_evtcdbenefin.id,
     s2400_evtcdbenefin.ocorrencias
    FROM s2400_evtcdbenefin
   WHERE s2400_evtcdbenefin.ativo = true
- UNION 
+ UNION
 SELECT s2405_evtcdbenefalt.id,
     's2405'::text AS evento,
     s2405_evtcdbenefalt.identidade,
@@ -1145,7 +1145,7 @@ SELECT s2405_evtcdbenefalt.id,
     s2405_evtcdbenefalt.ocorrencias
    FROM s2405_evtcdbenefalt
   WHERE s2405_evtcdbenefalt.ativo = true
- UNION 
+ UNION
 SELECT s2410_evtcdbenin.id,
     's2410'::text AS evento,
     s2410_evtcdbenin.identidade,
@@ -1171,7 +1171,7 @@ SELECT s2410_evtcdbenin.id,
     s2410_evtcdbenin.ocorrencias
    FROM s2410_evtcdbenin
   WHERE s2410_evtcdbenin.ativo = true
- UNION 
+ UNION
 SELECT s2416_evtcdbenalt.id,
     's2416'::text AS evento,
     s2416_evtcdbenalt.identidade,
@@ -1197,7 +1197,7 @@ SELECT s2416_evtcdbenalt.id,
     s2416_evtcdbenalt.ocorrencias
    FROM s2416_evtcdbenalt
   WHERE s2416_evtcdbenalt.ativo = true
- UNION 
+ UNION
 SELECT s2420_evtcdbenterm.id,
     's2420'::text AS evento,
     s2420_evtcdbenterm.identidade,
@@ -1223,7 +1223,7 @@ SELECT s2420_evtcdbenterm.id,
     s2420_evtcdbenterm.ocorrencias
    FROM s2420_evtcdbenterm
   WHERE s2420_evtcdbenterm.ativo = true
- UNION 
+ UNION
 SELECT s3000_evtexclusao.id,
     's3000'::text AS evento,
     s3000_evtexclusao.identidade,

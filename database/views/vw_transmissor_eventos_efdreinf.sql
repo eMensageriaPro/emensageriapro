@@ -32,7 +32,7 @@ CREATE OR REPLACE VIEW public.vw_transmissor_eventos_efdreinf AS SELECT r1000_ev
     r1000_evtinfocontri.ocorrencias
    FROM r1000_evtinfocontri
   WHERE r1000_evtinfocontri.ativo = true
- UNION 
+ UNION
 SELECT r1070_evttabprocesso.id,
     'r1070'::text AS evento,
     r1070_evttabprocesso.identidade,
@@ -63,7 +63,7 @@ SELECT r1070_evttabprocesso.id,
     r1070_evttabprocesso.ocorrencias
    FROM r1070_evttabprocesso
   WHERE r1070_evttabprocesso.ativo = true
- UNION 
+ UNION
 SELECT r2010_evtservtom.id,
     'r2010'::text AS evento,
     r2010_evtservtom.identidade,
@@ -94,7 +94,7 @@ SELECT r2010_evtservtom.id,
     r2010_evtservtom.ocorrencias
    FROM r2010_evtservtom
   WHERE r2010_evtservtom.ativo = true
- UNION 
+ UNION
 SELECT r2020_evtservprest.id,
     'r2020'::text AS evento,
     r2020_evtservprest.identidade,
@@ -125,7 +125,7 @@ SELECT r2020_evtservprest.id,
     r2020_evtservprest.ocorrencias
    FROM r2020_evtservprest
   WHERE r2020_evtservprest.ativo = true
- UNION 
+ UNION
 SELECT r2030_evtassocdesprec.id,
     'r2030'::text AS evento,
     r2030_evtassocdesprec.identidade,
@@ -156,7 +156,7 @@ SELECT r2030_evtassocdesprec.id,
     r2030_evtassocdesprec.ocorrencias
    FROM r2030_evtassocdesprec
   WHERE r2030_evtassocdesprec.ativo = true
- UNION 
+ UNION
 SELECT r2040_evtassocdesprep.id,
     'r2040'::text AS evento,
     r2040_evtassocdesprep.identidade,
@@ -187,7 +187,7 @@ SELECT r2040_evtassocdesprep.id,
     r2040_evtassocdesprep.ocorrencias
    FROM r2040_evtassocdesprep
   WHERE r2040_evtassocdesprep.ativo = true
- UNION 
+ UNION
 SELECT r2050_evtcomprod.id,
     'r2050'::text AS evento,
     r2050_evtcomprod.identidade,
@@ -218,7 +218,7 @@ SELECT r2050_evtcomprod.id,
     r2050_evtcomprod.ocorrencias
    FROM r2050_evtcomprod
   WHERE r2050_evtcomprod.ativo = true
- UNION 
+ UNION
 SELECT r2060_evtcprb.id,
     'r2060'::text AS evento,
     r2060_evtcprb.identidade,
@@ -249,7 +249,7 @@ SELECT r2060_evtcprb.id,
     r2060_evtcprb.ocorrencias
    FROM r2060_evtcprb
   WHERE r2060_evtcprb.ativo = true
- UNION 
+ UNION
 SELECT r2070_evtpgtosdivs.id,
     'r2070'::text AS evento,
     r2070_evtpgtosdivs.identidade,
@@ -280,7 +280,7 @@ SELECT r2070_evtpgtosdivs.id,
     r2070_evtpgtosdivs.ocorrencias
    FROM r2070_evtpgtosdivs
   WHERE r2070_evtpgtosdivs.ativo = true
- UNION 
+ UNION
 SELECT r2098_evtreabreevper.id,
     'r2098'::text AS evento,
     r2098_evtreabreevper.identidade,
@@ -311,7 +311,7 @@ SELECT r2098_evtreabreevper.id,
     r2098_evtreabreevper.ocorrencias
    FROM r2098_evtreabreevper
   WHERE r2098_evtreabreevper.ativo = true
- UNION 
+ UNION
 SELECT r2099_evtfechaevper.id,
     'r2099'::text AS evento,
     r2099_evtfechaevper.identidade,
@@ -342,7 +342,7 @@ SELECT r2099_evtfechaevper.id,
     r2099_evtfechaevper.ocorrencias
    FROM r2099_evtfechaevper
   WHERE r2099_evtfechaevper.ativo = true
- UNION 
+ UNION
 SELECT r3010_evtespdesportivo.id,
     'r3010'::text AS evento,
     r3010_evtespdesportivo.identidade,
@@ -373,7 +373,7 @@ SELECT r3010_evtespdesportivo.id,
     r3010_evtespdesportivo.ocorrencias
    FROM r3010_evtespdesportivo
   WHERE r3010_evtespdesportivo.ativo = true
- UNION 
+ UNION
 SELECT r4010_evtretpf.id,
     'r4010'::text AS evento,
     r4010_evtretpf.identidade,
@@ -404,7 +404,7 @@ SELECT r4010_evtretpf.id,
     r4010_evtretpf.ocorrencias
    FROM r4010_evtretpf
   WHERE r4010_evtretpf.ativo = true
- UNION 
+ UNION
 SELECT r4020_evtretpj.id,
     'r4020'::text AS evento,
     r4020_evtretpj.identidade,
@@ -435,7 +435,7 @@ SELECT r4020_evtretpj.id,
     r4020_evtretpj.ocorrencias
    FROM r4020_evtretpj
   WHERE r4020_evtretpj.ativo = true
- UNION 
+ UNION
 SELECT r4040_evtbenefnid.id,
     'r4040'::text AS evento,
     r4040_evtbenefnid.identidade,
@@ -466,7 +466,7 @@ SELECT r4040_evtbenefnid.id,
     r4040_evtbenefnid.ocorrencias
    FROM r4040_evtbenefnid
   WHERE r4040_evtbenefnid.ativo = true
- UNION 
+ UNION
 SELECT r4098_evtreab.id,
     'r4098'::text AS evento,
     r4098_evtreab.identidade,
@@ -497,7 +497,7 @@ SELECT r4098_evtreab.id,
     r4098_evtreab.ocorrencias
    FROM r4098_evtreab
   WHERE r4098_evtreab.ativo = true
- UNION 
+ UNION
 SELECT r4099_evtfech.id,
     'r4099'::text AS evento,
     r4099_evtfech.identidade,
@@ -528,7 +528,7 @@ SELECT r4099_evtfech.id,
     r4099_evtfech.ocorrencias
    FROM r4099_evtfech
   WHERE r4099_evtfech.ativo = true
- UNION 
+ UNION
 SELECT r9000_evtexclusao.id,
     'r9000'::text AS evento,
     r9000_evtexclusao.identidade,

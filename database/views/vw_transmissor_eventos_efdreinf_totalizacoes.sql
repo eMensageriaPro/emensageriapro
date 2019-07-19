@@ -26,7 +26,7 @@ CREATE OR REPLACE VIEW public.vw_transmissor_eventos_efdreinf_totalizacoes AS SE
     r5001_evttotal.ocorrencias
    FROM r5001_evttotal
   WHERE r5001_evttotal.ativo = true
- UNION 
+ UNION
 SELECT r5011_evttotalcontrib.id,
     'r5011'::text AS evento,
     r5011_evttotalcontrib.identidade,
@@ -51,7 +51,7 @@ SELECT r5011_evttotalcontrib.id,
     r5011_evttotalcontrib.ocorrencias
    FROM r5011_evttotalcontrib
   WHERE r5011_evttotalcontrib.ativo = true
- UNION 
+ UNION
 SELECT r9001_evttotal.id,
     'r9001'::text AS evento,
     r9001_evttotal.identidade,
@@ -76,7 +76,7 @@ SELECT r9001_evttotal.id,
     r9001_evttotal.ocorrencias
    FROM r9001_evttotal
   WHERE r9001_evttotal.ativo = true
- UNION 
+ UNION
 SELECT r9002_evtret.id,
     'r9002'::text AS evento,
     r9002_evtret.identidade,
@@ -101,7 +101,7 @@ SELECT r9002_evtret.id,
     r9002_evtret.ocorrencias
    FROM r9002_evtret
   WHERE r9002_evtret.ativo = true
- UNION 
+ UNION
 SELECT r9011_evttotalcontrib.id,
     'r9011'::text AS evento,
     r9011_evttotalcontrib.identidade,
@@ -126,7 +126,7 @@ SELECT r9011_evttotalcontrib.id,
     r9011_evttotalcontrib.ocorrencias
    FROM r9011_evttotalcontrib
   WHERE r9011_evttotalcontrib.ativo = true
- UNION 
+ UNION
 SELECT r9012_evtretcons.id,
     'r9012'::text AS evento,
     r9012_evtretcons.identidade,

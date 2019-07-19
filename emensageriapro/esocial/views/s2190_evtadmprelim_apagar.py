@@ -37,31 +37,19 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 """
 
-import datetime
 import json
-import base64
+from django.db import connection
+from django.http import HttpResponseRedirect
+from django.forms.models import model_to_dict
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
-from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from django.shortcuts import render, redirect, get_object_or_404
 from emensageriapro.padrao import *
-from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
 
-
 @login_required
 def apagar(request, pk):
-
-    import json
-    from django.forms.models import model_to_dict
-    from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
 
     s2190_evtadmprelim = get_object_or_404(s2190evtAdmPrelim, id=pk)
 
@@ -72,8 +60,11 @@ def apagar(request, pk):
             situacao_anterior = json.dumps(model_to_dict(s2190_evtadmprelim), indent=4, sort_keys=True, default=str)
             obj = s2190evtAdmPrelim.objects.get(id=pk)
             obj.delete(request=request)
-            #s2190_evtadmprelim_apagar_custom
-            #s2190_evtadmprelim_apagar_custom
+
+            sql_softdelete = ler_arquivo('/database/sql/s2190_softdelete_cascade.sql')
+            with connection.cursor() as cursor:
+                cursor.execute(sql_softdelete)
+
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
                              '',

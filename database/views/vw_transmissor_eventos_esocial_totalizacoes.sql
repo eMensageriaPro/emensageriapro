@@ -24,7 +24,7 @@ CREATE OR REPLACE VIEW public.vw_transmissor_eventos_esocial_totalizacoes AS SEL
     s5001_evtbasestrab.status
    FROM s5001_evtbasestrab
   WHERE s5001_evtbasestrab.ativo = true
- UNION 
+ UNION
 SELECT s5002_evtirrfbenef.id,
     's5002' AS evento,
     s5002_evtirrfbenef.identidade,
@@ -47,7 +47,7 @@ SELECT s5002_evtirrfbenef.id,
     s5002_evtirrfbenef.status
    FROM s5002_evtirrfbenef
   WHERE s5002_evtirrfbenef.ativo = true
- UNION 
+ UNION
 SELECT s5003_evtbasesfgts.id,
     's5003' AS evento,
     s5003_evtbasesfgts.identidade,
@@ -70,7 +70,7 @@ SELECT s5003_evtbasesfgts.id,
     s5003_evtbasesfgts.status
    FROM s5003_evtbasesfgts
   WHERE s5003_evtbasesfgts.ativo = true
- UNION 
+ UNION
 SELECT s5011_evtcs.id,
     's5011' AS evento,
     s5011_evtcs.identidade,
@@ -93,7 +93,7 @@ SELECT s5011_evtcs.id,
     s5011_evtcs.status
    FROM s5011_evtcs
   WHERE s5011_evtcs.ativo = true
- UNION 
+ UNION
 SELECT s5012_evtirrf.id,
     's5012' AS evento,
     s5012_evtirrf.identidade,
@@ -116,7 +116,7 @@ SELECT s5012_evtirrf.id,
     s5012_evtirrf.status
    FROM s5012_evtirrf
   WHERE s5012_evtirrf.ativo = true
- UNION 
+ UNION
 SELECT s5013_evtfgts.id,
     's5013' AS evento,
     s5013_evtfgts.identidade,

@@ -39,35 +39,23 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
 import json
-import base64
-import json
+from django.db import connection
+from django.http import HttpResponseRedirect
 from django.forms.models import model_to_dict
 from django.contrib import messages
-from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
-from wkhtmltopdf.views import PDFTemplateResponse
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from django.shortcuts import render, redirect, get_object_or_404
 from emensageriapro.padrao import *
-from emensageriapro.r3010.forms import *
-from emensageriapro.r3010.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.r3010.models import r3010outrasReceitas
 
 
 @login_required
 def apagar(request, pk):
 
-    from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-
     r3010_outrasreceitas = get_object_or_404(r3010outrasReceitas, id=pk)
 
-    dados_evento = {}
     dados_evento = r3010_outrasreceitas.evento()
 
     if request.method == 'POST':
@@ -77,8 +65,11 @@ def apagar(request, pk):
             situacao_anterior = json.dumps(model_to_dict(r3010_outrasreceitas), indent=4, sort_keys=True, default=str)
             obj = r3010outrasReceitas.objects.get(id=pk)
             obj.delete(request=request)
-            #r3010_outrasreceitas_apagar_custom
-            #r3010_outrasreceitas_apagar_custom
+
+            sql_softdelete = ler_arquivo('/database/sql/r3010_softdelete_cascade.sql')
+            with connection.cursor() as cursor:
+                cursor.execute(sql_softdelete)
+
             messages.success(request, u'Apagado com sucesso!')
 
             gravar_auditoria(situacao_anterior,
