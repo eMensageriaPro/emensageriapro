@@ -3,7 +3,6 @@ import os
 from datetime import datetime
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.settings import INSTALLED_APPS, BASE_DIR
-
 # Função para MAC OS X  não estrar em repouso
 # pmset noidle
 
@@ -20,10 +19,11 @@ def executar_sql(select, array):
     if select:
         cur = conn.cursor()
         select = select.replace("'Null'", 'Null')
-        # print select
         cur.execute(select)
-        if array: lista = cur.fetchall()
-        else: lista = None
+        if array:
+            lista = cur.fetchall()
+        else:
+            lista = None
         cur.close()
         return lista
     else:
@@ -45,10 +45,12 @@ def reset_sequences():
     for row in results:
 
         nome_tabela = row[0]
-        results_1 = executar_sql("""SELECT max(id)+1 FROM %s;""" % (nome_tabela), True)
+        results_1 = executar_sql("""SELECT max(id)+1 FROM %s;""" % nome_tabela, True)
         quant = results_1[0][0] or 1
         try:
-            executar_sql("""ALTER SEQUENCE %s_id_seq RESTART WITH %s;""" % (nome_tabela, quant), False)
+            sql = """ALTER SEQUENCE %s_id_seq RESTART WITH %s;""" % (nome_tabela, quant)
+            print sql
+            executar_sql(sql, False)
         except:
             pass
 
@@ -74,7 +76,6 @@ def migrates():
                 comando = 'python manage.py %s %s' % (c, a)
                 print "Executando: "+comando
                 os.system(comando)
-
 
     data_fim = datetime.now()
     print 'Inicio:', data_inicio
@@ -106,7 +107,10 @@ def criar_diretorio_arquivos():
     ]
     for a in lista:
         if not os.path.isdir(a):
-            os.system('mkdir -p %s/%s' % (BASE_DIR,a ) )
+            command = 'mkdir -p %s/%s' % (BASE_DIR, a)
+            print command
+            os.system(command)
+
 
 def update_tables():
 
@@ -116,14 +120,9 @@ def update_tables():
 
         if '.sql' in a:
 
-            TXT = ler_arquivo('database/sql/%s' % (a))
+            TXT = ler_arquivo('/database/sql/%s' % a)
             executar_sql(TXT, False)
             print ('Arquivo %s executado com sucesso!' % a)
-
-            # try:
-            #
-            # except:
-            #     print ('Erro ao executar o arquivo %s!' % a)
 
     arquivos = os.listdir('%s/database/views' % BASE_DIR)
 
@@ -131,19 +130,13 @@ def update_tables():
 
         if '.sql' in a:
 
-            TXT = ler_arquivo('database/views/%s' % (a))
+            TXT = ler_arquivo('/database/views/%s' % a)
             executar_sql(TXT, False)
             print ('Arquivo %s executado com sucesso!' % a)
-            
-            # try:
-            #
-            # except:
-            #     print ('Erro ao executar o arquivo %s!' % a)
 
 
 def collect_static():
 
-    print ''
     comando = 'python manage.py collectstatic'
     print "Executando: " + comando
     os.system(comando)
@@ -151,16 +144,27 @@ def collect_static():
 
 if __name__ == "__main__":
 
-    resp = raw_input("Deseja executar as migrações separadamente (S/N) ?")
-
+    resp = raw_input("Deseja executar as migrações (S/N)? ")
     if resp == 'S':
-        migrates()
-    else:
-        os.system('python manage.py migrate')
+        resp = raw_input("Deseja executar as migrações separadamente (S/N)? ")
+        if resp == 'S':
+            migrates()
+        else:
+            os.system('python manage.py migrate')
 
-    collect_static()
-    update_tables()
+    resp = raw_input("Deseja executar a função de coleta de arquivos estáticos (S/N)? ")
+    if resp == 'S':
+        collect_static()
 
-    reset_sequences()
-    criar_diretorio_arquivos()
+    resp = raw_input("Deseja atualizar de tabelas (softdelete, views e opções) (S/N)? ")
+    if resp == 'S':
+        update_tables()
+
+    resp = raw_input("Deseja atualizar as sequences das tabelas (S/N)? ")
+    if resp == 'S':
+        reset_sequences()
+
+    resp = raw_input("Deseja criar os diretórios dos arquivos (S/N)? ")
+    if resp == 'S':
+        criar_diretorio_arquivos()
 
