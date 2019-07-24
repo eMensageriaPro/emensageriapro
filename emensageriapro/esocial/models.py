@@ -102,7 +102,6 @@ class s1000evtInfoEmpregador(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -190,7 +189,6 @@ class s1005evtTabEstab(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -278,7 +276,6 @@ class s1010evtTabRubrica(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -366,7 +363,6 @@ class s1020evtTabLotacao(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -454,7 +450,6 @@ class s1030evtTabCargo(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -542,7 +537,6 @@ class s1035evtTabCarreira(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -630,7 +624,6 @@ class s1040evtTabFuncao(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -718,7 +711,6 @@ class s1050evtTabHorTur(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -806,7 +798,6 @@ class s1060evtTabAmbiente(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -894,7 +885,6 @@ class s1070evtTabProcesso(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -982,7 +972,6 @@ class s1080evtTabOperPort(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1075,7 +1064,6 @@ class s1200evtRemun(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1171,7 +1159,6 @@ class s1202evtRmnRPPS(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1265,7 +1252,6 @@ class s1207evtBenPrRP(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1359,7 +1345,6 @@ class s1210evtPgtos(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1454,7 +1439,6 @@ class s1250evtAqProd(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1549,7 +1533,6 @@ class s1260evtComProd(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1642,7 +1625,6 @@ class s1270evtContratAvNP(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1734,7 +1716,6 @@ class s1280evtInfoComplPer(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1824,7 +1805,6 @@ class s1295evtTotConting(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1913,7 +1893,6 @@ class s1298evtReabreEvPer(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -2009,7 +1988,6 @@ class s1299evtFechaEvPer(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -2106,7 +2084,6 @@ class s1300evtContrSindPatr(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -2197,7 +2174,6 @@ class s2190evtAdmPrelim(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -2321,7 +2297,6 @@ class s2200evtAdmissao(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -2442,7 +2417,6 @@ class s2205evtAltCadastral(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -2557,7 +2531,6 @@ class s2206evtAltContratual(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -2683,7 +2656,6 @@ class s2210evtCAT(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -2804,7 +2776,6 @@ class s2220evtMonit(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -2916,7 +2887,6 @@ class s2221evtToxic(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -3011,7 +2981,6 @@ class s2230evtAfastTemp(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -3103,7 +3072,6 @@ class s2231evtCessao(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -3200,7 +3168,6 @@ class s2240evtExpRisco(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -3294,7 +3261,6 @@ class s2241evtInsApo(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -3395,7 +3361,6 @@ class s2245evtTreiCap(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -3490,7 +3455,6 @@ class s2250evtAvPrevio(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -3591,7 +3555,6 @@ class s2260evtConvInterm(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -3696,7 +3659,6 @@ class s2298evtReintegr(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -3805,7 +3767,6 @@ class s2299evtDeslig(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -3920,7 +3881,6 @@ class s2300evtTSVInicio(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -4024,7 +3984,6 @@ class s2306evtTSVAltContr(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -4123,7 +4082,6 @@ class s2399evtTSVTermino(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -4230,7 +4188,6 @@ class s2400evtCdBenefIn(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -4338,7 +4295,6 @@ class s2405evtCdBenefAlt(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -4445,7 +4401,6 @@ class s2410evtCdBenIn(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -4551,7 +4506,6 @@ class s2416evtCdBenAlt(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -4651,7 +4605,6 @@ class s2420evtCdBenTerm(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -4743,7 +4696,6 @@ class s3000evtExclusao(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -4829,7 +4781,6 @@ class s5001evtBasesTrab(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     class Meta:
@@ -4885,7 +4836,6 @@ class s5002evtIrrfBenef(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     class Meta:
@@ -4942,7 +4892,6 @@ class s5003evtBasesFGTS(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     class Meta:
@@ -4999,7 +4948,6 @@ class s5011evtCS(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     class Meta:
@@ -5056,7 +5004,6 @@ class s5012evtIrrf(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     class Meta:
@@ -5111,7 +5058,6 @@ class s5013evtFGTS(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     class Meta:

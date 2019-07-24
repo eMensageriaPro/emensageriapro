@@ -77,17 +77,7 @@ class s5001calcTerc(SoftDeletionModel):
     vrdescterc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5001_infocategincid), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5001_infocategincid) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcssegterc) + ' - ' + unicode(self.vrdescterc)
 
     class Meta:
 
@@ -134,17 +124,7 @@ class s5001ideEstabLot(SoftDeletionModel):
     codlotacao = models.CharField(max_length=30, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5001_infocp), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5001_infocp) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao)
 
     class Meta:
 
@@ -191,17 +171,7 @@ class s5001infoBaseCS(SoftDeletionModel):
     valor = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5001_infocategincid), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5001_infocategincid) + ' - ' + unicode(self.ind13) + ' - ' + unicode(self.tpvalor) + ' - ' + unicode(self.valor)
 
     class Meta:
 
@@ -248,17 +218,7 @@ class s5001infoCategIncid(SoftDeletionModel):
     indsimples = models.IntegerField(choices=CHOICES_S5001_INDSIMPLES, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5001_ideestablot), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5001_ideestablot) + ' - ' + unicode(self.codcateg)
 
     class Meta:
 
@@ -300,17 +260,7 @@ class s5001infoCp(SoftDeletionModel):
         return self.s5001_evtbasestrab.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5001_evtbasestrab), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5001_evtbasestrab)
 
     class Meta:
 
@@ -354,17 +304,7 @@ class s5001infoCpCalc(SoftDeletionModel):
     vrdescseg = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5001_evtbasestrab), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5001_evtbasestrab) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcpseg) + ' - ' + unicode(self.vrdescseg)
 
     class Meta:
 
@@ -410,17 +350,7 @@ class s5001procJudTrab(SoftDeletionModel):
     codsusp = models.IntegerField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5001_evtbasestrab), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5001_evtbasestrab) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.codsusp)
 
     class Meta:
 

@@ -78,17 +78,7 @@ class r2030infoProc(SoftDeletionModel):
     vlrnret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r2030_recursosrec), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r2030_recursosrec) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.vlrnret)
 
     class Meta:
 
@@ -139,17 +129,7 @@ class r2030infoRecurso(SoftDeletionModel):
     vlrretapur = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r2030_recursosrec), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r2030_recursosrec) + ' - ' + unicode(self.tprepasse) + ' - ' + unicode(self.descrecurso) + ' - ' + unicode(self.vlrbruto) + ' - ' + unicode(self.vlrretapur)
 
     class Meta:
 
@@ -201,17 +181,7 @@ class r2030recursosRec(SoftDeletionModel):
     vlrtotalnret = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r2030_evtassocdesprec), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r2030_evtassocdesprec) + ' - ' + unicode(self.cnpjorigrecurso) + ' - ' + unicode(self.vlrtotalrec) + ' - ' + unicode(self.vlrtotalret)
 
     class Meta:
 

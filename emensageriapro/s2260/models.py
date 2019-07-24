@@ -82,17 +82,7 @@ class s2260localTrabInterm(SoftDeletionModel):
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2260_evtconvinterm), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2260_evtconvinterm) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
 
     class Meta:
 

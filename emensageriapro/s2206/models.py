@@ -75,17 +75,7 @@ class s2206alvaraJudicial(SoftDeletionModel):
     nrprocjud = models.CharField(max_length=20, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2206_evtaltcontratual), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.nrprocjud)
 
     class Meta:
 
@@ -132,17 +122,7 @@ class s2206aprend(SoftDeletionModel):
     nrinsc = models.CharField(max_length=15, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2206_infoceletista), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2206_infoceletista) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
 
     class Meta:
 
@@ -189,17 +169,7 @@ class s2206filiacaoSindical(SoftDeletionModel):
     cnpjsindtrab = models.CharField(max_length=14, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2206_evtaltcontratual), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.cnpjsindtrab)
 
     class Meta:
 
@@ -248,17 +218,7 @@ class s2206horContratual(SoftDeletionModel):
     tmpparc = models.IntegerField(choices=CHOICES_S2206_TMPPARC, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2206_evtaltcontratual), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpjornada) + ' - ' + unicode(self.tmpparc)
 
     class Meta:
 
@@ -306,17 +266,7 @@ class s2206horario(SoftDeletionModel):
     codhorcontrat = models.CharField(max_length=30, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2206_horcontratual), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2206_horcontratual) + ' - ' + unicode(self.dia) + ' - ' + unicode(self.codhorcontrat)
 
     class Meta:
 
@@ -366,17 +316,7 @@ class s2206infoCeletista(SoftDeletionModel):
     cnpjsindcategprof = models.CharField(max_length=14, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2206_evtaltcontratual), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpregjor) + ' - ' + unicode(self.natatividade) + ' - ' + unicode(self.cnpjsindcategprof)
 
     class Meta:
 
@@ -427,17 +367,7 @@ class s2206infoEstatutario(SoftDeletionModel):
     indparcremun = models.CharField(choices=CHOICES_S2206_INDPARCREMUN, max_length=1, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2206_evtaltcontratual), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpplanrp)
 
     class Meta:
 
@@ -490,17 +420,7 @@ class s2206localTrabDom(SoftDeletionModel):
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2206_evtaltcontratual), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
 
     class Meta:
 
@@ -553,17 +473,7 @@ class s2206localTrabGeral(SoftDeletionModel):
     desccomp = models.CharField(max_length=80, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2206_evtaltcontratual), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
 
     class Meta:
 
@@ -610,17 +520,7 @@ class s2206observacoes(SoftDeletionModel):
     observacao = models.CharField(max_length=255, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2206_evtaltcontratual), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.observacao)
 
     class Meta:
 
@@ -666,17 +566,7 @@ class s2206servPubl(SoftDeletionModel):
     mtvalter = models.IntegerField(choices=CHOICES_S2206_MTVALTER, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2206_evtaltcontratual), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.mtvalter)
 
     class Meta:
 
@@ -722,17 +612,7 @@ class s2206trabTemp(SoftDeletionModel):
     justprorr = models.CharField(max_length=999, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2206_infoceletista), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2206_infoceletista) + ' - ' + unicode(self.justprorr)
 
     class Meta:
 

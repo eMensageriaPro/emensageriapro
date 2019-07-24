@@ -78,17 +78,7 @@ class s2230emitente(SoftDeletionModel):
     ufoc = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2230_infoatestado), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2230_infoatestado) + ' - ' + unicode(self.nmemit) + ' - ' + unicode(self.ideoc) + ' - ' + unicode(self.nroc)
 
     class Meta:
 
@@ -136,17 +126,7 @@ class s2230fimAfastamento(SoftDeletionModel):
     dttermafast = models.DateField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2230_evtafasttemp), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2230_evtafasttemp) + ' - ' + unicode(self.dttermafast)
 
     class Meta:
 
@@ -193,17 +173,7 @@ class s2230infoAtestado(SoftDeletionModel):
     qtddiasafast = models.IntegerField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2230_iniafastamento), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2230_iniafastamento) + ' - ' + unicode(self.qtddiasafast)
 
     class Meta:
 
@@ -250,17 +220,7 @@ class s2230infoCessao(SoftDeletionModel):
     infonus = models.IntegerField(choices=CHOICES_S2230_INFONUS, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2230_iniafastamento), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2230_iniafastamento) + ' - ' + unicode(self.cnpjcess) + ' - ' + unicode(self.infonus)
 
     class Meta:
 
@@ -308,17 +268,7 @@ class s2230infoMandSind(SoftDeletionModel):
     infonusremun = models.IntegerField(choices=CHOICES_S2230_INFONUSREMUN, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2230_iniafastamento), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2230_iniafastamento) + ' - ' + unicode(self.cnpjsind) + ' - ' + unicode(self.infonusremun)
 
     class Meta:
 
@@ -367,17 +317,7 @@ class s2230infoRetif(SoftDeletionModel):
     nrproc = models.CharField(max_length=21, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2230_evtafasttemp), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2230_evtafasttemp) + ' - ' + unicode(self.origretif)
 
     class Meta:
 
@@ -427,17 +367,7 @@ class s2230iniAfastamento(SoftDeletionModel):
     observacao = models.CharField(max_length=255, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2230_evtafasttemp), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2230_evtafasttemp) + ' - ' + unicode(self.dtiniafast) + ' - ' + unicode(self.codmotafast)
 
     class Meta:
 

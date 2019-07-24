@@ -82,17 +82,7 @@ class s2306ageIntegracao(SoftDeletionModel):
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2306_infoestagiario), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2306_infoestagiario) + ' - ' + unicode(self.cnpjagntinteg) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.uf)
 
     class Meta:
 
@@ -144,17 +134,7 @@ class s2306cargoFuncao(SoftDeletionModel):
     codfuncao = models.CharField(max_length=30, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2306_infocomplementares), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2306_infocomplementares) + ' - ' + unicode(self.codcargo)
 
     class Meta:
 
@@ -199,17 +179,7 @@ class s2306infoComplementares(SoftDeletionModel):
         return self.s2306_evttsvaltcontr.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2306_evttsvaltcontr), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2306_evttsvaltcontr)
 
     class Meta:
 
@@ -267,17 +237,7 @@ class s2306infoEstagiario(SoftDeletionModel):
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2306_infocomplementares), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2306_infocomplementares) + ' - ' + unicode(self.natestagio) + ' - ' + unicode(self.nivestagio) + ' - ' + unicode(self.dtprevterm) + ' - ' + unicode(self.nmrazao)
 
     class Meta:
 
@@ -326,17 +286,7 @@ class s2306infoTrabCedido(SoftDeletionModel):
     indremuncargo = models.CharField(choices=CHOICES_S2306_INDREMUNCARGO, max_length=1, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2306_infocomplementares), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2306_infocomplementares) + ' - ' + unicode(self.indremuncargo)
 
     class Meta:
 
@@ -384,17 +334,7 @@ class s2306remuneracao(SoftDeletionModel):
     dscsalvar = models.CharField(max_length=255, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2306_infocomplementares), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2306_infocomplementares) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo)
 
     class Meta:
 
@@ -442,17 +382,7 @@ class s2306supervisorEstagio(SoftDeletionModel):
     nmsuperv = models.CharField(max_length=70, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2306_infoestagiario), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2306_infoestagiario) + ' - ' + unicode(self.cpfsupervisor) + ' - ' + unicode(self.nmsuperv)
 
     class Meta:
 

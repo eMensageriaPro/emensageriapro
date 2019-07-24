@@ -80,17 +80,7 @@ class s1080alteracao(SoftDeletionModel):
     aliqratajust = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1080_evttaboperport), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1080_evttaboperport) + ' - ' + unicode(self.cnpjopportuario) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.fap) + ' - ' + unicode(self.aliqratajust)
 
     class Meta:
 
@@ -141,17 +131,7 @@ class s1080alteracaonovaValidade(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1080_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1080_alteracao) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -199,17 +179,7 @@ class s1080exclusao(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1080_evttaboperport), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1080_evttaboperport) + ' - ' + unicode(self.cnpjopportuario) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -261,17 +231,7 @@ class s1080inclusao(SoftDeletionModel):
     aliqratajust = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1080_evttaboperport), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1080_evttaboperport) + ' - ' + unicode(self.cnpjopportuario) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.fap) + ' - ' + unicode(self.aliqratajust)
 
     class Meta:
 

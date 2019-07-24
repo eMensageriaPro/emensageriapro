@@ -77,17 +77,7 @@ class s2250cancAvPrevio(SoftDeletionModel):
     mtvcancavprevio = models.IntegerField(choices=CHOICES_S2250_MTVCANCAVPREVIO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2250_evtavprevio), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2250_evtavprevio) + ' - ' + unicode(self.dtcancavprv) + ' - ' + unicode(self.mtvcancavprevio)
 
     class Meta:
 
@@ -137,17 +127,7 @@ class s2250detAvPrevio(SoftDeletionModel):
     observacao = models.CharField(max_length=255, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2250_evtavprevio), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2250_evtavprevio) + ' - ' + unicode(self.dtavprv) + ' - ' + unicode(self.dtprevdeslig) + ' - ' + unicode(self.tpavprevio)
 
     class Meta:
 

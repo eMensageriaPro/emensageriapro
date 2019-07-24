@@ -77,17 +77,7 @@ class r9011RCPRB(SoftDeletionModel):
     vlrcrcprbsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r9011_infototalcontrib), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r9011_infototalcontrib) + ' - ' + unicode(self.crcprb) + ' - ' + unicode(self.vlrcrcprb)
 
     class Meta:
 
@@ -133,17 +123,7 @@ class r9011RComl(SoftDeletionModel):
     vlrcrcomlsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r9011_infototalcontrib), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r9011_infototalcontrib) + ' - ' + unicode(self.crcoml) + ' - ' + unicode(self.vlrcrcoml)
 
     class Meta:
 
@@ -193,17 +173,7 @@ class r9011RPrest(SoftDeletionModel):
     vlrtotalnretadic = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r9011_infototalcontrib), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r9011_infototalcontrib) + ' - ' + unicode(self.tpinsctomador) + ' - ' + unicode(self.nrinsctomador) + ' - ' + unicode(self.vlrtotalbaseret) + ' - ' + unicode(self.vlrtotalretprinc)
 
     class Meta:
 
@@ -251,17 +221,7 @@ class r9011RRecRepAD(SoftDeletionModel):
     vlrcrrecrepadsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r9011_infototalcontrib), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r9011_infototalcontrib) + ' - ' + unicode(self.crrecrepad) + ' - ' + unicode(self.vlrcrrecrepad)
 
     class Meta:
 
@@ -307,17 +267,7 @@ class r9011RTom(SoftDeletionModel):
     vlrtotalbaseret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r9011_infototalcontrib), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r9011_infototalcontrib) + ' - ' + unicode(self.cnpjprestador) + ' - ' + unicode(self.vlrtotalbaseret)
 
     class Meta:
 
@@ -363,17 +313,7 @@ class r9011infoCRTom(SoftDeletionModel):
     vlrcrtomsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r9011_rtom), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r9011_rtom) + ' - ' + unicode(self.crtom)
 
     class Meta:
 
@@ -417,17 +357,7 @@ class r9011infoTotalContrib(SoftDeletionModel):
     indexistinfo = models.IntegerField(choices=CHOICES_R9011_INDEXISTINFO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r9011_evttotalcontrib), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r9011_evttotalcontrib) + ' - ' + unicode(self.indexistinfo)
 
     class Meta:
 
@@ -473,17 +403,7 @@ class r9011regOcorrs(SoftDeletionModel):
     dscresp = models.CharField(max_length=999, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r9011_evttotalcontrib), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r9011_evttotalcontrib) + ' - ' + unicode(self.tpocorr) + ' - ' + unicode(self.localerroaviso) + ' - ' + unicode(self.codresp) + ' - ' + unicode(self.dscresp)
 
     class Meta:
 

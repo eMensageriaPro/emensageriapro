@@ -78,17 +78,7 @@ class r4099ideRespInf(SoftDeletionModel):
     email = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4099_evtfech), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4099_evtfech) + ' - ' + unicode(self.nmresp) + ' - ' + unicode(self.cpfresp)
 
     class Meta:
 

@@ -78,17 +78,7 @@ class r2010infoProcRetAd(SoftDeletionModel):
     valoradic = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r2010_evtservtom), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r2010_evtservtom) + ' - ' + unicode(self.tpprocretadic) + ' - ' + unicode(self.nrprocretadic) + ' - ' + unicode(self.valoradic)
 
     class Meta:
 
@@ -139,17 +129,7 @@ class r2010infoProcRetPr(SoftDeletionModel):
     valorprinc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r2010_evtservtom), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r2010_evtservtom) + ' - ' + unicode(self.tpprocretprinc) + ' - ' + unicode(self.nrprocretprinc) + ' - ' + unicode(self.valorprinc)
 
     class Meta:
 
@@ -206,17 +186,7 @@ class r2010infoTpServ(SoftDeletionModel):
     vlrnretadic = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r2010_nfs), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r2010_nfs) + ' - ' + unicode(self.tpservico) + ' - ' + unicode(self.vlrbaseret) + ' - ' + unicode(self.vlrretencao)
 
     class Meta:
 
@@ -268,17 +238,7 @@ class r2010nfs(SoftDeletionModel):
     obs = models.CharField(max_length=250, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r2010_evtservtom), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r2010_evtservtom) + ' - ' + unicode(self.serie) + ' - ' + unicode(self.numdocto) + ' - ' + unicode(self.dtemissaonf) + ' - ' + unicode(self.vlrbruto)
 
     class Meta:
 

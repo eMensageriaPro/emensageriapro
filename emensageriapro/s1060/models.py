@@ -83,17 +83,7 @@ class s1060alteracao(SoftDeletionModel):
     codlotacao = models.CharField(max_length=30, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1060_evttabambiente), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1060_evttabambiente) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmamb) + ' - ' + unicode(self.dscamb) + ' - ' + unicode(self.localamb)
 
     class Meta:
 
@@ -144,17 +134,7 @@ class s1060alteracaonovaValidade(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1060_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1060_alteracao) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -202,17 +182,7 @@ class s1060exclusao(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1060_evttabambiente), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1060_evttabambiente) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -267,17 +237,7 @@ class s1060inclusao(SoftDeletionModel):
     codlotacao = models.CharField(max_length=30, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1060_evttabambiente), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1060_evttabambiente) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmamb) + ' - ' + unicode(self.dscamb) + ' - ' + unicode(self.localamb)
 
     class Meta:
 

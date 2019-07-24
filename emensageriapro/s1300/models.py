@@ -77,17 +77,7 @@ class s1300contribSind(SoftDeletionModel):
     vlrcontribsind = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1300_evtcontrsindpatr), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1300_evtcontrsindpatr) + ' - ' + unicode(self.cnpjsindic) + ' - ' + unicode(self.tpcontribsind) + ' - ' + unicode(self.vlrcontribsind)
 
     class Meta:
 

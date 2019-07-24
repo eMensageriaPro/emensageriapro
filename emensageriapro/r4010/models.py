@@ -75,17 +75,7 @@ class r4010FCI(SoftDeletionModel):
     nrinscfci = models.CharField(max_length=14, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_infopgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_infopgto) + ' - ' + unicode(self.nrinscfci)
 
     class Meta:
 
@@ -132,17 +122,7 @@ class r4010SCP(SoftDeletionModel):
     percscp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_infopgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_infopgto) + ' - ' + unicode(self.nrinscscp) + ' - ' + unicode(self.percscp)
 
     class Meta:
 
@@ -193,17 +173,7 @@ class r4010benefPen(SoftDeletionModel):
     descrdep = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_detded), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_detded) + ' - ' + unicode(self.nome) + ' - ' + unicode(self.reldep)
 
     class Meta:
 
@@ -253,17 +223,7 @@ class r4010detDed(SoftDeletionModel):
     nrinscprevcomp = models.CharField(max_length=14, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_infopgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_infopgto) + ' - ' + unicode(self.indtpdeducao) + ' - ' + unicode(self.vlrdeducao)
 
     class Meta:
 
@@ -312,17 +272,7 @@ class r4010ideOpSaude(SoftDeletionModel):
     vlrsaude = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_evtretpf), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_evtretpf) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.vlrsaude)
 
     class Meta:
 
@@ -371,17 +321,7 @@ class r4010idePgto(SoftDeletionModel):
     observ = models.CharField(max_length=200, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_evtretpf), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_evtretpf) + ' - ' + unicode(self.natrend) + ' - ' + unicode(self.paisresid)
 
     class Meta:
 
@@ -432,17 +372,7 @@ class r4010infoDependPl(SoftDeletionModel):
     vlrsaude = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_ideopsaude), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_ideopsaude) + ' - ' + unicode(self.nome) + ' - ' + unicode(self.reldep) + ' - ' + unicode(self.vlrsaude)
 
     class Meta:
 
@@ -499,17 +429,7 @@ class r4010infoPgto(SoftDeletionModel):
     vlrcompanoant = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_idepgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_idepgto) + ' - ' + unicode(self.dtfg) + ' - ' + unicode(self.inddecterc) + ' - ' + unicode(self.vlrrendbruto)
 
     class Meta:
 
@@ -567,17 +487,7 @@ class r4010infoPgtoExt(SoftDeletionModel):
     frmtribut = models.CharField(choices=CHOICES_EFDREINFRENDIMENTOSBENEFICIARIOSEXTERIORTRIBUTACAO, max_length=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_idepgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_idepgto) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.indnif) + ' - ' + unicode(self.frmtribut)
 
     class Meta:
 
@@ -627,17 +537,7 @@ class r4010infoProcJud(SoftDeletionModel):
     desc = models.CharField(max_length=50, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_infopgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_infopgto) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.indorigrec)
 
     class Meta:
 
@@ -685,17 +585,7 @@ class r4010infoProcJuddespProcJud(SoftDeletionModel):
     vlrdespadvogados = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_infoprocjud), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_infoprocjud) + ' - ' + unicode(self.vlrdespcustas) + ' - ' + unicode(self.vlrdespadvogados)
 
     class Meta:
 
@@ -744,17 +634,7 @@ class r4010infoProcJudideAdv(SoftDeletionModel):
     vlradv = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_infoprocjud_despprocjud), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_infoprocjud_despprocjud) + ' - ' + unicode(self.tpinscadv) + ' - ' + unicode(self.nrinscadv) + ' - ' + unicode(self.vlradv)
 
     class Meta:
 
@@ -802,17 +682,7 @@ class r4010infoProcJudorigemRec(SoftDeletionModel):
     cnpjorigrecurso = models.CharField(max_length=14, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_infoprocjud), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_infoprocjud) + ' - ' + unicode(self.cnpjorigrecurso)
 
     class Meta:
 
@@ -862,17 +732,7 @@ class r4010infoProcRet(SoftDeletionModel):
     vlrdep = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_infopgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_infopgto) + ' - ' + unicode(self.tpprocret) + ' - ' + unicode(self.nrprocret)
 
     class Meta:
 
@@ -923,17 +783,7 @@ class r4010infoRRA(SoftDeletionModel):
     qtdmesesrra = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_infopgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_infopgto) + ' - ' + unicode(self.tpprocrra) + ' - ' + unicode(self.indorigrec) + ' - ' + unicode(self.descrra) + ' - ' + unicode(self.qtdmesesrra)
 
     class Meta:
 
@@ -983,17 +833,7 @@ class r4010infoRRAdespProcJud(SoftDeletionModel):
     vlrdespadvogados = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_inforra), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_inforra) + ' - ' + unicode(self.vlrdespcustas) + ' - ' + unicode(self.vlrdespadvogados)
 
     class Meta:
 
@@ -1042,17 +882,7 @@ class r4010infoRRAideAdv(SoftDeletionModel):
     vlradv = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_inforra_despprocjud), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_inforra_despprocjud) + ' - ' + unicode(self.tpinscadv) + ' - ' + unicode(self.nrinscadv) + ' - ' + unicode(self.vlradv)
 
     class Meta:
 
@@ -1100,17 +930,7 @@ class r4010infoRRAorigemRec(SoftDeletionModel):
     cnpjorigrecurso = models.CharField(max_length=14, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_inforra), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_inforra) + ' - ' + unicode(self.cnpjorigrecurso)
 
     class Meta:
 
@@ -1159,17 +979,7 @@ class r4010infoReemb(SoftDeletionModel):
     vlrreembant = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_ideopsaude), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_ideopsaude) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.vlrreemb)
 
     class Meta:
 
@@ -1220,17 +1030,7 @@ class r4010infoReembDep(SoftDeletionModel):
     vlrreembant = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_infodependpl), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_infodependpl) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.vlrreemb)
 
     class Meta:
 
@@ -1281,17 +1081,7 @@ class r4010rendIsento(SoftDeletionModel):
     dtlaudo = models.DateField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4010_infopgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4010_infopgto) + ' - ' + unicode(self.tpisencao) + ' - ' + unicode(self.vlrisento)
 
     class Meta:
 

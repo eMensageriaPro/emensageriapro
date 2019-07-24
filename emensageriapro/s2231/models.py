@@ -75,17 +75,7 @@ class s2231fimCessao(SoftDeletionModel):
     dttermcessao = models.DateField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2231_evtcessao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2231_evtcessao) + ' - ' + unicode(self.dttermcessao)
 
     class Meta:
 
@@ -135,17 +125,7 @@ class s2231iniCessao(SoftDeletionModel):
     dscsituacao = models.CharField(max_length=255, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2231_evtcessao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2231_evtcessao) + ' - ' + unicode(self.dtinicessao) + ' - ' + unicode(self.cnpjcess) + ' - ' + unicode(self.infonus) + ' - ' + unicode(self.indcessao)
 
     class Meta:
 

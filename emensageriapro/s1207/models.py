@@ -77,17 +77,7 @@ class s1207dmDev(SoftDeletionModel):
     idedmdev = models.CharField(max_length=30, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1207_evtbenprrp), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1207_evtbenprrp) + ' - ' + unicode(self.tpbenef) + ' - ' + unicode(self.nrbenefic) + ' - ' + unicode(self.idedmdev)
 
     class Meta:
 
@@ -134,17 +124,7 @@ class s1207infoPerAnt(SoftDeletionModel):
         return self.s1207_dmdev.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1207_dmdev), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1207_dmdev)
 
     class Meta:
 
@@ -193,17 +173,7 @@ class s1207infoPerAntideADC(SoftDeletionModel):
     dsc = models.CharField(max_length=255, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1207_infoperant), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1207_infoperant) + ' - ' + unicode(self.tpacconv) + ' - ' + unicode(self.dsc)
 
     class Meta:
 
@@ -251,17 +221,7 @@ class s1207infoPerAntideEstab(SoftDeletionModel):
     nrinsc = models.CharField(max_length=15, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1207_infoperant_ideperiodo), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1207_infoperant_ideperiodo) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
 
     class Meta:
 
@@ -308,17 +268,7 @@ class s1207infoPerAntidePeriodo(SoftDeletionModel):
     perref = models.CharField(max_length=7, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1207_infoperant_ideadc), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1207_infoperant_ideadc) + ' - ' + unicode(self.perref)
 
     class Meta:
 
@@ -369,17 +319,7 @@ class s1207infoPerAntitensRemun(SoftDeletionModel):
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1207_infoperant_remunperant), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1207_infoperant_remunperant) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
 
     class Meta:
 
@@ -426,17 +366,7 @@ class s1207infoPerAntremunPerAnt(SoftDeletionModel):
         return self.s1207_infoperant_ideestab.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1207_infoperant_ideestab), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1207_infoperant_ideestab)
 
     class Meta:
 
@@ -480,17 +410,7 @@ class s1207infoPerApur(SoftDeletionModel):
         return self.s1207_dmdev.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1207_dmdev), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1207_dmdev)
 
     class Meta:
 
@@ -536,17 +456,7 @@ class s1207infoPerApurideEstab(SoftDeletionModel):
     nrinsc = models.CharField(max_length=15, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1207_infoperapur), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1207_infoperapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
 
     class Meta:
 
@@ -598,17 +508,7 @@ class s1207infoPerApuritensRemun(SoftDeletionModel):
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1207_infoperapur_remunperapur), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1207_infoperapur_remunperapur) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
 
     class Meta:
 
@@ -655,17 +555,7 @@ class s1207infoPerApurremunPerApur(SoftDeletionModel):
         return self.s1207_infoperapur_ideestab.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1207_infoperapur_ideestab), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1207_infoperapur_ideestab)
 
     class Meta:
 
@@ -712,17 +602,7 @@ class s1207itens(SoftDeletionModel):
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1207_dmdev), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1207_dmdev) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
 
     class Meta:
 
@@ -772,17 +652,7 @@ class s1207procJudTrab(SoftDeletionModel):
     codsusp = models.IntegerField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1207_evtbenprrp), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1207_evtbenprrp) + ' - ' + unicode(self.tptrib) + ' - ' + unicode(self.nrprocjud)
 
     class Meta:
 

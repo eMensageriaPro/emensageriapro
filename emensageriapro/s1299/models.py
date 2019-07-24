@@ -78,17 +78,7 @@ class s1299ideRespInf(SoftDeletionModel):
     email = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1299_evtfechaevper), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1299_evtfechaevper) + ' - ' + unicode(self.nmresp) + ' - ' + unicode(self.cpfresp) + ' - ' + unicode(self.telefone)
 
     class Meta:
 

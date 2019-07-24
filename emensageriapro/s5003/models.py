@@ -76,17 +76,7 @@ class s5003basePerAntE(SoftDeletionModel):
     remfgtse = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5003_infobaseperante), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5003_infobaseperante) + ' - ' + unicode(self.tpvalore) + ' - ' + unicode(self.remfgtse)
 
     class Meta:
 
@@ -131,17 +121,7 @@ class s5003basePerApur(SoftDeletionModel):
     remfgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5003_infobasefgts), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5003_infobasefgts) + ' - ' + unicode(self.tpvalor) + ' - ' + unicode(self.remfgts)
 
     class Meta:
 
@@ -186,17 +166,7 @@ class s5003dpsPerAntE(SoftDeletionModel):
     dpsfgtse = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5003_infodpsperante), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5003_infodpsperante) + ' - ' + unicode(self.tpdpse) + ' - ' + unicode(self.dpsfgtse)
 
     class Meta:
 
@@ -241,17 +211,7 @@ class s5003dpsPerApur(SoftDeletionModel):
     dpsfgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5003_infotrabdps), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5003_infotrabdps) + ' - ' + unicode(self.tpdps) + ' - ' + unicode(self.dpsfgts)
 
     class Meta:
 
@@ -297,17 +257,7 @@ class s5003ideEstabLot(SoftDeletionModel):
     codlotacao = models.CharField(max_length=30, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5003_evtbasesfgts), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5003_evtbasesfgts) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao)
 
     class Meta:
 
@@ -351,17 +301,7 @@ class s5003infoBaseFGTS(SoftDeletionModel):
         return self.s5003_infotrabfgts.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5003_infotrabfgts), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5003_infotrabfgts)
 
     class Meta:
 
@@ -403,17 +343,7 @@ class s5003infoBasePerAntE(SoftDeletionModel):
     perref = models.CharField(max_length=7, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5003_infobasefgts), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5003_infobasefgts) + ' - ' + unicode(self.perref)
 
     class Meta:
 
@@ -455,17 +385,7 @@ class s5003infoDpsFGTS(SoftDeletionModel):
         return self.s5003_evtbasesfgts.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5003_evtbasesfgts), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5003_evtbasesfgts)
 
     class Meta:
 
@@ -507,17 +427,7 @@ class s5003infoDpsPerAntE(SoftDeletionModel):
     perref = models.CharField(max_length=7, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5003_infotrabdps), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5003_infotrabdps) + ' - ' + unicode(self.perref)
 
     class Meta:
 
@@ -561,17 +471,7 @@ class s5003infoTrabDps(SoftDeletionModel):
     codcateg = models.IntegerField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5003_infodpsfgts), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5003_infodpsfgts) + ' - ' + unicode(self.codcateg)
 
     class Meta:
 
@@ -621,17 +521,7 @@ class s5003infoTrabFGTS(SoftDeletionModel):
     mtvdesligtsv = models.CharField(choices=CHOICES_S5003_MTVDESLIGTSV, max_length=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5003_ideestablot), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5003_ideestablot) + ' - ' + unicode(self.codcateg)
 
     class Meta:
 

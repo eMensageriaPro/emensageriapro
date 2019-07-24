@@ -81,17 +81,7 @@ class s1050alteracao(SoftDeletionModel):
     perhorflexivel = models.CharField(choices=CHOICES_S1050_PERHORFLEXIVEL_ALTERACAO, max_length=1, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1050_evttabhortur), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1050_evttabhortur) + ' - ' + unicode(self.codhorcontrat) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.hrentr) + ' - ' + unicode(self.hrsaida) + ' - ' + unicode(self.durjornada) + ' - ' + unicode(self.perhorflexivel)
 
     class Meta:
 
@@ -145,17 +135,7 @@ class s1050alteracaohorarioIntervalo(SoftDeletionModel):
     terminterv = models.CharField(max_length=4, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1050_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1050_alteracao) + ' - ' + unicode(self.tpinterv) + ' - ' + unicode(self.durinterv)
 
     class Meta:
 
@@ -203,17 +183,7 @@ class s1050alteracaonovaValidade(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1050_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1050_alteracao) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -261,17 +231,7 @@ class s1050exclusao(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1050_evttabhortur), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1050_evttabhortur) + ' - ' + unicode(self.codhorcontrat) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -324,17 +284,7 @@ class s1050inclusao(SoftDeletionModel):
     perhorflexivel = models.CharField(choices=CHOICES_S1050_PERHORFLEXIVEL_INCLUSAO, max_length=1, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1050_evttabhortur), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1050_evttabhortur) + ' - ' + unicode(self.codhorcontrat) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.hrentr) + ' - ' + unicode(self.hrsaida) + ' - ' + unicode(self.durjornada) + ' - ' + unicode(self.perhorflexivel)
 
     class Meta:
 
@@ -388,17 +338,7 @@ class s1050inclusaohorarioIntervalo(SoftDeletionModel):
     terminterv = models.CharField(max_length=4, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1050_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1050_inclusao) + ' - ' + unicode(self.tpinterv) + ' - ' + unicode(self.durinterv)
 
     class Meta:
 

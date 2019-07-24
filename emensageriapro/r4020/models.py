@@ -79,17 +79,7 @@ class r4020CSLL(SoftDeletionModel):
     vlrdepcsll = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4020_infopgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4020_infopgto) + ' - ' + unicode(self.vlrbasecsll) + ' - ' + unicode(self.vlrcsll)
 
     class Meta:
 
@@ -140,17 +130,7 @@ class r4020Cofins(SoftDeletionModel):
     vlrdepcofins = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4020_infopgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4020_infopgto) + ' - ' + unicode(self.vlrbasecofins) + ' - ' + unicode(self.vlrcofins)
 
     class Meta:
 
@@ -197,17 +177,7 @@ class r4020FCI(SoftDeletionModel):
     nrinscfci = models.CharField(max_length=14, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4020_infopgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4020_infopgto) + ' - ' + unicode(self.nrinscfci)
 
     class Meta:
 
@@ -257,17 +227,7 @@ class r4020IR(SoftDeletionModel):
     vlrdepir = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4020_infopgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4020_infopgto) + ' - ' + unicode(self.vlrbaseir) + ' - ' + unicode(self.vlrir)
 
     class Meta:
 
@@ -318,17 +278,7 @@ class r4020PP(SoftDeletionModel):
     vlrdeppp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4020_infopgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4020_infopgto) + ' - ' + unicode(self.vlrbasepp) + ' - ' + unicode(self.vlrpp)
 
     class Meta:
 
@@ -376,17 +326,7 @@ class r4020SCP(SoftDeletionModel):
     percscp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4020_infopgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4020_infopgto) + ' - ' + unicode(self.nrinscscp) + ' - ' + unicode(self.percscp)
 
     class Meta:
 
@@ -434,17 +374,7 @@ class r4020despProcJud(SoftDeletionModel):
     vlrdespadvogados = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4020_infoprocjud), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4020_infoprocjud) + ' - ' + unicode(self.vlrdespcustas) + ' - ' + unicode(self.vlrdespadvogados)
 
     class Meta:
 
@@ -493,17 +423,7 @@ class r4020ideAdv(SoftDeletionModel):
     vlradv = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4020_despprocjud), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4020_despprocjud) + ' - ' + unicode(self.tpinscadv) + ' - ' + unicode(self.nrinscadv) + ' - ' + unicode(self.vlradv)
 
     class Meta:
 
@@ -553,17 +473,7 @@ class r4020idePgto(SoftDeletionModel):
     observ = models.CharField(max_length=200, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4020_evtretpj), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4020_evtretpj) + ' - ' + unicode(self.natrend) + ' - ' + unicode(self.paisresid)
 
     class Meta:
 
@@ -612,17 +522,7 @@ class r4020infoPgto(SoftDeletionModel):
     vlrtotalcred = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4020_idepgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4020_idepgto) + ' - ' + unicode(self.dtfg) + ' - ' + unicode(self.vlrtotalpag) + ' - ' + unicode(self.vlrtotalcred)
 
     class Meta:
 
@@ -681,17 +581,7 @@ class r4020infoPgtoExt(SoftDeletionModel):
     frmtribut = models.CharField(choices=CHOICES_EFDREINFRENDIMENTOSBENEFICIARIOSEXTERIORTRIBUTACAO, max_length=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4020_idepgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4020_idepgto) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.indnif) + ' - ' + unicode(self.relfontpg) + ' - ' + unicode(self.frmtribut)
 
     class Meta:
 
@@ -742,17 +632,7 @@ class r4020infoProcJud(SoftDeletionModel):
     desc = models.CharField(max_length=50, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4020_infopgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4020_infopgto) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.indorigemrecursos)
 
     class Meta:
 
@@ -809,17 +689,7 @@ class r4020infoProcRet(SoftDeletionModel):
     deppp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4020_infopgto), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4020_infopgto) + ' - ' + unicode(self.tpprocret) + ' - ' + unicode(self.nrprocret)
 
     class Meta:
 
@@ -866,17 +736,7 @@ class r4020origemRec(SoftDeletionModel):
     cnpjorigrecurso = models.CharField(max_length=14, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4020_infoprocjud), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4020_infoprocjud) + ' - ' + unicode(self.cnpjorigrecurso)
 
     class Meta:
 

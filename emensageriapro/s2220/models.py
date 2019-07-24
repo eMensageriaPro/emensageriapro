@@ -82,17 +82,7 @@ class s2220exame(SoftDeletionModel):
     indresult = models.IntegerField(choices=CHOICES_S2220_INDRESULT, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2220_evtmonit), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2220_evtmonit) + ' - ' + unicode(self.dtexm) + ' - ' + unicode(self.procrealizado) + ' - ' + unicode(self.interprexm) + ' - ' + unicode(self.ordexame) + ' - ' + unicode(self.dtinimonit)
 
     class Meta:
 

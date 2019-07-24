@@ -86,17 +86,7 @@ class s1005alteracao(SoftDeletionModel):
     contented = models.CharField(choices=CHOICES_S1005_CONTENTED_ALTERACAO, max_length=1, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1005_evttabestab), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1005_evttabestab) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.cnaeprep) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.regpt) + ' - ' + unicode(self.contapr)
 
     class Meta:
 
@@ -148,17 +138,7 @@ class s1005alteracaoinfoCaepf(SoftDeletionModel):
     tpcaepf = models.IntegerField(choices=CHOICES_S1005_TPCAEPF_ALTERACAO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1005_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1005_alteracao) + ' - ' + unicode(self.tpcaepf)
 
     class Meta:
 
@@ -204,17 +184,7 @@ class s1005alteracaoinfoEntEduc(SoftDeletionModel):
     nrinsc = models.CharField(max_length=15, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1005_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1005_alteracao) + ' - ' + unicode(self.nrinsc)
 
     class Meta:
 
@@ -260,17 +230,7 @@ class s1005alteracaoinfoObra(SoftDeletionModel):
     indsubstpatrobra = models.IntegerField(choices=CHOICES_S1005_INDSUBSTPATROBRA_ALTERACAO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1005_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1005_alteracao) + ' - ' + unicode(self.indsubstpatrobra)
 
     class Meta:
 
@@ -317,17 +277,7 @@ class s1005alteracaoinfoPCD(SoftDeletionModel):
     nrprocjud = models.CharField(max_length=20, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1005_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1005_alteracao) + ' - ' + unicode(self.contpcd)
 
     class Meta:
 
@@ -374,17 +324,7 @@ class s1005alteracaonovaValidade(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1005_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1005_alteracao) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -432,17 +372,7 @@ class s1005alteracaoprocAdmJudFap(SoftDeletionModel):
     codsusp = models.IntegerField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1005_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1005_alteracao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.codsusp)
 
     class Meta:
 
@@ -492,17 +422,7 @@ class s1005alteracaoprocAdmJudRat(SoftDeletionModel):
     codsusp = models.IntegerField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1005_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1005_alteracao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.codsusp)
 
     class Meta:
 
@@ -553,17 +473,7 @@ class s1005exclusao(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1005_evttabestab), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1005_evttabestab) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -622,17 +532,7 @@ class s1005inclusao(SoftDeletionModel):
     contented = models.CharField(choices=CHOICES_S1005_CONTENTED_INCLUSAO, max_length=1, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1005_evttabestab), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1005_evttabestab) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.cnaeprep) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.regpt) + ' - ' + unicode(self.contapr)
 
     class Meta:
 
@@ -684,17 +584,7 @@ class s1005inclusaoinfoCaepf(SoftDeletionModel):
     tpcaepf = models.IntegerField(choices=CHOICES_S1005_TPCAEPF_INCLUSAO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1005_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1005_inclusao) + ' - ' + unicode(self.tpcaepf)
 
     class Meta:
 
@@ -740,17 +630,7 @@ class s1005inclusaoinfoEntEduc(SoftDeletionModel):
     nrinsc = models.CharField(max_length=15, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1005_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1005_inclusao) + ' - ' + unicode(self.nrinsc)
 
     class Meta:
 
@@ -796,17 +676,7 @@ class s1005inclusaoinfoObra(SoftDeletionModel):
     indsubstpatrobra = models.IntegerField(choices=CHOICES_S1005_INDSUBSTPATROBRA_INCLUSAO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1005_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1005_inclusao) + ' - ' + unicode(self.indsubstpatrobra)
 
     class Meta:
 
@@ -853,17 +723,7 @@ class s1005inclusaoinfoPCD(SoftDeletionModel):
     nrprocjud = models.CharField(max_length=20, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1005_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1005_inclusao) + ' - ' + unicode(self.contpcd)
 
     class Meta:
 
@@ -911,17 +771,7 @@ class s1005inclusaoprocAdmJudFap(SoftDeletionModel):
     codsusp = models.IntegerField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1005_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1005_inclusao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.codsusp)
 
     class Meta:
 
@@ -971,17 +821,7 @@ class s1005inclusaoprocAdmJudRat(SoftDeletionModel):
     codsusp = models.IntegerField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1005_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1005_inclusao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.codsusp)
 
     class Meta:
 

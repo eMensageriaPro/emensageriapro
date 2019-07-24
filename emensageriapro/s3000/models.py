@@ -76,17 +76,7 @@ class s3000ideFolhaPagto(SoftDeletionModel):
     perapur = models.CharField(max_length=7, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s3000_evtexclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s3000_evtexclusao) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur)
 
     class Meta:
 
@@ -134,17 +124,7 @@ class s3000ideTrabalhador(SoftDeletionModel):
     nistrab = models.CharField(max_length=11, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s3000_evtexclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s3000_evtexclusao) + ' - ' + unicode(self.cpftrab)
 
     class Meta:
 

@@ -92,17 +92,7 @@ class s1000alteracao(SoftDeletionModel):
     email = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_evtinfoempregador), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_evtinfoempregador) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.classtrib) + ' - ' + unicode(self.inddesfolha) + ' - ' + unicode(self.indoptregeletron) + ' - ' + unicode(self.indett) + ' - ' + unicode(self.nmctt) + ' - ' + unicode(self.cpfctt)
 
     class Meta:
 
@@ -162,17 +152,7 @@ class s1000alteracaodadosIsencao(SoftDeletionModel):
     pagdou = models.IntegerField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.ideminlei) + ' - ' + unicode(self.nrcertif) + ' - ' + unicode(self.dtemiscertif) + ' - ' + unicode(self.dtvenccertif)
 
     class Meta:
 
@@ -224,17 +204,7 @@ class s1000alteracaoinfoEFR(SoftDeletionModel):
     prevcomp = models.CharField(choices=CHOICES_S1000_PREVCOMP_ALTERACAO, max_length=1, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_alteracao_infoop), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_alteracao_infoop) + ' - ' + unicode(self.ideefr) + ' - ' + unicode(self.indrpps) + ' - ' + unicode(self.prevcomp)
 
     class Meta:
 
@@ -287,17 +257,7 @@ class s1000alteracaoinfoEnte(SoftDeletionModel):
     vrsubteto = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_alteracao_infoop), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_alteracao_infoop) + ' - ' + unicode(self.nmente) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.indrpps) + ' - ' + unicode(self.subteto) + ' - ' + unicode(self.vrsubteto)
 
     class Meta:
 
@@ -353,17 +313,7 @@ class s1000alteracaoinfoOP(SoftDeletionModel):
     cnpjefr = models.CharField(max_length=14, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.nrsiafi) + ' - ' + unicode(self.indugrpps) + ' - ' + unicode(self.poderop) + ' - ' + unicode(self.vrtetorem) + ' - ' + unicode(self.ideefr)
 
     class Meta:
 
@@ -413,17 +363,7 @@ class s1000alteracaoinfoOrgInternacional(SoftDeletionModel):
     indacordoisenmulta = models.IntegerField(choices=CHOICES_S1000_INDACORDOISENMULTA_ALTERACAO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.indacordoisenmulta)
 
     class Meta:
 
@@ -470,17 +410,7 @@ class s1000alteracaonovaValidade(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -526,17 +456,7 @@ class s1000alteracaosituacaoPF(SoftDeletionModel):
     indsitpf = models.IntegerField(choices=CHOICES_S1000_INDSITPF_ALTERACAO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.indsitpf)
 
     class Meta:
 
@@ -582,17 +502,7 @@ class s1000alteracaosituacaoPJ(SoftDeletionModel):
     indsitpj = models.IntegerField(choices=CHOICES_S1000_INDSITPJ_ALTERACAO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.indsitpj)
 
     class Meta:
 
@@ -642,17 +552,7 @@ class s1000alteracaosoftwareHouse(SoftDeletionModel):
     email = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.cnpjsofthouse) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.nmcont) + ' - ' + unicode(self.telefone)
 
     class Meta:
 
@@ -702,17 +602,7 @@ class s1000exclusao(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_evtinfoempregador), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_evtinfoempregador) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -775,17 +665,7 @@ class s1000inclusao(SoftDeletionModel):
     email = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_evtinfoempregador), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_evtinfoempregador) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.classtrib) + ' - ' + unicode(self.inddesfolha) + ' - ' + unicode(self.indoptregeletron) + ' - ' + unicode(self.indett) + ' - ' + unicode(self.nmctt) + ' - ' + unicode(self.cpfctt)
 
     class Meta:
 
@@ -845,17 +725,7 @@ class s1000inclusaodadosIsencao(SoftDeletionModel):
     pagdou = models.IntegerField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_inclusao) + ' - ' + unicode(self.ideminlei) + ' - ' + unicode(self.nrcertif) + ' - ' + unicode(self.dtemiscertif) + ' - ' + unicode(self.dtvenccertif)
 
     class Meta:
 
@@ -907,17 +777,7 @@ class s1000inclusaoinfoEFR(SoftDeletionModel):
     prevcomp = models.CharField(choices=CHOICES_S1000_PREVCOMP_INCLUSAO, max_length=1, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_inclusao_infoop), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_inclusao_infoop) + ' - ' + unicode(self.ideefr) + ' - ' + unicode(self.indrpps) + ' - ' + unicode(self.prevcomp)
 
     class Meta:
 
@@ -970,17 +830,7 @@ class s1000inclusaoinfoEnte(SoftDeletionModel):
     vrsubteto = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_inclusao_infoop), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_inclusao_infoop) + ' - ' + unicode(self.nmente) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.indrpps) + ' - ' + unicode(self.subteto) + ' - ' + unicode(self.vrsubteto)
 
     class Meta:
 
@@ -1036,17 +886,7 @@ class s1000inclusaoinfoOP(SoftDeletionModel):
     cnpjefr = models.CharField(max_length=14, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_inclusao) + ' - ' + unicode(self.nrsiafi) + ' - ' + unicode(self.indugrpps) + ' - ' + unicode(self.poderop) + ' - ' + unicode(self.vrtetorem) + ' - ' + unicode(self.ideefr)
 
     class Meta:
 
@@ -1096,17 +936,7 @@ class s1000inclusaoinfoOrgInternacional(SoftDeletionModel):
     indacordoisenmulta = models.IntegerField(choices=CHOICES_S1000_INDACORDOISENMULTA_INCLUSAO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_inclusao) + ' - ' + unicode(self.indacordoisenmulta)
 
     class Meta:
 
@@ -1152,17 +982,7 @@ class s1000inclusaosituacaoPF(SoftDeletionModel):
     indsitpf = models.IntegerField(choices=CHOICES_S1000_INDSITPF_INCLUSAO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_inclusao) + ' - ' + unicode(self.indsitpf)
 
     class Meta:
 
@@ -1208,17 +1028,7 @@ class s1000inclusaosituacaoPJ(SoftDeletionModel):
     indsitpj = models.IntegerField(choices=CHOICES_S1000_INDSITPJ_INCLUSAO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_inclusao) + ' - ' + unicode(self.indsitpj)
 
     class Meta:
 
@@ -1268,17 +1078,7 @@ class s1000inclusaosoftwareHouse(SoftDeletionModel):
     email = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1000_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1000_inclusao) + ' - ' + unicode(self.cnpjsofthouse) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.nmcont) + ' - ' + unicode(self.telefone)
 
     class Meta:
 

@@ -75,17 +75,7 @@ class s2241altAposentEsp(SoftDeletionModel):
     dtaltcondicao = models.DateField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_aposentesp), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_aposentesp) + ' - ' + unicode(self.dtaltcondicao)
 
     class Meta:
 
@@ -131,17 +121,7 @@ class s2241altAposentEspfatRisco(SoftDeletionModel):
     codfatris = models.TextField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_altaposentesp_infoamb), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_altaposentesp_infoamb) + ' - ' + unicode(self.codfatris)
 
     class Meta:
 
@@ -187,17 +167,7 @@ class s2241altAposentEspinfoamb(SoftDeletionModel):
     codamb = models.CharField(max_length=30, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_altaposentesp), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_altaposentesp) + ' - ' + unicode(self.codamb)
 
     class Meta:
 
@@ -243,17 +213,7 @@ class s2241altInsalPeric(SoftDeletionModel):
     dtaltcondicao = models.DateField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_insalperic), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_insalperic) + ' - ' + unicode(self.dtaltcondicao)
 
     class Meta:
 
@@ -299,17 +259,7 @@ class s2241altInsalPericfatRisco(SoftDeletionModel):
     codfatris = models.TextField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_altinsalperic_infoamb), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_altinsalperic_infoamb) + ' - ' + unicode(self.codfatris)
 
     class Meta:
 
@@ -355,17 +305,7 @@ class s2241altInsalPericinfoamb(SoftDeletionModel):
     codamb = models.CharField(max_length=30, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_altinsalperic), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_altinsalperic) + ' - ' + unicode(self.codamb)
 
     class Meta:
 
@@ -410,17 +350,7 @@ class s2241aposentEsp(SoftDeletionModel):
         return self.s2241_evtinsapo.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_evtinsapo), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_evtinsapo)
 
     class Meta:
 
@@ -465,17 +395,7 @@ class s2241fimAposentEsp(SoftDeletionModel):
     dtfimcondicao = models.DateField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_aposentesp), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_aposentesp) + ' - ' + unicode(self.dtfimcondicao)
 
     class Meta:
 
@@ -521,17 +441,7 @@ class s2241fimAposentEspinfoAmb(SoftDeletionModel):
     codamb = models.CharField(max_length=30, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_fimaposentesp), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_fimaposentesp) + ' - ' + unicode(self.codamb)
 
     class Meta:
 
@@ -577,17 +487,7 @@ class s2241fimInsalPeric(SoftDeletionModel):
     dtfimcondicao = models.DateField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_insalperic), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_insalperic) + ' - ' + unicode(self.dtfimcondicao)
 
     class Meta:
 
@@ -633,17 +533,7 @@ class s2241fimInsalPericinfoAmb(SoftDeletionModel):
     codamb = models.CharField(max_length=30, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_fiminsalperic), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_fiminsalperic) + ' - ' + unicode(self.codamb)
 
     class Meta:
 
@@ -689,17 +579,7 @@ class s2241iniAposentEsp(SoftDeletionModel):
     dtinicondicao = models.DateField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_aposentesp), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_aposentesp) + ' - ' + unicode(self.dtinicondicao)
 
     class Meta:
 
@@ -745,17 +625,7 @@ class s2241iniAposentEspfatRisco(SoftDeletionModel):
     codfatris = models.TextField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_iniaposentesp_infoamb), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_iniaposentesp_infoamb) + ' - ' + unicode(self.codfatris)
 
     class Meta:
 
@@ -801,17 +671,7 @@ class s2241iniAposentEspinfoAmb(SoftDeletionModel):
     codamb = models.CharField(max_length=30, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_iniaposentesp), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_iniaposentesp) + ' - ' + unicode(self.codamb)
 
     class Meta:
 
@@ -857,17 +717,7 @@ class s2241iniInsalPeric(SoftDeletionModel):
     dtinicondicao = models.DateField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_insalperic), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_insalperic) + ' - ' + unicode(self.dtinicondicao)
 
     class Meta:
 
@@ -913,17 +763,7 @@ class s2241iniInsalPericfatRisco(SoftDeletionModel):
     codfatris = models.TextField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_iniinsalperic_infoamb), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_iniinsalperic_infoamb) + ' - ' + unicode(self.codfatris)
 
     class Meta:
 
@@ -969,17 +809,7 @@ class s2241iniInsalPericinfoAmb(SoftDeletionModel):
     codamb = models.CharField(max_length=30, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_iniinsalperic), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_iniinsalperic) + ' - ' + unicode(self.codamb)
 
     class Meta:
 
@@ -1024,17 +854,7 @@ class s2241insalPeric(SoftDeletionModel):
         return self.s2241_evtinsapo.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2241_evtinsapo), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2241_evtinsapo)
 
     class Meta:
 

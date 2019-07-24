@@ -108,7 +108,6 @@ class r1000evtInfoContri(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -209,7 +208,6 @@ class r1070evtTabProcesso(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -323,7 +321,6 @@ class r2010evtServTom(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -445,7 +442,6 @@ class r2020evtServPrest(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -558,7 +554,6 @@ class r2030evtAssocDespRec(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -665,7 +660,6 @@ class r2040evtAssocDespRep(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -779,7 +773,6 @@ class r2050evtComProd(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -893,7 +886,6 @@ class r2060evtCPRB(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1004,7 +996,6 @@ class r2070evtPgtosDivs(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1107,7 +1098,6 @@ class r2098evtReabreEvPer(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1215,7 +1205,6 @@ class r2099evtFechaEvPer(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1330,7 +1319,6 @@ class r3010evtEspDesportivo(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1443,7 +1431,6 @@ class r4010evtRetPF(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1553,7 +1540,6 @@ class r4020evtRetPJ(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1661,7 +1647,6 @@ class r4040evtBenefNId(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1764,7 +1749,6 @@ class r4098evtReab(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1867,7 +1851,6 @@ class r4099evtFech(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -1959,7 +1942,6 @@ class r5001evtTotal(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     class Meta:
@@ -2026,7 +2008,6 @@ class r5011evtTotalContrib(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     class Meta:
@@ -2104,7 +2085,6 @@ class r9000evtExclusao(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     def evento(self):
@@ -2198,7 +2178,6 @@ class r9001evtTotal(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     class Meta:
@@ -2265,7 +2244,6 @@ class r9002evtRet(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     class Meta:
@@ -2332,7 +2310,6 @@ class r9011evtTotalContrib(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     class Meta:
@@ -2400,7 +2377,6 @@ class r9012evtRetCons(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
-
         return unicode(self.identidade)
 
     class Meta:

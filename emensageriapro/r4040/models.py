@@ -75,17 +75,7 @@ class r4040ideNat(SoftDeletionModel):
     natrendim = models.IntegerField(choices=CHOICES_R4040_NATRENDIM, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4040_evtbenefnid), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4040_evtbenefnid) + ' - ' + unicode(self.natrendim)
 
     class Meta:
 
@@ -135,17 +125,7 @@ class r4040infoPgto(SoftDeletionModel):
     descr = models.CharField(max_length=200, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r4040_idenat), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r4040_idenat) + ' - ' + unicode(self.dtfg) + ' - ' + unicode(self.vlrliq) + ' - ' + unicode(self.vlrreaj) + ' - ' + unicode(self.vlrir) + ' - ' + unicode(self.descr)
 
     class Meta:
 

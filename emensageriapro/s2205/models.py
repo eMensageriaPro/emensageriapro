@@ -80,17 +80,7 @@ class s2205CNH(SoftDeletionModel):
     categoriacnh = models.CharField(choices=CHOICES_S2205_CATEGORIACNH, max_length=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2205_documentos), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2205_documentos) + ' - ' + unicode(self.nrregcnh) + ' - ' + unicode(self.ufcnh) + ' - ' + unicode(self.dtvalid) + ' - ' + unicode(self.categoriacnh)
 
     class Meta:
 
@@ -141,17 +131,7 @@ class s2205CTPS(SoftDeletionModel):
     ufctps = models.CharField(choices=ESTADOS, max_length=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2205_documentos), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2205_documentos) + ' - ' + unicode(self.nrctps) + ' - ' + unicode(self.seriectps) + ' - ' + unicode(self.ufctps)
 
     class Meta:
 
@@ -202,17 +182,7 @@ class s2205OC(SoftDeletionModel):
     dtvalid = models.DateField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2205_documentos), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2205_documentos) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.orgaoemissor)
 
     class Meta:
 
@@ -261,17 +231,7 @@ class s2205RG(SoftDeletionModel):
     dtexped = models.DateField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2205_documentos), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2205_documentos) + ' - ' + unicode(self.nrrg) + ' - ' + unicode(self.orgaoemissor)
 
     class Meta:
 
@@ -320,17 +280,7 @@ class s2205RIC(SoftDeletionModel):
     dtexped = models.DateField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2205_documentos), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2205_documentos) + ' - ' + unicode(self.nrric) + ' - ' + unicode(self.orgaoemissor)
 
     class Meta:
 
@@ -379,17 +329,7 @@ class s2205RNE(SoftDeletionModel):
     dtexped = models.DateField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2205_documentos), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2205_documentos) + ' - ' + unicode(self.nrrne) + ' - ' + unicode(self.orgaoemissor)
 
     class Meta:
 
@@ -436,17 +376,7 @@ class s2205aposentadoria(SoftDeletionModel):
     trabaposent = models.CharField(choices=CHOICES_S2205_TRABAPOSENT, max_length=1, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2205_evtaltcadastral), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.trabaposent)
 
     class Meta:
 
@@ -499,17 +429,7 @@ class s2205brasil(SoftDeletionModel):
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2205_evtaltcadastral), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
 
     class Meta:
 
@@ -563,17 +483,7 @@ class s2205contato(SoftDeletionModel):
     emailalternat = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2205_evtaltcadastral), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2205_evtaltcadastral)
 
     class Meta:
 
@@ -626,17 +536,7 @@ class s2205dependente(SoftDeletionModel):
     depfinsprev = models.CharField(choices=CHOICES_S2205_DEPFINSPREV, max_length=1, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2205_evtaltcadastral), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.depsf) + ' - ' + unicode(self.inctrab)
 
     class Meta:
 
@@ -686,17 +586,7 @@ class s2205documentos(SoftDeletionModel):
         return self.s2205_evtaltcadastral.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2205_evtaltcadastral), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2205_evtaltcadastral)
 
     class Meta:
 
@@ -747,17 +637,7 @@ class s2205exterior(SoftDeletionModel):
     codpostal = models.CharField(max_length=12, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2205_evtaltcadastral), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.nmcid)
 
     class Meta:
 
@@ -813,17 +693,7 @@ class s2205infoDeficiencia(SoftDeletionModel):
     observacao = models.CharField(max_length=255, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2205_evtaltcadastral), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.deffisica) + ' - ' + unicode(self.defvisual) + ' - ' + unicode(self.defauditiva) + ' - ' + unicode(self.defmental) + ' - ' + unicode(self.defintelectual) + ' - ' + unicode(self.reabreadap)
 
     class Meta:
 
@@ -877,17 +747,7 @@ class s2205trabEstrangeiro(SoftDeletionModel):
     filhosbr = models.CharField(choices=CHOICES_S2205_FILHOSBR, max_length=1, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2205_evtaltcadastral), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.classtrabestrang) + ' - ' + unicode(self.casadobr) + ' - ' + unicode(self.filhosbr)
 
     class Meta:
 

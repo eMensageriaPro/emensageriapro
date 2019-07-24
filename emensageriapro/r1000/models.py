@@ -86,17 +86,7 @@ class r1000alteracao(SoftDeletionModel):
     email = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r1000_evtinfocontri), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r1000_evtinfocontri) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.classtrib) + ' - ' + unicode(self.indescrituracao) + ' - ' + unicode(self.inddesoneracao) + ' - ' + unicode(self.indacordoisenmulta) + ' - ' + unicode(self.nmctt) + ' - ' + unicode(self.cpfctt)
 
     class Meta:
 
@@ -149,17 +139,7 @@ class r1000alteracaoinfoEFR(SoftDeletionModel):
     cnpjefr = models.CharField(max_length=14, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r1000_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r1000_alteracao) + ' - ' + unicode(self.ideefr)
 
     class Meta:
 
@@ -206,17 +186,7 @@ class r1000alteracaonovaValidade(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r1000_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r1000_alteracao) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -266,17 +236,7 @@ class r1000alteracaosoftHouse(SoftDeletionModel):
     email = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r1000_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r1000_alteracao) + ' - ' + unicode(self.cnpjsofthouse) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.nmcont)
 
     class Meta:
 
@@ -325,17 +285,7 @@ class r1000exclusao(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r1000_evtinfocontri), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r1000_evtinfocontri) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -392,17 +342,7 @@ class r1000inclusao(SoftDeletionModel):
     email = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r1000_evtinfocontri), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r1000_evtinfocontri) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.classtrib) + ' - ' + unicode(self.indescrituracao) + ' - ' + unicode(self.inddesoneracao) + ' - ' + unicode(self.indacordoisenmulta) + ' - ' + unicode(self.nmctt) + ' - ' + unicode(self.cpfctt)
 
     class Meta:
 
@@ -455,17 +395,7 @@ class r1000inclusaoinfoEFR(SoftDeletionModel):
     cnpjefr = models.CharField(max_length=14, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r1000_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r1000_inclusao) + ' - ' + unicode(self.ideefr)
 
     class Meta:
 
@@ -515,17 +445,7 @@ class r1000inclusaosoftHouse(SoftDeletionModel):
     email = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r1000_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r1000_inclusao) + ' - ' + unicode(self.cnpjsofthouse) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.nmcont)
 
     class Meta:
 

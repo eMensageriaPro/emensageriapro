@@ -76,17 +76,7 @@ class s5013basePerAntE(SoftDeletionModel):
     basefgtse = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5013_infobaseperante), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5013_infobaseperante) + ' - ' + unicode(self.tpvalore) + ' - ' + unicode(self.basefgtse)
 
     class Meta:
 
@@ -131,17 +121,7 @@ class s5013basePerApur(SoftDeletionModel):
     basefgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5013_infobasefgts), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5013_infobasefgts) + ' - ' + unicode(self.tpvalor) + ' - ' + unicode(self.basefgts)
 
     class Meta:
 
@@ -186,17 +166,7 @@ class s5013dpsPerAntE(SoftDeletionModel):
     vrfgtse = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5013_infodpsperante), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5013_infodpsperante) + ' - ' + unicode(self.tpdpse) + ' - ' + unicode(self.vrfgtse)
 
     class Meta:
 
@@ -241,17 +211,7 @@ class s5013dpsPerApur(SoftDeletionModel):
     vrfgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5013_infodpsfgts), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5013_infodpsfgts) + ' - ' + unicode(self.tpdps) + ' - ' + unicode(self.vrfgts)
 
     class Meta:
 
@@ -294,17 +254,7 @@ class s5013infoBaseFGTS(SoftDeletionModel):
         return self.s5013_evtfgts.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5013_evtfgts), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5013_evtfgts)
 
     class Meta:
 
@@ -346,17 +296,7 @@ class s5013infoBasePerAntE(SoftDeletionModel):
     perref = models.CharField(max_length=7, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5013_infobasefgts), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5013_infobasefgts) + ' - ' + unicode(self.perref)
 
     class Meta:
 
@@ -398,17 +338,7 @@ class s5013infoDpsFGTS(SoftDeletionModel):
         return self.s5013_evtfgts.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5013_evtfgts), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5013_evtfgts)
 
     class Meta:
 
@@ -450,17 +380,7 @@ class s5013infoDpsPerAntE(SoftDeletionModel):
     perref = models.CharField(max_length=7, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5013_infodpsfgts), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5013_infodpsfgts) + ' - ' + unicode(self.perref)
 
     class Meta:
 

@@ -79,17 +79,7 @@ class r1070alteracao(SoftDeletionModel):
     indautoria = models.IntegerField(choices=CHOICES_R1070_INDAUTORIA_ALTERACAO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r1070_evttabprocesso), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.indautoria)
 
     class Meta:
 
@@ -140,17 +130,7 @@ class r1070alteracaodadosProcJud(SoftDeletionModel):
     idvara = models.CharField(max_length=4, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r1070_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r1070_alteracao) + ' - ' + unicode(self.ufvara) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.idvara)
 
     class Meta:
 
@@ -201,17 +181,7 @@ class r1070alteracaoinfoSusp(SoftDeletionModel):
     inddeposito = models.CharField(choices=CHOICES_R1070_INDDEPOSITO_ALTERACAO, max_length=1, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r1070_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r1070_alteracao) + ' - ' + unicode(self.indsusp) + ' - ' + unicode(self.dtdecisao) + ' - ' + unicode(self.inddeposito)
 
     class Meta:
 
@@ -260,17 +230,7 @@ class r1070alteracaonovaValidade(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r1070_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r1070_alteracao) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -319,17 +279,7 @@ class r1070exclusao(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r1070_evttabprocesso), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -381,17 +331,7 @@ class r1070inclusao(SoftDeletionModel):
     indautoria = models.IntegerField(choices=CHOICES_R1070_INDAUTORIA_INCLUSAO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r1070_evttabprocesso), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.indautoria)
 
     class Meta:
 
@@ -442,17 +382,7 @@ class r1070inclusaodadosProcJud(SoftDeletionModel):
     idvara = models.CharField(max_length=4, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r1070_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r1070_inclusao) + ' - ' + unicode(self.ufvara) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.idvara)
 
     class Meta:
 
@@ -503,17 +433,7 @@ class r1070inclusaoinfoSusp(SoftDeletionModel):
     inddeposito = models.CharField(choices=CHOICES_R1070_INDDEPOSITO_INCLUSAO, max_length=1, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r1070_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r1070_inclusao) + ' - ' + unicode(self.indsusp) + ' - ' + unicode(self.dtdecisao) + ' - ' + unicode(self.inddeposito)
 
     class Meta:
 

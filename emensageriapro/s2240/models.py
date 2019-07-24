@@ -75,17 +75,7 @@ class s2240altExpRisco(SoftDeletionModel):
     dtaltcondicao = models.DateField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2240_evtexprisco), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.dtaltcondicao)
 
     class Meta:
 
@@ -132,17 +122,7 @@ class s2240altExpRiscoepc(SoftDeletionModel):
     eficepc = models.CharField(choices=CHOICES_S2240_EFICEPC_ALTEXPRISCO, max_length=1, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2240_altexprisco_fatrisco), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2240_altexprisco_fatrisco) + ' - ' + unicode(self.dscepc)
 
     class Meta:
 
@@ -194,17 +174,7 @@ class s2240altExpRiscoepi(SoftDeletionModel):
     higienizacao = models.CharField(choices=CHOICES_S2240_HIGIENIZACAO_ALTEXPRISCO, max_length=1, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2240_altexprisco_fatrisco), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2240_altexprisco_fatrisco) + ' - ' + unicode(self.eficepi) + ' - ' + unicode(self.medprotecao) + ' - ' + unicode(self.condfuncto) + ' - ' + unicode(self.przvalid) + ' - ' + unicode(self.periodictroca) + ' - ' + unicode(self.higienizacao)
 
     class Meta:
 
@@ -259,17 +229,7 @@ class s2240altExpRiscofatRisco(SoftDeletionModel):
     utilizepi = models.IntegerField(choices=CHOICES_S2240_UTILIZEPI_ALTEXPRISCO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2240_altexprisco_infoamb), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2240_altexprisco_infoamb) + ' - ' + unicode(self.codfatris) + ' - ' + unicode(self.utilizepc) + ' - ' + unicode(self.utilizepi)
 
     class Meta:
 
@@ -318,17 +278,7 @@ class s2240altExpRiscoinfoAmb(SoftDeletionModel):
     dscativdes = models.CharField(max_length=999, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2240_altexprisco), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2240_altexprisco) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.dscativdes)
 
     class Meta:
 
@@ -375,17 +325,7 @@ class s2240fimExpRisco(SoftDeletionModel):
     dtfimcondicao = models.DateField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2240_evtexprisco), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.dtfimcondicao)
 
     class Meta:
 
@@ -431,17 +371,7 @@ class s2240fimExpRiscoinfoAmb(SoftDeletionModel):
     codamb = models.CharField(max_length=30, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2240_fimexprisco), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2240_fimexprisco) + ' - ' + unicode(self.codamb)
 
     class Meta:
 
@@ -491,17 +421,7 @@ class s2240fimExpRiscorespReg(SoftDeletionModel):
     ufoc = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2240_evtexprisco), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.dtini) + ' - ' + unicode(self.nisresp) + ' - ' + unicode(self.nroc)
 
     class Meta:
 
@@ -549,17 +469,7 @@ class s2240iniExpRiscoativPericInsal(SoftDeletionModel):
     codativ = models.TextField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2240_evtexprisco), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.codativ)
 
     class Meta:
 
@@ -607,17 +517,7 @@ class s2240iniExpRiscoepc(SoftDeletionModel):
     eficepc = models.CharField(choices=CHOICES_S2240_EFICEPC_INIEXPRISCO, max_length=1, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2240_iniexprisco_fatrisco), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2240_iniexprisco_fatrisco) + ' - ' + unicode(self.codep) + ' - ' + unicode(self.dscepc)
 
     class Meta:
 
@@ -672,17 +572,7 @@ class s2240iniExpRiscoepi(SoftDeletionModel):
     higienizacao = models.CharField(choices=CHOICES_S2240_HIGIENIZACAO_INIEXPRISCO, max_length=1, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2240_iniexprisco_fatrisco), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2240_iniexprisco_fatrisco) + ' - ' + unicode(self.eficepi) + ' - ' + unicode(self.medprotecao) + ' - ' + unicode(self.condfuncto) + ' - ' + unicode(self.usoinint) + ' - ' + unicode(self.przvalid) + ' - ' + unicode(self.periodictroca) + ' - ' + unicode(self.higienizacao)
 
     class Meta:
 
@@ -746,17 +636,7 @@ class s2240iniExpRiscofatRisco(SoftDeletionModel):
     utilizepi = models.IntegerField(choices=CHOICES_S2240_UTILIZEPI_INIEXPRISCO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2240_evtexprisco), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.codfatris) + ' - ' + unicode(self.tpaval) + ' - ' + unicode(self.utilizepc) + ' - ' + unicode(self.utilizepi)
 
     class Meta:
 
@@ -805,17 +685,7 @@ class s2240iniExpRiscoinfoAmb(SoftDeletionModel):
     codamb = models.CharField(max_length=30, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2240_evtexprisco), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.codamb)
 
     class Meta:
 
@@ -863,17 +733,7 @@ class s2240iniExpRiscoobs(SoftDeletionModel):
     observacao = models.CharField(max_length=999, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2240_evtexprisco), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2240_evtexprisco)
 
     class Meta:
 
@@ -924,17 +784,7 @@ class s2240iniExpRiscorespReg(SoftDeletionModel):
     ufoc = models.CharField(choices=ESTADOS, max_length=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2240_evtexprisco), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.cpfresp) + ' - ' + unicode(self.nisresp) + ' - ' + unicode(self.nmresp) + ' - ' + unicode(self.ideoc) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.ufoc)
 
     class Meta:
 

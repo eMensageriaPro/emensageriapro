@@ -79,17 +79,7 @@ class s1040alteracao(SoftDeletionModel):
     codcbo = models.TextField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1040_evttabfuncao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1040_evttabfuncao) + ' - ' + unicode(self.codfuncao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.dscfuncao) + ' - ' + unicode(self.codcbo)
 
     class Meta:
 
@@ -139,17 +129,7 @@ class s1040alteracaonovaValidade(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1040_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1040_alteracao) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -197,17 +177,7 @@ class s1040exclusao(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1040_evttabfuncao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1040_evttabfuncao) + ' - ' + unicode(self.codfuncao) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -258,17 +228,7 @@ class s1040inclusao(SoftDeletionModel):
     codcbo = models.TextField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1040_evttabfuncao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1040_evttabfuncao) + ' - ' + unicode(self.codfuncao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.dscfuncao) + ' - ' + unicode(self.codcbo)
 
     class Meta:
 

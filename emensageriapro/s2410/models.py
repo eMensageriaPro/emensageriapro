@@ -76,17 +76,7 @@ class s2410homologTC(SoftDeletionModel):
     nratolegal = models.CharField(max_length=20, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2410_evtcdbenin), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2410_evtcdbenin) + ' - ' + unicode(self.dthomol) + ' - ' + unicode(self.nratolegal)
 
     class Meta:
 
@@ -133,17 +123,7 @@ class s2410infoPenMorte(SoftDeletionModel):
     tppenmorte = models.IntegerField(choices=CHOICES_S2410_TPPENMORTE, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2410_evtcdbenin), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2410_evtcdbenin) + ' - ' + unicode(self.tppenmorte)
 
     class Meta:
 
@@ -191,17 +171,7 @@ class s2410instPenMorte(SoftDeletionModel):
     intaposentado = models.CharField(choices=CHOICES_S2410_INTAPOSENTADO, max_length=1, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2410_infopenmorte), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2410_infopenmorte) + ' - ' + unicode(self.cpfinst) + ' - ' + unicode(self.dtinst) + ' - ' + unicode(self.intaposentado)
 
     class Meta:
 

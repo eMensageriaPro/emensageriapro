@@ -72,16 +72,7 @@ class Arquivos(SoftDeletionModel):
     permite_recuperacao = models.IntegerField(choices=SIM_NAO, )
 
     def __unicode__(self):
-
-        lista = [ ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.id)
 
     class Meta:
 
@@ -130,17 +121,7 @@ class ImportacaoArquivos(SoftDeletionModel):
     quant_erros = models.IntegerField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.arquivo), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.arquivo)
 
     class Meta:
 
@@ -190,22 +171,7 @@ class ImportacaoArquivosEventos(SoftDeletionModel):
     validacoes = models.TextField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.importacao_arquivos),
-            unicode(self.arquivo),
-            unicode(self.evento),
-            unicode(self.versao),
-            unicode(self.identidade_evento),
-            unicode(self.identidade), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.importacao_arquivos) + ' - ' + unicode(self.arquivo) + ' - ' + unicode(self.evento) + ' - ' + unicode(self.versao) + ' - ' + unicode(self.identidade_evento) + ' - ' + unicode(self.identidade)
 
     class Meta:
 
@@ -266,21 +232,7 @@ class RegrasDeValidacao(SoftDeletionModel):
     validacoes = models.TextField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.evento),
-            unicode(self.versao),
-            unicode(self.numero),
-            unicode(self.registro_campo),
-            unicode(self.registro_pai), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.evento) + ' - ' + unicode(self.versao) + ' - ' + unicode(self.numero) + ' - ' + unicode(self.registro_campo) + ' - ' + unicode(self.registro_pai)
 
     class Meta:
 
@@ -322,16 +274,7 @@ class Relatorios(SoftDeletionModel):
     sql = models.TextField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [ ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.id)
 
     class Meta:
 
@@ -418,18 +361,7 @@ class RetornosEventos(SoftDeletionModel):
     tmpparc = models.IntegerField(choices=CHOICES_TMPPARC, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.transmissor_lote_esocial),
-            unicode(self.identidade), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.transmissor_lote_esocial) + ' - ' + unicode(self.identidade)
 
     class Meta:
 
@@ -478,16 +410,7 @@ class RetornosEventosHorarios(SoftDeletionModel):
     perhorflexivel = models.CharField(choices=CHOICES_PERHORFLEXIVEL, max_length=50, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [ ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.id)
 
     class Meta:
 
@@ -532,16 +455,7 @@ class RetornosEventosIntervalos(SoftDeletionModel):
     terminterv = models.CharField(max_length=50, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [ ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.id)
 
     class Meta:
 
@@ -586,16 +500,7 @@ class RetornosEventosOcorrencias(SoftDeletionModel):
     localizacao = models.TextField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [ ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.id)
 
     class Meta:
 
@@ -644,19 +549,7 @@ class TransmissorLote(SoftDeletionModel):
         related_name='%(class)s_certificado', blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.transmissor_nrinsc),
-            unicode(self.nome_empresa),
-            unicode(self.nrinsc), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.transmissor_nrinsc) + ' - ' + unicode(self.nome_empresa) + ' - ' + unicode(self.nrinsc)
 
     class Meta:
 
@@ -714,22 +607,7 @@ class TransmissorLoteEfdreinf(SoftDeletionModel):
     arquivo_response = models.CharField(max_length=200, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.transmissor),
-            unicode(self.contribuinte_tpinsc),
-            unicode(self.contribuinte_nrinsc),
-            unicode(self.identidade_transmissor),
-            unicode(self.codigo_status),
-            unicode(self.retorno_descricao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.transmissor) + ' - ' + unicode(self.contribuinte_tpinsc) + ' - ' + unicode(self.contribuinte_nrinsc) + ' - ' + unicode(self.identidade_transmissor) + ' - ' + unicode(self.codigo_status) + ' - ' + unicode(self.retorno_descricao)
 
     class Meta:
 
@@ -774,16 +652,7 @@ class TransmissorLoteEfdreinfOcorrencias(SoftDeletionModel):
     localizacao = models.CharField(max_length=50, )
 
     def __unicode__(self):
-
-        lista = [ ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.id)
 
     class Meta:
 
@@ -838,21 +707,7 @@ class TransmissorLoteEsocial(SoftDeletionModel):
     arquivo_response = models.CharField(max_length=200, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.transmissor),
-            unicode(self.empregador_tpinsc),
-            unicode(self.empregador_nrinsc),
-            unicode(self.resposta_codigo),
-            unicode(self.resposta_descricao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.transmissor) + ' - ' + unicode(self.empregador_tpinsc) + ' - ' + unicode(self.empregador_nrinsc) + ' - ' + unicode(self.resposta_codigo) + ' - ' + unicode(self.resposta_descricao)
 
     class Meta:
 
@@ -897,16 +752,7 @@ class TransmissorLoteEsocialOcorrencias(SoftDeletionModel):
     localizacao = models.CharField(max_length=50, )
 
     def __unicode__(self):
-
-        lista = [ ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.id)
 
     class Meta:
 

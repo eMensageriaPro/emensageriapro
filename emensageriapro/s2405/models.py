@@ -82,17 +82,7 @@ class s2405brasil(SoftDeletionModel):
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2405_endereco), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2405_endereco) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
 
     class Meta:
 
@@ -150,17 +140,7 @@ class s2405dependente(SoftDeletionModel):
     depfinsprev = models.CharField(choices=CHOICES_S2405_DEPFINSPREV, max_length=1, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2405_evtcdbenefalt), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2405_evtcdbenefalt) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.sexodep) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.incfismen) + ' - ' + unicode(self.depfinsprev)
 
     class Meta:
 
@@ -211,17 +191,7 @@ class s2405endereco(SoftDeletionModel):
         return self.s2405_evtcdbenefalt.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2405_evtcdbenefalt), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2405_evtcdbenefalt)
 
     class Meta:
 
@@ -272,17 +242,7 @@ class s2405exterior(SoftDeletionModel):
     codpostal = models.CharField(max_length=12, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2405_endereco), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2405_endereco) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.nmcid)
 
     class Meta:
 

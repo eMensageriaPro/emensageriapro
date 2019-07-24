@@ -81,17 +81,7 @@ class s1035alteracao(SoftDeletionModel):
     sitcarr = models.IntegerField(choices=CHOICES_S1035_SITCARR_ALTERACAO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1035_evttabcarreira), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1035_evttabcarreira) + ' - ' + unicode(self.codcarreira) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.dsccarreira) + ' - ' + unicode(self.dtleicarr) + ' - ' + unicode(self.sitcarr)
 
     class Meta:
 
@@ -142,17 +132,7 @@ class s1035alteracaonovaValidade(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1035_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1035_alteracao) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -200,17 +180,7 @@ class s1035exclusao(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1035_evttabcarreira), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1035_evttabcarreira) + ' - ' + unicode(self.codcarreira) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -263,17 +233,7 @@ class s1035inclusao(SoftDeletionModel):
     sitcarr = models.IntegerField(choices=CHOICES_S1035_SITCARR_INCLUSAO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1035_evttabcarreira), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1035_evttabcarreira) + ' - ' + unicode(self.codcarreira) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.dsccarreira) + ' - ' + unicode(self.dtleicarr) + ' - ' + unicode(self.sitcarr)
 
     class Meta:
 

@@ -83,17 +83,7 @@ class s1020alteracao(SoftDeletionModel):
     codtercssusp = models.TextField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1020_evttablotacao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1020_evttablotacao) + ' - ' + unicode(self.codlotacao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.tplotacao) + ' - ' + unicode(self.fpas) + ' - ' + unicode(self.codtercs)
 
     class Meta:
 
@@ -146,17 +136,7 @@ class s1020alteracaoinfoEmprParcial(SoftDeletionModel):
     nrinscprop = models.CharField(max_length=14, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1020_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1020_alteracao) + ' - ' + unicode(self.tpinsccontrat) + ' - ' + unicode(self.nrinsccontrat) + ' - ' + unicode(self.tpinscprop) + ' - ' + unicode(self.nrinscprop)
 
     class Meta:
 
@@ -204,17 +184,7 @@ class s1020alteracaoinfoProcJudTerceiros(SoftDeletionModel):
         return self.s1020_alteracao.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1020_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1020_alteracao)
 
     class Meta:
 
@@ -260,17 +230,7 @@ class s1020alteracaonovaValidade(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1020_alteracao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1020_alteracao) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -318,17 +278,7 @@ class s1020alteracaoprocJudTerceiro(SoftDeletionModel):
     codsusp = models.IntegerField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1020_alteracao_infoprocjudterceiros), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1020_alteracao_infoprocjudterceiros) + ' - ' + unicode(self.codterc) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.codsusp)
 
     class Meta:
 
@@ -378,17 +328,7 @@ class s1020exclusao(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1020_evttablotacao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1020_evttablotacao) + ' - ' + unicode(self.codlotacao) + ' - ' + unicode(self.inivalid)
 
     class Meta:
 
@@ -443,17 +383,7 @@ class s1020inclusao(SoftDeletionModel):
     codtercssusp = models.TextField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1020_evttablotacao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1020_evttablotacao) + ' - ' + unicode(self.codlotacao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.tplotacao) + ' - ' + unicode(self.fpas) + ' - ' + unicode(self.codtercs)
 
     class Meta:
 
@@ -506,17 +436,7 @@ class s1020inclusaoinfoEmprParcial(SoftDeletionModel):
     nrinscprop = models.CharField(max_length=14, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1020_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1020_inclusao) + ' - ' + unicode(self.tpinsccontrat) + ' - ' + unicode(self.nrinsccontrat) + ' - ' + unicode(self.tpinscprop) + ' - ' + unicode(self.nrinscprop)
 
     class Meta:
 
@@ -564,17 +484,7 @@ class s1020inclusaoinfoProcJudTerceiros(SoftDeletionModel):
         return self.s1020_inclusao.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1020_inclusao), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1020_inclusao)
 
     class Meta:
 
@@ -621,17 +531,7 @@ class s1020inclusaoprocJudTerceiro(SoftDeletionModel):
     codsusp = models.IntegerField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1020_inclusao_infoprocjudterceiros), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1020_inclusao_infoprocjudterceiros) + ' - ' + unicode(self.codterc) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.codsusp)
 
     class Meta:
 

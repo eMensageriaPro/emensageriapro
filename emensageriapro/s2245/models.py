@@ -80,17 +80,7 @@ class s2245ideProfResp(SoftDeletionModel):
     nacprof = models.IntegerField(choices=CHOICES_S2245_NACPROF, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2245_evttreicap), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2245_evttreicap) + ' - ' + unicode(self.nmprof) + ' - ' + unicode(self.tpprof) + ' - ' + unicode(self.formprof) + ' - ' + unicode(self.codcbo) + ' - ' + unicode(self.nacprof)
 
     class Meta:
 

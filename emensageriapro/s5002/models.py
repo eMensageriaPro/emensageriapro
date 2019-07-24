@@ -76,17 +76,7 @@ class s5002basesIrrf(SoftDeletionModel):
     valor = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5002_infoirrf), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5002_infoirrf) + ' - ' + unicode(self.tpvalor) + ' - ' + unicode(self.valor)
 
     class Meta:
 
@@ -138,17 +128,7 @@ class s5002idePgtoExt(SoftDeletionModel):
     codpostal = models.CharField(max_length=12, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5002_infoirrf), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5002_infoirrf) + ' - ' + unicode(self.codpais) + ' - ' + unicode(self.indnif) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nmcid)
 
     class Meta:
 
@@ -194,17 +174,7 @@ class s5002infoDep(SoftDeletionModel):
     vrdeddep = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5002_evtirrfbenef), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5002_evtirrfbenef) + ' - ' + unicode(self.vrdeddep)
 
     class Meta:
 
@@ -248,17 +218,7 @@ class s5002infoIrrf(SoftDeletionModel):
     indresbr = models.CharField(choices=CHOICES_S5002_INDRESBR, max_length=1, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5002_evtirrfbenef), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5002_evtirrfbenef) + ' - ' + unicode(self.indresbr)
 
     class Meta:
 
@@ -302,17 +262,7 @@ class s5002irrf(SoftDeletionModel):
     vrirrfdesc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5002_infoirrf), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5002_infoirrf) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrirrfdesc)
 
     class Meta:
 

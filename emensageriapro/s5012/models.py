@@ -76,17 +76,7 @@ class s5012infoCRContrib(SoftDeletionModel):
     vrcr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s5012_evtirrf), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s5012_evtirrf) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcr)
 
     class Meta:
 

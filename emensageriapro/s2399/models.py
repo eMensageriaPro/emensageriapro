@@ -77,17 +77,7 @@ class s2399detOper(SoftDeletionModel):
     vrpgtit = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2399_infosaudecolet), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2399_infosaudecolet) + ' - ' + unicode(self.cnpjoper) + ' - ' + unicode(self.regans) + ' - ' + unicode(self.vrpgtit)
 
     class Meta:
 
@@ -139,17 +129,7 @@ class s2399detPlano(SoftDeletionModel):
     vlrpgdep = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2399_detoper), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2399_detoper) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.vlrpgdep)
 
     class Meta:
 
@@ -203,17 +183,7 @@ class s2399detVerbas(SoftDeletionModel):
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2399_ideestablot), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2399_ideestablot) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
 
     class Meta:
 
@@ -261,17 +231,7 @@ class s2399dmDev(SoftDeletionModel):
     idedmdev = models.CharField(max_length=30, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2399_verbasresc), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2399_verbasresc) + ' - ' + unicode(self.idedmdev)
 
     class Meta:
 
@@ -319,17 +279,7 @@ class s2399ideEstabLot(SoftDeletionModel):
     codlotacao = models.CharField(max_length=30, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2399_dmdev), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2399_dmdev) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao)
 
     class Meta:
 
@@ -377,17 +327,7 @@ class s2399infoAgNocivo(SoftDeletionModel):
     grauexp = models.IntegerField(choices=CHOICES_S2399_GRAUEXP, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2399_ideestablot), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2399_ideestablot) + ' - ' + unicode(self.grauexp)
 
     class Meta:
 
@@ -433,17 +373,7 @@ class s2399infoMV(SoftDeletionModel):
     indmv = models.IntegerField(choices=CHOICES_S2399_INDMV, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2399_verbasresc), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2399_verbasresc) + ' - ' + unicode(self.indmv)
 
     class Meta:
 
@@ -488,17 +418,7 @@ class s2399infoSaudeColet(SoftDeletionModel):
         return self.s2399_ideestablot.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2399_ideestablot), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2399_ideestablot)
 
     class Meta:
 
@@ -543,17 +463,7 @@ class s2399infoSimples(SoftDeletionModel):
     indsimples = models.IntegerField(choices=CHOICES_S2399_INDSIMPLES, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2399_ideestablot), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2399_ideestablot) + ' - ' + unicode(self.indsimples)
 
     class Meta:
 
@@ -599,17 +509,7 @@ class s2399mudancaCPF(SoftDeletionModel):
     novocpf = models.CharField(max_length=11, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2399_evttsvtermino), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2399_evttsvtermino) + ' - ' + unicode(self.novocpf)
 
     class Meta:
 
@@ -657,17 +557,7 @@ class s2399procJudTrab(SoftDeletionModel):
     codsusp = models.IntegerField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2399_verbasresc), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2399_verbasresc) + ' - ' + unicode(self.tptrib) + ' - ' + unicode(self.nrprocjud)
 
     class Meta:
 
@@ -714,17 +604,7 @@ class s2399quarentena(SoftDeletionModel):
     dtfimquar = models.DateField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2399_evttsvtermino), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2399_evttsvtermino) + ' - ' + unicode(self.dtfimquar)
 
     class Meta:
 
@@ -773,17 +653,7 @@ class s2399remunOutrEmpr(SoftDeletionModel):
     vlrremunoe = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2399_infomv), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2399_infomv) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.vlrremunoe)
 
     class Meta:
 
@@ -831,17 +701,7 @@ class s2399verbasResc(SoftDeletionModel):
         return self.s2399_evttsvtermino.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2399_evttsvtermino), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2399_evttsvtermino)
 
     class Meta:
 

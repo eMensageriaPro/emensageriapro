@@ -76,17 +76,7 @@ class s1280infoAtivConcom(SoftDeletionModel):
     fator13 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1280_evtinfocomplper), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1280_evtinfocomplper) + ' - ' + unicode(self.fatormes) + ' - ' + unicode(self.fator13)
 
     class Meta:
 
@@ -134,17 +124,7 @@ class s1280infoSubstPatr(SoftDeletionModel):
     percredcontrib = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1280_evtinfocomplper), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1280_evtinfocomplper) + ' - ' + unicode(self.indsubstpatr) + ' - ' + unicode(self.percredcontrib)
 
     class Meta:
 
@@ -191,17 +171,7 @@ class s1280infoSubstPatrOpPort(SoftDeletionModel):
     cnpjopportuario = models.CharField(max_length=14, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s1280_evtinfocomplper), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s1280_evtinfocomplper) + ' - ' + unicode(self.cnpjopportuario)
 
     class Meta:
 

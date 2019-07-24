@@ -78,17 +78,7 @@ class r2060infoProc(SoftDeletionModel):
     vlrcprbsusp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r2060_tipocod), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r2060_tipocod) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.vlrcprbsusp)
 
     class Meta:
 
@@ -140,17 +130,7 @@ class r2060tipoAjuste(SoftDeletionModel):
     dtajuste = models.CharField(max_length=7, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r2060_tipocod), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r2060_tipocod) + ' - ' + unicode(self.tpajuste) + ' - ' + unicode(self.codajuste) + ' - ' + unicode(self.vlrajuste) + ' - ' + unicode(self.descajuste) + ' - ' + unicode(self.dtajuste)
 
     class Meta:
 
@@ -206,17 +186,7 @@ class r2060tipoCod(SoftDeletionModel):
     observ = models.CharField(max_length=200, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r2060_evtcprb), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r2060_evtcprb) + ' - ' + unicode(self.codativecon) + ' - ' + unicode(self.vlrrecbrutaativ) + ' - ' + unicode(self.vlrexcrecbruta) + ' - ' + unicode(self.vlradicrecbruta) + ' - ' + unicode(self.vlrbccprb)
 
     class Meta:
 

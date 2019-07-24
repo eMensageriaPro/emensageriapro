@@ -80,17 +80,7 @@ class r2050infoProc(SoftDeletionModel):
     vlrsenarsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r2050_tipocom), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r2050_tipocom) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc)
 
     class Meta:
 
@@ -138,17 +128,7 @@ class r2050tipoCom(SoftDeletionModel):
     vlrrecbruta = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r2050_evtcomprod), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r2050_evtcomprod) + ' - ' + unicode(self.indcom) + ' - ' + unicode(self.vlrrecbruta)
 
     class Meta:
 

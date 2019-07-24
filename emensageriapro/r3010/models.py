@@ -87,17 +87,7 @@ class r3010boletim(SoftDeletionModel):
     qtdenaopagantes = models.IntegerField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r3010_evtespdesportivo), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r3010_evtespdesportivo) + ' - ' + unicode(self.nrboletim) + ' - ' + unicode(self.tpcompeticao) + ' - ' + unicode(self.categevento) + ' - ' + unicode(self.moddesportiva) + ' - ' + unicode(self.nomecompeticao) + ' - ' + unicode(self.cnpjmandante) + ' - ' + unicode(self.pracadesportiva) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.qtdepagantes) + ' - ' + unicode(self.qtdenaopagantes)
 
     class Meta:
 
@@ -155,17 +145,7 @@ class r3010infoProc(SoftDeletionModel):
     vlrcpsusp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r3010_evtespdesportivo), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r3010_evtespdesportivo) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.vlrcpsusp)
 
     class Meta:
 
@@ -215,17 +195,7 @@ class r3010outrasReceitas(SoftDeletionModel):
     descreceita = models.CharField(max_length=20, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r3010_boletim), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r3010_boletim) + ' - ' + unicode(self.tpreceita) + ' - ' + unicode(self.vlrreceita) + ' - ' + unicode(self.descreceita)
 
     class Meta:
 
@@ -279,17 +249,7 @@ class r3010receitaIngressos(SoftDeletionModel):
     vlrtotal = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r3010_boletim), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r3010_boletim) + ' - ' + unicode(self.tpingresso) + ' - ' + unicode(self.descingr) + ' - ' + unicode(self.qtdeingrvenda) + ' - ' + unicode(self.qtdeingrvendidos) + ' - ' + unicode(self.qtdeingrdev) + ' - ' + unicode(self.precoindiv) + ' - ' + unicode(self.vlrtotal)
 
     class Meta:
 

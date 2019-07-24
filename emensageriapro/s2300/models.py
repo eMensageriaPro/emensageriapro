@@ -80,17 +80,7 @@ class s2300CNH(SoftDeletionModel):
     categoriacnh = models.CharField(choices=CHOICES_S2300_CATEGORIACNH, max_length=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_documentos), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_documentos) + ' - ' + unicode(self.nrregcnh) + ' - ' + unicode(self.ufcnh) + ' - ' + unicode(self.dtvalid) + ' - ' + unicode(self.categoriacnh)
 
     class Meta:
 
@@ -141,17 +131,7 @@ class s2300CTPS(SoftDeletionModel):
     ufctps = models.CharField(choices=ESTADOS, max_length=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_documentos), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_documentos) + ' - ' + unicode(self.nrctps) + ' - ' + unicode(self.seriectps) + ' - ' + unicode(self.ufctps)
 
     class Meta:
 
@@ -202,17 +182,7 @@ class s2300OC(SoftDeletionModel):
     dtvalid = models.DateField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_documentos), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_documentos) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.orgaoemissor)
 
     class Meta:
 
@@ -261,17 +231,7 @@ class s2300RG(SoftDeletionModel):
     dtexped = models.DateField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_documentos), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_documentos) + ' - ' + unicode(self.nrrg) + ' - ' + unicode(self.orgaoemissor)
 
     class Meta:
 
@@ -320,17 +280,7 @@ class s2300RIC(SoftDeletionModel):
     dtexped = models.DateField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_documentos), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_documentos) + ' - ' + unicode(self.nrric) + ' - ' + unicode(self.orgaoemissor)
 
     class Meta:
 
@@ -379,17 +329,7 @@ class s2300RNE(SoftDeletionModel):
     dtexped = models.DateField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_documentos), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_documentos) + ' - ' + unicode(self.nrrne) + ' - ' + unicode(self.orgaoemissor)
 
     class Meta:
 
@@ -437,17 +377,7 @@ class s2300afastamento(SoftDeletionModel):
     codmotafast = models.TextField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_evttsvinicio), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.dtiniafast) + ' - ' + unicode(self.codmotafast)
 
     class Meta:
 
@@ -501,17 +431,7 @@ class s2300ageIntegracao(SoftDeletionModel):
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_infoestagiario), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_infoestagiario) + ' - ' + unicode(self.cnpjagntinteg) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.uf)
 
     class Meta:
 
@@ -569,17 +489,7 @@ class s2300brasil(SoftDeletionModel):
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_evttsvinicio), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
 
     class Meta:
 
@@ -631,17 +541,7 @@ class s2300cargoFuncao(SoftDeletionModel):
     codfuncao = models.CharField(max_length=30, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_infocomplementares), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_infocomplementares) + ' - ' + unicode(self.codcargo)
 
     class Meta:
 
@@ -690,17 +590,7 @@ class s2300contato(SoftDeletionModel):
     emailalternat = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_evttsvinicio), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_evttsvinicio)
 
     class Meta:
 
@@ -753,17 +643,7 @@ class s2300dependente(SoftDeletionModel):
     depfinsprev = models.CharField(choices=CHOICES_S2300_DEPFINSPREV, max_length=1, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_evttsvinicio), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.depsf) + ' - ' + unicode(self.inctrab)
 
     class Meta:
 
@@ -813,17 +693,7 @@ class s2300documentos(SoftDeletionModel):
         return self.s2300_evttsvinicio.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_evttsvinicio), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_evttsvinicio)
 
     class Meta:
 
@@ -874,17 +744,7 @@ class s2300exterior(SoftDeletionModel):
     codpostal = models.CharField(max_length=12, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_evttsvinicio), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.nmcid)
 
     class Meta:
 
@@ -934,17 +794,7 @@ class s2300fgts(SoftDeletionModel):
     dtopcfgts = models.DateField(blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_infocomplementares), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_infocomplementares) + ' - ' + unicode(self.opcfgts)
 
     class Meta:
 
@@ -989,17 +839,7 @@ class s2300infoComplementares(SoftDeletionModel):
         return self.s2300_evttsvinicio.evento()
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_evttsvinicio), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_evttsvinicio)
 
     class Meta:
 
@@ -1050,17 +890,7 @@ class s2300infoDeficiencia(SoftDeletionModel):
     observacao = models.CharField(max_length=255, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_evttsvinicio), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.deffisica) + ' - ' + unicode(self.defvisual) + ' - ' + unicode(self.defauditiva) + ' - ' + unicode(self.defmental) + ' - ' + unicode(self.defintelectual) + ' - ' + unicode(self.reabreadap)
 
     class Meta:
 
@@ -1114,17 +944,7 @@ class s2300infoDirigenteSindical(SoftDeletionModel):
     matricorig = models.CharField(max_length=30, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_infocomplementares), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_infocomplementares) + ' - ' + unicode(self.categorig)
 
     class Meta:
 
@@ -1183,17 +1003,7 @@ class s2300infoEstagiario(SoftDeletionModel):
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_infocomplementares), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_infocomplementares) + ' - ' + unicode(self.natestagio) + ' - ' + unicode(self.nivestagio) + ' - ' + unicode(self.dtprevterm) + ' - ' + unicode(self.nmrazao)
 
     class Meta:
 
@@ -1249,17 +1059,7 @@ class s2300infoTrabCedido(SoftDeletionModel):
     indremuncargo = models.CharField(choices=CHOICES_S2300_INDREMUNCARGO, max_length=1, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_infocomplementares), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_infocomplementares) + ' - ' + unicode(self.categorig) + ' - ' + unicode(self.cnpjcednt) + ' - ' + unicode(self.matricced) + ' - ' + unicode(self.dtadmced) + ' - ' + unicode(self.tpregtrab) + ' - ' + unicode(self.tpregprev) + ' - ' + unicode(self.infonus)
 
     class Meta:
 
@@ -1313,17 +1113,7 @@ class s2300mudancaCPF(SoftDeletionModel):
     observacao = models.CharField(max_length=255, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_evttsvinicio), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.cpfant) + ' - ' + unicode(self.dtaltcpf)
 
     class Meta:
 
@@ -1372,17 +1162,7 @@ class s2300remuneracao(SoftDeletionModel):
     dscsalvar = models.CharField(max_length=255, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_infocomplementares), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_infocomplementares) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo)
 
     class Meta:
 
@@ -1430,17 +1210,7 @@ class s2300supervisorEstagio(SoftDeletionModel):
     nmsuperv = models.CharField(max_length=70, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_infoestagiario), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_infoestagiario) + ' - ' + unicode(self.cpfsupervisor) + ' - ' + unicode(self.nmsuperv)
 
     class Meta:
 
@@ -1487,17 +1257,7 @@ class s2300termino(SoftDeletionModel):
     dtterm = models.DateField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_evttsvinicio), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.dtterm)
 
     class Meta:
 
@@ -1546,17 +1306,7 @@ class s2300trabEstrangeiro(SoftDeletionModel):
     filhosbr = models.CharField(choices=CHOICES_S2300_FILHOSBR, max_length=1, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2300_evttsvinicio), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.classtrabestrang) + ' - ' + unicode(self.casadobr) + ' - ' + unicode(self.filhosbr)
 
     class Meta:
 

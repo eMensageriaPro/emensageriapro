@@ -71,15 +71,7 @@ class ConfigPerfis(SoftDeletionModel):
     grupos = models.ManyToManyField("auth.Group")
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.titulo),]
-
-        if lista:
-            return ' - '.join(lista)
-
-        else:
-            return unicode(self.id)
+        return unicode(self.titulo)
 
     def save(self, *args, **kwargs):
         if self.id:

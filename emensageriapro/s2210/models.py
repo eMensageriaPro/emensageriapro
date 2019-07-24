@@ -75,17 +75,7 @@ class s2210agenteCausador(SoftDeletionModel):
     codagntcausador = models.IntegerField(null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2210_evtcat), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2210_evtcat) + ' - ' + unicode(self.codagntcausador)
 
     class Meta:
 
@@ -145,17 +135,7 @@ class s2210atestado(SoftDeletionModel):
     ufoc = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2210_evtcat), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2210_evtcat) + ' - ' + unicode(self.dtatendimento) + ' - ' + unicode(self.hratendimento) + ' - ' + unicode(self.indinternacao) + ' - ' + unicode(self.durtrat) + ' - ' + unicode(self.indafast) + ' - ' + unicode(self.dsclesao) + ' - ' + unicode(self.codcid) + ' - ' + unicode(self.nmemit) + ' - ' + unicode(self.ideoc) + ' - ' + unicode(self.nroc)
 
     class Meta:
 
@@ -211,17 +191,7 @@ class s2210catOrigem(SoftDeletionModel):
     nrreccatorig = models.CharField(max_length=40, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2210_evtcat), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2210_evtcat) + ' - ' + unicode(self.dtcatorig) + ' - ' + unicode(self.nrreccatorig)
 
     class Meta:
 
@@ -269,17 +239,7 @@ class s2210ideLocalAcid(SoftDeletionModel):
     nrinsc = models.CharField(max_length=15, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2210_evtcat), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2210_evtcat) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
 
     class Meta:
 
@@ -327,17 +287,7 @@ class s2210parteAtingida(SoftDeletionModel):
     lateralidade = models.IntegerField(choices=CHOICES_S2210_LATERALIDADE, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.s2210_evtcat), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.s2210_evtcat) + ' - ' + unicode(self.codparteating) + ' - ' + unicode(self.lateralidade)
 
     class Meta:
 

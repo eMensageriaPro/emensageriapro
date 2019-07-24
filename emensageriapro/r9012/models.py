@@ -76,17 +76,7 @@ class r9012infoTotalContrib(SoftDeletionModel):
     indexistinfo = models.IntegerField(choices=CHOICES_R9012_INDEXISTINFO, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r9012_evtretcons), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r9012_evtretcons) + ' - ' + unicode(self.indexistinfo)
 
     class Meta:
 
@@ -132,17 +122,7 @@ class r9012regOcorrs(SoftDeletionModel):
     dscresp = models.CharField(max_length=999, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r9012_evtretcons), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r9012_evtretcons) + ' - ' + unicode(self.tpocorr) + ' - ' + unicode(self.localerroaviso) + ' - ' + unicode(self.codresp) + ' - ' + unicode(self.dscresp)
 
     class Meta:
 
@@ -193,17 +173,7 @@ class r9012totApurDec(SoftDeletionModel):
     vlrcrdecsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r9012_infototalcontrib), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r9012_infototalcontrib) + ' - ' + unicode(self.perapurdec) + ' - ' + unicode(self.crdec) + ' - ' + unicode(self.vlrbasecrdec) + ' - ' + unicode(self.vlrcrdec)
 
     class Meta:
 
@@ -254,17 +224,7 @@ class r9012totApurDia(SoftDeletionModel):
     vlrcrdiasusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r9012_infototalcontrib), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r9012_infototalcontrib) + ' - ' + unicode(self.perapurdia) + ' - ' + unicode(self.crdia) + ' - ' + unicode(self.vlrbasecrdia) + ' - ' + unicode(self.vlrcrdia)
 
     class Meta:
 
@@ -314,17 +274,7 @@ class r9012totApurMen(SoftDeletionModel):
     vlrcrmensusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r9012_infototalcontrib), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r9012_infototalcontrib) + ' - ' + unicode(self.crmen) + ' - ' + unicode(self.vlrbasecrmen) + ' - ' + unicode(self.vlrcrmen)
 
     class Meta:
 
@@ -374,17 +324,7 @@ class r9012totApurQui(SoftDeletionModel):
     vlrcrquisusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r9012_infototalcontrib), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r9012_infototalcontrib) + ' - ' + unicode(self.perapurqui) + ' - ' + unicode(self.crqui) + ' - ' + unicode(self.vlrbasecrqui) + ' - ' + unicode(self.vlrcrqui)
 
     class Meta:
 
@@ -435,17 +375,7 @@ class r9012totApurSem(SoftDeletionModel):
     vlrcrsemsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
 
     def __unicode__(self):
-
-        lista = [
-            unicode(self.r9012_infototalcontrib), ]
-
-        if lista:
-            if len(lista) == 1:
-                return lista[0]
-            else:
-                return ' - '.join(lista)
-        else:
-            return unicode(self.id)
+        return unicode(self.r9012_infototalcontrib) + ' - ' + unicode(self.perapursem) + ' - ' + unicode(self.crsem) + ' - ' + unicode(self.vlrbasecrsem) + ' - ' + unicode(self.vlrcrsem)
 
     class Meta:
 
