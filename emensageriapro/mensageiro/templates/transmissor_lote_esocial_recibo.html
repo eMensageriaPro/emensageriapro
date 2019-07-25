@@ -83,7 +83,7 @@
                         <tr>
                             <td>{{ a.evento }}</td>
                             <td>
-                                <a href="{% url a.url_recibo pk=a.id tipo='pdf' %}"
+                                <a href="{% url a.url_recibo pk=a.id output='pdf' %}"
                                    target="_blank">{{ a.identidade }}</a></td>
                             <td>{{ a.get_status_display }}</td>
                             <td>{% if a.retornos_eventos.processamento_codigo_resposta %}
