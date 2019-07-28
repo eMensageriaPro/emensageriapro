@@ -82,14 +82,11 @@ def apagar(request, pk):
 
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
 
-        if 's1250-infoprocj' in request.session['return']:
+        if 'return_page' in request.session and request.session['return_page'] and 's1250-infoprocj' in request.session['return_page']:
             return redirect('s1250_infoprocj')
 
         else:
-            return HttpResponseRedirect(request.session['return'])
-
-    else:
-        request.session['return'] = request.META.get('HTTP_REFERER')
+            return HttpResponseRedirect(request.session['return_page'])
 
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),

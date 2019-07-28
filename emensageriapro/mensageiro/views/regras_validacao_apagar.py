@@ -71,14 +71,11 @@ def apagar(request, pk):
         #regras_validacao_apagar_custom
         messages.success(request, u'Apagado com sucesso!')
 
-        if 'regras-validacao' in request.session['return']:
+        if 'return_page' in request.session and request.session['return_page'] and 'regras-validacao' in request.session['return_page']:
             return redirect('regras_validacao')
 
         else:
-            return HttpResponseRedirect(request.session['return'])
-
-    else:
-        request.session['return'] = request.META.get('HTTP_REFERER')
+            return HttpResponseRedirect(request.session['return_page'])
 
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),

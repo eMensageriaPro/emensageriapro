@@ -86,7 +86,7 @@ def verificar(request, pk, output=None):
         s2210_catorigem_lista = s2210catOrigem.objects.filter(s2210_evtcat_id__in = listar_ids(s2210_evtcat_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2210_evtcat'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2210_evtcat_lista': s2210_evtcat_lista,

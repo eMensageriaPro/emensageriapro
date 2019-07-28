@@ -85,7 +85,7 @@ def verificar(request, pk, output=None):
         r2020_infoprocretad_lista = r2020infoProcRetAd.objects.filter(r2020_evtservprest_id__in = listar_ids(r2020_evtservprest_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 'r2020_evtservprest'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             'r2020_evtservprest_lista': r2020_evtservprest_lista,

@@ -115,7 +115,7 @@ def verificar(request, pk, output=None):
         s2200_cessao_lista = s2200cessao.objects.filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2200_evtadmissao'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2200_evtadmissao_lista': s2200_evtadmissao_lista,

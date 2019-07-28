@@ -89,7 +89,7 @@ def verificar(request, pk, output=None):
         r1000_exclusao_lista = r1000exclusao.objects.filter(r1000_evtinfocontri_id__in = listar_ids(r1000_evtinfocontri_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 'r1000_evtinfocontri'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             'r1000_evtinfocontri_lista': r1000_evtinfocontri_lista,

@@ -84,7 +84,7 @@ def verificar(request, pk, output=None):
         s2416_suspensao_lista = s2416suspensao.objects.filter(s2416_evtcdbenalt_id__in = listar_ids(s2416_evtcdbenalt_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2416_evtcdbenalt'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2416_evtcdbenalt_lista': s2416_evtcdbenalt_lista,

@@ -81,7 +81,7 @@ def verificar(request, pk, output=None):
 
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 'r9000_evtexclusao'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             'r9000_evtexclusao_lista': r9000_evtexclusao_lista,

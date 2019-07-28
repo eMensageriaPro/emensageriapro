@@ -82,7 +82,7 @@ def verificar(request, pk, output=None):
         s2220_exame_lista = s2220exame.objects.filter(s2220_evtmonit_id__in = listar_ids(s2220_evtmonit_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2220_evtmonit'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2220_evtmonit_lista': s2220_evtmonit_lista,

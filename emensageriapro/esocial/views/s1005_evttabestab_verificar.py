@@ -97,7 +97,7 @@ def verificar(request, pk, output=None):
         s1005_exclusao_lista = s1005exclusao.objects.filter(s1005_evttabestab_id__in = listar_ids(s1005_evttabestab_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's1005_evttabestab'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's1005_evttabestab_lista': s1005_evttabestab_lista,

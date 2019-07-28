@@ -88,7 +88,7 @@ def verificar(request, pk, output=None):
         s2230_fimafastamento_lista = s2230fimAfastamento.objects.filter(s2230_evtafasttemp_id__in = listar_ids(s2230_evtafasttemp_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2230_evtafasttemp'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2230_evtafasttemp_lista': s2230_evtafasttemp_lista,

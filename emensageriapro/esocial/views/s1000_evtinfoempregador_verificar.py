@@ -101,7 +101,7 @@ def verificar(request, pk, output=None):
         s1000_exclusao_lista = s1000exclusao.objects.filter(s1000_evtinfoempregador_id__in = listar_ids(s1000_evtinfoempregador_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's1000_evtinfoempregador'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's1000_evtinfoempregador_lista': s1000_evtinfoempregador_lista,

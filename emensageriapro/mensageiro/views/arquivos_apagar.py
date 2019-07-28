@@ -71,14 +71,11 @@ def apagar(request, pk):
         #arquivos_apagar_custom
         messages.success(request, u'Apagado com sucesso!')
 
-        if 'arquivos' in request.session['return']:
+        if 'return_page' in request.session and request.session['return_page'] and 'arquivos' in request.session['return_page']:
             return redirect('arquivos')
 
         else:
-            return HttpResponseRedirect(request.session['return'])
-
-    else:
-        request.session['return'] = request.META.get('HTTP_REFERER')
+            return HttpResponseRedirect(request.session['return_page'])
 
     context = {
         'usuario': Usuarios.objects.get(user_id=request.user.id),

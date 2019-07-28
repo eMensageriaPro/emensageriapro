@@ -85,7 +85,7 @@ def verificar(request, pk, output=None):
         s2400_dependente_lista = s2400dependente.objects.filter(s2400_evtcdbenefin_id__in = listar_ids(s2400_evtcdbenefin_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2400_evtcdbenefin'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2400_evtcdbenefin_lista': s2400_evtcdbenefin_lista,

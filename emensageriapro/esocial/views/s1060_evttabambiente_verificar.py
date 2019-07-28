@@ -85,7 +85,7 @@ def verificar(request, pk, output=None):
         s1060_exclusao_lista = s1060exclusao.objects.filter(s1060_evttabambiente_id__in = listar_ids(s1060_evttabambiente_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's1060_evttabambiente'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's1060_evttabambiente_lista': s1060_evttabambiente_lista,

@@ -95,7 +95,7 @@ def verificar(request, pk, output=None):
         s2205_contato_lista = s2205contato.objects.filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2205_evtaltcadastral'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2205_evtaltcadastral_lista': s2205_evtaltcadastral_lista,

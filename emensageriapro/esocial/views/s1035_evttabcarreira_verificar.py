@@ -85,7 +85,7 @@ def verificar(request, pk, output=None):
         s1035_exclusao_lista = s1035exclusao.objects.filter(s1035_evttabcarreira_id__in = listar_ids(s1035_evttabcarreira_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's1035_evttabcarreira'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's1035_evttabcarreira_lista': s1035_evttabcarreira_lista,

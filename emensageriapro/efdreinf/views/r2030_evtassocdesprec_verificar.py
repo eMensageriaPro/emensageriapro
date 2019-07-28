@@ -84,7 +84,7 @@ def verificar(request, pk, output=None):
         r2030_infoproc_lista = r2030infoProc.objects.filter(r2030_recursosrec_id__in = listar_ids(r2030_recursosrec_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 'r2030_evtassocdesprec'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             'r2030_evtassocdesprec_lista': r2030_evtassocdesprec_lista,

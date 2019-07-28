@@ -89,9 +89,9 @@ def salvar(request, pk=None, tab='master', output=None):
                 messages.success(request, 'Salvo com sucesso!')
                 #importacao_arquivos_campos_multiple_passo2
 
-                if 'importacao-arquivos' not in request.session['return']:
+                if 'return_page' in request.session and request.session['return_page'] and 'importacao-arquivos' not in request.session['return_page']:
 
-                    return HttpResponseRedirect(request.session['return'])
+                    return HttpResponseRedirect(request.session['return_page'])
 
                 if pk != obj.id:
 
@@ -133,14 +133,8 @@ def salvar(request, pk=None, tab='master', output=None):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
 
-        #if tab or 'importacao_arquivos' in request.session['return_page']:
-        #
-        #     request.session['return_pk'] = pk
-        #     request.session['return_tab'] = tab
-        #     request.session['return_page'] = 'importacao_arquivos_salvar'
-
         if not request.POST:
-            request.session['return'] = request.META.get('HTTP_REFERER')
+            request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),

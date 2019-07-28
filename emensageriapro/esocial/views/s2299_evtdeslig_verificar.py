@@ -109,7 +109,7 @@ def verificar(request, pk, output=None):
         s2299_infotrabinterm_consigfgts_lista = s2299infoTrabIntermconsigFGTS.objects.filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2299_evtdeslig'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2299_evtdeslig_lista': s2299_evtdeslig_lista,

@@ -84,7 +84,7 @@ def verificar(request, pk, output=None):
         s1280_infoativconcom_lista = s1280infoAtivConcom.objects.filter(s1280_evtinfocomplper_id__in = listar_ids(s1280_evtinfocomplper_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's1280_evtinfocomplper'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's1280_evtinfocomplper_lista': s1280_evtinfocomplper_lista,

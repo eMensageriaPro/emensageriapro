@@ -85,7 +85,7 @@ def verificar(request, pk, output=None):
         s2405_dependente_lista = s2405dependente.objects.filter(s2405_evtcdbenefalt_id__in = listar_ids(s2405_evtcdbenefalt_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2405_evtcdbenefalt'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2405_evtcdbenefalt_lista': s2405_evtcdbenefalt_lista,

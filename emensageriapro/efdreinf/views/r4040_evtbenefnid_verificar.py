@@ -83,7 +83,7 @@ def verificar(request, pk, output=None):
         r4040_infopgto_lista = r4040infoPgto.objects.filter(r4040_idenat_id__in = listar_ids(r4040_idenat_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 'r4040_evtbenefnid'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             'r4040_evtbenefnid_lista': r4040_evtbenefnid_lista,

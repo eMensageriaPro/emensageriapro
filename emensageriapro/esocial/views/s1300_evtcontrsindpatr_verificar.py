@@ -82,7 +82,7 @@ def verificar(request, pk, output=None):
         s1300_contribsind_lista = s1300contribSind.objects.filter(s1300_evtcontrsindpatr_id__in = listar_ids(s1300_evtcontrsindpatr_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's1300_evtcontrsindpatr'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's1300_evtcontrsindpatr_lista': s1300_evtcontrsindpatr_lista,

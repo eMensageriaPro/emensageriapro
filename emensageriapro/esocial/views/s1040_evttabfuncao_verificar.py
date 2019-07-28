@@ -85,7 +85,7 @@ def verificar(request, pk, output=None):
         s1040_exclusao_lista = s1040exclusao.objects.filter(s1040_evttabfuncao_id__in = listar_ids(s1040_evttabfuncao_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's1040_evttabfuncao'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's1040_evttabfuncao_lista': s1040_evttabfuncao_lista,

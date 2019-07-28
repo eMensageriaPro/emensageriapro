@@ -83,7 +83,7 @@ def verificar(request, pk, output=None):
         s2250_cancavprevio_lista = s2250cancAvPrevio.objects.filter(s2250_evtavprevio_id__in = listar_ids(s2250_evtavprevio_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2250_evtavprevio'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2250_evtavprevio_lista': s2250_evtavprevio_lista,

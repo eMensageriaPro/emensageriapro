@@ -93,7 +93,7 @@ def verificar(request, pk, output=None):
         s2206_servpubl_lista = s2206servPubl.objects.filter(s2206_evtaltcontratual_id__in = listar_ids(s2206_evtaltcontratual_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2206_evtaltcontratual'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2206_evtaltcontratual_lista': s2206_evtaltcontratual_lista,

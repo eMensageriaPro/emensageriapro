@@ -82,7 +82,7 @@ def verificar(request, pk, output=None):
         s1270_remunavnp_lista = s1270remunAvNP.objects.filter(s1270_evtcontratavnp_id__in = listar_ids(s1270_evtcontratavnp_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's1270_evtcontratavnp'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's1270_evtcontratavnp_lista': s1270_evtcontratavnp_lista,

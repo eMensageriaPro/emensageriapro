@@ -84,7 +84,7 @@ def verificar(request, pk, output=None):
         r2060_infoproc_lista = r2060infoProc.objects.filter(r2060_tipocod_id__in = listar_ids(r2060_tipocod_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 'r2060_evtcprb'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             'r2060_evtcprb_lista': r2060_evtcprb_lista,

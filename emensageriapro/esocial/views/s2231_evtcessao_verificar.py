@@ -83,7 +83,7 @@ def verificar(request, pk, output=None):
         s2231_fimcessao_lista = s2231fimCessao.objects.filter(s2231_evtcessao_id__in = listar_ids(s2231_evtcessao_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2231_evtcessao'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2231_evtcessao_lista': s2231_evtcessao_lista,

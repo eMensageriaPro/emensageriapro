@@ -95,7 +95,7 @@ def verificar(request, pk, output=None):
         s2399_quarentena_lista = s2399quarentena.objects.filter(s2399_evttsvtermino_id__in = listar_ids(s2399_evttsvtermino_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2399_evttsvtermino'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2399_evttsvtermino_lista': s2399_evttsvtermino_lista,

@@ -83,7 +83,7 @@ def verificar(request, pk, output=None):
         s3000_idefolhapagto_lista = s3000ideFolhaPagto.objects.filter(s3000_evtexclusao_id__in = listar_ids(s3000_evtexclusao_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's3000_evtexclusao'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's3000_evtexclusao_lista': s3000_evtexclusao_lista,

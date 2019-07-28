@@ -96,7 +96,7 @@ def verificar(request, pk, output=None):
         s1210_idepgtoext_lista = s1210idePgtoExt.objects.filter(s1210_infopgto_id__in = listar_ids(s1210_infopgto_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's1210_evtpgtos'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's1210_evtpgtos_lista': s1210_evtpgtos_lista,

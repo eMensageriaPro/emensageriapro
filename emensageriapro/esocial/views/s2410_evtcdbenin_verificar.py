@@ -84,7 +84,7 @@ def verificar(request, pk, output=None):
         s2410_homologtc_lista = s2410homologTC.objects.filter(s2410_evtcdbenin_id__in = listar_ids(s2410_evtcdbenin_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2410_evtcdbenin'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2410_evtcdbenin_lista': s2410_evtcdbenin_lista,

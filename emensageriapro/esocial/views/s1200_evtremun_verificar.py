@@ -106,7 +106,7 @@ def verificar(request, pk, output=None):
         s1200_infoperant_infocomplcont_lista = s1200infoPerAntinfoComplCont.objects.filter(s1200_dmdev_id__in = listar_ids(s1200_dmdev_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's1200_evtremun'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's1200_evtremun_lista': s1200_evtremun_lista,

@@ -81,7 +81,7 @@ def verificar(request, pk, output=None):
 
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 'r4098_evtreab'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             'r4098_evtreab_lista': r4098_evtreab_lista,

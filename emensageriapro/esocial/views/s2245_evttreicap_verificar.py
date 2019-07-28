@@ -82,7 +82,7 @@ def verificar(request, pk, output=None):
         s2245_ideprofresp_lista = s2245ideProfResp.objects.filter(s2245_evttreicap_id__in = listar_ids(s2245_evttreicap_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2245_evttreicap'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2245_evttreicap_lista': s2245_evttreicap_lista,

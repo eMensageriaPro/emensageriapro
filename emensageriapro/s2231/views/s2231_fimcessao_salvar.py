@@ -91,9 +91,9 @@ def salvar(request, pk=None, tab='master', output=None):
                 obj = s2231_fimcessao_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                  
-                if 's2231-fimcessao' not in request.session['return']:
+                if 'return_page' in request.session and request.session['return_page'] and 's2231-fimcessao' not in request.session['return_page']:
 
-                    return HttpResponseRedirect(request.session['return'])
+                    return HttpResponseRedirect(request.session['return_page'])
 
                 if pk != obj.id:
 
@@ -132,16 +132,10 @@ def salvar(request, pk=None, tab='master', output=None):
 
         tabelas_secundarias = []
 
-        #if tab or 's2231_fimcessao' in request.session['return_page']:
-        #
-        #    request.session['return_pk'] = pk
-        #    request.session['return_tab'] = tab
-        #    request.session['return_page'] = 's2231_fimcessao_salvar'
-
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2231_fimcessao').all()
 
         if not request.POST:
-            request.session['return'] = request.META.get('HTTP_REFERER')
+            request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),

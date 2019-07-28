@@ -89,7 +89,7 @@ def verificar(request, pk, output=None):
         r1070_exclusao_lista = r1070exclusao.objects.filter(r1070_evttabprocesso_id__in = listar_ids(r1070_evttabprocesso_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 'r1070_evttabprocesso'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             'r1070_evttabprocesso_lista': r1070_evttabprocesso_lista,

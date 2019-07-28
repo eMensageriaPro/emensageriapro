@@ -96,7 +96,7 @@ def verificar(request, pk, output=None):
         s2240_fimexprisco_respreg_lista = s2240fimExpRiscorespReg.objects.filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2240_evtexprisco'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2240_evtexprisco_lista': s2240_evtexprisco_lista,

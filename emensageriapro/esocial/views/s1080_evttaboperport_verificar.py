@@ -85,7 +85,7 @@ def verificar(request, pk, output=None):
         s1080_exclusao_lista = s1080exclusao.objects.filter(s1080_evttaboperport_id__in = listar_ids(s1080_evttaboperport_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's1080_evttaboperport'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's1080_evttaboperport_lista': s1080_evttaboperport_lista,

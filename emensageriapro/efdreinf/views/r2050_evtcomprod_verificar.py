@@ -83,7 +83,7 @@ def verificar(request, pk, output=None):
         r2050_infoproc_lista = r2050infoProc.objects.filter(r2050_tipocom_id__in = listar_ids(r2050_tipocom_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 'r2050_evtcomprod'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             'r2050_evtcomprod_lista': r2050_evtcomprod_lista,

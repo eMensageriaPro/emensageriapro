@@ -96,7 +96,7 @@ def verificar(request, pk, output=None):
         s1202_infoperant_itensremun_lista = s1202infoPerAntitensRemun.objects.filter(s1202_infoperant_remunperant_id__in = listar_ids(s1202_infoperant_remunperant_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's1202_evtrmnrpps'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's1202_evtrmnrpps_lista': s1202_evtrmnrpps_lista,

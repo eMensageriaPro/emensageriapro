@@ -88,7 +88,7 @@ def verificar(request, pk, output=None):
         s2306_supervisorestagio_lista = s2306supervisorEstagio.objects.filter(s2306_infoestagiario_id__in = listar_ids(s2306_infoestagiario_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2306_evttsvaltcontr'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2306_evttsvaltcontr_lista': s2306_evttsvaltcontr_lista,

@@ -106,7 +106,7 @@ def verificar(request, pk, output=None):
         s2300_termino_lista = s2300termino.objects.filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2300_evttsvinicio'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2300_evttsvinicio_lista': s2300_evttsvinicio_lista,

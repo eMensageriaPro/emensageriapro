@@ -104,7 +104,7 @@ def verificar(request, pk, output=None):
         r2070_pgtoresidext_lista = r2070pgtoResidExt.objects.filter(r2070_ideestab_id__in = listar_ids(r2070_ideestab_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 'r2070_evtpgtosdivs'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             'r2070_evtpgtosdivs_lista': r2070_evtpgtosdivs_lista,

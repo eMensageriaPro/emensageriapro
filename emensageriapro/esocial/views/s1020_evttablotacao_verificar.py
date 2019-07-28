@@ -91,7 +91,7 @@ def verificar(request, pk, output=None):
         s1020_exclusao_lista = s1020exclusao.objects.filter(s1020_evttablotacao_id__in = listar_ids(s1020_evttablotacao_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's1020_evttablotacao'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's1020_evttablotacao_lista': s1020_evttablotacao_lista,

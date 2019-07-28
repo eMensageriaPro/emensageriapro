@@ -82,7 +82,7 @@ def verificar(request, pk, output=None):
         s2260_localtrabinterm_lista = s2260localTrabInterm.objects.filter(s2260_evtconvinterm_id__in = listar_ids(s2260_evtconvinterm_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2260_evtconvinterm'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2260_evtconvinterm_lista': s2260_evtconvinterm_lista,

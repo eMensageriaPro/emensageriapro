@@ -82,7 +82,7 @@ def verificar(request, pk, output=None):
         r4099_iderespinf_lista = r4099ideRespInf.objects.filter(r4099_evtfech_id__in = listar_ids(r4099_evtfech_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 'r4099_evtfech'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             'r4099_evtfech_lista': r4099_evtfech_lista,

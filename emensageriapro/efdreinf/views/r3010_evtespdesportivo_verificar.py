@@ -85,7 +85,7 @@ def verificar(request, pk, output=None):
         r3010_infoproc_lista = r3010infoProc.objects.filter(r3010_evtespdesportivo_id__in = listar_ids(r3010_evtespdesportivo_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 'r3010_evtespdesportivo'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             'r3010_evtespdesportivo_lista': r3010_evtespdesportivo_lista,

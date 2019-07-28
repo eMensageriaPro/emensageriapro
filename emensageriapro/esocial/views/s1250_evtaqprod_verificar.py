@@ -86,7 +86,7 @@ def verificar(request, pk, output=None):
         s1250_infoprocj_lista = s1250infoProcJ.objects.filter(s1250_tpaquis_id__in = listar_ids(s1250_tpaquis_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's1250_evtaqprod'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's1250_evtaqprod_lista': s1250_evtaqprod_lista,

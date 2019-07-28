@@ -93,9 +93,9 @@ def salvar(request, pk=None, tab='master', output=None):
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj, 'esocial')
              
-                if 's2220-evtmonit' not in request.session['return']:
+                if 'return_page' in request.session and request.session['return_page'] and 's2220-evtmonit' not in request.session['return_page']:
 
-                    return HttpResponseRedirect(request.session['return'])
+                    return HttpResponseRedirect(request.session['return_page'])
 
                 if pk != obj.id:
 
@@ -147,7 +147,7 @@ def salvar(request, pk=None, tab='master', output=None):
         controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2220_evtmonit').all()
 
         if not request.POST:
-            request.session['return'] = request.META.get('HTTP_REFERER')
+            request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),

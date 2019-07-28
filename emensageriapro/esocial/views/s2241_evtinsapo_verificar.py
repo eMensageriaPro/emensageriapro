@@ -99,7 +99,7 @@ def verificar(request, pk, output=None):
         s2241_fimaposentesp_infoamb_lista = s2241fimAposentEspinfoAmb.objects.filter(s2241_fimaposentesp_id__in = listar_ids(s2241_fimaposentesp_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 's2241_evtinsapo'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             's2241_evtinsapo_lista': s2241_evtinsapo_lista,

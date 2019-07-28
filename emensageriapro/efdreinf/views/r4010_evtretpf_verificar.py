@@ -102,7 +102,7 @@ def verificar(request, pk, output=None):
         r4010_inforeembdep_lista = r4010infoReembDep.objects.filter(r4010_infodependpl_id__in = listar_ids(r4010_infodependpl_lista) ).all()
 
         request.session['return_pk'] = pk
-        request.session['return_page'] = 'r4010_evtretpf'
+        request.session['return_page'] = request.META.get('HTTP_REFERER')
 
         context = {
             'r4010_evtretpf_lista': r4010_evtretpf_lista,

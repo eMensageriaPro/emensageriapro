@@ -111,6 +111,8 @@ def listar(request, output=None):
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s1202_infoperapur_ideestab_listar_custom
 
+        request.session['return'] = request.META.get('HTTP_REFERER')
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'output': output,
