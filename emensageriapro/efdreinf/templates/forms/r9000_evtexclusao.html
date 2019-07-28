@@ -140,16 +140,16 @@
             {{ r9000_evtexclusao_form.tpevento.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_tpevento" 
-               name="txt_tpevento" class="form-control" 
-               value="{% if r9000_evtexclusao.tpevento %}{{ r9000_evtexclusao.tpevento|get_opcoes_titulo:723 }}{% endif %}" 
+        <input type="text"
+               id="txt_tpevento"
+               name="txt_tpevento" class="form-control"
+               value="{% if r9000_evtexclusao.tpevento %}{{ r9000_evtexclusao.tpevento|get_opcoes_titulo:723 }}{% endif %}"
                {% if r9000_evtexclusao_form.tpevento.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if r9000_evtexclusao_form.tpevento.field.widget.attrs.required %} required="required"{% endif %}
                {% if r9000_evtexclusao_form.tpevento.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_tpevento" 
-               name="tpevento" 
+        <input type="hidden"
+               id="id_tpevento"
+               name="tpevento"
                value="{% if r9000_evtexclusao.tpevento %}{{ r9000_evtexclusao_form.tpevento.value|valor }}{% endif %}" >
     </div>
   </div>
@@ -263,15 +263,15 @@
 <div class="col-md-3" id="r9000_evtexclusao__transmissor_lote_efdreinf__div">
 <div class="form-group">
   <label id="r9000_evtexclusao__transmissor_lote_efdreinf__label">Transmissor</label>
-  
+
   {% if not output %}
     {% if r9000_evtexclusao_form.transmissor_lote_efdreinf.value %}
     <a id="r9000_evtexclusao__transmissor_lote_efdreinf__div_acessar" href="{% url 'transmissor_lote_efdreinf_salvar' pk=r9000_evtexclusao_form.transmissor_lote_efdreinf.value %}">
      [Acessar]
     </a>
-    {% endif %} 
+    {% endif %}
   {% endif %}
-  
+
   {% if r9000_evtexclusao_form.transmissor_lote_efdreinf.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9000_evtexclusao_form.transmissor_lote_efdreinf.errors }}

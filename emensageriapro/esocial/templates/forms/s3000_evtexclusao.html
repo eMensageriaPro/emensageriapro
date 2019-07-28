@@ -149,16 +149,16 @@
             {{ s3000_evtexclusao_form.tpevento.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_tpevento" 
-               name="txt_tpevento" class="form-control" 
-               value="{% if s3000_evtexclusao.tpevento %}{{ s3000_evtexclusao.tpevento|get_opcoes_titulo:549 }}{% endif %}" 
+        <input type="text"
+               id="txt_tpevento"
+               name="txt_tpevento" class="form-control"
+               value="{% if s3000_evtexclusao.tpevento %}{{ s3000_evtexclusao.tpevento|get_opcoes_titulo:549 }}{% endif %}"
                {% if s3000_evtexclusao_form.tpevento.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s3000_evtexclusao_form.tpevento.field.widget.attrs.required %} required="required"{% endif %}
                {% if s3000_evtexclusao_form.tpevento.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_tpevento" 
-               name="tpevento" 
+        <input type="hidden"
+               id="id_tpevento"
+               name="tpevento"
                value="{% if s3000_evtexclusao.tpevento %}{{ s3000_evtexclusao_form.tpevento.value|valor }}{% endif %}" >
     </div>
   </div>
@@ -257,15 +257,15 @@
 <div class="col-md-3" id="s3000_evtexclusao__transmissor_lote_esocial__div">
 <div class="form-group">
   <label id="s3000_evtexclusao__transmissor_lote_esocial__label">Transmissor</label>
-  
+
   {% if not output %}
     {% if s3000_evtexclusao_form.transmissor_lote_esocial.value %}
     <a id="s3000_evtexclusao__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' pk=s3000_evtexclusao_form.transmissor_lote_esocial.value %}">
      [Acessar]
     </a>
-    {% endif %} 
+    {% endif %}
   {% endif %}
-  
+
   {% if s3000_evtexclusao_form.transmissor_lote_esocial.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s3000_evtexclusao_form.transmissor_lote_esocial.errors }}

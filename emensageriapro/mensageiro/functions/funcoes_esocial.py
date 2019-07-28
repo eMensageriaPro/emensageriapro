@@ -39,7 +39,7 @@ from constance import config
 from django.contrib import messages
 
 from emensageriapro.esocial.models import STATUS_EVENTO_AGUARD_ENVIO
-# from emensageriapro.mensageiro.functions.funcoes_status import atualizar_status_esocial
+from emensageriapro.mensageiro.functions.funcoes import retirar_pontuacao_cpf_cnpj
 from emensageriapro.mensageiro.models import *
 
 TRANSMISSOR_STATUS_CADASTRADO = 0
@@ -173,9 +173,9 @@ def create_request(dados, transmissor_dados):
             dados_evento['grupo'] = e.grupo
             dados_evento['tabela'] = e.tabela
             dados_evento['empregador_tpinsc'] = e.transmissor_lote_esocial.empregador_tpinsc
-            dados_evento['empregador_nrinsc'] = e.transmissor_lote_esocial.empregador_nrinsc
+            dados_evento['empregador_nrinsc'] = retirar_pontuacao_cpf_cnpj(e.transmissor_lote_esocial.empregador_nrinsc)
             dados_evento['transmissor_tpinsc'] = e.transmissor_lote_esocial.transmissor.transmissor_tpinsc
-            dados_evento['transmissor_nrinsc'] = e.transmissor_lote_esocial.transmissor.transmissor_nrinsc
+            dados_evento['transmissor_nrinsc'] = retirar_pontuacao_cpf_cnpj(e.transmissor_lote_esocial.transmissor.transmissor_nrinsc)
 
             xml += '<evento Id="%s">' % e.identidade
             xml += ler_arquivo('/arquivos/Eventos/%(tabela)s/%(identidade)s.xml' % dados_evento)
@@ -259,9 +259,9 @@ def send_xml(request, transmissor_id, service):
 
     transmissor_dados = {}
     transmissor_dados['empregador_tpinsc'] = tle.empregador_tpinsc
-    transmissor_dados['empregador_nrinsc'] = tle.empregador_nrinsc
+    transmissor_dados['empregador_nrinsc'] = retirar_pontuacao_cpf_cnpj(tle.empregador_nrinsc)
     transmissor_dados['transmissor_tpinsc'] = tle.transmissor.transmissor_tpinsc
-    transmissor_dados['transmissor_nrinsc'] = tle.transmissor.transmissor_nrinsc
+    transmissor_dados['transmissor_nrinsc'] = retirar_pontuacao_cpf_cnpj(tle.transmissor.transmissor_nrinsc)
     transmissor_dados['esocial_lote_min'] = config.ESOCIAL_LOTE_MIN
     transmissor_dados['esocial_lote_max'] = config.ESOCIAL_LOTE_MAX
     transmissor_dados['esocial_timeout'] = int(config.ESOCIAL_TIMEOUT)

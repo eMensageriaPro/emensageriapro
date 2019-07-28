@@ -18,7 +18,7 @@
         <a id="s2220_exame__s2220_evtmonit__div_acessar" href="{% url 's2220_evtmonit_salvar' pk=s2220_exame_form.s2220_evtmonit.value %}">
           [Acessar]
         </a>
-      {% endif %} 
+      {% endif %}
     {% endif %}
     {% if s2220_exame_form.s2220_evtmonit.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
@@ -63,16 +63,16 @@
             {{ s2220_exame_form.procrealizado.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_procrealizado" 
-               name="txt_procrealizado" class="form-control" 
-               value="{% if s2220_exame.procrealizado %}{{ s2220_exame.procrealizado|get_opcoes_titulo:363 }}{% endif %}" 
+        <input type="text"
+               id="txt_procrealizado"
+               name="txt_procrealizado" class="form-control"
+               value="{% if s2220_exame.procrealizado %}{{ s2220_exame.procrealizado|get_opcoes_titulo:363 }}{% endif %}"
                {% if s2220_exame_form.procrealizado.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2220_exame_form.procrealizado.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2220_exame_form.procrealizado.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_procrealizado" 
-               name="procrealizado" 
+        <input type="hidden"
+               id="id_procrealizado"
+               name="procrealizado"
                value="{% if s2220_exame.procrealizado %}{{ s2220_exame_form.procrealizado.value|valor }}{% endif %}" >
     </div>
   </div>

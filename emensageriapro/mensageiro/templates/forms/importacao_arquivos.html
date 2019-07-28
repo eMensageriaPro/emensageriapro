@@ -51,7 +51,7 @@
     </div>
     {% endif %}
     <div class="input-group" style="width: 100%;">
-      {{ importacao_arquivos_form.data_hora|addcss:'form-control automate-datetime' }}     
+      {{ importacao_arquivos_form.data_hora|addcss:'form-control automate-datetime' }}
     </div>
   </div>
 </div>
@@ -71,15 +71,15 @@
 <div class="col-md-4" id="importacao_arquivos__importado_por__div">
 <div class="form-group">
   <label id="importacao_arquivos__importado_por__label">Importado por</label>
-  
+
   {% if not output %}
     {% if importacao_arquivos_form.importado_por.value %}
     <a id="importacao_arquivos__importado_por__div_acessar" href="{% url 'usuarios_salvar' pk=importacao_arquivos_form.importado_por.value %}">
      [Acessar]
     </a>
-    {% endif %} 
+    {% endif %}
   {% endif %}
-  
+
   {% if importacao_arquivos_form.importado_por.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ importacao_arquivos_form.importado_por.errors }}

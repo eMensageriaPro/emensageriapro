@@ -133,7 +133,8 @@
     $(".automate-cpf").inputmask("999.999.999-99");
     $(".automate-cep").inputmask("99.999-999");
     $(".automate-year").inputmask("9999");
-    $(".automate-integer").inputmask("99999999999");
+    $(".automate-integer").inputmask("integer");
+    $(".automate-cpf-cnpj").inputmask("integer", {rightAlignNumerics: false});
     $(".automate-money").maskMoney({
         prefix: 'R$ ',
         allowNegative: true,

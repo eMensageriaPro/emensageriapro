@@ -18,7 +18,7 @@
         <a id="s5013_baseperapur__s5013_infobasefgts__div_acessar" href="{% url 's5013_infobasefgts_salvar' pk=s5013_baseperapur_form.s5013_infobasefgts.value %}">
           [Acessar]
         </a>
-      {% endif %} 
+      {% endif %}
     {% endif %}
     {% if s5013_baseperapur_form.s5013_infobasefgts.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
@@ -48,16 +48,16 @@
             {{ s5013_baseperapur_form.tpvalor.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_tpvalor" 
-               name="txt_tpvalor" class="form-control" 
-               value="{% if s5013_baseperapur.tpvalor %}{{ s5013_baseperapur.tpvalor|get_opcoes_titulo:579 }}{% endif %}" 
+        <input type="text"
+               id="txt_tpvalor"
+               name="txt_tpvalor" class="form-control"
+               value="{% if s5013_baseperapur.tpvalor %}{{ s5013_baseperapur.tpvalor|get_opcoes_titulo:579 }}{% endif %}"
                {% if s5013_baseperapur_form.tpvalor.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s5013_baseperapur_form.tpvalor.field.widget.attrs.required %} required="required"{% endif %}
                {% if s5013_baseperapur_form.tpvalor.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_tpvalor" 
-               name="tpvalor" 
+        <input type="hidden"
+               id="id_tpvalor"
+               name="tpvalor"
                value="{% if s5013_baseperapur.tpvalor %}{{ s5013_baseperapur_form.tpvalor.value|valor }}{% endif %}" >
     </div>
   </div>

@@ -233,16 +233,16 @@
             {{ s2245_evttreicap_form.codcateg.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codcateg" 
-               name="txt_codcateg" class="form-control" 
-               value="{% if s2245_evttreicap.codcateg %}{{ s2245_evttreicap.codcateg|get_opcoes_titulo:175 }}{% endif %}" 
+        <input type="text"
+               id="txt_codcateg"
+               name="txt_codcateg" class="form-control"
+               value="{% if s2245_evttreicap.codcateg %}{{ s2245_evttreicap.codcateg|get_opcoes_titulo:175 }}{% endif %}"
                {% if s2245_evttreicap_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2245_evttreicap_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2245_evttreicap_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codcateg" 
-               name="codcateg" 
+        <input type="hidden"
+               id="id_codcateg"
+               name="codcateg"
                value="{% if s2245_evttreicap.codcateg %}{{ s2245_evttreicap_form.codcateg.value|valor }}{% endif %}" >
     </div>
   </div>
@@ -302,16 +302,16 @@
             {{ s2245_evttreicap_form.codtreicap.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codtreicap" 
-               name="txt_codtreicap" class="form-control" 
-               value="{% if s2245_evttreicap.codtreicap %}{{ s2245_evttreicap.codtreicap|get_opcoes_titulo:422 }}{% endif %}" 
+        <input type="text"
+               id="txt_codtreicap"
+               name="txt_codtreicap" class="form-control"
+               value="{% if s2245_evttreicap.codtreicap %}{{ s2245_evttreicap.codtreicap|get_opcoes_titulo:422 }}{% endif %}"
                {% if s2245_evttreicap_form.codtreicap.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2245_evttreicap_form.codtreicap.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2245_evttreicap_form.codtreicap.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codtreicap" 
-               name="codtreicap" 
+        <input type="hidden"
+               id="id_codtreicap"
+               name="codtreicap"
                value="{% if s2245_evttreicap.codtreicap %}{{ s2245_evttreicap_form.codtreicap.value|valor }}{% endif %}" >
     </div>
   </div>
@@ -534,15 +534,15 @@
 <div class="col-md-3" id="s2245_evttreicap__transmissor_lote_esocial__div">
 <div class="form-group">
   <label id="s2245_evttreicap__transmissor_lote_esocial__label">Transmissor</label>
-  
+
   {% if not output %}
     {% if s2245_evttreicap_form.transmissor_lote_esocial.value %}
     <a id="s2245_evttreicap__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' pk=s2245_evttreicap_form.transmissor_lote_esocial.value %}">
      [Acessar]
     </a>
-    {% endif %} 
+    {% endif %}
   {% endif %}
-  
+
   {% if s2245_evttreicap_form.transmissor_lote_esocial.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s2245_evttreicap_form.transmissor_lote_esocial.errors }}

@@ -10,7 +10,7 @@
         <a href="{% url 's1010_evttabrubrica_salvar' pk=s1010_alteracao_form.s1010_evttabrubrica.value %}">
             [Acessar]
         </a>
-    {% endif %}{% endif %} 
+    {% endif %}{% endif %}
     {% if s1010_alteracao_form.s1010_evttabrubrica.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1010_alteracao_form.s1010_evttabrubrica.errors }}
@@ -142,16 +142,16 @@
             {{ s1010_alteracao_form.natrubr.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_natrubr" 
-               name="txt_natrubr" class="form-control" 
-               value="{% if s1010_alteracao.natrubr %}{{ s1010_alteracao.natrubr|get_opcoes_titulo:101 }}{% endif %}" 
+        <input type="text"
+               id="txt_natrubr"
+               name="txt_natrubr" class="form-control"
+               value="{% if s1010_alteracao.natrubr %}{{ s1010_alteracao.natrubr|get_opcoes_titulo:101 }}{% endif %}"
                {% if s1010_alteracao_form.natrubr.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1010_alteracao_form.natrubr.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1010_alteracao_form.natrubr.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_natrubr" 
-               name="natrubr" 
+        <input type="hidden"
+               id="id_natrubr"
+               name="natrubr"
                value="{% if s1010_alteracao.natrubr %}{{ s1010_alteracao_form.natrubr.value|valor }}{% endif %}" >
     </div>
   </div>
@@ -230,16 +230,16 @@
             {{ s1010_alteracao_form.codinccp.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codinccp" 
-               name="txt_codinccp" class="form-control" 
-               value="{% if s1010_alteracao.codinccp %}{{ s1010_alteracao.codinccp|get_opcoes_titulo:112 }}{% endif %}" 
+        <input type="text"
+               id="txt_codinccp"
+               name="txt_codinccp" class="form-control"
+               value="{% if s1010_alteracao.codinccp %}{{ s1010_alteracao.codinccp|get_opcoes_titulo:112 }}{% endif %}"
                {% if s1010_alteracao_form.codinccp.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1010_alteracao_form.codinccp.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1010_alteracao_form.codinccp.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codinccp" 
-               name="codinccp" 
+        <input type="hidden"
+               id="id_codinccp"
+               name="codinccp"
                value="{% if s1010_alteracao.codinccp %}{{ s1010_alteracao_form.codinccp.value|valor }}{% endif %}" >
     </div>
   </div>
@@ -294,16 +294,16 @@
             {{ s1010_alteracao_form.codincirrf.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codincirrf" 
-               name="txt_codincirrf" class="form-control" 
-               value="{% if s1010_alteracao.codincirrf %}{{ s1010_alteracao.codincirrf|get_opcoes_titulo:113 }}{% endif %}" 
+        <input type="text"
+               id="txt_codincirrf"
+               name="txt_codincirrf" class="form-control"
+               value="{% if s1010_alteracao.codincirrf %}{{ s1010_alteracao.codincirrf|get_opcoes_titulo:113 }}{% endif %}"
                {% if s1010_alteracao_form.codincirrf.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1010_alteracao_form.codincirrf.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1010_alteracao_form.codincirrf.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codincirrf" 
-               name="codincirrf" 
+        <input type="hidden"
+               id="id_codincirrf"
+               name="codincirrf"
                value="{% if s1010_alteracao.codincirrf %}{{ s1010_alteracao_form.codincirrf.value|valor }}{% endif %}" >
     </div>
   </div>
@@ -406,16 +406,16 @@
             {{ s1010_alteracao_form.codinccprp.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codinccprp" 
-               name="txt_codinccprp" class="form-control" 
-               value="{% if s1010_alteracao.codinccprp %}{{ s1010_alteracao.codinccprp|get_opcoes_titulo:116 }}{% endif %}" 
+        <input type="text"
+               id="txt_codinccprp"
+               name="txt_codinccprp" class="form-control"
+               value="{% if s1010_alteracao.codinccprp %}{{ s1010_alteracao.codinccprp|get_opcoes_titulo:116 }}{% endif %}"
                {% if s1010_alteracao_form.codinccprp.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1010_alteracao_form.codinccprp.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1010_alteracao_form.codinccprp.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codinccprp" 
-               name="codinccprp" 
+        <input type="hidden"
+               id="id_codinccprp"
+               name="codinccprp"
                value="{% if s1010_alteracao.codinccprp %}{{ s1010_alteracao_form.codinccprp.value|valor }}{% endif %}" >
     </div>
   </div>

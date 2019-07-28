@@ -18,7 +18,7 @@
         <a id="r4020_idepgto__r4020_evtretpj__div_acessar" href="{% url 'r4020_evtretpj_salvar' pk=r4020_idepgto_form.r4020_evtretpj.value %}">
           [Acessar]
         </a>
-      {% endif %} 
+      {% endif %}
     {% endif %}
     {% if r4020_idepgto_form.r4020_evtretpj.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
@@ -48,16 +48,16 @@
             {{ r4020_idepgto_form.natrend.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_natrend" 
-               name="txt_natrend" class="form-control" 
-               value="{% if r4020_idepgto.natrend %}{{ r4020_idepgto.natrend|get_opcoes_titulo:685 }}{% endif %}" 
+        <input type="text"
+               id="txt_natrend"
+               name="txt_natrend" class="form-control"
+               value="{% if r4020_idepgto.natrend %}{{ r4020_idepgto.natrend|get_opcoes_titulo:685 }}{% endif %}"
                {% if r4020_idepgto_form.natrend.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if r4020_idepgto_form.natrend.field.widget.attrs.required %} required="required"{% endif %}
                {% if r4020_idepgto_form.natrend.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_natrend" 
-               name="natrend" 
+        <input type="hidden"
+               id="id_natrend"
+               name="natrend"
                value="{% if r4020_idepgto.natrend %}{{ r4020_idepgto_form.natrend.value|valor }}{% endif %}" >
     </div>
   </div>
@@ -112,16 +112,16 @@
             {{ r4020_idepgto_form.paisresid.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_paisresid" 
-               name="txt_paisresid" class="form-control" 
-               value="{% if r4020_idepgto.paisresid %}{{ r4020_idepgto.paisresid|get_opcoes_titulo:648 }}{% endif %}" 
+        <input type="text"
+               id="txt_paisresid"
+               name="txt_paisresid" class="form-control"
+               value="{% if r4020_idepgto.paisresid %}{{ r4020_idepgto.paisresid|get_opcoes_titulo:648 }}{% endif %}"
                {% if r4020_idepgto_form.paisresid.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if r4020_idepgto_form.paisresid.field.widget.attrs.required %} required="required"{% endif %}
                {% if r4020_idepgto_form.paisresid.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_paisresid" 
-               name="paisresid" 
+        <input type="hidden"
+               id="id_paisresid"
+               name="paisresid"
                value="{% if r4020_idepgto.paisresid %}{{ r4020_idepgto_form.paisresid.value|valor }}{% endif %}" >
     </div>
   </div>

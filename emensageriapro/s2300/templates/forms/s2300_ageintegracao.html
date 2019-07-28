@@ -10,7 +10,7 @@
         <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_ageintegracao_form.s2300_infoestagiario.value %}">
             [Acessar]
         </a>
-    {% endif %}{% endif %} 
+    {% endif %}{% endif %}
     {% if s2300_ageintegracao_form.s2300_infoestagiario.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_ageintegracao_form.s2300_infoestagiario.errors }}
@@ -129,16 +129,16 @@
             {{ s2300_ageintegracao_form.codmunic.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codmunic" 
-               name="txt_codmunic" class="form-control" 
-               value="{% if s2300_ageintegracao.codmunic %}{{ s2300_ageintegracao.codmunic|get_opcoes_titulo:58 }}{% endif %}" 
+        <input type="text"
+               id="txt_codmunic"
+               name="txt_codmunic" class="form-control"
+               value="{% if s2300_ageintegracao.codmunic %}{{ s2300_ageintegracao.codmunic|get_opcoes_titulo:58 }}{% endif %}"
                {% if s2300_ageintegracao_form.codmunic.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2300_ageintegracao_form.codmunic.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2300_ageintegracao_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codmunic" 
-               name="codmunic" 
+        <input type="hidden"
+               id="id_codmunic"
+               name="codmunic"
                value="{% if s2300_ageintegracao.codmunic %}{{ s2300_ageintegracao_form.codmunic.value|valor }}{% endif %}" >
     </div>
   </div>

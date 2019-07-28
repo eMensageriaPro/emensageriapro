@@ -10,7 +10,7 @@
         <a href="{% url 's5011_ideestab_salvar' pk=s5011_infoestab_form.s5011_ideestab.value %}">
             [Acessar]
         </a>
-    {% endif %}{% endif %} 
+    {% endif %}{% endif %}
     {% if s5011_infoestab_form.s5011_ideestab.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5011_infoestab_form.s5011_ideestab.errors }}
@@ -39,16 +39,16 @@
             {{ s5011_infoestab_form.cnaeprep.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_cnaeprep" 
-               name="txt_cnaeprep" class="form-control" 
-               value="{% if s5011_infoestab.cnaeprep %}{{ s5011_infoestab.cnaeprep|get_opcoes_titulo:82 }}{% endif %}" 
+        <input type="text"
+               id="txt_cnaeprep"
+               name="txt_cnaeprep" class="form-control"
+               value="{% if s5011_infoestab.cnaeprep %}{{ s5011_infoestab.cnaeprep|get_opcoes_titulo:82 }}{% endif %}"
                {% if s5011_infoestab_form.cnaeprep.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s5011_infoestab_form.cnaeprep.field.widget.attrs.required %} required="required"{% endif %}
                {% if s5011_infoestab_form.cnaeprep.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_cnaeprep" 
-               name="cnaeprep" 
+        <input type="hidden"
+               id="id_cnaeprep"
+               name="cnaeprep"
                value="{% if s5011_infoestab.cnaeprep %}{{ s5011_infoestab_form.cnaeprep.value|valor }}{% endif %}" >
     </div>
   </div>

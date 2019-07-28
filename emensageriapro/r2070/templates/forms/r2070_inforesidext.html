@@ -10,7 +10,7 @@
         <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_inforesidext_form.r2070_evtpgtosdivs.value %}">
             [Acessar]
         </a>
-    {% endif %}{% endif %} 
+    {% endif %}{% endif %}
     {% if r2070_inforesidext_form.r2070_evtpgtosdivs.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_inforesidext_form.r2070_evtpgtosdivs.errors }}
@@ -44,16 +44,16 @@
             {{ r2070_inforesidext_form.paisresid.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_paisresid" 
-               name="txt_paisresid" class="form-control" 
-               value="{% if r2070_inforesidext.paisresid %}{{ r2070_inforesidext.paisresid|get_opcoes_titulo:648 }}{% endif %}" 
+        <input type="text"
+               id="txt_paisresid"
+               name="txt_paisresid" class="form-control"
+               value="{% if r2070_inforesidext.paisresid %}{{ r2070_inforesidext.paisresid|get_opcoes_titulo:648 }}{% endif %}"
                {% if r2070_inforesidext_form.paisresid.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if r2070_inforesidext_form.paisresid.field.widget.attrs.required %} required="required"{% endif %}
                {% if r2070_inforesidext_form.paisresid.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_paisresid" 
-               name="paisresid" 
+        <input type="hidden"
+               id="id_paisresid"
+               name="paisresid"
                value="{% if r2070_inforesidext.paisresid %}{{ r2070_inforesidext_form.paisresid.value|valor }}{% endif %}" >
     </div>
   </div>

@@ -41,6 +41,13 @@ TRANSMISSOR_STATUS_CONSULTADO = 3
 TRANSMISSOR_STATUS_CONSULTADO_ERRO = 4
 
 
+def retirar_pontuacao_cpf_cnpj(cpf_cnpj):
+    for a in './-_':
+        cpf_cnpj = cpf_cnpj.replace(a, '')
+    return cpf_cnpj
+
+
+
 def create_folders():
     import os
     from emensageriapro.settings import BASE_DIR

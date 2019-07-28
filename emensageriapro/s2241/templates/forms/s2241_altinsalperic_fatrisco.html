@@ -18,7 +18,7 @@
         <a id="s2241_altinsalperic_fatrisco__s2241_altinsalperic_infoamb__div_acessar" href="{% url 's2241_altinsalperic_infoamb_salvar' pk=s2241_altinsalperic_fatrisco_form.s2241_altinsalperic_infoamb.value %}">
           [Acessar]
         </a>
-      {% endif %} 
+      {% endif %}
     {% endif %}
     {% if s2241_altinsalperic_fatrisco_form.s2241_altinsalperic_infoamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
@@ -48,16 +48,16 @@
             {{ s2241_altinsalperic_fatrisco_form.codfatris.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codfatris" 
-               name="txt_codfatris" class="form-control" 
-               value="{% if s2241_altinsalperic_fatrisco.codfatris %}{{ s2241_altinsalperic_fatrisco.codfatris|get_opcoes_titulo:390 }}{% endif %}" 
+        <input type="text"
+               id="txt_codfatris"
+               name="txt_codfatris" class="form-control"
+               value="{% if s2241_altinsalperic_fatrisco.codfatris %}{{ s2241_altinsalperic_fatrisco.codfatris|get_opcoes_titulo:390 }}{% endif %}"
                {% if s2241_altinsalperic_fatrisco_form.codfatris.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2241_altinsalperic_fatrisco_form.codfatris.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2241_altinsalperic_fatrisco_form.codfatris.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codfatris" 
-               name="codfatris" 
+        <input type="hidden"
+               id="id_codfatris"
+               name="codfatris"
                value="{% if s2241_altinsalperic_fatrisco.codfatris %}{{ s2241_altinsalperic_fatrisco_form.codfatris.value|valor }}{% endif %}" >
     </div>
   </div>

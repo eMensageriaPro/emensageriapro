@@ -18,7 +18,7 @@
         <a id="s5011_infotercsusp__s5011_idelotacao__div_acessar" href="{% url 's5011_idelotacao_salvar' pk=s5011_infotercsusp_form.s5011_idelotacao.value %}">
           [Acessar]
         </a>
-      {% endif %} 
+      {% endif %}
     {% endif %}
     {% if s5011_infotercsusp_form.s5011_idelotacao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
@@ -48,16 +48,16 @@
             {{ s5011_infotercsusp_form.codterc.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codterc" 
-               name="txt_codterc" class="form-control" 
-               value="{% if s5011_infotercsusp.codterc %}{{ s5011_infotercsusp.codterc|get_opcoes_titulo:123 }}{% endif %}" 
+        <input type="text"
+               id="txt_codterc"
+               name="txt_codterc" class="form-control"
+               value="{% if s5011_infotercsusp.codterc %}{{ s5011_infotercsusp.codterc|get_opcoes_titulo:123 }}{% endif %}"
                {% if s5011_infotercsusp_form.codterc.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s5011_infotercsusp_form.codterc.field.widget.attrs.required %} required="required"{% endif %}
                {% if s5011_infotercsusp_form.codterc.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codterc" 
-               name="codterc" 
+        <input type="hidden"
+               id="id_codterc"
+               name="codterc"
                value="{% if s5011_infotercsusp.codterc %}{{ s5011_infotercsusp_form.codterc.value|valor }}{% endif %}" >
     </div>
   </div>

@@ -10,7 +10,7 @@
         <a href="{% url 'r1070_inclusao_salvar' pk=r1070_inclusao_dadosprocjud_form.r1070_inclusao.value %}">
             [Acessar]
         </a>
-    {% endif %}{% endif %} 
+    {% endif %}{% endif %}
     {% if r1070_inclusao_dadosprocjud_form.r1070_inclusao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1070_inclusao_dadosprocjud_form.r1070_inclusao.errors }}
@@ -63,16 +63,16 @@
             {{ r1070_inclusao_dadosprocjud_form.codmunic.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codmunic" 
-               name="txt_codmunic" class="form-control" 
-               value="{% if r1070_inclusao_dadosprocjud.codmunic %}{{ r1070_inclusao_dadosprocjud.codmunic|get_opcoes_titulo:58 }}{% endif %}" 
+        <input type="text"
+               id="txt_codmunic"
+               name="txt_codmunic" class="form-control"
+               value="{% if r1070_inclusao_dadosprocjud.codmunic %}{{ r1070_inclusao_dadosprocjud.codmunic|get_opcoes_titulo:58 }}{% endif %}"
                {% if r1070_inclusao_dadosprocjud_form.codmunic.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if r1070_inclusao_dadosprocjud_form.codmunic.field.widget.attrs.required %} required="required"{% endif %}
                {% if r1070_inclusao_dadosprocjud_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codmunic" 
-               name="codmunic" 
+        <input type="hidden"
+               id="id_codmunic"
+               name="codmunic"
                value="{% if r1070_inclusao_dadosprocjud.codmunic %}{{ r1070_inclusao_dadosprocjud_form.codmunic.value|valor }}{% endif %}" >
     </div>
   </div>

@@ -43,7 +43,7 @@ from emensageriapro.mensageiro.functions.funcoes import TRANSMISSOR_STATUS_CADAS
      TRANSMISSOR_STATUS_ENVIADO, TRANSMISSOR_STATUS_ENVIADO_ERRO, \
      TRANSMISSOR_STATUS_CONSULTADO, TRANSMISSOR_STATUS_CONSULTADO_ERRO
 
-from emensageriapro.mensageiro.functions.funcoes_efdreinf_comunicacao import definir_status_evento
+from emensageriapro.mensageiro.functions.funcoes import retirar_pontuacao_cpf_cnpj
 from emensageriapro.mensageiro.models import *
 from emensageriapro.mensageiro.functions.funcoes import send
 
@@ -238,7 +238,7 @@ def send_xml(request, transmissor_id, service):
 
     dados = {}
     dados['contribuinte_tpinsc'] = tra.contribuinte_tpinsc
-    dados['contribuinte_nrinsc'] = tra.contribuinte_nrinsc
+    dados['contribuinte_nrinsc'] = retirar_pontuacao_cpf_cnpj(tra.contribuinte_nrinsc)
     dados['transmissor_id'] = transmissor_id
     dados['efdreinf_lote_min'] = config.EFDREINF_LOTE_MIN
     dados['efdreinf_lote_max'] = config.EFDREINF_LOTE_MIN

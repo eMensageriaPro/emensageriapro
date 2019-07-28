@@ -10,7 +10,7 @@
         <a href="{% url 's1000_evtinfoempregador_salvar' pk=s1000_alteracao_form.s1000_evtinfoempregador.value %}">
             [Acessar]
         </a>
-    {% endif %}{% endif %} 
+    {% endif %}{% endif %}
     {% if s1000_alteracao_form.s1000_evtinfoempregador.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1000_alteracao_form.s1000_evtinfoempregador.errors }}
@@ -136,16 +136,16 @@
             {{ s1000_alteracao_form.natjurid.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_natjurid" 
-               name="txt_natjurid" class="form-control" 
-               value="{% if s1000_alteracao.natjurid %}{{ s1000_alteracao.natjurid|get_opcoes_titulo:44 }}{% endif %}" 
+        <input type="text"
+               id="txt_natjurid"
+               name="txt_natjurid" class="form-control"
+               value="{% if s1000_alteracao.natjurid %}{{ s1000_alteracao.natjurid|get_opcoes_titulo:44 }}{% endif %}"
                {% if s1000_alteracao_form.natjurid.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1000_alteracao_form.natjurid.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1000_alteracao_form.natjurid.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_natjurid" 
-               name="natjurid" 
+        <input type="hidden"
+               id="id_natjurid"
+               name="natjurid"
                value="{% if s1000_alteracao.natjurid %}{{ s1000_alteracao_form.natjurid.value|valor }}{% endif %}" >
     </div>
   </div>

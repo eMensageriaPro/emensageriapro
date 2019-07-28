@@ -10,7 +10,7 @@
         <a href="{% url 's1040_evttabfuncao_salvar' pk=s1040_inclusao_form.s1040_evttabfuncao.value %}">
             [Acessar]
         </a>
-    {% endif %}{% endif %} 
+    {% endif %}{% endif %}
     {% if s1040_inclusao_form.s1040_evttabfuncao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1040_inclusao_form.s1040_evttabfuncao.errors }}
@@ -127,16 +127,16 @@
             {{ s1040_inclusao_form.codcbo.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codcbo" 
-               name="txt_codcbo" class="form-control" 
-               value="{% if s1040_inclusao.codcbo %}{{ s1040_inclusao.codcbo|get_opcoes_titulo:128 }}{% endif %}" 
+        <input type="text"
+               id="txt_codcbo"
+               name="txt_codcbo" class="form-control"
+               value="{% if s1040_inclusao.codcbo %}{{ s1040_inclusao.codcbo|get_opcoes_titulo:128 }}{% endif %}"
                {% if s1040_inclusao_form.codcbo.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1040_inclusao_form.codcbo.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1040_inclusao_form.codcbo.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codcbo" 
-               name="codcbo" 
+        <input type="hidden"
+               id="id_codcbo"
+               name="codcbo"
                value="{% if s1040_inclusao.codcbo %}{{ s1040_inclusao_form.codcbo.value|valor }}{% endif %}" >
     </div>
   </div>

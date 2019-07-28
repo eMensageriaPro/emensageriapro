@@ -364,16 +364,16 @@
             {{ s2300_evttsvinicio_form.codmunic.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codmunic" 
-               name="txt_codmunic" class="form-control" 
-               value="{% if s2300_evttsvinicio.codmunic %}{{ s2300_evttsvinicio.codmunic|get_opcoes_titulo:58 }}{% endif %}" 
+        <input type="text"
+               id="txt_codmunic"
+               name="txt_codmunic" class="form-control"
+               value="{% if s2300_evttsvinicio.codmunic %}{{ s2300_evttsvinicio.codmunic|get_opcoes_titulo:58 }}{% endif %}"
                {% if s2300_evttsvinicio_form.codmunic.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2300_evttsvinicio_form.codmunic.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2300_evttsvinicio_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codmunic" 
-               name="codmunic" 
+        <input type="hidden"
+               id="id_codmunic"
+               name="codmunic"
                value="{% if s2300_evttsvinicio.codmunic %}{{ s2300_evttsvinicio_form.codmunic.value|valor }}{% endif %}" >
     </div>
   </div>
@@ -452,16 +452,16 @@
             {{ s2300_evttsvinicio_form.paisnascto.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_paisnascto" 
-               name="txt_paisnascto" class="form-control" 
-               value="{% if s2300_evttsvinicio.paisnascto %}{{ s2300_evttsvinicio.paisnascto|get_opcoes_titulo:207 }}{% endif %}" 
+        <input type="text"
+               id="txt_paisnascto"
+               name="txt_paisnascto" class="form-control"
+               value="{% if s2300_evttsvinicio.paisnascto %}{{ s2300_evttsvinicio.paisnascto|get_opcoes_titulo:207 }}{% endif %}"
                {% if s2300_evttsvinicio_form.paisnascto.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2300_evttsvinicio_form.paisnascto.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2300_evttsvinicio_form.paisnascto.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_paisnascto" 
-               name="paisnascto" 
+        <input type="hidden"
+               id="id_paisnascto"
+               name="paisnascto"
                value="{% if s2300_evttsvinicio.paisnascto %}{{ s2300_evttsvinicio_form.paisnascto.value|valor }}{% endif %}" >
     </div>
   </div>
@@ -516,16 +516,16 @@
             {{ s2300_evttsvinicio_form.paisnac.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_paisnac" 
-               name="txt_paisnac" class="form-control" 
-               value="{% if s2300_evttsvinicio.paisnac %}{{ s2300_evttsvinicio.paisnac|get_opcoes_titulo:207 }}{% endif %}" 
+        <input type="text"
+               id="txt_paisnac"
+               name="txt_paisnac" class="form-control"
+               value="{% if s2300_evttsvinicio.paisnac %}{{ s2300_evttsvinicio.paisnac|get_opcoes_titulo:207 }}{% endif %}"
                {% if s2300_evttsvinicio_form.paisnac.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2300_evttsvinicio_form.paisnac.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2300_evttsvinicio_form.paisnac.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_paisnac" 
-               name="paisnac" 
+        <input type="hidden"
+               id="id_paisnac"
+               name="paisnac"
                value="{% if s2300_evttsvinicio.paisnac %}{{ s2300_evttsvinicio_form.paisnac.value|valor }}{% endif %}" >
     </div>
   </div>
@@ -644,16 +644,16 @@
             {{ s2300_evttsvinicio_form.codcateg.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codcateg" 
-               name="txt_codcateg" class="form-control" 
-               value="{% if s2300_evttsvinicio.codcateg %}{{ s2300_evttsvinicio.codcateg|get_opcoes_titulo:175 }}{% endif %}" 
+        <input type="text"
+               id="txt_codcateg"
+               name="txt_codcateg" class="form-control"
+               value="{% if s2300_evttsvinicio.codcateg %}{{ s2300_evttsvinicio.codcateg|get_opcoes_titulo:175 }}{% endif %}"
                {% if s2300_evttsvinicio_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2300_evttsvinicio_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2300_evttsvinicio_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codcateg" 
-               name="codcateg" 
+        <input type="hidden"
+               id="id_codcateg"
+               name="codcateg"
                value="{% if s2300_evttsvinicio.codcateg %}{{ s2300_evttsvinicio_form.codcateg.value|valor }}{% endif %}" >
     </div>
   </div>
@@ -776,15 +776,15 @@
 <div class="col-md-3" id="s2300_evttsvinicio__transmissor_lote_esocial__div">
 <div class="form-group">
   <label id="s2300_evttsvinicio__transmissor_lote_esocial__label">Transmissor</label>
-  
+
   {% if not output %}
     {% if s2300_evttsvinicio_form.transmissor_lote_esocial.value %}
     <a id="s2300_evttsvinicio__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' pk=s2300_evttsvinicio_form.transmissor_lote_esocial.value %}">
      [Acessar]
     </a>
-    {% endif %} 
+    {% endif %}
   {% endif %}
-  
+
   {% if s2300_evttsvinicio_form.transmissor_lote_esocial.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s2300_evttsvinicio_form.transmissor_lote_esocial.errors }}

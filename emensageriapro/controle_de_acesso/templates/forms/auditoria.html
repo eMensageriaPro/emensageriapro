@@ -77,15 +77,15 @@
 <div class="col-md-12" id="auditoria__operador__div">
 <div class="form-group">
   <label id="auditoria__operador__label">Operador</label>
-  
+
   {% if not output %}
     {% if auditoria_form.operador.value %}
     <a id="auditoria__operador__div_acessar" href="{% url 'usuarios_salvar' pk=auditoria_form.operador.value %}">
      [Acessar]
     </a>
-    {% endif %} 
+    {% endif %}
   {% endif %}
-  
+
   {% if auditoria_form.operador.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ auditoria_form.operador.errors }}
@@ -115,7 +115,7 @@
     </div>
     {% endif %}
     <div class="input-group" style="width: 100%;">
-      {{ auditoria_form.data_hora|addcss:'form-control automate-datetime' }}     
+      {{ auditoria_form.data_hora|addcss:'form-control automate-datetime' }}
     </div>
   </div>
 </div>

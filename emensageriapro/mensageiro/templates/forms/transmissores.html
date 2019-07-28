@@ -41,7 +41,7 @@
         </div>
       {% endif %}
     <div class="input-group" style="width: 100%;">
-      {{ transmissores_form.transmissor_nrinsc|addcss:'form-control' }}
+      {{ transmissores_form.transmissor_nrinsc|addcss:'form-control automate-cpf-cnpj' }}
     </div>
   </div>
 </div>
@@ -124,7 +124,7 @@
         </div>
       {% endif %}
     <div class="input-group" style="width: 100%;">
-      {{ transmissores_form.nrinsc|addcss:'form-control' }}
+      {{ transmissores_form.nrinsc|addcss:'form-control automate-cpf-cnpj' }}
     </div>
   </div>
 </div>
@@ -158,7 +158,7 @@
 <div class="col-md-6" id="transmissores__certificado__div">
 <div class="form-group">
   <label id="transmissores__certificado__label">Certificado</label>
-  
+
   {% if transmissores_form.certificado.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ transmissores_form.certificado.errors }}

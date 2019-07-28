@@ -178,15 +178,15 @@
 <div class="col-md-3" id="s1035_evttabcarreira__transmissor_lote_esocial__div">
 <div class="form-group">
   <label id="s1035_evttabcarreira__transmissor_lote_esocial__label">Transmissor</label>
-  
+
   {% if not output %}
     {% if s1035_evttabcarreira_form.transmissor_lote_esocial.value %}
     <a id="s1035_evttabcarreira__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' pk=s1035_evttabcarreira_form.transmissor_lote_esocial.value %}">
      [Acessar]
     </a>
-    {% endif %} 
+    {% endif %}
   {% endif %}
-  
+
   {% if s1035_evttabcarreira_form.transmissor_lote_esocial.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1035_evttabcarreira_form.transmissor_lote_esocial.errors }}

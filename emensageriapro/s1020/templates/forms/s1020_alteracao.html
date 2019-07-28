@@ -10,7 +10,7 @@
         <a href="{% url 's1020_evttablotacao_salvar' pk=s1020_alteracao_form.s1020_evttablotacao.value %}">
             [Acessar]
         </a>
-    {% endif %}{% endif %} 
+    {% endif %}{% endif %}
     {% if s1020_alteracao_form.s1020_evttablotacao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1020_alteracao_form.s1020_evttablotacao.errors }}
@@ -180,16 +180,16 @@
             {{ s1020_alteracao_form.fpas.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_fpas" 
-               name="txt_fpas" class="form-control" 
-               value="{% if s1020_alteracao.fpas %}{{ s1020_alteracao.fpas|get_opcoes_titulo:123 }}{% endif %}" 
+        <input type="text"
+               id="txt_fpas"
+               name="txt_fpas" class="form-control"
+               value="{% if s1020_alteracao.fpas %}{{ s1020_alteracao.fpas|get_opcoes_titulo:123 }}{% endif %}"
                {% if s1020_alteracao_form.fpas.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1020_alteracao_form.fpas.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1020_alteracao_form.fpas.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_fpas" 
-               name="fpas" 
+        <input type="hidden"
+               id="id_fpas"
+               name="fpas"
                value="{% if s1020_alteracao.fpas %}{{ s1020_alteracao_form.fpas.value|valor }}{% endif %}" >
     </div>
   </div>
@@ -244,16 +244,16 @@
             {{ s1020_alteracao_form.codtercs.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codtercs" 
-               name="txt_codtercs" class="form-control" 
-               value="{% if s1020_alteracao.codtercs %}{{ s1020_alteracao.codtercs|get_opcoes_titulo:123 }}{% endif %}" 
+        <input type="text"
+               id="txt_codtercs"
+               name="txt_codtercs" class="form-control"
+               value="{% if s1020_alteracao.codtercs %}{{ s1020_alteracao.codtercs|get_opcoes_titulo:123 }}{% endif %}"
                {% if s1020_alteracao_form.codtercs.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1020_alteracao_form.codtercs.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1020_alteracao_form.codtercs.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codtercs" 
-               name="codtercs" 
+        <input type="hidden"
+               id="id_codtercs"
+               name="codtercs"
                value="{% if s1020_alteracao.codtercs %}{{ s1020_alteracao_form.codtercs.value|valor }}{% endif %}" >
     </div>
   </div>
@@ -308,16 +308,16 @@
             {{ s1020_alteracao_form.codtercssusp.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codtercssusp" 
-               name="txt_codtercssusp" class="form-control" 
-               value="{% if s1020_alteracao.codtercssusp %}{{ s1020_alteracao.codtercssusp|get_opcoes_titulo:123 }}{% endif %}" 
+        <input type="text"
+               id="txt_codtercssusp"
+               name="txt_codtercssusp" class="form-control"
+               value="{% if s1020_alteracao.codtercssusp %}{{ s1020_alteracao.codtercssusp|get_opcoes_titulo:123 }}{% endif %}"
                {% if s1020_alteracao_form.codtercssusp.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1020_alteracao_form.codtercssusp.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1020_alteracao_form.codtercssusp.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codtercssusp" 
-               name="codtercssusp" 
+        <input type="hidden"
+               id="id_codtercssusp"
+               name="codtercssusp"
                value="{% if s1020_alteracao.codtercssusp %}{{ s1020_alteracao_form.codtercssusp.value|valor }}{% endif %}" >
     </div>
   </div>

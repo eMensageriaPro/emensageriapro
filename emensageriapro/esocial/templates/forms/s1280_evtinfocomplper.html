@@ -251,15 +251,15 @@
 <div class="col-md-3" id="s1280_evtinfocomplper__transmissor_lote_esocial__div">
 <div class="form-group">
   <label id="s1280_evtinfocomplper__transmissor_lote_esocial__label">Transmissor</label>
-  
+
   {% if not output %}
     {% if s1280_evtinfocomplper_form.transmissor_lote_esocial.value %}
     <a id="s1280_evtinfocomplper__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' pk=s1280_evtinfocomplper_form.transmissor_lote_esocial.value %}">
      [Acessar]
     </a>
-    {% endif %} 
+    {% endif %}
   {% endif %}
-  
+
   {% if s1280_evtinfocomplper_form.transmissor_lote_esocial.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1280_evtinfocomplper_form.transmissor_lote_esocial.errors }}

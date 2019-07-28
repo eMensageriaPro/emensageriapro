@@ -17,15 +17,15 @@
 <div class="col-md-12" id="transmissor_lote_efdreinf__transmissor__div">
 <div class="form-group">
   <label id="transmissor_lote_efdreinf__transmissor__label">Transmissor</label>
-  
+
   {% if not output %}
     {% if transmissor_lote_efdreinf_form.transmissor.value %}
     <a id="transmissor_lote_efdreinf__transmissor__div_acessar" href="{% url 'transmissores_salvar' pk=transmissor_lote_efdreinf_form.transmissor.value %}">
      [Acessar]
     </a>
-    {% endif %} 
+    {% endif %}
   {% endif %}
-  
+
   {% if transmissor_lote_efdreinf_form.transmissor.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ transmissor_lote_efdreinf_form.transmissor.errors }}
@@ -181,7 +181,7 @@
     </div>
     {% endif %}
     <div class="input-group" style="width: 100%;">
-      {{ transmissor_lote_efdreinf_form.recepcao_data_hora|addcss:'form-control automate-datetime' }}     
+      {{ transmissor_lote_efdreinf_form.recepcao_data_hora|addcss:'form-control automate-datetime' }}
     </div>
   </div>
 </div>

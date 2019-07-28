@@ -538,18 +538,24 @@ class RetornosEventosOcorrenciasSerializer(ModelSerializer):
 class TransmissorLote(SoftDeletionModel):
 
     transmissor_tpinsc = models.IntegerField(choices=TIPO_INSCRICAO, )
-    transmissor_nrinsc = models.CharField(max_length=20, )
+    transmissor_nrinsc = models.CharField(max_length=15, )
     nome_empresa = models.CharField(max_length=200, )
     data_abertura = models.DateField()
     logotipo = models.FileField(upload_to="logotipo", blank=True, null=True, )
     endereco_completo = models.TextField()
-    nrinsc = models.CharField(max_length=20, )
+    nrinsc = models.CharField(max_length=15, )
     tpinsc = models.IntegerField(choices=TIPO_INSCRICAO, )
     certificado = models.ForeignKey('mensageiro.Certificados',
         related_name='%(class)s_certificado', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.transmissor_nrinsc) + ' - ' + unicode(self.nome_empresa) + ' - ' + unicode(self.nrinsc)
+
+    def save(self, **kwargs):
+        from emensageriapro.mensageiro.functions.funcoes import retirar_pontuacao_cpf_cnpj
+        self.transmissor_nrinsc = retirar_pontuacao_cpf_cnpj(self.transmissor_nrinsc)
+        self.nrinsc = retirar_pontuacao_cpf_cnpj(self.nrinsc)
+        super(TransmissorLote, self).save(**kwargs)
 
     class Meta:
 

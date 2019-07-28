@@ -18,7 +18,7 @@
         <a id="r3010_boletim__r3010_evtespdesportivo__div_acessar" href="{% url 'r3010_evtespdesportivo_salvar' pk=r3010_boletim_form.r3010_evtespdesportivo.value %}">
           [Acessar]
         </a>
-      {% endif %} 
+      {% endif %}
     {% endif %}
     {% if r3010_boletim_form.r3010_evtespdesportivo.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
@@ -201,16 +201,16 @@
             {{ r3010_boletim_form.codmunic.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codmunic" 
-               name="txt_codmunic" class="form-control" 
-               value="{% if r3010_boletim.codmunic %}{{ r3010_boletim.codmunic|get_opcoes_titulo:58 }}{% endif %}" 
+        <input type="text"
+               id="txt_codmunic"
+               name="txt_codmunic" class="form-control"
+               value="{% if r3010_boletim.codmunic %}{{ r3010_boletim.codmunic|get_opcoes_titulo:58 }}{% endif %}"
                {% if r3010_boletim_form.codmunic.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if r3010_boletim_form.codmunic.field.widget.attrs.required %} required="required"{% endif %}
                {% if r3010_boletim_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codmunic" 
-               name="codmunic" 
+        <input type="hidden"
+               id="id_codmunic"
+               name="codmunic"
                value="{% if r3010_boletim.codmunic %}{{ r3010_boletim_form.codmunic.value|valor }}{% endif %}" >
     </div>
   </div>

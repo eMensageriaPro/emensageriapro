@@ -86,7 +86,7 @@
 <div class="col-md-4" id="usuarios__is_superuser__div">
     <div class="form-group">
       <label>
-        <input type="checkbox" name="is_superuser" class="minimal" value="True" 
+        <input type="checkbox" name="is_superuser" class="minimal" value="True"
         {% if users_form.is_superuser.value %}checked{% endif %} >
         {% comment %}{{ users_form.is_superuser }}{% endcomment %}
         É Super usuário?* {{ users_form.is_superuser.errors }}
@@ -100,7 +100,7 @@
 <div class="col-md-4" id="usuarios__is_staff__div">
     <div class="form-group">
       <label>
-        <input type="checkbox" name="is_staff" class="minimal" value="True" 
+        <input type="checkbox" name="is_staff" class="minimal" value="True"
         {% if users_form.is_staff.value %}checked{% endif %} >
         {% comment %}{{ users_form.is_staff }}{% endcomment %}
         É Administrador?* {{ users_form.is_staff.errors }}
@@ -114,7 +114,7 @@
 <div class="col-md-4" id="usuarios__is_active__div">
     <div class="form-group">
       <label>
-        <input type="checkbox" name="is_active" class="minimal" value="True" 
+        <input type="checkbox" name="is_active" class="minimal" value="True"
         {% if users_form.is_active.value %}checked{% endif %} >
         {% comment %}{{ users_form.is_active }}{% endcomment %}
         Ativo?* {{ users_form.is_active.errors }}
@@ -128,7 +128,7 @@
 <div class="col-md-4" id="usuarios__config_perfis__div">
 <div class="form-group">
   <label id="usuarios__config_perfis__label">Perfil*</label>
-  
+
   {% if usuarios_form.config_perfis.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ usuarios_form.config_perfis.errors }}

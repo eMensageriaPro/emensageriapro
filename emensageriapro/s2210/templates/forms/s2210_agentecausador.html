@@ -18,7 +18,7 @@
         <a id="s2210_agentecausador__s2210_evtcat__div_acessar" href="{% url 's2210_evtcat_salvar' pk=s2210_agentecausador_form.s2210_evtcat.value %}">
           [Acessar]
         </a>
-      {% endif %} 
+      {% endif %}
     {% endif %}
     {% if s2210_agentecausador_form.s2210_evtcat.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
@@ -48,16 +48,16 @@
             {{ s2210_agentecausador_form.codagntcausador.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codagntcausador" 
-               name="txt_codagntcausador" class="form-control" 
-               value="{% if s2210_agentecausador.codagntcausador %}{{ s2210_agentecausador.codagntcausador|get_opcoes_titulo:348 }}{% endif %}" 
+        <input type="text"
+               id="txt_codagntcausador"
+               name="txt_codagntcausador" class="form-control"
+               value="{% if s2210_agentecausador.codagntcausador %}{{ s2210_agentecausador.codagntcausador|get_opcoes_titulo:348 }}{% endif %}"
                {% if s2210_agentecausador_form.codagntcausador.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2210_agentecausador_form.codagntcausador.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2210_agentecausador_form.codagntcausador.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codagntcausador" 
-               name="codagntcausador" 
+        <input type="hidden"
+               id="id_codagntcausador"
+               name="codagntcausador"
                value="{% if s2210_agentecausador.codagntcausador %}{{ s2210_agentecausador_form.codagntcausador.value|valor }}{% endif %}" >
     </div>
   </div>

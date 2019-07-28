@@ -10,7 +10,7 @@
         <a href="{% url 's2210_evtcat_salvar' pk=s2210_atestado_form.s2210_evtcat.value %}">
             [Acessar]
         </a>
-    {% endif %}{% endif %} 
+    {% endif %}{% endif %}
     {% if s2210_atestado_form.s2210_evtcat.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_atestado_form.s2210_evtcat.errors }}
@@ -147,16 +147,16 @@
             {{ s2210_atestado_form.dsclesao.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_dsclesao" 
-               name="txt_dsclesao" class="form-control" 
-               value="{% if s2210_atestado.dsclesao %}{{ s2210_atestado.dsclesao|get_opcoes_titulo:355 }}{% endif %}" 
+        <input type="text"
+               id="txt_dsclesao"
+               name="txt_dsclesao" class="form-control"
+               value="{% if s2210_atestado.dsclesao %}{{ s2210_atestado.dsclesao|get_opcoes_titulo:355 }}{% endif %}"
                {% if s2210_atestado_form.dsclesao.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2210_atestado_form.dsclesao.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2210_atestado_form.dsclesao.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_dsclesao" 
-               name="dsclesao" 
+        <input type="hidden"
+               id="id_dsclesao"
+               name="dsclesao"
                value="{% if s2210_atestado.dsclesao %}{{ s2210_atestado_form.dsclesao.value|valor }}{% endif %}" >
     </div>
   </div>

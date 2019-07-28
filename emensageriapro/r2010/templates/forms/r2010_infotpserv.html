@@ -18,7 +18,7 @@
         <a id="r2010_infotpserv__r2010_nfs__div_acessar" href="{% url 'r2010_nfs_salvar' pk=r2010_infotpserv_form.r2010_nfs.value %}">
           [Acessar]
         </a>
-      {% endif %} 
+      {% endif %}
     {% endif %}
     {% if r2010_infotpserv_form.r2010_nfs.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
@@ -48,16 +48,16 @@
             {{ r2010_infotpserv_form.tpservico.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_tpservico" 
-               name="txt_tpservico" class="form-control" 
-               value="{% if r2010_infotpserv.tpservico %}{{ r2010_infotpserv.tpservico|get_opcoes_titulo:612 }}{% endif %}" 
+        <input type="text"
+               id="txt_tpservico"
+               name="txt_tpservico" class="form-control"
+               value="{% if r2010_infotpserv.tpservico %}{{ r2010_infotpserv.tpservico|get_opcoes_titulo:612 }}{% endif %}"
                {% if r2010_infotpserv_form.tpservico.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if r2010_infotpserv_form.tpservico.field.widget.attrs.required %} required="required"{% endif %}
                {% if r2010_infotpserv_form.tpservico.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_tpservico" 
-               name="tpservico" 
+        <input type="hidden"
+               id="id_tpservico"
+               name="tpservico"
                value="{% if r2010_infotpserv.tpservico %}{{ r2010_infotpserv_form.tpservico.value|valor }}{% endif %}" >
     </div>
   </div>

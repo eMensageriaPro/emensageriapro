@@ -18,7 +18,7 @@
         <a id="r2060_tipocod__r2060_evtcprb__div_acessar" href="{% url 'r2060_evtcprb_salvar' pk=r2060_tipocod_form.r2060_evtcprb.value %}">
           [Acessar]
         </a>
-      {% endif %} 
+      {% endif %}
     {% endif %}
     {% if r2060_tipocod_form.r2060_evtcprb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
@@ -48,16 +48,16 @@
             {{ r2060_tipocod_form.codativecon.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_codativecon" 
-               name="txt_codativecon" class="form-control" 
-               value="{% if r2060_tipocod.codativecon %}{{ r2060_tipocod.codativecon|get_opcoes_titulo:639 }}{% endif %}" 
+        <input type="text"
+               id="txt_codativecon"
+               name="txt_codativecon" class="form-control"
+               value="{% if r2060_tipocod.codativecon %}{{ r2060_tipocod.codativecon|get_opcoes_titulo:639 }}{% endif %}"
                {% if r2060_tipocod_form.codativecon.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if r2060_tipocod_form.codativecon.field.widget.attrs.required %} required="required"{% endif %}
                {% if r2060_tipocod_form.codativecon.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_codativecon" 
-               name="codativecon" 
+        <input type="hidden"
+               id="id_codativecon"
+               name="codativecon"
                value="{% if r2060_tipocod.codativecon %}{{ r2060_tipocod_form.codativecon.value|valor }}{% endif %}" >
     </div>
   </div>

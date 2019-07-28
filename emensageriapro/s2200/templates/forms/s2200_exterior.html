@@ -10,7 +10,7 @@
         <a href="{% url 's2200_evtadmissao_salvar' pk=s2200_exterior_form.s2200_evtadmissao.value %}">
             [Acessar]
         </a>
-    {% endif %}{% endif %} 
+    {% endif %}{% endif %}
     {% if s2200_exterior_form.s2200_evtadmissao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_exterior_form.s2200_evtadmissao.errors }}
@@ -39,16 +39,16 @@
             {{ s2200_exterior_form.paisresid.errors }}
           </div>
         {% endif %}
-        <input type="text" 
-               id="txt_paisresid" 
-               name="txt_paisresid" class="form-control" 
-               value="{% if s2200_exterior.paisresid %}{{ s2200_exterior.paisresid|get_opcoes_titulo:207 }}{% endif %}" 
+        <input type="text"
+               id="txt_paisresid"
+               name="txt_paisresid" class="form-control"
+               value="{% if s2200_exterior.paisresid %}{{ s2200_exterior.paisresid|get_opcoes_titulo:207 }}{% endif %}"
                {% if s2200_exterior_form.paisresid.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2200_exterior_form.paisresid.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2200_exterior_form.paisresid.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" 
-               id="id_paisresid" 
-               name="paisresid" 
+        <input type="hidden"
+               id="id_paisresid"
+               name="paisresid"
                value="{% if s2200_exterior.paisresid %}{{ s2200_exterior_form.paisresid.value|valor }}{% endif %}" >
     </div>
   </div>
