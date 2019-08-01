@@ -160,7 +160,7 @@ def create_request(dados, transmissor_dados):
 
         xml = u''
 
-        eventos = TransmissorEventosEsocial.objects.using('default').\
+        eventos = TransmissorEventosEsocial.objects.\
             filter(transmissor_lote_esocial_id=dados['transmissor_id'],
                    status=STATUS_EVENTO_AGUARD_ENVIO).all()
 
@@ -185,7 +185,7 @@ def create_request(dados, transmissor_dados):
 
     elif dados['service'] == 'WsConsultarLoteEventos':
 
-        a = TransmissorLoteEsocial.objects.using('default').\
+        a = TransmissorLoteEsocial.objects.\
                 get(id=dados['transmissor_id'])
 
         xml = BASE_XML_CONSULTA_LOTE % a.protocolo
@@ -284,7 +284,7 @@ def send_xml(request, transmissor_id, service):
     dados['action'] = ACTION
     dados['timeout'] = transmissor_dados['esocial_timeout']
 
-    quant_eventos = TransmissorEventosEsocial.objects.using('default'). \
+    quant_eventos = TransmissorEventosEsocial.objects. \
                                     filter(transmissor_lote_esocial_id=transmissor_id,
                                            status=STATUS_EVENTO_AGUARD_ENVIO).count()
 
@@ -320,7 +320,7 @@ def send_xml(request, transmissor_id, service):
 
                 from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_envioLoteEventos, definir_status_evento
                 read_envioLoteEventos(dados['response'], transmissor_id)
-                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).\
+                TransmissorLoteEsocial.objects.filter(id=transmissor_id).\
                     update(status=TRANSMISSOR_STATUS_ENVIADO)
                 definir_status_evento(transmissor_id)
                 messages.success(request, 'Lote enviado com sucesso!')
@@ -329,7 +329,7 @@ def send_xml(request, transmissor_id, service):
 
                 from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_consultaLoteEventos, definir_status_evento
                 read_consultaLoteEventos(dados['response'], transmissor_id)
-                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).\
+                TransmissorLoteEsocial.objects.filter(id=transmissor_id).\
                     update(status=TRANSMISSOR_STATUS_CONSULTADO)
                 definir_status_evento(transmissor_id)
                 messages.success(request, 'Lote consultado com sucesso!')
@@ -342,11 +342,13 @@ def send_xml(request, transmissor_id, service):
 
         else:
             if service == 'WsEnviarLoteEventos':
-                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=TRANSMISSOR_STATUS_ENVIADO_ERRO)
+                TransmissorLoteEsocial.objects.filter(id=transmissor_id).\
+                    update(status=TRANSMISSOR_STATUS_ENVIADO_ERRO)
                 messages.error(request, 'Erro ao enviar o lote!')
 
             elif service == 'WsConsultarLoteEventos':
-                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=TRANSMISSOR_STATUS_CONSULTADO_ERRO)
+                TransmissorLoteEsocial.objects.filter(id=transmissor_id).\
+                    update(status=TRANSMISSOR_STATUS_CONSULTADO_ERRO)
                 messages.error(request, 'Erro ao consultar o lote!')
 
     else:

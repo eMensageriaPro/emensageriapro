@@ -51,15 +51,15 @@ def definir_status_evento(transmissor_lote_efdreinf_id):
 
     for model in app_models:
 
-        lista = model.objects.using('default').filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf_id).all()
+        lista = model.objects.filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf_id).all()
 
         for a in lista:
 
             if a.transmissor_lote_efdreinf.status == TRANSMISSOR_STATUS_ENVIADO:
-                model.objects.using('default').filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO, ocorrencias=None)
+                model.objects.filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO, ocorrencias=None)
 
             elif a.transmissor_lote_efdreinf.status == TRANSMISSOR_STATUS_ENVIADO_ERRO:
-                model.objects.using('default').filter(id=a.id).update(transmissor_lote_efdreinf=None)
+                model.objects.filter(id=a.id).update(transmissor_lote_efdreinf=None)
 
 
 def get_ocorrencias(evento_slug, retornos_evttotal_id):
@@ -118,10 +118,10 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
     if 'cdStatus' in dir(child.status): lote['codigo_status'] = child.status.cdStatus.cdata
     if 'descRetorno' in dir(child.status): lote['retorno_descricao'] = child.status.descRetorno.cdata
 
-    TransmissorLoteEfdreinf.objects.using('default'). \
+    TransmissorLoteEfdreinf.objects. \
         filter(id=transmissor_lote_efdreinf_id).update(**lote)
 
-    TransmissorLoteEfdreinfOcorrencias.objects.using('default').\
+    TransmissorLoteEfdreinfOcorrencias.objects.\
         filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf_id).delete()
 
     if 'dadosRegistroOcorrenciaLote' in dir(child.status):
@@ -167,7 +167,7 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
                 dados = read_r9001_evttotal_obj(request, evento, STATUS_EVENTO_PROCESSADO)
 
-                retornos_evttotal = r9001evtTotal.objects.using('default'). \
+                retornos_evttotal = r9001evtTotal.objects. \
                     get(id=dados['id'])
 
                 from django.apps import apps
@@ -178,7 +178,7 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
                     if retornos_evttotal.cdretorno == '1' and model._meta.object_name not in EVENTOS_RETORNO:
 
-                        model.objects.using('default').filter(
+                        model.objects.filter(
                             identidade=evento['id'],
                             transmissor_lote_efdreinf_id=transmissor_lote_efdreinf_id). \
                             update(status=STATUS_EVENTO_ENVIADO_ERRO,
@@ -189,7 +189,7 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
                     elif retornos_evttotal.cdretorno == '0' and model._meta.object_name not in EVENTOS_RETORNO:
 
-                        model.objects.using('default').filter(
+                        model.objects.filter(
                             identidade=evento['id'],
                             transmissor_lote_efdreinf_id=transmissor_lote_efdreinf_id). \
                             update(status=STATUS_EVENTO_ENVIADO,
@@ -217,7 +217,7 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
                     if retornos_evttotalcontrib.cdretorno == '1' and model._meta.object_name not in EVENTOS_RETORNO:
 
-                        model.objects.using('default').filter(
+                        model.objects.filter(
                             identidade=evento['id'],
                             transmissor_lote_efdreinf_id=transmissor_lote_efdreinf_id). \
                             update(status=STATUS_EVENTO_ENVIADO_ERRO,
@@ -228,7 +228,7 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
                     elif retornos_evttotalcontrib.cdretorno == '0' and model._meta.object_name not in EVENTOS_RETORNO:
 
-                        model.objects.using('default').filter(
+                        model.objects.filter(
                             identidade=evento['id'],
                             transmissor_lote_esocial_id=transmissor_lote_efdreinf_id). \
                             update(status=STATUS_EVENTO_PROCESSADO,

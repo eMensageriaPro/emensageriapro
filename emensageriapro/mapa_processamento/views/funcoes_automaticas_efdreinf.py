@@ -213,7 +213,6 @@ def enviar(request, tab=None):
 
         STATUS = [
             STATUS_EVENTO_AGUARD_ENVIO,
-            STATUS_EVENTO_VALIDADO
         ]
 
         EVENTOS_GRUPOS = (
@@ -222,8 +221,8 @@ def enviar(request, tab=None):
             (3, u'3 - Eventos Periódicos'),
         )
 
-        lista = model.objects.filter(status=STATUS_EVENTO_AGUARD_ENVIO,
-                                     transmissor_lote_efdreinf=None).all()
+        lista = model.objects.filter(status__in=STATUS,
+                                     transmissor_lote_efdreinf__isnull=True).all()
 
         numero_evento = int(model._meta.db_table[1:5])
 

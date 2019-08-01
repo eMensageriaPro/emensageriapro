@@ -213,7 +213,6 @@ def enviar(request, tab=None):
 
         STATUS = [
             STATUS_EVENTO_AGUARD_ENVIO,
-            #STATUS_EVENTO_VALIDADO
         ]
 
         EVENTOS_GRUPOS = (
@@ -221,9 +220,6 @@ def enviar(request, tab=None):
             (2, u'2 - Eventos Não Periódicos'),
             (3, u'3 - Eventos Periódicos'),
         )
-
-        lista = model.objects.filter(status=STATUS_EVENTO_AGUARD_ENVIO,
-                                     transmissor_lote_esocial=None).all()
 
         numero_evento = int(model._meta.db_table[1:5])
 
@@ -238,12 +234,13 @@ def enviar(request, tab=None):
 
         txt = ''
 
+        lista = model.objects.filter(status__in=STATUS,
+                                     transmissor_lote_esocial__isnull=True).all()
+
         for a in lista:
 
             criar_transmissor_esocial(request, grupo, a.nrinsc, a.tpinsc)
-
             txt = vincular_transmissor_esocial(request, grupo, model, a)
-
 
         texto += txt
 
@@ -303,8 +300,7 @@ def consultar(request, tab=None):
     for model in app_models:
 
         STATUS = [
-            STATUS_EVENTO_AGUARD_ENVIO,
-            #STATUS_EVENTO_VALIDADO
+            STATUS_EVENTO_ENVIADO,
         ]
 
         EVENTOS_GRUPOS = (
@@ -313,7 +309,7 @@ def consultar(request, tab=None):
             (3, u'3 - Eventos Periódicos'),
         )
 
-        lista = model.objects.filter(status=STATUS_EVENTO_ENVIADO).all()
+        lista = model.objects.filter(status__in=STATUS).all()
 
         for a in lista:
 

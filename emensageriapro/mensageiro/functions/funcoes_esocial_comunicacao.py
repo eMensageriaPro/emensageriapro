@@ -50,14 +50,14 @@ def definir_status_evento(transmissor_lote_esocial_id):
     from django.apps import apps
     app_models = apps.get_app_config('esocial').get_models()
     for model in app_models:
-        lista = model.objects.using('default').filter(transmissor_lote_esocial_id=transmissor_lote_esocial_id).all()
+        lista = model.objects.filter(transmissor_lote_esocial_id=transmissor_lote_esocial_id).all()
 
         for a in lista:
             if a.transmissor_lote_esocial.status == TRANSMISSOR_STATUS_ENVIADO:
-                model.objects.using('default').filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO, ocorrencias=None)
+                model.objects.filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO, ocorrencias=None)
 
             elif a.transmissor_lote_esocial.status == TRANSMISSOR_STATUS_ENVIADO_ERRO:
-                model.objects.using('default').filter(id=a.id).update(transmissor_lote_esocial=None)
+                model.objects.filter(id=a.id).update(transmissor_lote_esocial=None)
 
 
 
@@ -66,7 +66,7 @@ def get_ocorrencias(retornos_eventos_id):
     from django.forms.models import model_to_dict
     from emensageriapro.mensageiro.models import RetornosEventosOcorrencias
 
-    ocorrencias = RetornosEventosOcorrencias.objects.using( 'default' ).\
+    ocorrencias = RetornosEventosOcorrencias.objects.\
         filter(retornos_eventos_id=retornos_eventos_id).all()
 
     lista_ocor = []
@@ -93,7 +93,7 @@ def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):
     lote['resposta_codigo'] = child.status.cdResposta.cdata
     lote['resposta_descricao'] = child.status.descResposta.cdata
 
-    TransmissorLoteEsocialOcorrencias.objects.using('default').\
+    TransmissorLoteEsocialOcorrencias.objects.\
         filter(transmissor_lote_esocial_id=transmissor_lote_esocial_id).delete()
 
     if '<ocorrencias>' in xml:
@@ -119,7 +119,7 @@ def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):
         lote['recepcao_versao_aplicativo'] = child.dadosRecepcaoLote.versaoAplicativoRecepcao.cdata
         lote['protocolo'] = child.dadosRecepcaoLote.protocoloEnvio.cdata
 
-    TransmissorLoteEsocial.objects.using('default'). \
+    TransmissorLoteEsocial.objects. \
         filter(id=transmissor_lote_esocial_id).update(**lote)
 
 
@@ -362,7 +362,7 @@ def read_retornoEvento(doc, transmissor_lote_id):
             
             if codigo_resposta >= 300 and model._meta.object_name not in EVENTOS_RETORNO:
 
-                model.objects.using('default').filter(
+                model.objects.filter(
                     identidade=retorno_evento_dados['identidade'],
                     transmissor_lote_esocial_id=transmissor_lote_id).\
                     update(status=STATUS_EVENTO_ENVIADO_ERRO,
@@ -372,7 +372,7 @@ def read_retornoEvento(doc, transmissor_lote_id):
             
             elif codigo_resposta >= 201 and codigo_resposta < 300 and model._meta.object_name not in EVENTOS_RETORNO:
 
-                model.objects.using('default').filter(
+                model.objects.filter(
                     identidade=retorno_evento_dados['identidade'],
                     transmissor_lote_esocial_id=transmissor_lote_id).\
                     update(status=STATUS_EVENTO_PROCESSADO,
@@ -423,7 +423,7 @@ def read_consultaLoteEventos(arquivo, transmissor_lote_esocial_id):
     else:
         lote['processamento_versao_aplicativo'] = None
 
-    TransmissorLoteEsocial.objects.using('default').\
+    TransmissorLoteEsocial.objects.\
         filter(id=transmissor_lote_esocial_id).update(**lote)
 
     if '<retornoEventos>' in xml:
@@ -448,19 +448,19 @@ def read_consultaLoteEventos(arquivo, transmissor_lote_esocial_id):
 
             if 'evtBasesTrab' in dir(evento):
                 from emensageriapro.esocial.views.s5001_evtbasestrab_importar import read_s5001_evtbasestrab_obj
-                read_s5001_evtbasestrab_obj(evento.eSocial, STATUS_EVENTO_ENVIADO_ERRO)
+                read_s5001_evtbasestrab_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
 
             if 'evtIrrfBenef' in dir(evento):
                 from emensageriapro.esocial.views.s5002_evtirrfbenef_importar import read_s5002_evtirrfbenef_obj
-                read_s5002_evtirrfbenef_obj(evento.eSocial, STATUS_EVENTO_ENVIADO_ERRO)
+                read_s5002_evtirrfbenef_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
 
             if 'evtCS' in dir(evento):
                 from emensageriapro.esocial.views.s5011_evtcs_importar import read_s5011_evtcs_obj
-                read_s5011_evtcs_obj(evento.eSocial, STATUS_EVENTO_ENVIADO_ERRO)
+                read_s5011_evtcs_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
 
             if 'evtIrrf' in dir(evento):
                 from emensageriapro.esocial.views.s5012_evtirrf_importar import read_s5012_evtirrf_obj
-                read_s5012_evtirrf_obj(evento.eSocial, STATUS_EVENTO_ENVIADO_ERRO)
+                read_s5012_evtirrf_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
 
 
 
