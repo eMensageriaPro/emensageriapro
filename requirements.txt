@@ -1,4 +1,4 @@
-django==1.11.22
+django==1.11.23
 untangle==1.1.1
 psycopg2==2.7.6.1
 pyOpenSSL==17.5.0
