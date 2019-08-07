@@ -22,7 +22,7 @@ UMLs/
 *_backup.py
 backup.py
 atualizar_web.py
-clear_database.py
+clear_database*
 download.py
 .idea/
 emensageriapro.wsgi
