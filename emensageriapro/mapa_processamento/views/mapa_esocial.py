@@ -67,11 +67,13 @@ def listar(request, tab='master', output=None):
         quant_processados = len(esocial_processados) or 0
 
         transmissor_enviado = TransmissorLoteEsocial.objects.\
+            exclude(data_hora_envio__isnull=True).\
             order_by('-data_hora_envio').all()
         if transmissor_enviado:
             transmissor_enviado = transmissor_enviado[0]
 
         transmissor_consultado = TransmissorLoteEsocial.objects.\
+            exclude(data_hora_consulta__isnull=True).\
             order_by('-data_hora_consulta').all()
         if transmissor_consultado:
             transmissor_consultado = transmissor_consultado[0]

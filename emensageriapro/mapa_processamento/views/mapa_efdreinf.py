@@ -63,12 +63,14 @@ def listar(request, tab='master', output=None):
         quant_enviados = len(efdreinf_enviados) or 0
         quant_processados = len(efdreinf_processados) or 0
 
-        transmissor_enviado = TransmissorLoteEfdreinf.objects.\
+        transmissor_enviado = TransmissorLoteEfdreinf.objects. \
+            exclude(data_hora_envio__isnull=True).\
             order_by('-data_hora_envio').all()
         if transmissor_enviado:
             transmissor_enviado = transmissor_enviado[0]
 
         transmissor_consultado = TransmissorLoteEfdreinf.objects.\
+            exclude(data_hora_consulta__isnull=True).\
             order_by('-data_hora_consulta').all()
         if transmissor_consultado:
             transmissor_consultado = transmissor_consultado[0]
