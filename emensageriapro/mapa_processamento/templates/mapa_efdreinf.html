@@ -82,16 +82,18 @@
                         (Listagem de eventos com status: Cadastrado, Duplicado, Gerado ou Assinado)
                     </div>
                     <div class="box-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped automate-data-table">
                             <thead>
                             <tr>
-                                <th width="300px">Evento</th>
+                                <th style="display:none;"></th>
+                                <th width="30px">Evento</th>
                                 <th>Identidade</th>
                                 <th>Status</th>{% if not output %}
                                 <th width="80px">Ações</th>{% endif %}</tr>
                             </thead>
                             <tbody>{% for a in efdreinf_cadastrados %}
                                 <tr>
+                                    <td style="display:none;"></td>
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
                                     <td>{{ a.get_status_display }}</td>
@@ -122,10 +124,11 @@
                         <h3 class="box-title">Importados</h3>
                     </div>
                     <div class="box-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped automate-data-table">
                             <thead>
                             <tr>
-                                <th width="300px">Evento</th>
+                                <th style="display:none;"></th>
+                                <th width="30px">Evento</th>
                                 <th>Identidade</th>
                                 <th>Status</th>
                             </tr>
@@ -133,6 +136,7 @@
                             <tbody>
                             {% for a in efdreinf_importados %}
                                 <tr>
+                                    <td style="display:none;"></td>
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
                                     <td>{{ a.get_status_display }}</td>
@@ -155,10 +159,11 @@
                         <h3 class="box-title">Validados</h3>
                     </div>
                     <div class="box-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped automate-data-table">
                             <thead>
                             <tr>
-                                <th width="300px">Evento</th>
+                                <th style="display:none;"></th>
+                                <th width="30px">Evento</th>
                                 <th>Identidade</th>
                                 <th>Status</th>
                             </tr>
@@ -166,6 +171,7 @@
                             <tbody>
                             {% for a in efdreinf_validados %}
                                 <tr>
+                                    <td style="display:none;"></td>
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
                                     <td>{{ a.get_status_display }}</td>
@@ -187,10 +193,11 @@
                         <h3 class="box-title">Erros de Validação</h3>
                     </div>
                     <div class="box-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped automate-data-table">
                             <thead>
                             <tr>
-                                <th width="300px">Evento</th>
+                                <th style="display:none;"></th>
+                                <th width="30px">Evento</th>
                                 <th>Identidade</th>
                                 <th>Status</th>
                                 {% if not output %}
@@ -202,6 +209,7 @@
                             <tbody>
                             {% for a in efdreinf_erros_validacao %}
                                 <tr>
+                                    <td style="display:none;"></td>
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
                                     <td>{{ a.get_status_display }}</td>
@@ -233,18 +241,32 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">Erros reportados pelo EFD-Reinf</h3></div>
                     <div class="box-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped automate-data-table">
                             <thead>
                             <tr>
-                                <th width="300px">Evento</th>
+                                <th style="display:none;"></th>
+                                <th width="30px">Evento</th>
                                 <th>Identidade</th>
+                                <th>Data/Hora de Envio</th>
+                                <th>Data/Hora de Consulta</th>
                                 <th>Status</th>{% if not output %}
                                 <th width="80px">Ações</th>{% endif %}</tr>
                             </thead>
                             <tbody>{% for a in efdreinf_erros_envio %}
                                 <tr>
+                                    <td style="display:none;"></td>
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
+                                    <td>{{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}
+                                        {% if a.transmissor_lote_efdreinf_id == transmissor_enviado.id or a.transmissor_lote_efdreinf_error_id == transmissor_enviado.id %}
+                                            <small class="label pull-right bg-green">recente</small>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}{{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}
+                                        {% if a.transmissor_lote_efdreinf_id == transmissor_consultado.id or a.transmissor_lote_efdreinf_error_id == transmissor_consultado.id %}
+                                            <small class="label pull-right bg-green">recente</small>
+                                        {% endif %}
+                                    </td>
                                     <td>{{ a.get_status_display }}</td>
                                     <td>
                                         <div>
@@ -272,19 +294,27 @@
                         status: Enviado)
                     </div>
                     <div class="box-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped automate-data-table">
                             <thead>
                             <tr>
-                                <th width="300px">Evento</th>
+                                <th style="display:none;"></th>
+                                <th width="30px">Evento</th>
                                 <th>Identidade</th>
+                                <th>Data/Hora de Envio</th>
                                 <th>Status</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for a in efdreinf_enviados %}
                                 <tr>
+                                    <td style="display:none;"></td>
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
+                                    <td>{{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}
+                                        {% if a.transmissor_lote_efdreinf_id == transmissor_enviado.id or a.transmissor_lote_efdreinf_error_id == transmissor_enviado.id %}
+                                            <small class="label pull-right bg-green">recente</small>
+                                        {% endif %}
+                                    </td>
                                     <td>{{ a.get_status_display }}</td>
                                 </tr>
                             {% endfor %}
@@ -301,20 +331,34 @@
                         status: Processado)
                     </div>
                     <div class="box-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped automate-data-table">
                             <thead>
                             <tr>
-                                <th width="300px">Evento</th>
+                                <th style="display:none;"></th>
+                                <th width="30px">Evento</th>
                                 <th>Identidade</th>
+                                <th>Data/Hora de Envio</th>
+                                <th>Data/Hora de Consulta</th>
                                 <th>Status</th>
-                                <th width="300px">Recibo</th>
+                                <th width="30px">Recibo</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for a in efdreinf_processados %}
                                 <tr>
+                                    <td style="display:none;"></td>
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
+                                    <td>{{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}
+                                        {% if a.transmissor_lote_efdreinf_id == transmissor_enviado.id or a.transmissor_lote_efdreinf_error_id == transmissor_enviado.id %}
+                                            <small class="label pull-right bg-green">recente</small>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}{{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}
+                                        {% if a.transmissor_lote_efdreinf_id == transmissor_consultado.id or a.transmissor_lote_efdreinf_error_id == transmissor_consultado.id %}
+                                            <small class="label pull-right bg-green">recente</small>
+                                        {% endif %}
+                                    </td>
                                     <td>{{ a.get_status_display }}</td>
                                     <td>
                                         <div>
@@ -376,7 +420,7 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th width="300px">Evento</th>
+                            <th width="30px">Evento</th>
                             <th>Identidade</th>
                             <th>Status</th>
                         </tr>
@@ -395,7 +439,7 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th width="300px">Evento</th>
+                            <th width="30px">Evento</th>
                             <th>Identidade</th>
                             <th>Status</th>
                         </tr>
@@ -414,7 +458,7 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th width="300px">Evento</th>
+                            <th width="30px">Evento</th>
                             <th>Identidade</th>
                             <th>Status</th>
                         </tr>
@@ -433,7 +477,7 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th width="300px">Evento</th>
+                            <th width="30px">Evento</th>
                             <th>Identidade</th>
                             <th>Status</th>
                         </tr>
@@ -452,8 +496,10 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th width="300px">Evento</th>
+                            <th width="30px">Evento</th>
                             <th>Identidade</th>
+                            <th>Data/Hora de Envio</th>
+                            <th>Data/Hora de Consulta</th>
                             <th>Status</th>
                         </tr>
                         </thead>
@@ -462,6 +508,8 @@
                             <tr>
                                 <td>{{ a.evento }}</td>
                                 <td>{{ a.identidade }}</td>
+                                <td>{{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}</td>
+                                <td>{{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}</td>
                                 <td>{{ a.get_status_display }}</td>
                             </tr>
                         {% endfor %}
@@ -471,8 +519,9 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th width="300px">Evento</th>
+                            <th width="30px">Evento</th>
                             <th>Identidade</th>
+                            <th>Data/Hora de Envio</th>
                             <th>Status</th>
                         </tr>
                         </thead>
@@ -481,6 +530,7 @@
                             <tr>
                                 <td>{{ a.evento }}</td>
                                 <td>{{ a.identidade }}</td>
+                                <td>{{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}</td>
                                 <td>{{ a.get_status_display }}</td>
                             </tr>
                         {% endfor %}
@@ -490,8 +540,10 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th width="300px">Evento</th>
+                            <th width="30px">Evento</th>
                             <th>Identidade</th>
+                            <th>Data/Hora de Envio</th>
+                            <th>Data/Hora de Consulta</th>
                             <th>Status</th>
                         </tr>
                         </thead>
@@ -500,6 +552,8 @@
                             <tr>
                                 <td>{{ a.evento }}</td>
                                 <td>{{ a.identidade }}</td>
+                                <td>{{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}</td>
+                                <td>{{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}</td>
                                 <td>{{ a.get_status_display }}</td>
                             </tr>
                         {% endfor %}

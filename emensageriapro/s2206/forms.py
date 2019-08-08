@@ -49,16 +49,16 @@ class form_s2206_alvarajudicial(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2206_alvarajudicial, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2206_alvarajudicial, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -70,18 +70,18 @@ class form_s2206_alvarajudicial(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2206alvaraJudicial
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -89,16 +89,16 @@ class form_s2206_aprend(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2206_aprend, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2206_aprend, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -110,18 +110,18 @@ class form_s2206_aprend(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2206aprend
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -129,16 +129,16 @@ class form_s2206_filiacaosindical(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2206_filiacaosindical, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2206_filiacaosindical, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -150,18 +150,18 @@ class form_s2206_filiacaosindical(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2206filiacaoSindical
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -170,16 +170,16 @@ class form_s2206_horcontratual(forms.ModelForm):
     qtdhrssem = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False, )
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2206_horcontratual, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2206_horcontratual, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -191,18 +191,18 @@ class form_s2206_horcontratual(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2206horContratual
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -210,16 +210,16 @@ class form_s2206_horario(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2206_horario, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2206_horario, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -231,18 +231,18 @@ class form_s2206_horario(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2206horario
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -250,16 +250,16 @@ class form_s2206_infoceletista(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2206_infoceletista, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2206_infoceletista, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -271,18 +271,18 @@ class form_s2206_infoceletista(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2206infoCeletista
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -290,16 +290,16 @@ class form_s2206_infoestatutario(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2206_infoestatutario, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2206_infoestatutario, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -311,18 +311,18 @@ class form_s2206_infoestatutario(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2206infoEstatutario
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -330,16 +330,16 @@ class form_s2206_localtrabdom(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2206_localtrabdom, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2206_localtrabdom, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -351,18 +351,18 @@ class form_s2206_localtrabdom(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2206localTrabDom
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -370,16 +370,16 @@ class form_s2206_localtrabgeral(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2206_localtrabgeral, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2206_localtrabgeral, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -391,18 +391,18 @@ class form_s2206_localtrabgeral(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2206localTrabGeral
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -410,16 +410,16 @@ class form_s2206_observacoes(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2206_observacoes, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2206_observacoes, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -431,18 +431,18 @@ class form_s2206_observacoes(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2206observacoes
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -450,16 +450,16 @@ class form_s2206_servpubl(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2206_servpubl, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2206_servpubl, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -471,18 +471,18 @@ class form_s2206_servpubl(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2206servPubl
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -490,16 +490,16 @@ class form_s2206_trabtemp(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2206_trabtemp, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2206_trabtemp, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -511,16 +511,16 @@ class form_s2206_trabtemp(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2206trabTemp
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]

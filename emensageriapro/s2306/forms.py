@@ -49,16 +49,16 @@ class form_s2306_ageintegracao(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2306_ageintegracao, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2306_ageintegracao, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -70,18 +70,18 @@ class form_s2306_ageintegracao(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2306ageIntegracao
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -89,16 +89,16 @@ class form_s2306_cargofuncao(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2306_cargofuncao, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2306_cargofuncao, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -110,18 +110,18 @@ class form_s2306_cargofuncao(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2306cargoFuncao
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -129,16 +129,16 @@ class form_s2306_infocomplementares(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2306_infocomplementares, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2306_infocomplementares, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -150,18 +150,18 @@ class form_s2306_infocomplementares(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2306infoComplementares
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -170,16 +170,16 @@ class form_s2306_infoestagiario(forms.ModelForm):
     vlrbolsa = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2306_infoestagiario, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2306_infoestagiario, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -191,18 +191,18 @@ class form_s2306_infoestagiario(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2306infoEstagiario
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -210,16 +210,16 @@ class form_s2306_infotrabcedido(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2306_infotrabcedido, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2306_infotrabcedido, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -231,18 +231,18 @@ class form_s2306_infotrabcedido(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2306infoTrabCedido
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -251,16 +251,16 @@ class form_s2306_remuneracao(forms.ModelForm):
     vrsalfx = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2306_remuneracao, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2306_remuneracao, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -272,18 +272,18 @@ class form_s2306_remuneracao(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2306remuneracao
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -291,16 +291,16 @@ class form_s2306_supervisorestagio(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2306_supervisorestagio, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2306_supervisorestagio, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -312,16 +312,16 @@ class form_s2306_supervisorestagio(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2306supervisorEstagio
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]

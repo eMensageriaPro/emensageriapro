@@ -611,6 +611,8 @@ class TransmissorLoteEfdreinf(SoftDeletionModel):
     arquivo_header = models.CharField(max_length=200, blank=True, null=True, )
     arquivo_request = models.CharField(max_length=200, blank=True, null=True, )
     arquivo_response = models.CharField(max_length=200, blank=True, null=True, )
+    data_hora_envio = models.DateTimeField(blank=True, null=True, )
+    data_hora_consulta = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.transmissor) + ' - ' + unicode(self.contribuinte_tpinsc) + ' - ' + unicode(self.contribuinte_nrinsc) + ' - ' + unicode(self.identidade_transmissor) + ' - ' + unicode(self.codigo_status) + ' - ' + unicode(self.retorno_descricao)
@@ -711,6 +713,8 @@ class TransmissorLoteEsocial(SoftDeletionModel):
     arquivo_header = models.CharField(max_length=200, blank=True, null=True, )
     arquivo_request = models.CharField(max_length=200, blank=True, null=True, )
     arquivo_response = models.CharField(max_length=200, blank=True, null=True, )
+    data_hora_envio = models.DateTimeField(blank=True, null=True, )
+    data_hora_consulta = models.DateTimeField(blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.transmissor) + ' - ' + unicode(self.empregador_tpinsc) + ' - ' + unicode(self.empregador_nrinsc) + ' - ' + unicode(self.resposta_codigo) + ' - ' + unicode(self.resposta_descricao)
@@ -816,6 +820,8 @@ class TransmissorEventosEsocial(SoftDeletionModel):
     identidade = models.CharField(max_length=36)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True)
     grupo = models.IntegerField(choices=EVENTOS_GRUPOS)
     tabela = models.CharField(max_length=50)
     tabela_salvar = models.CharField(max_length=50)
@@ -826,6 +832,8 @@ class TransmissorEventosEsocial(SoftDeletionModel):
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    data_hora_envio = models.DateTimeField(blank=True, null=True, )
+    data_hora_consulta = models.DateTimeField(blank=True, null=True, )
 
     def tabela_desvincular_evento(self):
         return self.tabela + '_desvincular_evento'
@@ -865,6 +873,8 @@ class TransmissorEventosEfdreinf(SoftDeletionModel):
     identidade = models.CharField(max_length=36)
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True)
     grupo = models.IntegerField(choices=EVENTOS_GRUPOS)
     tabela = models.CharField(max_length=50)
     tabela_salvar = models.CharField(max_length=50)
@@ -875,6 +885,8 @@ class TransmissorEventosEfdreinf(SoftDeletionModel):
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    data_hora_envio = models.DateTimeField(blank=True, null=True, )
+    data_hora_consulta = models.DateTimeField(blank=True, null=True, )
 
     retornos_r5001 = models.ForeignKey('efdreinf.r5001evtTotal',
         related_name='%(class)s_retornos_r5001', blank=True, null=True)

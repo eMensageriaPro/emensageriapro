@@ -49,16 +49,16 @@ class form_s2210_agentecausador(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2210_agentecausador, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2210_agentecausador, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -70,18 +70,18 @@ class form_s2210_agentecausador(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2210agenteCausador
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -89,16 +89,16 @@ class form_s2210_atestado(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2210_atestado, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2210_atestado, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -110,18 +110,18 @@ class form_s2210_atestado(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2210atestado
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -129,16 +129,16 @@ class form_s2210_catorigem(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2210_catorigem, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2210_catorigem, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -150,18 +150,18 @@ class form_s2210_catorigem(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2210catOrigem
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -169,16 +169,16 @@ class form_s2210_idelocalacid(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2210_idelocalacid, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2210_idelocalacid, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -190,18 +190,18 @@ class form_s2210_idelocalacid(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2210ideLocalAcid
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -209,16 +209,16 @@ class form_s2210_parteatingida(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2210_parteatingida, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2210_parteatingida, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -230,16 +230,16 @@ class form_s2210_parteatingida(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2210parteAtingida
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]

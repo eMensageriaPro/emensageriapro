@@ -106,6 +106,8 @@ class r1000evtInfoContri(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -206,6 +208,8 @@ class r1070evtTabProcesso(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -319,6 +323,8 @@ class r2010evtServTom(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -440,6 +446,8 @@ class r2020evtServPrest(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -552,6 +560,8 @@ class r2030evtAssocDespRec(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -658,6 +668,8 @@ class r2040evtAssocDespRep(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -771,6 +783,8 @@ class r2050evtComProd(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -884,6 +898,8 @@ class r2060evtCPRB(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -994,6 +1010,8 @@ class r2070evtPgtosDivs(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1096,6 +1114,8 @@ class r2098evtReabreEvPer(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1203,6 +1223,8 @@ class r2099evtFechaEvPer(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1317,6 +1339,8 @@ class r3010evtEspDesportivo(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1429,6 +1453,8 @@ class r4010evtRetPF(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1538,6 +1564,8 @@ class r4020evtRetPJ(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1645,6 +1673,8 @@ class r4040evtBenefNId(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1747,6 +1777,8 @@ class r4098evtReab(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1849,6 +1881,8 @@ class r4099evtFech(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1940,6 +1974,8 @@ class r5001evtTotal(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2006,6 +2042,8 @@ class r5011evtTotalContrib(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2083,6 +2121,8 @@ class r9000evtExclusao(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2176,6 +2216,8 @@ class r9001evtTotal(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2242,6 +2284,8 @@ class r9002evtRet(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2308,6 +2352,8 @@ class r9011evtTotalContrib(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2375,6 +2421,8 @@ class r9012evtRetCons(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
+    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)

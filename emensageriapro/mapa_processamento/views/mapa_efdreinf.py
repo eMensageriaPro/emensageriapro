@@ -29,7 +29,7 @@ def listar(request, tab='master', output=None):
     if True:
 
         efdreinf_enviados = TransmissorEventosEfdreinf.objects. \
-            filter(status=STATUS_EVENTO_ENVIADO).exclude(id=0).all()
+            filter(status=STATUS_EVENTO_ENVIADO).exclude(id=0).order_by('-data_hora_envio').all()
 
         efdreinf_validados = TransmissorEventosEfdreinf.objects. \
             filter(status__in=[STATUS_EVENTO_AGUARD_ENVIO,
@@ -49,10 +49,11 @@ def listar(request, tab='master', output=None):
             filter(status=STATUS_EVENTO_VALIDADO_ERRO).exclude(id=0).all()
 
         efdreinf_erros_envio = TransmissorEventosEfdreinf.objects. \
-            filter(status=STATUS_EVENTO_ENVIADO_ERRO).exclude(id=0).all()
+            filter(status=STATUS_EVENTO_ENVIADO_ERRO).exclude(id=0).\
+            order_by('-data_hora_consulta', '-data_hora_envio').all()
 
         efdreinf_processados = TransmissorEventosEfdreinf.objects. \
-            filter(status=STATUS_EVENTO_PROCESSADO).exclude(id=0).all()
+            filter(status=STATUS_EVENTO_PROCESSADO).exclude(id=0).order_by('-data_hora_consulta').all()
 
         quant_cadastrados = len(efdreinf_cadastrados) or 0
         quant_importados = len(efdreinf_importados) or 0
@@ -62,8 +63,20 @@ def listar(request, tab='master', output=None):
         quant_enviados = len(efdreinf_enviados) or 0
         quant_processados = len(efdreinf_processados) or 0
 
+        transmissor_enviado = TransmissorLoteEfdreinf.objects.\
+            order_by('-data_hora_envio').all()
+        if transmissor_enviado:
+            transmissor_enviado = transmissor_enviado[0]
+
+        transmissor_consultado = TransmissorLoteEfdreinf.objects.\
+            order_by('-data_hora_consulta').all()
+        if transmissor_consultado:
+            transmissor_consultado = transmissor_consultado[0]
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'transmissor_enviado': transmissor_enviado,
+            'transmissor_consultado': transmissor_consultado,
             'tab': tab,
             'output': output,
             'efdreinf_enviados': efdreinf_enviados,

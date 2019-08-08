@@ -50,16 +50,16 @@ class form_r2010_infoprocretad(forms.ModelForm):
     valoradic = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2010_infoprocretad, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2010_infoprocretad, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -71,18 +71,18 @@ class form_r2010_infoprocretad(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = r2010infoProcRetAd
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -91,16 +91,16 @@ class form_r2010_infoprocretpr(forms.ModelForm):
     valorprinc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2010_infoprocretpr, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2010_infoprocretpr, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -112,18 +112,18 @@ class form_r2010_infoprocretpr(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = r2010infoProcRetPr
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -140,16 +140,16 @@ class form_r2010_infotpserv(forms.ModelForm):
     vlrnretadic = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2010_infotpserv, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2010_infotpserv, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -161,18 +161,18 @@ class form_r2010_infotpserv(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = r2010infoTpServ
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -181,16 +181,16 @@ class form_r2010_nfs(forms.ModelForm):
     vlrbruto = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2010_nfs, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2010_nfs, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -202,16 +202,16 @@ class form_r2010_nfs(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = r2010nfs
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]

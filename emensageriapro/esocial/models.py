@@ -100,6 +100,8 @@ class s1000evtInfoEmpregador(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -187,6 +189,8 @@ class s1005evtTabEstab(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -274,6 +278,8 @@ class s1010evtTabRubrica(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -361,6 +367,8 @@ class s1020evtTabLotacao(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -448,6 +456,8 @@ class s1030evtTabCargo(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -535,6 +545,8 @@ class s1035evtTabCarreira(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -622,6 +634,8 @@ class s1040evtTabFuncao(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -709,6 +723,8 @@ class s1050evtTabHorTur(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -796,6 +812,8 @@ class s1060evtTabAmbiente(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -883,6 +901,8 @@ class s1070evtTabProcesso(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -970,6 +990,8 @@ class s1080evtTabOperPort(SoftDeletionModel):
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1062,6 +1084,12 @@ class s1200evtRemun(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    retornos_s5001 = models.ForeignKey('esocial.s5001evtBasesTrab',
+        related_name='%(class)s_retornos_s5001', blank=True, null=True, )
+    retornos_s5003 = models.ForeignKey('esocial.s5003evtBasesFGTS',
+        related_name='%(class)s_retornos_s5003', blank=True, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1157,6 +1185,8 @@ class s1202evtRmnRPPS(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1250,6 +1280,8 @@ class s1207evtBenPrRP(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1343,6 +1375,10 @@ class s1210evtPgtos(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    retornos_s5002 = models.ForeignKey('esocial.s5002evtIrrfBenef',
+        related_name='%(class)s_retornos_s5002', blank=True, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1437,6 +1473,8 @@ class s1250evtAqProd(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1531,6 +1569,8 @@ class s1260evtComProd(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1623,6 +1663,8 @@ class s1270evtContratAvNP(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1714,6 +1756,8 @@ class s1280evtInfoComplPer(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1803,6 +1847,14 @@ class s1295evtTotConting(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    retornos_s5011 = models.ForeignKey('esocial.s5011evtCS',
+        related_name='%(class)s_retornos_s5011', blank=True, null=True, )
+    retornos_s5012 = models.ForeignKey('esocial.s5012evtIrrf',
+        related_name='%(class)s_retornos_s5012', blank=True, null=True, )
+    retornos_s5013 = models.ForeignKey('esocial.s5013evtFGTS',
+        related_name='%(class)s_retornos_s5013', blank=True, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1891,6 +1943,8 @@ class s1298evtReabreEvPer(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1986,6 +2040,14 @@ class s1299evtFechaEvPer(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    retornos_s5011 = models.ForeignKey('esocial.s5011evtCS',
+        related_name='%(class)s_retornos_s5011', blank=True, null=True, )
+    retornos_s5012 = models.ForeignKey('esocial.s5012evtIrrf',
+        related_name='%(class)s_retornos_s5012', blank=True, null=True, )
+    retornos_s5013 = models.ForeignKey('esocial.s5013evtFGTS',
+        related_name='%(class)s_retornos_s5013', blank=True, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2082,6 +2144,8 @@ class s1300evtContrSindPatr(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2172,6 +2236,8 @@ class s2190evtAdmPrelim(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2295,6 +2361,8 @@ class s2200evtAdmissao(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2415,6 +2483,8 @@ class s2205evtAltCadastral(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2529,6 +2599,8 @@ class s2206evtAltContratual(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2654,6 +2726,8 @@ class s2210evtCAT(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2774,6 +2848,8 @@ class s2220evtMonit(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2885,6 +2961,8 @@ class s2221evtToxic(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2979,6 +3057,8 @@ class s2230evtAfastTemp(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3070,6 +3150,8 @@ class s2231evtCessao(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3166,6 +3248,8 @@ class s2240evtExpRisco(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3259,6 +3343,8 @@ class s2241evtInsApo(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3359,6 +3445,8 @@ class s2245evtTreiCap(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3453,6 +3541,8 @@ class s2250evtAvPrevio(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3553,6 +3643,8 @@ class s2260evtConvInterm(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3657,6 +3749,8 @@ class s2298evtReintegr(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3765,6 +3859,12 @@ class s2299evtDeslig(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    retornos_s5001 = models.ForeignKey('esocial.s5001evtBasesTrab',
+        related_name='%(class)s_retornos_s5001', blank=True, null=True, )
+    retornos_s5003 = models.ForeignKey('esocial.s5003evtBasesFGTS',
+        related_name='%(class)s_retornos_s5003', blank=True, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3879,6 +3979,8 @@ class s2300evtTSVInicio(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3982,6 +4084,8 @@ class s2306evtTSVAltContr(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4080,6 +4184,12 @@ class s2399evtTSVTermino(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    retornos_s5001 = models.ForeignKey('esocial.s5001evtBasesTrab',
+        related_name='%(class)s_retornos_s5001', blank=True, null=True, )
+    retornos_s5003 = models.ForeignKey('esocial.s5003evtBasesFGTS',
+        related_name='%(class)s_retornos_s5003', blank=True, null=True, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4186,6 +4296,8 @@ class s2400evtCdBenefIn(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4293,6 +4405,8 @@ class s2405evtCdBenefAlt(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4399,6 +4513,8 @@ class s2410evtCdBenIn(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4504,6 +4620,8 @@ class s2416evtCdBenAlt(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4603,6 +4721,8 @@ class s2420evtCdBenTerm(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4694,6 +4814,8 @@ class s3000evtExclusao(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4779,6 +4901,8 @@ class s5001evtBasesTrab(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4834,6 +4958,8 @@ class s5002evtIrrfBenef(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4890,6 +5016,8 @@ class s5003evtBasesFGTS(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4946,6 +5074,8 @@ class s5011evtCS(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -5002,6 +5132,8 @@ class s5012evtIrrf(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -5056,6 +5188,8 @@ class s5013evtFGTS(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
+    transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.identidade)

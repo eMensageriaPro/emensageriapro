@@ -48,7 +48,9 @@ from emensageriapro.mensageiro.functions.funcoes import TRANSMISSOR_STATUS_ENVIA
 def definir_status_evento(transmissor_lote_esocial_id):
 
     from django.apps import apps
+
     app_models = apps.get_app_config('esocial').get_models()
+
     for model in app_models:
         lista = model.objects.filter(transmissor_lote_esocial_id=transmissor_lote_esocial_id).all()
 
@@ -57,7 +59,8 @@ def definir_status_evento(transmissor_lote_esocial_id):
                 model.objects.filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO, ocorrencias=None)
 
             elif a.transmissor_lote_esocial.status == TRANSMISSOR_STATUS_ENVIADO_ERRO:
-                model.objects.filter(id=a.id).update(transmissor_lote_esocial=None)
+                model.objects.filter(id=a.id).update(transmissor_lote_esocial=None,
+                                                     transmissor_lote_esocial_error=transmissor_lote_esocial_id)
 
 
 
@@ -368,7 +371,8 @@ def read_retornoEvento(doc, transmissor_lote_id):
                     update(status=STATUS_EVENTO_ENVIADO_ERRO,
                            ocorrencias=get_ocorrencias(retorno_evento_id),
                            retornos_eventos_id=retorno_evento_id,
-                           transmissor_lote_esocial_id=None)
+                           transmissor_lote_esocial_id=None,
+                           transmissor_lote_esocial_error=transmissor_lote_id)
             
             elif codigo_resposta >= 201 and codigo_resposta < 300 and model._meta.object_name not in EVENTOS_RETORNO:
 
@@ -377,7 +381,8 @@ def read_retornoEvento(doc, transmissor_lote_id):
                     transmissor_lote_esocial_id=transmissor_lote_id).\
                     update(status=STATUS_EVENTO_PROCESSADO,
                            ocorrencias=get_ocorrencias(retorno_evento_id),
-                           retornos_eventos_id=retorno_evento_id)
+                           retornos_eventos_id=retorno_evento_id,
+                           transmissor_lote_esocial_error_id=None)
 
     return retorno_evento_dados
 

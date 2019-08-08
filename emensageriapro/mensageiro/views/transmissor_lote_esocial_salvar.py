@@ -679,12 +679,18 @@ def salvar(request, pk=None, tab='master', output=None):
 
             transmissor_lote_esocial = None
 
+        from django.db.models import Q
+
         if transmissor_lote_esocial:
-            transmissor_eventos_esocial_lista = TransmissorEventosEsocial.objects.filter(transmissor_lote_esocial_id=transmissor_lote_esocial.id).all()
-            transmissor_eventos_esocial_totalizacoes_lista = TransmissorEventosEsocialTotalizacoes.objects.filter(transmissor_lote_esocial_id=transmissor_lote_esocial.id).all()
+            transmissor_eventos_esocial_lista = TransmissorEventosEsocial.objects.\
+                filter(Q(transmissor_lote_esocial_id=transmissor_lote_esocial.id) | Q(transmissor_lote_esocial_error_id=transmissor_lote_esocial.id)).all()
+            transmissor_eventos_esocial_totalizacoes_lista = TransmissorEventosEsocialTotalizacoes.objects.\
+                filter(transmissor_lote_esocial_id=transmissor_lote_esocial.id).all()
+
         else:
             transmissor_eventos_esocial_lista = None
             transmissor_eventos_esocial_totalizacoes_lista = None
+
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
 
@@ -815,7 +821,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'data': datetime.datetime.now(),
             'tabelas_secundarias': tabelas_secundarias,
             'transmissor_eventos_esocial_lista': transmissor_eventos_esocial_lista,
-'transmissor_eventos_esocial_totalizacoes_lista': transmissor_eventos_esocial_totalizacoes_lista,
+            'transmissor_eventos_esocial_totalizacoes_lista': transmissor_eventos_esocial_totalizacoes_lista,
         }
 
         if output == 'pdf':

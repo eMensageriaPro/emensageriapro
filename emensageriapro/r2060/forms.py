@@ -50,16 +50,16 @@ class form_r2060_infoproc(forms.ModelForm):
     vlrcprbsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2060_infoproc, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2060_infoproc, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -71,18 +71,18 @@ class form_r2060_infoproc(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = r2060infoProc
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -91,16 +91,16 @@ class form_r2060_tipoajuste(forms.ModelForm):
     vlrajuste = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2060_tipoajuste, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2060_tipoajuste, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -112,18 +112,18 @@ class form_r2060_tipoajuste(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = r2060tipoAjuste
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -136,16 +136,16 @@ class form_r2060_tipocod(forms.ModelForm):
     vlrcprbapur = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2060_tipocod, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2060_tipocod, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -157,16 +157,16 @@ class form_r2060_tipocod(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = r2060tipoCod
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]

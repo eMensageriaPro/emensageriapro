@@ -24,8 +24,13 @@ CREATE OR REPLACE VIEW public.vw_transmissor_eventos_esocial AS SELECT s1000_evt
     s1000_evtinfoempregador.validacoes,
     s1000_evtinfoempregador.status,
     s1000_evtinfoempregador.retornos_eventos_id,
-    s1000_evtinfoempregador.ocorrencias
+    s1000_evtinfoempregador.ocorrencias,
+    s1000_evtinfoempregador.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1000_evtinfoempregador
+   LEFT JOIN transmissor_lote_esocial lt ON s1000_evtinfoempregador.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1000_evtinfoempregador.transmissor_lote_esocial_error_id = lte.id
   WHERE s1000_evtinfoempregador.ativo = true
  UNION
 SELECT s1005_evttabestab.id,
@@ -50,8 +55,13 @@ SELECT s1005_evttabestab.id,
     s1005_evttabestab.validacoes,
     s1005_evttabestab.status,
     s1005_evttabestab.retornos_eventos_id,
-    s1005_evttabestab.ocorrencias
+    s1005_evttabestab.ocorrencias,
+    s1005_evttabestab.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1005_evttabestab
+   LEFT JOIN transmissor_lote_esocial lt ON s1005_evttabestab.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1005_evttabestab.transmissor_lote_esocial_error_id = lte.id
   WHERE s1005_evttabestab.ativo = true
  UNION
 SELECT s1010_evttabrubrica.id,
@@ -76,8 +86,13 @@ SELECT s1010_evttabrubrica.id,
     s1010_evttabrubrica.validacoes,
     s1010_evttabrubrica.status,
     s1010_evttabrubrica.retornos_eventos_id,
-    s1010_evttabrubrica.ocorrencias
+    s1010_evttabrubrica.ocorrencias,
+    s1010_evttabrubrica.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1010_evttabrubrica
+   LEFT JOIN transmissor_lote_esocial lt ON s1010_evttabrubrica.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1010_evttabrubrica.transmissor_lote_esocial_error_id = lte.id
   WHERE s1010_evttabrubrica.ativo = true
  UNION
 SELECT s1020_evttablotacao.id,
@@ -102,8 +117,13 @@ SELECT s1020_evttablotacao.id,
     s1020_evttablotacao.validacoes,
     s1020_evttablotacao.status,
     s1020_evttablotacao.retornos_eventos_id,
-    s1020_evttablotacao.ocorrencias
+    s1020_evttablotacao.ocorrencias,
+    s1020_evttablotacao.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1020_evttablotacao
+   LEFT JOIN transmissor_lote_esocial lt ON s1020_evttablotacao.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1020_evttablotacao.transmissor_lote_esocial_error_id = lte.id
   WHERE s1020_evttablotacao.ativo = true
  UNION
 SELECT s1030_evttabcargo.id,
@@ -128,8 +148,13 @@ SELECT s1030_evttabcargo.id,
     s1030_evttabcargo.validacoes,
     s1030_evttabcargo.status,
     s1030_evttabcargo.retornos_eventos_id,
-    s1030_evttabcargo.ocorrencias
+    s1030_evttabcargo.ocorrencias,
+    s1030_evttabcargo.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1030_evttabcargo
+   LEFT JOIN transmissor_lote_esocial lt ON s1030_evttabcargo.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1030_evttabcargo.transmissor_lote_esocial_error_id = lte.id
   WHERE s1030_evttabcargo.ativo = true
  UNION
 SELECT s1035_evttabcarreira.id,
@@ -154,8 +179,13 @@ SELECT s1035_evttabcarreira.id,
     s1035_evttabcarreira.validacoes,
     s1035_evttabcarreira.status,
     s1035_evttabcarreira.retornos_eventos_id,
-    s1035_evttabcarreira.ocorrencias
+    s1035_evttabcarreira.ocorrencias,
+    s1035_evttabcarreira.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1035_evttabcarreira
+   LEFT JOIN transmissor_lote_esocial lt ON s1035_evttabcarreira.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1035_evttabcarreira.transmissor_lote_esocial_error_id = lte.id
   WHERE s1035_evttabcarreira.ativo = true
  UNION
 SELECT s1040_evttabfuncao.id,
@@ -180,8 +210,13 @@ SELECT s1040_evttabfuncao.id,
     s1040_evttabfuncao.validacoes,
     s1040_evttabfuncao.status,
     s1040_evttabfuncao.retornos_eventos_id,
-    s1040_evttabfuncao.ocorrencias
+    s1040_evttabfuncao.ocorrencias,
+    s1040_evttabfuncao.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1040_evttabfuncao
+   LEFT JOIN transmissor_lote_esocial lt ON s1040_evttabfuncao.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1040_evttabfuncao.transmissor_lote_esocial_error_id = lte.id
   WHERE s1040_evttabfuncao.ativo = true
  UNION
 SELECT s1050_evttabhortur.id,
@@ -206,8 +241,13 @@ SELECT s1050_evttabhortur.id,
     s1050_evttabhortur.validacoes,
     s1050_evttabhortur.status,
     s1050_evttabhortur.retornos_eventos_id,
-    s1050_evttabhortur.ocorrencias
+    s1050_evttabhortur.ocorrencias,
+    s1050_evttabhortur.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1050_evttabhortur
+   LEFT JOIN transmissor_lote_esocial lt ON s1050_evttabhortur.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1050_evttabhortur.transmissor_lote_esocial_error_id = lte.id
   WHERE s1050_evttabhortur.ativo = true
  UNION
 SELECT s1060_evttabambiente.id,
@@ -232,8 +272,13 @@ SELECT s1060_evttabambiente.id,
     s1060_evttabambiente.validacoes,
     s1060_evttabambiente.status,
     s1060_evttabambiente.retornos_eventos_id,
-    s1060_evttabambiente.ocorrencias
+    s1060_evttabambiente.ocorrencias,
+    s1060_evttabambiente.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1060_evttabambiente
+   LEFT JOIN transmissor_lote_esocial lt ON s1060_evttabambiente.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1060_evttabambiente.transmissor_lote_esocial_error_id = lte.id
   WHERE s1060_evttabambiente.ativo = true
  UNION
 SELECT s1070_evttabprocesso.id,
@@ -258,8 +303,13 @@ SELECT s1070_evttabprocesso.id,
     s1070_evttabprocesso.validacoes,
     s1070_evttabprocesso.status,
     s1070_evttabprocesso.retornos_eventos_id,
-    s1070_evttabprocesso.ocorrencias
+    s1070_evttabprocesso.ocorrencias,
+    s1070_evttabprocesso.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1070_evttabprocesso
+   LEFT JOIN transmissor_lote_esocial lt ON s1070_evttabprocesso.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1070_evttabprocesso.transmissor_lote_esocial_error_id = lte.id
   WHERE s1070_evttabprocesso.ativo = true
  UNION
 SELECT s1080_evttaboperport.id,
@@ -284,8 +334,13 @@ SELECT s1080_evttaboperport.id,
     s1080_evttaboperport.validacoes,
     s1080_evttaboperport.status,
     s1080_evttaboperport.retornos_eventos_id,
-    s1080_evttaboperport.ocorrencias
+    s1080_evttaboperport.ocorrencias,
+    s1080_evttaboperport.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1080_evttaboperport
+   LEFT JOIN transmissor_lote_esocial lt ON s1080_evttaboperport.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1080_evttaboperport.transmissor_lote_esocial_error_id = lte.id
   WHERE s1080_evttaboperport.ativo = true
  UNION
 SELECT s1200_evtremun.id,
@@ -310,8 +365,13 @@ SELECT s1200_evtremun.id,
     s1200_evtremun.validacoes,
     s1200_evtremun.status,
     s1200_evtremun.retornos_eventos_id,
-    s1200_evtremun.ocorrencias
+    s1200_evtremun.ocorrencias,
+    s1200_evtremun.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1200_evtremun
+   LEFT JOIN transmissor_lote_esocial lt ON s1200_evtremun.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1200_evtremun.transmissor_lote_esocial_error_id = lte.id
   WHERE s1200_evtremun.ativo = true
  UNION
 SELECT s1202_evtrmnrpps.id,
@@ -336,8 +396,13 @@ SELECT s1202_evtrmnrpps.id,
     s1202_evtrmnrpps.validacoes,
     s1202_evtrmnrpps.status,
     s1202_evtrmnrpps.retornos_eventos_id,
-    s1202_evtrmnrpps.ocorrencias
+    s1202_evtrmnrpps.ocorrencias,
+    s1202_evtrmnrpps.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1202_evtrmnrpps
+   LEFT JOIN transmissor_lote_esocial lt ON s1202_evtrmnrpps.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1202_evtrmnrpps.transmissor_lote_esocial_error_id = lte.id
   WHERE s1202_evtrmnrpps.ativo = true
  UNION
 SELECT s1207_evtbenprrp.id,
@@ -362,8 +427,13 @@ SELECT s1207_evtbenprrp.id,
     s1207_evtbenprrp.validacoes,
     s1207_evtbenprrp.status,
     s1207_evtbenprrp.retornos_eventos_id,
-    s1207_evtbenprrp.ocorrencias
+    s1207_evtbenprrp.ocorrencias,
+    s1207_evtbenprrp.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1207_evtbenprrp
+   LEFT JOIN transmissor_lote_esocial lt ON s1207_evtbenprrp.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1207_evtbenprrp.transmissor_lote_esocial_error_id = lte.id
   WHERE s1207_evtbenprrp.ativo = true
  UNION
 SELECT s1210_evtpgtos.id,
@@ -388,8 +458,13 @@ SELECT s1210_evtpgtos.id,
     s1210_evtpgtos.validacoes,
     s1210_evtpgtos.status,
     s1210_evtpgtos.retornos_eventos_id,
-    s1210_evtpgtos.ocorrencias
+    s1210_evtpgtos.ocorrencias,
+    s1210_evtpgtos.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1210_evtpgtos
+   LEFT JOIN transmissor_lote_esocial lt ON s1210_evtpgtos.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1210_evtpgtos.transmissor_lote_esocial_error_id = lte.id
   WHERE s1210_evtpgtos.ativo = true
  UNION
 SELECT s1250_evtaqprod.id,
@@ -414,8 +489,13 @@ SELECT s1250_evtaqprod.id,
     s1250_evtaqprod.validacoes,
     s1250_evtaqprod.status,
     s1250_evtaqprod.retornos_eventos_id,
-    s1250_evtaqprod.ocorrencias
+    s1250_evtaqprod.ocorrencias,
+    s1250_evtaqprod.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1250_evtaqprod
+   LEFT JOIN transmissor_lote_esocial lt ON s1250_evtaqprod.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1250_evtaqprod.transmissor_lote_esocial_error_id = lte.id
   WHERE s1250_evtaqprod.ativo = true
  UNION
 SELECT s1260_evtcomprod.id,
@@ -440,8 +520,13 @@ SELECT s1260_evtcomprod.id,
     s1260_evtcomprod.validacoes,
     s1260_evtcomprod.status,
     s1260_evtcomprod.retornos_eventos_id,
-    s1260_evtcomprod.ocorrencias
+    s1260_evtcomprod.ocorrencias,
+    s1260_evtcomprod.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1260_evtcomprod
+   LEFT JOIN transmissor_lote_esocial lt ON s1260_evtcomprod.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1260_evtcomprod.transmissor_lote_esocial_error_id = lte.id
   WHERE s1260_evtcomprod.ativo = true
  UNION
 SELECT s1270_evtcontratavnp.id,
@@ -466,8 +551,13 @@ SELECT s1270_evtcontratavnp.id,
     s1270_evtcontratavnp.validacoes,
     s1270_evtcontratavnp.status,
     s1270_evtcontratavnp.retornos_eventos_id,
-    s1270_evtcontratavnp.ocorrencias
+    s1270_evtcontratavnp.ocorrencias,
+    s1270_evtcontratavnp.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1270_evtcontratavnp
+   LEFT JOIN transmissor_lote_esocial lt ON s1270_evtcontratavnp.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1270_evtcontratavnp.transmissor_lote_esocial_error_id = lte.id
   WHERE s1270_evtcontratavnp.ativo = true
  UNION
 SELECT s1280_evtinfocomplper.id,
@@ -492,8 +582,13 @@ SELECT s1280_evtinfocomplper.id,
     s1280_evtinfocomplper.validacoes,
     s1280_evtinfocomplper.status,
     s1280_evtinfocomplper.retornos_eventos_id,
-    s1280_evtinfocomplper.ocorrencias
+    s1280_evtinfocomplper.ocorrencias,
+    s1280_evtinfocomplper.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1280_evtinfocomplper
+   LEFT JOIN transmissor_lote_esocial lt ON s1280_evtinfocomplper.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1280_evtinfocomplper.transmissor_lote_esocial_error_id = lte.id
   WHERE s1280_evtinfocomplper.ativo = true
  UNION
 SELECT s1295_evttotconting.id,
@@ -518,8 +613,13 @@ SELECT s1295_evttotconting.id,
     s1295_evttotconting.validacoes,
     s1295_evttotconting.status,
     s1295_evttotconting.retornos_eventos_id,
-    s1295_evttotconting.ocorrencias
+    s1295_evttotconting.ocorrencias,
+    s1295_evttotconting.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1295_evttotconting
+   LEFT JOIN transmissor_lote_esocial lt ON s1295_evttotconting.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1295_evttotconting.transmissor_lote_esocial_error_id = lte.id
   WHERE s1295_evttotconting.ativo = true
  UNION
 SELECT s1298_evtreabreevper.id,
@@ -544,8 +644,13 @@ SELECT s1298_evtreabreevper.id,
     s1298_evtreabreevper.validacoes,
     s1298_evtreabreevper.status,
     s1298_evtreabreevper.retornos_eventos_id,
-    s1298_evtreabreevper.ocorrencias
+    s1298_evtreabreevper.ocorrencias,
+    s1298_evtreabreevper.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1298_evtreabreevper
+   LEFT JOIN transmissor_lote_esocial lt ON s1298_evtreabreevper.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1298_evtreabreevper.transmissor_lote_esocial_error_id = lte.id
   WHERE s1298_evtreabreevper.ativo = true
  UNION
 SELECT s1299_evtfechaevper.id,
@@ -570,8 +675,13 @@ SELECT s1299_evtfechaevper.id,
     s1299_evtfechaevper.validacoes,
     s1299_evtfechaevper.status,
     s1299_evtfechaevper.retornos_eventos_id,
-    s1299_evtfechaevper.ocorrencias
+    s1299_evtfechaevper.ocorrencias,
+    s1299_evtfechaevper.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1299_evtfechaevper
+   LEFT JOIN transmissor_lote_esocial lt ON s1299_evtfechaevper.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1299_evtfechaevper.transmissor_lote_esocial_error_id = lte.id
   WHERE s1299_evtfechaevper.ativo = true
  UNION
 SELECT s1300_evtcontrsindpatr.id,
@@ -596,8 +706,13 @@ SELECT s1300_evtcontrsindpatr.id,
     s1300_evtcontrsindpatr.validacoes,
     s1300_evtcontrsindpatr.status,
     s1300_evtcontrsindpatr.retornos_eventos_id,
-    s1300_evtcontrsindpatr.ocorrencias
+    s1300_evtcontrsindpatr.ocorrencias,
+    s1300_evtcontrsindpatr.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s1300_evtcontrsindpatr
+   LEFT JOIN transmissor_lote_esocial lt ON s1300_evtcontrsindpatr.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s1300_evtcontrsindpatr.transmissor_lote_esocial_error_id = lte.id
   WHERE s1300_evtcontrsindpatr.ativo = true
  UNION
 SELECT s2190_evtadmprelim.id,
@@ -622,8 +737,13 @@ SELECT s2190_evtadmprelim.id,
     s2190_evtadmprelim.validacoes,
     s2190_evtadmprelim.status,
     s2190_evtadmprelim.retornos_eventos_id,
-    s2190_evtadmprelim.ocorrencias
+    s2190_evtadmprelim.ocorrencias,
+    s2190_evtadmprelim.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2190_evtadmprelim
+   LEFT JOIN transmissor_lote_esocial lt ON s2190_evtadmprelim.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2190_evtadmprelim.transmissor_lote_esocial_error_id = lte.id
   WHERE s2190_evtadmprelim.ativo = true
  UNION
 SELECT s2200_evtadmissao.id,
@@ -648,8 +768,13 @@ SELECT s2200_evtadmissao.id,
     s2200_evtadmissao.validacoes,
     s2200_evtadmissao.status,
     s2200_evtadmissao.retornos_eventos_id,
-    s2200_evtadmissao.ocorrencias
+    s2200_evtadmissao.ocorrencias,
+    s2200_evtadmissao.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2200_evtadmissao
+   LEFT JOIN transmissor_lote_esocial lt ON s2200_evtadmissao.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2200_evtadmissao.transmissor_lote_esocial_error_id = lte.id
   WHERE s2200_evtadmissao.ativo = true
  UNION
 SELECT s2205_evtaltcadastral.id,
@@ -674,8 +799,13 @@ SELECT s2205_evtaltcadastral.id,
     s2205_evtaltcadastral.validacoes,
     s2205_evtaltcadastral.status,
     s2205_evtaltcadastral.retornos_eventos_id,
-    s2205_evtaltcadastral.ocorrencias
+    s2205_evtaltcadastral.ocorrencias,
+    s2205_evtaltcadastral.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2205_evtaltcadastral
+   LEFT JOIN transmissor_lote_esocial lt ON s2205_evtaltcadastral.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2205_evtaltcadastral.transmissor_lote_esocial_error_id = lte.id
   WHERE s2205_evtaltcadastral.ativo = true
  UNION
 SELECT s2206_evtaltcontratual.id,
@@ -700,8 +830,13 @@ SELECT s2206_evtaltcontratual.id,
     s2206_evtaltcontratual.validacoes,
     s2206_evtaltcontratual.status,
     s2206_evtaltcontratual.retornos_eventos_id,
-    s2206_evtaltcontratual.ocorrencias
+    s2206_evtaltcontratual.ocorrencias,
+    s2206_evtaltcontratual.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2206_evtaltcontratual
+   LEFT JOIN transmissor_lote_esocial lt ON s2206_evtaltcontratual.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2206_evtaltcontratual.transmissor_lote_esocial_error_id = lte.id
   WHERE s2206_evtaltcontratual.ativo = true
  UNION
 SELECT s2210_evtcat.id,
@@ -726,8 +861,13 @@ SELECT s2210_evtcat.id,
     s2210_evtcat.validacoes,
     s2210_evtcat.status,
     s2210_evtcat.retornos_eventos_id,
-    s2210_evtcat.ocorrencias
+    s2210_evtcat.ocorrencias,
+    s2210_evtcat.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2210_evtcat
+   LEFT JOIN transmissor_lote_esocial lt ON s2210_evtcat.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2210_evtcat.transmissor_lote_esocial_error_id = lte.id
   WHERE s2210_evtcat.ativo = true
  UNION
 SELECT s2220_evtmonit.id,
@@ -752,8 +892,13 @@ SELECT s2220_evtmonit.id,
     s2220_evtmonit.validacoes,
     s2220_evtmonit.status,
     s2220_evtmonit.retornos_eventos_id,
-    s2220_evtmonit.ocorrencias
+    s2220_evtmonit.ocorrencias,
+    s2220_evtmonit.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2220_evtmonit
+   LEFT JOIN transmissor_lote_esocial lt ON s2220_evtmonit.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2220_evtmonit.transmissor_lote_esocial_error_id = lte.id
   WHERE s2220_evtmonit.ativo = true
  UNION
 SELECT s2221_evttoxic.id,
@@ -778,8 +923,13 @@ SELECT s2221_evttoxic.id,
     s2221_evttoxic.validacoes,
     s2221_evttoxic.status,
     s2221_evttoxic.retornos_eventos_id,
-    s2221_evttoxic.ocorrencias
+    s2221_evttoxic.ocorrencias,
+    s2221_evttoxic.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2221_evttoxic
+   LEFT JOIN transmissor_lote_esocial lt ON s2221_evttoxic.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2221_evttoxic.transmissor_lote_esocial_error_id = lte.id
   WHERE s2221_evttoxic.ativo = true
  UNION
 SELECT s2230_evtafasttemp.id,
@@ -804,8 +954,13 @@ SELECT s2230_evtafasttemp.id,
     s2230_evtafasttemp.validacoes,
     s2230_evtafasttemp.status,
     s2230_evtafasttemp.retornos_eventos_id,
-    s2230_evtafasttemp.ocorrencias
+    s2230_evtafasttemp.ocorrencias,
+    s2230_evtafasttemp.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2230_evtafasttemp
+   LEFT JOIN transmissor_lote_esocial lt ON s2230_evtafasttemp.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2230_evtafasttemp.transmissor_lote_esocial_error_id = lte.id
   WHERE s2230_evtafasttemp.ativo = true
  UNION
 SELECT s2231_evtcessao.id,
@@ -830,8 +985,13 @@ SELECT s2231_evtcessao.id,
     s2231_evtcessao.validacoes,
     s2231_evtcessao.status,
     s2231_evtcessao.retornos_eventos_id,
-    s2231_evtcessao.ocorrencias
+    s2231_evtcessao.ocorrencias,
+    s2231_evtcessao.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2231_evtcessao
+   LEFT JOIN transmissor_lote_esocial lt ON s2231_evtcessao.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2231_evtcessao.transmissor_lote_esocial_error_id = lte.id
   WHERE s2231_evtcessao.ativo = true
  UNION
 SELECT s2240_evtexprisco.id,
@@ -856,8 +1016,13 @@ SELECT s2240_evtexprisco.id,
     s2240_evtexprisco.validacoes,
     s2240_evtexprisco.status,
     s2240_evtexprisco.retornos_eventos_id,
-    s2240_evtexprisco.ocorrencias
+    s2240_evtexprisco.ocorrencias,
+    s2240_evtexprisco.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2240_evtexprisco
+   LEFT JOIN transmissor_lote_esocial lt ON s2240_evtexprisco.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2240_evtexprisco.transmissor_lote_esocial_error_id = lte.id
   WHERE s2240_evtexprisco.ativo = true
  UNION
 SELECT s2241_evtinsapo.id,
@@ -882,8 +1047,13 @@ SELECT s2241_evtinsapo.id,
     s2241_evtinsapo.validacoes,
     s2241_evtinsapo.status,
     s2241_evtinsapo.retornos_eventos_id,
-    s2241_evtinsapo.ocorrencias
+    s2241_evtinsapo.ocorrencias,
+    s2241_evtinsapo.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2241_evtinsapo
+   LEFT JOIN transmissor_lote_esocial lt ON s2241_evtinsapo.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2241_evtinsapo.transmissor_lote_esocial_error_id = lte.id
   WHERE s2241_evtinsapo.ativo = true
  UNION
 SELECT s2245_evttreicap.id,
@@ -908,8 +1078,13 @@ SELECT s2245_evttreicap.id,
     s2245_evttreicap.validacoes,
     s2245_evttreicap.status,
     s2245_evttreicap.retornos_eventos_id,
-    s2245_evttreicap.ocorrencias
+    s2245_evttreicap.ocorrencias,
+    s2245_evttreicap.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2245_evttreicap
+   LEFT JOIN transmissor_lote_esocial lt ON s2245_evttreicap.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2245_evttreicap.transmissor_lote_esocial_error_id = lte.id
   WHERE s2245_evttreicap.ativo = true
  UNION
 SELECT s2250_evtavprevio.id,
@@ -934,8 +1109,13 @@ SELECT s2250_evtavprevio.id,
     s2250_evtavprevio.validacoes,
     s2250_evtavprevio.status,
     s2250_evtavprevio.retornos_eventos_id,
-    s2250_evtavprevio.ocorrencias
+    s2250_evtavprevio.ocorrencias,
+    s2250_evtavprevio.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2250_evtavprevio
+   LEFT JOIN transmissor_lote_esocial lt ON s2250_evtavprevio.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2250_evtavprevio.transmissor_lote_esocial_error_id = lte.id
   WHERE s2250_evtavprevio.ativo = true
  UNION
 SELECT s2260_evtconvinterm.id,
@@ -960,8 +1140,13 @@ SELECT s2260_evtconvinterm.id,
     s2260_evtconvinterm.validacoes,
     s2260_evtconvinterm.status,
     s2260_evtconvinterm.retornos_eventos_id,
-    s2260_evtconvinterm.ocorrencias
+    s2260_evtconvinterm.ocorrencias,
+    s2260_evtconvinterm.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2260_evtconvinterm
+   LEFT JOIN transmissor_lote_esocial lt ON s2260_evtconvinterm.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2260_evtconvinterm.transmissor_lote_esocial_error_id = lte.id
   WHERE s2260_evtconvinterm.ativo = true
  UNION
 SELECT s2298_evtreintegr.id,
@@ -986,8 +1171,13 @@ SELECT s2298_evtreintegr.id,
     s2298_evtreintegr.validacoes,
     s2298_evtreintegr.status,
     s2298_evtreintegr.retornos_eventos_id,
-    s2298_evtreintegr.ocorrencias
+    s2298_evtreintegr.ocorrencias,
+    s2298_evtreintegr.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2298_evtreintegr
+   LEFT JOIN transmissor_lote_esocial lt ON s2298_evtreintegr.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2298_evtreintegr.transmissor_lote_esocial_error_id = lte.id
   WHERE s2298_evtreintegr.ativo = true
  UNION
 SELECT s2299_evtdeslig.id,
@@ -1012,8 +1202,13 @@ SELECT s2299_evtdeslig.id,
     s2299_evtdeslig.validacoes,
     s2299_evtdeslig.status,
     s2299_evtdeslig.retornos_eventos_id,
-    s2299_evtdeslig.ocorrencias
+    s2299_evtdeslig.ocorrencias,
+    s2299_evtdeslig.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2299_evtdeslig
+   LEFT JOIN transmissor_lote_esocial lt ON s2299_evtdeslig.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2299_evtdeslig.transmissor_lote_esocial_error_id = lte.id
   WHERE s2299_evtdeslig.ativo = true
  UNION
 SELECT s2300_evttsvinicio.id,
@@ -1038,8 +1233,13 @@ SELECT s2300_evttsvinicio.id,
     s2300_evttsvinicio.validacoes,
     s2300_evttsvinicio.status,
     s2300_evttsvinicio.retornos_eventos_id,
-    s2300_evttsvinicio.ocorrencias
+    s2300_evttsvinicio.ocorrencias,
+    s2300_evttsvinicio.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2300_evttsvinicio
+   LEFT JOIN transmissor_lote_esocial lt ON s2300_evttsvinicio.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2300_evttsvinicio.transmissor_lote_esocial_error_id = lte.id
   WHERE s2300_evttsvinicio.ativo = true
  UNION
 SELECT s2306_evttsvaltcontr.id,
@@ -1064,8 +1264,13 @@ SELECT s2306_evttsvaltcontr.id,
     s2306_evttsvaltcontr.validacoes,
     s2306_evttsvaltcontr.status,
     s2306_evttsvaltcontr.retornos_eventos_id,
-    s2306_evttsvaltcontr.ocorrencias
+    s2306_evttsvaltcontr.ocorrencias,
+    s2306_evttsvaltcontr.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2306_evttsvaltcontr
+   LEFT JOIN transmissor_lote_esocial lt ON s2306_evttsvaltcontr.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2306_evttsvaltcontr.transmissor_lote_esocial_error_id = lte.id
   WHERE s2306_evttsvaltcontr.ativo = true
  UNION
 SELECT s2399_evttsvtermino.id,
@@ -1090,8 +1295,13 @@ SELECT s2399_evttsvtermino.id,
     s2399_evttsvtermino.validacoes,
     s2399_evttsvtermino.status,
     s2399_evttsvtermino.retornos_eventos_id,
-    s2399_evttsvtermino.ocorrencias
+    s2399_evttsvtermino.ocorrencias,
+    s2399_evttsvtermino.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2399_evttsvtermino
+   LEFT JOIN transmissor_lote_esocial lt ON s2399_evttsvtermino.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2399_evttsvtermino.transmissor_lote_esocial_error_id = lte.id
   WHERE s2399_evttsvtermino.ativo = true
  UNION
 SELECT s2400_evtcdbenefin.id,
@@ -1116,8 +1326,13 @@ SELECT s2400_evtcdbenefin.id,
     s2400_evtcdbenefin.validacoes,
     s2400_evtcdbenefin.status,
     s2400_evtcdbenefin.retornos_eventos_id,
-    s2400_evtcdbenefin.ocorrencias
+    s2400_evtcdbenefin.ocorrencias,
+    s2400_evtcdbenefin.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2400_evtcdbenefin
+   LEFT JOIN transmissor_lote_esocial lt ON s2400_evtcdbenefin.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2400_evtcdbenefin.transmissor_lote_esocial_error_id = lte.id
   WHERE s2400_evtcdbenefin.ativo = true
  UNION
 SELECT s2405_evtcdbenefalt.id,
@@ -1142,8 +1357,13 @@ SELECT s2405_evtcdbenefalt.id,
     s2405_evtcdbenefalt.validacoes,
     s2405_evtcdbenefalt.status,
     s2405_evtcdbenefalt.retornos_eventos_id,
-    s2405_evtcdbenefalt.ocorrencias
+    s2405_evtcdbenefalt.ocorrencias,
+    s2405_evtcdbenefalt.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2405_evtcdbenefalt
+   LEFT JOIN transmissor_lote_esocial lt ON s2405_evtcdbenefalt.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2405_evtcdbenefalt.transmissor_lote_esocial_error_id = lte.id
   WHERE s2405_evtcdbenefalt.ativo = true
  UNION
 SELECT s2410_evtcdbenin.id,
@@ -1168,8 +1388,13 @@ SELECT s2410_evtcdbenin.id,
     s2410_evtcdbenin.validacoes,
     s2410_evtcdbenin.status,
     s2410_evtcdbenin.retornos_eventos_id,
-    s2410_evtcdbenin.ocorrencias
+    s2410_evtcdbenin.ocorrencias,
+    s2410_evtcdbenin.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2410_evtcdbenin
+   LEFT JOIN transmissor_lote_esocial lt ON s2410_evtcdbenin.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2410_evtcdbenin.transmissor_lote_esocial_error_id = lte.id
   WHERE s2410_evtcdbenin.ativo = true
  UNION
 SELECT s2416_evtcdbenalt.id,
@@ -1194,8 +1419,13 @@ SELECT s2416_evtcdbenalt.id,
     s2416_evtcdbenalt.validacoes,
     s2416_evtcdbenalt.status,
     s2416_evtcdbenalt.retornos_eventos_id,
-    s2416_evtcdbenalt.ocorrencias
+    s2416_evtcdbenalt.ocorrencias,
+    s2416_evtcdbenalt.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2416_evtcdbenalt
+   LEFT JOIN transmissor_lote_esocial lt ON s2416_evtcdbenalt.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2416_evtcdbenalt.transmissor_lote_esocial_error_id = lte.id
   WHERE s2416_evtcdbenalt.ativo = true
  UNION
 SELECT s2420_evtcdbenterm.id,
@@ -1220,8 +1450,13 @@ SELECT s2420_evtcdbenterm.id,
     s2420_evtcdbenterm.validacoes,
     s2420_evtcdbenterm.status,
     s2420_evtcdbenterm.retornos_eventos_id,
-    s2420_evtcdbenterm.ocorrencias
+    s2420_evtcdbenterm.ocorrencias,
+    s2420_evtcdbenterm.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s2420_evtcdbenterm
+   LEFT JOIN transmissor_lote_esocial lt ON s2420_evtcdbenterm.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s2420_evtcdbenterm.transmissor_lote_esocial_error_id = lte.id
   WHERE s2420_evtcdbenterm.ativo = true
  UNION
 SELECT s3000_evtexclusao.id,
@@ -1246,6 +1481,11 @@ SELECT s3000_evtexclusao.id,
     s3000_evtexclusao.validacoes,
     s3000_evtexclusao.status,
     s3000_evtexclusao.retornos_eventos_id,
-    s3000_evtexclusao.ocorrencias
+    s3000_evtexclusao.ocorrencias,
+    s3000_evtexclusao.transmissor_lote_esocial_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM s3000_evtexclusao
+   LEFT JOIN transmissor_lote_esocial lt ON s3000_evtexclusao.transmissor_lote_esocial_id = lt.id
+   LEFT JOIN transmissor_lote_esocial lte ON s3000_evtexclusao.transmissor_lote_esocial_error_id = lte.id
   WHERE s3000_evtexclusao.ativo = true;

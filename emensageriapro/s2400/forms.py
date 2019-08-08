@@ -49,16 +49,16 @@ class form_s2400_brasil(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2400_brasil, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2400_brasil, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -70,18 +70,18 @@ class form_s2400_brasil(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2400brasil
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -89,16 +89,16 @@ class form_s2400_dependente(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2400_dependente, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2400_dependente, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -110,18 +110,18 @@ class form_s2400_dependente(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2400dependente
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -129,16 +129,16 @@ class form_s2400_endereco(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2400_endereco, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2400_endereco, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -150,18 +150,18 @@ class form_s2400_endereco(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2400endereco
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -169,16 +169,16 @@ class form_s2400_exterior(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s2400_exterior, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s2400_exterior, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -190,16 +190,16 @@ class form_s2400_exterior(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s2400exterior
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]

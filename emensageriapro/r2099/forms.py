@@ -49,16 +49,16 @@ class form_r2099_iderespinf(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2099_iderespinf, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2099_iderespinf, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -70,16 +70,16 @@ class form_r2099_iderespinf(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = r2099ideRespInf
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]

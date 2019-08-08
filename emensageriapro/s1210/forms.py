@@ -50,16 +50,16 @@ class form_s1210_deps(forms.ModelForm):
     vrdeddep = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1210_deps, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1210_deps, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -71,18 +71,18 @@ class form_s1210_deps(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1210deps
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -90,16 +90,16 @@ class form_s1210_detpgtoant(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1210_detpgtoant, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1210_detpgtoant, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -111,18 +111,18 @@ class form_s1210_detpgtoant(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1210detPgtoAnt
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -131,16 +131,16 @@ class form_s1210_detpgtoant_infopgtoant(forms.ModelForm):
     vrbcirrf = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1210_detpgtoant_infopgtoant, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1210_detpgtoant_infopgtoant, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -152,18 +152,18 @@ class form_s1210_detpgtoant_infopgtoant(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1210detPgtoAntinfoPgtoAnt
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -172,16 +172,16 @@ class form_s1210_detpgtobenpr(forms.ModelForm):
     vrliq = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1210_detpgtobenpr, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1210_detpgtobenpr, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -193,18 +193,18 @@ class form_s1210_detpgtobenpr(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1210detPgtoBenPr
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -216,16 +216,16 @@ class form_s1210_detpgtobenpr_infopgtoparc(forms.ModelForm):
     vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1210_detpgtobenpr_infopgtoparc, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1210_detpgtobenpr_infopgtoparc, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -237,18 +237,18 @@ class form_s1210_detpgtobenpr_infopgtoparc(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1210detPgtoBenPrinfoPgtoParc
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -260,16 +260,16 @@ class form_s1210_detpgtobenpr_retpgtotot(forms.ModelForm):
     vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1210_detpgtobenpr_retpgtotot, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1210_detpgtobenpr_retpgtotot, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -281,18 +281,18 @@ class form_s1210_detpgtobenpr_retpgtotot(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1210detPgtoBenPrretPgtoTot
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -301,16 +301,16 @@ class form_s1210_detpgtofer(forms.ModelForm):
     vrliq = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1210_detpgtofer, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1210_detpgtofer, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -322,18 +322,18 @@ class form_s1210_detpgtofer(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1210detPgtoFer
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -345,16 +345,16 @@ class form_s1210_detpgtofer_detrubrfer(forms.ModelForm):
     vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1210_detpgtofer_detrubrfer, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1210_detpgtofer_detrubrfer, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -366,18 +366,18 @@ class form_s1210_detpgtofer_detrubrfer(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1210detPgtoFerdetRubrFer
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -386,16 +386,16 @@ class form_s1210_detpgtofer_penalim(forms.ModelForm):
     vlrpensao = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1210_detpgtofer_penalim, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1210_detpgtofer_penalim, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -407,18 +407,18 @@ class form_s1210_detpgtofer_penalim(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1210detPgtoFerpenAlim
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -427,16 +427,16 @@ class form_s1210_detpgtofl(forms.ModelForm):
     vrliq = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1210_detpgtofl, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1210_detpgtofl, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -448,18 +448,18 @@ class form_s1210_detpgtofl(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1210detPgtoFl
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -471,16 +471,16 @@ class form_s1210_detpgtofl_infopgtoparc(forms.ModelForm):
     vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1210_detpgtofl_infopgtoparc, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1210_detpgtofl_infopgtoparc, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -492,18 +492,18 @@ class form_s1210_detpgtofl_infopgtoparc(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1210detPgtoFlinfoPgtoParc
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -512,16 +512,16 @@ class form_s1210_detpgtofl_penalim(forms.ModelForm):
     vlrpensao = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1210_detpgtofl_penalim, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1210_detpgtofl_penalim, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -533,18 +533,18 @@ class form_s1210_detpgtofl_penalim(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1210detPgtoFlpenAlim
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -556,16 +556,16 @@ class form_s1210_detpgtofl_retpgtotot(forms.ModelForm):
     vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1210_detpgtofl_retpgtotot, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1210_detpgtofl_retpgtotot, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -577,18 +577,18 @@ class form_s1210_detpgtofl_retpgtotot(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1210detPgtoFlretPgtoTot
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -596,16 +596,16 @@ class form_s1210_idepgtoext(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1210_idepgtoext, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1210_idepgtoext, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -617,18 +617,18 @@ class form_s1210_idepgtoext(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1210idePgtoExt
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -636,16 +636,16 @@ class form_s1210_infopgto(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1210_infopgto, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1210_infopgto, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -657,16 +657,16 @@ class form_s1210_infopgto(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1210infoPgto
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]

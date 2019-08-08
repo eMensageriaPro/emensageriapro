@@ -49,16 +49,16 @@ class form_s1070_alteracao(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1070_alteracao, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1070_alteracao, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -70,18 +70,18 @@ class form_s1070_alteracao(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1070alteracao
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -89,16 +89,16 @@ class form_s1070_alteracao_dadosprocjud(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1070_alteracao_dadosprocjud, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1070_alteracao_dadosprocjud, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -110,18 +110,18 @@ class form_s1070_alteracao_dadosprocjud(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1070alteracaodadosProcJud
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -129,16 +129,16 @@ class form_s1070_alteracao_infosusp(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1070_alteracao_infosusp, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1070_alteracao_infosusp, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -150,18 +150,18 @@ class form_s1070_alteracao_infosusp(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1070alteracaoinfoSusp
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -169,16 +169,16 @@ class form_s1070_alteracao_novavalidade(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1070_alteracao_novavalidade, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1070_alteracao_novavalidade, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -190,18 +190,18 @@ class form_s1070_alteracao_novavalidade(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1070alteracaonovaValidade
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -209,16 +209,16 @@ class form_s1070_exclusao(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1070_exclusao, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1070_exclusao, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -230,18 +230,18 @@ class form_s1070_exclusao(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1070exclusao
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -249,16 +249,16 @@ class form_s1070_inclusao(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1070_inclusao, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1070_inclusao, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -270,18 +270,18 @@ class form_s1070_inclusao(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1070inclusao
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -289,16 +289,16 @@ class form_s1070_inclusao_dadosprocjud(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1070_inclusao_dadosprocjud, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1070_inclusao_dadosprocjud, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -310,18 +310,18 @@ class form_s1070_inclusao_dadosprocjud(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1070inclusaodadosProcJud
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -329,16 +329,16 @@ class form_s1070_inclusao_infosusp(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1070_inclusao_infosusp, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1070_inclusao_infosusp, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -350,16 +350,16 @@ class form_s1070_inclusao_infosusp(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1070inclusaoinfoSusp
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]

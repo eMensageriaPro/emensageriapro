@@ -51,16 +51,16 @@ class form_s1005_alteracao(forms.ModelForm):
     aliqratajust = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False, )
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1005_alteracao, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1005_alteracao, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -72,18 +72,18 @@ class form_s1005_alteracao(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1005alteracao
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -91,16 +91,16 @@ class form_s1005_alteracao_infocaepf(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1005_alteracao_infocaepf, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1005_alteracao_infocaepf, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -112,18 +112,18 @@ class form_s1005_alteracao_infocaepf(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1005alteracaoinfoCaepf
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -131,16 +131,16 @@ class form_s1005_alteracao_infoenteduc(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1005_alteracao_infoenteduc, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1005_alteracao_infoenteduc, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -152,18 +152,18 @@ class form_s1005_alteracao_infoenteduc(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1005alteracaoinfoEntEduc
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -171,16 +171,16 @@ class form_s1005_alteracao_infoobra(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1005_alteracao_infoobra, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1005_alteracao_infoobra, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -192,18 +192,18 @@ class form_s1005_alteracao_infoobra(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1005alteracaoinfoObra
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -211,16 +211,16 @@ class form_s1005_alteracao_infopcd(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1005_alteracao_infopcd, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1005_alteracao_infopcd, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -232,18 +232,18 @@ class form_s1005_alteracao_infopcd(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1005alteracaoinfoPCD
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -251,16 +251,16 @@ class form_s1005_alteracao_novavalidade(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1005_alteracao_novavalidade, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1005_alteracao_novavalidade, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -272,18 +272,18 @@ class form_s1005_alteracao_novavalidade(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1005alteracaonovaValidade
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -291,16 +291,16 @@ class form_s1005_alteracao_procadmjudfap(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1005_alteracao_procadmjudfap, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1005_alteracao_procadmjudfap, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -312,18 +312,18 @@ class form_s1005_alteracao_procadmjudfap(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1005alteracaoprocAdmJudFap
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -331,16 +331,16 @@ class form_s1005_alteracao_procadmjudrat(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1005_alteracao_procadmjudrat, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1005_alteracao_procadmjudrat, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -352,18 +352,18 @@ class form_s1005_alteracao_procadmjudrat(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1005alteracaoprocAdmJudRat
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -371,16 +371,16 @@ class form_s1005_exclusao(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1005_exclusao, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1005_exclusao, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -392,18 +392,18 @@ class form_s1005_exclusao(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1005exclusao
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -413,16 +413,16 @@ class form_s1005_inclusao(forms.ModelForm):
     aliqratajust = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False, )
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1005_inclusao, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1005_inclusao, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -434,18 +434,18 @@ class form_s1005_inclusao(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1005inclusao
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -453,16 +453,16 @@ class form_s1005_inclusao_infocaepf(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1005_inclusao_infocaepf, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1005_inclusao_infocaepf, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -474,18 +474,18 @@ class form_s1005_inclusao_infocaepf(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1005inclusaoinfoCaepf
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -493,16 +493,16 @@ class form_s1005_inclusao_infoenteduc(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1005_inclusao_infoenteduc, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1005_inclusao_infoenteduc, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -514,18 +514,18 @@ class form_s1005_inclusao_infoenteduc(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1005inclusaoinfoEntEduc
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -533,16 +533,16 @@ class form_s1005_inclusao_infoobra(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1005_inclusao_infoobra, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1005_inclusao_infoobra, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -554,18 +554,18 @@ class form_s1005_inclusao_infoobra(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1005inclusaoinfoObra
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -573,16 +573,16 @@ class form_s1005_inclusao_infopcd(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1005_inclusao_infopcd, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1005_inclusao_infopcd, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -594,18 +594,18 @@ class form_s1005_inclusao_infopcd(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1005inclusaoinfoPCD
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -613,16 +613,16 @@ class form_s1005_inclusao_procadmjudfap(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1005_inclusao_procadmjudfap, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1005_inclusao_procadmjudfap, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -634,18 +634,18 @@ class form_s1005_inclusao_procadmjudfap(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1005inclusaoprocAdmJudFap
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]
 
 
@@ -653,16 +653,16 @@ class form_s1005_inclusao_procadmjudrat(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_s1005_inclusao_procadmjudrat, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_s1005_inclusao_procadmjudrat, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -674,16 +674,16 @@ class form_s1005_inclusao_procadmjudrat(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = s1005inclusaoprocAdmJudRat
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'deativado_em', 
+            'deativado_em',
             'deativado_por', ]

@@ -49,18 +49,18 @@ class form_config_perfis(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-    
+
         super(form_config_perfis, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
-        
+
         if kwargs.has_key('request'):
-        
+
             request = kwargs.pop('request')
-        
+
         m =  super(form_config_perfis, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -72,18 +72,18 @@ class form_config_perfis(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = ConfigPerfis
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',]
 
 
@@ -93,7 +93,7 @@ from django.contrib.auth.models import User
 class form_users(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
-    
+
         super(form_users, self).__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['required'] = True
         self.fields['first_name'].widget.attrs['required'] = True
@@ -102,7 +102,7 @@ class form_users(forms.ModelForm):
         self.fields['is_superuser'].widget.attrs['required'] = True
 
     class Meta:
-    
+
         model = User
         exclude = [
             'password',
@@ -111,20 +111,20 @@ class form_users(forms.ModelForm):
             'groups',
             'user_permissions',
         ]
- 
+
 
 class form_usuarios(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
-    
+
         super (form_usuarios, self ).__init__(*args, **kwargs)
         self.fields['config_perfis'].widget.attrs['required'] = True
         self.fields['name'].widget.attrs['required'] = True
 
     class Meta:
-    
+
         model = Usuarios
-        exclude = [ 
+        exclude = [
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
             'desativado_em', 'desativado_por',

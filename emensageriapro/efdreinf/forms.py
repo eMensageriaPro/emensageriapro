@@ -49,9 +49,9 @@ class form_r1000_evtinfocontri(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r1000_evtinfocontri, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -70,7 +70,7 @@ class form_r1000_evtinfocontri(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r1000_evtinfocontri, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -82,17 +82,17 @@ class form_r1000_evtinfocontri(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r1000evtInfoContri
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -107,16 +107,17 @@ class form_r1000_evtinfocontri(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r1070_evttabprocesso(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r1070_evttabprocesso, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -135,7 +136,7 @@ class form_r1070_evttabprocesso(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r1070_evttabprocesso, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -147,17 +148,17 @@ class form_r1070_evttabprocesso(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r1070evtTabProcesso
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -172,7 +173,8 @@ class form_r1070_evttabprocesso(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r2010_evtservtom(forms.ModelForm):
@@ -185,9 +187,9 @@ class form_r2010_evtservtom(forms.ModelForm):
     vlrtotalnretadic = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2010_evtservtom, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -206,7 +208,7 @@ class form_r2010_evtservtom(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2010_evtservtom, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -218,17 +220,17 @@ class form_r2010_evtservtom(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r2010evtServTom
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -243,7 +245,8 @@ class form_r2010_evtservtom(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r2020_evtservprest(forms.ModelForm):
@@ -256,9 +259,9 @@ class form_r2020_evtservprest(forms.ModelForm):
     vlrtotalnretadic = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2020_evtservprest, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -277,7 +280,7 @@ class form_r2020_evtservprest(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2020_evtservprest, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -289,17 +292,17 @@ class form_r2020_evtservprest(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r2020evtServPrest
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -314,16 +317,17 @@ class form_r2020_evtservprest(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r2030_evtassocdesprec(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2030_evtassocdesprec, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -342,7 +346,7 @@ class form_r2030_evtassocdesprec(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2030_evtassocdesprec, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -354,17 +358,17 @@ class form_r2030_evtassocdesprec(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r2030evtAssocDespRec
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -379,16 +383,17 @@ class form_r2030_evtassocdesprec(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r2040_evtassocdesprep(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2040_evtassocdesprep, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -407,7 +412,7 @@ class form_r2040_evtassocdesprep(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2040_evtassocdesprep, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -419,17 +424,17 @@ class form_r2040_evtassocdesprep(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r2040evtAssocDespRep
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -444,7 +449,8 @@ class form_r2040_evtassocdesprep(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r2050_evtcomprod(forms.ModelForm):
@@ -458,9 +464,9 @@ class form_r2050_evtcomprod(forms.ModelForm):
     vlrsenarsusptotal = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2050_evtcomprod, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -479,7 +485,7 @@ class form_r2050_evtcomprod(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2050_evtcomprod, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -491,17 +497,17 @@ class form_r2050_evtcomprod(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r2050evtComProd
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -516,7 +522,8 @@ class form_r2050_evtcomprod(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r2060_evtcprb(forms.ModelForm):
@@ -526,9 +533,9 @@ class form_r2060_evtcprb(forms.ModelForm):
     vlrcprbsusptotal = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2060_evtcprb, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -547,7 +554,7 @@ class form_r2060_evtcprb(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2060_evtcprb, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -559,17 +566,17 @@ class form_r2060_evtcprb(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r2060evtCPRB
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -584,16 +591,17 @@ class form_r2060_evtcprb(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r2070_evtpgtosdivs(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2070_evtpgtosdivs, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -612,7 +620,7 @@ class form_r2070_evtpgtosdivs(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2070_evtpgtosdivs, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -624,17 +632,17 @@ class form_r2070_evtpgtosdivs(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r2070evtPgtosDivs
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -649,16 +657,17 @@ class form_r2070_evtpgtosdivs(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r2098_evtreabreevper(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2098_evtreabreevper, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -677,7 +686,7 @@ class form_r2098_evtreabreevper(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2098_evtreabreevper, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -689,17 +698,17 @@ class form_r2098_evtreabreevper(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r2098evtReabreEvPer
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -714,16 +723,17 @@ class form_r2098_evtreabreevper(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r2099_evtfechaevper(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r2099_evtfechaevper, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -742,7 +752,7 @@ class form_r2099_evtfechaevper(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r2099_evtfechaevper, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -754,17 +764,17 @@ class form_r2099_evtfechaevper(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r2099evtFechaEvPer
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -779,7 +789,8 @@ class form_r2099_evtfechaevper(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r3010_evtespdesportivo(forms.ModelForm):
@@ -791,9 +802,9 @@ class form_r3010_evtespdesportivo(forms.ModelForm):
     vlrretparc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r3010_evtespdesportivo, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -812,7 +823,7 @@ class form_r3010_evtespdesportivo(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r3010_evtespdesportivo, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -824,17 +835,17 @@ class form_r3010_evtespdesportivo(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r3010evtEspDesportivo
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -849,16 +860,17 @@ class form_r3010_evtespdesportivo(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r4010_evtretpf(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r4010_evtretpf, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -877,7 +889,7 @@ class form_r4010_evtretpf(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r4010_evtretpf, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -889,17 +901,17 @@ class form_r4010_evtretpf(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r4010evtRetPF
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -914,16 +926,17 @@ class form_r4010_evtretpf(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r4020_evtretpj(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r4020_evtretpj, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -942,7 +955,7 @@ class form_r4020_evtretpj(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r4020_evtretpj, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -954,17 +967,17 @@ class form_r4020_evtretpj(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r4020evtRetPJ
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -979,16 +992,17 @@ class form_r4020_evtretpj(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r4040_evtbenefnid(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r4040_evtbenefnid, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -1007,7 +1021,7 @@ class form_r4040_evtbenefnid(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r4040_evtbenefnid, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -1019,17 +1033,17 @@ class form_r4040_evtbenefnid(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r4040evtBenefNId
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -1044,16 +1058,17 @@ class form_r4040_evtbenefnid(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r4098_evtreab(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r4098_evtreab, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -1072,7 +1087,7 @@ class form_r4098_evtreab(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r4098_evtreab, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -1084,17 +1099,17 @@ class form_r4098_evtreab(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r4098evtReab
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -1109,16 +1124,17 @@ class form_r4098_evtreab(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r4099_evtfech(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r4099_evtfech, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -1137,7 +1153,7 @@ class form_r4099_evtfech(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r4099_evtfech, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -1149,17 +1165,17 @@ class form_r4099_evtfech(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r4099evtFech
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -1174,16 +1190,17 @@ class form_r4099_evtfech(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r5001_evttotal(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r5001_evttotal, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
         self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
@@ -1194,7 +1211,7 @@ class form_r5001_evttotal(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r5001_evttotal, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -1206,17 +1223,17 @@ class form_r5001_evttotal(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r5001evtTotal
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'ocorrencias'
             'validacao_precedencia'
@@ -1225,16 +1242,17 @@ class form_r5001_evttotal(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r5011_evttotalcontrib(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r5011_evttotalcontrib, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
         self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
@@ -1245,7 +1263,7 @@ class form_r5011_evttotalcontrib(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r5011_evttotalcontrib, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -1257,17 +1275,17 @@ class form_r5011_evttotalcontrib(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r5011evtTotalContrib
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'ocorrencias'
             'validacao_precedencia'
@@ -1276,16 +1294,17 @@ class form_r5011_evttotalcontrib(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r9000_evtexclusao(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r9000_evtexclusao, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['readonly'] = True
         self.fields['tpamb'].widget.attrs['disabled'] = True
@@ -1304,7 +1323,7 @@ class form_r9000_evtexclusao(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r9000_evtexclusao, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -1316,17 +1335,17 @@ class form_r9000_evtexclusao(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r9000evtExclusao
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
@@ -1341,16 +1360,17 @@ class form_r9000_evtexclusao(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r9001_evttotal(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r9001_evttotal, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
         self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
@@ -1361,7 +1381,7 @@ class form_r9001_evttotal(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r9001_evttotal, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -1373,17 +1393,17 @@ class form_r9001_evttotal(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r9001evtTotal
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'ocorrencias'
             'validacao_precedencia'
@@ -1392,16 +1412,17 @@ class form_r9001_evttotal(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r9002_evtret(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r9002_evtret, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
         self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
@@ -1412,7 +1433,7 @@ class form_r9002_evtret(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r9002_evtret, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -1424,17 +1445,17 @@ class form_r9002_evtret(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r9002evtRet
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'ocorrencias'
             'validacao_precedencia'
@@ -1443,16 +1464,17 @@ class form_r9002_evtret(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r9011_evttotalcontrib(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r9011_evttotalcontrib, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
         self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
@@ -1463,7 +1485,7 @@ class form_r9011_evttotalcontrib(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r9011_evttotalcontrib, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -1475,17 +1497,17 @@ class form_r9011_evttotalcontrib(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r9011evtTotalContrib
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'ocorrencias'
             'validacao_precedencia'
@@ -1494,16 +1516,17 @@ class form_r9011_evttotalcontrib(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]
 
 
 class form_r9012_evtretcons(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        
+
         super(form_r9012_evtretcons, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
         self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
@@ -1514,7 +1537,7 @@ class form_r9012_evtretcons(forms.ModelForm):
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-        
+
         m =  super(form_r9012_evtretcons, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -1526,17 +1549,17 @@ class form_r9012_evtretcons(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
         model = r9012evtRetCons
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'ocorrencias'
             'validacao_precedencia'
@@ -1545,4 +1568,5 @@ class form_r9012_evtretcons(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess' ]
+            'dhprocess'
+            'transmissor_lote_efdreinf_error' ]

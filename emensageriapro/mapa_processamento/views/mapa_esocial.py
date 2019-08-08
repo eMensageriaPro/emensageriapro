@@ -32,7 +32,7 @@ def listar(request, tab='master', output=None):
     if True:
 
         esocial_enviados = TransmissorEventosEsocial.objects.\
-            filter(status=STATUS_EVENTO_ENVIADO).exclude(id=0).all()
+            filter(status=STATUS_EVENTO_ENVIADO).exclude(id=0).order_by('-data_hora_envio').all()
 
         esocial_validados = TransmissorEventosEsocial.objects.\
             filter(status__in=[STATUS_EVENTO_AGUARD_ENVIO,
@@ -52,10 +52,11 @@ def listar(request, tab='master', output=None):
             filter(status=STATUS_EVENTO_VALIDADO_ERRO).exclude(id=0).all()
 
         esocial_erros_envio = TransmissorEventosEsocial.objects.\
-            filter(status=STATUS_EVENTO_ENVIADO_ERRO).exclude(id=0).all()
+            filter(status=STATUS_EVENTO_ENVIADO_ERRO).exclude(id=0).\
+            order_by('-data_hora_consulta', '-data_hora_envio').all()
 
         esocial_processados = TransmissorEventosEsocial.objects.\
-            filter(status=STATUS_EVENTO_PROCESSADO).exclude(id=0).all()
+            filter(status=STATUS_EVENTO_PROCESSADO).exclude(id=0).order_by('-data_hora_consulta').all()
 
         quant_cadastrados = len(esocial_cadastrados) or 0
         quant_importados = len(esocial_importados) or 0
@@ -65,8 +66,20 @@ def listar(request, tab='master', output=None):
         quant_enviados = len(esocial_enviados) or 0
         quant_processados = len(esocial_processados) or 0
 
+        transmissor_enviado = TransmissorLoteEsocial.objects.\
+            order_by('-data_hora_envio').all()
+        if transmissor_enviado:
+            transmissor_enviado = transmissor_enviado[0]
+
+        transmissor_consultado = TransmissorLoteEsocial.objects.\
+            order_by('-data_hora_consulta').all()
+        if transmissor_consultado:
+            transmissor_consultado = transmissor_consultado[0]
+
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'transmissor_enviado': transmissor_enviado,
+            'transmissor_consultado': transmissor_consultado,
             'tab': tab,
             'output': output,
             'esocial_enviados': esocial_enviados,

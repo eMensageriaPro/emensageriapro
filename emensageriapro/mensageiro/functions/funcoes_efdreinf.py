@@ -45,6 +45,7 @@ from emensageriapro.mensageiro.functions.funcoes import TRANSMISSOR_STATUS_CADAS
 
 from emensageriapro.mensageiro.functions.funcoes import retirar_pontuacao_cpf_cnpj
 from emensageriapro.mensageiro.models import *
+from datetime import datetime
 from emensageriapro.mensageiro.functions.funcoes import send
 
 REQUEST_RECEBER_LOTE_EVENTOS_EFDREINF = u"""
@@ -299,7 +300,8 @@ def send_xml(request, transmissor_id, service):
 
                 TransmissorLoteEfdreinf.objects.\
                     filter(id=transmissor_id).\
-                    update(status=TRANSMISSOR_STATUS_ENVIADO)
+                    update(status=TRANSMISSOR_STATUS_ENVIADO,
+                           data_hora_envio=datetime.now())
                 definir_status_evento(transmissor_id)
 
             elif service == 'ConsultasReinf':
@@ -311,7 +313,8 @@ def send_xml(request, transmissor_id, service):
 
                 TransmissorLoteEfdreinf.objects.\
                     filter(id=transmissor_id).\
-                    update(status=TRANSMISSOR_STATUS_CONSULTADO)
+                    update(status=TRANSMISSOR_STATUS_CONSULTADO,
+                           data_hora_consulta=datetime.now())
                 definir_status_evento(transmissor_id)
 
         elif quant_eventos < dados['efdreinf_lote_min'] and service == 'RecepcaoLoteReinf':

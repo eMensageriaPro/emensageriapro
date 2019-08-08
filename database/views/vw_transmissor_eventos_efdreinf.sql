@@ -29,8 +29,13 @@ CREATE OR REPLACE VIEW public.vw_transmissor_eventos_efdreinf AS SELECT r1000_ev
     r1000_evtinfocontri.retornos_r9002_id,
     r1000_evtinfocontri.retornos_r9011_id,
     r1000_evtinfocontri.retornos_r9012_id,
-    r1000_evtinfocontri.ocorrencias
+    r1000_evtinfocontri.ocorrencias,
+    r1000_evtinfocontri.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r1000_evtinfocontri
+   LEFT JOIN transmissor_lote_efdreinf lt ON r1000_evtinfocontri.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r1000_evtinfocontri.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r1000_evtinfocontri.ativo = true
  UNION
 SELECT r1070_evttabprocesso.id,
@@ -60,8 +65,13 @@ SELECT r1070_evttabprocesso.id,
     r1070_evttabprocesso.retornos_r9002_id,
     r1070_evttabprocesso.retornos_r9011_id,
     r1070_evttabprocesso.retornos_r9012_id,
-    r1070_evttabprocesso.ocorrencias
+    r1070_evttabprocesso.ocorrencias,
+    r1070_evttabprocesso.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r1070_evttabprocesso
+   LEFT JOIN transmissor_lote_efdreinf lt ON r1070_evttabprocesso.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r1070_evttabprocesso.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r1070_evttabprocesso.ativo = true
  UNION
 SELECT r2010_evtservtom.id,
@@ -91,8 +101,13 @@ SELECT r2010_evtservtom.id,
     r2010_evtservtom.retornos_r9002_id,
     r2010_evtservtom.retornos_r9011_id,
     r2010_evtservtom.retornos_r9012_id,
-    r2010_evtservtom.ocorrencias
+    r2010_evtservtom.ocorrencias,
+    r2010_evtservtom.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r2010_evtservtom
+   LEFT JOIN transmissor_lote_efdreinf lt ON r2010_evtservtom.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r2010_evtservtom.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r2010_evtservtom.ativo = true
  UNION
 SELECT r2020_evtservprest.id,
@@ -122,8 +137,13 @@ SELECT r2020_evtservprest.id,
     r2020_evtservprest.retornos_r9002_id,
     r2020_evtservprest.retornos_r9011_id,
     r2020_evtservprest.retornos_r9012_id,
-    r2020_evtservprest.ocorrencias
+    r2020_evtservprest.ocorrencias,
+    r2020_evtservprest.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r2020_evtservprest
+   LEFT JOIN transmissor_lote_efdreinf lt ON r2020_evtservprest.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r2020_evtservprest.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r2020_evtservprest.ativo = true
  UNION
 SELECT r2030_evtassocdesprec.id,
@@ -153,8 +173,13 @@ SELECT r2030_evtassocdesprec.id,
     r2030_evtassocdesprec.retornos_r9002_id,
     r2030_evtassocdesprec.retornos_r9011_id,
     r2030_evtassocdesprec.retornos_r9012_id,
-    r2030_evtassocdesprec.ocorrencias
+    r2030_evtassocdesprec.ocorrencias,
+    r2030_evtassocdesprec.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r2030_evtassocdesprec
+   LEFT JOIN transmissor_lote_efdreinf lt ON r2030_evtassocdesprec.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r2030_evtassocdesprec.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r2030_evtassocdesprec.ativo = true
  UNION
 SELECT r2040_evtassocdesprep.id,
@@ -184,8 +209,13 @@ SELECT r2040_evtassocdesprep.id,
     r2040_evtassocdesprep.retornos_r9002_id,
     r2040_evtassocdesprep.retornos_r9011_id,
     r2040_evtassocdesprep.retornos_r9012_id,
-    r2040_evtassocdesprep.ocorrencias
+    r2040_evtassocdesprep.ocorrencias,
+    r2040_evtassocdesprep.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r2040_evtassocdesprep
+   LEFT JOIN transmissor_lote_efdreinf lt ON r2040_evtassocdesprep.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r2040_evtassocdesprep.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r2040_evtassocdesprep.ativo = true
  UNION
 SELECT r2050_evtcomprod.id,
@@ -215,8 +245,13 @@ SELECT r2050_evtcomprod.id,
     r2050_evtcomprod.retornos_r9002_id,
     r2050_evtcomprod.retornos_r9011_id,
     r2050_evtcomprod.retornos_r9012_id,
-    r2050_evtcomprod.ocorrencias
+    r2050_evtcomprod.ocorrencias,
+    r2050_evtcomprod.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r2050_evtcomprod
+   LEFT JOIN transmissor_lote_efdreinf lt ON r2050_evtcomprod.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r2050_evtcomprod.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r2050_evtcomprod.ativo = true
  UNION
 SELECT r2060_evtcprb.id,
@@ -246,8 +281,13 @@ SELECT r2060_evtcprb.id,
     r2060_evtcprb.retornos_r9002_id,
     r2060_evtcprb.retornos_r9011_id,
     r2060_evtcprb.retornos_r9012_id,
-    r2060_evtcprb.ocorrencias
+    r2060_evtcprb.ocorrencias,
+    r2060_evtcprb.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r2060_evtcprb
+   LEFT JOIN transmissor_lote_efdreinf lt ON r2060_evtcprb.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r2060_evtcprb.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r2060_evtcprb.ativo = true
  UNION
 SELECT r2070_evtpgtosdivs.id,
@@ -277,8 +317,13 @@ SELECT r2070_evtpgtosdivs.id,
     r2070_evtpgtosdivs.retornos_r9002_id,
     r2070_evtpgtosdivs.retornos_r9011_id,
     r2070_evtpgtosdivs.retornos_r9012_id,
-    r2070_evtpgtosdivs.ocorrencias
+    r2070_evtpgtosdivs.ocorrencias,
+    r2070_evtpgtosdivs.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r2070_evtpgtosdivs
+   LEFT JOIN transmissor_lote_efdreinf lt ON r2070_evtpgtosdivs.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r2070_evtpgtosdivs.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r2070_evtpgtosdivs.ativo = true
  UNION
 SELECT r2098_evtreabreevper.id,
@@ -308,8 +353,13 @@ SELECT r2098_evtreabreevper.id,
     r2098_evtreabreevper.retornos_r9002_id,
     r2098_evtreabreevper.retornos_r9011_id,
     r2098_evtreabreevper.retornos_r9012_id,
-    r2098_evtreabreevper.ocorrencias
+    r2098_evtreabreevper.ocorrencias,
+    r2098_evtreabreevper.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r2098_evtreabreevper
+   LEFT JOIN transmissor_lote_efdreinf lt ON r2098_evtreabreevper.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r2098_evtreabreevper.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r2098_evtreabreevper.ativo = true
  UNION
 SELECT r2099_evtfechaevper.id,
@@ -339,8 +389,13 @@ SELECT r2099_evtfechaevper.id,
     r2099_evtfechaevper.retornos_r9002_id,
     r2099_evtfechaevper.retornos_r9011_id,
     r2099_evtfechaevper.retornos_r9012_id,
-    r2099_evtfechaevper.ocorrencias
+    r2099_evtfechaevper.ocorrencias,
+    r2099_evtfechaevper.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r2099_evtfechaevper
+   LEFT JOIN transmissor_lote_efdreinf lt ON r2099_evtfechaevper.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r2099_evtfechaevper.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r2099_evtfechaevper.ativo = true
  UNION
 SELECT r3010_evtespdesportivo.id,
@@ -370,8 +425,13 @@ SELECT r3010_evtespdesportivo.id,
     r3010_evtespdesportivo.retornos_r9002_id,
     r3010_evtespdesportivo.retornos_r9011_id,
     r3010_evtespdesportivo.retornos_r9012_id,
-    r3010_evtespdesportivo.ocorrencias
+    r3010_evtespdesportivo.ocorrencias,
+    r3010_evtespdesportivo.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r3010_evtespdesportivo
+   LEFT JOIN transmissor_lote_efdreinf lt ON r3010_evtespdesportivo.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r3010_evtespdesportivo.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r3010_evtespdesportivo.ativo = true
  UNION
 SELECT r4010_evtretpf.id,
@@ -401,8 +461,13 @@ SELECT r4010_evtretpf.id,
     r4010_evtretpf.retornos_r9002_id,
     r4010_evtretpf.retornos_r9011_id,
     r4010_evtretpf.retornos_r9012_id,
-    r4010_evtretpf.ocorrencias
+    r4010_evtretpf.ocorrencias,
+    r4010_evtretpf.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r4010_evtretpf
+   LEFT JOIN transmissor_lote_efdreinf lt ON r4010_evtretpf.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r4010_evtretpf.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r4010_evtretpf.ativo = true
  UNION
 SELECT r4020_evtretpj.id,
@@ -432,8 +497,13 @@ SELECT r4020_evtretpj.id,
     r4020_evtretpj.retornos_r9002_id,
     r4020_evtretpj.retornos_r9011_id,
     r4020_evtretpj.retornos_r9012_id,
-    r4020_evtretpj.ocorrencias
+    r4020_evtretpj.ocorrencias,
+    r4020_evtretpj.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r4020_evtretpj
+   LEFT JOIN transmissor_lote_efdreinf lt ON r4020_evtretpj.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r4020_evtretpj.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r4020_evtretpj.ativo = true
  UNION
 SELECT r4040_evtbenefnid.id,
@@ -463,8 +533,13 @@ SELECT r4040_evtbenefnid.id,
     r4040_evtbenefnid.retornos_r9002_id,
     r4040_evtbenefnid.retornos_r9011_id,
     r4040_evtbenefnid.retornos_r9012_id,
-    r4040_evtbenefnid.ocorrencias
+    r4040_evtbenefnid.ocorrencias,
+    r4040_evtbenefnid.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r4040_evtbenefnid
+   LEFT JOIN transmissor_lote_efdreinf lt ON r4040_evtbenefnid.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r4040_evtbenefnid.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r4040_evtbenefnid.ativo = true
  UNION
 SELECT r4098_evtreab.id,
@@ -494,8 +569,13 @@ SELECT r4098_evtreab.id,
     r4098_evtreab.retornos_r9002_id,
     r4098_evtreab.retornos_r9011_id,
     r4098_evtreab.retornos_r9012_id,
-    r4098_evtreab.ocorrencias
+    r4098_evtreab.ocorrencias,
+    r4098_evtreab.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r4098_evtreab
+   LEFT JOIN transmissor_lote_efdreinf lt ON r4098_evtreab.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r4098_evtreab.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r4098_evtreab.ativo = true
  UNION
 SELECT r4099_evtfech.id,
@@ -525,8 +605,13 @@ SELECT r4099_evtfech.id,
     r4099_evtfech.retornos_r9002_id,
     r4099_evtfech.retornos_r9011_id,
     r4099_evtfech.retornos_r9012_id,
-    r4099_evtfech.ocorrencias
+    r4099_evtfech.ocorrencias,
+    r4099_evtfech.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r4099_evtfech
+   LEFT JOIN transmissor_lote_efdreinf lt ON r4099_evtfech.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r4099_evtfech.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r4099_evtfech.ativo = true
  UNION
 SELECT r9000_evtexclusao.id,
@@ -556,6 +641,11 @@ SELECT r9000_evtexclusao.id,
     r9000_evtexclusao.retornos_r9002_id,
     r9000_evtexclusao.retornos_r9011_id,
     r9000_evtexclusao.retornos_r9012_id,
-    r9000_evtexclusao.ocorrencias
+    r9000_evtexclusao.ocorrencias,
+    r9000_evtexclusao.transmissor_lote_efdreinf_error_id,
+    COALESCE(lt.data_hora_envio, lte.data_hora_envio) AS data_hora_envio,
+    COALESCE(lt.data_hora_consulta, lte.data_hora_consulta) AS data_hora_consulta
    FROM r9000_evtexclusao
+   LEFT JOIN transmissor_lote_efdreinf lt ON r9000_evtexclusao.transmissor_lote_efdreinf_id = lt.id
+   LEFT JOIN transmissor_lote_efdreinf lte ON r9000_evtexclusao.transmissor_lote_efdreinf_error_id = lte.id
   WHERE r9000_evtexclusao.ativo = true;

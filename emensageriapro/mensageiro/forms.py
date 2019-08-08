@@ -49,18 +49,18 @@ class form_arquivos(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-    
+
         super(form_arquivos, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
-        
+
         if kwargs.has_key('request'):
-        
+
             request = kwargs.pop('request')
-        
+
         m =  super(form_arquivos, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -72,73 +72,28 @@ class form_arquivos(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = Arquivos
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',]
-
-
-class form_certificados(forms.ModelForm):
-
-    from django.forms import ModelForm, PasswordInput
-    senha = forms.CharField(widget=PasswordInput())
-
-    def __init__(self, *args, **kwargs):
-    
-        super(form_certificados, self).__init__(*args, **kwargs)
-        
-
-    def save(self, commit=True, *args, **kwargs):
-    
-        request = None
-        
-        if kwargs.has_key('request'):
-        
-            request = kwargs.pop('request')
-        
-        m =  super(form_certificados, self).save(commit=True, *args, **kwargs)
-
-        if request is not None:
-
-            if m.criado_por_id is None:
-                m.criado_por_id = request.user.id
-                m.criado_em = timezone.now()
-            m.modificado_por_id = request.user.id
-            m.modificado_em = timezone.now()
-            m.ativo = True
-            m.save()
-        
-        return m
-        
-    class Meta:
-    
-        model = Certificados
-        exclude = [ 
-            'criado_em', 
-            'criado_por',
-            'modificado_em', 
-            'modificado_por',
-            'desativado_em', 
-            'desativado_por',
-            'senha']
 
 
 class form_importacao_arquivos(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-    
+
         super(form_importacao_arquivos, self).__init__(*args, **kwargs)
-        
+
         self.fields['arquivo'].widget.attrs['readonly'] = True
         self.fields['status'].widget.attrs['readonly'] = True
         self.fields['status'].widget.attrs['disabled'] = True
@@ -151,13 +106,13 @@ class form_importacao_arquivos(forms.ModelForm):
         self.fields['quant_erros'].widget.attrs['readonly'] = True
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
-        
+
         if kwargs.has_key('request'):
-        
+
             request = kwargs.pop('request')
-        
+
         m =  super(form_importacao_arquivos, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -169,18 +124,18 @@ class form_importacao_arquivos(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = ImportacaoArquivos
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'quant_processado']
 
@@ -189,9 +144,9 @@ class form_importacao_arquivos_eventos(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-    
+
         super(form_importacao_arquivos_eventos, self).__init__(*args, **kwargs)
-        
+
         self.fields['importacao_arquivos'].widget.attrs['readonly'] = True
         self.fields['importacao_arquivos'].widget.attrs['disabled'] = True
         self.fields['arquivo'].widget.attrs['readonly'] = True
@@ -205,13 +160,13 @@ class form_importacao_arquivos_eventos(forms.ModelForm):
         self.fields['validacoes'].widget.attrs['readonly'] = True
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
-        
+
         if kwargs.has_key('request'):
-        
+
             request = kwargs.pop('request')
-        
+
         m =  super(form_importacao_arquivos_eventos, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -223,18 +178,18 @@ class form_importacao_arquivos_eventos(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = ImportacaoArquivosEventos
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',]
 
 
@@ -242,9 +197,9 @@ class form_regras_validacao(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-    
+
         super(form_regras_validacao, self).__init__(*args, **kwargs)
-        
+
         self.fields['versao'].widget.attrs['readonly'] = True
         self.fields['obrigatorio'].widget.attrs['readonly'] = True
         self.fields['obrigatorio'].widget.attrs['disabled'] = True
@@ -255,13 +210,13 @@ class form_regras_validacao(forms.ModelForm):
         self.fields['validacoes'].widget.attrs['readonly'] = True
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
-        
+
         if kwargs.has_key('request'):
-        
+
             request = kwargs.pop('request')
-        
+
         m =  super(form_regras_validacao, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -273,18 +228,18 @@ class form_regras_validacao(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = RegrasDeValidacao
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',]
 
 
@@ -292,18 +247,18 @@ class form_relatorios(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-    
+
         super(form_relatorios, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
-        
+
         if kwargs.has_key('request'):
-        
+
             request = kwargs.pop('request')
-        
+
         m =  super(form_relatorios, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -315,18 +270,18 @@ class form_relatorios(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = Relatorios
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',]
 
 
@@ -336,9 +291,9 @@ class form_retornos_eventos(forms.ModelForm):
     qtdhrssem = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False, )
 
     def __init__(self, *args, **kwargs):
-    
+
         super(form_retornos_eventos, self).__init__(*args, **kwargs)
-        
+
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['recepcao_tp_amb'].widget.attrs['readonly'] = True
         self.fields['recepcao_tp_amb'].widget.attrs['disabled'] = True
@@ -397,13 +352,13 @@ class form_retornos_eventos(forms.ModelForm):
         self.fields['tmpparc'].widget.attrs['disabled'] = True
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
-        
+
         if kwargs.has_key('request'):
-        
+
             request = kwargs.pop('request')
-        
+
         m =  super(form_retornos_eventos, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -415,18 +370,18 @@ class form_retornos_eventos(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = RetornosEventos
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',]
 
 
@@ -434,18 +389,18 @@ class form_retornos_eventos_horarios(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-    
+
         super(form_retornos_eventos_horarios, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
-        
+
         if kwargs.has_key('request'):
-        
+
             request = kwargs.pop('request')
-        
+
         m =  super(form_retornos_eventos_horarios, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -457,18 +412,18 @@ class form_retornos_eventos_horarios(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = RetornosEventosHorarios
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',]
 
 
@@ -476,18 +431,18 @@ class form_retornos_eventos_intervalos(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-    
+
         super(form_retornos_eventos_intervalos, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
-        
+
         if kwargs.has_key('request'):
-        
+
             request = kwargs.pop('request')
-        
+
         m =  super(form_retornos_eventos_intervalos, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -499,18 +454,18 @@ class form_retornos_eventos_intervalos(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = RetornosEventosIntervalos
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',]
 
 
@@ -518,9 +473,9 @@ class form_retornos_eventos_ocorrencias(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-    
+
         super(form_retornos_eventos_ocorrencias, self).__init__(*args, **kwargs)
-        
+
         self.fields['retornos_eventos'].widget.attrs['readonly'] = True
         self.fields['retornos_eventos'].widget.attrs['disabled'] = True
         self.fields['tipo'].widget.attrs['readonly'] = True
@@ -529,13 +484,13 @@ class form_retornos_eventos_ocorrencias(forms.ModelForm):
         self.fields['localizacao'].widget.attrs['readonly'] = True
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
-        
+
         if kwargs.has_key('request'):
-        
+
             request = kwargs.pop('request')
-        
+
         m =  super(form_retornos_eventos_ocorrencias, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -547,18 +502,18 @@ class form_retornos_eventos_ocorrencias(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = RetornosEventosOcorrencias
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'descricao']
 
@@ -567,18 +522,18 @@ class form_transmissores(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-    
+
         super(form_transmissores, self).__init__(*args, **kwargs)
-        
+
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
-        
+
         if kwargs.has_key('request'):
-        
+
             request = kwargs.pop('request')
-        
+
         m =  super(form_transmissores, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -590,18 +545,18 @@ class form_transmissores(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = TransmissorLote
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',]
 
 
@@ -609,9 +564,9 @@ class form_transmissor_lote_efdreinf(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-    
+
         super(form_transmissor_lote_efdreinf, self).__init__(*args, **kwargs)
-        
+
         self.fields['status'].widget.attrs['readonly'] = True
         self.fields['status'].widget.attrs['disabled'] = True
         self.fields['identidade_transmissor'].widget.attrs['readonly'] = True
@@ -625,13 +580,13 @@ class form_transmissor_lote_efdreinf(forms.ModelForm):
         self.fields['tempo_estimado_conclusao'].widget.attrs['readonly'] = True
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
-        
+
         if kwargs.has_key('request'):
-        
+
             request = kwargs.pop('request')
-        
+
         m =  super(form_transmissor_lote_efdreinf, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -643,32 +598,34 @@ class form_transmissor_lote_efdreinf(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = TransmissorLoteEfdreinf
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'retorno_descricao'
             'arquivo_header'
             'arquivo_request'
-            'arquivo_response']
+            'arquivo_response'
+            'data_hora_envio'
+            'data_hora_consulta']
 
 
 class form_transmissor_lote_efdreinf_ocorrencias(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-    
+
         super(form_transmissor_lote_efdreinf_ocorrencias, self).__init__(*args, **kwargs)
-        
+
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
         self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_efdreinf'].widget.attrs['required'] = True
@@ -681,13 +638,13 @@ class form_transmissor_lote_efdreinf_ocorrencias(forms.ModelForm):
         self.fields['localizacao'].widget.attrs['required'] = True
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
-        
+
         if kwargs.has_key('request'):
-        
+
             request = kwargs.pop('request')
-        
+
         m =  super(form_transmissor_lote_efdreinf_ocorrencias, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -699,18 +656,18 @@ class form_transmissor_lote_efdreinf_ocorrencias(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = TransmissorLoteEfdreinfOcorrencias
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'descricao']
 
@@ -719,9 +676,9 @@ class form_transmissor_lote_esocial(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-    
+
         super(form_transmissor_lote_esocial, self).__init__(*args, **kwargs)
-        
+
         self.fields['status'].widget.attrs['readonly'] = True
         self.fields['status'].widget.attrs['disabled'] = True
         self.fields['resposta_codigo'].widget.attrs['readonly'] = True
@@ -733,13 +690,13 @@ class form_transmissor_lote_esocial(forms.ModelForm):
         self.fields['tempo_estimado_conclusao'].widget.attrs['readonly'] = True
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
-        
+
         if kwargs.has_key('request'):
-        
+
             request = kwargs.pop('request')
-        
+
         m =  super(form_transmissor_lote_esocial, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -751,32 +708,34 @@ class form_transmissor_lote_esocial(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = TransmissorLoteEsocial
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'resposta_descricao'
             'arquivo_header'
             'arquivo_request'
-            'arquivo_response']
+            'arquivo_response'
+            'data_hora_envio'
+            'data_hora_consulta']
 
 
 class form_transmissor_lote_esocial_ocorrencias(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-    
+
         super(form_transmissor_lote_esocial_ocorrencias, self).__init__(*args, **kwargs)
-        
+
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
         self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].widget.attrs['required'] = True
@@ -789,13 +748,13 @@ class form_transmissor_lote_esocial_ocorrencias(forms.ModelForm):
         self.fields['localizacao'].widget.attrs['required'] = True
 
     def save(self, commit=True, *args, **kwargs):
-    
+
         request = None
-        
+
         if kwargs.has_key('request'):
-        
+
             request = kwargs.pop('request')
-        
+
         m =  super(form_transmissor_lote_esocial_ocorrencias, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
@@ -807,17 +766,62 @@ class form_transmissor_lote_esocial_ocorrencias(forms.ModelForm):
             m.modificado_em = timezone.now()
             m.ativo = True
             m.save()
-        
+
         return m
-        
+
     class Meta:
-    
+
         model = TransmissorLoteEsocialOcorrencias
-        exclude = [ 
-            'criado_em', 
+        exclude = [
+            'criado_em',
             'criado_por',
-            'modificado_em', 
+            'modificado_em',
             'modificado_por',
-            'desativado_em', 
+            'desativado_em',
             'desativado_por',
             'descricao']
+
+
+class form_certificados(forms.ModelForm):
+
+    from django.forms import ModelForm, PasswordInput
+    senha = forms.CharField(widget=PasswordInput())
+
+    def __init__(self, *args, **kwargs):
+
+        super(form_certificados, self).__init__(*args, **kwargs)
+
+
+    def save(self, commit=True, *args, **kwargs):
+
+        request = None
+
+        if kwargs.has_key('request'):
+
+            request = kwargs.pop('request')
+
+        m =  super(form_certificados, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.ativo = True
+            m.save()
+
+        return m
+
+    class Meta:
+
+        model = Certificados
+        exclude = [
+            'criado_em',
+            'criado_por',
+            'modificado_em',
+            'modificado_por',
+            'desativado_em',
+            'desativado_por',
+            'senha']
