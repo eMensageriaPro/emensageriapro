@@ -258,18 +258,22 @@
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
                                     <td>
+                                    {% if a.data_hora_envio %}
                                         <span style="display:none">{{ a.data_hora_envio|date:"Y-m-d H:i" }}</span>
                                         {{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}
                                         {% if a.transmissor_lote_efdreinf_id == transmissor_enviado.id or a.transmissor_lote_efdreinf_error_id == transmissor_enviado.id %}
                                             <small class="label pull-right bg-green">recente</small>
                                         {% endif %}
+                                    {% endif %}
                                     </td>
                                     <td>
+                                    {% if a.data_hora_consulta %}
                                         <span style="display:none">{{ a.data_hora_consulta|date:"Y-m-d H:i" }}</span>
                                         {{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}{{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}
                                         {% if a.transmissor_lote_efdreinf_id == transmissor_consultado.id or a.transmissor_lote_efdreinf_error_id == transmissor_consultado.id %}
                                             <small class="label pull-right bg-green">recente</small>
                                         {% endif %}
+                                    {% endif %}
                                     </td>
                                     <td>{{ a.get_status_display }}</td>
                                     <td>
@@ -315,11 +319,13 @@
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
                                     <td>
+                                    {% if a.data_hora_envio %}
                                         <span style="display:none">{{ a.data_hora_envio|date:"Y-m-d H:i" }}</span>
                                         {{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}
                                         {% if a.transmissor_lote_efdreinf_id == transmissor_enviado.id or a.transmissor_lote_efdreinf_error_id == transmissor_enviado.id %}
                                             <small class="label pull-right bg-green">recente</small>
                                         {% endif %}
+                                    {% endif %}
                                     </td>
                                     <td>{{ a.get_status_display }}</td>
                                 </tr>
@@ -356,18 +362,22 @@
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
                                     <td>
+                                    {% if a.data_hora_envio %}
                                         <span style="display:none">{{ a.data_hora_envio|date:"Y-m-d H:i" }}</span>
                                         {{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}
                                         {% if a.transmissor_lote_efdreinf_id == transmissor_enviado.id or a.transmissor_lote_efdreinf_error_id == transmissor_enviado.id %}
                                             <small class="label pull-right bg-green">recente</small>
                                         {% endif %}
+                                    {% endif %}
                                     </td>
                                     <td>
+                                    {% if a.data_hora_consulta %}
                                         <span style="display:none">{{ a.data_hora_consulta|date:"Y-m-d H:i" }}</span>
                                         {{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}{{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}
                                         {% if a.transmissor_lote_efdreinf_id == transmissor_consultado.id or a.transmissor_lote_efdreinf_error_id == transmissor_consultado.id %}
                                             <small class="label pull-right bg-green">recente</small>
                                         {% endif %}
+                                    {% endif %}
                                     </td>
                                     <td>{{ a.get_status_display }}</td>
                                     <td>
