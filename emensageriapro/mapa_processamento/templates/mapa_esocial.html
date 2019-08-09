@@ -262,12 +262,16 @@
                                     <td style="display:none;"></td>
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
-                                    <td>{{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}
+                                    <td>
+                                        <span style="display:none">{{ a.data_hora_envio|date:"Y-m-d H:i" }}</span>
+                                        {{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}
                                         {% if a.transmissor_lote_esocial_id == transmissor_enviado.id or a.transmissor_lote_esocial_error_id == transmissor_enviado.id %}
                                             <small class="label pull-right bg-green">recente</small>
                                         {% endif %}
                                     </td>
-                                    <td>{{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}
+                                    <td>
+                                        <span style="display:none">{{ a.data_hora_consulta|date:"Y-m-d H:i" }}</span>
+                                        {{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}
                                         {% if a.transmissor_lote_esocial_id == transmissor_consultado.id or a.transmissor_lote_esocial_error_id == transmissor_consultado.id %}
                                             <small class="label pull-right bg-green">recente</small>
                                         {% endif %}
@@ -315,7 +319,9 @@
                                     <td style="display:none;"></td>
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
-                                    <td>{{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}
+                                    <td>
+                                        <span style="display:none">{{ a.data_hora_envio|date:"Y-m-d H:i" }}</span>
+                                        {{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}
                                         {% if a.transmissor_lote_esocial_id == transmissor_enviado.id or a.transmissor_lote_esocial_error_id == transmissor_enviado.id %}
                                             <small class="label pull-right bg-green">recente</small>
                                         {% endif %}
@@ -354,12 +360,16 @@
                                     <td style="display:none;"></td>
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
-                                    <td>{{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}
+                                    <td>
+                                        <span style="display:none">{{ a.data_hora_envio|date:"Y-m-d H:i" }}</span>
+                                        {{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}
                                         {% if a.transmissor_lote_esocial_id == transmissor_enviado.id or a.transmissor_lote_esocial_error_id == transmissor_enviado.id %}
                                             <small class="label pull-right bg-green">recente</small>
                                         {% endif %}
                                     </td>
-                                    <td>{{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}
+                                    <td>
+                                        <span style="display:none">{{ a.data_hora_consulta|date:"Y-m-d H:i" }}</span>
+                                        {{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}
                                         {% if a.transmissor_lote_esocial_id == transmissor_consultado.id or a.transmissor_lote_esocial_error_id == transmissor_consultado.id %}
                                             <small class="label pull-right bg-green">recente</small>
                                         {% endif %}
