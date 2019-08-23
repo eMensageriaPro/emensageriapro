@@ -118,7 +118,7 @@ def json_search(request, pk, search):
 
         dic = {}
         dic['key'] = a.codigo
-        dic['value'] = '%s - %s' % (a.codigo, a.titulo)
+        dic['value'] = a.titulo
         lista_opcoes.append(dic)
 
     dicionario['opcoes'] = lista_opcoes

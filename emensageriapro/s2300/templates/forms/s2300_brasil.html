@@ -42,7 +42,7 @@
         <input type="text"
                id="txt_tplograd"
                name="txt_tplograd" class="form-control"
-               value="{% if s2300_brasil.tplograd %}{{ s2300_brasil.tplograd|get_opcoes_titulo:261 }}{% endif %}"
+               value="{% if s2300_brasil.tplograd %}{{ s2300_brasil.tplograd|get_opcoes_titulo:262 }}{% endif %}"
                {% if s2300_brasil_form.tplograd.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2300_brasil_form.tplograd.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2300_brasil_form.tplograd.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -56,7 +56,7 @@
   $(document).ready(function(e){
     $('#txt_tplograd').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/261/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/262/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,

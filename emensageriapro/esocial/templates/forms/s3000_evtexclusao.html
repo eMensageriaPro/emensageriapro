@@ -152,7 +152,7 @@
         <input type="text"
                id="txt_tpevento"
                name="txt_tpevento" class="form-control"
-               value="{% if s3000_evtexclusao.tpevento %}{{ s3000_evtexclusao.tpevento|get_opcoes_titulo:549 }}{% endif %}"
+               value="{% if s3000_evtexclusao.tpevento %}{{ s3000_evtexclusao.tpevento|get_opcoes_titulo:550 }}{% endif %}"
                {% if s3000_evtexclusao_form.tpevento.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s3000_evtexclusao_form.tpevento.field.widget.attrs.required %} required="required"{% endif %}
                {% if s3000_evtexclusao_form.tpevento.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -166,7 +166,7 @@
   $(document).ready(function(e){
     $('#txt_tpevento').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/549/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/550/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,

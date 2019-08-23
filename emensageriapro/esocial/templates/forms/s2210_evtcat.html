@@ -236,7 +236,7 @@
         <input type="text"
                id="txt_codcateg"
                name="txt_codcateg" class="form-control"
-               value="{% if s2210_evtcat.codcateg %}{{ s2210_evtcat.codcateg|get_opcoes_titulo:175 }}{% endif %}"
+               value="{% if s2210_evtcat.codcateg %}{{ s2210_evtcat.codcateg|get_opcoes_titulo:176 }}{% endif %}"
                {% if s2210_evtcat_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2210_evtcat_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2210_evtcat_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -250,7 +250,7 @@
   $(document).ready(function(e){
     $('#txt_codcateg').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/175/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/176/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -320,7 +320,7 @@
         <input type="text"
                id="txt_tpacid"
                name="txt_tpacid" class="form-control"
-               value="{% if s2210_evtcat.tpacid %}{{ s2210_evtcat.tpacid|get_opcoes_titulo:344 }}{% endif %}"
+               value="{% if s2210_evtcat.tpacid %}{{ s2210_evtcat.tpacid|get_opcoes_titulo:345 }}{% endif %}"
                {% if s2210_evtcat_form.tpacid.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2210_evtcat_form.tpacid.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2210_evtcat_form.tpacid.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -334,7 +334,7 @@
   $(document).ready(function(e){
     $('#txt_tpacid').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/344/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/345/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -501,7 +501,7 @@
         <input type="text"
                id="txt_codsitgeradora"
                name="txt_codsitgeradora" class="form-control"
-               value="{% if s2210_evtcat.codsitgeradora %}{{ s2210_evtcat.codsitgeradora|get_opcoes_titulo:348 }}{% endif %}"
+               value="{% if s2210_evtcat.codsitgeradora %}{{ s2210_evtcat.codsitgeradora|get_opcoes_titulo:349 }}{% endif %}"
                {% if s2210_evtcat_form.codsitgeradora.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2210_evtcat_form.codsitgeradora.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2210_evtcat_form.codsitgeradora.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -515,7 +515,7 @@
   $(document).ready(function(e){
     $('#txt_codsitgeradora').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/348/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/349/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -678,7 +678,7 @@
         <input type="text"
                id="txt_tplograd"
                name="txt_tplograd" class="form-control"
-               value="{% if s2210_evtcat.tplograd %}{{ s2210_evtcat.tplograd|get_opcoes_titulo:261 }}{% endif %}"
+               value="{% if s2210_evtcat.tplograd %}{{ s2210_evtcat.tplograd|get_opcoes_titulo:262 }}{% endif %}"
                {% if s2210_evtcat_form.tplograd.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2210_evtcat_form.tplograd.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2210_evtcat_form.tplograd.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -692,7 +692,7 @@
   $(document).ready(function(e){
     $('#txt_tplograd').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/261/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/262/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -905,7 +905,7 @@
         <input type="text"
                id="txt_pais"
                name="txt_pais" class="form-control"
-               value="{% if s2210_evtcat.pais %}{{ s2210_evtcat.pais|get_opcoes_titulo:207 }}{% endif %}"
+               value="{% if s2210_evtcat.pais %}{{ s2210_evtcat.pais|get_opcoes_titulo:208 }}{% endif %}"
                {% if s2210_evtcat_form.pais.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2210_evtcat_form.pais.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2210_evtcat_form.pais.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -919,7 +919,7 @@
   $(document).ready(function(e){
     $('#txt_pais').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/207/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/208/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,

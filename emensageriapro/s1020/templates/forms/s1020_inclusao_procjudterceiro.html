@@ -51,7 +51,7 @@
         <input type="text"
                id="txt_codterc"
                name="txt_codterc" class="form-control"
-               value="{% if s1020_inclusao_procjudterceiro.codterc %}{{ s1020_inclusao_procjudterceiro.codterc|get_opcoes_titulo:123 }}{% endif %}"
+               value="{% if s1020_inclusao_procjudterceiro.codterc %}{{ s1020_inclusao_procjudterceiro.codterc|get_opcoes_titulo:124 }}{% endif %}"
                {% if s1020_inclusao_procjudterceiro_form.codterc.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1020_inclusao_procjudterceiro_form.codterc.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1020_inclusao_procjudterceiro_form.codterc.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -65,7 +65,7 @@
   $(document).ready(function(e){
     $('#txt_codterc').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/123/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/124/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,

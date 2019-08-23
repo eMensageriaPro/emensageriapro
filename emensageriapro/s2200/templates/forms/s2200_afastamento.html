@@ -57,7 +57,7 @@
         <input type="text"
                id="txt_codmotafast"
                name="txt_codmotafast" class="form-control"
-               value="{% if s2200_afastamento.codmotafast %}{{ s2200_afastamento.codmotafast|get_opcoes_titulo:300 }}{% endif %}"
+               value="{% if s2200_afastamento.codmotafast %}{{ s2200_afastamento.codmotafast|get_opcoes_titulo:301 }}{% endif %}"
                {% if s2200_afastamento_form.codmotafast.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2200_afastamento_form.codmotafast.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2200_afastamento_form.codmotafast.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -71,7 +71,7 @@
   $(document).ready(function(e){
     $('#txt_codmotafast').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/300/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/301/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,

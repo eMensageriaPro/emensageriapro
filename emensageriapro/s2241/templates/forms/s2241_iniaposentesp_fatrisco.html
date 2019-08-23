@@ -51,7 +51,7 @@
         <input type="text"
                id="txt_codfatris"
                name="txt_codfatris" class="form-control"
-               value="{% if s2241_iniaposentesp_fatrisco.codfatris %}{{ s2241_iniaposentesp_fatrisco.codfatris|get_opcoes_titulo:390 }}{% endif %}"
+               value="{% if s2241_iniaposentesp_fatrisco.codfatris %}{{ s2241_iniaposentesp_fatrisco.codfatris|get_opcoes_titulo:391 }}{% endif %}"
                {% if s2241_iniaposentesp_fatrisco_form.codfatris.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2241_iniaposentesp_fatrisco_form.codfatris.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2241_iniaposentesp_fatrisco_form.codfatris.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -65,7 +65,7 @@
   $(document).ready(function(e){
     $('#txt_codfatris').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/390/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/391/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,

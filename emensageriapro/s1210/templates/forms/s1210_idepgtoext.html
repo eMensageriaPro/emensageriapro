@@ -47,7 +47,7 @@
         <input type="text"
                id="txt_codpais"
                name="txt_codpais" class="form-control"
-               value="{% if s1210_idepgtoext.codpais %}{{ s1210_idepgtoext.codpais|get_opcoes_titulo:207 }}{% endif %}"
+               value="{% if s1210_idepgtoext.codpais %}{{ s1210_idepgtoext.codpais|get_opcoes_titulo:208 }}{% endif %}"
                {% if s1210_idepgtoext_form.codpais.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1210_idepgtoext_form.codpais.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1210_idepgtoext_form.codpais.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -61,7 +61,7 @@
   $(document).ready(function(e){
     $('#txt_codpais').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/207/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/208/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
