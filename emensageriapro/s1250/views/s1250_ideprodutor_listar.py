@@ -68,13 +68,13 @@ def listar(request, output=None):
         dict_fields = {}
         show_fields = {
             'show_s1250_tpaquis': 1,
-            'show_tpinscprod': 0,
+            'show_tpinscprod': 1,
             'show_nrinscprod': 1,
             'show_vlrbruto': 0,
             'show_vrcpdescpr': 0,
             'show_vrratdescpr': 0,
             'show_vrsenardesc': 0,
-            'show_indopccp': 1, }
+            'show_indopccp': 0, }
 
         post = False
 

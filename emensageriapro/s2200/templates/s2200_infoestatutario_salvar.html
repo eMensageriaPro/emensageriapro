@@ -62,7 +62,10 @@
                             {% if perms.s2200.can_see_s2200infoDecJud %}
                                 <li {% if tab == 's2200_infodecjud' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_infoestatutario_salvar_tab' pk=pk tab='s2200_infodecjud' %}">
-                                    Informações sobre os dados da decisão judicial</a>
+                                    Informações sobre os dados da decisão judicial&nbsp;{% if not s2200_infodecjud_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2200_infodecjud_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

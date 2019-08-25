@@ -62,14 +62,20 @@
                             {% if perms.r2070.can_see_r2070pgtoPF %}
                                 <li {% if tab == 'r2070_pgtopf' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtoresidbr_salvar_tab' pk=pk tab='r2070_pgtopf' %}">
-                                    Beneficiário Pessoa Física - Residente no Brasil</a>
+                                    Beneficiário Pessoa Física - Residente no Brasil&nbsp;{% if not r2070_pgtopf_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2070_pgtopf_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r2070.can_see_r2070pgtoPJ %}
                                 <li {% if tab == 'r2070_pgtopj' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtoresidbr_salvar_tab' pk=pk tab='r2070_pgtopj' %}">
-                                    Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil</a>
+                                    Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil&nbsp;{% if not r2070_pgtopj_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2070_pgtopj_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

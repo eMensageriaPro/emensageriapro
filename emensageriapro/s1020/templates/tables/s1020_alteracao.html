@@ -11,7 +11,7 @@
             {% if show_fields.show_codlotacao or 1 %}
             <th>Código da Lotação</th>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <th>Início da Validade</th>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -35,7 +35,7 @@
             {% if show_fields.show_fpas or 0 %}
             <th>FPAS</th>
             {% endif %}
-            {% if show_fields.show_codtercs or 1 %}
+            {% if show_fields.show_codtercs or 0 %}
             <th>Código de Terceiros</th>
             {% endif %}
             {% if show_fields.show_codtercssusp or 0 %}
@@ -59,7 +59,7 @@
             {% if show_fields.show_codlotacao or 1 %}
             <td>{{ a.codlotacao }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -83,7 +83,7 @@
             {% if show_fields.show_fpas or 0 %}
             <td>{{ a.fpas|valor }}</td>
             {% endif %}
-            {% if show_fields.show_codtercs or 1 %}
+            {% if show_fields.show_codtercs or 0 %}
             <td>{{ a.codtercs }}</td>
             {% endif %}
             {% if show_fields.show_codtercssusp or 0 %}

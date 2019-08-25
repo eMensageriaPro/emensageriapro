@@ -62,35 +62,50 @@
                             {% if perms.s1210.can_see_s1210detPgtoFl %}
                                 <li {% if tab == 's1210_detpgtofl' %} class="active"{% endif %} >
                                     <a href="{% url 's1210_infopgto_salvar_tab' pk=pk tab='s1210_detpgtofl' %}">
-                                    Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399</a>
+                                    Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399&nbsp;{% if not s1210_detpgtofl_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1210_detpgtofl_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1210.can_see_s1210detPgtoBenPr %}
                                 <li {% if tab == 's1210_detpgtobenpr' %} class="active"{% endif %} >
                                     <a href="{% url 's1210_infopgto_salvar_tab' pk=pk tab='s1210_detpgtobenpr' %}">
-                                    Detalhamento de pagamentos relativos a benefícios previdenciários</a>
+                                    Detalhamento de pagamentos relativos a benefícios previdenciários&nbsp;{% if not s1210_detpgtobenpr_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1210_detpgtobenpr_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1210.can_see_s1210detPgtoFer %}
                                 <li {% if tab == 's1210_detpgtofer' %} class="active"{% endif %} >
                                     <a href="{% url 's1210_infopgto_salvar_tab' pk=pk tab='s1210_detpgtofer' %}">
-                                    Detalhamento dos pagamentos efetuados relativos a férias</a>
+                                    Detalhamento dos pagamentos efetuados relativos a férias&nbsp;{% if not s1210_detpgtofer_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1210_detpgtofer_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1210.can_see_s1210detPgtoAnt %}
                                 <li {% if tab == 's1210_detpgtoant' %} class="active"{% endif %} >
                                     <a href="{% url 's1210_infopgto_salvar_tab' pk=pk tab='s1210_detpgtoant' %}">
-                                    Pagamento relativo a competências anteriores ao início de obrigatoriedade do eSocial</a>
+                                    Pagamento relativo a competências anteriores ao início de obrigatoriedade do eSocial&nbsp;{% if not s1210_detpgtoant_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1210_detpgtoant_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1210.can_see_s1210idePgtoExt %}
                                 <li {% if tab == 's1210_idepgtoext' %} class="active"{% endif %} >
                                     <a href="{% url 's1210_infopgto_salvar_tab' pk=pk tab='s1210_idepgtoext' %}">
-                                    Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.</a>
+                                    Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.&nbsp;{% if not s1210_idepgtoext_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1210_idepgtoext_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

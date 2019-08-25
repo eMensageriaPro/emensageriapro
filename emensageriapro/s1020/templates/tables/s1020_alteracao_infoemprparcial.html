@@ -5,7 +5,7 @@
             {% if show_fields.show_s1020_alteracao or 1 %}
             <th>Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada</th>
             {% endif %}
-            {% if show_fields.show_tpinsccontrat or 0 %}
+            {% if show_fields.show_tpinsccontrat or 1 %}
             <th>Tipo de inscrição do Contratante</th>
             {% endif %}
             {% if show_fields.show_nrinsccontrat or 1 %}
@@ -14,7 +14,7 @@
             {% if show_fields.show_tpinscprop or 0 %}
             <th>Tipo de inscrição (Proprietário do CNO)</th>
             {% endif %}
-            {% if show_fields.show_nrinscprop or 1 %}
+            {% if show_fields.show_nrinscprop or 0 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -29,7 +29,7 @@
             {% if show_fields.show_s1020_alteracao or 1 %}
             <td>{{ a.s1020_alteracao }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsccontrat or 0 %}
+            {% if show_fields.show_tpinsccontrat or 1 %}
             <td>{{ a.get_tpinsccontrat_display }}</td>
             {% endif %}
             {% if show_fields.show_nrinsccontrat or 1 %}
@@ -38,7 +38,7 @@
             {% if show_fields.show_tpinscprop or 0 %}
             <td>{{ a.tpinscprop }}</td>
             {% endif %}
-            {% if show_fields.show_nrinscprop or 1 %}
+            {% if show_fields.show_nrinscprop or 0 %}
             <td>{{ a.nrinscprop }}</td>
             {% endif %}
 

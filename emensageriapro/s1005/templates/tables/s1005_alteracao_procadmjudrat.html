@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1005_alteracao or 0 %}
+            {% if show_fields.show_s1005_alteracao or 1 %}
             <th>Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.</th>
             {% endif %}
             {% if show_fields.show_tpproc or 1 %}
@@ -11,7 +11,7 @@
             {% if show_fields.show_nrproc or 1 %}
             <th>Número do Processo</th>
             {% endif %}
-            {% if show_fields.show_codsusp or 1 %}
+            {% if show_fields.show_codsusp or 0 %}
             <th>Código do Indicativo da Suspensão</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,7 +23,7 @@
     <tbody>
         {% for a in s1005_alteracao_procadmjudrat_lista %}
         <tr>
-            {% if show_fields.show_s1005_alteracao or 0 %}
+            {% if show_fields.show_s1005_alteracao or 1 %}
             <td>{{ a.s1005_alteracao }}</td>
             {% endif %}
             {% if show_fields.show_tpproc or 1 %}
@@ -32,7 +32,7 @@
             {% if show_fields.show_nrproc or 1 %}
             <td>{{ a.nrproc }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp or 1 %}
+            {% if show_fields.show_codsusp or 0 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
 

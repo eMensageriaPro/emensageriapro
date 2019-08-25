@@ -62,14 +62,20 @@
                             {% if perms.s1250.can_see_s1250ideProdutor %}
                                 <li {% if tab == 's1250_ideprodutor' %} class="active"{% endif %} >
                                     <a href="{% url 's1250_tpaquis_salvar_tab' pk=pk tab='s1250_ideprodutor' %}">
-                                    Registro que identifica os produtores rurais dos quais foi efetuada aquisição da produção pelo contribuinte declarante.</a>
+                                    Registro que identifica os produtores rurais dos quais foi efetuada aquisição da produção pelo contribuinte declarante.&nbsp;{% if not s1250_ideprodutor_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1250_ideprodutor_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1250.can_see_s1250infoProcJ %}
                                 <li {% if tab == 's1250_infoprocj' %} class="active"{% endif %} >
                                     <a href="{% url 's1250_tpaquis_salvar_tab' pk=pk tab='s1250_infoprocj' %}">
-                                    Registro preenchido quando houver processo judicial do adquirente ou de terceiros e que abranja a totalidade dos produtores identificados em {ideProdutor} com decisão/sentença determinando a não retenção pelo adquirente, das contribuições incidentes sobre a aquisição de produção.</a>
+                                    Registro preenchido quando houver processo judicial do adquirente ou de terceiros e que abranja a totalidade dos produtores identificados em {ideProdutor} com decisão/sentença determinando a não retenção pelo adquirente, das contribuições incidentes sobre a aquisição de produção.&nbsp;{% if not s1250_infoprocj_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1250_infoprocj_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

@@ -69,8 +69,8 @@ def listar(request, output=None):
         show_fields = {
             'show_r2010_evtservtom': 1,
             'show_serie': 1,
-            'show_numdocto': 0,
-            'show_dtemissaonf': 1,
+            'show_numdocto': 1,
+            'show_dtemissaonf': 0,
             'show_vlrbruto': 0,
             'show_obs': 0, }
 

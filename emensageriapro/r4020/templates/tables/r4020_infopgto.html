@@ -8,10 +8,10 @@
             {% if show_fields.show_dtfg or 1 %}
             <th>Informar a data do fato gerador ou pagamento/crédito</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalpag or 0 %}
+            {% if show_fields.show_vlrtotalpag or 1 %}
             <th>Valor total pago</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalcred or 1 %}
+            {% if show_fields.show_vlrtotalcred or 0 %}
             <th>Valor total creditado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -29,10 +29,10 @@
             {% if show_fields.show_dtfg or 1 %}
             <td><span style="display:none">{{ a.dtfg|date:"Y-m-d" }}</span>{{ a.dtfg|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalpag or 0 %}
+            {% if show_fields.show_vlrtotalpag or 1 %}
             <td>{{ a.vlrtotalpag }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalcred or 1 %}
+            {% if show_fields.show_vlrtotalcred or 0 %}
             <td>{{ a.vlrtotalcred }}</td>
             {% endif %}
 

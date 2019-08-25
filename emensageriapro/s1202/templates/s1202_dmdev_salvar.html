@@ -62,14 +62,20 @@
                             {% if perms.s1202.can_see_s1202infoPerApur %}
                                 <li {% if tab == 's1202_infoperapur' %} class="active"{% endif %} >
                                     <a href="{% url 's1202_dmdev_salvar_tab' pk=pk tab='s1202_infoperapur' %}">
-                                    Remuneração no período de apuração</a>
+                                    Remuneração no período de apuração&nbsp;{% if not s1202_infoperapur_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1202_infoperapur_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1202.can_see_s1202infoPerAnt %}
                                 <li {% if tab == 's1202_infoperant' %} class="active"{% endif %} >
                                     <a href="{% url 's1202_dmdev_salvar_tab' pk=pk tab='s1202_infoperant' %}">
-                                    Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento</a>
+                                    Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento&nbsp;{% if not s1202_infoperant_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1202_infoperant_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

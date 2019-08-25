@@ -63,7 +63,10 @@
                                 {% if perms.s1270.can_see_s1270remunAvNP %}
                                     <li {% if tab == 's1270_remunavnp' %} class="active"{% endif %} >
                                         <a href="{% url 's1270_evtcontratavnp_salvar_tab' pk=pk tab='s1270_remunavnp' %}">
-                                        Registro que apresenta a remuneração dos trabalhadores avulsos não portuários, de forma totalizada por estabelecimento contratante.</a>
+                                        Registro que apresenta a remuneração dos trabalhadores avulsos não portuários, de forma totalizada por estabelecimento contratante.&nbsp;{% if not s1270_remunavnp_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1270_remunavnp_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

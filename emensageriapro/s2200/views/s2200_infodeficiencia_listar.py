@@ -69,8 +69,8 @@ def listar(request, output=None):
         show_fields = {
             'show_s2200_evtadmissao': 1,
             'show_deffisica': 1,
-            'show_defvisual': 0,
-            'show_defauditiva': 1,
+            'show_defvisual': 1,
+            'show_defauditiva': 0,
             'show_defmental': 0,
             'show_defintelectual': 0,
             'show_reabreadap': 0,

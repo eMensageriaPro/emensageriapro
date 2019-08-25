@@ -17,13 +17,13 @@
             {% if show_fields.show_nrrecibo or 0 %}
             <th>Número do recibo</th>
             {% endif %}
-            {% if show_fields.show_indapuracao or 0 %}
+            {% if show_fields.show_indapuracao or 1 %}
             <th>Indicativo do periodo de apuração</th>
             {% endif %}
             {% if show_fields.show_perapur or 0 %}
             <th>Período de Apuração</th>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_tpamb or 0 %}
             <th>Identificação do ambiente</th>
             {% endif %}
             {% if show_fields.show_procemi or 0 %}
@@ -80,6 +80,9 @@
             {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial_error or 0 %}
+            <th>Transmissor (Erro)</th>
+            {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
             <th width="80px">Ações</th>
@@ -104,13 +107,13 @@
             {% if show_fields.show_nrrecibo or 0 %}
             <td>{{ a.nrrecibo }}</td>
             {% endif %}
-            {% if show_fields.show_indapuracao or 0 %}
+            {% if show_fields.show_indapuracao or 1 %}
             <td>{{ a.get_indapuracao_display }}</td>
             {% endif %}
             {% if show_fields.show_perapur or 0 %}
             <td>{{ a.perapur }}</td>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_tpamb or 0 %}
             <td>{{ a.get_tpamb_display }}</td>
             {% endif %}
             {% if show_fields.show_procemi or 0 %}
@@ -166,6 +169,9 @@
             {% endif %}
             {% if show_fields.show_status or 1 %}
             <td>{{ a.get_status_display }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial_error or 0 %}
+            <td>{{ a.transmissor_lote_esocial_error }}</td>
             {% endif %}
 
             <!-- colunas especiais -->

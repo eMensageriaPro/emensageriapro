@@ -69,11 +69,11 @@ def listar(request, output=None):
         show_fields = {
             'show_s2300_infocomplementares': 1,
             'show_natestagio': 1,
-            'show_nivestagio': 0,
+            'show_nivestagio': 1,
             'show_areaatuacao': 0,
             'show_nrapol': 0,
             'show_vlrbolsa': 0,
-            'show_dtprevterm': 1,
+            'show_dtprevterm': 0,
             'show_instensino': 0,
             'show_cnpjinstensino': 0,
             'show_nmrazao': 0,

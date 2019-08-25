@@ -11,7 +11,7 @@
             {% if show_fields.show_ideevento or 0 %}
             <th>Informações de Identificação do Evento</th>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_tpamb or 0 %}
             <th>Identificação do ambiente</th>
             {% endif %}
             {% if show_fields.show_procemi or 0 %}
@@ -23,7 +23,7 @@
             {% if show_fields.show_ideempregador or 0 %}
             <th>Informações de identificação do empregador</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <th>Tipo de inscrição</th>
             {% endif %}
             {% if show_fields.show_nrinsc or 1 %}
@@ -65,6 +65,9 @@
             {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial_error or 0 %}
+            <th>Transmissor (Erro)</th>
+            {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
             <th width="80px">Ações</th>
@@ -83,7 +86,7 @@
             {% if show_fields.show_ideevento or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_tpamb or 0 %}
             <td>{{ a.get_tpamb_display }}</td>
             {% endif %}
             {% if show_fields.show_procemi or 0 %}
@@ -95,7 +98,7 @@
             {% if show_fields.show_ideempregador or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
             {% if show_fields.show_nrinsc or 1 %}
@@ -136,6 +139,9 @@
             {% endif %}
             {% if show_fields.show_status or 1 %}
             <td>{{ a.get_status_display }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial_error or 0 %}
+            <td>{{ a.transmissor_lote_esocial_error }}</td>
             {% endif %}
 
             <!-- colunas especiais -->

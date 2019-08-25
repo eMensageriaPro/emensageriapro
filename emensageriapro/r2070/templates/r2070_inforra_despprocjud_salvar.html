@@ -62,7 +62,10 @@
                             {% if perms.r2070.can_see_r2070infoRRAideAdvogado %}
                                 <li {% if tab == 'r2070_inforra_ideadvogado' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_inforra_despprocjud_salvar_tab' pk=pk tab='r2070_inforra_ideadvogado' %}">
-                                    Identificação do Advogado</a>
+                                    Identificação do Advogado&nbsp;{% if not r2070_inforra_ideadvogado_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2070_inforra_ideadvogado_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

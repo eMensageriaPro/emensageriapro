@@ -70,13 +70,13 @@ def listar(request, output=None):
             'show_evtirrf': 0,
             'show_identidade': 1,
             'show_ideevento': 0,
-            'show_perapur': 0,
+            'show_perapur': 1,
             'show_ideempregador': 0,
-            'show_tpinsc': 0,
-            'show_nrinsc': 1,
+            'show_tpinsc': 1,
+            'show_nrinsc': 0,
             'show_infoirrf': 0,
             'show_nrrecarqbase': 0,
-            'show_indexistinfo': 1,
+            'show_indexistinfo': 0,
             'show_versao': 0,
             'show_transmissor_lote_esocial': 0,
             'show_ocorrencias': 0,
@@ -84,7 +84,8 @@ def listar(request, output=None):
             'show_validacoes': 0,
             'show_arquivo_original': 0,
             'show_arquivo': 0,
-            'show_status': 1, }
+            'show_status': 1,
+            'show_transmissor_lote_esocial_error': 0, }
 
         post = False
 

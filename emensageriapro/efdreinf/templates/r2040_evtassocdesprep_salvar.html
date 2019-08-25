@@ -63,7 +63,10 @@
                                 {% if perms.r2040.can_see_r2040recursosRep %}
                                     <li {% if tab == 'r2040_recursosrep' %} class="active"{% endif %} >
                                         <a href="{% url 'r2040_evtassocdesprep_salvar_tab' pk=pk tab='r2040_recursosrep' %}">
-                                        Detalhamento dos repasses efetuados pelo estabelecimento indicado em {ideEstab} a Associação Desportiva que mantenha equipe de futebol profissional.</a>
+                                        Detalhamento dos repasses efetuados pelo estabelecimento indicado em {ideEstab} a Associação Desportiva que mantenha equipe de futebol profissional.&nbsp;{% if not r2040_recursosrep_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ r2040_recursosrep_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

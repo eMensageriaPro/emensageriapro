@@ -62,21 +62,30 @@
                             {% if perms.s2241.can_see_s2241iniInsalPeric %}
                                 <li {% if tab == 's2241_iniinsalperic' %} class="active"{% endif %} >
                                     <a href="{% url 's2241_insalperic_salvar_tab' pk=pk tab='s2241_iniinsalperic' %}">
-                                    Condições do ambiente de trabalho insalubre/periculoso - Início</a>
+                                    Condições do ambiente de trabalho insalubre/periculoso - Início&nbsp;{% if not s2241_iniinsalperic_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2241_iniinsalperic_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2241.can_see_s2241altInsalPeric %}
                                 <li {% if tab == 's2241_altinsalperic' %} class="active"{% endif %} >
                                     <a href="{% url 's2241_insalperic_salvar_tab' pk=pk tab='s2241_altinsalperic' %}">
-                                    Condições do ambiente de trabalho insalubre/periculoso - Alteração</a>
+                                    Condições do ambiente de trabalho insalubre/periculoso - Alteração&nbsp;{% if not s2241_altinsalperic_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2241_altinsalperic_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2241.can_see_s2241fimInsalPeric %}
                                 <li {% if tab == 's2241_fiminsalperic' %} class="active"{% endif %} >
                                     <a href="{% url 's2241_insalperic_salvar_tab' pk=pk tab='s2241_fiminsalperic' %}">
-                                    Condições do ambiente de trabalho insalubre/periculoso - Fim</a>
+                                    Condições do ambiente de trabalho insalubre/periculoso - Fim&nbsp;{% if not s2241_fiminsalperic_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2241_fiminsalperic_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

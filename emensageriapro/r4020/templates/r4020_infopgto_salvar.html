@@ -62,56 +62,80 @@
                             {% if perms.r4020.can_see_r4020IR %}
                                 <li {% if tab == 'r4020_ir' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_infopgto_salvar_tab' pk=pk tab='r4020_ir' %}">
-                                    Informações relativas ao Imposto de Renda</a>
+                                    Informações relativas ao Imposto de Renda&nbsp;{% if not r4020_ir_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4020_ir_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r4020.can_see_r4020CSLL %}
                                 <li {% if tab == 'r4020_csll' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_infopgto_salvar_tab' pk=pk tab='r4020_csll' %}">
-                                    Informações relativas à CSLL</a>
+                                    Informações relativas à CSLL&nbsp;{% if not r4020_csll_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4020_csll_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r4020.can_see_r4020Cofins %}
                                 <li {% if tab == 'r4020_cofins' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_infopgto_salvar_tab' pk=pk tab='r4020_cofins' %}">
-                                    Informações relativas à Cofins</a>
+                                    Informações relativas à Cofins&nbsp;{% if not r4020_cofins_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4020_cofins_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r4020.can_see_r4020PP %}
                                 <li {% if tab == 'r4020_pp' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_infopgto_salvar_tab' pk=pk tab='r4020_pp' %}">
-                                    Informações relativas ao PIS/PASEP</a>
+                                    Informações relativas ao PIS/PASEP&nbsp;{% if not r4020_pp_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4020_pp_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r4020.can_see_r4020FCI %}
                                 <li {% if tab == 'r4020_fci' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_infopgto_salvar_tab' pk=pk tab='r4020_fci' %}">
-                                    Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante</a>
+                                    Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante&nbsp;{% if not r4020_fci_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4020_fci_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r4020.can_see_r4020SCP %}
                                 <li {% if tab == 'r4020_scp' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_infopgto_salvar_tab' pk=pk tab='r4020_scp' %}">
-                                    Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo</a>
+                                    Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo&nbsp;{% if not r4020_scp_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4020_scp_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r4020.can_see_r4020infoProcRet %}
                                 <li {% if tab == 'r4020_infoprocret' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_infopgto_salvar_tab' pk=pk tab='r4020_infoprocret' %}">
-                                    Informações de processos relacionados a não retenção de tributos ou depósitos judiciais</a>
+                                    Informações de processos relacionados a não retenção de tributos ou depósitos judiciais&nbsp;{% if not r4020_infoprocret_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4020_infoprocret_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r4020.can_see_r4020infoProcJud %}
                                 <li {% if tab == 'r4020_infoprocjud' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_infopgto_salvar_tab' pk=pk tab='r4020_infoprocjud' %}">
-                                    Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</a>
+                                    Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial&nbsp;{% if not r4020_infoprocjud_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4020_infoprocjud_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

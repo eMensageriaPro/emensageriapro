@@ -63,7 +63,10 @@
                                 {% if perms.r4040.can_see_r4040ideNat %}
                                     <li {% if tab == 'r4040_idenat' %} class="active"{% endif %} >
                                         <a href="{% url 'r4040_evtbenefnid_salvar_tab' pk=pk tab='r4040_idenat' %}">
-                                        Identificação da natureza do rendimento</a>
+                                        Identificação da natureza do rendimento&nbsp;{% if not r4040_idenat_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ r4040_idenat_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

@@ -11,7 +11,7 @@
             {% if show_fields.show_codhorcontrat or 1 %}
             <th>Código do Horário Contratual</th>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <th>Início da Validade</th>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -26,7 +26,7 @@
             {% if show_fields.show_hrsaida or 0 %}
             <th>Hora de Saída</th>
             {% endif %}
-            {% if show_fields.show_durjornada or 1 %}
+            {% if show_fields.show_durjornada or 0 %}
             <th>Duração da jornada (min)</th>
             {% endif %}
             {% if show_fields.show_perhorflexivel or 0 %}
@@ -50,7 +50,7 @@
             {% if show_fields.show_codhorcontrat or 1 %}
             <td>{{ a.codhorcontrat }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -65,7 +65,7 @@
             {% if show_fields.show_hrsaida or 0 %}
             <td>{{ a.hrsaida }}</td>
             {% endif %}
-            {% if show_fields.show_durjornada or 1 %}
+            {% if show_fields.show_durjornada or 0 %}
             <td>{{ a.durjornada }}</td>
             {% endif %}
             {% if show_fields.show_perhorflexivel or 0 %}

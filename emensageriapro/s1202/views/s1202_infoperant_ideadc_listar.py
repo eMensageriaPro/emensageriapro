@@ -69,13 +69,13 @@ def listar(request, output=None):
         show_fields = {
             'show_s1202_infoperant': 1,
             'show_dtlei': 1,
-            'show_nrlei': 0,
+            'show_nrlei': 1,
             'show_dtef': 0,
             'show_dtacconv': 0,
             'show_tpacconv': 0,
             'show_compacconv': 0,
             'show_dtefacconv': 0,
-            'show_dsc': 1, }
+            'show_dsc': 0, }
 
         post = False
 

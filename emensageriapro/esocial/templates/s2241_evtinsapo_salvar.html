@@ -63,14 +63,20 @@
                                 {% if perms.s2241.can_see_s2241insalPeric %}
                                     <li {% if tab == 's2241_insalperic' %} class="active"{% endif %} >
                                         <a href="{% url 's2241_evtinsapo_salvar_tab' pk=pk tab='s2241_insalperic' %}">
-                                        Informações sobre o ambiente de trabalho insalubre/periculoso.</a>
+                                        Informações sobre o ambiente de trabalho insalubre/periculoso.&nbsp;{% if not s2241_insalperic_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2241_insalperic_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2241.can_see_s2241aposentEsp %}
                                     <li {% if tab == 's2241_aposentesp' %} class="active"{% endif %} >
                                         <a href="{% url 's2241_evtinsapo_salvar_tab' pk=pk tab='s2241_aposentesp' %}">
-                                        Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.</a>
+                                        Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.&nbsp;{% if not s2241_aposentesp_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2241_aposentesp_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

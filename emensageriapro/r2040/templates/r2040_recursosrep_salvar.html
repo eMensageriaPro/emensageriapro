@@ -62,14 +62,20 @@
                             {% if perms.r2040.can_see_r2040infoRecurso %}
                                 <li {% if tab == 'r2040_inforecurso' %} class="active"{% endif %} >
                                     <a href="{% url 'r2040_recursosrep_salvar_tab' pk=pk tab='r2040_inforecurso' %}">
-                                    Detalhamento dos recursos recebidos.</a>
+                                    Detalhamento dos recursos recebidos.&nbsp;{% if not r2040_inforecurso_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2040_inforecurso_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r2040.can_see_r2040infoProc %}
                                 <li {% if tab == 'r2040_infoproc' %} class="active"{% endif %} >
                                     <a href="{% url 'r2040_recursosrep_salvar_tab' pk=pk tab='r2040_infoproc' %}">
-                                    Informações de processos relacionados a não retenção de contribuição previdenciária</a>
+                                    Informações de processos relacionados a não retenção de contribuição previdenciária&nbsp;{% if not r2040_infoproc_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2040_infoproc_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

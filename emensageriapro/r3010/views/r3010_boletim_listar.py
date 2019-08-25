@@ -68,10 +68,10 @@ def listar(request, output=None):
         dict_fields = {}
         show_fields = {
             'show_r3010_evtespdesportivo': 1,
-            'show_nrboletim': 0,
-            'show_tpcompeticao': 0,
-            'show_categevento': 1,
-            'show_moddesportiva': 1,
+            'show_nrboletim': 1,
+            'show_tpcompeticao': 1,
+            'show_categevento': 0,
+            'show_moddesportiva': 0,
             'show_nomecompeticao': 0,
             'show_cnpjmandante': 0,
             'show_cnpjvisitante': 0,

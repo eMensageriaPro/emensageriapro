@@ -63,77 +63,110 @@
                                 {% if perms.s2300.can_see_s2300documentos %}
                                     <li {% if tab == 's2300_documentos' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_documentos' %}">
-                                        Informações dos documentos pessoais do trabalhador</a>
+                                        Informações dos documentos pessoais do trabalhador&nbsp;{% if not s2300_documentos_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2300_documentos_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2300.can_see_s2300brasil %}
                                     <li {% if tab == 's2300_brasil' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_brasil' %}">
-                                        Preenchimento obrigatório para trabalhador residente no Brasil.</a>
+                                        Preenchimento obrigatório para trabalhador residente no Brasil.&nbsp;{% if not s2300_brasil_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2300_brasil_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2300.can_see_s2300exterior %}
                                     <li {% if tab == 's2300_exterior' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_exterior' %}">
-                                        Preenchido em caso de trabalhador residente no exterior.</a>
+                                        Preenchido em caso de trabalhador residente no exterior.&nbsp;{% if not s2300_exterior_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2300_exterior_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2300.can_see_s2300trabEstrangeiro %}
                                     <li {% if tab == 's2300_trabestrangeiro' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_trabestrangeiro' %}">
-                                        Grupo de informações do Trabalhador Estrangeiro</a>
+                                        Grupo de informações do Trabalhador Estrangeiro&nbsp;{% if not s2300_trabestrangeiro_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2300_trabestrangeiro_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2300.can_see_s2300infoDeficiencia %}
                                     <li {% if tab == 's2300_infodeficiencia' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_infodeficiencia' %}">
-                                        Pessoa com Deficiência</a>
+                                        Pessoa com Deficiência&nbsp;{% if not s2300_infodeficiencia_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2300_infodeficiencia_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2300.can_see_s2300dependente %}
                                     <li {% if tab == 's2300_dependente' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_dependente' %}">
-                                        Informações dos dependentes</a>
+                                        Informações dos dependentes&nbsp;{% if not s2300_dependente_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2300_dependente_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2300.can_see_s2300contato %}
                                     <li {% if tab == 's2300_contato' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_contato' %}">
-                                        Informações de contato</a>
+                                        Informações de contato&nbsp;{% if not s2300_contato_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2300_contato_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2300.can_see_s2300infoComplementares %}
                                     <li {% if tab == 's2300_infocomplementares' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_infocomplementares' %}">
-                                        Informações complementares sobre o declarante</a>
+                                        Informações complementares sobre o declarante&nbsp;{% if not s2300_infocomplementares_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2300_infocomplementares_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2300.can_see_s2300mudancaCPF %}
                                     <li {% if tab == 's2300_mudancacpf' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_mudancacpf' %}">
-                                        Informações de mudança de CPF do trabalhador.</a>
+                                        Informações de mudança de CPF do trabalhador.&nbsp;{% if not s2300_mudancacpf_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2300_mudancacpf_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2300.can_see_s2300afastamento %}
                                     <li {% if tab == 's2300_afastamento' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_afastamento' %}">
-                                        Informações de afastamento do trabalhador</a>
+                                        Informações de afastamento do trabalhador&nbsp;{% if not s2300_afastamento_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2300_afastamento_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2300.can_see_s2300termino %}
                                     <li {% if tab == 's2300_termino' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_termino' %}">
-                                        Informações de término do TSVE</a>
+                                        Informações de término do TSVE&nbsp;{% if not s2300_termino_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2300_termino_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

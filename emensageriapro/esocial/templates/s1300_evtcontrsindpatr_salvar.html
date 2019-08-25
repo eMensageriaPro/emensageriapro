@@ -63,7 +63,10 @@
                                 {% if perms.s1300.can_see_s1300contribSind %}
                                     <li {% if tab == 's1300_contribsind' %} class="active"{% endif %} >
                                         <a href="{% url 's1300_evtcontrsindpatr_salvar_tab' pk=pk tab='s1300_contribsind' %}">
-                                        Informações da contribuição sindical patronal</a>
+                                        Informações da contribuição sindical patronal&nbsp;{% if not s1300_contribsind_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1300_contribsind_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

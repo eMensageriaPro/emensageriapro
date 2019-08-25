@@ -63,35 +63,50 @@
                                 {% if perms.s1200.can_see_s1200infoMV %}
                                     <li {% if tab == 's1200_infomv' %} class="active"{% endif %} >
                                         <a href="{% url 's1200_evtremun_salvar_tab' pk=pk tab='s1200_infomv' %}">
-                                        Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</a>
+                                        Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.&nbsp;{% if not s1200_infomv_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1200_infomv_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s1200.can_see_s1200infoComplem %}
                                     <li {% if tab == 's1200_infocomplem' %} class="active"{% endif %} >
                                         <a href="{% url 's1200_evtremun_salvar_tab' pk=pk tab='s1200_infocomplem' %}">
-                                        Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</a>
+                                        Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'&nbsp;{% if not s1200_infocomplem_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1200_infocomplem_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s1200.can_see_s1200procJudTrab %}
                                     <li {% if tab == 's1200_procjudtrab' %} class="active"{% endif %} >
                                         <a href="{% url 's1200_evtremun_salvar_tab' pk=pk tab='s1200_procjudtrab' %}">
-                                        Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</a>
+                                        Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.&nbsp;{% if not s1200_procjudtrab_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1200_procjudtrab_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s1200.can_see_s1200infoInterm %}
                                     <li {% if tab == 's1200_infointerm' %} class="active"{% endif %} >
                                         <a href="{% url 's1200_evtremun_salvar_tab' pk=pk tab='s1200_infointerm' %}">
-                                        Informações relativas ao trabalho intermitente</a>
+                                        Informações relativas ao trabalho intermitente&nbsp;{% if not s1200_infointerm_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1200_infointerm_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s1200.can_see_s1200dmDev %}
                                     <li {% if tab == 's1200_dmdev' %} class="active"{% endif %} >
                                         <a href="{% url 's1200_evtremun_salvar_tab' pk=pk tab='s1200_dmdev' %}">
-                                        Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</a>
+                                        Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF&nbsp;{% if not s1200_dmdev_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1200_dmdev_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

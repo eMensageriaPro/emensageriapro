@@ -62,7 +62,10 @@
                             {% if perms.s2240.can_see_s2240altExpRiscoinfoAmb %}
                                 <li {% if tab == 's2240_altexprisco_infoamb' %} class="active"{% endif %} >
                                     <a href="{% url 's2240_altexprisco_salvar_tab' pk=pk tab='s2240_altexprisco_infoamb' %}">
-                                    Informações relativas ao ambiente de trabalho</a>
+                                    Informações relativas ao ambiente de trabalho&nbsp;{% if not s2240_altexprisco_infoamb_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2240_altexprisco_infoamb_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

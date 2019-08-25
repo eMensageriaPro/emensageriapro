@@ -62,14 +62,20 @@
                             {% if perms.s2200.can_see_s2200trabTemporario %}
                                 <li {% if tab == 's2200_trabtemporario' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_infoceletista_salvar_tab' pk=pk tab='s2200_trabtemporario' %}">
-                                    Dados sobre trabalho temporário. Preenchimento obrigatório na contratação de trabalhador temporário.</a>
+                                    Dados sobre trabalho temporário. Preenchimento obrigatório na contratação de trabalhador temporário.&nbsp;{% if not s2200_trabtemporario_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2200_trabtemporario_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2200.can_see_s2200aprend %}
                                 <li {% if tab == 's2200_aprend' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_infoceletista_salvar_tab' pk=pk tab='s2200_aprend' %}">
-                                    Informações para identificação do empregador contratante de aprendiz</a>
+                                    Informações para identificação do empregador contratante de aprendiz&nbsp;{% if not s2200_aprend_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2200_aprend_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

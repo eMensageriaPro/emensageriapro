@@ -69,11 +69,11 @@ def listar(request, output=None):
         show_fields = {
             'show_s2306_infoestagiario': 1,
             'show_cnpjagntinteg': 1,
-            'show_nmrazao': 0,
+            'show_nmrazao': 1,
             'show_dsclograd': 0,
             'show_nrlograd': 0,
             'show_bairro': 0,
-            'show_cep': 1,
+            'show_cep': 0,
             'show_codmunic': 0,
             'show_uf': 0, }
 

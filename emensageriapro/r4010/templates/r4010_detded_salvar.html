@@ -62,7 +62,10 @@
                             {% if perms.r4010.can_see_r4010benefPen %}
                                 <li {% if tab == 'r4010_benefpen' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_detded_salvar_tab' pk=pk tab='r4010_benefpen' %}">
-                                    Informação dos beneficiários da pensão alimentícia</a>
+                                    Informação dos beneficiários da pensão alimentícia&nbsp;{% if not r4010_benefpen_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4010_benefpen_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

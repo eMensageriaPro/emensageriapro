@@ -11,7 +11,7 @@
             {% if show_fields.show_ideevento or 0 %}
             <th>Informações de Identificação do Evento</th>
             {% endif %}
-            {% if show_fields.show_indretif or 0 %}
+            {% if show_fields.show_indretif or 1 %}
             <th>Identificador de retificação</th>
             {% endif %}
             {% if show_fields.show_nrrecibo or 0 %}
@@ -29,7 +29,7 @@
             {% if show_fields.show_ideempregador or 0 %}
             <th>Informações de identificação do empregador</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <th>Tipo de inscrição</th>
             {% endif %}
             {% if show_fields.show_nrinsc or 0 %}
@@ -38,7 +38,7 @@
             {% if show_fields.show_idevinculo or 0 %}
             <th>Informações de Identificação do Trabalhador e do Vínculo</th>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_cpftrab or 0 %}
             <th>CPF</th>
             {% endif %}
             {% if show_fields.show_nistrab or 0 %}
@@ -53,7 +53,7 @@
             {% if show_fields.show_toxicologico or 0 %}
             <th>Detalhamento das informações do exame toxicológico do motorista profissional</th>
             {% endif %}
-            {% if show_fields.show_dtexame or 1 %}
+            {% if show_fields.show_dtexame or 0 %}
             <th>Data da realização do exame toxicológico</th>
             {% endif %}
             {% if show_fields.show_cnpjlab or 0 %}
@@ -101,6 +101,9 @@
             {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial_error or 0 %}
+            <th>Transmissor (Erro)</th>
+            {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
             <th width="80px">Ações</th>
@@ -119,7 +122,7 @@
             {% if show_fields.show_ideevento or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_indretif or 0 %}
+            {% if show_fields.show_indretif or 1 %}
             <td>{{ a.get_indretif_display }}</td>
             {% endif %}
             {% if show_fields.show_nrrecibo or 0 %}
@@ -137,7 +140,7 @@
             {% if show_fields.show_ideempregador or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
             {% if show_fields.show_nrinsc or 0 %}
@@ -146,7 +149,7 @@
             {% if show_fields.show_idevinculo or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_cpftrab or 0 %}
             <td>{{ a.cpftrab }}</td>
             {% endif %}
             {% if show_fields.show_nistrab or 0 %}
@@ -161,7 +164,7 @@
             {% if show_fields.show_toxicologico or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_dtexame or 1 %}
+            {% if show_fields.show_dtexame or 0 %}
             <td><span style="display:none">{{ a.dtexame|date:"Y-m-d" }}</span>{{ a.dtexame|date:"d/m/Y" }}</td>
             {% endif %}
             {% if show_fields.show_cnpjlab or 0 %}
@@ -208,6 +211,9 @@
             {% endif %}
             {% if show_fields.show_status or 1 %}
             <td>{{ a.get_status_display }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial_error or 0 %}
+            <td>{{ a.transmissor_lote_esocial_error }}</td>
             {% endif %}
 
             <!-- colunas especiais -->

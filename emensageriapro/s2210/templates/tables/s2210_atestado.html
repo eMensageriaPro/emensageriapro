@@ -8,10 +8,10 @@
             {% if show_fields.show_codcnes or 0 %}
             <th>CNES da unidade de atendimento</th>
             {% endif %}
-            {% if show_fields.show_dtatendimento or 0 %}
+            {% if show_fields.show_dtatendimento or 1 %}
             <th>Data do atendimento</th>
             {% endif %}
-            {% if show_fields.show_hratendimento or 0 %}
+            {% if show_fields.show_hratendimento or 1 %}
             <th>Hora do atendimento</th>
             {% endif %}
             {% if show_fields.show_indinternacao or 0 %}
@@ -20,7 +20,7 @@
             {% if show_fields.show_durtrat or 0 %}
             <th>Duração do tratamento</th>
             {% endif %}
-            {% if show_fields.show_indafast or 1 %}
+            {% if show_fields.show_indafast or 0 %}
             <th>Afastamento</th>
             {% endif %}
             {% if show_fields.show_dsclesao or 0 %}
@@ -32,7 +32,7 @@
             {% if show_fields.show_diagprovavel or 0 %}
             <th>Diagnóstivo provável</th>
             {% endif %}
-            {% if show_fields.show_codcid or 1 %}
+            {% if show_fields.show_codcid or 0 %}
             <th>CID</th>
             {% endif %}
             {% if show_fields.show_observacao or 0 %}
@@ -68,10 +68,10 @@
             {% if show_fields.show_codcnes or 0 %}
             <td>{{ a.codcnes }}</td>
             {% endif %}
-            {% if show_fields.show_dtatendimento or 0 %}
+            {% if show_fields.show_dtatendimento or 1 %}
             <td><span style="display:none">{{ a.dtatendimento|date:"Y-m-d" }}</span>{{ a.dtatendimento|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_hratendimento or 0 %}
+            {% if show_fields.show_hratendimento or 1 %}
             <td>{{ a.hratendimento }}</td>
             {% endif %}
             {% if show_fields.show_indinternacao or 0 %}
@@ -80,7 +80,7 @@
             {% if show_fields.show_durtrat or 0 %}
             <td>{{ a.durtrat }}</td>
             {% endif %}
-            {% if show_fields.show_indafast or 1 %}
+            {% if show_fields.show_indafast or 0 %}
             <td>{{ a.get_indafast_display }}</td>
             {% endif %}
             {% if show_fields.show_dsclesao or 0 %}
@@ -92,7 +92,7 @@
             {% if show_fields.show_diagprovavel or 0 %}
             <td>{{ a.diagprovavel }}</td>
             {% endif %}
-            {% if show_fields.show_codcid or 1 %}
+            {% if show_fields.show_codcid or 0 %}
             <td>{{ a.codcid }}</td>
             {% endif %}
             {% if show_fields.show_observacao or 0 %}

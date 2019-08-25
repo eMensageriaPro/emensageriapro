@@ -62,7 +62,10 @@
                             {% if perms.r4010.can_see_r4010infoRRAideAdv %}
                                 <li {% if tab == 'r4010_inforra_ideadv' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_inforra_despprocjud_salvar_tab' pk=pk tab='r4010_inforra_ideadv' %}">
-                                    Identificação do advogado</a>
+                                    Identificação do advogado&nbsp;{% if not r4010_inforra_ideadv_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4010_inforra_ideadv_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

@@ -62,14 +62,20 @@
                             {% if perms.s2240.can_see_s2240altExpRiscoepc %}
                                 <li {% if tab == 's2240_altexprisco_epc' %} class="active"{% endif %} >
                                     <a href="{% url 's2240_altexprisco_fatrisco_salvar_tab' pk=pk tab='s2240_altexprisco_epc' %}">
-                                    Equipamentos de Proteção Coletiva - EPC</a>
+                                    Equipamentos de Proteção Coletiva - EPC&nbsp;{% if not s2240_altexprisco_epc_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2240_altexprisco_epc_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2240.can_see_s2240altExpRiscoepi %}
                                 <li {% if tab == 's2240_altexprisco_epi' %} class="active"{% endif %} >
                                     <a href="{% url 's2240_altexprisco_fatrisco_salvar_tab' pk=pk tab='s2240_altexprisco_epi' %}">
-                                    Equipamentos de Proteção Individual - EPI</a>
+                                    Equipamentos de Proteção Individual - EPI&nbsp;{% if not s2240_altexprisco_epi_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2240_altexprisco_epi_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

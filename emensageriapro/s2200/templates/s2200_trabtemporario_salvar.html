@@ -62,14 +62,20 @@
                             {% if perms.s2200.can_see_s2200ideEstabVinc %}
                                 <li {% if tab == 's2200_ideestabvinc' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_trabtemporario_salvar_tab' pk=pk tab='s2200_ideestabvinc' %}">
-                                    Identificação do estabelecimento ao qual o trabalhador temporário está vinculado</a>
+                                    Identificação do estabelecimento ao qual o trabalhador temporário está vinculado&nbsp;{% if not s2200_ideestabvinc_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2200_ideestabvinc_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2200.can_see_s2200ideTrabSubstituido %}
                                 <li {% if tab == 's2200_idetrabsubstituido' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_trabtemporario_salvar_tab' pk=pk tab='s2200_idetrabsubstituido' %}">
-                                    Identificação do(s) trabalhador(es) substituído(s)</a>
+                                    Identificação do(s) trabalhador(es) substituído(s)&nbsp;{% if not s2200_idetrabsubstituido_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2200_idetrabsubstituido_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

@@ -5,7 +5,7 @@
             {% if show_fields.show_s1250_tpaquis or 1 %}
             <th>Registro que identifica os produtores rurais dos quais foi efetuada aquisição da produção pelo contribuinte declarante.</th>
             {% endif %}
-            {% if show_fields.show_tpinscprod or 0 %}
+            {% if show_fields.show_tpinscprod or 1 %}
             <th>Tipo de Inscrição Produtor</th>
             {% endif %}
             {% if show_fields.show_nrinscprod or 1 %}
@@ -23,7 +23,7 @@
             {% if show_fields.show_vrsenardesc or 0 %}
             <th>Valor descontado destinado ao SENAR</th>
             {% endif %}
-            {% if show_fields.show_indopccp or 1 %}
+            {% if show_fields.show_indopccp or 0 %}
             <th>Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -38,7 +38,7 @@
             {% if show_fields.show_s1250_tpaquis or 1 %}
             <td>{{ a.s1250_tpaquis }}</td>
             {% endif %}
-            {% if show_fields.show_tpinscprod or 0 %}
+            {% if show_fields.show_tpinscprod or 1 %}
             <td>{{ a.tpinscprod }}</td>
             {% endif %}
             {% if show_fields.show_nrinscprod or 1 %}
@@ -56,7 +56,7 @@
             {% if show_fields.show_vrsenardesc or 0 %}
             <td>{{ a.vrsenardesc }}</td>
             {% endif %}
-            {% if show_fields.show_indopccp or 1 %}
+            {% if show_fields.show_indopccp or 0 %}
             <td>{{ a.get_indopccp_display }}</td>
             {% endif %}
 

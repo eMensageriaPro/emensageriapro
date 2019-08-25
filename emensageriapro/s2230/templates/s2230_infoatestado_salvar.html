@@ -62,7 +62,10 @@
                             {% if perms.s2230.can_see_s2230emitente %}
                                 <li {% if tab == 's2230_emitente' %} class="active"{% endif %} >
                                     <a href="{% url 's2230_infoatestado_salvar_tab' pk=pk tab='s2230_emitente' %}">
-                                    Médico/Dentista que emitiu o atestado</a>
+                                    Médico/Dentista que emitiu o atestado&nbsp;{% if not s2230_emitente_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2230_emitente_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

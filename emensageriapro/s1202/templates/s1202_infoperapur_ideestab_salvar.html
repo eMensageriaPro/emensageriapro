@@ -62,7 +62,10 @@
                             {% if perms.s1202.can_see_s1202infoPerApurremunPerApur %}
                                 <li {% if tab == 's1202_infoperapur_remunperapur' %} class="active"{% endif %} >
                                     <a href="{% url 's1202_infoperapur_ideestab_salvar_tab' pk=pk tab='s1202_infoperapur_remunperapur' %}">
-                                    Informações relativas a remuneração do trabalhador no período de apuração</a>
+                                    Informações relativas a remuneração do trabalhador no período de apuração&nbsp;{% if not s1202_infoperapur_remunperapur_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1202_infoperapur_remunperapur_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

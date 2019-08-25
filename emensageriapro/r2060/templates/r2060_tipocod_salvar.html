@@ -62,14 +62,20 @@
                             {% if perms.r2060.can_see_r2060tipoAjuste %}
                                 <li {% if tab == 'r2060_tipoajuste' %} class="active"{% endif %} >
                                     <a href="{% url 'r2060_tipocod_salvar_tab' pk=pk tab='r2060_tipoajuste' %}">
-                                    Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.</a>
+                                    Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.&nbsp;{% if not r2060_tipoajuste_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2060_tipoajuste_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r2060.can_see_r2060infoProc %}
                                 <li {% if tab == 'r2060_infoproc' %} class="active"{% endif %} >
                                     <a href="{% url 'r2060_tipocod_salvar_tab' pk=pk tab='r2060_infoproc' %}">
-                                    Informações de processos relacionados a não retenção de contribuição previdenciária</a>
+                                    Informações de processos relacionados a não retenção de contribuição previdenciária&nbsp;{% if not r2060_infoproc_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2060_infoproc_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

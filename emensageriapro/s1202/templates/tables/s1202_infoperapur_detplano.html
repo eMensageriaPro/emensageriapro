@@ -5,7 +5,7 @@
             {% if show_fields.show_s1202_infoperapur_detoper or 1 %}
             <th>Informações do dependente do plano privado de saúde.</th>
             {% endif %}
-            {% if show_fields.show_tpdep or 0 %}
+            {% if show_fields.show_tpdep or 1 %}
             <th>Tipo</th>
             {% endif %}
             {% if show_fields.show_cpfdep or 0 %}
@@ -14,7 +14,7 @@
             {% if show_fields.show_nmdep or 1 %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_dtnascto or 1 %}
+            {% if show_fields.show_dtnascto or 0 %}
             <th>Data de nascimento</th>
             {% endif %}
             {% if show_fields.show_vlrpgdep or 0 %}
@@ -32,7 +32,7 @@
             {% if show_fields.show_s1202_infoperapur_detoper or 1 %}
             <td>{{ a.s1202_infoperapur_detoper }}</td>
             {% endif %}
-            {% if show_fields.show_tpdep or 0 %}
+            {% if show_fields.show_tpdep or 1 %}
             <td>{{ a.get_tpdep_display }}</td>
             {% endif %}
             {% if show_fields.show_cpfdep or 0 %}
@@ -41,7 +41,7 @@
             {% if show_fields.show_nmdep or 1 %}
             <td>{{ a.nmdep }}</td>
             {% endif %}
-            {% if show_fields.show_dtnascto or 1 %}
+            {% if show_fields.show_dtnascto or 0 %}
             <td><span style="display:none">{{ a.dtnascto|date:"Y-m-d" }}</span>{{ a.dtnascto|date:"d/m/Y" }}</td>
             {% endif %}
             {% if show_fields.show_vlrpgdep or 0 %}

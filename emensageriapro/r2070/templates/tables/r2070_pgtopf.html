@@ -5,13 +5,13 @@
             {% if show_fields.show_r2070_pgtoresidbr or 1 %}
             <th>Beneficiário Pessoa Física - Residente no Brasil</th>
             {% endif %}
-            {% if show_fields.show_dtpgto or 0 %}
+            {% if show_fields.show_dtpgto or 1 %}
             <th>Informar a data de pagamento ou crédito, base para retenção</th>
             {% endif %}
             {% if show_fields.show_indsuspexig or 1 %}
             <th>Indicativo de Exigibilidade Suspensa</th>
             {% endif %}
-            {% if show_fields.show_inddecterceiro or 1 %}
+            {% if show_fields.show_inddecterceiro or 0 %}
             <th>Indicativo de 13o Salário</th>
             {% endif %}
             {% if show_fields.show_vlrrendtributavel or 0 %}
@@ -32,13 +32,13 @@
             {% if show_fields.show_r2070_pgtoresidbr or 1 %}
             <td>{{ a.r2070_pgtoresidbr }}</td>
             {% endif %}
-            {% if show_fields.show_dtpgto or 0 %}
+            {% if show_fields.show_dtpgto or 1 %}
             <td><span style="display:none">{{ a.dtpgto|date:"Y-m-d" }}</span>{{ a.dtpgto|date:"d/m/Y" }}</td>
             {% endif %}
             {% if show_fields.show_indsuspexig or 1 %}
             <td>{{ a.get_indsuspexig_display }}</td>
             {% endif %}
-            {% if show_fields.show_inddecterceiro or 1 %}
+            {% if show_fields.show_inddecterceiro or 0 %}
             <td>{{ a.get_inddecterceiro_display }}</td>
             {% endif %}
             {% if show_fields.show_vlrrendtributavel or 0 %}

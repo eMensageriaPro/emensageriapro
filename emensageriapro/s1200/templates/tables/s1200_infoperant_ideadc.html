@@ -8,7 +8,7 @@
             {% if show_fields.show_dtacconv or 0 %}
             <th>Data do vencimento da obrigação</th>
             {% endif %}
-            {% if show_fields.show_tpacconv or 0 %}
+            {% if show_fields.show_tpacconv or 1 %}
             <th>Tipo</th>
             {% endif %}
             {% if show_fields.show_compacconv or 0 %}
@@ -20,7 +20,7 @@
             {% if show_fields.show_dsc or 1 %}
             <th>Descrição</th>
             {% endif %}
-            {% if show_fields.show_remunsuc or 1 %}
+            {% if show_fields.show_remunsuc or 0 %}
             <th>Remuneração Empresa Sucessora</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -38,7 +38,7 @@
             {% if show_fields.show_dtacconv or 0 %}
             <td><span style="display:none">{{ a.dtacconv|date:"Y-m-d" }}</span>{{ a.dtacconv|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tpacconv or 0 %}
+            {% if show_fields.show_tpacconv or 1 %}
             <td>{{ a.get_tpacconv_display }}</td>
             {% endif %}
             {% if show_fields.show_compacconv or 0 %}
@@ -50,7 +50,7 @@
             {% if show_fields.show_dsc or 1 %}
             <td>{{ a.dsc }}</td>
             {% endif %}
-            {% if show_fields.show_remunsuc or 1 %}
+            {% if show_fields.show_remunsuc or 0 %}
             <td>{{ a.get_remunsuc_display }}</td>
             {% endif %}
 

@@ -63,21 +63,30 @@
                                 {% if perms.esocial.can_see_s1040inclusao %}
                                     <li {% if tab == 's1040_inclusao' %} class="active"{% endif %} >
                                         <a href="{% url 's1040_evttabfuncao_salvar_tab' pk=pk tab='s1040_inclusao' %}">
-                                        Inclusão de novas informações</a>
+                                        Inclusão de novas informações&nbsp;{% if not s1040_inclusao_lista %}<small class="label pull-right bg-yellow">0</small>
+                                            {% else %}<small class="label pull-right bg-green">{{ s1040_inclusao_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
                             {% elif s1040_evttabfuncao.operacao == 2 %}
                                 {% if perms.esocial.can_see_s1040alteracao %}
                                     <li {% if tab == 's1040_alteracao' %}class="active"{% endif %}>
                                         <a href="{% url 's1040_evttabfuncao_salvar_tab' pk=pk tab='s1040_alteracao' %}">
-                                        Alteração das informações</a>
+                                        Alteração das informações&nbsp;{% if not s1040_alteracao_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1040_alteracao_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
                             {% elif s1040_evttabfuncao.operacao == 3 %}
                                 {% if perms.esocial.can_see_s1040exclusao %}
                                     <li {% if tab == 's1040_exclusao' %}class="active"{% endif %} >
                                         <a href="{% url 's1040_evttabfuncao_salvar_tab' pk=pk tab='s1040_exclusao' %}">
-                                        Exclusão das informações</a>
+                                        Exclusão das informações&nbsp;{% if not s1040_exclusao_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1040_exclusao_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
                             {% endif %}

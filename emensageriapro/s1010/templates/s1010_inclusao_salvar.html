@@ -62,35 +62,50 @@
                             {% if perms.s1010.can_see_s1010inclusaoideProcessoCP %}
                                 <li {% if tab == 's1010_inclusao_ideprocessocp' %} class="active"{% endif %} >
                                     <a href="{% url 's1010_inclusao_salvar_tab' pk=pk tab='s1010_inclusao_ideprocessocp' %}">
-                                    Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
+                                    Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.&nbsp;{% if not s1010_inclusao_ideprocessocp_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1010_inclusao_ideprocessocp_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1010.can_see_s1010inclusaoideProcessoIRRF %}
                                 <li {% if tab == 's1010_inclusao_ideprocessoirrf' %} class="active"{% endif %} >
                                     <a href="{% url 's1010_inclusao_salvar_tab' pk=pk tab='s1010_inclusao_ideprocessoirrf' %}">
-                                    Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
+                                    Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.&nbsp;{% if not s1010_inclusao_ideprocessoirrf_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1010_inclusao_ideprocessoirrf_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1010.can_see_s1010inclusaoideProcessoFGTS %}
                                 <li {% if tab == 's1010_inclusao_ideprocessofgts' %} class="active"{% endif %} >
                                     <a href="{% url 's1010_inclusao_salvar_tab' pk=pk tab='s1010_inclusao_ideprocessofgts' %}">
-                                    Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
+                                    Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.&nbsp;{% if not s1010_inclusao_ideprocessofgts_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1010_inclusao_ideprocessofgts_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1010.can_see_s1010inclusaoideProcessoSIND %}
                                 <li {% if tab == 's1010_inclusao_ideprocessosind' %} class="active"{% endif %} >
                                     <a href="{% url 's1010_inclusao_salvar_tab' pk=pk tab='s1010_inclusao_ideprocessosind' %}">
-                                    Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
+                                    Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.&nbsp;{% if not s1010_inclusao_ideprocessosind_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1010_inclusao_ideprocessosind_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1010.can_see_s1010inclusaoideProcessoCPRP %}
                                 <li {% if tab == 's1010_inclusao_ideprocessocprp' %} class="active"{% endif %} >
                                     <a href="{% url 's1010_inclusao_salvar_tab' pk=pk tab='s1010_inclusao_ideprocessocprp' %}">
-                                    Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
+                                    Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.&nbsp;{% if not s1010_inclusao_ideprocessocprp_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1010_inclusao_ideprocessocprp_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

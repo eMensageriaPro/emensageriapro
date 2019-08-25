@@ -67,13 +67,13 @@ def listar(request, output=None):
 
         dict_fields = {}
         show_fields = {
-            'show_s2245_evttreicap': 0,
+            'show_s2245_evttreicap': 1,
             'show_cpfprof': 0,
-            'show_nmprof': 0,
-            'show_tpprof': 0,
-            'show_formprof': 1,
-            'show_codcbo': 1,
-            'show_nacprof': 1, }
+            'show_nmprof': 1,
+            'show_tpprof': 1,
+            'show_formprof': 0,
+            'show_codcbo': 0,
+            'show_nacprof': 0, }
 
         post = False
 

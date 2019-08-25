@@ -70,12 +70,12 @@ def listar(request, output=None):
             'show_s1035_evttabcarreira': 1,
             'show_idecarreira': 0,
             'show_codcarreira': 1,
-            'show_inivalid': 0,
+            'show_inivalid': 1,
             'show_fimvalid': 0,
             'show_dadoscarreira': 0,
             'show_dsccarreira': 0,
             'show_leicarr': 0,
-            'show_dtleicarr': 1,
+            'show_dtleicarr': 0,
             'show_sitcarr': 0, }
 
         post = False

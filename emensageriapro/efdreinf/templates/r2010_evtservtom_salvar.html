@@ -63,21 +63,30 @@
                                 {% if perms.r2010.can_see_r2010nfs %}
                                     <li {% if tab == 'r2010_nfs' %} class="active"{% endif %} >
                                         <a href="{% url 'r2010_evtservtom_salvar_tab' pk=pk tab='r2010_nfs' %}">
-                                        Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior</a>
+                                        Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior&nbsp;{% if not r2010_nfs_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ r2010_nfs_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.r2010.can_see_r2010infoProcRetPr %}
                                     <li {% if tab == 'r2010_infoprocretpr' %} class="active"{% endif %} >
                                         <a href="{% url 'r2010_evtservtom_salvar_tab' pk=pk tab='r2010_infoprocretpr' %}">
-                                        Informações de processos relacionados a não retenção de contribuição previdenciária</a>
+                                        Informações de processos relacionados a não retenção de contribuição previdenciária&nbsp;{% if not r2010_infoprocretpr_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ r2010_infoprocretpr_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.r2010.can_see_r2010infoProcRetAd %}
                                     <li {% if tab == 'r2010_infoprocretad' %} class="active"{% endif %} >
                                         <a href="{% url 'r2010_evtservtom_salvar_tab' pk=pk tab='r2010_infoprocretad' %}">
-                                        Informações de processos relacionados a não retenção de contribuição previdenciária adicional</a>
+                                        Informações de processos relacionados a não retenção de contribuição previdenciária adicional&nbsp;{% if not r2010_infoprocretad_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ r2010_infoprocretad_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

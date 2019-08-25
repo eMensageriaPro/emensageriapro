@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r3010_boletim or 0 %}
+            {% if show_fields.show_r3010_boletim or 1 %}
             <th>Receita da Venda de Ingressos</th>
             {% endif %}
-            {% if show_fields.show_tpingresso or 0 %}
+            {% if show_fields.show_tpingresso or 1 %}
             <th>Tipo de Ingresso</th>
             {% endif %}
             {% if show_fields.show_descingr or 1 %}
             <th>Descrição do tipo de ingresso</th>
             {% endif %}
-            {% if show_fields.show_qtdeingrvenda or 1 %}
+            {% if show_fields.show_qtdeingrvenda or 0 %}
             <th>Número de ingressos colocados à venda</th>
             {% endif %}
             {% if show_fields.show_qtdeingrvendidos or 0 %}
             <th>Número de ingressos vendidos</th>
             {% endif %}
-            {% if show_fields.show_qtdeingrdev or 1 %}
+            {% if show_fields.show_qtdeingrdev or 0 %}
             <th>Número de ingressos devolvidos</th>
             {% endif %}
             {% if show_fields.show_precoindiv or 0 %}
@@ -35,22 +35,22 @@
     <tbody>
         {% for a in r3010_receitaingressos_lista %}
         <tr>
-            {% if show_fields.show_r3010_boletim or 0 %}
+            {% if show_fields.show_r3010_boletim or 1 %}
             <td>{{ a.r3010_boletim }}</td>
             {% endif %}
-            {% if show_fields.show_tpingresso or 0 %}
+            {% if show_fields.show_tpingresso or 1 %}
             <td>{{ a.get_tpingresso_display }}</td>
             {% endif %}
             {% if show_fields.show_descingr or 1 %}
             <td>{{ a.descingr }}</td>
             {% endif %}
-            {% if show_fields.show_qtdeingrvenda or 1 %}
+            {% if show_fields.show_qtdeingrvenda or 0 %}
             <td>{{ a.qtdeingrvenda }}</td>
             {% endif %}
             {% if show_fields.show_qtdeingrvendidos or 0 %}
             <td>{{ a.qtdeingrvendidos }}</td>
             {% endif %}
-            {% if show_fields.show_qtdeingrdev or 1 %}
+            {% if show_fields.show_qtdeingrdev or 0 %}
             <td>{{ a.qtdeingrdev }}</td>
             {% endif %}
             {% if show_fields.show_precoindiv or 0 %}

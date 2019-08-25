@@ -5,16 +5,16 @@
             {% if show_fields.show_s1000_inclusao or 1 %}
             <th>Informações Complementares - Empresas Isentas - Dados da Isenção</th>
             {% endif %}
-            {% if show_fields.show_ideminlei or 0 %}
+            {% if show_fields.show_ideminlei or 1 %}
             <th>Lei que concedeu a isenção</th>
             {% endif %}
-            {% if show_fields.show_nrcertif or 0 %}
+            {% if show_fields.show_nrcertif or 1 %}
             <th>Número certificado</th>
             {% endif %}
-            {% if show_fields.show_dtemiscertif or 1 %}
+            {% if show_fields.show_dtemiscertif or 0 %}
             <th>Data de emissao certificado</th>
             {% endif %}
-            {% if show_fields.show_dtvenccertif or 1 %}
+            {% if show_fields.show_dtvenccertif or 0 %}
             <th>Data de vencimento certificado</th>
             {% endif %}
             {% if show_fields.show_nrprotrenov or 0 %}
@@ -41,16 +41,16 @@
             {% if show_fields.show_s1000_inclusao or 1 %}
             <td>{{ a.s1000_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_ideminlei or 0 %}
+            {% if show_fields.show_ideminlei or 1 %}
             <td>{{ a.ideminlei }}</td>
             {% endif %}
-            {% if show_fields.show_nrcertif or 0 %}
+            {% if show_fields.show_nrcertif or 1 %}
             <td>{{ a.nrcertif }}</td>
             {% endif %}
-            {% if show_fields.show_dtemiscertif or 1 %}
+            {% if show_fields.show_dtemiscertif or 0 %}
             <td><span style="display:none">{{ a.dtemiscertif|date:"Y-m-d" }}</span>{{ a.dtemiscertif|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtvenccertif or 1 %}
+            {% if show_fields.show_dtvenccertif or 0 %}
             <td><span style="display:none">{{ a.dtvenccertif|date:"Y-m-d" }}</span>{{ a.dtvenccertif|date:"d/m/Y" }}</td>
             {% endif %}
             {% if show_fields.show_nrprotrenov or 0 %}

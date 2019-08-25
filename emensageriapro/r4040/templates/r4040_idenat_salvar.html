@@ -62,7 +62,10 @@
                             {% if perms.r4040.can_see_r4040infoPgto %}
                                 <li {% if tab == 'r4040_infopgto' %} class="active"{% endif %} >
                                     <a href="{% url 'r4040_idenat_salvar_tab' pk=pk tab='r4040_infopgto' %}">
-                                    Informações do Pagamento</a>
+                                    Informações do Pagamento&nbsp;{% if not r4040_infopgto_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4040_infopgto_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

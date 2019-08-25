@@ -5,7 +5,7 @@
             {% if show_fields.show_s1200_infocomplem or 1 %}
             <th>Grupo de informações da sucessão de vínculo trabalhista/estatutário</th>
             {% endif %}
-            {% if show_fields.show_tpinscant or 0 %}
+            {% if show_fields.show_tpinscant or 1 %}
             <th>Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05</th>
             {% endif %}
             {% if show_fields.show_cnpjempregant or 1 %}
@@ -14,7 +14,7 @@
             {% if show_fields.show_matricant or 0 %}
             <th>Matricula anterior</th>
             {% endif %}
-            {% if show_fields.show_dtadm or 1 %}
+            {% if show_fields.show_dtadm or 0 %}
             <th>Data de admissão</th>
             {% endif %}
             {% if show_fields.show_observacao or 0 %}
@@ -32,7 +32,7 @@
             {% if show_fields.show_s1200_infocomplem or 1 %}
             <td>{{ a.s1200_infocomplem }}</td>
             {% endif %}
-            {% if show_fields.show_tpinscant or 0 %}
+            {% if show_fields.show_tpinscant or 1 %}
             <td>{{ a.get_tpinscant_display }}</td>
             {% endif %}
             {% if show_fields.show_cnpjempregant or 1 %}
@@ -41,7 +41,7 @@
             {% if show_fields.show_matricant or 0 %}
             <td>{{ a.matricant }}</td>
             {% endif %}
-            {% if show_fields.show_dtadm or 1 %}
+            {% if show_fields.show_dtadm or 0 %}
             <td><span style="display:none">{{ a.dtadm|date:"Y-m-d" }}</span>{{ a.dtadm|date:"d/m/Y" }}</td>
             {% endif %}
             {% if show_fields.show_observacao or 0 %}

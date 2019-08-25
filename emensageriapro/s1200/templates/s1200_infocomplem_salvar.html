@@ -62,7 +62,10 @@
                             {% if perms.s1200.can_see_s1200sucessaoVinc %}
                                 <li {% if tab == 's1200_sucessaovinc' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_infocomplem_salvar_tab' pk=pk tab='s1200_sucessaovinc' %}">
-                                    Grupo de informações da sucessão de vínculo trabalhista/estatutário</a>
+                                    Grupo de informações da sucessão de vínculo trabalhista/estatutário&nbsp;{% if not s1200_sucessaovinc_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1200_sucessaovinc_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

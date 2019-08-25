@@ -5,16 +5,16 @@
             {% if show_fields.show_s1010_alteracao or 1 %}
             <th>Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</th>
             {% endif %}
-            {% if show_fields.show_tpproc or 0 %}
+            {% if show_fields.show_tpproc or 1 %}
             <th>Processo RAT</th>
             {% endif %}
-            {% if show_fields.show_nrproc or 0 %}
+            {% if show_fields.show_nrproc or 1 %}
             <th>Número do Processo</th>
             {% endif %}
-            {% if show_fields.show_extdecisao or 1 %}
+            {% if show_fields.show_extdecisao or 0 %}
             <th>Extensão da Decisão (caso favorável CP)</th>
             {% endif %}
-            {% if show_fields.show_codsusp or 1 %}
+            {% if show_fields.show_codsusp or 0 %}
             <th>Código do Indicativo da Suspensão</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -29,16 +29,16 @@
             {% if show_fields.show_s1010_alteracao or 1 %}
             <td>{{ a.s1010_alteracao }}</td>
             {% endif %}
-            {% if show_fields.show_tpproc or 0 %}
+            {% if show_fields.show_tpproc or 1 %}
             <td>{{ a.get_tpproc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrproc or 0 %}
+            {% if show_fields.show_nrproc or 1 %}
             <td>{{ a.nrproc }}</td>
             {% endif %}
-            {% if show_fields.show_extdecisao or 1 %}
+            {% if show_fields.show_extdecisao or 0 %}
             <td>{{ a.get_extdecisao_display }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp or 1 %}
+            {% if show_fields.show_codsusp or 0 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
 

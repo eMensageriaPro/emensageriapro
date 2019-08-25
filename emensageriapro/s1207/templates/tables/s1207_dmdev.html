@@ -5,13 +5,13 @@
             {% if show_fields.show_s1207_evtbenprrp or 1 %}
             <th>Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</th>
             {% endif %}
-            {% if show_fields.show_tpbenef or 0 %}
+            {% if show_fields.show_tpbenef or 1 %}
             <th>Tipo de benefício</th>
             {% endif %}
             {% if show_fields.show_nrbenefic or 1 %}
             <th>Número do benefício</th>
             {% endif %}
-            {% if show_fields.show_idedmdev or 1 %}
+            {% if show_fields.show_idedmdev or 0 %}
             <th>Identificador dos demostrativos de pagamento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -26,13 +26,13 @@
             {% if show_fields.show_s1207_evtbenprrp or 1 %}
             <td>{{ a.s1207_evtbenprrp }}</td>
             {% endif %}
-            {% if show_fields.show_tpbenef or 0 %}
+            {% if show_fields.show_tpbenef or 1 %}
             <td>{{ a.tpbenef|valor }}</td>
             {% endif %}
             {% if show_fields.show_nrbenefic or 1 %}
             <td>{{ a.nrbenefic }}</td>
             {% endif %}
-            {% if show_fields.show_idedmdev or 1 %}
+            {% if show_fields.show_idedmdev or 0 %}
             <td>{{ a.idedmdev }}</td>
             {% endif %}
 

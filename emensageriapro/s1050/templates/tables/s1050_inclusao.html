@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1050_evttabhortur or 0 %}
+            {% if show_fields.show_s1050_evttabhortur or 1 %}
             <th>Inclusão de novas informações</th>
             {% endif %}
             {% if show_fields.show_idehorcontratual or 0 %}
@@ -11,7 +11,7 @@
             {% if show_fields.show_codhorcontrat or 1 %}
             <th>Código do Horário Contratual</th>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <th>Início da Validade</th>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -20,13 +20,13 @@
             {% if show_fields.show_dadoshorcontratual or 0 %}
             <th>Detalhamento das informações do horário contratual que está sendo incluído.</th>
             {% endif %}
-            {% if show_fields.show_hrentr or 1 %}
+            {% if show_fields.show_hrentr or 0 %}
             <th>Hora de Entrada</th>
             {% endif %}
             {% if show_fields.show_hrsaida or 0 %}
             <th>Hora de Saída</th>
             {% endif %}
-            {% if show_fields.show_durjornada or 1 %}
+            {% if show_fields.show_durjornada or 0 %}
             <th>Duração da jornada (min)</th>
             {% endif %}
             {% if show_fields.show_perhorflexivel or 0 %}
@@ -41,7 +41,7 @@
     <tbody>
         {% for a in s1050_inclusao_lista %}
         <tr>
-            {% if show_fields.show_s1050_evttabhortur or 0 %}
+            {% if show_fields.show_s1050_evttabhortur or 1 %}
             <td>{{ a.s1050_evttabhortur }}</td>
             {% endif %}
             {% if show_fields.show_idehorcontratual or 0 %}
@@ -50,7 +50,7 @@
             {% if show_fields.show_codhorcontrat or 1 %}
             <td>{{ a.codhorcontrat }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -59,13 +59,13 @@
             {% if show_fields.show_dadoshorcontratual or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_hrentr or 1 %}
+            {% if show_fields.show_hrentr or 0 %}
             <td>{{ a.hrentr }}</td>
             {% endif %}
             {% if show_fields.show_hrsaida or 0 %}
             <td>{{ a.hrsaida }}</td>
             {% endif %}
-            {% if show_fields.show_durjornada or 1 %}
+            {% if show_fields.show_durjornada or 0 %}
             <td>{{ a.durjornada }}</td>
             {% endif %}
             {% if show_fields.show_perhorflexivel or 0 %}

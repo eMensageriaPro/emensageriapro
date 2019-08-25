@@ -11,7 +11,7 @@
             {% if show_fields.show_ideevento or 0 %}
             <th>Informações de Identificação do Evento</th>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_tpamb or 0 %}
             <th>Identificação do ambiente</th>
             {% endif %}
             {% if show_fields.show_procemi or 0 %}
@@ -23,10 +23,10 @@
             {% if show_fields.show_idecontri or 0 %}
             <th>Informações de identificação do contribuinte</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <th>Preencher com o código correspondente ao tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 0 %}
+            {% if show_fields.show_nrinsc or 1 %}
             <th>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</th>
             {% endif %}
             {% if show_fields.show_infoprocesso or 0 %}
@@ -86,6 +86,9 @@
             {% if show_fields.show_operacao or 1 %}
             <th>Operação</th>
             {% endif %}
+            {% if show_fields.show_transmissor_lote_efdreinf_error or 0 %}
+            <th>Transmissor (Erro)</th>
+            {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
             <th width="80px">Ações</th>
@@ -104,7 +107,7 @@
             {% if show_fields.show_ideevento or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_tpamb or 0 %}
             <td>{{ a.get_tpamb_display }}</td>
             {% endif %}
             {% if show_fields.show_procemi or 0 %}
@@ -116,10 +119,10 @@
             {% if show_fields.show_idecontri or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <td>{{ a.tpinsc }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 0 %}
+            {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
             {% if show_fields.show_infoprocesso or 0 %}
@@ -178,6 +181,9 @@
             {% endif %}
             {% if show_fields.show_operacao or 1 %}
             <td>{{ a.get_operacao_display }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_efdreinf_error or 0 %}
+            <td>{{ a.transmissor_lote_efdreinf_error }}</td>
             {% endif %}
 
             <!-- colunas especiais -->

@@ -67,7 +67,7 @@ def listar(request, output=None):
 
         dict_fields = {}
         show_fields = {
-            'show_r4020_idepgto': 0,
+            'show_r4020_idepgto': 1,
             'show_endext': 0,
             'show_dsclograd': 1,
             'show_nrlograd': 0,
@@ -81,7 +81,7 @@ def listar(request, output=None):
             'show_indnif': 1,
             'show_nifbenef': 0,
             'show_relfontpg': 0,
-            'show_frmtribut': 1, }
+            'show_frmtribut': 0, }
 
         post = False
 

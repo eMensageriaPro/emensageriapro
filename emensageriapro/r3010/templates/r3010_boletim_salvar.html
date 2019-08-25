@@ -62,14 +62,20 @@
                             {% if perms.r3010.can_see_r3010receitaIngressos %}
                                 <li {% if tab == 'r3010_receitaingressos' %} class="active"{% endif %} >
                                     <a href="{% url 'r3010_boletim_salvar_tab' pk=pk tab='r3010_receitaingressos' %}">
-                                    Receita da Venda de Ingressos</a>
+                                    Receita da Venda de Ingressos&nbsp;{% if not r3010_receitaingressos_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r3010_receitaingressos_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r3010.can_see_r3010outrasReceitas %}
                                 <li {% if tab == 'r3010_outrasreceitas' %} class="active"{% endif %} >
                                     <a href="{% url 'r3010_boletim_salvar_tab' pk=pk tab='r3010_outrasreceitas' %}">
-                                    Outras receitas do espetáculo</a>
+                                    Outras receitas do espetáculo&nbsp;{% if not r3010_outrasreceitas_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r3010_outrasreceitas_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

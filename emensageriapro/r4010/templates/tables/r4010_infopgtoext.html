@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r4010_idepgto or 0 %}
+            {% if show_fields.show_r4010_idepgto or 1 %}
             <th>Informações complementares relativas a pagamentos a residente fiscal no Exterior</th>
             {% endif %}
             {% if show_fields.show_endext or 0 %}
@@ -41,7 +41,7 @@
             {% if show_fields.show_nifbenef or 0 %}
             <th>Número de Identificação Fiscal - NIF</th>
             {% endif %}
-            {% if show_fields.show_frmtribut or 1 %}
+            {% if show_fields.show_frmtribut or 0 %}
             <th>Forma de tributação, conforme tabela de informações sobre os rendimentos constante na Tabela 02</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -53,7 +53,7 @@
     <tbody>
         {% for a in r4010_infopgtoext_lista %}
         <tr>
-            {% if show_fields.show_r4010_idepgto or 0 %}
+            {% if show_fields.show_r4010_idepgto or 1 %}
             <td>{{ a.r4010_idepgto }}</td>
             {% endif %}
             {% if show_fields.show_endext or 0 %}
@@ -92,7 +92,7 @@
             {% if show_fields.show_nifbenef or 0 %}
             <td>{{ a.nifbenef }}</td>
             {% endif %}
-            {% if show_fields.show_frmtribut or 1 %}
+            {% if show_fields.show_frmtribut or 0 %}
             <td>{{ a.get_frmtribut_display }}</td>
             {% endif %}
 

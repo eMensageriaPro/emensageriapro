@@ -62,7 +62,10 @@
                             {% if perms.s2410.can_see_s2410instPenMorte %}
                                 <li {% if tab == 's2410_instpenmorte' %} class="active"{% endif %} >
                                     <a href="{% url 's2410_infopenmorte_salvar_tab' pk=pk tab='s2410_instpenmorte' %}">
-                                    Informações do instituidor da pensão por morte</a>
+                                    Informações do instituidor da pensão por morte&nbsp;{% if not s2410_instpenmorte_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2410_instpenmorte_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

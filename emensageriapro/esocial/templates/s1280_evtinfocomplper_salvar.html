@@ -63,21 +63,30 @@
                                 {% if perms.s1280.can_see_s1280infoSubstPatr %}
                                     <li {% if tab == 's1280_infosubstpatr' %} class="active"{% endif %} >
                                         <a href="{% url 's1280_evtinfocomplper_salvar_tab' pk=pk tab='s1280_infosubstpatr' %}">
-                                        Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador.</a>
+                                        Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador.&nbsp;{% if not s1280_infosubstpatr_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1280_infosubstpatr_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s1280.can_see_s1280infoSubstPatrOpPort %}
                                     <li {% if tab == 's1280_infosubstpatropport' %} class="active"{% endif %} >
                                         <a href="{% url 's1280_evtinfocomplper_salvar_tab' pk=pk tab='s1280_infosubstpatropport' %}">
-                                        Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.</a>
+                                        Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.&nbsp;{% if not s1280_infosubstpatropport_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1280_infosubstpatropport_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s1280.can_see_s1280infoAtivConcom %}
                                     <li {% if tab == 's1280_infoativconcom' %} class="active"{% endif %} >
                                         <a href="{% url 's1280_evtinfocomplper_salvar_tab' pk=pk tab='s1280_infoativconcom' %}">
-                                        Registro preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída.</a>
+                                        Registro preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída.&nbsp;{% if not s1280_infoativconcom_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1280_infoativconcom_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

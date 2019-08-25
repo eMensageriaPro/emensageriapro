@@ -63,7 +63,10 @@
                                 {% if perms.s2220.can_see_s2220exame %}
                                     <li {% if tab == 's2220_exame' %} class="active"{% endif %} >
                                         <a href="{% url 's2220_evtmonit_salvar_tab' pk=pk tab='s2220_exame' %}">
-                                        Registro que detalha os exames complementares porventura realizados pelo trabalhador em virtude do determinado no Quadro II da NR 07 do MTE, além de outros solicitados pelo médico e os referentes ao ASO</a>
+                                        Registro que detalha os exames complementares porventura realizados pelo trabalhador em virtude do determinado no Quadro II da NR 07 do MTE, além de outros solicitados pelo médico e os referentes ao ASO&nbsp;{% if not s2220_exame_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2220_exame_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

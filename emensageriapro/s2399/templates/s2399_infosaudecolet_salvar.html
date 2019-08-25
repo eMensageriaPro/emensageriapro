@@ -62,7 +62,10 @@
                             {% if perms.s2399.can_see_s2399detOper %}
                                 <li {% if tab == 's2399_detoper' %} class="active"{% endif %} >
                                     <a href="{% url 's2399_infosaudecolet_salvar_tab' pk=pk tab='s2399_detoper' %}">
-                                    Detalhamento dos valores pagos a Operadoras de Planos de Saúde.</a>
+                                    Detalhamento dos valores pagos a Operadoras de Planos de Saúde.&nbsp;{% if not s2399_detoper_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2399_detoper_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

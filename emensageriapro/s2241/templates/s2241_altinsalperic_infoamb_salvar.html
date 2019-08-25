@@ -62,7 +62,10 @@
                             {% if perms.s2241.can_see_s2241altInsalPericfatRisco %}
                                 <li {% if tab == 's2241_altinsalperic_fatrisco' %} class="active"{% endif %} >
                                     <a href="{% url 's2241_altinsalperic_infoamb_salvar_tab' pk=pk tab='s2241_altinsalperic_fatrisco' %}">
-                                    Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</a>
+                                    Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente&nbsp;{% if not s2241_altinsalperic_fatrisco_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2241_altinsalperic_fatrisco_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

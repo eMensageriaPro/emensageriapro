@@ -5,13 +5,13 @@
             {% if show_fields.show_s2399_infomv or 1 %}
             <th>Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores recolhidos pelo próprio trabalhador como contribuinte individual</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <th>Tipo de inscrição</th>
             {% endif %}
             {% if show_fields.show_nrinsc or 1 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_codcateg or 1 %}
+            {% if show_fields.show_codcateg or 0 %}
             <th>Código da Categoria</th>
             {% endif %}
             {% if show_fields.show_vlrremunoe or 0 %}
@@ -29,13 +29,13 @@
             {% if show_fields.show_s2399_infomv or 1 %}
             <td>{{ a.s2399_infomv }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
             {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_codcateg or 1 %}
+            {% if show_fields.show_codcateg or 0 %}
             <td>{{ a.codcateg|valor }}</td>
             {% endif %}
             {% if show_fields.show_vlrremunoe or 0 %}

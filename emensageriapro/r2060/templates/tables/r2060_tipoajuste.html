@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2060_tipocod or 0 %}
+            {% if show_fields.show_r2060_tipocod or 1 %}
             <th>Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.</th>
             {% endif %}
             {% if show_fields.show_tpajuste or 1 %}
             <th>Preencher com o código correspondente ao tipo de ajuste</th>
             {% endif %}
-            {% if show_fields.show_codajuste or 0 %}
+            {% if show_fields.show_codajuste or 1 %}
             <th>Preencher com o código de ajuste</th>
             {% endif %}
             {% if show_fields.show_vlrajuste or 0 %}
             <th>Valor do ajuste</th>
             {% endif %}
-            {% if show_fields.show_descajuste or 1 %}
+            {% if show_fields.show_descajuste or 0 %}
             <th>Descrição resumida do ajuste</th>
             {% endif %}
-            {% if show_fields.show_dtajuste or 1 %}
+            {% if show_fields.show_dtajuste or 0 %}
             <th>Informar o mês/ano (formato AAAA-MM) de referência do ajuste</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -29,22 +29,22 @@
     <tbody>
         {% for a in r2060_tipoajuste_lista %}
         <tr>
-            {% if show_fields.show_r2060_tipocod or 0 %}
+            {% if show_fields.show_r2060_tipocod or 1 %}
             <td>{{ a.r2060_tipocod }}</td>
             {% endif %}
             {% if show_fields.show_tpajuste or 1 %}
             <td>{{ a.get_tpajuste_display }}</td>
             {% endif %}
-            {% if show_fields.show_codajuste or 0 %}
+            {% if show_fields.show_codajuste or 1 %}
             <td>{{ a.get_codajuste_display }}</td>
             {% endif %}
             {% if show_fields.show_vlrajuste or 0 %}
             <td>{{ a.vlrajuste }}</td>
             {% endif %}
-            {% if show_fields.show_descajuste or 1 %}
+            {% if show_fields.show_descajuste or 0 %}
             <td>{{ a.descajuste }}</td>
             {% endif %}
-            {% if show_fields.show_dtajuste or 1 %}
+            {% if show_fields.show_dtajuste or 0 %}
             <td>{{ a.dtajuste }}</td>
             {% endif %}
 

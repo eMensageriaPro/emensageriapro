@@ -62,49 +62,70 @@
                             {% if perms.r4010.can_see_r4010FCI %}
                                 <li {% if tab == 'r4010_fci' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_infopgto_salvar_tab' pk=pk tab='r4010_fci' %}">
-                                    Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante</a>
+                                    Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante&nbsp;{% if not r4010_fci_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4010_fci_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r4010.can_see_r4010SCP %}
                                 <li {% if tab == 'r4010_scp' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_infopgto_salvar_tab' pk=pk tab='r4010_scp' %}">
-                                    Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo</a>
+                                    Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo&nbsp;{% if not r4010_scp_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4010_scp_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r4010.can_see_r4010detDed %}
                                 <li {% if tab == 'r4010_detded' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_infopgto_salvar_tab' pk=pk tab='r4010_detded' %}">
-                                    Detalhamento das deduções</a>
+                                    Detalhamento das deduções&nbsp;{% if not r4010_detded_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4010_detded_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r4010.can_see_r4010rendIsento %}
                                 <li {% if tab == 'r4010_rendisento' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_infopgto_salvar_tab' pk=pk tab='r4010_rendisento' %}">
-                                    Rendimentos Isentos/Não Tributáveis</a>
+                                    Rendimentos Isentos/Não Tributáveis&nbsp;{% if not r4010_rendisento_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4010_rendisento_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r4010.can_see_r4010infoProcRet %}
                                 <li {% if tab == 'r4010_infoprocret' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_infopgto_salvar_tab' pk=pk tab='r4010_infoprocret' %}">
-                                    Informações de processos relacionados a não retenção de tributos ou depósitos judiciais</a>
+                                    Informações de processos relacionados a não retenção de tributos ou depósitos judiciais&nbsp;{% if not r4010_infoprocret_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4010_infoprocret_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r4010.can_see_r4010infoRRA %}
                                 <li {% if tab == 'r4010_inforra' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_infopgto_salvar_tab' pk=pk tab='r4010_inforra' %}">
-                                    Informações Complementares - Rendimentos Recebidos Acumuladamente</a>
+                                    Informações Complementares - Rendimentos Recebidos Acumuladamente&nbsp;{% if not r4010_inforra_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4010_inforra_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r4010.can_see_r4010infoProcJud %}
                                 <li {% if tab == 'r4010_infoprocjud' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_infopgto_salvar_tab' pk=pk tab='r4010_infoprocjud' %}">
-                                    Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</a>
+                                    Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial&nbsp;{% if not r4010_infoprocjud_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4010_infoprocjud_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

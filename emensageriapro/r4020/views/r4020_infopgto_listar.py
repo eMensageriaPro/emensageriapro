@@ -69,8 +69,8 @@ def listar(request, output=None):
         show_fields = {
             'show_r4020_idepgto': 1,
             'show_dtfg': 1,
-            'show_vlrtotalpag': 0,
-            'show_vlrtotalcred': 1, }
+            'show_vlrtotalpag': 1,
+            'show_vlrtotalcred': 0, }
 
         post = False
 

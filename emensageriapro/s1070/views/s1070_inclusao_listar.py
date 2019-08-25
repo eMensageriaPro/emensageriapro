@@ -69,13 +69,13 @@ def listar(request, output=None):
         show_fields = {
             'show_s1070_evttabprocesso': 1,
             'show_ideprocesso': 0,
-            'show_tpproc': 0,
-            'show_nrproc': 0,
-            'show_inivalid': 1,
+            'show_tpproc': 1,
+            'show_nrproc': 1,
+            'show_inivalid': 0,
             'show_fimvalid': 0,
             'show_dadosproc': 0,
             'show_indautoria': 0,
-            'show_indmatproc': 1,
+            'show_indmatproc': 0,
             'show_observacao': 0, }
 
         post = False

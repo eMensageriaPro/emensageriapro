@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2231_evtcessao or 0 %}
+            {% if show_fields.show_s2231_evtcessao or 1 %}
             <th>Informações de início da cessão/exercício em outro órgão</th>
             {% endif %}
             {% if show_fields.show_dtinicessao or 1 %}
@@ -14,7 +14,7 @@
             {% if show_fields.show_infonus or 0 %}
             <th>Onus da cessão/requisição</th>
             {% endif %}
-            {% if show_fields.show_indcessao or 1 %}
+            {% if show_fields.show_indcessao or 0 %}
             <th>Indicativo de cessão/exercício em outro órgão</th>
             {% endif %}
             {% if show_fields.show_dscsituacao or 0 %}
@@ -29,7 +29,7 @@
     <tbody>
         {% for a in s2231_inicessao_lista %}
         <tr>
-            {% if show_fields.show_s2231_evtcessao or 0 %}
+            {% if show_fields.show_s2231_evtcessao or 1 %}
             <td>{{ a.s2231_evtcessao }}</td>
             {% endif %}
             {% if show_fields.show_dtinicessao or 1 %}
@@ -41,7 +41,7 @@
             {% if show_fields.show_infonus or 0 %}
             <td>{{ a.get_infonus_display }}</td>
             {% endif %}
-            {% if show_fields.show_indcessao or 1 %}
+            {% if show_fields.show_indcessao or 0 %}
             <td>{{ a.get_indcessao_display }}</td>
             {% endif %}
             {% if show_fields.show_dscsituacao or 0 %}

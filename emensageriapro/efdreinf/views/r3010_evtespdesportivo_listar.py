@@ -70,10 +70,10 @@ def listar(request, output=None):
             'show_evtespdesportivo': 0,
             'show_identidade': 1,
             'show_ideevento': 0,
-            'show_indretif': 0,
+            'show_indretif': 1,
             'show_nrrecibo': 0,
-            'show_dtapuracao': 0,
-            'show_tpamb': 1,
+            'show_dtapuracao': 1,
+            'show_tpamb': 0,
             'show_procemi': 0,
             'show_verproc': 0,
             'show_idecontri': 0,
@@ -104,7 +104,8 @@ def listar(request, output=None):
             'show_status': 1,
             'show_cdretorno': 1,
             'show_descretorno': 0,
-            'show_dhprocess': 0, }
+            'show_dhprocess': 0,
+            'show_transmissor_lote_efdreinf_error': 0, }
 
         post = False
 

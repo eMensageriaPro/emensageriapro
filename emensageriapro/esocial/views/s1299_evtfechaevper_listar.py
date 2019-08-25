@@ -70,9 +70,9 @@ def listar(request, output=None):
             'show_evtfechaevper': 0,
             'show_identidade': 1,
             'show_ideevento': 0,
-            'show_indapuracao': 0,
-            'show_perapur': 0,
-            'show_tpamb': 1,
+            'show_indapuracao': 1,
+            'show_perapur': 1,
+            'show_tpamb': 0,
             'show_procemi': 0,
             'show_verproc': 0,
             'show_ideempregador': 0,
@@ -83,7 +83,7 @@ def listar(request, output=None):
             'show_evtpgtos': 0,
             'show_evtaqprod': 0,
             'show_evtcomprod': 0,
-            'show_evtcontratavnp': 1,
+            'show_evtcontratavnp': 0,
             'show_evtinfocomplper': 0,
             'show_compsemmovto': 0,
             'show_versao': 0,
@@ -94,7 +94,11 @@ def listar(request, output=None):
             'show_validacoes': 0,
             'show_arquivo_original': 0,
             'show_arquivo': 0,
-            'show_status': 1, }
+            'show_status': 1,
+            'show_retornos_s5011': 0,
+            'show_retornos_s5012': 0,
+            'show_retornos_s5013': 0,
+            'show_transmissor_lote_esocial_error': 0, }
 
         post = False
 

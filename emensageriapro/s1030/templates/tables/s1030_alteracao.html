@@ -11,7 +11,7 @@
             {% if show_fields.show_codcargo or 1 %}
             <th>Código do Cargo</th>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <th>Início da Validade</th>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -23,7 +23,7 @@
             {% if show_fields.show_nmcargo or 0 %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_codcbo or 1 %}
+            {% if show_fields.show_codcbo or 0 %}
             <th>CBO</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -44,7 +44,7 @@
             {% if show_fields.show_codcargo or 1 %}
             <td>{{ a.codcargo }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -56,7 +56,7 @@
             {% if show_fields.show_nmcargo or 0 %}
             <td>{{ a.nmcargo }}</td>
             {% endif %}
-            {% if show_fields.show_codcbo or 1 %}
+            {% if show_fields.show_codcbo or 0 %}
             <td>{{ a.codcbo }}</td>
             {% endif %}
 

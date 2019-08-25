@@ -62,42 +62,60 @@
                             {% if perms.s2300.can_see_s2300CTPS %}
                                 <li {% if tab == 's2300_ctps' %} class="active"{% endif %} >
                                     <a href="{% url 's2300_documentos_salvar_tab' pk=pk tab='s2300_ctps' %}">
-                                    Informações da Carteira de Trabalho e Previdência Social</a>
+                                    Informações da Carteira de Trabalho e Previdência Social&nbsp;{% if not s2300_ctps_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2300_ctps_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2300.can_see_s2300RIC %}
                                 <li {% if tab == 's2300_ric' %} class="active"{% endif %} >
                                     <a href="{% url 's2300_documentos_salvar_tab' pk=pk tab='s2300_ric' %}">
-                                    Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)</a>
+                                    Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)&nbsp;{% if not s2300_ric_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2300_ric_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2300.can_see_s2300RG %}
                                 <li {% if tab == 's2300_rg' %} class="active"{% endif %} >
                                     <a href="{% url 's2300_documentos_salvar_tab' pk=pk tab='s2300_rg' %}">
-                                    Informações do Registro Geral (RG)</a>
+                                    Informações do Registro Geral (RG)&nbsp;{% if not s2300_rg_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2300_rg_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2300.can_see_s2300RNE %}
                                 <li {% if tab == 's2300_rne' %} class="active"{% endif %} >
                                     <a href="{% url 's2300_documentos_salvar_tab' pk=pk tab='s2300_rne' %}">
-                                    Informações do Registro Nacional de Estrangeiro</a>
+                                    Informações do Registro Nacional de Estrangeiro&nbsp;{% if not s2300_rne_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2300_rne_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2300.can_see_s2300OC %}
                                 <li {% if tab == 's2300_oc' %} class="active"{% endif %} >
                                     <a href="{% url 's2300_documentos_salvar_tab' pk=pk tab='s2300_oc' %}">
-                                    Informações do número de registro em Órgão de Classe (OC)</a>
+                                    Informações do número de registro em Órgão de Classe (OC)&nbsp;{% if not s2300_oc_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2300_oc_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2300.can_see_s2300CNH %}
                                 <li {% if tab == 's2300_cnh' %} class="active"{% endif %} >
                                     <a href="{% url 's2300_documentos_salvar_tab' pk=pk tab='s2300_cnh' %}">
-                                    Informações da Carteira Nacional de Habilitação (CNH)</a>
+                                    Informações da Carteira Nacional de Habilitação (CNH)&nbsp;{% if not s2300_cnh_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2300_cnh_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

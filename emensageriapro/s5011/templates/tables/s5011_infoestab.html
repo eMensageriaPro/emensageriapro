@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_ideestab or 0 %}
+            {% if show_fields.show_s5011_ideestab or 1 %}
             <th>Informações do Estabelecimento ou obra</th>
             {% endif %}
             {% if show_fields.show_cnaeprep or 1 %}
@@ -14,7 +14,7 @@
             {% if show_fields.show_fap or 0 %}
             <th>FAP</th>
             {% endif %}
-            {% if show_fields.show_aliqratajust or 1 %}
+            {% if show_fields.show_aliqratajust or 0 %}
             <th>Alíquota RAT (Ajustada)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -26,7 +26,7 @@
     <tbody>
         {% for a in s5011_infoestab_lista %}
         <tr>
-            {% if show_fields.show_s5011_ideestab or 0 %}
+            {% if show_fields.show_s5011_ideestab or 1 %}
             <td>{{ a.s5011_ideestab }}</td>
             {% endif %}
             {% if show_fields.show_cnaeprep or 1 %}
@@ -38,7 +38,7 @@
             {% if show_fields.show_fap or 0 %}
             <td>{{ a.fap }}</td>
             {% endif %}
-            {% if show_fields.show_aliqratajust or 1 %}
+            {% if show_fields.show_aliqratajust or 0 %}
             <td>{{ a.aliqratajust }}</td>
             {% endif %}
 

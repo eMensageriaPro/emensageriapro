@@ -2,25 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2245_evttreicap or 0 %}
+            {% if show_fields.show_s2245_evttreicap or 1 %}
             <th>Informações relativas ao profissional responsável pelo treinamento/capacitação</th>
             {% endif %}
             {% if show_fields.show_cpfprof or 0 %}
             <th>Preencher com o CPF do profissional responsável pelo treinamento/capacitação</th>
             {% endif %}
-            {% if show_fields.show_nmprof or 0 %}
+            {% if show_fields.show_nmprof or 1 %}
             <th>Nome do profissional responsável pelo treinamento/capacitação.</th>
             {% endif %}
-            {% if show_fields.show_tpprof or 0 %}
+            {% if show_fields.show_tpprof or 1 %}
             <th>O treinamento/capacitação foi ministrado por</th>
             {% endif %}
-            {% if show_fields.show_formprof or 1 %}
+            {% if show_fields.show_formprof or 0 %}
             <th>Formação do profissional responsável pelo treinamento/capacitação (seja acadêmica, prática ou outra forma).</th>
             {% endif %}
-            {% if show_fields.show_codcbo or 1 %}
+            {% if show_fields.show_codcbo or 0 %}
             <th>CBO</th>
             {% endif %}
-            {% if show_fields.show_nacprof or 1 %}
+            {% if show_fields.show_nacprof or 0 %}
             <th>Indicativo da nacionalidade do profissional responsável pelo treinamento/capacitação/exercício simulado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -32,25 +32,25 @@
     <tbody>
         {% for a in s2245_ideprofresp_lista %}
         <tr>
-            {% if show_fields.show_s2245_evttreicap or 0 %}
+            {% if show_fields.show_s2245_evttreicap or 1 %}
             <td>{{ a.s2245_evttreicap }}</td>
             {% endif %}
             {% if show_fields.show_cpfprof or 0 %}
             <td>{{ a.cpfprof }}</td>
             {% endif %}
-            {% if show_fields.show_nmprof or 0 %}
+            {% if show_fields.show_nmprof or 1 %}
             <td>{{ a.nmprof }}</td>
             {% endif %}
-            {% if show_fields.show_tpprof or 0 %}
+            {% if show_fields.show_tpprof or 1 %}
             <td>{{ a.get_tpprof_display }}</td>
             {% endif %}
-            {% if show_fields.show_formprof or 1 %}
+            {% if show_fields.show_formprof or 0 %}
             <td>{{ a.formprof }}</td>
             {% endif %}
-            {% if show_fields.show_codcbo or 1 %}
+            {% if show_fields.show_codcbo or 0 %}
             <td>{{ a.codcbo }}</td>
             {% endif %}
-            {% if show_fields.show_nacprof or 1 %}
+            {% if show_fields.show_nacprof or 0 %}
             <td>{{ a.get_nacprof_display }}</td>
             {% endif %}
 

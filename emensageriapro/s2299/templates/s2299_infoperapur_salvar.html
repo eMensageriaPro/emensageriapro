@@ -62,7 +62,10 @@
                             {% if perms.s2299.can_see_s2299infoPerApurideEstabLot %}
                                 <li {% if tab == 's2299_infoperapur_ideestablot' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_infoperapur_salvar_tab' pk=pk tab='s2299_infoperapur_ideestablot' %}">
-                                    Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</a>
+                                    Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração&nbsp;{% if not s2299_infoperapur_ideestablot_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2299_infoperapur_ideestablot_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

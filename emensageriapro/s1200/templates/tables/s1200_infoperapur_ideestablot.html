@@ -5,13 +5,13 @@
             {% if show_fields.show_s1200_infoperapur or 1 %}
             <th>Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <th>Tipo de inscrição</th>
             {% endif %}
             {% if show_fields.show_nrinsc or 1 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
-            {% if show_fields.show_codlotacao or 1 %}
+            {% if show_fields.show_codlotacao or 0 %}
             <th>Código da Lotação</th>
             {% endif %}
             {% if show_fields.show_qtddiasav or 0 %}
@@ -29,13 +29,13 @@
             {% if show_fields.show_s1200_infoperapur or 1 %}
             <td>{{ a.s1200_infoperapur }}</td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
             {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_codlotacao or 1 %}
+            {% if show_fields.show_codlotacao or 0 %}
             <td>{{ a.codlotacao }}</td>
             {% endif %}
             {% if show_fields.show_qtddiasav or 0 %}

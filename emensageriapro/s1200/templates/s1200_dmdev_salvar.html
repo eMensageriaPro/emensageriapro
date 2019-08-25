@@ -62,21 +62,30 @@
                             {% if perms.s1200.can_see_s1200infoPerApur %}
                                 <li {% if tab == 's1200_infoperapur' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_dmdev_salvar_tab' pk=pk tab='s1200_infoperapur' %}">
-                                    Remuneração no período de apuração</a>
+                                    Remuneração no período de apuração&nbsp;{% if not s1200_infoperapur_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1200_infoperapur_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1200.can_see_s1200infoPerAnt %}
                                 <li {% if tab == 's1200_infoperant' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_dmdev_salvar_tab' pk=pk tab='s1200_infoperant' %}">
-                                    Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento</a>
+                                    Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento&nbsp;{% if not s1200_infoperant_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1200_infoperant_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1200.can_see_s1200infoPerAntinfoComplCont %}
                                 <li {% if tab == 's1200_infoperant_infocomplcont' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_dmdev_salvar_tab' pk=pk tab='s1200_infoperant_infocomplcont' %}">
-                                    Registro preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente (CPF + categoria).</a>
+                                    Registro preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente (CPF + categoria).&nbsp;{% if not s1200_infoperant_infocomplcont_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1200_infoperant_infocomplcont_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

@@ -62,14 +62,20 @@
                             {% if perms.s2300.can_see_s2300ageIntegracao %}
                                 <li {% if tab == 's2300_ageintegracao' %} class="active"{% endif %} >
                                     <a href="{% url 's2300_infoestagiario_salvar_tab' pk=pk tab='s2300_ageintegracao' %}">
-                                    Agente de Integração</a>
+                                    Agente de Integração&nbsp;{% if not s2300_ageintegracao_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2300_ageintegracao_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2300.can_see_s2300supervisorEstagio %}
                                 <li {% if tab == 's2300_supervisorestagio' %} class="active"{% endif %} >
                                     <a href="{% url 's2300_infoestagiario_salvar_tab' pk=pk tab='s2300_supervisorestagio' %}">
-                                    Supervisor do Estágio</a>
+                                    Supervisor do Estágio&nbsp;{% if not s2300_supervisorestagio_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2300_supervisorestagio_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

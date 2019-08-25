@@ -63,7 +63,10 @@
                                 {% if perms.s2260.can_see_s2260localTrabInterm %}
                                     <li {% if tab == 's2260_localtrabinterm' %} class="active"{% endif %} >
                                         <a href="{% url 's2260_evtconvinterm_salvar_tab' pk=pk tab='s2260_localtrabinterm' %}">
-                                        Informações do local de trabalho intermitente, quando prestado em apenas um local e fora do estabelecimento do empregador cadastrado no S-2200/S-2206</a>
+                                        Informações do local de trabalho intermitente, quando prestado em apenas um local e fora do estabelecimento do empregador cadastrado no S-2200/S-2206&nbsp;{% if not s2260_localtrabinterm_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2260_localtrabinterm_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

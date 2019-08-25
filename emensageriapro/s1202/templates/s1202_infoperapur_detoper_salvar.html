@@ -62,7 +62,10 @@
                             {% if perms.s1202.can_see_s1202infoPerApurdetPlano %}
                                 <li {% if tab == 's1202_infoperapur_detplano' %} class="active"{% endif %} >
                                     <a href="{% url 's1202_infoperapur_detoper_salvar_tab' pk=pk tab='s1202_infoperapur_detplano' %}">
-                                    Informações do dependente do plano privado de saúde.</a>
+                                    Informações do dependente do plano privado de saúde.&nbsp;{% if not s1202_infoperapur_detplano_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1202_infoperapur_detplano_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

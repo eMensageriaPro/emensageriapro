@@ -11,10 +11,10 @@
             {% if show_fields.show_eficepi or 1 %}
             <th>EPI é eficaz na neutralização</th>
             {% endif %}
-            {% if show_fields.show_medprotecao or 0 %}
+            {% if show_fields.show_medprotecao or 1 %}
             <th>Medidas de proteção coletiva</th>
             {% endif %}
-            {% if show_fields.show_condfuncto or 1 %}
+            {% if show_fields.show_condfuncto or 0 %}
             <th>Condição de funcionamento e uso ininterrupto</th>
             {% endif %}
             {% if show_fields.show_przvalid or 0 %}
@@ -44,10 +44,10 @@
             {% if show_fields.show_eficepi or 1 %}
             <td>{{ a.get_eficepi_display }}</td>
             {% endif %}
-            {% if show_fields.show_medprotecao or 0 %}
+            {% if show_fields.show_medprotecao or 1 %}
             <td>{{ a.get_medprotecao_display }}</td>
             {% endif %}
-            {% if show_fields.show_condfuncto or 1 %}
+            {% if show_fields.show_condfuncto or 0 %}
             <td>{{ a.get_condfuncto_display }}</td>
             {% endif %}
             {% if show_fields.show_przvalid or 0 %}

@@ -8,7 +8,7 @@
             {% if show_fields.show_nmente or 1 %}
             <th>Nome do EFR</th>
             {% endif %}
-            {% if show_fields.show_uf or 0 %}
+            {% if show_fields.show_uf or 1 %}
             <th>UF</th>
             {% endif %}
             {% if show_fields.show_codmunic or 0 %}
@@ -17,7 +17,7 @@
             {% if show_fields.show_indrpps or 0 %}
             <th>Possui RPPS</th>
             {% endif %}
-            {% if show_fields.show_subteto or 1 %}
+            {% if show_fields.show_subteto or 0 %}
             <th>Poder a que se refere o subteto</th>
             {% endif %}
             {% if show_fields.show_vrsubteto or 0 %}
@@ -38,7 +38,7 @@
             {% if show_fields.show_nmente or 1 %}
             <td>{{ a.nmente }}</td>
             {% endif %}
-            {% if show_fields.show_uf or 0 %}
+            {% if show_fields.show_uf or 1 %}
             <td>{{ a.get_uf_display }}</td>
             {% endif %}
             {% if show_fields.show_codmunic or 0 %}
@@ -47,7 +47,7 @@
             {% if show_fields.show_indrpps or 0 %}
             <td>{{ a.get_indrpps_display }}</td>
             {% endif %}
-            {% if show_fields.show_subteto or 1 %}
+            {% if show_fields.show_subteto or 0 %}
             <td>{{ a.get_subteto_display }}</td>
             {% endif %}
             {% if show_fields.show_vrsubteto or 0 %}

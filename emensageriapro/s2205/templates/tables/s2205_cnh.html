@@ -5,22 +5,22 @@
             {% if show_fields.show_s2205_documentos or 1 %}
             <th>Informações da Carteira Nacional de Habilitação (CNH)</th>
             {% endif %}
-            {% if show_fields.show_nrregcnh or 0 %}
+            {% if show_fields.show_nrregcnh or 1 %}
             <th>Número do CNH</th>
             {% endif %}
             {% if show_fields.show_dtexped or 0 %}
             <th>Data de Expedição do RIC</th>
             {% endif %}
-            {% if show_fields.show_ufcnh or 0 %}
+            {% if show_fields.show_ufcnh or 1 %}
             <th>UF do CNH</th>
             {% endif %}
-            {% if show_fields.show_dtvalid or 1 %}
+            {% if show_fields.show_dtvalid or 0 %}
             <th>Data de Validade do OC</th>
             {% endif %}
             {% if show_fields.show_dtprihab or 0 %}
             <th>Data da Primeira Habilitação do CNH</th>
             {% endif %}
-            {% if show_fields.show_categoriacnh or 1 %}
+            {% if show_fields.show_categoriacnh or 0 %}
             <th>Categoria do CNH</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -35,22 +35,22 @@
             {% if show_fields.show_s2205_documentos or 1 %}
             <td>{{ a.s2205_documentos }}</td>
             {% endif %}
-            {% if show_fields.show_nrregcnh or 0 %}
+            {% if show_fields.show_nrregcnh or 1 %}
             <td>{{ a.nrregcnh }}</td>
             {% endif %}
             {% if show_fields.show_dtexped or 0 %}
             <td><span style="display:none">{{ a.dtexped|date:"Y-m-d" }}</span>{{ a.dtexped|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_ufcnh or 0 %}
+            {% if show_fields.show_ufcnh or 1 %}
             <td>{{ a.get_ufcnh_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtvalid or 1 %}
+            {% if show_fields.show_dtvalid or 0 %}
             <td><span style="display:none">{{ a.dtvalid|date:"Y-m-d" }}</span>{{ a.dtvalid|date:"d/m/Y" }}</td>
             {% endif %}
             {% if show_fields.show_dtprihab or 0 %}
             <td><span style="display:none">{{ a.dtprihab|date:"Y-m-d" }}</span>{{ a.dtprihab|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_categoriacnh or 1 %}
+            {% if show_fields.show_categoriacnh or 0 %}
             <td>{{ a.get_categoriacnh_display }}</td>
             {% endif %}
 

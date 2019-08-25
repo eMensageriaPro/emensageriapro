@@ -63,7 +63,10 @@
                                 {% if perms.s2245.can_see_s2245ideProfResp %}
                                     <li {% if tab == 's2245_ideprofresp' %} class="active"{% endif %} >
                                         <a href="{% url 's2245_evttreicap_salvar_tab' pk=pk tab='s2245_ideprofresp' %}">
-                                        Informações relativas ao profissional responsável pelo treinamento/capacitação</a>
+                                        Informações relativas ao profissional responsável pelo treinamento/capacitação&nbsp;{% if not s2245_ideprofresp_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2245_ideprofresp_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

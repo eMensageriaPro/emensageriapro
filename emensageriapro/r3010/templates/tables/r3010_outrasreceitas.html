@@ -8,10 +8,10 @@
             {% if show_fields.show_tpreceita or 1 %}
             <th>Tipo de receita</th>
             {% endif %}
-            {% if show_fields.show_vlrreceita or 0 %}
+            {% if show_fields.show_vlrreceita or 1 %}
             <th>Valor da receita auferida</th>
             {% endif %}
-            {% if show_fields.show_descreceita or 1 %}
+            {% if show_fields.show_descreceita or 0 %}
             <th>Descrição da receita</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -29,10 +29,10 @@
             {% if show_fields.show_tpreceita or 1 %}
             <td>{{ a.get_tpreceita_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlrreceita or 0 %}
+            {% if show_fields.show_vlrreceita or 1 %}
             <td>{{ a.vlrreceita }}</td>
             {% endif %}
-            {% if show_fields.show_descreceita or 1 %}
+            {% if show_fields.show_descreceita or 0 %}
             <td>{{ a.descreceita }}</td>
             {% endif %}
 

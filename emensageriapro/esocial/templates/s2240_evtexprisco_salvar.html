@@ -63,56 +63,80 @@
                                 {% if perms.s2240.can_see_s2240iniExpRiscoinfoAmb %}
                                     <li {% if tab == 's2240_iniexprisco_infoamb' %} class="active"{% endif %} >
                                         <a href="{% url 's2240_evtexprisco_salvar_tab' pk=pk tab='s2240_iniexprisco_infoamb' %}">
-                                        Informações relativas ao ambiente de trabalho</a>
+                                        Informações relativas ao ambiente de trabalho&nbsp;{% if not s2240_iniexprisco_infoamb_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2240_iniexprisco_infoamb_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2240.can_see_s2240iniExpRiscoativPericInsal %}
                                     <li {% if tab == 's2240_iniexprisco_ativpericinsal' %} class="active"{% endif %} >
                                         <a href="{% url 's2240_evtexprisco_salvar_tab' pk=pk tab='s2240_iniexprisco_ativpericinsal' %}">
-                                        Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)</a>
+                                        Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)&nbsp;{% if not s2240_iniexprisco_ativpericinsal_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2240_iniexprisco_ativpericinsal_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2240.can_see_s2240iniExpRiscofatRisco %}
                                     <li {% if tab == 's2240_iniexprisco_fatrisco' %} class="active"{% endif %} >
                                         <a href="{% url 's2240_evtexprisco_salvar_tab' pk=pk tab='s2240_iniexprisco_fatrisco' %}">
-                                        Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</a>
+                                        Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente&nbsp;{% if not s2240_iniexprisco_fatrisco_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2240_iniexprisco_fatrisco_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2240.can_see_s2240iniExpRiscorespReg %}
                                     <li {% if tab == 's2240_iniexprisco_respreg' %} class="active"{% endif %} >
                                         <a href="{% url 's2240_evtexprisco_salvar_tab' pk=pk tab='s2240_iniexprisco_respreg' %}">
-                                        Informações relativas ao responsável pelos registros ambientais</a>
+                                        Informações relativas ao responsável pelos registros ambientais&nbsp;{% if not s2240_iniexprisco_respreg_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2240_iniexprisco_respreg_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2240.can_see_s2240iniExpRiscoobs %}
                                     <li {% if tab == 's2240_iniexprisco_obs' %} class="active"{% endif %} >
                                         <a href="{% url 's2240_evtexprisco_salvar_tab' pk=pk tab='s2240_iniexprisco_obs' %}">
-                                        Observações relativas a registros ambientais</a>
+                                        Observações relativas a registros ambientais&nbsp;{% if not s2240_iniexprisco_obs_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2240_iniexprisco_obs_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2240.can_see_s2240altExpRisco %}
                                     <li {% if tab == 's2240_altexprisco' %} class="active"{% endif %} >
                                         <a href="{% url 's2240_evtexprisco_salvar_tab' pk=pk tab='s2240_altexprisco' %}">
-                                        Condições ambientais do trabalho - Alteração</a>
+                                        Condições ambientais do trabalho - Alteração&nbsp;{% if not s2240_altexprisco_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2240_altexprisco_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2240.can_see_s2240fimExpRisco %}
                                     <li {% if tab == 's2240_fimexprisco' %} class="active"{% endif %} >
                                         <a href="{% url 's2240_evtexprisco_salvar_tab' pk=pk tab='s2240_fimexprisco' %}">
-                                        Condições ambientais do trabalho - Fim</a>
+                                        Condições ambientais do trabalho - Fim&nbsp;{% if not s2240_fimexprisco_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2240_fimexprisco_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2240.can_see_s2240fimExpRiscorespReg %}
                                     <li {% if tab == 's2240_fimexprisco_respreg' %} class="active"{% endif %} >
                                         <a href="{% url 's2240_evtexprisco_salvar_tab' pk=pk tab='s2240_fimexprisco_respreg' %}">
-                                        Informações relativas ao responsável pelos registros ambientais</a>
+                                        Informações relativas ao responsável pelos registros ambientais&nbsp;{% if not s2240_fimexprisco_respreg_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2240_fimexprisco_respreg_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

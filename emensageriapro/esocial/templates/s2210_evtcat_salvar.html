@@ -63,35 +63,50 @@
                                 {% if perms.s2210.can_see_s2210ideLocalAcid %}
                                     <li {% if tab == 's2210_idelocalacid' %} class="active"{% endif %} >
                                         <a href="{% url 's2210_evtcat_salvar_tab' pk=pk tab='s2210_idelocalacid' %}">
-                                        Identificação do local onde ocorreu o acidente</a>
+                                        Identificação do local onde ocorreu o acidente&nbsp;{% if not s2210_idelocalacid_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2210_idelocalacid_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2210.can_see_s2210parteAtingida %}
                                     <li {% if tab == 's2210_parteatingida' %} class="active"{% endif %} >
                                         <a href="{% url 's2210_evtcat_salvar_tab' pk=pk tab='s2210_parteatingida' %}">
-                                        Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.</a>
+                                        Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.&nbsp;{% if not s2210_parteatingida_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2210_parteatingida_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2210.can_see_s2210agenteCausador %}
                                     <li {% if tab == 's2210_agentecausador' %} class="active"{% endif %} >
                                         <a href="{% url 's2210_evtcat_salvar_tab' pk=pk tab='s2210_agentecausador' %}">
-                                        Detalhamento do(s) agente(s) causador(es) do acidente de trabalho</a>
+                                        Detalhamento do(s) agente(s) causador(es) do acidente de trabalho&nbsp;{% if not s2210_agentecausador_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2210_agentecausador_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2210.can_see_s2210atestado %}
                                     <li {% if tab == 's2210_atestado' %} class="active"{% endif %} >
                                         <a href="{% url 's2210_evtcat_salvar_tab' pk=pk tab='s2210_atestado' %}">
-                                        Atestado Médico</a>
+                                        Atestado Médico&nbsp;{% if not s2210_atestado_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2210_atestado_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2210.can_see_s2210catOrigem %}
                                     <li {% if tab == 's2210_catorigem' %} class="active"{% endif %} >
                                         <a href="{% url 's2210_evtcat_salvar_tab' pk=pk tab='s2210_catorigem' %}">
-                                        Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito</a>
+                                        Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito&nbsp;{% if not s2210_catorigem_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2210_catorigem_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

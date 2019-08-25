@@ -2,16 +2,16 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2205_evtaltcadastral or 0 %}
+            {% if show_fields.show_s2205_evtaltcadastral or 1 %}
             <th>Informações dos dependentes</th>
             {% endif %}
-            {% if show_fields.show_tpdep or 0 %}
+            {% if show_fields.show_tpdep or 1 %}
             <th>Tipo</th>
             {% endif %}
-            {% if show_fields.show_nmdep or 0 %}
+            {% if show_fields.show_nmdep or 1 %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_dtnascto or 1 %}
+            {% if show_fields.show_dtnascto or 0 %}
             <th>Data de nascimento</th>
             {% endif %}
             {% if show_fields.show_cpfdep or 0 %}
@@ -20,10 +20,10 @@
             {% if show_fields.show_sexodep or 0 %}
             <th>Sexo do dependente</th>
             {% endif %}
-            {% if show_fields.show_depirrf or 1 %}
+            {% if show_fields.show_depirrf or 0 %}
             <th>Dependente de IRRF</th>
             {% endif %}
-            {% if show_fields.show_depsf or 1 %}
+            {% if show_fields.show_depsf or 0 %}
             <th>Dependente de SF</th>
             {% endif %}
             {% if show_fields.show_inctrab or 0 %}
@@ -41,16 +41,16 @@
     <tbody>
         {% for a in s2205_dependente_lista %}
         <tr>
-            {% if show_fields.show_s2205_evtaltcadastral or 0 %}
+            {% if show_fields.show_s2205_evtaltcadastral or 1 %}
             <td>{{ a.s2205_evtaltcadastral }}</td>
             {% endif %}
-            {% if show_fields.show_tpdep or 0 %}
+            {% if show_fields.show_tpdep or 1 %}
             <td>{{ a.get_tpdep_display }}</td>
             {% endif %}
-            {% if show_fields.show_nmdep or 0 %}
+            {% if show_fields.show_nmdep or 1 %}
             <td>{{ a.nmdep }}</td>
             {% endif %}
-            {% if show_fields.show_dtnascto or 1 %}
+            {% if show_fields.show_dtnascto or 0 %}
             <td><span style="display:none">{{ a.dtnascto|date:"Y-m-d" }}</span>{{ a.dtnascto|date:"d/m/Y" }}</td>
             {% endif %}
             {% if show_fields.show_cpfdep or 0 %}
@@ -59,10 +59,10 @@
             {% if show_fields.show_sexodep or 0 %}
             <td>{{ a.get_sexodep_display }}</td>
             {% endif %}
-            {% if show_fields.show_depirrf or 1 %}
+            {% if show_fields.show_depirrf or 0 %}
             <td>{{ a.get_depirrf_display }}</td>
             {% endif %}
-            {% if show_fields.show_depsf or 1 %}
+            {% if show_fields.show_depsf or 0 %}
             <td>{{ a.get_depsf_display }}</td>
             {% endif %}
             {% if show_fields.show_inctrab or 0 %}

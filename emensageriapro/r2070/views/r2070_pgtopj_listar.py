@@ -69,8 +69,8 @@ def listar(request, output=None):
         show_fields = {
             'show_r2070_pgtoresidbr': 1,
             'show_dtpagto': 1,
-            'show_vlrrendtributavel': 0,
-            'show_vlrret': 1, }
+            'show_vlrrendtributavel': 1,
+            'show_vlrret': 0, }
 
         post = False
 

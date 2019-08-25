@@ -63,7 +63,10 @@
                                 {% if perms.r4099.can_see_r4099ideRespInf %}
                                     <li {% if tab == 'r4099_iderespinf' %} class="active"{% endif %} >
                                         <a href="{% url 'r4099_evtfech_salvar_tab' pk=pk tab='r4099_iderespinf' %}">
-                                        Responsável pelas informações</a>
+                                        Responsável pelas informações&nbsp;{% if not r4099_iderespinf_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ r4099_iderespinf_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

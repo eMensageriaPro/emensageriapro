@@ -2,25 +2,25 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2220_evtmonit or 0 %}
+            {% if show_fields.show_s2220_evtmonit or 1 %}
             <th>Registro que detalha os exames complementares porventura realizados pelo trabalhador em virtude do determinado no Quadro II da NR 07 do MTE, além de outros solicitados pelo médico e os referentes ao ASO</th>
             {% endif %}
             {% if show_fields.show_dtexm or 1 %}
             <th>Data do exame</th>
             {% endif %}
-            {% if show_fields.show_procrealizado or 0 %}
+            {% if show_fields.show_procrealizado or 1 %}
             <th>Procedimento Médico</th>
             {% endif %}
             {% if show_fields.show_obsproc or 0 %}
             <th>Observações sobre o procedimento médico</th>
             {% endif %}
-            {% if show_fields.show_interprexm or 1 %}
+            {% if show_fields.show_interprexm or 0 %}
             <th>Interpretador</th>
             {% endif %}
             {% if show_fields.show_ordexame or 0 %}
             <th>Ordem</th>
             {% endif %}
-            {% if show_fields.show_dtinimonit or 1 %}
+            {% if show_fields.show_dtinimonit or 0 %}
             <th>Data de início do monitoramento</th>
             {% endif %}
             {% if show_fields.show_dtfimmonit or 0 %}
@@ -38,25 +38,25 @@
     <tbody>
         {% for a in s2220_exame_lista %}
         <tr>
-            {% if show_fields.show_s2220_evtmonit or 0 %}
+            {% if show_fields.show_s2220_evtmonit or 1 %}
             <td>{{ a.s2220_evtmonit }}</td>
             {% endif %}
             {% if show_fields.show_dtexm or 1 %}
             <td><span style="display:none">{{ a.dtexm|date:"Y-m-d" }}</span>{{ a.dtexm|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_procrealizado or 0 %}
+            {% if show_fields.show_procrealizado or 1 %}
             <td>{{ a.procrealizado|valor }}</td>
             {% endif %}
             {% if show_fields.show_obsproc or 0 %}
             <td>{{ a.obsproc }}</td>
             {% endif %}
-            {% if show_fields.show_interprexm or 1 %}
+            {% if show_fields.show_interprexm or 0 %}
             <td>{{ a.get_interprexm_display }}</td>
             {% endif %}
             {% if show_fields.show_ordexame or 0 %}
             <td>{{ a.get_ordexame_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtinimonit or 1 %}
+            {% if show_fields.show_dtinimonit or 0 %}
             <td><span style="display:none">{{ a.dtinimonit|date:"Y-m-d" }}</span>{{ a.dtinimonit|date:"d/m/Y" }}</td>
             {% endif %}
             {% if show_fields.show_dtfimmonit or 0 %}

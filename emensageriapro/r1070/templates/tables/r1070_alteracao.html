@@ -8,7 +8,7 @@
             {% if show_fields.show_ideprocesso or 0 %}
             <th>Informações de identificação do Processo e validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_tpproc or 0 %}
+            {% if show_fields.show_tpproc or 1 %}
             <th>Preencher com o código correspondente ao tipo de processo</th>
             {% endif %}
             {% if show_fields.show_nrproc or 1 %}
@@ -20,7 +20,7 @@
             {% if show_fields.show_fimvalid or 0 %}
             <th>Preencher com o mês e ano de término da validade das informações, se houver</th>
             {% endif %}
-            {% if show_fields.show_indautoria or 1 %}
+            {% if show_fields.show_indautoria or 0 %}
             <th>Indicativo da autoria da ação judicial</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -38,7 +38,7 @@
             {% if show_fields.show_ideprocesso or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpproc or 0 %}
+            {% if show_fields.show_tpproc or 1 %}
             <td>{{ a.get_tpproc_display }}</td>
             {% endif %}
             {% if show_fields.show_nrproc or 1 %}
@@ -50,7 +50,7 @@
             {% if show_fields.show_fimvalid or 0 %}
             <td>{{ a.get_fimvalid_display }}</td>
             {% endif %}
-            {% if show_fields.show_indautoria or 1 %}
+            {% if show_fields.show_indautoria or 0 %}
             <td>{{ a.get_indautoria_display }}</td>
             {% endif %}
 

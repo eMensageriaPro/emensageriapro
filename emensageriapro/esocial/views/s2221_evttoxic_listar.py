@@ -70,21 +70,21 @@ def listar(request, output=None):
             'show_evttoxic': 0,
             'show_identidade': 1,
             'show_ideevento': 0,
-            'show_indretif': 0,
+            'show_indretif': 1,
             'show_nrrecibo': 0,
             'show_tpamb': 0,
             'show_procemi': 0,
             'show_verproc': 0,
             'show_ideempregador': 0,
-            'show_tpinsc': 0,
+            'show_tpinsc': 1,
             'show_nrinsc': 0,
             'show_idevinculo': 0,
-            'show_cpftrab': 1,
+            'show_cpftrab': 0,
             'show_nistrab': 0,
             'show_matricula': 0,
             'show_codcateg': 0,
             'show_toxicologico': 0,
-            'show_dtexame': 1,
+            'show_dtexame': 0,
             'show_cnpjlab': 0,
             'show_codseqexame': 0,
             'show_nmmed': 0,
@@ -99,7 +99,8 @@ def listar(request, output=None):
             'show_validacoes': 0,
             'show_arquivo_original': 0,
             'show_arquivo': 0,
-            'show_status': 1, }
+            'show_status': 1,
+            'show_transmissor_lote_esocial_error': 0, }
 
         post = False
 

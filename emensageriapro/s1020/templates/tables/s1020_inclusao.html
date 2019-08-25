@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1020_evttablotacao or 0 %}
+            {% if show_fields.show_s1020_evttablotacao or 1 %}
             <th>Inclusão de novas informações</th>
             {% endif %}
             {% if show_fields.show_idelotacao or 0 %}
@@ -11,7 +11,7 @@
             {% if show_fields.show_codlotacao or 1 %}
             <th>Código da Lotação</th>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <th>Início da Validade</th>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -32,10 +32,10 @@
             {% if show_fields.show_fpaslotacao or 0 %}
             <th>Informações de FPAS e Terceiros relativas à lotação tributária</th>
             {% endif %}
-            {% if show_fields.show_fpas or 1 %}
+            {% if show_fields.show_fpas or 0 %}
             <th>FPAS</th>
             {% endif %}
-            {% if show_fields.show_codtercs or 1 %}
+            {% if show_fields.show_codtercs or 0 %}
             <th>Código de Terceiros</th>
             {% endif %}
             {% if show_fields.show_codtercssusp or 0 %}
@@ -50,7 +50,7 @@
     <tbody>
         {% for a in s1020_inclusao_lista %}
         <tr>
-            {% if show_fields.show_s1020_evttablotacao or 0 %}
+            {% if show_fields.show_s1020_evttablotacao or 1 %}
             <td>{{ a.s1020_evttablotacao }}</td>
             {% endif %}
             {% if show_fields.show_idelotacao or 0 %}
@@ -59,7 +59,7 @@
             {% if show_fields.show_codlotacao or 1 %}
             <td>{{ a.codlotacao }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -80,10 +80,10 @@
             {% if show_fields.show_fpaslotacao or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_fpas or 1 %}
+            {% if show_fields.show_fpas or 0 %}
             <td>{{ a.fpas|valor }}</td>
             {% endif %}
-            {% if show_fields.show_codtercs or 1 %}
+            {% if show_fields.show_codtercs or 0 %}
             <td>{{ a.codtercs }}</td>
             {% endif %}
             {% if show_fields.show_codtercssusp or 0 %}

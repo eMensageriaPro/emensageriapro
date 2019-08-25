@@ -8,10 +8,10 @@
             {% if show_fields.show_dtpagto or 1 %}
             <th>Informar a data de pagamento ou crédito, base para retenção</th>
             {% endif %}
-            {% if show_fields.show_tprendimento or 0 %}
+            {% if show_fields.show_tprendimento or 1 %}
             <th>Tipo de Rendimento, conforme tabela 03 - Rendimentos de Beneficiários no Exterior</th>
             {% endif %}
-            {% if show_fields.show_formatributacao or 1 %}
+            {% if show_fields.show_formatributacao or 0 %}
             <th>Forma de tributação, conforme tabela de informações sobre os rendimentos constante na Tabela 04 - Formas de Tributação para Rendimentos de Beneficiários no Exterior</th>
             {% endif %}
             {% if show_fields.show_vlrpgto or 0 %}
@@ -35,10 +35,10 @@
             {% if show_fields.show_dtpagto or 1 %}
             <td><span style="display:none">{{ a.dtpagto|date:"Y-m-d" }}</span>{{ a.dtpagto|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tprendimento or 0 %}
+            {% if show_fields.show_tprendimento or 1 %}
             <td>{{ a.tprendimento }}</td>
             {% endif %}
-            {% if show_fields.show_formatributacao or 1 %}
+            {% if show_fields.show_formatributacao or 0 %}
             <td>{{ a.get_formatributacao_display }}</td>
             {% endif %}
             {% if show_fields.show_vlrpgto or 0 %}

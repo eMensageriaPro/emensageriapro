@@ -62,7 +62,10 @@
                             {% if perms.r2070.can_see_r2070pgtoPJinfoProcJud %}
                                 <li {% if tab == 'r2070_pgtopj_infoprocjud' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopj_salvar_tab' pk=pk tab='r2070_pgtopj_infoprocjud' %}">
-                                    Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</a>
+                                    Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial&nbsp;{% if not r2070_pgtopj_infoprocjud_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2070_pgtopj_infoprocjud_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

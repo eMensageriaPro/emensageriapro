@@ -62,14 +62,20 @@
                             {% if perms.s2400.can_see_s2400brasil %}
                                 <li {% if tab == 's2400_brasil' %} class="active"{% endif %} >
                                     <a href="{% url 's2400_endereco_salvar_tab' pk=pk tab='s2400_brasil' %}">
-                                    Preenchimento obrigatório para trabalhador residente no Brasil.</a>
+                                    Preenchimento obrigatório para trabalhador residente no Brasil.&nbsp;{% if not s2400_brasil_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2400_brasil_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2400.can_see_s2400exterior %}
                                 <li {% if tab == 's2400_exterior' %} class="active"{% endif %} >
                                     <a href="{% url 's2400_endereco_salvar_tab' pk=pk tab='s2400_exterior' %}">
-                                    Preenchido em caso de trabalhador residente no exterior.</a>
+                                    Preenchido em caso de trabalhador residente no exterior.&nbsp;{% if not s2400_exterior_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2400_exterior_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

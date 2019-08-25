@@ -62,7 +62,10 @@
                             {% if perms.s1050.can_see_s1050inclusaohorarioIntervalo %}
                                 <li {% if tab == 's1050_inclusao_horariointervalo' %} class="active"{% endif %} >
                                     <a href="{% url 's1050_inclusao_salvar_tab' pk=pk tab='s1050_inclusao_horariointervalo' %}">
-                                    Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.</a>
+                                    Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.&nbsp;{% if not s1050_inclusao_horariointervalo_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1050_inclusao_horariointervalo_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

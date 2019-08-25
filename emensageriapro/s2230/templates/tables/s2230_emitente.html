@@ -8,10 +8,10 @@
             {% if show_fields.show_nmemit or 1 %}
             <th>Nome</th>
             {% endif %}
-            {% if show_fields.show_ideoc or 0 %}
+            {% if show_fields.show_ideoc or 1 %}
             <th>Órgão de Classe (OC)</th>
             {% endif %}
-            {% if show_fields.show_nroc or 1 %}
+            {% if show_fields.show_nroc or 0 %}
             <th>Número do OC</th>
             {% endif %}
             {% if show_fields.show_ufoc or 0 %}
@@ -32,10 +32,10 @@
             {% if show_fields.show_nmemit or 1 %}
             <td>{{ a.nmemit }}</td>
             {% endif %}
-            {% if show_fields.show_ideoc or 0 %}
+            {% if show_fields.show_ideoc or 1 %}
             <td>{{ a.get_ideoc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nroc or 1 %}
+            {% if show_fields.show_nroc or 0 %}
             <td>{{ a.nroc }}</td>
             {% endif %}
             {% if show_fields.show_ufoc or 0 %}

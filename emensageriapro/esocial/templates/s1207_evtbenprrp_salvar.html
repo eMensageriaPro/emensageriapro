@@ -63,14 +63,20 @@
                                 {% if perms.s1207.can_see_s1207procJudTrab %}
                                     <li {% if tab == 's1207_procjudtrab' %} class="active"{% endif %} >
                                         <a href="{% url 's1207_evtbenprrp_salvar_tab' pk=pk tab='s1207_procjudtrab' %}">
-                                        Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</a>
+                                        Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.&nbsp;{% if not s1207_procjudtrab_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1207_procjudtrab_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s1207.can_see_s1207dmDev %}
                                     <li {% if tab == 's1207_dmdev' %} class="active"{% endif %} >
                                         <a href="{% url 's1207_evtbenprrp_salvar_tab' pk=pk tab='s1207_dmdev' %}">
-                                        Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</a>
+                                        Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF&nbsp;{% if not s1207_dmdev_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1207_dmdev_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

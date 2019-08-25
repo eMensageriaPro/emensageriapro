@@ -5,16 +5,16 @@
             {% if show_fields.show_r3010_evtespdesportivo or 1 %}
             <th>Boletim do Espetáculo Desportivo</th>
             {% endif %}
-            {% if show_fields.show_nrboletim or 0 %}
+            {% if show_fields.show_nrboletim or 1 %}
             <th>Número do boletim relativo ao espetáculo desportivo</th>
             {% endif %}
-            {% if show_fields.show_tpcompeticao or 0 %}
+            {% if show_fields.show_tpcompeticao or 1 %}
             <th>Tipo de Competição</th>
             {% endif %}
-            {% if show_fields.show_categevento or 1 %}
+            {% if show_fields.show_categevento or 0 %}
             <th>Categoria do evento</th>
             {% endif %}
-            {% if show_fields.show_moddesportiva or 1 %}
+            {% if show_fields.show_moddesportiva or 0 %}
             <th>Descrição da modalidade do evento desportivo</th>
             {% endif %}
             {% if show_fields.show_nomecompeticao or 0 %}
@@ -56,16 +56,16 @@
             {% if show_fields.show_r3010_evtespdesportivo or 1 %}
             <td>{{ a.r3010_evtespdesportivo }}</td>
             {% endif %}
-            {% if show_fields.show_nrboletim or 0 %}
+            {% if show_fields.show_nrboletim or 1 %}
             <td>{{ a.nrboletim }}</td>
             {% endif %}
-            {% if show_fields.show_tpcompeticao or 0 %}
+            {% if show_fields.show_tpcompeticao or 1 %}
             <td>{{ a.get_tpcompeticao_display }}</td>
             {% endif %}
-            {% if show_fields.show_categevento or 1 %}
+            {% if show_fields.show_categevento or 0 %}
             <td>{{ a.get_categevento_display }}</td>
             {% endif %}
-            {% if show_fields.show_moddesportiva or 1 %}
+            {% if show_fields.show_moddesportiva or 0 %}
             <td>{{ a.moddesportiva }}</td>
             {% endif %}
             {% if show_fields.show_nomecompeticao or 0 %}

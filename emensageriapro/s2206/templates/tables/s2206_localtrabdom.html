@@ -2,10 +2,10 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual or 0 %}
+            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
             <th>Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</th>
             {% endif %}
-            {% if show_fields.show_tplograd or 0 %}
+            {% if show_fields.show_tplograd or 1 %}
             <th>Tipo de logradouro</th>
             {% endif %}
             {% if show_fields.show_dsclograd or 1 %}
@@ -20,10 +20,10 @@
             {% if show_fields.show_bairro or 0 %}
             <th>Bairro</th>
             {% endif %}
-            {% if show_fields.show_cep or 1 %}
+            {% if show_fields.show_cep or 0 %}
             <th>CEP</th>
             {% endif %}
-            {% if show_fields.show_codmunic or 1 %}
+            {% if show_fields.show_codmunic or 0 %}
             <th>Código do Município</th>
             {% endif %}
             {% if show_fields.show_uf or 0 %}
@@ -38,10 +38,10 @@
     <tbody>
         {% for a in s2206_localtrabdom_lista %}
         <tr>
-            {% if show_fields.show_s2206_evtaltcontratual or 0 %}
+            {% if show_fields.show_s2206_evtaltcontratual or 1 %}
             <td>{{ a.s2206_evtaltcontratual }}</td>
             {% endif %}
-            {% if show_fields.show_tplograd or 0 %}
+            {% if show_fields.show_tplograd or 1 %}
             <td>{{ a.tplograd }}</td>
             {% endif %}
             {% if show_fields.show_dsclograd or 1 %}
@@ -56,10 +56,10 @@
             {% if show_fields.show_bairro or 0 %}
             <td>{{ a.bairro }}</td>
             {% endif %}
-            {% if show_fields.show_cep or 1 %}
+            {% if show_fields.show_cep or 0 %}
             <td>{{ a.cep }}</td>
             {% endif %}
-            {% if show_fields.show_codmunic or 1 %}
+            {% if show_fields.show_codmunic or 0 %}
             <td>{{ a.codmunic|valor }}</td>
             {% endif %}
             {% if show_fields.show_uf or 0 %}

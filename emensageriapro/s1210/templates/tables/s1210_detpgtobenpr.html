@@ -5,13 +5,13 @@
             {% if show_fields.show_s1210_infopgto or 1 %}
             <th>Detalhamento de pagamentos relativos a benefícios previdenciários</th>
             {% endif %}
-            {% if show_fields.show_perref or 0 %}
+            {% if show_fields.show_perref or 1 %}
             <th>Período de Referência</th>
             {% endif %}
             {% if show_fields.show_idedmdev or 1 %}
             <th>Identificador dos demostrativos de pagamento</th>
             {% endif %}
-            {% if show_fields.show_indpgtott or 1 %}
+            {% if show_fields.show_indpgtott or 0 %}
             <th>Indicador de pagamento total ou parcial</th>
             {% endif %}
             {% if show_fields.show_vrliq or 0 %}
@@ -29,13 +29,13 @@
             {% if show_fields.show_s1210_infopgto or 1 %}
             <td>{{ a.s1210_infopgto }}</td>
             {% endif %}
-            {% if show_fields.show_perref or 0 %}
+            {% if show_fields.show_perref or 1 %}
             <td>{{ a.perref }}</td>
             {% endif %}
             {% if show_fields.show_idedmdev or 1 %}
             <td>{{ a.idedmdev }}</td>
             {% endif %}
-            {% if show_fields.show_indpgtott or 1 %}
+            {% if show_fields.show_indpgtott or 0 %}
             <td>{{ a.get_indpgtott_display }}</td>
             {% endif %}
             {% if show_fields.show_vrliq or 0 %}

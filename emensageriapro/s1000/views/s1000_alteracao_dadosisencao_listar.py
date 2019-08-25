@@ -68,10 +68,10 @@ def listar(request, output=None):
         dict_fields = {}
         show_fields = {
             'show_s1000_alteracao': 1,
-            'show_ideminlei': 0,
-            'show_nrcertif': 0,
-            'show_dtemiscertif': 1,
-            'show_dtvenccertif': 1,
+            'show_ideminlei': 1,
+            'show_nrcertif': 1,
+            'show_dtemiscertif': 0,
+            'show_dtvenccertif': 0,
             'show_nrprotrenov': 0,
             'show_dtprotrenov': 0,
             'show_dtdou': 0,

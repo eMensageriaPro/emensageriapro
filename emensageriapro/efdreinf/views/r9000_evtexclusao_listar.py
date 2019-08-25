@@ -70,12 +70,12 @@ def listar(request, output=None):
             'show_evtexclusao': 0,
             'show_identidade': 1,
             'show_ideevento': 0,
-            'show_tpamb': 1,
+            'show_tpamb': 0,
             'show_procemi': 0,
             'show_verproc': 0,
             'show_idecontri': 0,
-            'show_tpinsc': 0,
-            'show_nrinsc': 0,
+            'show_tpinsc': 1,
+            'show_nrinsc': 1,
             'show_infoexclusao': 0,
             'show_tpevento': 0,
             'show_nrrecevt': 0,
@@ -96,7 +96,8 @@ def listar(request, output=None):
             'show_status': 1,
             'show_cdretorno': 1,
             'show_descretorno': 0,
-            'show_dhprocess': 0, }
+            'show_dhprocess': 0,
+            'show_transmissor_lote_efdreinf_error': 0, }
 
         post = False
 

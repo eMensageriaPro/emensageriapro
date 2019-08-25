@@ -62,7 +62,10 @@
                             {% if perms.s1207.can_see_s1207infoPerAntitensRemun %}
                                 <li {% if tab == 's1207_infoperant_itensremun' %} class="active"{% endif %} >
                                     <a href="{% url 's1207_infoperant_remunperant_salvar_tab' pk=pk tab='s1207_infoperant_itensremun' %}">
-                                    Registro que relaciona as rubricas que compõem a remuneração do trabalhador.</a>
+                                    Registro que relaciona as rubricas que compõem a remuneração do trabalhador.&nbsp;{% if not s1207_infoperant_itensremun_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1207_infoperant_itensremun_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

@@ -11,7 +11,7 @@
             {% if show_fields.show_ideevento or 0 %}
             <th>Informações de Identificação do Evento</th>
             {% endif %}
-            {% if show_fields.show_indretif or 0 %}
+            {% if show_fields.show_indretif or 1 %}
             <th>Identificador de retificação</th>
             {% endif %}
             {% if show_fields.show_nrrecibo or 0 %}
@@ -29,7 +29,7 @@
             {% if show_fields.show_ideempregador or 0 %}
             <th>Informações de identificação do empregador</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <th>Tipo de inscrição</th>
             {% endif %}
             {% if show_fields.show_nrinsc or 0 %}
@@ -38,7 +38,7 @@
             {% if show_fields.show_idevinculo or 0 %}
             <th>Informações de Identificação do Trabalhador e do Vínculo</th>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_cpftrab or 0 %}
             <th>CPF</th>
             {% endif %}
             {% if show_fields.show_nistrab or 0 %}
@@ -53,7 +53,7 @@
             {% if show_fields.show_cat or 0 %}
             <th>Comunicação de Acidente de Trabalho.</th>
             {% endif %}
-            {% if show_fields.show_dtacid or 1 %}
+            {% if show_fields.show_dtacid or 0 %}
             <th>Data do Acidente</th>
             {% endif %}
             {% if show_fields.show_tpacid or 0 %}
@@ -80,7 +80,7 @@
             {% if show_fields.show_codsitgeradora or 0 %}
             <th>Situação Geradora</th>
             {% endif %}
-            {% if show_fields.show_iniciatcat or 1 %}
+            {% if show_fields.show_iniciatcat or 0 %}
             <th>Emitido por</th>
             {% endif %}
             {% if show_fields.show_obscat or 0 %}
@@ -158,6 +158,9 @@
             {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial_error or 0 %}
+            <th>Transmissor (Erro)</th>
+            {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
             <th width="80px">Ações</th>
@@ -176,7 +179,7 @@
             {% if show_fields.show_ideevento or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_indretif or 0 %}
+            {% if show_fields.show_indretif or 1 %}
             <td>{{ a.get_indretif_display }}</td>
             {% endif %}
             {% if show_fields.show_nrrecibo or 0 %}
@@ -194,7 +197,7 @@
             {% if show_fields.show_ideempregador or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
             {% if show_fields.show_nrinsc or 0 %}
@@ -203,7 +206,7 @@
             {% if show_fields.show_idevinculo or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_cpftrab or 0 %}
             <td>{{ a.cpftrab }}</td>
             {% endif %}
             {% if show_fields.show_nistrab or 0 %}
@@ -218,7 +221,7 @@
             {% if show_fields.show_cat or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_dtacid or 1 %}
+            {% if show_fields.show_dtacid or 0 %}
             <td><span style="display:none">{{ a.dtacid|date:"Y-m-d" }}</span>{{ a.dtacid|date:"d/m/Y" }}</td>
             {% endif %}
             {% if show_fields.show_tpacid or 0 %}
@@ -245,7 +248,7 @@
             {% if show_fields.show_codsitgeradora or 0 %}
             <td>{{ a.codsitgeradora|valor }}</td>
             {% endif %}
-            {% if show_fields.show_iniciatcat or 1 %}
+            {% if show_fields.show_iniciatcat or 0 %}
             <td>{{ a.get_iniciatcat_display }}</td>
             {% endif %}
             {% if show_fields.show_obscat or 0 %}
@@ -322,6 +325,9 @@
             {% endif %}
             {% if show_fields.show_status or 1 %}
             <td>{{ a.get_status_display }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial_error or 0 %}
+            <td>{{ a.transmissor_lote_esocial_error }}</td>
             {% endif %}
 
             <!-- colunas especiais -->

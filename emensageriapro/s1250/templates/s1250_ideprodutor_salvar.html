@@ -62,14 +62,20 @@
                             {% if perms.s1250.can_see_s1250nfs %}
                                 <li {% if tab == 's1250_nfs' %} class="active"{% endif %} >
                                     <a href="{% url 's1250_ideprodutor_salvar_tab' pk=pk tab='s1250_nfs' %}">
-                                    Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.</a>
+                                    Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.&nbsp;{% if not s1250_nfs_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1250_nfs_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1250.can_see_s1250infoProcJud %}
                                 <li {% if tab == 's1250_infoprocjud' %} class="active"{% endif %} >
                                     <a href="{% url 's1250_ideprodutor_salvar_tab' pk=pk tab='s1250_infoprocjud' %}">
-                                    Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.</a>
+                                    Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.&nbsp;{% if not s1250_infoprocjud_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1250_infoprocjud_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

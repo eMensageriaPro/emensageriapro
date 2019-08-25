@@ -62,21 +62,30 @@
                             {% if perms.s1200.can_see_s1200infoPerAntitensRemun %}
                                 <li {% if tab == 's1200_infoperant_itensremun' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_infoperant_remunperant_salvar_tab' pk=pk tab='s1200_infoperant_itensremun' %}">
-                                    Registro que relaciona as rubricas que compõem a remuneração do trabalhador.</a>
+                                    Registro que relaciona as rubricas que compõem a remuneração do trabalhador.&nbsp;{% if not s1200_infoperant_itensremun_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1200_infoperant_itensremun_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1200.can_see_s1200infoPerAntinfoAgNocivo %}
                                 <li {% if tab == 's1200_infoperant_infoagnocivo' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_infoperant_remunperant_salvar_tab' pk=pk tab='s1200_infoperant_infoagnocivo' %}">
-                                    Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</a>
+                                    Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.&nbsp;{% if not s1200_infoperant_infoagnocivo_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1200_infoperant_infoagnocivo_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1200.can_see_s1200infoPerAntinfoTrabInterm %}
                                 <li {% if tab == 's1200_infoperant_infotrabinterm' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_infoperant_remunperant_salvar_tab' pk=pk tab='s1200_infoperant_infotrabinterm' %}">
-                                    Informações da(s) convocação(ões) de trabalho intermitente</a>
+                                    Informações da(s) convocação(ões) de trabalho intermitente&nbsp;{% if not s1200_infoperant_infotrabinterm_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1200_infoperant_infotrabinterm_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

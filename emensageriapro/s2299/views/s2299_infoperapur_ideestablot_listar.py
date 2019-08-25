@@ -68,9 +68,9 @@ def listar(request, output=None):
         dict_fields = {}
         show_fields = {
             'show_s2299_infoperapur': 1,
-            'show_tpinsc': 0,
+            'show_tpinsc': 1,
             'show_nrinsc': 1,
-            'show_codlotacao': 1, }
+            'show_codlotacao': 0, }
 
         post = False
 

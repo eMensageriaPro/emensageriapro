@@ -8,10 +8,10 @@
             {% if show_fields.show_cnpjsofthouse or 1 %}
             <th>CNPJ</th>
             {% endif %}
-            {% if show_fields.show_nmrazao or 0 %}
+            {% if show_fields.show_nmrazao or 1 %}
             <th>Razão Social</th>
             {% endif %}
-            {% if show_fields.show_nmcont or 1 %}
+            {% if show_fields.show_nmcont or 0 %}
             <th>Nome do Contato</th>
             {% endif %}
             {% if show_fields.show_telefone or 0 %}
@@ -35,10 +35,10 @@
             {% if show_fields.show_cnpjsofthouse or 1 %}
             <td>{{ a.cnpjsofthouse }}</td>
             {% endif %}
-            {% if show_fields.show_nmrazao or 0 %}
+            {% if show_fields.show_nmrazao or 1 %}
             <td>{{ a.nmrazao }}</td>
             {% endif %}
-            {% if show_fields.show_nmcont or 1 %}
+            {% if show_fields.show_nmcont or 0 %}
             <td>{{ a.nmcont }}</td>
             {% endif %}
             {% if show_fields.show_telefone or 0 %}

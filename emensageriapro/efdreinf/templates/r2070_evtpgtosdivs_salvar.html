@@ -63,21 +63,30 @@
                                 {% if perms.r2070.can_see_r2070infoResidExt %}
                                     <li {% if tab == 'r2070_inforesidext' %} class="active"{% endif %} >
                                         <a href="{% url 'r2070_evtpgtosdivs_salvar_tab' pk=pk tab='r2070_inforesidext' %}">
-                                        Informações complementares de beneficiário residente ou domiciliado no exterior</a>
+                                        Informações complementares de beneficiário residente ou domiciliado no exterior&nbsp;{% if not r2070_inforesidext_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ r2070_inforesidext_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.r2070.can_see_r2070infoMolestia %}
                                     <li {% if tab == 'r2070_infomolestia' %} class="active"{% endif %} >
                                         <a href="{% url 'r2070_evtpgtosdivs_salvar_tab' pk=pk tab='r2070_infomolestia' %}">
-                                        Informações de Beneficiário portador de moléstia grave</a>
+                                        Informações de Beneficiário portador de moléstia grave&nbsp;{% if not r2070_infomolestia_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ r2070_infomolestia_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.r2070.can_see_r2070ideEstab %}
                                     <li {% if tab == 'r2070_ideestab' %} class="active"{% endif %} >
                                         <a href="{% url 'r2070_evtpgtosdivs_salvar_tab' pk=pk tab='r2070_ideestab' %}">
-                                        Identificação dos estabelecimentos da associação desportiva que receberam os recursos</a>
+                                        Identificação dos estabelecimentos da associação desportiva que receberam os recursos&nbsp;{% if not r2070_ideestab_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ r2070_ideestab_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

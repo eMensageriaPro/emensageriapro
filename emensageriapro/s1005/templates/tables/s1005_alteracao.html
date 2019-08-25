@@ -8,10 +8,10 @@
             {% if show_fields.show_ideestab or 0 %}
             <th>Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <th>Tipo de inscrição</th>
             {% endif %}
-            {% if show_fields.show_nrinsc or 0 %}
+            {% if show_fields.show_nrinsc or 1 %}
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
             {% if show_fields.show_inivalid or 0 %}
@@ -23,13 +23,13 @@
             {% if show_fields.show_dadosestab or 0 %}
             <th>Detalhamento das informações do estabelecimento, obra ou órgão público que está sendo incluído.</th>
             {% endif %}
-            {% if show_fields.show_cnaeprep or 1 %}
+            {% if show_fields.show_cnaeprep or 0 %}
             <th>CNAE preponderante</th>
             {% endif %}
             {% if show_fields.show_aliqgilrat or 0 %}
             <th>Informações de Apuração da alíquota Gilrat do Estabelecimento</th>
             {% endif %}
-            {% if show_fields.show_aliqrat or 1 %}
+            {% if show_fields.show_aliqrat or 0 %}
             <th>Alíquota RAT</th>
             {% endif %}
             {% if show_fields.show_fap or 0 %}
@@ -71,10 +71,10 @@
             {% if show_fields.show_ideestab or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrinsc or 0 %}
+            {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
             {% if show_fields.show_inivalid or 0 %}
@@ -86,13 +86,13 @@
             {% if show_fields.show_dadosestab or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_cnaeprep or 1 %}
+            {% if show_fields.show_cnaeprep or 0 %}
             <td>{{ a.cnaeprep|valor }}</td>
             {% endif %}
             {% if show_fields.show_aliqgilrat or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_aliqrat or 1 %}
+            {% if show_fields.show_aliqrat or 0 %}
             <td>{{ a.get_aliqrat_display }}</td>
             {% endif %}
             {% if show_fields.show_fap or 0 %}

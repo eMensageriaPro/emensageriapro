@@ -62,7 +62,10 @@
                             {% if perms.s2299.can_see_s2299infoPerAntideADC %}
                                 <li {% if tab == 's2299_infoperant_ideadc' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_infoperant_salvar_tab' pk=pk tab='s2299_infoperant_ideadc' %}">
-                                    Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.</a>
+                                    Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.&nbsp;{% if not s2299_infoperant_ideadc_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2299_infoperant_ideadc_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

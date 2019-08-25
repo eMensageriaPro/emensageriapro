@@ -62,14 +62,20 @@
                             {% if perms.r4020.can_see_r4020infoPgto %}
                                 <li {% if tab == 'r4020_infopgto' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_idepgto_salvar_tab' pk=pk tab='r4020_infopgto' %}">
-                                    Informações do Pagamento</a>
+                                    Informações do Pagamento&nbsp;{% if not r4020_infopgto_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4020_infopgto_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r4020.can_see_r4020infoPgtoExt %}
                                 <li {% if tab == 'r4020_infopgtoext' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_idepgto_salvar_tab' pk=pk tab='r4020_infopgtoext' %}">
-                                    Informações complementares relativas a pagamentos a residente fiscal no Exterior</a>
+                                    Informações complementares relativas a pagamentos a residente fiscal no Exterior&nbsp;{% if not r4020_infopgtoext_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4020_infopgtoext_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

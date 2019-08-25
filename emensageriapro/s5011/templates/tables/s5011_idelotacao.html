@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s5011_ideestab or 0 %}
+            {% if show_fields.show_s5011_ideestab or 1 %}
             <th>Informações de identificação da lotação e validade das informações que estão sendo incluídas</th>
             {% endif %}
             {% if show_fields.show_codlotacao or 1 %}
@@ -11,7 +11,7 @@
             {% if show_fields.show_fpas or 1 %}
             <th>FPAS</th>
             {% endif %}
-            {% if show_fields.show_codtercs or 1 %}
+            {% if show_fields.show_codtercs or 0 %}
             <th>Código de Terceiros</th>
             {% endif %}
             {% if show_fields.show_codtercssusp or 0 %}
@@ -26,7 +26,7 @@
     <tbody>
         {% for a in s5011_idelotacao_lista %}
         <tr>
-            {% if show_fields.show_s5011_ideestab or 0 %}
+            {% if show_fields.show_s5011_ideestab or 1 %}
             <td>{{ a.s5011_ideestab }}</td>
             {% endif %}
             {% if show_fields.show_codlotacao or 1 %}
@@ -35,7 +35,7 @@
             {% if show_fields.show_fpas or 1 %}
             <td>{{ a.fpas|valor }}</td>
             {% endif %}
-            {% if show_fields.show_codtercs or 1 %}
+            {% if show_fields.show_codtercs or 0 %}
             <td>{{ a.codtercs }}</td>
             {% endif %}
             {% if show_fields.show_codtercssusp or 0 %}

@@ -8,13 +8,13 @@
             {% if show_fields.show_ideprocesso or 0 %}
             <th>Informações de identificação do Processo e validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_tpproc or 0 %}
+            {% if show_fields.show_tpproc or 1 %}
             <th>Processo RAT</th>
             {% endif %}
-            {% if show_fields.show_nrproc or 0 %}
+            {% if show_fields.show_nrproc or 1 %}
             <th>Número do Processo</th>
             {% endif %}
-            {% if show_fields.show_inivalid or 1 %}
+            {% if show_fields.show_inivalid or 0 %}
             <th>Início da Validade</th>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -26,7 +26,7 @@
             {% if show_fields.show_indautoria or 0 %}
             <th>Autoria</th>
             {% endif %}
-            {% if show_fields.show_indmatproc or 1 %}
+            {% if show_fields.show_indmatproc or 0 %}
             <th>Matéria</th>
             {% endif %}
             {% if show_fields.show_observacao or 0 %}
@@ -47,13 +47,13 @@
             {% if show_fields.show_ideprocesso or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpproc or 0 %}
+            {% if show_fields.show_tpproc or 1 %}
             <td>{{ a.get_tpproc_display }}</td>
             {% endif %}
-            {% if show_fields.show_nrproc or 0 %}
+            {% if show_fields.show_nrproc or 1 %}
             <td>{{ a.nrproc }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid or 1 %}
+            {% if show_fields.show_inivalid or 0 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -65,7 +65,7 @@
             {% if show_fields.show_indautoria or 0 %}
             <td>{{ a.get_indautoria_display }}</td>
             {% endif %}
-            {% if show_fields.show_indmatproc or 1 %}
+            {% if show_fields.show_indmatproc or 0 %}
             <td>{{ a.get_indmatproc_display }}</td>
             {% endif %}
             {% if show_fields.show_observacao or 0 %}

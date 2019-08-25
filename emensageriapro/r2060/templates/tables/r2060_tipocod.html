@@ -2,22 +2,22 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r2060_evtcprb or 0 %}
+            {% if show_fields.show_r2060_evtcprb or 1 %}
             <th>Registro que apresenta o valor total da receita por tipo de código de atividade econômica.</th>
             {% endif %}
             {% if show_fields.show_codativecon or 1 %}
             <th>Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09</th>
             {% endif %}
-            {% if show_fields.show_vlrrecbrutaativ or 0 %}
+            {% if show_fields.show_vlrrecbrutaativ or 1 %}
             <th>Preencher com o valor total da receita da atividade</th>
             {% endif %}
             {% if show_fields.show_vlrexcrecbruta or 0 %}
             <th>Preencher com o Valor total das Exclusões da Receita Bruta previstas em lei</th>
             {% endif %}
-            {% if show_fields.show_vlradicrecbruta or 1 %}
+            {% if show_fields.show_vlradicrecbruta or 0 %}
             <th>Preencher com o Valor total das Adições da Receita Bruta previstas em lei</th>
             {% endif %}
-            {% if show_fields.show_vlrbccprb or 1 %}
+            {% if show_fields.show_vlrbccprb or 0 %}
             <th>Preencher com o Valor da Base de Cálculo da Contribuição Previdenciária sobre a Receita Bruta</th>
             {% endif %}
             {% if show_fields.show_vlrcprbapur or 0 %}
@@ -35,22 +35,22 @@
     <tbody>
         {% for a in r2060_tipocod_lista %}
         <tr>
-            {% if show_fields.show_r2060_evtcprb or 0 %}
+            {% if show_fields.show_r2060_evtcprb or 1 %}
             <td>{{ a.r2060_evtcprb }}</td>
             {% endif %}
             {% if show_fields.show_codativecon or 1 %}
             <td>{{ a.codativecon }}</td>
             {% endif %}
-            {% if show_fields.show_vlrrecbrutaativ or 0 %}
+            {% if show_fields.show_vlrrecbrutaativ or 1 %}
             <td>{{ a.vlrrecbrutaativ }}</td>
             {% endif %}
             {% if show_fields.show_vlrexcrecbruta or 0 %}
             <td>{{ a.vlrexcrecbruta }}</td>
             {% endif %}
-            {% if show_fields.show_vlradicrecbruta or 1 %}
+            {% if show_fields.show_vlradicrecbruta or 0 %}
             <td>{{ a.vlradicrecbruta }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbccprb or 1 %}
+            {% if show_fields.show_vlrbccprb or 0 %}
             <td>{{ a.vlrbccprb }}</td>
             {% endif %}
             {% if show_fields.show_vlrcprbapur or 0 %}

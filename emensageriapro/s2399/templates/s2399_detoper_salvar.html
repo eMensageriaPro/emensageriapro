@@ -62,7 +62,10 @@
                             {% if perms.s2399.can_see_s2399detPlano %}
                                 <li {% if tab == 's2399_detplano' %} class="active"{% endif %} >
                                     <a href="{% url 's2399_detoper_salvar_tab' pk=pk tab='s2399_detplano' %}">
-                                    Informações do dependente do plano privado de saúde.</a>
+                                    Informações do dependente do plano privado de saúde.&nbsp;{% if not s2399_detplano_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2399_detplano_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

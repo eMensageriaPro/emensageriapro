@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r1070_alteracao or 0 %}
+            {% if show_fields.show_r1070_alteracao or 1 %}
             <th>Informações de Suspensão de Exibilidade de tributos</th>
             {% endif %}
             {% if show_fields.show_codsusp or 0 %}
@@ -14,7 +14,7 @@
             {% if show_fields.show_dtdecisao or 1 %}
             <th>Data da decisão, sentença ou despacho administrativo</th>
             {% endif %}
-            {% if show_fields.show_inddeposito or 1 %}
+            {% if show_fields.show_inddeposito or 0 %}
             <th>Indicativo de Depósito do Montante Integral</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -26,7 +26,7 @@
     <tbody>
         {% for a in r1070_alteracao_infosusp_lista %}
         <tr>
-            {% if show_fields.show_r1070_alteracao or 0 %}
+            {% if show_fields.show_r1070_alteracao or 1 %}
             <td>{{ a.r1070_alteracao }}</td>
             {% endif %}
             {% if show_fields.show_codsusp or 0 %}
@@ -38,7 +38,7 @@
             {% if show_fields.show_dtdecisao or 1 %}
             <td><span style="display:none">{{ a.dtdecisao|date:"Y-m-d" }}</span>{{ a.dtdecisao|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_inddeposito or 1 %}
+            {% if show_fields.show_inddeposito or 0 %}
             <td>{{ a.get_inddeposito_display }}</td>
             {% endif %}
 

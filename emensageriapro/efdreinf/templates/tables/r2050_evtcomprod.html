@@ -11,16 +11,16 @@
             {% if show_fields.show_ideevento or 0 %}
             <th>Informações de Identificação do Evento</th>
             {% endif %}
-            {% if show_fields.show_indretif or 0 %}
+            {% if show_fields.show_indretif or 1 %}
             <th>Informe [1] para arquivo original ou [2] para arquivo de retificação</th>
             {% endif %}
             {% if show_fields.show_nrrecibo or 0 %}
             <th>Preencher com o número do recibo do arquivo a ser retificado</th>
             {% endif %}
-            {% if show_fields.show_perapur or 0 %}
+            {% if show_fields.show_perapur or 1 %}
             <th>Informar o ano/mês de referência das informações no formato AAAA-MM</th>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_tpamb or 0 %}
             <th>Identificação do ambiente</th>
             {% endif %}
             {% if show_fields.show_procemi or 0 %}
@@ -122,6 +122,9 @@
             {% if show_fields.show_dhprocess or 0 %}
             <th>Data/Hora do Processamento</th>
             {% endif %}
+            {% if show_fields.show_transmissor_lote_efdreinf_error or 0 %}
+            <th>Transmissor (Erro)</th>
+            {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
             <th width="80px">Ações</th>
@@ -140,16 +143,16 @@
             {% if show_fields.show_ideevento or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_indretif or 0 %}
+            {% if show_fields.show_indretif or 1 %}
             <td>{{ a.get_indretif_display }}</td>
             {% endif %}
             {% if show_fields.show_nrrecibo or 0 %}
             <td>{{ a.nrrecibo }}</td>
             {% endif %}
-            {% if show_fields.show_perapur or 0 %}
+            {% if show_fields.show_perapur or 1 %}
             <td>{{ a.perapur }}</td>
             {% endif %}
-            {% if show_fields.show_tpamb or 1 %}
+            {% if show_fields.show_tpamb or 0 %}
             <td>{{ a.get_tpamb_display }}</td>
             {% endif %}
             {% if show_fields.show_procemi or 0 %}
@@ -250,6 +253,9 @@
             {% endif %}
             {% if show_fields.show_dhprocess or 0 %}
             <td><span style="display:none">{{ a.dhprocess|date:"Y-m-d H:i" }}</span>{{ a.dhprocess|date:"d/m/Y H:i" }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_efdreinf_error or 0 %}
+            <td>{{ a.transmissor_lote_efdreinf_error }}</td>
             {% endif %}
 
             <!-- colunas especiais -->

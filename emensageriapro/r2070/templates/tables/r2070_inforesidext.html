@@ -8,7 +8,7 @@
             {% if show_fields.show_infoender or 0 %}
             <th>Endereço de beneficiário residente ou domiciliado no exterior</th>
             {% endif %}
-            {% if show_fields.show_paisresid or 0 %}
+            {% if show_fields.show_paisresid or 1 %}
             <th>Preencher com o código do país de residência fiscal, conforme tabela 7</th>
             {% endif %}
             {% if show_fields.show_dsclograd or 1 %}
@@ -32,7 +32,7 @@
             {% if show_fields.show_infofiscal or 0 %}
             <th>Informações fiscais de beneficiário residente ou domiciliado no exterior</th>
             {% endif %}
-            {% if show_fields.show_indnif or 1 %}
+            {% if show_fields.show_indnif or 0 %}
             <th>Indicativo do Número de Identificação Fiscal</th>
             {% endif %}
             {% if show_fields.show_nifbenef or 0 %}
@@ -56,7 +56,7 @@
             {% if show_fields.show_infoender or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_paisresid or 0 %}
+            {% if show_fields.show_paisresid or 1 %}
             <td>{{ a.paisresid }}</td>
             {% endif %}
             {% if show_fields.show_dsclograd or 1 %}
@@ -80,7 +80,7 @@
             {% if show_fields.show_infofiscal or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_indnif or 1 %}
+            {% if show_fields.show_indnif or 0 %}
             <td>{{ a.get_indnif_display }}</td>
             {% endif %}
             {% if show_fields.show_nifbenef or 0 %}

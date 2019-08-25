@@ -68,9 +68,9 @@ def listar(request, output=None):
         dict_fields = {}
         show_fields = {
             'show_s2200_evtadmissao': 1,
-            'show_cpfant': 0,
+            'show_cpfant': 1,
             'show_matricant': 1,
-            'show_dtaltcpf': 1,
+            'show_dtaltcpf': 0,
             'show_observacao': 0, }
 
         post = False

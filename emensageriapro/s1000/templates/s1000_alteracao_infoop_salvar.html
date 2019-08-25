@@ -62,14 +62,20 @@
                             {% if perms.s1000.can_see_s1000alteracaoinfoEFR %}
                                 <li {% if tab == 's1000_alteracao_infoefr' %} class="active"{% endif %} >
                                     <a href="{% url 's1000_alteracao_infoop_salvar_tab' pk=pk tab='s1000_alteracao_infoefr' %}">
-                                    Informações relativas a Ente Federativo Responsável - EFR</a>
+                                    Informações relativas a Ente Federativo Responsável - EFR&nbsp;{% if not s1000_alteracao_infoefr_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1000_alteracao_infoefr_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1000.can_see_s1000alteracaoinfoEnte %}
                                 <li {% if tab == 's1000_alteracao_infoente' %} class="active"{% endif %} >
                                     <a href="{% url 's1000_alteracao_infoop_salvar_tab' pk=pk tab='s1000_alteracao_infoente' %}">
-                                    Informações relativas ao ente federativo estadual, distrital ou municipal</a>
+                                    Informações relativas ao ente federativo estadual, distrital ou municipal&nbsp;{% if not s1000_alteracao_infoente_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1000_alteracao_infoente_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

@@ -68,9 +68,9 @@ def listar(request, output=None):
         dict_fields = {}
         show_fields = {
             'show_r2040_recursosrep': 1,
-            'show_tprepasse': 0,
+            'show_tprepasse': 1,
             'show_descrecurso': 1,
-            'show_vlrbruto': 1,
+            'show_vlrbruto': 0,
             'show_vlrretapur': 0, }
 
         post = False

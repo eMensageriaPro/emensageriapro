@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2410_infopenmorte or 0 %}
+            {% if show_fields.show_s2410_infopenmorte or 1 %}
             <th>Informações do instituidor da pensão por morte</th>
             {% endif %}
             {% if show_fields.show_cpfinst or 1 %}
@@ -11,7 +11,7 @@
             {% if show_fields.show_dtinst or 1 %}
             <th>Data de óbito do instituidor da pensão por morte.</th>
             {% endif %}
-            {% if show_fields.show_intaposentado or 1 %}
+            {% if show_fields.show_intaposentado or 0 %}
             <th>Informar se o instituidor da pensão por morte era aposentado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,7 +23,7 @@
     <tbody>
         {% for a in s2410_instpenmorte_lista %}
         <tr>
-            {% if show_fields.show_s2410_infopenmorte or 0 %}
+            {% if show_fields.show_s2410_infopenmorte or 1 %}
             <td>{{ a.s2410_infopenmorte }}</td>
             {% endif %}
             {% if show_fields.show_cpfinst or 1 %}
@@ -32,7 +32,7 @@
             {% if show_fields.show_dtinst or 1 %}
             <td><span style="display:none">{{ a.dtinst|date:"Y-m-d" }}</span>{{ a.dtinst|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_intaposentado or 1 %}
+            {% if show_fields.show_intaposentado or 0 %}
             <td>{{ a.get_intaposentado_display }}</td>
             {% endif %}
 

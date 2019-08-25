@@ -63,14 +63,20 @@
                                 {% if perms.s2410.can_see_s2410infoPenMorte %}
                                     <li {% if tab == 's2410_infopenmorte' %} class="active"{% endif %} >
                                         <a href="{% url 's2410_evtcdbenin_salvar_tab' pk=pk tab='s2410_infopenmorte' %}">
-                                        Informações relativas a pensão por morte</a>
+                                        Informações relativas a pensão por morte&nbsp;{% if not s2410_infopenmorte_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2410_infopenmorte_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2410.can_see_s2410homologTC %}
                                     <li {% if tab == 's2410_homologtc' %} class="active"{% endif %} >
                                         <a href="{% url 's2410_evtcdbenin_salvar_tab' pk=pk tab='s2410_homologtc' %}">
-                                        Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas</a>
+                                        Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas&nbsp;{% if not s2410_homologtc_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2410_homologtc_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

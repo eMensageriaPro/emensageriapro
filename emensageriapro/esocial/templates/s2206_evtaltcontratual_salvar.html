@@ -63,63 +63,90 @@
                                 {% if perms.s2206.can_see_s2206infoCeletista %}
                                     <li {% if tab == 's2206_infoceletista' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_infoceletista' %}">
-                                        Informações de Trabalhador Celetista</a>
+                                        Informações de Trabalhador Celetista&nbsp;{% if not s2206_infoceletista_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2206_infoceletista_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2206.can_see_s2206infoEstatutario %}
                                     <li {% if tab == 's2206_infoestatutario' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_infoestatutario' %}">
-                                        Informações de Trabalhador Estatutário</a>
+                                        Informações de Trabalhador Estatutário&nbsp;{% if not s2206_infoestatutario_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2206_infoestatutario_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2206.can_see_s2206localTrabGeral %}
                                     <li {% if tab == 's2206_localtrabgeral' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_localtrabgeral' %}">
-                                        Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades</a>
+                                        Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades&nbsp;{% if not s2206_localtrabgeral_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2206_localtrabgeral_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2206.can_see_s2206localTrabDom %}
                                     <li {% if tab == 's2206_localtrabdom' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_localtrabdom' %}">
-                                        Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</a>
+                                        Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.&nbsp;{% if not s2206_localtrabdom_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2206_localtrabdom_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2206.can_see_s2206horContratual %}
                                     <li {% if tab == 's2206_horcontratual' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_horcontratual' %}">
-                                        Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].</a>
+                                        Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].&nbsp;{% if not s2206_horcontratual_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2206_horcontratual_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2206.can_see_s2206filiacaoSindical %}
                                     <li {% if tab == 's2206_filiacaosindical' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_filiacaosindical' %}">
-                                        Filiação Sindical do Trabalhador</a>
+                                        Filiação Sindical do Trabalhador&nbsp;{% if not s2206_filiacaosindical_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2206_filiacaosindical_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2206.can_see_s2206alvaraJudicial %}
                                     <li {% if tab == 's2206_alvarajudicial' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_alvarajudicial' %}">
-                                        Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</a>
+                                        Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.&nbsp;{% if not s2206_alvarajudicial_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2206_alvarajudicial_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2206.can_see_s2206observacoes %}
                                     <li {% if tab == 's2206_observacoes' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_observacoes' %}">
-                                        Observações do contrato de trabalho</a>
+                                        Observações do contrato de trabalho&nbsp;{% if not s2206_observacoes_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2206_observacoes_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2206.can_see_s2206servPubl %}
                                     <li {% if tab == 's2206_servpubl' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_servpubl' %}">
-                                        Alterações inerentes ao servidor público</a>
+                                        Alterações inerentes ao servidor público&nbsp;{% if not s2206_servpubl_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2206_servpubl_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

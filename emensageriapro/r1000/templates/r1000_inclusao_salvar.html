@@ -62,14 +62,20 @@
                             {% if perms.r1000.can_see_r1000inclusaosoftHouse %}
                                 <li {% if tab == 'r1000_inclusao_softhouse' %} class="active"{% endif %} >
                                     <a href="{% url 'r1000_inclusao_salvar_tab' pk=pk tab='r1000_inclusao_softhouse' %}">
-                                    Informações da(s) empresa(s) desenvolvedora(s) da(s) aplicação(ões) que gera(m) os arquivos transmitidos para o ambiente nacional da EFD-Reinf.</a>
+                                    Informações da(s) empresa(s) desenvolvedora(s) da(s) aplicação(ões) que gera(m) os arquivos transmitidos para o ambiente nacional da EFD-Reinf.&nbsp;{% if not r1000_inclusao_softhouse_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r1000_inclusao_softhouse_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r1000.can_see_r1000inclusaoinfoEFR %}
                                 <li {% if tab == 'r1000_inclusao_infoefr' %} class="active"{% endif %} >
                                     <a href="{% url 'r1000_inclusao_salvar_tab' pk=pk tab='r1000_inclusao_infoefr' %}">
-                                    Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR</a>
+                                    Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR&nbsp;{% if not r1000_inclusao_infoefr_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r1000_inclusao_infoefr_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

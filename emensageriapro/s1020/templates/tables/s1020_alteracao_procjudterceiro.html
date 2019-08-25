@@ -8,10 +8,10 @@
             {% if show_fields.show_codterc or 1 %}
             <th>Código de Terceiros</th>
             {% endif %}
-            {% if show_fields.show_nrprocjud or 0 %}
+            {% if show_fields.show_nrprocjud or 1 %}
             <th>Número do Processo Judicial</th>
             {% endif %}
-            {% if show_fields.show_codsusp or 1 %}
+            {% if show_fields.show_codsusp or 0 %}
             <th>Código do Indicativo da Suspensão</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -29,10 +29,10 @@
             {% if show_fields.show_codterc or 1 %}
             <td>{{ a.codterc }}</td>
             {% endif %}
-            {% if show_fields.show_nrprocjud or 0 %}
+            {% if show_fields.show_nrprocjud or 1 %}
             <td>{{ a.nrprocjud }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp or 1 %}
+            {% if show_fields.show_codsusp or 0 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
 

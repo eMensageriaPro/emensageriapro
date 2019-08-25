@@ -69,8 +69,8 @@ def listar(request, output=None):
         show_fields = {
             'show_r2070_ideestab': 1,
             'show_dtpagto': 1,
-            'show_tprendimento': 0,
-            'show_formatributacao': 1,
+            'show_tprendimento': 1,
+            'show_formatributacao': 0,
             'show_vlrpgto': 0,
             'show_vlrret': 0, }
 

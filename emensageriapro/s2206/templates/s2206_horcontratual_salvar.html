@@ -62,7 +62,10 @@
                             {% if perms.s2206.can_see_s2206horario %}
                                 <li {% if tab == 's2206_horario' %} class="active"{% endif %} >
                                     <a href="{% url 's2206_horcontratual_salvar_tab' pk=pk tab='s2206_horario' %}">
-                                    Informações diárias do horário contratual</a>
+                                    Informações diárias do horário contratual&nbsp;{% if not s2206_horario_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2206_horario_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

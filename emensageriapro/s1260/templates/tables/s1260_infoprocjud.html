@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1260_tpcomerc or 0 %}
+            {% if show_fields.show_s1260_tpcomerc or 1 %}
             <th>Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.</th>
             {% endif %}
             {% if show_fields.show_tpproc or 1 %}
@@ -11,7 +11,7 @@
             {% if show_fields.show_nrproc or 1 %}
             <th>Número do Processo</th>
             {% endif %}
-            {% if show_fields.show_codsusp or 1 %}
+            {% if show_fields.show_codsusp or 0 %}
             <th>Código do Indicativo da Suspensão</th>
             {% endif %}
             {% if show_fields.show_vrcpsusp or 0 %}
@@ -32,7 +32,7 @@
     <tbody>
         {% for a in s1260_infoprocjud_lista %}
         <tr>
-            {% if show_fields.show_s1260_tpcomerc or 0 %}
+            {% if show_fields.show_s1260_tpcomerc or 1 %}
             <td>{{ a.s1260_tpcomerc }}</td>
             {% endif %}
             {% if show_fields.show_tpproc or 1 %}
@@ -41,7 +41,7 @@
             {% if show_fields.show_nrproc or 1 %}
             <td>{{ a.nrproc }}</td>
             {% endif %}
-            {% if show_fields.show_codsusp or 1 %}
+            {% if show_fields.show_codsusp or 0 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
             {% if show_fields.show_vrcpsusp or 0 %}

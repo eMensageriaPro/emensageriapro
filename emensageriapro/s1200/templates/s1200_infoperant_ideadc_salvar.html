@@ -62,7 +62,10 @@
                             {% if perms.s1200.can_see_s1200infoPerAntidePeriodo %}
                                 <li {% if tab == 's1200_infoperant_ideperiodo' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_infoperant_ideadc_salvar_tab' pk=pk tab='s1200_infoperant_ideperiodo' %}">
-                                    Período de validade das informações incluídas</a>
+                                    Período de validade das informações incluídas&nbsp;{% if not s1200_infoperant_ideperiodo_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1200_infoperant_ideperiodo_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

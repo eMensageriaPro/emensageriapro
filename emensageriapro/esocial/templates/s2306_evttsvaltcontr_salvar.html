@@ -63,7 +63,10 @@
                                 {% if perms.s2306.can_see_s2306infoComplementares %}
                                     <li {% if tab == 's2306_infocomplementares' %} class="active"{% endif %} >
                                         <a href="{% url 's2306_evttsvaltcontr_salvar_tab' pk=pk tab='s2306_infocomplementares' %}">
-                                        Informações complementares sobre o declarante</a>
+                                        Informações complementares sobre o declarante&nbsp;{% if not s2306_infocomplementares_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2306_infocomplementares_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

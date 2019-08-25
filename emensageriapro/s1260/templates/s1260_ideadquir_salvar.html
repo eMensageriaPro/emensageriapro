@@ -62,7 +62,10 @@
                             {% if perms.s1260.can_see_s1260nfs %}
                                 <li {% if tab == 's1260_nfs' %} class="active"{% endif %} >
                                     <a href="{% url 's1260_ideadquir_salvar_tab' pk=pk tab='s1260_nfs' %}">
-                                    Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.</a>
+                                    Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.&nbsp;{% if not s1260_nfs_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1260_nfs_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

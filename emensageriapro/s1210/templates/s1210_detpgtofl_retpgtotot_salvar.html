@@ -62,7 +62,10 @@
                             {% if perms.s1210.can_see_s1210detPgtoFlpenAlim %}
                                 <li {% if tab == 's1210_detpgtofl_penalim' %} class="active"{% endif %} >
                                     <a href="{% url 's1210_detpgtofl_retpgtotot_salvar_tab' pk=pk tab='s1210_detpgtofl_penalim' %}">
-                                    Informações sobre beneficiários de pensão alimentícia.</a>
+                                    Informações sobre beneficiários de pensão alimentícia.&nbsp;{% if not s1210_detpgtofl_penalim_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1210_detpgtofl_penalim_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

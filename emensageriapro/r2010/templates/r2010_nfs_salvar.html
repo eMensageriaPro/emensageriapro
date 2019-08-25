@@ -62,7 +62,10 @@
                             {% if perms.r2010.can_see_r2010infoTpServ %}
                                 <li {% if tab == 'r2010_infotpserv' %} class="active"{% endif %} >
                                     <a href="{% url 'r2010_nfs_salvar_tab' pk=pk tab='r2010_infotpserv' %}">
-                                    Informações sobre os tipos de Serviços constantes da Nota Fiscal</a>
+                                    Informações sobre os tipos de Serviços constantes da Nota Fiscal&nbsp;{% if not r2010_infotpserv_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2010_infotpserv_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

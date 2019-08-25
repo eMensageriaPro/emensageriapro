@@ -62,7 +62,10 @@
                             {% if perms.s1202.can_see_s1202infoPerApurideEstab %}
                                 <li {% if tab == 's1202_infoperapur_ideestab' %} class="active"{% endif %} >
                                     <a href="{% url 's1202_infoperapur_salvar_tab' pk=pk tab='s1202_infoperapur_ideestab' %}">
-                                    Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</a>
+                                    Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas&nbsp;{% if not s1202_infoperapur_ideestab_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1202_infoperapur_ideestab_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

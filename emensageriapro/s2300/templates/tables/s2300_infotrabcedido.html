@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s2300_infocomplementares or 0 %}
+            {% if show_fields.show_s2300_infocomplementares or 1 %}
             <th>Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.</th>
             {% endif %}
             {% if show_fields.show_categorig or 1 %}
@@ -14,7 +14,7 @@
             {% if show_fields.show_matricced or 0 %}
             <th>Matricula do trabalhador no empregador cedente</th>
             {% endif %}
-            {% if show_fields.show_dtadmced or 1 %}
+            {% if show_fields.show_dtadmced or 0 %}
             <th>Data de admissão no empregador cedente</th>
             {% endif %}
             {% if show_fields.show_tpregtrab or 0 %}
@@ -38,7 +38,7 @@
     <tbody>
         {% for a in s2300_infotrabcedido_lista %}
         <tr>
-            {% if show_fields.show_s2300_infocomplementares or 0 %}
+            {% if show_fields.show_s2300_infocomplementares or 1 %}
             <td>{{ a.s2300_infocomplementares }}</td>
             {% endif %}
             {% if show_fields.show_categorig or 1 %}
@@ -50,7 +50,7 @@
             {% if show_fields.show_matricced or 0 %}
             <td>{{ a.matricced }}</td>
             {% endif %}
-            {% if show_fields.show_dtadmced or 1 %}
+            {% if show_fields.show_dtadmced or 0 %}
             <td><span style="display:none">{{ a.dtadmced|date:"Y-m-d" }}</span>{{ a.dtadmced|date:"d/m/Y" }}</td>
             {% endif %}
             {% if show_fields.show_tpregtrab or 0 %}

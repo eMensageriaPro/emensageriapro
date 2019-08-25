@@ -62,14 +62,20 @@
                             {% if perms.r4010.can_see_r4010infoRRAdespProcJud %}
                                 <li {% if tab == 'r4010_inforra_despprocjud' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_inforra_salvar_tab' pk=pk tab='r4010_inforra_despprocjud' %}">
-                                    Detalhamento das despesas de processo judicial</a>
+                                    Detalhamento das despesas de processo judicial&nbsp;{% if not r4010_inforra_despprocjud_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4010_inforra_despprocjud_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r4010.can_see_r4010infoRRAorigemRec %}
                                 <li {% if tab == 'r4010_inforra_origemrec' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_inforra_salvar_tab' pk=pk tab='r4010_inforra_origemrec' %}">
-                                    Informações sobre a origem dos recursos</a>
+                                    Informações sobre a origem dos recursos&nbsp;{% if not r4010_inforra_origemrec_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4010_inforra_origemrec_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

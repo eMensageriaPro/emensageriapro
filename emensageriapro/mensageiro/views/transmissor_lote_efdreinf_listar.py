@@ -83,7 +83,9 @@ def listar(request, output=None):
             'show_tempo_estimado_conclusao': 0,
             'show_arquivo_header': 0,
             'show_arquivo_request': 0,
-            'show_arquivo_response': 0, }
+            'show_arquivo_response': 0,
+            'show_data_hora_envio': 0,
+            'show_data_hora_consulta': 0, }
 
         post = False
         #ANTES-POST-LISTAGEM

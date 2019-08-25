@@ -69,8 +69,8 @@ def listar(request, output=None):
         show_fields = {
             'show_s1210_evtpgtos': 1,
             'show_dtpgto': 1,
-            'show_tppgto': 0,
-            'show_indresbr': 1, }
+            'show_tppgto': 1,
+            'show_indresbr': 0, }
 
         post = False
 

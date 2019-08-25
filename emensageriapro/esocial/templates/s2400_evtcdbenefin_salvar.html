@@ -63,14 +63,20 @@
                                 {% if perms.s2400.can_see_s2400endereco %}
                                     <li {% if tab == 's2400_endereco' %} class="active"{% endif %} >
                                         <a href="{% url 's2400_evtcdbenefin_salvar_tab' pk=pk tab='s2400_endereco' %}">
-                                        Grupo de informações do endereço do Trabalhador</a>
+                                        Grupo de informações do endereço do Trabalhador&nbsp;{% if not s2400_endereco_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2400_endereco_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2400.can_see_s2400dependente %}
                                     <li {% if tab == 's2400_dependente' %} class="active"{% endif %} >
                                         <a href="{% url 's2400_evtcdbenefin_salvar_tab' pk=pk tab='s2400_dependente' %}">
-                                        Informações dos dependentes</a>
+                                        Informações dos dependentes&nbsp;{% if not s2400_dependente_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2400_dependente_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

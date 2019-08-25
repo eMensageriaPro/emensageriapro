@@ -62,49 +62,70 @@
                             {% if perms.r2070.can_see_r2070detDeducao %}
                                 <li {% if tab == 'r2070_detdeducao' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopf_salvar_tab' pk=pk tab='r2070_detdeducao' %}">
-                                    Detalhamento das Deduções</a>
+                                    Detalhamento das Deduções&nbsp;{% if not r2070_detdeducao_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2070_detdeducao_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r2070.can_see_r2070rendIsento %}
                                 <li {% if tab == 'r2070_rendisento' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopf_salvar_tab' pk=pk tab='r2070_rendisento' %}">
-                                    Rendimentos Isentos/Não Tributáveis</a>
+                                    Rendimentos Isentos/Não Tributáveis&nbsp;{% if not r2070_rendisento_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2070_rendisento_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r2070.can_see_r2070detCompet %}
                                 <li {% if tab == 'r2070_detcompet' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopf_salvar_tab' pk=pk tab='r2070_detcompet' %}">
-                                    Detalhamento das Competências</a>
+                                    Detalhamento das Competências&nbsp;{% if not r2070_detcompet_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2070_detcompet_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r2070.can_see_r2070compJud %}
                                 <li {% if tab == 'r2070_compjud' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopf_salvar_tab' pk=pk tab='r2070_compjud' %}">
-                                    Compensação Judicial</a>
+                                    Compensação Judicial&nbsp;{% if not r2070_compjud_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2070_compjud_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r2070.can_see_r2070infoRRA %}
                                 <li {% if tab == 'r2070_inforra' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopf_salvar_tab' pk=pk tab='r2070_inforra' %}">
-                                    Informações Complementares - Rendimentos Recebidos Acumuladamente</a>
+                                    Informações Complementares - Rendimentos Recebidos Acumuladamente&nbsp;{% if not r2070_inforra_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2070_inforra_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r2070.can_see_r2070infoProcJud %}
                                 <li {% if tab == 'r2070_infoprocjud' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopf_salvar_tab' pk=pk tab='r2070_infoprocjud' %}">
-                                    Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</a>
+                                    Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial&nbsp;{% if not r2070_infoprocjud_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2070_infoprocjud_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r2070.can_see_r2070depJudicial %}
                                 <li {% if tab == 'r2070_depjudicial' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopf_salvar_tab' pk=pk tab='r2070_depjudicial' %}">
-                                    Depósito Judicial</a>
+                                    Depósito Judicial&nbsp;{% if not r2070_depjudicial_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2070_depjudicial_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

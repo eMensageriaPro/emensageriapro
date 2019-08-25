@@ -63,7 +63,10 @@
                                 {% if perms.s1260.can_see_s1260tpComerc %}
                                     <li {% if tab == 's1260_tpcomerc' %} class="active"{% endif %} >
                                         <a href="{% url 's1260_evtcomprod_salvar_tab' pk=pk tab='s1260_tpcomerc' %}">
-                                        Registro que apresenta o valor total da comercialização por 'tipo' de comercialização</a>
+                                        Registro que apresenta o valor total da comercialização por 'tipo' de comercialização&nbsp;{% if not s1260_tpcomerc_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1260_tpcomerc_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

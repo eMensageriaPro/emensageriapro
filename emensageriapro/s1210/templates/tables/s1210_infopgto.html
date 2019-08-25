@@ -8,10 +8,10 @@
             {% if show_fields.show_dtpgto or 1 %}
             <th>Data de pagamento</th>
             {% endif %}
-            {% if show_fields.show_tppgto or 0 %}
+            {% if show_fields.show_tppgto or 1 %}
             <th>Tipo de Pagamento</th>
             {% endif %}
-            {% if show_fields.show_indresbr or 1 %}
+            {% if show_fields.show_indresbr or 0 %}
             <th>Indicador de residência</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -29,10 +29,10 @@
             {% if show_fields.show_dtpgto or 1 %}
             <td><span style="display:none">{{ a.dtpgto|date:"Y-m-d" }}</span>{{ a.dtpgto|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_tppgto or 0 %}
+            {% if show_fields.show_tppgto or 1 %}
             <td>{{ a.get_tppgto_display }}</td>
             {% endif %}
-            {% if show_fields.show_indresbr or 1 %}
+            {% if show_fields.show_indresbr or 0 %}
             <td>{{ a.get_indresbr_display }}</td>
             {% endif %}
 

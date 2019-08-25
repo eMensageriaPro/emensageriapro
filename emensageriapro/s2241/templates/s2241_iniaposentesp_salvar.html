@@ -62,7 +62,10 @@
                             {% if perms.s2241.can_see_s2241iniAposentEspinfoAmb %}
                                 <li {% if tab == 's2241_iniaposentesp_infoamb' %} class="active"{% endif %} >
                                     <a href="{% url 's2241_iniaposentesp_salvar_tab' pk=pk tab='s2241_iniaposentesp_infoamb' %}">
-                                    Informações relativas ao ambiente de trabalho</a>
+                                    Informações relativas ao ambiente de trabalho&nbsp;{% if not s2241_iniaposentesp_infoamb_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2241_iniaposentesp_infoamb_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

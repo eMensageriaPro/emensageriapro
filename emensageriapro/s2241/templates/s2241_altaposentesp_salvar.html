@@ -62,7 +62,10 @@
                             {% if perms.s2241.can_see_s2241altAposentEspinfoamb %}
                                 <li {% if tab == 's2241_altaposentesp_infoamb' %} class="active"{% endif %} >
                                     <a href="{% url 's2241_altaposentesp_salvar_tab' pk=pk tab='s2241_altaposentesp_infoamb' %}">
-                                    Informações sobre as condições de trabalho insalubre/periculoso.</a>
+                                    Informações sobre as condições de trabalho insalubre/periculoso.&nbsp;{% if not s2241_altaposentesp_infoamb_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2241_altaposentesp_infoamb_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

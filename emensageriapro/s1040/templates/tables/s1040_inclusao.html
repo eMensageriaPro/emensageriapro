@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1040_evttabfuncao or 0 %}
+            {% if show_fields.show_s1040_evttabfuncao or 1 %}
             <th>Inclusão de novas informações</th>
             {% endif %}
             {% if show_fields.show_idefuncao or 0 %}
@@ -11,7 +11,7 @@
             {% if show_fields.show_codfuncao or 1 %}
             <th>Código da Função</th>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <th>Início da Validade</th>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -20,10 +20,10 @@
             {% if show_fields.show_dadosfuncao or 0 %}
             <th>Detalhamento das informações da função que está sendo incluída</th>
             {% endif %}
-            {% if show_fields.show_dscfuncao or 1 %}
+            {% if show_fields.show_dscfuncao or 0 %}
             <th>Descrição</th>
             {% endif %}
-            {% if show_fields.show_codcbo or 1 %}
+            {% if show_fields.show_codcbo or 0 %}
             <th>CBO</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -35,7 +35,7 @@
     <tbody>
         {% for a in s1040_inclusao_lista %}
         <tr>
-            {% if show_fields.show_s1040_evttabfuncao or 0 %}
+            {% if show_fields.show_s1040_evttabfuncao or 1 %}
             <td>{{ a.s1040_evttabfuncao }}</td>
             {% endif %}
             {% if show_fields.show_idefuncao or 0 %}
@@ -44,7 +44,7 @@
             {% if show_fields.show_codfuncao or 1 %}
             <td>{{ a.codfuncao }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -53,10 +53,10 @@
             {% if show_fields.show_dadosfuncao or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_dscfuncao or 1 %}
+            {% if show_fields.show_dscfuncao or 0 %}
             <td>{{ a.dscfuncao }}</td>
             {% endif %}
-            {% if show_fields.show_codcbo or 1 %}
+            {% if show_fields.show_codcbo or 0 %}
             <td>{{ a.codcbo }}</td>
             {% endif %}
 

@@ -63,14 +63,20 @@
                                 {% if perms.r3010.can_see_r3010boletim %}
                                     <li {% if tab == 'r3010_boletim' %} class="active"{% endif %} >
                                         <a href="{% url 'r3010_evtespdesportivo_salvar_tab' pk=pk tab='r3010_boletim' %}">
-                                        Boletim do Espetáculo Desportivo</a>
+                                        Boletim do Espetáculo Desportivo&nbsp;{% if not r3010_boletim_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ r3010_boletim_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.r3010.can_see_r3010infoProc %}
                                     <li {% if tab == 'r3010_infoproc' %} class="active"{% endif %} >
                                         <a href="{% url 'r3010_evtespdesportivo_salvar_tab' pk=pk tab='r3010_infoproc' %}">
-                                        Informações de processos relacionados a não retenção de contribuição previdenciária</a>
+                                        Informações de processos relacionados a não retenção de contribuição previdenciária&nbsp;{% if not r3010_infoproc_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ r3010_infoproc_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

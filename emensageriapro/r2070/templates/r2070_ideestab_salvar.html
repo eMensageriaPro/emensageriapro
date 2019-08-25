@@ -62,14 +62,20 @@
                             {% if perms.r2070.can_see_r2070pgtoResidBR %}
                                 <li {% if tab == 'r2070_pgtoresidbr' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_ideestab_salvar_tab' pk=pk tab='r2070_pgtoresidbr' %}">
-                                    Pagamento a Pessoa Física ou Jurídica residente ou domiciliada no Brasil</a>
+                                    Pagamento a Pessoa Física ou Jurídica residente ou domiciliada no Brasil&nbsp;{% if not r2070_pgtoresidbr_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2070_pgtoresidbr_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r2070.can_see_r2070pgtoResidExt %}
                                 <li {% if tab == 'r2070_pgtoresidext' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_ideestab_salvar_tab' pk=pk tab='r2070_pgtoresidext' %}">
-                                    Pagamento a não residente ou domiciliado no exterior</a>
+                                    Pagamento a não residente ou domiciliado no exterior&nbsp;{% if not r2070_pgtoresidext_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2070_pgtoresidext_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

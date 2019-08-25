@@ -62,7 +62,10 @@
                             {% if perms.s1202.can_see_s1202infoPerAntremunPerAnt %}
                                 <li {% if tab == 's1202_infoperant_remunperant' %} class="active"{% endif %} >
                                     <a href="{% url 's1202_infoperant_ideestab_salvar_tab' pk=pk tab='s1202_infoperant_remunperant' %}">
-                                    Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração</a>
+                                    Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração&nbsp;{% if not s1202_infoperant_remunperant_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1202_infoperant_remunperant_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

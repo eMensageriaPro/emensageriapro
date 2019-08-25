@@ -47,6 +47,12 @@
             {% if show_fields.show_arquivo_response or 0 %}
             <th>Arquivo Response</th>
             {% endif %}
+            {% if show_fields.show_data_hora_envio or 0 %}
+            <th>Data/Hora de Envio</th>
+            {% endif %}
+            {% if show_fields.show_data_hora_consulta or 0 %}
+            <th>Data/Hora de Consulta</th>
+            {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
             <th width="170px">Ações</th>
@@ -100,6 +106,12 @@
             {% endif %}
             {% if show_fields.show_arquivo_response or 0 %}
             <td>{{ a.arquivo_response }}</td>
+            {% endif %}
+            {% if show_fields.show_data_hora_envio or 0 %}
+            <td><span style="display:none">{{ a.data_hora_envio|date:"Y-m-d H:i" }}</span>{{ a.data_hora_envio|date:"d/m/Y H:i" }}</td>
+            {% endif %}
+            {% if show_fields.show_data_hora_consulta or 0 %}
+            <td><span style="display:none">{{ a.data_hora_consulta|date:"Y-m-d H:i" }}</span>{{ a.data_hora_consulta|date:"d/m/Y H:i" }}</td>
             {% endif %}
 
             <!-- colunas especiais -->

@@ -70,22 +70,22 @@ def listar(request, output=None):
             'show_evtconvinterm': 0,
             'show_identidade': 1,
             'show_ideevento': 0,
-            'show_indretif': 0,
+            'show_indretif': 1,
             'show_nrrecibo': 0,
             'show_tpamb': 0,
             'show_procemi': 0,
             'show_verproc': 0,
             'show_ideempregador': 0,
-            'show_tpinsc': 0,
+            'show_tpinsc': 1,
             'show_nrinsc': 0,
             'show_idevinculo': 0,
-            'show_cpftrab': 1,
+            'show_cpftrab': 0,
             'show_nistrab': 0,
             'show_matricula': 0,
             'show_infoconvinterm': 0,
             'show_codconv': 0,
-            'show_dtinicio': 1,
-            'show_dtfim': 1,
+            'show_dtinicio': 0,
+            'show_dtfim': 0,
             'show_dtprevpgto': 0,
             'show_jornada': 0,
             'show_codhorcontrat': 0,
@@ -100,7 +100,8 @@ def listar(request, output=None):
             'show_validacoes': 0,
             'show_arquivo_original': 0,
             'show_arquivo': 0,
-            'show_status': 1, }
+            'show_status': 1,
+            'show_transmissor_lote_esocial_error': 0, }
 
         post = False
 

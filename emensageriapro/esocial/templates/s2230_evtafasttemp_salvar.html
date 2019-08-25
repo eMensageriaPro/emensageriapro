@@ -63,21 +63,30 @@
                                 {% if perms.s2230.can_see_s2230iniAfastamento %}
                                     <li {% if tab == 's2230_iniafastamento' %} class="active"{% endif %} >
                                         <a href="{% url 's2230_evtafasttemp_salvar_tab' pk=pk tab='s2230_iniafastamento' %}">
-                                        Informações do Afastamento Temporário - Início</a>
+                                        Informações do Afastamento Temporário - Início&nbsp;{% if not s2230_iniafastamento_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2230_iniafastamento_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2230.can_see_s2230infoRetif %}
                                     <li {% if tab == 's2230_inforetif' %} class="active"{% endif %} >
                                         <a href="{% url 's2230_evtafasttemp_salvar_tab' pk=pk tab='s2230_inforetif' %}">
-                                        Informações de retificação do Afastamento Temporário</a>
+                                        Informações de retificação do Afastamento Temporário&nbsp;{% if not s2230_inforetif_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2230_inforetif_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2230.can_see_s2230fimAfastamento %}
                                     <li {% if tab == 's2230_fimafastamento' %} class="active"{% endif %} >
                                         <a href="{% url 's2230_evtafasttemp_salvar_tab' pk=pk tab='s2230_fimafastamento' %}">
-                                        Informações do Término do Afastamento</a>
+                                        Informações do Término do Afastamento&nbsp;{% if not s2230_fimafastamento_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2230_fimafastamento_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

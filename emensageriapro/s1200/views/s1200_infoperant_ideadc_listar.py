@@ -69,11 +69,11 @@ def listar(request, output=None):
         show_fields = {
             'show_s1200_infoperant': 1,
             'show_dtacconv': 0,
-            'show_tpacconv': 0,
+            'show_tpacconv': 1,
             'show_compacconv': 0,
             'show_dtefacconv': 0,
             'show_dsc': 1,
-            'show_remunsuc': 1, }
+            'show_remunsuc': 0, }
 
         post = False
 

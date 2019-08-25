@@ -63,7 +63,10 @@
                                 {% if perms.s1250.can_see_s1250tpAquis %}
                                     <li {% if tab == 's1250_tpaquis' %} class="active"{% endif %} >
                                         <a href="{% url 's1250_evtaqprod_salvar_tab' pk=pk tab='s1250_tpaquis' %}">
-                                        Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física</a>
+                                        Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física&nbsp;{% if not s1250_tpaquis_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1250_tpaquis_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

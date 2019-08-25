@@ -63,7 +63,10 @@
                                 {% if perms.r2060.can_see_r2060tipoCod %}
                                     <li {% if tab == 'r2060_tipocod' %} class="active"{% endif %} >
                                         <a href="{% url 'r2060_evtcprb_salvar_tab' pk=pk tab='r2060_tipocod' %}">
-                                        Registro que apresenta o valor total da receita por tipo de código de atividade econômica.</a>
+                                        Registro que apresenta o valor total da receita por tipo de código de atividade econômica.&nbsp;{% if not r2060_tipocod_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ r2060_tipocod_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

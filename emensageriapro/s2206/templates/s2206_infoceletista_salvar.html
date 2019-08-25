@@ -62,14 +62,20 @@
                             {% if perms.s2206.can_see_s2206trabTemp %}
                                 <li {% if tab == 's2206_trabtemp' %} class="active"{% endif %} >
                                     <a href="{% url 's2206_infoceletista_salvar_tab' pk=pk tab='s2206_trabtemp' %}">
-                                    Dados sobre trabalho temporário. Preenchimento obrigatório na prorrogação de contrato de trabalhador temporário</a>
+                                    Dados sobre trabalho temporário. Preenchimento obrigatório na prorrogação de contrato de trabalhador temporário&nbsp;{% if not s2206_trabtemp_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2206_trabtemp_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2206.can_see_s2206aprend %}
                                 <li {% if tab == 's2206_aprend' %} class="active"{% endif %} >
                                     <a href="{% url 's2206_infoceletista_salvar_tab' pk=pk tab='s2206_aprend' %}">
-                                    Informações para identificação do empregador contratante de aprendiz</a>
+                                    Informações para identificação do empregador contratante de aprendiz&nbsp;{% if not s2206_aprend_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2206_aprend_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

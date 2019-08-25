@@ -5,7 +5,7 @@
             {% if show_fields.show_s1000_alteracao_infoop or 1 %}
             <th>Informações relativas a Ente Federativo Responsável - EFR</th>
             {% endif %}
-            {% if show_fields.show_ideefr or 0 %}
+            {% if show_fields.show_ideefr or 1 %}
             <th>É Ente Federativo Responsável?</th>
             {% endif %}
             {% if show_fields.show_cnpjefr or 0 %}
@@ -14,7 +14,7 @@
             {% if show_fields.show_indrpps or 1 %}
             <th>Possui RPPS</th>
             {% endif %}
-            {% if show_fields.show_prevcomp or 1 %}
+            {% if show_fields.show_prevcomp or 0 %}
             <th>Informar se o EFR instituiu regime de previdência complementar</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -29,7 +29,7 @@
             {% if show_fields.show_s1000_alteracao_infoop or 1 %}
             <td>{{ a.s1000_alteracao_infoop }}</td>
             {% endif %}
-            {% if show_fields.show_ideefr or 0 %}
+            {% if show_fields.show_ideefr or 1 %}
             <td>{{ a.get_ideefr_display }}</td>
             {% endif %}
             {% if show_fields.show_cnpjefr or 0 %}
@@ -38,7 +38,7 @@
             {% if show_fields.show_indrpps or 1 %}
             <td>{{ a.get_indrpps_display }}</td>
             {% endif %}
-            {% if show_fields.show_prevcomp or 1 %}
+            {% if show_fields.show_prevcomp or 0 %}
             <td>{{ a.get_prevcomp_display }}</td>
             {% endif %}
 

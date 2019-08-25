@@ -2,13 +2,13 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1000_evtinfoempregador or 0 %}
+            {% if show_fields.show_s1000_evtinfoempregador or 1 %}
             <th>Inclusão de novas informações</th>
             {% endif %}
             {% if show_fields.show_ideperiodo or 0 %}
             <th>Período de validade das informações incluídas</th>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <th>Início da Validade</th>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -17,10 +17,10 @@
             {% if show_fields.show_infocadastro or 0 %}
             <th>Informações do empregador</th>
             {% endif %}
-            {% if show_fields.show_nmrazao or 0 %}
+            {% if show_fields.show_nmrazao or 1 %}
             <th>Razão Social</th>
             {% endif %}
-            {% if show_fields.show_classtrib or 1 %}
+            {% if show_fields.show_classtrib or 0 %}
             <th>Classificação tributária</th>
             {% endif %}
             {% if show_fields.show_natjurid or 0 %}
@@ -32,7 +32,7 @@
             {% if show_fields.show_indconstr or 0 %}
             <th>Construtora?</th>
             {% endif %}
-            {% if show_fields.show_inddesfolha or 1 %}
+            {% if show_fields.show_inddesfolha or 0 %}
             <th>Desoneração de folha?</th>
             {% endif %}
             {% if show_fields.show_indopccp or 0 %}
@@ -56,7 +56,7 @@
             {% if show_fields.show_nmctt or 0 %}
             <th>Nome do Contato</th>
             {% endif %}
-            {% if show_fields.show_cpfctt or 1 %}
+            {% if show_fields.show_cpfctt or 0 %}
             <th>CPF</th>
             {% endif %}
             {% if show_fields.show_fonefixo or 0 %}
@@ -80,13 +80,13 @@
     <tbody>
         {% for a in s1000_inclusao_lista %}
         <tr>
-            {% if show_fields.show_s1000_evtinfoempregador or 0 %}
+            {% if show_fields.show_s1000_evtinfoempregador or 1 %}
             <td>{{ a.s1000_evtinfoempregador }}</td>
             {% endif %}
             {% if show_fields.show_ideperiodo or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -95,10 +95,10 @@
             {% if show_fields.show_infocadastro or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_nmrazao or 0 %}
+            {% if show_fields.show_nmrazao or 1 %}
             <td>{{ a.nmrazao }}</td>
             {% endif %}
-            {% if show_fields.show_classtrib or 1 %}
+            {% if show_fields.show_classtrib or 0 %}
             <td>{{ a.get_classtrib_display }}</td>
             {% endif %}
             {% if show_fields.show_natjurid or 0 %}
@@ -110,7 +110,7 @@
             {% if show_fields.show_indconstr or 0 %}
             <td>{{ a.get_indconstr_display }}</td>
             {% endif %}
-            {% if show_fields.show_inddesfolha or 1 %}
+            {% if show_fields.show_inddesfolha or 0 %}
             <td>{{ a.get_inddesfolha_display }}</td>
             {% endif %}
             {% if show_fields.show_indopccp or 0 %}
@@ -134,7 +134,7 @@
             {% if show_fields.show_nmctt or 0 %}
             <td>{{ a.nmctt }}</td>
             {% endif %}
-            {% if show_fields.show_cpfctt or 1 %}
+            {% if show_fields.show_cpfctt or 0 %}
             <td>{{ a.cpfctt }}</td>
             {% endif %}
             {% if show_fields.show_fonefixo or 0 %}

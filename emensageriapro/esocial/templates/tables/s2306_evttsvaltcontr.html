@@ -11,7 +11,7 @@
             {% if show_fields.show_ideevento or 0 %}
             <th>Informações de Identificação do Evento</th>
             {% endif %}
-            {% if show_fields.show_indretif or 0 %}
+            {% if show_fields.show_indretif or 1 %}
             <th>Identificador de retificação</th>
             {% endif %}
             {% if show_fields.show_nrrecibo or 0 %}
@@ -29,7 +29,7 @@
             {% if show_fields.show_ideempregador or 0 %}
             <th>Informações de identificação do empregador</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <th>Tipo de inscrição</th>
             {% endif %}
             {% if show_fields.show_nrinsc or 0 %}
@@ -38,19 +38,19 @@
             {% if show_fields.show_idetrabsemvinculo or 0 %}
             <th>Identificação do Trabalhador Sem Vínculo de Emprego</th>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_cpftrab or 0 %}
             <th>CPF</th>
             {% endif %}
             {% if show_fields.show_nistrab or 0 %}
             <th>NIS</th>
             {% endif %}
-            {% if show_fields.show_codcateg or 1 %}
+            {% if show_fields.show_codcateg or 0 %}
             <th>Código da Categoria</th>
             {% endif %}
             {% if show_fields.show_infotsvalteracao or 0 %}
             <th>Trabalhador Sem Vínculo de Emprego - Alteração Contratual</th>
             {% endif %}
-            {% if show_fields.show_dtalteracao or 1 %}
+            {% if show_fields.show_dtalteracao or 0 %}
             <th>Data de alteração</th>
             {% endif %}
             {% if show_fields.show_natatividade or 0 %}
@@ -83,6 +83,9 @@
             {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial_error or 0 %}
+            <th>Transmissor (Erro)</th>
+            {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
             <th width="80px">Ações</th>
@@ -101,7 +104,7 @@
             {% if show_fields.show_ideevento or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_indretif or 0 %}
+            {% if show_fields.show_indretif or 1 %}
             <td>{{ a.get_indretif_display }}</td>
             {% endif %}
             {% if show_fields.show_nrrecibo or 0 %}
@@ -119,7 +122,7 @@
             {% if show_fields.show_ideempregador or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
             {% if show_fields.show_nrinsc or 0 %}
@@ -128,19 +131,19 @@
             {% if show_fields.show_idetrabsemvinculo or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_cpftrab or 0 %}
             <td>{{ a.cpftrab }}</td>
             {% endif %}
             {% if show_fields.show_nistrab or 0 %}
             <td>{{ a.nistrab }}</td>
             {% endif %}
-            {% if show_fields.show_codcateg or 1 %}
+            {% if show_fields.show_codcateg or 0 %}
             <td>{{ a.codcateg|valor }}</td>
             {% endif %}
             {% if show_fields.show_infotsvalteracao or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_dtalteracao or 1 %}
+            {% if show_fields.show_dtalteracao or 0 %}
             <td><span style="display:none">{{ a.dtalteracao|date:"Y-m-d" }}</span>{{ a.dtalteracao|date:"d/m/Y" }}</td>
             {% endif %}
             {% if show_fields.show_natatividade or 0 %}
@@ -172,6 +175,9 @@
             {% endif %}
             {% if show_fields.show_status or 1 %}
             <td>{{ a.get_status_display }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial_error or 0 %}
+            <td>{{ a.transmissor_lote_esocial_error }}</td>
             {% endif %}
 
             <!-- colunas especiais -->

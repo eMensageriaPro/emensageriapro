@@ -63,14 +63,20 @@
                                 {% if perms.s2231.can_see_s2231iniCessao %}
                                     <li {% if tab == 's2231_inicessao' %} class="active"{% endif %} >
                                         <a href="{% url 's2231_evtcessao_salvar_tab' pk=pk tab='s2231_inicessao' %}">
-                                        Informações de início da cessão/exercício em outro órgão</a>
+                                        Informações de início da cessão/exercício em outro órgão&nbsp;{% if not s2231_inicessao_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2231_inicessao_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2231.can_see_s2231fimCessao %}
                                     <li {% if tab == 's2231_fimcessao' %} class="active"{% endif %} >
                                         <a href="{% url 's2231_evtcessao_salvar_tab' pk=pk tab='s2231_fimcessao' %}">
-                                        Informações de término da cessão/exercício em outro órgão</a>
+                                        Informações de término da cessão/exercício em outro órgão&nbsp;{% if not s2231_fimcessao_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2231_fimcessao_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

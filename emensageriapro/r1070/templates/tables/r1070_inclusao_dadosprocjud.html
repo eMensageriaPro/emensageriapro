@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r1070_inclusao or 0 %}
+            {% if show_fields.show_r1070_inclusao or 1 %}
             <th>Informações Complementares do Processo Judicial</th>
             {% endif %}
             {% if show_fields.show_ufvara or 1 %}
@@ -11,7 +11,7 @@
             {% if show_fields.show_codmunic or 1 %}
             <th>Código do Município</th>
             {% endif %}
-            {% if show_fields.show_idvara or 1 %}
+            {% if show_fields.show_idvara or 0 %}
             <th>Código de Identificação da Vara.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -23,7 +23,7 @@
     <tbody>
         {% for a in r1070_inclusao_dadosprocjud_lista %}
         <tr>
-            {% if show_fields.show_r1070_inclusao or 0 %}
+            {% if show_fields.show_r1070_inclusao or 1 %}
             <td>{{ a.r1070_inclusao }}</td>
             {% endif %}
             {% if show_fields.show_ufvara or 1 %}
@@ -32,7 +32,7 @@
             {% if show_fields.show_codmunic or 1 %}
             <td>{{ a.codmunic|valor }}</td>
             {% endif %}
-            {% if show_fields.show_idvara or 1 %}
+            {% if show_fields.show_idvara or 0 %}
             <td>{{ a.idvara }}</td>
             {% endif %}
 

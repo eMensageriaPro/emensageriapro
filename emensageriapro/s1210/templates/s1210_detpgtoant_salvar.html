@@ -62,7 +62,10 @@
                             {% if perms.s1210.can_see_s1210detPgtoAntinfoPgtoAnt %}
                                 <li {% if tab == 's1210_detpgtoant_infopgtoant' %} class="active"{% endif %} >
                                     <a href="{% url 's1210_detpgtoant_salvar_tab' pk=pk tab='s1210_detpgtoant_infopgtoant' %}">
-                                    Detalhamento do pagamento</a>
+                                    Detalhamento do pagamento&nbsp;{% if not s1210_detpgtoant_infopgtoant_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1210_detpgtoant_infopgtoant_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

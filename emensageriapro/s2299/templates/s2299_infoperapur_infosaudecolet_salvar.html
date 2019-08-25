@@ -62,7 +62,10 @@
                             {% if perms.s2299.can_see_s2299infoPerApurdetOper %}
                                 <li {% if tab == 's2299_infoperapur_detoper' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_infoperapur_infosaudecolet_salvar_tab' pk=pk tab='s2299_infoperapur_detoper' %}">
-                                    Detalhamento dos valores pagos a Operadoras de Planos de Saúde.</a>
+                                    Detalhamento dos valores pagos a Operadoras de Planos de Saúde.&nbsp;{% if not s2299_infoperapur_detoper_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2299_infoperapur_detoper_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

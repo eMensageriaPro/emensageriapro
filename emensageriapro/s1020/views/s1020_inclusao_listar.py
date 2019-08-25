@@ -67,18 +67,18 @@ def listar(request, output=None):
 
         dict_fields = {}
         show_fields = {
-            'show_s1020_evttablotacao': 0,
+            'show_s1020_evttablotacao': 1,
             'show_idelotacao': 0,
             'show_codlotacao': 1,
-            'show_inivalid': 0,
+            'show_inivalid': 1,
             'show_fimvalid': 0,
             'show_dadoslotacao': 0,
             'show_tplotacao': 0,
             'show_tpinsc': 0,
             'show_nrinsc': 0,
             'show_fpaslotacao': 0,
-            'show_fpas': 1,
-            'show_codtercs': 1,
+            'show_fpas': 0,
+            'show_codtercs': 0,
             'show_codtercssusp': 0, }
 
         post = False

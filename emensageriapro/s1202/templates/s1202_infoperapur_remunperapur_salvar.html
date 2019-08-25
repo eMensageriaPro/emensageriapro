@@ -62,14 +62,20 @@
                             {% if perms.s1202.can_see_s1202infoPerApuritensRemun %}
                                 <li {% if tab == 's1202_infoperapur_itensremun' %} class="active"{% endif %} >
                                     <a href="{% url 's1202_infoperapur_remunperapur_salvar_tab' pk=pk tab='s1202_infoperapur_itensremun' %}">
-                                    Registro que relaciona as rubricas que compõem a remuneração do trabalhador.</a>
+                                    Registro que relaciona as rubricas que compõem a remuneração do trabalhador.&nbsp;{% if not s1202_infoperapur_itensremun_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1202_infoperapur_itensremun_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1202.can_see_s1202infoPerApurinfoSaudeColet %}
                                 <li {% if tab == 's1202_infoperapur_infosaudecolet' %} class="active"{% endif %} >
                                     <a href="{% url 's1202_infoperapur_remunperapur_salvar_tab' pk=pk tab='s1202_infoperapur_infosaudecolet' %}">
-                                    Informações de plano privado coletivo empresarial de assistência à saúde</a>
+                                    Informações de plano privado coletivo empresarial de assistência à saúde&nbsp;{% if not s1202_infoperapur_infosaudecolet_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1202_infoperapur_infosaudecolet_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

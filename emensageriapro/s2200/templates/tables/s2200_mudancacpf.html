@@ -5,13 +5,13 @@
             {% if show_fields.show_s2200_evtadmissao or 1 %}
             <th>Informações de mudança de CPF do trabalhador.</th>
             {% endif %}
-            {% if show_fields.show_cpfant or 0 %}
+            {% if show_fields.show_cpfant or 1 %}
             <th>Preencher com o número do CPF antigo do trabalhador.</th>
             {% endif %}
             {% if show_fields.show_matricant or 1 %}
             <th>Matricula anterior</th>
             {% endif %}
-            {% if show_fields.show_dtaltcpf or 1 %}
+            {% if show_fields.show_dtaltcpf or 0 %}
             <th>Data de alteração do CPF.</th>
             {% endif %}
             {% if show_fields.show_observacao or 0 %}
@@ -29,13 +29,13 @@
             {% if show_fields.show_s2200_evtadmissao or 1 %}
             <td>{{ a.s2200_evtadmissao }}</td>
             {% endif %}
-            {% if show_fields.show_cpfant or 0 %}
+            {% if show_fields.show_cpfant or 1 %}
             <td>{{ a.cpfant }}</td>
             {% endif %}
             {% if show_fields.show_matricant or 1 %}
             <td>{{ a.matricant }}</td>
             {% endif %}
-            {% if show_fields.show_dtaltcpf or 1 %}
+            {% if show_fields.show_dtaltcpf or 0 %}
             <td><span style="display:none">{{ a.dtaltcpf|date:"Y-m-d" }}</span>{{ a.dtaltcpf|date:"d/m/Y" }}</td>
             {% endif %}
             {% if show_fields.show_observacao or 0 %}

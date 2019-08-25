@@ -63,7 +63,10 @@
                                 {% if perms.s1295.can_see_s1295ideRespInf %}
                                     <li {% if tab == 's1295_iderespinf' %} class="active"{% endif %} >
                                         <a href="{% url 's1295_evttotconting_salvar_tab' pk=pk tab='s1295_iderespinf' %}">
-                                        Responsável pelas informações</a>
+                                        Responsável pelas informações&nbsp;{% if not s1295_iderespinf_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1295_iderespinf_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

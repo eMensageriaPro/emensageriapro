@@ -63,14 +63,20 @@
                                 {% if perms.r4010.can_see_r4010idePgto %}
                                     <li {% if tab == 'r4010_idepgto' %} class="active"{% endif %} >
                                         <a href="{% url 'r4010_evtretpf_salvar_tab' pk=pk tab='r4010_idepgto' %}">
-                                        Identificação do rendimento</a>
+                                        Identificação do rendimento&nbsp;{% if not r4010_idepgto_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ r4010_idepgto_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.r4010.can_see_r4010ideOpSaude %}
                                     <li {% if tab == 'r4010_ideopsaude' %} class="active"{% endif %} >
                                         <a href="{% url 'r4010_evtretpf_salvar_tab' pk=pk tab='r4010_ideopsaude' %}">
-                                        Identificação da operadora do plano privado coletivo empresarial de assistência à saúde</a>
+                                        Identificação da operadora do plano privado coletivo empresarial de assistência à saúde&nbsp;{% if not r4010_ideopsaude_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ r4010_ideopsaude_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

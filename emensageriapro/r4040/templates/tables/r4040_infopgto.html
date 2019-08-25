@@ -8,7 +8,7 @@
             {% if show_fields.show_dtfg or 1 %}
             <th>Informar a data do fato gerador ou pagamento/crédito</th>
             {% endif %}
-            {% if show_fields.show_vlrliq or 0 %}
+            {% if show_fields.show_vlrliq or 1 %}
             <th>Valor líquido do pagamento</th>
             {% endif %}
             {% if show_fields.show_vlrreaj or 0 %}
@@ -17,7 +17,7 @@
             {% if show_fields.show_vlrir or 0 %}
             <th>Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação</th>
             {% endif %}
-            {% if show_fields.show_descr or 1 %}
+            {% if show_fields.show_descr or 0 %}
             <th>Descrição do pagamento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -35,7 +35,7 @@
             {% if show_fields.show_dtfg or 1 %}
             <td><span style="display:none">{{ a.dtfg|date:"Y-m-d" }}</span>{{ a.dtfg|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_vlrliq or 0 %}
+            {% if show_fields.show_vlrliq or 1 %}
             <td>{{ a.vlrliq }}</td>
             {% endif %}
             {% if show_fields.show_vlrreaj or 0 %}
@@ -44,7 +44,7 @@
             {% if show_fields.show_vlrir or 0 %}
             <td>{{ a.vlrir }}</td>
             {% endif %}
-            {% if show_fields.show_descr or 1 %}
+            {% if show_fields.show_descr or 0 %}
             <td>{{ a.descr }}</td>
             {% endif %}
 

@@ -62,21 +62,30 @@
                             {% if perms.s2299.can_see_s2299infoPerApur %}
                                 <li {% if tab == 's2299_infoperapur' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_dmdev_salvar_tab' pk=pk tab='s2299_infoperapur' %}">
-                                    Remuneração no período de apuração</a>
+                                    Remuneração no período de apuração&nbsp;{% if not s2299_infoperapur_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2299_infoperapur_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2299.can_see_s2299infoPerAnt %}
                                 <li {% if tab == 's2299_infoperant' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_dmdev_salvar_tab' pk=pk tab='s2299_infoperant' %}">
-                                    Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento</a>
+                                    Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento&nbsp;{% if not s2299_infoperant_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2299_infoperant_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2299.can_see_s2299infoTrabInterm %}
                                 <li {% if tab == 's2299_infotrabinterm' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_dmdev_salvar_tab' pk=pk tab='s2299_infotrabinterm' %}">
-                                    Informações da(s) convocação(ões) de trabalho intermitente</a>
+                                    Informações da(s) convocação(ões) de trabalho intermitente&nbsp;{% if not s2299_infotrabinterm_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2299_infotrabinterm_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

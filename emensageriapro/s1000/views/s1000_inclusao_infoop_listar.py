@@ -68,11 +68,11 @@ def listar(request, output=None):
         dict_fields = {}
         show_fields = {
             'show_s1000_inclusao': 1,
-            'show_nrsiafi': 0,
+            'show_nrsiafi': 1,
             'show_indugrpps': 1,
             'show_esferaop': 0,
             'show_poderop': 0,
-            'show_vrtetorem': 1,
+            'show_vrtetorem': 0,
             'show_ideefr': 0,
             'show_cnpjefr': 0, }
 

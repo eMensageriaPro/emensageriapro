@@ -62,14 +62,20 @@
                             {% if perms.r2070.can_see_r2070pgtoPJdespProcJud %}
                                 <li {% if tab == 'r2070_pgtopj_despprocjud' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopj_infoprocjud_salvar_tab' pk=pk tab='r2070_pgtopj_despprocjud' %}">
-                                    Detalhamento das despesas de processo judicial</a>
+                                    Detalhamento das despesas de processo judicial&nbsp;{% if not r2070_pgtopj_despprocjud_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2070_pgtopj_despprocjud_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r2070.can_see_r2070pgtoPJorigemRecursos %}
                                 <li {% if tab == 'r2070_pgtopj_origemrecursos' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopj_infoprocjud_salvar_tab' pk=pk tab='r2070_pgtopj_origemrecursos' %}">
-                                    Identificação da origem dos recursos</a>
+                                    Identificação da origem dos recursos&nbsp;{% if not r2070_pgtopj_origemrecursos_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2070_pgtopj_origemrecursos_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

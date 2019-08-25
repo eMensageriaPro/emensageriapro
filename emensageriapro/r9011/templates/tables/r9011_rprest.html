@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_r9011_infototalcontrib or 0 %}
+            {% if show_fields.show_r9011_infototalcontrib or 1 %}
             <th>Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020</th>
             {% endif %}
             {% if show_fields.show_tpinsctomador or 1 %}
@@ -11,7 +11,7 @@
             {% if show_fields.show_nrinsctomador or 1 %}
             <th>Indicar o número de inscrição do tomador, conforme indicado no campo {tpInscTomador}</th>
             {% endif %}
-            {% if show_fields.show_vlrtotalbaseret or 1 %}
+            {% if show_fields.show_vlrtotalbaseret or 0 %}
             <th>Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante</th>
             {% endif %}
             {% if show_fields.show_vlrtotalretprinc or 0 %}
@@ -35,7 +35,7 @@
     <tbody>
         {% for a in r9011_rprest_lista %}
         <tr>
-            {% if show_fields.show_r9011_infototalcontrib or 0 %}
+            {% if show_fields.show_r9011_infototalcontrib or 1 %}
             <td>{{ a.r9011_infototalcontrib }}</td>
             {% endif %}
             {% if show_fields.show_tpinsctomador or 1 %}
@@ -44,7 +44,7 @@
             {% if show_fields.show_nrinsctomador or 1 %}
             <td>{{ a.nrinsctomador }}</td>
             {% endif %}
-            {% if show_fields.show_vlrtotalbaseret or 1 %}
+            {% if show_fields.show_vlrtotalbaseret or 0 %}
             <td>{{ a.vlrtotalbaseret }}</td>
             {% endif %}
             {% if show_fields.show_vlrtotalretprinc or 0 %}

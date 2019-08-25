@@ -62,14 +62,20 @@
                             {% if perms.s1210.can_see_s1210detPgtoBenPrretPgtoTot %}
                                 <li {% if tab == 's1210_detpgtobenpr_retpgtotot' %} class="active"{% endif %} >
                                     <a href="{% url 's1210_detpgtobenpr_salvar_tab' pk=pk tab='s1210_detpgtobenpr_retpgtotot' %}">
-                                    Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.</a>
+                                    Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.&nbsp;{% if not s1210_detpgtobenpr_retpgtotot_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1210_detpgtobenpr_retpgtotot_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1210.can_see_s1210detPgtoBenPrinfoPgtoParc %}
                                 <li {% if tab == 's1210_detpgtobenpr_infopgtoparc' %} class="active"{% endif %} >
                                     <a href="{% url 's1210_detpgtobenpr_salvar_tab' pk=pk tab='s1210_detpgtobenpr_infopgtoparc' %}">
-                                    Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo.</a>
+                                    Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo.&nbsp;{% if not s1210_detpgtobenpr_infopgtoparc_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1210_detpgtobenpr_infopgtoparc_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

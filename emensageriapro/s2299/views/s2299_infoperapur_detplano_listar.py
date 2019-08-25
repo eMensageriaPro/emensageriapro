@@ -68,10 +68,10 @@ def listar(request, output=None):
         dict_fields = {}
         show_fields = {
             'show_s2299_infoperapur_detoper': 1,
-            'show_tpdep': 0,
+            'show_tpdep': 1,
             'show_cpfdep': 0,
             'show_nmdep': 1,
-            'show_dtnascto': 1,
+            'show_dtnascto': 0,
             'show_vlrpgdep': 0, }
 
         post = False

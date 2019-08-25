@@ -62,49 +62,70 @@
                             {% if perms.s1000.can_see_s1000alteracaodadosIsencao %}
                                 <li {% if tab == 's1000_alteracao_dadosisencao' %} class="active"{% endif %} >
                                     <a href="{% url 's1000_alteracao_salvar_tab' pk=pk tab='s1000_alteracao_dadosisencao' %}">
-                                    Informações Complementares - Empresas Isentas - Dados da Isenção</a>
+                                    Informações Complementares - Empresas Isentas - Dados da Isenção&nbsp;{% if not s1000_alteracao_dadosisencao_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1000_alteracao_dadosisencao_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1000.can_see_s1000alteracaoinfoOP %}
                                 <li {% if tab == 's1000_alteracao_infoop' %} class="active"{% endif %} >
                                     <a href="{% url 's1000_alteracao_salvar_tab' pk=pk tab='s1000_alteracao_infoop' %}">
-                                    Informações relativas a Órgãos Públicos</a>
+                                    Informações relativas a Órgãos Públicos&nbsp;{% if not s1000_alteracao_infoop_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1000_alteracao_infoop_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1000.can_see_s1000alteracaoinfoOrgInternacional %}
                                 <li {% if tab == 's1000_alteracao_infoorginternacional' %} class="active"{% endif %} >
                                     <a href="{% url 's1000_alteracao_salvar_tab' pk=pk tab='s1000_alteracao_infoorginternacional' %}">
-                                    Informações exclusivas de organismos internacionais e outras instituições extraterritoriais</a>
+                                    Informações exclusivas de organismos internacionais e outras instituições extraterritoriais&nbsp;{% if not s1000_alteracao_infoorginternacional_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1000_alteracao_infoorginternacional_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1000.can_see_s1000alteracaosoftwareHouse %}
                                 <li {% if tab == 's1000_alteracao_softwarehouse' %} class="active"{% endif %} >
                                     <a href="{% url 's1000_alteracao_salvar_tab' pk=pk tab='s1000_alteracao_softwarehouse' %}">
-                                    Informações relativas ao desenvolvedor do software que gerou o arquivo xml.</a>
+                                    Informações relativas ao desenvolvedor do software que gerou o arquivo xml.&nbsp;{% if not s1000_alteracao_softwarehouse_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1000_alteracao_softwarehouse_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1000.can_see_s1000alteracaosituacaoPJ %}
                                 <li {% if tab == 's1000_alteracao_situacaopj' %} class="active"{% endif %} >
                                     <a href="{% url 's1000_alteracao_salvar_tab' pk=pk tab='s1000_alteracao_situacaopj' %}">
-                                    Informações Complementares - Pessoa Jurídica</a>
+                                    Informações Complementares - Pessoa Jurídica&nbsp;{% if not s1000_alteracao_situacaopj_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1000_alteracao_situacaopj_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1000.can_see_s1000alteracaosituacaoPF %}
                                 <li {% if tab == 's1000_alteracao_situacaopf' %} class="active"{% endif %} >
                                     <a href="{% url 's1000_alteracao_salvar_tab' pk=pk tab='s1000_alteracao_situacaopf' %}">
-                                    Informações Complementares - Pessoa Física</a>
+                                    Informações Complementares - Pessoa Física&nbsp;{% if not s1000_alteracao_situacaopf_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1000_alteracao_situacaopf_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s1000.can_see_s1000alteracaonovaValidade %}
                                 <li {% if tab == 's1000_alteracao_novavalidade' %} class="active"{% endif %} >
                                     <a href="{% url 's1000_alteracao_salvar_tab' pk=pk tab='s1000_alteracao_novavalidade' %}">
-                                    Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</a>
+                                    Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.&nbsp;{% if not s1000_alteracao_novavalidade_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1000_alteracao_novavalidade_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

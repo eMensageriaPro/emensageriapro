@@ -69,7 +69,7 @@ def listar(request, output=None):
         show_fields = {
             'show_r2070_evtpgtosdivs': 1,
             'show_infoender': 0,
-            'show_paisresid': 0,
+            'show_paisresid': 1,
             'show_dsclograd': 1,
             'show_nrlograd': 0,
             'show_complem': 0,
@@ -77,7 +77,7 @@ def listar(request, output=None):
             'show_cidade': 0,
             'show_codpostal': 0,
             'show_infofiscal': 0,
-            'show_indnif': 1,
+            'show_indnif': 0,
             'show_nifbenef': 0,
             'show_relfontepagad': 0, }
 

@@ -63,7 +63,10 @@
                                 {% if perms.r2050.can_see_r2050tipoCom %}
                                     <li {% if tab == 'r2050_tipocom' %} class="active"{% endif %} >
                                         <a href="{% url 'r2050_evtcomprod_salvar_tab' pk=pk tab='r2050_tipocom' %}">
-                                        Registro que apresenta o valor total da Receita Bruta por 'tipo' de comercialização.</a>
+                                        Registro que apresenta o valor total da Receita Bruta por 'tipo' de comercialização.&nbsp;{% if not r2050_tipocom_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ r2050_tipocom_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

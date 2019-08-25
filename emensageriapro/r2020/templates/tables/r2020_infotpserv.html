@@ -8,10 +8,10 @@
             {% if show_fields.show_tpservico or 1 %}
             <th>Informar o tipo de serviço, conforme tabela 6</th>
             {% endif %}
-            {% if show_fields.show_vlrbaseret or 0 %}
+            {% if show_fields.show_vlrbaseret or 1 %}
             <th>Valor da Base de cálculo da retenção da contribuição previdenciária.</th>
             {% endif %}
-            {% if show_fields.show_vlrretencao or 1 %}
+            {% if show_fields.show_vlrretencao or 0 %}
             <th>Preencher com o valor da retenção apurada de acordo com o que determina a legislação vigente relativa aos serviços contidos na nota fiscal/fatura</th>
             {% endif %}
             {% if show_fields.show_vlrretsub or 0 %}
@@ -50,10 +50,10 @@
             {% if show_fields.show_tpservico or 1 %}
             <td>{{ a.tpservico|valor }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbaseret or 0 %}
+            {% if show_fields.show_vlrbaseret or 1 %}
             <td>{{ a.vlrbaseret }}</td>
             {% endif %}
-            {% if show_fields.show_vlrretencao or 1 %}
+            {% if show_fields.show_vlrretencao or 0 %}
             <td>{{ a.vlrretencao }}</td>
             {% endif %}
             {% if show_fields.show_vlrretsub or 0 %}

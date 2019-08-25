@@ -8,7 +8,7 @@
             {% if show_fields.show_dtlei or 1 %}
             <th>Data da lei</th>
             {% endif %}
-            {% if show_fields.show_nrlei or 0 %}
+            {% if show_fields.show_nrlei or 1 %}
             <th>Número da lei</th>
             {% endif %}
             {% if show_fields.show_dtef or 0 %}
@@ -26,7 +26,7 @@
             {% if show_fields.show_dtefacconv or 0 %}
             <th>Data do efeito</th>
             {% endif %}
-            {% if show_fields.show_dsc or 1 %}
+            {% if show_fields.show_dsc or 0 %}
             <th>Descrição</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -44,7 +44,7 @@
             {% if show_fields.show_dtlei or 1 %}
             <td><span style="display:none">{{ a.dtlei|date:"Y-m-d" }}</span>{{ a.dtlei|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_nrlei or 0 %}
+            {% if show_fields.show_nrlei or 1 %}
             <td>{{ a.nrlei }}</td>
             {% endif %}
             {% if show_fields.show_dtef or 0 %}
@@ -62,7 +62,7 @@
             {% if show_fields.show_dtefacconv or 0 %}
             <td><span style="display:none">{{ a.dtefacconv|date:"Y-m-d" }}</span>{{ a.dtefacconv|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dsc or 1 %}
+            {% if show_fields.show_dsc or 0 %}
             <td>{{ a.dsc }}</td>
             {% endif %}
 

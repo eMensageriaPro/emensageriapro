@@ -8,7 +8,7 @@
             {% if show_fields.show_indaquis or 1 %}
             <th>Indicativo de aquisição</th>
             {% endif %}
-            {% if show_fields.show_vlraquis or 0 %}
+            {% if show_fields.show_vlraquis or 1 %}
             <th>Valor total da aquisição</th>
             {% endif %}
             {% if show_fields.show_vrcpdescpr or 0 %}
@@ -29,7 +29,7 @@
             {% if show_fields.show_vrratdescpr or 0 %}
             <th>Valor RAT descontado do produtor rural</th>
             {% endif %}
-            {% if show_fields.show_vrratcalcpr or 1 %}
+            {% if show_fields.show_vrratcalcpr or 0 %}
             <th>Valor RAT calculado do produtor rural</th>
             {% endif %}
             {% if show_fields.show_vrsenardesc or 0 %}
@@ -53,7 +53,7 @@
             {% if show_fields.show_indaquis or 1 %}
             <td>{{ a.get_indaquis_display }}</td>
             {% endif %}
-            {% if show_fields.show_vlraquis or 0 %}
+            {% if show_fields.show_vlraquis or 1 %}
             <td>{{ a.vlraquis }}</td>
             {% endif %}
             {% if show_fields.show_vrcpdescpr or 0 %}
@@ -74,7 +74,7 @@
             {% if show_fields.show_vrratdescpr or 0 %}
             <td>{{ a.vrratdescpr }}</td>
             {% endif %}
-            {% if show_fields.show_vrratcalcpr or 1 %}
+            {% if show_fields.show_vrratcalcpr or 0 %}
             <td>{{ a.vrratcalcpr }}</td>
             {% endif %}
             {% if show_fields.show_vrsenardesc or 0 %}

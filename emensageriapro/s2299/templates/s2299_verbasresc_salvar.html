@@ -62,28 +62,40 @@
                             {% if perms.s2299.can_see_s2299dmDev %}
                                 <li {% if tab == 's2299_dmdev' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_verbasresc_salvar_tab' pk=pk tab='s2299_dmdev' %}">
-                                    Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</a>
+                                    Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF&nbsp;{% if not s2299_dmdev_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2299_dmdev_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2299.can_see_s2299infoTrabIntermprocJudTrab %}
                                 <li {% if tab == 's2299_infotrabinterm_procjudtrab' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_verbasresc_salvar_tab' pk=pk tab='s2299_infotrabinterm_procjudtrab' %}">
-                                    Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</a>
+                                    Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.&nbsp;{% if not s2299_infotrabinterm_procjudtrab_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2299_infotrabinterm_procjudtrab_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2299.can_see_s2299infoTrabInterminfoMV %}
                                 <li {% if tab == 's2299_infotrabinterm_infomv' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_verbasresc_salvar_tab' pk=pk tab='s2299_infotrabinterm_infomv' %}">
-                                    Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</a>
+                                    Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.&nbsp;{% if not s2299_infotrabinterm_infomv_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2299_infotrabinterm_infomv_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2299.can_see_s2299infoTrabIntermprocCS %}
                                 <li {% if tab == 's2299_infotrabinterm_proccs' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_verbasresc_salvar_tab' pk=pk tab='s2299_infotrabinterm_proccs' %}">
-                                    Informação sobre processo judicial que suspende a exigibilidade da Contribuição Social Rescisória</a>
+                                    Informação sobre processo judicial que suspende a exigibilidade da Contribuição Social Rescisória&nbsp;{% if not s2299_infotrabinterm_proccs_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2299_infotrabinterm_proccs_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

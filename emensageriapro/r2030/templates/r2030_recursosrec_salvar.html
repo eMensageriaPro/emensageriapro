@@ -62,14 +62,20 @@
                             {% if perms.r2030.can_see_r2030infoRecurso %}
                                 <li {% if tab == 'r2030_inforecurso' %} class="active"{% endif %} >
                                     <a href="{% url 'r2030_recursosrec_salvar_tab' pk=pk tab='r2030_inforecurso' %}">
-                                    Detalhamento dos recursos recebidos.</a>
+                                    Detalhamento dos recursos recebidos.&nbsp;{% if not r2030_inforecurso_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2030_inforecurso_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.r2030.can_see_r2030infoProc %}
                                 <li {% if tab == 'r2030_infoproc' %} class="active"{% endif %} >
                                     <a href="{% url 'r2030_recursosrec_salvar_tab' pk=pk tab='r2030_infoproc' %}">
-                                    Informações de processos relacionados a não retenção de contribuição previdenciária</a>
+                                    Informações de processos relacionados a não retenção de contribuição previdenciária&nbsp;{% if not r2030_infoproc_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r2030_infoproc_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

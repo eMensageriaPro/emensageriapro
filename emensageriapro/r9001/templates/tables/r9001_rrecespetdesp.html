@@ -8,10 +8,10 @@
             {% if show_fields.show_crrecespetdesp or 1 %}
             <th>Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Receita de Espetáculos Desportivos, calculada segundo as regras estabelecidas na legislação em vigor</th>
             {% endif %}
-            {% if show_fields.show_vlrreceitatotal or 0 %}
+            {% if show_fields.show_vlrreceitatotal or 1 %}
             <th>Valor da receita bruta total</th>
             {% endif %}
-            {% if show_fields.show_vlrcrrecespetdesp or 1 %}
+            {% if show_fields.show_vlrcrrecespetdesp or 0 %}
             <th>Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem:R-3010</th>
             {% endif %}
             {% if show_fields.show_vlrcrrecespetdespsusp or 0 %}
@@ -32,10 +32,10 @@
             {% if show_fields.show_crrecespetdesp or 1 %}
             <td>{{ a.crrecespetdesp }}</td>
             {% endif %}
-            {% if show_fields.show_vlrreceitatotal or 0 %}
+            {% if show_fields.show_vlrreceitatotal or 1 %}
             <td>{{ a.vlrreceitatotal }}</td>
             {% endif %}
-            {% if show_fields.show_vlrcrrecespetdesp or 1 %}
+            {% if show_fields.show_vlrcrrecespetdesp or 0 %}
             <td>{{ a.vlrcrrecespetdesp }}</td>
             {% endif %}
             {% if show_fields.show_vlrcrrecespetdespsusp or 0 %}

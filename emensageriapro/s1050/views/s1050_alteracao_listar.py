@@ -70,12 +70,12 @@ def listar(request, output=None):
             'show_s1050_evttabhortur': 1,
             'show_idehorcontratual': 0,
             'show_codhorcontrat': 1,
-            'show_inivalid': 0,
+            'show_inivalid': 1,
             'show_fimvalid': 0,
             'show_dadoshorcontratual': 0,
             'show_hrentr': 0,
             'show_hrsaida': 0,
-            'show_durjornada': 1,
+            'show_durjornada': 0,
             'show_perhorflexivel': 0, }
 
         post = False

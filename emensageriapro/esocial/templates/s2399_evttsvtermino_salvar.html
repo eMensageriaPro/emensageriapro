@@ -63,21 +63,30 @@
                                 {% if perms.s2399.can_see_s2399mudancaCPF %}
                                     <li {% if tab == 's2399_mudancacpf' %} class="active"{% endif %} >
                                         <a href="{% url 's2399_evttsvtermino_salvar_tab' pk=pk tab='s2399_mudancacpf' %}">
-                                        Informações de mudança de CPF do trabalhador.</a>
+                                        Informações de mudança de CPF do trabalhador.&nbsp;{% if not s2399_mudancacpf_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2399_mudancacpf_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2399.can_see_s2399verbasResc %}
                                     <li {% if tab == 's2399_verbasresc' %} class="active"{% endif %} >
                                         <a href="{% url 's2399_evttsvtermino_salvar_tab' pk=pk tab='s2399_verbasresc' %}">
-                                        Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.</a>
+                                        Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.&nbsp;{% if not s2399_verbasresc_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2399_verbasresc_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2399.can_see_s2399quarentena %}
                                     <li {% if tab == 's2399_quarentena' %} class="active"{% endif %} >
                                         <a href="{% url 's2399_evttsvtermino_salvar_tab' pk=pk tab='s2399_quarentena' %}">
-                                        Informações sobre a 'quarentena' remunerada de trabalhador desligado</a>
+                                        Informações sobre a 'quarentena' remunerada de trabalhador desligado&nbsp;{% if not s2399_quarentena_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2399_quarentena_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

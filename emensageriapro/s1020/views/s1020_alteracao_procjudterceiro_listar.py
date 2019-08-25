@@ -69,8 +69,8 @@ def listar(request, output=None):
         show_fields = {
             'show_s1020_alteracao_infoprocjudterceiros': 1,
             'show_codterc': 1,
-            'show_nrprocjud': 0,
-            'show_codsusp': 1, }
+            'show_nrprocjud': 1,
+            'show_codsusp': 0, }
 
         post = False
 

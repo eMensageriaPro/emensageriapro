@@ -63,14 +63,20 @@
                                 {% if perms.s2405.can_see_s2405endereco %}
                                     <li {% if tab == 's2405_endereco' %} class="active"{% endif %} >
                                         <a href="{% url 's2405_evtcdbenefalt_salvar_tab' pk=pk tab='s2405_endereco' %}">
-                                        Grupo de informações do endereço do Trabalhador</a>
+                                        Grupo de informações do endereço do Trabalhador&nbsp;{% if not s2405_endereco_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2405_endereco_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2405.can_see_s2405dependente %}
                                     <li {% if tab == 's2405_dependente' %} class="active"{% endif %} >
                                         <a href="{% url 's2405_evtcdbenefalt_salvar_tab' pk=pk tab='s2405_dependente' %}">
-                                        Informações dos dependentes</a>
+                                        Informações dos dependentes&nbsp;{% if not s2405_dependente_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2405_dependente_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

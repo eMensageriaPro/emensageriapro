@@ -62,7 +62,10 @@
                             {% if perms.s1020.can_see_s1020alteracaoprocJudTerceiro %}
                                 <li {% if tab == 's1020_alteracao_procjudterceiro' %} class="active"{% endif %} >
                                     <a href="{% url 's1020_alteracao_infoprocjudterceiros_salvar_tab' pk=pk tab='s1020_alteracao_procjudterceiro' %}">
-                                    Identificação do Processo Judicial</a>
+                                    Identificação do Processo Judicial&nbsp;{% if not s1020_alteracao_procjudterceiro_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1020_alteracao_procjudterceiro_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

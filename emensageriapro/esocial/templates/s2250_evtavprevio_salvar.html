@@ -63,14 +63,20 @@
                                 {% if perms.s2250.can_see_s2250detAvPrevio %}
                                     <li {% if tab == 's2250_detavprevio' %} class="active"{% endif %} >
                                         <a href="{% url 's2250_evtavprevio_salvar_tab' pk=pk tab='s2250_detavprevio' %}">
-                                        Detalha as informações do evento trabalhista</a>
+                                        Detalha as informações do evento trabalhista&nbsp;{% if not s2250_detavprevio_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2250_detavprevio_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s2250.can_see_s2250cancAvPrevio %}
                                     <li {% if tab == 's2250_cancavprevio' %} class="active"{% endif %} >
                                         <a href="{% url 's2250_evtavprevio_salvar_tab' pk=pk tab='s2250_cancavprevio' %}">
-                                        Cancelamento do Aviso Prévio</a>
+                                        Cancelamento do Aviso Prévio&nbsp;{% if not s2250_cancavprevio_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s2250_cancavprevio_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

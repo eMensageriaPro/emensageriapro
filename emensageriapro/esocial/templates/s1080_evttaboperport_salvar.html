@@ -63,21 +63,30 @@
                                 {% if perms.esocial.can_see_s1080inclusao %}
                                     <li {% if tab == 's1080_inclusao' %} class="active"{% endif %} >
                                         <a href="{% url 's1080_evttaboperport_salvar_tab' pk=pk tab='s1080_inclusao' %}">
-                                        Inclusão de novas informações</a>
+                                        Inclusão de novas informações&nbsp;{% if not s1080_inclusao_lista %}<small class="label pull-right bg-yellow">0</small>
+                                            {% else %}<small class="label pull-right bg-green">{{ s1080_inclusao_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
                             {% elif s1080_evttaboperport.operacao == 2 %}
                                 {% if perms.esocial.can_see_s1080alteracao %}
                                     <li {% if tab == 's1080_alteracao' %}class="active"{% endif %}>
                                         <a href="{% url 's1080_evttaboperport_salvar_tab' pk=pk tab='s1080_alteracao' %}">
-                                        Alteração das informações</a>
+                                        Alteração das informações&nbsp;{% if not s1080_alteracao_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1080_alteracao_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
                             {% elif s1080_evttaboperport.operacao == 3 %}
                                 {% if perms.esocial.can_see_s1080exclusao %}
                                     <li {% if tab == 's1080_exclusao' %}class="active"{% endif %} >
                                         <a href="{% url 's1080_evttaboperport_salvar_tab' pk=pk tab='s1080_exclusao' %}">
-                                        Exclusão das informações</a>
+                                        Exclusão das informações&nbsp;{% if not s1080_exclusao_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1080_exclusao_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
                             {% endif %}

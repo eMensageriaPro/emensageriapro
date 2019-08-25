@@ -5,7 +5,7 @@
             {% if show_fields.show_s1000_inclusao or 1 %}
             <th>Informações relativas a Órgãos Públicos</th>
             {% endif %}
-            {% if show_fields.show_nrsiafi or 0 %}
+            {% if show_fields.show_nrsiafi or 1 %}
             <th>Número do SIAFI</th>
             {% endif %}
             {% if show_fields.show_indugrpps or 1 %}
@@ -17,7 +17,7 @@
             {% if show_fields.show_poderop or 0 %}
             <th>Preencher com o poder/instituição do Órgão Público</th>
             {% endif %}
-            {% if show_fields.show_vrtetorem or 1 %}
+            {% if show_fields.show_vrtetorem or 0 %}
             <th>Informar o valor do teto remuneratório específico (art. 37, XI, da CF/1988).</th>
             {% endif %}
             {% if show_fields.show_ideefr or 0 %}
@@ -38,7 +38,7 @@
             {% if show_fields.show_s1000_inclusao or 1 %}
             <td>{{ a.s1000_inclusao }}</td>
             {% endif %}
-            {% if show_fields.show_nrsiafi or 0 %}
+            {% if show_fields.show_nrsiafi or 1 %}
             <td>{{ a.nrsiafi }}</td>
             {% endif %}
             {% if show_fields.show_indugrpps or 1 %}
@@ -50,7 +50,7 @@
             {% if show_fields.show_poderop or 0 %}
             <td>{{ a.get_poderop_display }}</td>
             {% endif %}
-            {% if show_fields.show_vrtetorem or 1 %}
+            {% if show_fields.show_vrtetorem or 0 %}
             <td>{{ a.vrtetorem }}</td>
             {% endif %}
             {% if show_fields.show_ideefr or 0 %}

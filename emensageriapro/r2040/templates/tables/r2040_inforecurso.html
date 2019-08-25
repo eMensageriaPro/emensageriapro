@@ -5,13 +5,13 @@
             {% if show_fields.show_r2040_recursosrep or 1 %}
             <th>Detalhamento dos recursos recebidos.</th>
             {% endif %}
-            {% if show_fields.show_tprepasse or 0 %}
+            {% if show_fields.show_tprepasse or 1 %}
             <th>Tipo de repasse, conforme tabela abaixo</th>
             {% endif %}
             {% if show_fields.show_descrecurso or 1 %}
             <th>Descrição resumida do recurso recebido</th>
             {% endif %}
-            {% if show_fields.show_vlrbruto or 1 %}
+            {% if show_fields.show_vlrbruto or 0 %}
             <th>Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS</th>
             {% endif %}
             {% if show_fields.show_vlrretapur or 0 %}
@@ -29,13 +29,13 @@
             {% if show_fields.show_r2040_recursosrep or 1 %}
             <td>{{ a.r2040_recursosrep }}</td>
             {% endif %}
-            {% if show_fields.show_tprepasse or 0 %}
+            {% if show_fields.show_tprepasse or 1 %}
             <td>{{ a.get_tprepasse_display }}</td>
             {% endif %}
             {% if show_fields.show_descrecurso or 1 %}
             <td>{{ a.descrecurso }}</td>
             {% endif %}
-            {% if show_fields.show_vlrbruto or 1 %}
+            {% if show_fields.show_vlrbruto or 0 %}
             <td>{{ a.vlrbruto }}</td>
             {% endif %}
             {% if show_fields.show_vlrretapur or 0 %}

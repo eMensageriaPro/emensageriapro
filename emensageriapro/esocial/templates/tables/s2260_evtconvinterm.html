@@ -11,7 +11,7 @@
             {% if show_fields.show_ideevento or 0 %}
             <th>Informações de Identificação do Evento</th>
             {% endif %}
-            {% if show_fields.show_indretif or 0 %}
+            {% if show_fields.show_indretif or 1 %}
             <th>Identificador de retificação</th>
             {% endif %}
             {% if show_fields.show_nrrecibo or 0 %}
@@ -29,7 +29,7 @@
             {% if show_fields.show_ideempregador or 0 %}
             <th>Informações de identificação do empregador</th>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <th>Tipo de inscrição</th>
             {% endif %}
             {% if show_fields.show_nrinsc or 0 %}
@@ -38,7 +38,7 @@
             {% if show_fields.show_idevinculo or 0 %}
             <th>Informações de Identificação do Trabalhador e do Vínculo</th>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_cpftrab or 0 %}
             <th>CPF</th>
             {% endif %}
             {% if show_fields.show_nistrab or 0 %}
@@ -53,10 +53,10 @@
             {% if show_fields.show_codconv or 0 %}
             <th>Preencher com o código atribuído pela empresa que identifica a convocação para trabalho intermitente</th>
             {% endif %}
-            {% if show_fields.show_dtinicio or 1 %}
+            {% if show_fields.show_dtinicio or 0 %}
             <th>Data de início</th>
             {% endif %}
-            {% if show_fields.show_dtfim or 1 %}
+            {% if show_fields.show_dtfim or 0 %}
             <th>Data de término da responsabilidade</th>
             {% endif %}
             {% if show_fields.show_dtprevpgto or 0 %}
@@ -104,6 +104,9 @@
             {% if show_fields.show_status or 1 %}
             <th>Status</th>
             {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial_error or 0 %}
+            <th>Transmissor (Erro)</th>
+            {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
             <th width="80px">Ações</th>
@@ -122,7 +125,7 @@
             {% if show_fields.show_ideevento or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_indretif or 0 %}
+            {% if show_fields.show_indretif or 1 %}
             <td>{{ a.get_indretif_display }}</td>
             {% endif %}
             {% if show_fields.show_nrrecibo or 0 %}
@@ -140,7 +143,7 @@
             {% if show_fields.show_ideempregador or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_tpinsc or 0 %}
+            {% if show_fields.show_tpinsc or 1 %}
             <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
             {% if show_fields.show_nrinsc or 0 %}
@@ -149,7 +152,7 @@
             {% if show_fields.show_idevinculo or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_cpftrab or 1 %}
+            {% if show_fields.show_cpftrab or 0 %}
             <td>{{ a.cpftrab }}</td>
             {% endif %}
             {% if show_fields.show_nistrab or 0 %}
@@ -164,10 +167,10 @@
             {% if show_fields.show_codconv or 0 %}
             <td>{{ a.codconv }}</td>
             {% endif %}
-            {% if show_fields.show_dtinicio or 1 %}
+            {% if show_fields.show_dtinicio or 0 %}
             <td><span style="display:none">{{ a.dtinicio|date:"Y-m-d" }}</span>{{ a.dtinicio|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_dtfim or 1 %}
+            {% if show_fields.show_dtfim or 0 %}
             <td><span style="display:none">{{ a.dtfim|date:"Y-m-d" }}</span>{{ a.dtfim|date:"d/m/Y" }}</td>
             {% endif %}
             {% if show_fields.show_dtprevpgto or 0 %}
@@ -214,6 +217,9 @@
             {% endif %}
             {% if show_fields.show_status or 1 %}
             <td>{{ a.get_status_display }}</td>
+            {% endif %}
+            {% if show_fields.show_transmissor_lote_esocial_error or 0 %}
+            <td>{{ a.transmissor_lote_esocial_error }}</td>
             {% endif %}
 
             <!-- colunas especiais -->

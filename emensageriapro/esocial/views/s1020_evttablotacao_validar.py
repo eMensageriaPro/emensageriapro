@@ -151,13 +151,13 @@ def validacoes_s1020_evttablotacao(arquivo):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'fpasLotacao.codTercs',
                                                                           fpasLotacao.codTercs.cdata,
-                                                                          1, u'507, 515, 523, 531, 540, 558, 566, 574, 582, 590, 604, 612, 620, 639, 647, 655, 680, 736, 744, 779, 787, 795, 825, 833, 868, 876')
+                                                                          1, u'0000, 0001, 0002, 0003, 0004, 0008, 0016, 0032, 0064, 0067, 0071, 0075, 0079, 0099, 0115, 0128, 0131, 0256, 0259, 0512, 0515, 1024, 2048, 3072, 3139, 4096, 4099, 4163')
                 
                                     if 'codTercsSusp' in dir(fpasLotacao):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'fpasLotacao.codTercsSusp',
                                                                           fpasLotacao.codTercsSusp.cdata,
-                                                                          0, u'507, 515, 523, 531, 540, 558, 566, 574, 582, 590, 604, 612, 620, 639, 647, 655, 680, 736, 744, 779, 787, 795, 825, 833, 868, 876')
+                                                                          0, u'0000, 0001, 0002, 0003, 0004, 0008, 0016, 0032, 0064, 0067, 0071, 0075, 0079, 0099, 0115, 0128, 0131, 0256, 0259, 0512, 0515, 1024, 2048, 3072, 3139, 4096, 4099, 4163')
                 
                                     if 'infoProcJudTerceiros' in dir(fpasLotacao.infoProcJudTerceiros):
                                         for infoProcJudTerceiros in fpasLotacao.infoProcJudTerceiros:
@@ -169,7 +169,7 @@ def validacoes_s1020_evttablotacao(arquivo):
                                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                                           'procJudTerceiro.codTerc',
                                                                                           procJudTerceiro.codTerc.cdata,
-                                                                                          1, u'507, 515, 523, 531, 540, 558, 566, 574, 582, 590, 604, 612, 620, 639, 647, 655, 680, 736, 744, 779, 787, 795, 825, 833, 868, 876')
+                                                                                          1, u'0000, 0001, 0002, 0003, 0004, 0008, 0016, 0032, 0064, 0067, 0071, 0075, 0079, 0099, 0115, 0128, 0131, 0256, 0259, 0512, 0515, 1024, 2048, 3072, 3139, 4096, 4099, 4163')
                                 
                                                     if 'nrProcJud' in dir(procJudTerceiro):
                                                         validacoes_lista = validar_campo( validacoes_lista,
@@ -268,13 +268,13 @@ def validacoes_s1020_evttablotacao(arquivo):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'fpasLotacao.codTercs',
                                                                           fpasLotacao.codTercs.cdata,
-                                                                          1, u'507, 515, 523, 531, 540, 558, 566, 574, 582, 590, 604, 612, 620, 639, 647, 655, 680, 736, 744, 779, 787, 795, 825, 833, 868, 876')
+                                                                          1, u'0000, 0001, 0002, 0003, 0004, 0008, 0016, 0032, 0064, 0067, 0071, 0075, 0079, 0099, 0115, 0128, 0131, 0256, 0259, 0512, 0515, 1024, 2048, 3072, 3139, 4096, 4099, 4163')
                 
                                     if 'codTercsSusp' in dir(fpasLotacao):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'fpasLotacao.codTercsSusp',
                                                                           fpasLotacao.codTercsSusp.cdata,
-                                                                          0, u'507, 515, 523, 531, 540, 558, 566, 574, 582, 590, 604, 612, 620, 639, 647, 655, 680, 736, 744, 779, 787, 795, 825, 833, 868, 876')
+                                                                          0, u'0000, 0001, 0002, 0003, 0004, 0008, 0016, 0032, 0064, 0067, 0071, 0075, 0079, 0099, 0115, 0128, 0131, 0256, 0259, 0512, 0515, 1024, 2048, 3072, 3139, 4096, 4099, 4163')
                 
                                     if 'infoProcJudTerceiros' in dir(fpasLotacao.infoProcJudTerceiros):
                                         for infoProcJudTerceiros in fpasLotacao.infoProcJudTerceiros:
@@ -286,7 +286,7 @@ def validacoes_s1020_evttablotacao(arquivo):
                                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                                           'procJudTerceiro.codTerc',
                                                                                           procJudTerceiro.codTerc.cdata,
-                                                                                          1, u'507, 515, 523, 531, 540, 558, 566, 574, 582, 590, 604, 612, 620, 639, 647, 655, 680, 736, 744, 779, 787, 795, 825, 833, 868, 876')
+                                                                                          1, u'0000, 0001, 0002, 0003, 0004, 0008, 0016, 0032, 0064, 0067, 0071, 0075, 0079, 0099, 0115, 0128, 0131, 0256, 0259, 0512, 0515, 1024, 2048, 3072, 3139, 4096, 4099, 4163')
                                 
                                                     if 'nrProcJud' in dir(procJudTerceiro):
                                                         validacoes_lista = validar_campo( validacoes_lista,

@@ -69,8 +69,8 @@ def listar(request, output=None):
         show_fields = {
             'show_r3010_boletim': 1,
             'show_tpreceita': 1,
-            'show_vlrreceita': 0,
-            'show_descreceita': 1, }
+            'show_vlrreceita': 1,
+            'show_descreceita': 0, }
 
         post = False
 

@@ -63,14 +63,20 @@
                                 {% if perms.s1210.can_see_s1210deps %}
                                     <li {% if tab == 's1210_deps' %} class="active"{% endif %} >
                                         <a href="{% url 's1210_evtpgtos_salvar_tab' pk=pk tab='s1210_deps' %}">
-                                        Informações de dependentes do beneficiário do pagamento</a>
+                                        Informações de dependentes do beneficiário do pagamento&nbsp;{% if not s1210_deps_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1210_deps_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         
                                 {% if perms.s1210.can_see_s1210infoPgto %}
                                     <li {% if tab == 's1210_infopgto' %} class="active"{% endif %} >
                                         <a href="{% url 's1210_evtpgtos_salvar_tab' pk=pk tab='s1210_infopgto' %}">
-                                        Informações dos pagamentos efetuados</a>
+                                        Informações dos pagamentos efetuados&nbsp;{% if not s1210_infopgto_lista %}<small class="label pull-right bg-yellow">0</small>
+                                        {% else %}<small class="label pull-right bg-green">{{ s1210_infopgto_lista|length }}</small>
+                                        {% endif %}
+                                        </a>
                                     </li>
                                 {% endif %}
         

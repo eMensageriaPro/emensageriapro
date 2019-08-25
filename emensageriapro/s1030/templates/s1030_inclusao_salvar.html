@@ -62,7 +62,10 @@
                             {% if perms.s1030.can_see_s1030inclusaocargoPublico %}
                                 <li {% if tab == 's1030_inclusao_cargopublico' %} class="active"{% endif %} >
                                     <a href="{% url 's1030_inclusao_salvar_tab' pk=pk tab='s1030_inclusao_cargopublico' %}">
-                                    Detalhamento de informações exclusivas para Cargos e Empregos Públicos</a>
+                                    Detalhamento de informações exclusivas para Cargos e Empregos Públicos&nbsp;{% if not s1030_inclusao_cargopublico_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s1030_inclusao_cargopublico_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

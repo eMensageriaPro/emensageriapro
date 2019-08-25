@@ -67,10 +67,10 @@ def listar(request, output=None):
 
         dict_fields = {}
         show_fields = {
-            'show_s2410_infopenmorte': 0,
+            'show_s2410_infopenmorte': 1,
             'show_cpfinst': 1,
             'show_dtinst': 1,
-            'show_intaposentado': 1, }
+            'show_intaposentado': 0, }
 
         post = False
 

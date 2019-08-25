@@ -8,7 +8,7 @@
             {% if show_fields.show_ideperiodo or 0 %}
             <th>Período de validade das informações incluídas</th>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <th>Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM</th>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -17,16 +17,16 @@
             {% if show_fields.show_infocadastro or 0 %}
             <th>Informações do Contribuinte</th>
             {% endif %}
-            {% if show_fields.show_classtrib or 0 %}
+            {% if show_fields.show_classtrib or 1 %}
             <th>Preencher com o código correspondente à classificação tributária do contribuinte, conforme tabela 8</th>
             {% endif %}
-            {% if show_fields.show_indescrituracao or 1 %}
+            {% if show_fields.show_indescrituracao or 0 %}
             <th>Indicativo da obrigatoriedade do contribuinte em fazer a sua escrituração contábil na ECD Escrituração Contábil Digital</th>
             {% endif %}
             {% if show_fields.show_inddesoneracao or 0 %}
             <th>Indicativo de desoneração da folha pela CPRB</th>
             {% endif %}
-            {% if show_fields.show_indacordoisenmulta or 1 %}
+            {% if show_fields.show_indacordoisenmulta or 0 %}
             <th>Indicativo da existência de acordo internacional para isenção de multa</th>
             {% endif %}
             {% if show_fields.show_indsitpj or 0 %}
@@ -65,7 +65,7 @@
             {% if show_fields.show_ideperiodo or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -74,16 +74,16 @@
             {% if show_fields.show_infocadastro or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_classtrib or 0 %}
+            {% if show_fields.show_classtrib or 1 %}
             <td>{{ a.get_classtrib_display }}</td>
             {% endif %}
-            {% if show_fields.show_indescrituracao or 1 %}
+            {% if show_fields.show_indescrituracao or 0 %}
             <td>{{ a.get_indescrituracao_display }}</td>
             {% endif %}
             {% if show_fields.show_inddesoneracao or 0 %}
             <td>{{ a.get_inddesoneracao_display }}</td>
             {% endif %}
-            {% if show_fields.show_indacordoisenmulta or 1 %}
+            {% if show_fields.show_indacordoisenmulta or 0 %}
             <td>{{ a.get_indacordoisenmulta_display }}</td>
             {% endif %}
             {% if show_fields.show_indsitpj or 0 %}

@@ -62,7 +62,10 @@
                             {% if perms.r4010.can_see_r4010infoReembDep %}
                                 <li {% if tab == 'r4010_inforeembdep' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_infodependpl_salvar_tab' pk=pk tab='r4010_inforeembdep' %}">
-                                    Informação de reembolso do dependente do plano de saúde coletivo empresarial</a>
+                                    Informação de reembolso do dependente do plano de saúde coletivo empresarial&nbsp;{% if not r4010_inforeembdep_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ r4010_inforeembdep_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

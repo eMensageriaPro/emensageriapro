@@ -2,19 +2,19 @@
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
         <tr>
-            {% if show_fields.show_s1070_alteracao or 0 %}
+            {% if show_fields.show_s1070_alteracao or 1 %}
             <th>Informações de suspensão de exigibilidade de tributos e FGTS em virtude de processo administrativo ou judicial.</th>
             {% endif %}
             {% if show_fields.show_codsusp or 1 %}
             <th>Código do Indicativo da Suspensão</th>
             {% endif %}
-            {% if show_fields.show_indsusp or 0 %}
+            {% if show_fields.show_indsusp or 1 %}
             <th>Suspensão de exigibilidade</th>
             {% endif %}
-            {% if show_fields.show_dtdecisao or 1 %}
+            {% if show_fields.show_dtdecisao or 0 %}
             <th>Data da decisão</th>
             {% endif %}
-            {% if show_fields.show_inddeposito or 1 %}
+            {% if show_fields.show_inddeposito or 0 %}
             <th>Depósito do montante integral</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -26,19 +26,19 @@
     <tbody>
         {% for a in s1070_alteracao_infosusp_lista %}
         <tr>
-            {% if show_fields.show_s1070_alteracao or 0 %}
+            {% if show_fields.show_s1070_alteracao or 1 %}
             <td>{{ a.s1070_alteracao }}</td>
             {% endif %}
             {% if show_fields.show_codsusp or 1 %}
             <td>{{ a.codsusp }}</td>
             {% endif %}
-            {% if show_fields.show_indsusp or 0 %}
+            {% if show_fields.show_indsusp or 1 %}
             <td>{{ a.get_indsusp_display }}</td>
             {% endif %}
-            {% if show_fields.show_dtdecisao or 1 %}
+            {% if show_fields.show_dtdecisao or 0 %}
             <td><span style="display:none">{{ a.dtdecisao|date:"Y-m-d" }}</span>{{ a.dtdecisao|date:"d/m/Y" }}</td>
             {% endif %}
-            {% if show_fields.show_inddeposito or 1 %}
+            {% if show_fields.show_inddeposito or 0 %}
             <td>{{ a.get_inddeposito_display }}</td>
             {% endif %}
 

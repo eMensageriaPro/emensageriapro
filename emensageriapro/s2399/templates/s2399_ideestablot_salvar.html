@@ -62,28 +62,40 @@
                             {% if perms.s2399.can_see_s2399detVerbas %}
                                 <li {% if tab == 's2399_detverbas' %} class="active"{% endif %} >
                                     <a href="{% url 's2399_ideestablot_salvar_tab' pk=pk tab='s2399_detverbas' %}">
-                                    Detalhamento das verbas rescisórias devidas ao trabalhador</a>
+                                    Detalhamento das verbas rescisórias devidas ao trabalhador&nbsp;{% if not s2399_detverbas_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2399_detverbas_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2399.can_see_s2399infoSaudeColet %}
                                 <li {% if tab == 's2399_infosaudecolet' %} class="active"{% endif %} >
                                     <a href="{% url 's2399_ideestablot_salvar_tab' pk=pk tab='s2399_infosaudecolet' %}">
-                                    Informações de plano privado coletivo empresarial de assistência à saúde</a>
+                                    Informações de plano privado coletivo empresarial de assistência à saúde&nbsp;{% if not s2399_infosaudecolet_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2399_infosaudecolet_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2399.can_see_s2399infoAgNocivo %}
                                 <li {% if tab == 's2399_infoagnocivo' %} class="active"{% endif %} >
                                     <a href="{% url 's2399_ideestablot_salvar_tab' pk=pk tab='s2399_infoagnocivo' %}">
-                                    Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</a>
+                                    Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.&nbsp;{% if not s2399_infoagnocivo_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2399_infoagnocivo_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     
                             {% if perms.s2399.can_see_s2399infoSimples %}
                                 <li {% if tab == 's2399_infosimples' %} class="active"{% endif %} >
                                     <a href="{% url 's2399_ideestablot_salvar_tab' pk=pk tab='s2399_infosimples' %}">
-                                    Informação relativa a empresas enquadradas no Regime de Tributação Simples</a>
+                                    Informação relativa a empresas enquadradas no Regime de Tributação Simples&nbsp;{% if not s2399_infosimples_lista %}<small class="label pull-right bg-yellow">0</small>
+                                    {% else %}<small class="label pull-right bg-green">{{ s2399_infosimples_lista|length }}</small>
+                                    {% endif %}
+                                    </a>
                                 </li>
                             {% endif %}
     

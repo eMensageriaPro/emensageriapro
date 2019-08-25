@@ -8,10 +8,10 @@
             {% if show_fields.show_ideoperportuario or 0 %}
             <th>Informações de identificação do Operador Portuário e validade das informações que estão sendo incluídas</th>
             {% endif %}
-            {% if show_fields.show_cnpjopportuario or 0 %}
+            {% if show_fields.show_cnpjopportuario or 1 %}
             <th>CNPJ do Operador Portuário</th>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <th>Início da Validade</th>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -20,13 +20,13 @@
             {% if show_fields.show_dadosoperportuario or 0 %}
             <th>Detalhamento das informações do Operador Portuário que está sendo incluído</th>
             {% endif %}
-            {% if show_fields.show_aliqrat or 1 %}
+            {% if show_fields.show_aliqrat or 0 %}
             <th>Alíquota RAT</th>
             {% endif %}
             {% if show_fields.show_fap or 0 %}
             <th>FAP</th>
             {% endif %}
-            {% if show_fields.show_aliqratajust or 1 %}
+            {% if show_fields.show_aliqratajust or 0 %}
             <th>Alíquota RAT (Ajustada)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -44,10 +44,10 @@
             {% if show_fields.show_ideoperportuario or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_cnpjopportuario or 0 %}
+            {% if show_fields.show_cnpjopportuario or 1 %}
             <td>{{ a.cnpjopportuario }}</td>
             {% endif %}
-            {% if show_fields.show_inivalid or 0 %}
+            {% if show_fields.show_inivalid or 1 %}
             <td>{{ a.get_inivalid_display }}</td>
             {% endif %}
             {% if show_fields.show_fimvalid or 0 %}
@@ -56,13 +56,13 @@
             {% if show_fields.show_dadosoperportuario or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_aliqrat or 1 %}
+            {% if show_fields.show_aliqrat or 0 %}
             <td>{{ a.get_aliqrat_display }}</td>
             {% endif %}
             {% if show_fields.show_fap or 0 %}
             <td>{{ a.fap }}</td>
             {% endif %}
-            {% if show_fields.show_aliqratajust or 1 %}
+            {% if show_fields.show_aliqratajust or 0 %}
             <td>{{ a.aliqratajust }}</td>
             {% endif %}
 

@@ -8,10 +8,10 @@
             {% if show_fields.show_deffisica or 1 %}
             <th>Possui Deficiência Física</th>
             {% endif %}
-            {% if show_fields.show_defvisual or 0 %}
+            {% if show_fields.show_defvisual or 1 %}
             <th>Possui Deficiência Visual</th>
             {% endif %}
-            {% if show_fields.show_defauditiva or 1 %}
+            {% if show_fields.show_defauditiva or 0 %}
             <th>Possui Deficiência Auditiva</th>
             {% endif %}
             {% if show_fields.show_defmental or 0 %}
@@ -41,10 +41,10 @@
             {% if show_fields.show_deffisica or 1 %}
             <td>{{ a.get_deffisica_display }}</td>
             {% endif %}
-            {% if show_fields.show_defvisual or 0 %}
+            {% if show_fields.show_defvisual or 1 %}
             <td>{{ a.get_defvisual_display }}</td>
             {% endif %}
-            {% if show_fields.show_defauditiva or 1 %}
+            {% if show_fields.show_defauditiva or 0 %}
             <td>{{ a.get_defauditiva_display }}</td>
             {% endif %}
             {% if show_fields.show_defmental or 0 %}
