@@ -319,6 +319,23 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
+        
+        
+
+            
+                                {% if user.is_superuser %}
+                                {% if s1000_evtinfoempregador.operacao == 1 and s1000_evtinfoempregador.tpamb == 2 %}
+                                <div class="col-md-6">
+                                    <a href="{% url 'esocial_limparbaseproducaorestrita' pk=pk %}">
+                                        <span class="btn btn-danger btn-block btn-lg">
+                                            <i class="fa fa-gear"></i>&nbsp;
+                                                Criar evento de limpeza de base de Produção Restrita
+                                        </span>
+                                    </a>&nbsp;
+                                </div>
+                                {% endif %}
+                                {% endif %}
+            
 
 
                             {% if perms.esocial.can_see_receipt_s1000evtInfoEmpregador and s1000_evtinfoempregador.retornos_eventos_id %}

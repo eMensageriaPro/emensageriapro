@@ -74,6 +74,7 @@ def consultar(request, pk):
 
 @login_required
 def recibo(request, pk):
+    from django.db.models import Q
 
     transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial, id=pk)
 
@@ -81,7 +82,7 @@ def recibo(request, pk):
         filter(transmissor_lote_esocial_id=transmissor_lote_esocial.id).all()
 
     eventos_lista = TransmissorEventosEsocial.objects.\
-        filter(transmissor_lote_esocial_id=transmissor_lote_esocial.id).all()
+        filter(Q(transmissor_lote_esocial_id=transmissor_lote_esocial.id) | Q(transmissor_lote_esocial_error_id=transmissor_lote_esocial.id)).all()
 
     context = {
         'eventos_lista': eventos_lista,

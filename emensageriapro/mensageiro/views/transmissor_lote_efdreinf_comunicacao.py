@@ -82,7 +82,7 @@ def recibo(request, pk):
         filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id).all()
 
     eventos_lista = TransmissorEventosEfdreinf.objects.\
-        filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id).all()
+        filter(Q(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id) | Q(transmissor_lote_efdreinf_error_id=transmissor_lote_efdreinf.id)).all()
 
     context = {
         'eventos_lista': eventos_lista,

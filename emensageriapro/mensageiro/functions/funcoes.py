@@ -47,7 +47,6 @@ def retirar_pontuacao_cpf_cnpj(cpf_cnpj):
     return cpf_cnpj
 
 
-
 def create_folders():
     import os
     from emensageriapro.settings import BASE_DIR
@@ -72,6 +71,11 @@ def create_folders():
 
 
 def create_insert(tabela, dados):
+
+    from emensageriapro.get_username import get_username
+    req = get_username()
+    user_id = req.user.id
+
     variaveis = dados.keys()
     campos_numericos = executar_sql("""
         SELECT column_name FROM information_schema.columns
@@ -90,14 +94,19 @@ def create_insert(tabela, dados):
                 valores += "'%s', " % dados[a]
         else:
             valores += "Null, "
-    texto = "INSERT INTO public.%s (%s, criado_em, criado_por_id, ativo) VALUES (%s now(), 1, True) RETURNING id;" % (tabela, ', '.join(variaveis), valores)
+    texto = "INSERT INTO public.%s (%s, criado_em, criado_por_id, ativo) VALUES (%s now(), %s, True) RETURNING id;" % (tabela, ', '.join(variaveis), valores, user_id)
     return texto
 
 
 
 def gravar_nome_arquivo(arquivo, permite_recuperacao):
+
     from datetime import datetime
     from emensageriapro.mensageiro.models import Arquivos
+
+    from emensageriapro.get_username import get_username
+    req = get_username()
+    user_id = req.user.id
 
     dados = {}
     dados['arquivo'] = arquivo.replace('//', '/').replace('//', '/')
@@ -105,7 +114,7 @@ def gravar_nome_arquivo(arquivo, permite_recuperacao):
     dados['permite_recuperacao'] = permite_recuperacao
     dados['criado_em'] = datetime.now()
     dados['ativo'] = True
-    dados['criado_por_id'] = 1
+    dados['criado_por_id'] = user_id
 
     obj = Arquivos(**dados)
     obj.save(using='default')

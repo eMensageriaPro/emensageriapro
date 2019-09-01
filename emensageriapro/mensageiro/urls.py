@@ -12,6 +12,7 @@ from emensageriapro.mensageiro.views import transmissor_lote_efdreinf_comunicaca
 from emensageriapro.mensageiro.views import processar_arquivos as processar_arquivos_views
 from emensageriapro.mensageiro.views import relatorios_imprimir as relatorios_imprimir_views
 from emensageriapro.mensageiro.views import importacoes as importacoes_views
+from emensageriapro.mensageiro.views import esocial_limparbaseproducaorestrita as esocial_limparbaseproducaorestrita_views
 from emensageriapro.mensageiro.views import relatorios_apagar as relatorios_apagar_views
 from emensageriapro.mensageiro.views import relatorios_listar as relatorios_listar_views
 from emensageriapro.mensageiro.views import relatorios_salvar as relatorios_salvar_views
@@ -179,6 +180,10 @@ urlpatterns = [
     url(r'^importacoes/listar/$',
         importacoes_views.listar,
         name='importacoes'),
+
+    url(r'^esocial-limpar-base/(?P<pk>[0-9]+)/$',
+        esocial_limparbaseproducaorestrita_views.limpar_base,
+        name='esocial_limparbaseproducaorestrita'),
 
 
 

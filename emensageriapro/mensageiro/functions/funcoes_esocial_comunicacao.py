@@ -390,7 +390,7 @@ def read_retornoEvento(doc, transmissor_lote_id):
 
 
 def read_consultaLoteEventos(arquivo, transmissor_lote_esocial_id):
-    from emensageriapro.mensageiro.models import TransmissorLoteEsocial
+    from emensageriapro.mensageiro.models import TransmissorLoteEsocial, TransmissorEventosEsocial, RetornosEventos
 
     import untangle
     xml = ler_arquivo(arquivo).replace("s:", "")
@@ -436,36 +436,69 @@ def read_consultaLoteEventos(arquivo, transmissor_lote_esocial_id):
         for evento in child.retornoEventos.evento:
 
             if 'retornoEvento' in dir(evento):
+                doc = evento.retornoEvento
+                identidade = doc.eSocial.retornoEvento['Id']
                 dados = read_retornoEvento(evento.retornoEvento, transmissor_lote_esocial_id)
 
-                a = executar_sql("""
-                SELECT tabela, id
-                      FROM public.vw_transmissor_eventos_esocial 
-                      WHERE identidade='%(identidade)s';
-                """ % dados, True)
+                # lista = RetornosEventos.objects.\
+                #     filter(identidade=dados['identidade']).\
+                #     exclude(id=dados['id']).all()
+                #
+                # for a in lista:
+                #     a.delete()
+                #
+                # a = executar_sql("""
+                # SELECT tabela, id
+                #       FROM public.vw_transmissor_eventos_esocial
+                #       WHERE identidade='%(identidade)s';
+                # """ % dados, True)
+                #
+                # dados['tabela'] = a[0][0]
+                # dados['tabela_id'] = a[0][1]
+                #
+                # executar_sql("""
+                #          UPDATE public.%(tabela)s
+                #             SET retornos_eventos_id=%(id)s
+                #           WHERE id=%(tabela_id)s;""" % (b.tabela, dados['id'], b.id), False)
 
-                dados['tabela'] = a[0][0]
-                dados['tabela_id'] = a[0][1]
+                # print len(a)
 
-                executar_sql(""" 
-                     UPDATE public.%(tabela)s SET retornos_eventos_id=%(id)s
-                      WHERE id=%(tabela_id)s;""" % dados, False)
 
             if 'evtBasesTrab' in dir(evento):
                 from emensageriapro.esocial.views.s5001_evtbasestrab_importar import read_s5001_evtbasestrab_obj
-                read_s5001_evtbasestrab_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
+                from emensageriapro.esocial.models import s5001evtBasesTrab
+                dados = read_s5001_evtbasestrab_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
+
+                # s5001evtBasesTrab.objects.\
+                #     filter(identidade=dados['identidade']).\
+                #     exclude(id=dados['id']).delete()
 
             if 'evtIrrfBenef' in dir(evento):
                 from emensageriapro.esocial.views.s5002_evtirrfbenef_importar import read_s5002_evtirrfbenef_obj
-                read_s5002_evtirrfbenef_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
+                from emensageriapro.esocial.models import s5002evtIrrfBenef
+                dados = read_s5002_evtirrfbenef_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
+
+                # s5002evtIrrfBenef.objects.\
+                #     filter(identidade=dados['identidade']).\
+                #     exclude(id=dados['id']).delete()
 
             if 'evtCS' in dir(evento):
                 from emensageriapro.esocial.views.s5011_evtcs_importar import read_s5011_evtcs_obj
-                read_s5011_evtcs_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
+                from emensageriapro.esocial.models import s5011evtCS
+                dados = read_s5011_evtcs_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
+
+                # s5011evtCS.objects.\
+                #     filter(identidade=dados['identidade']).\
+                #     exclude(id=dados['id']).delete()
 
             if 'evtIrrf' in dir(evento):
                 from emensageriapro.esocial.views.s5012_evtirrf_importar import read_s5012_evtirrf_obj
-                read_s5012_evtirrf_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
+                from emensageriapro.esocial.models import s5012evtIrrf
+                dados = read_s5012_evtirrf_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
+
+                # s5012evtIrrf.objects.\
+                #     filter(identidade=dados['identidade']).\
+                #     exclude(id=dados['id']).delete()
 
 
 
