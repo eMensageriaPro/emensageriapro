@@ -22,7 +22,6 @@ from emensageriapro.s1260.views import s1260_infoprocjud_salvar as s1260_infopro
 from emensageriapro.s1260.views import s1260_infoprocjud_api as s1260_infoprocjud_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

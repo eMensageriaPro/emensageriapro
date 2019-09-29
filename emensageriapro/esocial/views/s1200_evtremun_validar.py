@@ -433,7 +433,7 @@ def validacoes_s1200_evtremun(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'ideADC.tpAcConv',
                                                                   ideADC.tpAcConv.cdata,
-                                                                  1, u'A, B, C, D, E, F')
+                                                                  1, u'A, B, C, D, E, F, G')
         
                             if 'compAcConv' in dir(ideADC):
                                 validacoes_lista = validar_campo( validacoes_lista,

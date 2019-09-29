@@ -5,7 +5,7 @@
 <!-- inicio__s5011_basesavnport__s5011_idelotacao -->
 <div class="col-md-12" id="s5011_basesavnport__s5011_idelotacao__div">
   <div class="form-group">
-    <label id="s5011_basesavnport__s5011_idelotacao__label">Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários*</label>
+    <label id="s5011_basesavnport__s5011_idelotacao__label">Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários*<a data-toggle="tooltip" title="Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários. Informações desse grupo conforme informado pelo contribuinte em S-1270."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s5011_basesavnport_form.s5011_idelotacao.value %}
         <a href="{% url 's5011_idelotacao_salvar' pk=s5011_basesavnport_form.s5011_idelotacao.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s5011_basesavnport__vrbccp00 -->
 <div class="col-md-6" id="s5011_basesavnport__vrbccp00__div">
   <div class="form-group">
-    <label id="s5011_basesavnport__vrbccp00__label">Valor da BC da CP*</label>
+    <label id="s5011_basesavnport__vrbccp00__label">Valor da BC da CP*<a data-toggle="tooltip" title="Origem: {vrBcCp00} do evento S-1270."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_basesavnport_form.vrbccp00.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesavnport_form.vrbccp00.errors }}
@@ -50,7 +50,7 @@
 <!-- inicio__s5011_basesavnport__vrbccp15 -->
 <div class="col-md-6" id="s5011_basesavnport__vrbccp15__div">
   <div class="form-group">
-    <label id="s5011_basesavnport__vrbccp15__label">Valor da BC da CP (15 anos)*</label>
+    <label id="s5011_basesavnport__vrbccp15__label">Valor da BC da CP (15 anos)*<a data-toggle="tooltip" title="Origem: {vrBcCp15} do evento S-1270."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_basesavnport_form.vrbccp15.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesavnport_form.vrbccp15.errors }}
@@ -68,7 +68,7 @@
 <!-- inicio__s5011_basesavnport__vrbccp20 -->
 <div class="col-md-6" id="s5011_basesavnport__vrbccp20__div">
   <div class="form-group">
-    <label id="s5011_basesavnport__vrbccp20__label">Valor da BC da CP (20 anos)*</label>
+    <label id="s5011_basesavnport__vrbccp20__label">Valor da BC da CP (20 anos)*<a data-toggle="tooltip" title="Origem: {vrBcCp20} do evento S-1270."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_basesavnport_form.vrbccp20.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesavnport_form.vrbccp20.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__s5011_basesavnport__vrbccp25 -->
 <div class="col-md-6" id="s5011_basesavnport__vrbccp25__div">
   <div class="form-group">
-    <label id="s5011_basesavnport__vrbccp25__label">Valor da BC da CP (25 anos)*</label>
+    <label id="s5011_basesavnport__vrbccp25__label">Valor da BC da CP (25 anos)*<a data-toggle="tooltip" title="Origem: {vrBcCp25} do evento S-1270."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_basesavnport_form.vrbccp25.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesavnport_form.vrbccp25.errors }}
@@ -104,7 +104,7 @@
 <!-- inicio__s5011_basesavnport__vrbccp13 -->
 <div class="col-md-6" id="s5011_basesavnport__vrbccp13__div">
   <div class="form-group">
-    <label id="s5011_basesavnport__vrbccp13__label">Valor da BC da CP (13 anos)*</label>
+    <label id="s5011_basesavnport__vrbccp13__label">Valor da BC da CP (13 anos)*<a data-toggle="tooltip" title="Origem: {vrBcCp13} do evento S-1270."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_basesavnport_form.vrbccp13.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesavnport_form.vrbccp13.errors }}
@@ -122,7 +122,7 @@
 <!-- inicio__s5011_basesavnport__vrbcfgts -->
 <div class="col-md-6" id="s5011_basesavnport__vrbcfgts__div">
   <div class="form-group">
-    <label id="s5011_basesavnport__vrbcfgts__label">Valor da BC do FGTS*</label>
+    <label id="s5011_basesavnport__vrbcfgts__label">Valor da BC do FGTS*<a data-toggle="tooltip" title="Origem: {vrBcFGTS} do evento S-1270."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_basesavnport_form.vrbcfgts.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesavnport_form.vrbcfgts.errors }}
@@ -140,7 +140,7 @@
 <!-- inicio__s5011_basesavnport__vrdesccp -->
 <div class="col-md-6" id="s5011_basesavnport__vrdesccp__div">
   <div class="form-group">
-    <label id="s5011_basesavnport__vrdesccp__label">Valor total descontada dos segurados*</label>
+    <label id="s5011_basesavnport__vrdesccp__label">Valor total descontada dos segurados*<a data-toggle="tooltip" title="Origem: {vrDescCP} do evento S-1270."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_basesavnport_form.vrdesccp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesavnport_form.vrdesccp.errors }}

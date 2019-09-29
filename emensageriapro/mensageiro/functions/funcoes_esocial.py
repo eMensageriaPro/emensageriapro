@@ -195,9 +195,6 @@ def create_request(dados, transmissor_dados):
     salvar_arquivo_esocial(dados['request'], text, 0)
 
 
-
-
-
 def send_xml(request, transmissor_id, service):
 
     import os

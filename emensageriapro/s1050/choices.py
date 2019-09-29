@@ -40,7 +40,7 @@ CHOICES_S1050_PERHORFLEXIVEL_ALTERACAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -50,7 +50,7 @@ CHOICES_S1050_PERHORFLEXIVEL_INCLUSAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -60,7 +60,7 @@ CHOICES_S1050_TPINTERV_ALTERACAO = [
 
     (1, u'1 - Intervalo em Horário Fixo'),
     (2, u'2 - Intervalo em Horário Variável.'),
-    
+
 ]
 
 
@@ -70,7 +70,7 @@ CHOICES_S1050_TPINTERV_INCLUSAO = [
 
     (1, u'1 - Intervalo em Horário Fixo'),
     (2, u'2 - Intervalo em Horário Variável.'),
-    
+
 ]
 
 
@@ -114,7 +114,7 @@ PERIODOS = [
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-    
+
 ]
 
 

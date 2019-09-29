@@ -85,7 +85,7 @@ def criar_alteracao(request, pk):
             id=pk)
 
         texto = gerar_xml_r9000(request, pk, versao="|")
-        texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
+        texto = texto.replace('<inclusao>', '<alteracao>').replace('</inclusao>', '</alteracao>')
         dados = read_r9000_evtexclusao_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(r9000_evtexclusao, 'efdreinf')
 

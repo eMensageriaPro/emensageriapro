@@ -184,7 +184,7 @@ def validacoes_s2299_evtdeslig(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'infoDeslig.indCumprParc',
                                                   infoDeslig.indCumprParc.cdata,
-                                                  1, u'0, 1, 2, 3, 4')
+                                                  0, u'0, 1, 2, 3, 4')
 
             if 'qtdDiasInterm' in dir(infoDeslig):
                 validacoes_lista = validar_campo( validacoes_lista,
@@ -406,7 +406,7 @@ def validacoes_s2299_evtdeslig(arquivo):
                                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                                   'ideADC.tpAcConv',
                                                                                   ideADC.tpAcConv.cdata,
-                                                                                  1, u'A, B, C, D, E')
+                                                                                  1, u'A, B, C, D, E, G')
                         
                                             if 'compAcConv' in dir(ideADC):
                                                 validacoes_lista = validar_campo( validacoes_lista,
@@ -418,7 +418,7 @@ def validacoes_s2299_evtdeslig(arquivo):
                                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                                   'ideADC.dtEfAcConv',
                                                                                   ideADC.dtEfAcConv.cdata,
-                                                                                  1, u'None')
+                                                                                  0, u'None')
                         
                                             if 'dsc' in dir(ideADC):
                                                 validacoes_lista = validar_campo( validacoes_lista,

@@ -22,7 +22,6 @@ from emensageriapro.s2405.views import s2405_dependente_salvar as s2405_dependen
 from emensageriapro.s2405.views import s2405_dependente_api as s2405_dependente_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

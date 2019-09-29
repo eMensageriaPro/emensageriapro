@@ -43,7 +43,7 @@ CHOICES_ESOCIALINSCRICOESTIPOS = [
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (5, u'5 - CGC'),
-    
+
 ]
 
 
@@ -54,7 +54,7 @@ CHOICES_S1207_TPACCONV_INFOPERANT = [
     ('B', u'B - Legislação federal, estadual, municipal ou distrital'),
     ('G', u'G - Decisão administrativa'),
     ('H', u'H - Decisão judicial.'),
-    
+
 ]
 
 
@@ -64,7 +64,7 @@ CHOICES_S1207_TPTRIB = [
 
     (1, u'1 - IRRF'),
     (5, u'5 - Contribuição para o RPPS/regime militar.'),
-    
+
 ]
 
 

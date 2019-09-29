@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.s2300.forms import *
 from emensageriapro.s2300.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.s2300.models import s2300infoEstagiario
 
 
 @login_required
@@ -126,7 +127,7 @@ def listar(request, output=None):
             s2300_ageintegracao_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        s2300_infoestagiario_lista = s2300infoEstagiario.objects.all()
         #s2300_ageintegracao_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -141,7 +142,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            's2300_infoestagiario_lista': s2300_infoestagiario_lista,
         }
 
         if output == 'pdf':

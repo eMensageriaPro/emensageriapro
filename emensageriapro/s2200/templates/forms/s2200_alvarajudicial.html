@@ -5,7 +5,7 @@
 <!-- inicio__s2200_alvarajudicial__s2200_evtadmissao -->
 <div class="col-md-12" id="s2200_alvarajudicial__s2200_evtadmissao__div">
   <div class="form-group">
-    <label id="s2200_alvarajudicial__s2200_evtadmissao__label">Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.*</label>
+    <label id="s2200_alvarajudicial__s2200_evtadmissao__label">Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.*<a data-toggle="tooltip" title="Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de "Aprendiz"."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2200_alvarajudicial_form.s2200_evtadmissao.value %}
         <a href="{% url 's2200_evtadmissao_salvar' pk=s2200_alvarajudicial_form.s2200_evtadmissao.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2200_alvarajudicial__nrprocjud -->
 <div class="col-md-6" id="s2200_alvarajudicial__nrprocjud__div">
   <div class="form-group">
-    <label id="s2200_alvarajudicial__nrprocjud__label">Número do Processo Judicial*</label>
+    <label id="s2200_alvarajudicial__nrprocjud__label">Número do Processo Judicial*<a data-toggle="tooltip" title="Preencher com o número do processo judicial. Validação: Deve ser um número de processo judicial válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_alvarajudicial_form.nrprocjud.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_alvarajudicial_form.nrprocjud.errors }}

@@ -36,11 +36,31 @@
 
 
 
+CHOICES_R9001_TPINSC = [
+
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+
+]
+
+
+
+
+CHOICES_R9001_TPINSCTOMADOR = [
+
+    (1, u'1 - CNPJ'),
+    (4, u'4 - CNO'),
+
+]
+
+
+
+
 CHOICES_R9001_TPOCORR = [
 
     (1, u'1 - Erro'),
     (2, u'2 - Aviso.'),
-    
+
 ]
 
 

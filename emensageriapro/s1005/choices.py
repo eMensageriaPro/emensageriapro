@@ -43,7 +43,7 @@ CHOICES_ESOCIALINSCRICOESTIPOS = [
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (5, u'5 - CGC'),
-    
+
 ]
 
 
@@ -54,7 +54,7 @@ CHOICES_S1005_ALIQRAT_ALTERACAO = [
     (1, u'1'),
     (2, u'2'),
     (3, u'3'),
-    
+
 ]
 
 
@@ -65,7 +65,7 @@ CHOICES_S1005_ALIQRAT_INCLUSAO = [
     (1, u'1'),
     (2, u'2'),
     (3, u'3'),
-    
+
 ]
 
 
@@ -76,7 +76,7 @@ CHOICES_S1005_CONTAPR_ALTERACAO = [
     (0, u'0 - Dispensado de acordo com a lei'),
     (1, u'1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial'),
     (2, u'2 - Obrigado.'),
-    
+
 ]
 
 
@@ -87,7 +87,7 @@ CHOICES_S1005_CONTAPR_INCLUSAO = [
     (0, u'0 - Dispensado de acordo com a lei'),
     (1, u'1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial'),
     (2, u'2 - Obrigado.'),
-    
+
 ]
 
 
@@ -97,7 +97,7 @@ CHOICES_S1005_CONTENTED_ALTERACAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -107,7 +107,7 @@ CHOICES_S1005_CONTENTED_INCLUSAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -119,7 +119,7 @@ CHOICES_S1005_CONTPCD_ALTERACAO = [
     (1, u'1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial'),
     (2, u'2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude de Termo de Compromisso firmado com o Ministério do Trabalho'),
     (9, u'9 - Obrigado.'),
-    
+
 ]
 
 
@@ -131,7 +131,7 @@ CHOICES_S1005_CONTPCD_INCLUSAO = [
     (1, u'1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial'),
     (2, u'2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude de Termo de Compromisso firmado com o Ministério do Trabalho'),
     (9, u'9 - Obrigado.'),
-    
+
 ]
 
 
@@ -141,7 +141,7 @@ CHOICES_S1005_INDSUBSTPATROBRA_ALTERACAO = [
 
     (1, u'1 - Contribuição Patronal Substituída'),
     (2, u'2 - Contribuição Patronal Não Substituída.'),
-    
+
 ]
 
 
@@ -151,7 +151,7 @@ CHOICES_S1005_INDSUBSTPATROBRA_INCLUSAO = [
 
     (1, u'1 - Contribuição Patronal Substituída'),
     (2, u'2 - Contribuição Patronal Não Substituída.'),
-    
+
 ]
 
 
@@ -164,9 +164,9 @@ CHOICES_S1005_REGPT_ALTERACAO = [
     (2, u'2 - Mecânico'),
     (3, u'3 - Eletrônico (portaria MTE 1.510/2009)'),
     (4, u'4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011)'),
-    (5, u'5 - Eletrônico alternativo ( art. 2° da Portaria MTE 373/2011)'),
-    (6, u'6 - Eletrônico - outros.'),
-    
+    (5, u'5 - Eletrônico alternativo (art. 2° da Portaria MTE 373/2011)'),
+    (6, u'6 - Eletrônico - outros. O preenchimento deste campo é facultativo.'),
+
 ]
 
 
@@ -179,9 +179,9 @@ CHOICES_S1005_REGPT_INCLUSAO = [
     (2, u'2 - Mecânico'),
     (3, u'3 - Eletrônico (portaria MTE 1.510/2009)'),
     (4, u'4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011)'),
-    (5, u'5 - Eletrônico alternativo ( art. 2° da Portaria MTE 373/2011)'),
-    (6, u'6 - Eletrônico - outros.'),
-    
+    (5, u'5 - Eletrônico alternativo (art. 2° da Portaria MTE 373/2011)'),
+    (6, u'6 - Eletrônico - outros. O preenchimento deste campo é facultativo.'),
+
 ]
 
 
@@ -192,7 +192,7 @@ CHOICES_S1005_TPCAEPF_ALTERACAO = [
     (1, u'1 - Contribuinte Individual'),
     (2, u'2 - Produtor Rural'),
     (3, u'3 - Segurado Especial.'),
-    
+
 ]
 
 
@@ -203,7 +203,7 @@ CHOICES_S1005_TPCAEPF_INCLUSAO = [
     (1, u'1 - Contribuinte Individual'),
     (2, u'2 - Produtor Rural'),
     (3, u'3 - Segurado Especial.'),
-    
+
 ]
 
 
@@ -213,7 +213,7 @@ CHOICES_S1005_TPPROC_ALTERACAO = [
 
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-    
+
 ]
 
 
@@ -223,7 +223,7 @@ CHOICES_S1005_TPPROC_INCLUSAO = [
 
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-    
+
 ]
 
 
@@ -267,7 +267,7 @@ PERIODOS = [
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-    
+
 ]
 
 

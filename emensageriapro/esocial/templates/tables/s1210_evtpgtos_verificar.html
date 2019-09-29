@@ -112,7 +112,7 @@
 
         <tr {% if s1210_evtpgtos.procemi|validacoes_esocial_efdreinf:"s1210_evtpgtos.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1210_evtpgtos.procemi or s1210_evtpgtos.procemi == 0 %}{{ s1210_evtpgtos.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -311,7 +311,7 @@
     {% ifequal s1210_detpgtofl.s1210_infopgto.id s1210_infopgto.id %}
         <tr {% if s1210_detpgtofl.perref|validacoes_esocial_efdreinf:"s1210_detpgtofl.perref" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perRef</td>
-            <td width="500px">Informar a competência declarada no campo {perApur} do evento remuneratório a que se refere o pagamento, no formato AAAA-MM, se for relativa a folha de pagamento normal (mensal, quinzenal, etc.) ou AAAA, se for relativa a folha de 13° salário. Validação: Informação obrigatória se {tpPgto} = [1,5]. Não pode haver informação nos demais casos. Deve estar no formato AAAA-MM ou AAAA</td>
+            <td width="500px">Informar a competência declarada no campo {perApur} do evento remuneratório a que se refere o pagamento, no formato AAAA-MM, se for relativa a folha de pagamento normal (mensal, quinzenal, etc.) ou AAAA, se for relativa a folha de 13° salário. Validação: Informação obrigatória se {tpPgto} = [1,5]. Não pode haver informação nos demais casos. Deve estar no formato AAAA-MM ou AAAA.</td>
             <td width="200px"><b>{% if s1210_detpgtofl.perref or s1210_detpgtofl.perref == 0 %}{{ s1210_detpgtofl.perref }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1094,7 +1094,7 @@
 
         <tr {% if s1210_detpgtofer.matricula|validacoes_esocial_efdreinf:"s1210_detpgtofer.matricula" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">matricula</td>
-            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: Informação obrigatória para trabalhadores das categorias 'empregados' e 'agentes públicos'. Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista.</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: Informação obrigatória para trabalhadores das categorias "empregados" e "agentes públicos". Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista.</td>
             <td width="200px"><b>{% if s1210_detpgtofer.matricula or s1210_detpgtofer.matricula == 0 %}{{ s1210_detpgtofer.matricula }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

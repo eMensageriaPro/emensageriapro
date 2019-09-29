@@ -41,7 +41,7 @@ CHOICES_S2230_IDEOC = [
     (1, u'1 - Conselho Regional de Medicina (CRM)'),
     (2, u'2 - Conselho Regional de Odontologia (CRO)'),
     (3, u'3 - Registro do Ministério da Saúde (RMS).'),
-    
+
 ]
 
 
@@ -51,7 +51,7 @@ CHOICES_S2230_INFOMESMOMTV = [
 
     ('N', u'N - Não'),
     ('S', u'S - Sim.'),
-    
+
 ]
 
 
@@ -62,7 +62,7 @@ CHOICES_S2230_INFONUS = [
     (1, u'1 - Ônus do Cedente'),
     (2, u'2 - Ônus do Cessionário'),
     (3, u'3 - Ônus do Cedente e Cessionário.'),
-    
+
 ]
 
 
@@ -73,7 +73,7 @@ CHOICES_S2230_INFONUSREMUN = [
     (1, u'1 - Apenas do Empregador'),
     (2, u'2 - Apenas do Sindicato'),
     (3, u'3 - Parte do Empregador, sendo a diferença e/ou complementação salarial paga pelo Sindicato.'),
-    
+
 ]
 
 
@@ -84,7 +84,7 @@ CHOICES_S2230_ORIGRETIF = [
     (1, u'1 - Por iniciativa do empregador'),
     (2, u'2 - Revisão Administrativa'),
     (3, u'3 - Determinação Judicial.'),
-    
+
 ]
 
 
@@ -95,7 +95,7 @@ CHOICES_S2230_TPACIDTRANSITO = [
     (1, u'1 - Atropelamento'),
     (2, u'2 - Colisão'),
     (3, u'3 - Outros.'),
-    
+
 ]
 
 
@@ -106,7 +106,7 @@ CHOICES_S2230_TPPROC = [
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial'),
     (3, u'3 - Número de Benefício (NB) do INSS.'),
-    
+
 ]
 
 
@@ -141,7 +141,7 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-    
+
 ]
 
 

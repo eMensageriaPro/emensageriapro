@@ -8,7 +8,7 @@
             {% if show_fields.show_codcid or 0 %}
             <th>CID</th>
             {% endif %}
-            {% if show_fields.show_qtddiasafast or 1 %}
+            {% if show_fields.show_qtddiasafast or 0 %}
             <th>Quant. de dias afastados</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
@@ -26,7 +26,7 @@
             {% if show_fields.show_codcid or 0 %}
             <td>{{ a.codcid }}</td>
             {% endif %}
-            {% if show_fields.show_qtddiasafast or 1 %}
+            {% if show_fields.show_qtddiasafast or 0 %}
             <td>{{ a.qtddiasafast }}</td>
             {% endif %}
 

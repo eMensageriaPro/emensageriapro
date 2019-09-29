@@ -39,7 +39,7 @@
 $(document).ready(function(e){
   $('#txt_codcateg').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/175/" + request.term + "/", function (data) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/180/" + request.term + "/", function (data) {
       response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
@@ -113,7 +113,7 @@ $(document).ready(function(e){
 $(document).ready(function(e){
   $('#txt_mtvdeslig').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/445/" + request.term + "/", function (data) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/450/" + request.term + "/", function (data) {
       response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,

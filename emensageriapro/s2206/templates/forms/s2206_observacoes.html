@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2206_observacoes__s2206_evtaltcontratual__div">
   <div class="form-group">
-    <label id="s2206_observacoes__s2206_evtaltcontratual__label">Observações do contrato de trabalho*</label>
+    <label id="s2206_observacoes__s2206_evtaltcontratual__label">Observações do contrato de trabalho*<a data-toggle="tooltip" title="Observações do contrato de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2206_observacoes_form.s2206_evtaltcontratual.value %}
         <a id="s2206_observacoes__s2206_evtaltcontratual__div_acessar" href="{% url 's2206_evtaltcontratual_salvar' pk=s2206_observacoes_form.s2206_evtaltcontratual.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2206_observacoes__observacao -->
 <div class="col-md-6" id="s2206_observacoes__observacao__div">
   <div class="form-group">
-    <label id="s2206_observacoes__observacao__label">Observações*</label>
+    <label id="s2206_observacoes__observacao__label">Observações*<a data-toggle="tooltip" title="Observação relacionada ao contrato de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2206_observacoes_form.observacao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2206_observacoes_form.observacao.errors }}

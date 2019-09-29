@@ -220,7 +220,7 @@ def validacoes_s1005_evttabestab(arquivo):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'infoTrab.regPt',
                                                                           infoTrab.regPt.cdata,
-                                                                          1, u'0, 1, 2, 3, 4, 5, 6')
+                                                                          0, u'0, 1, 2, 3, 4, 5, 6')
                 
                                     if 'infoApr' in dir(infoTrab.infoApr):
                                         for infoApr in infoTrab.infoApr:
@@ -394,7 +394,7 @@ def validacoes_s1005_evttabestab(arquivo):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'infoTrab.regPt',
                                                                           infoTrab.regPt.cdata,
-                                                                          1, u'0, 1, 2, 3, 4, 5, 6')
+                                                                          0, u'0, 1, 2, 3, 4, 5, 6')
                 
                                     if 'infoApr' in dir(infoTrab.infoApr):
                                         for infoApr in infoTrab.infoApr:

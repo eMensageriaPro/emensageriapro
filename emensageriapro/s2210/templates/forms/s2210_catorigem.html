@@ -5,7 +5,7 @@
 <!-- inicio__s2210_catorigem__s2210_evtcat -->
 <div class="col-md-12" id="s2210_catorigem__s2210_evtcat__div">
   <div class="form-group">
-    <label id="s2210_catorigem__s2210_evtcat__label">Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito*</label>
+    <label id="s2210_catorigem__s2210_evtcat__label">Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito*<a data-toggle="tooltip" title="Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2210_catorigem_form.s2210_evtcat.value %}
         <a href="{% url 's2210_evtcat_salvar' pk=s2210_catorigem_form.s2210_evtcat.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2210_catorigem__dtcatorig -->
 <div class="col-md-4" id="s2210_catorigem__dtcatorig__div">
   <div class="form-group">
-    <label id="s2210_catorigem__dtcatorig__label">Data do CAT de origem*</label>
+    <label id="s2210_catorigem__dtcatorig__label">Data do CAT de origem*<a data-toggle="tooltip" title="Informar a data da CAT de origem. Validação: Deve ser uma data válida, igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2210_catorigem_form.dtcatorig.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2210_catorigem_form.dtcatorig.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2210_catorigem__nrreccatorig -->
 <div class="col-md-4" id="s2210_catorigem__nrreccatorig__div">
   <div class="form-group">
-    <label id="s2210_catorigem__nrreccatorig__label">Informar o número do recibo da última CAT referente ao mesmo acidente/doença relacionada ao trabalho*</label>
+    <label id="s2210_catorigem__nrreccatorig__label">Informar o número do recibo da última CAT referente ao mesmo acidente/doença relacionada ao trabalho*<a data-toggle="tooltip" title="Informar o número do recibo da última CAT referente ao mesmo acidente/doença relacionada ao trabalho, nos casos: a) de CAT de reabertura; b) de óbito, quando houver CAT anterior. Validação: Deve corresponder ao número do recibo do arquivo relativo à CAT informada anteriormente, pertencente ao mesmo trabalhador. O sistema não efetuará a conferência da informação se {dtAcid} for anterior à data de transferência no evento de admissão. Obs.: Quando {dtAcid} for anterior à data de obrigatoriedade do empregador ao envio deste evento, a CAT de reabertura e/ou de óbito não devem ser informadas ao eSocial, mantendo-se o procedimento realizado na emissão da CAT original."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_catorigem_form.nrreccatorig.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_catorigem_form.nrreccatorig.errors }}

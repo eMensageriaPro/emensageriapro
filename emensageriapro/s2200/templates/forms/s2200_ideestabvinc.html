@@ -5,7 +5,7 @@
 <!-- inicio__s2200_ideestabvinc__s2200_trabtemporario -->
 <div class="col-md-12" id="s2200_ideestabvinc__s2200_trabtemporario__div">
   <div class="form-group">
-    <label id="s2200_ideestabvinc__s2200_trabtemporario__label">Identificação do estabelecimento ao qual o trabalhador temporário está vinculado*</label>
+    <label id="s2200_ideestabvinc__s2200_trabtemporario__label">Identificação do estabelecimento ao qual o trabalhador temporário está vinculado*<a data-toggle="tooltip" title="Identificação do estabelecimento ao qual o trabalhador temporário está vinculado. Se o local da efetiva prestação do serviço não possuir inscrição deverá ser informado o CNPJ/CPF ao qual o local da efetiva prestação está vinculado. O preenchimento é obrigatório se a inscrição do estabelecimento vinculado for diferente de {ideTomadorServ/nrInsc}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2200_ideestabvinc_form.s2200_trabtemporario.value %}
         <a href="{% url 's2200_trabtemporario_salvar' pk=s2200_ideestabvinc_form.s2200_trabtemporario.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2200_ideestabvinc__tpinsc -->
 <div class="col-md-4" id="s2200_ideestabvinc__tpinsc__div">
   <div class="form-group">
-    <label id="s2200_ideestabvinc__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s2200_ideestabvinc__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. Valores Válidos: 1,2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_ideestabvinc_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_ideestabvinc_form.tpinsc.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2200_ideestabvinc__nrinsc -->
 <div class="col-md-4" id="s2200_ideestabvinc__nrinsc__div">
   <div class="form-group">
-    <label id="s2200_ideestabvinc__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s2200_ideestabvinc__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contratante de serviços, de acordo com o tipo de inscrição informado em {tpInsc}. Validação: Se {tpInsc} for igual a [1], deve ser um CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido. Se for um CNPJ deve ter a mesma Raiz/Base de oito posições informada em {ideTomadorServ/nrInsc}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_ideestabvinc_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_ideestabvinc_form.nrinsc.errors }}

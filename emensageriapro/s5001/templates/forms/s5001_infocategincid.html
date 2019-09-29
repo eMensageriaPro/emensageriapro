@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s5001_infocategincid__s5001_ideestablot__div">
   <div class="form-group">
-    <label id="s5001_infocategincid__s5001_ideestablot__label">Informações relativas à matrícula e categoria do trabalhador e tipos de incidências.*</label>
+    <label id="s5001_infocategincid__s5001_ideestablot__label">Informações relativas à matrícula e categoria do trabalhador e tipos de incidências.*<a data-toggle="tooltip" title="Informações relativas à matrícula e categoria do trabalhador e tipos de incidências."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s5001_infocategincid_form.s5001_ideestablot.value %}
         <a id="s5001_infocategincid__s5001_ideestablot__div_acessar" href="{% url 's5001_ideestablot_salvar' pk=s5001_infocategincid_form.s5001_ideestablot.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s5001_infocategincid__matricula -->
 <div class="col-md-3" id="s5001_infocategincid__matricula__div">
   <div class="form-group">
-    <label id="s5001_infocategincid__matricula__label">Matricula</label>
+    <label id="s5001_infocategincid__matricula__label">Matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Evento de origem (S-1200/S-2299). Validação: Deve corresponder à matrícula constante no evento S-1200/S- 2299, caso tenha sido informada, sendo nesse caso, informação obrigatória. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s5001_infocategincid_form.matricula.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5001_infocategincid_form.matricula.errors }}
@@ -57,7 +57,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-3" id="s5001_infocategincid__codcateg__div">
     <div class="form-group">
-      <label id="s5001_infocategincid__codcateg__label">Código da Categoria*</label>
+      <label id="s5001_infocategincid__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 1. Evento de origem (S-1200/ S-2299/S-2399). Validação: Deve estar coerente com a informação prestada pelo empregador no evento S-1200/S-2299/S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s5001_infocategincid_form.codcateg.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s5001_infocategincid_form.codcateg.errors }}
@@ -66,7 +66,7 @@
         <input type="text"
                id="txt_codcateg"
                name="txt_codcateg" class="form-control"
-               value="{% if s5001_infocategincid.codcateg %}{{ s5001_infocategincid.codcateg|get_opcoes_titulo:176 }}{% endif %}"
+               value="{% if s5001_infocategincid.codcateg %}{{ s5001_infocategincid.codcateg|get_opcoes_titulo:180 }}{% endif %}"
                {% if s5001_infocategincid_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s5001_infocategincid_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}
                {% if s5001_infocategincid_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -80,7 +80,7 @@
   $(document).ready(function(e){
     $('#txt_codcateg').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/176/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/180/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -111,7 +111,7 @@
   {% else %}
   <div class="col-md-3" id="s5001_infocategincid__codcateg__div">
     <div class="form-group">
-      <label id="s5001_infocategincid__codcateg__label">Código da Categoria*</label>
+      <label id="s5001_infocategincid__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 1. Evento de origem (S-1200/ S-2299/S-2399). Validação: Deve estar coerente com a informação prestada pelo empregador no evento S-1200/S-2299/S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s5001_infocategincid.codcateg %}{{ s5001_infocategincid.codcateg }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -120,7 +120,7 @@
 <!-- inicio__s5001_infocategincid__indsimples -->
 <div class="col-md-3" id="s5001_infocategincid__indsimples__div">
   <div class="form-group">
-    <label id="s5001_infocategincid__indsimples__label">Contribuição Substituída</label>
+    <label id="s5001_infocategincid__indsimples__label">Contribuição Substituída<a data-toggle="tooltip" title="Indicador de Contribuição Substituída: 1 - Contribuição Substituída Integralmente; 2 - Contribuição não substituída; 3 - Contribuição não substituída concomitante com contribuição substituída. Evento de origem (S-1200/ S-2299/S-2399). Validação: O preenchimento do campo é obrigatório apenas no caso das empresas enquadradas no regime de tributação Simples Nacional, com tributação previdenciária substituída e não substituída, ({classTrib} do evento S-1000 -Informações do Empregador = [03]). Para os demais empregadores, não deve ser informado. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5001_infocategincid_form.indsimples.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5001_infocategincid_form.indsimples.errors }}

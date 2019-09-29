@@ -13,7 +13,6 @@ from emensageriapro.mapa_processamento.views import visao_geral as visao_geral_v
 from emensageriapro.mapa_processamento.views import mapa_importacoes_verificacao as mapa_importacoes_verificacao_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

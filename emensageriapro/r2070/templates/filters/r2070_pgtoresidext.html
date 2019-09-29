@@ -32,8 +32,19 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Tipo de Rendimento, conforme tabela 03 - Rendimentos de Beneficiários no Exterior</label>
-    <div name="tprendimento" class="input-group" style="width: 100%;">
-      <input type="text" name="tprendimento" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'tprendimento' }}">
+    <div class="input-group" style="width: 100%;">
+      <select name="tprendimento" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="500" {% ifequal 500 dict_fields|get_value_from_dict:'tprendimento' %}selected="selected"{% endifequal %} >500 - A fonte pagadora é matriz da beneficiária no exterior.</option>
+        <option value="510" {% ifequal 510 dict_fields|get_value_from_dict:'tprendimento' %}selected="selected"{% endifequal %} >510 - A fonte pagadora é filial, sucursal ou agência de beneficiária no exterior.</option>
+        <option value="520" {% ifequal 520 dict_fields|get_value_from_dict:'tprendimento' %}selected="selected"{% endifequal %} >520 - A fonte pagadora é controlada ou coligada da beneficiária no exterior, na forma dos §§ 1º e 2º do art. 243 da Lei nº 6.404, de 15 de dezembro de 1976.</option>
+        <option value="530" {% ifequal 530 dict_fields|get_value_from_dict:'tprendimento' %}selected="selected"{% endifequal %} >530 - A fonte pagadora é controladora ou coligada da beneficiária no exterior, na forma dos §§ 1º e 2º do art. 243 da Lei nº 6.404, de 1976.</option>
+        <option value="540" {% ifequal 540 dict_fields|get_value_from_dict:'tprendimento' %}selected="selected"{% endifequal %} >540 - A fonte pagadora e a beneficiária no exterior estão sob controle societário ou administrativo comum ou quando pelo menos 10% do capital de cada uma, pertencer a uma mesma pessoa física ou jurídica.</option>
+        <option value="550" {% ifequal 550 dict_fields|get_value_from_dict:'tprendimento' %}selected="selected"{% endifequal %} >550 - A fonte pagadora e a beneficiária no exterior têm participação societária no capital de uma terceira pessoa jurídica, cuja soma as caracterize como controladoras ou coligadas na forma dos §§ 1º e 2º do art. 243 da Lei nº 6.404, de 1976.</option>
+        <option value="560" {% ifequal 560 dict_fields|get_value_from_dict:'tprendimento' %}selected="selected"{% endifequal %} >560 - A fonte pagadora ou a beneficiária no exterior mantenha contrato de exclusividade como agente, como distribuidor ou como concessionário nas operações com bens, serviços e direitos.</option>
+        <option value="570" {% ifequal 570 dict_fields|get_value_from_dict:'tprendimento' %}selected="selected"{% endifequal %} >570 - A fonte pagadora e a beneficiária mantêm acordo de atuação conjunta.</option>
+        <option value="900" {% ifequal 900 dict_fields|get_value_from_dict:'tprendimento' %}selected="selected"{% endifequal %} >900 - Não há relação entre a fonte pagadora e a beneficiária no exterior.</option>
+      </select>
     </div>
   </div>
 </div>

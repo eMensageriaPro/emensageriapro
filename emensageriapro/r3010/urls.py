@@ -22,7 +22,6 @@ from emensageriapro.r3010.views import r3010_infoproc_salvar as r3010_infoproc_s
 from emensageriapro.r3010.views import r3010_infoproc_api as r3010_infoproc_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

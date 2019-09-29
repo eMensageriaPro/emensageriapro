@@ -27,7 +27,7 @@
             <td>{{ a.r2070_infoprocjud_despprocjud }}</td>
             {% endif %}
             {% if show_fields.show_tpinscadvogado or 1 %}
-            <td>{{ a.tpinscadvogado }}</td>
+            <td>{{ a.get_tpinscadvogado_display }}</td>
             {% endif %}
             {% if show_fields.show_nrinscadvogado or 1 %}
             <td>{{ a.nrinscadvogado }}</td>

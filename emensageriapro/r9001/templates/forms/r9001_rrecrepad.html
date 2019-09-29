@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r9001_rrecrepad__r9001_infototal__div">
   <div class="form-group">
-    <label id="r9001_rrecrepad__r9001_infototal__label">Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040*</label>
+    <label id="r9001_rrecrepad__r9001_infototal__label">Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040*<a data-toggle="tooltip" title="Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r9001_rrecrepad_form.r9001_infototal.value %}
         <a id="r9001_rrecrepad__r9001_infototal__div_acessar" href="{% url 'r9001_infototal_salvar' pk=r9001_rrecrepad_form.r9001_infototal.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r9001_rrecrepad__cnpjassocdesp -->
 <div class="col-md-6" id="r9001_rrecrepad__cnpjassocdesp__div">
   <div class="form-group">
-    <label id="r9001_rrecrepad__cnpjassocdesp__label">Preencher com o CNPJ da associação desportiva que mantém clube de futebol para a qual foi efetuado o repasse*</label>
+    <label id="r9001_rrecrepad__cnpjassocdesp__label">Preencher com o CNPJ da associação desportiva que mantém clube de futebol para a qual foi efetuado o repasse*<a data-toggle="tooltip" title="CNPJ da associação desportiva que mantém clube de futebol para a qual foi efetuado o repasse. Origem: R- 2040."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9001_rrecrepad_form.cnpjassocdesp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9001_rrecrepad_form.cnpjassocdesp.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r9001_rrecrepad__vlrtotalrep -->
 <div class="col-md-6" id="r9001_rrecrepad__vlrtotalrep__div">
   <div class="form-group">
-    <label id="r9001_rrecrepad__vlrtotalrep__label">Preencher com o valor bruto dos recursos repassados*</label>
+    <label id="r9001_rrecrepad__vlrtotalrep__label">Preencher com o valor bruto dos recursos repassados*<a data-toggle="tooltip" title="Valor bruto dos recursos repassados. Origem: R- 2040."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9001_rrecrepad_form.vlrtotalrep.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9001_rrecrepad_form.vlrtotalrep.errors }}
@@ -74,7 +74,7 @@
 <!-- inicio__r9001_rrecrepad__crrecrepad -->
 <div class="col-md-6" id="r9001_rrecrepad__crrecrepad__div">
   <div class="form-group">
-    <label id="r9001_rrecrepad__crrecrepad__label">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre recursos repassados a Associação Desportiva que mantenha equipe de futebol profissional, calculada segundo as regras estabelecidas na legislação em vigor*</label>
+    <label id="r9001_rrecrepad__crrecrepad__label">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre recursos repassados a Associação Desportiva que mantenha equipe de futebol profissional, calculada segundo as regras estabelecidas na legislação em vigor*<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre recursos repassados a Associação Desportiva que mantenha equipe de futebol profissional, calculada segundo as regras estabelecidas na legislação em vigor. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos. Deve ser maior que 0 (zero). Valores Válidos: 1151-02."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9001_rrecrepad_form.crrecrepad.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9001_rrecrepad_form.crrecrepad.errors }}
@@ -89,7 +89,7 @@
 <!-- inicio__r9001_rrecrepad__vlrcrrecrepad -->
 <div class="col-md-6" id="r9001_rrecrepad__vlrcrrecrepad__div">
   <div class="form-group">
-    <label id="r9001_rrecrepad__vlrcrrecrepad__label">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-2040*</label>
+    <label id="r9001_rrecrepad__vlrcrrecrepad__label">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-2040*<a data-toggle="tooltip" title="Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-2040. Validação: Deve ser apurado de acordo com a legislação em vigor na competência."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9001_rrecrepad_form.vlrcrrecrepad.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9001_rrecrepad_form.vlrcrrecrepad.errors }}
@@ -107,7 +107,7 @@
 <!-- inicio__r9001_rrecrepad__vlrcrrecrepadsusp -->
 <div class="col-md-6" id="r9001_rrecrepad__vlrcrrecrepadsusp__div">
   <div class="form-group">
-    <label id="r9001_rrecrepad__vlrcrrecrepadsusp__label">Valor da retenção da contribuição previdenciária que deixou de ser efetuada ou que foi depositada em juízo em decorência de decisão judicial/administrativa, correspondente ao Código de Receita - CR informado em {CRRecRepAD}</label>
+    <label id="r9001_rrecrepad__vlrcrrecrepadsusp__label">Valor da retenção da contribuição previdenciária que deixou de ser efetuada ou que foi depositada em juízo em decorência de decisão judicial/administrativa, correspondente ao Código de Receita - CR informado em {CRRecRepAD}<a data-toggle="tooltip" title="Valor da retenção da contribuição previdenciária que deixou de ser efetuada ou que foi depositada em juízo em decorência de decisão judicial/administrativa, correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-2040."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9001_rrecrepad_form.vlrcrrecrepadsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9001_rrecrepad_form.vlrcrrecrepadsusp.errors }}

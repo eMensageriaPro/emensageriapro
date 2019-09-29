@@ -26,7 +26,6 @@ from emensageriapro.s2210.views import s2210_catorigem_salvar as s2210_catorigem
 from emensageriapro.s2210.views import s2210_catorigem_api as s2210_catorigem_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

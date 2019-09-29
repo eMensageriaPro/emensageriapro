@@ -40,7 +40,7 @@ CHOICES_S2416_MTVSUSPENSAO = [
 
     ('01', u'01 - Suspensão por não recadastramento'),
     ('99', u'99 - Outros motivos de suspensão.'),
-    
+
 ]
 
 
@@ -50,7 +50,7 @@ CHOICES_S2416_TPPENMORTE = [
 
     (1, u'1 - Vitalícia'),
     (2, u'2 - Temporária.'),
-    
+
 ]
 
 

@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1000_inclusao_softwarehouse__s1000_inclusao__div">
   <div class="form-group">
-    <label id="s1000_inclusao_softwarehouse__s1000_inclusao__label">Informações relativas ao desenvolvedor do software que gerou o arquivo xml.*</label>
+    <label id="s1000_inclusao_softwarehouse__s1000_inclusao__label">Informações relativas ao desenvolvedor do software que gerou o arquivo xml.*<a data-toggle="tooltip" title="Informações relativas ao desenvolvedor do software que gerou o arquivo xml."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1000_inclusao_softwarehouse_form.s1000_inclusao.value %}
         <a id="s1000_inclusao_softwarehouse__s1000_inclusao__div_acessar" href="{% url 's1000_inclusao_salvar' pk=s1000_inclusao_softwarehouse_form.s1000_inclusao.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1000_inclusao_softwarehouse__cnpjsofthouse -->
 <div class="col-md-6" id="s1000_inclusao_softwarehouse__cnpjsofthouse__div">
   <div class="form-group">
-    <label id="s1000_inclusao_softwarehouse__cnpjsofthouse__label">CNPJ*</label>
+    <label id="s1000_inclusao_softwarehouse__cnpjsofthouse__label">CNPJ*<a data-toggle="tooltip" title="CNPJ da empresa desenvolvedora do software. Se o software foi desenvolvido pelo próprio empregador, informar o CNPJ do estabelecimento do empregador responsável pelo desenvolvimento. Regra de validação: REGRA_VALIDA_CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1000_inclusao_softwarehouse_form.cnpjsofthouse.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1000_inclusao_softwarehouse_form.cnpjsofthouse.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1000_inclusao_softwarehouse__nmrazao -->
 <div class="col-md-6" id="s1000_inclusao_softwarehouse__nmrazao__div">
   <div class="form-group">
-    <label id="s1000_inclusao_softwarehouse__nmrazao__label">Razão Social*</label>
+    <label id="s1000_inclusao_softwarehouse__nmrazao__label">Razão Social<a data-toggle="tooltip" title="Informar a razão social, no caso de pessoa jurídica ou órgão público. O preenchimento deste campo é facultativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1000_inclusao_softwarehouse_form.nmrazao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1000_inclusao_softwarehouse_form.nmrazao.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s1000_inclusao_softwarehouse__nmcont -->
 <div class="col-md-6" id="s1000_inclusao_softwarehouse__nmcont__div">
   <div class="form-group">
-    <label id="s1000_inclusao_softwarehouse__nmcont__label">Nome do Contato*</label>
+    <label id="s1000_inclusao_softwarehouse__nmcont__label">Nome do Contato*<a data-toggle="tooltip" title="Nome do contato na empresa."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1000_inclusao_softwarehouse_form.nmcont.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1000_inclusao_softwarehouse_form.nmcont.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__s1000_inclusao_softwarehouse__telefone -->
 <div class="col-md-6" id="s1000_inclusao_softwarehouse__telefone__div">
   <div class="form-group">
-    <label id="s1000_inclusao_softwarehouse__telefone__label">Telefone*</label>
+    <label id="s1000_inclusao_softwarehouse__telefone__label">Telefone*<a data-toggle="tooltip" title="Informar o número do telefone, com DDD. Validação: Deve conter apenas números, com o mínimo de dez dígitos."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1000_inclusao_softwarehouse_form.telefone.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1000_inclusao_softwarehouse_form.telefone.errors }}
@@ -101,7 +101,7 @@
 <!-- inicio__s1000_inclusao_softwarehouse__email -->
 <div class="col-md-6" id="s1000_inclusao_softwarehouse__email__div">
   <div class="form-group">
-    <label id="s1000_inclusao_softwarehouse__email__label">E-mail</label>
+    <label id="s1000_inclusao_softwarehouse__email__label">E-mail<a data-toggle="tooltip" title="Endereço eletrônico. Validação: O e-mail deve possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no fim do e-mail."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1000_inclusao_softwarehouse_form.email.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1000_inclusao_softwarehouse_form.email.errors }}

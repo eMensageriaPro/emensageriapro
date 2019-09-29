@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2230_infoatestado__s2230_iniafastamento__div">
   <div class="form-group">
-    <label id="s2230_infoatestado__s2230_iniafastamento__label">Informações complementares relativas ao atestado médico*</label>
+    <label id="s2230_infoatestado__s2230_iniafastamento__label">Informações complementares relativas ao atestado médico*<a data-toggle="tooltip" title="Informações complementares relativas ao atestado médico."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2230_infoatestado_form.s2230_iniafastamento.value %}
         <a id="s2230_infoatestado__s2230_iniafastamento__div_acessar" href="{% url 's2230_iniafastamento_salvar' pk=s2230_infoatestado_form.s2230_iniafastamento.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2230_infoatestado__codcid -->
 <div class="col-md-4" id="s2230_infoatestado__codcid__div">
   <div class="form-group">
-    <label id="s2230_infoatestado__codcid__label">CID</label>
+    <label id="s2230_infoatestado__codcid__label">CID<a data-toggle="tooltip" title="Informar o código na tabela de Classificação Internacional de Doenças - CID. Validação: O preenchimento deste campo é facultativo. Se informado, deve ser preenchido com caracteres alfanuméricos conforme opções constantes na tabela CID."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2230_infoatestado_form.codcid.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2230_infoatestado_form.codcid.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2230_infoatestado__qtddiasafast -->
 <div class="col-md-4" id="s2230_infoatestado__qtddiasafast__div">
   <div class="form-group">
-    <label id="s2230_infoatestado__qtddiasafast__label">Quant. de dias afastados*</label>
+    <label id="s2230_infoatestado__qtddiasafast__label">Quant. de dias afastados<a data-toggle="tooltip" title="Quantidade de dias de afastamento concedidos pelo médico. O preenchimento deste campo é facultativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2230_infoatestado_form.qtddiasafast.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2230_infoatestado_form.qtddiasafast.errors }}

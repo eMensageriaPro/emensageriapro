@@ -43,7 +43,7 @@ CHOICES_ESOCIALINSCRICOESTIPOS = [
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (5, u'5 - CGC'),
-    
+
 ]
 
 
@@ -59,7 +59,7 @@ CHOICES_S2206_DIA = [
     (6, u'6 - Sábado'),
     (7, u'7 - Domingo'),
     (8, u'8 - Dia variável.'),
-    
+
 ]
 
 
@@ -69,7 +69,7 @@ CHOICES_S2206_INDABONOPERM = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -79,7 +79,7 @@ CHOICES_S2206_INDPARCREMUN = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -89,7 +89,7 @@ CHOICES_S2206_INDTETORGPS = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -102,7 +102,7 @@ CHOICES_S2206_MTVALTER = [
     (3, u'3 - Aproveitamento'),
     (8, u'8 - Outros'),
     (9, u'9 - Não alterado.'),
-    
+
 ]
 
 
@@ -112,7 +112,7 @@ CHOICES_S2206_NATATIVIDADE = [
 
     (1, u'1 - Trabalho Urbano'),
     (2, u'2 - Trabalho Rural.'),
-    
+
 ]
 
 
@@ -124,7 +124,7 @@ CHOICES_S2206_TMPPARC = [
     (1, u'1 - Limitado a 25 horas semanais'),
     (2, u'2 - Limitado a 30 horas semanais'),
     (3, u'3 - Limitado a 26 horas semanais.'),
-    
+
 ]
 
 
@@ -136,7 +136,7 @@ CHOICES_S2206_TPJORNADA = [
     (2, u'2 - Jornada 12 x 36 (12 horas de trabalho seguidas de 36 horas ininterruptas de descanso)'),
     (3, u'3 - Jornada com horário diário fixo e folga variável'),
     (9, u'9 - Demais tipos de jornada.'),
-    
+
 ]
 
 
@@ -146,7 +146,7 @@ CHOICES_S2206_TPPLANRP = [
 
     (1, u'1 - Plano previdenciário ou único'),
     (2, u'2 - Plano financeiro.'),
-    
+
 ]
 
 
@@ -158,7 +158,7 @@ CHOICES_S2206_TPREGJOR = [
     (2, u'2 - Atividade Externa especificada no Inciso I do Art. 62 da CLT'),
     (3, u'3 - Funções especificadas no Inciso II do Art. 62 da CLT'),
     (4, u'4 - Teletrabalho, previsto no Inciso III do Art. 62 da CLT.'),
-    
+
 ]
 
 
@@ -193,7 +193,7 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-    
+
 ]
 
 

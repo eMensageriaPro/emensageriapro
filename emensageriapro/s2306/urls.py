@@ -34,7 +34,6 @@ from emensageriapro.s2306.views import s2306_supervisorestagio_salvar as s2306_s
 from emensageriapro.s2306.views import s2306_supervisorestagio_api as s2306_supervisorestagio_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

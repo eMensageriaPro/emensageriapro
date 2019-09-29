@@ -74,7 +74,7 @@
 
         <tr {% if s2206_evtaltcontratual.procemi|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2206_evtaltcontratual.procemi or s2206_evtaltcontratual.procemi == 0 %}{{ s2206_evtaltcontratual.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -565,7 +565,7 @@
 
         <tr {% if s2206_evtaltcontratual.codfuncao|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.codfuncao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codFuncao</td>
-            <td width="500px">Preencher com o código da função, se utilizado pelo empregador. Validação: Preenchimento obrigatório para categorias de trabalhadores 'Agente Público' se {tpProv} = [2]. Se informado, o código informado deve constar na Tabela de Funções/Cargos em Comissão - S-1040.</td>
+            <td width="500px">Preencher com o código da função, se utilizado pelo empregador. Validação: Preenchimento obrigatório para categorias de trabalhadores "Agente Público" se {tpProv} = [2]. Se informado, o código informado deve constar na Tabela de Funções/Cargos em Comissão - S-1040.</td>
             <td width="200px"><b>{% if s2206_evtaltcontratual.codfuncao or s2206_evtaltcontratual.codfuncao == 0 %}{{ s2206_evtaltcontratual.codfuncao }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -839,7 +839,7 @@
     {% ifequal s2206_localtrabdom.s2206_evtaltcontratual.id s2206_evtaltcontratual.id %}
         <tr {% if s2206_localtrabdom.tplograd|validacoes_esocial_efdreinf:"s2206_localtrabdom.tplograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpLograd</td>
-            <td width="500px">Tipo de Logradouro, conforme tabela 20. Validação: Deve ser um código válido, existente na tabela 20.</td>
+            <td width="500px">Tipo de Logradouro, conforme tabela 20. Validação: Se informado, deve ser um código válido, existente na tabela 20.</td>
             <td width="200px"><b>{% if s2206_localtrabdom.tplograd or s2206_localtrabdom.tplograd == 0 %}{{ s2206_localtrabdom.tplograd }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -877,7 +877,7 @@
 
         <tr {% if s2206_localtrabdom.nrlograd|validacoes_esocial_efdreinf:"s2206_localtrabdom.nrlograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrLograd</td>
-            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com 'S/N'.</td>
+            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com "S/N".</td>
             <td width="200px"><b>{% if s2206_localtrabdom.nrlograd or s2206_localtrabdom.nrlograd == 0 %}{{ s2206_localtrabdom.nrlograd }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -934,7 +934,7 @@
 
         <tr {% if s2206_localtrabdom.cep|validacoes_esocial_efdreinf:"s2206_localtrabdom.cep" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cep</td>
-            <td width="500px">Código de Endereçamento Postal - CEP. Validação: Deve ser preenchido apenas com números. Deve ser um CEP válido.</td>
+            <td width="500px">Código de Endereçamento Postal - CEP. Validação: Deve ser preenchido apenas com números, com 8 (oito) posições.</td>
             <td width="200px"><b>{% if s2206_localtrabdom.cep or s2206_localtrabdom.cep == 0 %}{{ s2206_localtrabdom.cep }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1142,13 +1142,13 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">alvaraJudicial</td>
-            <td bgcolor="lightgray" colspan="3">Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</td>
+            <td bgcolor="lightgray" colspan="3">Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de "Aprendiz".</td>
         </tr>
     {% for s2206_alvarajudicial in s2206_alvarajudicial_lista %}
     {% ifequal s2206_alvarajudicial.s2206_evtaltcontratual.id s2206_evtaltcontratual.id %}
         <tr {% if s2206_alvarajudicial.nrprocjud|validacoes_esocial_efdreinf:"s2206_alvarajudicial.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProcJud</td>
-            <td width="500px">Preencher com o número do processo judicial. Validação: Deve ser um número de processo judicial válido, existente na Tabela de Processos - S-1070.</td>
+            <td width="500px">Preencher com o número do processo judicial. Validação: Deve ser um número de processo judicial válido.</td>
             <td width="200px"><b>{% if s2206_alvarajudicial.nrprocjud or s2206_alvarajudicial.nrprocjud == 0 %}{{ s2206_alvarajudicial.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

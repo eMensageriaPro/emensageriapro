@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s5011_basescomerc__s5011_ideestab__div">
   <div class="form-group">
-    <label id="s5011_basescomerc__s5011_ideestab__label">Informações de bases de cálculo relativas à comercialização da produção rural da Pessoa Física. Informações desse grupo conforme informado pelo contribuinte em S-1260.*</label>
+    <label id="s5011_basescomerc__s5011_ideestab__label">Informações de bases de cálculo relativas à comercialização da produção rural da Pessoa Física. Informações desse grupo conforme informado pelo contribuinte em S-1260.*<a data-toggle="tooltip" title="Informações de bases de cálculo relativas à comercialização da produção rural da Pessoa Física. Informações desse grupo conforme informado pelo contribuinte em S-1260."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s5011_basescomerc_form.s5011_ideestab.value %}
         <a id="s5011_basescomerc__s5011_ideestab__div_acessar" href="{% url 's5011_ideestab_salvar' pk=s5011_basescomerc_form.s5011_ideestab.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s5011_basescomerc__indcomerc -->
 <div class="col-md-6" id="s5011_basescomerc__indcomerc__div">
   <div class="form-group">
-    <label id="s5011_basescomerc__indcomerc__label">Indicativo de comercialização*</label>
+    <label id="s5011_basescomerc__indcomerc__label">Indicativo de comercialização*<a data-toggle="tooltip" title="Indicativo de Comercialização: 2 - Comercialização da Produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por Produtor Rural Pessoa Física, inclusive por Segurado Especial ou por Pessoa Física não produtor rural; 3 - Comercialização da Produção por Prod. Rural PF/Seg. Especial - Vendas a PJ (exceto Entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a Intermediário PF; 7 - Comercialização da Produção Isenta de acordo com a Lei n° 13.606/2018; 8 - Comercialização da Produção da Pessoa Física/Segurado Especial para Entidade inscrita no Programa de Aquisição de Alimentos - PAA; 9 - Comercialização da Produção no Mercado Externo. Origem: {indComerc} do S-1260. Valores Válidos: 2, 3, 7, 8, 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_basescomerc_form.indcomerc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5011_basescomerc_form.indcomerc.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s5011_basescomerc__vrbccompr -->
 <div class="col-md-6" id="s5011_basescomerc__vrbccompr__div">
   <div class="form-group">
-    <label id="s5011_basescomerc__vrbccompr__label">Valor da BC da comercialização da PR*</label>
+    <label id="s5011_basescomerc__vrbccompr__label">Valor da BC da comercialização da PR*<a data-toggle="tooltip" title="Valor da Base de Cálculo da comercialização da produção rural do Produtor Rural PF/Segurado Especial a outra PF no varejo ou a outro Produtor Rural PF/Segurado Especial ou no mercado Externo, conforme {indComerc}. Origem: {vrTotCom} do S-1260 conforme {indComerc}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_basescomerc_form.vrbccompr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basescomerc_form.vrbccompr.errors }}
@@ -83,7 +83,7 @@
 <!-- inicio__s5011_basescomerc__vrcpsusp -->
 <div class="col-md-6" id="s5011_basescomerc__vrcpsusp__div">
   <div class="form-group">
-    <label id="s5011_basescomerc__vrcpsusp__label">Valor da CP com exigibilidade suspensa</label>
+    <label id="s5011_basescomerc__vrcpsusp__label">Valor da CP com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária com exigibilidade suspensa. Origem: {vrCPSusp} do S-1260."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_basescomerc_form.vrcpsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basescomerc_form.vrcpsusp.errors }}
@@ -101,7 +101,7 @@
 <!-- inicio__s5011_basescomerc__vrratsusp -->
 <div class="col-md-6" id="s5011_basescomerc__vrratsusp__div">
   <div class="form-group">
-    <label id="s5011_basescomerc__vrratsusp__label">Valor da CP para GILRAT com exigibilidade suspensa</label>
+    <label id="s5011_basescomerc__vrratsusp__label">Valor da CP para GILRAT com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da contribuição para Gilrat com exigibilidade suspensa. Origem: {vrRatSusp} do S-1260."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_basescomerc_form.vrratsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basescomerc_form.vrratsusp.errors }}
@@ -119,7 +119,7 @@
 <!-- inicio__s5011_basescomerc__vrsenarsusp -->
 <div class="col-md-6" id="s5011_basescomerc__vrsenarsusp__div">
   <div class="form-group">
-    <label id="s5011_basescomerc__vrsenarsusp__label">Valor da contribição para SENAR com exigibilidade suspensa</label>
+    <label id="s5011_basescomerc__vrsenarsusp__label">Valor da contribição para SENAR com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da contribuição para o Senar com exigibilidade suspensa. Origem: {vrSenarSusp} do S-1260."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_basescomerc_form.vrsenarsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basescomerc_form.vrsenarsusp.errors }}

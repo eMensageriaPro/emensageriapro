@@ -7,7 +7,6 @@ from rest_framework.authtoken import views
 from emensageriapro.s5012.views import s5012_infocrcontrib_api as s5012_infocrcontrib_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

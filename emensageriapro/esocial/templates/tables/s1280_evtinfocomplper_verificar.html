@@ -112,7 +112,7 @@
 
         <tr {% if s1280_evtinfocomplper.procemi|validacoes_esocial_efdreinf:"s1280_evtinfocomplper.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.procemi or s1280_evtinfocomplper.procemi == 0 %}{{ s1280_evtinfocomplper.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -218,7 +218,7 @@
 
         <tr {% if s1280_infosubstpatr.percredcontrib|validacoes_esocial_efdreinf:"s1280_infosubstpatr.percredcontrib" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">percRedContrib</td>
-            <td width="500px">Percentual não substituído pela contribuição prevista na lei 12.546/2011. Informar 0 (zero) se {indSubstPatr} = 1. Caso contrário, preencher com o percentual correspondente a razão entre a receita de atividades não relacionadas nos artigos 7º e 8º da Lei 12.546/2011 e a receita bruta total.</td>
+            <td width="500px">Percentual não substituído pela contribuição prevista na lei 12.546/2011. Informar 0 (zero) se {indSubstPatr} = 1. Caso contrário, preencher com o percentual correspondente à razão entre a receita de atividades não relacionadas nos artigos 7º e 8º da Lei 12.546/2011 e a receita bruta total. Validação: Se {indSubstPatr} for igual a 1, informar 0 (zero).</td>
             <td width="200px"><b>{% if s1280_infosubstpatr.percredcontrib or s1280_infosubstpatr.percredcontrib == 0 %}{{ s1280_infosubstpatr.percredcontrib }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

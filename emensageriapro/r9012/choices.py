@@ -41,7 +41,7 @@ CHOICES_R9012_INDEXISTINFO = [
     (1, u'1 - Há informações de bases e/ou de tributos'),
     (2, u'2 - Há movimento, porém não há informações de bases ou de tributos'),
     (3, u'3 - Não há movimento na competência.'),
-    
+
 ]
 
 
@@ -52,7 +52,7 @@ CHOICES_R9012_PERAPURDEC = [
     (1, u'1 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 1 a 10'),
     (2, u'2 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 11 a 20'),
     (3, u'3 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 21 a 31.'),
-    
+
 ]
 
 
@@ -62,7 +62,7 @@ CHOICES_R9012_PERAPURQUI = [
 
     (1, u'1 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 1 a 15'),
     (2, u'2 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 16 a 31.'),
-    
+
 ]
 
 
@@ -72,7 +72,7 @@ CHOICES_R9012_TPOCORR = [
 
     (1, u'1 - Erro'),
     (2, u'2 - Aviso.'),
-    
+
 ]
 
 

@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r5011_regocorrs__r5011_evttotalcontrib__div">
   <div class="form-group">
-    <label id="r5011_regocorrs__r5011_evttotalcontrib__label">Informações de ocorrências registradas*</label>
+    <label id="r5011_regocorrs__r5011_evttotalcontrib__label">Informações de ocorrências registradas*<a data-toggle="tooltip" title="Informações de ocorrências registradas"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r5011_regocorrs_form.r5011_evttotalcontrib.value %}
         <a id="r5011_regocorrs__r5011_evttotalcontrib__div_acessar" href="{% url 'r5011_evttotalcontrib_salvar' pk=r5011_regocorrs_form.r5011_evttotalcontrib.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r5011_regocorrs__tpocorr -->
 <div class="col-md-6" id="r5011_regocorrs__tpocorr__div">
   <div class="form-group">
-    <label id="r5011_regocorrs__tpocorr__label">Tipo da ocorrência*</label>
+    <label id="r5011_regocorrs__tpocorr__label">Tipo da ocorrência*<a data-toggle="tooltip" title="Tipo da ocorrência: 1 – Erro 2 - Aviso"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r5011_regocorrs_form.tpocorr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r5011_regocorrs_form.tpocorr.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r5011_regocorrs__localerroaviso -->
 <div class="col-md-6" id="r5011_regocorrs__localerroaviso__div">
   <div class="form-group">
-    <label id="r5011_regocorrs__localerroaviso__label">Campo que originou o erro ou aviso*</label>
+    <label id="r5011_regocorrs__localerroaviso__label">Campo que originou o erro ou aviso*<a data-toggle="tooltip" title="Campo que originou o erro ou aviso"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r5011_regocorrs_form.localerroaviso.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5011_regocorrs_form.localerroaviso.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r5011_regocorrs__codresp -->
 <div class="col-md-6" id="r5011_regocorrs__codresp__div">
   <div class="form-group">
-    <label id="r5011_regocorrs__codresp__label">Código do status da resposta do processamento da consulta*</label>
+    <label id="r5011_regocorrs__codresp__label">Código do status da resposta do processamento da consulta*<a data-toggle="tooltip" title="Código do status da resposta do processamento da consulta"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r5011_regocorrs_form.codresp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5011_regocorrs_form.codresp.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__r5011_regocorrs__dscresp -->
 <div class="col-md-6" id="r5011_regocorrs__dscresp__div">
   <div class="form-group">
-    <label id="r5011_regocorrs__dscresp__label">Descrição literal da resposta do processamento da consulta*</label>
+    <label id="r5011_regocorrs__dscresp__label">Descrição literal da resposta do processamento da consulta*<a data-toggle="tooltip" title="Descrição literal da resposta do processamento da consulta"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r5011_regocorrs_form.dscresp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5011_regocorrs_form.dscresp.errors }}

@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.r4020.forms import *
 from emensageriapro.r4020.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.r4020.models import r4020despProcJud
 
 
 @login_required
@@ -111,7 +112,7 @@ def listar(request, output=None):
             r4020_ideadv_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        r4020_despprocjud_lista = r4020despProcJud.objects.all()
         #r4020_ideadv_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -126,7 +127,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            'r4020_despprocjud_lista': r4020_despprocjud_lista,
         }
 
         if output == 'pdf':

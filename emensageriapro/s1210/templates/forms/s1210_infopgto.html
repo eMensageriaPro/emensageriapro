@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1210_infopgto__s1210_evtpgtos__div">
   <div class="form-group">
-    <label id="s1210_infopgto__s1210_evtpgtos__label">Informações dos pagamentos efetuados*</label>
+    <label id="s1210_infopgto__s1210_evtpgtos__label">Informações dos pagamentos efetuados*<a data-toggle="tooltip" title="Informações dos pagamentos efetuados."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1210_infopgto_form.s1210_evtpgtos.value %}
         <a id="s1210_infopgto__s1210_evtpgtos__div_acessar" href="{% url 's1210_evtpgtos_salvar' pk=s1210_infopgto_form.s1210_evtpgtos.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1210_infopgto__dtpgto -->
 <div class="col-md-3" id="s1210_infopgto__dtpgto__div">
   <div class="form-group">
-    <label id="s1210_infopgto__dtpgto__label">Data de pagamento*</label>
+    <label id="s1210_infopgto__dtpgto__label">Data de pagamento*<a data-toggle="tooltip" title="Informar a data de pagamento. Validação: A data informada deve estar compreendida no período de apuração ({perApur}), exceto se {procEmi} = [2, 4]."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1210_infopgto_form.dtpgto.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1210_infopgto_form.dtpgto.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1210_infopgto__tppgto -->
 <div class="col-md-3" id="s1210_infopgto__tppgto__div">
   <div class="form-group">
-    <label id="s1210_infopgto__tppgto__label">Tipo de Pagamento*</label>
+    <label id="s1210_infopgto__tppgto__label">Tipo de Pagamento*<a data-toggle="tooltip" title="Informar o tipo de pagamento, de acordo com as opções a seguir: 1 - Pagamento de remuneração, conforme apurado em {dmDev} do S-1200; 2 - Pagamento de verbas rescisórias conforme apurado em {dmDev} do S- 2299; 3 - Pagamento de verbas rescisórias conforme apurado em {dmDev} do S- 2399; 5 - Pagamento de remuneração conforme apurado em {dmDev} do S-1202; 6 - Pagamento de Benefícios Previdenciários, conforme apurado em {dmDev} do S-1207; 7 - Recibo de férias; 9 - Pagamento relativo a competências anteriores ao início de obrigatoriedade dos eventos periódicos para o contribuinte. Valores Válidos: 1, 2, 3, 5, 6, 7, 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1210_infopgto_form.tppgto.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1210_infopgto_form.tppgto.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s1210_infopgto__indresbr -->
 <div class="col-md-3" id="s1210_infopgto__indresbr__div">
   <div class="form-group">
-    <label id="s1210_infopgto__indresbr__label">Indicador de residência*</label>
+    <label id="s1210_infopgto__indresbr__label">Indicador de residência*<a data-toggle="tooltip" title="Indicar se o beneficiário do pagamento é residente fiscal no Brasil: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1210_infopgto_form.indresbr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1210_infopgto_form.indresbr.errors }}

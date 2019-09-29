@@ -48,7 +48,7 @@ CHOICES_S5012_TPCR = [
     ('0610- 01', u'0610- 01 - IRRF sobre Rendimentos relativos a prestação de serviços de transporte rodoviário internacional de carga, pagos a transportador autônomo PF residente no Paraguai'),
     ('3533', u'3533 - Proventos de Aposentadoria, Reserva, Reforma ou Pensão Pagos por Previdência Pública'),
     ('3562-01', u'3562-01 - IRRF sobre Participação dos trabalhadores em Lucros ou Resultados (PLR).'),
-    
+
 ]
 
 

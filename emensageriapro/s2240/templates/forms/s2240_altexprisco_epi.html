@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2240_altexprisco_epi__s2240_altexprisco_fatrisco__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_epi__s2240_altexprisco_fatrisco__label">Equipamentos de Proteção Individual - EPI*</label>
+    <label id="s2240_altexprisco_epi__s2240_altexprisco_fatrisco__label">Equipamentos de Proteção Individual - EPI*<a data-toggle="tooltip" title="Equipamentos de Proteção Individual - EPI"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2240_altexprisco_epi_form.s2240_altexprisco_fatrisco.value %}
         <a id="s2240_altexprisco_epi__s2240_altexprisco_fatrisco__div_acessar" href="{% url 's2240_altexprisco_fatrisco_salvar' pk=s2240_altexprisco_epi_form.s2240_altexprisco_fatrisco.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2240_altexprisco_epi__caepi -->
 <div class="col-md-6" id="s2240_altexprisco_epi__caepi__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_epi__caepi__label">Certificado de Aprovação do EPI</label>
+    <label id="s2240_altexprisco_epi__caepi__label">Certificado de Aprovação do EPI<a data-toggle="tooltip" title="Certificado de Aprovação do EPI.Validação: Preenchimento obrigatório se {utilizEPI} = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2240_altexprisco_epi_form.caepi.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_altexprisco_epi_form.caepi.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2240_altexprisco_epi__eficepi -->
 <div class="col-md-6" id="s2240_altexprisco_epi__eficepi__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_epi__eficepi__label">EPI é eficaz na neutralização*</label>
+    <label id="s2240_altexprisco_epi__eficepi__label">EPI é eficaz na neutralização*<a data-toggle="tooltip" title="O EPI é eficaz na neutralização dos riscos ao trabalhador? S - Sim;N - Não.Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_altexprisco_epi_form.eficepi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_altexprisco_epi_form.eficepi.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s2240_altexprisco_epi__medprotecao -->
 <div class="col-md-6" id="s2240_altexprisco_epi__medprotecao__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_epi__medprotecao__label">Medidas de proteção coletiva*</label>
+    <label id="s2240_altexprisco_epi__medprotecao__label">Medidas de proteção coletiva*<a data-toggle="tooltip" title="Foi tentada a implementação de medidas de proteção coletiva, de caráter administrativo ou de organização, optando-se pelo EPI por inviabilidade técnica, insuficiência ou interinidade, ou ainda em caráter complementar ou emergencial?S - Sim; N - Não.Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_altexprisco_epi_form.medprotecao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_altexprisco_epi_form.medprotecao.errors }}
@@ -104,7 +104,7 @@
 <!-- inicio__s2240_altexprisco_epi__condfuncto -->
 <div class="col-md-6" id="s2240_altexprisco_epi__condfuncto__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_epi__condfuncto__label">Condição de funcionamento e uso ininterrupto*</label>
+    <label id="s2240_altexprisco_epi__condfuncto__label">Condição de funcionamento e uso ininterrupto*<a data-toggle="tooltip" title="Foram observadas as condições de funcionamento e do uso ininterrupto doEPI ao logo do tempo, conforme especificação técnica do fabricante, ajustadaàs condições do tempo? S - Sim;N - Não.Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_altexprisco_epi_form.condfuncto.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_altexprisco_epi_form.condfuncto.errors }}
@@ -128,7 +128,7 @@
 <!-- inicio__s2240_altexprisco_epi__przvalid -->
 <div class="col-md-6" id="s2240_altexprisco_epi__przvalid__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_epi__przvalid__label">Observado Prazo de validade*</label>
+    <label id="s2240_altexprisco_epi__przvalid__label">Observado Prazo de validade*<a data-toggle="tooltip" title="Foi observado o prazo de validade, conforme Certificado de Aprovação - CAdo MTE? S - Sim; N - Não.Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_altexprisco_epi_form.przvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_altexprisco_epi_form.przvalid.errors }}
@@ -152,7 +152,7 @@
 <!-- inicio__s2240_altexprisco_epi__periodictroca -->
 <div class="col-md-6" id="s2240_altexprisco_epi__periodictroca__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_epi__periodictroca__label">Observado periodicidade de troca*</label>
+    <label id="s2240_altexprisco_epi__periodictroca__label">Observado periodicidade de troca*<a data-toggle="tooltip" title="Foi observada a periodicidade de troca definida pelos programas ambientais, comprovada mediante recibo assinado pelo usuário em época própria?S - Sim;N - Não.Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_altexprisco_epi_form.periodictroca.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_altexprisco_epi_form.periodictroca.errors }}
@@ -176,7 +176,7 @@
 <!-- inicio__s2240_altexprisco_epi__higienizacao -->
 <div class="col-md-6" id="s2240_altexprisco_epi__higienizacao__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_epi__higienizacao__label">Observada higienização*</label>
+    <label id="s2240_altexprisco_epi__higienizacao__label">Observada higienização*<a data-toggle="tooltip" title="Foi observada a higienização? S - Sim;N - Não.Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_altexprisco_epi_form.higienizacao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_altexprisco_epi_form.higienizacao.errors }}

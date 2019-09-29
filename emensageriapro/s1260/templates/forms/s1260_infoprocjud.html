@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1260_infoprocjud__s1260_tpcomerc__div">
   <div class="form-group">
-    <label id="s1260_infoprocjud__s1260_tpcomerc__label">Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.*</label>
+    <label id="s1260_infoprocjud__s1260_tpcomerc__label">Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.*<a data-toggle="tooltip" title="Informações de Processos Judiciais com decisão/sentença favorável ao contribuinte e relativos à contribuição incidente sobre a comercialização."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1260_infoprocjud_form.s1260_tpcomerc.value %}
         <a id="s1260_infoprocjud__s1260_tpcomerc__div_acessar" href="{% url 's1260_tpcomerc_salvar' pk=s1260_infoprocjud_form.s1260_tpcomerc.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1260_infoprocjud__tpproc -->
 <div class="col-md-6" id="s1260_infoprocjud__tpproc__div">
   <div class="form-group">
-    <label id="s1260_infoprocjud__tpproc__label">Processo RAT*</label>
+    <label id="s1260_infoprocjud__tpproc__label">Processo RAT*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1260_infoprocjud_form.tpproc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1260_infoprocjud_form.tpproc.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s1260_infoprocjud__nrproc -->
 <div class="col-md-6" id="s1260_infoprocjud__nrproc__div">
   <div class="form-group">
-    <label id="s1260_infoprocjud__nrproc__label">Número do Processo*</label>
+    <label id="s1260_infoprocjud__nrproc__label">Número do Processo*<a data-toggle="tooltip" title="Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070)."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1260_infoprocjud_form.nrproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1260_infoprocjud_form.nrproc.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s1260_infoprocjud__codsusp -->
 <div class="col-md-6" id="s1260_infoprocjud__codsusp__div">
   <div class="form-group">
-    <label id="s1260_infoprocjud__codsusp__label">Código do Indicativo da Suspensão*</label>
+    <label id="s1260_infoprocjud__codsusp__label">Código do Indicativo da Suspensão*<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1260_infoprocjud_form.codsusp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1260_infoprocjud_form.codsusp.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__s1260_infoprocjud__vrcpsusp -->
 <div class="col-md-6" id="s1260_infoprocjud__vrcpsusp__div">
   <div class="form-group">
-    <label id="s1260_infoprocjud__vrcpsusp__label">Valor da CP com exigibilidade suspensa</label>
+    <label id="s1260_infoprocjud__vrcpsusp__label">Valor da CP com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária com exigibilidade suspensa. Validação: Preenchimento obrigatório se {vrRatSusp} e {vrSenarSusp} não tiverem sido preenchidos. Deve ser um valor maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1260_infoprocjud_form.vrcpsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1260_infoprocjud_form.vrcpsusp.errors }}
@@ -113,7 +113,7 @@
 <!-- inicio__s1260_infoprocjud__vrratsusp -->
 <div class="col-md-6" id="s1260_infoprocjud__vrratsusp__div">
   <div class="form-group">
-    <label id="s1260_infoprocjud__vrratsusp__label">Valor da CP para GILRAT com exigibilidade suspensa</label>
+    <label id="s1260_infoprocjud__vrratsusp__label">Valor da CP para GILRAT com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da contribuição para Gilrat com exigibilidade suspensa. Validação: Preenchimento obrigatório se {vrCPSusp} e {vrSenarSusp} não tiverem sido preenchidos. Deve ser um valor maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1260_infoprocjud_form.vrratsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1260_infoprocjud_form.vrratsusp.errors }}
@@ -131,7 +131,7 @@
 <!-- inicio__s1260_infoprocjud__vrsenarsusp -->
 <div class="col-md-6" id="s1260_infoprocjud__vrsenarsusp__div">
   <div class="form-group">
-    <label id="s1260_infoprocjud__vrsenarsusp__label">Valor da contribição para SENAR com exigibilidade suspensa</label>
+    <label id="s1260_infoprocjud__vrsenarsusp__label">Valor da contribição para SENAR com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da contribuição para o Senar com exigibilidade suspensa. Validação: Preenchimento obrigatório se {vrCPSusp} e {vrRatSusp} não tiverem sido preenchidos. Deve ser um valor maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1260_infoprocjud_form.vrsenarsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1260_infoprocjud_form.vrsenarsusp.errors }}

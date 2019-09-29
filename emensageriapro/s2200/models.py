@@ -561,7 +561,7 @@ class s2200brasil(SoftDeletionModel):
 
     def evento(self):
         return self.s2200_evtadmissao.evento()
-    tplograd = models.TextField(null=True, )
+    tplograd = models.TextField(blank=True, null=True, )
     dsclograd = models.CharField(max_length=100, null=True, )
     nrlograd = models.CharField(max_length=10, null=True, )
     complemento = models.CharField(max_length=30, blank=True, null=True, )
@@ -571,7 +571,7 @@ class s2200brasil(SoftDeletionModel):
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
 
     def __unicode__(self):
-        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
 
     class Meta:
 
@@ -592,7 +592,6 @@ class s2200brasil(SoftDeletionModel):
 
         ordering = [
             's2200_evtadmissao',
-            'tplograd',
             'dsclograd',
             'nrlograd',
             'cep',
@@ -1382,7 +1381,7 @@ class s2200localTrabDom(SoftDeletionModel):
 
     def evento(self):
         return self.s2200_evtadmissao.evento()
-    tplograd = models.TextField(null=True, )
+    tplograd = models.TextField(blank=True, null=True, )
     dsclograd = models.CharField(max_length=100, null=True, )
     nrlograd = models.CharField(max_length=10, null=True, )
     complemento = models.CharField(max_length=30, blank=True, null=True, )
@@ -1392,7 +1391,7 @@ class s2200localTrabDom(SoftDeletionModel):
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
 
     def __unicode__(self):
-        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
 
     class Meta:
 
@@ -1413,7 +1412,6 @@ class s2200localTrabDom(SoftDeletionModel):
 
         ordering = [
             's2200_evtadmissao',
-            'tplograd',
             'dsclograd',
             'nrlograd',
             'cep',
@@ -1691,12 +1689,12 @@ class s2200trabTemporario(SoftDeletionModel):
         return self.s2200_infoceletista.evento()
     hipleg = models.IntegerField(choices=CHOICES_S2200_HIPLEG, null=True, )
     justcontr = models.CharField(max_length=999, null=True, )
-    tpinclcontr = models.IntegerField(choices=CHOICES_S2200_TPINCLCONTR, null=True, )
+    tpinclcontr = models.IntegerField(choices=CHOICES_S2200_TPINCLCONTR, blank=True, null=True, )
     tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
 
     def __unicode__(self):
-        return unicode(self.s2200_infoceletista) + ' - ' + unicode(self.hipleg) + ' - ' + unicode(self.justcontr) + ' - ' + unicode(self.tpinclcontr) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
+        return unicode(self.s2200_infoceletista) + ' - ' + unicode(self.hipleg) + ' - ' + unicode(self.justcontr) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
 
     class Meta:
 
@@ -1719,7 +1717,6 @@ class s2200trabTemporario(SoftDeletionModel):
             's2200_infoceletista',
             'hipleg',
             'justcontr',
-            'tpinclcontr',
             'tpinsc',
             'nrinsc',]
 

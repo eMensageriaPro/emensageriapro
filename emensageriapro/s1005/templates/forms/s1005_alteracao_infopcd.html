@@ -5,7 +5,7 @@
 <!-- inicio__s1005_alteracao_infopcd__s1005_alteracao -->
 <div class="col-md-12" id="s1005_alteracao_infopcd__s1005_alteracao__div">
   <div class="form-group">
-    <label id="s1005_alteracao_infopcd__s1005_alteracao__label">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.*</label>
+    <label id="s1005_alteracao_infopcd__s1005_alteracao__label">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.*<a data-toggle="tooltip" title="Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento "Matriz". Preenchimento obrigatório somente no caso de dispensa, ainda que parcial, de contratação de PCD em virtude de processo judicial. Preenchimento facultativo nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1005_alteracao_infopcd_form.s1005_alteracao.value %}
         <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao_infopcd_form.s1005_alteracao.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s1005_alteracao_infopcd__contpcd -->
 <div class="col-md-4" id="s1005_alteracao_infopcd__contpcd__div">
   <div class="form-group">
-    <label id="s1005_alteracao_infopcd__contpcd__label">Situação PCD*</label>
+    <label id="s1005_alteracao_infopcd__contpcd__label">Situação PCD*<a data-toggle="tooltip" title="Indicativo de contratação de PCD: 0 - Dispensado de acordo com a lei; 1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial; 2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude de Termo de Compromisso firmado com o Ministério do Trabalho; 9 - Obrigado. Valores Válidos: 0, 1, 2, 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1005_alteracao_infopcd_form.contpcd.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1005_alteracao_infopcd_form.contpcd.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1005_alteracao_infopcd__nrprocjud -->
 <div class="col-md-4" id="s1005_alteracao_infopcd__nrprocjud__div">
   <div class="form-group">
-    <label id="s1005_alteracao_infopcd__nrprocjud__label">Número do Processo Judicial</label>
+    <label id="s1005_alteracao_infopcd__nrprocjud__label">Número do Processo Judicial<a data-toggle="tooltip" title="Preencher com o número do processo judicial. Validação: Informação obrigatória se {contPCD} = [1]. Deve ser um número de processo judicial válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1005_alteracao_infopcd_form.nrprocjud.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1005_alteracao_infopcd_form.nrprocjud.errors }}

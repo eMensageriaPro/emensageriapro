@@ -66,7 +66,6 @@ from emensageriapro.s2240.views import s2240_fimexprisco_respreg_salvar as s2240
 from emensageriapro.s2240.views import s2240_fimexprisco_respreg_api as s2240_fimexprisco_respreg_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

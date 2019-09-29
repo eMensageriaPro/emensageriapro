@@ -118,7 +118,6 @@ from emensageriapro.s2299.views import s2299_infotrabinterm_consigfgts_salvar as
 from emensageriapro.s2299.views import s2299_infotrabinterm_consigfgts_api as s2299_infotrabinterm_consigfgts_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

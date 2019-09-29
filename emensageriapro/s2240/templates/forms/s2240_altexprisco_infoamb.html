@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2240_altexprisco_infoamb__s2240_altexprisco__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_infoamb__s2240_altexprisco__label">Informações relativas ao ambiente de trabalho*</label>
+    <label id="s2240_altexprisco_infoamb__s2240_altexprisco__label">Informações relativas ao ambiente de trabalho*<a data-toggle="tooltip" title="Informações relativas ao ambiente de trabalho"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2240_altexprisco_infoamb_form.s2240_altexprisco.value %}
         <a id="s2240_altexprisco_infoamb__s2240_altexprisco__div_acessar" href="{% url 's2240_altexprisco_salvar' pk=s2240_altexprisco_infoamb_form.s2240_altexprisco.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2240_altexprisco_infoamb__codamb -->
 <div class="col-md-3" id="s2240_altexprisco_infoamb__codamb__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_infoamb__codamb__label">Código do Ambiente*</label>
+    <label id="s2240_altexprisco_infoamb__codamb__label">Código do Ambiente*<a data-toggle="tooltip" title="Informar o código do ambiente de trabalho constante da tabela S-1060 no qual o trabalhador está desempenhando as atividadesValidação: Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2240_altexprisco_infoamb_form.codamb.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_altexprisco_infoamb_form.codamb.errors }}
@@ -61,7 +61,7 @@
 <!-- inicio__s2240_altexprisco_infoamb__dscativdes -->
 <div class="col-md-3" id="s2240_altexprisco_infoamb__dscativdes__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_infoamb__dscativdes__label">Descrição das atividades desempenhadas*</label>
+    <label id="s2240_altexprisco_infoamb__dscativdes__label">Descrição das atividades desempenhadas*<a data-toggle="tooltip" title="Descrição das atividades, físicas ou mentais, realizadas pelo trabalhador, por força do poder de comando a que se submete. As atividades deverão ser escritas com exatidão, e de forma sucinta, com a utilização de verbos no infinitivo impessoal. Exemplos: distribuir panfletos, operar máquina de envaze, etc."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2240_altexprisco_infoamb_form.dscativdes.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_altexprisco_infoamb_form.dscativdes.errors }}

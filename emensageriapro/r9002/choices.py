@@ -41,7 +41,7 @@ CHOICES_R9002_PERAPURDEC = [
     (1, u'1 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 1 a 10'),
     (2, u'2 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 11 a 20'),
     (3, u'3 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 21 a 31.'),
-    
+
 ]
 
 
@@ -51,7 +51,17 @@ CHOICES_R9002_PERAPURQUI = [
 
     (1, u'1 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 1 a 15'),
     (2, u'2 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 16 a 31.'),
-    
+
+]
+
+
+
+
+CHOICES_R9002_TPINSC = [
+
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+
 ]
 
 
@@ -61,7 +71,7 @@ CHOICES_R9002_TPOCORR = [
 
     (1, u'1 - Erro'),
     (2, u'2 - Aviso.'),
-    
+
 ]
 
 

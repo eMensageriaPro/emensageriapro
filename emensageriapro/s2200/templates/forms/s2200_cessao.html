@@ -5,7 +5,7 @@
 <!-- inicio__s2200_cessao__s2200_evtadmissao -->
 <div class="col-md-12" id="s2200_cessao__s2200_evtadmissao__div">
   <div class="form-group">
-    <label id="s2200_cessao__s2200_evtadmissao__label">Informações de cessão/exercício em outro órgão do trabalhador*</label>
+    <label id="s2200_cessao__s2200_evtadmissao__label">Informações de cessão/exercício em outro órgão do trabalhador*<a data-toggle="tooltip" title="Informações de cessão/exercício em outro órgão do trabalhador. Preenchimento exclusivo em caso de trabalhador que permaneça cedido/em exercício em outro órgão na data de início da obrigatoriedade dos eventos não periódicos para entes públicos no eSocial ou na data de transferência."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2200_cessao_form.s2200_evtadmissao.value %}
         <a href="{% url 's2200_evtadmissao_salvar' pk=s2200_cessao_form.s2200_evtadmissao.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2200_cessao__dtinicessao -->
 <div class="col-md-6" id="s2200_cessao__dtinicessao__div">
   <div class="form-group">
-    <label id="s2200_cessao__dtinicessao__label">Data de início da cessão/exercício em outro órgão*</label>
+    <label id="s2200_cessao__dtinicessao__label">Data de início da cessão/exercício em outro órgão*<a data-toggle="tooltip" title="Data de início da cessão/exercício em outro órgão. Validação: Devem ser observadas as seguintes regras: a) Deve ser uma data válida, igual ou posterior à data de admissão/exercício do trabalhador; b) Se {cadIni} = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para entes públicos; c) Se {cadIni} = [N], deve ser anterior à data da transferência do trabalhador ({sucessaoVinc/dtTransf}). Não informar se {tpAdmissao} = [1] ou {tpProv} = [1, 2, 3, 4, 6, 7, 9, 99]."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_cessao_form.dtinicessao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_cessao_form.dtinicessao.errors }}

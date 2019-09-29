@@ -43,7 +43,7 @@ CHOICES_ESOCIALINSCRICOESTIPOS = [
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (5, u'5 - CGC'),
-    
+
 ]
 
 
@@ -59,7 +59,7 @@ CHOICES_S5003_MTVDESLIGTSV = [
     ('06', u'06'),
     ('07', u'07'),
     ('99', u'99'),
-    
+
 ]
 
 
@@ -87,7 +87,7 @@ CHOICES_S5003_TPDPS = [
     (70, u'70 - Depósito do FGTS Rescisório - Dissídio Aprendiz'),
     (71, u'71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz'),
     (72, u'72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz.'),
-    
+
 ]
 
 
@@ -105,7 +105,7 @@ CHOICES_S5003_TPDPSE = [
     (70, u'70 - Depósito do FGTS Rescisório - Dissídio Aprendiz'),
     (71, u'71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz'),
     (72, u'72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz.'),
-    
+
 ]
 
 
@@ -124,7 +124,7 @@ CHOICES_S5003_TPVALORE = [
     (31, u'31 - Base de Cálculo do FGTS Rescisório - Dissídio 13° Salário Aprendiz'),
     (32, u'32 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz'),
     (91, u'91 - Incidência suspensa em decorrência de decisão judicial.'),
-    
+
 ]
 
 

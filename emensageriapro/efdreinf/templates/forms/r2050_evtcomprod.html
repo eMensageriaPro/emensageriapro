@@ -10,7 +10,7 @@
 <!-- inicio__r2050_evtcomprod__identidade -->
 <div class="col-md-6" id="r2050_evtcomprod__identidade__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__identidade__label">Identificação única do evento</label>
+    <label id="r2050_evtcomprod__identidade__label">Identificação única do evento<a data-toggle="tooltip" title="Identificação única do evento. Regra de validação: REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2050_evtcomprod_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2050_evtcomprod_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__r2050_evtcomprod__indretif -->
 <div class="col-md-6" id="r2050_evtcomprod__indretif__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__indretif__label">Informe [1] para arquivo original ou [2] para arquivo de retificação*</label>
+    <label id="r2050_evtcomprod__indretif__label">Informe [1] para arquivo original ou [2] para arquivo de retificação*<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2050_evtcomprod_form.indretif.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2050_evtcomprod_form.indretif.errors }}
@@ -54,7 +54,7 @@
 <!-- inicio__r2050_evtcomprod__nrrecibo -->
 <div class="col-md-6" id="r2050_evtcomprod__nrrecibo__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__nrrecibo__label">Preencher com o número do recibo do arquivo a ser retificado</label>
+    <label id="r2050_evtcomprod__nrrecibo__label">Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo objeto da retificação."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2050_evtcomprod_form.nrrecibo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2050_evtcomprod_form.nrrecibo.errors }}
@@ -69,7 +69,7 @@
 <!-- inicio__r2050_evtcomprod__perapur -->
 <div class="col-md-6" id="r2050_evtcomprod__perapur__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*</label>
+    <label id="r2050_evtcomprod__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*<a data-toggle="tooltip" title="Informar o ano/mês de referência das informações no formato AAAA-MM. Validação: Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2050_evtcomprod_form.perapur.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2050_evtcomprod_form.perapur.errors }}
@@ -84,7 +84,7 @@
 <!-- inicio__r2050_evtcomprod__tpamb -->
 <div class="col-md-6" id="r2050_evtcomprod__tpamb__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__tpamb__label">Identificação do ambiente*</label>
+    <label id="r2050_evtcomprod__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2050_evtcomprod_form.tpamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2050_evtcomprod_form.tpamb.errors }}
@@ -108,7 +108,7 @@
 <!-- inicio__r2050_evtcomprod__procemi -->
 <div class="col-md-6" id="r2050_evtcomprod__procemi__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__procemi__label">Processo de emissão do evento*</label>
+    <label id="r2050_evtcomprod__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento: 1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2050_evtcomprod_form.procemi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2050_evtcomprod_form.procemi.errors }}
@@ -132,7 +132,7 @@
 <!-- inicio__r2050_evtcomprod__verproc -->
 <div class="col-md-6" id="r2050_evtcomprod__verproc__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__verproc__label">Versão do processo de emissão do evento*</label>
+    <label id="r2050_evtcomprod__verproc__label">Versão do processo de emissão do evento*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2050_evtcomprod_form.verproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2050_evtcomprod_form.verproc.errors }}
@@ -152,14 +152,23 @@
 <!-- inicio__r2050_evtcomprod__tpinsc -->
 <div class="col-md-6" id="r2050_evtcomprod__tpinsc__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
-      {% if r2050_evtcomprod_form.tpinsc.errors %}
-        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-          {{ r2050_evtcomprod_form.tpinsc.errors }}
-        </div>
-      {% endif %}
+    <label id="r2050_evtcomprod__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição do contribuinte. Validação: Deve ser igual a [1] (CNPJ)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    {% if r2050_evtcomprod_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2050_evtcomprod_form.tpinsc.errors }}
+      </div>
+    {% endif %}
     <div class="input-group" style="width: 100%;">
-      {{ r2050_evtcomprod_form.tpinsc|addcss:'form-control' }}
+      {% if r2050_evtcomprod_form.tpinsc.field.widget.attrs.readonly %}
+        {% if r2050_evtcomprod_form.tpinsc.field.widget.attrs.disabled %}
+          {{ r2050_evtcomprod_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if r2050_evtcomprod_form.tpinsc.value or r2050_evtcomprod_form.tpinsc.value == 0 %}{{ r2050_evtcomprod_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ r2050_evtcomprod_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2050_evtcomprod_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
     </div>
   </div>
 </div>
@@ -167,7 +176,7 @@
 <!-- inicio__r2050_evtcomprod__nrinsc -->
 <div class="col-md-6" id="r2050_evtcomprod__nrinsc__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*</label>
+    <label id="r2050_evtcomprod__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*<a data-toggle="tooltip" title="Informar o CNPJ apenas com a Raiz/Base de oito posições, exceto se natureza jurídica do declarante for de administração pública direta federal ([101-5], [104-0], [107-4] e [116-3]), situação em que o campo deve ser preenchido com o CNPJ completo com 14 posições. Validação: Deve ser um número de CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2050_evtcomprod_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2050_evtcomprod_form.nrinsc.errors }}
@@ -192,14 +201,23 @@
 <!-- inicio__r2050_evtcomprod__tpinscestab -->
 <div class="col-md-6" id="r2050_evtcomprod__tpinscestab__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__tpinscestab__label">Preencher com o código correspondente ao tipo de inscrição*</label>
-      {% if r2050_evtcomprod_form.tpinscestab.errors %}
-        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-          {{ r2050_evtcomprod_form.tpinscestab.errors }}
-        </div>
-      {% endif %}
+    <label id="r2050_evtcomprod__tpinscestab__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ). Valores Válidos: 1."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    {% if r2050_evtcomprod_form.tpinscestab.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2050_evtcomprod_form.tpinscestab.errors }}
+      </div>
+    {% endif %}
     <div class="input-group" style="width: 100%;">
-      {{ r2050_evtcomprod_form.tpinscestab|addcss:'form-control' }}
+      {% if r2050_evtcomprod_form.tpinscestab.field.widget.attrs.readonly %}
+        {% if r2050_evtcomprod_form.tpinscestab.field.widget.attrs.disabled %}
+          {{ r2050_evtcomprod_form.tpinscestab|addcss:'form-control' }}
+          <input id="id_tpinscestab" name="tpinscestab" type="hidden" value="{% if r2050_evtcomprod_form.tpinscestab.value or r2050_evtcomprod_form.tpinscestab.value == 0 %}{{ r2050_evtcomprod_form.tpinscestab.value|valor }}{% endif %}">
+        {% else %}
+          {{ r2050_evtcomprod_form.tpinscestab|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2050_evtcomprod_form.tpinscestab|addcss_select2:'form-control automate-select' }}
+      {% endif %}
     </div>
   </div>
 </div>
@@ -207,7 +225,7 @@
 <!-- inicio__r2050_evtcomprod__nrinscestab -->
 <div class="col-md-6" id="r2050_evtcomprod__nrinscestab__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__nrinscestab__label">Informar o número de inscrição do estabelecimento de acordo com o tipo de inscrição indicado no campo {tpInscEstab}.*</label>
+    <label id="r2050_evtcomprod__nrinscestab__label">Informar o número de inscrição do estabelecimento de acordo com o tipo de inscrição indicado no campo {tpInscEstab}.*<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento do contribuinte declarante, de acordo com o tipo de inscrição indicado no campo {tpInscEstab}. Validação: O CNPJ deve ser válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2050_evtcomprod_form.nrinscestab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2050_evtcomprod_form.nrinscestab.errors }}
@@ -222,7 +240,7 @@
 <!-- inicio__r2050_evtcomprod__vlrrecbrutatotal -->
 <div class="col-md-6" id="r2050_evtcomprod__vlrrecbrutatotal__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__vlrrecbrutatotal__label">Valor da Receita Bruta Total do Estabelecimento no Período*</label>
+    <label id="r2050_evtcomprod__vlrrecbrutatotal__label">Valor da Receita Bruta Total do Estabelecimento no Período*<a data-toggle="tooltip" title="Valor da Receita Bruta Total do Estabelecimento no Período. Validação: Deve ser igual a soma dos valores informados no campo {vlrRecBruta}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2050_evtcomprod_form.vlrrecbrutatotal.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2050_evtcomprod_form.vlrrecbrutatotal.errors }}
@@ -240,7 +258,7 @@
 <!-- inicio__r2050_evtcomprod__vlrcpapur -->
 <div class="col-md-6" id="r2050_evtcomprod__vlrcpapur__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__vlrcpapur__label">Valor da Contribuição Previdenciária*</label>
+    <label id="r2050_evtcomprod__vlrcpapur__label">Valor da Contribuição Previdenciária*<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2050_evtcomprod_form.vlrcpapur.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2050_evtcomprod_form.vlrcpapur.errors }}
@@ -258,7 +276,7 @@
 <!-- inicio__r2050_evtcomprod__vlrratapur -->
 <div class="col-md-6" id="r2050_evtcomprod__vlrratapur__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__vlrratapur__label">Valor da Contribuição Previdenciária GILRAT*</label>
+    <label id="r2050_evtcomprod__vlrratapur__label">Valor da Contribuição Previdenciária GILRAT*<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária GILRAT."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2050_evtcomprod_form.vlrratapur.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2050_evtcomprod_form.vlrratapur.errors }}
@@ -276,7 +294,7 @@
 <!-- inicio__r2050_evtcomprod__vlrsenarapur -->
 <div class="col-md-6" id="r2050_evtcomprod__vlrsenarapur__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__vlrsenarapur__label">Valor da Contribuição para o SENAR*</label>
+    <label id="r2050_evtcomprod__vlrsenarapur__label">Valor da Contribuição para o SENAR*<a data-toggle="tooltip" title="Valor da Contribuição para o SENAR."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2050_evtcomprod_form.vlrsenarapur.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2050_evtcomprod_form.vlrsenarapur.errors }}
@@ -294,7 +312,7 @@
 <!-- inicio__r2050_evtcomprod__vlrcpsusptotal -->
 <div class="col-md-6" id="r2050_evtcomprod__vlrcpsusptotal__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__vlrcpsusptotal__label">Valor da Contribuição Previdenciária com exigibilidade suspensa</label>
+    <label id="r2050_evtcomprod__vlrcpsusptotal__label">Valor da Contribuição Previdenciária com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária com exigibilidade suspensa. Validação: Deve ser igual ao somatório dos valores informados no campo {vlrCPSusp} do grupo {infoProc}, com exceção dos valores informados para {indSusp} = [92]."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2050_evtcomprod_form.vlrcpsusptotal.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2050_evtcomprod_form.vlrcpsusptotal.errors }}
@@ -312,7 +330,7 @@
 <!-- inicio__r2050_evtcomprod__vlrratsusptotal -->
 <div class="col-md-6" id="r2050_evtcomprod__vlrratsusptotal__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__vlrratsusptotal__label">Valor da contribuição Gilrat com exigibilidade suspensa</label>
+    <label id="r2050_evtcomprod__vlrratsusptotal__label">Valor da contribuição Gilrat com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da contribuição Gilrat com exigibilidade suspensa. Validação: Deve ser igual a totalização do campo {vlrRATSusp} do grupo {infoProc}, com exceção dos valores informados para {indSusp} = [92]."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2050_evtcomprod_form.vlrratsusptotal.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2050_evtcomprod_form.vlrratsusptotal.errors }}
@@ -330,7 +348,7 @@
 <!-- inicio__r2050_evtcomprod__vlrsenarsusptotal -->
 <div class="col-md-6" id="r2050_evtcomprod__vlrsenarsusptotal__div">
   <div class="form-group">
-    <label id="r2050_evtcomprod__vlrsenarsusptotal__label">Valor da contribuição para o Senar com exigibilidade suspensa</label>
+    <label id="r2050_evtcomprod__vlrsenarsusptotal__label">Valor da contribuição para o Senar com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da contribuição para o Senar com exigibilidade suspensa. Validação: Deve ser igual a totalização do campo {vlrSenarSusp} do grupo {infoProc}, com exceção dos valores informados para {indSusp} = [92]."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2050_evtcomprod_form.vlrsenarsusptotal.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2050_evtcomprod_form.vlrsenarsusptotal.errors }}

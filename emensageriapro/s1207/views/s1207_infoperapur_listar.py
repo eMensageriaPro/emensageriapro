@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.s1207.forms import *
 from emensageriapro.s1207.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.s1207.models import s1207dmDev
 
 
 @login_required
@@ -102,7 +103,7 @@ def listar(request, output=None):
             s1207_infoperapur_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        s1207_dmdev_lista = s1207dmDev.objects.all()
         #s1207_infoperapur_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -117,7 +118,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            's1207_dmdev_lista': s1207_dmdev_lista,
         }
 
         if output == 'pdf':

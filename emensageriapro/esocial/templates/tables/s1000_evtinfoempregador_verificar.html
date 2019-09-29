@@ -36,7 +36,7 @@
 
         <tr {% if s1000_evtinfoempregador.procemi|validacoes_esocial_efdreinf:"s1000_evtinfoempregador.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1000_evtinfoempregador.procemi or s1000_evtinfoempregador.procemi == 0 %}{{ s1000_evtinfoempregador.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -176,7 +176,7 @@
 
         <tr {% if s1000_inclusao.nmrazao|validacoes_esocial_efdreinf:"s1000_inclusao.nmrazao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmRazao</td>
-            <td width="500px">Informar o nome do contribuinte, no caso de pessoa física, ou a razão social, no caso de pessoa jurídica ou órgão público.</td>
+            <td width="500px">Informar o nome do contribuinte, no caso de pessoa física, ou a razão social, no caso de pessoa jurídica ou órgão público. O preenchimento deste campo é facultativo.</td>
             <td width="200px"><b>{% if s1000_inclusao.nmrazao or s1000_inclusao.nmrazao == 0 %}{{ s1000_inclusao.nmrazao }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -307,6 +307,25 @@
             {% endif %}
         </tr>
 
+        <tr {% if s1000_inclusao.indporte|validacoes_esocial_efdreinf:"s1000_inclusao.indporte" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indPorte</td>
+            <td width="500px">Indicativo de microempresa (ME) ou empresa de pequeno porte (EPP) para permissão de acesso ao módulo simplificado (não preencher caso o usuário não se enquadre como micro ou pequena empresa): S - Sim. Validação: Não preencher se {classTrib} = [21, 22]. Valor Válido: S.</td>
+            <td width="200px"><b>{% if s1000_inclusao.indporte or s1000_inclusao.indporte == 0 %}{{ s1000_inclusao.indporte }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1000.can_see_s1000inclusao or perms.esocial.can_see_s1000inclusao %}
+                <a href="{% url 's1000_inclusao_salvar' pk=s1000_inclusao.id %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
         <tr {% if s1000_inclusao.indoptregeletron|validacoes_esocial_efdreinf:"s1000_inclusao.indoptregeletron" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indOptRegEletron</td>
             <td width="500px">Indica se houve opção pelo registro eletrônico de empregados: 0 - Não optou pelo registro eletrônico de empregados; 1 - Optou pelo registro eletrônico de empregados. Valores Válidos: 0, 1.</td>
@@ -328,7 +347,7 @@
 
         <tr {% if s1000_inclusao.indented|validacoes_esocial_efdreinf:"s1000_inclusao.indented" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indEntEd</td>
-            <td width="500px">Indicativo de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou de entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art. 430, inciso III, CLT): N - Não; S - Sim. Validação: O preenchimento é exclusivo e obrigatório para Pessoa Jurídica. Valores Válidos: S,N.</td>
+            <td width="500px">Indicativo de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou de entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art. 430, inciso III, CLT): N - Não; S - Sim. Validação: O preenchimento é facultativo para Pessoa Jurídica. Não informar se for Pessoa Física. Valores Válidos: S,N.</td>
             <td width="200px"><b>{% if s1000_inclusao.indented or s1000_inclusao.indented == 0 %}{{ s1000_inclusao.indented }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -347,7 +366,7 @@
 
         <tr {% if s1000_inclusao.indett|validacoes_esocial_efdreinf:"s1000_inclusao.indett" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indEtt</td>
-            <td width="500px">Indicativo de Empresa de Trabalho Temporário (Lei n° 6.019/1974), com registro no Ministério do Trabalho: N - Não é Empresa de Trabalho Temporário; S - Empresa de Trabalho Temporário. Valores Válidos: S,N.</td>
+            <td width="500px">Indicativo de Empresa de Trabalho Temporário (Lei n° 6.019/1974), com registro no Ministério do Trabalho: N - Não é Empresa de Trabalho Temporário; S - Empresa de Trabalho Temporário. O preenchimento deste campo é facultativo. Valores Válidos: S,N.</td>
             <td width="200px"><b>{% if s1000_inclusao.indett or s1000_inclusao.indett == 0 %}{{ s1000_inclusao.indett }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -624,7 +643,7 @@
 
         <tr {% if s1000_inclusao.email|validacoes_esocial_efdreinf:"s1000_inclusao.email" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">email</td>
-            <td width="500px">Endereço eletrônico. Validação: O e-mail deve possuir o caractere '@' e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere '.' depois do @ e não pode estar no fim do e-mail.</td>
+            <td width="500px">Endereço eletrônico. Validação: O e-mail deve possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no fim do e-mail.</td>
             <td width="200px"><b>{% if s1000_inclusao.email or s1000_inclusao.email == 0 %}{{ s1000_inclusao.email }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1034,7 +1053,7 @@
 
         <tr {% if s1000_inclusao_softwarehouse.nmrazao|validacoes_esocial_efdreinf:"s1000_inclusao_softwarehouse.nmrazao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmRazao</td>
-            <td width="500px">Informar a razão social, no caso de pessoa jurídica ou órgão público.</td>
+            <td width="500px">Informar a razão social, no caso de pessoa jurídica ou órgão público. O preenchimento deste campo é facultativo.</td>
             <td width="200px"><b>{% if s1000_inclusao_softwarehouse.nmrazao or s1000_inclusao_softwarehouse.nmrazao == 0 %}{{ s1000_inclusao_softwarehouse.nmrazao }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1091,7 +1110,7 @@
 
         <tr {% if s1000_inclusao_softwarehouse.email|validacoes_esocial_efdreinf:"s1000_inclusao_softwarehouse.email" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">email</td>
-            <td width="500px">Endereço eletrônico. Validação: O e-mail deve possuir o caractere '@' e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere '.' depois do @ e não pode estar no fim do e-mail.</td>
+            <td width="500px">Endereço eletrônico. Validação: O e-mail deve possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no fim do e-mail.</td>
             <td width="200px"><b>{% if s1000_inclusao_softwarehouse.email or s1000_inclusao_softwarehouse.email == 0 %}{{ s1000_inclusao_softwarehouse.email }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1219,7 +1238,7 @@
 
         <tr {% if s1000_alteracao.nmrazao|validacoes_esocial_efdreinf:"s1000_alteracao.nmrazao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmRazao</td>
-            <td width="500px">Informar o nome do contribuinte, no caso de pessoa física, ou a razão social, no caso de pessoa jurídica ou órgão público.</td>
+            <td width="500px">Informar o nome do contribuinte, no caso de pessoa física, ou a razão social, no caso de pessoa jurídica ou órgão público. O preenchimento deste campo é facultativo.</td>
             <td width="200px"><b>{% if s1000_alteracao.nmrazao or s1000_alteracao.nmrazao == 0 %}{{ s1000_alteracao.nmrazao }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1350,6 +1369,25 @@
             {% endif %}
         </tr>
 
+        <tr {% if s1000_alteracao.indporte|validacoes_esocial_efdreinf:"s1000_alteracao.indporte" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indPorte</td>
+            <td width="500px">Indicativo de microempresa (ME) ou empresa de pequeno porte (EPP) para permissão de acesso ao módulo simplificado (não preencher caso o usuário não se enquadre como micro ou pequena empresa): S - Sim. Validação: Não preencher se {classTrib} = [21, 22]. Valor Válido: S.</td>
+            <td width="200px"><b>{% if s1000_alteracao.indporte or s1000_alteracao.indporte == 0 %}{{ s1000_alteracao.indporte }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1000.can_see_s1000alteracao or perms.esocial.can_see_s1000alteracao %}
+                <a href="{% url 's1000_alteracao_salvar' pk=s1000_alteracao.id %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
         <tr {% if s1000_alteracao.indoptregeletron|validacoes_esocial_efdreinf:"s1000_alteracao.indoptregeletron" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indOptRegEletron</td>
             <td width="500px">Indica se houve opção pelo registro eletrônico de empregados: 0 - Não optou pelo registro eletrônico de empregados; 1 - Optou pelo registro eletrônico de empregados. Valores Válidos: 0, 1.</td>
@@ -1371,7 +1409,7 @@
 
         <tr {% if s1000_alteracao.indented|validacoes_esocial_efdreinf:"s1000_alteracao.indented" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indEntEd</td>
-            <td width="500px">Indicativo de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou de entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art. 430, inciso III, CLT): N - Não; S - Sim. Validação: O preenchimento é exclusivo e obrigatório para Pessoa Jurídica. Valores Válidos: S,N.</td>
+            <td width="500px">Indicativo de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou de entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art. 430, inciso III, CLT): N - Não; S - Sim. Validação: O preenchimento é facultativo para Pessoa Jurídica. Não informar se for Pessoa Física. Valores Válidos: S,N.</td>
             <td width="200px"><b>{% if s1000_alteracao.indented or s1000_alteracao.indented == 0 %}{{ s1000_alteracao.indented }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1390,7 +1428,7 @@
 
         <tr {% if s1000_alteracao.indett|validacoes_esocial_efdreinf:"s1000_alteracao.indett" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indEtt</td>
-            <td width="500px">Indicativo de Empresa de Trabalho Temporário (Lei n° 6.019/1974), com registro no Ministério do Trabalho: N - Não é Empresa de Trabalho Temporário; S - Empresa de Trabalho Temporário. Valores Válidos: S,N.</td>
+            <td width="500px">Indicativo de Empresa de Trabalho Temporário (Lei n° 6.019/1974), com registro no Ministério do Trabalho: N - Não é Empresa de Trabalho Temporário; S - Empresa de Trabalho Temporário. O preenchimento deste campo é facultativo. Valores Válidos: S,N.</td>
             <td width="200px"><b>{% if s1000_alteracao.indett or s1000_alteracao.indett == 0 %}{{ s1000_alteracao.indett }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1667,7 +1705,7 @@
 
         <tr {% if s1000_alteracao.email|validacoes_esocial_efdreinf:"s1000_alteracao.email" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">email</td>
-            <td width="500px">Endereço eletrônico. Validação: O e-mail deve possuir o caractere '@' e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere '.' depois do @ e não pode estar no fim do e-mail.</td>
+            <td width="500px">Endereço eletrônico. Validação: O e-mail deve possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no fim do e-mail.</td>
             <td width="200px"><b>{% if s1000_alteracao.email or s1000_alteracao.email == 0 %}{{ s1000_alteracao.email }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -2077,7 +2115,7 @@
 
         <tr {% if s1000_alteracao_softwarehouse.nmrazao|validacoes_esocial_efdreinf:"s1000_alteracao_softwarehouse.nmrazao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmRazao</td>
-            <td width="500px">Informar a razão social, no caso de pessoa jurídica ou órgão público.</td>
+            <td width="500px">Informar a razão social, no caso de pessoa jurídica ou órgão público. O preenchimento deste campo é facultativo.</td>
             <td width="200px"><b>{% if s1000_alteracao_softwarehouse.nmrazao or s1000_alteracao_softwarehouse.nmrazao == 0 %}{{ s1000_alteracao_softwarehouse.nmrazao }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -2134,7 +2172,7 @@
 
         <tr {% if s1000_alteracao_softwarehouse.email|validacoes_esocial_efdreinf:"s1000_alteracao_softwarehouse.email" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">email</td>
-            <td width="500px">Endereço eletrônico. Validação: O e-mail deve possuir o caractere '@' e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere '.' depois do @ e não pode estar no fim do e-mail.</td>
+            <td width="500px">Endereço eletrônico. Validação: O e-mail deve possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no fim do e-mail.</td>
             <td width="200px"><b>{% if s1000_alteracao_softwarehouse.email or s1000_alteracao_softwarehouse.email == 0 %}{{ s1000_alteracao_softwarehouse.email }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

@@ -49,7 +49,7 @@ CHOICES_ESOCIALDEPENDENTESTIPOS = [
     ('11', u'11 - A pessoa absolutamente incapaz, da qual seja tutor ou curador'),
     ('12', u'12 - Ex-cônjuge'),
     ('99', u'99 - Agregado/Outros'),
-    
+
 ]
 
 
@@ -62,7 +62,7 @@ CHOICES_ESOCIALINSCRICOESTIPOS = [
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (5, u'5 - CGC'),
-    
+
 ]
 
 
@@ -72,7 +72,7 @@ CHOICES_S2200_CASADOBR = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -89,7 +89,7 @@ CHOICES_S2200_CATEGORIACNH = [
     ('C', u'C'),
     ('D', u'D'),
     ('E', u'E'),
-    
+
 ]
 
 
@@ -109,7 +109,7 @@ CHOICES_S2200_CLASSTRABESTRANG = [
     (7, u'7 - Deficiente físico e com mais de 51 anos'),
     (8, u'8 - Com residência provisória e anistiado, em situação irregular'),
     (9, u'9 - Permanência no Brasil em razão de filhos ou cônjuge brasileiros'),
-    
+
 ]
 
 
@@ -119,7 +119,7 @@ CHOICES_S2200_DEFAUDITIVA = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -129,7 +129,7 @@ CHOICES_S2200_DEFFISICA = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -139,7 +139,7 @@ CHOICES_S2200_DEFINTELECTUAL = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -149,7 +149,7 @@ CHOICES_S2200_DEFMENTAL = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -159,7 +159,7 @@ CHOICES_S2200_DEFVISUAL = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -169,7 +169,7 @@ CHOICES_S2200_DEPFINSPREV = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -179,7 +179,7 @@ CHOICES_S2200_DEPIRRF = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -189,7 +189,7 @@ CHOICES_S2200_DEPSF = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -205,7 +205,7 @@ CHOICES_S2200_DIA = [
     (6, u'6 - Sábado'),
     (7, u'7 - Domingo'),
     (8, u'8 - Dia variável.'),
-    
+
 ]
 
 
@@ -215,7 +215,7 @@ CHOICES_S2200_FILHOSBR = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -225,7 +225,7 @@ CHOICES_S2200_HIPLEG = [
 
     (1, u'1 - Necessidade de substituição transitória de pessoal permanente'),
     (2, u'2 - Demanda complementar de serviços.'),
-    
+
 ]
 
 
@@ -235,7 +235,7 @@ CHOICES_S2200_INCTRAB = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -245,7 +245,7 @@ CHOICES_S2200_INDABONOPERM = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -256,7 +256,7 @@ CHOICES_S2200_INDADMISSAO = [
     (1, u'1 - Normal'),
     (2, u'2 - Decorrente de Ação Fiscal'),
     (3, u'3 - Decorrente de Decisão Judicial.'),
-    
+
 ]
 
 
@@ -266,7 +266,7 @@ CHOICES_S2200_INDPARCREMUN = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -276,7 +276,7 @@ CHOICES_S2200_INDPROVIM = [
 
     (1, u'1 - Normal'),
     (2, u'2 - Decorrente de Decisão Judicial.'),
-    
+
 ]
 
 
@@ -286,7 +286,7 @@ CHOICES_S2200_INDTETORGPS = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -296,7 +296,7 @@ CHOICES_S2200_INFOCOTA = [
 
     ('N', u'N - Não'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -306,7 +306,7 @@ CHOICES_S2200_NATATIVIDADE = [
 
     (1, u'1 - Trabalho Urbano'),
     (2, u'2 - Trabalho Rural.'),
-    
+
 ]
 
 
@@ -316,7 +316,7 @@ CHOICES_S2200_OPCFGTS = [
 
     (1, u'1 - Optante'),
     (2, u'2 - Não Optante.'),
-    
+
 ]
 
 
@@ -326,7 +326,7 @@ CHOICES_S2200_REABREADAP = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -336,7 +336,7 @@ CHOICES_S2200_SEXODEP = [
 
     ('F', u'F - Feminino.'),
     ('M', u'M - Masculino'),
-    
+
 ]
 
 
@@ -348,7 +348,7 @@ CHOICES_S2200_TMPPARC = [
     (1, u'1 - Limitado a 25 horas semanais'),
     (2, u'2 - Limitado a 30 horas semanais'),
     (3, u'3 - Limitado a 26 horas semanais.'),
-    
+
 ]
 
 
@@ -362,7 +362,7 @@ CHOICES_S2200_TPADMISSAO = [
     (4, u'4 - Transferência por motivo de sucessão, incorporação, cisão ou fusão'),
     (5, u'5 - Transferência do empregado doméstico para outro representante da mesma unidade familiar'),
     (6, u'6 - Mudança de CPF.'),
-    
+
 ]
 
 
@@ -372,8 +372,8 @@ CHOICES_S2200_TPINCLCONTR = [
 
     (1, u'1 - Locais sem filiais'),
     (2, u'2 - Estudo de mercado'),
-    (3, u'3 - Contratação superior a 3 meses.'),
-    
+    (3, u'3 - Contratação superior a 3 meses. O preenchimento deste campo é facultativo.'),
+
 ]
 
 
@@ -385,7 +385,7 @@ CHOICES_S2200_TPJORNADA = [
     (2, u'2 - Jornada 12 x 36 (12 horas de trabalho seguidas de 36 horas ininterruptas de descanso)'),
     (3, u'3 - Jornada com horário diário fixo e folga variável'),
     (9, u'9 - Demais tipos de jornada.'),
-    
+
 ]
 
 
@@ -395,7 +395,7 @@ CHOICES_S2200_TPPLANRP = [
 
     (1, u'1 - Plano previdenciário ou único'),
     (2, u'2 - Plano financeiro.'),
-    
+
 ]
 
 
@@ -410,7 +410,7 @@ CHOICES_S2200_TPPROV = [
     (5, u'5 - Reinclusão (militar)'),
     (6, u'6 - Diplomação'),
     (99, u'99 - Outros não relacionados acima.'),
-    
+
 ]
 
 
@@ -422,7 +422,7 @@ CHOICES_S2200_TPREGJOR = [
     (2, u'2 - Atividade Externa especificada no Inciso I do Art. 62 da CLT'),
     (3, u'3 - Funções especificadas no Inciso II do Art. 62 da CLT'),
     (4, u'4 - Teletrabalho, previsto no Inciso III do Art. 62 da CLT.'),
-    
+
 ]
 
 
@@ -432,7 +432,7 @@ CHOICES_S2200_TRABAPOSENT = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -467,7 +467,7 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-    
+
 ]
 
 

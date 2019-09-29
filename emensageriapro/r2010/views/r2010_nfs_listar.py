@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.r2010.forms import *
 from emensageriapro.r2010.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.efdreinf.models import r2010evtServTom
 
 
 @login_required
@@ -117,7 +118,7 @@ def listar(request, output=None):
             r2010_nfs_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        r2010_evtservtom_lista = r2010evtServTom.objects.all()
         #r2010_nfs_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -132,7 +133,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            'r2010_evtservtom_lista': r2010_evtservtom_lista,
         }
 
         if output == 'pdf':

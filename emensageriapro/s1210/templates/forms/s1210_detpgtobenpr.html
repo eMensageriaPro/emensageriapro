@@ -5,7 +5,7 @@
 <!-- inicio__s1210_detpgtobenpr__s1210_infopgto -->
 <div class="col-md-12" id="s1210_detpgtobenpr__s1210_infopgto__div">
   <div class="form-group">
-    <label id="s1210_detpgtobenpr__s1210_infopgto__label">Detalhamento de pagamentos relativos a benefícios previdenciários*</label>
+    <label id="s1210_detpgtobenpr__s1210_infopgto__label">Detalhamento de pagamentos relativos a benefícios previdenciários*<a data-toggle="tooltip" title="Detalhamento de pagamentos relativos a benefícios previdenciários."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1210_detpgtobenpr_form.s1210_infopgto.value %}
         <a href="{% url 's1210_infopgto_salvar' pk=s1210_detpgtobenpr_form.s1210_infopgto.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s1210_detpgtobenpr__perref -->
 <div class="col-md-6" id="s1210_detpgtobenpr__perref__div">
   <div class="form-group">
-    <label id="s1210_detpgtobenpr__perref__label">Período de Referência*</label>
+    <label id="s1210_detpgtobenpr__perref__label">Período de Referência*<a data-toggle="tooltip" title="Informar o período ao qual se refere o pagamento no formato AAAA-MM. Validação: Deve estar no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1210_detpgtobenpr_form.perref.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_detpgtobenpr_form.perref.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s1210_detpgtobenpr__idedmdev -->
 <div class="col-md-6" id="s1210_detpgtobenpr__idedmdev__div">
   <div class="form-group">
-    <label id="s1210_detpgtobenpr__idedmdev__label">Identificador dos demostrativos de pagamento*</label>
+    <label id="s1210_detpgtobenpr__idedmdev__label">Identificador dos demostrativos de pagamento*<a data-toggle="tooltip" title="Identificador atribuído pelo Órgão Público ou Instituto de Previdência para o recibo de pagamento, conforme definido em S-1207. Validação: Deve ser um valor atribuído pela empresa em S-1207."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1210_detpgtobenpr_form.idedmdev.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_detpgtobenpr_form.idedmdev.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__s1210_detpgtobenpr__indpgtott -->
 <div class="col-md-6" id="s1210_detpgtobenpr__indpgtott__div">
   <div class="form-group">
-    <label id="s1210_detpgtobenpr__indpgtott__label">Indicador de pagamento total ou parcial*</label>
+    <label id="s1210_detpgtobenpr__indpgtott__label">Indicador de pagamento total ou parcial*<a data-toggle="tooltip" title="Indicativo de pagamento total ou parcial. Informar [S] se o valor que está sendo pago é exatamente o previsto no evento S-1207 em {dmDev}. Informar [N] se o valor que está sendo pago é inferior ao previsto no evento S-1207 em {dmDev}. Se for informado [N], significa que está sendo informando um pagamento de parte do que é devido ou então, está sendo informado um pagamento parcelado sendo o presente pagamento apenas uma das parcelas. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1210_detpgtobenpr_form.indpgtott.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1210_detpgtobenpr_form.indpgtott.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__s1210_detpgtobenpr__vrliq -->
 <div class="col-md-6" id="s1210_detpgtobenpr__vrliq__div">
   <div class="form-group">
-    <label id="s1210_detpgtobenpr__vrliq__label">Valor liquido*</label>
+    <label id="s1210_detpgtobenpr__vrliq__label">Valor liquido*<a data-toggle="tooltip" title="Valor líquido recebido pelo trabalhador, composto pelos vencimentos e descontos, inclusive os descontos de IRRF e de pensão alimentícia (se houver). Validação: Não pode ser um valor negativo. Se {indPgtoTt} = [S] deve corresponder à soma dos vencimentos ({tpRubr=1}) menos a soma dos descontos ({tpRubr=2}) das rubricas informadas: a) no evento S-1207; e b) no grupo inferior ({retPgtoTot}). Se {indPgtoTt} = [N] deve corresponder à soma dos vencimentos ({tpRubr=1}) menos a soma dos descontos ({tpRubr=2}) das rubricas informadas em {infoPgtoParc} do registro inferior."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1210_detpgtobenpr_form.vrliq.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1210_detpgtobenpr_form.vrliq.errors }}

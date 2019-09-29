@@ -15,7 +15,6 @@ from emensageriapro.r5001.views import r5001_rcprb_api as r5001_rcprb_api_views
 from emensageriapro.r5001.views import r5001_rrecespetdesp_api as r5001_rrecespetdesp_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

@@ -40,7 +40,7 @@ CHOICES_S3000_INDAPURACAO = [
 
     (1, u'1 - Mensal'),
     (2, u'2 - Anual (13° salário).'),
-    
+
 ]
 
 

@@ -49,7 +49,7 @@ CHOICES_ESOCIALDEPENDENTESTIPOS = [
     ('11', u'11 - A pessoa absolutamente incapaz, da qual seja tutor ou curador'),
     ('12', u'12 - Ex-cônjuge'),
     ('99', u'99 - Agregado/Outros'),
-    
+
 ]
 
 
@@ -62,7 +62,7 @@ CHOICES_ESOCIALINSCRICOESTIPOS = [
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (5, u'5 - CGC'),
-    
+
 ]
 
 
@@ -74,7 +74,7 @@ CHOICES_S1200_GRAUEXP_INFOPERANT = [
     (2, u'2 - Ensejador de Aposentadoria Especial - FAE15_12% (15 anos de contribuição e alíquota de 12%)'),
     (3, u'3 - Ensejador de Aposentadoria Especial - FAE20_09% (20 anos de contribuição e alíquota de 9%)'),
     (4, u'4 - Ensejador de Aposentadoria Especial - FAE25_06% (25 anos de contribuição e alíquota de 6%).'),
-    
+
 ]
 
 
@@ -86,7 +86,7 @@ CHOICES_S1200_GRAUEXP_INFOPERAPUR = [
     (2, u'2 - Ensejador de Aposentadoria Especial - FAE15_12% (15 anos de contribuição e alíquota de 12%)'),
     (3, u'3 - Ensejador de Aposentadoria Especial - FAE20_09% (20 anos de contribuição e alíquota de 9%)'),
     (4, u'4 - Ensejador de Aposentadoria Especial - FAE25_06% (25 anos de contribuição e alíquota de 6%).'),
-    
+
 ]
 
 
@@ -97,7 +97,7 @@ CHOICES_S1200_INDMV = [
     (1, u'1 - O declarante aplica a alíquota de desconto do segurado sobre a remuneração por ele informada (o percentual da alíquota será obtido considerando a remuneração total do trabalhador)'),
     (2, u'2 - O declarante aplica a alíquota de desconto do segurado sobre a diferença entre o limite máximo do salário de contribuição e a remuneração de outra(s) empresa(s) para as quais o trabalhador informou que houve o desconto'),
     (3, u'3 - O declarante não realiza desconto do segurado, uma vez que houve desconto sobre o limite máximo de salário de contribuição em outra(s) empresa(s).'),
-    
+
 ]
 
 
@@ -108,7 +108,7 @@ CHOICES_S1200_INDSIMPLES_INFOPERANT = [
     (1, u'1 - Contribuição Substituída Integralmente'),
     (2, u'2 - Contribuição não substituída'),
     (3, u'3 - Contribuição não substituída concomitante com contribuição substituída.'),
-    
+
 ]
 
 
@@ -119,7 +119,7 @@ CHOICES_S1200_INDSIMPLES_INFOPERAPUR = [
     (1, u'1 - Contribuição Substituída Integralmente'),
     (2, u'2 - Contribuição não substituída'),
     (3, u'3 - Contribuição não substituída concomitante com contribuição substituída.'),
-    
+
 ]
 
 
@@ -129,7 +129,7 @@ CHOICES_S1200_NATATIVIDADE_INFOPERANT = [
 
     (1, u'1 - Trabalho Urbano'),
     (2, u'2 - Trabalho Rural.'),
-    
+
 ]
 
 
@@ -139,7 +139,7 @@ CHOICES_S1200_REMUNSUC_INFOPERANT = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -152,8 +152,9 @@ CHOICES_S1200_TPACCONV_INFOPERANT = [
     ('C', u'C - Convenção Coletiva de Trabalho'),
     ('D', u'D - Sentença Normativa - Dissídio'),
     ('E', u'E - Conversão de Licença Saúde em Acidente de Trabalho'),
-    ('F', u'F - Outras verbas de natureza salarial ou não salarial devidas após o desligamento.'),
-    
+    ('F', u'F - Outras verbas de natureza salarial ou não salarial devidas após o desligamento'),
+    ('G', u'G - Antecipação de diferenças de Acordo, Convenção ou Dissídio Coletivo.'),
+
 ]
 
 
@@ -165,7 +166,7 @@ CHOICES_S1200_TPTRIB = [
     (2, u'2 - Contribuições sociais do trabalhador'),
     (3, u'3 - FGTS'),
     (4, u'4 - Contribuição sindical.'),
-    
+
 ]
 
 

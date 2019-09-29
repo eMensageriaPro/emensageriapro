@@ -3846,7 +3846,7 @@ class s2299evtDeslig(SoftDeletionModel):
     vralim = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     nrcertobito = models.CharField(max_length=32, blank=True, null=True, )
     nrproctrab = models.CharField(max_length=20, blank=True, null=True, )
-    indcumprparc = models.IntegerField(choices=CHOICES_S2299_INDCUMPRPARC, null=True, )
+    indcumprparc = models.IntegerField(choices=CHOICES_S2299_INDCUMPRPARC, blank=True, null=True, )
     qtddiasinterm = models.IntegerField(blank=True, null=True, )
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -3916,8 +3916,7 @@ class s2299evtDeslig(SoftDeletionModel):
             'mtvdeslig',
             'dtdeslig',
             'indpagtoapi',
-            'pensalim',
-            'indcumprparc', ]
+            'pensalim', ]
 
 
 

@@ -583,7 +583,7 @@ def validacoes_r2070_evtpgtosdivs(arquivo):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'pgtoResidExt.tpRendimento',
                                                                           pgtoResidExt.tpRendimento.cdata,
-                                                                          1, u'None')
+                                                                          1, u'500, 510, 520, 530, 540, 550, 560, 570, 900')
                 
                                     if 'formaTributacao' in dir(pgtoResidExt):
                                         validacoes_lista = validar_campo( validacoes_lista,

@@ -5,7 +5,7 @@
 <!-- inicio__s2200_rne__s2200_documentos -->
 <div class="col-md-12" id="s2200_rne__s2200_documentos__div">
   <div class="form-group">
-    <label id="s2200_rne__s2200_documentos__label">Informações do Registro Nacional de Estrangeiro*</label>
+    <label id="s2200_rne__s2200_documentos__label">Informações do Registro Nacional de Estrangeiro*<a data-toggle="tooltip" title="Informações do Registro Nacional de Estrangeiro."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2200_rne_form.s2200_documentos.value %}
         <a href="{% url 's2200_documentos_salvar' pk=s2200_rne_form.s2200_documentos.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2200_rne__nrrne -->
 <div class="col-md-3" id="s2200_rne__nrrne__div">
   <div class="form-group">
-    <label id="s2200_rne__nrrne__label">Número do RNE*</label>
+    <label id="s2200_rne__nrrne__label">Número do RNE*<a data-toggle="tooltip" title="Número de inscrição no Registro Nacional de Estrangeiros."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_rne_form.nrrne.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_rne_form.nrrne.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2200_rne__orgaoemissor -->
 <div class="col-md-3" id="s2200_rne__orgaoemissor__div">
   <div class="form-group">
-    <label id="s2200_rne__orgaoemissor__label">Órgão Emissor do RIC*</label>
+    <label id="s2200_rne__orgaoemissor__label">Órgão Emissor do RIC*<a data-toggle="tooltip" title="Órgão e UF de emissão."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_rne_form.orgaoemissor.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_rne_form.orgaoemissor.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__s2200_rne__dtexped -->
 <div class="col-md-3" id="s2200_rne__dtexped__div">
   <div class="form-group">
-    <label id="s2200_rne__dtexped__label">Data de Expedição do RIC</label>
+    <label id="s2200_rne__dtexped__label">Data de Expedição do RIC<a data-toggle="tooltip" title="Data da expedição do documento."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_rne_form.dtexped.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_rne_form.dtexped.errors }}

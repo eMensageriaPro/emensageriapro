@@ -5,7 +5,7 @@
 <!-- inicio__s2250_cancavprevio__s2250_evtavprevio -->
 <div class="col-md-12" id="s2250_cancavprevio__s2250_evtavprevio__div">
   <div class="form-group">
-    <label id="s2250_cancavprevio__s2250_evtavprevio__label">Cancelamento do Aviso Prévio*</label>
+    <label id="s2250_cancavprevio__s2250_evtavprevio__label">Cancelamento do Aviso Prévio*<a data-toggle="tooltip" title="Cancelamento do Aviso Prévio. Regra de validação: REGRA_EXISTE_EVENTO_AVISO_PREVIO"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2250_cancavprevio_form.s2250_evtavprevio.value %}
         <a href="{% url 's2250_evtavprevio_salvar' pk=s2250_cancavprevio_form.s2250_evtavprevio.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2250_cancavprevio__dtcancavprv -->
 <div class="col-md-3" id="s2250_cancavprevio__dtcancavprv__div">
   <div class="form-group">
-    <label id="s2250_cancavprevio__dtcancavprv__label">Data de cancelamento do aviso prévio*</label>
+    <label id="s2250_cancavprevio__dtcancavprv__label">Data de cancelamento do aviso prévio*<a data-toggle="tooltip" title="Preencher com a data do cancelamento do aviso prévio. Validação: Deve ser uma data posterior a data do aviso prévio que está sendo cancelado."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2250_cancavprevio_form.dtcancavprv.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2250_cancavprevio_form.dtcancavprv.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2250_cancavprevio__observacao -->
 <div class="col-md-3" id="s2250_cancavprevio__observacao__div">
   <div class="form-group">
-    <label id="s2250_cancavprevio__observacao__label">Observações</label>
+    <label id="s2250_cancavprevio__observacao__label">Observações<a data-toggle="tooltip" title="Observações."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2250_cancavprevio_form.observacao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2250_cancavprevio_form.observacao.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__s2250_cancavprevio__mtvcancavprevio -->
 <div class="col-md-3" id="s2250_cancavprevio__mtvcancavprevio__div">
   <div class="form-group">
-    <label id="s2250_cancavprevio__mtvcancavprevio__label">Motivo do cancelamento do aviso prévio*</label>
+    <label id="s2250_cancavprevio__mtvcancavprevio__label">Motivo do cancelamento do aviso prévio*<a data-toggle="tooltip" title="Motivo do Cancelamento do Aviso Prévio: 1 - Reconsideração prevista no artigo 489 da CLT; 2 - Determinação Judicial; 3 - Cumprimento de norma legal; 9 - Outros. Valores Válidos: 1, 2, 3, 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2250_cancavprevio_form.mtvcancavprevio.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2250_cancavprevio_form.mtvcancavprevio.errors }}

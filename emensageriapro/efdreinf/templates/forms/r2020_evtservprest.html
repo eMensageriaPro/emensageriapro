@@ -10,7 +10,7 @@
 <!-- inicio__r2020_evtservprest__identidade -->
 <div class="col-md-6" id="r2020_evtservprest__identidade__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__identidade__label">Identificação única do evento</label>
+    <label id="r2020_evtservprest__identidade__label">Identificação única do evento<a data-toggle="tooltip" title="Identificação única do evento. Regra de validação: REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2020_evtservprest_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2020_evtservprest_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__r2020_evtservprest__indretif -->
 <div class="col-md-6" id="r2020_evtservprest__indretif__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__indretif__label">Informe [1] para arquivo original ou [2] para arquivo de retificação*</label>
+    <label id="r2020_evtservprest__indretif__label">Informe [1] para arquivo original ou [2] para arquivo de retificação*<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_evtservprest_form.indretif.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2020_evtservprest_form.indretif.errors }}
@@ -54,7 +54,7 @@
 <!-- inicio__r2020_evtservprest__nrrecibo -->
 <div class="col-md-6" id="r2020_evtservprest__nrrecibo__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__nrrecibo__label">Preencher com o número do recibo do arquivo a ser retificado</label>
+    <label id="r2020_evtservprest__nrrecibo__label">Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo objeto da retificação."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2020_evtservprest_form.nrrecibo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2020_evtservprest_form.nrrecibo.errors }}
@@ -69,7 +69,7 @@
 <!-- inicio__r2020_evtservprest__perapur -->
 <div class="col-md-6" id="r2020_evtservprest__perapur__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*</label>
+    <label id="r2020_evtservprest__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*<a data-toggle="tooltip" title="Informar o ano/mês de referência das informações no formato AAAA-MM. Validação: Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2020_evtservprest_form.perapur.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2020_evtservprest_form.perapur.errors }}
@@ -84,7 +84,7 @@
 <!-- inicio__r2020_evtservprest__tpamb -->
 <div class="col-md-6" id="r2020_evtservprest__tpamb__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__tpamb__label">Identificação do ambiente*</label>
+    <label id="r2020_evtservprest__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_evtservprest_form.tpamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2020_evtservprest_form.tpamb.errors }}
@@ -108,7 +108,7 @@
 <!-- inicio__r2020_evtservprest__procemi -->
 <div class="col-md-6" id="r2020_evtservprest__procemi__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__procemi__label">Processo de emissão do evento*</label>
+    <label id="r2020_evtservprest__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento: 1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_evtservprest_form.procemi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2020_evtservprest_form.procemi.errors }}
@@ -132,7 +132,7 @@
 <!-- inicio__r2020_evtservprest__verproc -->
 <div class="col-md-6" id="r2020_evtservprest__verproc__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__verproc__label">Versão do processo de emissão do evento*</label>
+    <label id="r2020_evtservprest__verproc__label">Versão do processo de emissão do evento*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2020_evtservprest_form.verproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2020_evtservprest_form.verproc.errors }}
@@ -152,14 +152,23 @@
 <!-- inicio__r2020_evtservprest__tpinsc -->
 <div class="col-md-6" id="r2020_evtservprest__tpinsc__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
-      {% if r2020_evtservprest_form.tpinsc.errors %}
-        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-          {{ r2020_evtservprest_form.tpinsc.errors }}
-        </div>
-      {% endif %}
+    <label id="r2020_evtservprest__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição do contribuinte. Validação: Deve ser igual a [1] (CNPJ)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    {% if r2020_evtservprest_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2020_evtservprest_form.tpinsc.errors }}
+      </div>
+    {% endif %}
     <div class="input-group" style="width: 100%;">
-      {{ r2020_evtservprest_form.tpinsc|addcss:'form-control' }}
+      {% if r2020_evtservprest_form.tpinsc.field.widget.attrs.readonly %}
+        {% if r2020_evtservprest_form.tpinsc.field.widget.attrs.disabled %}
+          {{ r2020_evtservprest_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if r2020_evtservprest_form.tpinsc.value or r2020_evtservprest_form.tpinsc.value == 0 %}{{ r2020_evtservprest_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ r2020_evtservprest_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2020_evtservprest_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
     </div>
   </div>
 </div>
@@ -167,7 +176,7 @@
 <!-- inicio__r2020_evtservprest__nrinsc -->
 <div class="col-md-6" id="r2020_evtservprest__nrinsc__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*</label>
+    <label id="r2020_evtservprest__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*<a data-toggle="tooltip" title="Informar o CNPJ apenas com a Raiz/Base de oito posições, exceto se natureza jurídica do declarante for de administração pública direta federal ([101-5], [104-0], [107-4] e [116-3]), situação em que o campo deve ser preenchido com o CNPJ completo com 14 posições. Validação: Deve ser um número de CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2020_evtservprest_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2020_evtservprest_form.nrinsc.errors }}
@@ -192,14 +201,23 @@
 <!-- inicio__r2020_evtservprest__tpinscestabprest -->
 <div class="col-md-6" id="r2020_evtservprest__tpinscestabprest__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__tpinscestabprest__label">Preencher com o código correspondente ao tipo de inscrição*</label>
-      {% if r2020_evtservprest_form.tpinscestabprest.errors %}
-        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-          {{ r2020_evtservprest_form.tpinscestabprest.errors }}
-        </div>
-      {% endif %}
+    <label id="r2020_evtservprest__tpinscestabprest__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    {% if r2020_evtservprest_form.tpinscestabprest.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2020_evtservprest_form.tpinscestabprest.errors }}
+      </div>
+    {% endif %}
     <div class="input-group" style="width: 100%;">
-      {{ r2020_evtservprest_form.tpinscestabprest|addcss:'form-control' }}
+      {% if r2020_evtservprest_form.tpinscestabprest.field.widget.attrs.readonly %}
+        {% if r2020_evtservprest_form.tpinscestabprest.field.widget.attrs.disabled %}
+          {{ r2020_evtservprest_form.tpinscestabprest|addcss:'form-control' }}
+          <input id="id_tpinscestabprest" name="tpinscestabprest" type="hidden" value="{% if r2020_evtservprest_form.tpinscestabprest.value or r2020_evtservprest_form.tpinscestabprest.value == 0 %}{{ r2020_evtservprest_form.tpinscestabprest.value|valor }}{% endif %}">
+        {% else %}
+          {{ r2020_evtservprest_form.tpinscestabprest|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2020_evtservprest_form.tpinscestabprest|addcss_select2:'form-control automate-select' }}
+      {% endif %}
     </div>
   </div>
 </div>
@@ -207,7 +225,7 @@
 <!-- inicio__r2020_evtservprest__nrinscestabprest -->
 <div class="col-md-6" id="r2020_evtservprest__nrinscestabprest__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__nrinscestabprest__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInscEstabPrest}*</label>
+    <label id="r2020_evtservprest__nrinscestabprest__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInscEstabPrest}*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInscEstabPrest}. Validação: A inscrição informada deve ser compatível com o {tpInscEstabPrest}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2020_evtservprest_form.nrinscestabprest.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2020_evtservprest_form.nrinscestabprest.errors }}
@@ -227,14 +245,23 @@
 <!-- inicio__r2020_evtservprest__tpinsctomador -->
 <div class="col-md-6" id="r2020_evtservprest__tpinsctomador__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__tpinsctomador__label">Preencher com o código correspondente ao tipo de inscrição*</label>
-      {% if r2020_evtservprest_form.tpinsctomador.errors %}
-        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-          {{ r2020_evtservprest_form.tpinsctomador.errors }}
-        </div>
-      {% endif %}
+    <label id="r2020_evtservprest__tpinsctomador__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [4] CNO. Valores Válidos: 1,4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    {% if r2020_evtservprest_form.tpinsctomador.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2020_evtservprest_form.tpinsctomador.errors }}
+      </div>
+    {% endif %}
     <div class="input-group" style="width: 100%;">
-      {{ r2020_evtservprest_form.tpinsctomador|addcss:'form-control' }}
+      {% if r2020_evtservprest_form.tpinsctomador.field.widget.attrs.readonly %}
+        {% if r2020_evtservprest_form.tpinsctomador.field.widget.attrs.disabled %}
+          {{ r2020_evtservprest_form.tpinsctomador|addcss:'form-control' }}
+          <input id="id_tpinsctomador" name="tpinsctomador" type="hidden" value="{% if r2020_evtservprest_form.tpinsctomador.value or r2020_evtservprest_form.tpinsctomador.value == 0 %}{{ r2020_evtservprest_form.tpinsctomador.value|valor }}{% endif %}">
+        {% else %}
+          {{ r2020_evtservprest_form.tpinsctomador|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2020_evtservprest_form.tpinsctomador|addcss_select2:'form-control automate-select' }}
+      {% endif %}
     </div>
   </div>
 </div>
@@ -242,7 +269,7 @@
 <!-- inicio__r2020_evtservprest__nrinsctomador -->
 <div class="col-md-6" id="r2020_evtservprest__nrinsctomador__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__nrinsctomador__label">Indicar o número de inscrição do tomador, conforme indicado no campo {tpInscTomador}*</label>
+    <label id="r2020_evtservprest__nrinsctomador__label">Indicar o número de inscrição do tomador, conforme indicado no campo {tpInscTomador}*<a data-toggle="tooltip" title="Indicar o número de inscrição do tomador, conforme indicado no campo {tpInscTomador}. Validação: A inscrição informada deve ser compatível com o {tpInscTomador}. Se {indObra} = [0], o número informado deve ser um CNPJ válido e não pertencer ao contribuinte declarante na base cadastral da RFB. Se {indObra} for igual a 1 (Empreitada Total), o {nrInscTomador} informado deve ser um CNO de propriedade do estabelecimento prestador {ideEstabPrest} na base da RFB. Se {indObra} for igual a 2 (Empreitada Parcial), o {nrInscTomador} informado deve ser um CNO e não pertencer ao contribuinte declarante na base cadastral da RFB."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2020_evtservprest_form.nrinsctomador.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2020_evtservprest_form.nrinsctomador.errors }}
@@ -257,7 +284,7 @@
 <!-- inicio__r2020_evtservprest__indobra -->
 <div class="col-md-6" id="r2020_evtservprest__indobra__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__indobra__label">Indicativo de Prestação de Serviços em Obra de Construção Civil*</label>
+    <label id="r2020_evtservprest__indobra__label">Indicativo de Prestação de Serviços em Obra de Construção Civil*<a data-toggle="tooltip" title="Indicativo de Prestação de Serviços em Obra de Construção Civil: 0 - Não é obra de construção civil ou não está sujeita a matrícula de obra; 1 - Obra de Construção Civil - Empreitada Total; 2 - Obra de Construção Civil - Empreitada Parcial. Valores Válidos: 0, 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_evtservprest_form.indobra.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2020_evtservprest_form.indobra.errors }}
@@ -281,7 +308,7 @@
 <!-- inicio__r2020_evtservprest__vlrtotalbruto -->
 <div class="col-md-6" id="r2020_evtservprest__vlrtotalbruto__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__vlrtotalbruto__label">Preencher com o valor bruto da(s) nota(s) fiscal(is) *</label>
+    <label id="r2020_evtservprest__vlrtotalbruto__label">Preencher com o valor bruto da(s) nota(s) fiscal(is) *<a data-toggle="tooltip" title="Preencher com o valor bruto da(s) nota(s) fiscal(is). Validação: Deve corresponder a soma do campo {vlrBruto} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_evtservprest_form.vlrtotalbruto.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_evtservprest_form.vlrtotalbruto.errors }}
@@ -299,7 +326,7 @@
 <!-- inicio__r2020_evtservprest__vlrtotalbaseret -->
 <div class="col-md-6" id="r2020_evtservprest__vlrtotalbaseret__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__vlrtotalbaseret__label">Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante*</label>
+    <label id="r2020_evtservprest__vlrtotalbaseret__label">Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante*<a data-toggle="tooltip" title="Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante. Validação: Deve corresponder a soma do campo {vlrBaseRet} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_evtservprest_form.vlrtotalbaseret.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_evtservprest_form.vlrtotalbaseret.errors }}
@@ -317,7 +344,7 @@
 <!-- inicio__r2020_evtservprest__vlrtotalretprinc -->
 <div class="col-md-6" id="r2020_evtservprest__vlrtotalretprinc__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__vlrtotalretprinc__label">Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante*</label>
+    <label id="r2020_evtservprest__vlrtotalretprinc__label">Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante*<a data-toggle="tooltip" title="Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante. Validação: Deve corresponder a soma do campo {vlrRetencao} - a soma do campo {vlrRetSub} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_evtservprest_form.vlrtotalretprinc.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_evtservprest_form.vlrtotalretprinc.errors }}
@@ -335,7 +362,7 @@
 <!-- inicio__r2020_evtservprest__vlrtotalretadic -->
 <div class="col-md-6" id="r2020_evtservprest__vlrtotalretadic__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__vlrtotalretadic__label">Soma do valor do adicional de retenção das notas fiscais</label>
+    <label id="r2020_evtservprest__vlrtotalretadic__label">Soma do valor do adicional de retenção das notas fiscais<a data-toggle="tooltip" title="Soma do valor do adicional de retenção das notas fiscais. Validação: Deve corresponder a soma do campo {vlrAdicional} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_evtservprest_form.vlrtotalretadic.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_evtservprest_form.vlrtotalretadic.errors }}
@@ -353,7 +380,7 @@
 <!-- inicio__r2020_evtservprest__vlrtotalnretprinc -->
 <div class="col-md-6" id="r2020_evtservprest__vlrtotalnretprinc__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__vlrtotalnretprinc__label">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial</label>
+    <label id="r2020_evtservprest__vlrtotalnretprinc__label">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial<a data-toggle="tooltip" title="Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial. Validação: Deve corresponder a soma do campo {vlrNRetPrinc} dos registros vinculados. Não pode ser maior que {vlrTotalRetPrinc}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_evtservprest_form.vlrtotalnretprinc.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_evtservprest_form.vlrtotalnretprinc.errors }}
@@ -371,7 +398,7 @@
 <!-- inicio__r2020_evtservprest__vlrtotalnretadic -->
 <div class="col-md-6" id="r2020_evtservprest__vlrtotalnretadic__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__vlrtotalnretadic__label">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial</label>
+    <label id="r2020_evtservprest__vlrtotalnretadic__label">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial<a data-toggle="tooltip" title="Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial. Validação: Deve corresponder a soma do campo {vlrNRetAdic} dos registros vinculados. Não pode ser maior que {vlrTotalRetAdic}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_evtservprest_form.vlrtotalnretadic.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_evtservprest_form.vlrtotalnretadic.errors }}

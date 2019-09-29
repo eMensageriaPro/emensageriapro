@@ -5,7 +5,7 @@
 <!-- inicio__s1210_idepgtoext__s1210_infopgto -->
 <div class="col-md-12" id="s1210_idepgtoext__s1210_infopgto__div">
   <div class="form-group">
-    <label id="s1210_idepgtoext__s1210_infopgto__label">Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.*</label>
+    <label id="s1210_idepgtoext__s1210_infopgto__label">Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.*<a data-toggle="tooltip" title="Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1210_idepgtoext_form.s1210_infopgto.value %}
         <a href="{% url 's1210_infopgto_salvar' pk=s1210_idepgtoext_form.s1210_infopgto.value %}">
             [Acessar]
@@ -38,7 +38,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s1210_idepgtoext__codpais__div">
     <div class="form-group">
-      <label id="s1210_idepgtoext__codpais__label">Código do País*</label>
+      <label id="s1210_idepgtoext__codpais__label">Código do País*<a data-toggle="tooltip" title="Preencher com o código do país, conforme tabela 6. Validação: Deve ser um código existente na tabela de países."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1210_idepgtoext_form.codpais.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s1210_idepgtoext_form.codpais.errors }}
@@ -47,7 +47,7 @@
         <input type="text"
                id="txt_codpais"
                name="txt_codpais" class="form-control"
-               value="{% if s1210_idepgtoext.codpais %}{{ s1210_idepgtoext.codpais|get_opcoes_titulo:208 }}{% endif %}"
+               value="{% if s1210_idepgtoext.codpais %}{{ s1210_idepgtoext.codpais|get_opcoes_titulo:212 }}{% endif %}"
                {% if s1210_idepgtoext_form.codpais.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1210_idepgtoext_form.codpais.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1210_idepgtoext_form.codpais.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -61,7 +61,7 @@
   $(document).ready(function(e){
     $('#txt_codpais').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/208/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/212/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -92,7 +92,7 @@
   {% else %}
   <div class="col-md-6" id="s1210_idepgtoext__codpais__div">
     <div class="form-group">
-      <label id="s1210_idepgtoext__codpais__label">Código do País*</label>
+      <label id="s1210_idepgtoext__codpais__label">Código do País*<a data-toggle="tooltip" title="Preencher com o código do país, conforme tabela 6. Validação: Deve ser um código existente na tabela de países."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codpais" name="txt_codpais" class="form-control" value="{% if s1210_idepgtoext.codpais %}{{ s1210_idepgtoext.codpais }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -101,7 +101,7 @@
 <!-- inicio__s1210_idepgtoext__indnif -->
 <div class="col-md-6" id="s1210_idepgtoext__indnif__div">
   <div class="form-group">
-    <label id="s1210_idepgtoext__indnif__label">Indicador do NIF*</label>
+    <label id="s1210_idepgtoext__indnif__label">Indicador do NIF*<a data-toggle="tooltip" title="Indicativo do Número de Identificação Fiscal: 1 - Beneficiário com NIF; 2 - Beneficiário dispensado do NIF; 3 - País não exige NIF. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1210_idepgtoext_form.indnif.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1210_idepgtoext_form.indnif.errors }}
@@ -125,7 +125,7 @@
 <!-- inicio__s1210_idepgtoext__nifbenef -->
 <div class="col-md-6" id="s1210_idepgtoext__nifbenef__div">
   <div class="form-group">
-    <label id="s1210_idepgtoext__nifbenef__label">Número do NIF</label>
+    <label id="s1210_idepgtoext__nifbenef__label">Número do NIF<a data-toggle="tooltip" title="Número de Identificação Fiscal - NIF. Validação: Obrigatório se {indNIF} = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1210_idepgtoext_form.nifbenef.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_idepgtoext_form.nifbenef.errors }}
@@ -145,7 +145,7 @@
 <!-- inicio__s1210_idepgtoext__dsclograd -->
 <div class="col-md-6" id="s1210_idepgtoext__dsclograd__div">
   <div class="form-group">
-    <label id="s1210_idepgtoext__dsclograd__label">Logradouro*</label>
+    <label id="s1210_idepgtoext__dsclograd__label">Logradouro*<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1210_idepgtoext_form.dsclograd.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_idepgtoext_form.dsclograd.errors }}
@@ -160,7 +160,7 @@
 <!-- inicio__s1210_idepgtoext__nrlograd -->
 <div class="col-md-6" id="s1210_idepgtoext__nrlograd__div">
   <div class="form-group">
-    <label id="s1210_idepgtoext__nrlograd__label">Número</label>
+    <label id="s1210_idepgtoext__nrlograd__label">Número<a data-toggle="tooltip" title="Número do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1210_idepgtoext_form.nrlograd.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_idepgtoext_form.nrlograd.errors }}
@@ -175,7 +175,7 @@
 <!-- inicio__s1210_idepgtoext__complem -->
 <div class="col-md-6" id="s1210_idepgtoext__complem__div">
   <div class="form-group">
-    <label id="s1210_idepgtoext__complem__label">Complemento</label>
+    <label id="s1210_idepgtoext__complem__label">Complemento<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1210_idepgtoext_form.complem.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_idepgtoext_form.complem.errors }}
@@ -190,7 +190,7 @@
 <!-- inicio__s1210_idepgtoext__bairro -->
 <div class="col-md-6" id="s1210_idepgtoext__bairro__div">
   <div class="form-group">
-    <label id="s1210_idepgtoext__bairro__label">Bairro</label>
+    <label id="s1210_idepgtoext__bairro__label">Bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1210_idepgtoext_form.bairro.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_idepgtoext_form.bairro.errors }}
@@ -205,7 +205,7 @@
 <!-- inicio__s1210_idepgtoext__nmcid -->
 <div class="col-md-6" id="s1210_idepgtoext__nmcid__div">
   <div class="form-group">
-    <label id="s1210_idepgtoext__nmcid__label">Nome da Cidade*</label>
+    <label id="s1210_idepgtoext__nmcid__label">Nome da Cidade*<a data-toggle="tooltip" title="Nome da Cidade."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1210_idepgtoext_form.nmcid.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_idepgtoext_form.nmcid.errors }}
@@ -220,7 +220,7 @@
 <!-- inicio__s1210_idepgtoext__codpostal -->
 <div class="col-md-6" id="s1210_idepgtoext__codpostal__div">
   <div class="form-group">
-    <label id="s1210_idepgtoext__codpostal__label">Código Postal</label>
+    <label id="s1210_idepgtoext__codpostal__label">Código Postal<a data-toggle="tooltip" title="Código de Endereçamento Postal."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1210_idepgtoext_form.codpostal.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_idepgtoext_form.codpostal.errors }}

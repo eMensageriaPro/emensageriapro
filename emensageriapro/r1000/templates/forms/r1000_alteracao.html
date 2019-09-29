@@ -5,7 +5,7 @@
 <!-- inicio__r1000_alteracao__r1000_evtinfocontri -->
 <div class="col-md-12" id="r1000_alteracao__r1000_evtinfocontri__div">
   <div class="form-group">
-    <label id="r1000_alteracao__r1000_evtinfocontri__label">Alteração das informações*</label>
+    <label id="r1000_alteracao__r1000_evtinfocontri__label">Alteração das informações*<a data-toggle="tooltip" title="Alteração das informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r1000_alteracao_form.r1000_evtinfocontri.value %}
         <a href="{% url 'r1000_evtinfocontri_salvar' pk=r1000_alteracao_form.r1000_evtinfocontri.value %}">
             [Acessar]
@@ -37,7 +37,7 @@
 <!-- inicio__r1000_alteracao__inivalid -->
 <div class="col-md-6" id="r1000_alteracao__inivalid__div">
   <div class="form-group">
-    <label id="r1000_alteracao__inivalid__label">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM*</label>
+    <label id="r1000_alteracao__inivalid__label">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM*<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r1000_alteracao_form.inivalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r1000_alteracao_form.inivalid.errors }}
@@ -61,7 +61,7 @@
 <!-- inicio__r1000_alteracao__fimvalid -->
 <div class="col-md-6" id="r1000_alteracao__fimvalid__div">
   <div class="form-group">
-    <label id="r1000_alteracao__fimvalid__label">Preencher com o mês e ano de término da validade das informações, se houver</label>
+    <label id="r1000_alteracao__fimvalid__label">Preencher com o mês e ano de término da validade das informações, se houver<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r1000_alteracao_form.fimvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r1000_alteracao_form.fimvalid.errors }}
@@ -90,7 +90,7 @@
 <!-- inicio__r1000_alteracao__classtrib -->
 <div class="col-md-6" id="r1000_alteracao__classtrib__div">
   <div class="form-group">
-    <label id="r1000_alteracao__classtrib__label">Preencher com o código correspondente à classificação tributária do contribuinte, conforme tabela 8*</label>
+    <label id="r1000_alteracao__classtrib__label">Preencher com o código correspondente à classificação tributária do contribuinte, conforme tabela 8*<a data-toggle="tooltip" title="Preencher com o código correspondente à classificação tributária do contribuinte, conforme tabela 8. Validação: Deve ser um dos códigos existentes na tabela 08. Os códigos [21] e [22] somente podem ser utilizados se {tpInsc} for igual a [2]. Para os demais códigos, {tpInsc} deve ser igual a [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r1000_alteracao_form.classtrib.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r1000_alteracao_form.classtrib.errors }}
@@ -114,7 +114,7 @@
 <!-- inicio__r1000_alteracao__indescrituracao -->
 <div class="col-md-6" id="r1000_alteracao__indescrituracao__div">
   <div class="form-group">
-    <label id="r1000_alteracao__indescrituracao__label">Indicativo da obrigatoriedade do contribuinte em fazer a sua escrituração contábil na ECD Escrituração Contábil Digital*</label>
+    <label id="r1000_alteracao__indescrituracao__label">Indicativo da obrigatoriedade do contribuinte em fazer a sua escrituração contábil na ECD Escrituração Contábil Digital*<a data-toggle="tooltip" title="Indicativo da obrigatoriedade do contribuinte em fazer a sua escrituração contábil na ECD Escrituração Contábil Digital: 0 - Empresa Não obrigada à ECD; 1 - Empresa obrigada à ECD. Valores Válidos: 0, 1."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r1000_alteracao_form.indescrituracao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r1000_alteracao_form.indescrituracao.errors }}
@@ -138,7 +138,7 @@
 <!-- inicio__r1000_alteracao__inddesoneracao -->
 <div class="col-md-6" id="r1000_alteracao__inddesoneracao__div">
   <div class="form-group">
-    <label id="r1000_alteracao__inddesoneracao__label">Indicativo de desoneração da folha pela CPRB*</label>
+    <label id="r1000_alteracao__inddesoneracao__label">Indicativo de desoneração da folha pela CPRB*<a data-toggle="tooltip" title="Indicativo de desoneração da folha de pagamento: 0 - Não Aplicável; 1 - Empresa enquadrada nos artigos 7° a 9° da Lei 12.546/2011. Validação: Pode ser igual a [1] apenas se a classificação tributária for igual a [02, 03, 99]. Nos demais casos deve ser igual a [0]. Valores Válidos: 0, 1."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r1000_alteracao_form.inddesoneracao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r1000_alteracao_form.inddesoneracao.errors }}
@@ -162,7 +162,7 @@
 <!-- inicio__r1000_alteracao__indacordoisenmulta -->
 <div class="col-md-6" id="r1000_alteracao__indacordoisenmulta__div">
   <div class="form-group">
-    <label id="r1000_alteracao__indacordoisenmulta__label">Indicativo da existência de acordo internacional para isenção de multa*</label>
+    <label id="r1000_alteracao__indacordoisenmulta__label">Indicativo da existência de acordo internacional para isenção de multa*<a data-toggle="tooltip" title="Indicativo da existência de acordo internacional para isenção de multa: 0 - Sem acordo; 1 - Com acordo. Validação: Só pode ser igual a [1] se {classTrib} for igual a [60]. Valores Válidos: 0, 1."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r1000_alteracao_form.indacordoisenmulta.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r1000_alteracao_form.indacordoisenmulta.errors }}
@@ -186,7 +186,7 @@
 <!-- inicio__r1000_alteracao__indsitpj -->
 <div class="col-md-6" id="r1000_alteracao__indsitpj__div">
   <div class="form-group">
-    <label id="r1000_alteracao__indsitpj__label">Indicativo da Situação da Pessoa Jurídica</label>
+    <label id="r1000_alteracao__indsitpj__label">Indicativo da Situação da Pessoa Jurídica<a data-toggle="tooltip" title="Indicativo da Situação da Pessoa Jurídica: 0 - Situação Normal; 1 - Extinção; 2 - Fusão; 3 - Cisão; 4 - Incorporação. Validação: Preenchimento obrigatório apenas para Pessoa Jurídica. Não preencher nas demais situações. Valores Válidos: 0, 1, 2, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r1000_alteracao_form.indsitpj.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r1000_alteracao_form.indsitpj.errors }}
@@ -215,7 +215,7 @@
 <!-- inicio__r1000_alteracao__nmctt -->
 <div class="col-md-6" id="r1000_alteracao__nmctt__div">
   <div class="form-group">
-    <label id="r1000_alteracao__nmctt__label">Nome do contato no contribuinte*</label>
+    <label id="r1000_alteracao__nmctt__label">Nome do contato no contribuinte*<a data-toggle="tooltip" title="Nome do contato no contribuinte. Pessoa responsável por ser o contato do contribuinte com a Receita Federal do Brasil relativamente à EFD-Reinf."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1000_alteracao_form.nmctt.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1000_alteracao_form.nmctt.errors }}
@@ -230,7 +230,7 @@
 <!-- inicio__r1000_alteracao__cpfctt -->
 <div class="col-md-6" id="r1000_alteracao__cpfctt__div">
   <div class="form-group">
-    <label id="r1000_alteracao__cpfctt__label">Preencher com o número do CPF do contato.*</label>
+    <label id="r1000_alteracao__cpfctt__label">Preencher com o número do CPF do contato.*<a data-toggle="tooltip" title="Preencher com o número do CPF do contato."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1000_alteracao_form.cpfctt.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1000_alteracao_form.cpfctt.errors }}
@@ -245,7 +245,7 @@
 <!-- inicio__r1000_alteracao__fonefixo -->
 <div class="col-md-6" id="r1000_alteracao__fonefixo__div">
   <div class="form-group">
-    <label id="r1000_alteracao__fonefixo__label">Informar o número do telefone, com DDD</label>
+    <label id="r1000_alteracao__fonefixo__label">Informar o número do telefone, com DDD<a data-toggle="tooltip" title="Informar o número do telefone, com DDD. Validação: O preenchimento é obrigatório se o campo {foneCel} não for preenchido. Se preenchido, deve conter apenas números, com o mínimo de dez dígitos."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1000_alteracao_form.fonefixo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1000_alteracao_form.fonefixo.errors }}
@@ -260,7 +260,7 @@
 <!-- inicio__r1000_alteracao__fonecel -->
 <div class="col-md-6" id="r1000_alteracao__fonecel__div">
   <div class="form-group">
-    <label id="r1000_alteracao__fonecel__label">Telefone celular, com DDD</label>
+    <label id="r1000_alteracao__fonecel__label">Telefone celular, com DDD<a data-toggle="tooltip" title="Telefone celular, com DDD. Validação: Se preenchido, deve conter apenas números, com o mínimo de dez dígitos."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1000_alteracao_form.fonecel.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1000_alteracao_form.fonecel.errors }}
@@ -275,7 +275,7 @@
 <!-- inicio__r1000_alteracao__email -->
 <div class="col-md-6" id="r1000_alteracao__email__div">
   <div class="form-group">
-    <label id="r1000_alteracao__email__label">Endereço eletrônico</label>
+    <label id="r1000_alteracao__email__label">Endereço eletrônico<a data-toggle="tooltip" title="Endereço eletrônico. Validação: O e-mail deve possuir o caractere "@" e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no final do endereço informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1000_alteracao_form.email.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1000_alteracao_form.email.errors }}

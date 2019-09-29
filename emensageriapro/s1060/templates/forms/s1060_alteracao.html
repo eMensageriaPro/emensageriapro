@@ -5,7 +5,7 @@
 <!-- inicio__s1060_alteracao__s1060_evttabambiente -->
 <div class="col-md-12" id="s1060_alteracao__s1060_evttabambiente__div">
   <div class="form-group">
-    <label id="s1060_alteracao__s1060_evttabambiente__label">Alteração das informações*</label>
+    <label id="s1060_alteracao__s1060_evttabambiente__label">Alteração das informações*<a data-toggle="tooltip" title="Alteração de informações já existentes."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1060_alteracao_form.s1060_evttabambiente.value %}
         <a href="{% url 's1060_evttabambiente_salvar' pk=s1060_alteracao_form.s1060_evttabambiente.value %}">
             [Acessar]
@@ -37,7 +37,7 @@
 <!-- inicio__s1060_alteracao__codamb -->
 <div class="col-md-6" id="s1060_alteracao__codamb__div">
   <div class="form-group">
-    <label id="s1060_alteracao__codamb__label">Código do Ambiente*</label>
+    <label id="s1060_alteracao__codamb__label">Código do Ambiente*<a data-toggle="tooltip" title="Preencher com o código atribuído pela empresa ao Ambiente de Trabalho. Validação: O código atribuído não pode conter a expressão "eSocial" nas 7 (sete) primeiras posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1060_alteracao_form.codamb.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1060_alteracao_form.codamb.errors }}
@@ -52,7 +52,7 @@
 <!-- inicio__s1060_alteracao__inivalid -->
 <div class="col-md-6" id="s1060_alteracao__inivalid__div">
   <div class="form-group">
-    <label id="s1060_alteracao__inivalid__label">Início da Validade*</label>
+    <label id="s1060_alteracao__inivalid__label">Início da Validade*<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1060_alteracao_form.inivalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1060_alteracao_form.inivalid.errors }}
@@ -76,7 +76,7 @@
 <!-- inicio__s1060_alteracao__fimvalid -->
 <div class="col-md-6" id="s1060_alteracao__fimvalid__div">
   <div class="form-group">
-    <label id="s1060_alteracao__fimvalid__label">Fim da Validade</label>
+    <label id="s1060_alteracao__fimvalid__label">Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1060_alteracao_form.fimvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1060_alteracao_form.fimvalid.errors }}
@@ -105,7 +105,7 @@
 <!-- inicio__s1060_alteracao__nmamb -->
 <div class="col-md-6" id="s1060_alteracao__nmamb__div">
   <div class="form-group">
-    <label id="s1060_alteracao__nmamb__label">Informar o nome do ambiente de trabalho.*</label>
+    <label id="s1060_alteracao__nmamb__label">Informar o nome do ambiente de trabalho.*<a data-toggle="tooltip" title="Informar o nome do ambiente de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1060_alteracao_form.nmamb.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1060_alteracao_form.nmamb.errors }}
@@ -120,7 +120,7 @@
 <!-- inicio__s1060_alteracao__dscamb -->
 <div class="col-md-6" id="s1060_alteracao__dscamb__div">
   <div class="form-group">
-    <label id="s1060_alteracao__dscamb__label">Descrição*</label>
+    <label id="s1060_alteracao__dscamb__label">Descrição*<a data-toggle="tooltip" title="Descrição do ambiente de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1060_alteracao_form.dscamb.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1060_alteracao_form.dscamb.errors }}
@@ -135,7 +135,7 @@
 <!-- inicio__s1060_alteracao__localamb -->
 <div class="col-md-6" id="s1060_alteracao__localamb__div">
   <div class="form-group">
-    <label id="s1060_alteracao__localamb__label">Local*</label>
+    <label id="s1060_alteracao__localamb__label">Local*<a data-toggle="tooltip" title="Preencher com uma das opções: 1 - Estabelecimento do próprio empregador; 2 - Estabelecimento de terceiros; 3 - Prestação de serviços em instalações de terceiros não consideradas como lotações dos tipos 03 a 09 da Tabela 10. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1060_alteracao_form.localamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1060_alteracao_form.localamb.errors }}
@@ -159,7 +159,7 @@
 <!-- inicio__s1060_alteracao__tpinsc -->
 <div class="col-md-6" id="s1060_alteracao__tpinsc__div">
   <div class="form-group">
-    <label id="s1060_alteracao__tpinsc__label">Tipo de inscrição</label>
+    <label id="s1060_alteracao__tpinsc__label">Tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Preenchimento obrigatório e exclusivo se {localAmb} = [1, 3]. Valores Válidos: 1, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1060_alteracao_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1060_alteracao_form.tpinsc.errors }}
@@ -183,7 +183,7 @@
 <!-- inicio__s1060_alteracao__nrinsc -->
 <div class="col-md-6" id="s1060_alteracao__nrinsc__div">
   <div class="form-group">
-    <label id="s1060_alteracao__nrinsc__label">Número de inscrição (CPF/CNPJ)</label>
+    <label id="s1060_alteracao__nrinsc__label">Número de inscrição (CPF/CNPJ)<a data-toggle="tooltip" title="Número de inscrição onde está localizado o ambiente. Validação: Preenchimento obrigatório e exclusivo se {localAmb} = [1, 3]. Caso informado, deve ser compatível com o conteúdo do campo {tpInsc} e: a) Se {localAmb} = [1], o estabelecimento deve pertencer ao empregador e constar na Tabela de Estabelecimentos (S-1005); b) Se {localAmb} = [3], deve ser diferente dos estabelecimentos informados na Tabela S-1005 e, se {tpInsc} = [1] e o empregador for pessoa jurídica, a raiz do CNPJ informado deve ser diferente da constante em S-1000. Deve ser um identificador válido, constante das bases da RFB."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1060_alteracao_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1060_alteracao_form.nrinsc.errors }}
@@ -198,7 +198,7 @@
 <!-- inicio__s1060_alteracao__codlotacao -->
 <div class="col-md-6" id="s1060_alteracao__codlotacao__div">
   <div class="form-group">
-    <label id="s1060_alteracao__codlotacao__label">Código da Lotação</label>
+    <label id="s1060_alteracao__codlotacao__label">Código da Lotação<a data-toggle="tooltip" title="Informar o código atribuído pela empresa para a lotação tributária. Validação: Preenchimento obrigatório e exclusivo se {localAmb} = [2]. Se informado, deve ser um código existente em S-1020 - Tabela de Lotações Tributárias."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1060_alteracao_form.codlotacao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1060_alteracao_form.codlotacao.errors }}

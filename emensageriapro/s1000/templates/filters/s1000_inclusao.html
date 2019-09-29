@@ -261,6 +261,20 @@ $(document).ready(function(e){
 </div>
 <!-- fim__s1000_inclusao__indopccp -->
 
+<!-- inicio__s1000_inclusao__indporte -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Indicativo de microempresa (ME) ou empresa de pequeno porte (EPP) para permissão de acesso ao módulo simplificado (não preencher caso o usuário não se enquadre como micro ou pequena empresa)</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="indporte" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'indporte' %}selected="selected"{% endifequal %} >S - Sim.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s1000_inclusao__indporte -->
+
 <!-- inicio__s1000_inclusao__indoptregeletron -->
 <div class="col-md-6">
   <div class="form-group">
@@ -299,7 +313,7 @@ $(document).ready(function(e){
       <select name="indett" class="form-control automate-select" style="width: 100%;">
         <option value="">-- selecione --</option>
         <option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'indett' %}selected="selected"{% endifequal %} >N - Não é Empresa de Trabalho Temporário</option>
-        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'indett' %}selected="selected"{% endifequal %} >S - Empresa de Trabalho Temporário.</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'indett' %}selected="selected"{% endifequal %} >S - Empresa de Trabalho Temporário. O preenchimento deste campo é facultativo.</option>
       </select>
     </div>
   </div>
@@ -462,6 +476,12 @@ $(document).ready(function(e){
 <div class="col-md-3">
     <div class="form-group">
         <input type="checkbox" name="show_indopccp" value="1" {% if show_fields|get_value_from_dict:'show_indopccp' %}checked{% endif %} >Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_indporte" value="1" {% if show_fields|get_value_from_dict:'show_indporte' %}checked{% endif %} >Indicativo de microempresa (ME) ou empresa de pequeno porte (EPP) para permissão de acesso ao módulo simplificado (não preencher caso o usuário não se enquadre como micro ou pequena empresa)
     </div>
 </div>
 

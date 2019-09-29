@@ -40,7 +40,7 @@ CHOICES_R1070_INDAUTORIA_ALTERACAO = [
 
     (1, u'1 - Próprio contribuinte'),
     (2, u'2 - Outra entidade ou empresa.'),
-    
+
 ]
 
 
@@ -50,7 +50,7 @@ CHOICES_R1070_INDAUTORIA_INCLUSAO = [
 
     (1, u'1 - Próprio contribuinte'),
     (2, u'2 - Outra entidade ou empresa.'),
-    
+
 ]
 
 
@@ -60,7 +60,7 @@ CHOICES_R1070_INDDEPOSITO_ALTERACAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -70,7 +70,7 @@ CHOICES_R1070_INDDEPOSITO_INCLUSAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -91,7 +91,7 @@ CHOICES_R1070_INDSUSP_ALTERACAO = [
     ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
     ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
     ('92', u'92 - Sem suspensão da exigibilidade.'),
-    
+
 ]
 
 
@@ -112,7 +112,7 @@ CHOICES_R1070_INDSUSP_INCLUSAO = [
     ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
     ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
     ('92', u'92 - Sem suspensão da exigibilidade.'),
-    
+
 ]
 
 
@@ -122,7 +122,7 @@ CHOICES_R1070_TPPROC_ALTERACAO = [
 
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-    
+
 ]
 
 
@@ -132,7 +132,7 @@ CHOICES_R1070_TPPROC_EXCLUSAO = [
 
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-    
+
 ]
 
 
@@ -142,7 +142,7 @@ CHOICES_R1070_TPPROC_INCLUSAO = [
 
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-    
+
 ]
 
 
@@ -177,7 +177,7 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-    
+
 ]
 
 
@@ -221,7 +221,7 @@ PERIODOS = [
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-    
+
 ]
 
 

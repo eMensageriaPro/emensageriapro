@@ -58,7 +58,7 @@ CHOICES_S5013_TPDPS = [
     (70, u'70 - Depósito do FGTS Rescisório - Dissídio Aprendiz'),
     (71, u'71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz'),
     (72, u'72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz.'),
-    
+
 ]
 
 
@@ -76,7 +76,7 @@ CHOICES_S5013_TPDPSE = [
     (70, u'70 - Depósito do FGTS Rescisório - Dissídio Aprendiz'),
     (71, u'71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz'),
     (72, u'72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz.'),
-    
+
 ]
 
 
@@ -95,7 +95,7 @@ CHOICES_S5013_TPVALORE = [
     (31, u'31 - Base de Cálculo do FGTS Rescisório - Dissídio 13° Salário Aprendiz'),
     (32, u'32 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz'),
     (91, u'91 - Incidência suspensa em decorrência de decisão judicial.'),
-    
+
 ]
 
 

@@ -14,7 +14,6 @@ from emensageriapro.r9011.views import r9011_rcoml_api as r9011_rcoml_api_views
 from emensageriapro.r9011.views import r9011_rcprb_api as r9011_rcprb_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

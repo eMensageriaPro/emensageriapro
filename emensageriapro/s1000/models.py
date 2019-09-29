@@ -74,16 +74,17 @@ class s1000alteracao(SoftDeletionModel):
         return self.s1000_evtinfoempregador.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    nmrazao = models.CharField(max_length=100, null=True, )
+    nmrazao = models.CharField(max_length=100, blank=True, null=True, )
     classtrib = models.CharField(choices=CHOICES_ESOCIALCLASSIFICACOESTRIBUTARIAS, max_length=2, null=True, )
     natjurid = models.TextField(blank=True, null=True, )
     indcoop = models.IntegerField(choices=CHOICES_S1000_INDCOOP_ALTERACAO, blank=True, null=True, )
     indconstr = models.IntegerField(choices=CHOICES_S1000_INDCONSTR_ALTERACAO, blank=True, null=True, )
     inddesfolha = models.IntegerField(choices=CHOICES_S1000_INDDESFOLHA_ALTERACAO, null=True, )
     indopccp = models.IntegerField(choices=CHOICES_S1000_INDOPCCP_ALTERACAO, blank=True, null=True, )
+    indporte = models.CharField(choices=CHOICES_S1000_INDPORTE_ALTERACAO, max_length=1, blank=True, null=True, )
     indoptregeletron = models.IntegerField(choices=CHOICES_S1000_INDOPTREGELETRON_ALTERACAO, null=True, )
     indented = models.CharField(choices=CHOICES_S1000_INDENTED_ALTERACAO, max_length=1, blank=True, null=True, )
-    indett = models.CharField(choices=CHOICES_S1000_INDETT_ALTERACAO, max_length=1, null=True, )
+    indett = models.CharField(choices=CHOICES_S1000_INDETT_ALTERACAO, max_length=1, blank=True, null=True, )
     nrregett = models.CharField(max_length=30, blank=True, null=True, )
     nmctt = models.CharField(max_length=70, null=True, )
     cpfctt = models.CharField(max_length=11, null=True, )
@@ -92,7 +93,7 @@ class s1000alteracao(SoftDeletionModel):
     email = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-        return unicode(self.s1000_evtinfoempregador) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.classtrib) + ' - ' + unicode(self.inddesfolha) + ' - ' + unicode(self.indoptregeletron) + ' - ' + unicode(self.indett) + ' - ' + unicode(self.nmctt) + ' - ' + unicode(self.cpfctt)
+        return unicode(self.s1000_evtinfoempregador) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.classtrib) + ' - ' + unicode(self.inddesfolha) + ' - ' + unicode(self.indoptregeletron) + ' - ' + unicode(self.nmctt) + ' - ' + unicode(self.cpfctt)
 
     class Meta:
 
@@ -114,11 +115,9 @@ class s1000alteracao(SoftDeletionModel):
         ordering = [
             's1000_evtinfoempregador',
             'inivalid',
-            'nmrazao',
             'classtrib',
             'inddesfolha',
             'indoptregeletron',
-            'indett',
             'nmctt',
             'cpfctt',]
 
@@ -546,13 +545,13 @@ class s1000alteracaosoftwareHouse(SoftDeletionModel):
     def evento(self):
         return self.s1000_alteracao.evento()
     cnpjsofthouse = models.CharField(max_length=14, null=True, )
-    nmrazao = models.CharField(max_length=100, null=True, )
+    nmrazao = models.CharField(max_length=100, blank=True, null=True, )
     nmcont = models.CharField(max_length=70, null=True, )
     telefone = models.CharField(max_length=13, null=True, )
     email = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.cnpjsofthouse) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.nmcont) + ' - ' + unicode(self.telefone)
+        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.cnpjsofthouse) + ' - ' + unicode(self.nmcont) + ' - ' + unicode(self.telefone)
 
     class Meta:
 
@@ -574,7 +573,6 @@ class s1000alteracaosoftwareHouse(SoftDeletionModel):
         ordering = [
             's1000_alteracao',
             'cnpjsofthouse',
-            'nmrazao',
             'nmcont',
             'telefone',]
 
@@ -647,16 +645,17 @@ class s1000inclusao(SoftDeletionModel):
         return self.s1000_evtinfoempregador.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    nmrazao = models.CharField(max_length=100, null=True, )
+    nmrazao = models.CharField(max_length=100, blank=True, null=True, )
     classtrib = models.CharField(choices=CHOICES_ESOCIALCLASSIFICACOESTRIBUTARIAS, max_length=2, null=True, )
     natjurid = models.TextField(blank=True, null=True, )
     indcoop = models.IntegerField(choices=CHOICES_S1000_INDCOOP_INCLUSAO, blank=True, null=True, )
     indconstr = models.IntegerField(choices=CHOICES_S1000_INDCONSTR_INCLUSAO, blank=True, null=True, )
     inddesfolha = models.IntegerField(choices=CHOICES_S1000_INDDESFOLHA_INCLUSAO, null=True, )
     indopccp = models.IntegerField(choices=CHOICES_S1000_INDOPCCP_INCLUSAO, blank=True, null=True, )
+    indporte = models.CharField(choices=CHOICES_S1000_INDPORTE_INCLUSAO, max_length=1, blank=True, null=True, )
     indoptregeletron = models.IntegerField(choices=CHOICES_S1000_INDOPTREGELETRON_INCLUSAO, null=True, )
     indented = models.CharField(choices=CHOICES_S1000_INDENTED_INCLUSAO, max_length=1, blank=True, null=True, )
-    indett = models.CharField(choices=CHOICES_S1000_INDETT_INCLUSAO, max_length=1, null=True, )
+    indett = models.CharField(choices=CHOICES_S1000_INDETT_INCLUSAO, max_length=1, blank=True, null=True, )
     nrregett = models.CharField(max_length=30, blank=True, null=True, )
     nmctt = models.CharField(max_length=70, null=True, )
     cpfctt = models.CharField(max_length=11, null=True, )
@@ -665,7 +664,7 @@ class s1000inclusao(SoftDeletionModel):
     email = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-        return unicode(self.s1000_evtinfoempregador) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.classtrib) + ' - ' + unicode(self.inddesfolha) + ' - ' + unicode(self.indoptregeletron) + ' - ' + unicode(self.indett) + ' - ' + unicode(self.nmctt) + ' - ' + unicode(self.cpfctt)
+        return unicode(self.s1000_evtinfoempregador) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.classtrib) + ' - ' + unicode(self.inddesfolha) + ' - ' + unicode(self.indoptregeletron) + ' - ' + unicode(self.nmctt) + ' - ' + unicode(self.cpfctt)
 
     class Meta:
 
@@ -687,11 +686,9 @@ class s1000inclusao(SoftDeletionModel):
         ordering = [
             's1000_evtinfoempregador',
             'inivalid',
-            'nmrazao',
             'classtrib',
             'inddesfolha',
             'indoptregeletron',
-            'indett',
             'nmctt',
             'cpfctt',]
 
@@ -1072,13 +1069,13 @@ class s1000inclusaosoftwareHouse(SoftDeletionModel):
     def evento(self):
         return self.s1000_inclusao.evento()
     cnpjsofthouse = models.CharField(max_length=14, null=True, )
-    nmrazao = models.CharField(max_length=100, null=True, )
+    nmrazao = models.CharField(max_length=100, blank=True, null=True, )
     nmcont = models.CharField(max_length=70, null=True, )
     telefone = models.CharField(max_length=13, null=True, )
     email = models.CharField(max_length=60, blank=True, null=True, )
 
     def __unicode__(self):
-        return unicode(self.s1000_inclusao) + ' - ' + unicode(self.cnpjsofthouse) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.nmcont) + ' - ' + unicode(self.telefone)
+        return unicode(self.s1000_inclusao) + ' - ' + unicode(self.cnpjsofthouse) + ' - ' + unicode(self.nmcont) + ' - ' + unicode(self.telefone)
 
     class Meta:
 
@@ -1100,7 +1097,6 @@ class s1000inclusaosoftwareHouse(SoftDeletionModel):
         ordering = [
             's1000_inclusao',
             'cnpjsofthouse',
-            'nmrazao',
             'nmcont',
             'telefone',]
 

@@ -13,7 +13,6 @@ from emensageriapro.controle_de_acesso.views import usuarios_salvar as usuarios_
 from emensageriapro.controle_de_acesso.views import usuarios_api as usuarios_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

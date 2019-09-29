@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1207_infoperant_ideadc__s1207_infoperant__div">
   <div class="form-group">
-    <label id="s1207_infoperant_ideadc__s1207_infoperant__label">Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.*</label>
+    <label id="s1207_infoperant_ideadc__s1207_infoperant__label">Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.*<a data-toggle="tooltip" title="Identificação da lei ou situação ensejadora de provento ou pensão relativo a Períodos de Apuração Anteriores"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1207_infoperant_ideadc_form.s1207_infoperant.value %}
         <a id="s1207_infoperant_ideadc__s1207_infoperant__div_acessar" href="{% url 's1207_infoperant_salvar' pk=s1207_infoperant_ideadc_form.s1207_infoperant.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1207_infoperant_ideadc__dtacconv -->
 <div class="col-md-6" id="s1207_infoperant_ideadc__dtacconv__div">
   <div class="form-group">
-    <label id="s1207_infoperant_ideadc__dtacconv__label">Data do vencimento da obrigação</label>
+    <label id="s1207_infoperant_ideadc__dtacconv__label">Data do vencimento da obrigação<a data-toggle="tooltip" title="Data da lei ou da decisão judicial. Validação: Deve ser uma data igual ou anterior ao período de apuração, informado em {perApur}. Preenchimento obrigatório se {tpAcConv} = [B, H]."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1207_infoperant_ideadc_form.dtacconv.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1207_infoperant_ideadc_form.dtacconv.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1207_infoperant_ideadc__tpacconv -->
 <div class="col-md-6" id="s1207_infoperant_ideadc__tpacconv__div">
   <div class="form-group">
-    <label id="s1207_infoperant_ideadc__tpacconv__label">Tipo*</label>
+    <label id="s1207_infoperant_ideadc__tpacconv__label">Tipo*<a data-toggle="tooltip" title="Tipo do instrumento ou situação ensejadora de provento ou pensão relativo a Períodos de Apuração Anteriores: B - Legislação federal, estadual, municipal ou distrital; G - Decisão administrativa; H - Decisão judicial. Valores Válidos: B, G, H."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1207_infoperant_ideadc_form.tpacconv.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1207_infoperant_ideadc_form.tpacconv.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s1207_infoperant_ideadc__compacconv -->
 <div class="col-md-6" id="s1207_infoperant_ideadc__compacconv__div">
   <div class="form-group">
-    <label id="s1207_infoperant_ideadc__compacconv__label">Competência</label>
+    <label id="s1207_infoperant_ideadc__compacconv__label">Competência<a data-toggle="tooltip" title="Competência (formato AAAA-MM) em que é devida a obrigação de pagar os efeitos remuneratórios de lei ou decisão judicial. Validação: Deve ser maior ou igual ao período de apuração informado em {perApur}. Preenchimento obrigatório se {tpAcConv} = [B, H]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1207_infoperant_ideadc_form.compacconv.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1207_infoperant_ideadc_form.compacconv.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__s1207_infoperant_ideadc__dtefacconv -->
 <div class="col-md-6" id="s1207_infoperant_ideadc__dtefacconv__div">
   <div class="form-group">
-    <label id="s1207_infoperant_ideadc__dtefacconv__label">Data do efeito</label>
+    <label id="s1207_infoperant_ideadc__dtefacconv__label">Data do efeito<a data-toggle="tooltip" title="Data a partir da qual a lei passa a produzir seus efeitos. Validação: Preenchimento obrigatório se {tpAcConv} = [B]."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1207_infoperant_ideadc_form.dtefacconv.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1207_infoperant_ideadc_form.dtefacconv.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__s1207_infoperant_ideadc__dsc -->
 <div class="col-md-6" id="s1207_infoperant_ideadc__dsc__div">
   <div class="form-group">
-    <label id="s1207_infoperant_ideadc__dsc__label">Descrição*</label>
+    <label id="s1207_infoperant_ideadc__dsc__label">Descrição*<a data-toggle="tooltip" title="Descrição da lei, decisão ou situação que ensejou provento ou pensão relativo a períodos anteriores."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1207_infoperant_ideadc_form.dsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1207_infoperant_ideadc_form.dsc.errors }}

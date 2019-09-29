@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.r1000.forms import *
 from emensageriapro.r1000.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.r1000.models import r1000alteracao
 
 
 @login_required
@@ -108,7 +109,7 @@ def listar(request, output=None):
             r1000_alteracao_novavalidade_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        r1000_alteracao_lista = r1000alteracao.objects.all()
         #r1000_alteracao_novavalidade_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -123,7 +124,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            'r1000_alteracao_lista': r1000_alteracao_lista,
         }
 
         if output == 'pdf':

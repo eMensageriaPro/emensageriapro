@@ -62,7 +62,6 @@ from emensageriapro.s2205.views import s2205_contato_salvar as s2205_contato_sal
 from emensageriapro.s2205.views import s2205_contato_api as s2205_contato_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

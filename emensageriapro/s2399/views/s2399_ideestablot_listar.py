@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.s2399.forms import *
 from emensageriapro.s2399.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.s2399.models import s2399dmDev
 
 
 @login_required
@@ -111,7 +112,7 @@ def listar(request, output=None):
             s2399_ideestablot_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        s2399_dmdev_lista = s2399dmDev.objects.all()
         #s2399_ideestablot_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -126,7 +127,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            's2399_dmdev_lista': s2399_dmdev_lista,
         }
 
         if output == 'pdf':

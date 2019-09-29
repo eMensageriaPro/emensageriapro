@@ -49,7 +49,7 @@ CHOICES_ESOCIALDEPENDENTESTIPOS = [
     ('11', u'11 - A pessoa absolutamente incapaz, da qual seja tutor ou curador'),
     ('12', u'12 - Ex-cônjuge'),
     ('99', u'99 - Agregado/Outros'),
-    
+
 ]
 
 
@@ -62,7 +62,7 @@ CHOICES_ESOCIALINSCRICOESTIPOS = [
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (5, u'5 - CGC'),
-    
+
 ]
 
 
@@ -74,7 +74,7 @@ CHOICES_S1202_TPACCONV_INFOPERANT = [
     ('F', u'F - Outras verbas de natureza salarial ou não salarial devidas após o desligamento'),
     ('G', u'G - Decisão administrativa'),
     ('H', u'H - Decisão judicial.'),
-    
+
 ]
 
 
@@ -86,7 +86,7 @@ CHOICES_S1202_TPTRIB = [
     (2, u'2 - Contribuições sociais do trabalhador'),
     (3, u'3 - FGTS'),
     (4, u'4 - Contribuição sindical.'),
-    
+
 ]
 
 

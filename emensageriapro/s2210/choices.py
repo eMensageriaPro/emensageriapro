@@ -43,7 +43,7 @@ CHOICES_ESOCIALINSCRICOESTIPOS = [
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (5, u'5 - CGC'),
-    
+
 ]
 
 
@@ -54,7 +54,7 @@ CHOICES_S2210_IDEOC = [
     (1, u'1 - Conselho Regional de Medicina (CRM)'),
     (2, u'2 - Conselho Regional de Odontologia (CRO)'),
     (3, u'3 - Registro do Ministério da Saúde (RMS).'),
-    
+
 ]
 
 
@@ -64,7 +64,7 @@ CHOICES_S2210_INDAFAST = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -74,7 +74,7 @@ CHOICES_S2210_INDINTERNACAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -86,7 +86,7 @@ CHOICES_S2210_LATERALIDADE = [
     (1, u'1 - Esquerda'),
     (2, u'2 - Direita'),
     (3, u'3 - Ambas. Nos casos de órgãos bilaterais, ou seja, que se situam dos lados do corpo, assinalar o lado (direito ou esquerdo). Exemplo: no caso de o órgão atingido ser uma perna, apontar qual foi a atingida (se a perna direita, se a perna esquerda, ou se ambas). Se o órgão atingido é único (como, por exemplo, a cabeça), assinalar este campo como não aplicável.'),
-    
+
 ]
 
 
@@ -121,7 +121,7 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-    
+
 ]
 
 

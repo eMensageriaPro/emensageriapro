@@ -62,7 +62,6 @@ from emensageriapro.s2399.views import s2399_quarentena_salvar as s2399_quarente
 from emensageriapro.s2399.views import s2399_quarentena_api as s2399_quarentena_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

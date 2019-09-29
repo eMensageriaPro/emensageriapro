@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1202_infoperant_remunperant__s1202_infoperant_ideestab__div">
   <div class="form-group">
-    <label id="s1202_infoperant_remunperant__s1202_infoperant_ideestab__label">Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração*</label>
+    <label id="s1202_infoperant_remunperant__s1202_infoperant_ideestab__label">Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração*<a data-toggle="tooltip" title="Registro que totaliza a remuneração relativa ao dissídio, convenção, ou acordo coletivo de cada segurado empregado na lotação, estabelecimento e período identificados nos registros superiores."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1202_infoperant_remunperant_form.s1202_infoperant_ideestab.value %}
         <a id="s1202_infoperant_remunperant__s1202_infoperant_ideestab__div_acessar" href="{% url 's1202_infoperant_ideestab_salvar' pk=s1202_infoperant_remunperant_form.s1202_infoperant_ideestab.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1202_infoperant_remunperant__matricula -->
 <div class="col-md-4" id="s1202_infoperant_remunperant__matricula__div">
   <div class="form-group">
-    <label id="s1202_infoperant_remunperant__matricula__label">Matricula</label>
+    <label id="s1202_infoperant_remunperant__matricula__label">Matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1202_infoperant_remunperant_form.matricula.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1202_infoperant_remunperant_form.matricula.errors }}
@@ -57,7 +57,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-4" id="s1202_infoperant_remunperant__codcateg__div">
     <div class="form-group">
-      <label id="s1202_infoperant_remunperant__codcateg__label">Código da Categoria*</label>
+      <label id="s1202_infoperant_remunperant__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 1. Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1202_infoperant_remunperant_form.codcateg.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s1202_infoperant_remunperant_form.codcateg.errors }}
@@ -66,7 +66,7 @@
         <input type="text"
                id="txt_codcateg"
                name="txt_codcateg" class="form-control"
-               value="{% if s1202_infoperant_remunperant.codcateg %}{{ s1202_infoperant_remunperant.codcateg|get_opcoes_titulo:176 }}{% endif %}"
+               value="{% if s1202_infoperant_remunperant.codcateg %}{{ s1202_infoperant_remunperant.codcateg|get_opcoes_titulo:180 }}{% endif %}"
                {% if s1202_infoperant_remunperant_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1202_infoperant_remunperant_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1202_infoperant_remunperant_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -80,7 +80,7 @@
   $(document).ready(function(e){
     $('#txt_codcateg').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/176/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/180/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -111,7 +111,7 @@
   {% else %}
   <div class="col-md-4" id="s1202_infoperant_remunperant__codcateg__div">
     <div class="form-group">
-      <label id="s1202_infoperant_remunperant__codcateg__label">Código da Categoria*</label>
+      <label id="s1202_infoperant_remunperant__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 1. Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s1202_infoperant_remunperant.codcateg %}{{ s1202_infoperant_remunperant.codcateg }}{% endif %}" disabled="disabled">
     </div>
   </div>

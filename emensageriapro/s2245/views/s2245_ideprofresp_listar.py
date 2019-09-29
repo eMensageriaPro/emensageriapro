@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.s2245.forms import *
 from emensageriapro.s2245.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.esocial.models import s2245evtTreiCap
 
 
 @login_required
@@ -120,7 +121,7 @@ def listar(request, output=None):
             s2245_ideprofresp_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        s2245_evttreicap_lista = s2245evtTreiCap.objects.all()
         #s2245_ideprofresp_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -135,7 +136,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            's2245_evttreicap_lista': s2245_evttreicap_lista,
         }
 
         if output == 'pdf':

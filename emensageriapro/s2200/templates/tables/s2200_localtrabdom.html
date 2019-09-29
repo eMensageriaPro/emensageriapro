@@ -5,13 +5,13 @@
             {% if show_fields.show_s2200_evtadmissao or 1 %}
             <th>Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</th>
             {% endif %}
-            {% if show_fields.show_tplograd or 1 %}
+            {% if show_fields.show_tplograd or 0 %}
             <th>Tipo de logradouro</th>
             {% endif %}
             {% if show_fields.show_dsclograd or 1 %}
             <th>Logradouro</th>
             {% endif %}
-            {% if show_fields.show_nrlograd or 0 %}
+            {% if show_fields.show_nrlograd or 1 %}
             <th>Número</th>
             {% endif %}
             {% if show_fields.show_complemento or 0 %}
@@ -41,13 +41,13 @@
             {% if show_fields.show_s2200_evtadmissao or 1 %}
             <td>{{ a.s2200_evtadmissao }}</td>
             {% endif %}
-            {% if show_fields.show_tplograd or 1 %}
+            {% if show_fields.show_tplograd or 0 %}
             <td>{{ a.tplograd }}</td>
             {% endif %}
             {% if show_fields.show_dsclograd or 1 %}
             <td>{{ a.dsclograd }}</td>
             {% endif %}
-            {% if show_fields.show_nrlograd or 0 %}
+            {% if show_fields.show_nrlograd or 1 %}
             <td>{{ a.nrlograd }}</td>
             {% endif %}
             {% if show_fields.show_complemento or 0 %}

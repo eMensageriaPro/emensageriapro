@@ -13,7 +13,6 @@ from emensageriapro.s5001.views import s5001_infobasecs_api as s5001_infobasecs_
 from emensageriapro.s5001.views import s5001_calcterc_api as s5001_calcterc_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

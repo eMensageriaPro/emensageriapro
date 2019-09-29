@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r4010_inforra_ideadv__r4010_inforra_despprocjud__div">
   <div class="form-group">
-    <label id="r4010_inforra_ideadv__r4010_inforra_despprocjud__label">Identificação do advogado*</label>
+    <label id="r4010_inforra_ideadv__r4010_inforra_despprocjud__label">Identificação do advogado*<a data-toggle="tooltip" title="Identificação do advogado."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r4010_inforra_ideadv_form.r4010_inforra_despprocjud.value %}
         <a id="r4010_inforra_ideadv__r4010_inforra_despprocjud__div_acessar" href="{% url 'r4010_inforra_despprocjud_salvar' pk=r4010_inforra_ideadv_form.r4010_inforra_despprocjud.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r4010_inforra_ideadv__tpinscadv -->
 <div class="col-md-3" id="r4010_inforra_ideadv__tpinscadv__div">
   <div class="form-group">
-    <label id="r4010_inforra_ideadv__tpinscadv__label">Tipo de inscrição do advogado*</label>
+    <label id="r4010_inforra_ideadv__tpinscadv__label">Tipo de inscrição do advogado*<a data-toggle="tooltip" title="Tipo de inscrição do advogado: 1 - Pessoa Física; 2 - Pessoa Jurídica. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_inforra_ideadv_form.tpinscadv.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r4010_inforra_ideadv_form.tpinscadv.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r4010_inforra_ideadv__nrinscadv -->
 <div class="col-md-3" id="r4010_inforra_ideadv__nrinscadv__div">
   <div class="form-group">
-    <label id="r4010_inforra_ideadv__nrinscadv__label">Informar o número de inscrição do advogado*</label>
+    <label id="r4010_inforra_ideadv__nrinscadv__label">Informar o número de inscrição do advogado*<a data-toggle="tooltip" title="Informar o número de inscrição do advogado. Validação: Deve ser um CNPJ ou CPF válido, de acordo com o tipo de inscrição indicado em {tpInscAdv}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r4010_inforra_ideadv_form.nrinscadv.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_inforra_ideadv_form.nrinscadv.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r4010_inforra_ideadv__vlradv -->
 <div class="col-md-3" id="r4010_inforra_ideadv__vlradv__div">
   <div class="form-group">
-    <label id="r4010_inforra_ideadv__vlradv__label">Valor da despesa com o advogado*</label>
+    <label id="r4010_inforra_ideadv__vlradv__label">Valor da despesa com o advogado*<a data-toggle="tooltip" title="Valor da despesa com o advogado."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_inforra_ideadv_form.vlradv.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_inforra_ideadv_form.vlradv.errors }}

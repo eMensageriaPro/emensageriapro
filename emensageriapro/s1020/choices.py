@@ -43,7 +43,7 @@ CHOICES_ESOCIALINSCRICOESTIPOS = [
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (5, u'5 - CGC'),
-    
+
 ]
 
 
@@ -65,7 +65,7 @@ CHOICES_ESOCIALLOTACOESTRIBUTARIASTIPOS = [
     ('24', u'24 - Empregador Doméstico'),
     ('90', u'90 - Atividades desenvolvidas no exterior por trabalhador vinculado ao Regime Geral de Previdência Social (expatriados)'),
     ('91', u'91 - Atividades desenvolvidas por trabalhador estrangeiro vinculado a Regime de Previdência Social Estrangeiro'),
-    
+
 ]
 
 
@@ -75,7 +75,7 @@ CHOICES_S1020_TPINSCCONTRAT_ALTERACAO = [
 
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF.'),
-    
+
 ]
 
 
@@ -85,7 +85,27 @@ CHOICES_S1020_TPINSCCONTRAT_INCLUSAO = [
 
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF.'),
-    
+
+]
+
+
+
+
+CHOICES_S1020_TPINSCPROP_ALTERACAO = [
+
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+
+]
+
+
+
+
+CHOICES_S1020_TPINSCPROP_INCLUSAO = [
+
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+
 ]
 
 
@@ -129,7 +149,7 @@ PERIODOS = [
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-    
+
 ]
 
 

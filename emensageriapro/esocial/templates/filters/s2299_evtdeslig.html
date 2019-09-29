@@ -76,7 +76,7 @@
         <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >1 - Aplicativo do empregador</option>
         <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >2 - Aplicativo governamental - Empregador Doméstico</option>
         <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >3 - Aplicativo governamental - Web Geral</option>
-        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >4 - Aplicativo governamental - Microempreendedor Individual (MEI)</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
         <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >5 - Aplicativo governamental - Segurado Especial.</option>
       </select>
     </div>
@@ -187,7 +187,7 @@
 $(document).ready(function(e){
   $('#txt_mtvdeslig').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/445/" + request.term + "/", function (data) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/450/" + request.term + "/", function (data) {
       response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
@@ -327,7 +327,7 @@ $(document).ready(function(e){
         <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'indcumprparc' %}selected="selected"{% endifequal %} >1 - Cumprimento parcial em razão de obtenção de novo emprego pelo empregado</option>
         <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'indcumprparc' %}selected="selected"{% endifequal %} >2 - Cumprimento parcial por iniciativa do empregador</option>
         <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'indcumprparc' %}selected="selected"{% endifequal %} >3 - Outras hipóteses de cumprimento parcial do aviso prévio</option>
-        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'indcumprparc' %}selected="selected"{% endifequal %} >4 - Aviso prévio indenizado ou não exigível.</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'indcumprparc' %}selected="selected"{% endifequal %} >4 - Aviso prévio indenizado ou não exigível. O preenchimento deste campo é facultativo.</option>
       </select>
     </div>
   </div>

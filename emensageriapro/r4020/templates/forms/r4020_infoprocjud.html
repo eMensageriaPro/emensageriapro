@@ -5,7 +5,7 @@
 <!-- inicio__r4020_infoprocjud__r4020_infopgto -->
 <div class="col-md-12" id="r4020_infoprocjud__r4020_infopgto__div">
   <div class="form-group">
-    <label id="r4020_infoprocjud__r4020_infopgto__label">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial*</label>
+    <label id="r4020_infoprocjud__r4020_infopgto__label">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial*<a data-toggle="tooltip" title="Informações complementares relativas a rendimentos decorrentes de decisão judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r4020_infoprocjud_form.r4020_infopgto.value %}
         <a href="{% url 'r4020_infopgto_salvar' pk=r4020_infoprocjud_form.r4020_infopgto.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__r4020_infoprocjud__nrproc -->
 <div class="col-md-3" id="r4020_infoprocjud__nrproc__div">
   <div class="form-group">
-    <label id="r4020_infoprocjud__nrproc__label">Informar o número do processo administrativo/judicial*</label>
+    <label id="r4020_infoprocjud__nrproc__label">Informar o número do processo administrativo/judicial*<a data-toggle="tooltip" title="Informar o número do processo judicial. Validação: Deve ser número de processo válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r4020_infoprocjud_form.nrproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4020_infoprocjud_form.nrproc.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__r4020_infoprocjud__indorigemrecursos -->
 <div class="col-md-3" id="r4020_infoprocjud__indorigemrecursos__div">
   <div class="form-group">
-    <label id="r4020_infoprocjud__indorigemrecursos__label">Indicativo da origem dos recursos*</label>
+    <label id="r4020_infoprocjud__indorigemrecursos__label">Indicativo da origem dos recursos*<a data-toggle="tooltip" title="Indicativo da origem dos recursos: 1 - Recursos do próprio declarante 2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4020_infoprocjud_form.indorigemrecursos.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r4020_infoprocjud_form.indorigemrecursos.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__r4020_infoprocjud__desc -->
 <div class="col-md-3" id="r4020_infoprocjud__desc__div">
   <div class="form-group">
-    <label id="r4020_infoprocjud__desc__label">Descrição</label>
+    <label id="r4020_infoprocjud__desc__label">Descrição<a data-toggle="tooltip" title="Descrição."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r4020_infoprocjud_form.desc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4020_infoprocjud_form.desc.errors }}

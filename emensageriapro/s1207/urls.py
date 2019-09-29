@@ -58,7 +58,6 @@ from emensageriapro.s1207.views import s1207_infoperant_itensremun_salvar as s12
 from emensageriapro.s1207.views import s1207_infoperant_itensremun_api as s1207_infoperant_itensremun_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

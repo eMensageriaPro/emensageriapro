@@ -18,7 +18,6 @@ from emensageriapro.s2416.views import s2416_suspensao_salvar as s2416_suspensao
 from emensageriapro.s2416.views import s2416_suspensao_api as s2416_suspensao_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

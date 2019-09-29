@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2020_nfs__r2020_evtservprest__div">
   <div class="form-group">
-    <label id="r2020_nfs__r2020_evtservprest__label">Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior*</label>
+    <label id="r2020_nfs__r2020_evtservprest__label">Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior*<a data-toggle="tooltip" title="Notas Fiscais do Prestador de Serviços."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r2020_nfs_form.r2020_evtservprest.value %}
         <a id="r2020_nfs__r2020_evtservprest__div_acessar" href="{% url 'r2020_evtservprest_salvar' pk=r2020_nfs_form.r2020_evtservprest.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r2020_nfs__serie -->
 <div class="col-md-6" id="r2020_nfs__serie__div">
   <div class="form-group">
-    <label id="r2020_nfs__serie__label">Informar o número de série da nota fiscal/fatura ou do Recibo Provisório de Serviço - RPS*</label>
+    <label id="r2020_nfs__serie__label">Informar o número de série da nota fiscal/fatura ou do Recibo Provisório de Serviço - RPS*<a data-toggle="tooltip" title="Informar o número de série da nota fiscal/fatura ou do Recibo Provisório de Serviço - RPS ou de outro documento fiscal válido. Preencher com 0 (zero) caso não exista número de série."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2020_nfs_form.serie.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2020_nfs_form.serie.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r2020_nfs__numdocto -->
 <div class="col-md-6" id="r2020_nfs__numdocto__div">
   <div class="form-group">
-    <label id="r2020_nfs__numdocto__label">Número da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS.*</label>
+    <label id="r2020_nfs__numdocto__label">Número da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS.*<a data-toggle="tooltip" title="Número da Nota Fiscal/Fatura ou outros documentos fiscais válidos, como Recibo Provisório de Serviço - RPS, CT-e OS, entre outros."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2020_nfs_form.numdocto.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2020_nfs_form.numdocto.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__r2020_nfs__dtemissaonf -->
 <div class="col-md-6" id="r2020_nfs__dtemissaonf__div">
   <div class="form-group">
-    <label id="r2020_nfs__dtemissaonf__label">Data de Emissão da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS*</label>
+    <label id="r2020_nfs__dtemissaonf__label">Data de Emissão da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS*<a data-toggle="tooltip" title="Data de Emissão da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço ou de outro documento fiscal válido. Validação: O mês/ano informado deve ser igual ao mês/ano indicado no registro de abertura do arquivo."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r2020_nfs_form.dtemissaonf.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ r2020_nfs_form.dtemissaonf.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__r2020_nfs__vlrbruto -->
 <div class="col-md-6" id="r2020_nfs__vlrbruto__div">
   <div class="form-group">
-    <label id="r2020_nfs__vlrbruto__label">Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS*</label>
+    <label id="r2020_nfs__vlrbruto__label">Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS*<a data-toggle="tooltip" title="Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS ou de outro documento fiscal válido. Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_nfs_form.vlrbruto.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_nfs_form.vlrbruto.errors }}
@@ -104,7 +104,7 @@
 <!-- inicio__r2020_nfs__obs -->
 <div class="col-md-6" id="r2020_nfs__obs__div">
   <div class="form-group">
-    <label id="r2020_nfs__obs__label">Observações</label>
+    <label id="r2020_nfs__obs__label">Observações<a data-toggle="tooltip" title="Observações."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2020_nfs_form.obs.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2020_nfs_form.obs.errors }}

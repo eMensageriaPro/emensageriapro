@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s5013_dpsperante__s5013_infodpsperante__div">
   <div class="form-group">
-    <label id="s5013_dpsperante__s5013_infodpsperante__label">Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração de períodos anteriores quando {tpAcConv} = [E].*</label>
+    <label id="s5013_dpsperante__s5013_infodpsperante__label">Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração de períodos anteriores quando {tpAcConv} = [E].*<a data-toggle="tooltip" title="Cálculo consolidado dos valores de FGTS a serem depositados, incidentes sobre a remuneração de períodos anteriores quando {tpAcConv} = [E]."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s5013_dpsperante_form.s5013_infodpsperante.value %}
         <a id="s5013_dpsperante__s5013_infodpsperante__div_acessar" href="{% url 's5013_infodpsperante_salvar' pk=s5013_dpsperante_form.s5013_infodpsperante.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s5013_dpsperante__tpdpse -->
 <div class="col-md-4" id="s5013_dpsperante__tpdpse__div">
   <div class="form-group">
-    <label id="s5013_dpsperante__tpdpse__label">Tipo de depósito*</label>
+    <label id="s5013_dpsperante__tpdpse__label">Tipo de depósito*<a data-toggle="tooltip" title="Tipo de depósito: 53 - Depósito do FGTS Dissídio; 54 - Depósito do FGTS Dissídio 13º Salário; 57 - Depósito do FGTS Dissídio - Aprendiz; 58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz; 64 - Depósito do FGTS Rescisório - Dissídio; 65 - Depósito do FGTS Rescisório - Dissídio 13º Salário; 66 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio; 70 - Depósito do FGTS Rescisório - Dissídio Aprendiz; 71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz. Validação: Deve ser um código válido, conforme opções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5013_dpsperante_form.tpdpse.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5013_dpsperante_form.tpdpse.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s5013_dpsperante__vrfgtse -->
 <div class="col-md-4" id="s5013_dpsperante__vrfgtse__div">
   <div class="form-group">
-    <label id="s5013_dpsperante__vrfgtse__label">Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador*</label>
+    <label id="s5013_dpsperante__vrfgtse__label">Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador*<a data-toggle="tooltip" title="Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador. Evento de origem: S-5003. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {dpsFGTSE}, agrupados por {tpDpsE}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5013_dpsperante_form.vrfgtse.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5013_dpsperante_form.vrfgtse.errors }}

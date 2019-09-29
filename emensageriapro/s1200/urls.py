@@ -106,7 +106,6 @@ from emensageriapro.s1200.views import s1200_infoperant_infocomplcont_salvar as 
 from emensageriapro.s1200.views import s1200_infoperant_infocomplcont_api as s1200_infoperant_infocomplcont_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

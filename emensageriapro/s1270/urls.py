@@ -10,7 +10,6 @@ from emensageriapro.s1270.views import s1270_remunavnp_salvar as s1270_remunavnp
 from emensageriapro.s1270.views import s1270_remunavnp_api as s1270_remunavnp_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

@@ -5,7 +5,7 @@
 <!-- inicio__r5011_rrecrepad__r5011_infototalcontrib -->
 <div class="col-md-12" id="r5011_rrecrepad__r5011_infototalcontrib__div">
   <div class="form-group">
-    <label id="r5011_rrecrepad__r5011_infototalcontrib__label">Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040*</label>
+    <label id="r5011_rrecrepad__r5011_infototalcontrib__label">Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040*<a data-toggle="tooltip" title="Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associação Desportiva que mantenha equipe de futebol profissional"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r5011_rrecrepad_form.r5011_infototalcontrib.value %}
         <a href="{% url 'r5011_infototalcontrib_salvar' pk=r5011_rrecrepad_form.r5011_infototalcontrib.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__r5011_rrecrepad__cnpjassocdesp -->
 <div class="col-md-6" id="r5011_rrecrepad__cnpjassocdesp__div">
   <div class="form-group">
-    <label id="r5011_rrecrepad__cnpjassocdesp__label">Preencher com o CNPJ da associação desportiva que mantém clube de futebol para a qual foi efetuado o repasse*</label>
+    <label id="r5011_rrecrepad__cnpjassocdesp__label">Preencher com o CNPJ da associação desportiva que mantém clube de futebol para a qual foi efetuado o repasse*<a data-toggle="tooltip" title="CNPJ da associação desportiva que mantém clube de futebol para a qual foi efetuado o repasse. Origem: R- 5001."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r5011_rrecrepad_form.cnpjassocdesp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5011_rrecrepad_form.cnpjassocdesp.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__r5011_rrecrepad__vlrtotalrep -->
 <div class="col-md-6" id="r5011_rrecrepad__vlrtotalrep__div">
   <div class="form-group">
-    <label id="r5011_rrecrepad__vlrtotalrep__label">Preencher com o valor bruto dos recursos repassados*</label>
+    <label id="r5011_rrecrepad__vlrtotalrep__label">Preencher com o valor bruto dos recursos repassados*<a data-toggle="tooltip" title="Valor bruto dos recursos repassados. Origem: R- 5001."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r5011_rrecrepad_form.vlrtotalrep.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r5011_rrecrepad_form.vlrtotalrep.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r5011_rrecrepad__crrecrepad -->
 <div class="col-md-6" id="r5011_rrecrepad__crrecrepad__div">
   <div class="form-group">
-    <label id="r5011_rrecrepad__crrecrepad__label">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre recursos repassados a Associação Desportiva que mantenha equipe de futebol profissional, calculada segundo as regras estabelecidas na legislação em vigor*</label>
+    <label id="r5011_rrecrepad__crrecrepad__label">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre recursos repassados a Associação Desportiva que mantenha equipe de futebol profissional, calculada segundo as regras estabelecidas na legislação em vigor*<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre recursos repassados a Associação Desportiva que mantenha equipe de futebol profissional, calculada segundo as regras estabelecidas na legislação em vigor. Origem: R-5001. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos. Deve ser maior que 0 (zero). Valores Válidos: 1151-02"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r5011_rrecrepad_form.crrecrepad.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5011_rrecrepad_form.crrecrepad.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r5011_rrecrepad__vlrcrrecrepad -->
 <div class="col-md-6" id="r5011_rrecrepad__vlrcrrecrepad__div">
   <div class="form-group">
-    <label id="r5011_rrecrepad__vlrcrrecrepad__label">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-2040*</label>
+    <label id="r5011_rrecrepad__vlrcrrecrepad__label">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-2040*<a data-toggle="tooltip" title="Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-5001 Validação: Deve ser apurado de acordo com a legislação em vigor na competência."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r5011_rrecrepad_form.vlrcrrecrepad.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r5011_rrecrepad_form.vlrcrrecrepad.errors }}
@@ -98,7 +98,7 @@
 <!-- inicio__r5011_rrecrepad__vlrcrrecrepadsusp -->
 <div class="col-md-6" id="r5011_rrecrepad__vlrcrrecrepadsusp__div">
   <div class="form-group">
-    <label id="r5011_rrecrepad__vlrcrrecrepadsusp__label">Valor da retenção da contribuição previdenciária que deixou de ser efetuada ou que foi depositada em juízo em decorência de decisão judicial/administrativa, correspondente ao Código de Receita - CR informado em {CRRecRepAD}</label>
+    <label id="r5011_rrecrepad__vlrcrrecrepadsusp__label">Valor da retenção da contribuição previdenciária que deixou de ser efetuada ou que foi depositada em juízo em decorência de decisão judicial/administrativa, correspondente ao Código de Receita - CR informado em {CRRecRepAD}<a data-toggle="tooltip" title="Valor da retenção da contribuição previdenciária que deixou de ser efetuada ou que foi depositada em juízo em decorrência de decisão judicial/administrativa, correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-5001"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r5011_rrecrepad_form.vlrcrrecrepadsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r5011_rrecrepad_form.vlrcrrecrepadsusp.errors }}

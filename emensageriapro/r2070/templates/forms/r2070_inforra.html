@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2070_inforra__r2070_pgtopf__div">
   <div class="form-group">
-    <label id="r2070_inforra__r2070_pgtopf__label">Informações Complementares - Rendimentos Recebidos Acumuladamente*</label>
+    <label id="r2070_inforra__r2070_pgtopf__label">Informações Complementares - Rendimentos Recebidos Acumuladamente*<a data-toggle="tooltip" title="Informações Complementares - Rendimentos Recebidos Acumuladamente"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r2070_inforra_form.r2070_pgtopf.value %}
         <a id="r2070_inforra__r2070_pgtopf__div_acessar" href="{% url 'r2070_pgtopf_salvar' pk=r2070_inforra_form.r2070_pgtopf.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r2070_inforra__tpprocrra -->
 <div class="col-md-6" id="r2070_inforra__tpprocrra__div">
   <div class="form-group">
-    <label id="r2070_inforra__tpprocrra__label">Preencher com o código correspondente ao tipo de processo</label>
+    <label id="r2070_inforra__tpprocrra__label">Preencher com o código correspondente ao tipo de processo<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2070_inforra_form.tpprocrra.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2070_inforra_form.tpprocrra.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r2070_inforra__nrprocrra -->
 <div class="col-md-6" id="r2070_inforra__nrprocrra__div">
   <div class="form-group">
-    <label id="r2070_inforra__nrprocrra__label">Informar o número do processo/requerimento administrativo/judicial</label>
+    <label id="r2070_inforra__nrprocrra__label">Informar o número do processo/requerimento administrativo/judicial<a data-toggle="tooltip" title="Informar o número do processo/requerimento administrativo/judicial Validação: Obrigatório se {tpProcRRA} = [1]. Deve existir na tabela de processos (R-1070)."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2070_inforra_form.nrprocrra.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_inforra_form.nrprocrra.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r2070_inforra__codsusp -->
 <div class="col-md-6" id="r2070_inforra__codsusp__div">
   <div class="form-group">
-    <label id="r2070_inforra__codsusp__label">Código do Indicativo da Suspensão, atribuído pelo contribuinte</label>
+    <label id="r2070_inforra__codsusp__label">Código do Indicativo da Suspensão, atribuído pelo contribuinte<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. Validação: Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070), vinculado ao número do processo informado em {nrProcRRA}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2070_inforra_form.codsusp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_inforra_form.codsusp.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__r2070_inforra__natrra -->
 <div class="col-md-6" id="r2070_inforra__natrra__div">
   <div class="form-group">
-    <label id="r2070_inforra__natrra__label">Informar a natureza do Rendimento Recebido Acumuladamente</label>
+    <label id="r2070_inforra__natrra__label">Informar a natureza do Rendimento Recebido Acumuladamente<a data-toggle="tooltip" title="Informar a natureza do Rendimento Recebido Acumuladamente"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2070_inforra_form.natrra.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_inforra_form.natrra.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__r2070_inforra__qtdmesesrra -->
 <div class="col-md-6" id="r2070_inforra__qtdmesesrra__div">
   <div class="form-group">
-    <label id="r2070_inforra__qtdmesesrra__label">Quantidade de meses</label>
+    <label id="r2070_inforra__qtdmesesrra__label">Quantidade de meses<a data-toggle="tooltip" title="Quantidade de meses"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2070_inforra_form.qtdmesesrra.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_inforra_form.qtdmesesrra.errors }}

@@ -74,7 +74,7 @@
 
         <tr {% if s2230_evtafasttemp.procemi|validacoes_esocial_efdreinf:"s2230_evtafasttemp.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2230_evtafasttemp.procemi or s2230_evtafasttemp.procemi == 0 %}{{ s2230_evtafasttemp.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -348,7 +348,7 @@
     {% ifequal s2230_infoatestado.s2230_iniafastamento.id s2230_iniafastamento.id %}
         <tr {% if s2230_infoatestado.codcid|validacoes_esocial_efdreinf:"s2230_infoatestado.codcid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codCID</td>
-            <td width="500px">Informar o código na tabela de Classificação Internacional de Doenças - CID. Validação: Preenchimento obrigatório se {codMotAfast} = [01], exceto se {origRetif} = [2, 3]. Deve ser preenchido com caracteres alfanuméricos conforme opções constantes na tabela CID.</td>
+            <td width="500px">Informar o código na tabela de Classificação Internacional de Doenças - CID. Validação: O preenchimento deste campo é facultativo. Se informado, deve ser preenchido com caracteres alfanuméricos conforme opções constantes na tabela CID.</td>
             <td width="200px"><b>{% if s2230_infoatestado.codcid or s2230_infoatestado.codcid == 0 %}{{ s2230_infoatestado.codcid }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -367,7 +367,7 @@
 
         <tr {% if s2230_infoatestado.qtddiasafast|validacoes_esocial_efdreinf:"s2230_infoatestado.qtddiasafast" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">qtdDiasAfast</td>
-            <td width="500px">Quantidade de dias de afastamento concedidos pelo médico.</td>
+            <td width="500px">Quantidade de dias de afastamento concedidos pelo médico. O preenchimento deste campo é facultativo.</td>
             <td width="200px"><b>{% if s2230_infoatestado.qtddiasafast or s2230_infoatestado.qtddiasafast == 0 %}{{ s2230_infoatestado.qtddiasafast }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -600,7 +600,7 @@
 
         <tr {% if s2230_inforetif.nrproc|validacoes_esocial_efdreinf:"s2230_inforetif.nrproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProc</td>
-            <td width="500px">Informar o número do processo administrativo/judicial ou do benefício de acordo com o tipo informado em {tpProc}. Validação: O preenchimento é obrigatório se {origRetif} = [2, 3]. Deve ser um processo existente na Tabela de Processos S-1070.</td>
+            <td width="500px">Informar o número do processo administrativo/judicial ou do benefício de acordo com o tipo informado em {tpProc}. Validação: O preenchimento é obrigatório se {origRetif} = [2, 3].</td>
             <td width="200px"><b>{% if s2230_inforetif.nrproc or s2230_inforetif.nrproc == 0 %}{{ s2230_inforetif.nrproc }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -625,7 +625,7 @@
     {% ifequal s2230_fimafastamento.s2230_evtafasttemp.id s2230_evtafasttemp.id %}
         <tr {% if s2230_fimafastamento.dttermafast|validacoes_esocial_efdreinf:"s2230_fimafastamento.dttermafast" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtTermAfast</td>
-            <td width="500px">Preencher com a data do término do afastamento do trabalhador. Validação: Deve-se obedecer às seguintes regras: a) Deve ser igual ou posterior à data de início do afastamento do trabalhador; b) Deve ser uma data não superior à data atual acrescida de 15 dias corridos, exceto se {codMotAfast} = [15] (férias), situação em que pode ser superior à data atual em até 60 dias.</td>
+            <td width="500px">Preencher com a data do término do afastamento do trabalhador. Validação: Deve ser igual ou posterior à data de início do afastamento do trabalhador.</td>
             <td width="200px"><b>{% if s2230_fimafastamento.dttermafast or s2230_fimafastamento.dttermafast == 0 %}{{ s2230_fimafastamento.dttermafast|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

@@ -47,7 +47,7 @@ CHOICES_EFDREINFINFORMACOESBENEFICIARIOSEXTERIOR = [
     (560, u'560 - A fonte pagadora ou a beneficiária no exterior mantenha contrato de exclusividade como agente, como distribuidor ou como concessionário nas operações com bens, serviços e direitos.'),
     (570, u'570 - A fonte pagadora e a beneficiária mantêm acordo de atuação conjunta.'),
     (900, u'900 - Não há relação entre a fonte pagadora e a beneficiária no exterior.'),
-    
+
 ]
 
 
@@ -66,7 +66,7 @@ CHOICES_EFDREINFRENDIMENTOSBENEFICIARIOSEXTERIORTRIBUTACAO = [
     ('43', u'43 - Não retenção do IRRF - pagamento antecipado do imposto'),
     ('44', u'44 - Não retenção do IRRF - medida Judicial'),
     ('50', u'50 - Não retenção do IRRF - outras hipóteses'),
-    
+
 ]
 
 
@@ -77,7 +77,7 @@ CHOICES_R4020_INDNIF = [
     (1, u'1 - Beneficiário com NIF'),
     (2, u'2 - Beneficiário dispensado do NIF'),
     (3, u'3 - País não exige NIF.'),
-    
+
 ]
 
 
@@ -87,7 +87,7 @@ CHOICES_R4020_INDORIGEMRECURSOS = [
 
     (1, u'1 - Recursos do próprio declarante'),
     (2, u'2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores.'),
-    
+
 ]
 
 
@@ -97,7 +97,7 @@ CHOICES_R4020_TPINSCADV = [
 
     (1, u'1 - Pessoa Física'),
     (2, u'2 - Pessoa Jurídica.'),
-    
+
 ]
 
 
@@ -107,7 +107,7 @@ CHOICES_R4020_TPPROCRET = [
 
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-    
+
 ]
 
 

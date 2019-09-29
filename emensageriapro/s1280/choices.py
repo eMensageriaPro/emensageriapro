@@ -40,7 +40,7 @@ CHOICES_S1280_INDSUBSTPATR = [
 
     (1, u'1 - Integralmente substituída'),
     (2, u'2 - Parcialmente substituída.'),
-    
+
 ]
 
 

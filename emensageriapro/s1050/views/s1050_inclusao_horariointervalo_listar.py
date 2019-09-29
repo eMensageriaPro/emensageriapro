@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.s1050.forms import *
 from emensageriapro.s1050.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.s1050.models import s1050inclusao
 
 
 @login_required
@@ -114,7 +115,7 @@ def listar(request, output=None):
             s1050_inclusao_horariointervalo_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        s1050_inclusao_lista = s1050inclusao.objects.all()
         #s1050_inclusao_horariointervalo_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -129,7 +130,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            's1050_inclusao_lista': s1050_inclusao_lista,
         }
 
         if output == 'pdf':

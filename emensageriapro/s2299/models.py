@@ -218,11 +218,11 @@ class s2299infoPerAntideADC(SoftDeletionModel):
     dtacconv = models.DateField(null=True, )
     tpacconv = models.CharField(choices=CHOICES_S2299_TPACCONV_INFOPERANT, max_length=1, null=True, )
     compacconv = models.CharField(max_length=7, blank=True, null=True, )
-    dtefacconv = models.DateField(null=True, )
+    dtefacconv = models.DateField(blank=True, null=True, )
     dsc = models.CharField(max_length=255, null=True, )
 
     def __unicode__(self):
-        return unicode(self.s2299_infoperant) + ' - ' + unicode(self.dtacconv) + ' - ' + unicode(self.tpacconv) + ' - ' + unicode(self.dtefacconv) + ' - ' + unicode(self.dsc)
+        return unicode(self.s2299_infoperant) + ' - ' + unicode(self.dtacconv) + ' - ' + unicode(self.tpacconv) + ' - ' + unicode(self.dsc)
 
     class Meta:
 
@@ -245,7 +245,6 @@ class s2299infoPerAntideADC(SoftDeletionModel):
             's2299_infoperant',
             'dtacconv',
             'tpacconv',
-            'dtefacconv',
             'dsc',]
 
 

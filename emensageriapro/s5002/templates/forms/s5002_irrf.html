@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s5002_irrf__s5002_infoirrf__div">
   <div class="form-group">
-    <label id="s5002_irrf__s5002_infoirrf__label">Informações relativas ao Imposto de Renda Retido na Fonte*</label>
+    <label id="s5002_irrf__s5002_infoirrf__label">Informações relativas ao Imposto de Renda Retido na Fonte*<a data-toggle="tooltip" title="Informações relativas ao Imposto de Renda Retido na Fonte."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s5002_irrf_form.s5002_infoirrf.value %}
         <a id="s5002_irrf__s5002_infoirrf__div_acessar" href="{% url 's5002_infoirrf_salvar' pk=s5002_irrf_form.s5002_infoirrf.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s5002_irrf__tpcr -->
 <div class="col-md-4" id="s5002_irrf__tpcr__div">
   <div class="form-group">
-    <label id="s5002_irrf__tpcr__label">Código da Receita (CR)*</label>
+    <label id="s5002_irrf__tpcr__label">Código da Receita (CR)*<a data-toggle="tooltip" title="Código de Receita - CR relativo ao Imposto de Renda Retido na Fonte sobre rendimentos do trabalho, conforme legislação em vigor na competência: 0473-01 - Renda e Proventos de Qualquer Natureza; 0561-07 - IRRF - Rendimento do Trabalho Assalariado no País/Ausente no Exterior a Serviço do País; 0561-08 - IRRF - Empregado Doméstico; 0561-09 - IRRF - Empregado Doméstico - 13º Sal Rescisão; 0561-10 - IRRF - Empregado doméstico - 13º salário; 0561-11 - IRRF - Empregado/Trabalhador Rural - Segurado Especial; 0561-12 - IRRF - Empregado/Trabalhador Rural - Segurado Especial 13° salário; 0561-13 - IRRF - Empregado/Trabalhador Rural - Segurado Especial 13° salário rescisório; 0588-06 - IRRF - Rendimento do trabalho sem vínculo empregatício; 0610- 01 - IRRF - Rendimentos relativos a prestação de serviços de transporte rodoviário internacional de carga, pagos a transportador autônomo PF residente no Paraguai; 3533 Proventos de Aposentadoria, Reserva, Reforma ou Pensão Pagos por Previdência Pública; 3562-01 - IRRF - Participação dos trabalhadores em Lucros ou Resultados (PLR). Origem S-1210, para definição do mês de ocorrência dos fatos geradores e os respectivos demonstrativos de pagamento constantes dos eventos S-1200, S- 1202,S-1207, S-2299 e S-2399. Validação: Deve ser um código válido, conforme opções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5002_irrf_form.tpcr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5002_irrf_form.tpcr.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s5002_irrf__vrirrfdesc -->
 <div class="col-md-4" id="s5002_irrf__vrirrfdesc__div">
   <div class="form-group">
-    <label id="s5002_irrf__vrirrfdesc__label">Valor efetivamente descontado IRRF*</label>
+    <label id="s5002_irrf__vrirrfdesc__label">Valor efetivamente descontado IRRF*<a data-toggle="tooltip" title="Valor efetivamente descontado relativo ao Imposto de Renda Retido na Fonte sobre rendimentos do trabalho, agrupado conforme segue: ORIGEM: S-1200, S-1202, S-2299, S-2399 e respectivo S-1210: 0473-01: Se {codCateg} = [101,103,105,106,111,301,302,303,305,306,309, 401,410, 721,722,723], {indResBr} = [N] e {classTrib} <> [22], efetuar o somatório de {valor} cujo {tpValor} = [31,32,33,34,35]; 0561-07: Se {codCateg} = [101,103,105,106,111,201,202, 301,302,303,305,306,309, 401,410, 721,722,723,901,902,903,904,905], {indResBr} = [S] e {classTrib} <> [22], efetuar o somatório de {valor} cujo {tpValor} = [31, 32, 33, 35]; 0561-08: Se {codCateg} = [104], efetuar o somatório de {valor} cujo {tpValor} = [31,33]; 0561-09: Se {codCateg} = [104], efetuar o somatório de {valor} cujo {tpValor} = [32], apenas se origem for S-2299; 0561-10: Se {codCateg} = [104], efetuar o somatório de {valor} cujo {tpValor} = [32], exceto se origem for S-2299; 0561-11: Se {codCateg} = [101,102,103,105,106,111,201,202] e {classTrib} = [22], efetuar o somatório de {valor} cujo {tpValor} = [31,33]; 0561-12: Se {codCateg} = [101,102,103,105,106,111,201,202] e {classTrib} = [22], efetuar o somatório de {valor} cujo {tpValor} = [32], exceto se origem for S-2299/S-2399; 0561-13: Se {codCateg} = [101,102,103,105,106,111,201,202] e {classTrib} = [22], efetuar o somatório de {valor} cujo {tpValor} = [32], apenas se origem for S-2299/S-2399; 0588-06: Se {codCateg} = [701, 711, 731, 734, 738, 741, 751, 761, 771, 781] ou ({codCateg} = [712] e {paisResid} do trabalhador <> [586]), efetuar o somatório de {valor} cujo {tpValor} = [31]; 0610-01: Se {codCateg} = [712] e {paisResid} do trabalhador = [586], efetuar o somatório de {valor} cujo {tpValor} = [31]; 3562-01: Efetuar o somatório de {valor} cujo {tpValor} = [34] e {indResBr} = [S]; ORIGEM S-1207 e respectivo S-1210: 3533: Efetuar o somatório de {valor} cujo {tpValor} = [31,32,33,34,35]."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5002_irrf_form.vrirrfdesc.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5002_irrf_form.vrirrfdesc.errors }}

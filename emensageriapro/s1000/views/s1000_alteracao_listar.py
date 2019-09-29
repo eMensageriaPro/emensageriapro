@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.s1000.forms import *
 from emensageriapro.s1000.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.esocial.models import s1000evtInfoEmpregador
 
 
 @login_required
@@ -72,13 +73,14 @@ def listar(request, output=None):
             'show_inivalid': 1,
             'show_fimvalid': 0,
             'show_infocadastro': 0,
-            'show_nmrazao': 1,
-            'show_classtrib': 0,
+            'show_nmrazao': 0,
+            'show_classtrib': 1,
             'show_natjurid': 0,
             'show_indcoop': 0,
             'show_indconstr': 0,
             'show_inddesfolha': 0,
             'show_indopccp': 0,
+            'show_indporte': 0,
             'show_indoptregeletron': 0,
             'show_indented': 0,
             'show_indett': 0,
@@ -109,6 +111,7 @@ def listar(request, output=None):
                 'indconstr__icontains': 'indconstr__icontains',
                 'inddesfolha__icontains': 'inddesfolha__icontains',
                 'indopccp__icontains': 'indopccp__icontains',
+                'indporte__icontains': 'indporte__icontains',
                 'indoptregeletron__icontains': 'indoptregeletron__icontains',
                 'indented__icontains': 'indented__icontains',
                 'indett__icontains': 'indett__icontains',
@@ -144,6 +147,7 @@ def listar(request, output=None):
                     'indconstr__icontains': 'indconstr__icontains',
                     'inddesfolha__icontains': 'inddesfolha__icontains',
                     'indopccp__icontains': 'indopccp__icontains',
+                    'indporte__icontains': 'indporte__icontains',
                     'indoptregeletron__icontains': 'indoptregeletron__icontains',
                     'indented__icontains': 'indented__icontains',
                     'indett__icontains': 'indett__icontains',
@@ -168,7 +172,7 @@ def listar(request, output=None):
             s1000_alteracao_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        s1000_evtinfoempregador_lista = s1000evtInfoEmpregador.objects.all()
         #s1000_alteracao_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -183,7 +187,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            's1000_evtinfoempregador_lista': s1000_evtinfoempregador_lista,
         }
 
         if output == 'pdf':

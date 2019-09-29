@@ -5,7 +5,7 @@
 <!-- inicio__r5001_rrecespetdesp__r5001_infototal -->
 <div class="col-md-12" id="r5001_rrecespetdesp__r5001_infototal__div">
   <div class="form-group">
-    <label id="r5001_rrecespetdesp__r5001_infototal__label">Totalizador da contribuição previdenciária incidente sobre Receitas de Espetáculos Desportivos, apuradas no evento R-3010.*</label>
+    <label id="r5001_rrecespetdesp__r5001_infototal__label">Totalizador da contribuição previdenciária incidente sobre Receitas de Espetáculos Desportivos, apuradas no evento R-3010.*<a data-toggle="tooltip" title="Totalizador da contribuição previdenciária incidente sobre Receitas de Espetáculos Desportivos, apuradas no evento R-3010."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r5001_rrecespetdesp_form.r5001_infototal.value %}
         <a href="{% url 'r5001_infototal_salvar' pk=r5001_rrecespetdesp_form.r5001_infototal.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__r5001_rrecespetdesp__crrecespetdesp -->
 <div class="col-md-6" id="r5001_rrecespetdesp__crrecespetdesp__div">
   <div class="form-group">
-    <label id="r5001_rrecespetdesp__crrecespetdesp__label">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Receita de Espetáculos Desportivos, calculada segundo as regras estabelecidas na legislação em vigor*</label>
+    <label id="r5001_rrecespetdesp__crrecespetdesp__label">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Receita de Espetáculos Desportivos, calculada segundo as regras estabelecidas na legislação em vigor*<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Receita de Espetáculos Desportivos, calculada segundo as regras estabelecidas na legislação em vigor. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos. Valores Válidos: 1151-01"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r5001_rrecespetdesp_form.crrecespetdesp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5001_rrecespetdesp_form.crrecespetdesp.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__r5001_rrecespetdesp__vlrreceitatotal -->
 <div class="col-md-6" id="r5001_rrecespetdesp__vlrreceitatotal__div">
   <div class="form-group">
-    <label id="r5001_rrecespetdesp__vlrreceitatotal__label">Valor da receita bruta total*</label>
+    <label id="r5001_rrecespetdesp__vlrreceitatotal__label">Valor da receita bruta total*<a data-toggle="tooltip" title="Valor da receita bruta total auferida em espetáculos desportivos. Origem: R-3010 - somatório dos valores informados no campo {vlrReceitaTotal}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r5001_rrecespetdesp_form.vlrreceitatotal.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r5001_rrecespetdesp_form.vlrreceitatotal.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r5001_rrecespetdesp__vlrcrrecespetdesp -->
 <div class="col-md-6" id="r5001_rrecespetdesp__vlrcrrecespetdesp__div">
   <div class="form-group">
-    <label id="r5001_rrecespetdesp__vlrcrrecespetdesp__label">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem:R-3010*</label>
+    <label id="r5001_rrecespetdesp__vlrcrrecespetdesp__label">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem:R-3010*<a data-toggle="tooltip" title="Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem:R-3010 Validação: Deve ser igual ao somatório dos valores informados no campo {vlrReceitaTotal} multiplicado por 5%."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r5001_rrecespetdesp_form.vlrcrrecespetdesp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r5001_rrecespetdesp_form.vlrcrrecespetdesp.errors }}
@@ -83,7 +83,7 @@
 <!-- inicio__r5001_rrecespetdesp__vlrcrrecespetdespsusp -->
 <div class="col-md-6" id="r5001_rrecespetdesp__vlrcrrecespetdespsusp__div">
   <div class="form-group">
-    <label id="r5001_rrecespetdesp__vlrcrrecespetdespsusp__label">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}</label>
+    <label id="r5001_rrecespetdesp__vlrcrrecespetdespsusp__label">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}<a data-toggle="tooltip" title="Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem: R-3010"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r5001_rrecespetdesp_form.vlrcrrecespetdespsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r5001_rrecespetdesp_form.vlrcrrecespetdespsusp.errors }}

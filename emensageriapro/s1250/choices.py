@@ -44,7 +44,7 @@ CHOICES_S1250_INDAQUIS = [
     (4, u'4 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral - Produção Isenta (Lei 13.606/2018)'),
     (5, u'5 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por Entidade do PAA - Produção Isenta (Lei 13.606/2018)'),
     (6, u'6 - Aquisição da produção de produtor rural pessoa jurídica por Entidade do PAA - Produção Isenta (Lei 13.606/2018).'),
-    
+
 ]
 
 
@@ -54,7 +54,7 @@ CHOICES_S1250_INDOPCCP = [
 
     (1, u'1 - Sobre a comercialização da sua produção'),
     (2, u'2 - Sobre a folha de pagamento.'),
-    
+
 ]
 
 

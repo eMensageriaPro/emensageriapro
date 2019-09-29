@@ -41,7 +41,7 @@ CHOICES_S1080_ALIQRAT_ALTERACAO = [
     (1, u'1'),
     (2, u'2'),
     (3, u'3'),
-    
+
 ]
 
 
@@ -52,7 +52,7 @@ CHOICES_S1080_ALIQRAT_INCLUSAO = [
     (1, u'1'),
     (2, u'2'),
     (3, u'3'),
-    
+
 ]
 
 
@@ -96,7 +96,7 @@ PERIODOS = [
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-    
+
 ]
 
 

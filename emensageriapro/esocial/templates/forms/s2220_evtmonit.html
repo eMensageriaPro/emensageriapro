@@ -10,7 +10,7 @@
 <!-- inicio__s2220_evtmonit__identidade -->
 <div class="col-md-6" id="s2220_evtmonit__identidade__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__identidade__label">Identidade do Registro</label>
+    <label id="s2220_evtmonit__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. Regra de validação: REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2220_evtmonit_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_evtmonit_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s2220_evtmonit__indretif -->
 <div class="col-md-6" id="s2220_evtmonit__indretif__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__indretif__label">Identificador de retificação*</label>
+    <label id="s2220_evtmonit__indretif__label">Identificador de retificação*<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2220_evtmonit_form.indretif.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2220_evtmonit_form.indretif.errors }}
@@ -54,7 +54,7 @@
 <!-- inicio__s2220_evtmonit__nrrecibo -->
 <div class="col-md-6" id="s2220_evtmonit__nrrecibo__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__nrrecibo__label">Número do recibo</label>
+    <label id="s2220_evtmonit__nrrecibo__label">Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2220_evtmonit_form.nrrecibo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_evtmonit_form.nrrecibo.errors }}
@@ -69,7 +69,7 @@
 <!-- inicio__s2220_evtmonit__tpamb -->
 <div class="col-md-6" id="s2220_evtmonit__tpamb__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__tpamb__label">Identificação do ambiente*</label>
+    <label id="s2220_evtmonit__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2220_evtmonit_form.tpamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2220_evtmonit_form.tpamb.errors }}
@@ -93,7 +93,7 @@
 <!-- inicio__s2220_evtmonit__procemi -->
 <div class="col-md-6" id="s2220_evtmonit__procemi__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__procemi__label">Processo de emissão do evento*</label>
+    <label id="s2220_evtmonit__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2220_evtmonit_form.procemi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2220_evtmonit_form.procemi.errors }}
@@ -117,7 +117,7 @@
 <!-- inicio__s2220_evtmonit__verproc -->
 <div class="col-md-6" id="s2220_evtmonit__verproc__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__verproc__label">Versão do processo*</label>
+    <label id="s2220_evtmonit__verproc__label">Versão do processo*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2220_evtmonit_form.verproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_evtmonit_form.verproc.errors }}
@@ -137,7 +137,7 @@
 <!-- inicio__s2220_evtmonit__tpinsc -->
 <div class="col-md-6" id="s2220_evtmonit__tpinsc__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s2220_evtmonit__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2220_evtmonit_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2220_evtmonit_form.tpinsc.errors }}
@@ -161,7 +161,7 @@
 <!-- inicio__s2220_evtmonit__nrinsc -->
 <div class="col-md-6" id="s2220_evtmonit__nrinsc__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s2220_evtmonit__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2220_evtmonit_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_evtmonit_form.nrinsc.errors }}
@@ -181,7 +181,7 @@
 <!-- inicio__s2220_evtmonit__cpftrab -->
 <div class="col-md-6" id="s2220_evtmonit__cpftrab__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__cpftrab__label">CPF*</label>
+    <label id="s2220_evtmonit__cpftrab__label">CPF*<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2220_evtmonit_form.cpftrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_evtmonit_form.cpftrab.errors }}
@@ -196,7 +196,7 @@
 <!-- inicio__s2220_evtmonit__nistrab -->
 <div class="col-md-6" id="s2220_evtmonit__nistrab__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__nistrab__label">NIS</label>
+    <label id="s2220_evtmonit__nistrab__label">NIS<a data-toggle="tooltip" title="Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. Validação: O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2220_evtmonit_form.nistrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_evtmonit_form.nistrab.errors }}
@@ -211,7 +211,7 @@
 <!-- inicio__s2220_evtmonit__matricula -->
 <div class="col-md-6" id="s2220_evtmonit__matricula__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__matricula__label">Matricula</label>
+    <label id="s2220_evtmonit__matricula__label">Matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista. Se o trabalhador não está sujeito a esse evento (S-2200), a matrícula não deve ser informada, porém, o trabalhador deve ter sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2220_evtmonit_form.matricula.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_evtmonit_form.matricula.errors }}
@@ -227,7 +227,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2220_evtmonit__codcateg__div">
     <div class="form-group">
-      <label id="s2220_evtmonit__codcateg__label">Código da Categoria</label>
+      <label id="s2220_evtmonit__codcateg__label">Código da Categoria<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 01. Validação: Só informar se o trabalhador tiver sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300. Não informar nos demais casos. Se informado, deve existir na Tabela de Categorias de Trabalhadores (Tabela 01)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2220_evtmonit_form.codcateg.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2220_evtmonit_form.codcateg.errors }}
@@ -236,7 +236,7 @@
         <input type="text"
                id="txt_codcateg"
                name="txt_codcateg" class="form-control"
-               value="{% if s2220_evtmonit.codcateg %}{{ s2220_evtmonit.codcateg|get_opcoes_titulo:176 }}{% endif %}"
+               value="{% if s2220_evtmonit.codcateg %}{{ s2220_evtmonit.codcateg|get_opcoes_titulo:180 }}{% endif %}"
                {% if s2220_evtmonit_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2220_evtmonit_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2220_evtmonit_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -250,7 +250,7 @@
   $(document).ready(function(e){
     $('#txt_codcateg').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/176/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/180/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -281,7 +281,7 @@
   {% else %}
   <div class="col-md-6" id="s2220_evtmonit__codcateg__div">
     <div class="form-group">
-      <label id="s2220_evtmonit__codcateg__label">Código da Categoria</label>
+      <label id="s2220_evtmonit__codcateg__label">Código da Categoria<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 01. Validação: Só informar se o trabalhador tiver sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300. Não informar nos demais casos. Se informado, deve existir na Tabela de Categorias de Trabalhadores (Tabela 01)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s2220_evtmonit.codcateg %}{{ s2220_evtmonit.codcateg }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -295,7 +295,7 @@
 <!-- inicio__s2220_evtmonit__tpexameocup -->
 <div class="col-md-6" id="s2220_evtmonit__tpexameocup__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__tpexameocup__label">Tipo do exame médico ocupacional*</label>
+    <label id="s2220_evtmonit__tpexameocup__label">Tipo do exame médico ocupacional*<a data-toggle="tooltip" title="Tipo do exame médico ocupacional, conforme opções abaixo: 0 - Exame médico admissional; 1 - Exame médico periódico, conforme NR7 do MTb e/ou planejamento do PCMSO; 2 - Exame médico de retorno ao trabalho; 3 - Exame médico de mudança de função; 4 - Exame médico de monitoração pontual, não enquadrado nos demais casos; 9 - Exame médico demissional. Validação: Se informado [0], não pode existir outro evento S-2220 para o mesmo vínculo com {dtAso} anterior. Valores Válidos: 0, 1, 2, 3, 4, 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2220_evtmonit_form.tpexameocup.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2220_evtmonit_form.tpexameocup.errors }}
@@ -324,7 +324,7 @@
 <!-- inicio__s2220_evtmonit__dtaso -->
 <div class="col-md-6" id="s2220_evtmonit__dtaso__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__dtaso__label">Data*</label>
+    <label id="s2220_evtmonit__dtaso__label">Data*<a data-toggle="tooltip" title="Data de emissão do ASO. Validação: Deve ser uma data válida, igual ou anterior à data atual e igual ou posterior à data de início da obrigatoriedade deste evento para o empregador no eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2220_evtmonit_form.dtaso.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2220_evtmonit_form.dtaso.errors }}
@@ -339,7 +339,7 @@
 <!-- inicio__s2220_evtmonit__tpaso -->
 <div class="col-md-6" id="s2220_evtmonit__tpaso__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__tpaso__label">Tipo ASO*</label>
+    <label id="s2220_evtmonit__tpaso__label">Tipo ASO*<a data-toggle="tooltip" title="Tipo de Atestado de Saúde Ocupacional emitido, conforme opções abaixo:0 - Admissional;1 - Periódico, conforme planejamento do PCMSO;2 - De retorno ao trabalho;3 - De mudança de função;4 - De monitoração pontual, não enquadrado nos casos anteriores;8 - Demissional.Valores Válidos: 0, 1, 2, 3, 4, 8."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2220_evtmonit_form.tpaso.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2220_evtmonit_form.tpaso.errors }}
@@ -363,7 +363,7 @@
 <!-- inicio__s2220_evtmonit__resaso -->
 <div class="col-md-6" id="s2220_evtmonit__resaso__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__resaso__label">Resultado*</label>
+    <label id="s2220_evtmonit__resaso__label">Resultado*<a data-toggle="tooltip" title="Resultado do ASO, conforme opções abaixo: 1 - Apto; 2 - Inapto. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2220_evtmonit_form.resaso.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2220_evtmonit_form.resaso.errors }}
@@ -392,7 +392,7 @@
 <!-- inicio__s2220_evtmonit__cpfmed -->
 <div class="col-md-6" id="s2220_evtmonit__cpfmed__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__cpfmed__label">CPF do médico emitente do ASO</label>
+    <label id="s2220_evtmonit__cpfmed__label">CPF do médico emitente do ASO<a data-toggle="tooltip" title="Preencher com o CPF do médico emitente do ASO. Validação: Se informado, deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2220_evtmonit_form.cpfmed.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_evtmonit_form.cpfmed.errors }}
@@ -407,7 +407,7 @@
 <!-- inicio__s2220_evtmonit__nismed -->
 <div class="col-md-6" id="s2220_evtmonit__nismed__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__nismed__label">Número de Identificação Social - NIS do médico emitente do ASO, o qual pode ser o PIS, PASEP ou NIT</label>
+    <label id="s2220_evtmonit__nismed__label">Número de Identificação Social - NIS do médico emitente do ASO, o qual pode ser o PIS, PASEP ou NIT<a data-toggle="tooltip" title="Preencher com o Número de Identificação Social - NIS do médico emitente do ASO, o qual pode ser o PIS, PASEP ou NIT. Validação: Se informado, deve ser um NIS válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2220_evtmonit_form.nismed.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_evtmonit_form.nismed.errors }}
@@ -422,7 +422,7 @@
 <!-- inicio__s2220_evtmonit__nmmed -->
 <div class="col-md-6" id="s2220_evtmonit__nmmed__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__nmmed__label">Nome do Médico*</label>
+    <label id="s2220_evtmonit__nmmed__label">Nome do Médico*<a data-toggle="tooltip" title="Preencher com o nome do médico emitente do ASO."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2220_evtmonit_form.nmmed.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_evtmonit_form.nmmed.errors }}
@@ -437,7 +437,7 @@
 <!-- inicio__s2220_evtmonit__nrcrm -->
 <div class="col-md-6" id="s2220_evtmonit__nrcrm__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__nrcrm__label">Número do CRM*</label>
+    <label id="s2220_evtmonit__nrcrm__label">Número do CRM*<a data-toggle="tooltip" title="Número de inscrição do médico emitente do ASO no Conselho Regional de Medicina (CRM)."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2220_evtmonit_form.nrcrm.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_evtmonit_form.nrcrm.errors }}
@@ -452,7 +452,7 @@
 <!-- inicio__s2220_evtmonit__ufcrm -->
 <div class="col-md-6" id="s2220_evtmonit__ufcrm__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__ufcrm__label">UF do Órgão de classe*</label>
+    <label id="s2220_evtmonit__ufcrm__label">UF do Órgão de classe*<a data-toggle="tooltip" title="Preencher com a sigla da UF de expedição do CRM. Validação: Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2220_evtmonit_form.ufcrm.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2220_evtmonit_form.ufcrm.errors }}
@@ -481,7 +481,7 @@
 <!-- inicio__s2220_evtmonit__nisresp -->
 <div class="col-md-6" id="s2220_evtmonit__nisresp__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__nisresp__label">NIS*</label>
+    <label id="s2220_evtmonit__nisresp__label">NIS*<a data-toggle="tooltip" title="NIS do responsável pela monitoraçãoValidação: Deve ser um NIS válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2220_evtmonit_form.nisresp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_evtmonit_form.nisresp.errors }}
@@ -496,7 +496,7 @@
 <!-- inicio__s2220_evtmonit__nrconsclasse -->
 <div class="col-md-6" id="s2220_evtmonit__nrconsclasse__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__nrconsclasse__label">Número de Inscrição*</label>
+    <label id="s2220_evtmonit__nrconsclasse__label">Número de Inscrição*<a data-toggle="tooltip" title="Número de inscrição do médico ou enfermeiro do trabalho"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2220_evtmonit_form.nrconsclasse.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_evtmonit_form.nrconsclasse.errors }}
@@ -511,7 +511,7 @@
 <!-- inicio__s2220_evtmonit__ufconsclasse -->
 <div class="col-md-6" id="s2220_evtmonit__ufconsclasse__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__ufconsclasse__label">UF do Órgão de classe</label>
+    <label id="s2220_evtmonit__ufconsclasse__label">UF do Órgão de classe<a data-toggle="tooltip" title="Preencher com a sigla da UF de expedição do CRM/COREN. Validação: Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2220_evtmonit_form.ufconsclasse.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2220_evtmonit_form.ufconsclasse.errors }}
@@ -535,7 +535,7 @@
 <!-- inicio__s2220_evtmonit__cpfresp -->
 <div class="col-md-6" id="s2220_evtmonit__cpfresp__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__cpfresp__label">CPF</label>
+    <label id="s2220_evtmonit__cpfresp__label">CPF<a data-toggle="tooltip" title="Preencher com o CPF do médico responsável/coordenador do PCMSO. Validação: Se informado, deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2220_evtmonit_form.cpfresp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_evtmonit_form.cpfresp.errors }}
@@ -550,7 +550,7 @@
 <!-- inicio__s2220_evtmonit__nmresp -->
 <div class="col-md-6" id="s2220_evtmonit__nmresp__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__nmresp__label">Nome do Responsável pelas Informações*</label>
+    <label id="s2220_evtmonit__nmresp__label">Nome do Responsável pelas Informações*<a data-toggle="tooltip" title="Preencher com o nome do médico responsável/coordenador do PCMSO."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2220_evtmonit_form.nmresp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_evtmonit_form.nmresp.errors }}
@@ -565,7 +565,7 @@
 <!-- inicio__s2220_evtmonit__nrcrm -->
 <div class="col-md-6" id="s2220_evtmonit__nrcrm__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__nrcrm__label">Número do CRM*</label>
+    <label id="s2220_evtmonit__nrcrm__label">Número do CRM*<a data-toggle="tooltip" title="Número de inscrição do médico responsável/coordenador do PCMSO no CRM."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2220_evtmonit_form.nrcrm.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_evtmonit_form.nrcrm.errors }}
@@ -580,7 +580,7 @@
 <!-- inicio__s2220_evtmonit__ufcrm -->
 <div class="col-md-6" id="s2220_evtmonit__ufcrm__div">
   <div class="form-group">
-    <label id="s2220_evtmonit__ufcrm__label">UF do Órgão de classe*</label>
+    <label id="s2220_evtmonit__ufcrm__label">UF do Órgão de classe*<a data-toggle="tooltip" title="Preencher com a sigla da UF de expedição do CRM. Validação: Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2220_evtmonit_form.ufcrm.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2220_evtmonit_form.ufcrm.errors }}

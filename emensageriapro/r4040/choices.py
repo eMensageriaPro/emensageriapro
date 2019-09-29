@@ -40,7 +40,7 @@ CHOICES_R4040_NATRENDIM = [
 
     (1, u'1 - Rendimentos do trabalho'),
     (9, u'9 - Demais rendimentos.'),
-    
+
 ]
 
 

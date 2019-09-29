@@ -18,7 +18,6 @@ from emensageriapro.s2410.views import s2410_homologtc_salvar as s2410_homologtc
 from emensageriapro.s2410.views import s2410_homologtc_api as s2410_homologtc_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

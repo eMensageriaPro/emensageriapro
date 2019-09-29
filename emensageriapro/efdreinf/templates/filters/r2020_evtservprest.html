@@ -113,8 +113,11 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Preencher com o código correspondente ao tipo de inscrição</label>
-    <div name="tpinsc" class="input-group" style="width: 100%;">
-      <input type="text" name="tpinsc" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'tpinsc' }}">
+    <div class="input-group" style="width: 100%;">
+      <select name="tpinsc" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >1 - CNPJ</option>
+      </select>
     </div>
   </div>
 </div>
@@ -147,8 +150,11 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Preencher com o código correspondente ao tipo de inscrição</label>
-    <div name="tpinscestabprest" class="input-group" style="width: 100%;">
-      <input type="text" name="tpinscestabprest" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'tpinscestabprest' }}">
+    <div class="input-group" style="width: 100%;">
+      <select name="tpinscestabprest" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpinscestabprest' %}selected="selected"{% endifequal %} >1 - CNPJ</option>
+      </select>
     </div>
   </div>
 </div>
@@ -175,8 +181,12 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Preencher com o código correspondente ao tipo de inscrição</label>
-    <div name="tpinsctomador" class="input-group" style="width: 100%;">
-      <input type="text" name="tpinsctomador" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'tpinsctomador' }}">
+    <div class="input-group" style="width: 100%;">
+      <select name="tpinsctomador" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpinsctomador' %}selected="selected"{% endifequal %} >1 - CNPJ</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpinsctomador' %}selected="selected"{% endifequal %} >4 - CNO</option>
+      </select>
     </div>
   </div>
 </div>

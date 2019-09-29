@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r9002_totapurdia__r9002_infototal__div">
   <div class="form-group">
-    <label id="r9002_totapurdia__r9002_infototal__label">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração diário*</label>
+    <label id="r9002_totapurdia__r9002_infototal__label">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração diário*<a data-toggle="tooltip" title="Totalizador das bases de cálculo e das retenções dos tributos com período de apuração diário."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r9002_totapurdia_form.r9002_infototal.value %}
         <a id="r9002_totapurdia__r9002_infototal__div_acessar" href="{% url 'r9002_infototal_salvar' pk=r9002_totapurdia_form.r9002_infototal.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r9002_totapurdia__perapurdia -->
 <div class="col-md-6" id="r9002_totapurdia__perapurdia__div">
   <div class="form-group">
-    <label id="r9002_totapurdia__perapurdia__label">Período de apuração diário do Código de Receita - CR*</label>
+    <label id="r9002_totapurdia__perapurdia__label">Período de apuração diário do Código de Receita - CR*<a data-toggle="tooltip" title="Período de apuração diário do Código de Receita - CR. Origem: R-4010, R-4020 e R-4040. Validação: Deve ser um número que representa o dia do mês, no intervalo entre [1] e [31], inclusive. Deve ser igual ao dia ("DD") da data informada em {dtFG} no evento de origem."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9002_totapurdia_form.perapurdia.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9002_totapurdia_form.perapurdia.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r9002_totapurdia__crdia -->
 <div class="col-md-6" id="r9002_totapurdia__crdia__div">
   <div class="form-group">
-    <label id="r9002_totapurdia__crdia__label">Código de Receita - CR relativo a tributo que possui período de apuração diário*</label>
+    <label id="r9002_totapurdia__crdia__label">Código de Receita - CR relativo a tributo que possui período de apuração diário*<a data-toggle="tooltip" title="Código de Receita - CR relativo a tributo que possui período de apuração diário. Validação: Deve ser um dos seguintes valores, compatível com as informações prestadas nos demais eventos: [0473, 2063, 0422, 0481, 9478, 9472, 9466, 9427, 5192, 5286, 5217, 2063]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9002_totapurdia_form.crdia.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9002_totapurdia_form.crdia.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__r9002_totapurdia__vlrbasecrdia -->
 <div class="col-md-6" id="r9002_totapurdia__vlrbasecrdia__div">
   <div class="form-group">
-    <label id="r9002_totapurdia__vlrbasecrdia__label">Valor da base do tributo com período de apuração diário*</label>
+    <label id="r9002_totapurdia__vlrbasecrdia__label">Valor da base do tributo com período de apuração diário*<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração diário. Origem: R-4010, R-4020, R-4040."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9002_totapurdia_form.vlrbasecrdia.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9002_totapurdia_form.vlrbasecrdia.errors }}
@@ -89,7 +89,7 @@
 <!-- inicio__r9002_totapurdia__vlrcrdia -->
 <div class="col-md-6" id="r9002_totapurdia__vlrcrdia__div">
   <div class="form-group">
-    <label id="r9002_totapurdia__vlrcrdia__label">Valor do tributo retido com período de apuração diário, calculado segundo as regras estabelecidas na legislação em vigor*</label>
+    <label id="r9002_totapurdia__vlrcrdia__label">Valor do tributo retido com período de apuração diário, calculado segundo as regras estabelecidas na legislação em vigor*<a data-toggle="tooltip" title="Valor do tributo retido com período de apuração diário, calculado segundo as regras estabelecidas na legislação em vigor. Origem: R-4010, R-4020, R-4040."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9002_totapurdia_form.vlrcrdia.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9002_totapurdia_form.vlrcrdia.errors }}
@@ -107,7 +107,7 @@
 <!-- inicio__r9002_totapurdia__vlrbasecrdiasusp -->
 <div class="col-md-6" id="r9002_totapurdia__vlrbasecrdiasusp__div">
   <div class="form-group">
-    <label id="r9002_totapurdia__vlrbasecrdiasusp__label">Valor da base do tributo com período de apuração diário, com exigibilidade suspensa</label>
+    <label id="r9002_totapurdia__vlrbasecrdiasusp__label">Valor da base do tributo com período de apuração diário, com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração diário, com exigibilidade suspensa. Origem: R-4010, R-4020, R-4040."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9002_totapurdia_form.vlrbasecrdiasusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9002_totapurdia_form.vlrbasecrdiasusp.errors }}
@@ -125,7 +125,7 @@
 <!-- inicio__r9002_totapurdia__vlrcrdiasusp -->
 <div class="col-md-6" id="r9002_totapurdia__vlrcrdiasusp__div">
   <div class="form-group">
-    <label id="r9002_totapurdia__vlrcrdiasusp__label">Valor do tributo com período de apuração diário, que deixou de ser retido</label>
+    <label id="r9002_totapurdia__vlrcrdiasusp__label">Valor do tributo com período de apuração diário, que deixou de ser retido<a data-toggle="tooltip" title="Valor do tributo com período de apuração diário, que deixou de ser retido. Origem: R-4010, R-4020, R-4040."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9002_totapurdia_form.vlrcrdiasusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9002_totapurdia_form.vlrcrdiasusp.errors }}

@@ -10,7 +10,6 @@ from emensageriapro.s2260.views import s2260_localtrabinterm_salvar as s2260_loc
 from emensageriapro.s2260.views import s2260_localtrabinterm_api as s2260_localtrabinterm_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

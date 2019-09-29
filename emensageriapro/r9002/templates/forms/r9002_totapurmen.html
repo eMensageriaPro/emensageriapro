@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r9002_totapurmen__r9002_infototal__div">
   <div class="form-group">
-    <label id="r9002_totapurmen__r9002_infototal__label">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração mensal*</label>
+    <label id="r9002_totapurmen__r9002_infototal__label">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração mensal*<a data-toggle="tooltip" title="Totalizador das bases de cálculo e das retenções dos tributos com período de apuração mensal."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r9002_totapurmen_form.r9002_infototal.value %}
         <a id="r9002_totapurmen__r9002_infototal__div_acessar" href="{% url 'r9002_infototal_salvar' pk=r9002_totapurmen_form.r9002_infototal.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r9002_totapurmen__crmen -->
 <div class="col-md-6" id="r9002_totapurmen__crmen__div">
   <div class="form-group">
-    <label id="r9002_totapurmen__crmen__label">Código de Receita - CR relativo ao tributo que possui período de apuração mensal*</label>
+    <label id="r9002_totapurmen__crmen__label">Código de Receita - CR relativo ao tributo que possui período de apuração mensal*<a data-toggle="tooltip" title="Código de Receita - CR relativo ao tributo que possui período de apuração mensal. Validação: Deve ser um dos seguintes valores, compatível com as informações prestadas nos demais eventos: [0561, 0588, 5200, 5936, 1889, 3533, 3562, 3223, 3540, 3556, 5565, 3579, 3208, 3277, 8045, 3280, 1708, 5944, 5204, 6891, 5928, 1895, 5952, 5987, 5960, 5979, 6147, 9060, 8739, 8767, 6175, 8850, 8863, 6188, 6190]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9002_totapurmen_form.crmen.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9002_totapurmen_form.crmen.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r9002_totapurmen__vlrbasecrmen -->
 <div class="col-md-6" id="r9002_totapurmen__vlrbasecrmen__div">
   <div class="form-group">
-    <label id="r9002_totapurmen__vlrbasecrmen__label">Valor da base do tributo com período de apuração mensal*</label>
+    <label id="r9002_totapurmen__vlrbasecrmen__label">Valor da base do tributo com período de apuração mensal*<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração mensal. Origem: R-4010, R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9002_totapurmen_form.vlrbasecrmen.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9002_totapurmen_form.vlrbasecrmen.errors }}
@@ -74,7 +74,7 @@
 <!-- inicio__r9002_totapurmen__vlrcrmen -->
 <div class="col-md-6" id="r9002_totapurmen__vlrcrmen__div">
   <div class="form-group">
-    <label id="r9002_totapurmen__vlrcrmen__label">Valor do tributo retido com período de apuração mensal, calculado segundo as regras estabelecidas na legislação em vigor*</label>
+    <label id="r9002_totapurmen__vlrcrmen__label">Valor do tributo retido com período de apuração mensal, calculado segundo as regras estabelecidas na legislação em vigor*<a data-toggle="tooltip" title="Valor do tributo retido com período de apuração mensal, calculado segundo as regras estabelecidas na legislação em vigor. Origem: R-4010, R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9002_totapurmen_form.vlrcrmen.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9002_totapurmen_form.vlrcrmen.errors }}
@@ -92,7 +92,7 @@
 <!-- inicio__r9002_totapurmen__vlrbasecrmensusp -->
 <div class="col-md-6" id="r9002_totapurmen__vlrbasecrmensusp__div">
   <div class="form-group">
-    <label id="r9002_totapurmen__vlrbasecrmensusp__label">Valor da base do tributo com período de apuração mensal, com exigibilidade suspensa</label>
+    <label id="r9002_totapurmen__vlrbasecrmensusp__label">Valor da base do tributo com período de apuração mensal, com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração mensal, com exigibilidade suspensa. Origem: R-4010, R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9002_totapurmen_form.vlrbasecrmensusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9002_totapurmen_form.vlrbasecrmensusp.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__r9002_totapurmen__vlrcrmensusp -->
 <div class="col-md-6" id="r9002_totapurmen__vlrcrmensusp__div">
   <div class="form-group">
-    <label id="r9002_totapurmen__vlrcrmensusp__label">Valor do tributo com período de apuração mensal, que deixou de ser retido</label>
+    <label id="r9002_totapurmen__vlrcrmensusp__label">Valor do tributo com período de apuração mensal, que deixou de ser retido<a data-toggle="tooltip" title="Valor do tributo com período de apuração mensal, que deixou de ser retido. Origem: R-4010, R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9002_totapurmen_form.vlrcrmensusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9002_totapurmen_form.vlrcrmensusp.errors }}

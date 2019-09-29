@@ -5,7 +5,7 @@
 <!-- inicio__s2240_iniexprisco_obs__s2240_evtexprisco -->
 <div class="col-md-12" id="s2240_iniexprisco_obs__s2240_evtexprisco__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_obs__s2240_evtexprisco__label">Observações relativas a registros ambientais*</label>
+    <label id="s2240_iniexprisco_obs__s2240_evtexprisco__label">Observações relativas a registros ambientais*<a data-toggle="tooltip" title="Observações relativas a registros ambientais."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2240_iniexprisco_obs_form.s2240_evtexprisco.value %}
         <a href="{% url 's2240_evtexprisco_salvar' pk=s2240_iniexprisco_obs_form.s2240_evtexprisco.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2240_iniexprisco_obs__meterg -->
 <div class="col-md-3" id="s2240_iniexprisco_obs__meterg__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_obs__meterg__label">Descrição da metodologia utilizada para o levantamento dos riscos ergonômicos.</label>
+    <label id="s2240_iniexprisco_obs__meterg__label">Descrição da metodologia utilizada para o levantamento dos riscos ergonômicos.<a data-toggle="tooltip" title="Descrição da metodologia utilizada para o levantamento dos riscos ergonômicos. Validação: Preenchimento obrigatório se {obsCompl} não for informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2240_iniexprisco_obs_form.meterg.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_iniexprisco_obs_form.meterg.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2240_iniexprisco_obs__obscompl -->
 <div class="col-md-3" id="s2240_iniexprisco_obs__obscompl__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_obs__obscompl__label">Observação(ões) complementar(es) referente(s) a registros ambientais. Validação: Preenchimento obrigatório se {metErg} não for informado.</label>
+    <label id="s2240_iniexprisco_obs__obscompl__label">Observação(ões) complementar(es) referente(s) a registros ambientais. Validação: Preenchimento obrigatório se {metErg} não for informado.<a data-toggle="tooltip" title="Observação(ões) complementar(es) referente(s) a registros ambientais. Validação: Preenchimento obrigatório se {metErg} não for informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2240_iniexprisco_obs_form.obscompl.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_iniexprisco_obs_form.obscompl.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__s2240_iniexprisco_obs__observacao -->
 <div class="col-md-3" id="s2240_iniexprisco_obs__observacao__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_obs__observacao__label">Observações</label>
+    <label id="s2240_iniexprisco_obs__observacao__label">Observações<a data-toggle="tooltip" title="Observação(ões) complementar(es) referente(s) a registros ambientais."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2240_iniexprisco_obs_form.observacao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_iniexprisco_obs_form.observacao.errors }}

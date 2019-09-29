@@ -43,7 +43,7 @@ CHOICES_S1010_CODINCFGTS_ALTERACAO = [
     ('12', u'12 - Base de Cálculo do FGTS 13° salário'),
     ('21', u'21 - Base de Cálculo do FGTS Rescisório (aviso prévio)'),
     ('91', u'91 - Incidência suspensa em decorrência de decisão judicial.'),
-    
+
 ]
 
 
@@ -56,7 +56,7 @@ CHOICES_S1010_CODINCFGTS_INCLUSAO = [
     ('12', u'12 - Base de Cálculo do FGTS 13° salário'),
     ('21', u'21 - Base de Cálculo do FGTS Rescisório (aviso prévio)'),
     ('91', u'91 - Incidência suspensa em decorrência de decisão judicial.'),
-    
+
 ]
 
 
@@ -68,7 +68,7 @@ CHOICES_S1010_CODINCSIND_ALTERACAO = [
     ('11', u'11 - Base de cálculo'),
     ('31', u'31 - Valor da contribuição sindical laboral descontada'),
     ('91', u'91 - Incidência suspensa em decorrência de decisão judicial.'),
-    
+
 ]
 
 
@@ -80,7 +80,7 @@ CHOICES_S1010_CODINCSIND_INCLUSAO = [
     ('11', u'11 - Base de cálculo'),
     ('31', u'31 - Valor da contribuição sindical laboral descontada'),
     ('91', u'91 - Incidência suspensa em decorrência de decisão judicial.'),
-    
+
 ]
 
 
@@ -90,7 +90,7 @@ CHOICES_S1010_EXTDECISAO_ALTERACAO = [
 
     (1, u'1 - Contribuição Previdenciária Patronal'),
     (2, u'2 - Contribuição Previdenciária Patronal + Descontada dos Segurados.'),
-    
+
 ]
 
 
@@ -100,7 +100,7 @@ CHOICES_S1010_EXTDECISAO_INCLUSAO = [
 
     (1, u'1 - Contribuição Previdenciária Patronal'),
     (2, u'2 - Contribuição Previdenciária Patronal + Descontada dos Segurados.'),
-    
+
 ]
 
 
@@ -110,7 +110,7 @@ CHOICES_S1010_TETOREMUN_ALTERACAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -120,7 +120,7 @@ CHOICES_S1010_TETOREMUN_INCLUSAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -130,7 +130,7 @@ CHOICES_S1010_TPPROC_ALTERACAO = [
 
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-    
+
 ]
 
 
@@ -140,7 +140,7 @@ CHOICES_S1010_TPPROC_INCLUSAO = [
 
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-    
+
 ]
 
 
@@ -152,7 +152,7 @@ CHOICES_S1010_TPRUBR_ALTERACAO = [
     (2, u'2 - Desconto'),
     (3, u'3 - Informativa'),
     (4, u'4 - Informativa dedutora.'),
-    
+
 ]
 
 
@@ -164,7 +164,7 @@ CHOICES_S1010_TPRUBR_INCLUSAO = [
     (2, u'2 - Desconto'),
     (3, u'3 - Informativa'),
     (4, u'4 - Informativa dedutora.'),
-    
+
 ]
 
 
@@ -208,7 +208,7 @@ PERIODOS = [
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-    
+
 ]
 
 

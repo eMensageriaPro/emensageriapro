@@ -36,7 +36,7 @@
             <td><span style="display:none">{{ a.dtpagto|date:"Y-m-d" }}</span>{{ a.dtpagto|date:"d/m/Y" }}</td>
             {% endif %}
             {% if show_fields.show_tprendimento or 1 %}
-            <td>{{ a.tprendimento }}</td>
+            <td>{{ a.get_tprendimento_display }}</td>
             {% endif %}
             {% if show_fields.show_formatributacao or 0 %}
             <td>{{ a.get_formatributacao_display }}</td>

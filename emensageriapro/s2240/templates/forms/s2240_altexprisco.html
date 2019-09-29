@@ -5,7 +5,7 @@
 <!-- inicio__s2240_altexprisco__s2240_evtexprisco -->
 <div class="col-md-12" id="s2240_altexprisco__s2240_evtexprisco__div">
   <div class="form-group">
-    <label id="s2240_altexprisco__s2240_evtexprisco__label">Condições ambientais do trabalho - Alteração*</label>
+    <label id="s2240_altexprisco__s2240_evtexprisco__label">Condições ambientais do trabalho - Alteração*<a data-toggle="tooltip" title="Condições ambientais do trabalho - Alteração Regra de validação: REGRA_EXISTE_EVENTO_INICIO_CDT"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2240_altexprisco_form.s2240_evtexprisco.value %}
         <a href="{% url 's2240_evtexprisco_salvar' pk=s2240_altexprisco_form.s2240_evtexprisco.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2240_altexprisco__dtaltcondicao -->
 <div class="col-md-6" id="s2240_altexprisco__dtaltcondicao__div">
   <div class="form-group">
-    <label id="s2240_altexprisco__dtaltcondicao__label">Data de alteração de condição*</label>
+    <label id="s2240_altexprisco__dtaltcondicao__label">Data de alteração de condição*<a data-toggle="tooltip" title="Informar a data em que ocorreu alteração na condição de exposição ao(s) fator(es) de risco para o trabalhador. A data informada deve ser igual ou posterior à data de início na condição de exposição que se pretende alterar. Validação: Deve ser uma data igual ou posterior à data de início das atividades exercidas pelo trabalhador, sujeitas ao(s) fator(es) de risco."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2240_altexprisco_form.dtaltcondicao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2240_altexprisco_form.dtaltcondicao.errors }}

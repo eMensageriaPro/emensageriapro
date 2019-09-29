@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1207_dmdev__s1207_evtbenprrp__div">
   <div class="form-group">
-    <label id="s1207_dmdev__s1207_evtbenprrp__label">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF*</label>
+    <label id="s1207_dmdev__s1207_evtbenprrp__label">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF*<a data-toggle="tooltip" title="Identificação de cada um dos demonstrativos de valores devidos ao beneficiário antes das retenções de pensão alimentícia e IRRF. (As retenções de pensão alimentícia e IRRF devem ser realizadas no ato do pagamento e, portanto, são informadas no evento S-1210). O somatório de cada uma das rubricas cujo {codIncCP} = [31, 32, 34, 35] não pode ser negativo. O somatório dos Vencimentos deve ser maior ou igual ao somatório dos Descontos."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1207_dmdev_form.s1207_evtbenprrp.value %}
         <a id="s1207_dmdev__s1207_evtbenprrp__div_acessar" href="{% url 's1207_evtbenprrp_salvar' pk=s1207_dmdev_form.s1207_evtbenprrp.value %}">
@@ -42,7 +42,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-3" id="s1207_dmdev__tpbenef__div">
     <div class="form-group">
-      <label id="s1207_dmdev__tpbenef__label">Tipo de benefício*</label>
+      <label id="s1207_dmdev__tpbenef__label">Tipo de benefício*<a data-toggle="tooltip" title="Tipo de benefício previdenciário, conforme tabela 25. Validação: Deve ser um código existente na tabela 25."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1207_dmdev_form.tpbenef.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s1207_dmdev_form.tpbenef.errors }}
@@ -51,7 +51,7 @@
         <input type="text"
                id="txt_tpbenef"
                name="txt_tpbenef" class="form-control"
-               value="{% if s1207_dmdev.tpbenef %}{{ s1207_dmdev.tpbenef|get_opcoes_titulo:197 }}{% endif %}"
+               value="{% if s1207_dmdev.tpbenef %}{{ s1207_dmdev.tpbenef|get_opcoes_titulo:201 }}{% endif %}"
                {% if s1207_dmdev_form.tpbenef.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1207_dmdev_form.tpbenef.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1207_dmdev_form.tpbenef.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -65,7 +65,7 @@
   $(document).ready(function(e){
     $('#txt_tpbenef').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/197/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/201/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -96,7 +96,7 @@
   {% else %}
   <div class="col-md-3" id="s1207_dmdev__tpbenef__div">
     <div class="form-group">
-      <label id="s1207_dmdev__tpbenef__label">Tipo de benefício*</label>
+      <label id="s1207_dmdev__tpbenef__label">Tipo de benefício*<a data-toggle="tooltip" title="Tipo de benefício previdenciário, conforme tabela 25. Validação: Deve ser um código existente na tabela 25."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_tpbenef" name="txt_tpbenef" class="form-control" value="{% if s1207_dmdev.tpbenef %}{{ s1207_dmdev.tpbenef }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -105,7 +105,7 @@
 <!-- inicio__s1207_dmdev__nrbenefic -->
 <div class="col-md-3" id="s1207_dmdev__nrbenefic__div">
   <div class="form-group">
-    <label id="s1207_dmdev__nrbenefic__label">Número do benefício*</label>
+    <label id="s1207_dmdev__nrbenefic__label">Número do benefício*<a data-toggle="tooltip" title="Número do benefício previdenciário. Validação: Deve estar previamente cadastrado através do evento S-2400 e estar ativo no período definido em {perApur}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1207_dmdev_form.nrbenefic.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1207_dmdev_form.nrbenefic.errors }}
@@ -120,7 +120,7 @@
 <!-- inicio__s1207_dmdev__idedmdev -->
 <div class="col-md-3" id="s1207_dmdev__idedmdev__div">
   <div class="form-group">
-    <label id="s1207_dmdev__idedmdev__label">Identificador dos demostrativos de pagamento*</label>
+    <label id="s1207_dmdev__idedmdev__label">Identificador dos demostrativos de pagamento*<a data-toggle="tooltip" title="Identificador atribuído pelo órgão público para o demonstrativo de pagamento. Este campo poderá ser informado utilizando-se de um identificador padrão para todos os beneficiários, no entanto, havendo mais de um pagamento relativo a um mesmo período de competência devem ser utilizados identificadores diferentes para cada um dos demonstrativos. Validação: Deve ser um identificador único dentro da mesma competência para cada um dos demonstrativos de pagamento do beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1207_dmdev_form.idedmdev.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1207_dmdev_form.idedmdev.errors }}

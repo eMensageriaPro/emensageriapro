@@ -40,7 +40,7 @@ CHOICES_S2410_INTAPOSENTADO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -50,7 +50,7 @@ CHOICES_S2410_TPPENMORTE = [
 
     (1, u'1 - Vitalícia'),
     (2, u'2 - Temporária.'),
-    
+
 ]
 
 

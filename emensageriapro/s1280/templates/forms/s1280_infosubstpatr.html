@@ -5,7 +5,7 @@
 <!-- inicio__s1280_infosubstpatr__s1280_evtinfocomplper -->
 <div class="col-md-12" id="s1280_infosubstpatr__s1280_evtinfocomplper__div">
   <div class="form-group">
-    <label id="s1280_infosubstpatr__s1280_evtinfocomplper__label">Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador.*</label>
+    <label id="s1280_infosubstpatr__s1280_evtinfocomplper__label">Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador.*<a data-toggle="tooltip" title="Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1280_infosubstpatr_form.s1280_evtinfocomplper.value %}
         <a href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_infosubstpatr_form.s1280_evtinfocomplper.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s1280_infosubstpatr__indsubstpatr -->
 <div class="col-md-4" id="s1280_infosubstpatr__indsubstpatr__div">
   <div class="form-group">
-    <label id="s1280_infosubstpatr__indsubstpatr__label">Substituição da CP patronal*</label>
+    <label id="s1280_infosubstpatr__indsubstpatr__label">Substituição da CP patronal*<a data-toggle="tooltip" title="Indicativo de substituição da contribuição previdenciária patronal: 1 - Integralmente substituída; 2 - Parcialmente substituída. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1280_infosubstpatr_form.indsubstpatr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1280_infosubstpatr_form.indsubstpatr.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1280_infosubstpatr__percredcontrib -->
 <div class="col-md-4" id="s1280_infosubstpatr__percredcontrib__div">
   <div class="form-group">
-    <label id="s1280_infosubstpatr__percredcontrib__label">Percentual não substituído pela contribuição prevista na lei 12.546/2011*</label>
+    <label id="s1280_infosubstpatr__percredcontrib__label">Percentual não substituído pela contribuição prevista na lei 12.546/2011*<a data-toggle="tooltip" title="Percentual não substituído pela contribuição prevista na lei 12.546/2011. Informar 0 (zero) se {indSubstPatr} = 1. Caso contrário, preencher com o percentual correspondente à razão entre a receita de atividades não relacionadas nos artigos 7º e 8º da Lei 12.546/2011 e a receita bruta total. Validação: Se {indSubstPatr} for igual a 1, informar 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1280_infosubstpatr_form.percredcontrib.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1280_infosubstpatr_form.percredcontrib.errors }}

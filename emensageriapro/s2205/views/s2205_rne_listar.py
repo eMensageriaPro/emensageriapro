@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.s2205.forms import *
 from emensageriapro.s2205.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.s2205.models import s2205documentos
 
 
 @login_required
@@ -111,7 +112,7 @@ def listar(request, output=None):
             s2205_rne_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        s2205_documentos_lista = s2205documentos.objects.all()
         #s2205_rne_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -126,7 +127,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            's2205_documentos_lista': s2205_documentos_lista,
         }
 
         if output == 'pdf':

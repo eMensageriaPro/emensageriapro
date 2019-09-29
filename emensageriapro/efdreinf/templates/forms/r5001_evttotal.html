@@ -10,7 +10,7 @@
 <!-- inicio__r5001_evttotal__identidade -->
 <div class="col-md-6" id="r5001_evttotal__identidade__div">
   <div class="form-group">
-    <label id="r5001_evttotal__identidade__label">Identificação única do evento</label>
+    <label id="r5001_evttotal__identidade__label">Identificação única do evento<a data-toggle="tooltip" title="Identificação única do evento. Regra de validação: REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r5001_evttotal_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5001_evttotal_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__r5001_evttotal__perapur -->
 <div class="col-md-6" id="r5001_evttotal__perapur__div">
   <div class="form-group">
-    <label id="r5001_evttotal__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*</label>
+    <label id="r5001_evttotal__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*<a data-toggle="tooltip" title="Informar o ano/mês no formato AAAA-MM ou ano/mês/dia no formato AAAA-MM-DD de referência das informações. O formato diário refere-se a consolidação de bases e tributos informados apenas através do evento R-3010. Validação: Deve ser uma data, igual ou posterior a implementação da EFD- Reinf. Não pode ser maior que o ano/mês corrente."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r5001_evttotal_form.perapur.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5001_evttotal_form.perapur.errors }}
@@ -50,14 +50,23 @@
 <!-- inicio__r5001_evttotal__tpinsc -->
 <div class="col-md-6" id="r5001_evttotal__tpinsc__div">
   <div class="form-group">
-    <label id="r5001_evttotal__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
-      {% if r5001_evttotal_form.tpinsc.errors %}
-        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-          {{ r5001_evttotal_form.tpinsc.errors }}
-        </div>
-      {% endif %}
+    <label id="r5001_evttotal__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF) Valores Válidos: 1, 2"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    {% if r5001_evttotal_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r5001_evttotal_form.tpinsc.errors }}
+      </div>
+    {% endif %}
     <div class="input-group" style="width: 100%;">
-      {{ r5001_evttotal_form.tpinsc|addcss:'form-control' }}
+      {% if r5001_evttotal_form.tpinsc.field.widget.attrs.readonly %}
+        {% if r5001_evttotal_form.tpinsc.field.widget.attrs.disabled %}
+          {{ r5001_evttotal_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if r5001_evttotal_form.tpinsc.value or r5001_evttotal_form.tpinsc.value == 0 %}{{ r5001_evttotal_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ r5001_evttotal_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r5001_evttotal_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
     </div>
   </div>
 </div>
@@ -65,7 +74,7 @@
 <!-- inicio__r5001_evttotal__nrinsc -->
 <div class="col-md-6" id="r5001_evttotal__nrinsc__div">
   <div class="form-group">
-    <label id="r5001_evttotal__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*</label>
+    <label id="r5001_evttotal__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r5001_evttotal_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5001_evttotal_form.nrinsc.errors }}
@@ -90,7 +99,7 @@
 <!-- inicio__r5001_evttotal__cdretorno -->
 <div class="col-md-6" id="r5001_evttotal__cdretorno__div">
   <div class="form-group">
-    <label id="r5001_evttotal__cdretorno__label">Código do Retorno*</label>
+    <label id="r5001_evttotal__cdretorno__label">Código do Retorno*<a data-toggle="tooltip" title="Código do Retorno: 0 - Sucesso 1 - Erro 2 - Em processamento"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r5001_evttotal_form.cdretorno.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r5001_evttotal_form.cdretorno.errors }}
@@ -114,7 +123,7 @@
 <!-- inicio__r5001_evttotal__descretorno -->
 <div class="col-md-6" id="r5001_evttotal__descretorno__div">
   <div class="form-group">
-    <label id="r5001_evttotal__descretorno__label">Descrição do retorno*</label>
+    <label id="r5001_evttotal__descretorno__label">Descrição do retorno*<a data-toggle="tooltip" title="Descrição do retorno"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r5001_evttotal_form.descretorno.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5001_evttotal_form.descretorno.errors }}
@@ -134,7 +143,7 @@
 <!-- inicio__r5001_evttotal__nrprotentr -->
 <div class="col-md-6" id="r5001_evttotal__nrprotentr__div">
   <div class="form-group">
-    <label id="r5001_evttotal__nrprotentr__label">Número do protocolo de entrega do evento</label>
+    <label id="r5001_evttotal__nrprotentr__label">Número do protocolo de entrega do evento<a data-toggle="tooltip" title="Número do protocolo de entrega do evento"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r5001_evttotal_form.nrprotentr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5001_evttotal_form.nrprotentr.errors }}
@@ -149,7 +158,7 @@
 <!-- inicio__r5001_evttotal__dhprocess -->
 <div class="col-md-6" id="r5001_evttotal__dhprocess__div">
   <div class="form-group">
-    <label id="r5001_evttotal__dhprocess__label">Data e hora do início do processamento da consulta*</label>
+    <label id="r5001_evttotal__dhprocess__label">Data e hora do início do processamento da consulta*<a data-toggle="tooltip" title="Data e hora do início do processamento da consulta"><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r5001_evttotal_form.dhprocess.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ r5001_evttotal_form.dhprocess.errors }}
@@ -162,24 +171,73 @@
 </div>
 <!-- fim__r5001_evttotal__dhprocess -->
 <!-- inicio__r5001_evttotal__tpev -->
-<div class="col-md-6" id="r5001_evttotal__tpev__div">
-  <div class="form-group">
-    <label id="r5001_evttotal__tpev__label">Tipo do Evento*</label>
-      {% if r5001_evttotal_form.tpev.errors %}
-        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-          {{ r5001_evttotal_form.tpev.errors }}
-        </div>
-      {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {{ r5001_evttotal_form.tpev|addcss:'form-control' }}
+{% if perms..add_ or perms..change_ %}
+  <div class="col-md-6" id="r5001_evttotal__tpev__div">
+    <div class="form-group">
+      <label id="r5001_evttotal__tpev__label">Tipo do Evento*<a data-toggle="tooltip" title="Tipo do Evento"><i class="fa fa-fw fa-question-circle"></i></a></label>
+        {% if r5001_evttotal_form.tpev.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ r5001_evttotal_form.tpev.errors }}
+          </div>
+        {% endif %}
+        <input type="text"
+               id="txt_tpev"
+               name="txt_tpev" class="form-control"
+               value="{% if r5001_evttotal.tpev %}{{ r5001_evttotal.tpev|get_opcoes_titulo:754 }}{% endif %}"
+               {% if r5001_evttotal_form.tpev.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if r5001_evttotal_form.tpev.field.widget.attrs.required %} required="required"{% endif %}
+               {% if r5001_evttotal_form.tpev.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden"
+               id="id_tpev"
+               name="tpev"
+               value="{% if r5001_evttotal.tpev %}{{ r5001_evttotal_form.tpev.value|valor }}{% endif %}" >
     </div>
   </div>
-</div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_tpev').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/754/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_tpev').val(ui.item.value);
+        return false;
+      }});
+    {% if r5001_evttotal_form.tpev.field.widget.attrs.required %}
+    $("#id_form_r5001_evttotal").submit(function(e) {
+      $('#txt_tpev').disabled = true;
+        if ($('#id_tpev').val() == "") {
+          $('#txt_tpev').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Tipo do Evento!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-6" id="r5001_evttotal__tpev__div">
+    <div class="form-group">
+      <label id="r5001_evttotal__tpev__label">Tipo do Evento*<a data-toggle="tooltip" title="Tipo do Evento"><i class="fa fa-fw fa-question-circle"></i></a></label>
+        <input type="text" id="txt_tpev" name="txt_tpev" class="form-control" value="{% if r5001_evttotal.tpev %}{{ r5001_evttotal.tpev }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
 <!-- fim__r5001_evttotal__tpev -->
 <!-- inicio__r5001_evttotal__idev -->
 <div class="col-md-6" id="r5001_evttotal__idev__div">
   <div class="form-group">
-    <label id="r5001_evttotal__idev__label">ID do Evento*</label>
+    <label id="r5001_evttotal__idev__label">ID do Evento*<a data-toggle="tooltip" title="ID do Evento"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r5001_evttotal_form.idev.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5001_evttotal_form.idev.errors }}
@@ -194,7 +252,7 @@
 <!-- inicio__r5001_evttotal__hash -->
 <div class="col-md-6" id="r5001_evttotal__hash__div">
   <div class="form-group">
-    <label id="r5001_evttotal__hash__label">Hash do arquivo processado*</label>
+    <label id="r5001_evttotal__hash__label">Hash do arquivo processado*<a data-toggle="tooltip" title="Hash do arquivo processado"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r5001_evttotal_form.hash.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5001_evttotal_form.hash.errors }}

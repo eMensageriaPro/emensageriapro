@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r1070_inclusao_infosusp__r1070_inclusao__div">
   <div class="form-group">
-    <label id="r1070_inclusao_infosusp__r1070_inclusao__label">Informações de Suspensão de Exibilidade de tributos*</label>
+    <label id="r1070_inclusao_infosusp__r1070_inclusao__label">Informações de Suspensão de Exibilidade de tributos*<a data-toggle="tooltip" title="Informações de Suspensão de Exibilidade de tributos."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r1070_inclusao_infosusp_form.r1070_inclusao.value %}
         <a id="r1070_inclusao_infosusp__r1070_inclusao__div_acessar" href="{% url 'r1070_inclusao_salvar' pk=r1070_inclusao_infosusp_form.r1070_inclusao.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r1070_inclusao_infosusp__codsusp -->
 <div class="col-md-6" id="r1070_inclusao_infosusp__codsusp__div">
   <div class="form-group">
-    <label id="r1070_inclusao_infosusp__codsusp__label">Código do Indicativo da Suspensão, atribuído pelo contribuinte</label>
+    <label id="r1070_inclusao_infosusp__codsusp__label">Código do Indicativo da Suspensão, atribuído pelo contribuinte<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. Validação: Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1070_inclusao_infosusp_form.codsusp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1070_inclusao_infosusp_form.codsusp.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r1070_inclusao_infosusp__indsusp -->
 <div class="col-md-6" id="r1070_inclusao_infosusp__indsusp__div">
   <div class="form-group">
-    <label id="r1070_inclusao_infosusp__indsusp__label">Indicativo de suspensão da exigibilidade*</label>
+    <label id="r1070_inclusao_infosusp__indsusp__label">Indicativo de suspensão da exigibilidade*<a data-toggle="tooltip" title="Indicativo de suspensão da exigibilidade: 01 - Liminar em Mandado de Segurança; 02 - Depósito Judicial do Montante Integral; 03 - Depósito Administrativo do Montante Integral; 04 - Antecipação de Tutela; 05 - Liminar em Medida Cautelar; 08 - Sentença em Mandado de Segurança Favorável ao Contribuinte; 09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF; 10 - Acórdão do TRF Favorável ao Contribuinte; 11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte; 12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte; 13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo; 90 - Decisão Definitiva a favor do contribuinte; 92 - Sem suspensão da exigibilidade. Validação: Se {tpProc} = [1], deve ser preenchido com [03, 90, 92]. Se {tpProc} = [2], deve ser preenchido com [01, 02, 04, 05, 08, 09, 10, 11, 12, 13, 90, 92]. Valores Válidos: 01, 02, 03, 04, 05, 08, 09, 10, 11, 12, 13, 90, 92."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r1070_inclusao_infosusp_form.indsusp.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r1070_inclusao_infosusp_form.indsusp.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r1070_inclusao_infosusp__dtdecisao -->
 <div class="col-md-6" id="r1070_inclusao_infosusp__dtdecisao__div">
   <div class="form-group">
-    <label id="r1070_inclusao_infosusp__dtdecisao__label">Data da decisão, sentença ou despacho administrativo*</label>
+    <label id="r1070_inclusao_infosusp__dtdecisao__label">Data da decisão, sentença ou despacho administrativo*<a data-toggle="tooltip" title="Data da decisão, sentença ou despacho administrativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r1070_inclusao_infosusp_form.dtdecisao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ r1070_inclusao_infosusp_form.dtdecisao.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__r1070_inclusao_infosusp__inddeposito -->
 <div class="col-md-6" id="r1070_inclusao_infosusp__inddeposito__div">
   <div class="form-group">
-    <label id="r1070_inclusao_infosusp__inddeposito__label">Indicativo de Depósito do Montante Integral*</label>
+    <label id="r1070_inclusao_infosusp__inddeposito__label">Indicativo de Depósito do Montante Integral*<a data-toggle="tooltip" title="Indicativo de Depósito do Montante Integral: S - Sim; N - Não. Validação: Se {indSusp} = [90], preencher obrigatoriamente com [N]. Se {indSusp} = [02, 03] preencher obrigatoriamente com [S]. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r1070_inclusao_infosusp_form.inddeposito.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r1070_inclusao_infosusp_form.inddeposito.errors }}

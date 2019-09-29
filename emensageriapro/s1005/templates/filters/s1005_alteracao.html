@@ -165,7 +165,7 @@
 $(document).ready(function(e){
   $('#txt_cnaeprep').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/82/" + request.term + "/", function (data) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/84/" + request.term + "/", function (data) {
       response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
@@ -251,8 +251,8 @@ $(document).ready(function(e){
         <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'regpt' %}selected="selected"{% endifequal %} >2 - Mecânico</option>
         <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'regpt' %}selected="selected"{% endifequal %} >3 - Eletrônico (portaria MTE 1.510/2009)</option>
         <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'regpt' %}selected="selected"{% endifequal %} >4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011)</option>
-        <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'regpt' %}selected="selected"{% endifequal %} >5 - Eletrônico alternativo ( art. 2° da Portaria MTE 373/2011)</option>
-        <option value="6" {% ifequal 6 dict_fields|get_value_from_dict:'regpt' %}selected="selected"{% endifequal %} >6 - Eletrônico - outros.</option>
+        <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'regpt' %}selected="selected"{% endifequal %} >5 - Eletrônico alternativo (art. 2° da Portaria MTE 373/2011)</option>
+        <option value="6" {% ifequal 6 dict_fields|get_value_from_dict:'regpt' %}selected="selected"{% endifequal %} >6 - Eletrônico - outros. O preenchimento deste campo é facultativo.</option>
       </select>
     </div>
   </div>

@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r4010_detded__r4010_infopgto__div">
   <div class="form-group">
-    <label id="r4010_detded__r4010_infopgto__label">Detalhamento das deduções*</label>
+    <label id="r4010_detded__r4010_infopgto__label">Detalhamento das deduções*<a data-toggle="tooltip" title="Detalhamento das deduções."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r4010_detded_form.r4010_infopgto.value %}
         <a id="r4010_detded__r4010_infopgto__div_acessar" href="{% url 'r4010_infopgto_salvar' pk=r4010_detded_form.r4010_infopgto.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r4010_detded__indtpdeducao -->
 <div class="col-md-6" id="r4010_detded__indtpdeducao__div">
   <div class="form-group">
-    <label id="r4010_detded__indtpdeducao__label">Indicativo do Tipo de Dedução*</label>
+    <label id="r4010_detded__indtpdeducao__label">Indicativo do Tipo de Dedução*<a data-toggle="tooltip" title="Indicativo do Tipo de Dedução: 1 - Previdência Oficial; 2 - Previdência Privada; 3 - Fapi; 4 - Funpresp; 5 - Pensão Alimentícia; 6 - Contribuição do ente público patrocinador; 7 - Dependentes. Valores Válidos: 1, 2, 3, 4, 5, 6, 7."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_detded_form.indtpdeducao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r4010_detded_form.indtpdeducao.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r4010_detded__vlrdeducao -->
 <div class="col-md-6" id="r4010_detded__vlrdeducao__div">
   <div class="form-group">
-    <label id="r4010_detded__vlrdeducao__label">Preencher com o Valor da dedução da base de cálculo.*</label>
+    <label id="r4010_detded__vlrdeducao__label">Preencher com o Valor da dedução da base de cálculo.*<a data-toggle="tooltip" title="Preencher com o valor da dedução da base de cálculo."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_detded_form.vlrdeducao.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_detded_form.vlrdeducao.errors }}
@@ -83,7 +83,7 @@
 <!-- inicio__r4010_detded__vlrdedsusp -->
 <div class="col-md-6" id="r4010_detded__vlrdedsusp__div">
   <div class="form-group">
-    <label id="r4010_detded__vlrdedsusp__label">Valor da dedução da base de cálculo do Imposto de Renda, com exigibilidade suspensa</label>
+    <label id="r4010_detded__vlrdedsusp__label">Valor da dedução da base de cálculo do Imposto de Renda, com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da dedução da base de cálculo do Imposto de Renda, com exigibilidade suspensa. Validação: Informação permitida apenas se {vlrRendSusp} > 0."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_detded_form.vlrdedsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_detded_form.vlrdedsusp.errors }}
@@ -101,7 +101,7 @@
 <!-- inicio__r4010_detded__nrinscprevcomp -->
 <div class="col-md-6" id="r4010_detded__nrinscprevcomp__div">
   <div class="form-group">
-    <label id="r4010_detded__nrinscprevcomp__label">Número de inscrição da entidade de previdência complementar</label>
+    <label id="r4010_detded__nrinscprevcomp__label">Número de inscrição da entidade de previdência complementar<a data-toggle="tooltip" title="Número de inscrição da entidade de previdência complementar. Validação: Informação obrigatória e exclusiva se {indTpDeducao} = [2, 3, 4]}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r4010_detded_form.nrinscprevcomp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_detded_form.nrinscprevcomp.errors }}

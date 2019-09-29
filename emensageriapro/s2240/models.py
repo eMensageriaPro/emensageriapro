@@ -622,6 +622,7 @@ class s2240iniExpRiscofatRisco(SoftDeletionModel):
     def evento(self):
         return self.s2240_evtexprisco.evento()
     codfatris = models.TextField(null=True, )
+    dscfatrisc = models.CharField(max_length=999, blank=True, null=True, )
     tpaval = models.IntegerField(choices=CHOICES_S2240_TPAVAL_INIEXPRISCO, null=True, )
     intconc = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     limtol = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
@@ -630,7 +631,6 @@ class s2240iniExpRiscofatRisco(SoftDeletionModel):
     insalubridade = models.CharField(choices=CHOICES_S2240_INSALUBRIDADE_INIEXPRISCO, max_length=1, blank=True, null=True, )
     periculosidade = models.CharField(choices=CHOICES_S2240_PERICULOSIDADE_INIEXPRISCO, max_length=1, blank=True, null=True, )
     aposentesp = models.CharField(choices=CHOICES_S2240_APOSENTESP_INIEXPRISCO, max_length=1, blank=True, null=True, )
-    dscfatrisc = models.CharField(max_length=999, blank=True, null=True, )
     utilizepc = models.IntegerField(choices=CHOICES_S2240_UTILIZEPC_INIEXPRISCO, null=True, )
     eficepc = models.CharField(choices=CHOICES_S2240_EFICEPC_INIEXPRISCO, max_length=1, blank=True, null=True, )
     utilizepi = models.IntegerField(choices=CHOICES_S2240_UTILIZEPI_INIEXPRISCO, null=True, )

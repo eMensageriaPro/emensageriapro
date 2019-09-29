@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1202_dmdev__s1202_evtrmnrpps__div">
   <div class="form-group">
-    <label id="s1202_dmdev__s1202_evtrmnrpps__label">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF*</label>
+    <label id="s1202_dmdev__s1202_evtrmnrpps__label">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF*<a data-toggle="tooltip" title="Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF. (As retenções de pensão alimentícia e IRRF devem ser realizadas no ato do pagamento e, portanto, são informadas no evento S-1210). O somatório de cada uma das rubricas cujo {codIncCP} = [31, 32, 34, 35] não pode ser negativo. O somatório dos Vencimentos deve ser maior ou igual ao somatório dos Descontos."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1202_dmdev_form.s1202_evtrmnrpps.value %}
         <a id="s1202_dmdev__s1202_evtrmnrpps__div_acessar" href="{% url 's1202_evtrmnrpps_salvar' pk=s1202_dmdev_form.s1202_evtrmnrpps.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1202_dmdev__idedmdev -->
 <div class="col-md-4" id="s1202_dmdev__idedmdev__div">
   <div class="form-group">
-    <label id="s1202_dmdev__idedmdev__label">Identificador dos demostrativos de pagamento*</label>
+    <label id="s1202_dmdev__idedmdev__label">Identificador dos demostrativos de pagamento*<a data-toggle="tooltip" title="Identificador atribuído pelo órgão público para o demonstrativo de pagamento. Este campo poderá ser informado utilizando-se de um identificador padrão para todos os trabalhadores, no entanto, havendo mais de um pagamento relativo a um mesmo período de competência devem ser utilizados identificadores diferentes para cada um dos demonstrativos. Validação: Deve ser um identificador único dentro da mesma competência para cada um dos demonstrativos de pagamento do trabalhador. Regra de validação: REGRA_CARACTER_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1202_dmdev_form.idedmdev.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1202_dmdev_form.idedmdev.errors }}
@@ -57,7 +57,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-4" id="s1202_dmdev__codcateg__div">
     <div class="form-group">
-      <label id="s1202_dmdev__codcateg__label">Código da Categoria*</label>
+      <label id="s1202_dmdev__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 1 Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1)"><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1202_dmdev_form.codcateg.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s1202_dmdev_form.codcateg.errors }}
@@ -66,7 +66,7 @@
         <input type="text"
                id="txt_codcateg"
                name="txt_codcateg" class="form-control"
-               value="{% if s1202_dmdev.codcateg %}{{ s1202_dmdev.codcateg|get_opcoes_titulo:176 }}{% endif %}"
+               value="{% if s1202_dmdev.codcateg %}{{ s1202_dmdev.codcateg|get_opcoes_titulo:180 }}{% endif %}"
                {% if s1202_dmdev_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1202_dmdev_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1202_dmdev_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -80,7 +80,7 @@
   $(document).ready(function(e){
     $('#txt_codcateg').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/176/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/180/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -111,7 +111,7 @@
   {% else %}
   <div class="col-md-4" id="s1202_dmdev__codcateg__div">
     <div class="form-group">
-      <label id="s1202_dmdev__codcateg__label">Código da Categoria*</label>
+      <label id="s1202_dmdev__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 1 Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1)"><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s1202_dmdev.codcateg %}{{ s1202_dmdev.codcateg }}{% endif %}" disabled="disabled">
     </div>
   </div>

@@ -49,7 +49,7 @@ CHOICES_ESOCIALDEPENDENTESTIPOS = [
     ('11', u'11 - A pessoa absolutamente incapaz, da qual seja tutor ou curador'),
     ('12', u'12 - Ex-cônjuge'),
     ('99', u'99 - Agregado/Outros'),
-    
+
 ]
 
 
@@ -59,7 +59,7 @@ CHOICES_S2405_DEPFINSPREV = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -69,7 +69,7 @@ CHOICES_S2405_DEPIRRF = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -79,7 +79,7 @@ CHOICES_S2405_INCFISMEN = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -89,7 +89,7 @@ CHOICES_S2405_SEXODEP = [
 
     ('F', u'F - Feminino.'),
     ('M', u'M - Masculino'),
-    
+
 ]
 
 
@@ -124,7 +124,7 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-    
+
 ]
 
 

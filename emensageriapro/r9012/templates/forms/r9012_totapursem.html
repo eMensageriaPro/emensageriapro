@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r9012_totapursem__r9012_infototalcontrib__div">
   <div class="form-group">
-    <label id="r9012_totapursem__r9012_infototalcontrib__label">Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal*</label>
+    <label id="r9012_totapursem__r9012_infototalcontrib__label">Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal*<a data-toggle="tooltip" title="Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r9012_totapursem_form.r9012_infototalcontrib.value %}
         <a id="r9012_totapursem__r9012_infototalcontrib__div_acessar" href="{% url 'r9012_infototalcontrib_salvar' pk=r9012_totapursem_form.r9012_infototalcontrib.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r9012_totapursem__perapursem -->
 <div class="col-md-6" id="r9012_totapursem__perapursem__div">
   <div class="form-group">
-    <label id="r9012_totapursem__perapursem__label">Período de apuração semanal do Código de Receita - CR*</label>
+    <label id="r9012_totapursem__perapursem__label">Período de apuração semanal do Código de Receita - CR*<a data-toggle="tooltip" title="Período de apuração semanal do Código de Receita - CR. Origem: R-9002. Valores Válidos: 1, 2, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9012_totapursem_form.perapursem.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9012_totapursem_form.perapursem.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r9012_totapursem__crsem -->
 <div class="col-md-6" id="r9012_totapursem__crsem__div">
   <div class="form-group">
-    <label id="r9012_totapursem__crsem__label">Código de Receita - CR relativo a tributo que possui período de apuração semanal*</label>
+    <label id="r9012_totapursem__crsem__label">Código de Receita - CR relativo a tributo que possui período de apuração semanal*<a data-toggle="tooltip" title="Código de Receita - CR relativo a tributo que possui período de apuração semanal. Origem: R-9002. Validação: Deve ser um dos seguintes valores, compatível com as informações prestadas nos demais eventos: [6147, 9060, 8739, 8767, 6175, 8850, 8863, 6188, 6190]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9012_totapursem_form.crsem.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9012_totapursem_form.crsem.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__r9012_totapursem__vlrbasecrsem -->
 <div class="col-md-6" id="r9012_totapursem__vlrbasecrsem__div">
   <div class="form-group">
-    <label id="r9012_totapursem__vlrbasecrsem__label">Valor da base do tributo com período de apuração semanal*</label>
+    <label id="r9012_totapursem__vlrbasecrsem__label">Valor da base do tributo com período de apuração semanal*<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração semanal. Origem: R-9002."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9012_totapursem_form.vlrbasecrsem.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9012_totapursem_form.vlrbasecrsem.errors }}
@@ -89,7 +89,7 @@
 <!-- inicio__r9012_totapursem__vlrcrsem -->
 <div class="col-md-6" id="r9012_totapursem__vlrcrsem__div">
   <div class="form-group">
-    <label id="r9012_totapursem__vlrcrsem__label">Valor do tributo retido com período de apuração semanal, calculado segundo as regras estabelecidas na legislação em vigor*</label>
+    <label id="r9012_totapursem__vlrcrsem__label">Valor do tributo retido com período de apuração semanal, calculado segundo as regras estabelecidas na legislação em vigor*<a data-toggle="tooltip" title="Valor do tributo retido com período de apuração semanal, calculado segundo as regras estabelecidas na legislação em vigor. Origem: R-9002."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9012_totapursem_form.vlrcrsem.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9012_totapursem_form.vlrcrsem.errors }}
@@ -107,7 +107,7 @@
 <!-- inicio__r9012_totapursem__vlrbasecrsemsusp -->
 <div class="col-md-6" id="r9012_totapursem__vlrbasecrsemsusp__div">
   <div class="form-group">
-    <label id="r9012_totapursem__vlrbasecrsemsusp__label">Valor da base do tributo com período de apuração semanal, com exigibilidade suspensa</label>
+    <label id="r9012_totapursem__vlrbasecrsemsusp__label">Valor da base do tributo com período de apuração semanal, com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração semanal, com exigibilidade suspensa. Origem: R-9002."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9012_totapursem_form.vlrbasecrsemsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9012_totapursem_form.vlrbasecrsemsusp.errors }}
@@ -125,7 +125,7 @@
 <!-- inicio__r9012_totapursem__vlrcrsemsusp -->
 <div class="col-md-6" id="r9012_totapursem__vlrcrsemsusp__div">
   <div class="form-group">
-    <label id="r9012_totapursem__vlrcrsemsusp__label">Valor do tributo com período de apuração semanal, que deixou de ser retido</label>
+    <label id="r9012_totapursem__vlrcrsemsusp__label">Valor do tributo com período de apuração semanal, que deixou de ser retido<a data-toggle="tooltip" title="Valor do tributo com período de apuração semanal, que deixou de ser retido. Origem: R-9002."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9012_totapursem_form.vlrcrsemsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9012_totapursem_form.vlrcrsemsusp.errors }}

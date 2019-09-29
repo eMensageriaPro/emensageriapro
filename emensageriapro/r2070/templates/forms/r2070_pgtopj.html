@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2070_pgtopj__r2070_pgtoresidbr__div">
   <div class="form-group">
-    <label id="r2070_pgtopj__r2070_pgtoresidbr__label">Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil*</label>
+    <label id="r2070_pgtopj__r2070_pgtoresidbr__label">Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil*<a data-toggle="tooltip" title="Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r2070_pgtopj_form.r2070_pgtoresidbr.value %}
         <a id="r2070_pgtopj__r2070_pgtoresidbr__div_acessar" href="{% url 'r2070_pgtoresidbr_salvar' pk=r2070_pgtopj_form.r2070_pgtoresidbr.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r2070_pgtopj__dtpagto -->
 <div class="col-md-3" id="r2070_pgtopj__dtpagto__div">
   <div class="form-group">
-    <label id="r2070_pgtopj__dtpagto__label">Informar a data de pagamento ou crédito, base para retenção*</label>
+    <label id="r2070_pgtopj__dtpagto__label">Informar a data de pagamento ou crédito, base para retenção*<a data-toggle="tooltip" title="Informar a data de pagamento ou crédito, base para retenção. Validação: Deve ser igual ou anterior à data atual e deve estar compreendida dentro do período de apuração."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r2070_pgtopj_form.dtpagto.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ r2070_pgtopj_form.dtpagto.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r2070_pgtopj__vlrrendtributavel -->
 <div class="col-md-3" id="r2070_pgtopj__vlrrendtributavel__div">
   <div class="form-group">
-    <label id="r2070_pgtopj__vlrrendtributavel__label">Valor do rendimento tributável*</label>
+    <label id="r2070_pgtopj__vlrrendtributavel__label">Valor do rendimento tributável*<a data-toggle="tooltip" title="Valor do rendimento tributável"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2070_pgtopj_form.vlrrendtributavel.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2070_pgtopj_form.vlrrendtributavel.errors }}
@@ -74,7 +74,7 @@
 <!-- inicio__r2070_pgtopj__vlrret -->
 <div class="col-md-3" id="r2070_pgtopj__vlrret__div">
   <div class="form-group">
-    <label id="r2070_pgtopj__vlrret__label">Preencher com o valor da retenção na Fonte relativamente a IR, CSLL, Cofins, PIS/PASEP.*</label>
+    <label id="r2070_pgtopj__vlrret__label">Preencher com o valor da retenção na Fonte relativamente a IR, CSLL, Cofins, PIS/PASEP.*<a data-toggle="tooltip" title="Preencher com o valor da retenção na Fonte relativamente a IR, CSLL, Cofins, PIS/PASEP."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2070_pgtopj_form.vlrret.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2070_pgtopj_form.vlrret.errors }}

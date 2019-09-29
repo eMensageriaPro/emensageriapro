@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1250_infoprocjud__s1250_ideprodutor__div">
   <div class="form-group">
-    <label id="s1250_infoprocjud__s1250_ideprodutor__label">Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.*</label>
+    <label id="s1250_infoprocjud__s1250_ideprodutor__label">Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.*<a data-toggle="tooltip" title="Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor} possua processo judicial com decisão/sentença determinando a não retenção pelo adquirente, das contribuições incidentes sobre a aquisição de produção."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1250_infoprocjud_form.s1250_ideprodutor.value %}
         <a id="s1250_infoprocjud__s1250_ideprodutor__div_acessar" href="{% url 's1250_ideprodutor_salvar' pk=s1250_infoprocjud_form.s1250_ideprodutor.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1250_infoprocjud__nrprocjud -->
 <div class="col-md-6" id="s1250_infoprocjud__nrprocjud__div">
   <div class="form-group">
-    <label id="s1250_infoprocjud__nrprocjud__label">Número do Processo Judicial*</label>
+    <label id="s1250_infoprocjud__nrprocjud__label">Número do Processo Judicial*<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S- 1070, cujo {indMatProc} seja igual a [1]. Validação: O processo deve existir na tabela de processos (S-1070)."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1250_infoprocjud_form.nrprocjud.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1250_infoprocjud_form.nrprocjud.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1250_infoprocjud__codsusp -->
 <div class="col-md-6" id="s1250_infoprocjud__codsusp__div">
   <div class="form-group">
-    <label id="s1250_infoprocjud__codsusp__label">Código do Indicativo da Suspensão*</label>
+    <label id="s1250_infoprocjud__codsusp__label">Código do Indicativo da Suspensão*<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1250_infoprocjud_form.codsusp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1250_infoprocjud_form.codsusp.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s1250_infoprocjud__vrcpnret -->
 <div class="col-md-6" id="s1250_infoprocjud__vrcpnret__div">
   <div class="form-group">
-    <label id="s1250_infoprocjud__vrcpnret__label">Valor da CP não retida*</label>
+    <label id="s1250_infoprocjud__vrcpnret__label">Valor da CP não retida*<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária que deixou de ser retida pelo declarante em decorrência de decisão/sentença judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1250_infoprocjud_form.vrcpnret.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1250_infoprocjud_form.vrcpnret.errors }}
@@ -89,7 +89,7 @@
 <!-- inicio__s1250_infoprocjud__vrratnret -->
 <div class="col-md-6" id="s1250_infoprocjud__vrratnret__div">
   <div class="form-group">
-    <label id="s1250_infoprocjud__vrratnret__label">Valor da GILRAT*</label>
+    <label id="s1250_infoprocjud__vrratnret__label">Valor da GILRAT*<a data-toggle="tooltip" title="Valor da GILRAT, incidente sobre a aquisição de produção rural de produtor rural, cuja retenção deixou de ser efetuada em decorrência de decisão/sentença judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1250_infoprocjud_form.vrratnret.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1250_infoprocjud_form.vrratnret.errors }}
@@ -107,7 +107,7 @@
 <!-- inicio__s1250_infoprocjud__vrsenarnret -->
 <div class="col-md-6" id="s1250_infoprocjud__vrsenarnret__div">
   <div class="form-group">
-    <label id="s1250_infoprocjud__vrsenarnret__label">Valor da CP destinada ao SENAR não retida*</label>
+    <label id="s1250_infoprocjud__vrsenarnret__label">Valor da CP destinada ao SENAR não retida*<a data-toggle="tooltip" title="Valor da contribuição destinada ao SENAR, incidente sobre a aquisição de produção rural de produtor rural pessoa física/segurado especial, e que deixou de ser retida em decorrência de decisão/sentença judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1250_infoprocjud_form.vrsenarnret.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1250_infoprocjud_form.vrsenarnret.errors }}

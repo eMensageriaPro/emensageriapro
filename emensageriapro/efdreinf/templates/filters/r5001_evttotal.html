@@ -46,8 +46,12 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Preencher com o código correspondente ao tipo de inscrição</label>
-    <div name="tpinsc" class="input-group" style="width: 100%;">
-      <input type="text" name="tpinsc" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'tpinsc' }}">
+    <div class="input-group" style="width: 100%;">
+      <select name="tpinsc" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >1 - CNPJ</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >2 - CPF</option>
+      </select>
     </div>
   </div>
 </div>
@@ -136,11 +140,32 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Tipo do Evento</label>
-    <div name="tpev" class="input-group" style="width: 100%;">
-      <input type="text" name="tpev" class="form-control" value="{{ dict_fields|get_value_from_dict:'tpev' }}">
-    </div>
+    <input type="text" id="txt_tpev" name="txt_tpev" class="form-control" value="{{ dict_fields|get_value_from_dict:'tpev' }}">
+    <input type="hidden" id="id_tpev" name="tpev" value="{{ dict_fields|get_value_from_dict:'tpev'|valor }}">
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_tpev').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/754/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_tpev').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
 <!-- fim__r5001_evttotal__tpev -->
 
 <!-- inicio__r5001_evttotal__idev -->

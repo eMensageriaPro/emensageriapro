@@ -42,7 +42,7 @@ CHOICES_R3010_CATEGEVENTO = [
     (2, u'2 - Interestadual'),
     (3, u'3 - Estadual'),
     (4, u'4 - Local.'),
-    
+
 ]
 
 
@@ -52,7 +52,7 @@ CHOICES_R3010_TPCOMPETICAO = [
 
     (1, u'1 - Oficial'),
     (2, u'2 - Não Oficial.'),
-    
+
 ]
 
 
@@ -64,7 +64,7 @@ CHOICES_R3010_TPINGRESSO = [
     (2, u'2 - Geral'),
     (3, u'3 - Cadeiras'),
     (4, u'4 - Camarote.'),
-    
+
 ]
 
 
@@ -74,7 +74,7 @@ CHOICES_R3010_TPPROC = [
 
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-    
+
 ]
 
 
@@ -87,7 +87,7 @@ CHOICES_R3010_TPRECEITA = [
     (3, u'3 - Publicidade'),
     (4, u'4 - Sorteio'),
     (5, u'5 - Outros.'),
-    
+
 ]
 
 
@@ -122,7 +122,7 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-    
+
 ]
 
 

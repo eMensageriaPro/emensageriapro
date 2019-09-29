@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s5001_procjudtrab__s5001_evtbasestrab__div">
   <div class="form-group">
-    <label id="s5001_procjudtrab__s5001_evtbasestrab__label">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.*</label>
+    <label id="s5001_procjudtrab__s5001_evtbasestrab__label">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.*<a data-toggle="tooltip" title="Informações sobre processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuição previdenciária."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s5001_procjudtrab_form.s5001_evtbasestrab.value %}
         <a id="s5001_procjudtrab__s5001_evtbasestrab__div_acessar" href="{% url 's5001_evtbasestrab_salvar' pk=s5001_procjudtrab_form.s5001_evtbasestrab.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s5001_procjudtrab__nrprocjud -->
 <div class="col-md-4" id="s5001_procjudtrab__nrprocjud__div">
   <div class="form-group">
-    <label id="s5001_procjudtrab__nrprocjud__label">Número do Processo Judicial*</label>
+    <label id="s5001_procjudtrab__nrprocjud__label">Número do Processo Judicial*<a data-toggle="tooltip" title="Informar o número do processo judicial. Validação: Origem: {nrProcJud} em S-1200, S-2299 e S-2399 se {tpTrib}= [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s5001_procjudtrab_form.nrprocjud.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5001_procjudtrab_form.nrprocjud.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s5001_procjudtrab__codsusp -->
 <div class="col-md-4" id="s5001_procjudtrab__codsusp__div">
   <div class="form-group">
-    <label id="s5001_procjudtrab__codsusp__label">Código do Indicativo da Suspensão*</label>
+    <label id="s5001_procjudtrab__codsusp__label">Código do Indicativo da Suspensão*<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. Validação: Origem: {codSusp} em S-1200, S-2299 e S-2399 se {tpTrib} = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s5001_procjudtrab_form.codsusp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5001_procjudtrab_form.codsusp.errors }}

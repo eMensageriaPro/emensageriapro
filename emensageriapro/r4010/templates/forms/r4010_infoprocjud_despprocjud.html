@@ -5,7 +5,7 @@
 <!-- inicio__r4010_infoprocjud_despprocjud__r4010_infoprocjud -->
 <div class="col-md-12" id="r4010_infoprocjud_despprocjud__r4010_infoprocjud__div">
   <div class="form-group">
-    <label id="r4010_infoprocjud_despprocjud__r4010_infoprocjud__label">Detalhamento das despesas de processo judicial*</label>
+    <label id="r4010_infoprocjud_despprocjud__r4010_infoprocjud__label">Detalhamento das despesas de processo judicial*<a data-toggle="tooltip" title="Detalhamento das despesas com processo judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r4010_infoprocjud_despprocjud_form.r4010_infoprocjud.value %}
         <a href="{% url 'r4010_infoprocjud_salvar' pk=r4010_infoprocjud_despprocjud_form.r4010_infoprocjud.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__r4010_infoprocjud_despprocjud__vlrdespcustas -->
 <div class="col-md-4" id="r4010_infoprocjud_despprocjud__vlrdespcustas__div">
   <div class="form-group">
-    <label id="r4010_infoprocjud_despprocjud__vlrdespcustas__label">Preencher com o Valor da despesa com custas judiciais*</label>
+    <label id="r4010_infoprocjud_despprocjud__vlrdespcustas__label">Preencher com o Valor da despesa com custas judiciais*<a data-toggle="tooltip" title="Preencher com o valor da despesa com custas judiciais."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_infoprocjud_despprocjud_form.vlrdespcustas.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_infoprocjud_despprocjud_form.vlrdespcustas.errors }}
@@ -50,7 +50,7 @@
 <!-- inicio__r4010_infoprocjud_despprocjud__vlrdespadvogados -->
 <div class="col-md-4" id="r4010_infoprocjud_despprocjud__vlrdespadvogados__div">
   <div class="form-group">
-    <label id="r4010_infoprocjud_despprocjud__vlrdespadvogados__label">Preencher com o Valor da despesa com advogado(s)*</label>
+    <label id="r4010_infoprocjud_despprocjud__vlrdespadvogados__label">Preencher com o Valor da despesa com advogado(s)*<a data-toggle="tooltip" title="Preencher com o valor da despesa com advogado(s)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_infoprocjud_despprocjud_form.vlrdespadvogados.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_infoprocjud_despprocjud_form.vlrdespadvogados.errors }}

@@ -44,8 +44,12 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Tipo de inscrição (Proprietário do CNO)</label>
-    <div name="tpinscprop" class="input-group" style="width: 100%;">
-      <input type="text" name="tpinscprop" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'tpinscprop' }}">
+    <div class="input-group" style="width: 100%;">
+      <select name="tpinscprop" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpinscprop' %}selected="selected"{% endifequal %} >1 - CNPJ</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpinscprop' %}selected="selected"{% endifequal %} >2 - CPF</option>
+      </select>
     </div>
   </div>
 </div>

@@ -57,7 +57,7 @@ CHOICES_EFDREINFCLASSIFICACAOTRIBUTARIA = [
     ('80', u'80 - Entidade Beneficente de Assistência Social isenta de contribuições sociais'),
     ('85', u'85 - Ente Federativo, Órgãos da União, Autarquias e Fundações Públicas'),
     ('99', u'99 - Pessoas Jurídicas em Geral'),
-    
+
 ]
 
 
@@ -67,7 +67,7 @@ CHOICES_R1000_IDEEFR_ALTERACAO = [
 
     ('N', u'N - Não é EFR.'),
     ('S', u'S - É EFR'),
-    
+
 ]
 
 
@@ -77,7 +77,7 @@ CHOICES_R1000_IDEEFR_INCLUSAO = [
 
     ('N', u'N - Não é EFR.'),
     ('S', u'S - É EFR'),
-    
+
 ]
 
 
@@ -87,7 +87,7 @@ CHOICES_R1000_INDACORDOISENMULTA_ALTERACAO = [
 
     (0, u'0 - Sem acordo'),
     (1, u'1 - Com acordo.'),
-    
+
 ]
 
 
@@ -97,7 +97,7 @@ CHOICES_R1000_INDACORDOISENMULTA_INCLUSAO = [
 
     (0, u'0 - Sem acordo'),
     (1, u'1 - Com acordo.'),
-    
+
 ]
 
 
@@ -107,7 +107,7 @@ CHOICES_R1000_INDDESONERACAO_ALTERACAO = [
 
     (0, u'0 - Não Aplicável'),
     (1, u'1 - Empresa enquadrada nos artigos 7° a 9° da Lei 12.546/2011.'),
-    
+
 ]
 
 
@@ -117,7 +117,7 @@ CHOICES_R1000_INDDESONERACAO_INCLUSAO = [
 
     (0, u'0 - Não Aplicável'),
     (1, u'1 - Empresa enquadrada nos artigos 7° a 9° da Lei 12.546/2011.'),
-    
+
 ]
 
 
@@ -127,7 +127,7 @@ CHOICES_R1000_INDESCRITURACAO_ALTERACAO = [
 
     (0, u'0 - Empresa Não obrigada à ECD'),
     (1, u'1 - Empresa obrigada à ECD.'),
-    
+
 ]
 
 
@@ -137,7 +137,7 @@ CHOICES_R1000_INDESCRITURACAO_INCLUSAO = [
 
     (0, u'0 - Empresa Não obrigada à ECD'),
     (1, u'1 - Empresa obrigada à ECD.'),
-    
+
 ]
 
 
@@ -150,7 +150,7 @@ CHOICES_R1000_INDSITPJ_ALTERACAO = [
     (2, u'2 - Fusão'),
     (3, u'3 - Cisão'),
     (4, u'4 - Incorporação.'),
-    
+
 ]
 
 
@@ -163,7 +163,7 @@ CHOICES_R1000_INDSITPJ_INCLUSAO = [
     (2, u'2 - Fusão'),
     (3, u'3 - Cisão'),
     (4, u'4 - Incorporação.'),
-    
+
 ]
 
 
@@ -207,7 +207,7 @@ PERIODOS = [
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-    
+
 ]
 
 

@@ -10,11 +10,11 @@ from emensageriapro.controle_de_acesso.models import ConfigPerfis
 
 class AuditoriaAdmin(admin.ModelAdmin):
     readonly_fields = (
-        'criado_em', 
+        'criado_em',
         'criado_por',
-        'modificado_em', 
+        'modificado_em',
         'modificado_por',
-        'desativado_em', 
+        'desativado_em',
         'desativado_por',
         'ativo',
     )
@@ -35,15 +35,15 @@ class ConfigPerfisAdmin(AuditoriaAdmin):
     search_fields = (
         'titulo',
     )
-    
+
     list_filter = (
         'titulo',
     )
-    
+
     list_display = (
         'titulo',
     )
-    
+
     def queryset(self, request, queryset):
         return queryset.filter(ativo=True)
 
@@ -74,7 +74,7 @@ def update_user(user):
 def update_auth_user_groups(modeladmin, request, queryset):
     for user in queryset:
         update_user(user)
-        
+
 
 update_auth_user_groups.short_description = "Atualizar Grupos de Permissões"
 
@@ -119,12 +119,12 @@ class AuditoriaAdmin(AuditoriaAdmin):
         'tabela',
         'identidade',
     )
-    
+
     list_filter = (
         'tabela',
         'identidade',
     )
-    
+
     list_display = (
         'tabela',
         'identidade',
@@ -157,7 +157,7 @@ class AuditoriaAdmin(AuditoriaAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
-    
+
     def queryset(self, request, queryset):
         return queryset.filter(ativo=True)
 

@@ -66,7 +66,6 @@ from emensageriapro.s1210.views import s1210_idepgtoext_salvar as s1210_idepgtoe
 from emensageriapro.s1210.views import s1210_idepgtoext_api as s1210_idepgtoext_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

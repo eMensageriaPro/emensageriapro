@@ -56,6 +56,8 @@ from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.mensageiro.models import TransmissorLoteEsocial
+from emensageriapro.mensageiro.models import TransmissorLoteEsocial
 
 
 @login_required
@@ -144,7 +146,8 @@ def listar(request, output=None):
             s5001_evtbasestrab_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.all()
+        transmissor_lote_esocial_error_lista = TransmissorLoteEsocial.objects.all()
         #s5001_evtbasestrab_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -159,7 +162,8 @@ def listar(request, output=None):
             'paginas': ['s5001_evtbasestrab', ],
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
+            'transmissor_lote_esocial_error_lista': transmissor_lote_esocial_error_lista,
         }
 
         if output == 'pdf':

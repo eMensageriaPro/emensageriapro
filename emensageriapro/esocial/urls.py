@@ -894,7 +894,6 @@ from emensageriapro.esocial.views import s5013_evtfgts_recibos as s5013_evtfgts_
 from emensageriapro.esocial.views import s5013_evtfgts_importar as s5013_evtfgts_importar_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

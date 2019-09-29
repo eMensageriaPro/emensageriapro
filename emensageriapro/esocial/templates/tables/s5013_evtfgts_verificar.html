@@ -17,7 +17,7 @@
 
         <tr {% if s5013_evtfgts.perapur|validacoes_esocial_efdreinf:"s5013_evtfgts.perapur" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perApur</td>
-            <td width="500px">Informar o mês/ano (formato AAAA-MM), ou apenas o ano (formato AAAA), de referência das informações.</td>
+            <td width="500px">Informar o mês/ano (formato AAAA-MM), ou apenas o ano (formato AAAA), de referência das informações. Validação: Deve corresponder ao informado pelo empregador no evento de origem (S-1295 ou S-1299).</td>
             <td width="200px"><b>{% if s5013_evtfgts.perapur or s5013_evtfgts.perapur == 0 %}{{ s5013_evtfgts.perapur }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

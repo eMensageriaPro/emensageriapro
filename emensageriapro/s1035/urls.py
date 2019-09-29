@@ -22,7 +22,6 @@ from emensageriapro.s1035.views import s1035_exclusao_salvar as s1035_exclusao_s
 from emensageriapro.s1035.views import s1035_exclusao_api as s1035_exclusao_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.s1070.forms import *
 from emensageriapro.s1070.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.esocial.models import s1070evtTabProcesso
 
 
 @login_required
@@ -129,7 +130,7 @@ def listar(request, output=None):
             s1070_alteracao_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        s1070_evttabprocesso_lista = s1070evtTabProcesso.objects.all()
         #s1070_alteracao_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -144,7 +145,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            's1070_evttabprocesso_lista': s1070_evttabprocesso_lista,
         }
 
         if output == 'pdf':

@@ -5,7 +5,7 @@
 <!-- inicio__s5011_infoestab__s5011_ideestab -->
 <div class="col-md-12" id="s5011_infoestab__s5011_ideestab__div">
   <div class="form-group">
-    <label id="s5011_infoestab__s5011_ideestab__label">Informações do Estabelecimento ou obra*</label>
+    <label id="s5011_infoestab__s5011_ideestab__label">Informações do Estabelecimento ou obra*<a data-toggle="tooltip" title="Informações relativas a cada estabelecimento, necessárias à apuração das contribuições sociais."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s5011_infoestab_form.s5011_ideestab.value %}
         <a href="{% url 's5011_ideestab_salvar' pk=s5011_infoestab_form.s5011_ideestab.value %}">
             [Acessar]
@@ -33,7 +33,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s5011_infoestab__cnaeprep__div">
     <div class="form-group">
-      <label id="s5011_infoestab__cnaeprep__label">CNAE preponderante*</label>
+      <label id="s5011_infoestab__cnaeprep__label">CNAE preponderante*<a data-toggle="tooltip" title="Preencher com o código CNAE conforme informado em S-1005. Validação: Deve ser um número existente na tabela CNAE."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s5011_infoestab_form.cnaeprep.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s5011_infoestab_form.cnaeprep.errors }}
@@ -42,7 +42,7 @@
         <input type="text"
                id="txt_cnaeprep"
                name="txt_cnaeprep" class="form-control"
-               value="{% if s5011_infoestab.cnaeprep %}{{ s5011_infoestab.cnaeprep|get_opcoes_titulo:82 }}{% endif %}"
+               value="{% if s5011_infoestab.cnaeprep %}{{ s5011_infoestab.cnaeprep|get_opcoes_titulo:84 }}{% endif %}"
                {% if s5011_infoestab_form.cnaeprep.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s5011_infoestab_form.cnaeprep.field.widget.attrs.required %} required="required"{% endif %}
                {% if s5011_infoestab_form.cnaeprep.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -56,7 +56,7 @@
   $(document).ready(function(e){
     $('#txt_cnaeprep').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/82/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/84/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -87,7 +87,7 @@
   {% else %}
   <div class="col-md-6" id="s5011_infoestab__cnaeprep__div">
     <div class="form-group">
-      <label id="s5011_infoestab__cnaeprep__label">CNAE preponderante*</label>
+      <label id="s5011_infoestab__cnaeprep__label">CNAE preponderante*<a data-toggle="tooltip" title="Preencher com o código CNAE conforme informado em S-1005. Validação: Deve ser um número existente na tabela CNAE."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_cnaeprep" name="txt_cnaeprep" class="form-control" value="{% if s5011_infoestab.cnaeprep %}{{ s5011_infoestab.cnaeprep }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -96,7 +96,7 @@
 <!-- inicio__s5011_infoestab__aliqrat -->
 <div class="col-md-6" id="s5011_infoestab__aliqrat__div">
   <div class="form-group">
-    <label id="s5011_infoestab__aliqrat__label">Alíquota RAT*</label>
+    <label id="s5011_infoestab__aliqrat__label">Alíquota RAT*<a data-toggle="tooltip" title="Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante, conforme informado em S-1005. Validação: Deve ser igual a 1, 2 ou 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_infoestab_form.aliqrat.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5011_infoestab_form.aliqrat.errors }}
@@ -120,7 +120,7 @@
 <!-- inicio__s5011_infoestab__fap -->
 <div class="col-md-6" id="s5011_infoestab__fap__div">
   <div class="form-group">
-    <label id="s5011_infoestab__fap__label">FAP*</label>
+    <label id="s5011_infoestab__fap__label">FAP*<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP. Origem: S-1005. Validação: Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000, de acordo com o estabelecido para a empresa pelo Governamental Competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_infoestab_form.fap.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_infoestab_form.fap.errors }}
@@ -137,7 +137,7 @@
 <!-- inicio__s5011_infoestab__aliqratajust -->
 <div class="col-md-6" id="s5011_infoestab__aliqratajust__div">
   <div class="form-group">
-    <label id="s5011_infoestab__aliqratajust__label">Alíquota RAT (Ajustada)*</label>
+    <label id="s5011_infoestab__aliqratajust__label">Alíquota RAT (Ajustada)*<a data-toggle="tooltip" title="Alíquota do RAT após ajuste pelo FAP, conforme definido em S-1005, no campo {aliqRatAjust}. Validação: Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_infoestab_form.aliqratajust.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_infoestab_form.aliqratajust.errors }}

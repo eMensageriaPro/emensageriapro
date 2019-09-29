@@ -106,7 +106,6 @@ from emensageriapro.s2300.views import s2300_termino_salvar as s2300_termino_sal
 from emensageriapro.s2300.views import s2300_termino_api as s2300_termino_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

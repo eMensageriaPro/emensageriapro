@@ -41,7 +41,17 @@ CHOICES_R9011_INDEXISTINFO = [
     (1, u'1 - Há informações de bases e/ou de tributos'),
     (2, u'2 - Há movimento, porém não há informações de bases ou de tributos'),
     (3, u'3 - Não há movimento na competência.'),
-    
+
+]
+
+
+
+
+CHOICES_R9011_TPINSCTOMADOR = [
+
+    (1, u'1 - CNPJ'),
+    (4, u'4 - CNO'),
+
 ]
 
 
@@ -51,7 +61,7 @@ CHOICES_R9011_TPOCORR = [
 
     (1, u'1 - Erro'),
     (2, u'2 - Aviso.'),
-    
+
 ]
 
 

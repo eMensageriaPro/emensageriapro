@@ -10,7 +10,7 @@
 <!-- inicio__s2190_evtadmprelim__identidade -->
 <div class="col-md-6" id="s2190_evtadmprelim__identidade__div">
   <div class="form-group">
-    <label id="s2190_evtadmprelim__identidade__label">Identidade do Registro</label>
+    <label id="s2190_evtadmprelim__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. Regra de validação: REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2190_evtadmprelim_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2190_evtadmprelim_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s2190_evtadmprelim__tpamb -->
 <div class="col-md-6" id="s2190_evtadmprelim__tpamb__div">
   <div class="form-group">
-    <label id="s2190_evtadmprelim__tpamb__label">Identificação do ambiente*</label>
+    <label id="s2190_evtadmprelim__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2190_evtadmprelim_form.tpamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2190_evtadmprelim_form.tpamb.errors }}
@@ -54,7 +54,7 @@
 <!-- inicio__s2190_evtadmprelim__procemi -->
 <div class="col-md-6" id="s2190_evtadmprelim__procemi__div">
   <div class="form-group">
-    <label id="s2190_evtadmprelim__procemi__label">Processo de emissão do evento*</label>
+    <label id="s2190_evtadmprelim__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2190_evtadmprelim_form.procemi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2190_evtadmprelim_form.procemi.errors }}
@@ -78,7 +78,7 @@
 <!-- inicio__s2190_evtadmprelim__verproc -->
 <div class="col-md-6" id="s2190_evtadmprelim__verproc__div">
   <div class="form-group">
-    <label id="s2190_evtadmprelim__verproc__label">Versão do processo*</label>
+    <label id="s2190_evtadmprelim__verproc__label">Versão do processo*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2190_evtadmprelim_form.verproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2190_evtadmprelim_form.verproc.errors }}
@@ -98,7 +98,7 @@
 <!-- inicio__s2190_evtadmprelim__tpinsc -->
 <div class="col-md-6" id="s2190_evtadmprelim__tpinsc__div">
   <div class="form-group">
-    <label id="s2190_evtadmprelim__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s2190_evtadmprelim__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2190_evtadmprelim_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2190_evtadmprelim_form.tpinsc.errors }}
@@ -122,7 +122,7 @@
 <!-- inicio__s2190_evtadmprelim__nrinsc -->
 <div class="col-md-6" id="s2190_evtadmprelim__nrinsc__div">
   <div class="form-group">
-    <label id="s2190_evtadmprelim__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s2190_evtadmprelim__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2190_evtadmprelim_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2190_evtadmprelim_form.nrinsc.errors }}
@@ -142,7 +142,7 @@
 <!-- inicio__s2190_evtadmprelim__cpftrab -->
 <div class="col-md-6" id="s2190_evtadmprelim__cpftrab__div">
   <div class="form-group">
-    <label id="s2190_evtadmprelim__cpftrab__label">CPF*</label>
+    <label id="s2190_evtadmprelim__cpftrab__label">CPF*<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2190_evtadmprelim_form.cpftrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2190_evtadmprelim_form.cpftrab.errors }}
@@ -157,7 +157,7 @@
 <!-- inicio__s2190_evtadmprelim__dtnascto -->
 <div class="col-md-6" id="s2190_evtadmprelim__dtnascto__div">
   <div class="form-group">
-    <label id="s2190_evtadmprelim__dtnascto__label">Data de nascimento*</label>
+    <label id="s2190_evtadmprelim__dtnascto__label">Data de nascimento*<a data-toggle="tooltip" title="Preencher com a data de nascimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2190_evtadmprelim_form.dtnascto.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2190_evtadmprelim_form.dtnascto.errors }}
@@ -172,7 +172,7 @@
 <!-- inicio__s2190_evtadmprelim__dtadm -->
 <div class="col-md-6" id="s2190_evtadmprelim__dtadm__div">
   <div class="form-group">
-    <label id="s2190_evtadmprelim__dtadm__label">Data de admissão*</label>
+    <label id="s2190_evtadmprelim__dtadm__label">Data de admissão*<a data-toggle="tooltip" title="Preencher com a data de admissão do trabalhador. Validação: Deve ser posterior à data de nascimento do trabalhador e igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2190_evtadmprelim_form.dtadm.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2190_evtadmprelim_form.dtadm.errors }}

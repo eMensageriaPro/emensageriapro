@@ -261,7 +261,7 @@ class r2070ideEstab(SoftDeletionModel):
 
     def evento(self):
         return self.r2070_evtpgtosdivs.evento()
-    tpinsc = models.IntegerField(null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_R2070_TPINSC, null=True, )
     nrinsc = models.CharField(max_length=14, null=True, )
 
     def __unicode__(self):
@@ -452,7 +452,7 @@ class r2070infoProcJudideAdvogado(SoftDeletionModel):
 
     def evento(self):
         return self.r2070_infoprocjud_despprocjud.evento()
-    tpinscadvogado = models.IntegerField(null=True, )
+    tpinscadvogado = models.IntegerField(choices=CHOICES_R2070_TPINSCADVOGADO_INFOPROCJUD, null=True, )
     nrinscadvogado = models.CharField(max_length=14, null=True, )
     vlradvogado = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
@@ -645,7 +645,7 @@ class r2070infoRRAideAdvogado(SoftDeletionModel):
 
     def evento(self):
         return self.r2070_inforra_despprocjud.evento()
-    tpinscadvogado = models.IntegerField(null=True, )
+    tpinscadvogado = models.IntegerField(choices=CHOICES_R2070_TPINSCADVOGADO_INFORRA, null=True, )
     nrinscadvogado = models.CharField(max_length=14, null=True, )
     vlradvogado = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
@@ -904,7 +904,7 @@ class r2070pgtoPJideAdvogado(SoftDeletionModel):
 
     def evento(self):
         return self.r2070_pgtopj_despprocjud.evento()
-    tpinscadvogado = models.IntegerField(null=True, )
+    tpinscadvogado = models.IntegerField(choices=CHOICES_R2070_TPINSCADVOGADO_PGTOPJ, null=True, )
     nrinscadvogado = models.CharField(max_length=14, null=True, )
     vlradvogado = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
@@ -1094,7 +1094,7 @@ class r2070pgtoResidExt(SoftDeletionModel):
     def evento(self):
         return self.r2070_ideestab.evento()
     dtpagto = models.DateField(null=True, )
-    tprendimento = models.IntegerField(null=True, )
+    tprendimento = models.IntegerField(choices=CHOICES_EFDREINFRENDIMENTOSBENEFICIARIOSEXTERIOR, null=True, )
     formatributacao = models.CharField(choices=CHOICES_EFDREINFRENDIMENTOSBENEFICIARIOSEXTERIORTRIBUTACAO, max_length=2, null=True, )
     vlrpgto = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )

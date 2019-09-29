@@ -74,7 +74,7 @@
 
         <tr {% if s1299_evtfechaevper.procemi|validacoes_esocial_efdreinf:"s1299_evtfechaevper.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1299_evtfechaevper.procemi or s1299_evtfechaevper.procemi == 0 %}{{ s1299_evtfechaevper.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -218,7 +218,7 @@
 
         <tr {% if s1299_iderespinf.email|validacoes_esocial_efdreinf:"s1299_iderespinf.email" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">email</td>
-            <td width="500px">Endereço eletrônico. Validação: O e-mail deve possuir o caractere '@' e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere '.' depois do @ e não pode estar no fim do e-mail.</td>
+            <td width="500px">Endereço eletrônico. Validação: O e-mail deve possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no fim do e-mail.</td>
             <td width="200px"><b>{% if s1299_iderespinf.email or s1299_iderespinf.email == 0 %}{{ s1299_iderespinf.email }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -318,7 +318,7 @@
 
         <tr {% if s1299_evtfechaevper.evtcontratavnp|validacoes_esocial_efdreinf:"s1299_evtfechaevper.evtcontratavnp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">evtContratAvNP</td>
-            <td width="500px">Contratou, por intermédio de sindicato, serviços de trabalhadores avulsos não portuários? S - Sim; N - Não. Validação: Se for igual a [S], deve existir evento transmitido para o período de apuração, relativo a 'contratação de avulsos não portuários' (S-1270). Caso contrário o evento não deve existir. Valores Válidos: S, N.</td>
+            <td width="500px">Contratou, por intermédio de sindicato, serviços de trabalhadores avulsos não portuários? S - Sim; N - Não. Validação: Se for igual a [S], deve existir evento transmitido para o período de apuração, relativo a "contratação de avulsos não portuários" (S-1270). Caso contrário o evento não deve existir. Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s1299_evtfechaevper.evtcontratavnp or s1299_evtfechaevper.evtcontratavnp == 0 %}{{ s1299_evtfechaevper.evtcontratavnp }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

@@ -5,7 +5,7 @@
 <!-- inicio__s1030_alteracao__s1030_evttabcargo -->
 <div class="col-md-12" id="s1030_alteracao__s1030_evttabcargo__div">
   <div class="form-group">
-    <label id="s1030_alteracao__s1030_evttabcargo__label">Alteração das informações*</label>
+    <label id="s1030_alteracao__s1030_evttabcargo__label">Alteração das informações*<a data-toggle="tooltip" title="Alteração de informações já existentes."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1030_alteracao_form.s1030_evttabcargo.value %}
         <a href="{% url 's1030_evttabcargo_salvar' pk=s1030_alteracao_form.s1030_evttabcargo.value %}">
             [Acessar]
@@ -37,7 +37,7 @@
 <!-- inicio__s1030_alteracao__codcargo -->
 <div class="col-md-6" id="s1030_alteracao__codcargo__div">
   <div class="form-group">
-    <label id="s1030_alteracao__codcargo__label">Código do Cargo*</label>
+    <label id="s1030_alteracao__codcargo__label">Código do Cargo*<a data-toggle="tooltip" title="Preencher com o código do cargo. Validação: O código atribuído não pode conter a expressão "eSocial" nas 7 (sete) primeiras posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1030_alteracao_form.codcargo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1030_alteracao_form.codcargo.errors }}
@@ -52,7 +52,7 @@
 <!-- inicio__s1030_alteracao__inivalid -->
 <div class="col-md-6" id="s1030_alteracao__inivalid__div">
   <div class="form-group">
-    <label id="s1030_alteracao__inivalid__label">Início da Validade*</label>
+    <label id="s1030_alteracao__inivalid__label">Início da Validade*<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1030_alteracao_form.inivalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1030_alteracao_form.inivalid.errors }}
@@ -76,7 +76,7 @@
 <!-- inicio__s1030_alteracao__fimvalid -->
 <div class="col-md-6" id="s1030_alteracao__fimvalid__div">
   <div class="form-group">
-    <label id="s1030_alteracao__fimvalid__label">Fim da Validade</label>
+    <label id="s1030_alteracao__fimvalid__label">Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1030_alteracao_form.fimvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1030_alteracao_form.fimvalid.errors }}
@@ -105,7 +105,7 @@
 <!-- inicio__s1030_alteracao__nmcargo -->
 <div class="col-md-6" id="s1030_alteracao__nmcargo__div">
   <div class="form-group">
-    <label id="s1030_alteracao__nmcargo__label">Nome*</label>
+    <label id="s1030_alteracao__nmcargo__label">Nome*<a data-toggle="tooltip" title="Preencher com o nome do cargo."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1030_alteracao_form.nmcargo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1030_alteracao_form.nmcargo.errors }}
@@ -121,7 +121,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s1030_alteracao__codcbo__div">
     <div class="form-group">
-      <label id="s1030_alteracao__codcbo__label">CBO*</label>
+      <label id="s1030_alteracao__codcbo__label">CBO*<a data-toggle="tooltip" title="Classificação Brasileira de Ocupação - CBO. Validação: Deve ser um código existente na tabela de CBO, com 6 (seis) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1030_alteracao_form.codcbo.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s1030_alteracao_form.codcbo.errors }}
@@ -130,7 +130,7 @@
         <input type="text"
                id="txt_codcbo"
                name="txt_codcbo" class="form-control"
-               value="{% if s1030_alteracao.codcbo %}{{ s1030_alteracao.codcbo|get_opcoes_titulo:129 }}{% endif %}"
+               value="{% if s1030_alteracao.codcbo %}{{ s1030_alteracao.codcbo|get_opcoes_titulo:133 }}{% endif %}"
                {% if s1030_alteracao_form.codcbo.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1030_alteracao_form.codcbo.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1030_alteracao_form.codcbo.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -144,7 +144,7 @@
   $(document).ready(function(e){
     $('#txt_codcbo').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/129/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/133/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -175,7 +175,7 @@
   {% else %}
   <div class="col-md-6" id="s1030_alteracao__codcbo__div">
     <div class="form-group">
-      <label id="s1030_alteracao__codcbo__label">CBO*</label>
+      <label id="s1030_alteracao__codcbo__label">CBO*<a data-toggle="tooltip" title="Classificação Brasileira de Ocupação - CBO. Validação: Deve ser um código existente na tabela de CBO, com 6 (seis) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codcbo" name="txt_codcbo" class="form-control" value="{% if s1030_alteracao.codcbo %}{{ s1030_alteracao.codcbo }}{% endif %}" disabled="disabled">
     </div>
   </div>

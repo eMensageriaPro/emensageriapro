@@ -56,6 +56,11 @@ from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.mensageiro.models import TransmissorLoteEsocial
+from emensageriapro.mensageiro.models import RetornosEventos
+from emensageriapro.esocial.models import s5001evtBasesTrab
+from emensageriapro.esocial.models import s5003evtBasesFGTS
+from emensageriapro.mensageiro.models import TransmissorLoteEsocial
 
 
 @login_required
@@ -195,7 +200,11 @@ def listar(request, output=None):
             s2299_evtdeslig_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.all()
+        retornos_eventos_lista = RetornosEventos.objects.all()
+        retornos_s5001_lista = s5001evtBasesTrab.objects.all()
+        retornos_s5003_lista = s5003evtBasesFGTS.objects.all()
+        transmissor_lote_esocial_error_lista = TransmissorLoteEsocial.objects.all()
         #s2299_evtdeslig_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -210,7 +219,11 @@ def listar(request, output=None):
             'paginas': ['s2299_evtdeslig', ],
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
+            'retornos_eventos_lista': retornos_eventos_lista,
+            'retornos_s5001_lista': retornos_s5001_lista,
+            'retornos_s5003_lista': retornos_s5003_lista,
+            'transmissor_lote_esocial_error_lista': transmissor_lote_esocial_error_lista,
         }
 
         if output == 'pdf':

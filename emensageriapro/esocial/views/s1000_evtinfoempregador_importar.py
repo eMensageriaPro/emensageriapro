@@ -145,6 +145,11 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
                 pass
 
             try:
+                s1000_inclusao_dados['indporte'] = read_from_xml(inclusao.infoCadastro.indPorte.cdata, 'esocial', 'C', None)
+            except AttributeError:
+                pass
+
+            try:
                 s1000_inclusao_dados['indoptregeletron'] = read_from_xml(inclusao.infoCadastro.indOptRegEletron.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
@@ -477,6 +482,11 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False, arquiv
 
             try:
                 s1000_alteracao_dados['indopccp'] = read_from_xml(alteracao.infoCadastro.indOpcCP.cdata, 'esocial', 'N', None)
+            except AttributeError:
+                pass
+
+            try:
+                s1000_alteracao_dados['indporte'] = read_from_xml(alteracao.infoCadastro.indPorte.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

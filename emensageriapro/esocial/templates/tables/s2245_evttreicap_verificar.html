@@ -74,7 +74,7 @@
 
         <tr {% if s2245_evttreicap.procemi|validacoes_esocial_efdreinf:"s2245_evttreicap.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2245_evttreicap.procemi or s2245_evttreicap.procemi == 0 %}{{ s2245_evttreicap.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -341,7 +341,7 @@
 
         <tr {% if s2245_evttreicap.modtreicap|validacoes_esocial_efdreinf:"s2245_evttreicap.modtreicap" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">modTreiCap</td>
-            <td width="500px">Modalidade do treinamento/capacitação/exercício simulado, conforme opções abaixo: 1 - Presencial; 2 - Educação a Distância (EaD); 3 - Semipresencial. Valores Válidos: 1, 2, 3. Validação: O campo não deve ser preenchido se {codTreiCap} for igual a [1006, 1207, 3719]. O preenchimento é obrigatório nos demais casos.</td>
+            <td width="500px">Modalidade do treinamento/capacitação/exercício simulado, conforme opções abaixo: 1 - Presencial; 2 - Educação a Distância (EaD); 3 - Semipresencial. Validação: O campo não deve ser preenchido se {codTreiCap} for igual a [1006, 1207, 3719]. O preenchimento é obrigatório nos demais casos. Valores Válidos: 1, 2, 3.</td>
             <td width="200px"><b>{% if s2245_evttreicap.modtreicap or s2245_evttreicap.modtreicap == 0 %}{{ s2245_evttreicap.modtreicap }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -360,7 +360,7 @@
 
         <tr {% if s2245_evttreicap.tptreicap|validacoes_esocial_efdreinf:"s2245_evttreicap.tptreicap" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpTreiCap</td>
-            <td width="500px">Tipo de treinamento/capacitação/exercício simulado, conforme opções abaixo: 1 - Inicial; 2 - Periódico; 3 - Reciclagem; 4 - Eventual. 5 - Outros. Valores Válidos: 1, 2, 3, 4, 5. Validação: O campo não deve ser preenchido se {codTreiCap} for igual a [1006, 1207, 3719]. O preenchimento é obrigatório nos demais casos.</td>
+            <td width="500px">Tipo de treinamento/capacitação/exercício simulado, conforme opções abaixo: 1 - Inicial; 2 - Periódico; 3 - Reciclagem; 4 - Eventual. 5 - Outros. Validação: O campo não deve ser preenchido se {codTreiCap} for igual a [1006, 1207, 3719]. O preenchimento é obrigatório nos demais casos. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2245_evttreicap.tptreicap or s2245_evttreicap.tptreicap == 0 %}{{ s2245_evttreicap.tptreicap }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -379,7 +379,7 @@
 
         <tr {% if s2245_evttreicap.indtreinant|validacoes_esocial_efdreinf:"s2245_evttreicap.indtreinant" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indTreinAnt</td>
-            <td width="500px">Indicar se o treinamento ocorreu em data anterior à admissão: S - Sim; N - Não. Valores Válidos: S, N</td>
+            <td width="500px">Indicar se o treinamento ocorreu em data anterior à admissão: S - Sim; N - Não. Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s2245_evttreicap.indtreinant or s2245_evttreicap.indtreinant == 0 %}{{ s2245_evttreicap.indtreinant }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

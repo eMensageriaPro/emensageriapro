@@ -42,7 +42,7 @@ CHOICES_S1030_ACUMCARGO_ALTERACAO = [
     (2, u'2 - Profissional de Saúde'),
     (3, u'3 - Professor'),
     (4, u'4 - Técnico/Científico.'),
-    
+
 ]
 
 
@@ -54,7 +54,7 @@ CHOICES_S1030_ACUMCARGO_INCLUSAO = [
     (2, u'2 - Profissional de Saúde'),
     (3, u'3 - Professor'),
     (4, u'4 - Técnico/Científico.'),
-    
+
 ]
 
 
@@ -66,7 +66,7 @@ CHOICES_S1030_CONTAGEMESP_ALTERACAO = [
     (2, u'2 - Professor (Infantil, Fundamental e Médio)'),
     (3, u'3 - Professor de Ensino Superior, Magistrado, Membro de Ministério Público, Membro do Tribunal de Contas (com ingresso anterior a 16/12/1998 EC nr. 20/98)'),
     (4, u'4 - Atividade de risco.'),
-    
+
 ]
 
 
@@ -78,7 +78,7 @@ CHOICES_S1030_CONTAGEMESP_INCLUSAO = [
     (2, u'2 - Professor (Infantil, Fundamental e Médio)'),
     (3, u'3 - Professor de Ensino Superior, Magistrado, Membro de Ministério Público, Membro do Tribunal de Contas (com ingresso anterior a 16/12/1998 EC nr. 20/98)'),
     (4, u'4 - Atividade de risco.'),
-    
+
 ]
 
 
@@ -88,7 +88,7 @@ CHOICES_S1030_DEDICEXCL_ALTERACAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -98,7 +98,7 @@ CHOICES_S1030_DEDICEXCL_INCLUSAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -109,7 +109,7 @@ CHOICES_S1030_SITCARGO_ALTERACAO = [
     (1, u'1 - Criação'),
     (2, u'2 - Extinção'),
     (3, u'3 - Reestruturação.'),
-    
+
 ]
 
 
@@ -120,7 +120,7 @@ CHOICES_S1030_SITCARGO_INCLUSAO = [
     (1, u'1 - Criação'),
     (2, u'2 - Extinção'),
     (3, u'3 - Reestruturação.'),
-    
+
 ]
 
 
@@ -164,7 +164,7 @@ PERIODOS = [
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-    
+
 ]
 
 

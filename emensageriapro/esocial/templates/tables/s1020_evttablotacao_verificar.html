@@ -36,7 +36,7 @@
 
         <tr {% if s1020_evttablotacao.procemi|validacoes_esocial_efdreinf:"s1020_evttablotacao.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1020_evttablotacao.procemi or s1020_evttablotacao.procemi == 0 %}{{ s1020_evttablotacao.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -133,7 +133,7 @@
 
         <tr {% if s1020_inclusao.codlotacao|validacoes_esocial_efdreinf:"s1020_inclusao.codlotacao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codLotacao</td>
-            <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. Validação: O código atribuído não pode conter a expressão 'eSocial' nas 7 primeiras posições.</td>
+            <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. Validação: O código atribuído não pode conter a expressão "eSocial" nas 7 primeiras posições. Regra de validação: REGRA_CARACTER_ESPECIAL</td>
             <td width="200px"><b>{% if s1020_inclusao.codlotacao or s1020_inclusao.codlotacao == 0 %}{{ s1020_inclusao.codlotacao }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -476,7 +476,7 @@
 
         <tr {% if s1020_alteracao.codlotacao|validacoes_esocial_efdreinf:"s1020_alteracao.codlotacao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codLotacao</td>
-            <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. Validação: O código atribuído não pode conter a expressão 'eSocial' nas 7 primeiras posições.</td>
+            <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. Validação: O código atribuído não pode conter a expressão "eSocial" nas 7 primeiras posições.</td>
             <td width="200px"><b>{% if s1020_alteracao.codlotacao or s1020_alteracao.codlotacao == 0 %}{{ s1020_alteracao.codlotacao }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -863,7 +863,7 @@
 
         <tr {% if s1020_exclusao.codlotacao|validacoes_esocial_efdreinf:"s1020_exclusao.codlotacao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codLotacao</td>
-            <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. Validação: O código atribuído não pode conter a expressão 'eSocial' nas 7 primeiras posições.</td>
+            <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. Validação: O código atribuído não pode conter a expressão "eSocial" nas 7 primeiras posições.</td>
             <td width="200px"><b>{% if s1020_exclusao.codlotacao or s1020_exclusao.codlotacao == 0 %}{{ s1020_exclusao.codlotacao }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

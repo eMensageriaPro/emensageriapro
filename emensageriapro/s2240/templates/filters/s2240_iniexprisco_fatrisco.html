@@ -28,7 +28,7 @@
 $(document).ready(function(e){
   $('#txt_codfatris').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/390/" + request.term + "/", function (data) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/395/" + request.term + "/", function (data) {
       response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
@@ -47,6 +47,17 @@ $(document).ready(function(e){
 });
 </script>
 <!-- fim__s2240_iniexprisco_fatrisco__codfatris -->
+
+<!-- inicio__s2240_iniexprisco_fatrisco__dscfatrisc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Descrição do fator de risco</label>
+    <div name="dscfatrisc" class="input-group" style="width: 100%;">
+      <input type="text" name="dscfatrisc" class="form-control" value="{{ dict_fields|get_value_from_dict:'dscfatrisc' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2240_iniexprisco_fatrisco__dscfatrisc -->
 
 <!-- inicio__s2240_iniexprisco_fatrisco__tpaval -->
 <div class="col-md-6">
@@ -101,7 +112,7 @@ $(document).ready(function(e){
 $(document).ready(function(e){
   $('#txt_unmed').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/392/" + request.term + "/", function (data) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/397/" + request.term + "/", function (data) {
       response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
@@ -176,17 +187,6 @@ $(document).ready(function(e){
   </div>
 </div>
 <!-- fim__s2240_iniexprisco_fatrisco__aposentesp -->
-
-<!-- inicio__s2240_iniexprisco_fatrisco__dscfatrisc -->
-<div class="col-md-6">
-  <div class="form-group">
-    <label>Descrição do fator de risco</label>
-    <div name="dscfatrisc" class="input-group" style="width: 100%;">
-      <input type="text" name="dscfatrisc" class="form-control" value="{{ dict_fields|get_value_from_dict:'dscfatrisc' }}">
-    </div>
-  </div>
-</div>
-<!-- fim__s2240_iniexprisco_fatrisco__dscfatrisc -->
 
 <!-- inicio__s2240_iniexprisco_fatrisco__epcepi -->
 <div class="col-md-12" id="s2240_iniexprisco_fatrisco__epcepi__div">
@@ -264,6 +264,12 @@ $(document).ready(function(e){
 
 <div class="col-md-3">
     <div class="form-group">
+        <input type="checkbox" name="show_dscfatrisc" value="1" {% if show_fields|get_value_from_dict:'show_dscfatrisc' %}checked{% endif %} >Descrição do fator de risco
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
         <input type="checkbox" name="show_tpaval" value="1" {% if show_fields|get_value_from_dict:'show_tpaval' %}checked{% endif %} >Tipo de avaliação do fator de risco
     </div>
 </div>
@@ -307,12 +313,6 @@ $(document).ready(function(e){
 <div class="col-md-3">
     <div class="form-group">
         <input type="checkbox" name="show_aposentesp" value="1" {% if show_fields|get_value_from_dict:'show_aposentesp' %}checked{% endif %} >Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.
-    </div>
-</div>
-
-<div class="col-md-3">
-    <div class="form-group">
-        <input type="checkbox" name="show_dscfatrisc" value="1" {% if show_fields|get_value_from_dict:'show_dscfatrisc' %}checked{% endif %} >Descrição do fator de risco
     </div>
 </div>
 

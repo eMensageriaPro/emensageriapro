@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2241_fimaposentesp_infoamb__s2241_fimaposentesp__div">
   <div class="form-group">
-    <label id="s2241_fimaposentesp_infoamb__s2241_fimaposentesp__label">Informações relativas ao ambiente de trabalho*</label>
+    <label id="s2241_fimaposentesp_infoamb__s2241_fimaposentesp__label">Informações relativas ao ambiente de trabalho*<a data-toggle="tooltip" title="Informações relativas ao ambiente de trabalho"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2241_fimaposentesp_infoamb_form.s2241_fimaposentesp.value %}
         <a id="s2241_fimaposentesp_infoamb__s2241_fimaposentesp__div_acessar" href="{% url 's2241_fimaposentesp_salvar' pk=s2241_fimaposentesp_infoamb_form.s2241_fimaposentesp.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2241_fimaposentesp_infoamb__codamb -->
 <div class="col-md-6" id="s2241_fimaposentesp_infoamb__codamb__div">
   <div class="form-group">
-    <label id="s2241_fimaposentesp_infoamb__codamb__label">Código do Ambiente*</label>
+    <label id="s2241_fimaposentesp_infoamb__codamb__label">Código do Ambiente*<a data-toggle="tooltip" title="Informar o código do ambiente de trabalho cadastrado anteriormente no qual o trabalhador estava desempenhando atividade sujeita a aposentadoria especial. Validação: Deve ser um código de ambiente {codAmb} que representa um ambiente informado anteriormente, no qual o trabalhador estava exposto ao fator de risco sujeito a aposentadoria especial."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2241_fimaposentesp_infoamb_form.codamb.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2241_fimaposentesp_infoamb_form.codamb.errors }}

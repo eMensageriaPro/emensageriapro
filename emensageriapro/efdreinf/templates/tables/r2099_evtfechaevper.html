@@ -147,7 +147,7 @@
             <td></td>
             {% endif %}
             {% if show_fields.show_tpinsc or 1 %}
-            <td>{{ a.tpinsc }}</td>
+            <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
             {% if show_fields.show_nrinsc or 0 %}
             <td>{{ a.nrinsc }}</td>

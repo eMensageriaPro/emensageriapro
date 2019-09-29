@@ -36,7 +36,7 @@
 
         <tr {% if s1005_evttabestab.procemi|validacoes_esocial_efdreinf:"s1005_evttabestab.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1005_evttabestab.procemi or s1005_evttabestab.procemi == 0 %}{{ s1005_evttabestab.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -214,7 +214,7 @@
 
         <tr {% if s1005_inclusao.cnaeprep|validacoes_esocial_efdreinf:"s1005_inclusao.cnaeprep" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnaePrep</td>
-            <td width="500px">Preencher com o código do CNAE conforme legislação vigente, referente a atividade econômica preponderante do estabelecimento. Validação: Deve ser um número existente na tabela CNAE. </td>
+            <td width="500px">Preencher com o código do CNAE conforme legislação vigente, referente à atividade econômica preponderante do estabelecimento. Validação: Deve ser um número existente na tabela CNAE.</td>
             <td width="200px"><b>{% if s1005_inclusao.cnaeprep or s1005_inclusao.cnaeprep == 0 %}{{ s1005_inclusao.cnaeprep }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -476,7 +476,7 @@
 
         <tr {% if s1005_inclusao.regpt|validacoes_esocial_efdreinf:"s1005_inclusao.regpt" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">regPt</td>
-            <td width="500px">Opção de registro de ponto (jornada) adotada pelo estabelecimento. Indicar o sistema de controle de ponto preponderante, conforme opções: 0 - Não utiliza; 1 - Manual; 2 - Mecânico; 3 - Eletrônico (portaria MTE 1.510/2009); 4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011); 5 - Eletrônico alternativo ( art. 2° da Portaria MTE 373/2011); 6 - Eletrônico - outros. Valores Válidos: 0, 1, 2, 3, 4, 5, 6.</td>
+            <td width="500px">Opção de registro de ponto (jornada) adotada pelo estabelecimento. Indicar o sistema de controle de ponto preponderante, conforme opções: 0 - Não utiliza; 1 - Manual; 2 - Mecânico; 3 - Eletrônico (portaria MTE 1.510/2009); 4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011); 5 - Eletrônico alternativo (art. 2° da Portaria MTE 373/2011); 6 - Eletrônico - outros. O preenchimento deste campo é facultativo. Valores Válidos: 0, 1, 2, 3, 4, 5, 6.</td>
             <td width="200px"><b>{% if s1005_inclusao.regpt or s1005_inclusao.regpt == 0 %}{{ s1005_inclusao.regpt }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -495,7 +495,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoApr</td>
-            <td bgcolor="lightgray" colspan="3">Informações relacionadas à contratação de aprendiz.</td>
+            <td bgcolor="lightgray" colspan="3">Informações relacionadas à contratação de aprendiz. Preenchimento obrigatório somente no caso de dispensa, ainda que parcial, de contratação de aprendiz em virtude de processo judicial. Preenchimento facultativo nos demais casos.</td>
         </tr>
 
         <tr {% if s1005_inclusao.contapr|validacoes_esocial_efdreinf:"s1005_inclusao.contapr" %}bgcolor="lightcoral"{% endif %}>
@@ -519,7 +519,7 @@
 
         <tr {% if s1005_inclusao.nrprocjud|validacoes_esocial_efdreinf:"s1005_inclusao.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProcJud</td>
-            <td width="500px">Preencher com o número do processo judicial. Validação: O preenchimento é obrigatório se {contApr} for igual a [1]. Deve ser um número de processo judicial válido e existente na Tabela de Processos - S-1070.</td>
+            <td width="500px">Preencher com o número do processo judicial. Validação: O preenchimento é obrigatório se {contApr} for igual a [1]. Deve ser um número de processo judicial válido.</td>
             <td width="200px"><b>{% if s1005_inclusao.nrprocjud or s1005_inclusao.nrprocjud == 0 %}{{ s1005_inclusao.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -538,7 +538,7 @@
 
         <tr {% if s1005_inclusao.contented|validacoes_esocial_efdreinf:"s1005_inclusao.contented" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">contEntEd</td>
-            <td width="500px">Informar se o estabelecimento realiza a contratação de aprendiz por intermédio de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou por entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art. 430, inciso III, CLT): S - Sim; N - Não. Validação: O preenchimento é obrigatório se {contApr} for igual a [1, 2]. Valores Válidos: S, N.</td>
+            <td width="500px">Informar se o estabelecimento realiza a contratação de aprendiz por intermédio de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou por entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art. 430, inciso III, CLT): S - Sim; N - Não. Validação: O preenchimento é facultativo se {contApr} for igual a [1, 2]. Não informar se {contApr} for igual a [0]. Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s1005_inclusao.contented or s1005_inclusao.contented == 0 %}{{ s1005_inclusao.contented }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -582,7 +582,7 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoPCD</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento "Matriz". Preenchimento obrigatório somente no caso de dispensa, ainda que parcial, de contratação de PCD em virtude de processo judicial. Preenchimento facultativo nos demais casos.</td>
         </tr>
     {% for s1005_inclusao_infopcd in s1005_inclusao_infopcd_lista %}
     {% ifequal s1005_inclusao_infopcd.s1005_inclusao.id s1005_inclusao.id %}
@@ -607,7 +607,7 @@
 
         <tr {% if s1005_inclusao_infopcd.nrprocjud|validacoes_esocial_efdreinf:"s1005_inclusao_infopcd.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProcJud</td>
-            <td width="500px">Preencher com o número do processo judicial. Validação: Informação obrigatória se {contPCD} = [1]. Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos - S-1070.</td>
+            <td width="500px">Preencher com o número do processo judicial. Validação: Informação obrigatória se {contPCD} = [1]. Deve ser um número de processo judicial válido.</td>
             <td width="200px"><b>{% if s1005_inclusao_infopcd.nrprocjud or s1005_inclusao_infopcd.nrprocjud == 0 %}{{ s1005_inclusao_infopcd.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -718,7 +718,7 @@
 
         <tr {% if s1005_alteracao.cnaeprep|validacoes_esocial_efdreinf:"s1005_alteracao.cnaeprep" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnaePrep</td>
-            <td width="500px">Preencher com o código do CNAE conforme legislação vigente, referente a atividade econômica preponderante do estabelecimento. Validação: Deve ser um número existente na tabela CNAE. </td>
+            <td width="500px">Preencher com o código do CNAE conforme legislação vigente, referente à atividade econômica preponderante do estabelecimento. Validação: Deve ser um número existente na tabela CNAE.</td>
             <td width="200px"><b>{% if s1005_alteracao.cnaeprep or s1005_alteracao.cnaeprep == 0 %}{{ s1005_alteracao.cnaeprep }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -980,7 +980,7 @@
 
         <tr {% if s1005_alteracao.regpt|validacoes_esocial_efdreinf:"s1005_alteracao.regpt" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">regPt</td>
-            <td width="500px">Opção de registro de ponto (jornada) adotada pelo estabelecimento. Indicar o sistema de controle de ponto preponderante, conforme opções: 0 - Não utiliza; 1 - Manual; 2 - Mecânico; 3 - Eletrônico (portaria MTE 1.510/2009); 4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011); 5 - Eletrônico alternativo ( art. 2° da Portaria MTE 373/2011); 6 - Eletrônico - outros. Valores Válidos: 0, 1, 2, 3, 4, 5, 6.</td>
+            <td width="500px">Opção de registro de ponto (jornada) adotada pelo estabelecimento. Indicar o sistema de controle de ponto preponderante, conforme opções: 0 - Não utiliza; 1 - Manual; 2 - Mecânico; 3 - Eletrônico (portaria MTE 1.510/2009); 4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011); 5 - Eletrônico alternativo (art. 2° da Portaria MTE 373/2011); 6 - Eletrônico - outros. O preenchimento deste campo é facultativo. Valores Válidos: 0, 1, 2, 3, 4, 5, 6.</td>
             <td width="200px"><b>{% if s1005_alteracao.regpt or s1005_alteracao.regpt == 0 %}{{ s1005_alteracao.regpt }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -999,7 +999,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoApr</td>
-            <td bgcolor="lightgray" colspan="3">Informações relacionadas à contratação de aprendiz.</td>
+            <td bgcolor="lightgray" colspan="3">Informações relacionadas à contratação de aprendiz. Preenchimento obrigatório somente no caso de dispensa, ainda que parcial, de contratação de aprendiz em virtude de processo judicial. Preenchimento facultativo nos demais casos.</td>
         </tr>
 
         <tr {% if s1005_alteracao.contapr|validacoes_esocial_efdreinf:"s1005_alteracao.contapr" %}bgcolor="lightcoral"{% endif %}>
@@ -1023,7 +1023,7 @@
 
         <tr {% if s1005_alteracao.nrprocjud|validacoes_esocial_efdreinf:"s1005_alteracao.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProcJud</td>
-            <td width="500px">Preencher com o número do processo judicial. Validação: O preenchimento é obrigatório se {contApr} for igual a [1]. Deve ser um número de processo judicial válido e existente na Tabela de Processos - S-1070.</td>
+            <td width="500px">Preencher com o número do processo judicial. Validação: O preenchimento é obrigatório se {contApr} for igual a [1]. Deve ser um número de processo judicial válido.</td>
             <td width="200px"><b>{% if s1005_alteracao.nrprocjud or s1005_alteracao.nrprocjud == 0 %}{{ s1005_alteracao.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1042,7 +1042,7 @@
 
         <tr {% if s1005_alteracao.contented|validacoes_esocial_efdreinf:"s1005_alteracao.contented" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">contEntEd</td>
-            <td width="500px">Informar se o estabelecimento realiza a contratação de aprendiz por intermédio de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou por entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art. 430, inciso III, CLT): S - Sim; N - Não. Validação: O preenchimento é obrigatório se {contApr} for igual a [1, 2]. Valores Válidos: S, N.</td>
+            <td width="500px">Informar se o estabelecimento realiza a contratação de aprendiz por intermédio de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou por entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art. 430, inciso III, CLT): S - Sim; N - Não. Validação: O preenchimento é facultativo se {contApr} for igual a [1, 2]. Não informar se {contApr} for igual a [0]. Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s1005_alteracao.contented or s1005_alteracao.contented == 0 %}{{ s1005_alteracao.contented }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1086,7 +1086,7 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoPCD</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento "Matriz". Preenchimento obrigatório somente no caso de dispensa, ainda que parcial, de contratação de PCD em virtude de processo judicial. Preenchimento facultativo nos demais casos.</td>
         </tr>
     {% for s1005_alteracao_infopcd in s1005_alteracao_infopcd_lista %}
     {% ifequal s1005_alteracao_infopcd.s1005_alteracao.id s1005_alteracao.id %}
@@ -1111,7 +1111,7 @@
 
         <tr {% if s1005_alteracao_infopcd.nrprocjud|validacoes_esocial_efdreinf:"s1005_alteracao_infopcd.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProcJud</td>
-            <td width="500px">Preencher com o número do processo judicial. Validação: Informação obrigatória se {contPCD} = [1]. Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos - S-1070.</td>
+            <td width="500px">Preencher com o número do processo judicial. Validação: Informação obrigatória se {contPCD} = [1]. Deve ser um número de processo judicial válido.</td>
             <td width="200px"><b>{% if s1005_alteracao_infopcd.nrprocjud or s1005_alteracao_infopcd.nrprocjud == 0 %}{{ s1005_alteracao_infopcd.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

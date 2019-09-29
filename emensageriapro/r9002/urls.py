@@ -13,7 +13,6 @@ from emensageriapro.r9002.views import r9002_totapursem_api as r9002_totapursem_
 from emensageriapro.r9002.views import r9002_totapurdia_api as r9002_totapurdia_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

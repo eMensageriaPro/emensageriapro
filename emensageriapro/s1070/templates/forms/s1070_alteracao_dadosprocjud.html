@@ -5,7 +5,7 @@
 <!-- inicio__s1070_alteracao_dadosprocjud__s1070_alteracao -->
 <div class="col-md-12" id="s1070_alteracao_dadosprocjud__s1070_alteracao__div">
   <div class="form-group">
-    <label id="s1070_alteracao_dadosprocjud__s1070_alteracao__label">Informações Complementares do Processo Judicial*</label>
+    <label id="s1070_alteracao_dadosprocjud__s1070_alteracao__label">Informações Complementares do Processo Judicial*<a data-toggle="tooltip" title="Informações Complementares do Processo Judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1070_alteracao_dadosprocjud_form.s1070_alteracao.value %}
         <a href="{% url 's1070_alteracao_salvar' pk=s1070_alteracao_dadosprocjud_form.s1070_alteracao.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s1070_alteracao_dadosprocjud__ufvara -->
 <div class="col-md-3" id="s1070_alteracao_dadosprocjud__ufvara__div">
   <div class="form-group">
-    <label id="s1070_alteracao_dadosprocjud__ufvara__label">UF da seção jucidial*</label>
+    <label id="s1070_alteracao_dadosprocjud__ufvara__label">UF da seção jucidial*<a data-toggle="tooltip" title="Identificação da UF da Seção Judiciária. Validação: Deve ser uma Sigla de UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1070_alteracao_dadosprocjud_form.ufvara.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1070_alteracao_dadosprocjud_form.ufvara.errors }}
@@ -57,7 +57,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-3" id="s1070_alteracao_dadosprocjud__codmunic__div">
     <div class="form-group">
-      <label id="s1070_alteracao_dadosprocjud__codmunic__label">Código do Município*</label>
+      <label id="s1070_alteracao_dadosprocjud__codmunic__label">Código do Município*<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. Validação: Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1070_alteracao_dadosprocjud_form.codmunic.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s1070_alteracao_dadosprocjud_form.codmunic.errors }}
@@ -66,7 +66,7 @@
         <input type="text"
                id="txt_codmunic"
                name="txt_codmunic" class="form-control"
-               value="{% if s1070_alteracao_dadosprocjud.codmunic %}{{ s1070_alteracao_dadosprocjud.codmunic|get_opcoes_titulo:58 }}{% endif %}"
+               value="{% if s1070_alteracao_dadosprocjud.codmunic %}{{ s1070_alteracao_dadosprocjud.codmunic|get_opcoes_titulo:59 }}{% endif %}"
                {% if s1070_alteracao_dadosprocjud_form.codmunic.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1070_alteracao_dadosprocjud_form.codmunic.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1070_alteracao_dadosprocjud_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -80,7 +80,7 @@
   $(document).ready(function(e){
     $('#txt_codmunic').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/58/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/59/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -111,7 +111,7 @@
   {% else %}
   <div class="col-md-3" id="s1070_alteracao_dadosprocjud__codmunic__div">
     <div class="form-group">
-      <label id="s1070_alteracao_dadosprocjud__codmunic__label">Código do Município*</label>
+      <label id="s1070_alteracao_dadosprocjud__codmunic__label">Código do Município*<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. Validação: Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if s1070_alteracao_dadosprocjud.codmunic %}{{ s1070_alteracao_dadosprocjud.codmunic }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -120,7 +120,7 @@
 <!-- inicio__s1070_alteracao_dadosprocjud__idvara -->
 <div class="col-md-3" id="s1070_alteracao_dadosprocjud__idvara__div">
   <div class="form-group">
-    <label id="s1070_alteracao_dadosprocjud__idvara__label">Vara*</label>
+    <label id="s1070_alteracao_dadosprocjud__idvara__label">Vara*<a data-toggle="tooltip" title="Código de Identificação da Vara."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1070_alteracao_dadosprocjud_form.idvara.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1070_alteracao_dadosprocjud_form.idvara.errors }}

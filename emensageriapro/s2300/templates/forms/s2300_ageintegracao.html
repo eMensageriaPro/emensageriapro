@@ -5,7 +5,7 @@
 <!-- inicio__s2300_ageintegracao__s2300_infoestagiario -->
 <div class="col-md-12" id="s2300_ageintegracao__s2300_infoestagiario__div">
   <div class="form-group">
-    <label id="s2300_ageintegracao__s2300_infoestagiario__label">Agente de Integração*</label>
+    <label id="s2300_ageintegracao__s2300_infoestagiario__label">Agente de Integração*<a data-toggle="tooltip" title="Agente de Integração."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2300_ageintegracao_form.s2300_infoestagiario.value %}
         <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_ageintegracao_form.s2300_infoestagiario.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2300_ageintegracao__cnpjagntinteg -->
 <div class="col-md-6" id="s2300_ageintegracao__cnpjagntinteg__div">
   <div class="form-group">
-    <label id="s2300_ageintegracao__cnpjagntinteg__label">CNPJ do Agente de Integração*</label>
+    <label id="s2300_ageintegracao__cnpjagntinteg__label">CNPJ do Agente de Integração*<a data-toggle="tooltip" title="CNPJ do agente de integração. Validação: Deve ser um CNPJ válido. Regra de validação: REGRA_VALIDA_CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2300_ageintegracao_form.cnpjagntinteg.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_ageintegracao_form.cnpjagntinteg.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2300_ageintegracao__nmrazao -->
 <div class="col-md-6" id="s2300_ageintegracao__nmrazao__div">
   <div class="form-group">
-    <label id="s2300_ageintegracao__nmrazao__label">Razão Social*</label>
+    <label id="s2300_ageintegracao__nmrazao__label">Razão Social*<a data-toggle="tooltip" title="Informar a razão social."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2300_ageintegracao_form.nmrazao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_ageintegracao_form.nmrazao.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__s2300_ageintegracao__dsclograd -->
 <div class="col-md-6" id="s2300_ageintegracao__dsclograd__div">
   <div class="form-group">
-    <label id="s2300_ageintegracao__dsclograd__label">Logradouro*</label>
+    <label id="s2300_ageintegracao__dsclograd__label">Logradouro*<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2300_ageintegracao_form.dsclograd.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_ageintegracao_form.dsclograd.errors }}
@@ -77,7 +77,7 @@
 <!-- inicio__s2300_ageintegracao__nrlograd -->
 <div class="col-md-6" id="s2300_ageintegracao__nrlograd__div">
   <div class="form-group">
-    <label id="s2300_ageintegracao__nrlograd__label">Número*</label>
+    <label id="s2300_ageintegracao__nrlograd__label">Número*<a data-toggle="tooltip" title="Número do logradouro. Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2300_ageintegracao_form.nrlograd.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_ageintegracao_form.nrlograd.errors }}
@@ -92,7 +92,7 @@
 <!-- inicio__s2300_ageintegracao__bairro -->
 <div class="col-md-6" id="s2300_ageintegracao__bairro__div">
   <div class="form-group">
-    <label id="s2300_ageintegracao__bairro__label">Bairro</label>
+    <label id="s2300_ageintegracao__bairro__label">Bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2300_ageintegracao_form.bairro.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_ageintegracao_form.bairro.errors }}
@@ -107,7 +107,7 @@
 <!-- inicio__s2300_ageintegracao__cep -->
 <div class="col-md-6" id="s2300_ageintegracao__cep__div">
   <div class="form-group">
-    <label id="s2300_ageintegracao__cep__label">CEP*</label>
+    <label id="s2300_ageintegracao__cep__label">CEP*<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP. Validação: Deve ser preenchido apenas com números. Deve ser um CEP válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2300_ageintegracao_form.cep.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_ageintegracao_form.cep.errors }}
@@ -123,7 +123,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2300_ageintegracao__codmunic__div">
     <div class="form-group">
-      <label id="s2300_ageintegracao__codmunic__label">Código do Município</label>
+      <label id="s2300_ageintegracao__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. Validação: Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2300_ageintegracao_form.codmunic.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2300_ageintegracao_form.codmunic.errors }}
@@ -132,7 +132,7 @@
         <input type="text"
                id="txt_codmunic"
                name="txt_codmunic" class="form-control"
-               value="{% if s2300_ageintegracao.codmunic %}{{ s2300_ageintegracao.codmunic|get_opcoes_titulo:58 }}{% endif %}"
+               value="{% if s2300_ageintegracao.codmunic %}{{ s2300_ageintegracao.codmunic|get_opcoes_titulo:59 }}{% endif %}"
                {% if s2300_ageintegracao_form.codmunic.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2300_ageintegracao_form.codmunic.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2300_ageintegracao_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -146,7 +146,7 @@
   $(document).ready(function(e){
     $('#txt_codmunic').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/58/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/59/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -177,7 +177,7 @@
   {% else %}
   <div class="col-md-6" id="s2300_ageintegracao__codmunic__div">
     <div class="form-group">
-      <label id="s2300_ageintegracao__codmunic__label">Código do Município</label>
+      <label id="s2300_ageintegracao__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. Validação: Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if s2300_ageintegracao.codmunic %}{{ s2300_ageintegracao.codmunic }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -186,7 +186,7 @@
 <!-- inicio__s2300_ageintegracao__uf -->
 <div class="col-md-6" id="s2300_ageintegracao__uf__div">
   <div class="form-group">
-    <label id="s2300_ageintegracao__uf__label">UF*</label>
+    <label id="s2300_ageintegracao__uf__label">UF*<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação. Validação: Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2300_ageintegracao_form.uf.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2300_ageintegracao_form.uf.errors }}

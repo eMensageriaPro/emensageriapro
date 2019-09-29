@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s5011_infocrcontrib__s5011_evtcs__div">
   <div class="form-group">
-    <label id="s5011_infocrcontrib__s5011_evtcs__label">Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.*</label>
+    <label id="s5011_infocrcontrib__s5011_evtcs__label">Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.*<a data-toggle="tooltip" title="Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s5011_infocrcontrib_form.s5011_evtcs.value %}
         <a id="s5011_infocrcontrib__s5011_evtcs__div_acessar" href="{% url 's5011_evtcs_salvar' pk=s5011_infocrcontrib_form.s5011_evtcs.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s5011_infocrcontrib__tpcr -->
 <div class="col-md-3" id="s5011_infocrcontrib__tpcr__div">
   <div class="form-group">
-    <label id="s5011_infocrcontrib__tpcr__label">Código da Receita (CR)*</label>
+    <label id="s5011_infocrcontrib__tpcr__label">Código da Receita (CR)*<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência. Validação: Deve ser um código válido, compatível com a classificação tributária do contribuinte e com as informações prestadas nos demais eventos."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s5011_infocrcontrib_form.tpcr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5011_infocrcontrib_form.tpcr.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s5011_infocrcontrib__vrcr -->
 <div class="col-md-3" id="s5011_infocrcontrib__vrcr__div">
   <div class="form-group">
-    <label id="s5011_infocrcontrib__vrcr__label">Valor do CR apurado*</label>
+    <label id="s5011_infocrcontrib__vrcr__label">Valor do CR apurado*<a data-toggle="tooltip" title="Valor correspondente ao Código de Receita - CR apurado. Validação: Deve ser apurado de acordo com a legislação em vigor na competência. Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_infocrcontrib_form.vrcr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_infocrcontrib_form.vrcr.errors }}
@@ -74,7 +74,7 @@
 <!-- inicio__s5011_infocrcontrib__vrcrsusp -->
 <div class="col-md-3" id="s5011_infocrcontrib__vrcrsusp__div">
   <div class="form-group">
-    <label id="s5011_infocrcontrib__vrcrsusp__label">Valor do tributo com exigibilidade suspensa</label>
+    <label id="s5011_infocrcontrib__vrcrsusp__label">Valor do tributo com exigibilidade suspensa<a data-toggle="tooltip" title="Valor do tributo com exigibilidade suspensa."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_infocrcontrib_form.vrcrsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_infocrcontrib_form.vrcrsusp.errors }}

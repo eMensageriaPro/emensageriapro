@@ -14,7 +14,6 @@ from emensageriapro.s2250.views import s2250_cancavprevio_salvar as s2250_cancav
 from emensageriapro.s2250.views import s2250_cancavprevio_api as s2250_cancavprevio_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

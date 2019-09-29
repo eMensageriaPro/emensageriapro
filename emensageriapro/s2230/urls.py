@@ -34,7 +34,6 @@ from emensageriapro.s2230.views import s2230_fimafastamento_salvar as s2230_fima
 from emensageriapro.s2230.views import s2230_fimafastamento_api as s2230_fimafastamento_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

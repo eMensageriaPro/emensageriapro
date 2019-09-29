@@ -71,7 +71,6 @@ from emensageriapro.mensageiro.views import retornos_eventos_intervalos_salvar a
 from emensageriapro.mensageiro.views import retornos_eventos_intervalos_api as retornos_eventos_intervalos_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

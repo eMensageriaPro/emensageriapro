@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.mensageiro.forms import *
 from emensageriapro.mensageiro.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.mensageiro.models import RetornosEventosHorarios
 
 
 @login_required
@@ -111,7 +112,7 @@ def listar(request, output=None):
             retornos_eventos_intervalos_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        retornos_eventos_horarios_lista = RetornosEventosHorarios.objects.all()
         #retornos_eventos_intervalos_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -126,7 +127,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            'retornos_eventos_horarios_lista': retornos_eventos_horarios_lista,
         }
 
         if output == 'pdf':

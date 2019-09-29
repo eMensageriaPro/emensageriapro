@@ -36,7 +36,7 @@
 
         <tr {% if s1050_evttabhortur.procemi|validacoes_esocial_efdreinf:"s1050_evttabhortur.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1050_evttabhortur.procemi or s1050_evttabhortur.procemi == 0 %}{{ s1050_evttabhortur.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -133,7 +133,7 @@
 
         <tr {% if s1050_inclusao.codhorcontrat|validacoes_esocial_efdreinf:"s1050_inclusao.codhorcontrat" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codHorContrat</td>
-            <td width="500px">Preencher com o código atribuído pela empresa para o Horário Contratual.</td>
+            <td width="500px">Preencher com o código atribuído pela empresa para o Horário Contratual. Regra de validação: REGRA_CARACTER_ESPECIAL</td>
             <td width="200px"><b>{% if s1050_inclusao.codhorcontrat or s1050_inclusao.codhorcontrat == 0 %}{{ s1050_inclusao.codhorcontrat }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

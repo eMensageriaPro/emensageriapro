@@ -126,7 +126,6 @@ def listar(request, output=None):
             regras_validacao_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #regras_validacao_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -141,7 +140,6 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
         }
 
         if output == 'pdf':

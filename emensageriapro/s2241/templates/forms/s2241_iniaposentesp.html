@@ -5,7 +5,7 @@
 <!-- inicio__s2241_iniaposentesp__s2241_aposentesp -->
 <div class="col-md-12" id="s2241_iniaposentesp__s2241_aposentesp__div">
   <div class="form-group">
-    <label id="s2241_iniaposentesp__s2241_aposentesp__label">Condições do ambiente de trabalho que ensejam aposentadoria especial - Início*</label>
+    <label id="s2241_iniaposentesp__s2241_aposentesp__label">Condições do ambiente de trabalho que ensejam aposentadoria especial - Início*<a data-toggle="tooltip" title="Condições do ambiente de trabalho que ensejam aposentadoria especial - Início"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2241_iniaposentesp_form.s2241_aposentesp.value %}
         <a href="{% url 's2241_aposentesp_salvar' pk=s2241_iniaposentesp_form.s2241_aposentesp.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2241_iniaposentesp__dtinicondicao -->
 <div class="col-md-6" id="s2241_iniaposentesp__dtinicondicao__div">
   <div class="form-group">
-    <label id="s2241_iniaposentesp__dtinicondicao__label">Data de início da condição*</label>
+    <label id="s2241_iniaposentesp__dtinicondicao__label">Data de início da condição*<a data-toggle="tooltip" title="Informar a data em que o trabalhador iniciou as atividades no ambiente de trabalho e na condição de exposição ao(s) fator(es) de risco ou a data de início de vigência do eSocial para o empregador, a que for mais recente.Validação: Deve ser uma data igual ou posterior à data de admissão do vínculoa que se refere. Não pode ser anterior à data de início de vigência do eSocial para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2241_iniaposentesp_form.dtinicondicao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2241_iniaposentesp_form.dtinicondicao.errors }}

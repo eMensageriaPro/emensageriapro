@@ -40,7 +40,7 @@ CHOICES_S2306_INDREMUNCARGO = [
 
     ('N', u'N - Não. Valores válidos: S, N.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -50,7 +50,7 @@ CHOICES_S2306_NATESTAGIO = [
 
     ('N', u'N - Não Obrigatório.'),
     ('O', u'O - Obrigatório'),
-    
+
 ]
 
 
@@ -64,7 +64,7 @@ CHOICES_S2306_NIVESTAGIO = [
     (4, u'4 - Superior'),
     (8, u'8 - Especial'),
     (9, u'9 - Mãe social. (Lei 7644, de 1987).'),
-    
+
 ]
 
 
@@ -79,7 +79,7 @@ CHOICES_S2306_UNDSALFIXO = [
     (5, u'5 - Por Mês'),
     (6, u'6 - Por Tarefa'),
     (7, u'7 - Não aplicável - salário exclusivamente variável.'),
-    
+
 ]
 
 
@@ -114,7 +114,7 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-    
+
 ]
 
 

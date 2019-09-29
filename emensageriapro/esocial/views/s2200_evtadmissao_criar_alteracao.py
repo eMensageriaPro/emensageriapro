@@ -85,7 +85,7 @@ def criar_alteracao(request, pk):
             id=pk)
 
         texto = gerar_xml_s2200(request, pk, versao="|")
-        texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
+        texto = texto.replace('<inclusao>', '<alteracao>').replace('</inclusao>', '</alteracao>')
         dados = read_s2200_evtadmissao_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(s2200_evtadmissao, 'esocial')
 

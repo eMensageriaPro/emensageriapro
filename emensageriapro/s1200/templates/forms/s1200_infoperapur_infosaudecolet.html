@@ -5,7 +5,7 @@
 <!-- inicio__s1200_infoperapur_infosaudecolet__s1200_infoperapur_remunperapur -->
 <div class="col-md-12" id="s1200_infoperapur_infosaudecolet__s1200_infoperapur_remunperapur__div">
   <div class="form-group">
-    <label id="s1200_infoperapur_infosaudecolet__s1200_infoperapur_remunperapur__label">Informações de plano privado coletivo empresarial de assistência à saúde*</label>
+    <label id="s1200_infoperapur_infosaudecolet__s1200_infoperapur_remunperapur__label">Informações de plano privado coletivo empresarial de assistência à saúde*<a data-toggle="tooltip" title="Informações de plano privado coletivo empresarial de assistência à saúde. Só preencher se houver {codRubr} em {itensRemun}, cuja natureza de rubrica {natRubr} indicada em S-1010 seja igual a [9219]. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1200_infoperapur_infosaudecolet_form.s1200_infoperapur_remunperapur.value %}
         <a href="{% url 's1200_infoperapur_remunperapur_salvar' pk=s1200_infoperapur_infosaudecolet_form.s1200_infoperapur_remunperapur.value %}">
             [Acessar]

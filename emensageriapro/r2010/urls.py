@@ -22,7 +22,6 @@ from emensageriapro.r2010.views import r2010_infoprocretad_salvar as r2010_infop
 from emensageriapro.r2010.views import r2010_infoprocretad_api as r2010_infoprocretad_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

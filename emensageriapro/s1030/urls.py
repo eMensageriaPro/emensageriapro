@@ -30,7 +30,6 @@ from emensageriapro.s1030.views import s1030_exclusao_salvar as s1030_exclusao_s
 from emensageriapro.s1030.views import s1030_exclusao_api as s1030_exclusao_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

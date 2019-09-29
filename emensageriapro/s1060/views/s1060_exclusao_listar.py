@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.s1060.forms import *
 from emensageriapro.s1060.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.esocial.models import s1060evtTabAmbiente
 
 
 @login_required
@@ -114,7 +115,7 @@ def listar(request, output=None):
             s1060_exclusao_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        s1060_evttabambiente_lista = s1060evtTabAmbiente.objects.all()
         #s1060_exclusao_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -129,7 +130,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            's1060_evttabambiente_lista': s1060_evttabambiente_lista,
         }
 
         if output == 'pdf':

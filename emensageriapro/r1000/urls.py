@@ -38,7 +38,6 @@ from emensageriapro.r1000.views import r1000_exclusao_salvar as r1000_exclusao_s
 from emensageriapro.r1000.views import r1000_exclusao_api as r1000_exclusao_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

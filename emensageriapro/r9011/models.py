@@ -164,7 +164,7 @@ class r9011RPrest(SoftDeletionModel):
 
     def evento(self):
         return self.r9011_infototalcontrib.evento()
-    tpinsctomador = models.IntegerField(null=True, )
+    tpinsctomador = models.IntegerField(choices=CHOICES_R9011_TPINSCTOMADOR, null=True, )
     nrinsctomador = models.CharField(max_length=14, null=True, )
     vlrtotalbaseret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrtotalretprinc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )

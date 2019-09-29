@@ -202,7 +202,7 @@ def validacoes_s1070_evttabprocesso(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'ideProcesso.tpProc',
                                                                   ideProcesso.tpProc.cdata,
-                                                                  1, u'1, 2, 3, 5')
+                                                                  1, u'1, 2, 3, 4')
         
                             if 'nrProc' in dir(ideProcesso):
                                 validacoes_lista = validar_campo( validacoes_lista,
@@ -316,7 +316,7 @@ def validacoes_s1070_evttabprocesso(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'ideProcesso.tpProc',
                                                                   ideProcesso.tpProc.cdata,
-                                                                  1, u'1, 2, 3, 6')
+                                                                  1, u'1, 2, 3, 4')
         
                             if 'nrProc' in dir(ideProcesso):
                                 validacoes_lista = validar_campo( validacoes_lista,

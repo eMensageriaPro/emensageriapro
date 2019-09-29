@@ -74,7 +74,7 @@
 
         <tr {% if s2250_evtavprevio.procemi|validacoes_esocial_efdreinf:"s2250_evtavprevio.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2250_evtavprevio.procemi or s2250_evtavprevio.procemi == 0 %}{{ s2250_evtavprevio.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -266,7 +266,7 @@
 
         <tr {% if s2250_detavprevio.tpavprevio|validacoes_esocial_efdreinf:"s2250_detavprevio.tpavprevio" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAvPrevio</td>
-            <td width="500px">Tipo de Aviso Prévio. Indica quem avisou o desligamento, conforme opções abaixo: 1 - Aviso prévio trabalhado dado pelo empregador ao empregado, que optou pela redução de duas horas diárias [caput do art. 488 da CLT]; 2 - Aviso prévio trabalhado dado pelo empregador ao empregado, que optou pela redução de dias corridos [parágrafo único do art. 488 da CLT]; 4 - Aviso prévio dado pelo empregado (pedido de demissão), não dispensado de seu cumprimento, sob pena de desconto, pelo empregador, dos salários correspondentes ao prazo respectivo (§2º do art. 487 da CLT); 5 - Aviso prévio trabalhado dado pelo empregador rural ao empregado, com redução de um dia por semana ( art. 15 da Lei nº 5889/73); 6 - Aviso prévio trabalhado decorrente de acordo entre empregado e empregador (art. 484-A, 'caput', da CLT). Valores Válidos: 1, 2, 4, 5, 6.</td>
+            <td width="500px">Tipo de Aviso Prévio. Indica quem avisou o desligamento, conforme opções abaixo: 1 - Aviso prévio trabalhado dado pelo empregador ao empregado, que optou pela redução de duas horas diárias [caput do art. 488 da CLT]; 2 - Aviso prévio trabalhado dado pelo empregador ao empregado, que optou pela redução de dias corridos [parágrafo único do art. 488 da CLT]; 4 - Aviso prévio dado pelo empregado (pedido de demissão), não dispensado de seu cumprimento, sob pena de desconto, pelo empregador, dos salários correspondentes ao prazo respectivo (§2º do art. 487 da CLT); 5 - Aviso prévio trabalhado dado pelo empregador rural ao empregado, com redução de um dia por semana ( art. 15 da Lei nº 5889/73); 6 - Aviso prévio trabalhado decorrente de acordo entre empregado e empregador (art. 484-A, "caput", da CLT). Valores Válidos: 1, 2, 4, 5, 6.</td>
             <td width="200px"><b>{% if s2250_detavprevio.tpavprevio or s2250_detavprevio.tpavprevio == 0 %}{{ s2250_detavprevio.tpavprevio }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

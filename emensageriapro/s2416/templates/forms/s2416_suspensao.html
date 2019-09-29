@@ -5,7 +5,7 @@
 <!-- inicio__s2416_suspensao__s2416_evtcdbenalt -->
 <div class="col-md-12" id="s2416_suspensao__s2416_evtcdbenalt__div">
   <div class="form-group">
-    <label id="s2416_suspensao__s2416_evtcdbenalt__label">Informações referentes à suspensão do benefício*</label>
+    <label id="s2416_suspensao__s2416_evtcdbenalt__label">Informações referentes à suspensão do benefício*<a data-toggle="tooltip" title="Informações referentes à suspensão do benefício"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2416_suspensao_form.s2416_evtcdbenalt.value %}
         <a href="{% url 's2416_evtcdbenalt_salvar' pk=s2416_suspensao_form.s2416_evtcdbenalt.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2416_suspensao__mtvsuspensao -->
 <div class="col-md-4" id="s2416_suspensao__mtvsuspensao__div">
   <div class="form-group">
-    <label id="s2416_suspensao__mtvsuspensao__label">Motivo da suspensão do benefício*</label>
+    <label id="s2416_suspensao__mtvsuspensao__label">Motivo da suspensão do benefício*<a data-toggle="tooltip" title="Motivo da suspensão do benefício: 01 - Suspensão por não recadastramento; 99 - Outros motivos de suspensão. Valores Válidos: 01, 99."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2416_suspensao_form.mtvsuspensao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2416_suspensao_form.mtvsuspensao.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2416_suspensao__dscsuspensao -->
 <div class="col-md-4" id="s2416_suspensao__dscsuspensao__div">
   <div class="form-group">
-    <label id="s2416_suspensao__dscsuspensao__label">Descrição do motivo da suspensão do benefício</label>
+    <label id="s2416_suspensao__dscsuspensao__label">Descrição do motivo da suspensão do benefício<a data-toggle="tooltip" title="Descrição do motivo da suspensão do benefício. Validação: Preenchimento obrigatório se {mtvSuspensao}= [99]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2416_suspensao_form.dscsuspensao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2416_suspensao_form.dscsuspensao.errors }}

@@ -174,7 +174,7 @@
             <td></td>
             {% endif %}
             {% if show_fields.show_tpinsc or 0 %}
-            <td>{{ a.tpinsc }}</td>
+            <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
             {% if show_fields.show_nrinsc or 0 %}
             <td>{{ a.nrinsc }}</td>
@@ -186,7 +186,7 @@
             <td></td>
             {% endif %}
             {% if show_fields.show_tpinscestabprest or 0 %}
-            <td>{{ a.tpinscestabprest }}</td>
+            <td>{{ a.get_tpinscestabprest_display }}</td>
             {% endif %}
             {% if show_fields.show_nrinscestabprest or 0 %}
             <td>{{ a.nrinscestabprest }}</td>
@@ -195,7 +195,7 @@
             <td></td>
             {% endif %}
             {% if show_fields.show_tpinsctomador or 0 %}
-            <td>{{ a.tpinsctomador }}</td>
+            <td>{{ a.get_tpinsctomador_display }}</td>
             {% endif %}
             {% if show_fields.show_nrinsctomador or 0 %}
             <td>{{ a.nrinsctomador }}</td>

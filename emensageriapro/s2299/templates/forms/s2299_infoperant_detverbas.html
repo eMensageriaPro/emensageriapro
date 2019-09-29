@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2299_infoperant_detverbas__s2299_infoperant_ideestablot__div">
   <div class="form-group">
-    <label id="s2299_infoperant_detverbas__s2299_infoperant_ideestablot__label">Detalhamento das verbas rescisórias devidas ao trabalhador*</label>
+    <label id="s2299_infoperant_detverbas__s2299_infoperant_ideestablot__label">Detalhamento das verbas rescisórias devidas ao trabalhador*<a data-toggle="tooltip" title="Registro que relaciona as rubricas que compõem a remuneração do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2299_infoperant_detverbas_form.s2299_infoperant_ideestablot.value %}
         <a id="s2299_infoperant_detverbas__s2299_infoperant_ideestablot__div_acessar" href="{% url 's2299_infoperant_ideestablot_salvar' pk=s2299_infoperant_detverbas_form.s2299_infoperant_ideestablot.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2299_infoperant_detverbas__codrubr -->
 <div class="col-md-6" id="s2299_infoperant_detverbas__codrubr__div">
   <div class="form-group">
-    <label id="s2299_infoperant_detverbas__codrubr__label">Código da Rubrica*</label>
+    <label id="s2299_infoperant_detverbas__codrubr__label">Código da Rubrica*<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador e que identifica a rubrica em sua folha de pagamento. Validação: O código informado deve existir na tabela S-1010 - Tabela de Rubricas vigente no mês de referência, informado em {perRef}. Rubrica cujo {codIncCP} em S-1010 seja igual a [23, 24, 61] só pode ser utilizada se {tpRegPrev} do vínculo for igual a [2]. Não pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2299_infoperant_detverbas_form.codrubr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2299_infoperant_detverbas_form.codrubr.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2299_infoperant_detverbas__idetabrubr -->
 <div class="col-md-6" id="s2299_infoperant_detverbas__idetabrubr__div">
   <div class="form-group">
-    <label id="s2299_infoperant_detverbas__idetabrubr__label">Identificador tabela de rubricas*</label>
+    <label id="s2299_infoperant_detverbas__idetabrubr__label">Identificador tabela de rubricas*<a data-toggle="tooltip" title="Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}. Validação: Deve existir na tabela S-1010 (em conjunto com {codRubr}) vigente no período indicado em {perRef}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2299_infoperant_detverbas_form.idetabrubr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2299_infoperant_detverbas_form.idetabrubr.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s2299_infoperant_detverbas__qtdrubr -->
 <div class="col-md-6" id="s2299_infoperant_detverbas__qtdrubr__div">
   <div class="form-group">
-    <label id="s2299_infoperant_detverbas__qtdrubr__label">Quantidade</label>
+    <label id="s2299_infoperant_detverbas__qtdrubr__label">Quantidade<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2299_infoperant_detverbas_form.qtdrubr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s2299_infoperant_detverbas_form.qtdrubr.errors }}
@@ -88,7 +88,7 @@
 <!-- inicio__s2299_infoperant_detverbas__fatorrubr -->
 <div class="col-md-6" id="s2299_infoperant_detverbas__fatorrubr__div">
   <div class="form-group">
-    <label id="s2299_infoperant_detverbas__fatorrubr__label">Fator</label>
+    <label id="s2299_infoperant_detverbas__fatorrubr__label">Fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc, da rubrica, quando necessário. Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator = 11."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2299_infoperant_detverbas_form.fatorrubr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s2299_infoperant_detverbas_form.fatorrubr.errors }}
@@ -105,7 +105,7 @@
 <!-- inicio__s2299_infoperant_detverbas__vrunit -->
 <div class="col-md-6" id="s2299_infoperant_detverbas__vrunit__div">
   <div class="form-group">
-    <label id="s2299_infoperant_detverbas__vrunit__label">Valor Unitário</label>
+    <label id="s2299_infoperant_detverbas__vrunit__label">Valor Unitário<a data-toggle="tooltip" title="Preencher com o valor unitário da rubrica."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2299_infoperant_detverbas_form.vrunit.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s2299_infoperant_detverbas_form.vrunit.errors }}
@@ -123,7 +123,7 @@
 <!-- inicio__s2299_infoperant_detverbas__vrrubr -->
 <div class="col-md-6" id="s2299_infoperant_detverbas__vrrubr__div">
   <div class="form-group">
-    <label id="s2299_infoperant_detverbas__vrrubr__label">Valor total*</label>
+    <label id="s2299_infoperant_detverbas__vrrubr__label">Valor total*<a data-toggle="tooltip" title="Valor total da rubrica. Validação: Deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2299_infoperant_detverbas_form.vrrubr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s2299_infoperant_detverbas_form.vrrubr.errors }}

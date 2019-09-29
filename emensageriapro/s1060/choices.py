@@ -43,7 +43,7 @@ CHOICES_ESOCIALINSCRICOESTIPOS = [
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (5, u'5 - CGC'),
-    
+
 ]
 
 
@@ -54,7 +54,7 @@ CHOICES_S1060_LOCALAMB_ALTERACAO = [
     (1, u'1 - Estabelecimento do próprio empregador'),
     (2, u'2 - Estabelecimento de terceiros'),
     (3, u'3 - Prestação de serviços em instalações de terceiros não consideradas como lotações dos tipos 03 a 09 da tabela 10.'),
-    
+
 ]
 
 
@@ -65,7 +65,7 @@ CHOICES_S1060_LOCALAMB_INCLUSAO = [
     (1, u'1 - Estabelecimento do próprio empregador'),
     (2, u'2 - Estabelecimento de terceiros'),
     (3, u'3 - Prestação de serviços em instalações de terceiros não consideradas como lotações dos tipos 03 a 09 da tabela 10.'),
-    
+
 ]
 
 
@@ -109,7 +109,7 @@ PERIODOS = [
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-    
+
 ]
 
 

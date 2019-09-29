@@ -8,6 +8,9 @@
             {% if show_fields.show_codfatris or 1 %}
             <th>Código do Fator de Risco</th>
             {% endif %}
+            {% if show_fields.show_dscfatrisc or 0 %}
+            <th>Descrição do fator de risco</th>
+            {% endif %}
             {% if show_fields.show_tpaval or 1 %}
             <th>Tipo de avaliação do fator de risco</th>
             {% endif %}
@@ -31,9 +34,6 @@
             {% endif %}
             {% if show_fields.show_aposentesp or 0 %}
             <th>Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.</th>
-            {% endif %}
-            {% if show_fields.show_dscfatrisc or 0 %}
-            <th>Descrição do fator de risco</th>
             {% endif %}
             {% if show_fields.show_epcepi or 0 %}
             <th>Informações relativas a Equipamentos de Proteção Coletiva - EPC e Equipamentos de Proteção Individual - EPI</th>
@@ -62,6 +62,9 @@
             {% if show_fields.show_codfatris or 1 %}
             <td>{{ a.codfatris }}</td>
             {% endif %}
+            {% if show_fields.show_dscfatrisc or 0 %}
+            <td>{{ a.dscfatrisc }}</td>
+            {% endif %}
             {% if show_fields.show_tpaval or 1 %}
             <td>{{ a.get_tpaval_display }}</td>
             {% endif %}
@@ -85,9 +88,6 @@
             {% endif %}
             {% if show_fields.show_aposentesp or 0 %}
             <td>{{ a.get_aposentesp_display }}</td>
-            {% endif %}
-            {% if show_fields.show_dscfatrisc or 0 %}
-            <td>{{ a.dscfatrisc }}</td>
             {% endif %}
             {% if show_fields.show_epcepi or 0 %}
             <td></td>

@@ -9,11 +9,11 @@ from emensageriapro.controle_de_acesso.models import Auditoria
 
 class AuditoriaAdmin(admin.ModelAdmin):
     readonly_fields = (
-        'criado_em', 
+        'criado_em',
         'criado_por',
-        'modificado_em', 
+        'modificado_em',
         'modificado_por',
-        'desativado_em', 
+        'desativado_em',
         'desativado_por',
         'ativo',
     )
@@ -33,7 +33,7 @@ class OpcoesAdmin(AuditoriaAdmin):
         'data_inicio',
         'data_termino',
     )
-    
+
     list_filter = (
         'opcoes_slug',
         'opcoes_id',
@@ -43,7 +43,7 @@ class OpcoesAdmin(AuditoriaAdmin):
         'data_inicio',
         'data_termino',
     )
-    
+
     list_display = (
         'opcoes_slug',
         'opcoes_id',
@@ -76,7 +76,7 @@ class OpcoesAdmin(AuditoriaAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
-    
+
     def queryset(self, request, queryset):
         return queryset.filter(ativo=True)
 

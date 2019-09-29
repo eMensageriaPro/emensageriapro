@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1210_detpgtoant__s1210_infopgto__div">
   <div class="form-group">
-    <label id="s1210_detpgtoant__s1210_infopgto__label">Pagamento relativo a competências anteriores ao início de obrigatoriedade do eSocial*</label>
+    <label id="s1210_detpgtoant__s1210_infopgto__label">Pagamento relativo a competências anteriores ao início de obrigatoriedade do eSocial*<a data-toggle="tooltip" title="Pagamento relativo a competências anteriores ao início de obrigatoriedade dos eventos periódicos para o contribuinte."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1210_detpgtoant_form.s1210_infopgto.value %}
         <a id="s1210_detpgtoant__s1210_infopgto__div_acessar" href="{% url 's1210_infopgto_salvar' pk=s1210_detpgtoant_form.s1210_infopgto.value %}">
@@ -42,7 +42,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s1210_detpgtoant__codcateg__div">
     <div class="form-group">
-      <label id="s1210_detpgtoant__codcateg__label">Código da Categoria*</label>
+      <label id="s1210_detpgtoant__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 1. Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1210_detpgtoant_form.codcateg.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s1210_detpgtoant_form.codcateg.errors }}
@@ -51,7 +51,7 @@
         <input type="text"
                id="txt_codcateg"
                name="txt_codcateg" class="form-control"
-               value="{% if s1210_detpgtoant.codcateg %}{{ s1210_detpgtoant.codcateg|get_opcoes_titulo:176 }}{% endif %}"
+               value="{% if s1210_detpgtoant.codcateg %}{{ s1210_detpgtoant.codcateg|get_opcoes_titulo:180 }}{% endif %}"
                {% if s1210_detpgtoant_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s1210_detpgtoant_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}
                {% if s1210_detpgtoant_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -65,7 +65,7 @@
   $(document).ready(function(e){
     $('#txt_codcateg').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/176/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/180/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -96,7 +96,7 @@
   {% else %}
   <div class="col-md-6" id="s1210_detpgtoant__codcateg__div">
     <div class="form-group">
-      <label id="s1210_detpgtoant__codcateg__label">Código da Categoria*</label>
+      <label id="s1210_detpgtoant__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 1. Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s1210_detpgtoant.codcateg %}{{ s1210_detpgtoant.codcateg }}{% endif %}" disabled="disabled">
     </div>
   </div>

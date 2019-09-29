@@ -169,6 +169,11 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
                 pass
 
             try:
+                s2240_iniexprisco_fatrisco_dados['dscfatrisc'] = read_from_xml(fatRisco.dscFatRisc.cdata, 'esocial', 'C', None)
+            except AttributeError:
+                pass
+
+            try:
                 s2240_iniexprisco_fatrisco_dados['tpaval'] = read_from_xml(fatRisco.tpAval.cdata, 'esocial', 'N', None)
             except AttributeError:
                 pass
@@ -205,11 +210,6 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False, arquivo=Fals
 
             try:
                 s2240_iniexprisco_fatrisco_dados['aposentesp'] = read_from_xml(fatRisco.aposentEsp.cdata, 'esocial', 'C', None)
-            except AttributeError:
-                pass
-
-            try:
-                s2240_iniexprisco_fatrisco_dados['dscfatrisc'] = read_from_xml(fatRisco.dscFatRisc.cdata, 'esocial', 'C', None)
             except AttributeError:
                 pass
 

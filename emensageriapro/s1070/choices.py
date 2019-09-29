@@ -40,7 +40,7 @@ CHOICES_S1070_INDAUTORIA_ALTERACAO = [
 
     (1, u'1 - Próprio contribuinte'),
     (2, u'2 - Outra entidade, empresa ou empregado.'),
-    
+
 ]
 
 
@@ -50,7 +50,7 @@ CHOICES_S1070_INDAUTORIA_INCLUSAO = [
 
     (1, u'1 - Próprio contribuinte'),
     (2, u'2 - Outra entidade, empresa ou empregado.'),
-    
+
 ]
 
 
@@ -60,7 +60,7 @@ CHOICES_S1070_INDDEPOSITO_ALTERACAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -70,7 +70,7 @@ CHOICES_S1070_INDDEPOSITO_INCLUSAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -87,7 +87,7 @@ CHOICES_S1070_INDMATPROC_ALTERACAO = [
     (7, u'7 - Exclusivamente FGTS e/ou Contribuição Social Rescisória (Lei Complementar 110/2001)'),
     (8, u'8 - Contribuição sindical'),
     (99, u'99 - Outros assuntos.'),
-    
+
 ]
 
 
@@ -104,7 +104,7 @@ CHOICES_S1070_INDMATPROC_INCLUSAO = [
     (7, u'7 - Exclusivamente FGTS e/ou Contribuição Social Rescisória (Lei Complementar 110/2001)'),
     (8, u'8 - Contribuição sindical'),
     (99, u'99 - Outros assuntos.'),
-    
+
 ]
 
 
@@ -126,7 +126,7 @@ CHOICES_S1070_INDSUSP_ALTERACAO = [
     ('14', u'14 - Contestação Administrativa FAP'),
     ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
     ('92', u'92 - Sem suspensão da exigibilidade.'),
-    
+
 ]
 
 
@@ -148,7 +148,7 @@ CHOICES_S1070_INDSUSP_INCLUSAO = [
     ('14', u'14 - Contestação Administrativa FAP'),
     ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
     ('92', u'92 - Sem suspensão da exigibilidade.'),
-    
+
 ]
 
 
@@ -160,7 +160,7 @@ CHOICES_S1070_TPPROC_ALTERACAO = [
     (2, u'2 - Judicial'),
     (3, u'3 - Número de Benefício (NB) do INSS'),
     (4, u'4 - Processo FAP de exercício anterior a 2019.'),
-    
+
 ]
 
 
@@ -171,8 +171,8 @@ CHOICES_S1070_TPPROC_EXCLUSAO = [
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial'),
     (3, u'3 - Número de Benefício (NB) do INSS'),
-    (4, u'4 - Processo FAP de exercício anterior a 2019.'),
-    
+    (4, u'4 - Processo FAP.'),
+
 ]
 
 
@@ -184,7 +184,7 @@ CHOICES_S1070_TPPROC_INCLUSAO = [
     (2, u'2 - Judicial'),
     (3, u'3 - Número de Benefício (NB) do INSS'),
     (4, u'4 - Processo FAP de exercício anterior a 2019.'),
-    
+
 ]
 
 
@@ -219,7 +219,7 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-    
+
 ]
 
 
@@ -263,7 +263,7 @@ PERIODOS = [
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-    
+
 ]
 
 

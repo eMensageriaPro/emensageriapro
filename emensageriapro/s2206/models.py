@@ -410,7 +410,7 @@ class s2206localTrabDom(SoftDeletionModel):
 
     def evento(self):
         return self.s2206_evtaltcontratual.evento()
-    tplograd = models.TextField(null=True, )
+    tplograd = models.TextField(blank=True, null=True, )
     dsclograd = models.CharField(max_length=100, null=True, )
     nrlograd = models.CharField(max_length=10, null=True, )
     complemento = models.CharField(max_length=30, blank=True, null=True, )
@@ -420,7 +420,7 @@ class s2206localTrabDom(SoftDeletionModel):
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
 
     def __unicode__(self):
-        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
+        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
 
     class Meta:
 
@@ -441,7 +441,6 @@ class s2206localTrabDom(SoftDeletionModel):
 
         ordering = [
             's2206_evtaltcontratual',
-            'tplograd',
             'dsclograd',
             'nrlograd',
             'cep',

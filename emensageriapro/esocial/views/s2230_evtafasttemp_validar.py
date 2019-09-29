@@ -178,7 +178,7 @@ def validacoes_s2230_evtafasttemp(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'infoAtestado.qtdDiasAfast',
                                                                   infoAtestado.qtdDiasAfast.cdata,
-                                                                  1, u'None')
+                                                                  0, u'None')
         
                             if 'emitente' in dir(infoAtestado.emitente):
                                 for emitente in infoAtestado.emitente:

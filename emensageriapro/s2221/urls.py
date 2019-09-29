@@ -6,7 +6,6 @@ from django.conf.urls.static import static
 from rest_framework.authtoken import views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

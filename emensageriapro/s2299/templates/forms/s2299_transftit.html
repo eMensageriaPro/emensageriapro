@@ -5,7 +5,7 @@
 <!-- inicio__s2299_transftit__s2299_evtdeslig -->
 <div class="col-md-12" id="s2299_transftit__s2299_evtdeslig__div">
   <div class="form-group">
-    <label id="s2299_transftit__s2299_evtdeslig__label">Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar*</label>
+    <label id="s2299_transftit__s2299_evtdeslig__label">Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar*<a data-toggle="tooltip" title="Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2299_transftit_form.s2299_evtdeslig.value %}
         <a href="{% url 's2299_evtdeslig_salvar' pk=s2299_transftit_form.s2299_evtdeslig.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2299_transftit__cpfsubstituto -->
 <div class="col-md-4" id="s2299_transftit__cpfsubstituto__div">
   <div class="form-group">
-    <label id="s2299_transftit__cpfsubstituto__label">Preencher com o CPF do novo titular*</label>
+    <label id="s2299_transftit__cpfsubstituto__label">Preencher com o CPF do novo titular*<a data-toggle="tooltip" title="Preencher com o CPF do novo titular. Validação: Deve ser um CPF válido e diferente do CPF do declarante e do empregado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2299_transftit_form.cpfsubstituto.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2299_transftit_form.cpfsubstituto.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2299_transftit__dtnascto -->
 <div class="col-md-4" id="s2299_transftit__dtnascto__div">
   <div class="form-group">
-    <label id="s2299_transftit__dtnascto__label">Data de nascimento*</label>
+    <label id="s2299_transftit__dtnascto__label">Data de nascimento*<a data-toggle="tooltip" title="Preencher com a data de nascimento do novo titular. Validação: Deve corresponder à data de nascimento cadastrada na base de dados do CPF do {cpfSubstituto}."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2299_transftit_form.dtnascto.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2299_transftit_form.dtnascto.errors }}

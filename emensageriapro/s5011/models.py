@@ -680,7 +680,7 @@ class s5011infoEmprParcial(SoftDeletionModel):
         return self.s5011_idelotacao.evento()
     tpinsccontrat = models.IntegerField(choices=CHOICES_S5011_TPINSCCONTRAT, null=True, )
     nrinsccontrat = models.CharField(max_length=14, null=True, )
-    tpinscprop = models.IntegerField(null=True, )
+    tpinscprop = models.IntegerField(choices=CHOICES_S5011_TPINSCPROP, null=True, )
     nrinscprop = models.CharField(max_length=14, null=True, )
     cnoobra = models.CharField(max_length=12, null=True, )
 

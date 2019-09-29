@@ -98,7 +98,6 @@ from emensageriapro.r2070.views import r2070_pgtoresidext_salvar as r2070_pgtore
 from emensageriapro.r2070.views import r2070_pgtoresidext_api as r2070_pgtoresidext_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

@@ -5,35 +5,39 @@ from django.contrib import admin
 from django.db import transaction
 from django.utils import timezone
 from emensageriapro.controle_de_acesso.models import Auditoria
-from emensageriapro.mensageiro.models import Certificados
 
 
 class AuditoriaAdmin(admin.ModelAdmin):
     readonly_fields = (
-        'criado_em', 
+        'criado_em',
         'criado_por',
-        'modificado_em', 
+        'modificado_em',
         'modificado_por',
-        'desativado_em', 
+        'desativado_em',
         'desativado_por',
         'ativo',
     )
 
+
+
+
+
+from emensageriapro.mensageiro.models import Certificados
 
 class CertificadosAdmin(AuditoriaAdmin):
 
     search_fields = (
         'nome',
     )
-    
+
     list_filter = (
         'nome',
     )
-    
+
     list_display = (
         'nome',
     )
-    
+
     def queryset(self, request, queryset):
         return queryset.filter(ativo=True)
 

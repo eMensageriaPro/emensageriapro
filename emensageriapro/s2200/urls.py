@@ -142,7 +142,6 @@ from emensageriapro.s2200.views import s2200_cessao_salvar as s2200_cessao_salva
 from emensageriapro.s2200.views import s2200_cessao_api as s2200_cessao_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

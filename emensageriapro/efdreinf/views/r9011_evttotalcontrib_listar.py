@@ -56,6 +56,8 @@ from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.mensageiro.models import TransmissorLoteEfdreinf
+from emensageriapro.mensageiro.models import TransmissorLoteEfdreinf
 
 
 @login_required
@@ -167,7 +169,8 @@ def listar(request, output=None):
             r9011_evttotalcontrib_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        transmissor_lote_efdreinf_lista = TransmissorLoteEfdreinf.objects.all()
+        transmissor_lote_efdreinf_error_lista = TransmissorLoteEfdreinf.objects.all()
         #r9011_evttotalcontrib_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -182,7 +185,8 @@ def listar(request, output=None):
             'paginas': ['r9011_evttotalcontrib', ],
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            'transmissor_lote_efdreinf_lista': transmissor_lote_efdreinf_lista,
+            'transmissor_lote_efdreinf_error_lista': transmissor_lote_efdreinf_error_lista,
         }
 
         if output == 'pdf':

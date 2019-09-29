@@ -5,7 +5,7 @@
 <!-- inicio__s2230_emitente__s2230_infoatestado -->
 <div class="col-md-12" id="s2230_emitente__s2230_infoatestado__div">
   <div class="form-group">
-    <label id="s2230_emitente__s2230_infoatestado__label">Médico/Dentista que emitiu o atestado*</label>
+    <label id="s2230_emitente__s2230_infoatestado__label">Médico/Dentista que emitiu o atestado*<a data-toggle="tooltip" title="Médico/Dentista que emitiu o atestado."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2230_emitente_form.s2230_infoatestado.value %}
         <a href="{% url 's2230_infoatestado_salvar' pk=s2230_emitente_form.s2230_infoatestado.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2230_emitente__nmemit -->
 <div class="col-md-6" id="s2230_emitente__nmemit__div">
   <div class="form-group">
-    <label id="s2230_emitente__nmemit__label">Nome*</label>
+    <label id="s2230_emitente__nmemit__label">Nome*<a data-toggle="tooltip" title="Nome do médico/dentista que emitiu o atestado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2230_emitente_form.nmemit.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2230_emitente_form.nmemit.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2230_emitente__ideoc -->
 <div class="col-md-6" id="s2230_emitente__ideoc__div">
   <div class="form-group">
-    <label id="s2230_emitente__ideoc__label">Órgão de Classe (OC)*</label>
+    <label id="s2230_emitente__ideoc__label">Órgão de Classe (OC)*<a data-toggle="tooltip" title="Órgão de classe: 1 - Conselho Regional de Medicina (CRM); 2 - Conselho Regional de Odontologia (CRO); 3 - Registro do Ministério da Saúde (RMS). Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2230_emitente_form.ideoc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2230_emitente_form.ideoc.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s2230_emitente__nroc -->
 <div class="col-md-6" id="s2230_emitente__nroc__div">
   <div class="form-group">
-    <label id="s2230_emitente__nroc__label">Número do OC*</label>
+    <label id="s2230_emitente__nroc__label">Número do OC*<a data-toggle="tooltip" title="Número de inscrição no órgão de classe."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2230_emitente_form.nroc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2230_emitente_form.nroc.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__s2230_emitente__ufoc -->
 <div class="col-md-6" id="s2230_emitente__ufoc__div">
   <div class="form-group">
-    <label id="s2230_emitente__ufoc__label">UF do OC</label>
+    <label id="s2230_emitente__ufoc__label">UF do OC<a data-toggle="tooltip" title="Sigla da UF do órgão de classe."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2230_emitente_form.ufoc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2230_emitente_form.ufoc.errors }}

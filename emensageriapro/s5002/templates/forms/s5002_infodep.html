@@ -5,7 +5,7 @@
 <!-- inicio__s5002_infodep__s5002_evtirrfbenef -->
 <div class="col-md-12" id="s5002_infodep__s5002_evtirrfbenef__div">
   <div class="form-group">
-    <label id="s5002_infodep__s5002_evtirrfbenef__label">Informações relativas a existência de dependentes do beneficiário do pagamento. Origem: S-1210 - registro {deps}*</label>
+    <label id="s5002_infodep__s5002_evtirrfbenef__label">Informações relativas a existência de dependentes do beneficiário do pagamento. Origem: S-1210 - registro {deps}*<a data-toggle="tooltip" title="Informações relativas a existência de dependentes do beneficiário do pagamento. Origem: S-1210 - registro {deps}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s5002_infodep_form.s5002_evtirrfbenef.value %}
         <a href="{% url 's5002_evtirrfbenef_salvar' pk=s5002_infodep_form.s5002_evtirrfbenef.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s5002_infodep__vrdeddep -->
 <div class="col-md-6" id="s5002_infodep__vrdeddep__div">
   <div class="form-group">
-    <label id="s5002_infodep__vrdeddep__label">Valor da dedução da BC do IRRF*</label>
+    <label id="s5002_infodep__vrdeddep__label">Valor da dedução da BC do IRRF*<a data-toggle="tooltip" title="Valor da dedução da base de cálculo do IRRF relativo aos dependentes do beneficiário do pagamento, correspondente ao número de dependentes multiplicado pelo valor de dedução por dependente previsto na legislação do Imposto de Renda."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5002_infodep_form.vrdeddep.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5002_infodep_form.vrdeddep.errors }}

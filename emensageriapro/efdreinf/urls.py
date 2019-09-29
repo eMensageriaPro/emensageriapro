@@ -354,7 +354,6 @@ from emensageriapro.efdreinf.views import r9012_evtretcons_recibos as r9012_evtr
 from emensageriapro.efdreinf.views import r9012_evtretcons_importar as r9012_evtretcons_importar_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

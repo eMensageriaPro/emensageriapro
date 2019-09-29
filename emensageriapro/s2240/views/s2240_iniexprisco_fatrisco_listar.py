@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.s2240.forms import *
 from emensageriapro.s2240.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.esocial.models import s2240evtExpRisco
 
 
 @login_required
@@ -69,6 +70,7 @@ def listar(request, output=None):
         show_fields = {
             'show_s2240_evtexprisco': 1,
             'show_codfatris': 1,
+            'show_dscfatrisc': 0,
             'show_tpaval': 1,
             'show_intconc': 0,
             'show_limtol': 0,
@@ -77,7 +79,6 @@ def listar(request, output=None):
             'show_insalubridade': 0,
             'show_periculosidade': 0,
             'show_aposentesp': 0,
-            'show_dscfatrisc': 0,
             'show_epcepi': 0,
             'show_utilizepc': 0,
             'show_eficepc': 0,
@@ -91,6 +92,7 @@ def listar(request, output=None):
             dict_fields = {
                 's2240_evtexprisco__icontains': 's2240_evtexprisco__icontains',
                 'codfatris__icontains': 'codfatris__icontains',
+                'dscfatrisc__icontains': 'dscfatrisc__icontains',
                 'tpaval__icontains': 'tpaval__icontains',
                 'intconc__icontains': 'intconc__icontains',
                 'limtol__icontains': 'limtol__icontains',
@@ -99,7 +101,6 @@ def listar(request, output=None):
                 'insalubridade__icontains': 'insalubridade__icontains',
                 'periculosidade__icontains': 'periculosidade__icontains',
                 'aposentesp__icontains': 'aposentesp__icontains',
-                'dscfatrisc__icontains': 'dscfatrisc__icontains',
                 'epcepi': 'epcepi',
                 'utilizepc__icontains': 'utilizepc__icontains',
                 'eficepc__icontains': 'eficepc__icontains',
@@ -118,6 +119,7 @@ def listar(request, output=None):
                 dict_fields = {
                     's2240_evtexprisco__icontains': 's2240_evtexprisco__icontains',
                     'codfatris__icontains': 'codfatris__icontains',
+                    'dscfatrisc__icontains': 'dscfatrisc__icontains',
                     'tpaval__icontains': 'tpaval__icontains',
                     'intconc__icontains': 'intconc__icontains',
                     'limtol__icontains': 'limtol__icontains',
@@ -126,7 +128,6 @@ def listar(request, output=None):
                     'insalubridade__icontains': 'insalubridade__icontains',
                     'periculosidade__icontains': 'periculosidade__icontains',
                     'aposentesp__icontains': 'aposentesp__icontains',
-                    'dscfatrisc__icontains': 'dscfatrisc__icontains',
                     'epcepi': 'epcepi',
                     'utilizepc__icontains': 'utilizepc__icontains',
                     'eficepc__icontains': 'eficepc__icontains',
@@ -144,7 +145,7 @@ def listar(request, output=None):
             s2240_iniexprisco_fatrisco_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        s2240_evtexprisco_lista = s2240evtExpRisco.objects.all()
         #s2240_iniexprisco_fatrisco_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -159,7 +160,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            's2240_evtexprisco_lista': s2240_evtexprisco_lista,
         }
 
         if output == 'pdf':

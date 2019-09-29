@@ -10,7 +10,6 @@ from emensageriapro.r2099.views import r2099_iderespinf_salvar as r2099_iderespi
 from emensageriapro.r2099.views import r2099_iderespinf_api as r2099_iderespinf_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2241_iniaposentesp_fatrisco__s2241_iniaposentesp_infoamb__div">
   <div class="form-group">
-    <label id="s2241_iniaposentesp_fatrisco__s2241_iniaposentesp_infoamb__label">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente*</label>
+    <label id="s2241_iniaposentesp_fatrisco__s2241_iniaposentesp_infoamb__label">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente*<a data-toggle="tooltip" title="Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2241_iniaposentesp_fatrisco_form.s2241_iniaposentesp_infoamb.value %}
         <a id="s2241_iniaposentesp_fatrisco__s2241_iniaposentesp_infoamb__div_acessar" href="{% url 's2241_iniaposentesp_infoamb_salvar' pk=s2241_iniaposentesp_fatrisco_form.s2241_iniaposentesp_infoamb.value %}">
@@ -42,7 +42,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2241_iniaposentesp_fatrisco__codfatris__div">
     <div class="form-group">
-      <label id="s2241_iniaposentesp_fatrisco__codfatris__label">Código do Fator de Risco*</label>
+      <label id="s2241_iniaposentesp_fatrisco__codfatris__label">Código do Fator de Risco*<a data-toggle="tooltip" title="Informar o código do fator de risco, conforme tabela 23. Validação: Deve ser um código existente na tabela 23.Deve existir na tabela S-1060 para o código de ambiente informado no campo {codAmb}."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2241_iniaposentesp_fatrisco_form.codfatris.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2241_iniaposentesp_fatrisco_form.codfatris.errors }}
@@ -51,7 +51,7 @@
         <input type="text"
                id="txt_codfatris"
                name="txt_codfatris" class="form-control"
-               value="{% if s2241_iniaposentesp_fatrisco.codfatris %}{{ s2241_iniaposentesp_fatrisco.codfatris|get_opcoes_titulo:391 }}{% endif %}"
+               value="{% if s2241_iniaposentesp_fatrisco.codfatris %}{{ s2241_iniaposentesp_fatrisco.codfatris|get_opcoes_titulo:395 }}{% endif %}"
                {% if s2241_iniaposentesp_fatrisco_form.codfatris.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2241_iniaposentesp_fatrisco_form.codfatris.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2241_iniaposentesp_fatrisco_form.codfatris.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -65,7 +65,7 @@
   $(document).ready(function(e){
     $('#txt_codfatris').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/391/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/395/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -96,7 +96,7 @@
   {% else %}
   <div class="col-md-6" id="s2241_iniaposentesp_fatrisco__codfatris__div">
     <div class="form-group">
-      <label id="s2241_iniaposentesp_fatrisco__codfatris__label">Código do Fator de Risco*</label>
+      <label id="s2241_iniaposentesp_fatrisco__codfatris__label">Código do Fator de Risco*<a data-toggle="tooltip" title="Informar o código do fator de risco, conforme tabela 23. Validação: Deve ser um código existente na tabela 23.Deve existir na tabela S-1060 para o código de ambiente informado no campo {codAmb}."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codfatris" name="txt_codfatris" class="form-control" value="{% if s2241_iniaposentesp_fatrisco.codfatris %}{{ s2241_iniaposentesp_fatrisco.codfatris }}{% endif %}" disabled="disabled">
     </div>
   </div>

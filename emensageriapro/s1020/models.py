@@ -132,7 +132,7 @@ class s1020alteracaoinfoEmprParcial(SoftDeletionModel):
         return self.s1020_alteracao.evento()
     tpinsccontrat = models.IntegerField(choices=CHOICES_S1020_TPINSCCONTRAT_ALTERACAO, null=True, )
     nrinsccontrat = models.CharField(max_length=14, null=True, )
-    tpinscprop = models.IntegerField(null=True, )
+    tpinscprop = models.IntegerField(choices=CHOICES_S1020_TPINSCPROP_ALTERACAO, null=True, )
     nrinscprop = models.CharField(max_length=14, null=True, )
 
     def __unicode__(self):
@@ -432,7 +432,7 @@ class s1020inclusaoinfoEmprParcial(SoftDeletionModel):
         return self.s1020_inclusao.evento()
     tpinsccontrat = models.IntegerField(choices=CHOICES_S1020_TPINSCCONTRAT_INCLUSAO, null=True, )
     nrinsccontrat = models.CharField(max_length=14, null=True, )
-    tpinscprop = models.IntegerField(null=True, )
+    tpinscprop = models.IntegerField(choices=CHOICES_S1020_TPINSCPROP_INCLUSAO, null=True, )
     nrinscprop = models.CharField(max_length=14, null=True, )
 
     def __unicode__(self):

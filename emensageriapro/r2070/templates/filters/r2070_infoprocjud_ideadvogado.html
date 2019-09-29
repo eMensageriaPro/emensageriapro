@@ -20,8 +20,12 @@
 <div class="col-md-3">
   <div class="form-group">
     <label>Tipo de Inscrição do Advogado</label>
-    <div name="tpinscadvogado" class="input-group" style="width: 100%;">
-      <input type="text" name="tpinscadvogado" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'tpinscadvogado' }}">
+    <div class="input-group" style="width: 100%;">
+      <select name="tpinscadvogado" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpinscadvogado' %}selected="selected"{% endifequal %} >1 - Pessoa Jurídica</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpinscadvogado' %}selected="selected"{% endifequal %} >2 - Pessoa Física</option>
+      </select>
     </div>
   </div>
 </div>

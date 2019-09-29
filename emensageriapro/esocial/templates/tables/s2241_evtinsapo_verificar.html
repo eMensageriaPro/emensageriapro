@@ -198,7 +198,7 @@
 
         <tr {% if s2241_evtinsapo.matricula|validacoes_esocial_efdreinf:"s2241_evtinsapo.matricula" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">matricula</td>
-            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.Validação: A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista ativo.A informação é obrigatória apenas para trabalhadores das categorias'empregados' e 'agentes públicos'.</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.Validação: A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista ativo.A informação é obrigatória apenas para trabalhadores das categorias""empregados"" e ""agentes públicos"".</td>
             <td width="200px"><b>{% if s2241_evtinsapo.matricula or s2241_evtinsapo.matricula == 0 %}{{ s2241_evtinsapo.matricula }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -379,7 +379,7 @@
     {% ifequal s2241_fiminsalperic.s2241_insalperic.id s2241_insalperic.id %}
         <tr {% if s2241_fiminsalperic.dtfimcondicao|validacoes_esocial_efdreinf:"s2241_fiminsalperic.dtfimcondicao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtFimCondicao</td>
-            <td width="500px">Informar a data até a qual o trabalhador esteve sujeito às condições do ambiente de trabalho insalubre/periculoso indicadas nos registros de início e/ou alteração encaminhados anteriormente.Validação: Deve ser uma data igual ou posterior a data de início da condiçãoinsalubre ou, quando também existir evento de 'alteração' da condição, a data deve ser posterior a data de alteração indicada no último evento recebido.</td>
+            <td width="500px">Informar a data até a qual o trabalhador esteve sujeito às condições do ambiente de trabalho insalubre/periculoso indicadas nos registros de início e/ou alteração encaminhados anteriormente.Validação: Deve ser uma data igual ou posterior a data de início da condiçãoinsalubre ou, quando também existir evento de ""alteração"" da condição, a data deve ser posterior a data de alteração indicada no último evento recebido.</td>
             <td width="200px"><b>{% if s2241_fiminsalperic.dtfimcondicao or s2241_fiminsalperic.dtfimcondicao == 0 %}{{ s2241_fiminsalperic.dtfimcondicao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -585,7 +585,7 @@
     {% ifequal s2241_fimaposentesp.s2241_aposentesp.id s2241_aposentesp.id %}
         <tr {% if s2241_fimaposentesp.dtfimcondicao|validacoes_esocial_efdreinf:"s2241_fimaposentesp.dtfimcondicao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtFimCondicao</td>
-            <td width="500px">Informar a data até a qual o trabalhador esteve sujeito às condições do ambiente de trabalho indicadas nos eventos de início e/ou alteração encaminhados anteriormente.Validação: Deve ser uma data igual ou posterior a data de início da condiçãode trabalho que enseja aposentadoria especial ao trabalhador ou, quando também existir evento de 'alteração' da condição, a data deve ser posterior a data de alteração indicada no último evento recebido.</td>
+            <td width="500px">Informar a data até a qual o trabalhador esteve sujeito às condições do ambiente de trabalho indicadas nos eventos de início e/ou alteração encaminhados anteriormente.Validação: Deve ser uma data igual ou posterior a data de início da condiçãode trabalho que enseja aposentadoria especial ao trabalhador ou, quando também existir evento de ""alteração"" da condição, a data deve ser posterior a data de alteração indicada no último evento recebido.</td>
             <td width="200px"><b>{% if s2241_fimaposentesp.dtfimcondicao or s2241_fimaposentesp.dtfimcondicao == 0 %}{{ s2241_fimaposentesp.dtfimcondicao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

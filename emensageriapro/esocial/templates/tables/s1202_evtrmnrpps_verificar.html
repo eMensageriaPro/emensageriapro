@@ -112,7 +112,7 @@
 
         <tr {% if s1202_evtrmnrpps.procemi|validacoes_esocial_efdreinf:"s1202_evtrmnrpps.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1202_evtrmnrpps.procemi or s1202_evtrmnrpps.procemi == 0 %}{{ s1202_evtrmnrpps.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -324,7 +324,7 @@
     {% ifequal s1202_dmdev.s1202_evtrmnrpps.id s1202_evtrmnrpps.id %}
         <tr {% if s1202_dmdev.idedmdev|validacoes_esocial_efdreinf:"s1202_dmdev.idedmdev" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ideDmDev</td>
-            <td width="500px">Identificador atribuído pelo órgão público para o demonstrativo de pagamento. Este campo poderá ser informado utilizando-se de um identificador padrão para todos os trabalhadores, no entanto, havendo mais de um pagamento relativo a um mesmo período de competência devem ser utilizados identificadores diferentes para cada um dos demonstrativos. Validação: Deve ser um identificador único dentro da mesma competência para cada um dos demonstrativos de pagamento do trabalhador.</td>
+            <td width="500px">Identificador atribuído pelo órgão público para o demonstrativo de pagamento. Este campo poderá ser informado utilizando-se de um identificador padrão para todos os trabalhadores, no entanto, havendo mais de um pagamento relativo a um mesmo período de competência devem ser utilizados identificadores diferentes para cada um dos demonstrativos. Validação: Deve ser um identificador único dentro da mesma competência para cada um dos demonstrativos de pagamento do trabalhador. Regra de validação: REGRA_CARACTER_ESPECIAL</td>
             <td width="200px"><b>{% if s1202_dmdev.idedmdev or s1202_dmdev.idedmdev == 0 %}{{ s1202_dmdev.idedmdev }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -418,7 +418,7 @@
     {% ifequal s1202_infoperapur_remunperapur.s1202_infoperapur_ideestab.id s1202_infoperapur_ideestab.id %}
         <tr {% if s1202_infoperapur_remunperapur.matricula|validacoes_esocial_efdreinf:"s1202_infoperapur_remunperapur.matricula" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">matricula</td>
-            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de agente público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: Informação obrigatória para trabalhadores das categorias 'empregados' e 'agentes públicos'. Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista.</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de agente público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: Informação obrigatória para trabalhadores das categorias "empregados" e "agentes públicos". Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista.</td>
             <td width="200px"><b>{% if s1202_infoperapur_remunperapur.matricula or s1202_infoperapur_remunperapur.matricula == 0 %}{{ s1202_infoperapur_remunperapur.matricula }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -607,7 +607,7 @@
 
         <tr {% if s1202_infoperapur_detoper.regans|validacoes_esocial_efdreinf:"s1202_infoperapur_detoper.regans" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">regANS</td>
-            <td width="500px">Registro da operadora na Agência Nacional de Saúde.</td>
+            <td width="500px">Registro da operadora na Agência Nacional de Saúde. Regra de validação: REGRA_CARACTER_ESPECIAL</td>
             <td width="200px"><b>{% if s1202_infoperapur_detoper.regans or s1202_infoperapur_detoper.regans == 0 %}{{ s1202_infoperapur_detoper.regans }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -746,7 +746,7 @@
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoPerAnt</td>
-            <td bgcolor="lightgray" colspan="3">Remuneração relativa a Períodos Anteriores. Só preencher esse grupo se houver pagamentos retroativos que configurem na legislação do Imposto de Renda em 'Rendimentos Recebidos Acumuladamente'. Exemplo: diferenças salariais de competências anteriores provenientes de dissídio.</td>
+            <td bgcolor="lightgray" colspan="3">Remuneração relativa a Períodos Anteriores. Só preencher esse grupo se houver pagamentos retroativos que configurem na legislação do Imposto de Renda em "Rendimentos Recebidos Acumuladamente". Exemplo: diferenças salariais de competências anteriores provenientes de dissídio.</td>
         </tr>
     {% for s1202_infoperant in s1202_infoperant_lista %}
     {% ifequal s1202_infoperant.s1202_dmdev.id s1202_dmdev.id %}

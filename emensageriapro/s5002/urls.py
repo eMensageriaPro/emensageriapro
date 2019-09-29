@@ -11,7 +11,6 @@ from emensageriapro.s5002.views import s5002_irrf_api as s5002_irrf_api_views
 from emensageriapro.s5002.views import s5002_idepgtoext_api as s5002_idepgtoext_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

@@ -85,7 +85,7 @@ def criar_alteracao(request, pk):
             id=pk)
 
         texto = gerar_xml_r2050(request, pk, versao="|")
-        texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
+        texto = texto.replace('<inclusao>', '<alteracao>').replace('</inclusao>', '</alteracao>')
         dados = read_r2050_evtcomprod_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(r2050_evtcomprod, 'efdreinf')
 

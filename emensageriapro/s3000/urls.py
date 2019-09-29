@@ -14,7 +14,6 @@ from emensageriapro.s3000.views import s3000_idefolhapagto_salvar as s3000_idefo
 from emensageriapro.s3000.views import s3000_idefolhapagto_api as s3000_idefolhapagto_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

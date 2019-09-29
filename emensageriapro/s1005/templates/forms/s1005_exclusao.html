@@ -5,7 +5,7 @@
 <!-- inicio__s1005_exclusao__s1005_evttabestab -->
 <div class="col-md-12" id="s1005_exclusao__s1005_evttabestab__div">
   <div class="form-group">
-    <label id="s1005_exclusao__s1005_evttabestab__label">Exclusão das informações*</label>
+    <label id="s1005_exclusao__s1005_evttabestab__label">Exclusão das informações*<a data-toggle="tooltip" title="Exclusão de informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1005_exclusao_form.s1005_evttabestab.value %}
         <a href="{% url 's1005_evttabestab_salvar' pk=s1005_exclusao_form.s1005_evttabestab.value %}">
             [Acessar]
@@ -37,7 +37,7 @@
 <!-- inicio__s1005_exclusao__tpinsc -->
 <div class="col-md-6" id="s1005_exclusao__tpinsc__div">
   <div class="form-group">
-    <label id="s1005_exclusao__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s1005_exclusao__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. Valores Válidos: 1, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1005_exclusao_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1005_exclusao_form.tpinsc.errors }}
@@ -61,7 +61,7 @@
 <!-- inicio__s1005_exclusao__nrinsc -->
 <div class="col-md-6" id="s1005_exclusao__nrinsc__div">
   <div class="form-group">
-    <label id="s1005_exclusao__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s1005_exclusao__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo {tpInsc}. Validação: Deve ser compatível com o conteúdo do campo {tpInsc}. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1005_exclusao_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1005_exclusao_form.nrinsc.errors }}
@@ -76,7 +76,7 @@
 <!-- inicio__s1005_exclusao__inivalid -->
 <div class="col-md-6" id="s1005_exclusao__inivalid__div">
   <div class="form-group">
-    <label id="s1005_exclusao__inivalid__label">Início da Validade*</label>
+    <label id="s1005_exclusao__inivalid__label">Início da Validade*<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1005_exclusao_form.inivalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1005_exclusao_form.inivalid.errors }}
@@ -100,7 +100,7 @@
 <!-- inicio__s1005_exclusao__fimvalid -->
 <div class="col-md-6" id="s1005_exclusao__fimvalid__div">
   <div class="form-group">
-    <label id="s1005_exclusao__fimvalid__label">Fim da Validade</label>
+    <label id="s1005_exclusao__fimvalid__label">Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1005_exclusao_form.fimvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1005_exclusao_form.fimvalid.errors }}

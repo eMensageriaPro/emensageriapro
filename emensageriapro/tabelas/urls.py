@@ -7,7 +7,6 @@ from rest_framework.authtoken import views
 from emensageriapro.tabelas.views import opcoes_api as opcoes_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

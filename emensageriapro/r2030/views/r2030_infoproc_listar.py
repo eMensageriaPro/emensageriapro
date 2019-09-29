@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.r2030.forms import *
 from emensageriapro.r2030.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.r2030.models import r2030recursosRec
 
 
 @login_required
@@ -114,7 +115,7 @@ def listar(request, output=None):
             r2030_infoproc_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        r2030_recursosrec_lista = r2030recursosRec.objects.all()
         #r2030_infoproc_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -129,7 +130,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            'r2030_recursosrec_lista': r2030_recursosrec_lista,
         }
 
         if output == 'pdf':

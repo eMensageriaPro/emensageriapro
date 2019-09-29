@@ -80,13 +80,13 @@ class s1005alteracao(SoftDeletionModel):
     aliqrat = models.IntegerField(choices=CHOICES_S1005_ALIQRAT_ALTERACAO, null=True, )
     fap = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     aliqratajust = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    regpt = models.IntegerField(choices=CHOICES_S1005_REGPT_ALTERACAO, null=True, )
+    regpt = models.IntegerField(choices=CHOICES_S1005_REGPT_ALTERACAO, blank=True, null=True, )
     contapr = models.IntegerField(choices=CHOICES_S1005_CONTAPR_ALTERACAO, null=True, )
     nrprocjud = models.CharField(max_length=20, blank=True, null=True, )
     contented = models.CharField(choices=CHOICES_S1005_CONTENTED_ALTERACAO, max_length=1, blank=True, null=True, )
 
     def __unicode__(self):
-        return unicode(self.s1005_evttabestab) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.cnaeprep) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.regpt) + ' - ' + unicode(self.contapr)
+        return unicode(self.s1005_evttabestab) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.cnaeprep) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.contapr)
 
     class Meta:
 
@@ -112,7 +112,6 @@ class s1005alteracao(SoftDeletionModel):
             'inivalid',
             'cnaeprep',
             'aliqrat',
-            'regpt',
             'contapr',]
 
 
@@ -526,13 +525,13 @@ class s1005inclusao(SoftDeletionModel):
     aliqrat = models.IntegerField(choices=CHOICES_S1005_ALIQRAT_INCLUSAO, null=True, )
     fap = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     aliqratajust = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    regpt = models.IntegerField(choices=CHOICES_S1005_REGPT_INCLUSAO, null=True, )
+    regpt = models.IntegerField(choices=CHOICES_S1005_REGPT_INCLUSAO, blank=True, null=True, )
     contapr = models.IntegerField(choices=CHOICES_S1005_CONTAPR_INCLUSAO, null=True, )
     nrprocjud = models.CharField(max_length=20, blank=True, null=True, )
     contented = models.CharField(choices=CHOICES_S1005_CONTENTED_INCLUSAO, max_length=1, blank=True, null=True, )
 
     def __unicode__(self):
-        return unicode(self.s1005_evttabestab) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.cnaeprep) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.regpt) + ' - ' + unicode(self.contapr)
+        return unicode(self.s1005_evttabestab) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.cnaeprep) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.contapr)
 
     class Meta:
 
@@ -558,7 +557,6 @@ class s1005inclusao(SoftDeletionModel):
             'inivalid',
             'cnaeprep',
             'aliqrat',
-            'regpt',
             'contapr',]
 
 

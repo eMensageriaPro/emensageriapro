@@ -39,7 +39,7 @@
             <td>{{ a.r5011_infototalcontrib }}</td>
             {% endif %}
             {% if show_fields.show_tpinsctomador or 1 %}
-            <td>{{ a.tpinsctomador }}</td>
+            <td>{{ a.get_tpinsctomador_display }}</td>
             {% endif %}
             {% if show_fields.show_nrinsctomador or 1 %}
             <td>{{ a.nrinsctomador }}</td>

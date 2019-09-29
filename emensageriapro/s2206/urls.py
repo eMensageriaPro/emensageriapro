@@ -54,7 +54,6 @@ from emensageriapro.s2206.views import s2206_servpubl_salvar as s2206_servpubl_s
 from emensageriapro.s2206.views import s2206_servpubl_api as s2206_servpubl_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

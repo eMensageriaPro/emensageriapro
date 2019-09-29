@@ -49,7 +49,7 @@ CHOICES_EFDREINFRENDIMENTOSBENEFICIARIOSEXTERIORTRIBUTACAO = [
     ('43', u'43 - Não retenção do IRRF - pagamento antecipado do imposto'),
     ('44', u'44 - Não retenção do IRRF - medida Judicial'),
     ('50', u'50 - Não retenção do IRRF - outras hipóteses'),
-    
+
 ]
 
 
@@ -59,7 +59,7 @@ CHOICES_R4010_INDDECTERC = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -70,7 +70,7 @@ CHOICES_R4010_INDNIF = [
     (1, u'1 - Beneficiário com NIF'),
     (2, u'2 - Beneficiário dispensado do NIF'),
     (3, u'3 - País não exige NIF.'),
-    
+
 ]
 
 
@@ -80,7 +80,7 @@ CHOICES_R4010_INDORIGREC_INFOPROCJUD = [
 
     (1, u'1 - Recursos do próprio declarante'),
     (2, u'2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores.'),
-    
+
 ]
 
 
@@ -90,7 +90,7 @@ CHOICES_R4010_INDORIGREC_INFORRA = [
 
     (1, u'1 - Recursos do próprio declarante'),
     (2, u'2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores.'),
-    
+
 ]
 
 
@@ -105,7 +105,7 @@ CHOICES_R4010_INDTPDEDUCAO = [
     (5, u'5 - Pensão Alimentícia'),
     (6, u'6 - Contribuição do ente público patrocinador'),
     (7, u'7 - Dependentes.'),
-    
+
 ]
 
 
@@ -121,7 +121,7 @@ CHOICES_R4010_RELDEP = [
     (6, u'6 - Enteado'),
     (7, u'7 - Sogro'),
     (99, u'99 - Agregado/Outros.'),
-    
+
 ]
 
 
@@ -129,9 +129,9 @@ CHOICES_R4010_RELDEP = [
 
 CHOICES_R4010_TPINSC = [
 
-    (1, u'1 - Pessoa Jurídica'),
-    (2, u'2 - Pessoa Física.'),
-    
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+
 ]
 
 
@@ -141,7 +141,7 @@ CHOICES_R4010_TPINSCADV_INFOPROCJUD = [
 
     (1, u'1 - Pessoa Física'),
     (2, u'2 - Pessoa Jurídica.'),
-    
+
 ]
 
 
@@ -151,7 +151,7 @@ CHOICES_R4010_TPINSCADV_INFORRA = [
 
     (1, u'1 - Pessoa Física'),
     (2, u'2 - Pessoa Jurídica.'),
-    
+
 ]
 
 
@@ -168,7 +168,7 @@ CHOICES_R4010_TPISENCAO = [
     (7, u'7 - Complementação de aposentadoria, correspondente às contribuições efetuadas no período de 01/01/1989 a 31/12/1995'),
     (8, u'8 - Ajuda de custo'),
     (99, u'99 - Outros (especificar).'),
-    
+
 ]
 
 
@@ -178,7 +178,7 @@ CHOICES_R4010_TPPROCRET = [
 
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-    
+
 ]
 
 
@@ -188,7 +188,7 @@ CHOICES_R4010_TPPROCRRA_INFORRA = [
 
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-    
+
 ]
 
 

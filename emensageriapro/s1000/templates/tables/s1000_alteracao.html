@@ -17,10 +17,10 @@
             {% if show_fields.show_infocadastro or 0 %}
             <th>Informações do empregador</th>
             {% endif %}
-            {% if show_fields.show_nmrazao or 1 %}
+            {% if show_fields.show_nmrazao or 0 %}
             <th>Razão Social</th>
             {% endif %}
-            {% if show_fields.show_classtrib or 0 %}
+            {% if show_fields.show_classtrib or 1 %}
             <th>Classificação tributária</th>
             {% endif %}
             {% if show_fields.show_natjurid or 0 %}
@@ -37,6 +37,9 @@
             {% endif %}
             {% if show_fields.show_indopccp or 0 %}
             <th>Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária</th>
+            {% endif %}
+            {% if show_fields.show_indporte or 0 %}
+            <th>Indicativo de microempresa (ME) ou empresa de pequeno porte (EPP) para permissão de acesso ao módulo simplificado (não preencher caso o usuário não se enquadre como micro ou pequena empresa)</th>
             {% endif %}
             {% if show_fields.show_indoptregeletron or 0 %}
             <th>Indicador de opção pelo registro eletrônico de empregados?</th>
@@ -95,10 +98,10 @@
             {% if show_fields.show_infocadastro or 0 %}
             <td></td>
             {% endif %}
-            {% if show_fields.show_nmrazao or 1 %}
+            {% if show_fields.show_nmrazao or 0 %}
             <td>{{ a.nmrazao }}</td>
             {% endif %}
-            {% if show_fields.show_classtrib or 0 %}
+            {% if show_fields.show_classtrib or 1 %}
             <td>{{ a.get_classtrib_display }}</td>
             {% endif %}
             {% if show_fields.show_natjurid or 0 %}
@@ -115,6 +118,9 @@
             {% endif %}
             {% if show_fields.show_indopccp or 0 %}
             <td>{{ a.get_indopccp_display }}</td>
+            {% endif %}
+            {% if show_fields.show_indporte or 0 %}
+            <td>{{ a.get_indporte_display }}</td>
             {% endif %}
             {% if show_fields.show_indoptregeletron or 0 %}
             <td>{{ a.get_indoptregeletron_display }}</td>

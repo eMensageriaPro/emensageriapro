@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.s1000.forms import *
 from emensageriapro.s1000.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.s1000.models import s1000alteracao
 
 
 @login_required
@@ -105,7 +106,7 @@ def listar(request, output=None):
             s1000_alteracao_infoorginternacional_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        s1000_alteracao_lista = s1000alteracao.objects.all()
         #s1000_alteracao_infoorginternacional_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -120,7 +121,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            's1000_alteracao_lista': s1000_alteracao_lista,
         }
 
         if output == 'pdf':

@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.s2300.forms import *
 from emensageriapro.s2300.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.esocial.models import s2300evtTSVInicio
 
 
 @login_required
@@ -68,9 +69,9 @@ def listar(request, output=None):
         dict_fields = {}
         show_fields = {
             'show_s2300_evttsvinicio': 1,
-            'show_tplograd': 1,
+            'show_tplograd': 0,
             'show_dsclograd': 1,
-            'show_nrlograd': 0,
+            'show_nrlograd': 1,
             'show_complemento': 0,
             'show_bairro': 0,
             'show_cep': 0,
@@ -126,7 +127,7 @@ def listar(request, output=None):
             s2300_brasil_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        s2300_evttsvinicio_lista = s2300evtTSVInicio.objects.all()
         #s2300_brasil_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -141,7 +142,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            's2300_evttsvinicio_lista': s2300_evttsvinicio_lista,
         }
 
         if output == 'pdf':

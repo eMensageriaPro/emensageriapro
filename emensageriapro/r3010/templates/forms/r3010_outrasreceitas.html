@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r3010_outrasreceitas__r3010_boletim__div">
   <div class="form-group">
-    <label id="r3010_outrasreceitas__r3010_boletim__label">Outras receitas do espetáculo*</label>
+    <label id="r3010_outrasreceitas__r3010_boletim__label">Outras receitas do espetáculo*<a data-toggle="tooltip" title="Outras receitas do espetáculo."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r3010_outrasreceitas_form.r3010_boletim.value %}
         <a id="r3010_outrasreceitas__r3010_boletim__div_acessar" href="{% url 'r3010_boletim_salvar' pk=r3010_outrasreceitas_form.r3010_boletim.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r3010_outrasreceitas__tpreceita -->
 <div class="col-md-3" id="r3010_outrasreceitas__tpreceita__div">
   <div class="form-group">
-    <label id="r3010_outrasreceitas__tpreceita__label">Tipo de receita*</label>
+    <label id="r3010_outrasreceitas__tpreceita__label">Tipo de receita*<a data-toggle="tooltip" title="Tipo de receita, conforme tabela: 1 - Transmissão; 2 - Propaganda; 3 - Publicidade; 4 - Sorteio; 5 - Outros. Valores Válidos: 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r3010_outrasreceitas_form.tpreceita.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r3010_outrasreceitas_form.tpreceita.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r3010_outrasreceitas__vlrreceita -->
 <div class="col-md-3" id="r3010_outrasreceitas__vlrreceita__div">
   <div class="form-group">
-    <label id="r3010_outrasreceitas__vlrreceita__label">Valor da receita auferida*</label>
+    <label id="r3010_outrasreceitas__vlrreceita__label">Valor da receita auferida*<a data-toggle="tooltip" title="Valor da receita auferida."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r3010_outrasreceitas_form.vlrreceita.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r3010_outrasreceitas_form.vlrreceita.errors }}
@@ -83,7 +83,7 @@
 <!-- inicio__r3010_outrasreceitas__descreceita -->
 <div class="col-md-3" id="r3010_outrasreceitas__descreceita__div">
   <div class="form-group">
-    <label id="r3010_outrasreceitas__descreceita__label">Descrição da receita*</label>
+    <label id="r3010_outrasreceitas__descreceita__label">Descrição da receita*<a data-toggle="tooltip" title="Descrição da receita."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r3010_outrasreceitas_form.descreceita.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r3010_outrasreceitas_form.descreceita.errors }}

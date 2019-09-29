@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.s1260.forms import *
 from emensageriapro.s1260.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.s1260.models import s1260tpComerc
 
 
 @login_required
@@ -120,7 +121,7 @@ def listar(request, output=None):
             s1260_infoprocjud_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        s1260_tpcomerc_lista = s1260tpComerc.objects.all()
         #s1260_infoprocjud_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -135,7 +136,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            's1260_tpcomerc_lista': s1260_tpcomerc_lista,
         }
 
         if output == 'pdf':

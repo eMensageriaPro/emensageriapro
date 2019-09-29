@@ -57,7 +57,7 @@ CHOICES_ESOCIALCLASSIFICACOESTRIBUTARIAS = [
     ('80', u'80 - Entidade Beneficente de Assistência Social isenta de contribuições sociais'),
     ('85', u'85 - Administração Direta da União, Estados, Distrito Federal e Municípíos, Autarquias e Fundações Públicas'),
     ('99', u'99 - Pessoas Jurídicas em Geral'),
-    
+
 ]
 
 
@@ -68,7 +68,7 @@ CHOICES_S1000_ESFERAOP_ALTERACAO = [
     (1, u'1 - Federal'),
     (2, u'2 - Estadual ou distrital'),
     (3, u'3 - Municipal.'),
-    
+
 ]
 
 
@@ -79,7 +79,7 @@ CHOICES_S1000_ESFERAOP_INCLUSAO = [
     (1, u'1 - Federal'),
     (2, u'2 - Estadual ou distrital'),
     (3, u'3 - Municipal.'),
-    
+
 ]
 
 
@@ -89,7 +89,7 @@ CHOICES_S1000_IDEEFR_ALTERACAO = [
 
     ('N', u'N - Não é EFR.'),
     ('S', u'S - É EFR'),
-    
+
 ]
 
 
@@ -99,7 +99,7 @@ CHOICES_S1000_IDEEFR_INCLUSAO = [
 
     ('N', u'N - Não é EFR.'),
     ('S', u'S - É EFR'),
-    
+
 ]
 
 
@@ -109,7 +109,7 @@ CHOICES_S1000_INDACORDOISENMULTA_ALTERACAO = [
 
     (0, u'0 - Sem acordo'),
     (1, u'1 - Com acordo.'),
-    
+
 ]
 
 
@@ -119,7 +119,7 @@ CHOICES_S1000_INDACORDOISENMULTA_INCLUSAO = [
 
     (0, u'0 - Sem acordo'),
     (1, u'1 - Com acordo.'),
-    
+
 ]
 
 
@@ -129,7 +129,7 @@ CHOICES_S1000_INDCONSTR_ALTERACAO = [
 
     (0, u'0 - Não é Construtora'),
     (1, u'1 - Empresa Construtora.'),
-    
+
 ]
 
 
@@ -139,7 +139,7 @@ CHOICES_S1000_INDCONSTR_INCLUSAO = [
 
     (0, u'0 - Não é Construtora'),
     (1, u'1 - Empresa Construtora.'),
-    
+
 ]
 
 
@@ -151,7 +151,7 @@ CHOICES_S1000_INDCOOP_ALTERACAO = [
     (1, u'1 - Cooperativa de Trabalho'),
     (2, u'2 - Cooperativa de Produção'),
     (3, u'3 - Outras Cooperativas.'),
-    
+
 ]
 
 
@@ -163,7 +163,7 @@ CHOICES_S1000_INDCOOP_INCLUSAO = [
     (1, u'1 - Cooperativa de Trabalho'),
     (2, u'2 - Cooperativa de Produção'),
     (3, u'3 - Outras Cooperativas.'),
-    
+
 ]
 
 
@@ -173,7 +173,7 @@ CHOICES_S1000_INDDESFOLHA_ALTERACAO = [
 
     (0, u'0 - Não Aplicável'),
     (1, u'1 - Empresa enquadrada nos art. 7º a 9º da Lei 12.546/2011.'),
-    
+
 ]
 
 
@@ -183,7 +183,7 @@ CHOICES_S1000_INDDESFOLHA_INCLUSAO = [
 
     (0, u'0 - Não Aplicável'),
     (1, u'1 - Empresa enquadrada nos art. 7º a 9º da Lei 12.546/2011.'),
-    
+
 ]
 
 
@@ -193,7 +193,7 @@ CHOICES_S1000_INDENTED_ALTERACAO = [
 
     ('N', u'N - Não'),
     ('S', u'S - Sim.'),
-    
+
 ]
 
 
@@ -203,7 +203,7 @@ CHOICES_S1000_INDENTED_INCLUSAO = [
 
     ('N', u'N - Não'),
     ('S', u'S - Sim.'),
-    
+
 ]
 
 
@@ -212,8 +212,8 @@ CHOICES_S1000_INDENTED_INCLUSAO = [
 CHOICES_S1000_INDETT_ALTERACAO = [
 
     ('N', u'N - Não é Empresa de Trabalho Temporário'),
-    ('S', u'S - Empresa de Trabalho Temporário.'),
-    
+    ('S', u'S - Empresa de Trabalho Temporário. O preenchimento deste campo é facultativo.'),
+
 ]
 
 
@@ -222,8 +222,8 @@ CHOICES_S1000_INDETT_ALTERACAO = [
 CHOICES_S1000_INDETT_INCLUSAO = [
 
     ('N', u'N - Não é Empresa de Trabalho Temporário'),
-    ('S', u'S - Empresa de Trabalho Temporário.'),
-    
+    ('S', u'S - Empresa de Trabalho Temporário. O preenchimento deste campo é facultativo.'),
+
 ]
 
 
@@ -233,7 +233,7 @@ CHOICES_S1000_INDOPCCP_ALTERACAO = [
 
     (1, u'1 - Sobre a comercialização da sua produção'),
     (2, u'2 - Sobre a folha de pagamento.'),
-    
+
 ]
 
 
@@ -243,7 +243,7 @@ CHOICES_S1000_INDOPCCP_INCLUSAO = [
 
     (1, u'1 - Sobre a comercialização da sua produção'),
     (2, u'2 - Sobre a folha de pagamento.'),
-    
+
 ]
 
 
@@ -253,7 +253,7 @@ CHOICES_S1000_INDOPTREGELETRON_ALTERACAO = [
 
     (0, u'0 - Não optou pelo registro eletrônico de empregados'),
     (1, u'1 - Optou pelo registro eletrônico de empregados.'),
-    
+
 ]
 
 
@@ -263,7 +263,25 @@ CHOICES_S1000_INDOPTREGELETRON_INCLUSAO = [
 
     (0, u'0 - Não optou pelo registro eletrônico de empregados'),
     (1, u'1 - Optou pelo registro eletrônico de empregados.'),
-    
+
+]
+
+
+
+
+CHOICES_S1000_INDPORTE_ALTERACAO = [
+
+    ('S', u'S - Sim.'),
+
+]
+
+
+
+
+CHOICES_S1000_INDPORTE_INCLUSAO = [
+
+    ('S', u'S - Sim.'),
+
 ]
 
 
@@ -273,7 +291,7 @@ CHOICES_S1000_INDRPPS_ALTERACAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -283,7 +301,7 @@ CHOICES_S1000_INDRPPS_INCLUSAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -294,7 +312,7 @@ CHOICES_S1000_INDSITPF_ALTERACAO = [
     (0, u'0 - Situação Normal'),
     (1, u'1 - Encerramento de espólio'),
     (2, u'2 - Saída do país em caráter permanente.'),
-    
+
 ]
 
 
@@ -305,7 +323,7 @@ CHOICES_S1000_INDSITPF_INCLUSAO = [
     (0, u'0 - Situação Normal'),
     (1, u'1 - Encerramento de espólio'),
     (2, u'2 - Saída do país em caráter permanente.'),
-    
+
 ]
 
 
@@ -318,7 +336,7 @@ CHOICES_S1000_INDSITPJ_ALTERACAO = [
     (2, u'2 - Fusão'),
     (3, u'3 - Cisão'),
     (4, u'4 - Incorporação.'),
-    
+
 ]
 
 
@@ -331,7 +349,7 @@ CHOICES_S1000_INDSITPJ_INCLUSAO = [
     (2, u'2 - Fusão'),
     (3, u'3 - Cisão'),
     (4, u'4 - Incorporação.'),
-    
+
 ]
 
 
@@ -341,7 +359,7 @@ CHOICES_S1000_INDUGRPPS_ALTERACAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -351,7 +369,7 @@ CHOICES_S1000_INDUGRPPS_INCLUSAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -365,7 +383,7 @@ CHOICES_S1000_PODEROP_ALTERACAO = [
     (4, u'4 - Ministério Público'),
     (5, u'5 - Tribunal de Contas'),
     (6, u'6 - Defensoria Pública.'),
-    
+
 ]
 
 
@@ -379,7 +397,7 @@ CHOICES_S1000_PODEROP_INCLUSAO = [
     (4, u'4 - Ministério Público'),
     (5, u'5 - Tribunal de Contas'),
     (6, u'6 - Defensoria Pública.'),
-    
+
 ]
 
 
@@ -389,7 +407,7 @@ CHOICES_S1000_PREVCOMP_ALTERACAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -399,7 +417,7 @@ CHOICES_S1000_PREVCOMP_INCLUSAO = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -411,7 +429,7 @@ CHOICES_S1000_SUBTETO_ALTERACAO = [
     (2, u'2 - Judiciário'),
     (3, u'3 - Legislativo'),
     (9, u'9 - Todos os poderes.'),
-    
+
 ]
 
 
@@ -423,7 +441,7 @@ CHOICES_S1000_SUBTETO_INCLUSAO = [
     (2, u'2 - Judiciário'),
     (3, u'3 - Legislativo'),
     (9, u'9 - Todos os poderes.'),
-    
+
 ]
 
 
@@ -458,7 +476,7 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-    
+
 ]
 
 
@@ -502,7 +520,7 @@ PERIODOS = [
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-    
+
 ]
 
 

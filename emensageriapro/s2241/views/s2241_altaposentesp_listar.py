@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.s2241.forms import *
 from emensageriapro.s2241.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.s2241.models import s2241aposentEsp
 
 
 @login_required
@@ -105,7 +106,7 @@ def listar(request, output=None):
             s2241_altaposentesp_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        s2241_aposentesp_lista = s2241aposentEsp.objects.all()
         #s2241_altaposentesp_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -120,7 +121,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            's2241_aposentesp_lista': s2241_aposentesp_lista,
         }
 
         if output == 'pdf':

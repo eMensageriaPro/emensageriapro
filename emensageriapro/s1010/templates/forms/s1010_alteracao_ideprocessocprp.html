@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1010_alteracao_ideprocessocprp__s1010_alteracao__div">
   <div class="form-group">
-    <label id="s1010_alteracao_ideprocessocprp__s1010_alteracao__label">Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.*</label>
+    <label id="s1010_alteracao_ideprocessocprp__s1010_alteracao__label">Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.*<a data-toggle="tooltip" title="Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1010_alteracao_ideprocessocprp_form.s1010_alteracao.value %}
         <a id="s1010_alteracao_ideprocessocprp__s1010_alteracao__div_acessar" href="{% url 's1010_alteracao_salvar' pk=s1010_alteracao_ideprocessocprp_form.s1010_alteracao.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1010_alteracao_ideprocessocprp__tpproc -->
 <div class="col-md-3" id="s1010_alteracao_ideprocessocprp__tpproc__div">
   <div class="form-group">
-    <label id="s1010_alteracao_ideprocessocprp__tpproc__label">Processo RAT*</label>
+    <label id="s1010_alteracao_ideprocessocprp__tpproc__label">Processo RAT*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1010_alteracao_ideprocessocprp_form.tpproc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1010_alteracao_ideprocessocprp_form.tpproc.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s1010_alteracao_ideprocessocprp__nrproc -->
 <div class="col-md-3" id="s1010_alteracao_ideprocessocprp__nrproc__div">
   <div class="form-group">
-    <label id="s1010_alteracao_ideprocessocprp__nrproc__label">Número do Processo*</label>
+    <label id="s1010_alteracao_ideprocessocprp__nrproc__label">Número do Processo*<a data-toggle="tooltip" title="Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [9]. Validação: Deve ser um número de processo válido e existente na Tabela de Processos (S-1070)."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1010_alteracao_ideprocessocprp_form.nrproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1010_alteracao_ideprocessocprp_form.nrproc.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s1010_alteracao_ideprocessocprp__extdecisao -->
 <div class="col-md-3" id="s1010_alteracao_ideprocessocprp__extdecisao__div">
   <div class="form-group">
-    <label id="s1010_alteracao_ideprocessocprp__extdecisao__label">Extensão da Decisão (caso favorável CP)*</label>
+    <label id="s1010_alteracao_ideprocessocprp__extdecisao__label">Extensão da Decisão (caso favorável CP)*<a data-toggle="tooltip" title="Extensão da Decisão/Sentença: 1 - Contribuição Previdenciária do Ente Público; 2 - Contribuição Previdenciária do Ente Público + Descontada dos Segurados; 3 - Contribuição Previdenciária Descontada dos Segurados. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1010_alteracao_ideprocessocprp_form.extdecisao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1010_alteracao_ideprocessocprp_form.extdecisao.errors }}

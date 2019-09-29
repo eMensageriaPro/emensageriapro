@@ -15,7 +15,6 @@ from emensageriapro.r9001.views import r9001_rcprb_api as r9001_rcprb_api_views
 from emensageriapro.r9001.views import r9001_rrecespetdesp_api as r9001_rrecespetdesp_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

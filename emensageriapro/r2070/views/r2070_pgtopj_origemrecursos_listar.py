@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.r2070.forms import *
 from emensageriapro.r2070.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.r2070.models import r2070pgtoPJinfoProcJud
 
 
 @login_required
@@ -105,7 +106,7 @@ def listar(request, output=None):
             r2070_pgtopj_origemrecursos_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        r2070_pgtopj_infoprocjud_lista = r2070pgtoPJinfoProcJud.objects.all()
         #r2070_pgtopj_origemrecursos_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -120,7 +121,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            'r2070_pgtopj_infoprocjud_lista': r2070_pgtopj_infoprocjud_lista,
         }
 
         if output == 'pdf':

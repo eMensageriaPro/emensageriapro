@@ -56,6 +56,14 @@ from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.mensageiro.models import TransmissorLoteEfdreinf
+from emensageriapro.efdreinf.models import r5001evtTotal
+from emensageriapro.efdreinf.models import r5011evtTotalContrib
+from emensageriapro.efdreinf.models import r9001evtTotal
+from emensageriapro.efdreinf.models import r9002evtRet
+from emensageriapro.efdreinf.models import r9011evtTotalContrib
+from emensageriapro.efdreinf.models import r9012evtRetCons
+from emensageriapro.mensageiro.models import TransmissorLoteEfdreinf
 
 
 @login_required
@@ -176,7 +184,14 @@ def listar(request, output=None):
             r4010_evtretpf_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        transmissor_lote_efdreinf_lista = TransmissorLoteEfdreinf.objects.all()
+        retornos_r5001_lista = r5001evtTotal.objects.all()
+        retornos_r5011_lista = r5011evtTotalContrib.objects.all()
+        retornos_r9001_lista = r9001evtTotal.objects.all()
+        retornos_r9002_lista = r9002evtRet.objects.all()
+        retornos_r9011_lista = r9011evtTotalContrib.objects.all()
+        retornos_r9012_lista = r9012evtRetCons.objects.all()
+        transmissor_lote_efdreinf_error_lista = TransmissorLoteEfdreinf.objects.all()
         #r4010_evtretpf_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -191,7 +206,14 @@ def listar(request, output=None):
             'paginas': ['r4010_evtretpf', ],
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            'transmissor_lote_efdreinf_lista': transmissor_lote_efdreinf_lista,
+            'retornos_r5001_lista': retornos_r5001_lista,
+            'retornos_r5011_lista': retornos_r5011_lista,
+            'retornos_r9001_lista': retornos_r9001_lista,
+            'retornos_r9002_lista': retornos_r9002_lista,
+            'retornos_r9011_lista': retornos_r9011_lista,
+            'retornos_r9012_lista': retornos_r9012_lista,
+            'transmissor_lote_efdreinf_error_lista': transmissor_lote_efdreinf_error_lista,
         }
 
         if output == 'pdf':

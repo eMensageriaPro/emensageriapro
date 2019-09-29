@@ -519,7 +519,7 @@
 
         <tr {% if s2400_brasil.nrlograd|validacoes_esocial_efdreinf:"s2400_brasil.nrlograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrLograd</td>
-            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com 'S/N'</td>
+            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com ""S/N""</td>
             <td width="200px"><b>{% if s2400_brasil.nrlograd or s2400_brasil.nrlograd == 0 %}{{ s2400_brasil.nrlograd }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -677,7 +677,7 @@
 
         <tr {% if s2400_exterior.nrlograd|validacoes_esocial_efdreinf:"s2400_exterior.nrlograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrLograd</td>
-            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com 'S/N'</td>
+            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com ""S/N""</td>
             <td width="200px"><b>{% if s2400_exterior.nrlograd or s2400_exterior.nrlograd == 0 %}{{ s2400_exterior.nrlograd }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

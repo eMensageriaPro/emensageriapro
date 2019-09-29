@@ -74,7 +74,7 @@
 
         <tr {% if s2220_evtmonit.procemi|validacoes_esocial_efdreinf:"s2220_evtmonit.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2220_evtmonit.procemi or s2220_evtmonit.procemi == 0 %}{{ s2220_evtmonit.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -241,7 +241,7 @@
 
         <tr {% if s2220_evtmonit.tpexameocup|validacoes_esocial_efdreinf:"s2220_evtmonit.tpexameocup" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpExameOcup</td>
-            <td width="500px">Tipo do exame médico ocupacional, conforme opções abaixo: 0 - Exame médico admissional; 1 - Exame médico periódico, conforme NR7 do MTb e/ou planejamento do PCMSO; 2 - Exame médico de retorno ao trabalho; 3 - Exame médico de mudança de função; 4 - Exame médico de monitoração pontual, não enquadrado nos demais casos; 9 - Exame médico demissional. Valores Válidos: 0, 1, 2, 3, 4, 9. Validação: Se informado [0], não pode existir outro evento S-2220 para o mesmo vínculo com {dtAso} anterior</td>
+            <td width="500px">Tipo do exame médico ocupacional, conforme opções abaixo: 0 - Exame médico admissional; 1 - Exame médico periódico, conforme NR7 do MTb e/ou planejamento do PCMSO; 2 - Exame médico de retorno ao trabalho; 3 - Exame médico de mudança de função; 4 - Exame médico de monitoração pontual, não enquadrado nos demais casos; 9 - Exame médico demissional. Validação: Se informado [0], não pode existir outro evento S-2220 para o mesmo vínculo com {dtAso} anterior. Valores Válidos: 0, 1, 2, 3, 4, 9.</td>
             <td width="200px"><b>{% if s2220_evtmonit.tpexameocup or s2220_evtmonit.tpexameocup == 0 %}{{ s2220_evtmonit.tpexameocup }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

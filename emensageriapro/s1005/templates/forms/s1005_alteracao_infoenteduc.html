@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1005_alteracao_infoenteduc__s1005_alteracao__div">
   <div class="form-group">
-    <label id="s1005_alteracao_infoenteduc__s1005_alteracao__label">Identificação da(s) entidade(s) educativa(s) ou de prática desportiva*</label>
+    <label id="s1005_alteracao_infoenteduc__s1005_alteracao__label">Identificação da(s) entidade(s) educativa(s) ou de prática desportiva*<a data-toggle="tooltip" title="Identificação da(s) entidade(s) educativa(s) ou de prática desportiva."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1005_alteracao_infoenteduc_form.s1005_alteracao.value %}
         <a id="s1005_alteracao_infoenteduc__s1005_alteracao__div_acessar" href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao_infoenteduc_form.s1005_alteracao.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1005_alteracao_infoenteduc__nrinsc -->
 <div class="col-md-6" id="s1005_alteracao_infoenteduc__nrinsc__div">
   <div class="form-group">
-    <label id="s1005_alteracao_infoenteduc__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s1005_alteracao_infoenteduc__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição da entidade educativa ou de prática desportiva. Validação: Deve ser um número de CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1005_alteracao_infoenteduc_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1005_alteracao_infoenteduc_form.nrinsc.errors }}

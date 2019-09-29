@@ -164,7 +164,7 @@ class r5001RPrest(SoftDeletionModel):
 
     def evento(self):
         return self.r5001_infototal.evento()
-    tpinsctomador = models.IntegerField(null=True, )
+    tpinsctomador = models.IntegerField(choices=CHOICES_R5001_TPINSCTOMADOR, null=True, )
     nrinsctomador = models.CharField(max_length=14, null=True, )
     vlrtotalbaseret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrtotalretprinc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
@@ -406,7 +406,7 @@ class r5001infoTotal(SoftDeletionModel):
     def evento(self):
         return self.r5001_evttotal.evento()
     nrrecarqbase = models.CharField(max_length=52, blank=True, null=True, )
-    tpinsc = models.IntegerField(null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_R5001_TPINSC, null=True, )
     nrinsc = models.CharField(max_length=14, null=True, )
 
     def __unicode__(self):

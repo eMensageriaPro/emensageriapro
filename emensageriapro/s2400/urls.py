@@ -22,7 +22,6 @@ from emensageriapro.s2400.views import s2400_dependente_salvar as s2400_dependen
 from emensageriapro.s2400.views import s2400_dependente_api as s2400_dependente_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

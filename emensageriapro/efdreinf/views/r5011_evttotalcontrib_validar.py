@@ -142,7 +142,7 @@ def validacoes_r5011_evttotalcontrib(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'infoRecEv.tpEv',
                                                   infoRecEv.tpEv.cdata,
-                                                  1, u'None')
+                                                  1, u'R-1000, R-1070, R-2010, R-2020, R-2030, R-2040, R-2050, R-2060, R-2098, R-2099, R-3010, R-4010, R-4020, R-4040, R-4098, R-4099, R-9000, R-9001, R-9002, R-9011, R-9012')
 
             if 'idEv' in dir(infoRecEv):
                 validacoes_lista = validar_campo( validacoes_lista,

@@ -10,7 +10,7 @@
 <!-- inicio__s2210_evtcat__identidade -->
 <div class="col-md-6" id="s2210_evtcat__identidade__div">
   <div class="form-group">
-    <label id="s2210_evtcat__identidade__label">Identidade do Registro</label>
+    <label id="s2210_evtcat__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. Regra de validação: REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s2210_evtcat__indretif -->
 <div class="col-md-6" id="s2210_evtcat__indretif__div">
   <div class="form-group">
-    <label id="s2210_evtcat__indretif__label">Identificador de retificação*</label>
+    <label id="s2210_evtcat__indretif__label">Identificador de retificação*<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2210_evtcat_form.indretif.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2210_evtcat_form.indretif.errors }}
@@ -54,7 +54,7 @@
 <!-- inicio__s2210_evtcat__nrrecibo -->
 <div class="col-md-6" id="s2210_evtcat__nrrecibo__div">
   <div class="form-group">
-    <label id="s2210_evtcat__nrrecibo__label">Número do recibo</label>
+    <label id="s2210_evtcat__nrrecibo__label">Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.nrrecibo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.nrrecibo.errors }}
@@ -69,7 +69,7 @@
 <!-- inicio__s2210_evtcat__tpamb -->
 <div class="col-md-6" id="s2210_evtcat__tpamb__div">
   <div class="form-group">
-    <label id="s2210_evtcat__tpamb__label">Identificação do ambiente*</label>
+    <label id="s2210_evtcat__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2210_evtcat_form.tpamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2210_evtcat_form.tpamb.errors }}
@@ -93,7 +93,7 @@
 <!-- inicio__s2210_evtcat__procemi -->
 <div class="col-md-6" id="s2210_evtcat__procemi__div">
   <div class="form-group">
-    <label id="s2210_evtcat__procemi__label">Processo de emissão do evento*</label>
+    <label id="s2210_evtcat__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2210_evtcat_form.procemi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2210_evtcat_form.procemi.errors }}
@@ -117,7 +117,7 @@
 <!-- inicio__s2210_evtcat__verproc -->
 <div class="col-md-6" id="s2210_evtcat__verproc__div">
   <div class="form-group">
-    <label id="s2210_evtcat__verproc__label">Versão do processo*</label>
+    <label id="s2210_evtcat__verproc__label">Versão do processo*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.verproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.verproc.errors }}
@@ -137,7 +137,7 @@
 <!-- inicio__s2210_evtcat__tpinsc -->
 <div class="col-md-6" id="s2210_evtcat__tpinsc__div">
   <div class="form-group">
-    <label id="s2210_evtcat__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s2210_evtcat__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2210_evtcat_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2210_evtcat_form.tpinsc.errors }}
@@ -161,7 +161,7 @@
 <!-- inicio__s2210_evtcat__nrinsc -->
 <div class="col-md-6" id="s2210_evtcat__nrinsc__div">
   <div class="form-group">
-    <label id="s2210_evtcat__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s2210_evtcat__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.nrinsc.errors }}
@@ -181,7 +181,7 @@
 <!-- inicio__s2210_evtcat__cpftrab -->
 <div class="col-md-6" id="s2210_evtcat__cpftrab__div">
   <div class="form-group">
-    <label id="s2210_evtcat__cpftrab__label">CPF*</label>
+    <label id="s2210_evtcat__cpftrab__label">CPF*<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.cpftrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.cpftrab.errors }}
@@ -196,7 +196,7 @@
 <!-- inicio__s2210_evtcat__nistrab -->
 <div class="col-md-6" id="s2210_evtcat__nistrab__div">
   <div class="form-group">
-    <label id="s2210_evtcat__nistrab__label">NIS</label>
+    <label id="s2210_evtcat__nistrab__label">NIS<a data-toggle="tooltip" title="Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. Validação: O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.nistrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.nistrab.errors }}
@@ -211,7 +211,7 @@
 <!-- inicio__s2210_evtcat__matricula -->
 <div class="col-md-6" id="s2210_evtcat__matricula__div">
   <div class="form-group">
-    <label id="s2210_evtcat__matricula__label">Matricula</label>
+    <label id="s2210_evtcat__matricula__label">Matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista. Se o trabalhador não está sujeito a esse evento (S-2200), a matrícula não deve ser informada, porém, o trabalhador deve ter sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.matricula.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.matricula.errors }}
@@ -227,7 +227,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2210_evtcat__codcateg__div">
     <div class="form-group">
-      <label id="s2210_evtcat__codcateg__label">Código da Categoria</label>
+      <label id="s2210_evtcat__codcateg__label">Código da Categoria<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 01. Validação: Só informar se o trabalhador tiver sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300. Não informar nos demais casos. Se informado, deve existir na Tabela de Categorias de Trabalhadores (Tabela 01)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2210_evtcat_form.codcateg.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2210_evtcat_form.codcateg.errors }}
@@ -236,7 +236,7 @@
         <input type="text"
                id="txt_codcateg"
                name="txt_codcateg" class="form-control"
-               value="{% if s2210_evtcat.codcateg %}{{ s2210_evtcat.codcateg|get_opcoes_titulo:176 }}{% endif %}"
+               value="{% if s2210_evtcat.codcateg %}{{ s2210_evtcat.codcateg|get_opcoes_titulo:180 }}{% endif %}"
                {% if s2210_evtcat_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2210_evtcat_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2210_evtcat_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -250,7 +250,7 @@
   $(document).ready(function(e){
     $('#txt_codcateg').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/176/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/180/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -281,7 +281,7 @@
   {% else %}
   <div class="col-md-6" id="s2210_evtcat__codcateg__div">
     <div class="form-group">
-      <label id="s2210_evtcat__codcateg__label">Código da Categoria</label>
+      <label id="s2210_evtcat__codcateg__label">Código da Categoria<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 01. Validação: Só informar se o trabalhador tiver sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300. Não informar nos demais casos. Se informado, deve existir na Tabela de Categorias de Trabalhadores (Tabela 01)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s2210_evtcat.codcateg %}{{ s2210_evtcat.codcateg }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -295,7 +295,7 @@
 <!-- inicio__s2210_evtcat__dtacid -->
 <div class="col-md-6" id="s2210_evtcat__dtacid__div">
   <div class="form-group">
-    <label id="s2210_evtcat__dtacid__label">Data do Acidente*</label>
+    <label id="s2210_evtcat__dtacid__label">Data do Acidente*<a data-toggle="tooltip" title="Data do Acidente. Validação: Deve ser uma data válida, igual ou anterior à data atual e igual ou posterior à data de admissão do trabalhador e à data de início da obrigatoriedade deste evento para o empregador no eSocial. Se {tpCat} = [2,3] deve ser informado valor igual ao preenchido no evento de CAT anterior, quando informado em {nrRecCatOrig}."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2210_evtcat_form.dtacid.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2210_evtcat_form.dtacid.errors }}
@@ -311,7 +311,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2210_evtcat__tpacid__div">
     <div class="form-group">
-      <label id="s2210_evtcat__tpacid__label">Tipo de acidente*</label>
+      <label id="s2210_evtcat__tpacid__label">Tipo de acidente*<a data-toggle="tooltip" title="Tipo de Acidente de Trabalho, conforme Tabela 24. Preencher com números e pontos. Validação: Dever ser um código da Tabela 24 - Codificação de Acidente de Trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2210_evtcat_form.tpacid.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2210_evtcat_form.tpacid.errors }}
@@ -320,7 +320,7 @@
         <input type="text"
                id="txt_tpacid"
                name="txt_tpacid" class="form-control"
-               value="{% if s2210_evtcat.tpacid %}{{ s2210_evtcat.tpacid|get_opcoes_titulo:345 }}{% endif %}"
+               value="{% if s2210_evtcat.tpacid %}{{ s2210_evtcat.tpacid|get_opcoes_titulo:349 }}{% endif %}"
                {% if s2210_evtcat_form.tpacid.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2210_evtcat_form.tpacid.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2210_evtcat_form.tpacid.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -334,7 +334,7 @@
   $(document).ready(function(e){
     $('#txt_tpacid').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/345/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/349/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -365,7 +365,7 @@
   {% else %}
   <div class="col-md-6" id="s2210_evtcat__tpacid__div">
     <div class="form-group">
-      <label id="s2210_evtcat__tpacid__label">Tipo de acidente*</label>
+      <label id="s2210_evtcat__tpacid__label">Tipo de acidente*<a data-toggle="tooltip" title="Tipo de Acidente de Trabalho, conforme Tabela 24. Preencher com números e pontos. Validação: Dever ser um código da Tabela 24 - Codificação de Acidente de Trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_tpacid" name="txt_tpacid" class="form-control" value="{% if s2210_evtcat.tpacid %}{{ s2210_evtcat.tpacid }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -374,7 +374,7 @@
 <!-- inicio__s2210_evtcat__hracid -->
 <div class="col-md-6" id="s2210_evtcat__hracid__div">
   <div class="form-group">
-    <label id="s2210_evtcat__hracid__label">Hora do acidente</label>
+    <label id="s2210_evtcat__hracid__label">Hora do acidente<a data-toggle="tooltip" title="Hora do Acidente, no formato HHMM. Validação: Preenchimento obrigatório se {tpAcid} <> [2.0.01, 2.0.02, 2.0.03, 2.0.04, 2.0.05, 2.0.06, 4.0.01, 4.0.02]. Se informada, deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59. Se {tpCat} = [2,3] deve ser informado valor igual ao preenchido no evento de CAT anterior, quando informado em {nrRecCatOrig}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.hracid.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.hracid.errors }}
@@ -389,7 +389,7 @@
 <!-- inicio__s2210_evtcat__hrstrabantesacid -->
 <div class="col-md-6" id="s2210_evtcat__hrstrabantesacid__div">
   <div class="form-group">
-    <label id="s2210_evtcat__hrstrabantesacid__label">Quant. de horas trabalhadas antes do acidente*</label>
+    <label id="s2210_evtcat__hrstrabantesacid__label">Quant. de horas trabalhadas antes do acidente*<a data-toggle="tooltip" title="Horas trabalhadas antes da ocorrência do acidente, no formato HHMM. Validação: Deve estar no intervalo entre [0000] e [9959], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.hrstrabantesacid.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.hrstrabantesacid.errors }}
@@ -404,7 +404,7 @@
 <!-- inicio__s2210_evtcat__tpcat -->
 <div class="col-md-6" id="s2210_evtcat__tpcat__div">
   <div class="form-group">
-    <label id="s2210_evtcat__tpcat__label">Tipo de CAT*</label>
+    <label id="s2210_evtcat__tpcat__label">Tipo de CAT*<a data-toggle="tooltip" title="Tipo de CAT, conforme opções abaixo: 1 - Inicial; 2 - Reabertura; 3 - Comunicação de Óbito. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2210_evtcat_form.tpcat.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2210_evtcat_form.tpcat.errors }}
@@ -428,7 +428,7 @@
 <!-- inicio__s2210_evtcat__indcatobito -->
 <div class="col-md-6" id="s2210_evtcat__indcatobito__div">
   <div class="form-group">
-    <label id="s2210_evtcat__indcatobito__label">Houve óbito*</label>
+    <label id="s2210_evtcat__indcatobito__label">Houve óbito*<a data-toggle="tooltip" title="Houve Óbito? S - Sim; N - Não. Validação: Se o {tpCat} for igual a [3], o campo deverá sempre ser preenchido com [S]. Se o {tpCat} for igual a [2], o campo deverá sempre ser preenchido com [N]. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2210_evtcat_form.indcatobito.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2210_evtcat_form.indcatobito.errors }}
@@ -452,7 +452,7 @@
 <!-- inicio__s2210_evtcat__dtobito -->
 <div class="col-md-6" id="s2210_evtcat__dtobito__div">
   <div class="form-group">
-    <label id="s2210_evtcat__dtobito__label">Data do óbito</label>
+    <label id="s2210_evtcat__dtobito__label">Data do óbito<a data-toggle="tooltip" title="Data do óbito. Validação: Deve ser uma data válida, igual ou posterior a {dtAcid} e igual ou anterior à data atual. Preenchimento obrigatório e exclusivo se {indCatObito} = [S]."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2210_evtcat_form.dtobito.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2210_evtcat_form.dtobito.errors }}
@@ -467,7 +467,7 @@
 <!-- inicio__s2210_evtcat__indcomunpolicia -->
 <div class="col-md-6" id="s2210_evtcat__indcomunpolicia__div">
   <div class="form-group">
-    <label id="s2210_evtcat__indcomunpolicia__label">Houve comunicação a autoridade policial*</label>
+    <label id="s2210_evtcat__indcomunpolicia__label">Houve comunicação a autoridade policial*<a data-toggle="tooltip" title="Houve comunicação à autoridade policial? S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2210_evtcat_form.indcomunpolicia.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2210_evtcat_form.indcomunpolicia.errors }}
@@ -492,7 +492,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2210_evtcat__codsitgeradora__div">
     <div class="form-group">
-      <label id="s2210_evtcat__codsitgeradora__label">Situação Geradora*</label>
+      <label id="s2210_evtcat__codsitgeradora__label">Situação Geradora*<a data-toggle="tooltip" title="Preencher com o código da situação geradora do acidente ou da doença profissional, conforme Tabelas 15 ou 16. Validação: Deve ser um código existente na Tabela 15 - Agente Causador / Situação Geradora de Doença Profissional ou na Tabela 16 - Situação Geradora do Acidente de Trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2210_evtcat_form.codsitgeradora.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2210_evtcat_form.codsitgeradora.errors }}
@@ -501,7 +501,7 @@
         <input type="text"
                id="txt_codsitgeradora"
                name="txt_codsitgeradora" class="form-control"
-               value="{% if s2210_evtcat.codsitgeradora %}{{ s2210_evtcat.codsitgeradora|get_opcoes_titulo:349 }}{% endif %}"
+               value="{% if s2210_evtcat.codsitgeradora %}{{ s2210_evtcat.codsitgeradora|get_opcoes_titulo:353 }}{% endif %}"
                {% if s2210_evtcat_form.codsitgeradora.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2210_evtcat_form.codsitgeradora.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2210_evtcat_form.codsitgeradora.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -515,7 +515,7 @@
   $(document).ready(function(e){
     $('#txt_codsitgeradora').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/349/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/353/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -546,7 +546,7 @@
   {% else %}
   <div class="col-md-6" id="s2210_evtcat__codsitgeradora__div">
     <div class="form-group">
-      <label id="s2210_evtcat__codsitgeradora__label">Situação Geradora*</label>
+      <label id="s2210_evtcat__codsitgeradora__label">Situação Geradora*<a data-toggle="tooltip" title="Preencher com o código da situação geradora do acidente ou da doença profissional, conforme Tabelas 15 ou 16. Validação: Deve ser um código existente na Tabela 15 - Agente Causador / Situação Geradora de Doença Profissional ou na Tabela 16 - Situação Geradora do Acidente de Trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codsitgeradora" name="txt_codsitgeradora" class="form-control" value="{% if s2210_evtcat.codsitgeradora %}{{ s2210_evtcat.codsitgeradora }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -555,7 +555,7 @@
 <!-- inicio__s2210_evtcat__iniciatcat -->
 <div class="col-md-6" id="s2210_evtcat__iniciatcat__div">
   <div class="form-group">
-    <label id="s2210_evtcat__iniciatcat__label">Emitido por*</label>
+    <label id="s2210_evtcat__iniciatcat__label">Emitido por*<a data-toggle="tooltip" title="A CAT foi emitida por: 1 - Iniciativa do empregador; 2 - Ordem judicial; 3 - Determinação de órgão fiscalizador. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2210_evtcat_form.iniciatcat.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2210_evtcat_form.iniciatcat.errors }}
@@ -579,7 +579,7 @@
 <!-- inicio__s2210_evtcat__obscat -->
 <div class="col-md-6" id="s2210_evtcat__obscat__div">
   <div class="form-group">
-    <label id="s2210_evtcat__obscat__label">Observação.</label>
+    <label id="s2210_evtcat__obscat__label">Observação.<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.obscat.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.obscat.errors }}
@@ -594,7 +594,7 @@
 <!-- inicio__s2210_evtcat__observacao -->
 <div class="col-md-6" id="s2210_evtcat__observacao__div">
   <div class="form-group">
-    <label id="s2210_evtcat__observacao__label">Observações</label>
+    <label id="s2210_evtcat__observacao__label">Observações<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.observacao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.observacao.errors }}
@@ -614,7 +614,7 @@
 <!-- inicio__s2210_evtcat__tplocal -->
 <div class="col-md-6" id="s2210_evtcat__tplocal__div">
   <div class="form-group">
-    <label id="s2210_evtcat__tplocal__label">Tipo de logradouro*</label>
+    <label id="s2210_evtcat__tplocal__label">Tipo de logradouro*<a data-toggle="tooltip" title="Tipo de local do acidente: 1 - Estabelecimento do empregador no Brasil; 2 - Estabelecimento do empregador no Exterior; 3 - Estabelecimento de terceiros onde o empregador presta serviços; 4 - Via pública; 5 - Área rural; 6 - Embarcação; 9 - Outros. Valores Válidos: 1, 2, 3, 4, 5, 6, 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2210_evtcat_form.tplocal.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2210_evtcat_form.tplocal.errors }}
@@ -638,7 +638,7 @@
 <!-- inicio__s2210_evtcat__dsclocal -->
 <div class="col-md-6" id="s2210_evtcat__dsclocal__div">
   <div class="form-group">
-    <label id="s2210_evtcat__dsclocal__label">Descrição</label>
+    <label id="s2210_evtcat__dsclocal__label">Descrição<a data-toggle="tooltip" title="Especificação do local do acidente (pátio, rampa de acesso, posto de trabalho, etc.)."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.dsclocal.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.dsclocal.errors }}
@@ -653,7 +653,7 @@
 <!-- inicio__s2210_evtcat__codamb -->
 <div class="col-md-6" id="s2210_evtcat__codamb__div">
   <div class="form-group">
-    <label id="s2210_evtcat__codamb__label">Código do Ambiente</label>
+    <label id="s2210_evtcat__codamb__label">Código do Ambiente<a data-toggle="tooltip" title="Informar o código do ambiente de trabalho constante da Tabela S-1060 referente ao local do acidente. Validação: Se informado, deve ser um código existente na Tabela S-1060."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.codamb.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.codamb.errors }}
@@ -669,7 +669,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2210_evtcat__tplograd__div">
     <div class="form-group">
-      <label id="s2210_evtcat__tplograd__label">Tipo de logradouro*</label>
+      <label id="s2210_evtcat__tplograd__label">Tipo de logradouro*<a data-toggle="tooltip" title="Tipo de Logradouro, conforme tabela 20. Validação: Deve ser um código válido, existente na tabela 20."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2210_evtcat_form.tplograd.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2210_evtcat_form.tplograd.errors }}
@@ -678,7 +678,7 @@
         <input type="text"
                id="txt_tplograd"
                name="txt_tplograd" class="form-control"
-               value="{% if s2210_evtcat.tplograd %}{{ s2210_evtcat.tplograd|get_opcoes_titulo:262 }}{% endif %}"
+               value="{% if s2210_evtcat.tplograd %}{{ s2210_evtcat.tplograd|get_opcoes_titulo:266 }}{% endif %}"
                {% if s2210_evtcat_form.tplograd.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2210_evtcat_form.tplograd.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2210_evtcat_form.tplograd.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -692,7 +692,7 @@
   $(document).ready(function(e){
     $('#txt_tplograd').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/262/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/266/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -723,7 +723,7 @@
   {% else %}
   <div class="col-md-6" id="s2210_evtcat__tplograd__div">
     <div class="form-group">
-      <label id="s2210_evtcat__tplograd__label">Tipo de logradouro*</label>
+      <label id="s2210_evtcat__tplograd__label">Tipo de logradouro*<a data-toggle="tooltip" title="Tipo de Logradouro, conforme tabela 20. Validação: Deve ser um código válido, existente na tabela 20."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_tplograd" name="txt_tplograd" class="form-control" value="{% if s2210_evtcat.tplograd %}{{ s2210_evtcat.tplograd }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -732,7 +732,7 @@
 <!-- inicio__s2210_evtcat__dsclograd -->
 <div class="col-md-6" id="s2210_evtcat__dsclograd__div">
   <div class="form-group">
-    <label id="s2210_evtcat__dsclograd__label">Logradouro*</label>
+    <label id="s2210_evtcat__dsclograd__label">Logradouro*<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.dsclograd.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.dsclograd.errors }}
@@ -747,7 +747,7 @@
 <!-- inicio__s2210_evtcat__nrlograd -->
 <div class="col-md-6" id="s2210_evtcat__nrlograd__div">
   <div class="form-group">
-    <label id="s2210_evtcat__nrlograd__label">Número*</label>
+    <label id="s2210_evtcat__nrlograd__label">Número*<a data-toggle="tooltip" title="Número do logradouro. Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.nrlograd.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.nrlograd.errors }}
@@ -762,7 +762,7 @@
 <!-- inicio__s2210_evtcat__complemento -->
 <div class="col-md-6" id="s2210_evtcat__complemento__div">
   <div class="form-group">
-    <label id="s2210_evtcat__complemento__label">Complemento</label>
+    <label id="s2210_evtcat__complemento__label">Complemento<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.complemento.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.complemento.errors }}
@@ -777,7 +777,7 @@
 <!-- inicio__s2210_evtcat__bairro -->
 <div class="col-md-6" id="s2210_evtcat__bairro__div">
   <div class="form-group">
-    <label id="s2210_evtcat__bairro__label">Bairro</label>
+    <label id="s2210_evtcat__bairro__label">Bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.bairro.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.bairro.errors }}
@@ -792,7 +792,7 @@
 <!-- inicio__s2210_evtcat__cep -->
 <div class="col-md-6" id="s2210_evtcat__cep__div">
   <div class="form-group">
-    <label id="s2210_evtcat__cep__label">CEP</label>
+    <label id="s2210_evtcat__cep__label">CEP<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP. Validação: Preenchimento obrigatório se {tpLocal} = [1, 3, 5]. Não preencher se {tpLocal} = [2]. Se preenchido, deve ser um CEP válido e informado apenas com números."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.cep.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.cep.errors }}
@@ -808,7 +808,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2210_evtcat__codmunic__div">
     <div class="form-group">
-      <label id="s2210_evtcat__codmunic__label">Código do Município</label>
+      <label id="s2210_evtcat__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. Validação: Preenchimento obrigatório se {tpLocal} = [1, 3, 4, 5]. Não preencher se {tpLocal} = [2]. Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2210_evtcat_form.codmunic.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2210_evtcat_form.codmunic.errors }}
@@ -817,7 +817,7 @@
         <input type="text"
                id="txt_codmunic"
                name="txt_codmunic" class="form-control"
-               value="{% if s2210_evtcat.codmunic %}{{ s2210_evtcat.codmunic|get_opcoes_titulo:58 }}{% endif %}"
+               value="{% if s2210_evtcat.codmunic %}{{ s2210_evtcat.codmunic|get_opcoes_titulo:59 }}{% endif %}"
                {% if s2210_evtcat_form.codmunic.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2210_evtcat_form.codmunic.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2210_evtcat_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -831,7 +831,7 @@
   $(document).ready(function(e){
     $('#txt_codmunic').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/58/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/59/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -862,7 +862,7 @@
   {% else %}
   <div class="col-md-6" id="s2210_evtcat__codmunic__div">
     <div class="form-group">
-      <label id="s2210_evtcat__codmunic__label">Código do Município</label>
+      <label id="s2210_evtcat__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. Validação: Preenchimento obrigatório se {tpLocal} = [1, 3, 4, 5]. Não preencher se {tpLocal} = [2]. Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if s2210_evtcat.codmunic %}{{ s2210_evtcat.codmunic }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -871,7 +871,7 @@
 <!-- inicio__s2210_evtcat__uf -->
 <div class="col-md-6" id="s2210_evtcat__uf__div">
   <div class="form-group">
-    <label id="s2210_evtcat__uf__label">UF</label>
+    <label id="s2210_evtcat__uf__label">UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação. Validação: Preenchimento obrigatório se {tpLocal} = [1, 3, 4, 5]. Não preencher se {tpLocal} = [2]. Se informada, deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2210_evtcat_form.uf.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2210_evtcat_form.uf.errors }}
@@ -896,7 +896,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2210_evtcat__pais__div">
     <div class="form-group">
-      <label id="s2210_evtcat__pais__label">Pais</label>
+      <label id="s2210_evtcat__pais__label">Pais<a data-toggle="tooltip" title="Preencher com o código do país, conforme Tabela 06. Validação: Deve ser um código de país válido, existente na Tabela 06. Preenchimento obrigatório se {tpLocal} = [2]. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2210_evtcat_form.pais.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2210_evtcat_form.pais.errors }}
@@ -905,7 +905,7 @@
         <input type="text"
                id="txt_pais"
                name="txt_pais" class="form-control"
-               value="{% if s2210_evtcat.pais %}{{ s2210_evtcat.pais|get_opcoes_titulo:208 }}{% endif %}"
+               value="{% if s2210_evtcat.pais %}{{ s2210_evtcat.pais|get_opcoes_titulo:212 }}{% endif %}"
                {% if s2210_evtcat_form.pais.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2210_evtcat_form.pais.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2210_evtcat_form.pais.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -919,7 +919,7 @@
   $(document).ready(function(e){
     $('#txt_pais').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/208/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/212/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -950,7 +950,7 @@
   {% else %}
   <div class="col-md-6" id="s2210_evtcat__pais__div">
     <div class="form-group">
-      <label id="s2210_evtcat__pais__label">Pais</label>
+      <label id="s2210_evtcat__pais__label">Pais<a data-toggle="tooltip" title="Preencher com o código do país, conforme Tabela 06. Validação: Deve ser um código de país válido, existente na Tabela 06. Preenchimento obrigatório se {tpLocal} = [2]. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_pais" name="txt_pais" class="form-control" value="{% if s2210_evtcat.pais %}{{ s2210_evtcat.pais }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -959,7 +959,7 @@
 <!-- inicio__s2210_evtcat__codpostal -->
 <div class="col-md-6" id="s2210_evtcat__codpostal__div">
   <div class="form-group">
-    <label id="s2210_evtcat__codpostal__label">Código Postal</label>
+    <label id="s2210_evtcat__codpostal__label">Código Postal<a data-toggle="tooltip" title="Código de Endereçamento Postal. Validação: Preenchimento obrigatório se {tpLocal} = [2]. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_evtcat_form.codpostal.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_evtcat_form.codpostal.errors }}

@@ -14,7 +14,6 @@ from emensageriapro.s5013.views import s5013_infodpsperante_api as s5013_infodps
 from emensageriapro.s5013.views import s5013_dpsperante_api as s5013_dpsperante_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2070_pgtopj_infoprocjud__r2070_pgtopj__div">
   <div class="form-group">
-    <label id="r2070_pgtopj_infoprocjud__r2070_pgtopj__label">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial*</label>
+    <label id="r2070_pgtopj_infoprocjud__r2070_pgtopj__label">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial*<a data-toggle="tooltip" title="Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r2070_pgtopj_infoprocjud_form.r2070_pgtopj.value %}
         <a id="r2070_pgtopj_infoprocjud__r2070_pgtopj__div_acessar" href="{% url 'r2070_pgtopj_salvar' pk=r2070_pgtopj_infoprocjud_form.r2070_pgtopj.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r2070_pgtopj_infoprocjud__nrprocjud -->
 <div class="col-md-3" id="r2070_pgtopj_infoprocjud__nrprocjud__div">
   <div class="form-group">
-    <label id="r2070_pgtopj_infoprocjud__nrprocjud__label">Preencher com o número do processo judicial*</label>
+    <label id="r2070_pgtopj_infoprocjud__nrprocjud__label">Preencher com o número do processo judicial*<a data-toggle="tooltip" title="Preencher com o número do processo judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2070_pgtopj_infoprocjud_form.nrprocjud.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_pgtopj_infoprocjud_form.nrprocjud.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r2070_pgtopj_infoprocjud__codsusp -->
 <div class="col-md-3" id="r2070_pgtopj_infoprocjud__codsusp__div">
   <div class="form-group">
-    <label id="r2070_pgtopj_infoprocjud__codsusp__label">Código do Indicativo da Suspensão, atribuído pelo contribuinte</label>
+    <label id="r2070_pgtopj_infoprocjud__codsusp__label">Código do Indicativo da Suspensão, atribuído pelo contribuinte<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. Validação: Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070), vinculado ao número do processo informado em {nrProcJud}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2070_pgtopj_infoprocjud_form.codsusp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_pgtopj_infoprocjud_form.codsusp.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__r2070_pgtopj_infoprocjud__indorigemrecursos -->
 <div class="col-md-3" id="r2070_pgtopj_infoprocjud__indorigemrecursos__div">
   <div class="form-group">
-    <label id="r2070_pgtopj_infoprocjud__indorigemrecursos__label">Indicativo da origem dos recursos*</label>
+    <label id="r2070_pgtopj_infoprocjud__indorigemrecursos__label">Indicativo da origem dos recursos*<a data-toggle="tooltip" title="Indicativo da origem dos recursos: 1 - Recursos do próprio declarante 2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2070_pgtopj_infoprocjud_form.indorigemrecursos.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2070_pgtopj_infoprocjud_form.indorigemrecursos.errors }}

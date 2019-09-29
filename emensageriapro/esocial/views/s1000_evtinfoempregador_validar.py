@@ -118,7 +118,7 @@ def validacoes_s1000_evtinfoempregador(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'infoCadastro.nmRazao',
                                                                   infoCadastro.nmRazao.cdata,
-                                                                  1, u'None')
+                                                                  0, u'None')
         
                             if 'classTrib' in dir(infoCadastro):
                                 validacoes_lista = validar_campo( validacoes_lista,
@@ -156,6 +156,12 @@ def validacoes_s1000_evtinfoempregador(arquivo):
                                                                   infoCadastro.indOpcCP.cdata,
                                                                   0, u'1, 2')
         
+                            if 'indPorte' in dir(infoCadastro):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'infoCadastro.indPorte',
+                                                                  infoCadastro.indPorte.cdata,
+                                                                  0, u'None')
+        
                             if 'indOptRegEletron' in dir(infoCadastro):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'infoCadastro.indOptRegEletron',
@@ -172,7 +178,7 @@ def validacoes_s1000_evtinfoempregador(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'infoCadastro.indEtt',
                                                                   infoCadastro.indEtt.cdata,
-                                                                  1, u'S, N')
+                                                                  0, u'S, N')
         
                             if 'nrRegEtt' in dir(infoCadastro):
                                 validacoes_lista = validar_campo( validacoes_lista,
@@ -397,7 +403,7 @@ def validacoes_s1000_evtinfoempregador(arquivo):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'softwareHouse.nmRazao',
                                                                           softwareHouse.nmRazao.cdata,
-                                                                          1, u'None')
+                                                                          0, u'None')
                 
                                     if 'nmCont' in dir(softwareHouse):
                                         validacoes_lista = validar_campo( validacoes_lista,
@@ -463,7 +469,7 @@ def validacoes_s1000_evtinfoempregador(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'infoCadastro.nmRazao',
                                                                   infoCadastro.nmRazao.cdata,
-                                                                  1, u'None')
+                                                                  0, u'None')
         
                             if 'classTrib' in dir(infoCadastro):
                                 validacoes_lista = validar_campo( validacoes_lista,
@@ -501,6 +507,12 @@ def validacoes_s1000_evtinfoempregador(arquivo):
                                                                   infoCadastro.indOpcCP.cdata,
                                                                   0, u'1, 2')
         
+                            if 'indPorte' in dir(infoCadastro):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'infoCadastro.indPorte',
+                                                                  infoCadastro.indPorte.cdata,
+                                                                  0, u'None')
+        
                             if 'indOptRegEletron' in dir(infoCadastro):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'infoCadastro.indOptRegEletron',
@@ -517,7 +529,7 @@ def validacoes_s1000_evtinfoempregador(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'infoCadastro.indEtt',
                                                                   infoCadastro.indEtt.cdata,
-                                                                  1, u'S, N')
+                                                                  0, u'S, N')
         
                             if 'nrRegEtt' in dir(infoCadastro):
                                 validacoes_lista = validar_campo( validacoes_lista,
@@ -742,7 +754,7 @@ def validacoes_s1000_evtinfoempregador(arquivo):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'softwareHouse.nmRazao',
                                                                           softwareHouse.nmRazao.cdata,
-                                                                          1, u'None')
+                                                                          0, u'None')
                 
                                     if 'nmCont' in dir(softwareHouse):
                                         validacoes_lista = validar_campo( validacoes_lista,

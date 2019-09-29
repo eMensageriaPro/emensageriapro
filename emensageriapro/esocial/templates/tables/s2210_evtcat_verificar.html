@@ -74,7 +74,7 @@
 
         <tr {% if s2210_evtcat.procemi|validacoes_esocial_efdreinf:"s2210_evtcat.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2210_evtcat.procemi or s2210_evtcat.procemi == 0 %}{{ s2210_evtcat.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -569,7 +569,7 @@
 
         <tr {% if s2210_evtcat.nrlograd|validacoes_esocial_efdreinf:"s2210_evtcat.nrlograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrLograd</td>
-            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com 'S/N'.</td>
+            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com "S/N".</td>
             <td width="200px"><b>{% if s2210_evtcat.nrlograd or s2210_evtcat.nrlograd == 0 %}{{ s2210_evtcat.nrlograd }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -935,7 +935,7 @@
 
         <tr {% if s2210_atestado.indafast|validacoes_esocial_efdreinf:"s2210_atestado.indafast" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indAfast</td>
-            <td width="500px">Indicativo de afastamento do trabalho durante o tratamento: S - Sim; N - Não. Valores Válidos: S, N. Validação: Se o campo {indCatObito} for igual a [S], o campo deve sempre ser preenchido com [N].</td>
+            <td width="500px">Indicativo de afastamento do trabalho durante o tratamento: S - Sim; N - Não. Validação: Se o campo {indCatObito} for igual a [S], o campo deve sempre ser preenchido com [N]. Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s2210_atestado.indafast or s2210_atestado.indafast == 0 %}{{ s2210_atestado.indafast }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1130,7 +1130,7 @@
      {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">catOrigem</td>
-            <td bgcolor="lightgray" colspan="3">Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito</td>
+            <td bgcolor="lightgray" colspan="3">Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito.</td>
         </tr>
     {% for s2210_catorigem in s2210_catorigem_lista %}
     {% ifequal s2210_catorigem.s2210_evtcat.id s2210_evtcat.id %}

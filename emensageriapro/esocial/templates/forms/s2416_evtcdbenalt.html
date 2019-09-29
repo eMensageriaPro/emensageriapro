@@ -10,7 +10,7 @@
 <!-- inicio__s2416_evtcdbenalt__identidade -->
 <div class="col-md-6" id="s2416_evtcdbenalt__identidade__div">
   <div class="form-group">
-    <label id="s2416_evtcdbenalt__identidade__label">Identidade do Registro</label>
+    <label id="s2416_evtcdbenalt__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. Regra de validação: REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2416_evtcdbenalt_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2416_evtcdbenalt_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s2416_evtcdbenalt__indretif -->
 <div class="col-md-6" id="s2416_evtcdbenalt__indretif__div">
   <div class="form-group">
-    <label id="s2416_evtcdbenalt__indretif__label">Identificador de retificação*</label>
+    <label id="s2416_evtcdbenalt__indretif__label">Identificador de retificação*<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2416_evtcdbenalt_form.indretif.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2416_evtcdbenalt_form.indretif.errors }}
@@ -54,7 +54,7 @@
 <!-- inicio__s2416_evtcdbenalt__nrrecibo -->
 <div class="col-md-6" id="s2416_evtcdbenalt__nrrecibo__div">
   <div class="form-group">
-    <label id="s2416_evtcdbenalt__nrrecibo__label">Número do recibo</label>
+    <label id="s2416_evtcdbenalt__nrrecibo__label">Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2416_evtcdbenalt_form.nrrecibo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2416_evtcdbenalt_form.nrrecibo.errors }}
@@ -69,7 +69,7 @@
 <!-- inicio__s2416_evtcdbenalt__tpamb -->
 <div class="col-md-6" id="s2416_evtcdbenalt__tpamb__div">
   <div class="form-group">
-    <label id="s2416_evtcdbenalt__tpamb__label">Identificação do ambiente*</label>
+    <label id="s2416_evtcdbenalt__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2416_evtcdbenalt_form.tpamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2416_evtcdbenalt_form.tpamb.errors }}
@@ -93,7 +93,7 @@
 <!-- inicio__s2416_evtcdbenalt__procemi -->
 <div class="col-md-6" id="s2416_evtcdbenalt__procemi__div">
   <div class="form-group">
-    <label id="s2416_evtcdbenalt__procemi__label">Processo de emissão do evento*</label>
+    <label id="s2416_evtcdbenalt__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2416_evtcdbenalt_form.procemi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2416_evtcdbenalt_form.procemi.errors }}
@@ -117,7 +117,7 @@
 <!-- inicio__s2416_evtcdbenalt__verproc -->
 <div class="col-md-6" id="s2416_evtcdbenalt__verproc__div">
   <div class="form-group">
-    <label id="s2416_evtcdbenalt__verproc__label">Versão do processo*</label>
+    <label id="s2416_evtcdbenalt__verproc__label">Versão do processo*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2416_evtcdbenalt_form.verproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2416_evtcdbenalt_form.verproc.errors }}
@@ -137,7 +137,7 @@
 <!-- inicio__s2416_evtcdbenalt__tpinsc -->
 <div class="col-md-6" id="s2416_evtcdbenalt__tpinsc__div">
   <div class="form-group">
-    <label id="s2416_evtcdbenalt__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s2416_evtcdbenalt__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ). Valores Válidos: 1."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2416_evtcdbenalt_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2416_evtcdbenalt_form.tpinsc.errors }}
@@ -161,7 +161,7 @@
 <!-- inicio__s2416_evtcdbenalt__nrinsc -->
 <div class="col-md-6" id="s2416_evtcdbenalt__nrinsc__div">
   <div class="form-group">
-    <label id="s2416_evtcdbenalt__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s2416_evtcdbenalt__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o CNPJ apenas com a Raiz/Base de oito posições, exceto se natureza jurídica do declarante = ([101-5], [104-0], [107-4], [110-4], [113-9], [116-3], [119-8]), situação em que o campo deve ser preenchido com o CNPJ completo com 14 posições. Validação: Deve ser um número de CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2416_evtcdbenalt_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2416_evtcdbenalt_form.nrinsc.errors }}
@@ -181,7 +181,7 @@
 <!-- inicio__s2416_evtcdbenalt__cpfbenef -->
 <div class="col-md-6" id="s2416_evtcdbenalt__cpfbenef__div">
   <div class="form-group">
-    <label id="s2416_evtcdbenalt__cpfbenef__label">CPF*</label>
+    <label id="s2416_evtcdbenalt__cpfbenef__label">CPF*<a data-toggle="tooltip" title="Informar o CPF do beneficiário. Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2416_evtcdbenalt_form.cpfbenef.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2416_evtcdbenalt_form.cpfbenef.errors }}
@@ -196,7 +196,7 @@
 <!-- inicio__s2416_evtcdbenalt__nrbeneficio -->
 <div class="col-md-6" id="s2416_evtcdbenalt__nrbeneficio__div">
   <div class="form-group">
-    <label id="s2416_evtcdbenalt__nrbeneficio__label">Preencher com o número do benefício*</label>
+    <label id="s2416_evtcdbenalt__nrbeneficio__label">Preencher com o número do benefício*<a data-toggle="tooltip" title="Número do benefício."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2416_evtcdbenalt_form.nrbeneficio.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2416_evtcdbenalt_form.nrbeneficio.errors }}
@@ -216,7 +216,7 @@
 <!-- inicio__s2416_evtcdbenalt__dtaltbeneficio -->
 <div class="col-md-6" id="s2416_evtcdbenalt__dtaltbeneficio__div">
   <div class="form-group">
-    <label id="s2416_evtcdbenalt__dtaltbeneficio__label">Data de alteração das informações relativas ao benefício*</label>
+    <label id="s2416_evtcdbenalt__dtaltbeneficio__label">Data de alteração das informações relativas ao benefício*<a data-toggle="tooltip" title="Data de alteração das informações relativas ao benefício. Validação: Deve ser uma data válida, posterior à data de início informada no evento S-2410 e igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2416_evtcdbenalt_form.dtaltbeneficio.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2416_evtcdbenalt_form.dtaltbeneficio.errors }}
@@ -237,7 +237,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2416_evtcdbenalt__tpbeneficio__div">
     <div class="form-group">
-      <label id="s2416_evtcdbenalt__tpbeneficio__label">Tipo de benefício*</label>
+      <label id="s2416_evtcdbenalt__tpbeneficio__label">Tipo de benefício*<a data-toggle="tooltip" title="Tipo de benefício, conforme Tabela 25. Validação: Deve ser um código existente na Tabela 25. Se {cadIni} informado no evento S-2410 for igual a [N], não é permitido utilizar código do grupo [09] dessa tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2416_evtcdbenalt_form.tpbeneficio.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2416_evtcdbenalt_form.tpbeneficio.errors }}
@@ -246,7 +246,7 @@
         <input type="text"
                id="txt_tpbeneficio"
                name="txt_tpbeneficio" class="form-control"
-               value="{% if s2416_evtcdbenalt.tpbeneficio %}{{ s2416_evtcdbenalt.tpbeneficio|get_opcoes_titulo:197 }}{% endif %}"
+               value="{% if s2416_evtcdbenalt.tpbeneficio %}{{ s2416_evtcdbenalt.tpbeneficio|get_opcoes_titulo:201 }}{% endif %}"
                {% if s2416_evtcdbenalt_form.tpbeneficio.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s2416_evtcdbenalt_form.tpbeneficio.field.widget.attrs.required %} required="required"{% endif %}
                {% if s2416_evtcdbenalt_form.tpbeneficio.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -260,7 +260,7 @@
   $(document).ready(function(e){
     $('#txt_tpbeneficio').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/197/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/201/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -291,7 +291,7 @@
   {% else %}
   <div class="col-md-6" id="s2416_evtcdbenalt__tpbeneficio__div">
     <div class="form-group">
-      <label id="s2416_evtcdbenalt__tpbeneficio__label">Tipo de benefício*</label>
+      <label id="s2416_evtcdbenalt__tpbeneficio__label">Tipo de benefício*<a data-toggle="tooltip" title="Tipo de benefício, conforme Tabela 25. Validação: Deve ser um código existente na Tabela 25. Se {cadIni} informado no evento S-2410 for igual a [N], não é permitido utilizar código do grupo [09] dessa tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_tpbeneficio" name="txt_tpbeneficio" class="form-control" value="{% if s2416_evtcdbenalt.tpbeneficio %}{{ s2416_evtcdbenalt.tpbeneficio }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -300,7 +300,7 @@
 <!-- inicio__s2416_evtcdbenalt__tpplanrp -->
 <div class="col-md-6" id="s2416_evtcdbenalt__tpplanrp__div">
   <div class="form-group">
-    <label id="s2416_evtcdbenalt__tpplanrp__label">Tipo de plano de segregação de massa*</label>
+    <label id="s2416_evtcdbenalt__tpplanrp__label">Tipo de plano de segregação de massa*<a data-toggle="tooltip" title="Tipo de plano de segregação da massa: 0 - Sem segregação da massa; 1 - Fundo em capitalização; 2 - Fundo em repartição; 3 - Mantido pelo Tesouro. Valores Válidos: 0, 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2416_evtcdbenalt_form.tpplanrp.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2416_evtcdbenalt_form.tpplanrp.errors }}
@@ -324,7 +324,7 @@
 <!-- inicio__s2416_evtcdbenalt__dsc -->
 <div class="col-md-6" id="s2416_evtcdbenalt__dsc__div">
   <div class="form-group">
-    <label id="s2416_evtcdbenalt__dsc__label">Descrição</label>
+    <label id="s2416_evtcdbenalt__dsc__label">Descrição<a data-toggle="tooltip" title="Descrição do instrumento ou situação que originou o pagamento do benefício. Validação: Preenchimento obrigatório se {tpBeneficio} pertencer ao grupo [10, 11] da Tabela 25."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2416_evtcdbenalt_form.dsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2416_evtcdbenalt_form.dsc.errors }}
@@ -339,7 +339,7 @@
 <!-- inicio__s2416_evtcdbenalt__inddecjud -->
 <div class="col-md-6" id="s2416_evtcdbenalt__inddecjud__div">
   <div class="form-group">
-    <label id="s2416_evtcdbenalt__inddecjud__label">Informar se o benefício foi concedido por determinação judicial*</label>
+    <label id="s2416_evtcdbenalt__inddecjud__label">Informar se o benefício foi concedido por determinação judicial*<a data-toggle="tooltip" title="Informar se o benefício foi concedido por determinação judicial: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2416_evtcdbenalt_form.inddecjud.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2416_evtcdbenalt_form.inddecjud.errors }}
@@ -363,7 +363,7 @@
 <!-- inicio__s2416_evtcdbenalt__indhomologtc -->
 <div class="col-md-6" id="s2416_evtcdbenalt__indhomologtc__div">
   <div class="form-group">
-    <label id="s2416_evtcdbenalt__indhomologtc__label">Indicativo de homologação do benefício pelo Tribunal de Contas*</label>
+    <label id="s2416_evtcdbenalt__indhomologtc__label">Indicativo de homologação do benefício pelo Tribunal de Contas*<a data-toggle="tooltip" title="Indicativo de homologação do benefício pelo Tribunal de Contas: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2416_evtcdbenalt_form.indhomologtc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2416_evtcdbenalt_form.indhomologtc.errors }}
@@ -387,7 +387,7 @@
 <!-- inicio__s2416_evtcdbenalt__indsuspensao -->
 <div class="col-md-6" id="s2416_evtcdbenalt__indsuspensao__div">
   <div class="form-group">
-    <label id="s2416_evtcdbenalt__indsuspensao__label">Indicativo de suspensão do benefício*</label>
+    <label id="s2416_evtcdbenalt__indsuspensao__label">Indicativo de suspensão do benefício*<a data-toggle="tooltip" title="Indicativo de suspensão do benefício: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2416_evtcdbenalt_form.indsuspensao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2416_evtcdbenalt_form.indsuspensao.errors }}

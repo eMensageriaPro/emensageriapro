@@ -18,7 +18,6 @@ from emensageriapro.r2040.views import r2040_infoproc_salvar as r2040_infoproc_s
 from emensageriapro.r2040.views import r2040_infoproc_api as r2040_infoproc_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

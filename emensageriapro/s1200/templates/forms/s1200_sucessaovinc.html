@@ -5,7 +5,7 @@
 <!-- inicio__s1200_sucessaovinc__s1200_infocomplem -->
 <div class="col-md-12" id="s1200_sucessaovinc__s1200_infocomplem__div">
   <div class="form-group">
-    <label id="s1200_sucessaovinc__s1200_infocomplem__label">Grupo de informações da sucessão de vínculo trabalhista/estatutário*</label>
+    <label id="s1200_sucessaovinc__s1200_infocomplem__label">Grupo de informações da sucessão de vínculo trabalhista/estatutário*<a data-toggle="tooltip" title="Grupo de informações da sucessão de vínculo trabalhista/estatutário."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1200_sucessaovinc_form.s1200_infocomplem.value %}
         <a href="{% url 's1200_infocomplem_salvar' pk=s1200_sucessaovinc_form.s1200_infocomplem.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s1200_sucessaovinc__tpinscant -->
 <div class="col-md-6" id="s1200_sucessaovinc__tpinscant__div">
   <div class="form-group">
-    <label id="s1200_sucessaovinc__tpinscant__label">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05*</label>
+    <label id="s1200_sucessaovinc__tpinscant__label">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF). Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1200_sucessaovinc_form.tpinscant.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1200_sucessaovinc_form.tpinscant.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1200_sucessaovinc__cnpjempregant -->
 <div class="col-md-6" id="s1200_sucessaovinc__cnpjempregant__div">
   <div class="form-group">
-    <label id="s1200_sucessaovinc__cnpjempregant__label">CNPJ Empregador Anterior*</label>
+    <label id="s1200_sucessaovinc__cnpjempregant__label">CNPJ Empregador Anterior*<a data-toggle="tooltip" title="Informar o número de inscrição do empregador anterior, de acordo com o tipo de inscrição indicado no campo {tpInscAnt}. Validação: Deve ser um número de inscrição válido diferente da inscrição do declarante, considerando as particularidades aplicadas à informação de CNPJ de órgão público em S-1000. Se {tpInscAnt} = [1], deve possuir 14 (catorze) algarismos e ser diferente do CNPJ base do empregador e dos estabelecimentos informados através do evento S-1005. Se {tpInscAnt} = [2], deve possuir 11 (onze) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1200_sucessaovinc_form.cnpjempregant.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_sucessaovinc_form.cnpjempregant.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s1200_sucessaovinc__matricant -->
 <div class="col-md-6" id="s1200_sucessaovinc__matricant__div">
   <div class="form-group">
-    <label id="s1200_sucessaovinc__matricant__label">Matricula anterior</label>
+    <label id="s1200_sucessaovinc__matricant__label">Matricula anterior<a data-toggle="tooltip" title="Matrícula do trabalhador no empregador anterior."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1200_sucessaovinc_form.matricant.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_sucessaovinc_form.matricant.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__s1200_sucessaovinc__dtadm -->
 <div class="col-md-6" id="s1200_sucessaovinc__dtadm__div">
   <div class="form-group">
-    <label id="s1200_sucessaovinc__dtadm__label">Data de admissão*</label>
+    <label id="s1200_sucessaovinc__dtadm__label">Data de admissão*<a data-toggle="tooltip" title="Preencher com a data de admissão do trabalhador. No caso de transferência do empregado, deve ser preenchida a data inicial do vínculo no primeiro empregador (data de início do vínculo)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1200_sucessaovinc_form.dtadm.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1200_sucessaovinc_form.dtadm.errors }}
@@ -101,7 +101,7 @@
 <!-- inicio__s1200_sucessaovinc__observacao -->
 <div class="col-md-6" id="s1200_sucessaovinc__observacao__div">
   <div class="form-group">
-    <label id="s1200_sucessaovinc__observacao__label">Observações</label>
+    <label id="s1200_sucessaovinc__observacao__label">Observações<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1200_sucessaovinc_form.observacao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_sucessaovinc_form.observacao.errors }}

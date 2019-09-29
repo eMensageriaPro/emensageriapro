@@ -62,7 +62,6 @@ from emensageriapro.r4020.views import r4020_infopgtoext_salvar as r4020_infopgt
 from emensageriapro.r4020.views import r4020_infopgtoext_api as r4020_infopgtoext_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

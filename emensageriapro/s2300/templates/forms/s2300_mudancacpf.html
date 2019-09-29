@@ -5,7 +5,7 @@
 <!-- inicio__s2300_mudancacpf__s2300_evttsvinicio -->
 <div class="col-md-12" id="s2300_mudancacpf__s2300_evttsvinicio__div">
   <div class="form-group">
-    <label id="s2300_mudancacpf__s2300_evttsvinicio__label">Informações de mudança de CPF do trabalhador.*</label>
+    <label id="s2300_mudancacpf__s2300_evttsvinicio__label">Informações de mudança de CPF do trabalhador.*<a data-toggle="tooltip" title="Informações de mudança de CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2300_mudancacpf_form.s2300_evttsvinicio.value %}
         <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_mudancacpf_form.s2300_evttsvinicio.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2300_mudancacpf__cpfant -->
 <div class="col-md-3" id="s2300_mudancacpf__cpfant__div">
   <div class="form-group">
-    <label id="s2300_mudancacpf__cpfant__label">Preencher com o número do CPF antigo do trabalhador.*</label>
+    <label id="s2300_mudancacpf__cpfant__label">Preencher com o número do CPF antigo do trabalhador.*<a data-toggle="tooltip" title="Preencher com o número do CPF antigo do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2300_mudancacpf_form.cpfant.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_mudancacpf_form.cpfant.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2300_mudancacpf__dtaltcpf -->
 <div class="col-md-3" id="s2300_mudancacpf__dtaltcpf__div">
   <div class="form-group">
-    <label id="s2300_mudancacpf__dtaltcpf__label">Data de alteração do CPF.*</label>
+    <label id="s2300_mudancacpf__dtaltcpf__label">Data de alteração do CPF.*<a data-toggle="tooltip" title="Data de alteração do CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2300_mudancacpf_form.dtaltcpf.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2300_mudancacpf_form.dtaltcpf.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__s2300_mudancacpf__observacao -->
 <div class="col-md-3" id="s2300_mudancacpf__observacao__div">
   <div class="form-group">
-    <label id="s2300_mudancacpf__observacao__label">Observações</label>
+    <label id="s2300_mudancacpf__observacao__label">Observações<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2300_mudancacpf_form.observacao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_mudancacpf_form.observacao.errors }}

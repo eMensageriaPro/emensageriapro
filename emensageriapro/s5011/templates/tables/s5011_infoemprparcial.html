@@ -39,7 +39,7 @@
             <td>{{ a.nrinsccontrat }}</td>
             {% endif %}
             {% if show_fields.show_tpinscprop or 0 %}
-            <td>{{ a.tpinscprop }}</td>
+            <td>{{ a.get_tpinscprop_display }}</td>
             {% endif %}
             {% if show_fields.show_nrinscprop or 0 %}
             <td>{{ a.nrinscprop }}</td>

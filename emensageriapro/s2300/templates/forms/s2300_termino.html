@@ -5,7 +5,7 @@
 <!-- inicio__s2300_termino__s2300_evttsvinicio -->
 <div class="col-md-12" id="s2300_termino__s2300_evttsvinicio__div">
   <div class="form-group">
-    <label id="s2300_termino__s2300_evttsvinicio__label">Informações de término do TSVE*</label>
+    <label id="s2300_termino__s2300_evttsvinicio__label">Informações de término do TSVE*<a data-toggle="tooltip" title="Informações de término do TSVE. Registro preenchido exclusivamente caso seja necessário enviar cadastramento inicial referente a trabalhador com data de término anterior ao início dos eventos não periódicos para o empregador no eSocial (ex: envio para pagamento de retiradas em meses posteriores à data de término e sob vigência dos eventos periódicos para o empregador no eSocial)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2300_termino_form.s2300_evttsvinicio.value %}
         <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_termino_form.s2300_evttsvinicio.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2300_termino__dtterm -->
 <div class="col-md-6" id="s2300_termino__dtterm__div">
   <div class="form-group">
-    <label id="s2300_termino__dtterm__label">Data de Término do contrato de trabalho*</label>
+    <label id="s2300_termino__dtterm__label">Data de Término do contrato de trabalho*<a data-toggle="tooltip" title="Preencher com a data do término. Validação: Devem ser observadas as seguintes regras: a) Deve ser igual ou posterior à data de início do TSVE; b) Deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2300_termino_form.dtterm.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2300_termino_form.dtterm.errors }}

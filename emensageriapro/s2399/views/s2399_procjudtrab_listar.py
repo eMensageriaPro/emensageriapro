@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.s2399.forms import *
 from emensageriapro.s2399.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.s2399.models import s2399verbasResc
 
 
 @login_required
@@ -111,7 +112,7 @@ def listar(request, output=None):
             s2399_procjudtrab_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        s2399_verbasresc_lista = s2399verbasResc.objects.all()
         #s2399_procjudtrab_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -126,7 +127,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            's2399_verbasresc_lista': s2399_verbasresc_lista,
         }
 
         if output == 'pdf':

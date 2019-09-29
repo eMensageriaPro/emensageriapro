@@ -5,7 +5,7 @@
 <!-- inicio__r4020_ir__r4020_infopgto -->
 <div class="col-md-12" id="r4020_ir__r4020_infopgto__div">
   <div class="form-group">
-    <label id="r4020_ir__r4020_infopgto__label">Informações relativas ao Imposto de Renda*</label>
+    <label id="r4020_ir__r4020_infopgto__label">Informações relativas ao Imposto de Renda*<a data-toggle="tooltip" title="Informações relativas ao Imposto de Renda."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r4020_ir_form.r4020_infopgto.value %}
         <a href="{% url 'r4020_infopgto_salvar' pk=r4020_ir_form.r4020_infopgto.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__r4020_ir__vlrbaseir -->
 <div class="col-md-6" id="r4020_ir__vlrbaseir__div">
   <div class="form-group">
-    <label id="r4020_ir__vlrbaseir__label">Valor da base do IR, conforme previsto na legislação*</label>
+    <label id="r4020_ir__vlrbaseir__label">Valor da base do IR, conforme previsto na legislação*<a data-toggle="tooltip" title="Valor da base do IR, conforme previsto na legislação."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4020_ir_form.vlrbaseir.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_ir_form.vlrbaseir.errors }}
@@ -50,7 +50,7 @@
 <!-- inicio__r4020_ir__vlrir -->
 <div class="col-md-6" id="r4020_ir__vlrir__div">
   <div class="form-group">
-    <label id="r4020_ir__vlrir__label">Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação*</label>
+    <label id="r4020_ir__vlrir__label">Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação*<a data-toggle="tooltip" title="Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4020_ir_form.vlrir.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_ir_form.vlrir.errors }}
@@ -68,7 +68,7 @@
 <!-- inicio__r4020_ir__vlrbasenir -->
 <div class="col-md-6" id="r4020_ir__vlrbasenir__div">
   <div class="form-group">
-    <label id="r4020_ir__vlrbasenir__label">Valor da base do IR com exigibilidade suspensa</label>
+    <label id="r4020_ir__vlrbasenir__label">Valor da base do IR com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da base do IR com exigibilidade suspensa. Validação: Não pode ser maior que {vlrBaseIR}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4020_ir_form.vlrbasenir.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_ir_form.vlrbasenir.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__r4020_ir__vlrnir -->
 <div class="col-md-6" id="r4020_ir__vlrnir__div">
   <div class="form-group">
-    <label id="r4020_ir__vlrnir__label">Valor da retenção que deixou de ser efetuada, relativo ao Imposto de Renda Retido na Fonte</label>
+    <label id="r4020_ir__vlrnir__label">Valor da retenção que deixou de ser efetuada, relativo ao Imposto de Renda Retido na Fonte<a data-toggle="tooltip" title="Valor da retenção que deixou de ser efetuada, relativo ao Imposto de Renda Retido na Fonte. Validação: O somatório de {vlrNIR} + {vlrDeposito} não pode ser maior que {vlrIR}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4020_ir_form.vlrnir.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_ir_form.vlrnir.errors }}
@@ -104,7 +104,7 @@
 <!-- inicio__r4020_ir__vlrdepir -->
 <div class="col-md-6" id="r4020_ir__vlrdepir__div">
   <div class="form-group">
-    <label id="r4020_ir__vlrdepir__label">Valor do depósito judicial de IR</label>
+    <label id="r4020_ir__vlrdepir__label">Valor do depósito judicial de IR<a data-toggle="tooltip" title="Valor do depósito judicial de IR. Validação: Não pode ser maior que {vlrIR]."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4020_ir_form.vlrdepir.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_ir_form.vlrdepir.errors }}

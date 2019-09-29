@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1050_inclusao_horariointervalo__s1050_inclusao__div">
   <div class="form-group">
-    <label id="s1050_inclusao_horariointervalo__s1050_inclusao__label">Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.*</label>
+    <label id="s1050_inclusao_horariointervalo__s1050_inclusao__label">Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.*<a data-toggle="tooltip" title="Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1050_inclusao_horariointervalo_form.s1050_inclusao.value %}
         <a id="s1050_inclusao_horariointervalo__s1050_inclusao__div_acessar" href="{% url 's1050_inclusao_salvar' pk=s1050_inclusao_horariointervalo_form.s1050_inclusao.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1050_inclusao_horariointervalo__tpinterv -->
 <div class="col-md-6" id="s1050_inclusao_horariointervalo__tpinterv__div">
   <div class="form-group">
-    <label id="s1050_inclusao_horariointervalo__tpinterv__label">Tipo de intervalo da jornada*</label>
+    <label id="s1050_inclusao_horariointervalo__tpinterv__label">Tipo de intervalo da jornada*<a data-toggle="tooltip" title="Tipo de Intervalo da Jornada: 1 - Intervalo em Horário Fixo; 2 - Intervalo em Horário Variável. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1050_inclusao_horariointervalo_form.tpinterv.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1050_inclusao_horariointervalo_form.tpinterv.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s1050_inclusao_horariointervalo__durinterv -->
 <div class="col-md-6" id="s1050_inclusao_horariointervalo__durinterv__div">
   <div class="form-group">
-    <label id="s1050_inclusao_horariointervalo__durinterv__label">Duração do intervalo (min)*</label>
+    <label id="s1050_inclusao_horariointervalo__durinterv__label">Duração do intervalo (min)*<a data-toggle="tooltip" title="Preencher com o tempo de duração do intervalo, em minutos."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1050_inclusao_horariointervalo_form.durinterv.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1050_inclusao_horariointervalo_form.durinterv.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s1050_inclusao_horariointervalo__iniinterv -->
 <div class="col-md-6" id="s1050_inclusao_horariointervalo__iniinterv__div">
   <div class="form-group">
-    <label id="s1050_inclusao_horariointervalo__iniinterv__label">Hora de início</label>
+    <label id="s1050_inclusao_horariointervalo__iniinterv__label">Hora de início<a data-toggle="tooltip" title="informar a hora de início do intervalo, no formato HHMM. Validação: Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59. Somente deve ser informado se {tpInterv}=1."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1050_inclusao_horariointervalo_form.iniinterv.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1050_inclusao_horariointervalo_form.iniinterv.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__s1050_inclusao_horariointervalo__terminterv -->
 <div class="col-md-6" id="s1050_inclusao_horariointervalo__terminterv__div">
   <div class="form-group">
-    <label id="s1050_inclusao_horariointervalo__terminterv__label">Hora de término</label>
+    <label id="s1050_inclusao_horariointervalo__terminterv__label">Hora de término<a data-toggle="tooltip" title="Informar a hora de termino do intervalo, no formato HHMM. Validação: Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59. Somente deve ser informado se {tpInterv}=1."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1050_inclusao_horariointervalo_form.terminterv.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1050_inclusao_horariointervalo_form.terminterv.errors }}

@@ -5,7 +5,7 @@
 <!-- inicio__s2206_infoestatutario__s2206_evtaltcontratual -->
 <div class="col-md-12" id="s2206_infoestatutario__s2206_evtaltcontratual__div">
   <div class="form-group">
-    <label id="s2206_infoestatutario__s2206_evtaltcontratual__label">Informações de Trabalhador Estatutário*</label>
+    <label id="s2206_infoestatutario__s2206_evtaltcontratual__label">Informações de Trabalhador Estatutário*<a data-toggle="tooltip" title="Informações de Trabalhador Estatutário."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2206_infoestatutario_form.s2206_evtaltcontratual.value %}
         <a href="{% url 's2206_evtaltcontratual_salvar' pk=s2206_infoestatutario_form.s2206_evtaltcontratual.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2206_infoestatutario__tpplanrp -->
 <div class="col-md-6" id="s2206_infoestatutario__tpplanrp__div">
   <div class="form-group">
-    <label id="s2206_infoestatutario__tpplanrp__label">Tipo de plano de segregação de massa*</label>
+    <label id="s2206_infoestatutario__tpplanrp__label">Tipo de plano de segregação de massa*<a data-toggle="tooltip" title="Tipo de plano de segregação da massa: 1 - Plano previdenciário ou único; 2 - Plano financeiro. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2206_infoestatutario_form.tpplanrp.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2206_infoestatutario_form.tpplanrp.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2206_infoestatutario__indtetorgps -->
 <div class="col-md-6" id="s2206_infoestatutario__indtetorgps__div">
   <div class="form-group">
-    <label id="s2206_infoestatutario__indtetorgps__label">Informar se o servidor está sujeito ao Teto do Regime Geral pela instituição do regime de previdência complementar</label>
+    <label id="s2206_infoestatutario__indtetorgps__label">Informar se o servidor está sujeito ao Teto do Regime Geral pela instituição do regime de previdência complementar<a data-toggle="tooltip" title="Informar se o servidor está sujeito ao Teto do Regime Geral pela instituição do regime de previdência complementar: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2206_infoestatutario_form.indtetorgps.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2206_infoestatutario_form.indtetorgps.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s2206_infoestatutario__indabonoperm -->
 <div class="col-md-6" id="s2206_infoestatutario__indabonoperm__div">
   <div class="form-group">
-    <label id="s2206_infoestatutario__indabonoperm__label">Indicar se o servidor recebe abono permanência</label>
+    <label id="s2206_infoestatutario__indabonoperm__label">Indicar se o servidor recebe abono permanência<a data-toggle="tooltip" title="Indicar se o servidor recebe abono permanência: S - Sim; N - Não. Validação: Preenchimento obrigatório se {tpRegPrev} = [2]. Não preencher nos demais casos. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2206_infoestatutario_form.indabonoperm.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2206_infoestatutario_form.indabonoperm.errors }}
@@ -104,7 +104,7 @@
 <!-- inicio__s2206_infoestatutario__indparcremun -->
 <div class="col-md-6" id="s2206_infoestatutario__indparcremun__div">
   <div class="form-group">
-    <label id="s2206_infoestatutario__indparcremun__label">Informar se o servidor fez a opção pela inclusão na base de cálculo da contribuição de parcelas remuneratórias percebidas em decorrência de local de trabalho e do exercício de cargo em comissão ou de função comissionada ou gratificada, conforme art. 4º, § 2º, da Lei nº 10.887/2004</label>
+    <label id="s2206_infoestatutario__indparcremun__label">Informar se o servidor fez a opção pela inclusão na base de cálculo da contribuição de parcelas remuneratórias percebidas em decorrência de local de trabalho e do exercício de cargo em comissão ou de função comissionada ou gratificada, conforme art. 4º, § 2º, da Lei nº 10.887/2004<a data-toggle="tooltip" title="Informar se o servidor fez a opção pela inclusão na base de cálculo da contribuição de parcelas remuneratórias percebidas em decorrência de local de trabalho e do exercício de cargo em comissão ou de função comissionada ou gratificada, conforme art. 4º, § 2º, da Lei nº 10.887/2004: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2206_infoestatutario_form.indparcremun.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2206_infoestatutario_form.indparcremun.errors }}

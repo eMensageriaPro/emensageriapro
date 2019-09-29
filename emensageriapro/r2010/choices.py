@@ -40,7 +40,7 @@ CHOICES_R2010_TPPROCRETADIC = [
 
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-    
+
 ]
 
 
@@ -50,7 +50,7 @@ CHOICES_R2010_TPPROCRETPRINC = [
 
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-    
+
 ]
 
 

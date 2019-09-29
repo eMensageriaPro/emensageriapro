@@ -74,7 +74,7 @@
 
         <tr {% if s2205_evtaltcadastral.procemi|validacoes_esocial_efdreinf:"s2205_evtaltcadastral.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.procemi or s2205_evtaltcadastral.procemi == 0 %}{{ s2205_evtaltcadastral.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -365,7 +365,7 @@
 
         <tr {% if s2205_evtaltcadastral.codmunic|validacoes_esocial_efdreinf:"s2205_evtaltcadastral.codmunic" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codMunic</td>
-            <td width="500px">Preencher com o código do município, conforme tabela do IBGE. Validação: Se informado, deve ser um código existente na tabela do IBGE. O preenchimento é obrigatório se o país do nascimento for igual a Brasil.</td>
+            <td width="500px">Preencher com o código do município, conforme tabela do IBGE. Validação: Se informado, deve ser um código existente na tabela do IBGE. O preenchimento deste campo é facultativo.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.codmunic or s2205_evtaltcadastral.codmunic == 0 %}{{ s2205_evtaltcadastral.codmunic }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -384,7 +384,7 @@
 
         <tr {% if s2205_evtaltcadastral.uf|validacoes_esocial_efdreinf:"s2205_evtaltcadastral.uf" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">uf</td>
-            <td width="500px">Preencher com a sigla da Unidade da Federação. Validação: Deve ser uma UF válida.</td>
+            <td width="500px">Preencher com a sigla da Unidade da Federação. Validação: O preenchimento deste campo é facultativo. Se informado, deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.uf or s2205_evtaltcadastral.uf == 0 %}{{ s2205_evtaltcadastral.uf }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -950,7 +950,7 @@
     {% ifequal s2205_brasil.s2205_evtaltcadastral.id s2205_evtaltcadastral.id %}
         <tr {% if s2205_brasil.tplograd|validacoes_esocial_efdreinf:"s2205_brasil.tplograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpLograd</td>
-            <td width="500px">Tipo de Logradouro, conforme tabela 20. Validação: Deve ser um código válido, existente na tabela 20.</td>
+            <td width="500px">Tipo de Logradouro, conforme tabela 20. Validação: Se informado, deve ser um código válido, existente na tabela 20.</td>
             <td width="200px"><b>{% if s2205_brasil.tplograd or s2205_brasil.tplograd == 0 %}{{ s2205_brasil.tplograd }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -988,7 +988,7 @@
 
         <tr {% if s2205_brasil.nrlograd|validacoes_esocial_efdreinf:"s2205_brasil.nrlograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrLograd</td>
-            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com 'S/N'.</td>
+            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com "S/N".</td>
             <td width="200px"><b>{% if s2205_brasil.nrlograd or s2205_brasil.nrlograd == 0 %}{{ s2205_brasil.nrlograd }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1045,7 +1045,7 @@
 
         <tr {% if s2205_brasil.cep|validacoes_esocial_efdreinf:"s2205_brasil.cep" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cep</td>
-            <td width="500px">Código de Endereçamento Postal - CEP. Validação: Deve ser preenchido apenas com números. Deve ser um CEP válido.</td>
+            <td width="500px">Código de Endereçamento Postal - CEP. Validação: Deve ser preenchido apenas com números, com 8 (oito) posições.</td>
             <td width="200px"><b>{% if s2205_brasil.cep or s2205_brasil.cep == 0 %}{{ s2205_brasil.cep }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1146,7 +1146,7 @@
 
         <tr {% if s2205_exterior.nrlograd|validacoes_esocial_efdreinf:"s2205_exterior.nrlograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrLograd</td>
-            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com 'S/N'.</td>
+            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com "S/N".</td>
             <td width="200px"><b>{% if s2205_exterior.nrlograd or s2205_exterior.nrlograd == 0 %}{{ s2205_exterior.nrlograd }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1443,7 +1443,7 @@
 
         <tr {% if s2205_infodeficiencia.infocota|validacoes_esocial_efdreinf:"s2205_infodeficiencia.infocota" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">infoCota</td>
-            <td width="500px">Informar se o trabalhador preenche cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados. Essa informação deve ser prestada apenas para trabalhadores da categoria 'Empregados'. Não informar nos demais casos. Valores Válidos: S, N.</td>
+            <td width="500px">Informar se o trabalhador preenche cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados. Essa informação deve ser prestada apenas para trabalhadores da categoria "Empregados". Não informar nos demais casos. Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s2205_infodeficiencia.infocota or s2205_infodeficiencia.infocota == 0 %}{{ s2205_infodeficiencia.infocota }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1727,7 +1727,7 @@
 
         <tr {% if s2205_contato.emailprinc|validacoes_esocial_efdreinf:"s2205_contato.emailprinc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">emailPrinc</td>
-            <td width="500px">Endereço eletrônico. Validação: O e-mail deve ser possuir o caractere '@' e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere '.' depois do @ e não pode estar no início ou no final do e-mail.</td>
+            <td width="500px">Endereço eletrônico. Validação: O e-mail deve ser possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no início ou no final do e-mail.</td>
             <td width="200px"><b>{% if s2205_contato.emailprinc or s2205_contato.emailprinc == 0 %}{{ s2205_contato.emailprinc }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1746,7 +1746,7 @@
 
         <tr {% if s2205_contato.emailalternat|validacoes_esocial_efdreinf:"s2205_contato.emailalternat" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">emailAlternat</td>
-            <td width="500px">Endereço eletrônico alternativo. Validação: O e-mail deve ser possuir o caractere '@' e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere '.' depois do @ e não pode estar no início ou no final do e-mail.</td>
+            <td width="500px">Endereço eletrônico alternativo. Validação: O e-mail deve ser possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no início ou no final do e-mail.</td>
             <td width="200px"><b>{% if s2205_contato.emailalternat or s2205_contato.emailalternat == 0 %}{{ s2205_contato.emailalternat }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

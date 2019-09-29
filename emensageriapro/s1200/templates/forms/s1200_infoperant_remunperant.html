@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1200_infoperant_remunperant__s1200_infoperant_ideestablot__div">
   <div class="form-group">
-    <label id="s1200_infoperant_remunperant__s1200_infoperant_ideestablot__label">Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração*</label>
+    <label id="s1200_infoperant_remunperant__s1200_infoperant_ideestablot__label">Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração*<a data-toggle="tooltip" title="Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1200_infoperant_remunperant_form.s1200_infoperant_ideestablot.value %}
         <a id="s1200_infoperant_remunperant__s1200_infoperant_ideestablot__div_acessar" href="{% url 's1200_infoperant_ideestablot_salvar' pk=s1200_infoperant_remunperant_form.s1200_infoperant_ideestablot.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1200_infoperant_remunperant__matricula -->
 <div class="col-md-4" id="s1200_infoperant_remunperant__matricula__div">
   <div class="form-group">
-    <label id="s1200_infoperant_remunperant__matricula__label">Matricula</label>
+    <label id="s1200_infoperant_remunperant__matricula__label">Matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de agente público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: Informação obrigatória para trabalhadores das categorias "empregados" e "agentes públicos", desde que {remunSuc} = [N]. Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista. Não informar se {remunSuc} = [S]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1200_infoperant_remunperant_form.matricula.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_infoperant_remunperant_form.matricula.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1200_infoperant_remunperant__indsimples -->
 <div class="col-md-4" id="s1200_infoperant_remunperant__indsimples__div">
   <div class="form-group">
-    <label id="s1200_infoperant_remunperant__indsimples__label">Contribuição Substituída</label>
+    <label id="s1200_infoperant_remunperant__indsimples__label">Contribuição Substituída<a data-toggle="tooltip" title="Indicador de Contribuição Substituída: 1 - Contribuição Substituída Integralmente; 2 - Contribuição não substituída; 3 - Contribuição não substituída concomitante com contribuição substituída. Validação: O preenchimento do campo é obrigatório apenas no caso das empresas enquadradas no regime de tributação Simples Nacional, com tributação previdenciária substituída e não substituída, ({classTrib} do evento S-1000 -Informações do Empregador = [03]). Para os demais empregadores, não deve ser informado. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1200_infoperant_remunperant_form.indsimples.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1200_infoperant_remunperant_form.indsimples.errors }}

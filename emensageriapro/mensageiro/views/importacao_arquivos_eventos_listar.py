@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.mensageiro.forms import *
 from emensageriapro.mensageiro.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.mensageiro.models import ImportacaoArquivos
 
 
 @login_required
@@ -119,7 +120,7 @@ def listar(request, output=None):
             importacao_arquivos_eventos_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        importacao_arquivos_lista = ImportacaoArquivos.objects.all()
         #importacao_arquivos_eventos_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -134,7 +135,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            'importacao_arquivos_lista': importacao_arquivos_lista,
         }
 
         if output == 'pdf':

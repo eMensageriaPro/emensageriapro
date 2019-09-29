@@ -14,7 +14,6 @@ from emensageriapro.s2231.views import s2231_fimcessao_salvar as s2231_fimcessao
 from emensageriapro.s2231.views import s2231_fimcessao_api as s2231_fimcessao_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

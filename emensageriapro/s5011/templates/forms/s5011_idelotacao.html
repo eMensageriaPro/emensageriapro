@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s5011_idelotacao__s5011_ideestab__div">
   <div class="form-group">
-    <label id="s5011_idelotacao__s5011_ideestab__label">Informações de identificação da lotação e validade das informações que estão sendo incluídas*</label>
+    <label id="s5011_idelotacao__s5011_ideestab__label">Informações de identificação da lotação e validade das informações que estão sendo incluídas*<a data-toggle="tooltip" title="Identificação da lotação tributária."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s5011_idelotacao_form.s5011_ideestab.value %}
         <a id="s5011_idelotacao__s5011_ideestab__div_acessar" href="{% url 's5011_ideestab_salvar' pk=s5011_idelotacao_form.s5011_ideestab.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s5011_idelotacao__codlotacao -->
 <div class="col-md-6" id="s5011_idelotacao__codlotacao__div">
   <div class="form-group">
-    <label id="s5011_idelotacao__codlotacao__label">Código da Lotação*</label>
+    <label id="s5011_idelotacao__codlotacao__label">Código da Lotação*<a data-toggle="tooltip" title="Informar o código atribuído pela empresa para a lotação tributária. Evento de origem (S-5001). Validação: Deve ser um código existente na tabela de LOTACOES."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s5011_idelotacao_form.codlotacao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5011_idelotacao_form.codlotacao.errors }}
@@ -57,7 +57,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s5011_idelotacao__fpas__div">
     <div class="form-group">
-      <label id="s5011_idelotacao__fpas__label">FPAS*</label>
+      <label id="s5011_idelotacao__fpas__label">FPAS*<a data-toggle="tooltip" title="Preencher com o código relativo ao FPAS. Validação: Deve ser um código FPAS válido, conforme tabela 4, conforme informado pelo contribuinte em S-1020."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s5011_idelotacao_form.fpas.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s5011_idelotacao_form.fpas.errors }}
@@ -66,7 +66,7 @@
         <input type="text"
                id="txt_fpas"
                name="txt_fpas" class="form-control"
-               value="{% if s5011_idelotacao.fpas %}{{ s5011_idelotacao.fpas|get_opcoes_titulo:123 }}{% endif %}"
+               value="{% if s5011_idelotacao.fpas %}{{ s5011_idelotacao.fpas|get_opcoes_titulo:125 }}{% endif %}"
                {% if s5011_idelotacao_form.fpas.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s5011_idelotacao_form.fpas.field.widget.attrs.required %} required="required"{% endif %}
                {% if s5011_idelotacao_form.fpas.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -80,7 +80,7 @@
   $(document).ready(function(e){
     $('#txt_fpas').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/123/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/125/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -111,7 +111,7 @@
   {% else %}
   <div class="col-md-6" id="s5011_idelotacao__fpas__div">
     <div class="form-group">
-      <label id="s5011_idelotacao__fpas__label">FPAS*</label>
+      <label id="s5011_idelotacao__fpas__label">FPAS*<a data-toggle="tooltip" title="Preencher com o código relativo ao FPAS. Validação: Deve ser um código FPAS válido, conforme tabela 4, conforme informado pelo contribuinte em S-1020."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_fpas" name="txt_fpas" class="form-control" value="{% if s5011_idelotacao.fpas %}{{ s5011_idelotacao.fpas }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -121,7 +121,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s5011_idelotacao__codtercs__div">
     <div class="form-group">
-      <label id="s5011_idelotacao__codtercs__label">Código de Terceiros*</label>
+      <label id="s5011_idelotacao__codtercs__label">Código de Terceiros*<a data-toggle="tooltip" title="Preencher com o código de terceiros, conforme tabela 4. Validação: Conforme informado em S-1020."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s5011_idelotacao_form.codtercs.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s5011_idelotacao_form.codtercs.errors }}
@@ -130,7 +130,7 @@
         <input type="text"
                id="txt_codtercs"
                name="txt_codtercs" class="form-control"
-               value="{% if s5011_idelotacao.codtercs %}{{ s5011_idelotacao.codtercs|get_opcoes_titulo:124 }}{% endif %}"
+               value="{% if s5011_idelotacao.codtercs %}{{ s5011_idelotacao.codtercs|get_opcoes_titulo:126 }}{% endif %}"
                {% if s5011_idelotacao_form.codtercs.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s5011_idelotacao_form.codtercs.field.widget.attrs.required %} required="required"{% endif %}
                {% if s5011_idelotacao_form.codtercs.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -144,7 +144,7 @@
   $(document).ready(function(e){
     $('#txt_codtercs').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/124/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/126/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -175,7 +175,7 @@
   {% else %}
   <div class="col-md-6" id="s5011_idelotacao__codtercs__div">
     <div class="form-group">
-      <label id="s5011_idelotacao__codtercs__label">Código de Terceiros*</label>
+      <label id="s5011_idelotacao__codtercs__label">Código de Terceiros*<a data-toggle="tooltip" title="Preencher com o código de terceiros, conforme tabela 4. Validação: Conforme informado em S-1020."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codtercs" name="txt_codtercs" class="form-control" value="{% if s5011_idelotacao.codtercs %}{{ s5011_idelotacao.codtercs }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -185,7 +185,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s5011_idelotacao__codtercssusp__div">
     <div class="form-group">
-      <label id="s5011_idelotacao__codtercssusp__label">Código de Terceiros (Suspensão)</label>
+      <label id="s5011_idelotacao__codtercssusp__label">Código de Terceiros (Suspensão)<a data-toggle="tooltip" title="Informar o código combinado dos Terceiros para os quais o recolhimento está suspenso em virtude de processos Judiciais. Exemplo: Se o contribuinte possui decisões de processos para suspensão de recolhimentos ao Sesi (0008) e ao Sebrae (0064), deve informar o código combinado das duas entidades, ou seja, 0072. Validação: Deve ser um código consistente com a Tabela 4. Conforme informado em S-1020."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s5011_idelotacao_form.codtercssusp.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s5011_idelotacao_form.codtercssusp.errors }}
@@ -194,7 +194,7 @@
         <input type="text"
                id="txt_codtercssusp"
                name="txt_codtercssusp" class="form-control"
-               value="{% if s5011_idelotacao.codtercssusp %}{{ s5011_idelotacao.codtercssusp|get_opcoes_titulo:124 }}{% endif %}"
+               value="{% if s5011_idelotacao.codtercssusp %}{{ s5011_idelotacao.codtercssusp|get_opcoes_titulo:126 }}{% endif %}"
                {% if s5011_idelotacao_form.codtercssusp.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if s5011_idelotacao_form.codtercssusp.field.widget.attrs.required %} required="required"{% endif %}
                {% if s5011_idelotacao_form.codtercssusp.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -208,7 +208,7 @@
   $(document).ready(function(e){
     $('#txt_codtercssusp').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/124/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/126/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -239,7 +239,7 @@
   {% else %}
   <div class="col-md-6" id="s5011_idelotacao__codtercssusp__div">
     <div class="form-group">
-      <label id="s5011_idelotacao__codtercssusp__label">Código de Terceiros (Suspensão)</label>
+      <label id="s5011_idelotacao__codtercssusp__label">Código de Terceiros (Suspensão)<a data-toggle="tooltip" title="Informar o código combinado dos Terceiros para os quais o recolhimento está suspenso em virtude de processos Judiciais. Exemplo: Se o contribuinte possui decisões de processos para suspensão de recolhimentos ao Sesi (0008) e ao Sebrae (0064), deve informar o código combinado das duas entidades, ou seja, 0072. Validação: Deve ser um código consistente com a Tabela 4. Conforme informado em S-1020."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codtercssusp" name="txt_codtercssusp" class="form-control" value="{% if s5011_idelotacao.codtercssusp %}{{ s5011_idelotacao.codtercssusp }}{% endif %}" disabled="disabled">
     </div>
   </div>

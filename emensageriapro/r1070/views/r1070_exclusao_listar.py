@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.r1070.forms import *
 from emensageriapro.r1070.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.efdreinf.models import r1070evtTabProcesso
 
 
 @login_required
@@ -117,7 +118,7 @@ def listar(request, output=None):
             r1070_exclusao_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        r1070_evttabprocesso_lista = r1070evtTabProcesso.objects.all()
         #r1070_exclusao_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -132,7 +133,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            'r1070_evttabprocesso_lista': r1070_evttabprocesso_lista,
         }
 
         if output == 'pdf':

@@ -170,10 +170,10 @@ class s2230infoAtestado(SoftDeletionModel):
     def evento(self):
         return self.s2230_iniafastamento.evento()
     codcid = models.CharField(max_length=4, blank=True, null=True, )
-    qtddiasafast = models.IntegerField(null=True, )
+    qtddiasafast = models.IntegerField(blank=True, null=True, )
 
     def __unicode__(self):
-        return unicode(self.s2230_iniafastamento) + ' - ' + unicode(self.qtddiasafast)
+        return unicode(self.s2230_iniafastamento)
 
     class Meta:
 
@@ -193,8 +193,7 @@ class s2230infoAtestado(SoftDeletionModel):
             ("can_print_data_s2230infoAtestado", u"Pode imprimir o conteúdo do modelo S2230INFOATESTADO"), )
 
         ordering = [
-            's2230_iniafastamento',
-            'qtddiasafast',]
+            's2230_iniafastamento',]
 
 
 

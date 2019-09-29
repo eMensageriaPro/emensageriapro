@@ -18,7 +18,6 @@ from emensageriapro.s1280.views import s1280_infoativconcom_salvar as s1280_info
 from emensageriapro.s1280.views import s1280_infoativconcom_api as s1280_infoativconcom_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

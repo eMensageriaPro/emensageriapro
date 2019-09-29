@@ -74,7 +74,7 @@
 
         <tr {% if s2399_evttsvtermino.procemi|validacoes_esocial_efdreinf:"s2399_evttsvtermino.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Simplificado Pessoa Jurídica; 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2399_evttsvtermino.procemi or s2399_evttsvtermino.procemi == 0 %}{{ s2399_evttsvtermino.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -241,7 +241,7 @@
 
         <tr {% if s2399_evttsvtermino.mtvdesligtsv|validacoes_esocial_efdreinf:"s2399_evttsvtermino.mtvdesligtsv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">mtvDesligTSV</td>
-            <td width="500px">Motivo do término, conforme opções abaixo: 01 - Exoneração do Diretor Não Empregado sem justa causa, por deliberação da assembleia, dos sócios cotistas ou da autoridade competente; 02 - Término de Mandato do Diretor Não Empregado que não tenha sido reconduzido ao cargo; 03 - Exoneração a pedido de Diretor Não Empregado 04 - Exoneração do Diretor Não Empregado por culpa recíproca ou força maior 05 - Morte do Diretor Não Empregado 06 - Exoneração do Diretor Não Empregado por falência, encerramento ou supressão de parte da empresa; 07 - Mudança de CPF; 99 - Outros. Validação: Informação obrigatória se {codCateg} = [721] ou se o grupo {mudancaCPF} estiver preenchido. Não preencher nas demais situações. Valores Válidos: 01, 02, 03, 04, 05, 06, 07, 99.</td>
+            <td width="500px">Motivo do Término, conforme opções abaixo: 01 - Exoneração do Diretor Não Empregado sem justa causa, por deliberação da assembleia, dos sócios cotistas ou da autoridade competente; 02 - Término de Mandato do Diretor Não Empregado que não tenha sido reconduzido ao cargo; 03 - Exoneração a pedido de Diretor Não Empregado 04 - Exoneração do Diretor Não Empregado por culpa recíproca ou força maior 05 - Morte do Diretor Não Empregado 06 - Exoneração do Diretor Não Empregado por falência, encerramento ou supressão de parte da empresa; 07 - Mudança de CPF; 99 - Outros. Validação: Informação obrigatória se {codCateg} = [721] ou se o grupo {mudancaCPF} estiver preenchido. Não preencher nas demais situações. Valores Válidos: 01, 02, 03, 04, 05, 06, 07, 99.</td>
             <td width="200px"><b>{% if s2399_evttsvtermino.mtvdesligtsv or s2399_evttsvtermino.mtvdesligtsv == 0 %}{{ s2399_evttsvtermino.mtvdesligtsv }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -260,7 +260,7 @@
 
         <tr {% if s2399_evttsvtermino.pensalim|validacoes_esocial_efdreinf:"s2399_evttsvtermino.pensalim" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">pensAlim</td>
-            <td width="500px">Indicativo de pensão alimentícia para fins de retenção de FGTS: 0 - Não existe pensão alimentícia; 1 - Percentual de pensão alimentícia; 2 - Valor de pensão alimentícia; 3 - Percentual e valor de pensão alimentícia. Validação: Informação obrigatória se {codCateg} = [201, 202, 721]. Não preencher nas demais situações. Valores Válidos: 0, 1, 2, 3.</td>
+            <td width="500px">Indicativo de pensão alimentícia para fins de retenção de FGTS: 0 - Não existe pensão alimentícia; 1 - Percentual de pensão alimentícia; 2 - Valor de pensão alimentícia; 3 - Percentual e valor de pensão alimentícia. Validação: Informação obrigatória se {codCateg} = [201, 202, 721] e se {dtTerm} for posterior a 21/04/2019. Informação opcional se {codCateg} = [201, 202, 721] e se {dtTerm} for igual ou anterior a 21/04/2019. Não preencher nas demais situações. Valores Válidos: 0, 1, 2, 3.</td>
             <td width="200px"><b>{% if s2399_evttsvtermino.pensalim or s2399_evttsvtermino.pensalim == 0 %}{{ s2399_evttsvtermino.pensalim }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -348,13 +348,13 @@
     {% ifequal s2399_verbasresc.s2399_evttsvtermino.id s2399_evttsvtermino.id %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dmDev</td>
-            <td bgcolor="lightgray" colspan="3">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF. (As retenções de pensão alimentícia e IRRF devem ser realizadas no ato do pagamento e, portanto, são informadas no evento S-1210). Para as rubricas cujo {codIncCP} = [31, 32, 34, 35], o somatório do valor das rubricas cujo ({tpRubr} = [2,4]) deverá ser maior ou igual ao somatório do valor das rubricas cujo ({tpRubr} = [1,3]), considerando cada um dos códigos {codIncCP} individualmente. O somatório dos Vencimentos deve ser maior ou igual ao somatório dos Descontos. As informações dos campos {ideEstabLot/nrInsc}, {detVerbas/codRubr}, {ideEstabLot/codLotacao} vinculadas a este registro, devem constar nas respectivas tabelas S-1005, S-1010 e S-1020, no mês da data do desligamento informada no campo {dtTerm}.</td>
+            <td bgcolor="lightgray" colspan="3">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF. (As retenções de pensão alimentícia e IRRF devem ser realizadas no ato do pagamento e, portanto, são informadas no evento S-1210). Para as rubricas cujo {codIncCP} = [31, 32, 34, 35], o somatório do valor das rubricas cujo ({tpRubr} = [2,4]) deverá ser maior ou igual ao somatório do valor das rubricas cujo ({tpRubr} = [1,3]), considerando cada um dos códigos {codIncCP} individualmente. O somatório dos Vencimentos deve ser maior ou igual ao somatório dos Descontos. As informações dos campos {ideEstabLot/nrInsc}, {detVerbas/codRubr}, {ideEstabLot/codLotacao} vinculadas a este registro, devem constar nas respectivas tabelas S-1005, S-1010 e S-1020, no mês da data do desligamento</td>
         </tr>
     {% for s2399_dmdev in s2399_dmdev_lista %}
     {% ifequal s2399_dmdev.s2399_verbasresc.id s2399_verbasresc.id %}
         <tr {% if s2399_dmdev.idedmdev|validacoes_esocial_efdreinf:"s2399_dmdev.idedmdev" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ideDmDev</td>
-            <td width="500px">Identificador atribuído pela empresa para o demonstrativo de valores devidos ao trabalhador relativo a verbas rescisórias. Validação: Deve ser um identificador único dentro da mesma competência para cada um dos demonstrativos de pagamento gerados no presente arquivo de rescisão contratual.</td>
+            <td width="500px">Identificador atribuído pela empresa para o demonstrativo de valores devidos ao trabalhador relativo a verbas rescisórias. Validação: Deve ser um identificador único dentro da mesma competência para cada um dos demonstrativos de pagamento gerados no presente arquivo de rescisão contratual. Regra de validação: REGRA_CARACTER_ESPECIAL</td>
             <td width="200px"><b>{% if s2399_dmdev.idedmdev or s2399_dmdev.idedmdev == 0 %}{{ s2399_dmdev.idedmdev }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -442,7 +442,7 @@
     {% ifequal s2399_detverbas.s2399_ideestablot.id s2399_ideestablot.id %}
         <tr {% if s2399_detverbas.codrubr|validacoes_esocial_efdreinf:"s2399_detverbas.codrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codRubr</td>
-            <td width="500px">Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento. Validação: O código informado deve existir na tabela S-1010 - Tabela de Rubricas, vigente no mês da data do término, informada no campo {dtTerm}. Não pode ser utilizada rubrica: a) cujo {codIncCP} em S-1010 seja igual a [23, 24, 61]; b) cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]; c) cujo {codIncCp} em S-1010 seja igual a [25, 26, 51] se {codCateg} pertencer a um dos grupos 'contribuinte individual' ou 'bolsistas' da Tabela 01 (Categoria de Trabalhadores).</td>
+            <td width="500px">Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento. Validação: O código informado deve existir na tabela S-1010 - Tabela de Rubricas, vigente no mês da data do término, informada no campo {dtTerm}. Não pode ser utilizada rubrica: a) cujo {codIncCP} em S-1010 seja igual a [23, 24, 61]; b) cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]; c) cujo {codIncCp} em S-1010 seja igual a [25, 26, 51] se {codCateg} pertencer a um dos grupos "contribuinte individual" ou "bolsistas" da Tabela 01 (Categoria de Trabalhadores).</td>
             <td width="200px"><b>{% if s2399_detverbas.codrubr or s2399_detverbas.codrubr == 0 %}{{ s2399_detverbas.codrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -587,7 +587,7 @@
 
         <tr {% if s2399_detoper.regans|validacoes_esocial_efdreinf:"s2399_detoper.regans" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">regANS</td>
-            <td width="500px">Registro da operadora na Agência Nacional de Saúde.</td>
+            <td width="500px">Registro da operadora na Agência Nacional de Saúde. Regra de validação: REGRA_CARACTER_ESPECIAL</td>
             <td width="200px"><b>{% if s2399_detoper.regans or s2399_detoper.regans == 0 %}{{ s2399_detoper.regans }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -864,7 +864,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">remunOutrEmpr</td>
-            <td bgcolor="lightgray" colspan="3">Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores recolhidos pelo próprio trabalhador como contribuinte individual. As informações são necessárias para a conferência da contribuição descontada do segurado.</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores recolhidos pelo próprio trabalhador como contribuinte individual.</td>
         </tr>
     {% for s2399_remunoutrempr in s2399_remunoutrempr_lista %}
     {% ifequal s2399_remunoutrempr.s2399_infomv.id s2399_infomv.id %}
@@ -946,7 +946,7 @@
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">quarentena</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre a 'quarentena' remunerada de trabalhador desligado. O registro deve ser preenchido apenas no caso do trabalhador que recebe remuneração após o desligamento por estar impossibilitado de exercer atividade remunerada.</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre a "quarentena" remunerada de trabalhador desligado. O registro deve ser preenchido apenas no caso do trabalhador que recebe remuneração após o desligamento por estar impossibilitado de exercer atividade remunerada.</td>
         </tr>
     {% for s2399_quarentena in s2399_quarentena_lista %}
     {% ifequal s2399_quarentena.s2399_evttsvtermino.id s2399_evttsvtermino.id %}

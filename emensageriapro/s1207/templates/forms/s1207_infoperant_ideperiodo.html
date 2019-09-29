@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1207_infoperant_ideperiodo__s1207_infoperant_ideadc__div">
   <div class="form-group">
-    <label id="s1207_infoperant_ideperiodo__s1207_infoperant_ideadc__label">Período de validade das informações incluídas*</label>
+    <label id="s1207_infoperant_ideperiodo__s1207_infoperant_ideadc__label">Período de validade das informações incluídas*<a data-toggle="tooltip" title="Identificação do período ao qual se referem as diferenças de provento ou pensão"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1207_infoperant_ideperiodo_form.s1207_infoperant_ideadc.value %}
         <a id="s1207_infoperant_ideperiodo__s1207_infoperant_ideadc__div_acessar" href="{% url 's1207_infoperant_ideadc_salvar' pk=s1207_infoperant_ideperiodo_form.s1207_infoperant_ideadc.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1207_infoperant_ideperiodo__perref -->
 <div class="col-md-6" id="s1207_infoperant_ideperiodo__perref__div">
   <div class="form-group">
-    <label id="s1207_infoperant_ideperiodo__perref__label">Período de Referência*</label>
+    <label id="s1207_infoperant_ideperiodo__perref__label">Período de Referência*<a data-toggle="tooltip" title="Informar o período ao qual se refere o complemento de provento ou pensão, no formato AAAA-MM. Validação: Deve ser igual ou anterior ao período de apuração informado em {perApur}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1207_infoperant_ideperiodo_form.perref.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1207_infoperant_ideperiodo_form.perref.errors }}

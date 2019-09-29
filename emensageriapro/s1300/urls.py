@@ -10,7 +10,6 @@ from emensageriapro.s1300.views import s1300_contribsind_salvar as s1300_contrib
 from emensageriapro.s1300.views import s1300_contribsind_api as s1300_contribsind_api_views
 
 
-
 """
 
     eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>

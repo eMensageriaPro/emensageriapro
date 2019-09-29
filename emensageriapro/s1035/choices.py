@@ -41,7 +41,7 @@ CHOICES_S1035_SITCARR_ALTERACAO = [
     (1, u'1 - Criação'),
     (2, u'2 - Extinção'),
     (3, u'3 - Reestruturação.'),
-    
+
 ]
 
 
@@ -52,7 +52,7 @@ CHOICES_S1035_SITCARR_INCLUSAO = [
     (1, u'1 - Criação'),
     (2, u'2 - Extinção'),
     (3, u'3 - Reestruturação.'),
-    
+
 ]
 
 
@@ -96,7 +96,7 @@ PERIODOS = [
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-    
+
 ]
 
 

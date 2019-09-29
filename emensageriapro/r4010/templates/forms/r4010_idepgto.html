@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r4010_idepgto__r4010_evtretpf__div">
   <div class="form-group">
-    <label id="r4010_idepgto__r4010_evtretpf__label">Identificação do rendimento*</label>
+    <label id="r4010_idepgto__r4010_evtretpf__label">Identificação do rendimento*<a data-toggle="tooltip" title="Identificação do rendimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r4010_idepgto_form.r4010_evtretpf.value %}
         <a id="r4010_idepgto__r4010_evtretpf__div_acessar" href="{% url 'r4010_evtretpf_salvar' pk=r4010_idepgto_form.r4010_evtretpf.value %}">
@@ -42,7 +42,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-3" id="r4010_idepgto__natrend__div">
     <div class="form-group">
-      <label id="r4010_idepgto__natrend__label">Código da natureza do rendimento, conforme Tabela 01*</label>
+      <label id="r4010_idepgto__natrend__label">Código da natureza do rendimento, conforme Tabela 01*<a data-toggle="tooltip" title="Código da natureza do rendimento, conforme Tabela 01. Validação: Deve ser um código válido, existente na Tabela 01."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r4010_idepgto_form.natrend.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ r4010_idepgto_form.natrend.errors }}
@@ -51,7 +51,7 @@
         <input type="text"
                id="txt_natrend"
                name="txt_natrend" class="form-control"
-               value="{% if r4010_idepgto.natrend %}{{ r4010_idepgto.natrend|get_opcoes_titulo:686 }}{% endif %}"
+               value="{% if r4010_idepgto.natrend %}{{ r4010_idepgto.natrend|get_opcoes_titulo:714 }}{% endif %}"
                {% if r4010_idepgto_form.natrend.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if r4010_idepgto_form.natrend.field.widget.attrs.required %} required="required"{% endif %}
                {% if r4010_idepgto_form.natrend.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -65,7 +65,7 @@
   $(document).ready(function(e){
     $('#txt_natrend').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/686/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/714/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -96,7 +96,7 @@
   {% else %}
   <div class="col-md-3" id="r4010_idepgto__natrend__div">
     <div class="form-group">
-      <label id="r4010_idepgto__natrend__label">Código da natureza do rendimento, conforme Tabela 01*</label>
+      <label id="r4010_idepgto__natrend__label">Código da natureza do rendimento, conforme Tabela 01*<a data-toggle="tooltip" title="Código da natureza do rendimento, conforme Tabela 01. Validação: Deve ser um código válido, existente na Tabela 01."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_natrend" name="txt_natrend" class="form-control" value="{% if r4010_idepgto.natrend %}{{ r4010_idepgto.natrend }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -106,7 +106,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-3" id="r4010_idepgto__paisresid__div">
     <div class="form-group">
-      <label id="r4010_idepgto__paisresid__label">Preencher com o código do país de residência fiscal, conforme tabela 7*</label>
+      <label id="r4010_idepgto__paisresid__label">Preencher com o código do país de residência fiscal, conforme tabela 7*<a data-toggle="tooltip" title="Preencher com o código do país de residência fiscal, conforme Tabela 07. Validação: Deve ser um código existente na Tabela 07. Deve estar de acordo com as regras de validação da Tabela 01 para a natureza de rendimento informada em {natRend}."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r4010_idepgto_form.paisresid.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ r4010_idepgto_form.paisresid.errors }}
@@ -115,7 +115,7 @@
         <input type="text"
                id="txt_paisresid"
                name="txt_paisresid" class="form-control"
-               value="{% if r4010_idepgto.paisresid %}{{ r4010_idepgto.paisresid|get_opcoes_titulo:649 }}{% endif %}"
+               value="{% if r4010_idepgto.paisresid %}{{ r4010_idepgto.paisresid|get_opcoes_titulo:670 }}{% endif %}"
                {% if r4010_idepgto_form.paisresid.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if r4010_idepgto_form.paisresid.field.widget.attrs.required %} required="required"{% endif %}
                {% if r4010_idepgto_form.paisresid.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -129,7 +129,7 @@
   $(document).ready(function(e){
     $('#txt_paisresid').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/649/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/670/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -160,7 +160,7 @@
   {% else %}
   <div class="col-md-3" id="r4010_idepgto__paisresid__div">
     <div class="form-group">
-      <label id="r4010_idepgto__paisresid__label">Preencher com o código do país de residência fiscal, conforme tabela 7*</label>
+      <label id="r4010_idepgto__paisresid__label">Preencher com o código do país de residência fiscal, conforme tabela 7*<a data-toggle="tooltip" title="Preencher com o código do país de residência fiscal, conforme Tabela 07. Validação: Deve ser um código existente na Tabela 07. Deve estar de acordo com as regras de validação da Tabela 01 para a natureza de rendimento informada em {natRend}."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_paisresid" name="txt_paisresid" class="form-control" value="{% if r4010_idepgto.paisresid %}{{ r4010_idepgto.paisresid }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -169,7 +169,7 @@
 <!-- inicio__r4010_idepgto__observ -->
 <div class="col-md-3" id="r4010_idepgto__observ__div">
   <div class="form-group">
-    <label id="r4010_idepgto__observ__label">Observações</label>
+    <label id="r4010_idepgto__observ__label">Observações<a data-toggle="tooltip" title="Observações."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r4010_idepgto_form.observ.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_idepgto_form.observ.errors }}

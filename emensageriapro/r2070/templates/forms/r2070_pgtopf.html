@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2070_pgtopf__r2070_pgtoresidbr__div">
   <div class="form-group">
-    <label id="r2070_pgtopf__r2070_pgtoresidbr__label">Beneficiário Pessoa Física - Residente no Brasil*</label>
+    <label id="r2070_pgtopf__r2070_pgtoresidbr__label">Beneficiário Pessoa Física - Residente no Brasil*<a data-toggle="tooltip" title="Beneficiário Pessoa Física - Residente no Brasil"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r2070_pgtopf_form.r2070_pgtoresidbr.value %}
         <a id="r2070_pgtopf__r2070_pgtoresidbr__div_acessar" href="{% url 'r2070_pgtoresidbr_salvar' pk=r2070_pgtopf_form.r2070_pgtoresidbr.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r2070_pgtopf__dtpgto -->
 <div class="col-md-6" id="r2070_pgtopf__dtpgto__div">
   <div class="form-group">
-    <label id="r2070_pgtopf__dtpgto__label">Informar a data de pagamento ou crédito, base para retenção*</label>
+    <label id="r2070_pgtopf__dtpgto__label">Informar a data de pagamento ou crédito, base para retenção*<a data-toggle="tooltip" title="Informar a data de pagamento ou crédito, base para retenção. Validação: Deve estar compreendida no período de apuração ao qual se refere o arquivo"><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r2070_pgtopf_form.dtpgto.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ r2070_pgtopf_form.dtpgto.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r2070_pgtopf__indsuspexig -->
 <div class="col-md-6" id="r2070_pgtopf__indsuspexig__div">
   <div class="form-group">
-    <label id="r2070_pgtopf__indsuspexig__label">Indicativo de Exigibilidade Suspensa*</label>
+    <label id="r2070_pgtopf__indsuspexig__label">Indicativo de Exigibilidade Suspensa*<a data-toggle="tooltip" title="Indicativo de Exigibilidade Suspensa: S - Sim; N - Não. Validação: Vide regras na tabela 02 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna Tributação com Exigibilidade Suspensa. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2070_pgtopf_form.indsuspexig.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2070_pgtopf_form.indsuspexig.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r2070_pgtopf__inddecterceiro -->
 <div class="col-md-6" id="r2070_pgtopf__inddecterceiro__div">
   <div class="form-group">
-    <label id="r2070_pgtopf__inddecterceiro__label">Indicativo de 13o Salário*</label>
+    <label id="r2070_pgtopf__inddecterceiro__label">Indicativo de 13o Salário*<a data-toggle="tooltip" title="Indicativo de 13o Salário: S - Sim; N - Não. Validação: Vide regras na tabela 02 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna 13o Salário. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2070_pgtopf_form.inddecterceiro.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2070_pgtopf_form.inddecterceiro.errors }}
@@ -104,7 +104,7 @@
 <!-- inicio__r2070_pgtopf__vlrrendtributavel -->
 <div class="col-md-6" id="r2070_pgtopf__vlrrendtributavel__div">
   <div class="form-group">
-    <label id="r2070_pgtopf__vlrrendtributavel__label">Valor do rendimento tributável*</label>
+    <label id="r2070_pgtopf__vlrrendtributavel__label">Valor do rendimento tributável*<a data-toggle="tooltip" title="Valor do rendimento tributável"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2070_pgtopf_form.vlrrendtributavel.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2070_pgtopf_form.vlrrendtributavel.errors }}
@@ -122,7 +122,7 @@
 <!-- inicio__r2070_pgtopf__vlrirrf -->
 <div class="col-md-6" id="r2070_pgtopf__vlrirrf__div">
   <div class="form-group">
-    <label id="r2070_pgtopf__vlrirrf__label">Valor do Imposto Retido na Fonte.*</label>
+    <label id="r2070_pgtopf__vlrirrf__label">Valor do Imposto Retido na Fonte.*<a data-toggle="tooltip" title="Valor do Imposto Retido na Fonte."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2070_pgtopf_form.vlrirrf.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2070_pgtopf_form.vlrirrf.errors }}

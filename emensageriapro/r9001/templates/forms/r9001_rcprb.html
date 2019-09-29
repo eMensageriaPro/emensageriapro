@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r9001_rcprb__r9001_infototal__div">
   <div class="form-group">
-    <label id="r9001_rcprb__r9001_infototal__label">Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060*</label>
+    <label id="r9001_rcprb__r9001_infototal__label">Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060*<a data-toggle="tooltip" title="Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r9001_rcprb_form.r9001_infototal.value %}
         <a id="r9001_rcprb__r9001_infototal__div_acessar" href="{% url 'r9001_infototal_salvar' pk=r9001_rcprb_form.r9001_infototal.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r9001_rcprb__crcprb -->
 <div class="col-md-3" id="r9001_rcprb__crcprb__div">
   <div class="form-group">
-    <label id="r9001_rcprb__crcprb__label">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre a Receita Bruta - CPRB*</label>
+    <label id="r9001_rcprb__crcprb__label">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre a Receita Bruta - CPRB*<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre a Receita Bruta - CPRB. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos. Valores Válidos: 2991-01, 2985-01, 2985-04, 2985-06 (sem os hífens)."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9001_rcprb_form.crcprb.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9001_rcprb_form.crcprb.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r9001_rcprb__vlrcrcprb -->
 <div class="col-md-3" id="r9001_rcprb__vlrcrcprb__div">
   <div class="form-group">
-    <label id="r9001_rcprb__vlrcrcprb__label">Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB, calculada segundo as regras estabelecidas na legislação em vigor.*</label>
+    <label id="r9001_rcprb__vlrcrcprb__label">Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB, calculada segundo as regras estabelecidas na legislação em vigor.*<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB, calculada segundo as regras estabelecidas na legislação em vigor."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9001_rcprb_form.vlrcrcprb.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9001_rcprb_form.vlrcrcprb.errors }}
@@ -74,7 +74,7 @@
 <!-- inicio__r9001_rcprb__vlrcrcprbsusp -->
 <div class="col-md-3" id="r9001_rcprb__vlrcrcprbsusp__div">
   <div class="form-group">
-    <label id="r9001_rcprb__vlrcrcprbsusp__label">Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB com exigibilidade suspensa. Origem: R-2060</label>
+    <label id="r9001_rcprb__vlrcrcprbsusp__label">Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB com exigibilidade suspensa. Origem: R-2060<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB com exigibilidade suspensa. Origem: R-2060."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9001_rcprb_form.vlrcrcprbsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9001_rcprb_form.vlrcrcprbsusp.errors }}

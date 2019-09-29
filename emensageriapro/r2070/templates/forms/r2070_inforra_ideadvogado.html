@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2070_inforra_ideadvogado__r2070_inforra_despprocjud__div">
   <div class="form-group">
-    <label id="r2070_inforra_ideadvogado__r2070_inforra_despprocjud__label">Identificação do Advogado*</label>
+    <label id="r2070_inforra_ideadvogado__r2070_inforra_despprocjud__label">Identificação do Advogado*<a data-toggle="tooltip" title="Identificação do Advogado"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r2070_inforra_ideadvogado_form.r2070_inforra_despprocjud.value %}
         <a id="r2070_inforra_ideadvogado__r2070_inforra_despprocjud__div_acessar" href="{% url 'r2070_inforra_despprocjud_salvar' pk=r2070_inforra_ideadvogado_form.r2070_inforra_despprocjud.value %}">
@@ -41,14 +41,23 @@
 <!-- inicio__r2070_inforra_ideadvogado__tpinscadvogado -->
 <div class="col-md-3" id="r2070_inforra_ideadvogado__tpinscadvogado__div">
   <div class="form-group">
-    <label id="r2070_inforra_ideadvogado__tpinscadvogado__label">Tipo de Inscrição do Advogado*</label>
-      {% if r2070_inforra_ideadvogado_form.tpinscadvogado.errors %}
-        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-          {{ r2070_inforra_ideadvogado_form.tpinscadvogado.errors }}
-        </div>
-      {% endif %}
+    <label id="r2070_inforra_ideadvogado__tpinscadvogado__label">Tipo de Inscrição do Advogado*<a data-toggle="tooltip" title="Tipo de Inscrição do Advogado 1 - Pessoa Jurídica 2 - Pessoa Física Validação: Deve ser igual a [1], caso o advogado seja Pessoa Jurídica, ou [2], caso o advogado seja Pessoa Física. Valores Válidos: 1,2"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    {% if r2070_inforra_ideadvogado_form.tpinscadvogado.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2070_inforra_ideadvogado_form.tpinscadvogado.errors }}
+      </div>
+    {% endif %}
     <div class="input-group" style="width: 100%;">
-      {{ r2070_inforra_ideadvogado_form.tpinscadvogado|addcss:'form-control' }}
+      {% if r2070_inforra_ideadvogado_form.tpinscadvogado.field.widget.attrs.readonly %}
+        {% if r2070_inforra_ideadvogado_form.tpinscadvogado.field.widget.attrs.disabled %}
+          {{ r2070_inforra_ideadvogado_form.tpinscadvogado|addcss:'form-control' }}
+          <input id="id_tpinscadvogado" name="tpinscadvogado" type="hidden" value="{% if r2070_inforra_ideadvogado_form.tpinscadvogado.value or r2070_inforra_ideadvogado_form.tpinscadvogado.value == 0 %}{{ r2070_inforra_ideadvogado_form.tpinscadvogado.value|valor }}{% endif %}">
+        {% else %}
+          {{ r2070_inforra_ideadvogado_form.tpinscadvogado|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2070_inforra_ideadvogado_form.tpinscadvogado|addcss_select2:'form-control automate-select' }}
+      {% endif %}
     </div>
   </div>
 </div>
@@ -56,7 +65,7 @@
 <!-- inicio__r2070_inforra_ideadvogado__nrinscadvogado -->
 <div class="col-md-3" id="r2070_inforra_ideadvogado__nrinscadvogado__div">
   <div class="form-group">
-    <label id="r2070_inforra_ideadvogado__nrinscadvogado__label">Preencher com o número de inscrição (CNPJ/CPF) do Advogado*</label>
+    <label id="r2070_inforra_ideadvogado__nrinscadvogado__label">Preencher com o número de inscrição (CNPJ/CPF) do Advogado*<a data-toggle="tooltip" title="Preencher com o número de inscrição (CNPJ/CPF) do Advogado. Validação: Deve ser um CNPJ ou CPF válido, conforme indicado em {tpInscAdvogado}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2070_inforra_ideadvogado_form.nrinscadvogado.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_inforra_ideadvogado_form.nrinscadvogado.errors }}
@@ -71,7 +80,7 @@
 <!-- inicio__r2070_inforra_ideadvogado__vlradvogado -->
 <div class="col-md-3" id="r2070_inforra_ideadvogado__vlradvogado__div">
   <div class="form-group">
-    <label id="r2070_inforra_ideadvogado__vlradvogado__label">Valor da despesa com o advogado*</label>
+    <label id="r2070_inforra_ideadvogado__vlradvogado__label">Valor da despesa com o advogado*<a data-toggle="tooltip" title="Valor da despesa com o advogado"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2070_inforra_ideadvogado_form.vlradvogado.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2070_inforra_ideadvogado_form.vlradvogado.errors }}

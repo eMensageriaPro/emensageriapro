@@ -49,7 +49,7 @@ CHOICES_ESOCIALDEPENDENTESTIPOS = [
     ('11', u'11 - A pessoa absolutamente incapaz, da qual seja tutor ou curador'),
     ('12', u'12 - Ex-cônjuge'),
     ('99', u'99 - Agregado/Outros'),
-    
+
 ]
 
 
@@ -59,7 +59,7 @@ CHOICES_S2205_CASADOBR = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -76,7 +76,7 @@ CHOICES_S2205_CATEGORIACNH = [
     ('C', u'C'),
     ('D', u'D'),
     ('E', u'E'),
-    
+
 ]
 
 
@@ -96,7 +96,7 @@ CHOICES_S2205_CLASSTRABESTRANG = [
     (7, u'7 - Deficiente físico e com mais de 51 anos'),
     (8, u'8 - Com residência provisória e anistiado, em situação irregular'),
     (9, u'9 - Permanência no Brasil em razão de filhos ou cônjuge brasileiros'),
-    
+
 ]
 
 
@@ -106,7 +106,7 @@ CHOICES_S2205_DEFAUDITIVA = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -116,7 +116,7 @@ CHOICES_S2205_DEFFISICA = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -126,7 +126,7 @@ CHOICES_S2205_DEFINTELECTUAL = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -136,7 +136,7 @@ CHOICES_S2205_DEFMENTAL = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -146,7 +146,7 @@ CHOICES_S2205_DEFVISUAL = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -156,7 +156,7 @@ CHOICES_S2205_DEPFINSPREV = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -166,7 +166,7 @@ CHOICES_S2205_DEPIRRF = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -176,7 +176,7 @@ CHOICES_S2205_DEPSF = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -186,7 +186,7 @@ CHOICES_S2205_FILHOSBR = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -196,7 +196,7 @@ CHOICES_S2205_INCTRAB = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -206,7 +206,7 @@ CHOICES_S2205_INFOCOTA = [
 
     ('N', u'N - Não'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -216,7 +216,7 @@ CHOICES_S2205_REABREADAP = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -226,7 +226,7 @@ CHOICES_S2205_SEXODEP = [
 
     ('F', u'F - Feminino.'),
     ('M', u'M - Masculino'),
-    
+
 ]
 
 
@@ -236,7 +236,7 @@ CHOICES_S2205_TRABAPOSENT = [
 
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-    
+
 ]
 
 
@@ -271,7 +271,7 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-    
+
 ]
 
 

@@ -56,6 +56,7 @@ from emensageriapro.padrao import *
 from emensageriapro.r2060.forms import *
 from emensageriapro.r2060.models import *
 from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.r2060.models import r2060tipoCod
 
 
 @login_required
@@ -117,7 +118,7 @@ def listar(request, output=None):
             r2060_tipoajuste_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
-        #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
+        r2060_tipocod_lista = r2060tipoCod.objects.all()
         #r2060_tipoajuste_listar_custom
 
         request.session['return'] = request.META.get('HTTP_REFERER')
@@ -132,7 +133,7 @@ def listar(request, output=None):
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
             'filtrar': filtrar,
-            #[VARIAVEIS_FILTRO_RELATORIO]
+            'r2060_tipocod_lista': r2060_tipocod_lista,
         }
 
         if output == 'pdf':

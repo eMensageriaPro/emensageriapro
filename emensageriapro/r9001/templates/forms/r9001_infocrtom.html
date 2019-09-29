@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r9001_infocrtom__r9001_rtom__div">
   <div class="form-group">
-    <label id="r9001_infocrtom__r9001_rtom__label">Totalizador das retenções de contribuição previdenciária sobre serviços tomados*</label>
+    <label id="r9001_infocrtom__r9001_rtom__label">Totalizador das retenções de contribuição previdenciária sobre serviços tomados*<a data-toggle="tooltip" title="Totalizador das retenções de contribuição previdenciária sobre serviços tomados."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r9001_infocrtom_form.r9001_rtom.value %}
         <a id="r9001_infocrtom__r9001_rtom__div_acessar" href="{% url 'r9001_rtom_salvar' pk=r9001_infocrtom_form.r9001_rtom.value %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r9001_infocrtom__crtom -->
 <div class="col-md-3" id="r9001_infocrtom__crtom__div">
   <div class="form-group">
-    <label id="r9001_infocrtom__crtom__label">Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social sobre serviços tomados*</label>
+    <label id="r9001_infocrtom__crtom__label">Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social sobre serviços tomados*<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social sobre serviços tomados. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos. Valores Válidos: 1141-06, 1162-01."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9001_infocrtom_form.crtom.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9001_infocrtom_form.crtom.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r9001_infocrtom__vlrcrtom -->
 <div class="col-md-3" id="r9001_infocrtom__vlrcrtom__div">
   <div class="form-group">
-    <label id="r9001_infocrtom__vlrcrtom__label">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRTom}</label>
+    <label id="r9001_infocrtom__vlrcrtom__label">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRTom}<a data-toggle="tooltip" title="Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRTom}. Validação: Deve ser apurado de acordo com a legislação em vigor na competência. Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9001_infocrtom_form.vlrcrtom.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9001_infocrtom_form.vlrcrtom.errors }}
@@ -74,7 +74,7 @@
 <!-- inicio__r9001_infocrtom__vlrcrtomsusp -->
 <div class="col-md-3" id="r9001_infocrtom__vlrcrtomsusp__div">
   <div class="form-group">
-    <label id="r9001_infocrtom__vlrcrtomsusp__label">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao código de Receita - CR informado em {CRTom}</label>
+    <label id="r9001_infocrtom__vlrcrtomsusp__label">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao código de Receita - CR informado em {CRTom}<a data-toggle="tooltip" title="Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao código de Receita - CR informado em {CRTom}. Valores Válidos: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9001_infocrtom_form.vlrcrtomsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9001_infocrtom_form.vlrcrtomsusp.errors }}

@@ -5,7 +5,7 @@
 <!-- inicio__s2241_altaposentesp__s2241_aposentesp -->
 <div class="col-md-12" id="s2241_altaposentesp__s2241_aposentesp__div">
   <div class="form-group">
-    <label id="s2241_altaposentesp__s2241_aposentesp__label">Condições do ambiente de trabalho que ensejam aposentadoria especial - Alteração*</label>
+    <label id="s2241_altaposentesp__s2241_aposentesp__label">Condições do ambiente de trabalho que ensejam aposentadoria especial - Alteração*<a data-toggle="tooltip" title="Condições do ambiente de trabalho que ensejam aposentadoria especial - AlteraçãoRegra de validação: REGRA_EXISTE_EVENTO_INICIO_INS"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2241_altaposentesp_form.s2241_aposentesp.value %}
         <a href="{% url 's2241_aposentesp_salvar' pk=s2241_altaposentesp_form.s2241_aposentesp.value %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2241_altaposentesp__dtaltcondicao -->
 <div class="col-md-6" id="s2241_altaposentesp__dtaltcondicao__div">
   <div class="form-group">
-    <label id="s2241_altaposentesp__dtaltcondicao__label">Data de alteração de condição*</label>
+    <label id="s2241_altaposentesp__dtaltcondicao__label">Data de alteração de condição*<a data-toggle="tooltip" title="Informar a data em que ocorreu alteração na condição de exposição ao(s) fator(es) de risco para o trabalhador. A data informada deve ser igual ou posterior à data de início na condição de exposição que se pretende alterar. Validação: Deve ser uma data igual ou posterior à data de início das atividades exercidas pelo trabalhador, sujeitas ao(s) fator(es) de risco."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2241_altaposentesp_form.dtaltcondicao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2241_altaposentesp_form.dtaltcondicao.errors }}
