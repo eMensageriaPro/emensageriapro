@@ -1,0 +1,23 @@
+-r base.txt
+
+untangle==1.1.1
+pyOpenSSL==17.5.0
+lxml==3.7.3
+signxml==2.5.2
+xhtml2pdf==0.2.2
+django-wkhtmltopdf==3.2.0
+goslate==1.5.1
+xmltodict==0.11.0
+googletrans==2.4.0
+djangorestframework==3.9.4
+markdown==2.6
+django-filter==2.0.0
+django-localflavor==1.6.1
+django-localflavor-br==1.0
+django-cron==0.5.1
+django-constance==2.4.0
+celery==4.3.0
+django-celery-beat==1.5.0
+django-picklefield==2.0
+graphene-django==2.3.2
+xmlschema==1.0.13

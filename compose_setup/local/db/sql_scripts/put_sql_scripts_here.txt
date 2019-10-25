@@ -1,4 +1,0 @@
-# sql_scripts
-You can put sql scripts in this folder. 
-
-This scripts will be loaded in the first run of the postgresql server automatically.

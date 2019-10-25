@@ -1,51 +1,55 @@
-#coding: utf-8
+# coding: utf-8
+
 import datetime
 
 
 """
 
-    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+eMensageria - Sistema de Gerenciamento de Eventos do eSocial
+Link: <www.emensageria.com.br>
+Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
+    Este programa é software livre: você pode redistribuí-lo e / ou modificar
+    sob os termos da licença GNU Affero General Public License como
+    publicado pela Free Software Foundation, seja versão 3 do
+    Licença, ou (a seu critério) qualquer versão posterior.
 
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
+    Este programa é distribuído na esperança de que seja útil,
+    mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+    COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+    Licença Pública Geral GNU Affero para mais detalhes.
 
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+    Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+    junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 """
 
+
 class objectview(object):
+
     def __init__(self, d):
         self.__dict__ = d
-
 
 
 def testar_importacao_xml(dicionario, chave, valor):
     try:
         dicionario[chave] = valor
-    except:
-        pass
+
+    except Exception as err:
+        print(err)
     return dicionario
 
 
@@ -59,7 +63,7 @@ def salvar_arquivo(arquivo, texto):
     file = codecs.open(arquivo1, "w", "utf-8")
     file.write(texto)
     file.close()
-    #print arquivo
+    # print arquivo
 
 
 def ler_arquivo(arquivo):
@@ -77,13 +81,18 @@ def ler_arquivo(arquivo):
 
 def range_ano_mes():
     from datetime import datetime
-    anos = range(2010, datetime.now().year+1)
-    meses = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-    meses_ext = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+
+    anos = range(2010, datetime.now().year + 1)
+
+    meses = ['01', '02', '03', '04', '05', '06', '07',
+             '08', '09', '10', '11', '12']
+
+    meses_ext = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+                 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
     lista = []
-    for a in anos: 
-        for (m, me) in zip(meses, meses_ext): 
-            lista.append((str(a)+'-'+m, me+'/'+str(a)))
+    for a in anos:
+        for (m, me) in zip(meses, meses_ext):
+            lista.append((str(a) + '-' + m, me + '/' + str(a)))
     # print lista
 
 
@@ -93,15 +102,16 @@ def listar_ids(objeto):
         lista.append(a.id)
     return lista
 
-    
 
 def get_json(slug_conta):
     import json
     try:
-        data = json.loads(ler_arquivo('emensageriapro/' + slug_conta + '.json'))
+        data = json.loads(
+            ler_arquivo('emensageriapro/' + slug_conta + '.json')
+        )
         retorno = objectview(data['contas'][0])
-    except:
-        retorno = None
+    except Exception as retorno:
+            retorno = None
     return retorno
 
 
@@ -109,11 +119,11 @@ def get_permissoes(permissoes):
     dict = {}
     for a in permissoes:
         chave = a.config_paginas.endereco
-        dict[chave+'_listar'] = a.permite_listar
-        dict[chave+'_cadastrar'] = a.permite_cadastrar
-        dict[chave+'_editar'] = a.permite_editar
-        dict[chave+'_visualizar'] = a.permite_visualizar
-        dict[chave+'_apagar'] = a.permite_apagar    
+        dict[chave + '_listar'] = a.permite_listar
+        dict[chave + '_cadastrar'] = a.permite_cadastrar
+        dict[chave + '_editar'] = a.permite_editar
+        dict[chave + '_visualizar'] = a.permite_visualizar
+        dict[chave + '_apagar'] = a.permite_apagar
     return dict
 
 
@@ -131,7 +141,7 @@ def dict_to_json(dicionario):
 
 def correcao_data_range(data):
     a = data.split('/')
-    return a[2]+'-'+a[1]+'-'+a[0]
+    return a[2] + '-' + a[1] + '-' + a[0]
 
 
 def texto_to_int_list(texto):
@@ -144,7 +154,7 @@ def texto_to_int_list(texto):
 
 def get_hash_url(hash):
     import base64
-    texto = base64.b64decode( hash )
+    texto = base64.b64decode(hash)
     return json_to_dict(texto)
 
 
@@ -178,35 +188,43 @@ def clear_dict_fields(dict):
     return dict_new
 
 
-
 def executar_sql(select, array):
+
     from django.utils.encoding import smart_str
     import psycopg2
     from emensageriapro.settings import DATABASES
+
     database = DATABASES['default']
     try:
-        conn = psycopg2.connect("user='%(USER)s' host='%(HOST)s' password='%(PASSWORD)s' dbname='%(NAME)s'" % database)
+        conn = psycopg2.connect('''user='%(USER)s' host='%(HOST)s'
+            password='%(PASSWORD)s' dbname='%(NAME)s''' % database)
         conn.autocommit = True
-    except:
+    except Exception as err:
         print "I am unable to connect to the database"
     if select:
         cur = conn.cursor()
         select = smart_str(select)
         select = select.replace("'Null'", 'Null')
         cur.execute(select)
-        if array: lista = cur.fetchall()
-        else: lista = None
+        if array:
+            lista = cur.fetchall()
+        else:
+            lista = None
         cur.close()
         return lista
     else:
-        return None
+        err = None
+        return err
 
 
-def gravar_auditoria(situacao_anterior, situacao_posterior, tabela, tabela_id, usuario_id, tipo):
-
+def gravar_auditoria(situacao_anterior, situacao_posterior, tabela,
+                     tabela_id, usuario_id, tipo):
+    # Se não importar aqui, a aplicação não roda, alegando que não é possível
+    # importar Auditoria
     from emensageriapro.controle_de_acesso.models import Auditoria
     from django.utils import timezone
     from get_username import get_username
+
 
     req = get_username()
     dados = {}
@@ -226,14 +244,13 @@ def gravar_auditoria(situacao_anterior, situacao_posterior, tabela, tabela_id, u
     obj.save()
 
 
-
 def create_insert(tabela, dados):
     variaveis = dados.keys()
-    campos_numericos = executar_sql("""
-        SELECT column_name FROM information_schema.columns 
-        WHERE table_name ='%s' 
-        AND data_type in ('numeric', 'integer');
-        """ % tabela, True)
+    campos_numericos = executar_sql('''SELECT column_name
+                                    FROM information_schema.columns
+                                    WHERE table_name ='%s'
+                                    AND data_type in ('numeric', 'integer');'''
+                                    % tabela, True)
     campos_numericos_lista = []
     for a in campos_numericos:
         campos_numericos_lista.append(a[0])

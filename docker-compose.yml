@@ -1,34 +1,77 @@
-# Dockerfile by Marcos Roberto - marcosroberto1808@gmail.com
-version: '3'
+version: '3.7'
+
 services:
 
-## Database setup
-  db:
-    ports:
-      - "5499:5432"
-    volumes: 
-    - ../db_backups:/backups
-    env_file:
-    - ./compose_setup/.envs/.local/.postgres
-    build:
-      context: ./compose_setup/local/db/.
-      dockerfile: Dockerfile
-
-## App setup 
-  app:
-    links:
-    - db
-    ports:
-      - "8000:8000"
-    volumes:
-    - ../emensageriapro-data/logs:/appdata/logs
-    - ../emensageriapro-data/repositorios/arquivos:/app/arquivos
-    - ../emensageriapro-data/repositorios/certificados:/app/certificados/certificado_valido
-    # Link local code dir inside container
-    - .:/app
-    env_file:
-    - ./compose_setup/.envs/.local/.django
-    command: uwsgi --ini /requirements/uwsgi.ini
+## Setup da aplicação
+  web:
     build:
       context: .
-      dockerfile: ./compose_setup/local/app/Dockerfile
+      args:
+        APP_NAME: ${APP_NAME}
+        # ambiente de DEV  = TESTE
+        ENVIRONMENT: dev
+
+    container_name: dev_${APP_NAME}
+
+    volumes:
+    - ./${APP_NAME}/:/usr/src/app/
+    - ./${APP_NAME}/data/logs:/usr/src/app/log
+    - ./${APP_NAME}/data/repositorios/arquivos:/usr/src/app/arquivos
+    - ./${APP_NAME}/data/repositorios/certificados:/usr/src/app/certificados/certificado_valido
+
+    #Este 0.0.0.0 é importante para funcionar com qualquer IP
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8080"] #Servidor do django utilizando somente para testes/dev
+    env_file:
+      - ./.env
+    ports:
+    - "8080:8080"
+    depends_on:
+      - db
+      
+
+## Setup do Banco de Dados para desenvolvimento
+  db:
+    image: postgres:9.6
+    ports:
+      - "5499:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=emensageriapro
+      - POSTGRES_PASSWORD=emensageria
+      - POSTGRES_DB=emensageriapro_db
+
+volumes:
+  postgres_data:
+
+
+
+# pra roda com build
+# $ docker-compose -f <docker-compose-algumacoisa.yml> up --build
+
+# update settings SETAR ENVIROMENT VARIABLES
+# ------------------------------------------
+
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+# DEBUG = int(os.environ.get('DEBUG', default=0))
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+# SQL_ENGINE=django.db.backends.postgresql
+# SQL_DATABASE=hello_django_dev
+# SQL_USER=hello_django
+# SQL_PASSWORD=hello_django
+# SQL_HOST=db
+# SQL_PORT=5432
+
+
+# pra rodar
+#$ docker-compose build
+#$ docker-compose up
+#browser: http://localhost:8000/
+
+# Criar super user 
+# ... desde que em outro terminal ou rodando com docker-compose up -d
+# $ docker-compose exec web python manage.py createsuperuser
+# $ docker-compose exec <service_name> python manage.py migrate --noinput
+# $ docker-compose exec db psql --username=hello_django --dbname=hello_django_dev
+# $ docker volume inspect gitlab-ci_postgres_data

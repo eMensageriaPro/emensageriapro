@@ -1,0 +1,72 @@
+# *******************************************************
+# DOCKER Compose PROD & HOMOLOG - NECTO Systems 15OCT2019
+# *******************************************************
+#
+# Variáveis do CI necessárias
+# ===========================
+#
+# APP_NAME
+# NECTO_INFRA_PRIVATE_KEY
+# PORT_NUMBER_PROD
+# VER https://docs.docker.com/compose/extends/
+#
+# DEPENDS do arquivo ".env"
+#--------------------------
+#
+# conteúdo do arquivo .env sao as 2 linhas abaixo.
+#
+# APP_NAME=projetodj
+# ENVIRONMENT=dev
+#
+#$ docker-compose -f docker-compose-prod.yml build
+#$ docker-compose -f docker-compose-prod.yml up
+
+version: '3.7'
+
+services:
+
+  web:
+    image: $CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+    build:
+      context: .
+      args:
+        APP_NAME: ${APP_NAME}
+        # ambiente de PROD  = PRODUÇÃO
+        ENVIRONMENT: prod
+
+    container_name: ${APP_NAME}_prod
+
+    volumes:
+    - logs:/usr/src/app/log
+    - arquivos:/usr/src/app/arquivos
+    - certificados:/usr/src/app/certificados/certificado_valido
+
+    #command: gunicorn ${APP_NAME}.wsgi:application -b 0.0.0.0:9000
+    command: gunicorn ${APP_NAME}.wsgi:application -b 0.0.0.0:9000
+    ports:
+      - ${PORT_NUMBER_PROD}:9000
+
+    env_file:
+      - ./.env-prod
+    environment:
+      - DEBUG=0
+    
+    depends_on:
+      - db
+
+  db:
+    image: postgres:9.6
+    ports:
+    - "5500:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=emensageriapro
+      - POSTGRES_PASSWORD=emensageria
+      - POSTGRES_DB=emensageriapro_db
+
+volumes:
+  postgres_data:
+  logs:
+  certificados:
+  arquivos:

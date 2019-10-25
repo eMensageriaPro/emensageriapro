@@ -12,19 +12,13 @@ Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
 ## Instalação usando docker:
 
-__Autor:__ Marcos Roberto <marcosroberto1808@gmail.com>
+#Criar imagem da aplicação para desenvolvimento:
 
-__Starting all services in detached mode:__
+docker-compose build
 
-`docker-compose up -d`
+#Criar imagem da aplicação para produção
 
-__Execute initial migrate:__
-
-`docker-compose exec app python migrate_all_apps.py`
-
-## Atualização de Banco de dados:
-
-`python migrate_all_apps.py`
+docker-compose -f docker-compose-prod.yml up --build
 
 ## Versão de Demostração:
 
