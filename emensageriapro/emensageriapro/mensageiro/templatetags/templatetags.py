@@ -41,13 +41,13 @@ from django import template
 from django.core.validators import EMPTY_VALUES
 from emensageriapro.padrao import *
 
-try:
+# try:
 
-    locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+#     locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
-except:
+# except:
 
-    locale.setlocale(locale.LC_ALL, 'pt_BR.utf8')
+#     locale.setlocale(locale.LC_ALL, 'pt_BR.utf8')
 
 register = template.Library()
 
