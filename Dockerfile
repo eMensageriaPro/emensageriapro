@@ -24,7 +24,6 @@ FROM python:2.7-slim-buster
 #   - all build cache
 #$ docker system prune -a
 
-
 #para um environment com valor padrão caso setado ARG
 #ARG some_variable_name
 #ENV env_var_name=$some_variable_name
