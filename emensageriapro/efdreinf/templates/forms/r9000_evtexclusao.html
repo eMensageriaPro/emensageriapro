@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -98,7 +99,7 @@
 <!-- inicio__r9000_evtexclusao__tpinsc -->
 <div class="col-md-6" id="r9000_evtexclusao__tpinsc__div">
   <div class="form-group">
-    <label id="r9000_evtexclusao__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF). Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9000_evtexclusao__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF) Valores Válidos: 1, 2"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9000_evtexclusao_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r9000_evtexclusao_form.tpinsc.errors }}
@@ -143,7 +144,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="r9000_evtexclusao__tpevento__div">
     <div class="form-group">
-      <label id="r9000_evtexclusao__tpevento__label">Preencher com o tipo de evento, conforme tabela 10*<a data-toggle="tooltip" title="Preencher com o tipo de evento, conforme tabela 10. Validação: Deve existir na Tabela 10. Deve ser um dos eventos: R-2010 a R-2060, R-3010 e R-4010 a R-4040."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="r9000_evtexclusao__tpevento__label">Preencher com o tipo de evento, conforme tabela 10*<a data-toggle="tooltip" title="Preencher com o tipo de evento, conforme tabela 10 Validação: Deve existir na tabela 10. Deve ser um dos eventos: R-2010 a R-2070 e R-3010."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r9000_evtexclusao_form.tpevento.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ r9000_evtexclusao_form.tpevento.errors }}
@@ -152,7 +153,7 @@
         <input type="text"
                id="txt_tpevento"
                name="txt_tpevento" class="form-control"
-               value="{% if r9000_evtexclusao.tpevento %}{{ r9000_evtexclusao.tpevento|get_opcoes_titulo:754 }}{% endif %}"
+               value="{% if r9000_evtexclusao.tpevento %}{{ r9000_evtexclusao.tpevento|get_opcoes_titulo:709 }}{% endif %}"
                {% if r9000_evtexclusao_form.tpevento.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if r9000_evtexclusao_form.tpevento.field.widget.attrs.required %} required="required"{% endif %}
                {% if r9000_evtexclusao_form.tpevento.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -166,7 +167,7 @@
   $(document).ready(function(e){
     $('#txt_tpevento').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/754/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/709/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
@@ -197,7 +198,7 @@
   {% else %}
   <div class="col-md-6" id="r9000_evtexclusao__tpevento__div">
     <div class="form-group">
-      <label id="r9000_evtexclusao__tpevento__label">Preencher com o tipo de evento, conforme tabela 10*<a data-toggle="tooltip" title="Preencher com o tipo de evento, conforme tabela 10. Validação: Deve existir na Tabela 10. Deve ser um dos eventos: R-2010 a R-2060, R-3010 e R-4010 a R-4040."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="r9000_evtexclusao__tpevento__label">Preencher com o tipo de evento, conforme tabela 10*<a data-toggle="tooltip" title="Preencher com o tipo de evento, conforme tabela 10 Validação: Deve existir na tabela 10. Deve ser um dos eventos: R-2010 a R-2070 e R-3010."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_tpevento" name="txt_tpevento" class="form-control" value="{% if r9000_evtexclusao.tpevento %}{{ r9000_evtexclusao.tpevento }}{% endif %}" disabled="disabled">
     </div>
   </div>

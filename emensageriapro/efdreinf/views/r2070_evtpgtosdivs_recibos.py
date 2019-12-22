@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding: utf-8
 # © 2018 Marcelo Medeiros de Vasconcellos
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -77,10 +78,6 @@ def recibo(request, pk, output=None):
     from datetime import datetime
     from emensageriapro.efdreinf.models import r5001evtTotal
     from emensageriapro.efdreinf.models import r5011evtTotalContrib
-    from emensageriapro.efdreinf.models import r9001evtTotal
-    from emensageriapro.efdreinf.models import r9002evtRet
-    from emensageriapro.efdreinf.models import r9011evtTotalContrib
-    from emensageriapro.efdreinf.models import r9012evtRetCons
 
     if request.user.has_perm('efdreinf.can_see_r2070evtPgtosDivs'):
 
@@ -100,39 +97,11 @@ def recibo(request, pk, output=None):
         else:
             r5011_evttotalcontrib = None
 
-        if r2070_evtpgtosdivs.retornos_r9001_id:
-            r9001_evttotal = get_object_or_404(r9001evtTotal,
-                id=r2070_evtpgtosdivs.retornos_r9001_id)
-        else:
-            r9001_evttotal = None
-
-        if r2070_evtpgtosdivs.retornos_r9002_id:
-            r9002_evtret = get_object_or_404(r9002evtRet,
-                id=r2070_evtpgtosdivs.retornos_r9002_id)
-        else:
-            r9002_evtret = None
-
-        if r2070_evtpgtosdivs.retornos_r9011_id:
-            r9011_evttotalcontrib = get_object_or_404(r9011evtTotalContrib,
-                id=r2070_evtpgtosdivs.retornos_r9011_id)
-        else:
-            r9011_evttotalcontrib = None
-
-        if r2070_evtpgtosdivs.retornos_r9012_id:
-            r9012_evtretcons = get_object_or_404(r9012evtRetCons,
-                id=r2070_evtpgtosdivs.retornos_r9012_id)
-        else:
-            r9012_evtretcons = None
-
         context = {
             'pk': pk,
             'r2070_evtpgtosdivs': r2070_evtpgtosdivs,
             'r5001_evttotal': r5001_evttotal,
             'r5011_evttotalcontrib': r5011_evttotalcontrib,
-            'r9001_evttotal': r9001_evttotal,
-            'r9002_evtret': r9002_evtret,
-            'r9011_evttotalcontrib': r9011_evttotalcontrib,
-            'r9012_evtretcons': r9012_evtretcons,
             'data': datetime.now(),
             'output': output,
             'user': request.user,

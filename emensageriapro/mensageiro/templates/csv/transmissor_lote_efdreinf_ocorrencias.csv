@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_transmissor_lote_efdreinf or 1 %}"Transmissor";{% endif %}{% if show_fields.show_resposta_codigo or 1 %}"Código";{% endif %}{% if show_fields.show_descricao or 1 %}"Descrição";{% endif %}{% if show_fields.show_tipo or 1 %}"Tipo";{% endif %}{% if show_fields.show_localizacao or 1 %}"Localização";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_transmissor_lote_efdreinf or 1 %}"{{ c.transmissor_lote_efdreinf }}";{% endif %}{% if show_fields.show_resposta_codigo or 1 %}"{{ c.resposta_codigo }}";{% endif %}{% if show_fields.show_descricao or 1 %}"{{ c.descricao }}";{% endif %}{% if show_fields.show_tipo or 1 %}"{{ c.tipo }}";{% endif %}{% if show_fields.show_localizacao or 1 %}"{{ c.localizacao }}";{% endif %}
 {% endfor %}

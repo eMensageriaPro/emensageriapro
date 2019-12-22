@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_r2070_pgtoresidbr or 1 %}"Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil";{% endif %}{% if show_fields.show_dtpagto or 1 %}"Informar a data de pagamento ou crédito, base para retenção";{% endif %}{% if show_fields.show_vlrrendtributavel or 1 %}"Valor do rendimento tributável";{% endif %}{% if show_fields.show_vlrret or 1 %}"Preencher com o valor da retenção na Fonte relativamente a IR, CSLL, Cofins, PIS/PASEP.";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_r2070_pgtoresidbr or 1 %}"{{ c.r2070_pgtoresidbr }}";{% endif %}{% if show_fields.show_dtpagto or 1 %}"{{ c.dtpagto }}";{% endif %}{% if show_fields.show_vlrrendtributavel or 1 %}"{{ c.vlrrendtributavel }}";{% endif %}{% if show_fields.show_vlrret or 1 %}"{{ c.vlrret }}";{% endif %}
 {% endfor %}

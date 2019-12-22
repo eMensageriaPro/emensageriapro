@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1200_infocomplem or 1 %}"Grupo de informações da sucessão de vínculo trabalhista/estatutário";{% endif %}{% if show_fields.show_tpinscant or 1 %}"Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05";{% endif %}{% if show_fields.show_cnpjempregant or 1 %}"CNPJ Empregador Anterior";{% endif %}{% if show_fields.show_matricant or 1 %}"Matricula anterior";{% endif %}{% if show_fields.show_dtadm or 1 %}"Data de admissão";{% endif %}{% if show_fields.show_observacao or 1 %}"Observações";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1200_infocomplem or 1 %}"{{ c.s1200_infocomplem }}";{% endif %}{% if show_fields.show_tpinscant or 1 %}"{{ c.tpinscant }}";{% endif %}{% if show_fields.show_cnpjempregant or 1 %}"{{ c.cnpjempregant }}";{% endif %}{% if show_fields.show_matricant or 1 %}"{{ c.matricant }}";{% endif %}{% if show_fields.show_dtadm or 1 %}"{{ c.dtadm }}";{% endif %}{% if show_fields.show_observacao or 1 %}"{{ c.observacao }}";{% endif %}
 {% endfor %}

@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -5,7 +6,7 @@
 <!-- inicio__r1070_exclusao__r1070_evttabprocesso -->
 <div class="col-md-12" id="r1070_exclusao__r1070_evttabprocesso__div">
   <div class="form-group">
-    <label id="r1070_exclusao__r1070_evttabprocesso__label">Exclusão das informações*<a data-toggle="tooltip" title="Exclusão das informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r1070_exclusao__r1070_evttabprocesso__label">Exclusão das informações*<a data-toggle="tooltip" title="Exclusão das informações"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r1070_exclusao_form.r1070_evttabprocesso.value %}
         <a href="{% url 'r1070_evttabprocesso_salvar' pk=r1070_exclusao_form.r1070_evttabprocesso.value %}">
             [Acessar]
@@ -61,7 +62,7 @@
 <!-- inicio__r1070_exclusao__nrproc -->
 <div class="col-md-6" id="r1070_exclusao__nrproc__div">
   <div class="form-group">
-    <label id="r1070_exclusao__nrproc__label">Informar o número do processo administrativo/judicial*<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r1070_exclusao__nrproc__label">Informar o número do processo administrativo/judicial*<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial. Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data informada anteriormente no registro que se pretende excluir."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1070_exclusao_form.nrproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1070_exclusao_form.nrproc.errors }}
@@ -73,30 +74,6 @@
   </div>
 </div>
 <!-- fim__r1070_exclusao__nrproc -->
-<!-- inicio__r1070_exclusao__inivalid -->
-<div class="col-md-6" id="r1070_exclusao__inivalid__div">
-  <div class="form-group">
-    <label id="r1070_exclusao__inivalid__label">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM*<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data informada anteriormente no registro que se pretende excluir."><i class="fa fa-fw fa-question-circle"></i></a></label>
-    {% if r1070_exclusao_form.inivalid.errors %}
-      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-        {{ r1070_exclusao_form.inivalid.errors }}
-      </div>
-    {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {% if r1070_exclusao_form.inivalid.field.widget.attrs.readonly %}
-        {% if r1070_exclusao_form.inivalid.field.widget.attrs.disabled %}
-          {{ r1070_exclusao_form.inivalid|addcss:'form-control' }}
-          <input id="id_inivalid" name="inivalid" type="hidden" value="{% if r1070_exclusao_form.inivalid.value or r1070_exclusao_form.inivalid.value == 0 %}{{ r1070_exclusao_form.inivalid.value }}{% endif %}">
-        {% else %}
-          {{ r1070_exclusao_form.inivalid|addcss:'form-control' }}
-        {% endif %}
-      {% else %}
-        {{ r1070_exclusao_form.inivalid|addcss_select2:'form-control automate-select' }}
-      {% endif %}
-    </div>
-  </div>
-</div>
-<!-- fim__r1070_exclusao__inivalid -->
 <!-- inicio__r1070_exclusao__fimvalid -->
 <div class="col-md-6" id="r1070_exclusao__fimvalid__div">
   <div class="form-group">

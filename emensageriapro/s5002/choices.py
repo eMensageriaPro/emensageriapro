@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,28 +38,19 @@
 
 
 CHOICES_S5002_INDNIF = [
-
     (1, u'1 - Beneficiário com NIF'),
     (2, u'2 - Beneficiário dispensado do NIF'),
     (3, u'3 - País não exige NIF.'),
-
 ]
-
-
 
 
 CHOICES_S5002_INDRESBR = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
 
 
-
-
 CHOICES_S5002_TPCR = [
-
     ('0473-01', u'0473-01 - Renda e Proventos de Qualquer Natureza'),
     ('0561-07', u'0561-07 - IRRF - Rendimento do Trabalho Assalariado no País/Ausente no Exterior a Serviço do País'),
     ('0561-08', u'0561-08 - IRRF - Empregado Doméstico'),
@@ -71,8 +63,5 @@ CHOICES_S5002_TPCR = [
     ('0610- 01', u'0610- 01 - IRRF - Rendimentos relativos a prestação de serviços de transporte rodoviário internacional de carga, pagos a transportador autônomo PF residente no Paraguai'),
     ('3533', u'3533 - Proventos de Aposentadoria, Reserva, Reforma ou Pensão Pagos por Previdência Pública'),
     ('3562-01', u'3562-01 - IRRF - Participação dos trabalhadores em Lucros ou Resultados (PLR). Origem S-1210, para definição do mês de ocorrência dos fatos geradores e os respectivos demonstrativos de pagamento constantes dos eventos S-1200, S- 1202,S-1207, S-2299 e S-2399.'),
-
 ]
-
-
 

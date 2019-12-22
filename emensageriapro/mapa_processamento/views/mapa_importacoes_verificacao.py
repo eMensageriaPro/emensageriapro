@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding: utf-8
 
 __author__ = "Marcelo Medeiros de Vasconcellos"
@@ -476,41 +477,6 @@ def verificacao_importacao_funcao(arquivo):
         evento = r3010evtEspDesportivo.objects.get(arquivo=arquivo.arquivo)
         xml_ger = gerar_xml_r3010_func(pk=evento.id)
 
-    elif arquivo.evento == 'r4010':
-
-        from emensageriapro.efdreinf.models import r4010evtRetPF
-        from emensageriapro.efdreinf.views.r4010_evtretpf_gerar_xml import gerar_xml_r4010_func
-        evento = r4010evtRetPF.objects.get(arquivo=arquivo.arquivo)
-        xml_ger = gerar_xml_r4010_func(pk=evento.id)
-
-    elif arquivo.evento == 'r4020':
-
-        from emensageriapro.efdreinf.models import r4020evtRetPJ
-        from emensageriapro.efdreinf.views.r4020_evtretpj_gerar_xml import gerar_xml_r4020_func
-        evento = r4020evtRetPJ.objects.get(arquivo=arquivo.arquivo)
-        xml_ger = gerar_xml_r4020_func(pk=evento.id)
-
-    elif arquivo.evento == 'r4040':
-
-        from emensageriapro.efdreinf.models import r4040evtBenefNId
-        from emensageriapro.efdreinf.views.r4040_evtbenefnid_gerar_xml import gerar_xml_r4040_func
-        evento = r4040evtBenefNId.objects.get(arquivo=arquivo.arquivo)
-        xml_ger = gerar_xml_r4040_func(pk=evento.id)
-
-    elif arquivo.evento == 'r4098':
-
-        from emensageriapro.efdreinf.models import r4098evtReab
-        from emensageriapro.efdreinf.views.r4098_evtreab_gerar_xml import gerar_xml_r4098_func
-        evento = r4098evtReab.objects.get(arquivo=arquivo.arquivo)
-        xml_ger = gerar_xml_r4098_func(pk=evento.id)
-
-    elif arquivo.evento == 'r4099':
-
-        from emensageriapro.efdreinf.models import r4099evtFech
-        from emensageriapro.efdreinf.views.r4099_evtfech_gerar_xml import gerar_xml_r4099_func
-        evento = r4099evtFech.objects.get(arquivo=arquivo.arquivo)
-        xml_ger = gerar_xml_r4099_func(pk=evento.id)
-
     elif arquivo.evento == 'r5001':
 
         from emensageriapro.efdreinf.models import r5001evtTotal
@@ -531,34 +497,6 @@ def verificacao_importacao_funcao(arquivo):
         from emensageriapro.efdreinf.views.r9000_evtexclusao_gerar_xml import gerar_xml_r9000_func
         evento = r9000evtExclusao.objects.get(arquivo=arquivo.arquivo)
         xml_ger = gerar_xml_r9000_func(pk=evento.id)
-
-    elif arquivo.evento == 'r9001':
-
-        from emensageriapro.efdreinf.models import r9001evtTotal
-        from emensageriapro.efdreinf.views.r9001_evttotal_gerar_xml import gerar_xml_r9001_func
-        evento = r9001evtTotal.objects.get(arquivo=arquivo.arquivo)
-        xml_ger = gerar_xml_r9001_func(pk=evento.id)
-
-    elif arquivo.evento == 'r9002':
-
-        from emensageriapro.efdreinf.models import r9002evtRet
-        from emensageriapro.efdreinf.views.r9002_evtret_gerar_xml import gerar_xml_r9002_func
-        evento = r9002evtRet.objects.get(arquivo=arquivo.arquivo)
-        xml_ger = gerar_xml_r9002_func(pk=evento.id)
-
-    elif arquivo.evento == 'r9011':
-
-        from emensageriapro.efdreinf.models import r9011evtTotalContrib
-        from emensageriapro.efdreinf.views.r9011_evttotalcontrib_gerar_xml import gerar_xml_r9011_func
-        evento = r9011evtTotalContrib.objects.get(arquivo=arquivo.arquivo)
-        xml_ger = gerar_xml_r9011_func(pk=evento.id)
-
-    elif arquivo.evento == 'r9012':
-
-        from emensageriapro.efdreinf.models import r9012evtRetCons
-        from emensageriapro.efdreinf.views.r9012_evtretcons_gerar_xml import gerar_xml_r9012_func
-        evento = r9012evtRetCons.objects.get(arquivo=arquivo.arquivo)
-        xml_ger = gerar_xml_r9012_func(pk=evento.id)
 
     for a in range(100):
         xml_ger = xml_ger.replace('> ', '>').replace(' <', '<').replace('\n', '\n')

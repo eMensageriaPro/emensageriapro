@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_r2060_tipocod or 1 %}"Informações de processos relacionados a não retenção de contribuição previdenciária";{% endif %}{% if show_fields.show_tpproc or 1 %}"Preencher com o código correspondente ao tipo de processo";{% endif %}{% if show_fields.show_nrproc or 1 %}"Informar o número do processo administrativo/judicial";{% endif %}{% if show_fields.show_codsusp or 1 %}"Código do Indicativo da Suspensão, atribuído pelo contribuinte";{% endif %}{% if show_fields.show_vlrcprbsusp or 1 %}"Valor da Contribuição Previdenciária com exigibilidade suspensa.";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_r2060_tipocod or 1 %}"{{ c.r2060_tipocod }}";{% endif %}{% if show_fields.show_tpproc or 1 %}"{{ c.tpproc }}";{% endif %}{% if show_fields.show_nrproc or 1 %}"{{ c.nrproc }}";{% endif %}{% if show_fields.show_codsusp or 1 %}"{{ c.codsusp }}";{% endif %}{% if show_fields.show_vlrcprbsusp or 1 %}"{{ c.vlrcprbsusp }}";{% endif %}
 {% endfor %}

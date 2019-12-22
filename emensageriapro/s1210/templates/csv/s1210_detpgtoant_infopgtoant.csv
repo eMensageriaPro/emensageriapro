@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1210_detpgtoant or 1 %}"Detalhamento do pagamento";{% endif %}{% if show_fields.show_tpbcirrf or 1 %}"Tipo de BC IRRF";{% endif %}{% if show_fields.show_vrbcirrf or 1 %}"Valor da BC do IRRF";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1210_detpgtoant or 1 %}"{{ c.s1210_detpgtoant }}";{% endif %}{% if show_fields.show_tpbcirrf or 1 %}"{{ c.tpbcirrf }}";{% endif %}{% if show_fields.show_vrbcirrf or 1 %}"{{ c.vrbcirrf }}";{% endif %}
 {% endfor %}

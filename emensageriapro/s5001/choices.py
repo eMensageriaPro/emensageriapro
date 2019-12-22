@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,41 +38,29 @@
 
 
 CHOICES_ESOCIALINSCRICOESTIPOS = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (5, u'5 - CGC'),
-
+    (6, u'6 - CEI'),
 ]
-
-
 
 
 CHOICES_S5001_IND13 = [
-
     (0, u'0 - Mensal'),
     (1, u'1 - 13° salário - {codIncCP} = [12, 14, 16, 22, 26, 32, 92, 94].'),
-
 ]
-
-
 
 
 CHOICES_S5001_INDSIMPLES = [
-
     (1, u'1 - Contribuição Substituída Integralmente'),
     (2, u'2 - Contribuição não substituída'),
     (3, u'3 - Contribuição não substituída concomitante com contribuição substituída. Evento de origem (S-1200/ S-2299/S-2399).'),
-
 ]
 
 
-
-
 CHOICES_S5001_TPCR = [
-
     ('1082-01', u'1082-01 - Contribuição previdenciária (CP) descontada do segurado empregado/avulso, alíquotas 8%, 9% ou 11%'),
     ('1082-02', u'1082-02 - CP descontada do segurado empregado rural curto prazo, alíquota de 8%, lei 11718/2008'),
     ('1082-03', u'1082-03 - CP descontada do segurado empregado doméstico ou segurado especial, alíquota de 8%, 9% ou 11%'),
@@ -82,8 +71,5 @@ CHOICES_S5001_TPCR = [
     ('1082-24', u'1082-24 - CP descontada do segurado especial curto prazo 13° salário, alíquota de 8%, lei 11718/2008 (codIncCP = [12, 16])'),
     ('1099-01', u'1099-01 - CP descontada do contribuinte individual, alíquota de 11%'),
     ('1099-02', u'1099-02 - CP descontada do contribuinte individual, alíquota de 20%.'),
-
 ]
-
-
 

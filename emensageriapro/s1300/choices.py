@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,13 +38,9 @@
 
 
 CHOICES_S1300_TPCONTRIBSIND = [
-
     (1, u'1 - Contribuição Sindical Compulsória'),
     (2, u'2 - Contribuição Associativa'),
     (3, u'3 - Contribuição Assistencial'),
     (4, u'4 - Contribuição Confederativa.'),
-
 ]
-
-
 

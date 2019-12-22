@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1200_infoperapur or 1 %}"Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração";{% endif %}{% if show_fields.show_tpinsc or 1 %}"Tipo de inscrição";{% endif %}{% if show_fields.show_nrinsc or 1 %}"Número de inscrição (CPF/CNPJ)";{% endif %}{% if show_fields.show_codlotacao or 1 %}"Código da Lotação";{% endif %}{% if show_fields.show_qtddiasav or 1 %}"Quant. de dias trabalhados (trab. avulso)";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1200_infoperapur or 1 %}"{{ c.s1200_infoperapur }}";{% endif %}{% if show_fields.show_tpinsc or 1 %}"{{ c.tpinsc }}";{% endif %}{% if show_fields.show_nrinsc or 1 %}"{{ c.nrinsc }}";{% endif %}{% if show_fields.show_codlotacao or 1 %}"{{ c.codlotacao }}";{% endif %}{% if show_fields.show_qtddiasav or 1 %}"{{ c.qtddiasav }}";{% endif %}
 {% endfor %}

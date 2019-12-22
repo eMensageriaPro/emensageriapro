@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2416_evtcdbenalt or 1 %}"Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas";{% endif %}{% if show_fields.show_nratolegal or 1 %}"Informar o número do ato legal de registro ou homologação do Tribunal de Contas.";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2416_evtcdbenalt or 1 %}"{{ c.s2416_evtcdbenalt }}";{% endif %}{% if show_fields.show_nratolegal or 1 %}"{{ c.nratolegal }}";{% endif %}
 {% endfor %}

@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -183,7 +184,7 @@
         <input type="text"
                id="txt_tpev"
                name="txt_tpev" class="form-control"
-               value="{% if r5001_evttotal.tpev %}{{ r5001_evttotal.tpev|get_opcoes_titulo:754 }}{% endif %}"
+               value="{% if r5001_evttotal.tpev %}{{ r5001_evttotal.tpev|get_opcoes_titulo:709 }}{% endif %}"
                {% if r5001_evttotal_form.tpev.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if r5001_evttotal_form.tpev.field.widget.attrs.required %} required="required"{% endif %}
                {% if r5001_evttotal_form.tpev.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -197,7 +198,7 @@
   $(document).ready(function(e){
     $('#txt_tpev').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/754/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/709/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,

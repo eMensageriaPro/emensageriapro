@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2230_iniafastamento or 1 %}"Informações Complementares - afastamento para exercício de mandato sindical";{% endif %}{% if show_fields.show_cnpjsind or 1 %}"CNPJ do Sindicato";{% endif %}{% if show_fields.show_infonusremun or 1 %}"Ônus da remuneração";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2230_iniafastamento or 1 %}"{{ c.s2230_iniafastamento }}";{% endif %}{% if show_fields.show_cnpjsind or 1 %}"{{ c.cnpjsind }}";{% endif %}{% if show_fields.show_infonusremun or 1 %}"{{ c.infonusremun }}";{% endif %}
 {% endfor %}

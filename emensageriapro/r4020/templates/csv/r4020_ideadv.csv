@@ -1,4 +1,0 @@
-{% load templatetags %}{% load static %}
-{% if show_fields.show_r4020_despprocjud or 1 %}"Identificação do advogado";{% endif %}{% if show_fields.show_tpinscadv or 1 %}"Tipo de inscrição do advogado";{% endif %}{% if show_fields.show_nrinscadv or 1 %}"Informar o número de inscrição do advogado";{% endif %}{% if show_fields.show_vlradv or 1 %}"Valor da despesa com o advogado";{% endif %}
-{% for c in campos_lista %}{% if show_fields.show_r4020_despprocjud or 1 %}"{{ c.r4020_despprocjud }}";{% endif %}{% if show_fields.show_tpinscadv or 1 %}"{{ c.tpinscadv }}";{% endif %}{% if show_fields.show_nrinscadv or 1 %}"{{ c.nrinscadv }}";{% endif %}{% if show_fields.show_vlradv or 1 %}"{{ c.vlradv }}";{% endif %}
-{% endfor %}

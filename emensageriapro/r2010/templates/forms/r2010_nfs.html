@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -12,7 +13,7 @@
 </script>
 <div class="col-md-12" id="r2010_nfs__r2010_evtservtom__div">
   <div class="form-group">
-    <label id="r2010_nfs__r2010_evtservtom__label">Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior*<a data-toggle="tooltip" title="Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2010_nfs__r2010_evtservtom__label">Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior*<a data-toggle="tooltip" title="Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r2010_nfs_form.r2010_evtservtom.value %}
         <a id="r2010_nfs__r2010_evtservtom__div_acessar" href="{% url 'r2010_evtservtom_salvar' pk=r2010_nfs_form.r2010_evtservtom.value %}">
@@ -56,7 +57,7 @@
 <!-- inicio__r2010_nfs__numdocto -->
 <div class="col-md-6" id="r2010_nfs__numdocto__div">
   <div class="form-group">
-    <label id="r2010_nfs__numdocto__label">Número da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS.*<a data-toggle="tooltip" title="Número da Nota Fiscal/Fatura ou outros documentos fiscais válidos, como Recibo Provisório de Serviço - RPS, CT-e OS, entre outros."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2010_nfs__numdocto__label">Número da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS.*<a data-toggle="tooltip" title="Número da Nota Fiscal/Fatura ou outro documento fiscal válido, como Recibo Provisório de Serviço - RPS, CT-e OS, entre outros."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2010_nfs_form.numdocto.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2010_nfs_form.numdocto.errors }}
@@ -86,7 +87,7 @@
 <!-- inicio__r2010_nfs__vlrbruto -->
 <div class="col-md-6" id="r2010_nfs__vlrbruto__div">
   <div class="form-group">
-    <label id="r2010_nfs__vlrbruto__label">Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS*<a data-toggle="tooltip" title="Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS ou de outro documento fiscal válido. Validação: Deve ser maior que 0."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2010_nfs__vlrbruto__label">Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS*<a data-toggle="tooltip" title="Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS ou de outro documento fiscal válido. Validação: Deve ser maior que 0"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2010_nfs_form.vlrbruto.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2010_nfs_form.vlrbruto.errors }}

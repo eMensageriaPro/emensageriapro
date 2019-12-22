@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1005_alteracao or 1 %}"Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.";{% endif %}{% if show_fields.show_inivalid or 1 %}"Início da Validade";{% endif %}{% if show_fields.show_fimvalid or 1 %}"Fim da Validade";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1005_alteracao or 1 %}"{{ c.s1005_alteracao }}";{% endif %}{% if show_fields.show_inivalid or 1 %}"{{ c.inivalid }}";{% endif %}{% if show_fields.show_fimvalid or 1 %}"{{ c.fimvalid }}";{% endif %}
 {% endfor %}

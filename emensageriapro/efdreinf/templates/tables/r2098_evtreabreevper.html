@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
@@ -43,18 +44,6 @@
             {% endif %}
             {% if show_fields.show_retornos_r5011 or 0 %}
             <th>Retorno R5011</th>
-            {% endif %}
-            {% if show_fields.show_retornos_r9001 or 0 %}
-            <th>Retorno R9001</th>
-            {% endif %}
-            {% if show_fields.show_retornos_r9002 or 0 %}
-            <th>Retorno R9002</th>
-            {% endif %}
-            {% if show_fields.show_retornos_r9011 or 0 %}
-            <th>Retorno R9011</th>
-            {% endif %}
-            {% if show_fields.show_retornos_r9012 or 0 %}
-            <th>Retorno R9012</th>
             {% endif %}
             {% if show_fields.show_ocorrencias or 0 %}
             <th>Ocorrências</th>
@@ -136,18 +125,6 @@
             {% endif %}
             {% if show_fields.show_retornos_r5011 or 0 %}
             <td>{{ a.retornos_r5011 }}</td>
-            {% endif %}
-            {% if show_fields.show_retornos_r9001 or 0 %}
-            <td>{{ a.retornos_r9001 }}</td>
-            {% endif %}
-            {% if show_fields.show_retornos_r9002 or 0 %}
-            <td>{{ a.retornos_r9002 }}</td>
-            {% endif %}
-            {% if show_fields.show_retornos_r9011 or 0 %}
-            <td>{{ a.retornos_r9011 }}</td>
-            {% endif %}
-            {% if show_fields.show_retornos_r9012 or 0 %}
-            <td>{{ a.retornos_r9012 }}</td>
             {% endif %}
             {% if show_fields.show_ocorrencias or 0 %}
             <td>{{ a.ocorrencias }}</td>

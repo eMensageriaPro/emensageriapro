@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s5002_infoirrf or 1 %}"Informações relativas ao Imposto de Renda Retido na Fonte";{% endif %}{% if show_fields.show_tpcr or 1 %}"Código da Receita (CR)";{% endif %}{% if show_fields.show_vrirrfdesc or 1 %}"Valor efetivamente descontado IRRF";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s5002_infoirrf or 1 %}"{{ c.s5002_infoirrf }}";{% endif %}{% if show_fields.show_tpcr or 1 %}"{{ c.tpcr }}";{% endif %}{% if show_fields.show_vrirrfdesc or 1 %}"{{ c.vrirrfdesc }}";{% endif %}
 {% endfor %}

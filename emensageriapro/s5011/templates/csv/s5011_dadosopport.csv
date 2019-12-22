@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s5011_idelotacao or 1 %}"Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).";{% endif %}{% if show_fields.show_cnpjopportuario or 1 %}"CNPJ do Operador Portuário";{% endif %}{% if show_fields.show_aliqrat or 1 %}"Alíquota RAT";{% endif %}{% if show_fields.show_fap or 1 %}"FAP";{% endif %}{% if show_fields.show_aliqratajust or 1 %}"Alíquota RAT (Ajustada)";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s5011_idelotacao or 1 %}"{{ c.s5011_idelotacao }}";{% endif %}{% if show_fields.show_cnpjopportuario or 1 %}"{{ c.cnpjopportuario }}";{% endif %}{% if show_fields.show_aliqrat or 1 %}"{{ c.aliqrat }}";{% endif %}{% if show_fields.show_fap or 1 %}"{{ c.fap }}";{% endif %}{% if show_fields.show_aliqratajust or 1 %}"{{ c.aliqratajust }}";{% endif %}
 {% endfor %}

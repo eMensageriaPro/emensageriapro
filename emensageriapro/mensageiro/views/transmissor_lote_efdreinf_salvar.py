@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding: utf-8
 
 __author__ = "Marcelo Medeiros de Vasconcellos"
@@ -83,30 +84,12 @@ from emensageriapro.efdreinf.models import r2099evtFechaEvPer
 from emensageriapro.efdreinf.forms import form_r2099_evtfechaevper
 from emensageriapro.efdreinf.models import r3010evtEspDesportivo
 from emensageriapro.efdreinf.forms import form_r3010_evtespdesportivo
-from emensageriapro.efdreinf.models import r4010evtRetPF
-from emensageriapro.efdreinf.forms import form_r4010_evtretpf
-from emensageriapro.efdreinf.models import r4020evtRetPJ
-from emensageriapro.efdreinf.forms import form_r4020_evtretpj
-from emensageriapro.efdreinf.models import r4040evtBenefNId
-from emensageriapro.efdreinf.forms import form_r4040_evtbenefnid
-from emensageriapro.efdreinf.models import r4098evtReab
-from emensageriapro.efdreinf.forms import form_r4098_evtreab
-from emensageriapro.efdreinf.models import r4099evtFech
-from emensageriapro.efdreinf.forms import form_r4099_evtfech
 from emensageriapro.efdreinf.models import r5001evtTotal
 from emensageriapro.efdreinf.forms import form_r5001_evttotal
 from emensageriapro.efdreinf.models import r5011evtTotalContrib
 from emensageriapro.efdreinf.forms import form_r5011_evttotalcontrib
 from emensageriapro.efdreinf.models import r9000evtExclusao
 from emensageriapro.efdreinf.forms import form_r9000_evtexclusao
-from emensageriapro.efdreinf.models import r9001evtTotal
-from emensageriapro.efdreinf.forms import form_r9001_evttotal
-from emensageriapro.efdreinf.models import r9002evtRet
-from emensageriapro.efdreinf.forms import form_r9002_evtret
-from emensageriapro.efdreinf.models import r9011evtTotalContrib
-from emensageriapro.efdreinf.forms import form_r9011_evttotalcontrib
-from emensageriapro.efdreinf.models import r9012evtRetCons
-from emensageriapro.efdreinf.forms import form_r9012_evtretcons
 
 
 @login_required
@@ -185,30 +168,12 @@ def salvar(request, pk=None, tab='master', output=None):
         r2099_evtfechaevper_form = None
         r3010_evtespdesportivo_lista = None
         r3010_evtespdesportivo_form = None
-        r4010_evtretpf_lista = None
-        r4010_evtretpf_form = None
-        r4020_evtretpj_lista = None
-        r4020_evtretpj_form = None
-        r4040_evtbenefnid_lista = None
-        r4040_evtbenefnid_form = None
-        r4098_evtreab_lista = None
-        r4098_evtreab_form = None
-        r4099_evtfech_lista = None
-        r4099_evtfech_form = None
         r5001_evttotal_lista = None
         r5001_evttotal_form = None
         r5011_evttotalcontrib_lista = None
         r5011_evttotalcontrib_form = None
         r9000_evtexclusao_lista = None
         r9000_evtexclusao_form = None
-        r9001_evttotal_lista = None
-        r9001_evttotal_form = None
-        r9002_evtret_lista = None
-        r9002_evtret_form = None
-        r9011_evttotalcontrib_lista = None
-        r9011_evttotalcontrib_form = None
-        r9012_evtretcons_lista = None
-        r9012_evtretcons_form = None
 
         if pk:
 
@@ -364,66 +329,6 @@ def salvar(request, pk=None, tab='master', output=None):
             r3010_evtespdesportivo_lista = r3010evtEspDesportivo.objects.\
                 filter(transmissor_lote_efdreinf_error_id=transmissor_lote_efdreinf.id).all()
 
-            r4010_evtretpf_form = form_r4010_evtretpf(
-                initial={ 'transmissor_lote_efdreinf': transmissor_lote_efdreinf })
-            r4010_evtretpf_form.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-            r4010_evtretpf_lista = r4010evtRetPF.objects.\
-                filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id).all()
-
-            r4010_evtretpf_form = form_r4010_evtretpf(
-                initial={ 'transmissor_lote_efdreinf_error': transmissor_lote_efdreinf })
-            r4010_evtretpf_form.fields['transmissor_lote_efdreinf_error'].widget.attrs['readonly'] = True
-            r4010_evtretpf_lista = r4010evtRetPF.objects.\
-                filter(transmissor_lote_efdreinf_error_id=transmissor_lote_efdreinf.id).all()
-
-            r4020_evtretpj_form = form_r4020_evtretpj(
-                initial={ 'transmissor_lote_efdreinf': transmissor_lote_efdreinf })
-            r4020_evtretpj_form.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-            r4020_evtretpj_lista = r4020evtRetPJ.objects.\
-                filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id).all()
-
-            r4020_evtretpj_form = form_r4020_evtretpj(
-                initial={ 'transmissor_lote_efdreinf_error': transmissor_lote_efdreinf })
-            r4020_evtretpj_form.fields['transmissor_lote_efdreinf_error'].widget.attrs['readonly'] = True
-            r4020_evtretpj_lista = r4020evtRetPJ.objects.\
-                filter(transmissor_lote_efdreinf_error_id=transmissor_lote_efdreinf.id).all()
-
-            r4040_evtbenefnid_form = form_r4040_evtbenefnid(
-                initial={ 'transmissor_lote_efdreinf': transmissor_lote_efdreinf })
-            r4040_evtbenefnid_form.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-            r4040_evtbenefnid_lista = r4040evtBenefNId.objects.\
-                filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id).all()
-
-            r4040_evtbenefnid_form = form_r4040_evtbenefnid(
-                initial={ 'transmissor_lote_efdreinf_error': transmissor_lote_efdreinf })
-            r4040_evtbenefnid_form.fields['transmissor_lote_efdreinf_error'].widget.attrs['readonly'] = True
-            r4040_evtbenefnid_lista = r4040evtBenefNId.objects.\
-                filter(transmissor_lote_efdreinf_error_id=transmissor_lote_efdreinf.id).all()
-
-            r4098_evtreab_form = form_r4098_evtreab(
-                initial={ 'transmissor_lote_efdreinf': transmissor_lote_efdreinf })
-            r4098_evtreab_form.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-            r4098_evtreab_lista = r4098evtReab.objects.\
-                filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id).all()
-
-            r4098_evtreab_form = form_r4098_evtreab(
-                initial={ 'transmissor_lote_efdreinf_error': transmissor_lote_efdreinf })
-            r4098_evtreab_form.fields['transmissor_lote_efdreinf_error'].widget.attrs['readonly'] = True
-            r4098_evtreab_lista = r4098evtReab.objects.\
-                filter(transmissor_lote_efdreinf_error_id=transmissor_lote_efdreinf.id).all()
-
-            r4099_evtfech_form = form_r4099_evtfech(
-                initial={ 'transmissor_lote_efdreinf': transmissor_lote_efdreinf })
-            r4099_evtfech_form.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-            r4099_evtfech_lista = r4099evtFech.objects.\
-                filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id).all()
-
-            r4099_evtfech_form = form_r4099_evtfech(
-                initial={ 'transmissor_lote_efdreinf_error': transmissor_lote_efdreinf })
-            r4099_evtfech_form.fields['transmissor_lote_efdreinf_error'].widget.attrs['readonly'] = True
-            r4099_evtfech_lista = r4099evtFech.objects.\
-                filter(transmissor_lote_efdreinf_error_id=transmissor_lote_efdreinf.id).all()
-
             r5001_evttotal_form = form_r5001_evttotal(
                 initial={ 'transmissor_lote_efdreinf': transmissor_lote_efdreinf })
             r5001_evttotal_form.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
@@ -458,54 +363,6 @@ def salvar(request, pk=None, tab='master', output=None):
                 initial={ 'transmissor_lote_efdreinf_error': transmissor_lote_efdreinf })
             r9000_evtexclusao_form.fields['transmissor_lote_efdreinf_error'].widget.attrs['readonly'] = True
             r9000_evtexclusao_lista = r9000evtExclusao.objects.\
-                filter(transmissor_lote_efdreinf_error_id=transmissor_lote_efdreinf.id).all()
-
-            r9001_evttotal_form = form_r9001_evttotal(
-                initial={ 'transmissor_lote_efdreinf': transmissor_lote_efdreinf })
-            r9001_evttotal_form.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-            r9001_evttotal_lista = r9001evtTotal.objects.\
-                filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id).all()
-
-            r9001_evttotal_form = form_r9001_evttotal(
-                initial={ 'transmissor_lote_efdreinf_error': transmissor_lote_efdreinf })
-            r9001_evttotal_form.fields['transmissor_lote_efdreinf_error'].widget.attrs['readonly'] = True
-            r9001_evttotal_lista = r9001evtTotal.objects.\
-                filter(transmissor_lote_efdreinf_error_id=transmissor_lote_efdreinf.id).all()
-
-            r9002_evtret_form = form_r9002_evtret(
-                initial={ 'transmissor_lote_efdreinf': transmissor_lote_efdreinf })
-            r9002_evtret_form.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-            r9002_evtret_lista = r9002evtRet.objects.\
-                filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id).all()
-
-            r9002_evtret_form = form_r9002_evtret(
-                initial={ 'transmissor_lote_efdreinf_error': transmissor_lote_efdreinf })
-            r9002_evtret_form.fields['transmissor_lote_efdreinf_error'].widget.attrs['readonly'] = True
-            r9002_evtret_lista = r9002evtRet.objects.\
-                filter(transmissor_lote_efdreinf_error_id=transmissor_lote_efdreinf.id).all()
-
-            r9011_evttotalcontrib_form = form_r9011_evttotalcontrib(
-                initial={ 'transmissor_lote_efdreinf': transmissor_lote_efdreinf })
-            r9011_evttotalcontrib_form.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-            r9011_evttotalcontrib_lista = r9011evtTotalContrib.objects.\
-                filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id).all()
-
-            r9011_evttotalcontrib_form = form_r9011_evttotalcontrib(
-                initial={ 'transmissor_lote_efdreinf_error': transmissor_lote_efdreinf })
-            r9011_evttotalcontrib_form.fields['transmissor_lote_efdreinf_error'].widget.attrs['readonly'] = True
-            r9011_evttotalcontrib_lista = r9011evtTotalContrib.objects.\
-                filter(transmissor_lote_efdreinf_error_id=transmissor_lote_efdreinf.id).all()
-
-            r9012_evtretcons_form = form_r9012_evtretcons(
-                initial={ 'transmissor_lote_efdreinf': transmissor_lote_efdreinf })
-            r9012_evtretcons_form.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-            r9012_evtretcons_lista = r9012evtRetCons.objects.\
-                filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id).all()
-
-            r9012_evtretcons_form = form_r9012_evtretcons(
-                initial={ 'transmissor_lote_efdreinf_error': transmissor_lote_efdreinf })
-            r9012_evtretcons_form.fields['transmissor_lote_efdreinf_error'].widget.attrs['readonly'] = True
-            r9012_evtretcons_lista = r9012evtRetCons.objects.\
                 filter(transmissor_lote_efdreinf_error_id=transmissor_lote_efdreinf.id).all()
 
 
@@ -562,30 +419,12 @@ def salvar(request, pk=None, tab='master', output=None):
             'r2099_evtfechaevper_lista': r2099_evtfechaevper_lista,
             'r3010_evtespdesportivo_form': r3010_evtespdesportivo_form,
             'r3010_evtespdesportivo_lista': r3010_evtespdesportivo_lista,
-            'r4010_evtretpf_form': r4010_evtretpf_form,
-            'r4010_evtretpf_lista': r4010_evtretpf_lista,
-            'r4020_evtretpj_form': r4020_evtretpj_form,
-            'r4020_evtretpj_lista': r4020_evtretpj_lista,
-            'r4040_evtbenefnid_form': r4040_evtbenefnid_form,
-            'r4040_evtbenefnid_lista': r4040_evtbenefnid_lista,
-            'r4098_evtreab_form': r4098_evtreab_form,
-            'r4098_evtreab_lista': r4098_evtreab_lista,
-            'r4099_evtfech_form': r4099_evtfech_form,
-            'r4099_evtfech_lista': r4099_evtfech_lista,
             'r5001_evttotal_form': r5001_evttotal_form,
             'r5001_evttotal_lista': r5001_evttotal_lista,
             'r5011_evttotalcontrib_form': r5011_evttotalcontrib_form,
             'r5011_evttotalcontrib_lista': r5011_evttotalcontrib_lista,
             'r9000_evtexclusao_form': r9000_evtexclusao_form,
             'r9000_evtexclusao_lista': r9000_evtexclusao_lista,
-            'r9001_evttotal_form': r9001_evttotal_form,
-            'r9001_evttotal_lista': r9001_evttotal_lista,
-            'r9002_evtret_form': r9002_evtret_form,
-            'r9002_evtret_lista': r9002_evtret_lista,
-            'r9011_evttotalcontrib_form': r9011_evttotalcontrib_form,
-            'r9011_evttotalcontrib_lista': r9011_evttotalcontrib_lista,
-            'r9012_evtretcons_form': r9012_evtretcons_form,
-            'r9012_evtretcons_lista': r9012_evtretcons_lista,
             'modulos': ['mensageiro', ],
             'paginas': ['transmissor_lote_efdreinf', ],
             'data': datetime.datetime.now(),

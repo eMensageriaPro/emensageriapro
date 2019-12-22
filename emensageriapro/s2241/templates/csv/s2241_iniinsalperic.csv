@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2241_insalperic or 1 %}"Condições do ambiente de trabalho insalubre/periculoso - Início";{% endif %}{% if show_fields.show_dtinicondicao or 1 %}"Data de início da condição";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2241_insalperic or 1 %}"{{ c.s2241_insalperic }}";{% endif %}{% if show_fields.show_dtinicondicao or 1 %}"{{ c.dtinicondicao }}";{% endif %}
 {% endfor %}

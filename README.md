@@ -4,10 +4,21 @@ eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www
 
 Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
+## Versões compatíveis do eSocial
+
+- 2.04.02
+- 2.05.00 (até NT 16/2019)
+- NDE 02/2018 - EVENTOS RELATIVOS A ÓRGÃOS/ENTES DO PODER PÚBLICO
+
+## Versões compatíveis do EFD-Reinf
+
+- 1.03.02
+- 1.04.00
+
 ## Requisitos de Sistema
 
 - Python (versão 2.7);
-- Django (versão 1.11.15);
+- Django (versão 1.11.23);
 - Postgres 9.6;
 
 ## Instalação usando docker:

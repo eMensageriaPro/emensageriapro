@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1005_alteracao or 1 %}"Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.";{% endif %}{% if show_fields.show_contpcd or 1 %}"Situação PCD";{% endif %}{% if show_fields.show_nrprocjud or 1 %}"Número do Processo Judicial";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1005_alteracao or 1 %}"{{ c.s1005_alteracao }}";{% endif %}{% if show_fields.show_contpcd or 1 %}"{{ c.contpcd }}";{% endif %}{% if show_fields.show_nrprocjud or 1 %}"{{ c.nrprocjud }}";{% endif %}
 {% endfor %}

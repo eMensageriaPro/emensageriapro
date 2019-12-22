@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -74,6 +75,18 @@
         <option value="2019-10" {% ifequal '2019-10' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Outubro/2019</option>
         <option value="2019-11" {% ifequal '2019-11' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Novembro/2019</option>
         <option value="2019-12" {% ifequal '2019-12' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Dezembro/2019</option>
+        <option value="2020-01" {% ifequal '2020-01' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Janeiro/2020</option>
+        <option value="2020-02" {% ifequal '2020-02' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Fevereiro/2020</option>
+        <option value="2020-03" {% ifequal '2020-03' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Março/2020</option>
+        <option value="2020-04" {% ifequal '2020-04' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Abril/2020</option>
+        <option value="2020-05" {% ifequal '2020-05' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Maio/2020</option>
+        <option value="2020-06" {% ifequal '2020-06' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Junho/2020</option>
+        <option value="2020-07" {% ifequal '2020-07' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Julho/2020</option>
+        <option value="2020-08" {% ifequal '2020-08' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Agosto/2020</option>
+        <option value="2020-09" {% ifequal '2020-09' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Setembro/2020</option>
+        <option value="2020-10" {% ifequal '2020-10' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Outubro/2020</option>
+        <option value="2020-11" {% ifequal '2020-11' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Novembro/2020</option>
+        <option value="2020-12" {% ifequal '2020-12' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Dezembro/2020</option>
       </select>
     </div>
   </div>
@@ -123,6 +136,18 @@
         <option value="2019-10" {% ifequal '2019-10' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Outubro/2019</option>
         <option value="2019-11" {% ifequal '2019-11' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Novembro/2019</option>
         <option value="2019-12" {% ifequal '2019-12' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Dezembro/2019</option>
+        <option value="2020-01" {% ifequal '2020-01' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Janeiro/2020</option>
+        <option value="2020-02" {% ifequal '2020-02' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Fevereiro/2020</option>
+        <option value="2020-03" {% ifequal '2020-03' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Março/2020</option>
+        <option value="2020-04" {% ifequal '2020-04' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Abril/2020</option>
+        <option value="2020-05" {% ifequal '2020-05' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Maio/2020</option>
+        <option value="2020-06" {% ifequal '2020-06' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Junho/2020</option>
+        <option value="2020-07" {% ifequal '2020-07' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Julho/2020</option>
+        <option value="2020-08" {% ifequal '2020-08' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Agosto/2020</option>
+        <option value="2020-09" {% ifequal '2020-09' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Setembro/2020</option>
+        <option value="2020-10" {% ifequal '2020-10' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Outubro/2020</option>
+        <option value="2020-11" {% ifequal '2020-11' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Novembro/2020</option>
+        <option value="2020-12" {% ifequal '2020-12' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Dezembro/2020</option>
       </select>
     </div>
   </div>
@@ -142,17 +167,17 @@
     <div class="input-group" style="width: 100%;">
       <select name="tplotacao" class="form-control automate-select" style="width: 100%;">
         <option value="">-- selecione --</option>
-        <option value="01" {% ifequal '01' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >01 - Classificação da atividade econômica exercida pela Pessoa Jurídica para fins de atribuição de código FPAS, inclusive obras de construção civil própria, exceto: a) empreitada parcial ou sub-empreitada de obra de construção civil (utilizar opção 02), b) prestação de serviços em instalações de terceiros (utilizar opções 03 a 09), c) Embarcação inscrita no Registro Especial Brasileiro - REB (utilizar opção 10).</option>
-        <option value="02" {% ifequal '02' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >02 - Obra de Construção Civil - Empreitada Parcial ou Sub- empreitada</option>
+        <option value="01" {% ifequal '01' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >01 - Classificação da atividade econômica exercida pela Pessoa Jurídica para fins de atribuição de código FPAS,  inclusive obras de construção civil própria, exceto: a) empreitada parcial ou sub-empreitada de obra de construção civil (utilizar opção 02), b) prestação de serviços em instalações de terceiros (utilizar opções 03 a 09), c) Embarcação inscrita no Registro Especial Brasileiro - REB (utilizar opção 10).</option>
+        <option value="02" {% ifequal '02' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >02 - Obra  de  Construção  Civil  -  Empreitada  Parcial  ou  Sub- empreitada</option>
         <option value="03" {% ifequal '03' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >03 - Pessoa Física Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa</option>
         <option value="04" {% ifequal '04' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >04 - Pessoa Jurídica Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa, nos termos da lei 8.212/1991</option>
-        <option value="05" {% ifequal '05' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >05 - Pessoa Jurídica Tomadora de Serviços prestados por cooperados por intermédio de cooperativa de trabalho, exceto aqueles prestados a entidade beneficente/isenta</option>
-        <option value="06" {% ifequal '06' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >06 - Entidade beneficente/isenta Tomadora de Serviços prestados por cooperados por intermédio de cooperativa de trabalho</option>
+        <option value="05" {% ifequal '05' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >05 - Pessoa Jurídica Tomadora de Serviços prestados  por cooperados por intermédio de cooperativa de trabalho, exceto aqueles prestados a entidade beneficente/isenta</option>
+        <option value="06" {% ifequal '06' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >06 - Entidade  beneficente/isenta  Tomadora  de  Serviços  prestados por cooperados por intermédio de cooperativa de trabalho</option>
         <option value="07" {% ifequal '07' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >07 - Pessoa Física tomadora de Serviços prestados por Cooperados por intermédio de Cooperativa de Trabalho</option>
-        <option value="08" {% ifequal '08' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >08 - Operador Portuário tomador de serviços de trabalhadores avulsos</option>
-        <option value="09" {% ifequal '09' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >09 - Contratante de trabalhadores avulsos não portuários por intermédio de Sindicato</option>
+        <option value="08" {% ifequal '08' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >08 - Operador  Portuário  tomador  de  serviços  de  trabalhadores avulsos</option>
+        <option value="09" {% ifequal '09' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >09 - Contratante   de   trabalhadores   avulsos   não   portuários   por intermédio de Sindicato</option>
         <option value="10" {% ifequal '10' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >10 - Embarcação inscrita no Registro Especial Brasileiro - REB</option>
-        <option value="21" {% ifequal '21' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >21 - Classificação da atividade econômica ou obra própria de construção civil da Pessoa Física</option>
+        <option value="21" {% ifequal '21' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >21 - Classificação  da  atividade  econômica  ou  obra  própria  de construção civil da Pessoa Física</option>
         <option value="24" {% ifequal '24' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >24 - Empregador Doméstico</option>
         <option value="90" {% ifequal '90' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >90 - Atividades desenvolvidas no exterior por trabalhador vinculado ao Regime Geral de Previdência Social (expatriados)</option>
         <option value="91" {% ifequal '91' dict_fields|get_value_from_dict:'tplotacao' %}selected="selected"{% endifequal %} >91 - Atividades desenvolvidas por trabalhador estrangeiro vinculado a Regime de Previdência Social Estrangeiro</option>
@@ -174,6 +199,7 @@
         <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
         <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >4 - CNO (Cadastro Nacional de Obra)</option>
         <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >5 - CGC</option>
+        <option value="6" {% ifequal 6 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >6 - CEI</option>
       </select>
     </div>
   </div>

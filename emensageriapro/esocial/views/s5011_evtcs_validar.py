@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -76,7 +77,7 @@ def validacoes_s5011_evtcs(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'ideEmpregador.tpInsc',
                                                   ideEmpregador.tpInsc.cdata,
-                                                  1, u'1, 2, 3, 4, 5')
+                                                  1, u'1, 2, 3, 4, 5, 6')
 
             if 'nrInsc' in dir(ideEmpregador):
                 validacoes_lista = validar_campo( validacoes_lista,
@@ -97,7 +98,7 @@ def validacoes_s5011_evtcs(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'infoCS.indExistInfo',
                                                   infoCS.indExistInfo.cdata,
-                                                  1, u'None')
+                                                  1, u'1, 3')
 
             if 'infoCPSeg' in dir(infoCS.infoCPSeg):
                 for infoCPSeg in infoCS.infoCPSeg:
@@ -172,7 +173,7 @@ def validacoes_s5011_evtcs(arquivo):
                         validacoes_lista = validar_campo( validacoes_lista,
                                                           'ideEstab.tpInsc',
                                                           ideEstab.tpInsc.cdata,
-                                                          1, u'1, 2, 3, 4, 5')
+                                                          1, u'1, 2, 3, 4, 5, 6')
 
                     if 'nrInsc' in dir(ideEstab):
                         validacoes_lista = validar_campo( validacoes_lista,
@@ -319,13 +320,13 @@ def validacoes_s5011_evtcs(arquivo):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'basesRemun.indIncid',
                                                                           basesRemun.indIncid.cdata,
-                                                                          1, u'None')
+                                                                          1, u'1, 2, 9')
                 
                                     if 'codCateg' in dir(basesRemun):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'basesRemun.codCateg',
                                                                           basesRemun.codCateg.cdata,
-                                                                          1, u'101, 102, 103, 104, 105, 106, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
+                                                                          1, u'101, 102, 103, 104, 105, 106, 107, 108, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
                 
                                     if 'basesCp' in dir(basesRemun.basesCp):
                                         for basesCp in basesRemun.basesCp:
@@ -377,6 +378,54 @@ def validacoes_s5011_evtcs(arquivo):
                                                                                   'basesCp.vrSuspBcCp25',
                                                                                   basesCp.vrSuspBcCp25.cdata,
                                                                                   1, u'None')
+                        
+                                            if 'vrBcCp00VA' in dir(basesCp):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'basesCp.vrBcCp00VA',
+                                                                                  basesCp.vrBcCp00VA.cdata,
+                                                                                  0, u'None')
+                        
+                                            if 'vrBcCp15VA' in dir(basesCp):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'basesCp.vrBcCp15VA',
+                                                                                  basesCp.vrBcCp15VA.cdata,
+                                                                                  0, u'None')
+                        
+                                            if 'vrBcCp20VA' in dir(basesCp):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'basesCp.vrBcCp20VA',
+                                                                                  basesCp.vrBcCp20VA.cdata,
+                                                                                  0, u'None')
+                        
+                                            if 'vrBcCp25VA' in dir(basesCp):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'basesCp.vrBcCp25VA',
+                                                                                  basesCp.vrBcCp25VA.cdata,
+                                                                                  0, u'None')
+                        
+                                            if 'vrSuspBcCp00VA' in dir(basesCp):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'basesCp.vrSuspBcCp00VA',
+                                                                                  basesCp.vrSuspBcCp00VA.cdata,
+                                                                                  0, u'None')
+                        
+                                            if 'vrSuspBcCp15VA' in dir(basesCp):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'basesCp.vrSuspBcCp15VA',
+                                                                                  basesCp.vrSuspBcCp15VA.cdata,
+                                                                                  0, u'None')
+                        
+                                            if 'vrSuspBcCp20VA' in dir(basesCp):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'basesCp.vrSuspBcCp20VA',
+                                                                                  basesCp.vrSuspBcCp20VA.cdata,
+                                                                                  0, u'None')
+                        
+                                            if 'vrSuspBcCp25VA' in dir(basesCp):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'basesCp.vrSuspBcCp25VA',
+                                                                                  basesCp.vrSuspBcCp25VA.cdata,
+                                                                                  0, u'None')
                         
                                             if 'vrDescSest' in dir(basesCp):
                                                 validacoes_lista = validar_campo( validacoes_lista,

@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}
 <table {% if not output %}
     class="table table-bordered"{% else %}
@@ -6,13 +7,13 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtComProd</td>
-            <td bgcolor="lightgray" colspan="3">Evento Comercialização da Produção. Regras de validação: REGRA_EVE_COMERC_PROD_RURAL REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_ESTAB REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</td>
+            <td bgcolor="lightgray" colspan="3">Evento Comercialização da Produção Regras de validação: REGRA_EVE_COMERC_PROD_RURAL REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_ESTAB REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</td>
         </tr>
     {% for r2050_evtcomprod in r2050_evtcomprod_lista %}
     {% ifequal 1 1 %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
         </tr>
 
         <tr {% if r2050_evtcomprod.indretif|validacoes_esocial_efdreinf:"r2050_evtcomprod.indretif" %}bgcolor="lightcoral"{% endif %}>
@@ -131,7 +132,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideContri</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte</td>
         </tr>
 
         <tr {% if r2050_evtcomprod.tpinsc|validacoes_esocial_efdreinf:"r2050_evtcomprod.tpinsc" %}bgcolor="lightcoral"{% endif %}>
@@ -174,17 +175,17 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoComProd</td>
-            <td bgcolor="lightgray" colspan="3">Informação da Comercialização de Produção.</td>
+            <td bgcolor="lightgray" colspan="3">Informação da Comercialização de Produção</td>
         </tr>
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEstab</td>
-            <td bgcolor="lightgray" colspan="3">Registro que identifica o estabelecimento que comercializou a produção.</td>
+            <td bgcolor="lightgray" colspan="3">Registro que identifica o estabelecimento que comercializou a produção</td>
         </tr>
 
         <tr {% if r2050_evtcomprod.tpinscestab|validacoes_esocial_efdreinf:"r2050_evtcomprod.tpinscestab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInscEstab</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ). Valores Válidos: 1.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ). Valores Válidos: 1</td>
             <td width="200px"><b>{% if r2050_evtcomprod.tpinscestab or r2050_evtcomprod.tpinscestab == 0 %}{{ r2050_evtcomprod.tpinscestab }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -241,7 +242,7 @@
 
         <tr {% if r2050_evtcomprod.vlrcpapur|validacoes_esocial_efdreinf:"r2050_evtcomprod.vlrcpapur" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrCPApur</td>
-            <td width="500px">Valor da Contribuição Previdenciária.</td>
+            <td width="500px">Valor da Contribuição Previdenciária</td>
             <td width="200px"><b>{% if r2050_evtcomprod.vlrcpapur or r2050_evtcomprod.vlrcpapur == 0 %}{{ r2050_evtcomprod.vlrcpapur }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -260,7 +261,7 @@
 
         <tr {% if r2050_evtcomprod.vlrratapur|validacoes_esocial_efdreinf:"r2050_evtcomprod.vlrratapur" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrRatApur</td>
-            <td width="500px">Valor da Contribuição Previdenciária GILRAT.</td>
+            <td width="500px">Valor da Contribuição Previdenciária GILRAT</td>
             <td width="200px"><b>{% if r2050_evtcomprod.vlrratapur or r2050_evtcomprod.vlrratapur == 0 %}{{ r2050_evtcomprod.vlrratapur }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -279,7 +280,7 @@
 
         <tr {% if r2050_evtcomprod.vlrsenarapur|validacoes_esocial_efdreinf:"r2050_evtcomprod.vlrsenarapur" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrSenarApur</td>
-            <td width="500px">Valor da Contribuição para o SENAR.</td>
+            <td width="500px">Valor da Contribuição para o SENAR</td>
             <td width="200px"><b>{% if r2050_evtcomprod.vlrsenarapur or r2050_evtcomprod.vlrsenarapur == 0 %}{{ r2050_evtcomprod.vlrsenarapur }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -317,7 +318,7 @@
 
         <tr {% if r2050_evtcomprod.vlrratsusptotal|validacoes_esocial_efdreinf:"r2050_evtcomprod.vlrratsusptotal" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrRatSuspTotal</td>
-            <td width="500px">Valor da contribuição Gilrat com exigibilidade suspensa. Validação: Deve ser igual a totalização do campo {vlrRATSusp} do grupo {infoProc}, com exceção dos valores informados para {indSusp} = [92].</td>
+            <td width="500px">Valor da contribuição Gilrat com exigibilidade suspensa Validação: Deve ser igual a totalização do campo {vlrRATSusp} do grupo {infoProc}, com exceção dos valores informados para {indSusp} = [92].</td>
             <td width="200px"><b>{% if r2050_evtcomprod.vlrratsusptotal or r2050_evtcomprod.vlrratsusptotal == 0 %}{{ r2050_evtcomprod.vlrratsusptotal }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -336,7 +337,7 @@
 
         <tr {% if r2050_evtcomprod.vlrsenarsusptotal|validacoes_esocial_efdreinf:"r2050_evtcomprod.vlrsenarsusptotal" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrSenarSuspTotal</td>
-            <td width="500px">Valor da contribuição para o Senar com exigibilidade suspensa. Validação: Deve ser igual a totalização do campo {vlrSenarSusp} do grupo {infoProc}, com exceção dos valores informados para {indSusp} = [92].</td>
+            <td width="500px">Valor da contribuição para o Senar com exigibilidade suspensa Validação: Deve ser igual a totalização do campo {vlrSenarSusp} do grupo {infoProc}, com exceção dos valores informados para {indSusp} = [92].</td>
             <td width="200px"><b>{% if r2050_evtcomprod.vlrsenarsusptotal or r2050_evtcomprod.vlrsenarsusptotal == 0 %}{{ r2050_evtcomprod.vlrsenarsusptotal }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -481,7 +482,7 @@
 
         <tr {% if r2050_infoproc.vlrratsusp|validacoes_esocial_efdreinf:"r2050_infoproc.vlrratsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrRatSusp</td>
-            <td width="500px">Valor da contribuição para Gilrat com exigibilidade suspensa. Validação: Preenchimento obrigatório se {vlrCPSusp} e {vlrSenarSusp} não tiverem sido preenchidos. Deve ser maior que zero.</td>
+            <td width="500px">Valor da contribuição para Gilrat com exigibilidade suspensa Validação: Preenchimento obrigatório se {vlrCPSusp} e {vlrSenarSusp} não tiverem sido preenchidos. Deve ser maior que zero.</td>
             <td width="200px"><b>{% if r2050_infoproc.vlrratsusp or r2050_infoproc.vlrratsusp == 0 %}{{ r2050_infoproc.vlrratsusp }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -500,7 +501,7 @@
 
         <tr {% if r2050_infoproc.vlrsenarsusp|validacoes_esocial_efdreinf:"r2050_infoproc.vlrsenarsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrSenarSusp</td>
-            <td width="500px">Valor da contribuição para o Senar com exigibilidade suspensa. Validação: Preenchimento obrigatório se {vlrCPSusp} e {vlrRatSusp} não tiverem sido preenchidos. Deve ser maior que zero.</td>
+            <td width="500px">Valor da contribuição para o Senar com exigibilidade suspensa Validação: Preenchimento obrigatório se {vlrCPSusp} e {vlrRatSusp} não tiverem sido preenchidos. Deve ser maior que zero.</td>
             <td width="200px"><b>{% if r2050_infoproc.vlrsenarsusp or r2050_infoproc.vlrsenarsusp == 0 %}{{ r2050_infoproc.vlrsenarsusp }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

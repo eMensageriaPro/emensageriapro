@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,34 +38,22 @@
 
 
 CHOICES_S2220_INDRESULT = [
-
     (1, u'1 - Normal'),
     (2, u'2 - Alterado'),
     (3, u'3 - Estável'),
     (4, u'4 - Agravamento.'),
-
 ]
-
-
 
 
 CHOICES_S2220_INTERPREXM = [
-
     (1, u'1 - EE'),
     (2, u'2 - SC'),
     (3, u'3 - SC+.'),
-
 ]
-
-
 
 
 CHOICES_S2220_ORDEXAME = [
-
     (1, u'1 - Inicial'),
     (2, u'2 - Sequencial.'),
-
 ]
-
-
 

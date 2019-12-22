@@ -1,3 +1,4 @@
+-- eMensageriaAI --
 UPDATE public.s1060_inclusao a
    SET ativo=b.ativo, desativado_em=b.desativado_em, desativado_por_id=b.desativado_por_id
   FROM public.s1060_evttabambiente b

@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2299_evtdeslig or 1 %}"Informações sobre a 'quarentena' remunerada de trabalhador desligado";{% endif %}{% if show_fields.show_dtfimquar or 1 %}"Data do término da quarentena";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2299_evtdeslig or 1 %}"{{ c.s2299_evtdeslig }}";{% endif %}{% if show_fields.show_dtfimquar or 1 %}"{{ c.dtfimquar }}";{% endif %}
 {% endfor %}

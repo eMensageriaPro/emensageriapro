@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2410_evtcdbenin or 1 %}"Informações relativas a pensão por morte";{% endif %}{% if show_fields.show_tppenmorte or 1 %}"Tipo de pensão por morte";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2410_evtcdbenin or 1 %}"{{ c.s2410_evtcdbenin }}";{% endif %}{% if show_fields.show_tppenmorte or 1 %}"{{ c.tppenmorte }}";{% endif %}
 {% endfor %}

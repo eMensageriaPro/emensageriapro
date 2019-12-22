@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,42 +38,30 @@
 
 
 CHOICES_ESOCIALINSCRICOESTIPOS = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (5, u'5 - CGC'),
-
+    (6, u'6 - CEI'),
 ]
-
-
 
 
 CHOICES_S1060_LOCALAMB_ALTERACAO = [
-
     (1, u'1 - Estabelecimento do próprio empregador'),
     (2, u'2 - Estabelecimento de terceiros'),
     (3, u'3 - Prestação de serviços em instalações de terceiros não consideradas como lotações dos tipos 03 a 09 da tabela 10.'),
-
 ]
-
-
 
 
 CHOICES_S1060_LOCALAMB_INCLUSAO = [
-
     (1, u'1 - Estabelecimento do próprio empregador'),
     (2, u'2 - Estabelecimento de terceiros'),
     (3, u'3 - Prestação de serviços em instalações de terceiros não consideradas como lotações dos tipos 03 a 09 da tabela 10.'),
-
 ]
 
 
-
-
 PERIODOS = [
-
     ('2017-01', u'Janeiro/2017'),
     ('2017-02', u'Fevereiro/2017'),
     ('2017-03', u'Março/2017'),
@@ -109,8 +98,17 @@ PERIODOS = [
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-
+    ('2020-01', u'Janeiro/2020'),
+    ('2020-02', u'Fevereiro/2020'),
+    ('2020-03', u'Março/2020'),
+    ('2020-04', u'Abril/2020'),
+    ('2020-05', u'Maio/2020'),
+    ('2020-06', u'Junho/2020'),
+    ('2020-07', u'Julho/2020'),
+    ('2020-08', u'Agosto/2020'),
+    ('2020-09', u'Setembro/2020'),
+    ('2020-10', u'Outubro/2020'),
+    ('2020-11', u'Novembro/2020'),
+    ('2020-12', u'Dezembro/2020'),
 ]
-
-
 

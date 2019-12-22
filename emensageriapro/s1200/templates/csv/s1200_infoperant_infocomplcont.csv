@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1200_dmdev or 1 %}"Registro preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente (CPF + categoria).";{% endif %}{% if show_fields.show_codcbo or 1 %}"CBO";{% endif %}{% if show_fields.show_natatividade or 1 %}"Natureza da atividade";{% endif %}{% if show_fields.show_qtddiastrab or 1 %}"Quant. de dias trabalhados";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1200_dmdev or 1 %}"{{ c.s1200_dmdev }}";{% endif %}{% if show_fields.show_codcbo or 1 %}"{{ c.codcbo }}";{% endif %}{% if show_fields.show_natatividade or 1 %}"{{ c.natatividade }}";{% endif %}{% if show_fields.show_qtddiastrab or 1 %}"{{ c.qtddiastrab }}";{% endif %}
 {% endfor %}

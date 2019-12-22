@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -113,6 +114,7 @@
         <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
         <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >4 - CNO (Cadastro Nacional de Obra)</option>
         <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >5 - CGC</option>
+        <option value="6" {% ifequal 6 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >6 - CEI</option>
       </select>
     </div>
   </div>
@@ -185,14 +187,14 @@
     <div class="input-group" style="width: 100%;">
       <select name="mtvtermino" class="form-control automate-select" style="width: 100%;">
         <option value="">-- selecione --</option>
-        <option value="1" {% ifequal '1' dict_fields|get_value_from_dict:'mtvtermino' %}selected="selected"{% endifequal %} >1 - Óbito</option>
-        <option value="2" {% ifequal '2' dict_fields|get_value_from_dict:'mtvtermino' %}selected="selected"{% endifequal %} >2 - Reversão</option>
-        <option value="3" {% ifequal '3' dict_fields|get_value_from_dict:'mtvtermino' %}selected="selected"{% endifequal %} >3 - Por decisão judicial</option>
-        <option value="4" {% ifequal '4' dict_fields|get_value_from_dict:'mtvtermino' %}selected="selected"{% endifequal %} >4 - Cassação</option>
-        <option value="5" {% ifequal '5' dict_fields|get_value_from_dict:'mtvtermino' %}selected="selected"{% endifequal %} >5 - Término do prazo do benefício</option>
-        <option value="6" {% ifequal '6' dict_fields|get_value_from_dict:'mtvtermino' %}selected="selected"{% endifequal %} >6 - Extinção de Quota</option>
-        <option value="7" {% ifequal '7' dict_fields|get_value_from_dict:'mtvtermino' %}selected="selected"{% endifequal %} >7 - Não homologado pelo Tribunal de Contas</option>
-        <option value="8" {% ifequal '8' dict_fields|get_value_from_dict:'mtvtermino' %}selected="selected"{% endifequal %} >8 - Renúncia Expressa</option>
+        <option value="1" {% ifequal '1' dict_fields|get_value_from_dict:'mtvtermino' %}selected="selected"{% endifequal %} >1 - Óbito</option>
+        <option value="2" {% ifequal '2' dict_fields|get_value_from_dict:'mtvtermino' %}selected="selected"{% endifequal %} >2 - Reversão</option>
+        <option value="3" {% ifequal '3' dict_fields|get_value_from_dict:'mtvtermino' %}selected="selected"{% endifequal %} >3 - Por decisão judicial</option>
+        <option value="4" {% ifequal '4' dict_fields|get_value_from_dict:'mtvtermino' %}selected="selected"{% endifequal %} >4 - Cassação</option>
+        <option value="5" {% ifequal '5' dict_fields|get_value_from_dict:'mtvtermino' %}selected="selected"{% endifequal %} >5 - Término do prazo do benefício</option>
+        <option value="6" {% ifequal '6' dict_fields|get_value_from_dict:'mtvtermino' %}selected="selected"{% endifequal %} >6 - Extinção de Quota</option>
+        <option value="7" {% ifequal '7' dict_fields|get_value_from_dict:'mtvtermino' %}selected="selected"{% endifequal %} >7 - Não homologado pelo Tribunal de Contas</option>
+        <option value="8" {% ifequal '8' dict_fields|get_value_from_dict:'mtvtermino' %}selected="selected"{% endifequal %} >8 - Renúncia Expressa</option>
       </select>
     </div>
   </div>

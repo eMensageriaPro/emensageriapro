@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 from django.conf.urls import include, url
 from django.contrib import admin
@@ -73,18 +74,9 @@ urlpatterns = [
     url(r'^r2098/', include('emensageriapro.r2098.urls')),
     url(r'^r2099/', include('emensageriapro.r2099.urls')),
     url(r'^r3010/', include('emensageriapro.r3010.urls')),
-    url(r'^r4010/', include('emensageriapro.r4010.urls')),
-    url(r'^r4020/', include('emensageriapro.r4020.urls')),
-    url(r'^r4040/', include('emensageriapro.r4040.urls')),
-    url(r'^r4098/', include('emensageriapro.r4098.urls')),
-    url(r'^r4099/', include('emensageriapro.r4099.urls')),
     url(r'^r5001/', include('emensageriapro.r5001.urls')),
     url(r'^r5011/', include('emensageriapro.r5011.urls')),
     url(r'^r9000/', include('emensageriapro.r9000.urls')),
-    url(r'^r9001/', include('emensageriapro.r9001.urls')),
-    url(r'^r9002/', include('emensageriapro.r9002.urls')),
-    url(r'^r9011/', include('emensageriapro.r9011.urls')),
-    url(r'^r9012/', include('emensageriapro.r9012.urls')),
     url(r'^s1000/', include('emensageriapro.s1000.urls')),
     url(r'^s1005/', include('emensageriapro.s1005.urls')),
     url(r'^s1010/', include('emensageriapro.s1010.urls')),

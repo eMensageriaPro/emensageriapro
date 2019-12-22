@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1280_evtinfocomplper or 1 %}"Registro preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída.";{% endif %}{% if show_fields.show_fatormes or 1 %}"Fator mês";{% endif %}{% if show_fields.show_fator13 or 1 %}"Fator decimo terceiro";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1280_evtinfocomplper or 1 %}"{{ c.s1280_evtinfocomplper }}";{% endif %}{% if show_fields.show_fatormes or 1 %}"{{ c.fatormes }}";{% endif %}{% if show_fields.show_fator13 or 1 %}"{{ c.fator13 }}";{% endif %}
 {% endfor %}

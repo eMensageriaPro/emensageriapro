@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2206_infoceletista or 1 %}"Dados sobre trabalho temporário. Preenchimento obrigatório na prorrogação de contrato de trabalhador temporário";{% endif %}{% if show_fields.show_justprorr or 1 %}"Justificativa para prorrogação do contrato temporário";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2206_infoceletista or 1 %}"{{ c.s2206_infoceletista }}";{% endif %}{% if show_fields.show_justprorr or 1 %}"{{ c.justprorr }}";{% endif %}
 {% endfor %}

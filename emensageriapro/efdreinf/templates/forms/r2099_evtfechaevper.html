@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -113,7 +114,7 @@
 <!-- inicio__r2099_evtfechaevper__tpinsc -->
 <div class="col-md-6" id="r2099_evtfechaevper__tpinsc__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF). Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2099_evtfechaevper__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF) Valores Válidos: 1, 2"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2099_evtfechaevper_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2099_evtfechaevper_form.tpinsc.errors }}
@@ -157,7 +158,7 @@
 <!-- inicio__r2099_evtfechaevper__evtservtm -->
 <div class="col-md-6" id="r2099_evtfechaevper__evtservtm__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__evtservtm__label">Contratou serviços sujeitos à retenção de contribuição previdenciária?*<a data-toggle="tooltip" title="Contratou serviços sujeitos à retenção de contribuição previdenciária? S - Sim; N - Não. Validação: Se for igual a [S], deve existir evento R-2010 para o período de apuração. Caso contrário, não deve existir o referido evento. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2099_evtfechaevper__evtservtm__label">Contratou serviços sujeitos à retenção de contribuição previdenciária?*<a data-toggle="tooltip" title="Contratou serviços sujeitos à retenção de contribuição previdenciária? S - Sim; N - Não. Validação: Se for igual a [S], deve existir evento R-2010 para o período de apuração. Caso contrário, não deve existir o referido evento Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2099_evtfechaevper_form.evtservtm.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2099_evtfechaevper_form.evtservtm.errors }}
@@ -277,7 +278,7 @@
 <!-- inicio__r2099_evtfechaevper__evtcprb -->
 <div class="col-md-6" id="r2099_evtfechaevper__evtcprb__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__evtcprb__label">Evento da contribuição previdenciária sobre a receita bruta - CPRB*<a data-toggle="tooltip" title="Possui informações sobre a apuração da Contribuição Previdenciária sobre a Receita Bruta? S - Sim; N - Não. Validação: Se for igual a [S], deve existir o evento R-2060 no período de apuração. Caso contrário, não deve existir o evento. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2099_evtfechaevper__evtcprb__label">Evento da contribuição previdenciária sobre a receita bruta - CPRB*<a data-toggle="tooltip" title="Possui informações sobre a apuração da Contribuição Previdenciária sobre a Receita Bruta? S - Sim; N - Não. Validação: Se for igual a [S], deve existir o evento R-2060 no período de apuração. Caso contrário, não deve existir o evento Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2099_evtfechaevper_form.evtcprb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2099_evtfechaevper_form.evtcprb.errors }}

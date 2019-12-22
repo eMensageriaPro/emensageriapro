@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -106,7 +107,7 @@ def validacoes_s1200_evtremun(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'ideEmpregador.tpInsc',
                                                   ideEmpregador.tpInsc.cdata,
-                                                  1, u'1, 2, 3, 4, 5')
+                                                  1, u'1, 2, 3, 4, 5, 6')
 
             if 'nrInsc' in dir(ideEmpregador):
                 validacoes_lista = validar_campo( validacoes_lista,
@@ -145,7 +146,7 @@ def validacoes_s1200_evtremun(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'remunOutrEmpr.tpInsc',
                                                                   remunOutrEmpr.tpInsc.cdata,
-                                                                  1, u'1, 2, 3, 4, 5')
+                                                                  1, u'1, 2, 3, 4, 5, 6')
         
                             if 'nrInsc' in dir(remunOutrEmpr):
                                 validacoes_lista = validar_campo( validacoes_lista,
@@ -157,7 +158,7 @@ def validacoes_s1200_evtremun(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'remunOutrEmpr.codCateg',
                                                                   remunOutrEmpr.codCateg.cdata,
-                                                                  1, u'101, 102, 103, 104, 105, 106, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
+                                                                  1, u'101, 102, 103, 104, 105, 106, 107, 108, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
         
                             if 'vlrRemunOE' in dir(remunOutrEmpr):
                                 validacoes_lista = validar_campo( validacoes_lista,
@@ -187,7 +188,7 @@ def validacoes_s1200_evtremun(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'sucessaoVinc.tpInscAnt',
                                                                   sucessaoVinc.tpInscAnt.cdata,
-                                                                  1, u'1, 2, 3, 4, 5')
+                                                                  1, u'1, 2, 3, 4, 5, 6')
         
                             if 'cnpjEmpregAnt' in dir(sucessaoVinc):
                                 validacoes_lista = validar_campo( validacoes_lista,
@@ -256,7 +257,7 @@ def validacoes_s1200_evtremun(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'dmDev.codCateg',
                                                   dmDev.codCateg.cdata,
-                                                  1, u'101, 102, 103, 104, 105, 106, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
+                                                  1, u'101, 102, 103, 104, 105, 106, 107, 108, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
 
             if 'infoPerApur' in dir(dmDev.infoPerApur):
                 for infoPerApur in dmDev.infoPerApur:
@@ -268,7 +269,7 @@ def validacoes_s1200_evtremun(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'ideEstabLot.tpInsc',
                                                                   ideEstabLot.tpInsc.cdata,
-                                                                  1, u'1, 2, 3, 4, 5')
+                                                                  1, u'1, 2, 3, 4, 5, 6')
         
                             if 'nrInsc' in dir(ideEstabLot):
                                 validacoes_lista = validar_campo( validacoes_lista,
@@ -475,7 +476,7 @@ def validacoes_s1200_evtremun(arquivo):
                                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                                   'ideEstabLot.tpInsc',
                                                                                   ideEstabLot.tpInsc.cdata,
-                                                                                  1, u'1, 2, 3, 4, 5')
+                                                                                  1, u'1, 2, 3, 4, 5, 6')
                         
                                             if 'nrInsc' in dir(ideEstabLot):
                                                 validacoes_lista = validar_campo( validacoes_lista,

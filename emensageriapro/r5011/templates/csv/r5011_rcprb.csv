@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_r5011_infototalcontrib or 1 %}"Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060";{% endif %}{% if show_fields.show_crcprb or 1 %}"Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre a Receita Bruta - CPRB";{% endif %}{% if show_fields.show_vlrcrcprb or 1 %}"Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB, calculada segundo as regras estabelecidas na legislação em vigor.";{% endif %}{% if show_fields.show_vlrcrcprbsusp or 1 %}"Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB com exigibilidade suspensa. Origem: R-2060";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_r5011_infototalcontrib or 1 %}"{{ c.r5011_infototalcontrib }}";{% endif %}{% if show_fields.show_crcprb or 1 %}"{{ c.crcprb }}";{% endif %}{% if show_fields.show_vlrcrcprb or 1 %}"{{ c.vlrcrcprb }}";{% endif %}{% if show_fields.show_vlrcrcprbsusp or 1 %}"{{ c.vlrcrcprbsusp }}";{% endif %}
 {% endfor %}

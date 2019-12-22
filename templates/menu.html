@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}
 
     <li id="modulo_mapa_processamento" class="{% if 'mapa_processamento' in modulos %}active {% endif %}treeview">
@@ -543,46 +544,6 @@
                     <a href="{% url 'r3010_evtespdesportivo' %}">
                         <i class="fa fa-circle-o"></i>
                         R-3010 - Receita de Espetáculo Desportivo
-                    </a>
-                </li>
-            {% endif %}
-            {% if perms.efdreinf.can_view_menu_r4010evtRetPF %}
-                <li>
-                    <a href="{% url 'r4010_evtretpf' %}">
-                        <i class="fa fa-circle-o"></i>
-                        R-4010 - Retenções na Fonte - Pessoa Física
-                    </a>
-                </li>
-            {% endif %}
-            {% if perms.efdreinf.can_view_menu_r4020evtRetPJ %}
-                <li>
-                    <a href="{% url 'r4020_evtretpj' %}">
-                        <i class="fa fa-circle-o"></i>
-                        R-4020 - Retenções na Fonte - Pessoa Jurídica
-                    </a>
-                </li>
-            {% endif %}
-            {% if perms.efdreinf.can_view_menu_r4040evtBenefNId %}
-                <li>
-                    <a href="{% url 'r4040_evtbenefnid' %}">
-                        <i class="fa fa-circle-o"></i>
-                        R-4040 - Retenções na Fonte - Beneficiários não identificados
-                    </a>
-                </li>
-            {% endif %}
-            {% if perms.efdreinf.can_view_menu_r4098evtReab %}
-                <li>
-                    <a href="{% url 'r4098_evtreab' %}">
-                        <i class="fa fa-circle-o"></i>
-                        R-4098 - Reabertura dos Eventos Periódicos Série R-4000
-                    </a>
-                </li>
-            {% endif %}
-            {% if perms.efdreinf.can_view_menu_r4099evtFech %}
-                <li>
-                    <a href="{% url 'r4099_evtfech' %}">
-                        <i class="fa fa-circle-o"></i>
-                        R-4099 - Fechamento dos Eventos Periódicos Série R-4000
                     </a>
                 </li>
             {% endif %}

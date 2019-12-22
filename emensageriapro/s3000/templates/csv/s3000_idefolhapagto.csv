@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s3000_evtexclusao or 1 %}"Registro que identifica a qual folha de pagamento pertence o evento que será excluído";{% endif %}{% if show_fields.show_indapuracao or 1 %}"Indicativo do periodo de apuração";{% endif %}{% if show_fields.show_perapur or 1 %}"Período de Apuração";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s3000_evtexclusao or 1 %}"{{ c.s3000_evtexclusao }}";{% endif %}{% if show_fields.show_indapuracao or 1 %}"{{ c.indapuracao }}";{% endif %}{% if show_fields.show_perapur or 1 %}"{{ c.perapur }}";{% endif %}
 {% endfor %}

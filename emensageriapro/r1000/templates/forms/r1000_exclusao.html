@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -5,7 +6,7 @@
 <!-- inicio__r1000_exclusao__r1000_evtinfocontri -->
 <div class="col-md-12" id="r1000_exclusao__r1000_evtinfocontri__div">
   <div class="form-group">
-    <label id="r1000_exclusao__r1000_evtinfocontri__label">Exclusão das informações*<a data-toggle="tooltip" title="Exclusão das informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r1000_exclusao__r1000_evtinfocontri__label">Exclusão das informações*<a data-toggle="tooltip" title="Exclusão das informações"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r1000_exclusao_form.r1000_evtinfocontri.value %}
         <a href="{% url 'r1000_evtinfocontri_salvar' pk=r1000_exclusao_form.r1000_evtinfocontri.value %}">
             [Acessar]
@@ -61,7 +62,7 @@
 <!-- inicio__r1000_exclusao__fimvalid -->
 <div class="col-md-3" id="r1000_exclusao__fimvalid__div">
   <div class="form-group">
-    <label id="r1000_exclusao__fimvalid__label">Preencher com o mês e ano de término da validade das informações, se houver<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r1000_exclusao__fimvalid__label">Preencher com o mês e ano de término da validade das informações, se houver<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver Validação: Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r1000_exclusao_form.fimvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r1000_exclusao_form.fimvalid.errors }}

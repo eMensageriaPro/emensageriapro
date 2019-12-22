@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 import xmltodict
@@ -162,11 +163,6 @@ def read_r2060_evtcprb_obj(request, doc, status, validar=False, arquivo=False):
 
             try:
                 r2060_tipocod_dados['vlrcprbapur'] = read_from_xml(tipoCod.vlrCPRBapur.cdata, 'efdreinf', 'N', 2)
-            except AttributeError:
-                pass
-
-            try:
-                r2060_tipocod_dados['observ'] = read_from_xml(tipoCod.observ.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 

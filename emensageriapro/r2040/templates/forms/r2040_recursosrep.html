@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -41,7 +42,7 @@
 <!-- inicio__r2040_recursosrep__cnpjassocdesp -->
 <div class="col-md-6" id="r2040_recursosrep__cnpjassocdesp__div">
   <div class="form-group">
-    <label id="r2040_recursosrep__cnpjassocdesp__label">Preencher com o CNPJ da associação desportiva que mantém clube de futebol para a qual foi efetuado o repasse*<a data-toggle="tooltip" title="Preencher com o CNPJ da associação desportiva que mantém clube de futebol para a qual foi efetuado o repasse. Validação: Deve ser um CNPJ válido, diferente do CNPJ do declarante."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2040_recursosrep__cnpjassocdesp__label">Preencher com o CNPJ da associação desportiva que mantém clube de futebol para a qual foi efetuado o repasse*<a data-toggle="tooltip" title="Preencher com o CNPJ da associação desportiva que mantém clube de futebol para a qual foi efetuado o repasse Validação: Deve ser um CNPJ válido, diferente do CNPJ do declarante"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2040_recursosrep_form.cnpjassocdesp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2040_recursosrep_form.cnpjassocdesp.errors }}
@@ -56,7 +57,7 @@
 <!-- inicio__r2040_recursosrep__vlrtotalrep -->
 <div class="col-md-6" id="r2040_recursosrep__vlrtotalrep__div">
   <div class="form-group">
-    <label id="r2040_recursosrep__vlrtotalrep__label">Preencher com o valor bruto dos recursos repassados*<a data-toggle="tooltip" title="Preencher com o valor bruto dos recursos repassados. Validação: Deve corresponder a soma do campo {vlrBruto} do grupo {infoRecurso}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2040_recursosrep__vlrtotalrep__label">Preencher com o valor bruto dos recursos repassados*<a data-toggle="tooltip" title="Preencher com o valor bruto dos recursos repassados Validação: Deve corresponder a soma do campo {vlrBruto} do grupo {infoRecurso}"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2040_recursosrep_form.vlrtotalrep.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2040_recursosrep_form.vlrtotalrep.errors }}
@@ -74,7 +75,7 @@
 <!-- inicio__r2040_recursosrep__vlrtotalret -->
 <div class="col-md-6" id="r2040_recursosrep__vlrtotalret__div">
   <div class="form-group">
-    <label id="r2040_recursosrep__vlrtotalret__label">Soma do valor da retenção dos recursos recebidos*<a data-toggle="tooltip" title="Soma do valor da retenção dos recursos recebidos. Validação: Deve corresponder a soma do campo {vlrRetApur} do grupo {infoRecurso}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2040_recursosrep__vlrtotalret__label">Soma do valor da retenção dos recursos recebidos*<a data-toggle="tooltip" title="Soma do valor da retenção dos recursos recebidos Validação: Deve corresponder a soma do campo {vlrRetApur} do grupo {infoRecurso}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2040_recursosrep_form.vlrtotalret.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2040_recursosrep_form.vlrtotalret.errors }}
@@ -92,7 +93,7 @@
 <!-- inicio__r2040_recursosrep__vlrtotalnret -->
 <div class="col-md-6" id="r2040_recursosrep__vlrtotalnret__div">
   <div class="form-group">
-    <label id="r2040_recursosrep__vlrtotalnret__label">Valor da retenção que deixou de ser feita pela entidade que efetuou o repasse ou que foi depositada em juízo em decorrência da decisão judicial/administrativa<a data-toggle="tooltip" title="Valor da retenção que deixou de ser feita pela entidade que efetuou o repasse ou que foi depositada em juízo em decorrência da decisão judicial/administrativa. Validação: Deve corresponder a soma do campo {vlrNRet} dos registros vinculados, com exceção dos valores informados para {indSusp} = [92]. Não pode ser superior a 5% de {vlrTotalRep}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2040_recursosrep__vlrtotalnret__label">Valor da retenção que deixou de ser feita pela entidade que efetuou o repasse ou que foi depositada em juízo em decorrência da decisão judicial/administrativa<a data-toggle="tooltip" title="Valor da retenção que deixou de ser feita pela entidade que efetuou o repasse ou que foi depositada em juízo em decorrência da decisão judicial/administrativa Validação: Deve corresponder a soma do campo {vlrNRet} dos registros vinculados, com exceção dos valores informados para {indSusp} = [92]. Não pode ser superior a 5% de {vlrTotalRep}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2040_recursosrep_form.vlrtotalnret.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2040_recursosrep_form.vlrtotalnret.errors }}

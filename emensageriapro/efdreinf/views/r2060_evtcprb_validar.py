@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -100,7 +101,7 @@ def validacoes_r2060_evtcprb(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'ideContri.tpInsc',
                                                   ideContri.tpInsc.cdata,
-                                                  1, u'None')
+                                                  1, u'1')
 
             if 'nrInsc' in dir(ideContri):
                 validacoes_lista = validar_campo( validacoes_lista,
@@ -181,12 +182,6 @@ def validacoes_r2060_evtcprb(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'tipoCod.vlrCPRBapur',
                                                                   tipoCod.vlrCPRBapur.cdata,
-                                                                  0, u'None')
-        
-                            if 'observ' in dir(tipoCod):
-                                validacoes_lista = validar_campo( validacoes_lista,
-                                                                  'tipoCod.observ',
-                                                                  tipoCod.observ.cdata,
                                                                   0, u'None')
         
                             if 'tipoAjuste' in dir(tipoCod.tipoAjuste):

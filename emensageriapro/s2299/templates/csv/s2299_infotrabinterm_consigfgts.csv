@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2299_evtdeslig or 1 %}"Informações sobre operação de crédito consignado com garantia de FGTS";{% endif %}{% if show_fields.show_insconsig or 1 %}"Matrícula da Instituição Consignatária, cadastrada na Caixa Econômica Federal";{% endif %}{% if show_fields.show_nrcontr or 1 %}"Número do contrato de empréstimo consignado existente na Instituição Consignatária";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2299_evtdeslig or 1 %}"{{ c.s2299_evtdeslig }}";{% endif %}{% if show_fields.show_insconsig or 1 %}"{{ c.insconsig }}";{% endif %}{% if show_fields.show_nrcontr or 1 %}"{{ c.nrcontr }}";{% endif %}
 {% endfor %}

@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2230_evtafasttemp or 1 %}"Informações do Afastamento Temporário - Início";{% endif %}{% if show_fields.show_dtiniafast or 1 %}"Data de início do afastamento";{% endif %}{% if show_fields.show_codmotafast or 1 %}"Afastamento";{% endif %}{% if show_fields.show_infomesmomtv or 1 %}"Mesmo motivo do afastamento anterior";{% endif %}{% if show_fields.show_tpacidtransito or 1 %}"Tipo de acidente de trânsito";{% endif %}{% if show_fields.show_observacao or 1 %}"Observações";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2230_evtafasttemp or 1 %}"{{ c.s2230_evtafasttemp }}";{% endif %}{% if show_fields.show_dtiniafast or 1 %}"{{ c.dtiniafast }}";{% endif %}{% if show_fields.show_codmotafast or 1 %}"{{ c.codmotafast }}";{% endif %}{% if show_fields.show_infomesmomtv or 1 %}"{{ c.infomesmomtv }}";{% endif %}{% if show_fields.show_tpacidtransito or 1 %}"{{ c.tpacidtransito }}";{% endif %}{% if show_fields.show_observacao or 1 %}"{{ c.observacao }}";{% endif %}
 {% endfor %}

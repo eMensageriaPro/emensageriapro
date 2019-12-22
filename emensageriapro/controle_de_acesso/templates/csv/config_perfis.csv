@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_titulo or 1 %}"Título";{% endif %}{% if show_fields.show_grupos or 1 %}"Grupos";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_titulo or 1 %}"{{ c.titulo }}";{% endif %}{% if show_fields.show_grupos or 1 %}"{{ c.grupos }}";{% endif %}
 {% endfor %}

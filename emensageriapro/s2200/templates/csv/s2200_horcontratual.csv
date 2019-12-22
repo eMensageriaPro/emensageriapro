@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2200_evtadmissao or 1 %}"Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].";{% endif %}{% if show_fields.show_qtdhrssem or 1 %}"Quant. de horas semanais";{% endif %}{% if show_fields.show_tpjornada or 1 %}"Tipo de jornada";{% endif %}{% if show_fields.show_dsctpjorn or 1 %}"Descrição do tipo de jornada";{% endif %}{% if show_fields.show_tmpparc or 1 %}"Contrato em tempo parcial";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2200_evtadmissao or 1 %}"{{ c.s2200_evtadmissao }}";{% endif %}{% if show_fields.show_qtdhrssem or 1 %}"{{ c.qtdhrssem }}";{% endif %}{% if show_fields.show_tpjornada or 1 %}"{{ c.tpjornada }}";{% endif %}{% if show_fields.show_dsctpjorn or 1 %}"{{ c.dsctpjorn }}";{% endif %}{% if show_fields.show_tmpparc or 1 %}"{{ c.tmpparc }}";{% endif %}
 {% endfor %}

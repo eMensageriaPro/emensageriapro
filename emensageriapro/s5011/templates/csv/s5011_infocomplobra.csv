@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s5011_infoestab or 1 %}"Informações complementares relativas a obras de construção civil";{% endif %}{% if show_fields.show_indsubstpatrobra or 1 %}"Substituição de CP patronal de Obra";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s5011_infoestab or 1 %}"{{ c.s5011_infoestab }}";{% endif %}{% if show_fields.show_indsubstpatrobra or 1 %}"{{ c.indsubstpatrobra }}";{% endif %}
 {% endfor %}

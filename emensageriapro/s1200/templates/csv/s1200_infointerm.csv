@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1200_evtremun or 1 %}"Informações relativas ao trabalho intermitente";{% endif %}{% if show_fields.show_qtddiasinterm or 1 %}"Quantidade de dias trabalhados no mês pelo empregado com contrato de trabalho intermitente";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1200_evtremun or 1 %}"{{ c.s1200_evtremun }}";{% endif %}{% if show_fields.show_qtddiasinterm or 1 %}"{{ c.qtddiasinterm }}";{% endif %}
 {% endfor %}

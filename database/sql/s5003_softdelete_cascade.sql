@@ -1,3 +1,4 @@
+-- eMensageriaAI --
 UPDATE public.s5003_ideestablot a
    SET ativo=b.ativo, desativado_em=b.desativado_em, desativado_por_id=b.desativado_por_id
   FROM public.s5003_evtbasesfgts b

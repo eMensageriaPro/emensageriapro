@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -70,7 +71,7 @@ def validacoes_s5013_evtfgts(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'ideEmpregador.tpInsc',
                                                   ideEmpregador.tpInsc.cdata,
-                                                  1, u'1, 2, 3, 4, 5')
+                                                  1, u'1, 2, 3, 4, 5, 6')
 
             if 'nrInsc' in dir(ideEmpregador):
                 validacoes_lista = validar_campo( validacoes_lista,
@@ -91,7 +92,7 @@ def validacoes_s5013_evtfgts(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'infoFGTS.indExistInfo',
                                                   infoFGTS.indExistInfo.cdata,
-                                                  1, u'None')
+                                                  1, u'1, 2, 3')
 
             if 'infoBaseFGTS' in dir(infoFGTS.infoBaseFGTS):
                 for infoBaseFGTS in infoFGTS.infoBaseFGTS:
@@ -103,7 +104,7 @@ def validacoes_s5013_evtfgts(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'basePerApur.tpValor',
                                                                   basePerApur.tpValor.cdata,
-                                                                  1, u'None')
+                                                                  1, u'11, 12, 13, 14, 15, 16, 17, 18, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 91')
         
                             if 'baseFGTS' in dir(basePerApur):
                                 validacoes_lista = validar_campo( validacoes_lista,
@@ -127,7 +128,7 @@ def validacoes_s5013_evtfgts(arquivo):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'basePerAntE.tpValorE',
                                                                           basePerAntE.tpValorE.cdata,
-                                                                          1, u'None')
+                                                                          1, u'13, 14, 17, 18, 24, 25, 26, 30, 31, 32, 91')
                 
                                     if 'baseFGTSE' in dir(basePerAntE):
                                         validacoes_lista = validar_campo( validacoes_lista,
@@ -145,7 +146,7 @@ def validacoes_s5013_evtfgts(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'dpsPerApur.tpDps',
                                                                   dpsPerApur.tpDps.cdata,
-                                                                  1, u'None')
+                                                                  1, u'51, 52, 53, 54, 55, 56, 57, 58, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82')
         
                             if 'vrFGTS' in dir(dpsPerApur):
                                 validacoes_lista = validar_campo( validacoes_lista,
@@ -169,7 +170,7 @@ def validacoes_s5013_evtfgts(arquivo):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'dpsPerAntE.tpDpsE',
                                                                           dpsPerAntE.tpDpsE.cdata,
-                                                                          1, u'None')
+                                                                          1, u'53, 54, 57, 58, 64, 65, 66, 70, 71, 72, 75, 76, 80, 81, 82')
                 
                                     if 'vrFGTSE' in dir(dpsPerAntE):
                                         validacoes_lista = validar_campo( validacoes_lista,

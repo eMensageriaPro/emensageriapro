@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1000_evtinfoempregador or 1 %}"Exclusão das informações";{% endif %}{% if show_fields.show_ideperiodo or 1 %}"Período de validade das informações incluídas";{% endif %}{% if show_fields.show_inivalid or 1 %}"Início da Validade";{% endif %}{% if show_fields.show_fimvalid or 1 %}"Fim da Validade";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1000_evtinfoempregador or 1 %}"{{ c.s1000_evtinfoempregador }}";{% endif %}{% if show_fields.show_ideperiodo or 1 %}"{{ c.ideperiodo }}";{% endif %}{% if show_fields.show_inivalid or 1 %}"{{ c.inivalid }}";{% endif %}{% if show_fields.show_fimvalid or 1 %}"{{ c.fimvalid }}";{% endif %}
 {% endfor %}

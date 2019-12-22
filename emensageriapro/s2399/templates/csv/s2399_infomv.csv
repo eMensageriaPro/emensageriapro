@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2399_verbasresc or 1 %}"Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.";{% endif %}{% if show_fields.show_indmv or 1 %}"Desconto de Contribuição Previdenciária (Outros vinculos)";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2399_verbasresc or 1 %}"{{ c.s2399_verbasresc }}";{% endif %}{% if show_fields.show_indmv or 1 %}"{{ c.indmv }}";{% endif %}
 {% endfor %}

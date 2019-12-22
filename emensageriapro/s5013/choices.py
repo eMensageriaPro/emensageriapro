@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -36,67 +37,36 @@
 
 
 
-CHOICES_S5013_TPDPS = [
-
-    (51, u'51 - Depósito do FGTS'),
-    (52, u'52 - Depósito do FGTS 13° Salário'),
-    (53, u'53 - Depósito do FGTS Dissídio'),
-    (54, u'54 - Depósito do FGTS Dissídio 13º Salário'),
-    (55, u'55 - Depósito do FGTS - Aprendiz'),
-    (56, u'56 - Depósito do FGTS 13° Salário - Aprendiz'),
-    (57, u'57 - Depósito do FGTS Dissídio - Aprendiz'),
-    (58, u'58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz'),
-    (61, u'61 - Depósito do FGTS Rescisório'),
-    (62, u'62 - Depósito do FGTS Rescisório - 13° Salário'),
-    (63, u'63 - Depósito do FGTS Rescisório - Aviso Prévio'),
-    (64, u'64 - Depósito do FGTS Rescisório - Dissídio'),
-    (65, u'65 - Depósito do FGTS Rescisório - Dissídio 13º Salário'),
-    (66, u'66 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio'),
-    (67, u'67 - Depósito do FGTS Rescisório - Aprendiz'),
-    (68, u'68 - Depósito do FGTS Rescisório - 13° Salário Aprendiz'),
-    (69, u'69 - Depósito do FGTS Rescisório - Aviso Prévio Aprendiz'),
-    (70, u'70 - Depósito do FGTS Rescisório - Dissídio Aprendiz'),
-    (71, u'71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz'),
-    (72, u'72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz.'),
-
-]
-
-
-
-
 CHOICES_S5013_TPDPSE = [
-
     (53, u'53 - Depósito do FGTS Dissídio'),
     (54, u'54 - Depósito do FGTS Dissídio 13º Salário'),
-    (57, u'57 - Depósito do FGTS Dissídio - Aprendiz'),
-    (58, u'58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz'),
-    (64, u'64 - Depósito do FGTS Rescisório - Dissídio'),
-    (65, u'65 - Depósito do FGTS Rescisório - Dissídio 13º Salário'),
-    (66, u'66 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio'),
-    (70, u'70 - Depósito do FGTS Rescisório - Dissídio Aprendiz'),
-    (71, u'71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz'),
-    (72, u'72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz.'),
-
+    (57, u'57 - Depósito do FGTS Dissídio - Aprendiz/Contrato Verde e Amarelo'),
+    (58, u'58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz/Contrato Verde e Amarelo'),
+    (64, u'64 - Depósito do FGTS Rescisório Dissídio'),
+    (65, u'65 - Depósito do FGTS Rescisório Dissídio 13º Salário'),
+    (66, u'66 - Depósito do FGTS Rescisório Dissídio Aviso Prévio'),
+    (70, u'70 - Depósito do FGTS Rescisório Dissídio - Aprendiz/Contrato Verde e Amarelo'),
+    (71, u'71 - Depósito do FGTS Rescisório Dissídio 13° Salário - Aprendiz/Contrato Verde e Amarelo'),
+    (72, u'72 - Depósito do FGTS Rescisório Dissídio Aviso Prévio - Aprendiz/Contrato Verde e Amarelo'),
+    (75, u'75 - Depósito do FGTS Dissídio - Antecipação da multa rescisória do FGTS'),
+    (76, u'76 - Depósito do FGTS Dissídio 13º Salário - Antecipação da multa rescisória do FGTS'),
+    (80, u'80 - Depósito do Rescisório Dissídio - Antecipação da multa rescisória do FGTS'),
+    (81, u'81 - Depósito do FGTS Rescisório Dissídio 13º Salário - Antecipação da multa rescisória do FGTS'),
+    (82, u'82 - Depósito do FGTS Rescisório Dissídio Aviso Prévio - Antecipação da multa rescisória do FGTS.'),
 ]
-
-
 
 
 CHOICES_S5013_TPVALORE = [
-
     (13, u'13 - Base de Cálculo do FGTS Dissídio'),
     (14, u'14 - Base de Cálculo do FGTS Dissídio 13º Salário'),
-    (17, u'17 - Base de Cálculo do FGTS Dissídio - Aprendiz'),
-    (18, u'18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz'),
-    (24, u'24 - Base de Cálculo do FGTS Rescisório - Dissídio'),
-    (25, u'25 - Base de Cálculo do FGTS Rescisório - Dissídio 13º Salário'),
-    (26, u'26 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio'),
-    (30, u'30 - Base de Cálculo do FGTS Rescisório - Dissídio Aprendiz'),
-    (31, u'31 - Base de Cálculo do FGTS Rescisório - Dissídio 13° Salário Aprendiz'),
-    (32, u'32 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz'),
+    (17, u'17 - Base de Cálculo do FGTS Dissídio - Aprendiz/Contrato Verde e Amarelo'),
+    (18, u'18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz/Contrato Verde e Amarelo'),
+    (24, u'24 - Base de Cálculo do FGTS Rescisório Dissídio'),
+    (25, u'25 - Base de Cálculo do FGTS Rescisório Dissídio 13º Salário'),
+    (26, u'26 - Base de Cálculo do FGTS Rescisório Dissídio Aviso Prévio'),
+    (30, u'30 - Base de Cálculo do FGTS Rescisório Dissídio - Aprendiz/Contrato Verde e Amarelo'),
+    (31, u'31 - Base de Cálculo do FGTS Rescisório Dissídio 13° Salário - Aprendiz/Contrato Verde e Amarelo'),
+    (32, u'32 - Base de Cálculo do FGTS Rescisório Dissídio Aviso Prévio - Aprendiz/Contrato Verde e Amarelo'),
     (91, u'91 - Incidência suspensa em decorrência de decisão judicial.'),
-
 ]
-
-
 

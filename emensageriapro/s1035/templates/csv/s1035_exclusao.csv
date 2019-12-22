@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1035_evttabcarreira or 1 %}"Exclusão das informações";{% endif %}{% if show_fields.show_idecarreira or 1 %}"Informações de identificação da Carreira e validade das informações que estão sendo incluídas";{% endif %}{% if show_fields.show_codcarreira or 1 %}"Código da Carreira";{% endif %}{% if show_fields.show_inivalid or 1 %}"Início da Validade";{% endif %}{% if show_fields.show_fimvalid or 1 %}"Fim da Validade";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1035_evttabcarreira or 1 %}"{{ c.s1035_evttabcarreira }}";{% endif %}{% if show_fields.show_idecarreira or 1 %}"{{ c.idecarreira }}";{% endif %}{% if show_fields.show_codcarreira or 1 %}"{{ c.codcarreira }}";{% endif %}{% if show_fields.show_inivalid or 1 %}"{{ c.inivalid }}";{% endif %}{% if show_fields.show_fimvalid or 1 %}"{{ c.fimvalid }}";{% endif %}
 {% endfor %}

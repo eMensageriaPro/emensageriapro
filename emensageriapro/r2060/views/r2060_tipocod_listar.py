@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding: utf-8
 
 __author__ = "Marcelo Medeiros de Vasconcellos"
@@ -74,8 +75,7 @@ def listar(request, output=None):
             'show_vlrexcrecbruta': 0,
             'show_vlradicrecbruta': 0,
             'show_vlrbccprb': 0,
-            'show_vlrcprbapur': 0,
-            'show_observ': 0, }
+            'show_vlrcprbapur': 0, }
 
         post = False
 
@@ -89,8 +89,7 @@ def listar(request, output=None):
                 'vlrexcrecbruta__icontains': 'vlrexcrecbruta__icontains',
                 'vlradicrecbruta__icontains': 'vlradicrecbruta__icontains',
                 'vlrbccprb__icontains': 'vlrbccprb__icontains',
-                'vlrcprbapur__icontains': 'vlrcprbapur__icontains',
-                'observ__icontains': 'observ__icontains', }
+                'vlrcprbapur__icontains': 'vlrcprbapur__icontains', }
 
             for a in dict_fields:
 
@@ -109,8 +108,7 @@ def listar(request, output=None):
                     'vlrexcrecbruta__icontains': 'vlrexcrecbruta__icontains',
                     'vlradicrecbruta__icontains': 'vlradicrecbruta__icontains',
                     'vlrbccprb__icontains': 'vlrbccprb__icontains',
-                    'vlrcprbapur__icontains': 'vlrcprbapur__icontains',
-                    'observ__icontains': 'observ__icontains', }
+                    'vlrcprbapur__icontains': 'vlrcprbapur__icontains', }
 
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)

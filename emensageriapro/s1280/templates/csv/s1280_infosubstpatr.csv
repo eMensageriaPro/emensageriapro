@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1280_evtinfocomplper or 1 %}"Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador.";{% endif %}{% if show_fields.show_indsubstpatr or 1 %}"Substituição da CP patronal";{% endif %}{% if show_fields.show_percredcontrib or 1 %}"Percentual não substituído pela contribuição prevista na lei 12.546/2011";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1280_evtinfocomplper or 1 %}"{{ c.s1280_evtinfocomplper }}";{% endif %}{% if show_fields.show_indsubstpatr or 1 %}"{{ c.indsubstpatr }}";{% endif %}{% if show_fields.show_percredcontrib or 1 %}"{{ c.percredcontrib }}";{% endif %}
 {% endfor %}

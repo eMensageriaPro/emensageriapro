@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 from django.db import models
 from django.db.models import Sum
@@ -892,14 +893,6 @@ class TransmissorEventosEfdreinf(SoftDeletionModel):
         related_name='%(class)s_retornos_r5001', blank=True, null=True)
     retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
         related_name='%(class)s_retornos_r5011', blank=True, null=True)
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True)
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True)
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True)
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True)
 
     def tabela_desvincular_evento(self):
         return self.tabela + '_desvincular_evento'

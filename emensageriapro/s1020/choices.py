@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,20 +38,16 @@
 
 
 CHOICES_ESOCIALINSCRICOESTIPOS = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (5, u'5 - CGC'),
-
+    (6, u'6 - CEI'),
 ]
 
 
-
-
 CHOICES_ESOCIALLOTACOESTRIBUTARIASTIPOS = [
-
     ('01', u'01 - Classificação da atividade econômica exercida pela Pessoa Jurídica para fins de atribuição de código FPAS, inclusive obras de construção civil própria, exceto: a) empreitada parcial ou sub-empreitada de obra de construção civil (utilizar opção 02), b) prestação de serviços em instalações de terceiros (utilizar opções 03 a 09), c) Embarcação inscrita no Registro Especial Brasileiro - REB (utilizar opção 10).'),
     ('02', u'02 - Obra de Construção Civil - Empreitada Parcial ou Sub- empreitada'),
     ('03', u'03 - Pessoa Física Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa'),
@@ -65,54 +62,34 @@ CHOICES_ESOCIALLOTACOESTRIBUTARIASTIPOS = [
     ('24', u'24 - Empregador Doméstico'),
     ('90', u'90 - Atividades desenvolvidas no exterior por trabalhador vinculado ao Regime Geral de Previdência Social (expatriados)'),
     ('91', u'91 - Atividades desenvolvidas por trabalhador estrangeiro vinculado a Regime de Previdência Social Estrangeiro'),
-
 ]
-
-
 
 
 CHOICES_S1020_TPINSCCONTRAT_ALTERACAO = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF.'),
-
 ]
-
-
 
 
 CHOICES_S1020_TPINSCCONTRAT_INCLUSAO = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF.'),
-
 ]
-
-
 
 
 CHOICES_S1020_TPINSCPROP_ALTERACAO = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
-
 ]
-
-
 
 
 CHOICES_S1020_TPINSCPROP_INCLUSAO = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
-
 ]
 
 
-
-
 PERIODOS = [
-
     ('2017-01', u'Janeiro/2017'),
     ('2017-02', u'Fevereiro/2017'),
     ('2017-03', u'Março/2017'),
@@ -149,8 +126,17 @@ PERIODOS = [
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-
+    ('2020-01', u'Janeiro/2020'),
+    ('2020-02', u'Fevereiro/2020'),
+    ('2020-03', u'Março/2020'),
+    ('2020-04', u'Abril/2020'),
+    ('2020-05', u'Maio/2020'),
+    ('2020-06', u'Junho/2020'),
+    ('2020-07', u'Julho/2020'),
+    ('2020-08', u'Agosto/2020'),
+    ('2020-09', u'Setembro/2020'),
+    ('2020-10', u'Outubro/2020'),
+    ('2020-11', u'Novembro/2020'),
+    ('2020-12', u'Dezembro/2020'),
 ]
-
-
 

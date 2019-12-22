@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,7 +38,6 @@
 
 
 CHOICES_ESOCIALDEPENDENTESTIPOS = [
-
     ('01', u'01 - Cônjuge'),
     ('02', u'02 - Companheiro(a) com o(a) qual tenha filho ou viva há mais de 5 (cinco) anos ou possua Declaração de União Estável'),
     ('03', u'03 - Filho(a) ou enteado(a)'),
@@ -49,24 +49,16 @@ CHOICES_ESOCIALDEPENDENTESTIPOS = [
     ('11', u'11 - A pessoa absolutamente incapaz, da qual seja tutor ou curador'),
     ('12', u'12 - Ex-cônjuge'),
     ('99', u'99 - Agregado/Outros'),
-
 ]
-
-
 
 
 CHOICES_S2205_CASADOBR = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
 
 
-
-
 CHOICES_S2205_CATEGORIACNH = [
-
     ('A', u'A'),
     ('AB', u'AB'),
     ('AC', u'AC'),
@@ -76,14 +68,10 @@ CHOICES_S2205_CATEGORIACNH = [
     ('C', u'C'),
     ('D', u'D'),
     ('E', u'E'),
-
 ]
 
 
-
-
 CHOICES_S2205_CLASSTRABESTRANG = [
-
     (1, u'1 - Visto permanente'),
     (10, u'10 - Beneficiado pelo acordo entre países do Mercosul'),
     (11, u'11 - Dependente de agente diplomático e/ou consular de países que mantém convênio de reciprocidade para o exercício de atividade remunerada no Brasil'),
@@ -96,154 +84,94 @@ CHOICES_S2205_CLASSTRABESTRANG = [
     (7, u'7 - Deficiente físico e com mais de 51 anos'),
     (8, u'8 - Com residência provisória e anistiado, em situação irregular'),
     (9, u'9 - Permanência no Brasil em razão de filhos ou cônjuge brasileiros'),
-
 ]
-
-
 
 
 CHOICES_S2205_DEFAUDITIVA = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2205_DEFFISICA = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2205_DEFINTELECTUAL = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2205_DEFMENTAL = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2205_DEFVISUAL = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2205_DEPFINSPREV = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2205_DEPIRRF = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2205_DEPSF = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2205_FILHOSBR = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2205_INCTRAB = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2205_INFOCOTA = [
-
     ('N', u'N - Não'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2205_REABREADAP = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2205_SEXODEP = [
-
     ('F', u'F - Feminino.'),
     ('M', u'M - Masculino'),
-
 ]
-
-
 
 
 CHOICES_S2205_TRABAPOSENT = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
 
 
-
-
 ESTADOS = [
-
     ('AC', u'Acre'),
     ('AL', u'Alagoas'),
     ('AM', u'Amazonas'),
@@ -271,8 +199,5 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-
 ]
-
-
 

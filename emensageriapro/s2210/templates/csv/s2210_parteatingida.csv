@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2210_evtcat or 1 %}"Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.";{% endif %}{% if show_fields.show_codparteating or 1 %}"Parte Atingida";{% endif %}{% if show_fields.show_lateralidade or 1 %}"Laterabilidade";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2210_evtcat or 1 %}"{{ c.s2210_evtcat }}";{% endif %}{% if show_fields.show_codparteating or 1 %}"{{ c.codparteating }}";{% endif %}{% if show_fields.show_lateralidade or 1 %}"{{ c.lateralidade }}";{% endif %}
 {% endfor %}

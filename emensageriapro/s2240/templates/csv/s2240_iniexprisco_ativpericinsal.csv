@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2240_evtexprisco or 1 %}"Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)";{% endif %}{% if show_fields.show_codativ or 1 %}"Atividade desempenhada";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2240_evtexprisco or 1 %}"{{ c.s2240_evtexprisco }}";{% endif %}{% if show_fields.show_codativ or 1 %}"{{ c.codativ }}";{% endif %}
 {% endfor %}

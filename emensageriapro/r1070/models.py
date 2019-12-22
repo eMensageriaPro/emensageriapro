@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 from django.db import models
 from django.db.models import Sum
@@ -275,11 +276,10 @@ class r1070exclusao(SoftDeletionModel):
         return self.r1070_evttabprocesso.evento()
     tpproc = models.IntegerField(choices=CHOICES_R1070_TPPROC_EXCLUSAO, null=True, )
     nrproc = models.CharField(max_length=21, null=True, )
-    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
 
     def __unicode__(self):
-        return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid)
+        return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc)
 
     class Meta:
 
@@ -301,8 +301,7 @@ class r1070exclusao(SoftDeletionModel):
         ordering = [
             'r1070_evttabprocesso',
             'tpproc',
-            'nrproc',
-            'inivalid',]
+            'nrproc',]
 
 
 

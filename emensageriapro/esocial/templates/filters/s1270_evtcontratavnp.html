@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -138,6 +139,7 @@
         <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
         <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >4 - CNO (Cadastro Nacional de Obra)</option>
         <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >5 - CGC</option>
+        <option value="6" {% ifequal 6 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >6 - CEI</option>
       </select>
     </div>
   </div>

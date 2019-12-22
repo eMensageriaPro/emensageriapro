@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2231_evtcessao or 1 %}"Informações de término da cessão/exercício em outro órgão";{% endif %}{% if show_fields.show_dttermcessao or 1 %}"Preencher com a data de término da cessão/exercício em outro órgão";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2231_evtcessao or 1 %}"{{ c.s2231_evtcessao }}";{% endif %}{% if show_fields.show_dttermcessao or 1 %}"{{ c.dttermcessao }}";{% endif %}
 {% endfor %}

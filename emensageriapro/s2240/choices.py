@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,252 +38,155 @@
 
 
 CHOICES_S2240_APOSENTESP_INIEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_CONDFUNCTO_ALTEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_CONDFUNCTO_INIEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_EFICEPC_ALTEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_EFICEPC_INIEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_EFICEPI_ALTEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_EFICEPI_INIEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_HIGIENIZACAO_ALTEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_HIGIENIZACAO_INIEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_IDEOC_INIEXPRISCO = [
-
     (1, u'1 - Conselho Regional de Medicina (CRM)'),
     (4, u'4 - Conselho Regional de Engenharia e Agronomia (CREA)'),
     (9, u'9 - Outros.'),
-
 ]
-
-
 
 
 CHOICES_S2240_INSALUBRIDADE_INIEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_MEDPROTECAO_ALTEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_MEDPROTECAO_INIEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_PERICULOSIDADE_INIEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_PERIODICTROCA_ALTEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_PERIODICTROCA_INIEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_PRZVALID_ALTEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_PRZVALID_INIEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_TPAVAL_INIEXPRISCO = [
-
     (1, u'1 - Critério quantitativo'),
     (2, u'2 - Critério qualitativo.'),
-
 ]
-
-
 
 
 CHOICES_S2240_USOININT_INIEXPRISCO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2240_UTILIZEPC_ALTEXPRISCO = [
-
     (0, u'0 - Não se aplica'),
     (1, u'1 - Não utilizado'),
     (2, u'2 - Utilizado.'),
-
 ]
-
-
 
 
 CHOICES_S2240_UTILIZEPC_INIEXPRISCO = [
-
     (0, u'0 - Não se aplica'),
     (1, u'1 - Não implementa'),
     (2, u'2 - Implementa.'),
-
 ]
-
-
 
 
 CHOICES_S2240_UTILIZEPI_ALTEXPRISCO = [
-
     (0, u'0 - Não se aplica'),
     (1, u'1 - Não utilizado'),
     (2, u'2 - Utilizado.'),
-
 ]
-
-
 
 
 CHOICES_S2240_UTILIZEPI_INIEXPRISCO = [
-
     (0, u'0 - Não se aplica'),
     (1, u'1 - Não utilizado'),
     (2, u'2 - Utilizado.'),
-
 ]
 
 
-
-
 ESTADOS = [
-
     ('AC', u'Acre'),
     ('AL', u'Alagoas'),
     ('AM', u'Amazonas'),
@@ -310,8 +214,5 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-
 ]
-
-
 

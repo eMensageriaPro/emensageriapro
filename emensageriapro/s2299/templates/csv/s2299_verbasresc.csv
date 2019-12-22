@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2299_evtdeslig or 1 %}"Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2299_evtdeslig or 1 %}"{{ c.s2299_evtdeslig }}";{% endif %}
 {% endfor %}

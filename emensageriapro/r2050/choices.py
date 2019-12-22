@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,23 +38,15 @@
 
 
 CHOICES_R2050_INDCOM = [
-
     (1, u'1 - Comercialização da Produção por Prod. Rural PJ/Agroindústria, exceto para entidades executoras do PAA'),
     (7, u'7 - Comercialização da Produção com Isenção de Contribuição Previdenciária, de acordo com a Lei n° 13.606/2018'),
     (8, u'8 - Comercialização da Produção para Entidade do Programa de Aquisição de Alimentos - PAA'),
     (9, u'9 - Comercialização direta da Produção no Mercado Externo.'),
-
 ]
-
-
 
 
 CHOICES_R2050_TPPROC = [
-
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-
 ]
-
-
 

@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,12 +38,8 @@
 
 
 AUDITORIA_TIPO = [
-
     (1, u'Inclusão'),
     (2, u'Alteração'),
     (3, u'Exclusão'),
-
 ]
-
-
 

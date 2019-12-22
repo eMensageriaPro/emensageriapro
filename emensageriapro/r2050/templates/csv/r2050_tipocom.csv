@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_r2050_evtcomprod or 1 %}"Registro que apresenta o valor total da Receita Bruta por 'tipo' de comercialização.";{% endif %}{% if show_fields.show_indcom or 1 %}"Indicativo de Comercialização";{% endif %}{% if show_fields.show_vlrrecbruta or 1 %}"Preencher com o valor total da comercialização";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_r2050_evtcomprod or 1 %}"{{ c.r2050_evtcomprod }}";{% endif %}{% if show_fields.show_indcom or 1 %}"{{ c.indcom }}";{% endif %}{% if show_fields.show_vlrrecbruta or 1 %}"{{ c.vlrrecbruta }}";{% endif %}
 {% endfor %}

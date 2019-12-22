@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1207_infoperant_ideadc or 1 %}"Período de validade das informações incluídas";{% endif %}{% if show_fields.show_perref or 1 %}"Período de Referência";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1207_infoperant_ideadc or 1 %}"{{ c.s1207_infoperant_ideadc }}";{% endif %}{% if show_fields.show_perref or 1 %}"{{ c.perref }}";{% endif %}
 {% endfor %}

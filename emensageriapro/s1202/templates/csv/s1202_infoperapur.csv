@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1202_dmdev or 1 %}"Remuneração no período de apuração";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1202_dmdev or 1 %}"{{ c.s1202_dmdev }}";{% endif %}
 {% endfor %}

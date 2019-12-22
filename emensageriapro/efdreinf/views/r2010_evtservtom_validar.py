@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -118,7 +119,7 @@ def validacoes_r2010_evtservtom(arquivo):
                         validacoes_lista = validar_campo( validacoes_lista,
                                                           'ideEstabObra.tpInscEstab',
                                                           ideEstabObra.tpInscEstab.cdata,
-                                                          1, u'None')
+                                                          1, u'1, 4')
 
                     if 'nrInscEstab' in dir(ideEstabObra):
                         validacoes_lista = validar_campo( validacoes_lista,

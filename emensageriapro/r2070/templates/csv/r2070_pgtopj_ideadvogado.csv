@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_r2070_pgtopj_despprocjud or 1 %}"Identificação do Advogado";{% endif %}{% if show_fields.show_tpinscadvogado or 1 %}"Tipo de Inscrição do Advogado";{% endif %}{% if show_fields.show_nrinscadvogado or 1 %}"Preencher com o número de inscrição (CNPJ/CPF) do Advogado";{% endif %}{% if show_fields.show_vlradvogado or 1 %}"Valor da despesa com o advogado";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_r2070_pgtopj_despprocjud or 1 %}"{{ c.r2070_pgtopj_despprocjud }}";{% endif %}{% if show_fields.show_tpinscadvogado or 1 %}"{{ c.tpinscadvogado }}";{% endif %}{% if show_fields.show_nrinscadvogado or 1 %}"{{ c.nrinscadvogado }}";{% endif %}{% if show_fields.show_vlradvogado or 1 %}"{{ c.vlradvogado }}";{% endif %}
 {% endfor %}

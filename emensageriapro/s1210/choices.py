@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,48 +38,31 @@
 
 
 CHOICES_S1210_INDNIF_IDEPGTOEXT = [
-
     (1, u'1 - Beneficiário com NIF'),
     (2, u'2 - Beneficiário dispensado do NIF'),
     (3, u'3 - País não exige NIF.'),
-
 ]
-
-
 
 
 CHOICES_S1210_INDPGTOTT_DETPGTOBENPR = [
-
     ('N', u'N - O valor que está sendo pago é inferior ao previsto no eventoS - 1207 em {dmDev}. neste caso, significa que está sendo informando um pagamento de parte do que é devido ou então, está sendo informado um pagamento parcelado sendo o presente pagamento apenas uma das parcelas.'),
     ('S', u'S - O valor que está sendo pago é exatamente o previsto no eventoS - 1207 em {dmDev}'),
-
 ]
-
-
 
 
 CHOICES_S1210_INDPGTOTT_DETPGTOFL = [
-
     ('N', u'N - O valor que está sendo pago é inferior ao previsto nos eventosS - 1200,S - 1202,S - 2299 ouS - 2399 em {dmDev}, neste caso, significa que está sendo informando um pagamento de parte do que é devido ou então, está sendo informado um pagamento parcelado sendo o presente pagamento apenas uma das parcelas.'),
     ('S', u'S - O valor que está sendo pago é exatamente o previsto nos eventosS - 1200,S - 1202,S - 2299 ouS - 2399 em {dmDev}'),
-
 ]
-
-
 
 
 CHOICES_S1210_INDRESBR = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
 
 
-
-
 CHOICES_S1210_TPPGTO = [
-
     (1, u'1 - Pagamento de remuneração, conforme apurado em {dmDev} do S-1200'),
     (2, u'2 - Pagamento de verbas rescisórias conforme apurado em {dmDev} do S- 2299'),
     (3, u'3 - Pagamento de verbas rescisórias conforme apurado em {dmDev} do S- 2399'),
@@ -86,8 +70,5 @@ CHOICES_S1210_TPPGTO = [
     (6, u'6 - Pagamento de Benefícios Previdenciários, conforme apurado em {dmDev} do S-1207'),
     (7, u'7 - Recibo de férias'),
     (9, u'9 - Pagamento relativo a competências anteriores ao início de obrigatoriedade dos eventos periódicos para o contribuinte.'),
-
 ]
-
-
 

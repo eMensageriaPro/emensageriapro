@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_r2070_pgtopj_infoprocjud or 1 %}"Identificação da origem dos recursos";{% endif %}{% if show_fields.show_cnpjorigemrecursos or 1 %}"CNPJ da empresa de origem dos recursos";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_r2070_pgtopj_infoprocjud or 1 %}"{{ c.r2070_pgtopj_infoprocjud }}";{% endif %}{% if show_fields.show_cnpjorigemrecursos or 1 %}"{{ c.cnpjorigemrecursos }}";{% endif %}
 {% endfor %}

@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1202_infoperapur_detoper or 1 %}"Informações do dependente do plano privado de saúde.";{% endif %}{% if show_fields.show_tpdep or 1 %}"Tipo";{% endif %}{% if show_fields.show_cpfdep or 1 %}"CPF";{% endif %}{% if show_fields.show_nmdep or 1 %}"Nome";{% endif %}{% if show_fields.show_dtnascto or 1 %}"Data de nascimento";{% endif %}{% if show_fields.show_vlrpgdep or 1 %}"Valor pago relativo ao plano de saúde do dependente";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1202_infoperapur_detoper or 1 %}"{{ c.s1202_infoperapur_detoper }}";{% endif %}{% if show_fields.show_tpdep or 1 %}"{{ c.tpdep }}";{% endif %}{% if show_fields.show_cpfdep or 1 %}"{{ c.cpfdep }}";{% endif %}{% if show_fields.show_nmdep or 1 %}"{{ c.nmdep }}";{% endif %}{% if show_fields.show_dtnascto or 1 %}"{{ c.dtnascto }}";{% endif %}{% if show_fields.show_vlrpgdep or 1 %}"{{ c.vlrpgdep }}";{% endif %}
 {% endfor %}

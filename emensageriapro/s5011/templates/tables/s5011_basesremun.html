@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
@@ -37,6 +38,30 @@
             {% endif %}
             {% if show_fields.show_vrsuspbccp25 or 0 %}
             <th>Valor da BC da CP suspenso (25 anos)</th>
+            {% endif %}
+            {% if show_fields.show_vrbccp00va or 0 %}
+            <th>Origem dos valores apurados nesse campo: Preencher com o somatório do campo {valor}, quando {tpValor} = [41,45], do grupo {infoBaseCS} no evento S-5001.</th>
+            {% endif %}
+            {% if show_fields.show_vrbccp15va or 0 %}
+            <th>Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição. Origem: campo {valor}, se {tpValor} = [42,46] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</th>
+            {% endif %}
+            {% if show_fields.show_vrbccp20va or 0 %}
+            <th>Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição. Origem: campo {valor}, quando {tpValor} = [43,47] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</th>
+            {% endif %}
+            {% if show_fields.show_vrbccp25va or 0 %}
+            <th>Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição. Origem: campo {valor}, quando {tpValor} = [44,48] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</th>
+            {% endif %}
+            {% if show_fields.show_vrsuspbccp00va or 0 %}
+            <th>Valor da BC com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor} quando {tpValor} = [81,85] - Incidência suspensa em decorrência de decisão judicial do grupo {infoBaseCS} no evento S- 5001.</th>
+            {% endif %}
+            {% if show_fields.show_vrsuspbccp15va or 0 %}
+            <th>Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 15 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor}, quando {tpValor} = [82,86] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S- 5001.</th>
+            {% endif %}
+            {% if show_fields.show_vrsuspbccp20va or 0 %}
+            <th>Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador expectativa de aposentadoria especial aos 20 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor}, quando {tpValor} = [83,87] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S- 5001.</th>
+            {% endif %}
+            {% if show_fields.show_vrsuspbccp25va or 0 %}
+            <th>Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 25 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor}, quando {tpValor} = [84,88] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S- 5001.</th>
             {% endif %}
             {% if show_fields.show_vrdescsest or 0 %}
             <th>Valor total descontado ao SEST</th>
@@ -100,6 +125,30 @@
             {% endif %}
             {% if show_fields.show_vrsuspbccp25 or 0 %}
             <td>{{ a.vrsuspbccp25 }}</td>
+            {% endif %}
+            {% if show_fields.show_vrbccp00va or 0 %}
+            <td>{{ a.vrbccp00va }}</td>
+            {% endif %}
+            {% if show_fields.show_vrbccp15va or 0 %}
+            <td>{{ a.vrbccp15va }}</td>
+            {% endif %}
+            {% if show_fields.show_vrbccp20va or 0 %}
+            <td>{{ a.vrbccp20va }}</td>
+            {% endif %}
+            {% if show_fields.show_vrbccp25va or 0 %}
+            <td>{{ a.vrbccp25va }}</td>
+            {% endif %}
+            {% if show_fields.show_vrsuspbccp00va or 0 %}
+            <td>{{ a.vrsuspbccp00va }}</td>
+            {% endif %}
+            {% if show_fields.show_vrsuspbccp15va or 0 %}
+            <td>{{ a.vrsuspbccp15va }}</td>
+            {% endif %}
+            {% if show_fields.show_vrsuspbccp20va or 0 %}
+            <td>{{ a.vrsuspbccp20va }}</td>
+            {% endif %}
+            {% if show_fields.show_vrsuspbccp25va or 0 %}
+            <td>{{ a.vrsuspbccp25va }}</td>
             {% endif %}
             {% if show_fields.show_vrdescsest or 0 %}
             <td>{{ a.vrdescsest }}</td>

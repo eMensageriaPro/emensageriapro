@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,7 +38,6 @@
 
 
 ESTADOS = [
-
     ('AC', u'Acre'),
     ('AL', u'Alagoas'),
     ('AM', u'Amazonas'),
@@ -65,8 +65,5 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-
 ]
-
-
 

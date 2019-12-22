@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -82,7 +83,7 @@ def validacoes_s1005_evttabestab(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'ideEmpregador.tpInsc',
                                                   ideEmpregador.tpInsc.cdata,
-                                                  1, u'1, 2, 3, 4, 5')
+                                                  1, u'1, 2, 3, 4, 5, 6')
 
             if 'nrInsc' in dir(ideEmpregador):
                 validacoes_lista = validar_campo( validacoes_lista,
@@ -103,7 +104,7 @@ def validacoes_s1005_evttabestab(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'ideEstab.tpInsc',
                                                                   ideEstab.tpInsc.cdata,
-                                                                  1, u'1, 2, 3, 4, 5')
+                                                                  1, u'1, 2, 3, 4, 5, 6')
         
                             if 'nrInsc' in dir(ideEstab):
                                 validacoes_lista = validar_campo( validacoes_lista,
@@ -277,7 +278,7 @@ def validacoes_s1005_evttabestab(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'ideEstab.tpInsc',
                                                                   ideEstab.tpInsc.cdata,
-                                                                  1, u'1, 2, 3, 4, 5')
+                                                                  1, u'1, 2, 3, 4, 5, 6')
         
                             if 'nrInsc' in dir(ideEstab):
                                 validacoes_lista = validar_campo( validacoes_lista,
@@ -466,7 +467,7 @@ def validacoes_s1005_evttabestab(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'ideEstab.tpInsc',
                                                                   ideEstab.tpInsc.cdata,
-                                                                  1, u'1, 2, 3, 4, 5')
+                                                                  1, u'1, 2, 3, 4, 5, 6')
         
                             if 'nrInsc' in dir(ideEstab):
                                 validacoes_lista = validar_campo( validacoes_lista,

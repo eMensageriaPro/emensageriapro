@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -82,7 +83,7 @@ def validacoes_s1070_evttabprocesso(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'ideEmpregador.tpInsc',
                                                   ideEmpregador.tpInsc.cdata,
-                                                  1, u'1, 2, 3, 4, 5')
+                                                  1, u'1, 2, 3, 4, 5, 6')
 
             if 'nrInsc' in dir(ideEmpregador):
                 validacoes_lista = validar_campo( validacoes_lista,

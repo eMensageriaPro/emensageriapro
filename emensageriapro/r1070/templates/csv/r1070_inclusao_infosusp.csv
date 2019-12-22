@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_r1070_inclusao or 1 %}"Informações de Suspensão de Exibilidade de tributos";{% endif %}{% if show_fields.show_codsusp or 1 %}"Código do Indicativo da Suspensão, atribuído pelo contribuinte";{% endif %}{% if show_fields.show_indsusp or 1 %}"Indicativo de suspensão da exigibilidade";{% endif %}{% if show_fields.show_dtdecisao or 1 %}"Data da decisão, sentença ou despacho administrativo";{% endif %}{% if show_fields.show_inddeposito or 1 %}"Indicativo de Depósito do Montante Integral";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_r1070_inclusao or 1 %}"{{ c.r1070_inclusao }}";{% endif %}{% if show_fields.show_codsusp or 1 %}"{{ c.codsusp }}";{% endif %}{% if show_fields.show_indsusp or 1 %}"{{ c.indsusp }}";{% endif %}{% if show_fields.show_dtdecisao or 1 %}"{{ c.dtdecisao }}";{% endif %}{% if show_fields.show_inddeposito or 1 %}"{{ c.inddeposito }}";{% endif %}
 {% endfor %}

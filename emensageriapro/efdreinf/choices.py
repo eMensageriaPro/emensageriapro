@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -36,1040 +37,402 @@
 
 
 
-CHOICES_EFDREINFPAGAMENTOSCODIGOS = [
-
-
-]
-
-
-
-
 CHOICES_R1000_PROCEMI = [
-
     (1, u'1 - Aplicativo do contribuinte'),
     (2, u'2 - Aplicativo governamental.'),
-
 ]
-
-
 
 
 CHOICES_R1000_TPAMB = [
-
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-
 ]
-
-
 
 
 CHOICES_R1000_TPINSC = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
-
 ]
-
-
 
 
 CHOICES_R1070_PROCEMI = [
-
     (1, u'1 - Aplicativo do contribuinte'),
     (2, u'2 - Aplicativo governamental.'),
-
 ]
-
-
 
 
 CHOICES_R1070_TPAMB = [
-
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-
 ]
-
-
 
 
 CHOICES_R1070_TPINSC = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
-
 ]
-
-
 
 
 CHOICES_R2010_INDCPRB = [
-
     (0, u'0 - Não é contribuinte da Contribuição Previdenciária sobre a Receita Bruta (CPRB) - Retenção 11%'),
     (1, u'1 - Contribuinte da Contribuição Previdenciária sobre a Receita Bruta (CPRB) - Retenção 3,5%.'),
-
 ]
-
-
 
 
 CHOICES_R2010_INDOBRA = [
-
     (0, u'0 - Não é obra de construção civil ou não está sujeita a matrícula de obra'),
     (1, u'1 - Obra de Construção Civil - Empreitada Total'),
     (2, u'2 - Obra de Construção Civil - Empreitada Parcial.'),
-
 ]
-
-
 
 
 CHOICES_R2010_INDRETIF = [
-
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de Retificação.'),
-
 ]
-
-
 
 
 CHOICES_R2010_PROCEMI = [
-
     (1, u'1 - Aplicativo do contribuinte'),
     (2, u'2 - Aplicativo governamental.'),
-
 ]
-
-
 
 
 CHOICES_R2010_TPAMB = [
-
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-
 ]
-
-
 
 
 CHOICES_R2010_TPINSC = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
-
 ]
-
-
 
 
 CHOICES_R2010_TPINSCESTAB = [
-
     (1, u'1 - CNPJ'),
     (4, u'4 - CNO'),
-
 ]
-
-
 
 
 CHOICES_R2020_INDOBRA = [
-
     (0, u'0 - Não é obra de construção civil ou não está sujeita a matrícula de obra'),
     (1, u'1 - Obra de Construção Civil - Empreitada Total'),
     (2, u'2 - Obra de Construção Civil - Empreitada Parcial.'),
-
 ]
-
-
 
 
 CHOICES_R2020_INDRETIF = [
-
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de Retificação.'),
-
 ]
-
-
 
 
 CHOICES_R2020_PROCEMI = [
-
     (1, u'1 - Aplicativo do contribuinte'),
     (2, u'2 - Aplicativo governamental.'),
-
 ]
-
-
 
 
 CHOICES_R2020_TPAMB = [
-
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-
 ]
-
-
 
 
 CHOICES_R2020_TPINSC = [
-
     (1, u'1 - CNPJ'),
-
 ]
-
-
-
-
-CHOICES_R2020_TPINSCESTABPREST = [
-
-    (1, u'1 - CNPJ'),
-
-]
-
-
 
 
 CHOICES_R2020_TPINSCTOMADOR = [
-
     (1, u'1 - CNPJ'),
     (4, u'4 - CNO'),
-
 ]
-
-
 
 
 CHOICES_R2030_INDRETIF = [
-
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de Retificação.'),
-
 ]
-
-
 
 
 CHOICES_R2030_PROCEMI = [
-
     (1, u'1 - Aplicativo do contribuinte'),
     (2, u'2 - Aplicativo governamental.'),
-
 ]
-
-
 
 
 CHOICES_R2030_TPAMB = [
-
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-
 ]
-
-
 
 
 CHOICES_R2030_TPINSC = [
-
     (1, u'1 - CNPJ'),
-
 ]
-
-
-
-
-CHOICES_R2030_TPINSCESTAB = [
-
-    (1, u'1 - CNPJ'),
-
-]
-
-
 
 
 CHOICES_R2040_INDRETIF = [
-
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de Retificação.'),
-
 ]
-
-
 
 
 CHOICES_R2040_PROCEMI = [
-
     (1, u'1 - Aplicativo do contribuinte'),
     (2, u'2 - Aplicativo governamental.'),
-
 ]
-
-
 
 
 CHOICES_R2040_TPAMB = [
-
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-
 ]
-
-
 
 
 CHOICES_R2040_TPINSC = [
-
     (1, u'1 - CNPJ'),
-
 ]
-
-
 
 
 CHOICES_R2040_TPINSCESTAB = [
-
     (1, u'1 - CNPJ'),
-
 ]
-
-
 
 
 CHOICES_R2050_INDRETIF = [
-
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de Retificação.'),
-
 ]
-
-
 
 
 CHOICES_R2050_PROCEMI = [
-
     (1, u'1 - Aplicativo do contribuinte'),
     (2, u'2 - Aplicativo governamental.'),
-
 ]
-
-
 
 
 CHOICES_R2050_TPAMB = [
-
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-
 ]
-
-
 
 
 CHOICES_R2050_TPINSC = [
-
     (1, u'1 - CNPJ'),
-
 ]
-
-
 
 
 CHOICES_R2050_TPINSCESTAB = [
-
     (1, u'1 - CNPJ'),
-
 ]
-
-
 
 
 CHOICES_R2060_INDRETIF = [
-
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de Retificação.'),
-
 ]
-
-
 
 
 CHOICES_R2060_PROCEMI = [
-
     (1, u'1 - Aplicativo do contribuinte'),
     (2, u'2 - Aplicativo governamental.'),
-
 ]
-
-
 
 
 CHOICES_R2060_TPAMB = [
-
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-
 ]
-
-
 
 
 CHOICES_R2060_TPINSC = [
-
     (1, u'1 - CNPJ'),
-
 ]
-
-
-
-
-CHOICES_R2060_TPINSCESTAB = [
-
-    (1, u'1 - CNPJ'),
-    (4, u'4 - CNO'),
-
-]
-
-
 
 
 CHOICES_R2070_INDRETIF = [
-
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de Retificação.'),
-
 ]
-
-
 
 
 CHOICES_R2070_PROCEMI = [
-
     (1, u'1 - Aplicativo do contribuinte'),
     (2, u'2 - Aplicativo governamental.'),
-
 ]
-
-
 
 
 CHOICES_R2070_TPAMB = [
-
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-
 ]
-
-
 
 
 CHOICES_R2070_TPINSC = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
-
 ]
-
-
 
 
 CHOICES_R2070_TPINSCBENEF = [
-
     (1, u'1 - Pessoa Jurídica'),
     (2, u'2 - Pessoa Física.'),
-
 ]
-
-
 
 
 CHOICES_R2098_PROCEMI = [
-
     (1, u'1 - Aplicativo do contribuinte'),
     (2, u'2 - Aplicativo governamental.'),
-
 ]
-
-
 
 
 CHOICES_R2098_TPAMB = [
-
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-
 ]
-
-
 
 
 CHOICES_R2098_TPINSC = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
-
 ]
-
-
 
 
 CHOICES_R2099_EVTASSDESPREC = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_R2099_EVTASSDESPREP = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_R2099_EVTCOMPROD = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_R2099_EVTCPRB = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_R2099_EVTPGTOS = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_R2099_EVTSERVPR = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_R2099_EVTSERVTM = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_R2099_PROCEMI = [
-
     (1, u'1 - Aplicativo do contribuinte'),
     (2, u'2 - Aplicativo governamental.'),
-
 ]
-
-
 
 
 CHOICES_R2099_TPAMB = [
-
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-
 ]
-
-
 
 
 CHOICES_R2099_TPINSC = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
-
 ]
-
-
 
 
 CHOICES_R3010_INDRETIF = [
-
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de Retificação.'),
-
 ]
-
-
 
 
 CHOICES_R3010_PROCEMI = [
-
     (1, u'1 - Aplicativo do contribuinte'),
     (2, u'2 - Aplicativo governamental.'),
-
 ]
-
-
 
 
 CHOICES_R3010_TPAMB = [
-
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-
 ]
-
-
 
 
 CHOICES_R3010_TPINSC = [
-
     (1, u'1 - CNPJ'),
-
 ]
-
-
 
 
 CHOICES_R3010_TPINSCESTAB = [
-
     (1, u'1 - CNPJ.'),
-
 ]
-
-
-
-
-CHOICES_R4010_INDRETIF = [
-
-    (1, u'1 - Arquivo original'),
-    (2, u'2 - Arquivo de Retificação.'),
-
-]
-
-
-
-
-CHOICES_R4010_PROCEMI = [
-
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental.'),
-
-]
-
-
-
-
-CHOICES_R4010_TPAMB = [
-
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita.'),
-
-]
-
-
-
-
-CHOICES_R4010_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-
-]
-
-
-
-
-CHOICES_R4010_TPINSCESTAB = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF.'),
-
-]
-
-
-
-
-CHOICES_R4020_INDRETIF = [
-
-    (1, u'1 - Arquivo original'),
-    (2, u'2 - Arquivo de Retificação.'),
-
-]
-
-
-
-
-CHOICES_R4020_ISENIMUN = [
-
-    (1, u'1 - Não isenta/não imune'),
-    (2, u'2 - Instituição de educação e de assistência social sem fins lucrativos, a que se refere o art. 12 da Lei nº 9.532, de 10 de dezembro de 1997'),
-    (3, u'3 - Instituição de caráter filantrópico, recreativo, cultural, científico e às associações civis, a que se refere o art. 15 da Lei nº 9.532, de 1997.'),
-
-]
-
-
-
-
-CHOICES_R4020_PROCEMI = [
-
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental.'),
-
-]
-
-
-
-
-CHOICES_R4020_TPAMB = [
-
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita.'),
-
-]
-
-
-
-
-CHOICES_R4020_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-
-]
-
-
-
-
-CHOICES_R4020_TPINSCESTAB = [
-
-    (1, u'1 - CNPJ'),
-
-]
-
-
-
-
-CHOICES_R4040_INDRETIF = [
-
-    (1, u'1 - Arquivo original'),
-    (2, u'2 - Arquivo de Retificação.'),
-
-]
-
-
-
-
-CHOICES_R4040_PROCEMI = [
-
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental.'),
-
-]
-
-
-
-
-CHOICES_R4040_TPAMB = [
-
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita.'),
-
-]
-
-
-
-
-CHOICES_R4040_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-
-]
-
-
-
-
-CHOICES_R4040_TPINSCESTAB = [
-
-    (1, u'1 - CNPJ'),
-
-]
-
-
-
-
-CHOICES_R4098_PROCEMI = [
-
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental.'),
-
-]
-
-
-
-
-CHOICES_R4098_TPAMB = [
-
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita.'),
-
-]
-
-
-
-
-CHOICES_R4098_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-
-]
-
-
-
-
-CHOICES_R4099_EVTPGTOSNID = [
-
-    ('N', u'N - Não.'),
-    ('S', u'S - Sim'),
-
-]
-
-
-
-
-CHOICES_R4099_EVTRETPF = [
-
-    ('N', u'N - Não.'),
-    ('S', u'S - Sim'),
-
-]
-
-
-
-
-CHOICES_R4099_EVTRETPJ = [
-
-    ('N', u'N - Não.'),
-    ('S', u'S - Sim'),
-
-]
-
-
-
-
-CHOICES_R4099_PROCEMI = [
-
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental.'),
-
-]
-
-
-
-
-CHOICES_R4099_TPAMB = [
-
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita.'),
-
-]
-
-
-
-
-CHOICES_R4099_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-
-]
-
-
 
 
 CHOICES_R5001_CDRETORNO = [
-
     ('0', u'0 - Sucesso 1 - Erro 2 - Em processamento'),
-
 ]
-
-
 
 
 CHOICES_R5001_TPINSC = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
-
 ]
-
-
 
 
 CHOICES_R5011_TPINSC = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
-
 ]
-
-
 
 
 CHOICES_R9000_PROCEMI = [
-
     (1, u'1 - Aplicativo do contribuinte'),
     (2, u'2 - Aplicativo governamental.'),
-
 ]
-
-
 
 
 CHOICES_R9000_TPAMB = [
-
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-
 ]
-
-
 
 
 CHOICES_R9000_TPINSC = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
-
 ]
-
-
-
-
-CHOICES_R9001_CDRETORNO = [
-
-    (0, u'0 - Sucesso'),
-    (1, u'1 - Erro'),
-    (2, u'2 - Em processamento.'),
-
-]
-
-
-
-
-CHOICES_R9001_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-
-]
-
-
-
-
-CHOICES_R9002_CDRETORNO = [
-
-    (0, u'0 - Sucesso'),
-    (1, u'1 - Erro'),
-    (2, u'2 - Em processamento.'),
-
-]
-
-
-
-
-CHOICES_R9002_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-
-]
-
-
-
-
-CHOICES_R9011_CDRETORNO = [
-
-    (0, u'0 - Sucesso'),
-    (1, u'1 - Erro'),
-    (2, u'2 - Em processamento.'),
-
-]
-
-
-
-
-CHOICES_R9011_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-
-]
-
-
-
-
-CHOICES_R9012_CDRETORNO = [
-
-    (0, u'0 - Sucesso'),
-    (1, u'1 - Erro'),
-    (2, u'2 - Em processamento.'),
-
-]
-
-
-
-
-CHOICES_R9012_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-
-]
-
-
 
 
 EFDREINF_VERSOES = [
-
     ('v1_03_02', u'Versão 1.03.02'),
     ('v1_04_00', u'Versão 1.04.00'),
     ('v2_00_00', u'Versão 2.00.00'),
-
 ]
 
 
-
-
 EVENTO_STATUS = [
-
     (0, u'Cadastrado'),
     (1, u'Importado'),
     (10, u'Aguardando envio'),
@@ -1084,29 +447,18 @@ EVENTO_STATUS = [
     (7, u'Validado'),
     (8, u'Erro na validação'),
     (9, u'Aguardando envio de precedência'),
-
 ]
-
-
 
 
 OPERACOES = [
-
     (1, u'Incluir'),
     (2, u'Alterar'),
     (3, u'Excluir'),
-
 ]
-
-
 
 
 SIM_NAO = [
-
     (0, u'Não'),
     (1, u'Sim'),
-
 ]
-
-
 

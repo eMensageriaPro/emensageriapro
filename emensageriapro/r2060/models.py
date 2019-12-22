@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 from django.db import models
 from django.db.models import Sum
@@ -183,7 +184,6 @@ class r2060tipoCod(SoftDeletionModel):
     vlradicrecbruta = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrbccprb = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcprbapur = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    observ = models.CharField(max_length=200, blank=True, null=True, )
 
     def __unicode__(self):
         return unicode(self.r2060_evtcprb) + ' - ' + unicode(self.codativecon) + ' - ' + unicode(self.vlrrecbrutaativ) + ' - ' + unicode(self.vlrexcrecbruta) + ' - ' + unicode(self.vlradicrecbruta) + ' - ' + unicode(self.vlrbccprb)

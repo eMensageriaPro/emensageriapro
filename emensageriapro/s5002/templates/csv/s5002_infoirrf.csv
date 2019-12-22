@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s5002_evtirrfbenef or 1 %}"Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo";{% endif %}{% if show_fields.show_codcateg or 1 %}"Código da Categoria";{% endif %}{% if show_fields.show_indresbr or 1 %}"Indicador de residência";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s5002_evtirrfbenef or 1 %}"{{ c.s5002_evtirrfbenef }}";{% endif %}{% if show_fields.show_codcateg or 1 %}"{{ c.codcateg }}";{% endif %}{% if show_fields.show_indresbr or 1 %}"{{ c.indresbr }}";{% endif %}
 {% endfor %}

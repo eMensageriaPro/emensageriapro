@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 import xmltodict
@@ -299,11 +300,6 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False, arquivo=F
 
             try:
                 r1070_exclusao_dados['nrproc'] = read_from_xml(exclusao.ideProcesso.nrProc.cdata, 'efdreinf', 'C', None)
-            except AttributeError:
-                pass
-
-            try:
-                r1070_exclusao_dados['inivalid'] = read_from_xml(exclusao.ideProcesso.iniValid.cdata, 'efdreinf', 'C', None)
             except AttributeError:
                 pass
 

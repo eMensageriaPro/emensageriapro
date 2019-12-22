@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}
 <table {% if not output %}
     class="table table-bordered"{% else %}
@@ -1594,7 +1595,7 @@
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">quarentena</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre a "quarentena" remunerada de trabalhador desligado. O registro deve ser preenchido apenas no caso do trabalhador que recebe remuneração após o desligamento por estar impossibilitado de exercer atividade remunerada.</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre a 'quarentena' remunerada de trabalhador desligado. O registro deve ser preenchido apenas no caso do trabalhador que recebe remuneração após o desligamento por estar impossibilitado de exercer atividade remunerada.</td>
         </tr>
     {% for s2299_infotrabinterm_quarentena in s2299_infotrabinterm_quarentena_lista %}
     {% ifequal s2299_infotrabinterm_quarentena.s2299_evtdeslig.id s2299_evtdeslig.id %}

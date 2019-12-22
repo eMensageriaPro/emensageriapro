@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}
 <table {% if not output %}
     class="table table-bordered"{% else %}
@@ -6,13 +7,13 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtAssocDespRec</td>
-            <td bgcolor="lightgray" colspan="3">Evento Recursos Recebidos por Associação Desportiva que mantenha equipe de Futebol profissional. Regras de validação: REGRA_EVE_ ASSOCDESP REGRA_EVE_ ASSOCDESP_PER REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_ESTAB REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</td>
+            <td bgcolor="lightgray" colspan="3">Evento Recursos Recebidos por Associação Desportiva que mantenha equipe de Futebol profissional Regras de validação: REGRA_EVE_ ASSOCDESP REGRA_EVE_ ASSOCDESP_PER REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_ESTAB REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</td>
         </tr>
     {% for r2030_evtassocdesprec in r2030_evtassocdesprec_lista %}
     {% ifequal 1 1 %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
         </tr>
 
         <tr {% if r2030_evtassocdesprec.indretif|validacoes_esocial_efdreinf:"r2030_evtassocdesprec.indretif" %}bgcolor="lightcoral"{% endif %}>
@@ -131,7 +132,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideContri</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte</td>
         </tr>
 
         <tr {% if r2030_evtassocdesprec.tpinsc|validacoes_esocial_efdreinf:"r2030_evtassocdesprec.tpinsc" %}bgcolor="lightcoral"{% endif %}>
@@ -174,12 +175,12 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEstab</td>
-            <td bgcolor="lightgray" colspan="3">Identificação dos estabelecimentos da associação desportiva que receberam os recursos.</td>
+            <td bgcolor="lightgray" colspan="3">Identificação dos estabelecimentos da associação desportiva que receberam os recursos</td>
         </tr>
 
         <tr {% if r2030_evtassocdesprec.tpinscestab|validacoes_esocial_efdreinf:"r2030_evtassocdesprec.tpinscestab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInscEstab</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ).</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ)</td>
             <td width="200px"><b>{% if r2030_evtassocdesprec.tpinscestab or r2030_evtassocdesprec.tpinscestab == 0 %}{{ r2030_evtassocdesprec.tpinscestab }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -217,13 +218,13 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">recursosRec</td>
-            <td bgcolor="lightgray" colspan="3">Registro preenchido exclusivamente por associação desportiva que mantenha equipe de futebol profissional, quando receber repasse de outras empresas a título de patrocínio, publicidade, licenciamento, etc .Totalizador dos recursos recebidos por estabelecimento.</td>
+            <td bgcolor="lightgray" colspan="3">Registro preenchido exclusivamente por associação desportiva que mantenha equipe de futebol profissional, quando receber repasse de outras empresas a título de patrocínio, publicidade, licenciamento, etc .Totalizador dos recursos recebidos por estabelecimento</td>
         </tr>
     {% for r2030_recursosrec in r2030_recursosrec_lista %}
     {% ifequal r2030_recursosrec.r2030_evtassocdesprec.id r2030_evtassocdesprec.id %}
         <tr {% if r2030_recursosrec.cnpjorigrecurso|validacoes_esocial_efdreinf:"r2030_recursosrec.cnpjorigrecurso" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnpjOrigRecurso</td>
-            <td width="500px">Preencher com o CNPJ da empresa que repassou recursos. Validação: Deve ser um CNPJ válido, diferente do CNPJ do declarante.</td>
+            <td width="500px">Preencher com o CNPJ da empresa que repassou recursos Validação: Deve ser um CNPJ válido, diferente do CNPJ do declarante</td>
             <td width="200px"><b>{% if r2030_recursosrec.cnpjorigrecurso or r2030_recursosrec.cnpjorigrecurso == 0 %}{{ r2030_recursosrec.cnpjorigrecurso }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -242,7 +243,7 @@
 
         <tr {% if r2030_recursosrec.vlrtotalrec|validacoes_esocial_efdreinf:"r2030_recursosrec.vlrtotalrec" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrTotalRec</td>
-            <td width="500px">Preencher com o valor bruto dos recursos recebidos. Validação: Deve corresponder a soma do campo {vlrBruto} do grupo {infoRecurso}.</td>
+            <td width="500px">Preencher com o valor bruto dos recursos recebidos Validação: Deve corresponder a soma do campo {vlrBruto} do grupo {infoRecurso}</td>
             <td width="200px"><b>{% if r2030_recursosrec.vlrtotalrec or r2030_recursosrec.vlrtotalrec == 0 %}{{ r2030_recursosrec.vlrtotalrec }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -261,7 +262,7 @@
 
         <tr {% if r2030_recursosrec.vlrtotalret|validacoes_esocial_efdreinf:"r2030_recursosrec.vlrtotalret" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrTotalRet</td>
-            <td width="500px">Soma do valor da retenção dos recursos recebidos. Validação: Deve corresponder a soma do campo {vlrRetApur} do grupo {infoRecurso}.</td>
+            <td width="500px">Soma do valor da retenção dos recursos recebidos Validação: Deve corresponder a soma do campo {vlrRetApur} do grupo {infoRecurso}.</td>
             <td width="200px"><b>{% if r2030_recursosrec.vlrtotalret or r2030_recursosrec.vlrtotalret == 0 %}{{ r2030_recursosrec.vlrtotalret }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -280,7 +281,7 @@
 
         <tr {% if r2030_recursosrec.vlrtotalnret|validacoes_esocial_efdreinf:"r2030_recursosrec.vlrtotalnret" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrTotalNRet</td>
-            <td width="500px">Valor da retenção que deixou de ser feita pela entidade que efetuou o repasse ou que foi depositada em juízo em decorrência da decisão judicial/administrativa. Validação: Não pode ser maior que {vlrTotalRet} e deve corresponder a soma do campo {vlrNRet} dos registros vinculados.</td>
+            <td width="500px">Valor da retenção que deixou de ser feita pela entidade que efetuou o repasse ou que foi depositada em juízo em decorrência da decisão judicial/administrativa Validação: Não pode ser maior que {vlrTotalRet} e deve corresponder a soma do campo {vlrNRet} dos registros vinculados</td>
             <td width="200px"><b>{% if r2030_recursosrec.vlrtotalnret or r2030_recursosrec.vlrtotalnret == 0 %}{{ r2030_recursosrec.vlrtotalnret }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -305,7 +306,7 @@
     {% ifequal r2030_inforecurso.r2030_recursosrec.id r2030_recursosrec.id %}
         <tr {% if r2030_inforecurso.tprepasse|validacoes_esocial_efdreinf:"r2030_inforecurso.tprepasse" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpRepasse</td>
-            <td width="500px">Tipo de repasse, conforme tabela abaixo: 1 - Patrocínio; 2 - Licenciamento de marcas e símbolos; 3 - Publicidade; 4 - Propaganda; 5 - Transmissão de espetáculos. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Tipo de repasse, conforme tabela abaixo: 1 - Patrocínio; 2 - Licenciamento de marcas e símbolos; 3 - Publicidade; 4 - Propaganda; 5 - Transmissão de espetáculos. Valores Válidos: 1, 2, 3, 4, 5</td>
             <td width="200px"><b>{% if r2030_inforecurso.tprepasse or r2030_inforecurso.tprepasse == 0 %}{{ r2030_inforecurso.tprepasse }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -324,7 +325,7 @@
 
         <tr {% if r2030_inforecurso.descrecurso|validacoes_esocial_efdreinf:"r2030_inforecurso.descrecurso" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">descRecurso</td>
-            <td width="500px">Descrição resumida do recurso recebido.</td>
+            <td width="500px">Descrição resumida do recurso recebido</td>
             <td width="200px"><b>{% if r2030_inforecurso.descrecurso or r2030_inforecurso.descrecurso == 0 %}{{ r2030_inforecurso.descrecurso }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -343,7 +344,7 @@
 
         <tr {% if r2030_inforecurso.vlrbruto|validacoes_esocial_efdreinf:"r2030_inforecurso.vlrbruto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrBruto</td>
-            <td width="500px">Preencher com o valor bruto do repasse recebido a título de patrocínio, publicidade, licenciamento, etc. Validação: Deve ser maior que 0 (zero).</td>
+            <td width="500px">Preencher com o valor bruto do repasse recebido a título de patrocínio, publicidade, licenciamento, etc Validação: Deve ser maior que 0 (zero).</td>
             <td width="200px"><b>{% if r2030_inforecurso.vlrbruto or r2030_inforecurso.vlrbruto == 0 %}{{ r2030_inforecurso.vlrbruto }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

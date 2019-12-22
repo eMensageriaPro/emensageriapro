@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,7 +38,6 @@
 
 
 CHOICES_ESOCIALDEPENDENTESTIPOS = [
-
     ('01', u'01 - Cônjuge'),
     ('02', u'02 - Companheiro(a) com o(a) qual tenha filho ou viva há mais de 5 (cinco) anos ou possua Declaração de União Estável'),
     ('03', u'03 - Filho(a) ou enteado(a)'),
@@ -49,24 +49,16 @@ CHOICES_ESOCIALDEPENDENTESTIPOS = [
     ('11', u'11 - A pessoa absolutamente incapaz, da qual seja tutor ou curador'),
     ('12', u'12 - Ex-cônjuge'),
     ('99', u'99 - Agregado/Outros'),
-
 ]
-
-
 
 
 CHOICES_S2300_CASADOBR = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
 
 
-
-
 CHOICES_S2300_CATEGORIACNH = [
-
     ('A', u'A'),
     ('AB', u'AB'),
     ('AC', u'AC'),
@@ -76,14 +68,10 @@ CHOICES_S2300_CATEGORIACNH = [
     ('C', u'C'),
     ('D', u'D'),
     ('E', u'E'),
-
 ]
 
 
-
-
 CHOICES_S2300_CLASSTRABESTRANG = [
-
     (1, u'1 - Visto permanente'),
     (10, u'10 - Beneficiado pelo acordo entre países do Mercosul'),
     (11, u'11 - Dependente de agente diplomático e/ou consular de países que mantém convênio de reciprocidade para o exercício de atividade remunerada no Brasil'),
@@ -96,210 +84,130 @@ CHOICES_S2300_CLASSTRABESTRANG = [
     (7, u'7 - Deficiente físico e com mais de 51 anos'),
     (8, u'8 - Com residência provisória e anistiado, em situação irregular'),
     (9, u'9 - Permanência no Brasil em razão de filhos ou cônjuge brasileiros'),
-
 ]
-
-
 
 
 CHOICES_S2300_DEFAUDITIVA = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2300_DEFFISICA = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2300_DEFINTELECTUAL = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2300_DEFMENTAL = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2300_DEFVISUAL = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2300_DEPFINSPREV = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2300_DEPIRRF = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2300_DEPSF = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2300_FILHOSBR = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2300_INCTRAB = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2300_INDREMUNCARGO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2300_INFONUS = [
-
     (1, u'1 - Ônus do Cedente'),
     (2, u'2 - Ônus do Cessionário'),
     (3, u'3 - Ônus do Cedente e Cessionário.'),
-
 ]
-
-
 
 
 CHOICES_S2300_NATESTAGIO = [
-
     ('N', u'N - Não Obrigatório.'),
     ('O', u'O - Obrigatório'),
-
 ]
 
 
-
-
 CHOICES_S2300_NIVESTAGIO = [
-
     (1, u'1 - Fundamental'),
     (2, u'2 - Médio'),
     (3, u'3 - Formação Profissional'),
     (4, u'4 - Superior'),
     (8, u'8 - Especial'),
     (9, u'9 - Mãe social. (Lei 7644, de 1987).'),
-
 ]
-
-
 
 
 CHOICES_S2300_OPCFGTS = [
-
     (1, u'1 - Optante'),
     (2, u'2 - Não Optante.'),
-
 ]
-
-
 
 
 CHOICES_S2300_REABREADAP = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2300_SEXODEP = [
-
     ('F', u'F - Feminino.'),
     ('M', u'M - Masculino'),
-
 ]
-
-
 
 
 CHOICES_S2300_TPREGPREV = [
-
     (1, u'1 - Regime Geral da Previdência Social - RGPS'),
     (2, u'2 - Regime Próprio de Previdência Social - RPPS'),
     (3, u'3 - Regime de Previdência Social no Exterior.'),
-
 ]
-
-
 
 
 CHOICES_S2300_TPREGTRAB = [
-
     (1, u'1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas'),
     (2, u'2 - Estatutário.'),
-
 ]
 
 
-
-
 CHOICES_S2300_UNDSALFIXO = [
-
     (1, u'1 - Por Hora'),
     (2, u'2 - Por Dia'),
     (3, u'3 - Por Semana'),
@@ -307,14 +215,10 @@ CHOICES_S2300_UNDSALFIXO = [
     (5, u'5 - Por Mês'),
     (6, u'6 - Por Tarefa'),
     (7, u'7 - Não aplicável - salário exclusivamente variável.'),
-
 ]
 
 
-
-
 ESTADOS = [
-
     ('AC', u'Acre'),
     ('AL', u'Alagoas'),
     ('AM', u'Amazonas'),
@@ -342,8 +246,5 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-
 ]
-
-
 

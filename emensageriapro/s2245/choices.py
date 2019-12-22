@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,21 +38,13 @@
 
 
 CHOICES_S2245_NACPROF = [
-
     (1, u'1 - Brasileiro'),
     (2, u'2 - Estrangeiro.'),
-
 ]
-
-
 
 
 CHOICES_S2245_TPPROF = [
-
     (1, u'1 - Profissional empregado do declarante'),
     (2, u'2 - Profissional sem vínculo de emprego/estatutário com o declarante.'),
-
 ]
-
-
 

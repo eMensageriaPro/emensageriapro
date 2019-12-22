@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1200_evtremun or 1 %}"Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'";{% endif %}{% if show_fields.show_nmtrab or 1 %}"Nome";{% endif %}{% if show_fields.show_dtnascto or 1 %}"Data de nascimento";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1200_evtremun or 1 %}"{{ c.s1200_evtremun }}";{% endif %}{% if show_fields.show_nmtrab or 1 %}"{{ c.nmtrab }}";{% endif %}{% if show_fields.show_dtnascto or 1 %}"{{ c.dtnascto }}";{% endif %}
 {% endfor %}

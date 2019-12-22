@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s5011_ideestab or 1 %}"Informações do Estabelecimento ou obra";{% endif %}{% if show_fields.show_cnaeprep or 1 %}"CNAE preponderante";{% endif %}{% if show_fields.show_aliqrat or 1 %}"Alíquota RAT";{% endif %}{% if show_fields.show_fap or 1 %}"FAP";{% endif %}{% if show_fields.show_aliqratajust or 1 %}"Alíquota RAT (Ajustada)";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s5011_ideestab or 1 %}"{{ c.s5011_ideestab }}";{% endif %}{% if show_fields.show_cnaeprep or 1 %}"{{ c.cnaeprep }}";{% endif %}{% if show_fields.show_aliqrat or 1 %}"{{ c.aliqrat }}";{% endif %}{% if show_fields.show_fap or 1 %}"{{ c.fap }}";{% endif %}{% if show_fields.show_aliqratajust or 1 %}"{{ c.aliqratajust }}";{% endif %}
 {% endfor %}

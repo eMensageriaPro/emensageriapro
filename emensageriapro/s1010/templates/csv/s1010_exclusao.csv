@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1010_evttabrubrica or 1 %}"Exclusão das informações";{% endif %}{% if show_fields.show_iderubrica or 1 %}"Informações de identificação da rubrica e validade das informações que estão sendo incluídas";{% endif %}{% if show_fields.show_codrubr or 1 %}"Código da Rubrica";{% endif %}{% if show_fields.show_idetabrubr or 1 %}"Identificador tabela de rubricas";{% endif %}{% if show_fields.show_inivalid or 1 %}"Início da Validade";{% endif %}{% if show_fields.show_fimvalid or 1 %}"Fim da Validade";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1010_evttabrubrica or 1 %}"{{ c.s1010_evttabrubrica }}";{% endif %}{% if show_fields.show_iderubrica or 1 %}"{{ c.iderubrica }}";{% endif %}{% if show_fields.show_codrubr or 1 %}"{{ c.codrubr }}";{% endif %}{% if show_fields.show_idetabrubr or 1 %}"{{ c.idetabrubr }}";{% endif %}{% if show_fields.show_inivalid or 1 %}"{{ c.inivalid }}";{% endif %}{% if show_fields.show_fimvalid or 1 %}"{{ c.fimvalid }}";{% endif %}
 {% endfor %}

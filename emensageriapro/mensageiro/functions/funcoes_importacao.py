@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -462,36 +463,6 @@ def importar_arquivo(arquivo, request, validar=False):
             dados = read_r3010_evtespdesportivo(request, dados, arquivo, validar)
             gerar_xml_assinado(request, dados['id'])
 
-        elif ('evtRetPF' in xml) and ('Reinf' in xml):
-            from emensageriapro.efdreinf.views.r4010_evtretpf_importar import read_r4010_evtretpf
-            from emensageriapro.efdreinf.views.r4010_evtretpf_gerar_xml import gerar_xml_assinado
-            dados = read_r4010_evtretpf(request, dados, arquivo, validar)
-            gerar_xml_assinado(request, dados['id'])
-
-        elif ('evtRetPJ' in xml) and ('Reinf' in xml):
-            from emensageriapro.efdreinf.views.r4020_evtretpj_importar import read_r4020_evtretpj
-            from emensageriapro.efdreinf.views.r4020_evtretpj_gerar_xml import gerar_xml_assinado
-            dados = read_r4020_evtretpj(request, dados, arquivo, validar)
-            gerar_xml_assinado(request, dados['id'])
-
-        elif ('evtBenefNId' in xml) and ('Reinf' in xml):
-            from emensageriapro.efdreinf.views.r4040_evtbenefnid_importar import read_r4040_evtbenefnid
-            from emensageriapro.efdreinf.views.r4040_evtbenefnid_gerar_xml import gerar_xml_assinado
-            dados = read_r4040_evtbenefnid(request, dados, arquivo, validar)
-            gerar_xml_assinado(request, dados['id'])
-
-        elif ('evtReab' in xml) and ('Reinf' in xml):
-            from emensageriapro.efdreinf.views.r4098_evtreab_importar import read_r4098_evtreab
-            from emensageriapro.efdreinf.views.r4098_evtreab_gerar_xml import gerar_xml_assinado
-            dados = read_r4098_evtreab(request, dados, arquivo, validar)
-            gerar_xml_assinado(request, dados['id'])
-
-        elif ('evtFech' in xml) and ('Reinf' in xml):
-            from emensageriapro.efdreinf.views.r4099_evtfech_importar import read_r4099_evtfech
-            from emensageriapro.efdreinf.views.r4099_evtfech_gerar_xml import gerar_xml_assinado
-            dados = read_r4099_evtfech(request, dados, arquivo, validar)
-            gerar_xml_assinado(request, dados['id'])
-
         elif ('evtTotal' in xml) and ('Reinf' in xml):
             from emensageriapro.efdreinf.views.r5001_evttotal_importar import read_r5001_evttotal
             from emensageriapro.efdreinf.views.r5001_evttotal_gerar_xml import gerar_xml_assinado
@@ -508,30 +479,6 @@ def importar_arquivo(arquivo, request, validar=False):
             from emensageriapro.efdreinf.views.r9000_evtexclusao_importar import read_r9000_evtexclusao
             from emensageriapro.efdreinf.views.r9000_evtexclusao_gerar_xml import gerar_xml_assinado
             dados = read_r9000_evtexclusao(request, dados, arquivo, validar)
-            gerar_xml_assinado(request, dados['id'])
-
-        elif ('evtTotal' in xml) and ('Reinf' in xml):
-            from emensageriapro.efdreinf.views.r9001_evttotal_importar import read_r9001_evttotal
-            from emensageriapro.efdreinf.views.r9001_evttotal_gerar_xml import gerar_xml_assinado
-            dados = read_r9001_evttotal(request, dados, arquivo, validar)
-            gerar_xml_assinado(request, dados['id'])
-
-        elif ('evtRet' in xml) and ('Reinf' in xml):
-            from emensageriapro.efdreinf.views.r9002_evtret_importar import read_r9002_evtret
-            from emensageriapro.efdreinf.views.r9002_evtret_gerar_xml import gerar_xml_assinado
-            dados = read_r9002_evtret(request, dados, arquivo, validar)
-            gerar_xml_assinado(request, dados['id'])
-
-        elif ('evtTotalContrib' in xml) and ('Reinf' in xml):
-            from emensageriapro.efdreinf.views.r9011_evttotalcontrib_importar import read_r9011_evttotalcontrib
-            from emensageriapro.efdreinf.views.r9011_evttotalcontrib_gerar_xml import gerar_xml_assinado
-            dados = read_r9011_evttotalcontrib(request, dados, arquivo, validar)
-            gerar_xml_assinado(request, dados['id'])
-
-        elif ('evtRetCons' in xml) and ('Reinf' in xml):
-            from emensageriapro.efdreinf.views.r9012_evtretcons_importar import read_r9012_evtretcons
-            from emensageriapro.efdreinf.views.r9012_evtretcons_gerar_xml import gerar_xml_assinado
-            dados = read_r9012_evtretcons(request, dados, arquivo, validar)
             gerar_xml_assinado(request, dados['id'])
 
     return dados

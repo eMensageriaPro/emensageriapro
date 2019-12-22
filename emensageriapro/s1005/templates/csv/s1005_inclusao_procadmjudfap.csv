@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1005_inclusao or 1 %}"Registro que identifica, em caso de existência, o processo administrativo/judicial em que houve decisão ou sentença favorável ao contribuinte suspendendo ou alterando a alíquota FAP aplicável ao contribuinte.";{% endif %}{% if show_fields.show_tpproc or 1 %}"Processo RAT";{% endif %}{% if show_fields.show_nrproc or 1 %}"Número do Processo";{% endif %}{% if show_fields.show_codsusp or 1 %}"Código do Indicativo da Suspensão";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1005_inclusao or 1 %}"{{ c.s1005_inclusao }}";{% endif %}{% if show_fields.show_tpproc or 1 %}"{{ c.tpproc }}";{% endif %}{% if show_fields.show_nrproc or 1 %}"{{ c.nrproc }}";{% endif %}{% if show_fields.show_codsusp or 1 %}"{{ c.codsusp }}";{% endif %}
 {% endfor %}

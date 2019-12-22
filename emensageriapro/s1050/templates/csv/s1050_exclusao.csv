@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1050_evttabhortur or 1 %}"Exclusão das informações";{% endif %}{% if show_fields.show_idehorcontratual or 1 %}"Grupo de informações de identificação do horário contratual, apresentando o código e período de validade do registro cujas informações estão sendo incluídas.";{% endif %}{% if show_fields.show_codhorcontrat or 1 %}"Código do Horário Contratual";{% endif %}{% if show_fields.show_inivalid or 1 %}"Início da Validade";{% endif %}{% if show_fields.show_fimvalid or 1 %}"Fim da Validade";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1050_evttabhortur or 1 %}"{{ c.s1050_evttabhortur }}";{% endif %}{% if show_fields.show_idehorcontratual or 1 %}"{{ c.idehorcontratual }}";{% endif %}{% if show_fields.show_codhorcontrat or 1 %}"{{ c.codhorcontrat }}";{% endif %}{% if show_fields.show_inivalid or 1 %}"{{ c.inivalid }}";{% endif %}{% if show_fields.show_fimvalid or 1 %}"{{ c.fimvalid }}";{% endif %}
 {% endfor %}

@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,10 +38,9 @@
 
 
 CHOICES_EFDREINFCLASSIFICACAOTRIBUTARIA = [
-
-    ('01', u'01 - Empresa  enquadrada  no  regime  de  tributação  Simples  Nacional  com  tributação  previdenciária substituída'),
+    ('01', u'01 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída'),
     ('02', u'02 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária não substituída'),
-    ('03', u'03 - Empresa  enquadrada  no  regime  de  tributação  Simples  Nacional  com  tributação  previdenciária substituída e não substituída'),
+    ('03', u'03 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída'),
     ('04', u'04 - MEI - Micro Empreendedor Individual'),
     ('06', u'06 - Agroindústria'),
     ('07', u'07 - Produtor Rural Pessoa Jurídica'),
@@ -57,120 +57,76 @@ CHOICES_EFDREINFCLASSIFICACAOTRIBUTARIA = [
     ('80', u'80 - Entidade Beneficente de Assistência Social isenta de contribuições sociais'),
     ('85', u'85 - Ente Federativo, Órgãos da União, Autarquias e Fundações Públicas'),
     ('99', u'99 - Pessoas Jurídicas em Geral'),
-
 ]
-
-
 
 
 CHOICES_R1000_IDEEFR_ALTERACAO = [
-
     ('N', u'N - Não é EFR.'),
     ('S', u'S - É EFR'),
-
 ]
-
-
 
 
 CHOICES_R1000_IDEEFR_INCLUSAO = [
-
     ('N', u'N - Não é EFR.'),
     ('S', u'S - É EFR'),
-
 ]
-
-
 
 
 CHOICES_R1000_INDACORDOISENMULTA_ALTERACAO = [
-
     (0, u'0 - Sem acordo'),
     (1, u'1 - Com acordo.'),
-
 ]
-
-
 
 
 CHOICES_R1000_INDACORDOISENMULTA_INCLUSAO = [
-
     (0, u'0 - Sem acordo'),
     (1, u'1 - Com acordo.'),
-
 ]
-
-
 
 
 CHOICES_R1000_INDDESONERACAO_ALTERACAO = [
-
     (0, u'0 - Não Aplicável'),
     (1, u'1 - Empresa enquadrada nos artigos 7° a 9° da Lei 12.546/2011.'),
-
 ]
-
-
 
 
 CHOICES_R1000_INDDESONERACAO_INCLUSAO = [
-
     (0, u'0 - Não Aplicável'),
     (1, u'1 - Empresa enquadrada nos artigos 7° a 9° da Lei 12.546/2011.'),
-
 ]
-
-
 
 
 CHOICES_R1000_INDESCRITURACAO_ALTERACAO = [
-
     (0, u'0 - Empresa Não obrigada à ECD'),
     (1, u'1 - Empresa obrigada à ECD.'),
-
 ]
-
-
 
 
 CHOICES_R1000_INDESCRITURACAO_INCLUSAO = [
-
     (0, u'0 - Empresa Não obrigada à ECD'),
     (1, u'1 - Empresa obrigada à ECD.'),
-
 ]
-
-
 
 
 CHOICES_R1000_INDSITPJ_ALTERACAO = [
-
     (0, u'0 - Situação Normal'),
     (1, u'1 - Extinção'),
     (2, u'2 - Fusão'),
     (3, u'3 - Cisão'),
     (4, u'4 - Incorporação.'),
-
 ]
-
-
 
 
 CHOICES_R1000_INDSITPJ_INCLUSAO = [
-
     (0, u'0 - Situação Normal'),
     (1, u'1 - Extinção'),
     (2, u'2 - Fusão'),
     (3, u'3 - Cisão'),
     (4, u'4 - Incorporação.'),
-
 ]
 
 
-
-
 PERIODOS = [
-
     ('2017-01', u'Janeiro/2017'),
     ('2017-02', u'Fevereiro/2017'),
     ('2017-03', u'Março/2017'),
@@ -207,8 +163,17 @@ PERIODOS = [
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-
+    ('2020-01', u'Janeiro/2020'),
+    ('2020-02', u'Fevereiro/2020'),
+    ('2020-03', u'Março/2020'),
+    ('2020-04', u'Abril/2020'),
+    ('2020-05', u'Maio/2020'),
+    ('2020-06', u'Junho/2020'),
+    ('2020-07', u'Julho/2020'),
+    ('2020-08', u'Agosto/2020'),
+    ('2020-09', u'Setembro/2020'),
+    ('2020-10', u'Outubro/2020'),
+    ('2020-11', u'Novembro/2020'),
+    ('2020-12', u'Dezembro/2020'),
 ]
-
-
 

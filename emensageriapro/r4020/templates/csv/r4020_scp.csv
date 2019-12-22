@@ -1,4 +1,0 @@
-{% load templatetags %}{% load static %}
-{% if show_fields.show_r4020_infopgto or 1 %}"Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo";{% endif %}{% if show_fields.show_nrinscscp or 1 %}"Número de inscrição no CNPJ da Sociedade em Conta de Participação da qual o beneficiário faça parte e o declarante seja sócio ostensivo";{% endif %}{% if show_fields.show_percscp or 1 %}"Percentual que o beneficiário possui na Sociedade em Conta de Participação";{% endif %}
-{% for c in campos_lista %}{% if show_fields.show_r4020_infopgto or 1 %}"{{ c.r4020_infopgto }}";{% endif %}{% if show_fields.show_nrinscscp or 1 %}"{{ c.nrinscscp }}";{% endif %}{% if show_fields.show_percscp or 1 %}"{{ c.percscp }}";{% endif %}
-{% endfor %}

@@ -1,3 +1,4 @@
+-- eMensageriaAI --
 UPDATE public.r5011_regocorrs a
    SET ativo=b.ativo, desativado_em=b.desativado_em, desativado_por_id=b.desativado_por_id
   FROM public.r5011_evttotalcontrib b

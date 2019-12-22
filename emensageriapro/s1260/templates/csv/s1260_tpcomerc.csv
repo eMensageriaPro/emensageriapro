@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1260_evtcomprod or 1 %}"Registro que apresenta o valor total da comercialização por 'tipo' de comercialização";{% endif %}{% if show_fields.show_indcomerc or 1 %}"Indicativo de comercialização";{% endif %}{% if show_fields.show_vrtotcom or 1 %}"Valor total da comercialização";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1260_evtcomprod or 1 %}"{{ c.s1260_evtcomprod }}";{% endif %}{% if show_fields.show_indcomerc or 1 %}"{{ c.indcomerc }}";{% endif %}{% if show_fields.show_vrtotcom or 1 %}"{{ c.vrtotcom }}";{% endif %}
 {% endfor %}

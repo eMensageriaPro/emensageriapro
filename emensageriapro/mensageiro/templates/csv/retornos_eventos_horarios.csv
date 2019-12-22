@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_retornos_eventos or 1 %}"Retornos";{% endif %}{% if show_fields.show_dia or 1 %}"Dia";{% endif %}{% if show_fields.show_codhorcontrat or 1 %}"Código do Horário Contratual";{% endif %}{% if show_fields.show_hrentr or 1 %}"Hora de Entrada";{% endif %}{% if show_fields.show_hrsaida or 1 %}"Hora de Saída";{% endif %}{% if show_fields.show_durjornada or 1 %}"Duração da jornada (min)";{% endif %}{% if show_fields.show_perhorflexivel or 1 %}"Horário Flexivel";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_retornos_eventos or 1 %}"{{ c.retornos_eventos }}";{% endif %}{% if show_fields.show_dia or 1 %}"{{ c.dia }}";{% endif %}{% if show_fields.show_codhorcontrat or 1 %}"{{ c.codhorcontrat }}";{% endif %}{% if show_fields.show_hrentr or 1 %}"{{ c.hrentr }}";{% endif %}{% if show_fields.show_hrsaida or 1 %}"{{ c.hrsaida }}";{% endif %}{% if show_fields.show_durjornada or 1 %}"{{ c.durjornada }}";{% endif %}{% if show_fields.show_perhorflexivel or 1 %}"{{ c.perhorflexivel }}";{% endif %}
 {% endfor %}

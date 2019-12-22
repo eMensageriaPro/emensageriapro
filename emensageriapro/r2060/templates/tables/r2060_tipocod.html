@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
@@ -22,9 +23,6 @@
             {% endif %}
             {% if show_fields.show_vlrcprbapur or 0 %}
             <th>Preencher com o Valor Contribuição Previdenciária sobre a Receita Bruta.</th>
-            {% endif %}
-            {% if show_fields.show_observ or 0 %}
-            <th>Observações</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -55,9 +53,6 @@
             {% endif %}
             {% if show_fields.show_vlrcprbapur or 0 %}
             <td>{{ a.vlrcprbapur }}</td>
-            {% endif %}
-            {% if show_fields.show_observ or 0 %}
-            <td>{{ a.observ }}</td>
             {% endif %}
 
             <!-- colunas especiais -->

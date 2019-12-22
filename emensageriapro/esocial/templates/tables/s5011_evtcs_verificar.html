@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}
 <table {% if not output %}
     class="table table-bordered"{% else %}
@@ -801,7 +802,7 @@
 
         <tr {% if s5011_basesremun.codcateg|validacoes_esocial_efdreinf:"s5011_basesremun.codcateg" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codCateg</td>
-            <td width="500px">Preencher com o código da categoria do trabalhador, conforme definido em S- 5001.</td>
+            <td width="500px">Preencher com o código da categoria do trabalhador, conforme definido em S-5001.</td>
             <td width="200px"><b>{% if s5011_basesremun.codcateg or s5011_basesremun.codcateg == 0 %}{{ s5011_basesremun.codcateg }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -825,7 +826,7 @@
 
         <tr {% if s5011_basesremun.vrbccp00|validacoes_esocial_efdreinf:"s5011_basesremun.vrbccp00" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrBcCp00</td>
-            <td width="500px">Origem dos valores apurados nesse campo: Para {codCateg} <> [104]: Somatório do campo {Valor}, quando {tpValor} = [11,15], do grupo {infoBaseCS} no evento S-5001. Para {codCateg} = [104]: Somatório do campo {Valor}, quando {tpValor} = [11,15], do grupo{infoBaseCS} no evento S-5001, limitado ao teto do salário de contribuição. OBS.: A contribuição previdenciária patronal do empregador doméstico tem como base de cálculo o somatório do salário de contribuição de cada empregado.</td>
+            <td width="500px">Origem dos valores apurados nesse campo: Para {codCateg} <> [104]: Somatório do campo {valor}, quando {tpValor} = [11,15], do grupo {infoBaseCS} no evento S-5001. Para {codCateg} = [104]: Somatório do campo {valor}, quando {tpValor} = [11,15], do grupo{infoBaseCS} no evento S-5001, limitado ao teto do salário de contribuição. OBS.: A contribuição previdenciária patronal do empregador doméstico tem como base de cálculo o somatório do salário de contribuição de cada empregado.</td>
             <td width="200px"><b>{% if s5011_basesremun.vrbccp00 or s5011_basesremun.vrbccp00 == 0 %}{{ s5011_basesremun.vrbccp00 }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -844,7 +845,7 @@
 
         <tr {% if s5011_basesremun.vrbccp15|validacoes_esocial_efdreinf:"s5011_basesremun.vrbccp15" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrBcCp15</td>
-            <td width="500px">Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição. Origem: campo {Valor}, se {tpValor} = [12,16] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="500px">Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição. Origem: campo {valor}, se {tpValor} = [12,16] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</td>
             <td width="200px"><b>{% if s5011_basesremun.vrbccp15 or s5011_basesremun.vrbccp15 == 0 %}{{ s5011_basesremun.vrbccp15 }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -863,7 +864,7 @@
 
         <tr {% if s5011_basesremun.vrbccp20|validacoes_esocial_efdreinf:"s5011_basesremun.vrbccp20" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrBcCp20</td>
-            <td width="500px">Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição. Origem: campo {Valor}, quando {tpValor} = [13,17] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="500px">Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição. Origem: campo {valor}, quando {tpValor} = [13,17] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</td>
             <td width="200px"><b>{% if s5011_basesremun.vrbccp20 or s5011_basesremun.vrbccp20 == 0 %}{{ s5011_basesremun.vrbccp20 }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -882,7 +883,7 @@
 
         <tr {% if s5011_basesremun.vrbccp25|validacoes_esocial_efdreinf:"s5011_basesremun.vrbccp25" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrBcCp25</td>
-            <td width="500px">Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição. Origem: campo {Valor}, quando {tpValor} = [14,18] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="500px">Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição. Origem: campo {valor}, quando {tpValor} = [14,18] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</td>
             <td width="200px"><b>{% if s5011_basesremun.vrbccp25 or s5011_basesremun.vrbccp25 == 0 %}{{ s5011_basesremun.vrbccp25 }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -901,7 +902,7 @@
 
         <tr {% if s5011_basesremun.vrsuspbccp00|validacoes_esocial_efdreinf:"s5011_basesremun.vrsuspbccp00" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrSuspBcCp00</td>
-            <td width="500px">Valor da BC com incidência suspensa em decorrência de decisão judicial. Origem: campo {Valor} quando {tpValor} = [91,95] - Incidência suspensa em decorrência de decisão judicial do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="500px">Valor da BC com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor} quando {tpValor} = [91,95] - Incidência suspensa em decorrência de decisão judicial do grupo {infoBaseCS} no evento S- 5001.</td>
             <td width="200px"><b>{% if s5011_basesremun.vrsuspbccp00 or s5011_basesremun.vrsuspbccp00 == 0 %}{{ s5011_basesremun.vrsuspbccp00 }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -920,7 +921,7 @@
 
         <tr {% if s5011_basesremun.vrsuspbccp15|validacoes_esocial_efdreinf:"s5011_basesremun.vrsuspbccp15" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrSuspBcCp15</td>
-            <td width="500px">Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 15 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {Valor}, quando {tpValor} = [92,96] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="500px">Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 15 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor}, quando {tpValor} = [92,96] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S- 5001.</td>
             <td width="200px"><b>{% if s5011_basesremun.vrsuspbccp15 or s5011_basesremun.vrsuspbccp15 == 0 %}{{ s5011_basesremun.vrsuspbccp15 }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -939,7 +940,7 @@
 
         <tr {% if s5011_basesremun.vrsuspbccp20|validacoes_esocial_efdreinf:"s5011_basesremun.vrsuspbccp20" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrSuspBcCp20</td>
-            <td width="500px">Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador expectativa de aposentadoria especial aos 20 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {Valor}, quando {tpValor} = [93,97] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="500px">Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador expectativa de aposentadoria especial aos 20 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor}, quando {tpValor} = [93,97] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S- 5001.</td>
             <td width="200px"><b>{% if s5011_basesremun.vrsuspbccp20 or s5011_basesremun.vrsuspbccp20 == 0 %}{{ s5011_basesremun.vrsuspbccp20 }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -958,8 +959,160 @@
 
         <tr {% if s5011_basesremun.vrsuspbccp25|validacoes_esocial_efdreinf:"s5011_basesremun.vrsuspbccp25" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrSuspBcCp25</td>
-            <td width="500px">Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 25 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {Valor}, quando {tpValor} = [94,98] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="500px">Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 25 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor}, quando {tpValor} = [94,98] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S- 5001.</td>
             <td width="200px"><b>{% if s5011_basesremun.vrsuspbccp25 or s5011_basesremun.vrsuspbccp25 == 0 %}{{ s5011_basesremun.vrsuspbccp25 }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5011.can_see_s5011basesRemun or perms.esocial.can_see_s5011basesRemun %}
+                <a href="{% url 's5011_basesremun_salvar' pk=s5011_basesremun.id %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5011_basesremun.vrbccp00va|validacoes_esocial_efdreinf:"s5011_basesremun.vrbccp00va" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBcCp00VA</td>
+            <td width="500px">Origem dos valores apurados nesse campo: Preencher com o somatório do campo {valor}, quando {tpValor} = [41,45], do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrbccp00va or s5011_basesremun.vrbccp00va == 0 %}{{ s5011_basesremun.vrbccp00va }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5011.can_see_s5011basesRemun or perms.esocial.can_see_s5011basesRemun %}
+                <a href="{% url 's5011_basesremun_salvar' pk=s5011_basesremun.id %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5011_basesremun.vrbccp15va|validacoes_esocial_efdreinf:"s5011_basesremun.vrbccp15va" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBcCp15VA</td>
+            <td width="500px">Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição. Origem: campo {valor}, se {tpValor} = [42,46] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrbccp15va or s5011_basesremun.vrbccp15va == 0 %}{{ s5011_basesremun.vrbccp15va }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5011.can_see_s5011basesRemun or perms.esocial.can_see_s5011basesRemun %}
+                <a href="{% url 's5011_basesremun_salvar' pk=s5011_basesremun.id %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5011_basesremun.vrbccp20va|validacoes_esocial_efdreinf:"s5011_basesremun.vrbccp20va" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBcCp20VA</td>
+            <td width="500px">Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição. Origem: campo {valor}, quando {tpValor} = [43,47] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrbccp20va or s5011_basesremun.vrbccp20va == 0 %}{{ s5011_basesremun.vrbccp20va }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5011.can_see_s5011basesRemun or perms.esocial.can_see_s5011basesRemun %}
+                <a href="{% url 's5011_basesremun_salvar' pk=s5011_basesremun.id %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5011_basesremun.vrbccp25va|validacoes_esocial_efdreinf:"s5011_basesremun.vrbccp25va" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBcCp25VA</td>
+            <td width="500px">Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição. Origem: campo {valor}, quando {tpValor} = [44,48] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrbccp25va or s5011_basesremun.vrbccp25va == 0 %}{{ s5011_basesremun.vrbccp25va }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5011.can_see_s5011basesRemun or perms.esocial.can_see_s5011basesRemun %}
+                <a href="{% url 's5011_basesremun_salvar' pk=s5011_basesremun.id %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5011_basesremun.vrsuspbccp00va|validacoes_esocial_efdreinf:"s5011_basesremun.vrsuspbccp00va" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSuspBcCp00VA</td>
+            <td width="500px">Valor da BC com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor} quando {tpValor} = [81,85] - Incidência suspensa em decorrência de decisão judicial do grupo {infoBaseCS} no evento S- 5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrsuspbccp00va or s5011_basesremun.vrsuspbccp00va == 0 %}{{ s5011_basesremun.vrsuspbccp00va }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5011.can_see_s5011basesRemun or perms.esocial.can_see_s5011basesRemun %}
+                <a href="{% url 's5011_basesremun_salvar' pk=s5011_basesremun.id %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5011_basesremun.vrsuspbccp15va|validacoes_esocial_efdreinf:"s5011_basesremun.vrsuspbccp15va" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSuspBcCp15VA</td>
+            <td width="500px">Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 15 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor}, quando {tpValor} = [82,86] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S- 5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrsuspbccp15va or s5011_basesremun.vrsuspbccp15va == 0 %}{{ s5011_basesremun.vrsuspbccp15va }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5011.can_see_s5011basesRemun or perms.esocial.can_see_s5011basesRemun %}
+                <a href="{% url 's5011_basesremun_salvar' pk=s5011_basesremun.id %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5011_basesremun.vrsuspbccp20va|validacoes_esocial_efdreinf:"s5011_basesremun.vrsuspbccp20va" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSuspBcCp20VA</td>
+            <td width="500px">Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador expectativa de aposentadoria especial aos 20 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor}, quando {tpValor} = [83,87] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S- 5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrsuspbccp20va or s5011_basesremun.vrsuspbccp20va == 0 %}{{ s5011_basesremun.vrsuspbccp20va }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5011.can_see_s5011basesRemun or perms.esocial.can_see_s5011basesRemun %}
+                <a href="{% url 's5011_basesremun_salvar' pk=s5011_basesremun.id %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5011_basesremun.vrsuspbccp25va|validacoes_esocial_efdreinf:"s5011_basesremun.vrsuspbccp25va" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSuspBcCp25VA</td>
+            <td width="500px">Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 25 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor}, quando {tpValor} = [84,88] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S- 5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrsuspbccp25va or s5011_basesremun.vrsuspbccp25va == 0 %}{{ s5011_basesremun.vrsuspbccp25va }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
               <div>
@@ -977,7 +1130,7 @@
 
         <tr {% if s5011_basesremun.vrdescsest|validacoes_esocial_efdreinf:"s5011_basesremun.vrdescsest" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrDescSest</td>
-            <td width="500px">Valor total descontado do trabalhador para recolhimento ao Sest. Origem: campo {Valor}, quando {tpValor} = [22] - Valor total descontado do trabalhador para recolhimento ao Sest, do grupo {infoBaseCS} no evento S- 5001.</td>
+            <td width="500px">Valor total descontado do trabalhador para recolhimento ao Sest. Origem: campo {valor}, quando {tpValor} = [22] - Valor total descontado do trabalhador para recolhimento ao Sest, do grupo {infoBaseCS} no evento S- 5001.</td>
             <td width="200px"><b>{% if s5011_basesremun.vrdescsest or s5011_basesremun.vrdescsest == 0 %}{{ s5011_basesremun.vrdescsest }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -996,7 +1149,7 @@
 
         <tr {% if s5011_basesremun.vrcalcsest|validacoes_esocial_efdreinf:"s5011_basesremun.vrcalcsest" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrCalcSest</td>
-            <td width="500px">Valor calculado relativo à contribuição devida pelo trabalhador para recolhimento ao Sest. Origem: campo {Valor}, quando {codCR} = [1218-02] - Valor calculado do trabalhador para recolhimento ao Sest, do grupo {calcTerc} no evento S-5001, exceto se houver informação de processo judicial do trabalhador quando deve ser utilizado o valor apurado em {vrDescSest}.</td>
+            <td width="500px">Valor calculado relativo à contribuição devida pelo trabalhador para recolhimento ao Sest. Origem: campo {valor}, quando {codCR} = [1218-02] - Valor calculado do trabalhador para recolhimento ao Sest, do grupo {calcTerc} no evento S- 5001, exceto se houver informação de processo judicial do trabalhador quando deve ser utilizado o valor apurado em {vrDescSest}.</td>
             <td width="200px"><b>{% if s5011_basesremun.vrcalcsest or s5011_basesremun.vrcalcsest == 0 %}{{ s5011_basesremun.vrcalcsest }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1015,7 +1168,7 @@
 
         <tr {% if s5011_basesremun.vrdescsenat|validacoes_esocial_efdreinf:"s5011_basesremun.vrdescsenat" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrDescSenat</td>
-            <td width="500px">Valor total descontado do trabalhador para recolhimento ao Senat. Origem: campo {Valor}, quando {tpValor} = [23] - Valor total descontado do trabalhador para recolhimento ao Senat, do grupo {infoBaseCS} no evento S- 5001.</td>
+            <td width="500px">Valor total descontado do trabalhador para recolhimento ao Senat. Origem: campo {valor}, quando {tpValor} = [23] - Valor total descontado do trabalhador para recolhimento ao Senat, do grupo {infoBaseCS} no evento S- 5001.</td>
             <td width="200px"><b>{% if s5011_basesremun.vrdescsenat or s5011_basesremun.vrdescsenat == 0 %}{{ s5011_basesremun.vrdescsenat }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1034,7 +1187,7 @@
 
         <tr {% if s5011_basesremun.vrcalcsenat|validacoes_esocial_efdreinf:"s5011_basesremun.vrcalcsenat" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrCalcSenat</td>
-            <td width="500px">Valor calculado relativo à contribuição devida pelo trabalhador para recolhimento ao Senat. Origem: campo {Valor}, quando {codCR} = [1221-02] - Valor calculado do trabalhador para recolhimento ao Senat, do grupo {calcTerc} no evento S- 5001, exceto se houver informação de processo judicial do trabalhador quando deve ser utilizado o valor apurado em {vrDescSenat}.</td>
+            <td width="500px">Valor calculado relativo à contribuição devida pelo trabalhador para recolhimento ao Senat. Origem: campo {valor}, quando {codCR} = [1221-02] - Valor calculado do trabalhador para recolhimento ao Senat, do grupo {calcTerc} no evento S- 5001, exceto se houver informação de processo judicial do trabalhador quando deve ser utilizado o valor apurado em {vrDescSenat}.</td>
             <td width="200px"><b>{% if s5011_basesremun.vrcalcsenat or s5011_basesremun.vrcalcsenat == 0 %}{{ s5011_basesremun.vrcalcsenat }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1053,7 +1206,7 @@
 
         <tr {% if s5011_basesremun.vrsalfam|validacoes_esocial_efdreinf:"s5011_basesremun.vrsalfam" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrSalFam</td>
-            <td width="500px">Valor total do salário-família para a categoria indicada no registro superior. Origem: campo {Valor}, quando {tpValor} = [31] - Valor pago ao trabalhador a título de salário-família, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="500px">Valor total do salário-família para a categoria indicada no registro superior. Origem: campo {valor}, quando {tpValor} = [31] - Valor pago ao trabalhador a título de salário-família, do grupo {infoBaseCS} no evento S- 5001.</td>
             <td width="200px"><b>{% if s5011_basesremun.vrsalfam or s5011_basesremun.vrsalfam == 0 %}{{ s5011_basesremun.vrsalfam }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1072,7 +1225,7 @@
 
         <tr {% if s5011_basesremun.vrsalmat|validacoes_esocial_efdreinf:"s5011_basesremun.vrsalmat" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrSalMat</td>
-            <td width="500px">Valor total do salário-maternidade para a categoria indicada. Origem: campo {Valor}, quando {tpValor} = [32] - Valor pago ao trabalhador a título de salário-maternidade, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="500px">Valor total do salário-maternidade para a categoria indicada. Origem: campo {valor}, quando {tpValor} = [32] - Valor pago ao trabalhador a título de salário-maternidade, do grupo {infoBaseCS} no evento S-5001.</td>
             <td width="200px"><b>{% if s5011_basesremun.vrsalmat or s5011_basesremun.vrsalmat == 0 %}{{ s5011_basesremun.vrsalmat }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

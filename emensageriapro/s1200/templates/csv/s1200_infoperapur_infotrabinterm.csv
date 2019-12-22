@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1200_infoperapur_remunperapur or 1 %}"Informações da(s) convocação(ões) de trabalho intermitente";{% endif %}{% if show_fields.show_codconv or 1 %}"Preencher com o código atribuído pela empresa que identifica a convocação para trabalho intermitente";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1200_infoperapur_remunperapur or 1 %}"{{ c.s1200_infoperapur_remunperapur }}";{% endif %}{% if show_fields.show_codconv or 1 %}"{{ c.codconv }}";{% endif %}
 {% endfor %}

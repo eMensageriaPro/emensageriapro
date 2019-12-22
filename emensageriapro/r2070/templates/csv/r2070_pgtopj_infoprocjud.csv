@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_r2070_pgtopj or 1 %}"Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial";{% endif %}{% if show_fields.show_nrprocjud or 1 %}"Preencher com o número do processo judicial";{% endif %}{% if show_fields.show_codsusp or 1 %}"Código do Indicativo da Suspensão, atribuído pelo contribuinte";{% endif %}{% if show_fields.show_indorigemrecursos or 1 %}"Indicativo da origem dos recursos";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_r2070_pgtopj or 1 %}"{{ c.r2070_pgtopj }}";{% endif %}{% if show_fields.show_nrprocjud or 1 %}"{{ c.nrprocjud }}";{% endif %}{% if show_fields.show_codsusp or 1 %}"{{ c.codsusp }}";{% endif %}{% if show_fields.show_indorigemrecursos or 1 %}"{{ c.indorigemrecursos }}";{% endif %}
 {% endfor %}

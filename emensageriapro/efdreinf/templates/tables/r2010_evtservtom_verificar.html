@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}
 <table {% if not output %}
     class="table table-bordered"{% else %}
@@ -6,13 +7,13 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtServTom</td>
-            <td bgcolor="lightgray" colspan="3">Evento Serviços Tomados - Cessão de Mão de Obra ou Empreitada. Regras de validação: REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_PREST REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</td>
+            <td bgcolor="lightgray" colspan="3">Evento Serviços Tomados - Cessão de Mão de Obra ou Empreitada Regras de validação: REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_PREST REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</td>
         </tr>
     {% for r2010_evtservtom in r2010_evtservtom_lista %}
     {% ifequal 1 1 %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
         </tr>
 
         <tr {% if r2010_evtservtom.indretif|validacoes_esocial_efdreinf:"r2010_evtservtom.indretif" %}bgcolor="lightcoral"{% endif %}>
@@ -131,12 +132,12 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideContri</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte</td>
         </tr>
 
         <tr {% if r2010_evtservtom.tpinsc|validacoes_esocial_efdreinf:"r2010_evtservtom.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF). Valores Válidos: 1, 2.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF) Valores Válidos: 1, 2</td>
             <td width="200px"><b>{% if r2010_evtservtom.tpinsc or r2010_evtservtom.tpinsc == 0 %}{{ r2010_evtservtom.tpinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -174,17 +175,17 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoServTom</td>
-            <td bgcolor="lightgray" colspan="3">Serviços Tomados - Cessão de Mão de Obra ou Empreitada.</td>
+            <td bgcolor="lightgray" colspan="3">Serviços Tomados - Cessão de Mão de Obra ou Empreitada</td>
         </tr>
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEstabObra</td>
-            <td bgcolor="lightgray" colspan="3">Identificação do Estabelecimento/obra contratante dos Serviços.</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do Estabelecimento/obra contratante dos Serviços</td>
         </tr>
 
         <tr {% if r2010_evtservtom.tpinscestab|validacoes_esocial_efdreinf:"r2010_evtservtom.tpinscestab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInscEstab</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [4] CNO.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [4] CNO.</td>
             <td width="200px"><b>{% if r2010_evtservtom.tpinscestab or r2010_evtservtom.tpinscestab == 0 %}{{ r2010_evtservtom.tpinscestab }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -222,7 +223,7 @@
 
         <tr {% if r2010_evtservtom.indobra|validacoes_esocial_efdreinf:"r2010_evtservtom.indobra" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indObra</td>
-            <td width="500px">Indicativo de Prestação de Serviços em Obra de Construção Civil: 0 - Não é obra de construção civil ou não está sujeita a matrícula de obra; 1 - Obra de Construção Civil - Empreitada Total; 2 - Obra de Construção Civil - Empreitada Parcial. Validação: Em arquivo gerado por Pessoa Física, deve ser igual a [1,2]. Valores Válidos: 0, 1, 2.</td>
+            <td width="500px">Indicativo de Prestação de Serviços em Obra de Construção Civil: 0 - Não é obra de construção civil ou não está sujeita a matrícula de obra; 1 - Obra de Construção Civil - Empreitada Total; 2 - Obra de Construção Civil - Empreitada Parcial. Validação: Em arquivo gerado por Pessoa Física, deve ser igual a [1,2]. Valores Válidos: 0, 1, 2</td>
             <td width="200px"><b>{% if r2010_evtservtom.indobra or r2010_evtservtom.indobra == 0 %}{{ r2010_evtservtom.indobra }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -246,7 +247,7 @@
 
         <tr {% if r2010_evtservtom.cnpjprestador|validacoes_esocial_efdreinf:"r2010_evtservtom.cnpjprestador" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnpjPrestador</td>
-            <td width="500px">Preencher com o CNPJ do Prestador de Serviços. Validação: Deve ser um CNPJ válido. Não pode pertencer ao declarante. Se {indObra} for igual a 1 (Empreitada Total) o cnpj do prestador terá que ser o proprietário do CNO do campo {nrInscEstab}.</td>
+            <td width="500px">Preencher com o CNPJ do Prestador de Serviços Validação: Deve ser um CNPJ válido. Não pode pertencer ao declarante. Se {indObra} for igual a 1 (Empreitada Total) o cnpj do prestador terá que ser o proprietário do CNO do campo {nrInscEstab}</td>
             <td width="200px"><b>{% if r2010_evtservtom.cnpjprestador or r2010_evtservtom.cnpjprestador == 0 %}{{ r2010_evtservtom.cnpjprestador }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -265,7 +266,7 @@
 
         <tr {% if r2010_evtservtom.vlrtotalbruto|validacoes_esocial_efdreinf:"r2010_evtservtom.vlrtotalbruto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrTotalBruto</td>
-            <td width="500px">Preencher com o valor bruto da(s) nota(s) fiscal(is). Validação: Deve corresponder a soma do campo {vlrBruto} dos registros vinculados.</td>
+            <td width="500px">Preencher com o valor bruto da(s) nota(s) fiscal(is) Validação: Deve corresponder a soma do campo {vlrBruto} dos registros vinculados.</td>
             <td width="200px"><b>{% if r2010_evtservtom.vlrtotalbruto or r2010_evtservtom.vlrtotalbruto == 0 %}{{ r2010_evtservtom.vlrtotalbruto }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -284,7 +285,7 @@
 
         <tr {% if r2010_evtservtom.vlrtotalbaseret|validacoes_esocial_efdreinf:"r2010_evtservtom.vlrtotalbaseret" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrTotalBaseRet</td>
-            <td width="500px">Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante. Validação: Deve corresponder a soma do campo {vlrBaseRet} dos registros vinculados.</td>
+            <td width="500px">Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante Validação: Deve corresponder a soma do campo {vlrBaseRet} dos registros vinculados</td>
             <td width="200px"><b>{% if r2010_evtservtom.vlrtotalbaseret or r2010_evtservtom.vlrtotalbaseret == 0 %}{{ r2010_evtservtom.vlrtotalbaseret }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -303,7 +304,7 @@
 
         <tr {% if r2010_evtservtom.vlrtotalretprinc|validacoes_esocial_efdreinf:"r2010_evtservtom.vlrtotalretprinc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrTotalRetPrinc</td>
-            <td width="500px">Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante. Validação: Deve corresponder a soma do campo {vlrRetencao}, subtraído da soma do campo {vlrRetSub} dos registros vinculados.</td>
+            <td width="500px">Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante Validação: Deve corresponder a soma do campo {vlrRetencao}, subtraído da soma do campo {vlrRetSub} dos registros vinculados</td>
             <td width="200px"><b>{% if r2010_evtservtom.vlrtotalretprinc or r2010_evtservtom.vlrtotalretprinc == 0 %}{{ r2010_evtservtom.vlrtotalretprinc }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -322,7 +323,7 @@
 
         <tr {% if r2010_evtservtom.vlrtotalretadic|validacoes_esocial_efdreinf:"r2010_evtservtom.vlrtotalretadic" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrTotalRetAdic</td>
-            <td width="500px">Soma do valor do adicional de retenção das notas fiscais. Validação: Deve corresponder a soma do campo {vlrAdicional} dos registros vinculados.</td>
+            <td width="500px">Soma do valor do adicional de retenção das notas fiscais Validação: Deve corresponder a soma do campo {vlrAdicional} dos registros vinculados.</td>
             <td width="200px"><b>{% if r2010_evtservtom.vlrtotalretadic or r2010_evtservtom.vlrtotalretadic == 0 %}{{ r2010_evtservtom.vlrtotalretadic }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -341,7 +342,7 @@
 
         <tr {% if r2010_evtservtom.vlrtotalnretprinc|validacoes_esocial_efdreinf:"r2010_evtservtom.vlrtotalnretprinc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrTotalNRetPrinc</td>
-            <td width="500px">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial. Validação: Deve corresponder a soma do campo {vlrNRetPrinc} dos registros vinculados.</td>
+            <td width="500px">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial Validação: Deve corresponder a soma do campo {vlrNRetPrinc} dos registros vinculados.</td>
             <td width="200px"><b>{% if r2010_evtservtom.vlrtotalnretprinc or r2010_evtservtom.vlrtotalnretprinc == 0 %}{{ r2010_evtservtom.vlrtotalnretprinc }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -360,7 +361,7 @@
 
         <tr {% if r2010_evtservtom.vlrtotalnretadic|validacoes_esocial_efdreinf:"r2010_evtservtom.vlrtotalnretadic" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrTotalNRetAdic</td>
-            <td width="500px">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial. Validação: Deve corresponder a soma do campo {vlrNRetAdic} dos registros vinculados.</td>
+            <td width="500px">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial Validação: Deve corresponder a soma do campo {vlrNRetAdic} dos registros vinculados.</td>
             <td width="200px"><b>{% if r2010_evtservtom.vlrtotalnretadic or r2010_evtservtom.vlrtotalnretadic == 0 %}{{ r2010_evtservtom.vlrtotalnretadic }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -398,7 +399,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">nfs</td>
-            <td bgcolor="lightgray" colspan="3">Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior.</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior</td>
         </tr>
     {% for r2010_nfs in r2010_nfs_lista %}
     {% ifequal r2010_nfs.r2010_evtservtom.id r2010_evtservtom.id %}
@@ -423,7 +424,7 @@
 
         <tr {% if r2010_nfs.numdocto|validacoes_esocial_efdreinf:"r2010_nfs.numdocto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">numDocto</td>
-            <td width="500px">Número da Nota Fiscal/Fatura ou outros documentos fiscais válidos, como Recibo Provisório de Serviço - RPS, CT-e OS, entre outros.</td>
+            <td width="500px">Número da Nota Fiscal/Fatura ou outro documento fiscal válido, como Recibo Provisório de Serviço - RPS, CT-e OS, entre outros.</td>
             <td width="200px"><b>{% if r2010_nfs.numdocto or r2010_nfs.numdocto == 0 %}{{ r2010_nfs.numdocto }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -461,7 +462,7 @@
 
         <tr {% if r2010_nfs.vlrbruto|validacoes_esocial_efdreinf:"r2010_nfs.vlrbruto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrBruto</td>
-            <td width="500px">Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS ou de outro documento fiscal válido. Validação: Deve ser maior que 0.</td>
+            <td width="500px">Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS ou de outro documento fiscal válido. Validação: Deve ser maior que 0</td>
             <td width="200px"><b>{% if r2010_nfs.vlrbruto or r2010_nfs.vlrbruto == 0 %}{{ r2010_nfs.vlrbruto }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -499,7 +500,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoTpServ</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre os tipos de Serviços constantes da Nota Fiscal.</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre os tipos de Serviços constantes da Nota Fiscal</td>
         </tr>
     {% for r2010_infotpserv in r2010_infotpserv_lista %}
     {% ifequal r2010_infotpserv.r2010_nfs.id r2010_nfs.id %}
@@ -581,7 +582,7 @@
 
         <tr {% if r2010_infotpserv.vlrnretprinc|validacoes_esocial_efdreinf:"r2010_infotpserv.vlrnretprinc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrNRetPrinc</td>
-            <td width="500px">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa. Validação: Não pode ser superior a ((11% de {vlrBaseRet} se {indCPRB} = [0] ou a 3,5% de {vlrBaseRet} se {indCPRB} = [1]) - {vlrRetSub}).</td>
+            <td width="500px">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa Validação: Não pode ser superior a ((11% de {vlrBaseRet} se {indCPRB} = [0] ou a 3,5% de {vlrBaseRet} se {indCPRB} = [1]) - {vlrRetSub}).</td>
             <td width="200px"><b>{% if r2010_infotpserv.vlrnretprinc or r2010_infotpserv.vlrnretprinc == 0 %}{{ r2010_infotpserv.vlrnretprinc }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -600,7 +601,7 @@
 
         <tr {% if r2010_infotpserv.vlrservicos15|validacoes_esocial_efdreinf:"r2010_infotpserv.vlrservicos15" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrServicos15</td>
-            <td width="500px">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição. Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal.</td>
+            <td width="500px">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal.</td>
             <td width="200px"><b>{% if r2010_infotpserv.vlrservicos15 or r2010_infotpserv.vlrservicos15 == 0 %}{{ r2010_infotpserv.vlrservicos15 }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -619,7 +620,7 @@
 
         <tr {% if r2010_infotpserv.vlrservicos20|validacoes_esocial_efdreinf:"r2010_infotpserv.vlrservicos20" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrServicos20</td>
-            <td width="500px">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição. Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal .</td>
+            <td width="500px">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal .</td>
             <td width="200px"><b>{% if r2010_infotpserv.vlrservicos20 or r2010_infotpserv.vlrservicos20 == 0 %}{{ r2010_infotpserv.vlrservicos20 }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -638,7 +639,7 @@
 
         <tr {% if r2010_infotpserv.vlrservicos25|validacoes_esocial_efdreinf:"r2010_infotpserv.vlrservicos25" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrServicos25</td>
-            <td width="500px">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição. Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal .</td>
+            <td width="500px">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal .</td>
             <td width="200px"><b>{% if r2010_infotpserv.vlrservicos25 or r2010_infotpserv.vlrservicos25 == 0 %}{{ r2010_infotpserv.vlrservicos25 }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -676,7 +677,7 @@
 
         <tr {% if r2010_infotpserv.vlrnretadic|validacoes_esocial_efdreinf:"r2010_infotpserv.vlrnretadic" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrNRetAdic</td>
-            <td width="500px">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa. Validação: Não pode ser superior a (4% sobre {vlrServicos15} + 3% sobre {vlrServicos20} + 2% sobre {vlrServicos25}).</td>
+            <td width="500px">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa Validação: Não pode ser superior a (4% sobre {vlrServicos15} + 3% sobre {vlrServicos20} + 2% sobre {vlrServicos25}).</td>
             <td width="200px"><b>{% if r2010_infotpserv.vlrnretadic or r2010_infotpserv.vlrnretadic == 0 %}{{ r2010_infotpserv.vlrnretadic }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

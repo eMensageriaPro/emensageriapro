@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s5013_infodpsfgts or 1 %}"Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E].";{% endif %}{% if show_fields.show_tpdps or 1 %}"Tipo de depósito";{% endif %}{% if show_fields.show_vrfgts or 1 %}"Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s5013_infodpsfgts or 1 %}"{{ c.s5013_infodpsfgts }}";{% endif %}{% if show_fields.show_tpdps or 1 %}"{{ c.tpdps }}";{% endif %}{% if show_fields.show_vrfgts or 1 %}"{{ c.vrfgts }}";{% endif %}
 {% endfor %}

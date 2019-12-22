@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -150,11 +151,8 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Preencher com o código correspondente ao tipo de inscrição</label>
-    <div class="input-group" style="width: 100%;">
-      <select name="tpinscestabprest" class="form-control automate-select" style="width: 100%;">
-        <option value="">-- selecione --</option>
-        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpinscestabprest' %}selected="selected"{% endifequal %} >1 - CNPJ</option>
-      </select>
+    <div name="tpinscestabprest" class="input-group" style="width: 100%;">
+      <input type="text" name="tpinscestabprest" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'tpinscestabprest' }}">
     </div>
   </div>
 </div>

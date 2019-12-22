@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -76,7 +77,7 @@ def validacoes_s5002_evtirrfbenef(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'ideEmpregador.tpInsc',
                                                   ideEmpregador.tpInsc.cdata,
-                                                  1, u'1, 2, 3, 4, 5')
+                                                  1, u'1, 2, 3, 4, 5, 6')
 
             if 'nrInsc' in dir(ideEmpregador):
                 validacoes_lista = validar_campo( validacoes_lista,
@@ -109,7 +110,7 @@ def validacoes_s5002_evtirrfbenef(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'infoIrrf.codCateg',
                                                   infoIrrf.codCateg.cdata,
-                                                  0, u'101, 102, 103, 104, 105, 106, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
+                                                  0, u'101, 102, 103, 104, 105, 106, 107, 108, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
 
             if 'indResBr' in dir(infoIrrf):
                 validacoes_lista = validar_campo( validacoes_lista,
@@ -124,7 +125,7 @@ def validacoes_s5002_evtirrfbenef(arquivo):
                         validacoes_lista = validar_campo( validacoes_lista,
                                                           'basesIrrf.tpValor',
                                                           basesIrrf.tpValor.cdata,
-                                                          1, u'None')
+                                                          1, u'11, 12, 13, 14, 15, 31, 32, 33, 34, 35, 41, 42, 43, 44, 46, 47, 51, 52, 53, 54, 55, 61, 62, 63, 64, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 81, 82, 83, 91, 92, 93, 94, 95')
 
                     if 'valor' in dir(basesIrrf):
                         validacoes_lista = validar_campo( validacoes_lista,
@@ -139,7 +140,7 @@ def validacoes_s5002_evtirrfbenef(arquivo):
                         validacoes_lista = validar_campo( validacoes_lista,
                                                           'irrf.tpCR',
                                                           irrf.tpCR.cdata,
-                                                          1, u'None')
+                                                          1, u'0473-01, 0561-07, 0561-08, 0561-09, 0561-10, 0561-11, 0561-12, 0561-13, 0588-06, 0610- 01, 3533, 3562-01')
 
                     if 'vrIrrfDesc' in dir(irrf):
                         validacoes_lista = validar_campo( validacoes_lista,

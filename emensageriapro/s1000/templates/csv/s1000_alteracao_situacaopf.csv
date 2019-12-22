@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1000_alteracao or 1 %}"Informações Complementares - Pessoa Física";{% endif %}{% if show_fields.show_indsitpf or 1 %}"Situação PF";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1000_alteracao or 1 %}"{{ c.s1000_alteracao }}";{% endif %}{% if show_fields.show_indsitpf or 1 %}"{{ c.indsitpf }}";{% endif %}
 {% endfor %}

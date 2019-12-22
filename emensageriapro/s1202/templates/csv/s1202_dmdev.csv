@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1202_evtrmnrpps or 1 %}"Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF";{% endif %}{% if show_fields.show_idedmdev or 1 %}"Identificador dos demostrativos de pagamento";{% endif %}{% if show_fields.show_codcateg or 1 %}"Código da Categoria";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1202_evtrmnrpps or 1 %}"{{ c.s1202_evtrmnrpps }}";{% endif %}{% if show_fields.show_idedmdev or 1 %}"{{ c.idedmdev }}";{% endif %}{% if show_fields.show_codcateg or 1 %}"{{ c.codcateg }}";{% endif %}
 {% endfor %}

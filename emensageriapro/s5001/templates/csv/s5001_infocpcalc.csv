@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s5001_evtbasestrab or 1 %}"Cálculo da contribuição previdenciária do segurado, incidente sobre a Remuneração do Período de Apuração e de Períodos Anteriores informada nos eventos S-1200, S-2299 e S-2399.";{% endif %}{% if show_fields.show_tpcr or 1 %}"Código da Receita (CR)";{% endif %}{% if show_fields.show_vrcpseg or 1 %}"Valor da contribuição do segurado";{% endif %}{% if show_fields.show_vrdescseg or 1 %}"Valor efetivamente descontado do segurado";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s5001_evtbasestrab or 1 %}"{{ c.s5001_evtbasestrab }}";{% endif %}{% if show_fields.show_tpcr or 1 %}"{{ c.tpcr }}";{% endif %}{% if show_fields.show_vrcpseg or 1 %}"{{ c.vrcpseg }}";{% endif %}{% if show_fields.show_vrdescseg or 1 %}"{{ c.vrdescseg }}";{% endif %}
 {% endfor %}

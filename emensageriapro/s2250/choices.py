@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,26 +38,18 @@
 
 
 CHOICES_S2250_MTVCANCAVPREVIO = [
-
     (1, u'1 - Reconsideração prevista no artigo 489 da CLT'),
     (2, u'2 - Determinação Judicial'),
     (3, u'3 - Cumprimento de norma legal'),
     (9, u'9 - Outros.'),
-
 ]
 
 
-
-
 CHOICES_S2250_TPAVPREVIO = [
-
     (1, u'1 - Aviso prévio trabalhado dado pelo empregador ao empregado, que optou pela redução de duas horas diárias [caput do art. 488 da CLT]'),
     (2, u'2 - Aviso prévio trabalhado dado pelo empregador ao empregado, que optou pela redução de dias corridos [parágrafo único do art. 488 da CLT]'),
     (4, u'4 - Aviso prévio dado pelo empregado (pedido de demissão), não dispensado de seu cumprimento, sob pena de desconto, pelo empregador, dos salários correspondentes ao prazo respectivo (§2º do art. 487 da CLT)'),
     (5, u'5 - Aviso prévio trabalhado dado pelo empregador rural ao empregado, com redução de um dia por semana ( art. 15 da Lei nº 5889/73)'),
     (6, u'6 - Aviso prévio trabalhado decorrente de acordo entre empregado e empregador (art. 484-A, "caput", da CLT).'),
-
 ]
-
-
 

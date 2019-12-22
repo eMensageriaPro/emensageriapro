@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -106,7 +107,7 @@ def validacoes_s1210_evtpgtos(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'ideEmpregador.tpInsc',
                                                   ideEmpregador.tpInsc.cdata,
-                                                  1, u'1, 2, 3, 4, 5')
+                                                  1, u'1, 2, 3, 4, 5, 6')
 
             if 'nrInsc' in dir(ideEmpregador):
                 validacoes_lista = validar_campo( validacoes_lista,
@@ -409,7 +410,7 @@ def validacoes_s1210_evtpgtos(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'detPgtoFer.codCateg',
                                                                   detPgtoFer.codCateg.cdata,
-                                                                  1, u'101, 102, 103, 104, 105, 106, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
+                                                                  1, u'101, 102, 103, 104, 105, 106, 107, 108, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
         
                             if 'matricula' in dir(detPgtoFer):
                                 validacoes_lista = validar_campo( validacoes_lista,
@@ -508,7 +509,7 @@ def validacoes_s1210_evtpgtos(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'detPgtoAnt.codCateg',
                                                                   detPgtoAnt.codCateg.cdata,
-                                                                  1, u'101, 102, 103, 104, 105, 106, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
+                                                                  1, u'101, 102, 103, 104, 105, 106, 107, 108, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
         
                             if 'infoPgtoAnt' in dir(detPgtoAnt.infoPgtoAnt):
                                 for infoPgtoAnt in detPgtoAnt.infoPgtoAnt:

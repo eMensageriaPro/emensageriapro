@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -70,7 +71,7 @@ def validacoes_s5012_evtirrf(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'ideEmpregador.tpInsc',
                                                   ideEmpregador.tpInsc.cdata,
-                                                  1, u'1, 2, 3, 4, 5')
+                                                  1, u'1, 2, 3, 4, 5, 6')
 
             if 'nrInsc' in dir(ideEmpregador):
                 validacoes_lista = validar_campo( validacoes_lista,
@@ -91,7 +92,7 @@ def validacoes_s5012_evtirrf(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'infoIRRF.indExistInfo',
                                                   infoIRRF.indExistInfo.cdata,
-                                                  1, u'None')
+                                                  1, u'1, 2, 3')
 
             if 'infoCRContrib' in dir(infoIRRF.infoCRContrib):
                 for infoCRContrib in infoIRRF.infoCRContrib:
@@ -100,7 +101,7 @@ def validacoes_s5012_evtirrf(arquivo):
                         validacoes_lista = validar_campo( validacoes_lista,
                                                           'infoCRContrib.tpCR',
                                                           infoCRContrib.tpCR.cdata,
-                                                          1, u'None')
+                                                          1, u'0473-01, 0561-08, 0561-09, 0561-10, 0561-11, 0561-12, 0588-06, 0610- 01, 3533, 3562-01')
 
                     if 'vrCR' in dir(infoCRContrib):
                         validacoes_lista = validar_campo( validacoes_lista,

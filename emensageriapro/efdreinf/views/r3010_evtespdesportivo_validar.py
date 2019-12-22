@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -100,7 +101,7 @@ def validacoes_r3010_evtespdesportivo(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'ideContri.tpInsc',
                                                   ideContri.tpInsc.cdata,
-                                                  1, u'None')
+                                                  1, u'1')
 
             if 'nrInsc' in dir(ideContri):
                 validacoes_lista = validar_campo( validacoes_lista,

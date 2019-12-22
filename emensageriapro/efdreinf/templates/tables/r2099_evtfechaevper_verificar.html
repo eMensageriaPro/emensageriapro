@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}
 <table {% if not output %}
     class="table table-bordered"{% else %}
@@ -6,13 +7,13 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtFechaEvPer</td>
-            <td bgcolor="lightgray" colspan="3">Evento de Fechamento. Regras de validação: REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_CONTRIBUINTE</td>
+            <td bgcolor="lightgray" colspan="3">Evento de Fechamento Regras de validação: REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_CONTRIBUINTE</td>
         </tr>
     {% for r2099_evtfechaevper in r2099_evtfechaevper_lista %}
     {% ifequal 1 1 %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
         </tr>
 
         <tr {% if r2099_evtfechaevper.perapur|validacoes_esocial_efdreinf:"r2099_evtfechaevper.perapur" %}bgcolor="lightcoral"{% endif %}>
@@ -93,12 +94,12 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideContri</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte</td>
         </tr>
 
         <tr {% if r2099_evtfechaevper.tpinsc|validacoes_esocial_efdreinf:"r2099_evtfechaevper.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF). Valores Válidos: 1, 2.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF) Valores Válidos: 1, 2</td>
             <td width="200px"><b>{% if r2099_evtfechaevper.tpinsc or r2099_evtfechaevper.tpinsc == 0 %}{{ r2099_evtfechaevper.tpinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -136,7 +137,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideRespInf</td>
-            <td bgcolor="lightgray" colspan="3">Responsável pelas informações.</td>
+            <td bgcolor="lightgray" colspan="3">Responsável pelas informações</td>
         </tr>
     {% for r2099_iderespinf in r2099_iderespinf_lista %}
     {% ifequal r2099_iderespinf.r2099_evtfechaevper.id r2099_evtfechaevper.id %}
@@ -161,7 +162,7 @@
 
         <tr {% if r2099_iderespinf.cpfresp|validacoes_esocial_efdreinf:"r2099_iderespinf.cpfresp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cpfResp</td>
-            <td width="500px">Preencher com o CPF do responsável. Validação: Deve ser um número de CPF válido.</td>
+            <td width="500px">Preencher com o CPF do responsável Validação: Deve ser um número de CPF válido.</td>
             <td width="200px"><b>{% if r2099_iderespinf.cpfresp or r2099_iderespinf.cpfresp == 0 %}{{ r2099_iderespinf.cpfresp }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -199,7 +200,7 @@
 
         <tr {% if r2099_iderespinf.email|validacoes_esocial_efdreinf:"r2099_iderespinf.email" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">email</td>
-            <td width="500px">Endereço eletrônico. Validação: O e-mail deve possuir o caractere "@" e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no final do endereço informado.</td>
+            <td width="500px">Endereço eletrônico Validação: O e-mail deve possuir o caractere "@" e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no final do endereço informado.</td>
             <td width="200px"><b>{% if r2099_iderespinf.email or r2099_iderespinf.email == 0 %}{{ r2099_iderespinf.email }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -218,12 +219,12 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoFech</td>
-            <td bgcolor="lightgray" colspan="3">Informações do Fechamento.</td>
+            <td bgcolor="lightgray" colspan="3">Informações do Fechamento</td>
         </tr>
 
         <tr {% if r2099_evtfechaevper.evtservtm|validacoes_esocial_efdreinf:"r2099_evtfechaevper.evtservtm" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">evtServTm</td>
-            <td width="500px">Contratou serviços sujeitos à retenção de contribuição previdenciária? S - Sim; N - Não. Validação: Se for igual a [S], deve existir evento R-2010 para o período de apuração. Caso contrário, não deve existir o referido evento. Valores Válidos: S, N.</td>
+            <td width="500px">Contratou serviços sujeitos à retenção de contribuição previdenciária? S - Sim; N - Não. Validação: Se for igual a [S], deve existir evento R-2010 para o período de apuração. Caso contrário, não deve existir o referido evento Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if r2099_evtfechaevper.evtservtm or r2099_evtfechaevper.evtservtm == 0 %}{{ r2099_evtfechaevper.evtservtm }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -318,7 +319,7 @@
 
         <tr {% if r2099_evtfechaevper.evtcprb|validacoes_esocial_efdreinf:"r2099_evtfechaevper.evtcprb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">evtCPRB</td>
-            <td width="500px">Possui informações sobre a apuração da Contribuição Previdenciária sobre a Receita Bruta? S - Sim; N - Não. Validação: Se for igual a [S], deve existir o evento R-2060 no período de apuração. Caso contrário, não deve existir o evento. Valores Válidos: S, N.</td>
+            <td width="500px">Possui informações sobre a apuração da Contribuição Previdenciária sobre a Receita Bruta? S - Sim; N - Não. Validação: Se for igual a [S], deve existir o evento R-2060 no período de apuração. Caso contrário, não deve existir o evento Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if r2099_evtfechaevper.evtcprb or r2099_evtfechaevper.evtcprb == 0 %}{{ r2099_evtfechaevper.evtcprb }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

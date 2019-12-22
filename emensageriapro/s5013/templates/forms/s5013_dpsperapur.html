@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -39,28 +40,68 @@
 </div>
 <!-- fim__s5013_dpsperapur__s5013_infodpsfgts -->
 <!-- inicio__s5013_dpsperapur__tpdps -->
-<div class="col-md-4" id="s5013_dpsperapur__tpdps__div">
-  <div class="form-group">
-    <label id="s5013_dpsperapur__tpdps__label">Tipo de depósito*<a data-toggle="tooltip" title="Tipo de depósito: 51 - Depósito do FGTS; 52 - Depósito do FGTS 13° Salário; 53 - Depósito do FGTS Dissídio; 54 - Depósito do FGTS Dissídio 13º Salário; 55 - Depósito do FGTS - Aprendiz; 56 - Depósito do FGTS 13° Salário - Aprendiz; 57 - Depósito do FGTS Dissídio - Aprendiz; 58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz; 61 - Depósito do FGTS Rescisório; 62 - Depósito do FGTS Rescisório - 13° Salário; 63 - Depósito do FGTS Rescisório - Aviso Prévio; 64 - Depósito do FGTS Rescisório - Dissídio; 65 - Depósito do FGTS Rescisório - Dissídio 13º Salário; 66 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio; 67 - Depósito do FGTS Rescisório - Aprendiz; 68 - Depósito do FGTS Rescisório - 13° Salário Aprendiz; 69 - Depósito do FGTS Rescisório - Aviso Prévio Aprendiz; 70 - Depósito do FGTS Rescisório - Dissídio Aprendiz; 71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz. Validação: Deve ser um código válido, conforme opções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
-    {% if s5013_dpsperapur_form.tpdps.errors %}
-      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-        {{ s5013_dpsperapur_form.tpdps.errors }}
-      </div>
-    {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {% if s5013_dpsperapur_form.tpdps.field.widget.attrs.readonly %}
-        {% if s5013_dpsperapur_form.tpdps.field.widget.attrs.disabled %}
-          {{ s5013_dpsperapur_form.tpdps|addcss:'form-control' }}
-          <input id="id_tpdps" name="tpdps" type="hidden" value="{% if s5013_dpsperapur_form.tpdps.value or s5013_dpsperapur_form.tpdps.value == 0 %}{{ s5013_dpsperapur_form.tpdps.value|valor }}{% endif %}">
-        {% else %}
-          {{ s5013_dpsperapur_form.tpdps|addcss:'form-control' }}
+{% if perms..add_ or perms..change_ %}
+  <div class="col-md-4" id="s5013_dpsperapur__tpdps__div">
+    <div class="form-group">
+      <label id="s5013_dpsperapur__tpdps__label">Tipo de depósito*<a data-toggle="tooltip" title="Tipo de depósito: 51 - Depósito do FGTS; 52 - Depósito do FGTS 13° Salário; 53 - Depósito do FGTS Dissídio; 54 - Depósito do FGTS Dissídio 13º Salário; 55 - Depósito do FGTS - Aprendiz/Contrato Verde e Amarelo; 56 - Depósito do FGTS 13° Salário - Aprendiz/Contrato Verde e Amarelo; 57 - Depósito do FGTS Dissídio - Aprendiz/Contrato Verde e Amarelo; 58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz/Contrato Verde e Amarelo; 61 - Depósito do FGTS Rescisório; 62 - Depósito do FGTS Rescisório 13° Salário; 63 - Depósito do FGTS Rescisório Aviso Prévio; 64 - Depósito do FGTS Rescisório Dissídio; 65 - Depósito do FGTS Rescisório Dissídio 13º Salário; 66 - Depósito do FGTS Rescisório Dissídio Aviso Prévio; 67 - Depósito do FGTS Rescisório - Aprendiz/Contrato Verde e Amarelo; 68 - Depósito do FGTS Rescisório 13° Salário - Aprendiz/Contrato Verde e Amarelo; 69 - Depósito do FGTS Rescisório Aviso Prévio - Aprendiz/Contrato Verde e Amarelo; 70 - Depósito do FGTS Rescisório Dissídio - Aprendiz/Contrato Verde e Amarelo; 71 - Depósito do FGTS Rescisório Dissídio 13° Salário - Aprendiz/Contrato Verde e Amarelo; 72 - Depósito do FGTS Rescisório Dissídio Aviso Prévio - Aprendiz/Contrato Verde e Amarelo; 73 - Depósito do FGTS - Antecipação da multa rescisória do FGTS; 74 - Depósito do FGTS 13° Salário - Antecipação da multa rescisória do FGTS; 75 - Depósito do FGTS Dissídio - Antecipação da multa rescisória do FGTS; 76 - Depósito do FGTS Dissídio 13º Salário - Antecipação da multa rescisória do FGTS; 77 - Depósito do FGTS Rescisório - Antecipação da multa rescisória do FGTS; 78 - Depósito do FGTS Rescisório 13° Salário - Antecipação da multa rescisória do FGTS; 79 - Depósito do FGTS Rescisório Aviso Prévio - Antecipação da multa rescisória do FGTS; 80 - Depósito do Rescisório Dissídio - Antecipação da multa rescisória do FGTS; 81 - Depósito do FGTS Rescisório Dissídio 13º Salário - Antecipação da multa rescisória do FGTS; 82 - Depósito do FGTS Rescisório Dissídio Aviso Prévio - Antecipação da multa rescisória do FGTS. Validação: Deve ser um código válido, conforme opções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
+        {% if s5013_dpsperapur_form.tpdps.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s5013_dpsperapur_form.tpdps.errors }}
+          </div>
         {% endif %}
-      {% else %}
-        {{ s5013_dpsperapur_form.tpdps|addcss_select2:'form-control automate-select' }}
-      {% endif %}
+        <input type="text"
+               id="txt_tpdps"
+               name="txt_tpdps" class="form-control"
+               value="{% if s5013_dpsperapur.tpdps %}{{ s5013_dpsperapur.tpdps|get_opcoes_titulo:587 }}{% endif %}"
+               {% if s5013_dpsperapur_form.tpdps.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if s5013_dpsperapur_form.tpdps.field.widget.attrs.required %} required="required"{% endif %}
+               {% if s5013_dpsperapur_form.tpdps.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden"
+               id="id_tpdps"
+               name="tpdps"
+               value="{% if s5013_dpsperapur.tpdps %}{{ s5013_dpsperapur_form.tpdps.value|valor }}{% endif %}" >
     </div>
   </div>
-</div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_tpdps').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/587/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_tpdps').val(ui.item.value);
+        return false;
+      }});
+    {% if s5013_dpsperapur_form.tpdps.field.widget.attrs.required %}
+    $("#id_form_s5013_dpsperapur").submit(function(e) {
+      $('#txt_tpdps').disabled = true;
+        if ($('#id_tpdps').val() == "") {
+          $('#txt_tpdps').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Tipo de depósito!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-4" id="s5013_dpsperapur__tpdps__div">
+    <div class="form-group">
+      <label id="s5013_dpsperapur__tpdps__label">Tipo de depósito*<a data-toggle="tooltip" title="Tipo de depósito: 51 - Depósito do FGTS; 52 - Depósito do FGTS 13° Salário; 53 - Depósito do FGTS Dissídio; 54 - Depósito do FGTS Dissídio 13º Salário; 55 - Depósito do FGTS - Aprendiz/Contrato Verde e Amarelo; 56 - Depósito do FGTS 13° Salário - Aprendiz/Contrato Verde e Amarelo; 57 - Depósito do FGTS Dissídio - Aprendiz/Contrato Verde e Amarelo; 58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz/Contrato Verde e Amarelo; 61 - Depósito do FGTS Rescisório; 62 - Depósito do FGTS Rescisório 13° Salário; 63 - Depósito do FGTS Rescisório Aviso Prévio; 64 - Depósito do FGTS Rescisório Dissídio; 65 - Depósito do FGTS Rescisório Dissídio 13º Salário; 66 - Depósito do FGTS Rescisório Dissídio Aviso Prévio; 67 - Depósito do FGTS Rescisório - Aprendiz/Contrato Verde e Amarelo; 68 - Depósito do FGTS Rescisório 13° Salário - Aprendiz/Contrato Verde e Amarelo; 69 - Depósito do FGTS Rescisório Aviso Prévio - Aprendiz/Contrato Verde e Amarelo; 70 - Depósito do FGTS Rescisório Dissídio - Aprendiz/Contrato Verde e Amarelo; 71 - Depósito do FGTS Rescisório Dissídio 13° Salário - Aprendiz/Contrato Verde e Amarelo; 72 - Depósito do FGTS Rescisório Dissídio Aviso Prévio - Aprendiz/Contrato Verde e Amarelo; 73 - Depósito do FGTS - Antecipação da multa rescisória do FGTS; 74 - Depósito do FGTS 13° Salário - Antecipação da multa rescisória do FGTS; 75 - Depósito do FGTS Dissídio - Antecipação da multa rescisória do FGTS; 76 - Depósito do FGTS Dissídio 13º Salário - Antecipação da multa rescisória do FGTS; 77 - Depósito do FGTS Rescisório - Antecipação da multa rescisória do FGTS; 78 - Depósito do FGTS Rescisório 13° Salário - Antecipação da multa rescisória do FGTS; 79 - Depósito do FGTS Rescisório Aviso Prévio - Antecipação da multa rescisória do FGTS; 80 - Depósito do Rescisório Dissídio - Antecipação da multa rescisória do FGTS; 81 - Depósito do FGTS Rescisório Dissídio 13º Salário - Antecipação da multa rescisória do FGTS; 82 - Depósito do FGTS Rescisório Dissídio Aviso Prévio - Antecipação da multa rescisória do FGTS. Validação: Deve ser um código válido, conforme opções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
+        <input type="text" id="txt_tpdps" name="txt_tpdps" class="form-control" value="{% if s5013_dpsperapur.tpdps %}{{ s5013_dpsperapur.tpdps }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
 <!-- fim__s5013_dpsperapur__tpdps -->
 <!-- inicio__s5013_dpsperapur__vrfgts -->
 <div class="col-md-4" id="s5013_dpsperapur__vrfgts__div">

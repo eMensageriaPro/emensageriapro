@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -201,23 +202,14 @@
 <!-- inicio__r2060_evtcprb__tpinscestab -->
 <div class="col-md-6" id="r2060_evtcprb__tpinscestab__div">
   <div class="form-group">
-    <label id="r2060_evtcprb__tpinscestab__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [4] CNO."><i class="fa fa-fw fa-question-circle"></i></a></label>
-    {% if r2060_evtcprb_form.tpinscestab.errors %}
-      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-        {{ r2060_evtcprb_form.tpinscestab.errors }}
-      </div>
-    {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {% if r2060_evtcprb_form.tpinscestab.field.widget.attrs.readonly %}
-        {% if r2060_evtcprb_form.tpinscestab.field.widget.attrs.disabled %}
-          {{ r2060_evtcprb_form.tpinscestab|addcss:'form-control' }}
-          <input id="id_tpinscestab" name="tpinscestab" type="hidden" value="{% if r2060_evtcprb_form.tpinscestab.value or r2060_evtcprb_form.tpinscestab.value == 0 %}{{ r2060_evtcprb_form.tpinscestab.value|valor }}{% endif %}">
-        {% else %}
-          {{ r2060_evtcprb_form.tpinscestab|addcss:'form-control' }}
-        {% endif %}
-      {% else %}
-        {{ r2060_evtcprb_form.tpinscestab|addcss_select2:'form-control automate-select' }}
+    <label id="r2060_evtcprb__tpinscestab__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [4] CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+      {% if r2060_evtcprb_form.tpinscestab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r2060_evtcprb_form.tpinscestab.errors }}
+        </div>
       {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r2060_evtcprb_form.tpinscestab|addcss:'form-control' }}
     </div>
   </div>
 </div>

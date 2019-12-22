@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2300_infocomplementares or 1 %}"Empresa de Origem do Dirigente Sindical";{% endif %}{% if show_fields.show_categorig or 1 %}"Categoria de origem do trabalhador";{% endif %}{% if show_fields.show_cnpjorigem or 1 %}"CNPJ da empresa de origem do dirigente sindical";{% endif %}{% if show_fields.show_dtadmorig or 1 %}"Data de admissão do dirigente sindical";{% endif %}{% if show_fields.show_matricorig or 1 %}"Matricula do trabalhador no empregador origem";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2300_infocomplementares or 1 %}"{{ c.s2300_infocomplementares }}";{% endif %}{% if show_fields.show_categorig or 1 %}"{{ c.categorig }}";{% endif %}{% if show_fields.show_cnpjorigem or 1 %}"{{ c.cnpjorigem }}";{% endif %}{% if show_fields.show_dtadmorig or 1 %}"{{ c.dtadmorig }}";{% endif %}{% if show_fields.show_matricorig or 1 %}"{{ c.matricorig }}";{% endif %}
 {% endfor %}

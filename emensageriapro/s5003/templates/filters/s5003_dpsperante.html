@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -25,14 +26,19 @@
         <option value="">-- selecione --</option>
         <option value="53" {% ifequal 53 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >53 - Depósito do FGTS Dissídio</option>
         <option value="54" {% ifequal 54 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >54 - Depósito do FGTS Dissídio 13º Salário</option>
-        <option value="57" {% ifequal 57 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >57 - Depósito do FGTS Dissídio - Aprendiz</option>
-        <option value="58" {% ifequal 58 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz</option>
-        <option value="64" {% ifequal 64 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >64 - Depósito do FGTS Rescisório - Dissídio</option>
-        <option value="65" {% ifequal 65 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >65 - Depósito do FGTS Rescisório - Dissídio 13º Salário</option>
-        <option value="66" {% ifequal 66 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >66 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio</option>
-        <option value="70" {% ifequal 70 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >70 - Depósito do FGTS Rescisório - Dissídio Aprendiz</option>
-        <option value="71" {% ifequal 71 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz</option>
-        <option value="72" {% ifequal 72 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz.</option>
+        <option value="57" {% ifequal 57 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >57 - Depósito do FGTS Dissídio - Aprendiz/Contrato Verde e Amarelo</option>
+        <option value="58" {% ifequal 58 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz/Contrato Verde e Amarelo</option>
+        <option value="64" {% ifequal 64 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >64 - Depósito do FGTS Rescisório Dissídio</option>
+        <option value="65" {% ifequal 65 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >65 - Depósito do FGTS Rescisório Dissídio 13º Salário</option>
+        <option value="66" {% ifequal 66 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >66 - Depósito do FGTS Rescisório Dissídio Aviso Prévio</option>
+        <option value="70" {% ifequal 70 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >70 - Depósito do FGTS Rescisório Dissídio - Aprendiz/Contrato Verde e Amarelo</option>
+        <option value="71" {% ifequal 71 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >71 - Depósito do FGTS Rescisório Dissídio 13° Salário - Aprendiz/Contrato Verde e Amarelo</option>
+        <option value="72" {% ifequal 72 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >72 - Depósito do FGTS Rescisório Dissídio Aviso Prévio - Aprendiz/Contrato Verde e Amarelo</option>
+        <option value="75" {% ifequal 75 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >75 - Depósito do FGTS Dissídio - Antecipação da multa rescisória do FGTS</option>
+        <option value="76" {% ifequal 76 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >76 - Depósito do FGTS Dissídio 13º Salário - Antecipação da multa rescisória do FGTS</option>
+        <option value="80" {% ifequal 80 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >80 - Depósito do Rescisório Dissídio - Antecipação da multa rescisória do FGTS</option>
+        <option value="81" {% ifequal 81 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >81 - Depósito do FGTS Rescisório Dissídio 13º Salário - Antecipação da multa rescisória do FGTS</option>
+        <option value="82" {% ifequal 82 dict_fields|get_value_from_dict:'tpdpse' %}selected="selected"{% endifequal %} >82 - Depósito do FGTS Rescisório Dissídio Aviso Prévio - Antecipação da multa rescisória do FGTS.</option>
       </select>
     </div>
   </div>

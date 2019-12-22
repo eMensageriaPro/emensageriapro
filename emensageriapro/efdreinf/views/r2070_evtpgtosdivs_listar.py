@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding: utf-8
 
 __author__ = "Marcelo Medeiros de Vasconcellos"
@@ -59,10 +60,6 @@ from emensageriapro.controle_de_acesso.models import *
 from emensageriapro.mensageiro.models import TransmissorLoteEfdreinf
 from emensageriapro.efdreinf.models import r5001evtTotal
 from emensageriapro.efdreinf.models import r5011evtTotalContrib
-from emensageriapro.efdreinf.models import r9001evtTotal
-from emensageriapro.efdreinf.models import r9002evtRet
-from emensageriapro.efdreinf.models import r9011evtTotalContrib
-from emensageriapro.efdreinf.models import r9012evtRetCons
 from emensageriapro.mensageiro.models import TransmissorLoteEfdreinf
 
 
@@ -97,10 +94,6 @@ def listar(request, output=None):
             'show_transmissor_lote_efdreinf': 0,
             'show_retornos_r5001': 0,
             'show_retornos_r5011': 0,
-            'show_retornos_r9001': 0,
-            'show_retornos_r9002': 0,
-            'show_retornos_r9011': 0,
-            'show_retornos_r9012': 0,
             'show_ocorrencias': 0,
             'show_validacao_precedencia': 0,
             'show_validacoes': 0,
@@ -187,10 +180,6 @@ def listar(request, output=None):
         transmissor_lote_efdreinf_lista = TransmissorLoteEfdreinf.objects.all()
         retornos_r5001_lista = r5001evtTotal.objects.all()
         retornos_r5011_lista = r5011evtTotalContrib.objects.all()
-        retornos_r9001_lista = r9001evtTotal.objects.all()
-        retornos_r9002_lista = r9002evtRet.objects.all()
-        retornos_r9011_lista = r9011evtTotalContrib.objects.all()
-        retornos_r9012_lista = r9012evtRetCons.objects.all()
         transmissor_lote_efdreinf_error_lista = TransmissorLoteEfdreinf.objects.all()
         #r2070_evtpgtosdivs_listar_custom
 
@@ -209,10 +198,6 @@ def listar(request, output=None):
             'transmissor_lote_efdreinf_lista': transmissor_lote_efdreinf_lista,
             'retornos_r5001_lista': retornos_r5001_lista,
             'retornos_r5011_lista': retornos_r5011_lista,
-            'retornos_r9001_lista': retornos_r9001_lista,
-            'retornos_r9002_lista': retornos_r9002_lista,
-            'retornos_r9011_lista': retornos_r9011_lista,
-            'retornos_r9012_lista': retornos_r9012_lista,
             'transmissor_lote_efdreinf_error_lista': transmissor_lote_efdreinf_error_lista,
         }
 

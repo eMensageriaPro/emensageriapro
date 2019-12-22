@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1300_evtcontrsindpatr or 1 %}"Informações da contribuição sindical patronal";{% endif %}{% if show_fields.show_cnpjsindic or 1 %}"CNPJ do Sindicato";{% endif %}{% if show_fields.show_tpcontribsind or 1 %}"Tipo de Contribuição Sindical";{% endif %}{% if show_fields.show_vlrcontribsind or 1 %}"Valor";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1300_evtcontrsindpatr or 1 %}"{{ c.s1300_evtcontrsindpatr }}";{% endif %}{% if show_fields.show_cnpjsindic or 1 %}"{{ c.cnpjsindic }}";{% endif %}{% if show_fields.show_tpcontribsind or 1 %}"{{ c.tpcontribsind }}";{% endif %}{% if show_fields.show_vlrcontribsind or 1 %}"{{ c.vlrcontribsind }}";{% endif %}
 {% endfor %}

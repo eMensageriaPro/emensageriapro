@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding: utf-8
 
 __author__ = "Marcelo Medeiros de Vasconcellos"
@@ -72,7 +73,6 @@ def listar(request, output=None):
             'show_ideprocesso': 0,
             'show_tpproc': 1,
             'show_nrproc': 1,
-            'show_inivalid': 0,
             'show_fimvalid': 0, }
 
         post = False
@@ -85,7 +85,6 @@ def listar(request, output=None):
                 'ideprocesso': 'ideprocesso',
                 'tpproc__icontains': 'tpproc__icontains',
                 'nrproc__icontains': 'nrproc__icontains',
-                'inivalid__icontains': 'inivalid__icontains',
                 'fimvalid__icontains': 'fimvalid__icontains', }
 
             for a in dict_fields:
@@ -103,7 +102,6 @@ def listar(request, output=None):
                     'ideprocesso': 'ideprocesso',
                     'tpproc__icontains': 'tpproc__icontains',
                     'nrproc__icontains': 'nrproc__icontains',
-                    'inivalid__icontains': 'inivalid__icontains',
                     'fimvalid__icontains': 'fimvalid__icontains', }
 
                 for a in dict_fields:

@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -201,23 +202,14 @@
 <!-- inicio__r2020_evtservprest__tpinscestabprest -->
 <div class="col-md-6" id="r2020_evtservprest__tpinscestabprest__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__tpinscestabprest__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-    {% if r2020_evtservprest_form.tpinscestabprest.errors %}
-      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-        {{ r2020_evtservprest_form.tpinscestabprest.errors }}
-      </div>
-    {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {% if r2020_evtservprest_form.tpinscestabprest.field.widget.attrs.readonly %}
-        {% if r2020_evtservprest_form.tpinscestabprest.field.widget.attrs.disabled %}
-          {{ r2020_evtservprest_form.tpinscestabprest|addcss:'form-control' }}
-          <input id="id_tpinscestabprest" name="tpinscestabprest" type="hidden" value="{% if r2020_evtservprest_form.tpinscestabprest.value or r2020_evtservprest_form.tpinscestabprest.value == 0 %}{{ r2020_evtservprest_form.tpinscestabprest.value|valor }}{% endif %}">
-        {% else %}
-          {{ r2020_evtservprest_form.tpinscestabprest|addcss:'form-control' }}
-        {% endif %}
-      {% else %}
-        {{ r2020_evtservprest_form.tpinscestabprest|addcss_select2:'form-control automate-select' }}
+    <label id="r2020_evtservprest__tpinscestabprest__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ)"><i class="fa fa-fw fa-question-circle"></i></a></label>
+      {% if r2020_evtservprest_form.tpinscestabprest.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r2020_evtservprest_form.tpinscestabprest.errors }}
+        </div>
       {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r2020_evtservprest_form.tpinscestabprest|addcss:'form-control' }}
     </div>
   </div>
 </div>
@@ -245,7 +237,7 @@
 <!-- inicio__r2020_evtservprest__tpinsctomador -->
 <div class="col-md-6" id="r2020_evtservprest__tpinsctomador__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__tpinsctomador__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [4] CNO. Valores Válidos: 1,4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2020_evtservprest__tpinsctomador__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [4] CNO. Valores Válidos: 1,4"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_evtservprest_form.tpinsctomador.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2020_evtservprest_form.tpinsctomador.errors }}
@@ -284,7 +276,7 @@
 <!-- inicio__r2020_evtservprest__indobra -->
 <div class="col-md-6" id="r2020_evtservprest__indobra__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__indobra__label">Indicativo de Prestação de Serviços em Obra de Construção Civil*<a data-toggle="tooltip" title="Indicativo de Prestação de Serviços em Obra de Construção Civil: 0 - Não é obra de construção civil ou não está sujeita a matrícula de obra; 1 - Obra de Construção Civil - Empreitada Total; 2 - Obra de Construção Civil - Empreitada Parcial. Valores Válidos: 0, 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2020_evtservprest__indobra__label">Indicativo de Prestação de Serviços em Obra de Construção Civil*<a data-toggle="tooltip" title="Indicativo de Prestação de Serviços em Obra de Construção Civil: 0 - Não é obra de construção civil ou não está sujeita a matrícula de obra; 1 - Obra de Construção Civil - Empreitada Total; 2 - Obra de Construção Civil - Empreitada Parcial. Valores Válidos: 0, 1, 2"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_evtservprest_form.indobra.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2020_evtservprest_form.indobra.errors }}
@@ -344,7 +336,7 @@
 <!-- inicio__r2020_evtservprest__vlrtotalretprinc -->
 <div class="col-md-6" id="r2020_evtservprest__vlrtotalretprinc__div">
   <div class="form-group">
-    <label id="r2020_evtservprest__vlrtotalretprinc__label">Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante*<a data-toggle="tooltip" title="Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante. Validação: Deve corresponder a soma do campo {vlrRetencao} - a soma do campo {vlrRetSub} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2020_evtservprest__vlrtotalretprinc__label">Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante*<a data-toggle="tooltip" title="Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante. Validação: Deve corresponder a soma do campo {vlrRetencao} - a soma do campo {vlrRetSub} dos registros vinculados"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_evtservprest_form.vlrtotalretprinc.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_evtservprest_form.vlrtotalretprinc.errors }}

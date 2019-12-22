@@ -1,4 +1,0 @@
-{% load templatetags %}{% load static %}
-{% if show_fields.show_r4020_infoprocjud or 1 %}"Informações sobre a origem dos recursos";{% endif %}{% if show_fields.show_cnpjorigrecurso or 1 %}"Preencher com o CNPJ da empresa que repassou recursos";{% endif %}
-{% for c in campos_lista %}{% if show_fields.show_r4020_infoprocjud or 1 %}"{{ c.r4020_infoprocjud }}";{% endif %}{% if show_fields.show_cnpjorigrecurso or 1 %}"{{ c.cnpjorigrecurso }}";{% endif %}
-{% endfor %}

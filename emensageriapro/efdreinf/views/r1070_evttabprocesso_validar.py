@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -292,12 +293,6 @@ def validacoes_r1070_evttabprocesso(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'ideProcesso.nrProc',
                                                                   ideProcesso.nrProc.cdata,
-                                                                  1, u'None')
-        
-                            if 'iniValid' in dir(ideProcesso):
-                                validacoes_lista = validar_campo( validacoes_lista,
-                                                                  'ideProcesso.iniValid',
-                                                                  ideProcesso.iniValid.cdata,
                                                                   1, u'None')
         
                             if 'fimValid' in dir(ideProcesso):

@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1210_evtpgtos or 1 %}"Informações dos pagamentos efetuados";{% endif %}{% if show_fields.show_dtpgto or 1 %}"Data de pagamento";{% endif %}{% if show_fields.show_tppgto or 1 %}"Tipo de Pagamento";{% endif %}{% if show_fields.show_indresbr or 1 %}"Indicador de residência";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1210_evtpgtos or 1 %}"{{ c.s1210_evtpgtos }}";{% endif %}{% if show_fields.show_dtpgto or 1 %}"{{ c.dtpgto }}";{% endif %}{% if show_fields.show_tppgto or 1 %}"{{ c.tppgto }}";{% endif %}{% if show_fields.show_indresbr or 1 %}"{{ c.indresbr }}";{% endif %}
 {% endfor %}

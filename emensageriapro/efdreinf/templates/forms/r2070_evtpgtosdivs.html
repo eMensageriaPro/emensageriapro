@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -194,19 +195,68 @@
 </div>
 <!-- fim__r2070_evtpgtosdivs__idebenef -->
 <!-- inicio__r2070_evtpgtosdivs__codpgto -->
-<div class="col-md-6" id="r2070_evtpgtosdivs__codpgto__div">
-  <div class="form-group">
-    <label id="r2070_evtpgtosdivs__codpgto__label">Preencher com o código do pagamento conforme tabela 01 - Códigos de Pagamentos*<a data-toggle="tooltip" title="Preencher com o código do pagamento conforme tabela 01 - Códigos de Pagamentos Validação: Deve ser um código válido, existente na tabela 01"><i class="fa fa-fw fa-question-circle"></i></a></label>
-      {% if r2070_evtpgtosdivs_form.codpgto.errors %}
-        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-          {{ r2070_evtpgtosdivs_form.codpgto.errors }}
-        </div>
-      {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {{ r2070_evtpgtosdivs_form.codpgto|addcss:'form-control' }}
+{% if perms..add_ or perms..change_ %}
+  <div class="col-md-6" id="r2070_evtpgtosdivs__codpgto__div">
+    <div class="form-group">
+      <label id="r2070_evtpgtosdivs__codpgto__label">Preencher com o código do pagamento conforme tabela 01 - Códigos de Pagamentos*<a data-toggle="tooltip" title="Preencher com o código do pagamento conforme tabela 01 - Códigos de Pagamentos Validação: Deve ser um código válido, existente na tabela 01"><i class="fa fa-fw fa-question-circle"></i></a></label>
+        {% if r2070_evtpgtosdivs_form.codpgto.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ r2070_evtpgtosdivs_form.codpgto.errors }}
+          </div>
+        {% endif %}
+        <input type="text"
+               id="txt_codpgto"
+               name="txt_codpgto" class="form-control"
+               value="{% if r2070_evtpgtosdivs.codpgto %}{{ r2070_evtpgtosdivs.codpgto|get_opcoes_titulo:665 }}{% endif %}"
+               {% if r2070_evtpgtosdivs_form.codpgto.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if r2070_evtpgtosdivs_form.codpgto.field.widget.attrs.required %} required="required"{% endif %}
+               {% if r2070_evtpgtosdivs_form.codpgto.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden"
+               id="id_codpgto"
+               name="codpgto"
+               value="{% if r2070_evtpgtosdivs.codpgto %}{{ r2070_evtpgtosdivs_form.codpgto.value|valor }}{% endif %}" >
     </div>
   </div>
-</div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_codpgto').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/665/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_codpgto').val(ui.item.value);
+        return false;
+      }});
+    {% if r2070_evtpgtosdivs_form.codpgto.field.widget.attrs.required %}
+    $("#id_form_r2070_evtpgtosdivs").submit(function(e) {
+      $('#txt_codpgto').disabled = true;
+        if ($('#id_codpgto').val() == "") {
+          $('#txt_codpgto').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Preencher com o código do pagamento conforme tabela 01 - Códigos de Pagamentos!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-6" id="r2070_evtpgtosdivs__codpgto__div">
+    <div class="form-group">
+      <label id="r2070_evtpgtosdivs__codpgto__label">Preencher com o código do pagamento conforme tabela 01 - Códigos de Pagamentos*<a data-toggle="tooltip" title="Preencher com o código do pagamento conforme tabela 01 - Códigos de Pagamentos Validação: Deve ser um código válido, existente na tabela 01"><i class="fa fa-fw fa-question-circle"></i></a></label>
+        <input type="text" id="txt_codpgto" name="txt_codpgto" class="form-control" value="{% if r2070_evtpgtosdivs.codpgto %}{{ r2070_evtpgtosdivs.codpgto }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
 <!-- fim__r2070_evtpgtosdivs__codpgto -->
 <!-- inicio__r2070_evtpgtosdivs__tpinscbenef -->
 <div class="col-md-6" id="r2070_evtpgtosdivs__tpinscbenef__div">

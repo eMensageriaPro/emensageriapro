@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -12,7 +13,7 @@
 </script>
 <div class="col-md-12" id="r2020_infotpserv__r2020_nfs__div">
   <div class="form-group">
-    <label id="r2020_infotpserv__r2020_nfs__label">Informações sobre os tipos de Serviços constantes da Nota Fiscal*<a data-toggle="tooltip" title="Informações sobre os tipos de Serviços constantes da Nota Fiscal."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2020_infotpserv__r2020_nfs__label">Informações sobre os tipos de Serviços constantes da Nota Fiscal*<a data-toggle="tooltip" title="Informações sobre os tipos de Serviços constantes da Nota Fiscal"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r2020_infotpserv_form.r2020_nfs.value %}
         <a id="r2020_infotpserv__r2020_nfs__div_acessar" href="{% url 'r2020_nfs_salvar' pk=r2020_infotpserv_form.r2020_nfs.value %}">
@@ -159,7 +160,7 @@
 <!-- inicio__r2020_infotpserv__vlrnretprinc -->
 <div class="col-md-6" id="r2020_infotpserv__vlrnretprinc__div">
   <div class="form-group">
-    <label id="r2020_infotpserv__vlrnretprinc__label">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa<a data-toggle="tooltip" title="Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa. Validação: Não pode ser maior que {vlrRetencao}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2020_infotpserv__vlrnretprinc__label">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa<a data-toggle="tooltip" title="Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa Validação: Não pode ser maior que {vlrRetencao}"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_infotpserv_form.vlrnretprinc.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_infotpserv_form.vlrnretprinc.errors }}
@@ -177,7 +178,7 @@
 <!-- inicio__r2020_infotpserv__vlrservicos15 -->
 <div class="col-md-6" id="r2020_infotpserv__vlrservicos15__div">
   <div class="form-group">
-    <label id="r2020_infotpserv__vlrservicos15__label">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição<a data-toggle="tooltip" title="Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição. Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2020_infotpserv__vlrservicos15__label">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição<a data-toggle="tooltip" title="Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_infotpserv_form.vlrservicos15.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_infotpserv_form.vlrservicos15.errors }}
@@ -195,7 +196,7 @@
 <!-- inicio__r2020_infotpserv__vlrservicos20 -->
 <div class="col-md-6" id="r2020_infotpserv__vlrservicos20__div">
   <div class="form-group">
-    <label id="r2020_infotpserv__vlrservicos20__label">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição<a data-toggle="tooltip" title="Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição. Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2020_infotpserv__vlrservicos20__label">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição<a data-toggle="tooltip" title="Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_infotpserv_form.vlrservicos20.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_infotpserv_form.vlrservicos20.errors }}
@@ -213,7 +214,7 @@
 <!-- inicio__r2020_infotpserv__vlrservicos25 -->
 <div class="col-md-6" id="r2020_infotpserv__vlrservicos25__div">
   <div class="form-group">
-    <label id="r2020_infotpserv__vlrservicos25__label">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição<a data-toggle="tooltip" title="Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição. Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2020_infotpserv__vlrservicos25__label">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição<a data-toggle="tooltip" title="Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_infotpserv_form.vlrservicos25.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_infotpserv_form.vlrservicos25.errors }}
@@ -249,7 +250,7 @@
 <!-- inicio__r2020_infotpserv__vlrnretadic -->
 <div class="col-md-6" id="r2020_infotpserv__vlrnretadic__div">
   <div class="form-group">
-    <label id="r2020_infotpserv__vlrnretadic__label">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa<a data-toggle="tooltip" title="Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa. Validação: Não pode ser maior que {vlrAdicional}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2020_infotpserv__vlrnretadic__label">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa<a data-toggle="tooltip" title="Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa Validação: Não pode ser maior que {vlrAdicional}"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_infotpserv_form.vlrnretadic.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_infotpserv_form.vlrnretadic.errors }}

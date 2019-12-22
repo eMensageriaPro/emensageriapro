@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -69,6 +70,7 @@
         <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
         <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >4 - CNO (Cadastro Nacional de Obra)</option>
         <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >5 - CGC</option>
+        <option value="6" {% ifequal 6 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >6 - CEI</option>
       </select>
     </div>
   </div>
@@ -131,9 +133,9 @@
     <div class="input-group" style="width: 100%;">
       <select name="classtrib" class="form-control automate-select" style="width: 100%;">
         <option value="">-- selecione --</option>
-        <option value="01" {% ifequal '01' dict_fields|get_value_from_dict:'classtrib' %}selected="selected"{% endifequal %} >01 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída</option>
+        <option value="01" {% ifequal '01' dict_fields|get_value_from_dict:'classtrib' %}selected="selected"{% endifequal %} >01 - Empresa  enquadrada  no  regime  de  tributação  Simples  Nacional  com  tributação  previdenciária substituída</option>
         <option value="02" {% ifequal '02' dict_fields|get_value_from_dict:'classtrib' %}selected="selected"{% endifequal %} >02 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária não substituída</option>
-        <option value="03" {% ifequal '03' dict_fields|get_value_from_dict:'classtrib' %}selected="selected"{% endifequal %} >03 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída</option>
+        <option value="03" {% ifequal '03' dict_fields|get_value_from_dict:'classtrib' %}selected="selected"{% endifequal %} >03 - Empresa  enquadrada  no  regime  de  tributação  Simples  Nacional  com  tributação  previdenciária substituída e não substituída</option>
         <option value="04" {% ifequal '04' dict_fields|get_value_from_dict:'classtrib' %}selected="selected"{% endifequal %} >04 - MEI - Micro Empreendedor Individual</option>
         <option value="06" {% ifequal '06' dict_fields|get_value_from_dict:'classtrib' %}selected="selected"{% endifequal %} >06 - Agroindústria</option>
         <option value="07" {% ifequal '07' dict_fields|get_value_from_dict:'classtrib' %}selected="selected"{% endifequal %} >07 - Produtor Rural Pessoa Jurídica</option>

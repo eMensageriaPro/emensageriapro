@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -182,6 +183,118 @@ $(document).ready(function(e){
 </div>
 <!-- fim__s5011_basesremun__vrsuspbccp25 -->
 
+<!-- inicio__s5011_basesremun__vrbccp00va -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Origem dos valores apurados nesse campo: Preencher com o somatório do campo {valor}, quando {tpValor} = [41,45], do grupo {infoBaseCS} no evento S-5001.</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vrbccp00va" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrbccp00va' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s5011_basesremun__vrbccp00va -->
+
+<!-- inicio__s5011_basesremun__vrbccp15va -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição. Origem: campo {valor}, se {tpValor} = [42,46] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vrbccp15va" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrbccp15va' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s5011_basesremun__vrbccp15va -->
+
+<!-- inicio__s5011_basesremun__vrbccp20va -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição. Origem: campo {valor}, quando {tpValor} = [43,47] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vrbccp20va" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrbccp20va' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s5011_basesremun__vrbccp20va -->
+
+<!-- inicio__s5011_basesremun__vrbccp25va -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição. Origem: campo {valor}, quando {tpValor} = [44,48] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vrbccp25va" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrbccp25va' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s5011_basesremun__vrbccp25va -->
+
+<!-- inicio__s5011_basesremun__vrsuspbccp00va -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da BC com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor} quando {tpValor} = [81,85] - Incidência suspensa em decorrência de decisão judicial do grupo {infoBaseCS} no evento S- 5001.</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vrsuspbccp00va" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrsuspbccp00va' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s5011_basesremun__vrsuspbccp00va -->
+
+<!-- inicio__s5011_basesremun__vrsuspbccp15va -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 15 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor}, quando {tpValor} = [82,86] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S- 5001.</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vrsuspbccp15va" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrsuspbccp15va' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s5011_basesremun__vrsuspbccp15va -->
+
+<!-- inicio__s5011_basesremun__vrsuspbccp20va -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador expectativa de aposentadoria especial aos 20 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor}, quando {tpValor} = [83,87] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S- 5001.</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vrsuspbccp20va" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrsuspbccp20va' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s5011_basesremun__vrsuspbccp20va -->
+
+<!-- inicio__s5011_basesremun__vrsuspbccp25va -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 25 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor}, quando {tpValor} = [84,88] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S- 5001.</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vrsuspbccp25va" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrsuspbccp25va' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s5011_basesremun__vrsuspbccp25va -->
+
 <!-- inicio__s5011_basesremun__vrdescsest -->
 <div class="col-md-6">
   <div class="form-group">
@@ -344,6 +457,54 @@ $(document).ready(function(e){
 <div class="col-md-3">
     <div class="form-group">
         <input type="checkbox" name="show_vrsuspbccp25" value="1" {% if show_fields|get_value_from_dict:'show_vrsuspbccp25' %}checked{% endif %} >Valor da BC da CP suspenso (25 anos)
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vrbccp00va" value="1" {% if show_fields|get_value_from_dict:'show_vrbccp00va' %}checked{% endif %} >Origem dos valores apurados nesse campo: Preencher com o somatório do campo {valor}, quando {tpValor} = [41,45], do grupo {infoBaseCS} no evento S-5001.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vrbccp15va" value="1" {% if show_fields|get_value_from_dict:'show_vrbccp15va' %}checked{% endif %} >Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição. Origem: campo {valor}, se {tpValor} = [42,46] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vrbccp20va" value="1" {% if show_fields|get_value_from_dict:'show_vrbccp20va' %}checked{% endif %} >Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição. Origem: campo {valor}, quando {tpValor} = [43,47] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vrbccp25va" value="1" {% if show_fields|get_value_from_dict:'show_vrbccp25va' %}checked{% endif %} >Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição. Origem: campo {valor}, quando {tpValor} = [44,48] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vrsuspbccp00va" value="1" {% if show_fields|get_value_from_dict:'show_vrsuspbccp00va' %}checked{% endif %} >Valor da BC com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor} quando {tpValor} = [81,85] - Incidência suspensa em decorrência de decisão judicial do grupo {infoBaseCS} no evento S- 5001.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vrsuspbccp15va" value="1" {% if show_fields|get_value_from_dict:'show_vrsuspbccp15va' %}checked{% endif %} >Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 15 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor}, quando {tpValor} = [82,86] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S- 5001.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vrsuspbccp20va" value="1" {% if show_fields|get_value_from_dict:'show_vrsuspbccp20va' %}checked{% endif %} >Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador expectativa de aposentadoria especial aos 20 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor}, quando {tpValor} = [83,87] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S- 5001.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vrsuspbccp25va" value="1" {% if show_fields|get_value_from_dict:'show_vrsuspbccp25va' %}checked{% endif %} >Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 25 anos de trabalho, com incidência suspensa em decorrência de decisão judicial. Origem: campo {valor}, quando {tpValor} = [84,88] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S- 5001.
     </div>
 </div>
 

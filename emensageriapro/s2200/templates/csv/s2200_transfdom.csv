@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2200_evtadmissao or 1 %}"Informações do empregado doméstico transferido de outro representante da mesma unidade familiar";{% endif %}{% if show_fields.show_cpfsubstituido or 1 %}"Preencher com o número do CPF do representante anterior da unidade familiar";{% endif %}{% if show_fields.show_matricant or 1 %}"Matricula anterior";{% endif %}{% if show_fields.show_dttransf or 1 %}"Preencher com a data da transferência do empregado para o empregador declarante";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2200_evtadmissao or 1 %}"{{ c.s2200_evtadmissao }}";{% endif %}{% if show_fields.show_cpfsubstituido or 1 %}"{{ c.cpfsubstituido }}";{% endif %}{% if show_fields.show_matricant or 1 %}"{{ c.matricant }}";{% endif %}{% if show_fields.show_dttransf or 1 %}"{{ c.dttransf }}";{% endif %}
 {% endfor %}

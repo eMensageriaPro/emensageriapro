@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2206_evtaltcontratual or 1 %}"Filiação Sindical do Trabalhador";{% endif %}{% if show_fields.show_cnpjsindtrab or 1 %}"CNPJ do Sindicato";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2206_evtaltcontratual or 1 %}"{{ c.s2206_evtaltcontratual }}";{% endif %}{% if show_fields.show_cnpjsindtrab or 1 %}"{{ c.cnpjsindtrab }}";{% endif %}
 {% endfor %}

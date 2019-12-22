@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -41,7 +42,7 @@
 <!-- inicio__s2399_detverbas__codrubr -->
 <div class="col-md-6" id="s2399_detverbas__codrubr__div">
   <div class="form-group">
-    <label id="s2399_detverbas__codrubr__label">Código da Rubrica*<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento. Validação: O código informado deve existir na tabela S-1010 - Tabela de Rubricas, vigente no mês da data do término, informada no campo {dtTerm}. Não pode ser utilizada rubrica: a) cujo {codIncCP} em S-1010 seja igual a [23, 24, 61]; b) cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]; c) cujo {codIncCp} em S-1010 seja igual a [25, 26, 51] se {codCateg} pertencer a um dos grupos "contribuinte individual" ou "bolsistas" da Tabela 01 (Categoria de Trabalhadores)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2399_detverbas__codrubr__label">Código da Rubrica*<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento. Validação: O código informado deve existir na tabela S-1010 - Tabela de Rubricas, vigente no mês da data do término, informada no campo {dtTerm}. Não pode ser utilizada rubrica: a) cujo {codIncCP} em S-1010 seja igual a [23, 24, 61]; b) cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]; c) cujo {codIncCp} em S-1010 seja igual a [25, 26, 51] se {codCateg} pertencer a um dos grupos 'contribuinte individual' ou 'bolsistas' da Tabela 01 (Categoria de Trabalhadores)."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2399_detverbas_form.codrubr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2399_detverbas_form.codrubr.errors }}

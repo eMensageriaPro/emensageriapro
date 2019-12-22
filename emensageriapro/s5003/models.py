@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 from django.db import models
 from django.db.models import Sum
@@ -207,7 +208,7 @@ class s5003dpsPerApur(SoftDeletionModel):
 
     def evento(self):
         return self.s5003_infotrabdps.evento()
-    tpdps = models.IntegerField(choices=CHOICES_S5003_TPDPS, null=True, )
+    tpdps = models.IntegerField(null=True, )
     dpsfgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
 
     def __unicode__(self):

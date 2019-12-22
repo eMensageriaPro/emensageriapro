@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_r2070_inforra or 1 %}"Detalhamento das despesas de processo judicial";{% endif %}{% if show_fields.show_vlrdespcustas or 1 %}"Preencher com o Valor da despesa com custas judiciais";{% endif %}{% if show_fields.show_vlrdespadvogados or 1 %}"Preencher com o Valor da despesa com advogado(s)";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_r2070_inforra or 1 %}"{{ c.r2070_inforra }}";{% endif %}{% if show_fields.show_vlrdespcustas or 1 %}"{{ c.vlrdespcustas }}";{% endif %}{% if show_fields.show_vlrdespadvogados or 1 %}"{{ c.vlrdespadvogados }}";{% endif %}
 {% endfor %}

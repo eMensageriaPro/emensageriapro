@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1010_inclusao or 1 %}"Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.";{% endif %}{% if show_fields.show_tpproc or 1 %}"Processo RAT";{% endif %}{% if show_fields.show_nrproc or 1 %}"Número do Processo";{% endif %}{% if show_fields.show_extdecisao or 1 %}"Extensão da Decisão (caso favorável CP)";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1010_inclusao or 1 %}"{{ c.s1010_inclusao }}";{% endif %}{% if show_fields.show_tpproc or 1 %}"{{ c.tpproc }}";{% endif %}{% if show_fields.show_nrproc or 1 %}"{{ c.nrproc }}";{% endif %}{% if show_fields.show_extdecisao or 1 %}"{{ c.extdecisao }}";{% endif %}
 {% endfor %}

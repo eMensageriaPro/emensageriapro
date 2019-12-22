@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,24 +38,16 @@
 
 
 CHOICES_S2231_INDCESSAO = [
-
     (1, u'1 - Cessão'),
     (2, u'2 - Agente público à disposição da Justiça Eleitoral'),
     (3, u'3 - Exercício em outro órgão, em caso diferente de cessão.'),
-
 ]
 
 
-
-
 CHOICES_S2231_INFONUS = [
-
     (1, u'1 - Pagamento exclusivamente pelo cedente/origem'),
     (2, u'2 - Pagamento exclusivamente pelo cessionário/destino'),
     (3, u'3 - Pagamento pelo cedente/origem e pelo cessionário/destino'),
     (4, u'4 - Pagamento pelo cedente/origem com ressarcimento pelo cessionário/destino.'),
-
 ]
-
-
 

@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s5011_evtcs or 1 %}"Informações complementares, exclusivas da Pessoa Jurídica.";{% endif %}{% if show_fields.show_indcoop or 1 %}"Cooperativa?";{% endif %}{% if show_fields.show_indconstr or 1 %}"Construtora?";{% endif %}{% if show_fields.show_indsubstpatr or 1 %}"Substituição da CP patronal";{% endif %}{% if show_fields.show_percredcontrib or 1 %}"Percentual não substituído pela contribuição prevista na lei 12.546/2011";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s5011_evtcs or 1 %}"{{ c.s5011_evtcs }}";{% endif %}{% if show_fields.show_indcoop or 1 %}"{{ c.indcoop }}";{% endif %}{% if show_fields.show_indconstr or 1 %}"{{ c.indconstr }}";{% endif %}{% if show_fields.show_indsubstpatr or 1 %}"{{ c.indsubstpatr }}";{% endif %}{% if show_fields.show_percredcontrib or 1 %}"{{ c.percredcontrib }}";{% endif %}
 {% endfor %}

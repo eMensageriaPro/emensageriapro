@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2200_horcontratual or 1 %}"Informações diárias do horário contratual";{% endif %}{% if show_fields.show_dia or 1 %}"Dia";{% endif %}{% if show_fields.show_codhorcontrat or 1 %}"Código do Horário Contratual";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2200_horcontratual or 1 %}"{{ c.s2200_horcontratual }}";{% endif %}{% if show_fields.show_dia or 1 %}"{{ c.dia }}";{% endif %}{% if show_fields.show_codhorcontrat or 1 %}"{{ c.codhorcontrat }}";{% endif %}
 {% endfor %}

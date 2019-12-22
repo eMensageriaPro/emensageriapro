@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1207_infoperapur or 1 %}"Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas";{% endif %}{% if show_fields.show_tpinsc or 1 %}"Tipo de inscrição";{% endif %}{% if show_fields.show_nrinsc or 1 %}"Número de inscrição (CPF/CNPJ)";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1207_infoperapur or 1 %}"{{ c.s1207_infoperapur }}";{% endif %}{% if show_fields.show_tpinsc or 1 %}"{{ c.tpinsc }}";{% endif %}{% if show_fields.show_nrinsc or 1 %}"{{ c.nrinsc }}";{% endif %}
 {% endfor %}

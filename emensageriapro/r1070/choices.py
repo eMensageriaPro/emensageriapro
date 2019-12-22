@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,47 +38,30 @@
 
 
 CHOICES_R1070_INDAUTORIA_ALTERACAO = [
-
     (1, u'1 - Próprio contribuinte'),
     (2, u'2 - Outra entidade ou empresa.'),
-
 ]
-
-
 
 
 CHOICES_R1070_INDAUTORIA_INCLUSAO = [
-
     (1, u'1 - Próprio contribuinte'),
     (2, u'2 - Outra entidade ou empresa.'),
-
 ]
-
-
 
 
 CHOICES_R1070_INDDEPOSITO_ALTERACAO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_R1070_INDDEPOSITO_INCLUSAO = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_R1070_INDSUSP_ALTERACAO = [
-
     ('01', u'01 - Liminar em Mandado de Segurança'),
     ('02', u'02 - Depósito Judicial do Montante Integral'),
     ('03', u'03 - Depósito Administrativo do Montante Integral'),
@@ -91,14 +75,10 @@ CHOICES_R1070_INDSUSP_ALTERACAO = [
     ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
     ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
     ('92', u'92 - Sem suspensão da exigibilidade.'),
-
 ]
-
-
 
 
 CHOICES_R1070_INDSUSP_INCLUSAO = [
-
     ('01', u'01 - Liminar em Mandado de Segurança'),
     ('02', u'02 - Depósito Judicial do Montante Integral'),
     ('03', u'03 - Depósito Administrativo do Montante Integral'),
@@ -112,44 +92,28 @@ CHOICES_R1070_INDSUSP_INCLUSAO = [
     ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
     ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
     ('92', u'92 - Sem suspensão da exigibilidade.'),
-
 ]
-
-
 
 
 CHOICES_R1070_TPPROC_ALTERACAO = [
-
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-
 ]
-
-
 
 
 CHOICES_R1070_TPPROC_EXCLUSAO = [
-
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-
 ]
-
-
 
 
 CHOICES_R1070_TPPROC_INCLUSAO = [
-
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial.'),
-
 ]
 
 
-
-
 ESTADOS = [
-
     ('AC', u'Acre'),
     ('AL', u'Alagoas'),
     ('AM', u'Amazonas'),
@@ -177,14 +141,10 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-
 ]
 
 
-
-
 PERIODOS = [
-
     ('2017-01', u'Janeiro/2017'),
     ('2017-02', u'Fevereiro/2017'),
     ('2017-03', u'Março/2017'),
@@ -221,8 +181,17 @@ PERIODOS = [
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-
+    ('2020-01', u'Janeiro/2020'),
+    ('2020-02', u'Fevereiro/2020'),
+    ('2020-03', u'Março/2020'),
+    ('2020-04', u'Abril/2020'),
+    ('2020-05', u'Maio/2020'),
+    ('2020-06', u'Junho/2020'),
+    ('2020-07', u'Julho/2020'),
+    ('2020-08', u'Agosto/2020'),
+    ('2020-09', u'Setembro/2020'),
+    ('2020-10', u'Outubro/2020'),
+    ('2020-11', u'Novembro/2020'),
+    ('2020-12', u'Dezembro/2020'),
 ]
-
-
 

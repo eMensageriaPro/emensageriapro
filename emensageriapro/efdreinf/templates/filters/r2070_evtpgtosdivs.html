@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -145,11 +146,32 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Preencher com o código do pagamento conforme tabela 01 - Códigos de Pagamentos</label>
-    <div name="codpgto" class="input-group" style="width: 100%;">
-      <input type="text" name="codpgto" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'codpgto' }}">
-    </div>
+    <input type="text" id="txt_codpgto" name="txt_codpgto" class="form-control" value="{{ dict_fields|get_value_from_dict:'codpgto' }}">
+    <input type="hidden" id="id_codpgto" name="codpgto" value="{{ dict_fields|get_value_from_dict:'codpgto'|valor }}">
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_codpgto').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/665/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_codpgto').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
 <!-- fim__r2070_evtpgtosdivs__codpgto -->
 
 <!-- inicio__r2070_evtpgtosdivs__tpinscbenef -->

@@ -1,4 +1,0 @@
-{% load templatetags %}{% load static %}
-{% if show_fields.show_r4020_evtretpj or 1 %}"Identificação do rendimento";{% endif %}{% if show_fields.show_natrend or 1 %}"Código da natureza do rendimento, conforme Tabela 01";{% endif %}{% if show_fields.show_paisresid or 1 %}"Preencher com o código do país de residência fiscal, conforme tabela 7";{% endif %}{% if show_fields.show_observ or 1 %}"Observações";{% endif %}
-{% for c in campos_lista %}{% if show_fields.show_r4020_evtretpj or 1 %}"{{ c.r4020_evtretpj }}";{% endif %}{% if show_fields.show_natrend or 1 %}"{{ c.natrend }}";{% endif %}{% if show_fields.show_paisresid or 1 %}"{{ c.paisresid }}";{% endif %}{% if show_fields.show_observ or 1 %}"{{ c.observ }}";{% endif %}
-{% endfor %}

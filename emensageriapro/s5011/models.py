@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 from django.db import models
 from django.db.models import Sum
@@ -248,6 +249,14 @@ class s5011basesRemun(SoftDeletionModel):
     vrsuspbccp15 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrsuspbccp20 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrsuspbccp25 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrbccp00va = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
+    vrbccp15va = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
+    vrbccp20va = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
+    vrbccp25va = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
+    vrsuspbccp00va = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
+    vrsuspbccp15va = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
+    vrsuspbccp20va = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
+    vrsuspbccp25va = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrdescsest = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrcalcsest = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrdescsenat = models.DecimalField(max_digits=15, decimal_places=2, null=True, )

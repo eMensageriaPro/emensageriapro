@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}
 <table {% if not output %}
     class="table table-bordered"{% else %}
@@ -6,13 +7,13 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtCPRB</td>
-            <td bgcolor="lightgray" colspan="3">Evento da contribuição previdenciária sobre a receita bruta - CPRB. Regras de validação: REGRA_EVE_CPRB REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_ESTAB REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</td>
+            <td bgcolor="lightgray" colspan="3">Evento da contribuição previdenciária sobre a receita bruta - CPRB Regras de validação: REGRA_EVE_CPRB REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_ESTAB REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</td>
         </tr>
     {% for r2060_evtcprb in r2060_evtcprb_lista %}
     {% ifequal 1 1 %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
         </tr>
 
         <tr {% if r2060_evtcprb.indretif|validacoes_esocial_efdreinf:"r2060_evtcprb.indretif" %}bgcolor="lightcoral"{% endif %}>
@@ -131,7 +132,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideContri</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte</td>
         </tr>
 
         <tr {% if r2060_evtcprb.tpinsc|validacoes_esocial_efdreinf:"r2060_evtcprb.tpinsc" %}bgcolor="lightcoral"{% endif %}>
@@ -174,17 +175,17 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoCPRB</td>
-            <td bgcolor="lightgray" colspan="3">Informação da contribuição previdenciária sobre a receita bruta.</td>
+            <td bgcolor="lightgray" colspan="3">Informação da contribuição previdenciária sobre a receita bruta</td>
         </tr>
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEstab</td>
-            <td bgcolor="lightgray" colspan="3">Registro que identifica o estabelecimento que auferiu a receita bruta.</td>
+            <td bgcolor="lightgray" colspan="3">Registro que identifica o estabelecimento que auferiu a receita bruta</td>
         </tr>
 
         <tr {% if r2060_evtcprb.tpinscestab|validacoes_esocial_efdreinf:"r2060_evtcprb.tpinscestab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInscEstab</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [4] CNO.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [4] CNO</td>
             <td width="200px"><b>{% if r2060_evtcprb.tpinscestab or r2060_evtcprb.tpinscestab == 0 %}{{ r2060_evtcprb.tpinscestab }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -397,25 +398,6 @@
             {% endif %}
         </tr>
 
-        <tr {% if r2060_tipocod.observ|validacoes_esocial_efdreinf:"r2060_tipocod.observ" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">observ</td>
-            <td width="500px">Observações.</td>
-            <td width="200px"><b>{% if r2060_tipocod.observ or r2060_tipocod.observ == 0 %}{{ r2060_tipocod.observ }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060tipoCod or perms.efdreinf.can_see_r2060tipoCod %}
-                <a href="{% url 'r2060_tipocod_salvar' pk=r2060_tipocod.id %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">tipoAjuste</td>
             <td bgcolor="lightgray" colspan="3">Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.</td>
@@ -424,7 +406,7 @@
     {% ifequal r2060_tipoajuste.r2060_tipocod.id r2060_tipocod.id %}
         <tr {% if r2060_tipoajuste.tpajuste|validacoes_esocial_efdreinf:"r2060_tipoajuste.tpajuste" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAjuste</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de ajuste: 0- Ajuste de redução; 1- Ajuste de acréscimo. Valores Válidos: 0,1.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de ajuste: 0- Ajuste de redução; 1- Ajuste de acréscimo Valores Válidos: 0,1</td>
             <td width="200px"><b>{% if r2060_tipoajuste.tpajuste or r2060_tipoajuste.tpajuste == 0 %}{{ r2060_tipoajuste.tpajuste }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -443,7 +425,7 @@
 
         <tr {% if r2060_tipoajuste.codajuste|validacoes_esocial_efdreinf:"r2060_tipoajuste.codajuste" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codAjuste</td>
-            <td width="500px">Preencher com o código de ajuste: 1 - Ajuste da CPRB: Adoção do Regime de Caixa; 2 - Ajuste da CPRB: Diferimento de Valores a recolher no período; 3 - Adição de valores Diferidos em Período(s) Anteriores(es); 4 - Exportações diretas; 5 -Transporte internacional de cargas; 6 - Vendas canceladas e os descontos incondicionais concedidos; 7 - IPI, se incluído na receita bruta; 8 - ICMS, quando cobrado pelo vendedor dos bens ou prestador dos serviços na condição de substituto tributário; 9 - Receita bruta reconhecida pela construção, recuperação, reforma, ampliação ou melhoramento da infraestrutura, cuja contrapartida seja ativo intangível representativo de direito de exploração, no caso de contratos de concessão de serviços públicos; 10 - O valor do aporte de recursos realizado nos termos do art 6 §3 inciso III da Lei 11.079/2004; 11 - Demais ajustes oriundos da Legislação Tributária, estorno ou outras situações. Valores Válidos: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11.</td>
+            <td width="500px">Preencher com o código de ajuste: 1 - Ajuste da CPRB: Adoção do Regime de Caixa; 2 - Ajuste da CPRB: Diferimento de Valores a recolher no período; 3 - Adição de valores Diferidos em Período(s) Anteriores(es); 4 - Exportações diretas; 5 -Transporte internacional de cargas; 6 - Vendas canceladas e os descontos incondicionais concedidos; 7 - IPI, se incluído na receita bruta; 8 - ICMS, quando cobrado pelo vendedor dos bens ou prestador dos serviços na condição de substituto tributário; 9 - Receita bruta reconhecida pela construção, recuperação, reforma, ampliação ou melhoramento da infraestrutura, cuja contrapartida seja ativo intangível representativo de direito de exploração, no caso de contratos de concessão de serviços públicos; 10 - O valor do aporte de recursos realizado nos termos do art 6 §3 inciso III da Lei 11.079/2004; 11 - Demais ajustes oriundos da Legislação Tributária, estorno ou outras situações. Valores Válidos: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11</td>
             <td width="200px"><b>{% if r2060_tipoajuste.codajuste or r2060_tipoajuste.codajuste == 0 %}{{ r2060_tipoajuste.codajuste }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -462,7 +444,7 @@
 
         <tr {% if r2060_tipoajuste.vlrajuste|validacoes_esocial_efdreinf:"r2060_tipoajuste.vlrajuste" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrAjuste</td>
-            <td width="500px">Valor do ajuste.</td>
+            <td width="500px">Valor do ajuste</td>
             <td width="200px"><b>{% if r2060_tipoajuste.vlrajuste or r2060_tipoajuste.vlrajuste == 0 %}{{ r2060_tipoajuste.vlrajuste }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -481,7 +463,7 @@
 
         <tr {% if r2060_tipoajuste.descajuste|validacoes_esocial_efdreinf:"r2060_tipoajuste.descajuste" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">descAjuste</td>
-            <td width="500px">Descrição resumida do ajuste.</td>
+            <td width="500px">Descrição resumida do ajuste</td>
             <td width="200px"><b>{% if r2060_tipoajuste.descajuste or r2060_tipoajuste.descajuste == 0 %}{{ r2060_tipoajuste.descajuste }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -500,7 +482,7 @@
 
         <tr {% if r2060_tipoajuste.dtajuste|validacoes_esocial_efdreinf:"r2060_tipoajuste.dtajuste" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtAjuste</td>
-            <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência do ajuste. Validação: Deve ser um mês/ano válido.</td>
+            <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência do ajuste Validação: Deve ser um mês/ano válido.</td>
             <td width="200px"><b>{% if r2060_tipoajuste.dtajuste or r2060_tipoajuste.dtajuste == 0 %}{{ r2060_tipoajuste.dtajuste }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

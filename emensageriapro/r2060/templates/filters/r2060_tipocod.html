@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -28,7 +29,7 @@
 $(document).ready(function(e){
   $('#txt_codativecon').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/660/" + request.term + "/", function (data) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/657/" + request.term + "/", function (data) {
       response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
@@ -118,17 +119,6 @@ $(document).ready(function(e){
 </div>
 <!-- fim__r2060_tipocod__vlrcprbapur -->
 
-<!-- inicio__r2060_tipocod__observ -->
-<div class="col-md-6">
-  <div class="form-group">
-    <label>Observações</label>
-    <div name="observ" class="input-group" style="width: 100%;">
-      <input type="text" name="observ" class="form-control" value="{{ dict_fields|get_value_from_dict:'observ' }}">
-    </div>
-  </div>
-</div>
-<!-- fim__r2060_tipocod__observ -->
-
 
 
 <div class="form-group col-md-12">
@@ -177,12 +167,6 @@ $(document).ready(function(e){
 <div class="col-md-3">
     <div class="form-group">
         <input type="checkbox" name="show_vlrcprbapur" value="1" {% if show_fields|get_value_from_dict:'show_vlrcprbapur' %}checked{% endif %} >Preencher com o Valor Contribuição Previdenciária sobre a Receita Bruta.
-    </div>
-</div>
-
-<div class="col-md-3">
-    <div class="form-group">
-        <input type="checkbox" name="show_observ" value="1" {% if show_fields|get_value_from_dict:'show_observ' %}checked{% endif %} >Observações
     </div>
 </div>
 

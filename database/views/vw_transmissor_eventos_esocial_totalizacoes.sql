@@ -1,3 +1,4 @@
+-- eMensageriaAI --
 -- View: public.vw_transmissor_eventos_esocial_totalizacoes
 
 DROP VIEW IF EXISTS public.vw_transmissor_eventos_esocial_totalizacoes;

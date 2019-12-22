@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2200_evtadmissao or 1 %}"Informações do desligamento do trabalhador";{% endif %}{% if show_fields.show_dtdeslig or 1 %}"Data de desligamento";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2200_evtadmissao or 1 %}"{{ c.s2200_evtadmissao }}";{% endif %}{% if show_fields.show_dtdeslig or 1 %}"{{ c.dtdeslig }}";{% endif %}
 {% endfor %}

@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2299_verbasresc or 1 %}"Informação sobre processo judicial que suspende a exigibilidade da Contribuição Social Rescisória";{% endif %}{% if show_fields.show_nrprocjud or 1 %}"Número do Processo Judicial";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2299_verbasresc or 1 %}"{{ c.s2299_verbasresc }}";{% endif %}{% if show_fields.show_nrprocjud or 1 %}"{{ c.nrprocjud }}";{% endif %}
 {% endfor %}

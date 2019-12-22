@@ -1,3 +1,4 @@
+-- eMensageriaAI --
 UPDATE public.s2250_detavprevio a
    SET ativo=b.ativo, desativado_em=b.desativado_em, desativado_por_id=b.desativado_por_id
   FROM public.s2250_evtavprevio b

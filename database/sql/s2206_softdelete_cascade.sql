@@ -1,3 +1,4 @@
+-- eMensageriaAI --
 UPDATE public.s2206_infoceletista a
    SET ativo=b.ativo, desativado_em=b.desativado_em, desativado_por_id=b.desativado_por_id
   FROM public.s2206_evtaltcontratual b

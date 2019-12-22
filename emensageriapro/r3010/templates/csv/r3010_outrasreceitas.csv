@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_r3010_boletim or 1 %}"Outras receitas do espetáculo";{% endif %}{% if show_fields.show_tpreceita or 1 %}"Tipo de receita";{% endif %}{% if show_fields.show_vlrreceita or 1 %}"Valor da receita auferida";{% endif %}{% if show_fields.show_descreceita or 1 %}"Descrição da receita";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_r3010_boletim or 1 %}"{{ c.r3010_boletim }}";{% endif %}{% if show_fields.show_tpreceita or 1 %}"{{ c.tpreceita }}";{% endif %}{% if show_fields.show_vlrreceita or 1 %}"{{ c.vlrreceita }}";{% endif %}{% if show_fields.show_descreceita or 1 %}"{{ c.descreceita }}";{% endif %}
 {% endfor %}

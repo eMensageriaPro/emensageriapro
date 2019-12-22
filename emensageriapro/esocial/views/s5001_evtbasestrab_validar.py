@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -82,7 +83,7 @@ def validacoes_s5001_evtbasestrab(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'ideEmpregador.tpInsc',
                                                   ideEmpregador.tpInsc.cdata,
-                                                  1, u'1, 2, 3, 4, 5')
+                                                  1, u'1, 2, 3, 4, 5, 6')
 
             if 'nrInsc' in dir(ideEmpregador):
                 validacoes_lista = validar_campo( validacoes_lista,
@@ -121,7 +122,7 @@ def validacoes_s5001_evtbasestrab(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'infoCpCalc.tpCR',
                                                   infoCpCalc.tpCR.cdata,
-                                                  1, u'None')
+                                                  1, u'1082-01, 1082-02, 1082-03, 1082-04, 1082-21, 1082-22, 1082-23, 1082-24, 1099-01, 1099-02')
 
             if 'vrCpSeg' in dir(infoCpCalc):
                 validacoes_lista = validar_campo( validacoes_lista,
@@ -145,7 +146,7 @@ def validacoes_s5001_evtbasestrab(arquivo):
                         validacoes_lista = validar_campo( validacoes_lista,
                                                           'ideEstabLot.tpInsc',
                                                           ideEstabLot.tpInsc.cdata,
-                                                          1, u'1, 2, 3, 4, 5')
+                                                          1, u'1, 2, 3, 4, 5, 6')
 
                     if 'nrInsc' in dir(ideEstabLot):
                         validacoes_lista = validar_campo( validacoes_lista,
@@ -172,7 +173,7 @@ def validacoes_s5001_evtbasestrab(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'infoCategIncid.codCateg',
                                                                   infoCategIncid.codCateg.cdata,
-                                                                  1, u'101, 102, 103, 104, 105, 106, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
+                                                                  1, u'101, 102, 103, 104, 105, 106, 107, 108, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
         
                             if 'indSimples' in dir(infoCategIncid):
                                 validacoes_lista = validar_campo( validacoes_lista,
@@ -187,13 +188,13 @@ def validacoes_s5001_evtbasestrab(arquivo):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'infoBaseCS.ind13',
                                                                           infoBaseCS.ind13.cdata,
-                                                                          1, u'None')
+                                                                          1, u'0, 1')
                 
                                     if 'tpValor' in dir(infoBaseCS):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'infoBaseCS.tpValor',
                                                                           infoBaseCS.tpValor.cdata,
-                                                                          1, u'None')
+                                                                          1, u'11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 31, 32, 41, 42, 43, 44, 45, 46, 47, 48, 49, 81, 82, 83, 84, 85, 86, 87, 88, 91, 92, 93, 94, 95, 97, 98')
                 
                                     if 'valor' in dir(infoBaseCS):
                                         validacoes_lista = validar_campo( validacoes_lista,
@@ -208,7 +209,7 @@ def validacoes_s5001_evtbasestrab(arquivo):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'calcTerc.tpCR',
                                                                           calcTerc.tpCR.cdata,
-                                                                          1, u'None')
+                                                                          1, u'1218-02, 1221-02')
                 
                                     if 'vrCsSegTerc' in dir(calcTerc):
                                         validacoes_lista = validar_campo( validacoes_lista,

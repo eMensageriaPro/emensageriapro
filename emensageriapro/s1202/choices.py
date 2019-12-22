@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,7 +38,6 @@
 
 
 CHOICES_ESOCIALDEPENDENTESTIPOS = [
-
     ('01', u'01 - Cônjuge'),
     ('02', u'02 - Companheiro(a) com o(a) qual tenha filho ou viva há mais de 5 (cinco) anos ou possua Declaração de União Estável'),
     ('03', u'03 - Filho(a) ou enteado(a)'),
@@ -49,45 +49,31 @@ CHOICES_ESOCIALDEPENDENTESTIPOS = [
     ('11', u'11 - A pessoa absolutamente incapaz, da qual seja tutor ou curador'),
     ('12', u'12 - Ex-cônjuge'),
     ('99', u'99 - Agregado/Outros'),
-
 ]
 
 
-
-
 CHOICES_ESOCIALINSCRICOESTIPOS = [
-
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (5, u'5 - CGC'),
-
+    (6, u'6 - CEI'),
 ]
 
 
-
-
 CHOICES_S1202_TPACCONV_INFOPERANT = [
-
     ('B', u'B - Legislação federal, estadual, municipal ou distrital'),
     ('F', u'F - Outras verbas de natureza salarial ou não salarial devidas após o desligamento'),
     ('G', u'G - Decisão administrativa'),
     ('H', u'H - Decisão judicial.'),
-
 ]
 
 
-
-
 CHOICES_S1202_TPTRIB = [
-
     (1, u'1 - IRRF'),
     (2, u'2 - Contribuições sociais do trabalhador'),
     (3, u'3 - FGTS'),
     (4, u'4 - Contribuição sindical.'),
-
 ]
-
-
 

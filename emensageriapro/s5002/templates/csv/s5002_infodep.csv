@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s5002_evtirrfbenef or 1 %}"Informações relativas a existência de dependentes do beneficiário do pagamento. Origem: S-1210 - registro {deps}";{% endif %}{% if show_fields.show_vrdeddep or 1 %}"Valor da dedução da BC do IRRF";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s5002_evtirrfbenef or 1 %}"{{ c.s5002_evtirrfbenef }}";{% endif %}{% if show_fields.show_vrdeddep or 1 %}"{{ c.vrdeddep }}";{% endif %}
 {% endfor %}

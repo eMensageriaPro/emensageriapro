@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2205_evtaltcadastral or 1 %}"Informação de aposentadoria do trabalhador";{% endif %}{% if show_fields.show_trabaposent or 1 %}"Aposentado";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2205_evtaltcadastral or 1 %}"{{ c.s2205_evtaltcadastral }}";{% endif %}{% if show_fields.show_trabaposent or 1 %}"{{ c.trabaposent }}";{% endif %}
 {% endfor %}

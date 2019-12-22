@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2200_evtadmissao or 1 %}"Grupo de informações do Trabalhador Estrangeiro";{% endif %}{% if show_fields.show_dtchegada or 1 %}"Data de chegada";{% endif %}{% if show_fields.show_classtrabestrang or 1 %}"Classificação da condição de trabalho";{% endif %}{% if show_fields.show_casadobr or 1 %}"Casado com Brasileiro(a)";{% endif %}{% if show_fields.show_filhosbr or 1 %}"Possui filho(s) brasileiro(s)";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2200_evtadmissao or 1 %}"{{ c.s2200_evtadmissao }}";{% endif %}{% if show_fields.show_dtchegada or 1 %}"{{ c.dtchegada }}";{% endif %}{% if show_fields.show_classtrabestrang or 1 %}"{{ c.classtrabestrang }}";{% endif %}{% if show_fields.show_casadobr or 1 %}"{{ c.casadobr }}";{% endif %}{% if show_fields.show_filhosbr or 1 %}"{{ c.filhosbr }}";{% endif %}
 {% endfor %}

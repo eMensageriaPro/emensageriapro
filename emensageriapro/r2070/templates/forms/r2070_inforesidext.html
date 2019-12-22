@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -47,7 +48,7 @@
         <input type="text"
                id="txt_paisresid"
                name="txt_paisresid" class="form-control"
-               value="{% if r2070_inforesidext.paisresid %}{{ r2070_inforesidext.paisresid|get_opcoes_titulo:670 }}{% endif %}"
+               value="{% if r2070_inforesidext.paisresid %}{{ r2070_inforesidext.paisresid|get_opcoes_titulo:667 }}{% endif %}"
                {% if r2070_inforesidext_form.paisresid.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
                {% if r2070_inforesidext_form.paisresid.field.widget.attrs.required %} required="required"{% endif %}
                {% if r2070_inforesidext_form.paisresid.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
@@ -61,7 +62,7 @@
   $(document).ready(function(e){
     $('#txt_paisresid').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/670/" + request.term + "/", function (data) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/667/" + request.term + "/", function (data) {
           response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,

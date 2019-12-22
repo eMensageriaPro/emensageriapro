@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,7 +38,6 @@
 
 
 CHOICES_ESOCIALDEPENDENTESTIPOS = [
-
     ('01', u'01 - Cônjuge'),
     ('02', u'02 - Companheiro(a) com o(a) qual tenha filho ou viva há mais de 5 (cinco) anos ou possua Declaração de União Estável'),
     ('03', u'03 - Filho(a) ou enteado(a)'),
@@ -49,54 +49,34 @@ CHOICES_ESOCIALDEPENDENTESTIPOS = [
     ('11', u'11 - A pessoa absolutamente incapaz, da qual seja tutor ou curador'),
     ('12', u'12 - Ex-cônjuge'),
     ('99', u'99 - Agregado/Outros'),
-
 ]
-
-
 
 
 CHOICES_S2400_DEPFINSPREV = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2400_DEPIRRF = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2400_INCFISMEN = [
-
     ('N', u'N - Não.'),
     ('S', u'S - Sim'),
-
 ]
-
-
 
 
 CHOICES_S2400_SEXODEP = [
-
     ('F', u'F - Feminino.'),
     ('M', u'M - Masculino'),
-
 ]
 
 
-
-
 ESTADOS = [
-
     ('AC', u'Acre'),
     ('AL', u'Alagoas'),
     ('AM', u'Amazonas'),
@@ -124,8 +104,5 @@ ESTADOS = [
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-
 ]
-
-
 

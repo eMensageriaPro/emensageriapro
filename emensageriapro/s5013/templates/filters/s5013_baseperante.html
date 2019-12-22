@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -25,14 +26,14 @@
         <option value="">-- selecione --</option>
         <option value="13" {% ifequal 13 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >13 - Base de Cálculo do FGTS Dissídio</option>
         <option value="14" {% ifequal 14 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >14 - Base de Cálculo do FGTS Dissídio 13º Salário</option>
-        <option value="17" {% ifequal 17 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >17 - Base de Cálculo do FGTS Dissídio - Aprendiz</option>
-        <option value="18" {% ifequal 18 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz</option>
-        <option value="24" {% ifequal 24 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >24 - Base de Cálculo do FGTS Rescisório - Dissídio</option>
-        <option value="25" {% ifequal 25 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >25 - Base de Cálculo do FGTS Rescisório - Dissídio 13º Salário</option>
-        <option value="26" {% ifequal 26 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >26 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio</option>
-        <option value="30" {% ifequal 30 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >30 - Base de Cálculo do FGTS Rescisório - Dissídio Aprendiz</option>
-        <option value="31" {% ifequal 31 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >31 - Base de Cálculo do FGTS Rescisório - Dissídio 13° Salário Aprendiz</option>
-        <option value="32" {% ifequal 32 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >32 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz</option>
+        <option value="17" {% ifequal 17 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >17 - Base de Cálculo do FGTS Dissídio - Aprendiz/Contrato Verde e Amarelo</option>
+        <option value="18" {% ifequal 18 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz/Contrato Verde e Amarelo</option>
+        <option value="24" {% ifequal 24 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >24 - Base de Cálculo do FGTS Rescisório Dissídio</option>
+        <option value="25" {% ifequal 25 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >25 - Base de Cálculo do FGTS Rescisório Dissídio 13º Salário</option>
+        <option value="26" {% ifequal 26 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >26 - Base de Cálculo do FGTS Rescisório Dissídio Aviso Prévio</option>
+        <option value="30" {% ifequal 30 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >30 - Base de Cálculo do FGTS Rescisório Dissídio - Aprendiz/Contrato Verde e Amarelo</option>
+        <option value="31" {% ifequal 31 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >31 - Base de Cálculo do FGTS Rescisório Dissídio 13° Salário - Aprendiz/Contrato Verde e Amarelo</option>
+        <option value="32" {% ifequal 32 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >32 - Base de Cálculo do FGTS Rescisório Dissídio Aviso Prévio - Aprendiz/Contrato Verde e Amarelo</option>
         <option value="91" {% ifequal 91 dict_fields|get_value_from_dict:'tpvalore' %}selected="selected"{% endifequal %} >91 - Incidência suspensa em decorrência de decisão judicial.</option>
       </select>
     </div>

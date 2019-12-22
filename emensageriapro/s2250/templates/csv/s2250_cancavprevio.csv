@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2250_evtavprevio or 1 %}"Cancelamento do Aviso Prévio";{% endif %}{% if show_fields.show_dtcancavprv or 1 %}"Data de cancelamento do aviso prévio";{% endif %}{% if show_fields.show_observacao or 1 %}"Observações";{% endif %}{% if show_fields.show_mtvcancavprevio or 1 %}"Motivo do cancelamento do aviso prévio";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2250_evtavprevio or 1 %}"{{ c.s2250_evtavprevio }}";{% endif %}{% if show_fields.show_dtcancavprv or 1 %}"{{ c.dtcancavprv }}";{% endif %}{% if show_fields.show_observacao or 1 %}"{{ c.observacao }}";{% endif %}{% if show_fields.show_mtvcancavprevio or 1 %}"{{ c.mtvcancavprevio }}";{% endif %}
 {% endfor %}

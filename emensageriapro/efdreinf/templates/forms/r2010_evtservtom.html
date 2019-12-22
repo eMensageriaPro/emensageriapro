@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -152,7 +153,7 @@
 <!-- inicio__r2010_evtservtom__tpinsc -->
 <div class="col-md-6" id="r2010_evtservtom__tpinsc__div">
   <div class="form-group">
-    <label id="r2010_evtservtom__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF). Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2010_evtservtom__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF) Valores Válidos: 1, 2"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2010_evtservtom_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2010_evtservtom_form.tpinsc.errors }}
@@ -201,7 +202,7 @@
 <!-- inicio__r2010_evtservtom__tpinscestab -->
 <div class="col-md-6" id="r2010_evtservtom__tpinscestab__div">
   <div class="form-group">
-    <label id="r2010_evtservtom__tpinscestab__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [4] CNO."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2010_evtservtom__tpinscestab__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [4] CNO."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2010_evtservtom_form.tpinscestab.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2010_evtservtom_form.tpinscestab.errors }}
@@ -240,7 +241,7 @@
 <!-- inicio__r2010_evtservtom__indobra -->
 <div class="col-md-6" id="r2010_evtservtom__indobra__div">
   <div class="form-group">
-    <label id="r2010_evtservtom__indobra__label">Indicativo de Prestação de Serviços em Obra de Construção Civil*<a data-toggle="tooltip" title="Indicativo de Prestação de Serviços em Obra de Construção Civil: 0 - Não é obra de construção civil ou não está sujeita a matrícula de obra; 1 - Obra de Construção Civil - Empreitada Total; 2 - Obra de Construção Civil - Empreitada Parcial. Validação: Em arquivo gerado por Pessoa Física, deve ser igual a [1,2]. Valores Válidos: 0, 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2010_evtservtom__indobra__label">Indicativo de Prestação de Serviços em Obra de Construção Civil*<a data-toggle="tooltip" title="Indicativo de Prestação de Serviços em Obra de Construção Civil: 0 - Não é obra de construção civil ou não está sujeita a matrícula de obra; 1 - Obra de Construção Civil - Empreitada Total; 2 - Obra de Construção Civil - Empreitada Parcial. Validação: Em arquivo gerado por Pessoa Física, deve ser igual a [1,2]. Valores Válidos: 0, 1, 2"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2010_evtservtom_form.indobra.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2010_evtservtom_form.indobra.errors }}
@@ -269,7 +270,7 @@
 <!-- inicio__r2010_evtservtom__cnpjprestador -->
 <div class="col-md-6" id="r2010_evtservtom__cnpjprestador__div">
   <div class="form-group">
-    <label id="r2010_evtservtom__cnpjprestador__label">Preencher com o CNPJ do Prestador de Serviços*<a data-toggle="tooltip" title="Preencher com o CNPJ do Prestador de Serviços. Validação: Deve ser um CNPJ válido. Não pode pertencer ao declarante. Se {indObra} for igual a 1 (Empreitada Total) o cnpj do prestador terá que ser o proprietário do CNO do campo {nrInscEstab}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2010_evtservtom__cnpjprestador__label">Preencher com o CNPJ do Prestador de Serviços*<a data-toggle="tooltip" title="Preencher com o CNPJ do Prestador de Serviços Validação: Deve ser um CNPJ válido. Não pode pertencer ao declarante. Se {indObra} for igual a 1 (Empreitada Total) o cnpj do prestador terá que ser o proprietário do CNO do campo {nrInscEstab}"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2010_evtservtom_form.cnpjprestador.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2010_evtservtom_form.cnpjprestador.errors }}
@@ -284,7 +285,7 @@
 <!-- inicio__r2010_evtservtom__vlrtotalbruto -->
 <div class="col-md-6" id="r2010_evtservtom__vlrtotalbruto__div">
   <div class="form-group">
-    <label id="r2010_evtservtom__vlrtotalbruto__label">Preencher com o valor bruto da(s) nota(s) fiscal(is) *<a data-toggle="tooltip" title="Preencher com o valor bruto da(s) nota(s) fiscal(is). Validação: Deve corresponder a soma do campo {vlrBruto} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2010_evtservtom__vlrtotalbruto__label">Preencher com o valor bruto da(s) nota(s) fiscal(is) *<a data-toggle="tooltip" title="Preencher com o valor bruto da(s) nota(s) fiscal(is) Validação: Deve corresponder a soma do campo {vlrBruto} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2010_evtservtom_form.vlrtotalbruto.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2010_evtservtom_form.vlrtotalbruto.errors }}
@@ -302,7 +303,7 @@
 <!-- inicio__r2010_evtservtom__vlrtotalbaseret -->
 <div class="col-md-6" id="r2010_evtservtom__vlrtotalbaseret__div">
   <div class="form-group">
-    <label id="r2010_evtservtom__vlrtotalbaseret__label">Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante*<a data-toggle="tooltip" title="Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante. Validação: Deve corresponder a soma do campo {vlrBaseRet} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2010_evtservtom__vlrtotalbaseret__label">Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante*<a data-toggle="tooltip" title="Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante Validação: Deve corresponder a soma do campo {vlrBaseRet} dos registros vinculados"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2010_evtservtom_form.vlrtotalbaseret.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2010_evtservtom_form.vlrtotalbaseret.errors }}
@@ -320,7 +321,7 @@
 <!-- inicio__r2010_evtservtom__vlrtotalretprinc -->
 <div class="col-md-6" id="r2010_evtservtom__vlrtotalretprinc__div">
   <div class="form-group">
-    <label id="r2010_evtservtom__vlrtotalretprinc__label">Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante*<a data-toggle="tooltip" title="Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante. Validação: Deve corresponder a soma do campo {vlrRetencao}, subtraído da soma do campo {vlrRetSub} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2010_evtservtom__vlrtotalretprinc__label">Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante*<a data-toggle="tooltip" title="Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante Validação: Deve corresponder a soma do campo {vlrRetencao}, subtraído da soma do campo {vlrRetSub} dos registros vinculados"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2010_evtservtom_form.vlrtotalretprinc.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2010_evtservtom_form.vlrtotalretprinc.errors }}
@@ -338,7 +339,7 @@
 <!-- inicio__r2010_evtservtom__vlrtotalretadic -->
 <div class="col-md-6" id="r2010_evtservtom__vlrtotalretadic__div">
   <div class="form-group">
-    <label id="r2010_evtservtom__vlrtotalretadic__label">Soma do valor do adicional de retenção das notas fiscais<a data-toggle="tooltip" title="Soma do valor do adicional de retenção das notas fiscais. Validação: Deve corresponder a soma do campo {vlrAdicional} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2010_evtservtom__vlrtotalretadic__label">Soma do valor do adicional de retenção das notas fiscais<a data-toggle="tooltip" title="Soma do valor do adicional de retenção das notas fiscais Validação: Deve corresponder a soma do campo {vlrAdicional} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2010_evtservtom_form.vlrtotalretadic.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2010_evtservtom_form.vlrtotalretadic.errors }}
@@ -356,7 +357,7 @@
 <!-- inicio__r2010_evtservtom__vlrtotalnretprinc -->
 <div class="col-md-6" id="r2010_evtservtom__vlrtotalnretprinc__div">
   <div class="form-group">
-    <label id="r2010_evtservtom__vlrtotalnretprinc__label">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial<a data-toggle="tooltip" title="Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial. Validação: Deve corresponder a soma do campo {vlrNRetPrinc} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2010_evtservtom__vlrtotalnretprinc__label">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial<a data-toggle="tooltip" title="Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial Validação: Deve corresponder a soma do campo {vlrNRetPrinc} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2010_evtservtom_form.vlrtotalnretprinc.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2010_evtservtom_form.vlrtotalnretprinc.errors }}
@@ -374,7 +375,7 @@
 <!-- inicio__r2010_evtservtom__vlrtotalnretadic -->
 <div class="col-md-6" id="r2010_evtservtom__vlrtotalnretadic__div">
   <div class="form-group">
-    <label id="r2010_evtservtom__vlrtotalnretadic__label">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial<a data-toggle="tooltip" title="Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial. Validação: Deve corresponder a soma do campo {vlrNRetAdic} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2010_evtservtom__vlrtotalnretadic__label">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial<a data-toggle="tooltip" title="Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial Validação: Deve corresponder a soma do campo {vlrNRetAdic} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2010_evtservtom_form.vlrtotalnretadic.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2010_evtservtom_form.vlrtotalnretadic.errors }}

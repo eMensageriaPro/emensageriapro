@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -637,7 +638,7 @@
 <!-- inicio__s2200_evtadmissao__matricula -->
 <div class="col-md-6" id="s2200_evtadmissao__matricula__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__matricula__label">Matricula*<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: O valor informado não pode conter a expressão "eSocial" nas 7 (sete) primeiras posições. Regra de validação: REGRA_CARACTER_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_evtadmissao__matricula__label">Matricula*<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: O valor informado não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições. Regra de validação: REGRA_CARACTER_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.matricula.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.matricula.errors }}
@@ -676,7 +677,7 @@
 <!-- inicio__s2200_evtadmissao__tpregprev -->
 <div class="col-md-6" id="s2200_evtadmissao__tpregprev__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__tpregprev__label">Tipo de regime previdenciário*<a data-toggle="tooltip" title="Tipo de regime previdenciário conforme opções abaixo: 1 - Regime Geral da Previdência Social - RGPS; 2 - Regime Próprio de Previdência Social - RPPS; 3 - Regime de Previdência Social no Exterior. Validação: Se {codCateg} = [104], deve ser preenchido com [1]. Se {codCateg} = [101, 102, 103, 105, 106, 111], não pode ser preenchido com [2]. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_evtadmissao__tpregprev__label">Tipo de regime previdenciário*<a data-toggle="tooltip" title="Tipo de regime previdenciário conforme opções abaixo: 1 - Regime Geral da Previdência Social - RGPS; 2 - Regime Próprio de Previdência Social - RPPS; 3 - Regime de Previdência Social no Exterior. Validação: Se {codCateg} = [104], deve ser preenchido com [1]. Se {codCateg} = [101, 102, 103, 105, 106, 107, 108, 111], não pode ser preenchido com [2]. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.tpregprev.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.tpregprev.errors }}

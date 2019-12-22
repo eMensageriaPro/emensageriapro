@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -5,7 +6,7 @@
 <!-- inicio__r1070_inclusao__r1070_evttabprocesso -->
 <div class="col-md-12" id="r1070_inclusao__r1070_evttabprocesso__div">
   <div class="form-group">
-    <label id="r1070_inclusao__r1070_evttabprocesso__label">Inclusão de novas informações*<a data-toggle="tooltip" title="Inclusão de novas informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r1070_inclusao__r1070_evttabprocesso__label">Inclusão de novas informações*<a data-toggle="tooltip" title="Inclusão de novas informações"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r1070_inclusao_form.r1070_evttabprocesso.value %}
         <a href="{% url 'r1070_evttabprocesso_salvar' pk=r1070_inclusao_form.r1070_evttabprocesso.value %}">
             [Acessar]
@@ -61,7 +62,7 @@
 <!-- inicio__r1070_inclusao__nrproc -->
 <div class="col-md-6" id="r1070_inclusao__nrproc__div">
   <div class="form-group">
-    <label id="r1070_inclusao__nrproc__label">Informar o número do processo administrativo/judicial*<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial. Validação: Validar o número do processo."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r1070_inclusao__nrproc__label">Informar o número do processo administrativo/judicial*<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial. Validação: Validar o número do processo"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1070_inclusao_form.nrproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1070_inclusao_form.nrproc.errors }}
@@ -100,7 +101,7 @@
 <!-- inicio__r1070_inclusao__fimvalid -->
 <div class="col-md-6" id="r1070_inclusao__fimvalid__div">
   <div class="form-group">
-    <label id="r1070_inclusao__fimvalid__label">Preencher com o mês e ano de término da validade das informações, se houver<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r1070_inclusao__fimvalid__label">Preencher com o mês e ano de término da validade das informações, se houver<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r1070_inclusao_form.fimvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r1070_inclusao_form.fimvalid.errors }}

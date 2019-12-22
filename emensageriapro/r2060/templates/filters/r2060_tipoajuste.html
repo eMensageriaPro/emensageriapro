@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -24,7 +25,7 @@
       <select name="tpajuste" class="form-control automate-select" style="width: 100%;">
         <option value="">-- selecione --</option>
         <option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'tpajuste' %}selected="selected"{% endifequal %} >0 - Ajuste de redução</option>
-        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpajuste' %}selected="selected"{% endifequal %} >1 - Ajuste de acréscimo.</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpajuste' %}selected="selected"{% endifequal %} >1 - Ajuste de acréscimo</option>
       </select>
     </div>
   </div>

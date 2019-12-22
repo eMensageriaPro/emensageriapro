@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1200_infoperant_ideestablot or 1 %}"Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração";{% endif %}{% if show_fields.show_matricula or 1 %}"Matricula";{% endif %}{% if show_fields.show_indsimples or 1 %}"Contribuição Substituída";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1200_infoperant_ideestablot or 1 %}"{{ c.s1200_infoperant_ideestablot }}";{% endif %}{% if show_fields.show_matricula or 1 %}"{{ c.matricula }}";{% endif %}{% if show_fields.show_indsimples or 1 %}"{{ c.indsimples }}";{% endif %}
 {% endfor %}

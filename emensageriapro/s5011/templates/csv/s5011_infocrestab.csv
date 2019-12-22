@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s5011_ideestab or 1 %}"Informações das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, consolidadas por estabelecimento e por código de Receita - CR.";{% endif %}{% if show_fields.show_tpcr or 1 %}"Código da Receita (CR)";{% endif %}{% if show_fields.show_vrcr or 1 %}"Valor do CR apurado";{% endif %}{% if show_fields.show_vrsuspcr or 1 %}"Valor suspenso correspondente ao CR";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s5011_ideestab or 1 %}"{{ c.s5011_ideestab }}";{% endif %}{% if show_fields.show_tpcr or 1 %}"{{ c.tpcr }}";{% endif %}{% if show_fields.show_vrcr or 1 %}"{{ c.vrcr }}";{% endif %}{% if show_fields.show_vrsuspcr or 1 %}"{{ c.vrsuspcr }}";{% endif %}
 {% endfor %}

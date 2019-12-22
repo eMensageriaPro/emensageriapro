@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2299_evtdeslig or 1 %}"Grupo de informações da sucessão de vínculo trabalhista/estatutário";{% endif %}{% if show_fields.show_tpinscsuc or 1 %}"Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05";{% endif %}{% if show_fields.show_cnpjsucessora or 1 %}"CNPJ sucessora";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2299_evtdeslig or 1 %}"{{ c.s2299_evtdeslig }}";{% endif %}{% if show_fields.show_tpinscsuc or 1 %}"{{ c.tpinscsuc }}";{% endif %}{% if show_fields.show_cnpjsucessora or 1 %}"{{ c.cnpjsucessora }}";{% endif %}
 {% endfor %}

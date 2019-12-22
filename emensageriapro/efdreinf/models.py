@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 from django.db import models
 from django.db.models import Sum
@@ -88,14 +89,6 @@ class r1000evtInfoContri(SoftDeletionModel):
         related_name='%(class)s_retornos_r5001', blank=True, null=True, )
     retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
         related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -190,14 +183,6 @@ class r1070evtTabProcesso(SoftDeletionModel):
         related_name='%(class)s_retornos_r5001', blank=True, null=True, )
     retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
         related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -306,14 +291,6 @@ class r2010evtServTom(SoftDeletionModel):
         related_name='%(class)s_retornos_r5001', blank=True, null=True, )
     retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
         related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -411,7 +388,7 @@ class r2020evtServPrest(SoftDeletionModel):
     verproc = models.CharField(max_length=20, null=True, )
     tpinsc = models.IntegerField(choices=CHOICES_R2020_TPINSC, null=True, )
     nrinsc = models.CharField(max_length=14, null=True, )
-    tpinscestabprest = models.IntegerField(choices=CHOICES_R2020_TPINSCESTABPREST, null=True, )
+    tpinscestabprest = models.IntegerField(null=True, )
     nrinscestabprest = models.CharField(max_length=14, null=True, )
     tpinsctomador = models.IntegerField(choices=CHOICES_R2020_TPINSCTOMADOR, null=True, )
     nrinsctomador = models.CharField(max_length=14, null=True, )
@@ -429,14 +406,6 @@ class r2020evtServPrest(SoftDeletionModel):
         related_name='%(class)s_retornos_r5001', blank=True, null=True, )
     retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
         related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -534,7 +503,7 @@ class r2030evtAssocDespRec(SoftDeletionModel):
     verproc = models.CharField(max_length=20, null=True, )
     tpinsc = models.IntegerField(choices=CHOICES_R2030_TPINSC, null=True, )
     nrinsc = models.CharField(max_length=14, null=True, )
-    tpinscestab = models.IntegerField(choices=CHOICES_R2030_TPINSCESTAB, null=True, )
+    tpinscestab = models.IntegerField(null=True, )
     nrinscestab = models.CharField(max_length=14, null=True, )
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00', )
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -543,14 +512,6 @@ class r2030evtAssocDespRec(SoftDeletionModel):
         related_name='%(class)s_retornos_r5001', blank=True, null=True, )
     retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
         related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -651,14 +612,6 @@ class r2040evtAssocDespRep(SoftDeletionModel):
         related_name='%(class)s_retornos_r5001', blank=True, null=True, )
     retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
         related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -766,14 +719,6 @@ class r2050evtComProd(SoftDeletionModel):
         related_name='%(class)s_retornos_r5001', blank=True, null=True, )
     retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
         related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -869,7 +814,7 @@ class r2060evtCPRB(SoftDeletionModel):
     verproc = models.CharField(max_length=20, null=True, )
     tpinsc = models.IntegerField(choices=CHOICES_R2060_TPINSC, null=True, )
     nrinsc = models.CharField(max_length=14, null=True, )
-    tpinscestab = models.IntegerField(choices=CHOICES_R2060_TPINSCESTAB, null=True, )
+    tpinscestab = models.IntegerField(null=True, )
     nrinscestab = models.CharField(max_length=14, null=True, )
     vlrrecbrutatotal = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcpapurtotal = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
@@ -881,14 +826,6 @@ class r2060evtCPRB(SoftDeletionModel):
         related_name='%(class)s_retornos_r5001', blank=True, null=True, )
     retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
         related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -993,14 +930,6 @@ class r2070evtPgtosDivs(SoftDeletionModel):
         related_name='%(class)s_retornos_r5001', blank=True, null=True, )
     retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
         related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -1097,14 +1026,6 @@ class r2098evtReabreEvPer(SoftDeletionModel):
         related_name='%(class)s_retornos_r5001', blank=True, null=True, )
     retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
         related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -1206,14 +1127,6 @@ class r2099evtFechaEvPer(SoftDeletionModel):
         related_name='%(class)s_retornos_r5001', blank=True, null=True, )
     retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
         related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -1322,14 +1235,6 @@ class r3010evtEspDesportivo(SoftDeletionModel):
         related_name='%(class)s_retornos_r5001', blank=True, null=True, )
     retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
         related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -1401,541 +1306,6 @@ class r3010evtEspDesportivoSerializer(ModelSerializer):
     class Meta:
 
         model = r3010evtEspDesportivo
-        fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
-
-
-class r4010evtRetPF(SoftDeletionModel):
-
-    identidade = models.CharField(max_length=36, blank=True, null=True, )
-    indretif = models.IntegerField(choices=CHOICES_R4010_INDRETIF, null=True, )
-    nrrecibo = models.CharField(max_length=52, blank=True, null=True, )
-    perapur = models.CharField(max_length=10, null=True, )
-    tpamb = models.IntegerField(choices=CHOICES_R4010_TPAMB, null=True, )
-    procemi = models.IntegerField(choices=CHOICES_R4010_PROCEMI, null=True, default=1, )
-    verproc = models.CharField(max_length=20, null=True, )
-    tpinsc = models.IntegerField(choices=CHOICES_R4010_TPINSC, null=True, )
-    nrinsc = models.CharField(max_length=14, null=True, )
-    tpinscestab = models.IntegerField(choices=CHOICES_R4010_TPINSCESTAB, null=True, )
-    nrinscestab = models.CharField(max_length=14, null=True, )
-    cpfbenef = models.CharField(max_length=11, blank=True, null=True, )
-    nmbenef = models.CharField(max_length=70, blank=True, null=True, )
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00', )
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True, )
-    retornos_r5001 = models.ForeignKey('efdreinf.r5001evtTotal',
-        related_name='%(class)s_retornos_r5001', blank=True, null=True, )
-    retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
-        related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
-    validacoes = models.TextField(blank=True, null=True, )
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
-    arquivo = models.CharField(max_length=200, blank=True, null=True, )
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    cdretorno = models.CharField(max_length=6, blank=True, null=True, )
-    descretorno = models.CharField(max_length=255, blank=True, null=True, )
-    dhprocess = models.DateTimeField(blank=True, null=True, )
-    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
-
-    def __unicode__(self):
-        return unicode(self.identidade)
-
-    def evento(self):
-
-        return self.__dict__
-
-    def validar(self, request):
-
-        from emensageriapro.efdreinf.views.r4010_evtretpf_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
-
-    class Meta:
-
-        # verbose_name = u'R-4010 - Retenções na Fonte - Pessoa Física'
-        db_table = r'r4010_evtretpf'
-        managed = True  # r4010_evtretpf #
-
-        unique_together = ( )
-
-        index_together = ()
-
-        permissions = (
-            ("can_see_list_r4010evtRetPF", u"Pode ver listagem do modelo R4010EVTRETPF"),
-            ("can_see_data_r4010evtRetPF", u"Pode visualizar o conteúdo do modelo R4010EVTRETPF"),
-            ("can_see_menu_r4010evtRetPF", u"Pode visualizar no menu o modelo R4010EVTRETPF"),
-            ("can_print_list_r4010evtRetPF", u"Pode imprimir listagem do modelo R4010EVTRETPF"),
-            ("can_print_data_r4010evtRetPF", u"Pode imprimir o conteúdo do modelo R4010EVTRETPF"),
-            ("can_open_r4010evtRetPF", u"Pode abrir o evento R4010EVTRETPF para edição"),
-            ("can_duplicate_r4010evtRetPF", u"Pode duplicar o evento R4010EVTRETPF"),
-            ("can_validate_r4010evtRetPF", u"Pode validar o evento R4010EVTRETPF"),
-            ("can_change_identity_r4010evtRetPF", u"Pode alterar identidade do evento R4010EVTRETPF"),
-            ("can_see_layout_r4010evtRetPF", u"Pode ver layout do evento R4010EVTRETPF"),
-            ("can_see_receipt_r4010evtRetPF", u"Pode ver recibo do evento R4010EVTRETPF"),
-            ("can_see_xml_r4010evtRetPF", u"Pode ver xml do evento R4010EVTRETPF"),)
-
-        ordering = [
-            'identidade',
-            'indretif',
-            'perapur',
-            'tpamb',
-            'procemi',
-            'verproc',
-            'tpinsc',
-            'nrinsc',
-            'tpinscestab',
-            'nrinscestab', ]
-
-
-
-class r4010evtRetPFSerializer(ModelSerializer):
-
-    class Meta:
-
-        model = r4010evtRetPF
-        fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
-
-
-class r4020evtRetPJ(SoftDeletionModel):
-
-    identidade = models.CharField(max_length=36, blank=True, null=True, )
-    indretif = models.IntegerField(choices=CHOICES_R4020_INDRETIF, null=True, )
-    nrrecibo = models.CharField(max_length=52, blank=True, null=True, )
-    perapur = models.CharField(max_length=10, null=True, )
-    tpamb = models.IntegerField(choices=CHOICES_R4020_TPAMB, null=True, )
-    procemi = models.IntegerField(choices=CHOICES_R4020_PROCEMI, null=True, default=1, )
-    verproc = models.CharField(max_length=20, null=True, )
-    tpinsc = models.IntegerField(choices=CHOICES_R4020_TPINSC, null=True, )
-    nrinsc = models.CharField(max_length=14, null=True, )
-    tpinscestab = models.IntegerField(choices=CHOICES_R4020_TPINSCESTAB, null=True, )
-    nrinscestab = models.CharField(max_length=14, null=True, )
-    cnpjbenef = models.CharField(max_length=14, blank=True, null=True, )
-    nmbenef = models.CharField(max_length=70, blank=True, null=True, )
-    isenimun = models.IntegerField(choices=CHOICES_R4020_ISENIMUN, null=True, )
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00', )
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True, )
-    retornos_r5001 = models.ForeignKey('efdreinf.r5001evtTotal',
-        related_name='%(class)s_retornos_r5001', blank=True, null=True, )
-    retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
-        related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
-    validacoes = models.TextField(blank=True, null=True, )
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
-    arquivo = models.CharField(max_length=200, blank=True, null=True, )
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    cdretorno = models.CharField(max_length=6, blank=True, null=True, )
-    descretorno = models.CharField(max_length=255, blank=True, null=True, )
-    dhprocess = models.DateTimeField(blank=True, null=True, )
-    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
-
-    def __unicode__(self):
-        return unicode(self.identidade)
-
-    def evento(self):
-
-        return self.__dict__
-
-    def validar(self, request):
-
-        from emensageriapro.efdreinf.views.r4020_evtretpj_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
-
-    class Meta:
-
-        # verbose_name = u'R-4020 - Retenções na Fonte - Pessoa Jurídica'
-        db_table = r'r4020_evtretpj'
-        managed = True  # r4020_evtretpj #
-
-        unique_together = ( )
-
-        index_together = ()
-
-        permissions = (
-            ("can_see_list_r4020evtRetPJ", u"Pode ver listagem do modelo R4020EVTRETPJ"),
-            ("can_see_data_r4020evtRetPJ", u"Pode visualizar o conteúdo do modelo R4020EVTRETPJ"),
-            ("can_see_menu_r4020evtRetPJ", u"Pode visualizar no menu o modelo R4020EVTRETPJ"),
-            ("can_print_list_r4020evtRetPJ", u"Pode imprimir listagem do modelo R4020EVTRETPJ"),
-            ("can_print_data_r4020evtRetPJ", u"Pode imprimir o conteúdo do modelo R4020EVTRETPJ"),
-            ("can_open_r4020evtRetPJ", u"Pode abrir o evento R4020EVTRETPJ para edição"),
-            ("can_duplicate_r4020evtRetPJ", u"Pode duplicar o evento R4020EVTRETPJ"),
-            ("can_validate_r4020evtRetPJ", u"Pode validar o evento R4020EVTRETPJ"),
-            ("can_change_identity_r4020evtRetPJ", u"Pode alterar identidade do evento R4020EVTRETPJ"),
-            ("can_see_layout_r4020evtRetPJ", u"Pode ver layout do evento R4020EVTRETPJ"),
-            ("can_see_receipt_r4020evtRetPJ", u"Pode ver recibo do evento R4020EVTRETPJ"),
-            ("can_see_xml_r4020evtRetPJ", u"Pode ver xml do evento R4020EVTRETPJ"),)
-
-        ordering = [
-            'identidade',
-            'indretif',
-            'perapur',
-            'tpamb',
-            'procemi',
-            'verproc',
-            'tpinsc',
-            'nrinsc',
-            'tpinscestab',
-            'nrinscestab',
-            'isenimun', ]
-
-
-
-class r4020evtRetPJSerializer(ModelSerializer):
-
-    class Meta:
-
-        model = r4020evtRetPJ
-        fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
-
-
-class r4040evtBenefNId(SoftDeletionModel):
-
-    identidade = models.CharField(max_length=36, blank=True, null=True, )
-    indretif = models.IntegerField(choices=CHOICES_R4040_INDRETIF, null=True, )
-    nrrecibo = models.CharField(max_length=52, blank=True, null=True, )
-    perapur = models.CharField(max_length=10, null=True, )
-    tpamb = models.IntegerField(choices=CHOICES_R4040_TPAMB, null=True, )
-    procemi = models.IntegerField(choices=CHOICES_R4040_PROCEMI, null=True, default=1, )
-    verproc = models.CharField(max_length=20, null=True, )
-    tpinsc = models.IntegerField(choices=CHOICES_R4040_TPINSC, null=True, )
-    nrinsc = models.CharField(max_length=14, null=True, )
-    tpinscestab = models.IntegerField(choices=CHOICES_R4040_TPINSCESTAB, null=True, )
-    nrinscestab = models.CharField(max_length=14, null=True, )
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00', )
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True, )
-    retornos_r5001 = models.ForeignKey('efdreinf.r5001evtTotal',
-        related_name='%(class)s_retornos_r5001', blank=True, null=True, )
-    retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
-        related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
-    validacoes = models.TextField(blank=True, null=True, )
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
-    arquivo = models.CharField(max_length=200, blank=True, null=True, )
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    cdretorno = models.CharField(max_length=6, blank=True, null=True, )
-    descretorno = models.CharField(max_length=255, blank=True, null=True, )
-    dhprocess = models.DateTimeField(blank=True, null=True, )
-    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
-
-    def __unicode__(self):
-        return unicode(self.identidade)
-
-    def evento(self):
-
-        return self.__dict__
-
-    def validar(self, request):
-
-        from emensageriapro.efdreinf.views.r4040_evtbenefnid_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
-
-    class Meta:
-
-        # verbose_name = u'R-4040 - Retenções na Fonte - Beneficiários não identificados'
-        db_table = r'r4040_evtbenefnid'
-        managed = True  # r4040_evtbenefnid #
-
-        unique_together = ( )
-
-        index_together = ()
-
-        permissions = (
-            ("can_see_list_r4040evtBenefNId", u"Pode ver listagem do modelo R4040EVTBENEFNID"),
-            ("can_see_data_r4040evtBenefNId", u"Pode visualizar o conteúdo do modelo R4040EVTBENEFNID"),
-            ("can_see_menu_r4040evtBenefNId", u"Pode visualizar no menu o modelo R4040EVTBENEFNID"),
-            ("can_print_list_r4040evtBenefNId", u"Pode imprimir listagem do modelo R4040EVTBENEFNID"),
-            ("can_print_data_r4040evtBenefNId", u"Pode imprimir o conteúdo do modelo R4040EVTBENEFNID"),
-            ("can_open_r4040evtBenefNId", u"Pode abrir o evento R4040EVTBENEFNID para edição"),
-            ("can_duplicate_r4040evtBenefNId", u"Pode duplicar o evento R4040EVTBENEFNID"),
-            ("can_validate_r4040evtBenefNId", u"Pode validar o evento R4040EVTBENEFNID"),
-            ("can_change_identity_r4040evtBenefNId", u"Pode alterar identidade do evento R4040EVTBENEFNID"),
-            ("can_see_layout_r4040evtBenefNId", u"Pode ver layout do evento R4040EVTBENEFNID"),
-            ("can_see_receipt_r4040evtBenefNId", u"Pode ver recibo do evento R4040EVTBENEFNID"),
-            ("can_see_xml_r4040evtBenefNId", u"Pode ver xml do evento R4040EVTBENEFNID"),)
-
-        ordering = [
-            'identidade',
-            'indretif',
-            'perapur',
-            'tpamb',
-            'procemi',
-            'verproc',
-            'tpinsc',
-            'nrinsc',
-            'tpinscestab',
-            'nrinscestab', ]
-
-
-
-class r4040evtBenefNIdSerializer(ModelSerializer):
-
-    class Meta:
-
-        model = r4040evtBenefNId
-        fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
-
-
-class r4098evtReab(SoftDeletionModel):
-
-    identidade = models.CharField(max_length=36, blank=True, null=True, )
-    perapur = models.CharField(max_length=10, null=True, )
-    tpamb = models.IntegerField(choices=CHOICES_R4098_TPAMB, null=True, )
-    procemi = models.IntegerField(choices=CHOICES_R4098_PROCEMI, null=True, default=1, )
-    verproc = models.CharField(max_length=20, null=True, )
-    tpinsc = models.IntegerField(choices=CHOICES_R4098_TPINSC, null=True, )
-    nrinsc = models.CharField(max_length=14, null=True, )
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00', )
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True, )
-    retornos_r5001 = models.ForeignKey('efdreinf.r5001evtTotal',
-        related_name='%(class)s_retornos_r5001', blank=True, null=True, )
-    retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
-        related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
-    validacoes = models.TextField(blank=True, null=True, )
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
-    arquivo = models.CharField(max_length=200, blank=True, null=True, )
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    cdretorno = models.CharField(max_length=6, blank=True, null=True, )
-    descretorno = models.CharField(max_length=255, blank=True, null=True, )
-    dhprocess = models.DateTimeField(blank=True, null=True, )
-    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
-
-    def __unicode__(self):
-        return unicode(self.identidade)
-
-    def evento(self):
-
-        return self.__dict__
-
-    def validar(self, request):
-
-        from emensageriapro.efdreinf.views.r4098_evtreab_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
-
-    class Meta:
-
-        # verbose_name = u'R-4098 - Reabertura dos Eventos Periódicos Série R-4000'
-        db_table = r'r4098_evtreab'
-        managed = True  # r4098_evtreab #
-
-        unique_together = ( )
-
-        index_together = ()
-
-        permissions = (
-            ("can_see_list_r4098evtReab", u"Pode ver listagem do modelo R4098EVTREAB"),
-            ("can_see_data_r4098evtReab", u"Pode visualizar o conteúdo do modelo R4098EVTREAB"),
-            ("can_see_menu_r4098evtReab", u"Pode visualizar no menu o modelo R4098EVTREAB"),
-            ("can_print_list_r4098evtReab", u"Pode imprimir listagem do modelo R4098EVTREAB"),
-            ("can_print_data_r4098evtReab", u"Pode imprimir o conteúdo do modelo R4098EVTREAB"),
-            ("can_open_r4098evtReab", u"Pode abrir o evento R4098EVTREAB para edição"),
-            ("can_duplicate_r4098evtReab", u"Pode duplicar o evento R4098EVTREAB"),
-            ("can_validate_r4098evtReab", u"Pode validar o evento R4098EVTREAB"),
-            ("can_change_identity_r4098evtReab", u"Pode alterar identidade do evento R4098EVTREAB"),
-            ("can_see_layout_r4098evtReab", u"Pode ver layout do evento R4098EVTREAB"),
-            ("can_see_receipt_r4098evtReab", u"Pode ver recibo do evento R4098EVTREAB"),
-            ("can_see_xml_r4098evtReab", u"Pode ver xml do evento R4098EVTREAB"),)
-
-        ordering = [
-            'identidade',
-            'perapur',
-            'tpamb',
-            'procemi',
-            'verproc',
-            'tpinsc',
-            'nrinsc', ]
-
-
-
-class r4098evtReabSerializer(ModelSerializer):
-
-    class Meta:
-
-        model = r4098evtReab
-        fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
-
-
-class r4099evtFech(SoftDeletionModel):
-
-    identidade = models.CharField(max_length=36, blank=True, null=True, )
-    perapur = models.CharField(max_length=10, null=True, )
-    tpamb = models.IntegerField(choices=CHOICES_R4099_TPAMB, null=True, )
-    procemi = models.IntegerField(choices=CHOICES_R4099_PROCEMI, null=True, default=1, )
-    verproc = models.CharField(max_length=20, null=True, )
-    tpinsc = models.IntegerField(choices=CHOICES_R4099_TPINSC, null=True, )
-    nrinsc = models.CharField(max_length=14, null=True, )
-    evtretpf = models.CharField(choices=CHOICES_R4099_EVTRETPF, max_length=1, blank=True, null=True, )
-    evtretpj = models.CharField(choices=CHOICES_R4099_EVTRETPJ, max_length=1, blank=True, null=True, )
-    evtpgtosnid = models.CharField(choices=CHOICES_R4099_EVTPGTOSNID, max_length=1, blank=True, null=True, )
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00', )
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True, )
-    retornos_r5001 = models.ForeignKey('efdreinf.r5001evtTotal',
-        related_name='%(class)s_retornos_r5001', blank=True, null=True, )
-    retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
-        related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
-    validacoes = models.TextField(blank=True, null=True, )
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
-    arquivo = models.CharField(max_length=200, blank=True, null=True, )
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    cdretorno = models.CharField(max_length=6, blank=True, null=True, )
-    descretorno = models.CharField(max_length=255, blank=True, null=True, )
-    dhprocess = models.DateTimeField(blank=True, null=True, )
-    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
-
-    def __unicode__(self):
-        return unicode(self.identidade)
-
-    def evento(self):
-
-        return self.__dict__
-
-    def validar(self, request):
-
-        from emensageriapro.efdreinf.views.r4099_evtfech_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
-
-    class Meta:
-
-        # verbose_name = u'R-4099 - Fechamento dos Eventos Periódicos Série R-4000'
-        db_table = r'r4099_evtfech'
-        managed = True  # r4099_evtfech #
-
-        unique_together = ( )
-
-        index_together = ()
-
-        permissions = (
-            ("can_see_list_r4099evtFech", u"Pode ver listagem do modelo R4099EVTFECH"),
-            ("can_see_data_r4099evtFech", u"Pode visualizar o conteúdo do modelo R4099EVTFECH"),
-            ("can_see_menu_r4099evtFech", u"Pode visualizar no menu o modelo R4099EVTFECH"),
-            ("can_print_list_r4099evtFech", u"Pode imprimir listagem do modelo R4099EVTFECH"),
-            ("can_print_data_r4099evtFech", u"Pode imprimir o conteúdo do modelo R4099EVTFECH"),
-            ("can_open_r4099evtFech", u"Pode abrir o evento R4099EVTFECH para edição"),
-            ("can_duplicate_r4099evtFech", u"Pode duplicar o evento R4099EVTFECH"),
-            ("can_validate_r4099evtFech", u"Pode validar o evento R4099EVTFECH"),
-            ("can_change_identity_r4099evtFech", u"Pode alterar identidade do evento R4099EVTFECH"),
-            ("can_see_layout_r4099evtFech", u"Pode ver layout do evento R4099EVTFECH"),
-            ("can_see_receipt_r4099evtFech", u"Pode ver recibo do evento R4099EVTFECH"),
-            ("can_see_xml_r4099evtFech", u"Pode ver xml do evento R4099EVTFECH"),)
-
-        ordering = [
-            'identidade',
-            'perapur',
-            'tpamb',
-            'procemi',
-            'verproc',
-            'tpinsc',
-            'nrinsc', ]
-
-
-
-class r4099evtFechSerializer(ModelSerializer):
-
-    class Meta:
-
-        model = r4099evtFech
         fields = '__all__'
         read_only_fields = ('id', 'verproc',
                             'tpamb', 'procemi',
@@ -2104,14 +1474,6 @@ class r9000evtExclusao(SoftDeletionModel):
         related_name='%(class)s_retornos_r5001', blank=True, null=True, )
     retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
         related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -2189,277 +1551,3 @@ class r9000evtExclusaoSerializer(ModelSerializer):
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
                             'desativado_em', 'desativado_por', 'ativo')
-
-
-class r9001evtTotal(SoftDeletionModel):
-
-    identidade = models.CharField(max_length=36, blank=True, null=True, )
-    perapur = models.CharField(max_length=10, null=True, )
-    tpinsc = models.IntegerField(choices=CHOICES_R9001_TPINSC, null=True, )
-    nrinsc = models.CharField(max_length=14, null=True, )
-    cdretorno = models.IntegerField(choices=CHOICES_R9001_CDRETORNO, null=True, )
-    descretorno = models.CharField(max_length=1000, null=True, )
-    nrprotentr = models.CharField(max_length=49, blank=True, null=True, )
-    dhprocess = models.DateField(null=True, )
-    tpev = models.TextField(null=True, )
-    idev = models.CharField(max_length=36, null=True, )
-    hash = models.CharField(max_length=60, null=True, )
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00', )
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
-    validacoes = models.TextField(blank=True, null=True, )
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
-    arquivo = models.CharField(max_length=200, blank=True, null=True, )
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    cdretorno = models.CharField(max_length=6, blank=True, null=True, )
-    descretorno = models.CharField(max_length=255, blank=True, null=True, )
-    dhprocess = models.DateTimeField(blank=True, null=True, )
-    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
-
-    def __unicode__(self):
-        return unicode(self.identidade)
-
-    class Meta:
-
-        # verbose_name = u'R-9001 - Informações de bases e tributos por evento - Contrib. Previdenc.'
-        db_table = r'r9001_evttotal'
-        managed = True  # r9001_evttotal #
-
-        unique_together = ( )
-
-        index_together = ()
-
-        permissions = (
-            ("can_see_list_r9001evtTotal", u"Pode ver listagem do modelo R9001EVTTOTAL"),
-            ("can_see_receipt_r9001evtTotal", u"Pode ver recibo do evento R9001EVTTOTAL"),
-        )
-
-        ordering = [
-            'identidade',
-            'perapur',
-            'tpinsc',
-            'nrinsc',
-            'cdretorno',
-            'descretorno',
-            'dhprocess',
-            'tpev',
-            'idev',
-            'hash', ]
-
-
-
-class r9001evtTotalSerializer(ModelSerializer):
-
-    class Meta:
-
-        model = r9001evtTotal
-        fields = '__all__'
-
-
-class r9002evtRet(SoftDeletionModel):
-
-    identidade = models.CharField(max_length=36, blank=True, null=True, )
-    perref = models.CharField(max_length=7, null=True, )
-    tpinsc = models.IntegerField(choices=CHOICES_R9002_TPINSC, null=True, )
-    nrinsc = models.CharField(max_length=14, null=True, )
-    cdretorno = models.IntegerField(choices=CHOICES_R9002_CDRETORNO, null=True, )
-    descretorno = models.CharField(max_length=1000, null=True, )
-    nrprotentr = models.CharField(max_length=49, blank=True, null=True, )
-    dhprocess = models.DateField(null=True, )
-    tpev = models.TextField(null=True, )
-    idev = models.CharField(max_length=36, null=True, )
-    hash = models.CharField(max_length=60, null=True, )
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00', )
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
-    validacoes = models.TextField(blank=True, null=True, )
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
-    arquivo = models.CharField(max_length=200, blank=True, null=True, )
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    cdretorno = models.CharField(max_length=6, blank=True, null=True, )
-    descretorno = models.CharField(max_length=255, blank=True, null=True, )
-    dhprocess = models.DateTimeField(blank=True, null=True, )
-    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
-
-    def __unicode__(self):
-        return unicode(self.identidade)
-
-    class Meta:
-
-        # verbose_name = u'R-9002 - Informações de bases e tributos por evento - Retenções na fonte'
-        db_table = r'r9002_evtret'
-        managed = True  # r9002_evtret #
-
-        unique_together = ( )
-
-        index_together = ()
-
-        permissions = (
-            ("can_see_list_r9002evtRet", u"Pode ver listagem do modelo R9002EVTRET"),
-            ("can_see_receipt_r9002evtRet", u"Pode ver recibo do evento R9002EVTRET"),
-        )
-
-        ordering = [
-            'identidade',
-            'perref',
-            'tpinsc',
-            'nrinsc',
-            'cdretorno',
-            'descretorno',
-            'dhprocess',
-            'tpev',
-            'idev',
-            'hash', ]
-
-
-
-class r9002evtRetSerializer(ModelSerializer):
-
-    class Meta:
-
-        model = r9002evtRet
-        fields = '__all__'
-
-
-class r9011evtTotalContrib(SoftDeletionModel):
-
-    identidade = models.CharField(max_length=36, blank=True, null=True, )
-    perapur = models.CharField(max_length=10, null=True, )
-    tpinsc = models.IntegerField(choices=CHOICES_R9011_TPINSC, null=True, )
-    nrinsc = models.CharField(max_length=14, null=True, )
-    cdretorno = models.IntegerField(choices=CHOICES_R9011_CDRETORNO, null=True, )
-    descretorno = models.CharField(max_length=1000, null=True, )
-    nrprotentr = models.CharField(max_length=49, null=True, )
-    dhprocess = models.DateField(null=True, )
-    tpev = models.TextField(null=True, )
-    idev = models.CharField(max_length=36, null=True, )
-    hash = models.CharField(max_length=60, null=True, )
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00', )
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
-    validacoes = models.TextField(blank=True, null=True, )
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
-    arquivo = models.CharField(max_length=200, blank=True, null=True, )
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    cdretorno = models.CharField(max_length=6, blank=True, null=True, )
-    descretorno = models.CharField(max_length=255, blank=True, null=True, )
-    dhprocess = models.DateTimeField(blank=True, null=True, )
-    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
-
-    def __unicode__(self):
-        return unicode(self.identidade)
-
-    class Meta:
-
-        # verbose_name = u'R-9011 - Informações consolidadas de bases e tributos - Contrib. Previdenciária'
-        db_table = r'r9011_evttotalcontrib'
-        managed = True  # r9011_evttotalcontrib #
-
-        unique_together = ( )
-
-        index_together = ()
-
-        permissions = (
-            ("can_see_list_r9011evtTotalContrib", u"Pode ver listagem do modelo R9011EVTTOTALCONTRIB"),
-            ("can_see_receipt_r9011evtTotalContrib", u"Pode ver recibo do evento R9011EVTTOTALCONTRIB"),
-        )
-
-        ordering = [
-            'identidade',
-            'perapur',
-            'tpinsc',
-            'nrinsc',
-            'cdretorno',
-            'descretorno',
-            'nrprotentr',
-            'dhprocess',
-            'tpev',
-            'idev',
-            'hash', ]
-
-
-
-class r9011evtTotalContribSerializer(ModelSerializer):
-
-    class Meta:
-
-        model = r9011evtTotalContrib
-        fields = '__all__'
-
-
-class r9012evtRetCons(SoftDeletionModel):
-
-    identidade = models.CharField(max_length=36, blank=True, null=True, )
-    perapur = models.CharField(max_length=10, null=True, )
-    tpinsc = models.IntegerField(choices=CHOICES_R9012_TPINSC, null=True, )
-    nrinsc = models.CharField(max_length=14, null=True, )
-    cdretorno = models.IntegerField(choices=CHOICES_R9012_CDRETORNO, null=True, )
-    descretorno = models.CharField(max_length=1000, null=True, )
-    nrprotentr = models.CharField(max_length=49, null=True, )
-    dhprocess = models.DateField(null=True, )
-    tpev = models.TextField(null=True, )
-    idev = models.CharField(max_length=36, null=True, )
-    hash = models.CharField(max_length=60, null=True, )
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00', )
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
-    validacoes = models.TextField(blank=True, null=True, )
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
-    arquivo = models.CharField(max_length=200, blank=True, null=True, )
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    cdretorno = models.CharField(max_length=6, blank=True, null=True, )
-    descretorno = models.CharField(max_length=255, blank=True, null=True, )
-    dhprocess = models.DateTimeField(blank=True, null=True, )
-    transmissor_lote_efdreinf_error = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf_error', blank=True, null=True, )
-
-    def __unicode__(self):
-        return unicode(self.identidade)
-
-    class Meta:
-
-        # verbose_name = u'R-9012 - Informações consolidadas de bases e tributos - Retenções na fonte'
-        db_table = r'r9012_evtretcons'
-        managed = True  # r9012_evtretcons #
-
-        unique_together = ( )
-
-        index_together = ()
-
-        permissions = (
-            ("can_see_list_r9012evtRetCons", u"Pode ver listagem do modelo R9012EVTRETCONS"),
-            ("can_see_receipt_r9012evtRetCons", u"Pode ver recibo do evento R9012EVTRETCONS"),
-        )
-
-        ordering = [
-            'identidade',
-            'perapur',
-            'tpinsc',
-            'nrinsc',
-            'cdretorno',
-            'descretorno',
-            'nrprotentr',
-            'dhprocess',
-            'tpev',
-            'idev',
-            'hash', ]
-
-
-
-class r9012evtRetConsSerializer(ModelSerializer):
-
-    class Meta:
-
-        model = r9012evtRetCons
-        fields = '__all__'

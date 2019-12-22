@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1000_alteracao or 1 %}"Informações exclusivas de organismos internacionais e outras instituições extraterritoriais";{% endif %}{% if show_fields.show_indacordoisenmulta or 1 %}"Acordo internacional";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1000_alteracao or 1 %}"{{ c.s1000_alteracao }}";{% endif %}{% if show_fields.show_indacordoisenmulta or 1 %}"{{ c.indacordoisenmulta }}";{% endif %}
 {% endfor %}

@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -103,7 +104,7 @@ def validacoes_r5011_evttotalcontrib(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'regOcorrs.tpOcorr',
                                                                   regOcorrs.tpOcorr.cdata,
-                                                                  1, u'None')
+                                                                  1, u'1, 2')
         
                             if 'localErroAviso' in dir(regOcorrs):
                                 validacoes_lista = validar_campo( validacoes_lista,

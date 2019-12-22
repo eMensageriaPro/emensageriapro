@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s2300_evttsvinicio or 1 %}"Informações de afastamento do trabalhador";{% endif %}{% if show_fields.show_dtiniafast or 1 %}"Data de início do afastamento";{% endif %}{% if show_fields.show_codmotafast or 1 %}"Afastamento";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s2300_evttsvinicio or 1 %}"{{ c.s2300_evttsvinicio }}";{% endif %}{% if show_fields.show_dtiniafast or 1 %}"{{ c.dtiniafast }}";{% endif %}{% if show_fields.show_codmotafast or 1 %}"{{ c.codmotafast }}";{% endif %}
 {% endfor %}

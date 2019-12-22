@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -94,7 +95,7 @@ def validacoes_s2306_evttsvaltcontr(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'ideEmpregador.tpInsc',
                                                   ideEmpregador.tpInsc.cdata,
-                                                  1, u'1, 2, 3, 4, 5')
+                                                  1, u'1, 2, 3, 4, 5, 6')
 
             if 'nrInsc' in dir(ideEmpregador):
                 validacoes_lista = validar_campo( validacoes_lista,
@@ -121,7 +122,7 @@ def validacoes_s2306_evttsvaltcontr(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'ideTrabSemVinculo.codCateg',
                                                   ideTrabSemVinculo.codCateg.cdata,
-                                                  1, u'101, 102, 103, 104, 105, 106, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
+                                                  1, u'101, 102, 103, 104, 105, 106, 107, 108, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
 
     if 'infoTSVAlteracao' in dir(evtTSVAltContr.infoTSVAlteracao):
         for infoTSVAlteracao in evtTSVAltContr.infoTSVAlteracao:
@@ -184,7 +185,7 @@ def validacoes_s2306_evttsvaltcontr(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'infoTrabCedido.indRemunCargo',
                                                                   infoTrabCedido.indRemunCargo.cdata,
-                                                                  1, u'None')
+                                                                  1, u'S, N')
 
                     if 'infoEstagiario' in dir(infoComplementares.infoEstagiario):
                         for infoEstagiario in infoComplementares.infoEstagiario:

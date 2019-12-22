@@ -1,3 +1,4 @@
+-- eMensageriaAI --
 UPDATE public.s1010_inclusao a
    SET ativo=b.ativo, desativado_em=b.desativado_em, desativado_por_id=b.desativado_por_id
   FROM public.s1010_evttabrubrica b

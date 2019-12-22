@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}
 <table {% if not output %}
     class="table table-bordered"{% else %}
@@ -6,13 +7,13 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtTabProcesso</td>
-            <td bgcolor="lightgray" colspan="3">Evento Tabela de Processos. Regras de validação: REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_PERMITE_ALT_EXCL_CODSUSP REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TAB_PERMITE_EXCLUSAO REGRA_TAB_VALIDA_DT_FUTURA</td>
+            <td bgcolor="lightgray" colspan="3">Evento Tabela de Processos Regras de validação: REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_PERMITE_ALT_EXCL_CODSUSP REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TAB_PERMITE_EXCLUSAO</td>
         </tr>
     {% for r1070_evttabprocesso in r1070_evttabprocesso_lista %}
     {% ifequal 1 1 %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
         </tr>
 
         <tr {% if r1070_evttabprocesso.tpamb|validacoes_esocial_efdreinf:"r1070_evttabprocesso.tpamb" %}bgcolor="lightcoral"{% endif %}>
@@ -74,12 +75,12 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideContri</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte</td>
         </tr>
 
         <tr {% if r1070_evttabprocesso.tpinsc|validacoes_esocial_efdreinf:"r1070_evttabprocesso.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF). Valores Válidos: 1, 2.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF) Valores Válidos: 1, 2</td>
             <td width="200px"><b>{% if r1070_evttabprocesso.tpinsc or r1070_evttabprocesso.tpinsc == 0 %}{{ r1070_evttabprocesso.tpinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -117,18 +118,18 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoProcesso</td>
-            <td bgcolor="lightgray" colspan="3">Informações do Processo.</td>
+            <td bgcolor="lightgray" colspan="3">Informações do Processo</td>
         </tr>
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">inclusao</td>
-            <td bgcolor="lightgray" colspan="3">Inclusão de novas informações.</td>
+            <td bgcolor="lightgray" colspan="3">Inclusão de novas informações</td>
         </tr>
     {% for r1070_inclusao in r1070_inclusao_lista %}
     {% ifequal r1070_inclusao.r1070_evttabprocesso.id r1070_evttabprocesso.id %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideProcesso</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do Processo e validade das informações que estão sendo incluídas.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do Processo e validade das informações que estão sendo incluídas</td>
         </tr>
 
         <tr {% if r1070_inclusao.tpproc|validacoes_esocial_efdreinf:"r1070_inclusao.tpproc" %}bgcolor="lightcoral"{% endif %}>
@@ -152,7 +153,7 @@
 
         <tr {% if r1070_inclusao.nrproc|validacoes_esocial_efdreinf:"r1070_inclusao.nrproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProc</td>
-            <td width="500px">Informar o número do processo administrativo/judicial. Validação: Validar o número do processo.</td>
+            <td width="500px">Informar o número do processo administrativo/judicial. Validação: Validar o número do processo</td>
             <td width="200px"><b>{% if r1070_inclusao.nrproc or r1070_inclusao.nrproc == 0 %}{{ r1070_inclusao.nrproc }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -190,7 +191,7 @@
 
         <tr {% if r1070_inclusao.fimvalid|validacoes_esocial_efdreinf:"r1070_inclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
             <td width="200px"><b>{% if r1070_inclusao.fimvalid or r1070_inclusao.fimvalid == 0 %}{{ r1070_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -228,7 +229,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoSusp</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Suspensão de Exibilidade de tributos.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Suspensão de Exibilidade de tributos</td>
         </tr>
     {% for r1070_inclusao_infosusp in r1070_inclusao_infosusp_lista %}
     {% ifequal r1070_inclusao_infosusp.r1070_inclusao.id r1070_inclusao.id %}
@@ -310,13 +311,13 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dadosProcJud</td>
-            <td bgcolor="lightgray" colspan="3">Informações Complementares do Processo Judicial.</td>
+            <td bgcolor="lightgray" colspan="3">Informações Complementares do Processo Judicial</td>
         </tr>
     {% for r1070_inclusao_dadosprocjud in r1070_inclusao_dadosprocjud_lista %}
     {% ifequal r1070_inclusao_dadosprocjud.r1070_inclusao.id r1070_inclusao.id %}
         <tr {% if r1070_inclusao_dadosprocjud.ufvara|validacoes_esocial_efdreinf:"r1070_inclusao_dadosprocjud.ufvara" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ufVara</td>
-            <td width="500px">Identificação da Unidade da Federação - UF da Seção Judiciária. Validação: Deve ser uma Sigla de UF válida.</td>
+            <td width="500px">Identificação da Unidade da Federação - UF da Seção Judiciária Validação: Deve ser uma Sigla de UF válida.</td>
             <td width="200px"><b>{% if r1070_inclusao_dadosprocjud.ufvara or r1070_inclusao_dadosprocjud.ufvara == 0 %}{{ r1070_inclusao_dadosprocjud.ufvara }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -335,7 +336,7 @@
 
         <tr {% if r1070_inclusao_dadosprocjud.codmunic|validacoes_esocial_efdreinf:"r1070_inclusao_dadosprocjud.codmunic" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codMunic</td>
-            <td width="500px">Preencher com o código do município, conforme tabela do IBGE. Validação: Deve ser um código existente na tabela de municípios do IBGE.</td>
+            <td width="500px">Preencher com o código do município, conforme tabela do IBGE Validação: Deve ser um código existente na tabela de municípios do IBGE.</td>
             <td width="200px"><b>{% if r1070_inclusao_dadosprocjud.codmunic or r1070_inclusao_dadosprocjud.codmunic == 0 %}{{ r1070_inclusao_dadosprocjud.codmunic }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -373,7 +374,7 @@
     {% endifequal %}{% endfor %}     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">alteracao</td>
-            <td bgcolor="lightgray" colspan="3">Alteração das informações.</td>
+            <td bgcolor="lightgray" colspan="3">Alteração das informações</td>
         </tr>
     {% for r1070_alteracao in r1070_alteracao_lista %}
     {% ifequal r1070_alteracao.r1070_evttabprocesso.id r1070_evttabprocesso.id %}
@@ -479,7 +480,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoSusp</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Suspensão de Exibilidade de tributos.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Suspensão de Exibilidade de tributos</td>
         </tr>
     {% for r1070_alteracao_infosusp in r1070_alteracao_infosusp_lista %}
     {% ifequal r1070_alteracao_infosusp.r1070_alteracao.id r1070_alteracao.id %}
@@ -561,13 +562,13 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dadosProcJud</td>
-            <td bgcolor="lightgray" colspan="3">Informações Complementares do Processo Judicial.</td>
+            <td bgcolor="lightgray" colspan="3">Informações Complementares do Processo Judicial</td>
         </tr>
     {% for r1070_alteracao_dadosprocjud in r1070_alteracao_dadosprocjud_lista %}
     {% ifequal r1070_alteracao_dadosprocjud.r1070_alteracao.id r1070_alteracao.id %}
         <tr {% if r1070_alteracao_dadosprocjud.ufvara|validacoes_esocial_efdreinf:"r1070_alteracao_dadosprocjud.ufvara" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ufVara</td>
-            <td width="500px">Identificação da Unidade da Federação - UF da Seção Judiciária. Validação: Deve ser uma Sigla de UF válida.</td>
+            <td width="500px">Identificação da Unidade da Federação - UF da Seção Judiciária Validação: Deve ser uma Sigla de UF válida.</td>
             <td width="200px"><b>{% if r1070_alteracao_dadosprocjud.ufvara or r1070_alteracao_dadosprocjud.ufvara == 0 %}{{ r1070_alteracao_dadosprocjud.ufvara }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -586,7 +587,7 @@
 
         <tr {% if r1070_alteracao_dadosprocjud.codmunic|validacoes_esocial_efdreinf:"r1070_alteracao_dadosprocjud.codmunic" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codMunic</td>
-            <td width="500px">Preencher com o código do município, conforme tabela do IBGE. Validação: Deve ser um código existente na tabela de municípios do IBGE.</td>
+            <td width="500px">Preencher com o código do município, conforme tabela do IBGE Validação: Deve ser um código existente na tabela de municípios do IBGE.</td>
             <td width="200px"><b>{% if r1070_alteracao_dadosprocjud.codmunic or r1070_alteracao_dadosprocjud.codmunic == 0 %}{{ r1070_alteracao_dadosprocjud.codmunic }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -624,7 +625,7 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">novaValidade</td>
-            <td bgcolor="lightgray" colspan="3">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</td>
+            <td bgcolor="lightgray" colspan="3">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade</td>
         </tr>
     {% for r1070_alteracao_novavalidade in r1070_alteracao_novavalidade_lista %}
     {% ifequal r1070_alteracao_novavalidade.r1070_alteracao.id r1070_alteracao.id %}
@@ -649,7 +650,7 @@
 
         <tr {% if r1070_alteracao_novavalidade.fimvalid|validacoes_esocial_efdreinf:"r1070_alteracao_novavalidade.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
             <td width="200px"><b>{% if r1070_alteracao_novavalidade.fimvalid or r1070_alteracao_novavalidade.fimvalid == 0 %}{{ r1070_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -668,7 +669,7 @@
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">exclusao</td>
-            <td bgcolor="lightgray" colspan="3">Exclusão das informações.</td>
+            <td bgcolor="lightgray" colspan="3">Exclusão das informações</td>
         </tr>
     {% for r1070_exclusao in r1070_exclusao_lista %}
     {% ifequal r1070_exclusao.r1070_evttabprocesso.id r1070_evttabprocesso.id %}
@@ -698,27 +699,8 @@
 
         <tr {% if r1070_exclusao.nrproc|validacoes_esocial_efdreinf:"r1070_exclusao.nrproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProc</td>
-            <td width="500px">Informar o número do processo administrativo/judicial.</td>
+            <td width="500px">Informar o número do processo administrativo/judicial. Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data informada anteriormente no registro que se pretende excluir.</td>
             <td width="200px"><b>{% if r1070_exclusao.nrproc or r1070_exclusao.nrproc == 0 %}{{ r1070_exclusao.nrproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r1070.can_see_r1070exclusao or perms.efdreinf.can_see_r1070exclusao %}
-                <a href="{% url 'r1070_exclusao_salvar' pk=r1070_exclusao.id %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r1070_exclusao.inivalid|validacoes_esocial_efdreinf:"r1070_exclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data informada anteriormente no registro que se pretende excluir.</td>
-            <td width="200px"><b>{% if r1070_exclusao.inivalid or r1070_exclusao.inivalid == 0 %}{{ r1070_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
               <div>

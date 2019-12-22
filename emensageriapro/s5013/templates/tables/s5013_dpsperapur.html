@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 <table class="table table-bordered table-striped automate-data-table">
     <thead>
@@ -24,7 +25,7 @@
             <td>{{ a.s5013_infodpsfgts }}</td>
             {% endif %}
             {% if show_fields.show_tpdps or 1 %}
-            <td>{{ a.get_tpdps_display }}</td>
+            <td>{{ a.tpdps|valor }}</td>
             {% endif %}
             {% if show_fields.show_vrfgts or 1 %}
             <td>{{ a.vrfgts }}</td>

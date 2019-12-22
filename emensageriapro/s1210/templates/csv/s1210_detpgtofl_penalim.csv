@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_s1210_detpgtofl_retpgtotot or 1 %}"Informações sobre beneficiários de pensão alimentícia.";{% endif %}{% if show_fields.show_cpfbenef or 1 %}"CPF";{% endif %}{% if show_fields.show_dtnasctobenef or 1 %}"Data de nascimento beneficiarios";{% endif %}{% if show_fields.show_nmbenefic or 1 %}"Nome";{% endif %}{% if show_fields.show_vlrpensao or 1 %}"Valor da Pensão alimentícia";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_s1210_detpgtofl_retpgtotot or 1 %}"{{ c.s1210_detpgtofl_retpgtotot }}";{% endif %}{% if show_fields.show_cpfbenef or 1 %}"{{ c.cpfbenef }}";{% endif %}{% if show_fields.show_dtnasctobenef or 1 %}"{{ c.dtnasctobenef }}";{% endif %}{% if show_fields.show_nmbenefic or 1 %}"{{ c.nmbenefic }}";{% endif %}{% if show_fields.show_vlrpensao or 1 %}"{{ c.vlrpensao }}";{% endif %}
 {% endfor %}

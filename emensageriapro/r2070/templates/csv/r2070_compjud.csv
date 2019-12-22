@@ -1,4 +1,4 @@
-{% load templatetags %}{% load static %}
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
 {% if show_fields.show_r2070_pgtopf or 1 %}"Compensação Judicial";{% endif %}{% if show_fields.show_vlrcompanocalend or 1 %}"Compensação Judicial relativa ao ano calendário";{% endif %}{% if show_fields.show_vlrcompanoant or 1 %}"Compensação Judicial relativa a anos anteriores ao ano calendário";{% endif %}
 {% for c in campos_lista %}{% if show_fields.show_r2070_pgtopf or 1 %}"{{ c.r2070_pgtopf }}";{% endif %}{% if show_fields.show_vlrcompanocalend or 1 %}"{{ c.vlrcompanocalend }}";{% endif %}{% if show_fields.show_vlrcompanoant or 1 %}"{{ c.vlrcompanoant }}";{% endif %}
 {% endfor %}

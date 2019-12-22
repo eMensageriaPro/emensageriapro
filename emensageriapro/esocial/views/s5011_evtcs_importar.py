@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 import xmltodict
@@ -387,6 +388,46 @@ def read_s5011_evtcs_obj(request, doc, status, validar=False, arquivo=False):
         
                             try:
                                 s5011_basesremun_dados['vrsuspbccp25'] = read_from_xml(basesRemun.basesCp.vrSuspBcCp25.cdata, 'esocial', 'N', 2)
+                            except AttributeError:
+                                pass
+        
+                            try:
+                                s5011_basesremun_dados['vrbccp00va'] = read_from_xml(basesRemun.basesCp.vrBcCp00VA.cdata, 'esocial', 'N', 2)
+                            except AttributeError:
+                                pass
+        
+                            try:
+                                s5011_basesremun_dados['vrbccp15va'] = read_from_xml(basesRemun.basesCp.vrBcCp15VA.cdata, 'esocial', 'N', 2)
+                            except AttributeError:
+                                pass
+        
+                            try:
+                                s5011_basesremun_dados['vrbccp20va'] = read_from_xml(basesRemun.basesCp.vrBcCp20VA.cdata, 'esocial', 'N', 2)
+                            except AttributeError:
+                                pass
+        
+                            try:
+                                s5011_basesremun_dados['vrbccp25va'] = read_from_xml(basesRemun.basesCp.vrBcCp25VA.cdata, 'esocial', 'N', 2)
+                            except AttributeError:
+                                pass
+        
+                            try:
+                                s5011_basesremun_dados['vrsuspbccp00va'] = read_from_xml(basesRemun.basesCp.vrSuspBcCp00VA.cdata, 'esocial', 'N', 2)
+                            except AttributeError:
+                                pass
+        
+                            try:
+                                s5011_basesremun_dados['vrsuspbccp15va'] = read_from_xml(basesRemun.basesCp.vrSuspBcCp15VA.cdata, 'esocial', 'N', 2)
+                            except AttributeError:
+                                pass
+        
+                            try:
+                                s5011_basesremun_dados['vrsuspbccp20va'] = read_from_xml(basesRemun.basesCp.vrSuspBcCp20VA.cdata, 'esocial', 'N', 2)
+                            except AttributeError:
+                                pass
+        
+                            try:
+                                s5011_basesremun_dados['vrsuspbccp25va'] = read_from_xml(basesRemun.basesCp.vrSuspBcCp25VA.cdata, 'esocial', 'N', 2)
                             except AttributeError:
                                 pass
         

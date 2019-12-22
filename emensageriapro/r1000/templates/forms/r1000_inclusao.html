@@ -1,3 +1,4 @@
+<!-- eMensageriaAI -->
 {% load templatetags %}{% load static %}
 
 
@@ -5,7 +6,7 @@
 <!-- inicio__r1000_inclusao__r1000_evtinfocontri -->
 <div class="col-md-12" id="r1000_inclusao__r1000_evtinfocontri__div">
   <div class="form-group">
-    <label id="r1000_inclusao__r1000_evtinfocontri__label">Inclusão de novas informações*<a data-toggle="tooltip" title="Inclusão de novas informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r1000_inclusao__r1000_evtinfocontri__label">Inclusão de novas informações*<a data-toggle="tooltip" title="Inclusão de novas informações"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r1000_inclusao_form.r1000_evtinfocontri.value %}
         <a href="{% url 'r1000_evtinfocontri_salvar' pk=r1000_inclusao_form.r1000_evtinfocontri.value %}">
             [Acessar]
@@ -61,7 +62,7 @@
 <!-- inicio__r1000_inclusao__fimvalid -->
 <div class="col-md-6" id="r1000_inclusao__fimvalid__div">
   <div class="form-group">
-    <label id="r1000_inclusao__fimvalid__label">Preencher com o mês e ano de término da validade das informações, se houver<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r1000_inclusao__fimvalid__label">Preencher com o mês e ano de término da validade das informações, se houver<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r1000_inclusao_form.fimvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r1000_inclusao_form.fimvalid.errors }}
@@ -260,7 +261,7 @@
 <!-- inicio__r1000_inclusao__fonecel -->
 <div class="col-md-6" id="r1000_inclusao__fonecel__div">
   <div class="form-group">
-    <label id="r1000_inclusao__fonecel__label">Telefone celular, com DDD<a data-toggle="tooltip" title="Telefone celular, com DDD. Validação: Se preenchido, deve conter apenas números, com o mínimo de dez dígitos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r1000_inclusao__fonecel__label">Telefone celular, com DDD<a data-toggle="tooltip" title="Telefone celular, com DDD Validação: Se preenchido, deve conter apenas números, com o mínimo de dez dígitos."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1000_inclusao_form.fonecel.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1000_inclusao_form.fonecel.errors }}
@@ -275,7 +276,7 @@
 <!-- inicio__r1000_inclusao__email -->
 <div class="col-md-6" id="r1000_inclusao__email__div">
   <div class="form-group">
-    <label id="r1000_inclusao__email__label">Endereço eletrônico<a data-toggle="tooltip" title="Endereço eletrônico. Validação: O e-mail deve possuir o caractere "@" e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no final do endereço informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r1000_inclusao__email__label">Endereço eletrônico<a data-toggle="tooltip" title="Endereço eletrônico Validação: O e-mail deve possuir o caractere "@" e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no final do endereço informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1000_inclusao_form.email.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1000_inclusao_form.email.errors }}

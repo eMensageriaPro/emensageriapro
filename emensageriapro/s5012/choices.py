@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -37,7 +38,6 @@
 
 
 CHOICES_S5012_TPCR = [
-
     ('0473-01', u'0473-01 - IRRF - Residentes Fiscais no Exterior 0561-07 - IRRF Mensal, 13° salário e Férias sobre Trabalho Assalariado no país ou ausente no exterior a serviço do país, exceto se contratado por Empregador Doméstico ou por Segurado Especial sujeito a recolhimento unificado'),
     ('0561-08', u'0561-08 - IRRF Mensal, 13° salário e Férias sobre Trabalho Assalariado no país ou ausente no exterior a serviço do país, Empregado Doméstico ou Trabalhador contratado por Segurado Especial sujeito a recolhimento unificado'),
     ('0561-09', u'0561-09 - IRRF 13° salário na rescisão de contrato de trabalho relativo a empregador sujeito a recolhimento unificado'),
@@ -48,8 +48,5 @@ CHOICES_S5012_TPCR = [
     ('0610- 01', u'0610- 01 - IRRF sobre Rendimentos relativos a prestação de serviços de transporte rodoviário internacional de carga, pagos a transportador autônomo PF residente no Paraguai'),
     ('3533', u'3533 - Proventos de Aposentadoria, Reserva, Reforma ou Pensão Pagos por Previdência Pública'),
     ('3562-01', u'3562-01 - IRRF sobre Participação dos trabalhadores em Lucros ou Resultados (PLR).'),
-
 ]
-
-
 

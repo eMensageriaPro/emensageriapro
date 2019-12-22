@@ -1,3 +1,4 @@
+-- eMensageriaAI --
 UPDATE public.r2020_nfs a
    SET ativo=b.ativo, desativado_em=b.desativado_em, desativado_por_id=b.desativado_por_id
   FROM public.r2020_evtservprest b

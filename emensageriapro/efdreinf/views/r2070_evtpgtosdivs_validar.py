@@ -1,3 +1,4 @@
+# eMensageriaAI #
 #coding:utf-8
 
 
@@ -115,7 +116,7 @@ def validacoes_r2070_evtpgtosdivs(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'ideBenef.codPgto',
                                                   ideBenef.codPgto.cdata,
-                                                  1, u'None')
+                                                  1, u'0916, 0924, 1708, 3208, 3223, 3426, 3533, 3540, 3556, 3579, 3277, 3280, 3746, 3770, 4085, 4397, 4407, 4409, 5204, 5217, 5232, 5273, 5557, 5565, 5706, 5944, 5952, 5960, 5979, 5987, 6147, 6175, 6190, 6228, 6230, 6243, 6256, 6800, 6813, 6904, 8045, 8053, 8468, 8673, 8739, 8767, 8850, 8863, 9060, 9385, 1889, 0422, 0473, 0481, 0490, 0610, 5192, 5286, 9412, 9427, 9453, 9478, 9466')
 
             if 'tpInscBenef' in dir(ideBenef):
                 validacoes_lista = validar_campo( validacoes_lista,
@@ -223,7 +224,7 @@ def validacoes_r2070_evtpgtosdivs(arquivo):
                                 validacoes_lista = validar_campo( validacoes_lista,
                                                                   'ideEstab.tpInsc',
                                                                   ideEstab.tpInsc.cdata,
-                                                                  1, u'None')
+                                                                  1, u'1, 2, 4')
         
                             if 'nrInsc' in dir(ideEstab):
                                 validacoes_lista = validar_campo( validacoes_lista,
