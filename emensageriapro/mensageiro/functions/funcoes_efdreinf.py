@@ -295,12 +295,12 @@ def send_xml(request, transmissor_id, service):
 
                 from emensageriapro.mensageiro.functions.funcoes_efdreinf_comunicacao import read_envioLoteEventos, definir_status_evento
 
-                read_envioLoteEventos(request, dados['response'], transmissor_id)
+                retorno = read_envioLoteEventos(request, dados['response'], transmissor_id)
                 messages.success(request, 'Lote enviado com sucesso!')
 
                 TransmissorLoteEfdreinf.objects.\
                     filter(id=transmissor_id).\
-                    update(status=TRANSMISSOR_STATUS_ENVIADO,
+                    update(status=retorno['status'],
                            data_hora_envio=datetime.now())
                 definir_status_evento(transmissor_id)
 
@@ -308,12 +308,12 @@ def send_xml(request, transmissor_id, service):
 
                 from emensageriapro.mensageiro.functions.funcoes_efdreinf_comunicacao import read_consultaLoteEventos, definir_status_evento
 
-                read_consultaLoteEventos(request, dados['response'], transmissor_id)
+                retorno = read_consultaLoteEventos(request, dados['response'], transmissor_id)
                 messages.success(request, 'Lote consultado com sucesso!')
 
                 TransmissorLoteEfdreinf.objects.\
                     filter(id=transmissor_id).\
-                    update(status=TRANSMISSOR_STATUS_CONSULTADO,
+                    update(status=retorno['status'],
                            data_hora_consulta=datetime.now())
                 definir_status_evento(transmissor_id)
 

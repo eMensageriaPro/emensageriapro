@@ -316,22 +316,22 @@ def send_xml(request, transmissor_id, service):
             elif service == 'WsEnviarLoteEventos':
 
                 from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_envioLoteEventos, definir_status_evento
-                read_envioLoteEventos(dados['response'], transmissor_id)
+                retorno = read_envioLoteEventos(dados['response'], transmissor_id)
                 TransmissorLoteEsocial.objects.filter(id=transmissor_id).\
-                    update(status=TRANSMISSOR_STATUS_ENVIADO,
+                    update(status=retorno['status'],
                            data_hora_envio=datetime.now())
                 definir_status_evento(transmissor_id)
-                messages.success(request, 'Lote enviado com sucesso!')
+                messages.success(request, 'Lote enviado com sucesso! %(resposta_codigo)s - %(resposta_descricao)s' % retorno)
 
             elif service == 'WsConsultarLoteEventos':
 
                 from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_consultaLoteEventos, definir_status_evento
-                read_consultaLoteEventos(dados['response'], transmissor_id)
+                retorno = read_consultaLoteEventos(dados['response'], transmissor_id)
                 TransmissorLoteEsocial.objects.filter(id=transmissor_id).\
-                    update(status=TRANSMISSOR_STATUS_CONSULTADO,
+                    update(status=retorno['status'],
                            data_hora_consulta=datetime.now())
                 definir_status_evento(transmissor_id)
-                messages.success(request, 'Lote consultado com sucesso!')
+                messages.success(request, 'Lote consultado com sucesso! %(resposta_codigo)s - %(resposta_descricao)s' % retorno)
 
         elif (quant_eventos < transmissor_dados['esocial_lote_min'] and service == 'WsEnviarLoteEventos'):
             messages.error(request, 'Lote com quantidade inferior a mínima permitida!')

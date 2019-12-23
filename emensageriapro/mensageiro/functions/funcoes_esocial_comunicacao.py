@@ -42,7 +42,7 @@ from emensageriapro.esocial.models import STATUS_EVENTO_ENVIADO, \
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 from emensageriapro.mensageiro.functions.funcoes import TRANSMISSOR_STATUS_ENVIADO,\
-    TRANSMISSOR_STATUS_ENVIADO_ERRO, TRANSMISSOR_STATUS_CONSULTADO
+    TRANSMISSOR_STATUS_ENVIADO_ERRO, TRANSMISSOR_STATUS_CONSULTADO, TRANSMISSOR_STATUS_CONSULTADO_ERRO
 
 
 def definir_status_evento(transmissor_lote_esocial_id):
@@ -59,8 +59,17 @@ def definir_status_evento(transmissor_lote_esocial_id):
                 model.objects.filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO, ocorrencias=None)
 
             elif a.transmissor_lote_esocial.status == TRANSMISSOR_STATUS_ENVIADO_ERRO:
-                model.objects.filter(id=a.id).update(transmissor_lote_esocial=None,
+                model.objects.filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO_ERRO,
+                                                     transmissor_lote_esocial=None,
                                                      transmissor_lote_esocial_error=transmissor_lote_esocial_id)
+
+            elif a.transmissor_lote_esocial.status == TRANSMISSOR_STATUS_CONSULTADO_ERRO:
+                model.objects.filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO_ERRO,
+                                                     transmissor_lote_esocial=None,
+                                                     transmissor_lote_esocial_error=transmissor_lote_esocial_id)
+
+            # elif a.transmissor_lote_esocial.status == TRANSMISSOR_STATUS_CONSULTADO:
+            #     model.objects.filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO, ocorrencias=None)
 
 
 
@@ -92,8 +101,12 @@ def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):
     child = doc.Envelope.Body.EnviarLoteEventosResponse.EnviarLoteEventosResult.eSocial.retornoEnvioLoteEventos
 
     lote = {}
-    lote['status'] = TRANSMISSOR_STATUS_ENVIADO
+
     lote['resposta_codigo'] = child.status.cdResposta.cdata
+    if lote['resposta_codigo'] in ('201', '202', '203'):
+        lote['status'] = TRANSMISSOR_STATUS_ENVIADO
+    else:
+        lote['status'] = TRANSMISSOR_STATUS_ENVIADO_ERRO
     lote['resposta_descricao'] = child.status.descResposta.cdata
 
     TransmissorLoteEsocialOcorrencias.objects.\
@@ -124,6 +137,8 @@ def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):
 
     TransmissorLoteEsocial.objects. \
         filter(id=transmissor_lote_esocial_id).update(**lote)
+
+    return lote
 
 
 def read_retornoEvento(doc, transmissor_lote_id):
@@ -398,8 +413,14 @@ def read_consultaLoteEventos(arquivo, transmissor_lote_esocial_id):
     child = doc.Envelope.Body.ConsultarLoteEventosResponse.ConsultarLoteEventosResult.eSocial.retornoProcessamentoLoteEventos
 
     lote = {}
-    lote['status'] = TRANSMISSOR_STATUS_CONSULTADO
+
     lote['resposta_codigo'] = child.status.cdResposta.cdata
+
+    if lote['resposta_codigo'] in ('201', '202', '203'):
+        lote['status'] = TRANSMISSOR_STATUS_CONSULTADO
+    else:
+        lote['status'] = TRANSMISSOR_STATUS_CONSULTADO_ERRO
+
     lote['resposta_descricao'] = child.status.descResposta.cdata
 
     if '<tempoEstimadoConclusao>' in xml:
@@ -415,7 +436,7 @@ def read_consultaLoteEventos(arquivo, transmissor_lote_esocial_id):
         lote['recepcao_data_hora'] = child.dadosRecepcaoLote.dhRecepcao.cdata
         lote['recepcao_versao_aplicativo'] = child.dadosRecepcaoLote.versaoAplicativoRecepcao.cdata
         lote['protocolo'] = child.dadosRecepcaoLote.protocoloEnvio.cdata
-        lote['status'] = 3
+        lote['status'] = TRANSMISSOR_STATUS_CONSULTADO
 
     else:
 
@@ -440,65 +461,27 @@ def read_consultaLoteEventos(arquivo, transmissor_lote_esocial_id):
                 identidade = doc.eSocial.retornoEvento['Id']
                 dados = read_retornoEvento(evento.retornoEvento, transmissor_lote_esocial_id)
 
-                # lista = RetornosEventos.objects.\
-                #     filter(identidade=dados['identidade']).\
-                #     exclude(id=dados['id']).all()
-                #
-                # for a in lista:
-                #     a.delete()
-                #
-                # a = executar_sql("""
-                # SELECT tabela, id
-                #       FROM public.vw_transmissor_eventos_esocial
-                #       WHERE identidade='%(identidade)s';
-                # """ % dados, True)
-                #
-                # dados['tabela'] = a[0][0]
-                # dados['tabela_id'] = a[0][1]
-                #
-                # executar_sql("""
-                #          UPDATE public.%(tabela)s
-                #             SET retornos_eventos_id=%(id)s
-                #           WHERE id=%(tabela_id)s;""" % (b.tabela, dados['id'], b.id), False)
-
-                # print len(a)
-
-
             if 'evtBasesTrab' in dir(evento):
                 from emensageriapro.esocial.views.s5001_evtbasestrab_importar import read_s5001_evtbasestrab_obj
                 from emensageriapro.esocial.models import s5001evtBasesTrab
                 dados = read_s5001_evtbasestrab_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
-
-                # s5001evtBasesTrab.objects.\
-                #     filter(identidade=dados['identidade']).\
-                #     exclude(id=dados['id']).delete()
 
             if 'evtIrrfBenef' in dir(evento):
                 from emensageriapro.esocial.views.s5002_evtirrfbenef_importar import read_s5002_evtirrfbenef_obj
                 from emensageriapro.esocial.models import s5002evtIrrfBenef
                 dados = read_s5002_evtirrfbenef_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
 
-                # s5002evtIrrfBenef.objects.\
-                #     filter(identidade=dados['identidade']).\
-                #     exclude(id=dados['id']).delete()
-
             if 'evtCS' in dir(evento):
                 from emensageriapro.esocial.views.s5011_evtcs_importar import read_s5011_evtcs_obj
                 from emensageriapro.esocial.models import s5011evtCS
                 dados = read_s5011_evtcs_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
-
-                # s5011evtCS.objects.\
-                #     filter(identidade=dados['identidade']).\
-                #     exclude(id=dados['id']).delete()
 
             if 'evtIrrf' in dir(evento):
                 from emensageriapro.esocial.views.s5012_evtirrf_importar import read_s5012_evtirrf_obj
                 from emensageriapro.esocial.models import s5012evtIrrf
                 dados = read_s5012_evtirrf_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
 
-                # s5012evtIrrf.objects.\
-                #     filter(identidade=dados['identidade']).\
-                #     exclude(id=dados['id']).delete()
+    return lote
 
 
 

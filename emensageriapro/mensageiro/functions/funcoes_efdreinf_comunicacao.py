@@ -41,7 +41,7 @@ from emensageriapro.functions import EVENTOS_RETORNO
 
 
 from emensageriapro.mensageiro.functions.funcoes_esocial import TRANSMISSOR_STATUS_ENVIADO,\
-    TRANSMISSOR_STATUS_ENVIADO_ERRO
+    TRANSMISSOR_STATUS_ENVIADO_ERRO, TRANSMISSOR_STATUS_CONSULTADO_ERRO
 
 
 def definir_status_evento(transmissor_lote_efdreinf_id):
@@ -63,7 +63,14 @@ def definir_status_evento(transmissor_lote_efdreinf_id):
 
             elif a.transmissor_lote_efdreinf.status == TRANSMISSOR_STATUS_ENVIADO_ERRO:
                 model.objects.filter(id=a.id).\
-                    update(transmissor_lote_efdreinf=None,
+                    update(status=STATUS_EVENTO_ENVIADO_ERRO,
+                           transmissor_lote_efdreinf=None,
+                           transmissor_lote_efdreinf_error=transmissor_lote_efdreinf_id)
+
+            elif a.transmissor_lote_efdreinf.status == TRANSMISSOR_STATUS_CONSULTADO_ERRO:
+                model.objects.filter(id=a.id).\
+                    update(status=STATUS_EVENTO_ENVIADO_ERRO,
+                           transmissor_lote_efdreinf=None,
                            transmissor_lote_efdreinf_error=transmissor_lote_efdreinf_id)
 
 
@@ -243,14 +250,14 @@ def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
                 return retornos_evttotalcontrib
 
-
+    return lote
 
 
 
 
 def read_consultaLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
-    from emensageriapro.efdreinf.views.r9011_evttotalcontrib_importar import read_r9011_evttotalcontrib_obj
+    # from emensageriapro.efdreinf.views.r9011_evttotalcontrib_importar import read_r9011_evttotalcontrib_obj
     from emensageriapro.mensageiro.functions.funcoes import ler_arquivo
     import untangle
 
@@ -263,17 +270,19 @@ def read_consultaLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
     lote = {}
     lote['transmissor_lote_efdreinf_id'] = transmissor_lote_efdreinf_id
 
-    if 'evtTotalContrib' in dir(child.Reinf):
+    # if 'evtTotalContrib' in dir(child.Reinf):
+    #
+    #     dados = read_r9011_evttotalcontrib_obj(request, child, 9)
+    #     evento_identidade = dados['identidade_evento']
+    #
+    #     evento_dados = executar_sql("""
+    #         SELECT id, evento, identidade, tabela
+    #           FROM public.vw_transmissor_eventos_efdreinf WHERE identidade='%s';
+    #     """ % evento_identidade, True)
+    #
+    #     if evento_dados:
+    #         executar_sql("UPDATE public.%s SET retornos_evttotalcontrib_id=%s WHERE id=%s;" % (
+    #             evento_dados[0][3], dados['id'], evento_dados[0][0]), False)
 
-        dados = read_r9011_evttotalcontrib_obj(request, child, 9)
-        evento_identidade = dados['identidade_evento']
-
-        evento_dados = executar_sql("""
-            SELECT id, evento, identidade, tabela
-              FROM public.vw_transmissor_eventos_efdreinf WHERE identidade='%s';
-        """ % evento_identidade, True)
-
-        if evento_dados:
-            executar_sql("UPDATE public.%s SET retornos_evttotalcontrib_id=%s WHERE id=%s;" % (
-                evento_dados[0][3], dados['id'], evento_dados[0][0]), False)
+    return lote
 
