@@ -615,14 +615,6 @@
                     </a>
                 </li>
             {% endif %}
-            {% if perms.mensageiro.can_view_menu_RetornosEventos %}
-                <li>
-                    <a href="{% url 'retornos_eventos' %}">
-                        <i class="fa fa-circle-o"></i>
-                        Retornos dos Eventos
-                    </a>
-                </li>
-            {% endif %}
         </ul>
     </li>
     <li id="modulo_controle_de_acesso" class="{% if 'controle_de_acesso' in modulos %}active {% endif %}treeview">

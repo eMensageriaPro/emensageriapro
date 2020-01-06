@@ -95,17 +95,18 @@ class form_r1000_evtinfocontri(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'cdretorno'
-            'descretorno'
-            'dhprocess'
-            'transmissor_lote_efdreinf_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'cdretorno',
+            'descretorno',
+            'dhprocess',
+            'transmissor_lote_efdreinf_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_r1070_evttabprocesso(forms.ModelForm):
@@ -157,17 +158,18 @@ class form_r1070_evttabprocesso(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'cdretorno'
-            'descretorno'
-            'dhprocess'
-            'transmissor_lote_efdreinf_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'cdretorno',
+            'descretorno',
+            'dhprocess',
+            'transmissor_lote_efdreinf_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_r2010_evtservtom(forms.ModelForm):
@@ -225,17 +227,18 @@ class form_r2010_evtservtom(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'cdretorno'
-            'descretorno'
-            'dhprocess'
-            'transmissor_lote_efdreinf_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'cdretorno',
+            'descretorno',
+            'dhprocess',
+            'transmissor_lote_efdreinf_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_r2020_evtservprest(forms.ModelForm):
@@ -293,17 +296,18 @@ class form_r2020_evtservprest(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'cdretorno'
-            'descretorno'
-            'dhprocess'
-            'transmissor_lote_efdreinf_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'cdretorno',
+            'descretorno',
+            'dhprocess',
+            'transmissor_lote_efdreinf_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_r2030_evtassocdesprec(forms.ModelForm):
@@ -355,17 +359,18 @@ class form_r2030_evtassocdesprec(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'cdretorno'
-            'descretorno'
-            'dhprocess'
-            'transmissor_lote_efdreinf_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'cdretorno',
+            'descretorno',
+            'dhprocess',
+            'transmissor_lote_efdreinf_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_r2040_evtassocdesprep(forms.ModelForm):
@@ -417,17 +422,18 @@ class form_r2040_evtassocdesprep(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'cdretorno'
-            'descretorno'
-            'dhprocess'
-            'transmissor_lote_efdreinf_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'cdretorno',
+            'descretorno',
+            'dhprocess',
+            'transmissor_lote_efdreinf_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_r2050_evtcomprod(forms.ModelForm):
@@ -486,17 +492,18 @@ class form_r2050_evtcomprod(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'cdretorno'
-            'descretorno'
-            'dhprocess'
-            'transmissor_lote_efdreinf_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'cdretorno',
+            'descretorno',
+            'dhprocess',
+            'transmissor_lote_efdreinf_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_r2060_evtcprb(forms.ModelForm):
@@ -551,17 +558,18 @@ class form_r2060_evtcprb(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'cdretorno'
-            'descretorno'
-            'dhprocess'
-            'transmissor_lote_efdreinf_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'cdretorno',
+            'descretorno',
+            'dhprocess',
+            'transmissor_lote_efdreinf_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_r2070_evtpgtosdivs(forms.ModelForm):
@@ -613,17 +621,18 @@ class form_r2070_evtpgtosdivs(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'cdretorno'
-            'descretorno'
-            'dhprocess'
-            'transmissor_lote_efdreinf_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'cdretorno',
+            'descretorno',
+            'dhprocess',
+            'transmissor_lote_efdreinf_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_r2098_evtreabreevper(forms.ModelForm):
@@ -675,17 +684,18 @@ class form_r2098_evtreabreevper(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'cdretorno'
-            'descretorno'
-            'dhprocess'
-            'transmissor_lote_efdreinf_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'cdretorno',
+            'descretorno',
+            'dhprocess',
+            'transmissor_lote_efdreinf_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_r2099_evtfechaevper(forms.ModelForm):
@@ -737,17 +747,18 @@ class form_r2099_evtfechaevper(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'cdretorno'
-            'descretorno'
-            'dhprocess'
-            'transmissor_lote_efdreinf_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'cdretorno',
+            'descretorno',
+            'dhprocess',
+            'transmissor_lote_efdreinf_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_r3010_evtespdesportivo(forms.ModelForm):
@@ -804,17 +815,18 @@ class form_r3010_evtespdesportivo(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'cdretorno'
-            'descretorno'
-            'dhprocess'
-            'transmissor_lote_efdreinf_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'cdretorno',
+            'descretorno',
+            'dhprocess',
+            'transmissor_lote_efdreinf_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_r5001_evttotal(forms.ModelForm):
@@ -858,7 +870,6 @@ class form_r5001_evttotal(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'ocorrencias'
             'validacao_precedencia'
             'validacoes'
             'arquivo_original'
@@ -866,7 +877,11 @@ class form_r5001_evttotal(forms.ModelForm):
             'cdretorno'
             'descretorno'
             'dhprocess'
-            'transmissor_lote_efdreinf_error' ]
+            'transmissor_lote_efdreinf_error'
+            'retorno_envio_json'
+            'retorno_consulta_json'
+            'evento_json'
+            'ocorrencias_json' ]
 
 
 class form_r5011_evttotalcontrib(forms.ModelForm):
@@ -910,7 +925,6 @@ class form_r5011_evttotalcontrib(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'ocorrencias'
             'validacao_precedencia'
             'validacoes'
             'arquivo_original'
@@ -918,7 +932,11 @@ class form_r5011_evttotalcontrib(forms.ModelForm):
             'cdretorno'
             'descretorno'
             'dhprocess'
-            'transmissor_lote_efdreinf_error' ]
+            'transmissor_lote_efdreinf_error'
+            'retorno_envio_json'
+            'retorno_consulta_json'
+            'evento_json'
+            'ocorrencias_json' ]
 
 
 class form_r9000_evtexclusao(forms.ModelForm):
@@ -970,14 +988,15 @@ class form_r9000_evtexclusao(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'cdretorno'
-            'descretorno'
-            'dhprocess'
-            'transmissor_lote_efdreinf_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'cdretorno',
+            'descretorno',
+            'dhprocess',
+            'transmissor_lote_efdreinf_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]

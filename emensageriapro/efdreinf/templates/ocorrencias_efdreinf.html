@@ -1,0 +1,67 @@
+<!--
+
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
+{% load templatetags %}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="small-box bg-red">
+            <div class="inner">
+                <strong>RESPOSTA:</strong><br>
+                <table width="100%">
+                    <tr>
+                        <th>Código</th>
+                        <th>Descrição</th>
+                    </tr>
+                    <tr>
+                        {% for a, b in ocorrencias_json.items %}
+                            <td>{% if b|finditem:'cdRetorno' %}
+                                {{ b|finditem:'cdRetorno' }}{% endif %}</td>
+                            <td>{% if b|finditem:'descRetorno' %}
+                                {{ b|finditem:'descRetorno' }}{% endif %}</td>
+                        {% endfor %}
+                    </tr>
+                </table><br>
+                <strong>OCORRÊNCIAS:</strong>
+                {% for d, c in ocorrencias_json.ideStatus.items %}
+                    <br><strong>{% if c|finditem:'tpOcorr' %}
+                        {% if c|finditem:'tpOcorr' == '1' %}(ERRO)
+                        {% elif c|finditem:'tpOcorr' == '2' %}(ADVERTÊNCIA)
+                        {% endif %}
+                    {% endif %}
+                    {% if c|finditem:'codResp' %}{{ c|finditem:'codResp' }} - {% endif %}
+                        {% if c|finditem:'dscResp' %}{{ c|finditem:'dscResp' }}{% endif %}</strong><br>
+                    {% if c|finditem:'localErroAviso' %} {{ c|finditem:'localErroAviso' }}{% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

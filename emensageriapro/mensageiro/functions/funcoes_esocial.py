@@ -282,14 +282,14 @@ def send_xml(request, transmissor_id, service):
     dados['timeout'] = transmissor_dados['esocial_timeout']
 
     quant_eventos = TransmissorEventosEsocial.objects. \
-                                    filter(transmissor_lote_esocial_id=transmissor_id,
-                                           status=STATUS_EVENTO_AGUARD_ENVIO).count()
+                        filter(transmissor_lote_esocial_id=transmissor_id,
+                               status=STATUS_EVENTO_AGUARD_ENVIO).count()
 
     if tle.transmissor.certificado and (quant_eventos or service == 'WsConsultarLoteEventos'):
 
         if (quant_eventos >= transmissor_dados['esocial_lote_min'] and \
-                quant_eventos <= transmissor_dados['esocial_lote_max'] and \
-                service == 'WsEnviarLoteEventos') or service == 'WsConsultarLoteEventos':
+            quant_eventos <= transmissor_dados['esocial_lote_max'] and \
+            service == 'WsEnviarLoteEventos') or service == 'WsConsultarLoteEventos':
 
             create_request(dados, transmissor_dados)
 
@@ -315,22 +315,14 @@ def send_xml(request, transmissor_id, service):
 
             elif service == 'WsEnviarLoteEventos':
 
-                from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_envioLoteEventos, definir_status_evento
+                from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_envioLoteEventos
                 retorno = read_envioLoteEventos(dados['response'], transmissor_id)
-                TransmissorLoteEsocial.objects.filter(id=transmissor_id).\
-                    update(status=retorno['status'],
-                           data_hora_envio=datetime.now())
-                definir_status_evento(transmissor_id)
                 messages.success(request, 'Lote enviado com sucesso! %(resposta_codigo)s - %(resposta_descricao)s' % retorno)
 
             elif service == 'WsConsultarLoteEventos':
 
-                from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_consultaLoteEventos, definir_status_evento
+                from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_consultaLoteEventos
                 retorno = read_consultaLoteEventos(dados['response'], transmissor_id)
-                TransmissorLoteEsocial.objects.filter(id=transmissor_id).\
-                    update(status=retorno['status'],
-                           data_hora_consulta=datetime.now())
-                definir_status_evento(transmissor_id)
                 messages.success(request, 'Lote consultado com sucesso! %(resposta_codigo)s - %(resposta_descricao)s' % retorno)
 
         elif (quant_eventos < transmissor_dados['esocial_lote_min'] and service == 'WsEnviarLoteEventos'):

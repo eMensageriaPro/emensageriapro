@@ -75,6 +75,7 @@ def consultar(request, pk):
 @login_required
 def recibo(request, pk):
     from django.db.models import Q
+    import json
 
     transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial, id=pk)
 
@@ -86,6 +87,9 @@ def recibo(request, pk):
 
     context = {
         'eventos_lista': eventos_lista,
+        'retorno_envio_json': json.loads(transmissor_lote_esocial.retorno_envio_json),
+        'retorno_consulta_json': json.loads(transmissor_lote_esocial.retorno_consulta_json),
+        'ocorrencias_json': json.loads(transmissor_lote_esocial.ocorrencias_json),
         'ocorrencias_lista': ocorrencias_lista,
         'transmissor_lote_esocial': transmissor_lote_esocial,
         'data': datetime.datetime.now(),

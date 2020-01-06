@@ -85,7 +85,7 @@ class form_s1280_infoativconcom(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1280_infosubstpatr(forms.ModelForm):
@@ -126,7 +126,7 @@ class form_s1280_infosubstpatr(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1280_infosubstpatropport(forms.ModelForm):
@@ -166,4 +166,4 @@ class form_s1280_infosubstpatropport(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

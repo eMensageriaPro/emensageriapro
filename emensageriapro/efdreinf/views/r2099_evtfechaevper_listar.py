@@ -58,8 +58,6 @@ from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
 from emensageriapro.controle_de_acesso.models import *
 from emensageriapro.mensageiro.models import TransmissorLoteEfdreinf
-from emensageriapro.efdreinf.models import r5001evtTotal
-from emensageriapro.efdreinf.models import r5011evtTotalContrib
 from emensageriapro.mensageiro.models import TransmissorLoteEfdreinf
 
 
@@ -93,9 +91,6 @@ def listar(request, output=None):
             'show_compsemmovto': 0,
             'show_versao': 0,
             'show_transmissor_lote_efdreinf': 0,
-            'show_retornos_r5001': 0,
-            'show_retornos_r5011': 0,
-            'show_ocorrencias': 0,
             'show_validacao_precedencia': 0,
             'show_validacoes': 0,
             'show_arquivo_original': 0,
@@ -104,7 +99,11 @@ def listar(request, output=None):
             'show_cdretorno': 1,
             'show_descretorno': 0,
             'show_dhprocess': 0,
-            'show_transmissor_lote_efdreinf_error': 0, }
+            'show_transmissor_lote_efdreinf_error': 0,
+            'show_retorno_envio_json': 0,
+            'show_retorno_consulta_json': 0,
+            'show_evento_json': 0,
+            'show_ocorrencias_json': 0, }
 
         post = False
 
@@ -181,8 +180,6 @@ def listar(request, output=None):
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         transmissor_lote_efdreinf_lista = TransmissorLoteEfdreinf.objects.all()
-        retornos_r5001_lista = r5001evtTotal.objects.all()
-        retornos_r5011_lista = r5011evtTotalContrib.objects.all()
         transmissor_lote_efdreinf_error_lista = TransmissorLoteEfdreinf.objects.all()
         #r2099_evtfechaevper_listar_custom
 
@@ -199,8 +196,6 @@ def listar(request, output=None):
             'show_fields': show_fields,
             'filtrar': filtrar,
             'transmissor_lote_efdreinf_lista': transmissor_lote_efdreinf_lista,
-            'retornos_r5001_lista': retornos_r5001_lista,
-            'retornos_r5011_lista': retornos_r5011_lista,
             'transmissor_lote_efdreinf_error_lista': transmissor_lote_efdreinf_error_lista,
         }
 

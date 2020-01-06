@@ -22,7 +22,12 @@ CREATE OR REPLACE VIEW public.vw_transmissor_eventos_esocial_totalizacoes AS SEL
     s5001_evtbasestrab.nrinsc,
     s5001_evtbasestrab.validacao_precedencia,
     s5001_evtbasestrab.validacoes,
-    s5001_evtbasestrab.status
+    s5001_evtbasestrab.status,
+    s5001_evtbasestrab.retorno_envio_json,
+    s5001_evtbasestrab.retorno_consulta_json,
+    s5001_evtbasestrab.evento_json,
+    s5001_evtbasestrab.ocorrencias_json
+
    FROM s5001_evtbasestrab
   WHERE s5001_evtbasestrab.ativo = true
  UNION
@@ -45,7 +50,12 @@ SELECT s5002_evtirrfbenef.id,
     s5002_evtirrfbenef.nrinsc,
     s5002_evtirrfbenef.validacao_precedencia,
     s5002_evtirrfbenef.validacoes,
-    s5002_evtirrfbenef.status
+    s5002_evtirrfbenef.status,
+    s5002_evtirrfbenef.retorno_envio_json,
+    s5002_evtirrfbenef.retorno_consulta_json,
+    s5002_evtirrfbenef.evento_json,
+    s5002_evtirrfbenef.ocorrencias_json
+
    FROM s5002_evtirrfbenef
   WHERE s5002_evtirrfbenef.ativo = true
  UNION
@@ -68,7 +78,12 @@ SELECT s5003_evtbasesfgts.id,
     s5003_evtbasesfgts.nrinsc,
     s5003_evtbasesfgts.validacao_precedencia,
     s5003_evtbasesfgts.validacoes,
-    s5003_evtbasesfgts.status
+    s5003_evtbasesfgts.status,
+    s5003_evtbasesfgts.retorno_envio_json,
+    s5003_evtbasesfgts.retorno_consulta_json,
+    s5003_evtbasesfgts.evento_json,
+    s5003_evtbasesfgts.ocorrencias_json
+
    FROM s5003_evtbasesfgts
   WHERE s5003_evtbasesfgts.ativo = true
  UNION
@@ -91,7 +106,12 @@ SELECT s5011_evtcs.id,
     s5011_evtcs.nrinsc,
     s5011_evtcs.validacao_precedencia,
     s5011_evtcs.validacoes,
-    s5011_evtcs.status
+    s5011_evtcs.status,
+    s5011_evtcs.retorno_envio_json,
+    s5011_evtcs.retorno_consulta_json,
+    s5011_evtcs.evento_json,
+    s5011_evtcs.ocorrencias_json
+
    FROM s5011_evtcs
   WHERE s5011_evtcs.ativo = true
  UNION
@@ -114,7 +134,12 @@ SELECT s5012_evtirrf.id,
     s5012_evtirrf.nrinsc,
     s5012_evtirrf.validacao_precedencia,
     s5012_evtirrf.validacoes,
-    s5012_evtirrf.status
+    s5012_evtirrf.status,
+    s5012_evtirrf.retorno_envio_json,
+    s5012_evtirrf.retorno_consulta_json,
+    s5012_evtirrf.evento_json,
+    s5012_evtirrf.ocorrencias_json
+
    FROM s5012_evtirrf
   WHERE s5012_evtirrf.ativo = true
  UNION
@@ -137,6 +162,11 @@ SELECT s5013_evtfgts.id,
     s5013_evtfgts.nrinsc,
     s5013_evtfgts.validacao_precedencia,
     s5013_evtfgts.validacoes,
-    s5013_evtfgts.status
+    s5013_evtfgts.status,
+    s5013_evtfgts.retorno_envio_json,
+    s5013_evtfgts.retorno_consulta_json,
+    s5013_evtfgts.evento_json,
+    s5013_evtfgts.ocorrencias_json
+
    FROM s5013_evtfgts
   WHERE s5013_evtfgts.ativo = true;

@@ -84,7 +84,7 @@ class form_s1210_deps(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1210_detpgtoant(forms.ModelForm):
@@ -124,7 +124,7 @@ class form_s1210_detpgtoant(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1210_detpgtoant_infopgtoant(forms.ModelForm):
@@ -165,7 +165,7 @@ class form_s1210_detpgtoant_infopgtoant(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1210_detpgtobenpr(forms.ModelForm):
@@ -206,7 +206,7 @@ class form_s1210_detpgtobenpr(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1210_detpgtobenpr_infopgtoparc(forms.ModelForm):
@@ -250,7 +250,7 @@ class form_s1210_detpgtobenpr_infopgtoparc(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1210_detpgtobenpr_retpgtotot(forms.ModelForm):
@@ -294,7 +294,7 @@ class form_s1210_detpgtobenpr_retpgtotot(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1210_detpgtofer(forms.ModelForm):
@@ -335,7 +335,7 @@ class form_s1210_detpgtofer(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1210_detpgtofer_detrubrfer(forms.ModelForm):
@@ -379,7 +379,7 @@ class form_s1210_detpgtofer_detrubrfer(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1210_detpgtofer_penalim(forms.ModelForm):
@@ -420,7 +420,7 @@ class form_s1210_detpgtofer_penalim(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1210_detpgtofl(forms.ModelForm):
@@ -461,7 +461,7 @@ class form_s1210_detpgtofl(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1210_detpgtofl_infopgtoparc(forms.ModelForm):
@@ -505,7 +505,7 @@ class form_s1210_detpgtofl_infopgtoparc(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1210_detpgtofl_penalim(forms.ModelForm):
@@ -546,7 +546,7 @@ class form_s1210_detpgtofl_penalim(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1210_detpgtofl_retpgtotot(forms.ModelForm):
@@ -590,7 +590,7 @@ class form_s1210_detpgtofl_retpgtotot(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1210_idepgtoext(forms.ModelForm):
@@ -630,7 +630,7 @@ class form_s1210_idepgtoext(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1210_infopgto(forms.ModelForm):
@@ -670,4 +670,4 @@ class form_s1210_infopgto(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

@@ -182,17 +182,11 @@
     {% endif %}
 
     {% if s2206_evtaltcontratual.id %}
-        {% if s2206_evtaltcontratual.ocorrencias %}
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="small-box bg-red">
-                        <div class="inner">
-                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-                            <p>{% autoescape off %}{{ s2206_evtaltcontratual.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+        {% if s2206_evtaltcontratual.ocorrencias_json %}
+            {% with ocorrencias_json=s2206_evtaltcontratual.ocorrencias_json|to_json %}
+                {% include 'ocorrencias_esocial.html' %}
+            {% endwith %}
         {% endif %}
 
         {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and s2206_evtaltcontratual.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}

@@ -1,0 +1,937 @@
+{% load templatetags %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+{% with ocorrencias_json=evento.ocorrencias_json|to_json %}
+    {% with retorno=evento.retorno_consulta_json|to_json %}
+
+{#{{ evento.retorno_consulta_json }}#}
+<font size="20px">
+    Recibo do evento - {{ evento.identidade }}
+</font>
+<br>
+Gerado em
+<strong>
+    {{ data|date:"SHORT_DATE_FORMAT" }}
+</strong> por
+<strong>
+    {{ user.first_name }} {{ user.last_name }}
+</strong>
+<br>
+<br>
+<font size="15px">
+    Identificação
+</font>
+<br>
+<table border="0.5px" cellpadding="5px" width="900px">
+    <tr>
+        <td colspan="6">
+            Identidade:
+            <br>
+            <font size="13px">
+                <strong>
+                    {{ evento.identidade }}
+                </strong>
+            </font>
+        </td>
+        <td colspan="3">
+            Versão do XML:
+            <br>
+            <font size="13px">
+                <strong>
+                    {{ evento.get_versao_display }}
+                </strong>
+            </font>
+        </td>
+        <td colspan="3">
+            Tipo de Ambiente:
+            <br>
+            <font size="13px">
+                <strong>
+                    {{ evento.get_tpamb_display }}
+                </strong>
+            </font>
+        </td>
+    </tr>
+</table>
+<br>
+<table width="900px">
+    <tr>
+        <td width="440px">
+            <font size="15px">
+                Processo de Emissão
+            </font>
+            <br>
+            <table border="0.5px" cellpadding="5px">
+                <tr>
+                    <td>Processo:
+                        <br>
+                        <font size="13px">
+                            <strong>
+                                {{ evento.get_procemi_display }}
+                            </strong>
+                        </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Versão:
+                        <br>
+                        <font size="13px">
+                            <strong>
+                                {{ evento.verproc }}
+                            </strong>
+                        </font>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td width="20px">
+        </td>
+        <td width="440px">
+            <font size="15px">
+                Empregador
+            </font>
+            <br>
+            <table border="0.5px" cellpadding="5px">
+                <tr>
+                    <td>Tipo de Inscrição:
+                        <br>
+                        <font size="13px">
+                            <strong>
+                                {{ evento.get_tpinsc_display }}
+                            </strong>
+                        </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Número de Inscrição:
+                        <br>
+                        <font size="13px">
+                            <strong>
+                                {{ evento.nrinsc }}
+                            </strong>
+                        </font>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<br>
+<table width="900px">
+    <tr>
+        <td width="440px">
+            <font size="15px">
+                Recepção
+            </font>
+            <br>
+            <table border="0.5px" cellpadding="5px">
+                <tr>
+                    <td>Tipo de Ambiente:
+                        <br>
+                        <strong>
+                            <font size="13px">
+                                {{ retorno.evento.retornoEvento.eSocial.retornoEvento.recepcao.tpAmb }}
+                            </font>
+                        </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data/Hora:
+                        <br>
+                        <strong>
+                            <font size="13px">
+                                {{ retorno.evento.retornoEvento.eSocial.retornoEvento.recepcao.dhRecepcao }}
+                            </font>
+                        </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Versão do Aplicativo:
+                        <br>
+                        <strong>
+                            <font size="13px">
+                                {{ retorno.evento.retornoEvento.eSocial.retornoEvento.recepcao.versaoAppRecepcao }}
+                            </font>
+                        </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Protocolo do Lote:
+                        <br>
+                        <strong>
+                            <font size="13px">
+                                {{ retorno.evento.retornoEvento.eSocial.retornoEvento.recepcao.protocoloEnvioLote }}
+                            </font>
+                        </strong>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td width="20px">
+        </td>
+        <td width="440px">
+            <font size="15px">
+                Processamento
+            </font>
+            <br>
+            <table border="0.5px" cellpadding="5px">
+                <tr>
+                    <td>Código:
+                        <br>
+                        <strong>
+                            <font size="13px">
+                                {{ retorno.evento.retornoEvento.eSocial.retornoEvento.processamento.cdResposta }}
+                            </font>
+                        </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Descrição:
+                        <br>
+                        <strong>
+                            <font size="13px">
+                                {{ retorno.evento.retornoEvento.eSocial.retornoEvento.processamento.descResposta }}
+                            </font>
+                        </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Versão do Aplicativo:
+                        <br>
+                        <strong>
+                            <font size="13px">
+                                {{ retorno.evento.retornoEvento.eSocial.retornoEvento.processamento.versaoAppProcessamento }}
+                            </font>
+                        </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data/Hora:
+                        <br>
+                        <strong>
+                            <font size="13px">
+                                {{ retorno.evento.retornoEvento.eSocial.retornoEvento.processamento.dhProcessamento }}
+                            </font>
+                        </strong>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<br>
+<font size="15px">
+    Recibo
+</font>
+<br>
+<table border="0.5px" cellpadding="5px">
+    <tr>
+        <td>Número:
+            <br>
+            <strong>
+                <font size="13px">
+                        {{ retorno.evento.retornoEvento.eSocial.retornoEvento.recibo.nrRecibo }}
+                </font>
+            </strong>
+        </td>
+        <td>Hash:
+            <br>
+            <strong>
+                <font size="13px">
+                        {{ retorno.evento.retornoEvento.eSocial.retornoEvento.recibo.hash }}
+                </font>
+            </strong>
+        </td>
+    </tr>
+</table>
+<br>
+
+{% if retorno.cpftrab or retorno.nistrab or retorno.nmtrab %}
+    <font size="15px">
+        Trabalhador
+    </font>
+    <br>
+    <table border="0.5px" cellpadding="5px">
+        <tr>
+            <td colspan="4">
+                CPF:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.cpftrab %}
+                            {{ retorno.cpftrab }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="4">
+                NIS:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.nistrab %}
+                            {{ retorno.nistrab }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="4">
+                Nome:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.nmtrab %}
+                            {{ retorno.nmtrab }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+        </tr>
+    </table>
+    <br>
+{% endif %}
+{% if retorno.infocota %}
+    <font size="15px">
+        Deficiência
+    </font>
+    <br>
+    <table border="0.5px" cellpadding="5px">
+        <tr>
+            <td colspan="12">
+                Informação de Cota:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.infocota %}
+                            {{ retorno.get_infocota_display }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+        </tr>
+    </table>
+    <br>
+{% endif %}
+{% if retorno.matricula %}
+    <font size="15px">
+        Vínculo
+    </font>
+    <br>
+    <table border="0.5px" cellpadding="5px">
+        <tr>
+            <td colspan="12">
+                Matricula:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.matricula %}
+                            {{ retorno.matricula }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+        </tr>
+    </table>
+    <br>
+{% endif %}
+{% if retorno.dtadm or retorno.tpregjor or retorno.dtbase or retorno.cnpjsindcategprof %}
+    <font size="15px">
+        Informação de Celetista
+    </font>
+    <br>
+    <table border="0.5px" cellpadding="5px">
+        <tr>
+            <td colspan="6">
+                Data de Admissão:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.matricula %}
+                            {{ retorno.dtadm }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="6">
+                Tipo de Regime de Jornada:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.tpregjor %}
+                            {{ retorno.get_tpregjor_display }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                Data Base:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.dtbase %}
+                            {{ retorno.dtbase }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="6">
+                CNPJ Sindicato:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.cnpjsindcategprof %}
+                            {{ retorno.cnpjsindcategprof }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+        </tr>
+    </table>
+    <br>
+
+{% endif %}
+{% if retorno.dtposse or retorno.dtexercicio %}
+    <font size="15px">
+        Informação de Estatutário
+    </font>
+    <br>
+    <table border="0.5px" cellpadding="5px">
+        <tr>
+            <td colspan="6">
+                Data de Posse:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.dtposse %}
+                            {{ retorno.dtposse }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="6">
+                Data de Exercício:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.dtexercicio %}
+                            {{ retorno.dtexercicio }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+        </tr>
+    </table>
+    <br>
+{% endif %}
+{% if retorno.codcargo or retorno.nmcargo or retorno.codcbocargo %}
+    <font size="15px">
+        Informação de Cargos
+    </font>
+    <br>
+    <table border="0.5px" cellpadding="5px">
+        <tr>
+            <td colspan="4">
+                Código:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.codcargo %}
+                            {{ retorno.codcargo }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="4">
+                Nome:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.nmcargo %}{{ retorno.nmcargo }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="4">
+                CBO:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.codcbocargo %}{{ retorno.codcbocargo }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+        </tr>
+    </table>
+    <br>
+{% endif %}
+{% if retorno.codfuncao or retorno.dscfuncao or retorno.codcbofuncao %}
+    <font size="15px">
+        Informação de Funções
+    </font>
+    <br>
+    <table border="0.5px" cellpadding="5px">
+        <tr>
+            <td colspan="4">
+                Código:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.codfuncao %}
+                            {{ retorno.codfuncao }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="4">
+                Descrição:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.dscfuncao %}
+                            {{ retorno.dscfuncao }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="4">
+                CBO:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.codcbofuncao %}
+                            {{ retorno.codcbofuncao }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+        </tr>
+    </table>
+    <br>
+{% endif %}
+{% if retorno.codcateg %}
+    <font size="15px">
+        Categoria
+    </font>
+    <br>
+    <table border="0.5px" cellpadding="5px">
+        <tr>
+            <td colspan="12">
+                Código:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.codcateg %}
+                            {{ retorno.codcateg }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+        </tr>
+    </table>
+    <br>
+{% endif %}
+{% if retorno.vrsalfx or retorno.undsalfixo or retorno.dscsalvar %}
+    <font size="15px">
+        Remuneração
+    </font>
+    <br>
+    <table border="0.5px" cellpadding="5px">
+        <tr>
+            <td colspan="4">
+                Valor do Salário Fixo:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.vrsalfx %}
+                            {{ retorno.vrsalfx }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="4">
+                Unidade do Salário Fixo:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.undsalfixo %}
+                            {{ retorno.get_undsalfixo_display }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="4">
+                Descrição do salário variável:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.dscsalvar %}
+                            {{ retorno.dscsalvar }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+        </tr>
+    </table>
+    <br>
+{% endif %}
+{% if retorno.tpcontr or retorno.dtterm or retorno.clauasseg %}
+    <font size="15px">
+        Duração
+    </font>
+    <br>
+    <table border="0.5px" cellpadding="5px">
+        <tr>
+            <td colspan="4">
+                Tipo de Contrato:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.tpcontr %}
+                            {{ retorno.get_tpcontr_display }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="4">
+                Data de Término:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.dtterm %}
+                            {{ retorno.dtterm }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="4">
+                Clausula Asseguratória:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.clauasseg %}
+                            {{ retorno.clauasseg }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+        </tr>
+    </table>
+    <br>
+{% endif %}
+{% if retorno.local_tpinsc or retorno.local_nrinsc or retorno.local_cnae or retorno.local_cnae %}
+    <font size="15px">
+        Local de Trabalho Geral
+    </font>
+    <br>
+    <table border="0.5px" cellpadding="5px">
+        <tr>
+            <td colspan="4">
+                Tipo de Inscrição:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.local_tpinsc %}
+                            {{ retorno.get_local_tpinsc_display }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="4">
+                Número de Inscrição:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.local_nrinsc %}
+                            {{ retorno.local_nrinsc }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="4">
+                CNAE:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.local_cnae %}
+                            {{ retorno.local_cnae }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+        </tr>
+    </table>
+    <br>
+{% endif %}
+{% if retorno.qtdhrssem or retorno.tpjornada or retorno.dsctpjorn or retorno.tmpparc %}
+    <font size="15px">
+        Horários Contratuais
+    </font>
+    <br>
+    <table border="0.5px" cellpadding="5px">
+        <tr>
+            <td colspan="3">
+                Quant. de horas semanais:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.qtdhrssem %}
+                            {{ retorno.qtdhrssem }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="3">
+                Tipo de jornada:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.tpjornada %}
+                            {{ retorno.get_tpjornada_display }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="3">
+                Descrição do tipo de jornada:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.dsctpjorn %}
+                            {{ retorno.dsctpjorn }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+            <td colspan="3">
+                Contrato em tempo parcial:
+                <br>
+                <strong>
+                    <font size="13px">
+                        {% if retorno.tmpparc %}
+                            {{ retorno.get_tmpparc_display }}
+                        {% endif %}
+                    </font>
+                </strong>
+            </td>
+        </tr>
+    </table>
+    <br>
+{% endif %}
+{% if retorno_horarios %}
+    <font size="15px">
+        Horários de Trabalho
+    </font>
+    <br>
+    <table border="0.5px" cellpadding="5px">
+        {% for h in retorno_horarios %}
+            <tr>
+                <td colspan="2">
+                    Dia:
+                    <br>
+                    <strong>
+                        <font size="13px">
+                            {% if retorno.dia %}
+                                {{ retorno.get_dia_display }}
+                            {% endif %}
+                        </font>
+                    </strong>
+                </td>
+                <td colspan="2">
+                    Código do Horário Contratual:
+                    <br>
+                    <strong>
+                        <font size="13px">
+                            {% if retorno.codhorcontrat %}
+                                {{ retorno.codhorcontrat }}
+                            {% endif %}
+                        </font>
+                    </strong>
+                </td>
+                <td colspan="2">
+                    Hora de Entrada:
+                    <br>
+                    <strong>
+                        <font size="13px">
+                            {% if retorno.hrentr %}
+                                {{ retorno.hrentr }}
+                            {% endif %}
+                        </font>
+                    </strong>
+                </td>
+                <td colspan="2">
+                    Hora de Saída:
+                    <br>
+                    <strong>
+                        <font size="13px">
+                            {% if retorno.hrsaida %}
+                                {{ retorno.hrsaida }}
+                            {% endif %}
+                        </font>
+                    </strong>
+                </td>
+                <td colspan="2">
+                    Duração da jornada (min):
+                    <br>
+                    <strong>
+                        <font size="13px">
+                            {% if retorno.durjornada %}
+                                {{ retorno.durjornada }}
+                            {% endif %}
+                        </font>
+                    </strong>
+                </td>
+                <td colspan="2">
+                    Horário Flexivel:
+                    <br>
+                    <strong>
+                        <font size="13px">
+                            {% if retorno.perhorflexivel %}
+                                {{ retorno.get_perhorflexivel_display }}
+                            {% endif %}
+                        </font>
+                    </strong>
+                </td>
+            </tr>
+            {% for i in retorno_intervalos %}
+                {% ifequal i.retornos_eventos_horarios_id h.id %}
+                    <tr>
+                        <td colspan="3">
+                            Tipo de intervalo da jornada:
+                            <br>
+                            <strong>
+                                <font size="13px">
+                                    {% if retorno.tpinterv %}
+                                        {{ retorno.get_tpinterv_display }}
+                                    {% endif %}
+                                </font>
+                            </strong>
+                        </td>
+                        <td colspan="3">
+                            Duração do intervalo (min):
+                            <br>
+                            <strong>
+                                <font size="13px">
+                                    {% if retorno.durinterv %}
+                                        {{ retorno.durinterv }}
+                                    {% endif %}
+                                </font>
+                            </strong>
+                        </td>
+                        <td colspan="3">
+                            Hora de início:
+                            <br>
+                            <strong>
+                                <font size="13px">
+                                    {% if retorno.iniinterv %}
+                                        {{ retorno.iniinterv }}
+                                    {% endif %}
+                                </font>
+                            </strong>
+                        </td>
+                        <td colspan="3">
+                            Hora de término:
+                            <br>
+                            <strong>
+                                <font size="13px">
+                                    {% if retorno.terminterv %}
+                                        {{ retorno.terminterv }}
+                                    {% endif %}
+                                </font>
+                            </strong>
+                        </td>
+                    </tr>
+                {% endifequal %}
+            {% endfor %}
+        {% endfor %}
+    </table>
+    <br>
+{% endif %}
+<font size="15px">
+    Ocorrências
+</font>
+<br>
+<table border="0.5px" cellpadding="5px">
+    <tr>
+        <td bgcolor="#CCC" colspan="1">
+            Tipo
+        </td>
+        <td bgcolor="#CCC" colspan="1">
+            Código
+        </td>
+        <td bgcolor="#CCC" colspan="10">
+            Descrição
+        </td>
+    </tr>
+    {% for a in retorno_ocorrencias %}
+
+        {% if ocorrencias_json.processamento.ocorrencias.ocorrencia|is_list %}
+            {% for c in ocorrencias_json.processamento.ocorrencias.ocorrencia %}
+                <tr>
+                    <td>{% if c|finditem:'tipo' %}
+                        {% if c|finditem:'tipo' == '1' %}(ERRO)
+                        {% elif c|finditem:'tipo' == '2' %}(ADVERTÊNCIA)
+                        {% endif %}
+                    {% endif %}
+                    </td>
+                    <td>
+                    {% if c|finditem:'codigo' %}
+                        {{ c|finditem:'codigo' }}{% endif %}
+                    </td>
+                    <td>
+                        {% if c|finditem:'descricao' %}
+                            {{ c|finditem:'descricao' }}{% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="12">
+                    {% if c|finditem:'localizacao' %}
+                        {{ c|finditem:'localizacao' }}{% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            {% for a, c in ocorrencias_json.processamento.ocorrencias.items %}
+                <tr>
+                    <td>{% if c|finditem:'tipo' %}
+                        {% if c|finditem:'tipo' == '1' %}ERRO
+                        {% elif c|finditem:'tipo' == '2' %}ADVERTÊNCIA
+                        {% endif %}
+                    {% endif %}
+                    </td>
+                    <td>
+                    {% if c|finditem:'codigo' %}
+                        {{ c|finditem:'codigo' }}{% endif %}
+                    </td>
+                    <td>
+                        {% if c|finditem:'descricao' %}
+                            {{ c|finditem:'descricao' }}{% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                    {% if c|finditem:'localizacao' %}
+                        {{ c|finditem:'localizacao' }}{% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+
+    {% empty %}
+        <tr>
+            <td colspan="12">
+                Não foram registradas ocorrências para este evento!
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endwith %}
+{% endwith %}
+</body>
+</html>

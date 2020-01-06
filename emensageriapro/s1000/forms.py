@@ -83,7 +83,7 @@ class form_s1000_alteracao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_alteracao_dadosisencao(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_s1000_alteracao_dadosisencao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_alteracao_infoefr(forms.ModelForm):
@@ -163,7 +163,7 @@ class form_s1000_alteracao_infoefr(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_alteracao_infoente(forms.ModelForm):
@@ -204,7 +204,7 @@ class form_s1000_alteracao_infoente(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_alteracao_infoop(forms.ModelForm):
@@ -245,7 +245,7 @@ class form_s1000_alteracao_infoop(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_alteracao_infoorginternacional(forms.ModelForm):
@@ -285,7 +285,7 @@ class form_s1000_alteracao_infoorginternacional(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_alteracao_novavalidade(forms.ModelForm):
@@ -325,7 +325,7 @@ class form_s1000_alteracao_novavalidade(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_alteracao_situacaopf(forms.ModelForm):
@@ -365,7 +365,7 @@ class form_s1000_alteracao_situacaopf(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_alteracao_situacaopj(forms.ModelForm):
@@ -405,7 +405,7 @@ class form_s1000_alteracao_situacaopj(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_alteracao_softwarehouse(forms.ModelForm):
@@ -445,7 +445,7 @@ class form_s1000_alteracao_softwarehouse(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_exclusao(forms.ModelForm):
@@ -485,7 +485,7 @@ class form_s1000_exclusao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_inclusao(forms.ModelForm):
@@ -525,7 +525,7 @@ class form_s1000_inclusao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_inclusao_dadosisencao(forms.ModelForm):
@@ -565,7 +565,7 @@ class form_s1000_inclusao_dadosisencao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_inclusao_infoefr(forms.ModelForm):
@@ -605,7 +605,7 @@ class form_s1000_inclusao_infoefr(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_inclusao_infoente(forms.ModelForm):
@@ -646,7 +646,7 @@ class form_s1000_inclusao_infoente(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_inclusao_infoop(forms.ModelForm):
@@ -687,7 +687,7 @@ class form_s1000_inclusao_infoop(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_inclusao_infoorginternacional(forms.ModelForm):
@@ -727,7 +727,7 @@ class form_s1000_inclusao_infoorginternacional(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_inclusao_situacaopf(forms.ModelForm):
@@ -767,7 +767,7 @@ class form_s1000_inclusao_situacaopf(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_inclusao_situacaopj(forms.ModelForm):
@@ -807,7 +807,7 @@ class form_s1000_inclusao_situacaopj(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1000_inclusao_softwarehouse(forms.ModelForm):
@@ -847,4 +847,4 @@ class form_s1000_inclusao_softwarehouse(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

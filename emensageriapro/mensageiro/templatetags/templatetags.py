@@ -447,3 +447,31 @@ def percentage(fraction, population):
         return "%.2f%%" % ((float(fraction) / float(population)) * 100)
     except ValueError:
         return ''
+
+
+@register.filter(name='is_list')
+def is_list(obj):
+    if isinstance(obj, list):
+        return True
+    else:
+        return False
+
+
+@register.filter(name='finditem')
+def finditem(obj, key):
+    if isinstance(obj, dict):
+        if key in obj.keys():
+            return obj[key]
+        else:
+            for k, v in obj.items():
+                finditem(v, key)
+    elif isinstance(obj, list):
+        for a in obj:
+            finditem(a, key)
+
+
+@register.filter(name='to_json')
+def to_json(string):
+    if string:
+        import json
+        return json.loads(string)

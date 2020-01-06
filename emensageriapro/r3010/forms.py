@@ -83,7 +83,7 @@ class form_r3010_boletim(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r3010_infoproc(forms.ModelForm):
@@ -124,7 +124,7 @@ class form_r3010_infoproc(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r3010_outrasreceitas(forms.ModelForm):
@@ -165,7 +165,7 @@ class form_r3010_outrasreceitas(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r3010_receitaingressos(forms.ModelForm):
@@ -207,4 +207,4 @@ class form_r3010_receitaingressos(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

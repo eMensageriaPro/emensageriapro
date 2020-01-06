@@ -37,85 +37,6 @@
 
 
 
-CHOICES_DIA = [
-    (1, u'1 - Segunda-Feira'),
-    (2, u'2 - Terça-Feira'),
-    (3, u'3 - Quarta-Feira'),
-    (4, u'4 - Quinta-Feira'),
-    (5, u'5 - Sexta-Feira'),
-    (6, u'6 - Sábado'),
-    (7, u'7 - Domingo'),
-    (8, u'8 - Dia variável.'),
-]
-
-
-CHOICES_INFOCOTA = [
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-]
-
-
-CHOICES_PERHORFLEXIVEL = [
-    ('N', u'N - Não.'),
-    ('S', u'S - Sim'),
-]
-
-
-CHOICES_TMPPARC = [
-    (0, u'0 - Não é contrato em tempo parcial'),
-    (1, u'1 - Limitado a 25 horas semanais'),
-    (2, u'2 - Limitado a 30 horas semanais'),
-    (3, u'3 - Limitado a 26 horas semanais.'),
-]
-
-
-CHOICES_TPCONTR = [
-    (1, u'1 - Contribuição Sindical Compulsória'),
-    (2, u'2 - Contribuição Associativa'),
-    (3, u'3 - Contribuição Assistencial'),
-    (4, u'4 - Contribuição Confederativa.'),
-]
-
-
-CHOICES_TPINSC = [
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF.'),
-]
-
-
-CHOICES_TPINTERV = [
-    (1, u'1 - Intervalo em Horário Fixo'),
-    (2, u'2 - Intervalo em Horário Variável.'),
-]
-
-
-CHOICES_TPJORNADA = [
-    (1, u'1 - Jornada com horário diário e folga fixos'),
-    (2, u'2 - Jornada 12 x 36 (12 horas de trabalho seguidas de 36 horas ininterruptas de descanso)'),
-    (3, u'3 - Jornada com horário diário fixo e folga variável'),
-    (9, u'9 - Demais tipos de jornada.'),
-]
-
-
-CHOICES_TPREGJOR = [
-    (1, u'1 - Submetidos a Horário de Trabalho (Cap. II da CLT)'),
-    (2, u'2 - Atividade Externa especificada no Inciso I do Art. 62 da CLT'),
-    (3, u'3 - Funções especificadas no Inciso II do Art. 62 da CLT'),
-    (4, u'4 - Teletrabalho, previsto no Inciso III do Art. 62 da CLT.'),
-]
-
-
-CHOICES_UNDSALFIXO = [
-    (1, u'1 - Por Hora'),
-    (2, u'2 - Por Dia'),
-    (3, u'3 - Por Semana'),
-    (4, u'4 - Por Quinzena'),
-    (5, u'5 - Por Mês'),
-    (6, u'6 - Por Tarefa'),
-    (7, u'7 - Não aplicável - salário exclusivamente variável.'),
-]
-
-
 CODIGO_RESPOSTA = [
     (0, u'Cadastrado'),
     (101, u'101 - Lote Aguardando Processamento'),
@@ -149,18 +70,6 @@ EVENTOS_GRUPOS = [
 ]
 
 
-EVENTOS_OCORRENCIAS_TIPO = [
-    (1, u'1 - Erro'),
-    (2, u'2 - Advertência'),
-]
-
-
-EVENTOS_OCORRENCIAS_TIPO_EFDREINF = [
-    (1, u'1 - Aviso'),
-    (2, u'2 - Erro'),
-]
-
-
 IMPORTACAO_STATUS = [
     (0, u'Aguardando'),
     (1, u'Processando'),
@@ -180,23 +89,11 @@ SIM_NAO = [
 ]
 
 
-TIPO_AMBIENTE = [
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-]
-
-
 TIPO_INSCRICAO = [
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-]
-
-
-TIPO_OCORRENCIA = [
-    (1, u'1 - Erro'),
-    (2, u'2 - Advertência'),
 ]
 
 

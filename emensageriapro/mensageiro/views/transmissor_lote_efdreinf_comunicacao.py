@@ -75,6 +75,7 @@ def consultar(request, pk):
 
 @login_required
 def recibo(request, pk):
+    import json
 
     transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf, id=pk)
 
@@ -85,7 +86,10 @@ def recibo(request, pk):
         filter(Q(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id) | Q(transmissor_lote_efdreinf_error_id=transmissor_lote_efdreinf.id)).all()
 
     context = {
+
         'eventos_lista': eventos_lista,
+        'eventos_json': json.loads(transmissor_lote_efdreinf.ocorrencias_json),
+        'ocorrencias_json': json.loads(transmissor_lote_efdreinf.ocorrencias_json),
         'ocorrencias_lista': ocorrencias_lista,
         'transmissor_lote_efdreinf': transmissor_lote_efdreinf,
         'data': datetime.datetime.now(),

@@ -85,7 +85,7 @@ class form_s1005_alteracao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1005_alteracao_infocaepf(forms.ModelForm):
@@ -125,7 +125,7 @@ class form_s1005_alteracao_infocaepf(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1005_alteracao_infoenteduc(forms.ModelForm):
@@ -165,7 +165,7 @@ class form_s1005_alteracao_infoenteduc(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1005_alteracao_infoobra(forms.ModelForm):
@@ -205,7 +205,7 @@ class form_s1005_alteracao_infoobra(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1005_alteracao_infopcd(forms.ModelForm):
@@ -245,7 +245,7 @@ class form_s1005_alteracao_infopcd(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1005_alteracao_novavalidade(forms.ModelForm):
@@ -285,7 +285,7 @@ class form_s1005_alteracao_novavalidade(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1005_alteracao_procadmjudfap(forms.ModelForm):
@@ -325,7 +325,7 @@ class form_s1005_alteracao_procadmjudfap(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1005_alteracao_procadmjudrat(forms.ModelForm):
@@ -365,7 +365,7 @@ class form_s1005_alteracao_procadmjudrat(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1005_exclusao(forms.ModelForm):
@@ -405,7 +405,7 @@ class form_s1005_exclusao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1005_inclusao(forms.ModelForm):
@@ -447,7 +447,7 @@ class form_s1005_inclusao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1005_inclusao_infocaepf(forms.ModelForm):
@@ -487,7 +487,7 @@ class form_s1005_inclusao_infocaepf(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1005_inclusao_infoenteduc(forms.ModelForm):
@@ -527,7 +527,7 @@ class form_s1005_inclusao_infoenteduc(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1005_inclusao_infoobra(forms.ModelForm):
@@ -567,7 +567,7 @@ class form_s1005_inclusao_infoobra(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1005_inclusao_infopcd(forms.ModelForm):
@@ -607,7 +607,7 @@ class form_s1005_inclusao_infopcd(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1005_inclusao_procadmjudfap(forms.ModelForm):
@@ -647,7 +647,7 @@ class form_s1005_inclusao_procadmjudfap(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1005_inclusao_procadmjudrat(forms.ModelForm):
@@ -687,4 +687,4 @@ class form_s1005_inclusao_procadmjudrat(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

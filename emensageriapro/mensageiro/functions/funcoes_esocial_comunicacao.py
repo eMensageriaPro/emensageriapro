@@ -34,454 +34,178 @@ from emensageriapro.mensageiro.functions.funcoes import create_insert
 
 """
 
-from emensageriapro.padrao import executar_sql
-from emensageriapro.mensageiro.functions.funcoes import ler_arquivo
-from emensageriapro.functions import EVENTOS_RETORNO
-
+import xmltodict
+import json
+from datetime import datetime
+from django.apps import apps
+from xml.dom import minidom
+from emensageriapro.settings import BASE_DIR
+from emensageriapro.mensageiro.models import TransmissorLoteEsocial
 from emensageriapro.esocial.models import STATUS_EVENTO_ENVIADO, \
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
-
 from emensageriapro.mensageiro.functions.funcoes import TRANSMISSOR_STATUS_ENVIADO,\
     TRANSMISSOR_STATUS_ENVIADO_ERRO, TRANSMISSOR_STATUS_CONSULTADO, TRANSMISSOR_STATUS_CONSULTADO_ERRO
 
 
-def definir_status_evento(transmissor_lote_esocial_id):
-
-    from django.apps import apps
-
-    app_models = apps.get_app_config('esocial').get_models()
-
-    for model in app_models:
-        lista = model.objects.filter(transmissor_lote_esocial_id=transmissor_lote_esocial_id).all()
-
-        for a in lista:
-            if a.transmissor_lote_esocial.status == TRANSMISSOR_STATUS_ENVIADO:
-                model.objects.filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO, ocorrencias=None)
-
-            elif a.transmissor_lote_esocial.status == TRANSMISSOR_STATUS_ENVIADO_ERRO:
-                model.objects.filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO_ERRO,
-                                                     transmissor_lote_esocial=None,
-                                                     transmissor_lote_esocial_error=transmissor_lote_esocial_id)
-
-            elif a.transmissor_lote_esocial.status == TRANSMISSOR_STATUS_CONSULTADO_ERRO:
-                model.objects.filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO_ERRO,
-                                                     transmissor_lote_esocial=None,
-                                                     transmissor_lote_esocial_error=transmissor_lote_esocial_id)
-
-            # elif a.transmissor_lote_esocial.status == TRANSMISSOR_STATUS_CONSULTADO:
-            #     model.objects.filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO, ocorrencias=None)
-
-
-
-def get_ocorrencias(retornos_eventos_id):
-    import json
-    from django.forms.models import model_to_dict
-    from emensageriapro.mensageiro.models import RetornosEventosOcorrencias
-
-    ocorrencias = RetornosEventosOcorrencias.objects.\
-        filter(retornos_eventos_id=retornos_eventos_id).all()
-
-    lista_ocor = []
-    for o in ocorrencias:
-        lista_ocor.append(json.dumps(model_to_dict(o), sort_keys=True, default=str))
-    txt_str = '|'.join(lista_ocor)
-    txt_str = txt_str.replace("'", "''")
-
-    return str(txt_str).replace("'", "''")
-
-
-
 def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):
 
-    from emensageriapro.mensageiro.models import TransmissorLoteEsocialOcorrencias, TransmissorLoteEsocial
-    import untangle
-
-    xml = ler_arquivo(arquivo).replace("s:", "")
-    doc = untangle.parse(xml)
-    child = doc.Envelope.Body.EnviarLoteEventosResponse.EnviarLoteEventosResult.eSocial.retornoEnvioLoteEventos
+    xmldoc = minidom.parse(BASE_DIR + arquivo)
 
     lote = {}
-
-    lote['resposta_codigo'] = child.status.cdResposta.cdata
-    if lote['resposta_codigo'] in ('201', '202', '203'):
-        lote['status'] = TRANSMISSOR_STATUS_ENVIADO
+    lote['retorno_envio_json'] = json.dumps(xmltodict.parse(xmldoc.getElementsByTagName('retornoEnvioLoteEventos')[0].toxml()))
+    if xmldoc.getElementsByTagName('ocorrencia'):
+        lote['ocorrencias_json'] = json.dumps(xmltodict.parse(xmldoc.getElementsByTagName('ocorrencia')[0].toxml()))
     else:
-        lote['status'] = TRANSMISSOR_STATUS_ENVIADO_ERRO
-    lote['resposta_descricao'] = child.status.descResposta.cdata
+        lote['ocorrencias_json'] = None
 
-    TransmissorLoteEsocialOcorrencias.objects.\
-        filter(transmissor_lote_esocial_id=transmissor_lote_esocial_id).delete()
+    lote['data_hora_envio'] = datetime.now()
 
-    if '<ocorrencias>' in xml:
+    status = xmldoc.getElementsByTagName('status')
+    if status:
+        lote['resposta_codigo'] = status[0].getElementsByTagName('cdResposta')[0].firstChild.nodeValue
+        lote['resposta_descricao'] = status[0].getElementsByTagName('descResposta')[0].firstChild.nodeValue
+        if lote['resposta_codigo'][0] == '2':
+            lote['status'] = TRANSMISSOR_STATUS_ENVIADO
+        else:
+            lote['status'] = TRANSMISSOR_STATUS_ENVIADO_ERRO
 
-        for a in child.status.ocorrencias.ocorrencia:
-            ocorrencias = {}
-            ocorrencias['transmissor_lote_esocial_id'] = transmissor_lote_esocial_id
-            ocorrencias['resposta_codigo'] = a.codigo.cdata
-            ocorrencias['descricao'] = a.descricao.cdata
-            ocorrencias['descricao'] = ocorrencias['descricao'].replace("'", "''")
-            ocorrencias['tipo'] = a.tipo.cdata
-            try:
-                ocorrencias['localizacao'] = a.localizacao.cdata
-            except:
-                ocorrencias['localizacao'] = ''
-
-            obj = TransmissorLoteEsocialOcorrencias(**ocorrencias)
-            obj.save(using='default')
-
-
-    if '<dadosRecepcaoLote>' in xml:
-        lote['recepcao_data_hora'] = child.dadosRecepcaoLote.dhRecepcao.cdata
-        lote['recepcao_versao_aplicativo'] = child.dadosRecepcaoLote.versaoAplicativoRecepcao.cdata
-        lote['protocolo'] = child.dadosRecepcaoLote.protocoloEnvio.cdata
+    dados_recepcao_lote = xmldoc.getElementsByTagName('dadosRecepcaoLote')
+    if dados_recepcao_lote:
+        lote['recepcao_data_hora'] = dados_recepcao_lote[0].getElementsByTagName('dhRecepcao')[0].firstChild.nodeValue
+        lote['recepcao_versao_aplicativo'] = dados_recepcao_lote[0].getElementsByTagName('versaoAplicativoRecepcao')[0].firstChild.nodeValue
+        lote['protocolo'] = dados_recepcao_lote[0].getElementsByTagName('protocoloEnvio')[0].firstChild.nodeValue
 
     TransmissorLoteEsocial.objects. \
         filter(id=transmissor_lote_esocial_id).update(**lote)
 
+    app_models = apps.get_app_config('esocial').get_models()
+
+    for model in app_models:
+
+        dados = {}
+
+        if lote['status'] == TRANSMISSOR_STATUS_ENVIADO:
+            dados['status'] = STATUS_EVENTO_ENVIADO
+            dados['retorno_envio_json'] = lote['retorno_envio_json']
+            dados['ocorrencias_json'] = None
+
+        elif lote['status'] == TRANSMISSOR_STATUS_ENVIADO_ERRO:
+            dados['status'] = STATUS_EVENTO_ENVIADO_ERRO
+            dados['transmissor_lote_esocial_id'] = None
+            dados['transmissor_lote_esocial_error_id'] = transmissor_lote_esocial_id
+            dados['retorno_envio_json'] = lote['retorno_envio_json']
+            dados['ocorrencias_json'] = None
+
+        model.objects. \
+            filter(transmissor_lote_esocial_id=transmissor_lote_esocial_id). \
+            update(**dados)
+
+        # if lote['status'] == TRANSMISSOR_STATUS_ENVIADO:
+        #     model.objects.filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO,
+        #                                          retorno_envio_json=lote['retorno_envio_json'],
+        #                                          ocorrencias_json=None)
+        #
+        # elif lote['status'] == TRANSMISSOR_STATUS_ENVIADO_ERRO:
+        #     model.objects.filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO_ERRO,
+        #                                          retorno_envio_json=lote['retorno_envio_json'],
+        #                                          transmissor_lote_esocial=None,
+        #                                          ocorrencias_json=None,
+        #                                          transmissor_lote_esocial_error=transmissor_lote_esocial_id)
+
     return lote
 
 
-def read_retornoEvento(doc, transmissor_lote_id):
-    retorno_evento_dados = {}
-    retorno_evento_dados['transmissor_lote_esocial_id'] = transmissor_lote_id
-    retorno_evento_dados['identidade'] = doc.eSocial.retornoEvento['Id']
-    retornoEvento = doc.eSocial.retornoEvento
-
-    if 'tpInsc' in dir(retornoEvento.ideEmpregador):
-        retorno_evento_dados['tpinsc'] = retornoEvento.ideEmpregador.tpInsc.cdata
-
-    if 'nrInsc' in dir(retornoEvento.ideEmpregador):
-        retorno_evento_dados['nrinsc'] = retornoEvento.ideEmpregador.nrInsc.cdata
-
-    if 'recepcao' in dir(retornoEvento):
-
-        if 'tpAmb' in dir(retornoEvento.recepcao):
-            retorno_evento_dados['recepcao_tp_amb'] = retornoEvento.recepcao.tpAmb.cdata
-
-        if 'dhRecepcao' in dir(retornoEvento.recepcao):
-            retorno_evento_dados['recepcao_data_hora'] = retornoEvento.recepcao.dhRecepcao.cdata
-
-        if 'versaoAppRecepcao' in dir(retornoEvento.recepcao):
-            retorno_evento_dados['recepcao_versao_app'] = retornoEvento.recepcao.versaoAppRecepcao.cdata
-
-        if 'protocoloEnvioLote' in dir(retornoEvento.recepcao):
-            retorno_evento_dados['recepcao_protocolo_envio_lote'] = retornoEvento.recepcao.protocoloEnvioLote.cdata
-
-    if 'processamento' in dir(retornoEvento):
-
-        if 'cdResposta' in dir(retornoEvento.processamento):
-            retorno_evento_dados['processamento_codigo_resposta'] = retornoEvento.processamento.cdResposta.cdata
-
-        if 'descResposta' in dir(retornoEvento.processamento):
-            retorno_evento_dados['processamento_descricao_resposta'] = retornoEvento.processamento.descResposta.cdata
-
-        if 'versaoAppProcessamento' in dir(retornoEvento.processamento):
-            retorno_evento_dados['processamento_versao_app_processamento'] = retornoEvento.processamento.versaoAppProcessamento.cdata
-
-        if 'dhProcessamento' in dir(retornoEvento.processamento):
-            retorno_evento_dados['processamento_data_hora'] = retornoEvento.processamento.dhProcessamento.cdata
-
-    if 'recibo' in dir(retornoEvento):
-
-        if 'nrRecibo' in dir(retornoEvento.recibo): retorno_evento_dados['recibo_numero'] = retornoEvento.recibo.nrRecibo.cdata
-
-        if 'hash' in dir(retornoEvento.recibo): retorno_evento_dados['recibo_hash'] = retornoEvento.recibo.hash.cdata
-
-        if 'contrato' in dir(retornoEvento.recibo):
-
-            if 'ideEmpregador' in dir(retornoEvento.recibo.contrato):
-
-                if 'tpInsc' in dir(retornoEvento.recibo.contrato.ideEmpregador):
-                    retorno_evento_dados['empregador_tpinsc'] = retornoEvento.recibo.contrato.ideEmpregador.tpInsc.cdata
-
-                if 'nrInsc' in dir(retornoEvento.recibo.contrato.ideEmpregador):
-                    retorno_evento_dados['empregador_nrinsc'] = retornoEvento.recibo.contrato.ideEmpregador.nrInsc.cdata
-
-            if 'trabalhador' in dir(retornoEvento.recibo.contrato):
-
-                if 'cpfTrab' in dir(retornoEvento.recibo.contrato.trabalhador):
-                    retorno_evento_dados['cpftrab'] = retornoEvento.recibo.contrato.trabalhador.cpfTrab.cdata
-
-                if 'nisTrab' in dir(retornoEvento.recibo.contrato.trabalhador):
-                    retorno_evento_dados['nistrab'] = retornoEvento.recibo.contrato.trabalhador.nisTrab.cdata
-
-                if 'nmTrab' in dir(retornoEvento.recibo.contrato.trabalhador):
-                    retorno_evento_dados['nmtrab'] = retornoEvento.recibo.contrato.trabalhador.nmTrab.cdata
-
-            if 'infoDeficiencia' in dir(retornoEvento.recibo.contrato):
-
-                if 'infoCota' in dir(retornoEvento.recibo.contrato.infoDeficiencia):
-                    retorno_evento_dados['infocota'] = retornoEvento.recibo.contrato.infoDeficiencia.infoCota.cdata
-
-            if 'vinculo' in dir(retornoEvento.recibo.contrato):
-
-                if 'matricula' in dir(retornoEvento.recibo.contrato.vinculo):
-                    retorno_evento_dados['matricula'] = retornoEvento.recibo.contrato.vinculo.matricula.cdata
-
-            if 'infoCeletista' in dir(retornoEvento.recibo.contrato):
-
-                if 'dtAdm' in dir(retornoEvento.recibo.contrato.infoCeletista):
-                    retorno_evento_dados['dtadm'] = retornoEvento.recibo.contrato.infoCeletista.dtAdm.cdata
-
-                if 'tpRegJor' in dir(retornoEvento.recibo.contrato.infoCeletista):
-                    retorno_evento_dados['tpregjor'] = retornoEvento.recibo.contrato.infoCeletista.tpRegJor.cdata
-
-                if 'dtBase' in dir(retornoEvento.recibo.contrato.infoCeletista):
-                    retorno_evento_dados['dtbase'] = retornoEvento.recibo.contrato.infoCeletista.dtBase.cdata
-
-                if 'cnpjSindCategProf' in dir(retornoEvento.recibo.contrato.infoCeletista):
-                    retorno_evento_dados['cnpjsindcategprof'] = retornoEvento.recibo.contrato.infoCeletista.cnpjSindCategProf.cdata
-
-            if 'infoEstatutario' in dir(retornoEvento.recibo.contrato):
-
-                if 'dtPosse' in dir(retornoEvento.recibo.contrato.infoEstatutario):
-                    retorno_evento_dados['dtposse'] = retornoEvento.recibo.contrato.infoEstatutario.dtPosse.cdata
-
-                if 'dtExercicio' in dir(retornoEvento.recibo.contrato.infoEstatutario):
-                    retorno_evento_dados['dtexercicio'] = retornoEvento.recibo.contrato.infoEstatutario.dtExercicio.cdata
-
-            if 'infoContrato' in dir(retornoEvento.recibo.contrato):
-
-                if 'cargo' in dir(retornoEvento.recibo.contrato.infoContrato):
-
-                    if 'codCargo' in dir(retornoEvento.recibo.contrato.infoContrato.cargo):
-                        retorno_evento_dados['codcargo'] = retornoEvento.recibo.contrato.infoContrato.cargo.codCargo.cdata
-
-                    if 'nmCargo' in dir(retornoEvento.recibo.contrato.infoContrato.cargo):
-                        retorno_evento_dados['nmcargo'] = retornoEvento.recibo.contrato.infoContrato.cargo.nmCargo.cdata
-
-                    if 'codCBO' in dir(retornoEvento.recibo.contrato.infoContrato.cargo):
-                        retorno_evento_dados['codcbocargo'] = retornoEvento.recibo.contrato.infoContrato.cargo.codCBO.cdata
-
-                if 'funcao' in dir(retornoEvento.recibo.contrato.infoContrato):
-
-                    if 'codFuncao' in dir(retornoEvento.recibo.contrato.infoContrato.funcao):
-                        retorno_evento_dados['codfuncao'] = retornoEvento.recibo.contrato.infoContrato.funcao.codFuncao.cdata
-
-                    if 'nmFuncao' in dir(retornoEvento.recibo.contrato.infoContrato.funcao):
-                        retorno_evento_dados['nmfuncao'] = retornoEvento.recibo.contrato.infoContrato.funcao.nmFuncao.cdata
-
-                    if 'codCBO' in dir(retornoEvento.recibo.contrato.infoContrato.funcao):
-                        retorno_evento_dados['codcbofuncao'] = retornoEvento.recibo.contrato.infoContrato.funcao.codCBO.cdata
-
-                if 'codCateg' in dir(retornoEvento.recibo.contrato.infoContrato):
-                    retorno_evento_dados['codcateg'] = retornoEvento.recibo.contrato.infoContrato.codCateg.cdata
-
-            if 'remuneracao' in dir(retornoEvento.recibo.contrato):
-
-                if 'vrSalFx' in dir(retornoEvento.recibo.contrato.remuneracao):
-                    retorno_evento_dados['vrsalfx'] = retornoEvento.recibo.contrato.remuneracao.vrSalFx.cdata
-
-                if 'undSalFixo' in dir(retornoEvento.recibo.contrato.remuneracao):
-                    retorno_evento_dados['undsalfixo'] = retornoEvento.recibo.contrato.remuneracao.undSalFixo.cdata
-
-                if 'dscSalVar' in dir(retornoEvento.recibo.contrato.remuneracao):
-                    retorno_evento_dados['dscsalvar'] = retornoEvento.recibo.contrato.remuneracao.dscSalVar.cdata
-
-            if 'duracao' in dir(retornoEvento.recibo.contrato):
-
-                if 'tpContr' in dir(retornoEvento.recibo.contrato.duracao):
-                    retorno_evento_dados['tpcontr'] = retornoEvento.recibo.contrato.duracao.tpContr.cdata
-
-                if 'dtTerm' in dir(retornoEvento.recibo.contrato.duracao):
-                    retorno_evento_dados['dtterm'] = retornoEvento.recibo.contrato.duracao.dtTerm.cdata
-
-                if 'clauAsseg' in dir(retornoEvento.recibo.contrato.duracao):
-                    retorno_evento_dados['clauasseg'] = retornoEvento.recibo.contrato.duracao.clauAsseg.cdata
-
-            if 'localTrabGeral' in dir(retornoEvento.recibo.contrato):
-
-                if 'tpInsc' in dir(retornoEvento.recibo.contrato.localTrabGeral):
-                    retorno_evento_dados['local_tpinsc'] = retornoEvento.recibo.contrato.localTrabGeral.tpInsc.cdata
-
-                if 'nrInsc' in dir(retornoEvento.recibo.contrato.localTrabGeral):
-                    retorno_evento_dados['local_nrinsc'] = retornoEvento.recibo.contrato.localTrabGeral.nrInsc.cdata
-
-                if 'cnae' in dir(retornoEvento.recibo.contrato.localTrabGeral):
-                    retorno_evento_dados['local_cnae'] = retornoEvento.recibo.contrato.localTrabGeral.cnae.cdata
-
-            if 'horContratual' in dir(retornoEvento.recibo.contrato):
-
-                if 'qtdHrsSem' in dir(retornoEvento.recibo.contrato.localTrabGeral):
-                    retorno_evento_dados['qtdhrssem'] = retornoEvento.recibo.contrato.horContratual.qtdHrsSem.cdata
-
-                if 'tpJornada' in dir(retornoEvento.recibo.contrato.localTrabGeral):
-                    retorno_evento_dados['tpjornada'] = retornoEvento.recibo.contrato.horContratual.tpJornada.cdata
-
-                if 'dscTpJorn' in dir(retornoEvento.recibo.contrato.localTrabGeral):
-                    retorno_evento_dados['dsctpjorn'] = retornoEvento.recibo.contrato.horContratual.dscTpJorn.cdata
-
-                if 'tmpParc' in dir(retornoEvento.recibo.contrato.localTrabGeral):
-                    retorno_evento_dados['tmpparc'] = retornoEvento.recibo.contrato.horContratual.tmpParc.cdata
-
-    insert = create_insert('retornos_eventos', retorno_evento_dados)
-    for y in range(5): insert = insert.replace('\n', '').replace('  ', ' ')
-    resp = executar_sql(insert, True)
-    retorno_evento_id = resp[0][0]
-    retorno_evento_dados['id'] = retorno_evento_id
-
-    if 'processamento' in dir(retornoEvento):
-        if 'ocorrencias' in dir(retornoEvento.processamento):
-
-            for ocorrencia in (retornoEvento.processamento.ocorrencias.ocorrencia):
-                ocorrencias_dados = {}
-                ocorrencias_dados['retornos_eventos_id'] = retorno_evento_id
-                if 'tipo' in dir(ocorrencia): ocorrencias_dados['tipo'] = ocorrencia.tipo.cdata
-                if 'codigo' in dir(ocorrencia): ocorrencias_dados['codigo'] = ocorrencia.codigo.cdata.replace("'", "''")
-                if 'descricao' in dir(ocorrencia): ocorrencias_dados['descricao'] = ocorrencia.descricao.cdata.replace("'", "''")
-                if 'localizacao' in dir(ocorrencia): ocorrencias_dados['localizacao'] = ocorrencia.localizacao.cdata.replace("'", "''")
-                #print ocorrencias_dados
-                insert = create_insert('retornos_eventos_ocorrencias', ocorrencias_dados)
-                for y in range(5): insert = insert.replace('\n', '').replace('  ', ' ')
-                resp = executar_sql(insert, True)
-
-
-    if 'recibo' in dir(retornoEvento):
-        if 'contrato' in dir(retornoEvento.recibo):
-            if 'horContratual' in dir(retornoEvento.recibo.contrato):
-                if 'horario' in dir(retornoEvento.recibo.contrato.horContratual):
-                    for horario in (retornoEvento.recibo.contrato.horContratual.horario):
-                        horario_dados = {}
-                        if 'dia' in dir(horario): horario_dados['dia'] = horario.dia.cdata
-                        if 'codHorContrat' in dir(horario): horario_dados['codhorcontrat'] = horario.codHorContrat.cdata
-                        if 'hrEntr' in dir(horario): horario_dados['hrentr'] = horario.hrEntr.cdata
-                        if 'hrSaida' in dir(horario): horario_dados['hrsaida'] = horario.hrSaida.cdata
-                        if 'durJornada' in dir(horario): horario_dados['durjornada'] = horario.durJornada.cdata
-                        if 'perHorFlexivel' in dir(horario): horario_dados['perhorflexivel'] = horario.perHorFlexivel.cdata
-                        horario_dados['retornos_eventos_id'] = retorno_evento_id
-                        insert = create_insert('retornos_eventos_horarios', horario_dados)
-                        for y in range(5): insert = insert.replace('\n', '').replace('  ', ' ')
-                        resp = executar_sql(insert, True)
-                        retornos_eventos_horarios_id = resp[0][0]
-
-
-                        if 'horarioIntervalo' in dir(horario):
-                            for intervalo in (horario.horarioIntervalo):
-                                intervalo_dados = {}
-                                if 'tpInterv' in dir(intervalo): intervalo_dados['tpinterv'] = intervalo.tpInterv.cdata
-                                if 'durInterv' in dir(intervalo): intervalo_dados['durinterv'] = intervalo.durInterv.cdata
-                                if 'iniInterv' in dir(intervalo): intervalo_dados['iniinterv'] = intervalo.iniInterv.cdata
-                                if 'termInterv' in dir(intervalo): intervalo_dados['terminterv'] = intervalo.termInterv.cdata
-                                intervalo_dados['retornos_eventos_horarios_id'] = retornos_eventos_horarios_id
-                                insert = create_insert('retornos_eventos_intervalos', intervalo_dados)
-                                for y in range(5): insert = insert.replace('\n', '').replace('  ', ' ')
-                                resp = executar_sql(insert, True)
-
-
-    from django.apps import apps
-
-    app_models = apps.get_app_config('esocial').get_models()
-    
-    for model in app_models:
-        
-        if 'processamento_codigo_resposta' in retorno_evento_dados.keys():
-
-            codigo_resposta = int(retorno_evento_dados['processamento_codigo_resposta'])
-            
-            if codigo_resposta >= 300 and model._meta.object_name not in EVENTOS_RETORNO:
-
-                model.objects.filter(
-                    identidade=retorno_evento_dados['identidade'],
-                    transmissor_lote_esocial_id=transmissor_lote_id).\
-                    update(status=STATUS_EVENTO_ENVIADO_ERRO,
-                           ocorrencias=get_ocorrencias(retorno_evento_id),
-                           retornos_eventos_id=retorno_evento_id,
-                           transmissor_lote_esocial_id=None,
-                           transmissor_lote_esocial_error=transmissor_lote_id)
-            
-            elif codigo_resposta >= 201 and codigo_resposta < 300 and model._meta.object_name not in EVENTOS_RETORNO:
-
-                model.objects.filter(
-                    identidade=retorno_evento_dados['identidade'],
-                    transmissor_lote_esocial_id=transmissor_lote_id).\
-                    update(status=STATUS_EVENTO_PROCESSADO,
-                           ocorrencias=get_ocorrencias(retorno_evento_id),
-                           retornos_eventos_id=retorno_evento_id,
-                           transmissor_lote_esocial_error_id=None)
-
-    return retorno_evento_dados
-
-
-
-
 def read_consultaLoteEventos(arquivo, transmissor_lote_esocial_id):
-    from emensageriapro.mensageiro.models import TransmissorLoteEsocial, TransmissorEventosEsocial, RetornosEventos
 
-    import untangle
-    xml = ler_arquivo(arquivo).replace("s:", "")
-    doc = untangle.parse(xml)
-    child = doc.Envelope.Body.ConsultarLoteEventosResponse.ConsultarLoteEventosResult.eSocial.retornoProcessamentoLoteEventos
+    xmldoc = minidom.parse(BASE_DIR + arquivo)
 
     lote = {}
-
-    lote['resposta_codigo'] = child.status.cdResposta.cdata
-
-    if lote['resposta_codigo'] in ('201', '202', '203'):
-        lote['status'] = TRANSMISSOR_STATUS_CONSULTADO
+    lote['retorno_consulta_json'] = json.dumps(xmltodict.parse(xmldoc.getElementsByTagName('retornoProcessamentoLoteEventos')[0].toxml()))
+    if xmldoc.getElementsByTagName('ocorrencia'):
+        lote['ocorrencias_json'] = json.dumps(xmltodict.parse(xmldoc.getElementsByTagName('ocorrencia')[0].toxml()))
     else:
-        lote['status'] = TRANSMISSOR_STATUS_CONSULTADO_ERRO
+        lote['ocorrencias_json'] = None
 
-    lote['resposta_descricao'] = child.status.descResposta.cdata
+    lote['data_hora_consulta'] = datetime.now()
 
-    if '<tempoEstimadoConclusao>' in xml:
+    status = xmldoc.getElementsByTagName('status')
+    if status:
+        lote['resposta_codigo'] = status[0].getElementsByTagName('cdResposta')[0].firstChild.nodeValue
+        if lote['resposta_codigo'][0] == '2':
+            lote['status'] = TRANSMISSOR_STATUS_CONSULTADO
+        else:
+            lote['status'] = TRANSMISSOR_STATUS_CONSULTADO_ERRO
+        lote['resposta_descricao'] = status[0].getElementsByTagName('descResposta')[0].firstChild.nodeValue
+        if status[0].getElementsByTagName('tempoEstimadoConclusao'):
+            lote['tempo_estimado_conclusao'] = status[0].getElementsByTagName('tempoEstimadoConclusao')[0].firstChild.nodeValue
+        else:
+            lote['tempo_estimado_conclusao'] = None
 
-        lote['tempo_estimado_conclusao'] = child.status.tempoEstimadoConclusao.cdata
-
+    dados_recepcao_lote = xmldoc.getElementsByTagName('dadosRecepcaoLote')
+    if dados_recepcao_lote:
+        lote['recepcao_data_hora'] = dados_recepcao_lote[0].getElementsByTagName('dhRecepcao')[0].firstChild.nodeValue
+        lote['recepcao_versao_aplicativo'] = dados_recepcao_lote[0].getElementsByTagName('versaoAplicativoRecepcao')[0].firstChild.nodeValue
+        lote['protocolo'] = dados_recepcao_lote[0].getElementsByTagName('protocoloEnvio')[0].firstChild.nodeValue
     else:
-
-        lote['tempo_estimado_conclusao'] = None
-
-    if '<dadosRecepcaoLote>' in xml:
-
-        lote['recepcao_data_hora'] = child.dadosRecepcaoLote.dhRecepcao.cdata
-        lote['recepcao_versao_aplicativo'] = child.dadosRecepcaoLote.versaoAplicativoRecepcao.cdata
-        lote['protocolo'] = child.dadosRecepcaoLote.protocoloEnvio.cdata
-        lote['status'] = TRANSMISSOR_STATUS_CONSULTADO
-
-    else:
-
         lote['recepcao_data_hora'] = None
         lote['recepcao_versao_aplicativo'] = None
         lote['protocolo'] = None
 
-    if '<versaoAplicativoProcessamentoLote>' in xml:
-        lote['processamento_versao_aplicativo'] = child.dadosProcessamentoLote.versaoAplicativoProcessamentoLote.cdata
-    else:
-        lote['processamento_versao_aplicativo'] = None
+    dados_processamento_lote = xmldoc.getElementsByTagName('dadosProcessamentoLote')
+    if dados_processamento_lote:
+        lote['processamento_versao_aplicativo'] = dados_processamento_lote[0].getElementsByTagName('versaoAplicativoProcessamentoLote')[
+            0].firstChild.nodeValue
 
     TransmissorLoteEsocial.objects.\
         filter(id=transmissor_lote_esocial_id).update(**lote)
 
-    if '<retornoEventos>' in xml:
+    for evento in xmldoc.getElementsByTagName('evento'):
 
-        for evento in child.retornoEventos.evento:
+        identidade = evento.getAttribute('Id')
 
-            if 'retornoEvento' in dir(evento):
-                doc = evento.retornoEvento
-                identidade = doc.eSocial.retornoEvento['Id']
-                dados = read_retornoEvento(evento.retornoEvento, transmissor_lote_esocial_id)
+        retorno_consulta_json = json.dumps(xmltodict.parse(evento.toxml()))
+        if evento.getElementsByTagName('ocorrencia'):
+            ocorrencias_json = json.dumps(xmltodict.parse(evento.getElementsByTagName('processamento')[0].toxml()))
+        else:
+            ocorrencias_json = None
+        app_models = apps.get_app_config('esocial').get_models()
 
-            if 'evtBasesTrab' in dir(evento):
-                from emensageriapro.esocial.views.s5001_evtbasestrab_importar import read_s5001_evtbasestrab_obj
-                from emensageriapro.esocial.models import s5001evtBasesTrab
-                dados = read_s5001_evtbasestrab_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
+        status = evento.getElementsByTagName('cdResposta')[0].firstChild.nodeValue
 
-            if 'evtIrrfBenef' in dir(evento):
-                from emensageriapro.esocial.views.s5002_evtirrfbenef_importar import read_s5002_evtirrfbenef_obj
-                from emensageriapro.esocial.models import s5002evtIrrfBenef
-                dados = read_s5002_evtirrfbenef_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
+        for model in app_models:
 
-            if 'evtCS' in dir(evento):
-                from emensageriapro.esocial.views.s5011_evtcs_importar import read_s5011_evtcs_obj
-                from emensageriapro.esocial.models import s5011evtCS
-                dados = read_s5011_evtcs_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
+            dados = {}
+            if status[0] == '2':
+                dados['status'] = STATUS_EVENTO_PROCESSADO
+                dados['ocorrencias_json'] = None
+                dados['retorno_consulta_json'] = retorno_consulta_json
 
-            if 'evtIrrf' in dir(evento):
-                from emensageriapro.esocial.views.s5012_evtirrf_importar import read_s5012_evtirrf_obj
-                from emensageriapro.esocial.models import s5012evtIrrf
-                dados = read_s5012_evtirrf_obj(evento.eSocial, STATUS_EVENTO_PROCESSADO)
+            elif status[0] in ('3', '4', '5'):
+                dados['status'] = STATUS_EVENTO_ENVIADO_ERRO
+                dados['transmissor_lote_esocial_id'] = None
+                dados['transmissor_lote_esocial_error_id'] = transmissor_lote_esocial_id
+                dados['retorno_consulta_json'] = retorno_consulta_json
+                dados['ocorrencias_json'] = ocorrencias_json
+
+            dados['retorno_consulta_json'] = retorno_consulta_json
+
+            model.objects.\
+                filter(transmissor_lote_esocial_id=transmissor_lote_esocial_id,
+                       identidade=identidade).\
+                update(**dados)
+
+            # for a in lista:
+            #     if status[0] == '2':
+            #         model.objects.filter(id=a.id).update(status=STATUS_EVENTO_PROCESSADO,
+            #                                              retorno_consulta_json=retorno_consulta_json,
+            #                                              ocorrencias_json=None)
+            #
+            #     elif status[0] in ('3', '4', '5'):
+            #         model.objects.filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO_ERRO,
+            #                                              retorno_consulta_json=retorno_consulta_json,
+            #                                              transmissor_lote_esocial=None,
+            #                                              ocorrencias_json=ocorrencias_json,
+            #                                              transmissor_lote_esocial_error=transmissor_lote_esocial_id)
+
 
     return lote
-
-
-

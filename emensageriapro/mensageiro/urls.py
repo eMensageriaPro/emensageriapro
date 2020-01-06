@@ -38,38 +38,14 @@ from emensageriapro.mensageiro.views import transmissor_lote_esocial_apagar as t
 from emensageriapro.mensageiro.views import transmissor_lote_esocial_listar as transmissor_lote_esocial_listar_views
 from emensageriapro.mensageiro.views import transmissor_lote_esocial_salvar as transmissor_lote_esocial_salvar_views
 from emensageriapro.mensageiro.views import transmissor_lote_esocial_api as transmissor_lote_esocial_api_views
-from emensageriapro.mensageiro.views import transmissor_lote_esocial_ocorrencias_apagar as transmissor_lote_esocial_ocorrencias_apagar_views
-from emensageriapro.mensageiro.views import transmissor_lote_esocial_ocorrencias_listar as transmissor_lote_esocial_ocorrencias_listar_views
-from emensageriapro.mensageiro.views import transmissor_lote_esocial_ocorrencias_salvar as transmissor_lote_esocial_ocorrencias_salvar_views
-from emensageriapro.mensageiro.views import transmissor_lote_esocial_ocorrencias_api as transmissor_lote_esocial_ocorrencias_api_views
 from emensageriapro.mensageiro.views import transmissor_lote_efdreinf_apagar as transmissor_lote_efdreinf_apagar_views
 from emensageriapro.mensageiro.views import transmissor_lote_efdreinf_listar as transmissor_lote_efdreinf_listar_views
 from emensageriapro.mensageiro.views import transmissor_lote_efdreinf_salvar as transmissor_lote_efdreinf_salvar_views
 from emensageriapro.mensageiro.views import transmissor_lote_efdreinf_api as transmissor_lote_efdreinf_api_views
-from emensageriapro.mensageiro.views import transmissor_lote_efdreinf_ocorrencias_apagar as transmissor_lote_efdreinf_ocorrencias_apagar_views
-from emensageriapro.mensageiro.views import transmissor_lote_efdreinf_ocorrencias_listar as transmissor_lote_efdreinf_ocorrencias_listar_views
-from emensageriapro.mensageiro.views import transmissor_lote_efdreinf_ocorrencias_salvar as transmissor_lote_efdreinf_ocorrencias_salvar_views
-from emensageriapro.mensageiro.views import transmissor_lote_efdreinf_ocorrencias_api as transmissor_lote_efdreinf_ocorrencias_api_views
 from emensageriapro.mensageiro.views import arquivos_apagar as arquivos_apagar_views
 from emensageriapro.mensageiro.views import arquivos_listar as arquivos_listar_views
 from emensageriapro.mensageiro.views import arquivos_salvar as arquivos_salvar_views
 from emensageriapro.mensageiro.views import arquivos_api as arquivos_api_views
-from emensageriapro.mensageiro.views import retornos_eventos_apagar as retornos_eventos_apagar_views
-from emensageriapro.mensageiro.views import retornos_eventos_listar as retornos_eventos_listar_views
-from emensageriapro.mensageiro.views import retornos_eventos_salvar as retornos_eventos_salvar_views
-from emensageriapro.mensageiro.views import retornos_eventos_api as retornos_eventos_api_views
-from emensageriapro.mensageiro.views import retornos_eventos_ocorrencias_apagar as retornos_eventos_ocorrencias_apagar_views
-from emensageriapro.mensageiro.views import retornos_eventos_ocorrencias_listar as retornos_eventos_ocorrencias_listar_views
-from emensageriapro.mensageiro.views import retornos_eventos_ocorrencias_salvar as retornos_eventos_ocorrencias_salvar_views
-from emensageriapro.mensageiro.views import retornos_eventos_ocorrencias_api as retornos_eventos_ocorrencias_api_views
-from emensageriapro.mensageiro.views import retornos_eventos_horarios_apagar as retornos_eventos_horarios_apagar_views
-from emensageriapro.mensageiro.views import retornos_eventos_horarios_listar as retornos_eventos_horarios_listar_views
-from emensageriapro.mensageiro.views import retornos_eventos_horarios_salvar as retornos_eventos_horarios_salvar_views
-from emensageriapro.mensageiro.views import retornos_eventos_horarios_api as retornos_eventos_horarios_api_views
-from emensageriapro.mensageiro.views import retornos_eventos_intervalos_apagar as retornos_eventos_intervalos_apagar_views
-from emensageriapro.mensageiro.views import retornos_eventos_intervalos_listar as retornos_eventos_intervalos_listar_views
-from emensageriapro.mensageiro.views import retornos_eventos_intervalos_salvar as retornos_eventos_intervalos_salvar_views
-from emensageriapro.mensageiro.views import retornos_eventos_intervalos_api as retornos_eventos_intervalos_api_views
 
 
 """
@@ -393,40 +369,6 @@ urlpatterns = [
         transmissor_lote_esocial_listar_views.listar,
         name='transmissor_lote_esocial_output'),
 
-    url(r'^transmissor-lote-esocial-ocorrencias/apagar/(?P<pk>[0-9]+)/$',
-        transmissor_lote_esocial_ocorrencias_apagar_views.apagar,
-        name='transmissor_lote_esocial_ocorrencias_apagar'),
-
-    url(r'^transmissor-lote-esocial-ocorrencias/api/$',
-        transmissor_lote_esocial_ocorrencias_api_views.TransmissorLoteEsocialOcorrenciasList.as_view() ),
-
-    url(r'^transmissor-lote-esocial-ocorrencias/api/(?P<pk>[0-9]+)/$',
-        transmissor_lote_esocial_ocorrencias_api_views.TransmissorLoteEsocialOcorrenciasDetail.as_view() ),
-
-    url(r'^transmissor-lote-esocial-ocorrencias/$',
-        transmissor_lote_esocial_ocorrencias_listar_views.listar,
-        name='transmissor_lote_esocial_ocorrencias'),
-
-    url(r'^transmissor-lote-esocial-ocorrencias/salvar/(?P<pk>[0-9]+)/$',
-        transmissor_lote_esocial_ocorrencias_salvar_views.salvar,
-        name='transmissor_lote_esocial_ocorrencias_salvar'),
-
-    url(r'^transmissor-lote-esocial-ocorrencias/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        transmissor_lote_esocial_ocorrencias_salvar_views.salvar,
-        name='transmissor_lote_esocial_ocorrencias_salvar_tab'),
-
-    url(r'^transmissor-lote-esocial-ocorrencias/cadastrar/$',
-        transmissor_lote_esocial_ocorrencias_salvar_views.salvar,
-        name='transmissor_lote_esocial_ocorrencias_cadastrar'),
-
-    url(r'^transmissor-lote-esocial-ocorrencias/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
-        transmissor_lote_esocial_ocorrencias_salvar_views.salvar,
-        name='transmissor_lote_esocial_ocorrencias_salvar_output'),
-
-    url(r'^transmissor-lote-esocial-ocorrencias/(?P<output>[\w-]+)/$',
-        transmissor_lote_esocial_ocorrencias_listar_views.listar,
-        name='transmissor_lote_esocial_ocorrencias_output'),
-
     url(r'^transmissor-lote-efdreinf/apagar/(?P<pk>[0-9]+)/$',
         transmissor_lote_efdreinf_apagar_views.apagar,
         name='transmissor_lote_efdreinf_apagar'),
@@ -461,40 +403,6 @@ urlpatterns = [
         transmissor_lote_efdreinf_listar_views.listar,
         name='transmissor_lote_efdreinf_output'),
 
-    url(r'^transmissor-lote-efdreinf-ocorrencias/apagar/(?P<pk>[0-9]+)/$',
-        transmissor_lote_efdreinf_ocorrencias_apagar_views.apagar,
-        name='transmissor_lote_efdreinf_ocorrencias_apagar'),
-
-    url(r'^transmissor-lote-efdreinf-ocorrencias/api/$',
-        transmissor_lote_efdreinf_ocorrencias_api_views.TransmissorLoteEfdreinfOcorrenciasList.as_view() ),
-
-    url(r'^transmissor-lote-efdreinf-ocorrencias/api/(?P<pk>[0-9]+)/$',
-        transmissor_lote_efdreinf_ocorrencias_api_views.TransmissorLoteEfdreinfOcorrenciasDetail.as_view() ),
-
-    url(r'^transmissor-lote-efdreinf-ocorrencias/$',
-        transmissor_lote_efdreinf_ocorrencias_listar_views.listar,
-        name='transmissor_lote_efdreinf_ocorrencias'),
-
-    url(r'^transmissor-lote-efdreinf-ocorrencias/salvar/(?P<pk>[0-9]+)/$',
-        transmissor_lote_efdreinf_ocorrencias_salvar_views.salvar,
-        name='transmissor_lote_efdreinf_ocorrencias_salvar'),
-
-    url(r'^transmissor-lote-efdreinf-ocorrencias/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        transmissor_lote_efdreinf_ocorrencias_salvar_views.salvar,
-        name='transmissor_lote_efdreinf_ocorrencias_salvar_tab'),
-
-    url(r'^transmissor-lote-efdreinf-ocorrencias/cadastrar/$',
-        transmissor_lote_efdreinf_ocorrencias_salvar_views.salvar,
-        name='transmissor_lote_efdreinf_ocorrencias_cadastrar'),
-
-    url(r'^transmissor-lote-efdreinf-ocorrencias/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
-        transmissor_lote_efdreinf_ocorrencias_salvar_views.salvar,
-        name='transmissor_lote_efdreinf_ocorrencias_salvar_output'),
-
-    url(r'^transmissor-lote-efdreinf-ocorrencias/(?P<output>[\w-]+)/$',
-        transmissor_lote_efdreinf_ocorrencias_listar_views.listar,
-        name='transmissor_lote_efdreinf_ocorrencias_output'),
-
     url(r'^arquivos/apagar/(?P<pk>[0-9]+)/$',
         arquivos_apagar_views.apagar,
         name='arquivos_apagar'),
@@ -528,142 +436,6 @@ urlpatterns = [
     url(r'^arquivos/(?P<output>[\w-]+)/$',
         arquivos_listar_views.listar,
         name='arquivos_output'),
-
-    url(r'^retornos-eventos/apagar/(?P<pk>[0-9]+)/$',
-        retornos_eventos_apagar_views.apagar,
-        name='retornos_eventos_apagar'),
-
-    url(r'^retornos-eventos/api/$',
-        retornos_eventos_api_views.RetornosEventosList.as_view() ),
-
-    url(r'^retornos-eventos/api/(?P<pk>[0-9]+)/$',
-        retornos_eventos_api_views.RetornosEventosDetail.as_view() ),
-
-    url(r'^retornos-eventos/$',
-        retornos_eventos_listar_views.listar,
-        name='retornos_eventos'),
-
-    url(r'^retornos-eventos/salvar/(?P<pk>[0-9]+)/$',
-        retornos_eventos_salvar_views.salvar,
-        name='retornos_eventos_salvar'),
-
-    url(r'^retornos-eventos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        retornos_eventos_salvar_views.salvar,
-        name='retornos_eventos_salvar_tab'),
-
-    url(r'^retornos-eventos/cadastrar/$',
-        retornos_eventos_salvar_views.salvar,
-        name='retornos_eventos_cadastrar'),
-
-    url(r'^retornos-eventos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
-        retornos_eventos_salvar_views.salvar,
-        name='retornos_eventos_salvar_output'),
-
-    url(r'^retornos-eventos/(?P<output>[\w-]+)/$',
-        retornos_eventos_listar_views.listar,
-        name='retornos_eventos_output'),
-
-    url(r'^retornos-eventos-ocorrencias/apagar/(?P<pk>[0-9]+)/$',
-        retornos_eventos_ocorrencias_apagar_views.apagar,
-        name='retornos_eventos_ocorrencias_apagar'),
-
-    url(r'^retornos-eventos-ocorrencias/api/$',
-        retornos_eventos_ocorrencias_api_views.RetornosEventosOcorrenciasList.as_view() ),
-
-    url(r'^retornos-eventos-ocorrencias/api/(?P<pk>[0-9]+)/$',
-        retornos_eventos_ocorrencias_api_views.RetornosEventosOcorrenciasDetail.as_view() ),
-
-    url(r'^retornos-eventos-ocorrencias/$',
-        retornos_eventos_ocorrencias_listar_views.listar,
-        name='retornos_eventos_ocorrencias'),
-
-    url(r'^retornos-eventos-ocorrencias/salvar/(?P<pk>[0-9]+)/$',
-        retornos_eventos_ocorrencias_salvar_views.salvar,
-        name='retornos_eventos_ocorrencias_salvar'),
-
-    url(r'^retornos-eventos-ocorrencias/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        retornos_eventos_ocorrencias_salvar_views.salvar,
-        name='retornos_eventos_ocorrencias_salvar_tab'),
-
-    url(r'^retornos-eventos-ocorrencias/cadastrar/$',
-        retornos_eventos_ocorrencias_salvar_views.salvar,
-        name='retornos_eventos_ocorrencias_cadastrar'),
-
-    url(r'^retornos-eventos-ocorrencias/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
-        retornos_eventos_ocorrencias_salvar_views.salvar,
-        name='retornos_eventos_ocorrencias_salvar_output'),
-
-    url(r'^retornos-eventos-ocorrencias/(?P<output>[\w-]+)/$',
-        retornos_eventos_ocorrencias_listar_views.listar,
-        name='retornos_eventos_ocorrencias_output'),
-
-    url(r'^retornos-eventos-horarios/apagar/(?P<pk>[0-9]+)/$',
-        retornos_eventos_horarios_apagar_views.apagar,
-        name='retornos_eventos_horarios_apagar'),
-
-    url(r'^retornos-eventos-horarios/api/$',
-        retornos_eventos_horarios_api_views.RetornosEventosHorariosList.as_view() ),
-
-    url(r'^retornos-eventos-horarios/api/(?P<pk>[0-9]+)/$',
-        retornos_eventos_horarios_api_views.RetornosEventosHorariosDetail.as_view() ),
-
-    url(r'^retornos-eventos-horarios/$',
-        retornos_eventos_horarios_listar_views.listar,
-        name='retornos_eventos_horarios'),
-
-    url(r'^retornos-eventos-horarios/salvar/(?P<pk>[0-9]+)/$',
-        retornos_eventos_horarios_salvar_views.salvar,
-        name='retornos_eventos_horarios_salvar'),
-
-    url(r'^retornos-eventos-horarios/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        retornos_eventos_horarios_salvar_views.salvar,
-        name='retornos_eventos_horarios_salvar_tab'),
-
-    url(r'^retornos-eventos-horarios/cadastrar/$',
-        retornos_eventos_horarios_salvar_views.salvar,
-        name='retornos_eventos_horarios_cadastrar'),
-
-    url(r'^retornos-eventos-horarios/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
-        retornos_eventos_horarios_salvar_views.salvar,
-        name='retornos_eventos_horarios_salvar_output'),
-
-    url(r'^retornos-eventos-horarios/(?P<output>[\w-]+)/$',
-        retornos_eventos_horarios_listar_views.listar,
-        name='retornos_eventos_horarios_output'),
-
-    url(r'^retornos-eventos-intervalos/apagar/(?P<pk>[0-9]+)/$',
-        retornos_eventos_intervalos_apagar_views.apagar,
-        name='retornos_eventos_intervalos_apagar'),
-
-    url(r'^retornos-eventos-intervalos/api/$',
-        retornos_eventos_intervalos_api_views.RetornosEventosIntervalosList.as_view() ),
-
-    url(r'^retornos-eventos-intervalos/api/(?P<pk>[0-9]+)/$',
-        retornos_eventos_intervalos_api_views.RetornosEventosIntervalosDetail.as_view() ),
-
-    url(r'^retornos-eventos-intervalos/$',
-        retornos_eventos_intervalos_listar_views.listar,
-        name='retornos_eventos_intervalos'),
-
-    url(r'^retornos-eventos-intervalos/salvar/(?P<pk>[0-9]+)/$',
-        retornos_eventos_intervalos_salvar_views.salvar,
-        name='retornos_eventos_intervalos_salvar'),
-
-    url(r'^retornos-eventos-intervalos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        retornos_eventos_intervalos_salvar_views.salvar,
-        name='retornos_eventos_intervalos_salvar_tab'),
-
-    url(r'^retornos-eventos-intervalos/cadastrar/$',
-        retornos_eventos_intervalos_salvar_views.salvar,
-        name='retornos_eventos_intervalos_cadastrar'),
-
-    url(r'^retornos-eventos-intervalos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
-        retornos_eventos_intervalos_salvar_views.salvar,
-        name='retornos_eventos_intervalos_salvar_output'),
-
-    url(r'^retornos-eventos-intervalos/(?P<output>[\w-]+)/$',
-        retornos_eventos_intervalos_listar_views.listar,
-        name='retornos_eventos_intervalos_output'),
 
 
 

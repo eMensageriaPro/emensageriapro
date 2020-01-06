@@ -83,7 +83,7 @@ class form_s2250_cancavprevio(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2250_detavprevio(forms.ModelForm):
@@ -123,4 +123,4 @@ class form_s2250_detavprevio(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

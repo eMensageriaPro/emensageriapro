@@ -24,7 +24,11 @@ CREATE OR REPLACE VIEW public.vw_transmissor_eventos_efdreinf_totalizacoes AS SE
     r5001_evttotal.validacao_precedencia,
     r5001_evttotal.validacoes,
     r5001_evttotal.status,
-    r5001_evttotal.ocorrencias
+    r5001_evttotal.retorno_envio_json,
+    r5001_evttotal.retorno_consulta_json,
+    r5001_evttotal.evento_json,
+    r5001_evttotal.ocorrencias_json
+
    FROM r5001_evttotal
   WHERE r5001_evttotal.ativo = true
  UNION
@@ -49,6 +53,10 @@ SELECT r5011_evttotalcontrib.id,
     r5011_evttotalcontrib.validacao_precedencia,
     r5011_evttotalcontrib.validacoes,
     r5011_evttotalcontrib.status,
-    r5011_evttotalcontrib.ocorrencias
+    r5011_evttotalcontrib.retorno_envio_json,
+    r5011_evttotalcontrib.retorno_consulta_json,
+    r5011_evttotalcontrib.evento_json,
+    r5011_evttotalcontrib.ocorrencias_json
+
    FROM r5011_evttotalcontrib
   WHERE r5011_evttotalcontrib.ativo = true;

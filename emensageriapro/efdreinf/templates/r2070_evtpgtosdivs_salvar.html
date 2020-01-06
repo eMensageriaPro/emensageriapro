@@ -122,17 +122,11 @@
     {% endif %}
 
     {% if r2070_evtpgtosdivs.id %}
-        {% if r2070_evtpgtosdivs.ocorrencias %}
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="small-box bg-red">
-                        <div class="inner">
-                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-                            <p>{% autoescape off %}{{ r2070_evtpgtosdivs.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+        {% if r2070_evtpgtosdivs.ocorrencias_json %}
+            {% with ocorrencias_json=r2070_evtpgtosdivs.ocorrencias_json|to_json %}
+                {% include 'ocorrencias_efdreinf.html' %}
+            {% endwith %}
         {% endif %}
 
         {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and r2070_evtpgtosdivs.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}

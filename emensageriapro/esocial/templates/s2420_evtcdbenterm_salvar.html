@@ -92,17 +92,11 @@
     {% endif %}
 
     {% if s2420_evtcdbenterm.id %}
-        {% if s2420_evtcdbenterm.ocorrencias %}
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="small-box bg-red">
-                        <div class="inner">
-                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-                            <p>{% autoescape off %}{{ s2420_evtcdbenterm.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+        {% if s2420_evtcdbenterm.ocorrencias_json %}
+            {% with ocorrencias_json=s2420_evtcdbenterm.ocorrencias_json|to_json %}
+                {% include 'ocorrencias_esocial.html' %}
+            {% endwith %}
         {% endif %}
 
         {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and s2420_evtcdbenterm.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}

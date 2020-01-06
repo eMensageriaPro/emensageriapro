@@ -1,0 +1,92 @@
+<!--
+
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
+{% load templatetags %}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="small-box bg-red">
+            <div class="inner">
+                <strong>RESPOSTA:</strong><br>
+                <table width="100%">
+                    <tr>
+                        <th>Código</th>
+                        <th>Descrição</th>
+                        <th>Data/Hora de Processamento</th>
+                        <th>Versão do APP de Processamento</th>
+                    </tr>
+                    <tr>
+                        {% for a, b in ocorrencias_json.items %}
+                            <td>{% if b|finditem:'cdResposta' %}
+                                {{ b|finditem:'cdResposta' }}{% endif %}</td>
+                            <td>{% if b|finditem:'descResposta' %}
+                                {{ b|finditem:'descResposta' }}{% endif %}</td>
+                            <td>{% if b|finditem:'dhProcessamento' %}
+                                {{ b|finditem:'dhProcessamento' }}{% endif %}</td>
+                            <td>{% if b|finditem:'versaoAppProcessamento' %}
+                                {{ b|finditem:'versaoAppProcessamento' }}{% endif %}</td>
+                        {% endfor %}
+                    </tr>
+                </table><br>
+                <strong>OCORRÊNCIAS:</strong>
+                {% if ocorrencias_json.processamento.ocorrencias.ocorrencia|is_list %}
+                    {% for c in ocorrencias_json.processamento.ocorrencias.ocorrencia %}
+                        <br><strong>{% if c|finditem:'tipo' %}
+                            {% if c|finditem:'tipo' == '1' %}(ERRO)
+                            {% elif c|finditem:'tipo' == '2' %}(ADVERTÊNCIA)
+                            {% endif %}
+                        {% endif %}
+                        {% if c|finditem:'codigo' %}
+                            {{ c|finditem:'codigo' }}{% endif %} -
+                            {% if c|finditem:'descricao' %}
+                                {{ c|finditem:'descricao' }}{% endif %}</strong><br>
+                        {% if c|finditem:'localizacao' %}
+                            {{ c|finditem:'localizacao' }}{% endif %}
+                    {% endfor %}
+                {% else %}
+                    {% for a, c in ocorrencias_json.processamento.ocorrencias.items %}
+                        <br><strong>{% if c|finditem:'tipo' %}
+                            {% if c|finditem:'tipo' == '1' %}(ERRO)
+                            {% elif c|finditem:'tipo' == '2' %}(ADVERTÊNCIA)
+                            {% endif %}
+                        {% endif %}
+                        {% if c|finditem:'codigo' %}
+                            {{ c|finditem:'codigo' }}{% endif %} -
+                            {% if c|finditem:'descricao' %}
+                                {{ c|finditem:'descricao' }}{% endif %}</strong><br>
+                        {% if c|finditem:'localizacao' %}
+                            {{ c|finditem:'localizacao' }}{% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

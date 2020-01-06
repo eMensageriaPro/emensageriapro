@@ -102,17 +102,11 @@
     {% endif %}
 
     {% if r2030_evtassocdesprec.id %}
-        {% if r2030_evtassocdesprec.ocorrencias %}
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="small-box bg-red">
-                        <div class="inner">
-                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-                            <p>{% autoescape off %}{{ r2030_evtassocdesprec.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+        {% if r2030_evtassocdesprec.ocorrencias_json %}
+            {% with ocorrencias_json=r2030_evtassocdesprec.ocorrencias_json|to_json %}
+                {% include 'ocorrencias_efdreinf.html' %}
+            {% endwith %}
         {% endif %}
 
         {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and r2030_evtassocdesprec.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}

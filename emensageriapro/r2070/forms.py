@@ -85,7 +85,7 @@ class form_r2070_compjud(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_depjudicial(forms.ModelForm):
@@ -126,7 +126,7 @@ class form_r2070_depjudicial(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_detcompet(forms.ModelForm):
@@ -167,7 +167,7 @@ class form_r2070_detcompet(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_detdeducao(forms.ModelForm):
@@ -208,7 +208,7 @@ class form_r2070_detdeducao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_ideestab(forms.ModelForm):
@@ -248,7 +248,7 @@ class form_r2070_ideestab(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_infomolestia(forms.ModelForm):
@@ -288,7 +288,7 @@ class form_r2070_infomolestia(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_infoprocjud(forms.ModelForm):
@@ -328,7 +328,7 @@ class form_r2070_infoprocjud(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_infoprocjud_despprocjud(forms.ModelForm):
@@ -370,7 +370,7 @@ class form_r2070_infoprocjud_despprocjud(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_infoprocjud_ideadvogado(forms.ModelForm):
@@ -411,7 +411,7 @@ class form_r2070_infoprocjud_ideadvogado(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_infoprocjud_origemrecursos(forms.ModelForm):
@@ -451,7 +451,7 @@ class form_r2070_infoprocjud_origemrecursos(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_inforra(forms.ModelForm):
@@ -491,7 +491,7 @@ class form_r2070_inforra(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_inforra_despprocjud(forms.ModelForm):
@@ -533,7 +533,7 @@ class form_r2070_inforra_despprocjud(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_inforra_ideadvogado(forms.ModelForm):
@@ -574,7 +574,7 @@ class form_r2070_inforra_ideadvogado(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_inforesidext(forms.ModelForm):
@@ -614,7 +614,7 @@ class form_r2070_inforesidext(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_pgtopf(forms.ModelForm):
@@ -656,7 +656,7 @@ class form_r2070_pgtopf(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_pgtopj(forms.ModelForm):
@@ -698,7 +698,7 @@ class form_r2070_pgtopj(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_pgtopj_despprocjud(forms.ModelForm):
@@ -740,7 +740,7 @@ class form_r2070_pgtopj_despprocjud(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_pgtopj_ideadvogado(forms.ModelForm):
@@ -781,7 +781,7 @@ class form_r2070_pgtopj_ideadvogado(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_pgtopj_infoprocjud(forms.ModelForm):
@@ -821,7 +821,7 @@ class form_r2070_pgtopj_infoprocjud(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_pgtopj_origemrecursos(forms.ModelForm):
@@ -861,7 +861,7 @@ class form_r2070_pgtopj_origemrecursos(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_pgtoresidbr(forms.ModelForm):
@@ -901,7 +901,7 @@ class form_r2070_pgtoresidbr(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_pgtoresidext(forms.ModelForm):
@@ -943,7 +943,7 @@ class form_r2070_pgtoresidext(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2070_rendisento(forms.ModelForm):
@@ -984,4 +984,4 @@ class form_r2070_rendisento(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

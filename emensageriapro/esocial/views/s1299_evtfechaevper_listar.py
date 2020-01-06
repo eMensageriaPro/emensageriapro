@@ -58,10 +58,6 @@ from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
 from emensageriapro.mensageiro.models import TransmissorLoteEsocial
-from emensageriapro.mensageiro.models import RetornosEventos
-from emensageriapro.esocial.models import s5011evtCS
-from emensageriapro.esocial.models import s5012evtIrrf
-from emensageriapro.esocial.models import s5013evtFGTS
 from emensageriapro.mensageiro.models import TransmissorLoteEsocial
 
 
@@ -95,17 +91,16 @@ def listar(request, output=None):
             'show_compsemmovto': 0,
             'show_versao': 0,
             'show_transmissor_lote_esocial': 0,
-            'show_retornos_eventos': 0,
-            'show_ocorrencias': 0,
             'show_validacao_precedencia': 0,
             'show_validacoes': 0,
             'show_arquivo_original': 0,
             'show_arquivo': 0,
             'show_status': 1,
-            'show_retornos_s5011': 0,
-            'show_retornos_s5012': 0,
-            'show_retornos_s5013': 0,
-            'show_transmissor_lote_esocial_error': 0, }
+            'show_transmissor_lote_esocial_error': 0,
+            'show_retorno_envio_json': 0,
+            'show_retorno_consulta_json': 0,
+            'show_evento_json': 0,
+            'show_ocorrencias_json': 0, }
 
         post = False
 
@@ -180,10 +175,6 @@ def listar(request, output=None):
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.all()
-        retornos_eventos_lista = RetornosEventos.objects.all()
-        retornos_s5011_lista = s5011evtCS.objects.all()
-        retornos_s5012_lista = s5012evtIrrf.objects.all()
-        retornos_s5013_lista = s5013evtFGTS.objects.all()
         transmissor_lote_esocial_error_lista = TransmissorLoteEsocial.objects.all()
         #s1299_evtfechaevper_listar_custom
 
@@ -200,10 +191,6 @@ def listar(request, output=None):
             'show_fields': show_fields,
             'filtrar': filtrar,
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
-            'retornos_eventos_lista': retornos_eventos_lista,
-            'retornos_s5011_lista': retornos_s5011_lista,
-            'retornos_s5012_lista': retornos_s5012_lista,
-            'retornos_s5013_lista': retornos_s5013_lista,
             'transmissor_lote_esocial_error_lista': transmissor_lote_esocial_error_lista,
         }
 

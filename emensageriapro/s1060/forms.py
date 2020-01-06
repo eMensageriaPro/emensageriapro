@@ -83,7 +83,7 @@ class form_s1060_alteracao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1060_alteracao_novavalidade(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_s1060_alteracao_novavalidade(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1060_exclusao(forms.ModelForm):
@@ -163,7 +163,7 @@ class form_s1060_exclusao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1060_inclusao(forms.ModelForm):
@@ -203,4 +203,4 @@ class form_s1060_inclusao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

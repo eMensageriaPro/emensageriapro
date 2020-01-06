@@ -66,15 +66,6 @@
             {% if show_fields.show_transmissor_lote_efdreinf or 0 %}
             <th>Transmissor</th>
             {% endif %}
-            {% if show_fields.show_retornos_r5001 or 0 %}
-            <th>Retorno R5001</th>
-            {% endif %}
-            {% if show_fields.show_retornos_r5011 or 0 %}
-            <th>Retorno R5011</th>
-            {% endif %}
-            {% if show_fields.show_ocorrencias or 0 %}
-            <th>Ocorrências</th>
-            {% endif %}
             {% if show_fields.show_validacao_precedencia or 0 %}
             <th>Validação de Precedência</th>
             {% endif %}
@@ -101,6 +92,18 @@
             {% endif %}
             {% if show_fields.show_transmissor_lote_efdreinf_error or 0 %}
             <th>Transmissor (Erro)</th>
+            {% endif %}
+            {% if show_fields.show_retorno_envio_json or 0 %}
+            <th>JSON de Retorno do Envio</th>
+            {% endif %}
+            {% if show_fields.show_retorno_consulta_json or 0 %}
+            <th>JSON de Retorno da Consulta</th>
+            {% endif %}
+            {% if show_fields.show_evento_json or 0 %}
+            <th>JSON do Evento</th>
+            {% endif %}
+            {% if show_fields.show_ocorrencias_json or 0 %}
+            <th>JSON das Ocorrências</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
@@ -174,15 +177,6 @@
             {% if show_fields.show_transmissor_lote_efdreinf or 0 %}
             <td>{{ a.transmissor_lote_efdreinf }}</td>
             {% endif %}
-            {% if show_fields.show_retornos_r5001 or 0 %}
-            <td>{{ a.retornos_r5001 }}</td>
-            {% endif %}
-            {% if show_fields.show_retornos_r5011 or 0 %}
-            <td>{{ a.retornos_r5011 }}</td>
-            {% endif %}
-            {% if show_fields.show_ocorrencias or 0 %}
-            <td>{{ a.ocorrencias }}</td>
-            {% endif %}
             {% if show_fields.show_validacao_precedencia or 0 %}
             <td>{{ a.get_validacao_precedencia_display }}</td>
             {% endif %}
@@ -209,6 +203,18 @@
             {% endif %}
             {% if show_fields.show_transmissor_lote_efdreinf_error or 0 %}
             <td>{{ a.transmissor_lote_efdreinf_error }}</td>
+            {% endif %}
+            {% if show_fields.show_retorno_envio_json or 0 %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_retorno_consulta_json or 0 %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_evento_json or 0 %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_ocorrencias_json or 0 %}
+            <td></td>
             {% endif %}
 
             <!-- colunas especiais -->

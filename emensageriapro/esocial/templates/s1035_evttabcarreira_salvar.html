@@ -122,17 +122,11 @@
     {% endif %}
 
     {% if s1035_evttabcarreira.id %}
-        {% if s1035_evttabcarreira.ocorrencias %}
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="small-box bg-red">
-                        <div class="inner">
-                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-                            <p>{% autoescape off %}{{ s1035_evttabcarreira.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+        {% if s1035_evttabcarreira.ocorrencias_json %}
+            {% with ocorrencias_json=s1035_evttabcarreira.ocorrencias_json|to_json %}
+                {% include 'ocorrencias_esocial.html' %}
+            {% endwith %}
         {% endif %}
 
         {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and s1035_evttabcarreira.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}

@@ -84,7 +84,7 @@ class form_r2030_infoproc(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2030_inforecurso(forms.ModelForm):
@@ -126,7 +126,7 @@ class form_r2030_inforecurso(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2030_recursosrec(forms.ModelForm):
@@ -169,4 +169,4 @@ class form_r2030_recursosrec(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

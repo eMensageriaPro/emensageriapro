@@ -76,8 +76,6 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def recibo(request, pk, output=None):
 
     from datetime import datetime
-    from emensageriapro.mensageiro.models import RetornosEventos, RetornosEventosHorarios, \
-        RetornosEventosIntervalos, RetornosEventosOcorrencias
 
     if request.user.has_perm('esocial.can_see_s1080evtTabOperPort'):
 
@@ -85,25 +83,9 @@ def recibo(request, pk, output=None):
             s1080evtTabOperPort,
             id=pk)
 
-        retorno = get_object_or_404(RetornosEventos,
-            id=s1080_evttaboperport.retornos_eventos_id)
-
-        retorno_horarios = RetornosEventosHorarios.objects.\
-            filter(retornos_eventos_id=retorno.id).all()
-
-        retorno_intervalos = RetornosEventosIntervalos.objects.\
-            filter(retornos_eventos_horarios_id__in=listar_ids(retorno_horarios)).all()
-
-        retorno_ocorrencias = RetornosEventosOcorrencias.objects.\
-            filter(retornos_eventos_id=retorno.id).all()
-
         context = {
             'pk': pk,
-            's1080_evttaboperport': s1080_evttaboperport,
-            'retorno': retorno,
-            'retorno_horarios': retorno_horarios,
-            'retorno_intervalos': retorno_intervalos,
-            'retorno_ocorrencias': retorno_ocorrencias,
+            'evento': s1080_evttaboperport,
             'data': datetime.now(),
             'output': output,
             'user': request.user,
@@ -111,7 +93,7 @@ def recibo(request, pk, output=None):
 
         if output == 'xls':
 
-            response =  render_to_response('s1080_evttaboperport_recibo_pdf.html', context)
+            response =  render_to_response('recibo_pdf_esocial.html', context)
             filename = "%s.xls" % s1080_evttaboperport.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
@@ -120,7 +102,7 @@ def recibo(request, pk, output=None):
 
         elif output == 'csv':
 
-            response =  render_to_response('s1080_evttaboperport_recibo_csv.html', context)
+            response =  render_to_response('recibo_csv_esocial.html', context)
             filename = "%s.csv" % s1080_evttaboperport.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
@@ -129,11 +111,11 @@ def recibo(request, pk, output=None):
 
         elif output == 'pdf':
 
-            return render_to_pdf('s1080_evttaboperport_recibo_pdf.html', context)
+            return render_to_pdf('recibo_pdf_esocial.html', context)
 
         else:
 
-            return render(request, 's1080_evttaboperport_recibo_pdf.html', context)
+            return render(request, 'recibo_pdf_esocial.html', context)
 
     else:
 

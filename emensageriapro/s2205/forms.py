@@ -83,7 +83,7 @@ class form_s2205_cnh(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2205_ctps(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_s2205_ctps(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2205_oc(forms.ModelForm):
@@ -163,7 +163,7 @@ class form_s2205_oc(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2205_rg(forms.ModelForm):
@@ -203,7 +203,7 @@ class form_s2205_rg(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2205_ric(forms.ModelForm):
@@ -243,7 +243,7 @@ class form_s2205_ric(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2205_rne(forms.ModelForm):
@@ -283,7 +283,7 @@ class form_s2205_rne(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2205_aposentadoria(forms.ModelForm):
@@ -323,7 +323,7 @@ class form_s2205_aposentadoria(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2205_brasil(forms.ModelForm):
@@ -363,7 +363,7 @@ class form_s2205_brasil(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2205_contato(forms.ModelForm):
@@ -403,7 +403,7 @@ class form_s2205_contato(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2205_dependente(forms.ModelForm):
@@ -443,7 +443,7 @@ class form_s2205_dependente(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2205_documentos(forms.ModelForm):
@@ -483,7 +483,7 @@ class form_s2205_documentos(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2205_exterior(forms.ModelForm):
@@ -523,7 +523,7 @@ class form_s2205_exterior(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2205_infodeficiencia(forms.ModelForm):
@@ -563,7 +563,7 @@ class form_s2205_infodeficiencia(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2205_trabestrangeiro(forms.ModelForm):
@@ -603,4 +603,4 @@ class form_s2205_trabestrangeiro(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

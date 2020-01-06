@@ -84,7 +84,7 @@ class form_s1260_ideadquir(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1260_infoprocjud(forms.ModelForm):
@@ -127,7 +127,7 @@ class form_s1260_infoprocjud(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1260_nfs(forms.ModelForm):
@@ -171,7 +171,7 @@ class form_s1260_nfs(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1260_tpcomerc(forms.ModelForm):
@@ -212,4 +212,4 @@ class form_s1260_tpcomerc(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

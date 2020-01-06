@@ -125,7 +125,7 @@ def validar_evento_funcao(request, pk):
     # validando schema
     #
 
-    schema_filename = get_schema_name(arquivo)
+    schema_filename = 'esocial/%s/evtAfastTemp.xsd' % (s2230_evtafasttemp.versao)
     quant_erros, error_list = validar_schema(request, schema_filename, arquivo, lang='pt')
 
     for a in error_list:

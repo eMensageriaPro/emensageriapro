@@ -58,7 +58,6 @@ from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
 from emensageriapro.mensageiro.models import TransmissorLoteEsocial
-from emensageriapro.mensageiro.models import RetornosEventos
 from emensageriapro.mensageiro.models import TransmissorLoteEsocial
 
 
@@ -83,15 +82,17 @@ def listar(request, output=None):
             'show_infoambiente': 0,
             'show_versao': 0,
             'show_transmissor_lote_esocial': 0,
-            'show_retornos_eventos': 0,
-            'show_ocorrencias': 0,
             'show_validacao_precedencia': 0,
             'show_validacoes': 0,
             'show_arquivo_original': 0,
             'show_arquivo': 0,
             'show_status': 1,
             'show_operacao': 1,
-            'show_transmissor_lote_esocial_error': 0, }
+            'show_transmissor_lote_esocial_error': 0,
+            'show_retorno_envio_json': 0,
+            'show_retorno_consulta_json': 0,
+            'show_evento_json': 0,
+            'show_ocorrencias_json': 0, }
 
         post = False
 
@@ -150,7 +151,6 @@ def listar(request, output=None):
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.all()
-        retornos_eventos_lista = RetornosEventos.objects.all()
         transmissor_lote_esocial_error_lista = TransmissorLoteEsocial.objects.all()
         #s1060_evttabambiente_listar_custom
 
@@ -167,7 +167,6 @@ def listar(request, output=None):
             'show_fields': show_fields,
             'filtrar': filtrar,
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
-            'retornos_eventos_lista': retornos_eventos_lista,
             'transmissor_lote_esocial_error_lista': transmissor_lote_esocial_error_lista,
         }
 

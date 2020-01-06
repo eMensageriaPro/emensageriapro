@@ -84,7 +84,7 @@ class form_r2010_infoprocretad(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2010_infoprocretpr(forms.ModelForm):
@@ -125,7 +125,7 @@ class form_r2010_infoprocretpr(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2010_infotpserv(forms.ModelForm):
@@ -174,7 +174,7 @@ class form_r2010_infotpserv(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2010_nfs(forms.ModelForm):
@@ -215,4 +215,4 @@ class form_r2010_nfs(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

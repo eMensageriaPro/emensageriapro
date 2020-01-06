@@ -87,7 +87,10 @@ def listar(request, output=None):
             'show_arquivo_request': 0,
             'show_arquivo_response': 0,
             'show_data_hora_envio': 0,
-            'show_data_hora_consulta': 0, }
+            'show_data_hora_consulta': 0,
+            'show_retorno_envio_json': 0,
+            'show_retorno_consulta_json': 0,
+            'show_ocorrencias_json': 0, }
 
         post = False
         #ANTES-POST-LISTAGEM

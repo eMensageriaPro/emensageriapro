@@ -89,7 +89,6 @@ def listar(request, output=None):
             'show_hash': 0,
             'show_versao': 0,
             'show_transmissor_lote_efdreinf': 0,
-            'show_ocorrencias': 0,
             'show_validacao_precedencia': 0,
             'show_validacoes': 0,
             'show_arquivo_original': 0,
@@ -98,7 +97,11 @@ def listar(request, output=None):
             'show_cdretorno': 1,
             'show_descretorno': 0,
             'show_dhprocess': 0,
-            'show_transmissor_lote_efdreinf_error': 0, }
+            'show_transmissor_lote_efdreinf_error': 0,
+            'show_retorno_envio_json': 0,
+            'show_retorno_consulta_json': 0,
+            'show_evento_json': 0,
+            'show_ocorrencias_json': 0, }
 
         post = False
 

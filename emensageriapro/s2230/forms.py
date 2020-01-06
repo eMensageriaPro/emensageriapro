@@ -83,7 +83,7 @@ class form_s2230_emitente(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2230_fimafastamento(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_s2230_fimafastamento(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2230_infoatestado(forms.ModelForm):
@@ -163,7 +163,7 @@ class form_s2230_infoatestado(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2230_infocessao(forms.ModelForm):
@@ -203,7 +203,7 @@ class form_s2230_infocessao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2230_infomandsind(forms.ModelForm):
@@ -243,7 +243,7 @@ class form_s2230_infomandsind(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2230_inforetif(forms.ModelForm):
@@ -283,7 +283,7 @@ class form_s2230_inforetif(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2230_iniafastamento(forms.ModelForm):
@@ -323,4 +323,4 @@ class form_s2230_iniafastamento(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

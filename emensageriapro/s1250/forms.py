@@ -87,7 +87,7 @@ class form_s1250_ideprodutor(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1250_infoprocj(forms.ModelForm):
@@ -130,7 +130,7 @@ class form_s1250_infoprocj(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1250_infoprocjud(forms.ModelForm):
@@ -173,7 +173,7 @@ class form_s1250_infoprocjud(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1250_nfs(forms.ModelForm):
@@ -217,7 +217,7 @@ class form_s1250_nfs(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1250_tpaquis(forms.ModelForm):
@@ -258,4 +258,4 @@ class form_s1250_tpaquis(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

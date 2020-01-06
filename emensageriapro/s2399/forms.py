@@ -84,7 +84,7 @@ class form_s2399_detoper(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2399_detplano(forms.ModelForm):
@@ -125,7 +125,7 @@ class form_s2399_detplano(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2399_detverbas(forms.ModelForm):
@@ -169,7 +169,7 @@ class form_s2399_detverbas(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2399_dmdev(forms.ModelForm):
@@ -209,7 +209,7 @@ class form_s2399_dmdev(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2399_ideestablot(forms.ModelForm):
@@ -249,7 +249,7 @@ class form_s2399_ideestablot(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2399_infoagnocivo(forms.ModelForm):
@@ -289,7 +289,7 @@ class form_s2399_infoagnocivo(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2399_infomv(forms.ModelForm):
@@ -329,7 +329,7 @@ class form_s2399_infomv(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2399_infosaudecolet(forms.ModelForm):
@@ -369,7 +369,7 @@ class form_s2399_infosaudecolet(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2399_infosimples(forms.ModelForm):
@@ -409,7 +409,7 @@ class form_s2399_infosimples(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2399_mudancacpf(forms.ModelForm):
@@ -449,7 +449,7 @@ class form_s2399_mudancacpf(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2399_procjudtrab(forms.ModelForm):
@@ -489,7 +489,7 @@ class form_s2399_procjudtrab(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2399_quarentena(forms.ModelForm):
@@ -529,7 +529,7 @@ class form_s2399_quarentena(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2399_remunoutrempr(forms.ModelForm):
@@ -570,7 +570,7 @@ class form_s2399_remunoutrempr(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2399_verbasresc(forms.ModelForm):
@@ -610,4 +610,4 @@ class form_s2399_verbasresc(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

@@ -84,7 +84,7 @@ class form_r2060_infoproc(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2060_tipoajuste(forms.ModelForm):
@@ -125,7 +125,7 @@ class form_r2060_tipoajuste(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r2060_tipocod(forms.ModelForm):
@@ -170,4 +170,4 @@ class form_r2060_tipocod(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

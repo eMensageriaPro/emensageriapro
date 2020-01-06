@@ -84,4 +84,4 @@ class form_s1300_contribsind(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

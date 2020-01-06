@@ -83,7 +83,7 @@ class form_s2241_altaposentesp(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_altaposentesp_fatrisco(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_s2241_altaposentesp_fatrisco(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_altaposentesp_infoamb(forms.ModelForm):
@@ -163,7 +163,7 @@ class form_s2241_altaposentesp_infoamb(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_altinsalperic(forms.ModelForm):
@@ -203,7 +203,7 @@ class form_s2241_altinsalperic(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_altinsalperic_fatrisco(forms.ModelForm):
@@ -243,7 +243,7 @@ class form_s2241_altinsalperic_fatrisco(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_altinsalperic_infoamb(forms.ModelForm):
@@ -283,7 +283,7 @@ class form_s2241_altinsalperic_infoamb(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_aposentesp(forms.ModelForm):
@@ -323,7 +323,7 @@ class form_s2241_aposentesp(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_fimaposentesp(forms.ModelForm):
@@ -363,7 +363,7 @@ class form_s2241_fimaposentesp(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_fimaposentesp_infoamb(forms.ModelForm):
@@ -403,7 +403,7 @@ class form_s2241_fimaposentesp_infoamb(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_fiminsalperic(forms.ModelForm):
@@ -443,7 +443,7 @@ class form_s2241_fiminsalperic(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_fiminsalperic_infoamb(forms.ModelForm):
@@ -483,7 +483,7 @@ class form_s2241_fiminsalperic_infoamb(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_iniaposentesp(forms.ModelForm):
@@ -523,7 +523,7 @@ class form_s2241_iniaposentesp(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_iniaposentesp_fatrisco(forms.ModelForm):
@@ -563,7 +563,7 @@ class form_s2241_iniaposentesp_fatrisco(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_iniaposentesp_infoamb(forms.ModelForm):
@@ -603,7 +603,7 @@ class form_s2241_iniaposentesp_infoamb(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_iniinsalperic(forms.ModelForm):
@@ -643,7 +643,7 @@ class form_s2241_iniinsalperic(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_iniinsalperic_fatrisco(forms.ModelForm):
@@ -683,7 +683,7 @@ class form_s2241_iniinsalperic_fatrisco(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_iniinsalperic_infoamb(forms.ModelForm):
@@ -723,7 +723,7 @@ class form_s2241_iniinsalperic_infoamb(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2241_insalperic(forms.ModelForm):
@@ -763,4 +763,4 @@ class form_s2241_insalperic(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

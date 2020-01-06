@@ -83,7 +83,7 @@ class form_s1030_alteracao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1030_alteracao_cargopublico(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_s1030_alteracao_cargopublico(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1030_alteracao_novavalidade(forms.ModelForm):
@@ -163,7 +163,7 @@ class form_s1030_alteracao_novavalidade(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1030_exclusao(forms.ModelForm):
@@ -203,7 +203,7 @@ class form_s1030_exclusao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1030_inclusao(forms.ModelForm):
@@ -243,7 +243,7 @@ class form_s1030_inclusao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1030_inclusao_cargopublico(forms.ModelForm):
@@ -283,4 +283,4 @@ class form_s1030_inclusao_cargopublico(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

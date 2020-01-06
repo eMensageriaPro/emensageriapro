@@ -83,7 +83,7 @@ class form_s1207_dmdev(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1207_infoperant(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_s1207_infoperant(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1207_infoperant_ideadc(forms.ModelForm):
@@ -163,7 +163,7 @@ class form_s1207_infoperant_ideadc(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1207_infoperant_ideestab(forms.ModelForm):
@@ -203,7 +203,7 @@ class form_s1207_infoperant_ideestab(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1207_infoperant_ideperiodo(forms.ModelForm):
@@ -243,7 +243,7 @@ class form_s1207_infoperant_ideperiodo(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1207_infoperant_itensremun(forms.ModelForm):
@@ -287,7 +287,7 @@ class form_s1207_infoperant_itensremun(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1207_infoperant_remunperant(forms.ModelForm):
@@ -327,7 +327,7 @@ class form_s1207_infoperant_remunperant(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1207_infoperapur(forms.ModelForm):
@@ -367,7 +367,7 @@ class form_s1207_infoperapur(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1207_infoperapur_ideestab(forms.ModelForm):
@@ -407,7 +407,7 @@ class form_s1207_infoperapur_ideestab(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1207_infoperapur_itensremun(forms.ModelForm):
@@ -451,7 +451,7 @@ class form_s1207_infoperapur_itensremun(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1207_infoperapur_remunperapur(forms.ModelForm):
@@ -491,7 +491,7 @@ class form_s1207_infoperapur_remunperapur(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1207_itens(forms.ModelForm):
@@ -532,7 +532,7 @@ class form_s1207_itens(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1207_procjudtrab(forms.ModelForm):
@@ -572,4 +572,4 @@ class form_s1207_procjudtrab(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

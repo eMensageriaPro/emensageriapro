@@ -83,7 +83,7 @@ class form_s2410_homologtc(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2410_infopenmorte(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_s2410_infopenmorte(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2410_instpenmorte(forms.ModelForm):
@@ -163,4 +163,4 @@ class form_s2410_instpenmorte(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

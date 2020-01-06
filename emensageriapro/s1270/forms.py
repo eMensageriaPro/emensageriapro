@@ -90,4 +90,4 @@ class form_s1270_remunavnp(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

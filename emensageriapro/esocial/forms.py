@@ -95,13 +95,15 @@ class form_s1000_evtinfoempregador(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1005_evttabestab(forms.ModelForm):
@@ -153,13 +155,15 @@ class form_s1005_evttabestab(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1010_evttabrubrica(forms.ModelForm):
@@ -211,13 +215,15 @@ class form_s1010_evttabrubrica(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1020_evttablotacao(forms.ModelForm):
@@ -269,13 +275,15 @@ class form_s1020_evttablotacao(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1030_evttabcargo(forms.ModelForm):
@@ -327,13 +335,15 @@ class form_s1030_evttabcargo(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1035_evttabcarreira(forms.ModelForm):
@@ -385,13 +395,15 @@ class form_s1035_evttabcarreira(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1040_evttabfuncao(forms.ModelForm):
@@ -443,13 +455,15 @@ class form_s1040_evttabfuncao(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1050_evttabhortur(forms.ModelForm):
@@ -501,13 +515,15 @@ class form_s1050_evttabhortur(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1060_evttabambiente(forms.ModelForm):
@@ -559,13 +575,15 @@ class form_s1060_evttabambiente(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1070_evttabprocesso(forms.ModelForm):
@@ -617,13 +635,15 @@ class form_s1070_evttabprocesso(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1080_evttaboperport(forms.ModelForm):
@@ -675,13 +695,15 @@ class form_s1080_evttaboperport(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1200_evtremun(forms.ModelForm):
@@ -733,15 +755,15 @@ class form_s1200_evtremun(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'retornos_s5001'
-            'retornos_s5003'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1202_evtrmnrpps(forms.ModelForm):
@@ -793,13 +815,15 @@ class form_s1202_evtrmnrpps(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1207_evtbenprrp(forms.ModelForm):
@@ -851,13 +875,15 @@ class form_s1207_evtbenprrp(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1210_evtpgtos(forms.ModelForm):
@@ -909,14 +935,15 @@ class form_s1210_evtpgtos(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'retornos_s5002'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1250_evtaqprod(forms.ModelForm):
@@ -968,13 +995,15 @@ class form_s1250_evtaqprod(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1260_evtcomprod(forms.ModelForm):
@@ -1026,13 +1055,15 @@ class form_s1260_evtcomprod(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1270_evtcontratavnp(forms.ModelForm):
@@ -1084,13 +1115,15 @@ class form_s1270_evtcontratavnp(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1280_evtinfocomplper(forms.ModelForm):
@@ -1142,13 +1175,15 @@ class form_s1280_evtinfocomplper(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1295_evttotconting(forms.ModelForm):
@@ -1200,16 +1235,15 @@ class form_s1295_evttotconting(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'retornos_s5011'
-            'retornos_s5012'
-            'retornos_s5013'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1298_evtreabreevper(forms.ModelForm):
@@ -1261,13 +1295,15 @@ class form_s1298_evtreabreevper(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1299_evtfechaevper(forms.ModelForm):
@@ -1319,16 +1355,15 @@ class form_s1299_evtfechaevper(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'retornos_s5011'
-            'retornos_s5012'
-            'retornos_s5013'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s1300_evtcontrsindpatr(forms.ModelForm):
@@ -1380,13 +1415,15 @@ class form_s1300_evtcontrsindpatr(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2190_evtadmprelim(forms.ModelForm):
@@ -1438,13 +1475,15 @@ class form_s2190_evtadmprelim(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2200_evtadmissao(forms.ModelForm):
@@ -1497,13 +1536,15 @@ class form_s2200_evtadmissao(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2205_evtaltcadastral(forms.ModelForm):
@@ -1555,13 +1596,15 @@ class form_s2205_evtaltcadastral(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2206_evtaltcontratual(forms.ModelForm):
@@ -1614,13 +1657,15 @@ class form_s2206_evtaltcontratual(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2210_evtcat(forms.ModelForm):
@@ -1672,13 +1717,15 @@ class form_s2210_evtcat(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2220_evtmonit(forms.ModelForm):
@@ -1730,13 +1777,15 @@ class form_s2220_evtmonit(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2221_evttoxic(forms.ModelForm):
@@ -1788,13 +1837,15 @@ class form_s2221_evttoxic(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2230_evtafasttemp(forms.ModelForm):
@@ -1846,13 +1897,15 @@ class form_s2230_evtafasttemp(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2231_evtcessao(forms.ModelForm):
@@ -1904,13 +1957,15 @@ class form_s2231_evtcessao(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2240_evtexprisco(forms.ModelForm):
@@ -1962,13 +2017,15 @@ class form_s2240_evtexprisco(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2241_evtinsapo(forms.ModelForm):
@@ -2020,13 +2077,15 @@ class form_s2241_evtinsapo(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2245_evttreicap(forms.ModelForm):
@@ -2079,13 +2138,15 @@ class form_s2245_evttreicap(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2250_evtavprevio(forms.ModelForm):
@@ -2137,13 +2198,15 @@ class form_s2250_evtavprevio(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2260_evtconvinterm(forms.ModelForm):
@@ -2195,13 +2258,15 @@ class form_s2260_evtconvinterm(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2298_evtreintegr(forms.ModelForm):
@@ -2253,13 +2318,15 @@ class form_s2298_evtreintegr(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2299_evtdeslig(forms.ModelForm):
@@ -2313,15 +2380,15 @@ class form_s2299_evtdeslig(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'retornos_s5001'
-            'retornos_s5003'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2300_evttsvinicio(forms.ModelForm):
@@ -2373,13 +2440,15 @@ class form_s2300_evttsvinicio(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2306_evttsvaltcontr(forms.ModelForm):
@@ -2431,13 +2500,15 @@ class form_s2306_evttsvaltcontr(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2399_evttsvtermino(forms.ModelForm):
@@ -2491,15 +2562,15 @@ class form_s2399_evttsvtermino(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'retornos_s5001'
-            'retornos_s5003'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2400_evtcdbenefin(forms.ModelForm):
@@ -2551,13 +2622,15 @@ class form_s2400_evtcdbenefin(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2405_evtcdbenefalt(forms.ModelForm):
@@ -2609,13 +2682,15 @@ class form_s2405_evtcdbenefalt(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2410_evtcdbenin(forms.ModelForm):
@@ -2668,13 +2743,15 @@ class form_s2410_evtcdbenin(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2416_evtcdbenalt(forms.ModelForm):
@@ -2726,13 +2803,15 @@ class form_s2416_evtcdbenalt(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s2420_evtcdbenterm(forms.ModelForm):
@@ -2784,13 +2863,15 @@ class form_s2420_evtcdbenterm(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s3000_evtexclusao(forms.ModelForm):
@@ -2842,13 +2923,15 @@ class form_s3000_evtexclusao(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'retornos_eventos'
-            'ocorrencias'
-            'validacao_precedencia'
-            'validacoes'
-            'arquivo_original'
-            'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
+            'transmissor_lote_esocial_error',
+            'retorno_envio_json',
+            'retorno_consulta_json',
+            'evento_json',
+            'ocorrencias_json',]
 
 
 class form_s5001_evtbasestrab(forms.ModelForm):
@@ -2892,12 +2975,15 @@ class form_s5001_evtbasestrab(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'ocorrencias'
             'validacao_precedencia'
             'validacoes'
             'arquivo_original'
             'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'transmissor_lote_esocial_error'
+            'retorno_envio_json'
+            'retorno_consulta_json'
+            'evento_json'
+            'ocorrencias_json' ]
 
 
 class form_s5002_evtirrfbenef(forms.ModelForm):
@@ -2941,12 +3027,15 @@ class form_s5002_evtirrfbenef(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'ocorrencias'
             'validacao_precedencia'
             'validacoes'
             'arquivo_original'
             'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'transmissor_lote_esocial_error'
+            'retorno_envio_json'
+            'retorno_consulta_json'
+            'evento_json'
+            'ocorrencias_json' ]
 
 
 class form_s5003_evtbasesfgts(forms.ModelForm):
@@ -2990,12 +3079,15 @@ class form_s5003_evtbasesfgts(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'ocorrencias'
             'validacao_precedencia'
             'validacoes'
             'arquivo_original'
             'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'transmissor_lote_esocial_error'
+            'retorno_envio_json'
+            'retorno_consulta_json'
+            'evento_json'
+            'ocorrencias_json' ]
 
 
 class form_s5011_evtcs(forms.ModelForm):
@@ -3039,12 +3131,15 @@ class form_s5011_evtcs(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'ocorrencias'
             'validacao_precedencia'
             'validacoes'
             'arquivo_original'
             'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'transmissor_lote_esocial_error'
+            'retorno_envio_json'
+            'retorno_consulta_json'
+            'evento_json'
+            'ocorrencias_json' ]
 
 
 class form_s5012_evtirrf(forms.ModelForm):
@@ -3088,12 +3183,15 @@ class form_s5012_evtirrf(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'ocorrencias'
             'validacao_precedencia'
             'validacoes'
             'arquivo_original'
             'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'transmissor_lote_esocial_error'
+            'retorno_envio_json'
+            'retorno_consulta_json'
+            'evento_json'
+            'ocorrencias_json' ]
 
 
 class form_s5013_evtfgts(forms.ModelForm):
@@ -3137,9 +3235,12 @@ class form_s5013_evtfgts(forms.ModelForm):
             'modificado_por',
             'desativado_em',
             'desativado_por',
-            'ocorrencias'
             'validacao_precedencia'
             'validacoes'
             'arquivo_original'
             'arquivo'
-            'transmissor_lote_esocial_error' ]
+            'transmissor_lote_esocial_error'
+            'retorno_envio_json'
+            'retorno_consulta_json'
+            'evento_json'
+            'ocorrencias_json' ]

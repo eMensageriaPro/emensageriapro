@@ -83,7 +83,7 @@ class form_s2206_alvarajudicial(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2206_aprend(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_s2206_aprend(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2206_filiacaosindical(forms.ModelForm):
@@ -163,7 +163,7 @@ class form_s2206_filiacaosindical(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2206_horcontratual(forms.ModelForm):
@@ -204,7 +204,7 @@ class form_s2206_horcontratual(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2206_horario(forms.ModelForm):
@@ -244,7 +244,7 @@ class form_s2206_horario(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2206_infoceletista(forms.ModelForm):
@@ -284,7 +284,7 @@ class form_s2206_infoceletista(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2206_infoestatutario(forms.ModelForm):
@@ -324,7 +324,7 @@ class form_s2206_infoestatutario(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2206_localtrabdom(forms.ModelForm):
@@ -364,7 +364,7 @@ class form_s2206_localtrabdom(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2206_localtrabgeral(forms.ModelForm):
@@ -404,7 +404,7 @@ class form_s2206_localtrabgeral(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2206_observacoes(forms.ModelForm):
@@ -444,7 +444,7 @@ class form_s2206_observacoes(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2206_servpubl(forms.ModelForm):
@@ -484,7 +484,7 @@ class form_s2206_servpubl(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2206_trabtemp(forms.ModelForm):
@@ -524,4 +524,4 @@ class form_s2206_trabtemp(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

@@ -83,7 +83,7 @@ class form_s1010_alteracao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1010_alteracao_ideprocessocp(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_s1010_alteracao_ideprocessocp(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1010_alteracao_ideprocessocprp(forms.ModelForm):
@@ -163,7 +163,7 @@ class form_s1010_alteracao_ideprocessocprp(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1010_alteracao_ideprocessofgts(forms.ModelForm):
@@ -203,7 +203,7 @@ class form_s1010_alteracao_ideprocessofgts(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1010_alteracao_ideprocessoirrf(forms.ModelForm):
@@ -243,7 +243,7 @@ class form_s1010_alteracao_ideprocessoirrf(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1010_alteracao_ideprocessosind(forms.ModelForm):
@@ -283,7 +283,7 @@ class form_s1010_alteracao_ideprocessosind(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1010_alteracao_novavalidade(forms.ModelForm):
@@ -323,7 +323,7 @@ class form_s1010_alteracao_novavalidade(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1010_exclusao(forms.ModelForm):
@@ -363,7 +363,7 @@ class form_s1010_exclusao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1010_inclusao(forms.ModelForm):
@@ -403,7 +403,7 @@ class form_s1010_inclusao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1010_inclusao_ideprocessocp(forms.ModelForm):
@@ -443,7 +443,7 @@ class form_s1010_inclusao_ideprocessocp(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1010_inclusao_ideprocessocprp(forms.ModelForm):
@@ -483,7 +483,7 @@ class form_s1010_inclusao_ideprocessocprp(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1010_inclusao_ideprocessofgts(forms.ModelForm):
@@ -523,7 +523,7 @@ class form_s1010_inclusao_ideprocessofgts(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1010_inclusao_ideprocessoirrf(forms.ModelForm):
@@ -563,7 +563,7 @@ class form_s1010_inclusao_ideprocessoirrf(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1010_inclusao_ideprocessosind(forms.ModelForm):
@@ -603,4 +603,4 @@ class form_s1010_inclusao_ideprocessosind(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

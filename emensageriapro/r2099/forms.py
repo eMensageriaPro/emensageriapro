@@ -83,4 +83,4 @@ class form_r2099_iderespinf(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

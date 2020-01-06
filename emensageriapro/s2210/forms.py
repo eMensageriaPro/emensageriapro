@@ -83,7 +83,7 @@ class form_s2210_agentecausador(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2210_atestado(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_s2210_atestado(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2210_catorigem(forms.ModelForm):
@@ -163,7 +163,7 @@ class form_s2210_catorigem(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2210_idelocalacid(forms.ModelForm):
@@ -203,7 +203,7 @@ class form_s2210_idelocalacid(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2210_parteatingida(forms.ModelForm):
@@ -243,4 +243,4 @@ class form_s2210_parteatingida(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

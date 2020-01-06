@@ -83,7 +83,7 @@ class form_s2405_brasil(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2405_dependente(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_s2405_dependente(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2405_endereco(forms.ModelForm):
@@ -163,7 +163,7 @@ class form_s2405_endereco(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2405_exterior(forms.ModelForm):
@@ -203,4 +203,4 @@ class form_s2405_exterior(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

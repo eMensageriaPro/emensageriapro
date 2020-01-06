@@ -1,4 +1,0 @@
-{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
-{% if show_fields.show_retornos_eventos or 1 %}"Retorno";{% endif %}{% if show_fields.show_tipo or 1 %}"Tipo";{% endif %}{% if show_fields.show_codigo or 1 %}"Código";{% endif %}{% if show_fields.show_descricao or 1 %}"Descrição";{% endif %}{% if show_fields.show_localizacao or 1 %}"Localização";{% endif %}
-{% for c in campos_lista %}{% if show_fields.show_retornos_eventos or 1 %}"{{ c.retornos_eventos }}";{% endif %}{% if show_fields.show_tipo or 1 %}"{{ c.tipo }}";{% endif %}{% if show_fields.show_codigo or 1 %}"{{ c.codigo }}";{% endif %}{% if show_fields.show_descricao or 1 %}"{{ c.descricao }}";{% endif %}{% if show_fields.show_localizacao or 1 %}"{{ c.localizacao }}";{% endif %}
-{% endfor %}

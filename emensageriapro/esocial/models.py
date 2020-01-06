@@ -1,5 +1,6 @@
 # eMensageriaAI #
 #coding:utf-8
+from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
@@ -92,9 +93,6 @@ class s1000evtInfoEmpregador(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -103,6 +101,10 @@ class s1000evtInfoEmpregador(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -122,7 +124,7 @@ class s1000evtInfoEmpregador(SoftDeletionModel):
         db_table = r's1000_evtinfoempregador'
         managed = True  # s1000_evtinfoempregador #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -167,7 +169,8 @@ class s1000evtInfoEmpregadorSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1005evtTabEstab(SoftDeletionModel):
@@ -181,9 +184,6 @@ class s1005evtTabEstab(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -192,6 +192,10 @@ class s1005evtTabEstab(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -211,7 +215,7 @@ class s1005evtTabEstab(SoftDeletionModel):
         db_table = r's1005_evttabestab'
         managed = True  # s1005_evttabestab #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -256,7 +260,8 @@ class s1005evtTabEstabSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1010evtTabRubrica(SoftDeletionModel):
@@ -270,9 +275,6 @@ class s1010evtTabRubrica(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -281,6 +283,10 @@ class s1010evtTabRubrica(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -300,7 +306,7 @@ class s1010evtTabRubrica(SoftDeletionModel):
         db_table = r's1010_evttabrubrica'
         managed = True  # s1010_evttabrubrica #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -345,7 +351,8 @@ class s1010evtTabRubricaSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1020evtTabLotacao(SoftDeletionModel):
@@ -359,9 +366,6 @@ class s1020evtTabLotacao(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -370,6 +374,10 @@ class s1020evtTabLotacao(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -389,7 +397,7 @@ class s1020evtTabLotacao(SoftDeletionModel):
         db_table = r's1020_evttablotacao'
         managed = True  # s1020_evttablotacao #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -434,7 +442,8 @@ class s1020evtTabLotacaoSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1030evtTabCargo(SoftDeletionModel):
@@ -448,9 +457,6 @@ class s1030evtTabCargo(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -459,6 +465,10 @@ class s1030evtTabCargo(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -478,7 +488,7 @@ class s1030evtTabCargo(SoftDeletionModel):
         db_table = r's1030_evttabcargo'
         managed = True  # s1030_evttabcargo #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -523,7 +533,8 @@ class s1030evtTabCargoSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1035evtTabCarreira(SoftDeletionModel):
@@ -537,9 +548,6 @@ class s1035evtTabCarreira(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -548,6 +556,10 @@ class s1035evtTabCarreira(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -567,7 +579,7 @@ class s1035evtTabCarreira(SoftDeletionModel):
         db_table = r's1035_evttabcarreira'
         managed = True  # s1035_evttabcarreira #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -612,7 +624,8 @@ class s1035evtTabCarreiraSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1040evtTabFuncao(SoftDeletionModel):
@@ -626,9 +639,6 @@ class s1040evtTabFuncao(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -637,6 +647,10 @@ class s1040evtTabFuncao(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -656,7 +670,7 @@ class s1040evtTabFuncao(SoftDeletionModel):
         db_table = r's1040_evttabfuncao'
         managed = True  # s1040_evttabfuncao #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -701,7 +715,8 @@ class s1040evtTabFuncaoSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1050evtTabHorTur(SoftDeletionModel):
@@ -715,9 +730,6 @@ class s1050evtTabHorTur(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -726,6 +738,10 @@ class s1050evtTabHorTur(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -745,7 +761,7 @@ class s1050evtTabHorTur(SoftDeletionModel):
         db_table = r's1050_evttabhortur'
         managed = True  # s1050_evttabhortur #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -790,7 +806,8 @@ class s1050evtTabHorTurSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1060evtTabAmbiente(SoftDeletionModel):
@@ -804,9 +821,6 @@ class s1060evtTabAmbiente(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -815,6 +829,10 @@ class s1060evtTabAmbiente(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -834,7 +852,7 @@ class s1060evtTabAmbiente(SoftDeletionModel):
         db_table = r's1060_evttabambiente'
         managed = True  # s1060_evttabambiente #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -879,7 +897,8 @@ class s1060evtTabAmbienteSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1070evtTabProcesso(SoftDeletionModel):
@@ -893,9 +912,6 @@ class s1070evtTabProcesso(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -904,6 +920,10 @@ class s1070evtTabProcesso(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -923,7 +943,7 @@ class s1070evtTabProcesso(SoftDeletionModel):
         db_table = r's1070_evttabprocesso'
         managed = True  # s1070_evttabprocesso #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -968,7 +988,8 @@ class s1070evtTabProcessoSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1080evtTabOperPort(SoftDeletionModel):
@@ -982,9 +1003,6 @@ class s1080evtTabOperPort(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -993,6 +1011,10 @@ class s1080evtTabOperPort(SoftDeletionModel):
     operacao = models.IntegerField(choices=OPERACOES, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1012,7 +1034,7 @@ class s1080evtTabOperPort(SoftDeletionModel):
         db_table = r's1080_evttaboperport'
         managed = True  # s1080_evttaboperport #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -1057,7 +1079,8 @@ class s1080evtTabOperPortSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1200evtRemun(SoftDeletionModel):
@@ -1077,20 +1100,17 @@ class s1200evtRemun(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    retornos_s5001 = models.ForeignKey('esocial.s5001evtBasesTrab',
-        related_name='%(class)s_retornos_s5001', blank=True, null=True, )
-    retornos_s5003 = models.ForeignKey('esocial.s5003evtBasesFGTS',
-        related_name='%(class)s_retornos_s5003', blank=True, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1110,7 +1130,7 @@ class s1200evtRemun(SoftDeletionModel):
         db_table = r's1200_evtremun'
         managed = True  # s1200_evtremun #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -1157,7 +1177,8 @@ class s1200evtRemunSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1202evtRmnRPPS(SoftDeletionModel):
@@ -1178,9 +1199,6 @@ class s1202evtRmnRPPS(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -1188,6 +1206,10 @@ class s1202evtRmnRPPS(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1207,7 +1229,7 @@ class s1202evtRmnRPPS(SoftDeletionModel):
         db_table = r's1202_evtrmnrpps'
         managed = True  # s1202_evtrmnrpps #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -1254,7 +1276,8 @@ class s1202evtRmnRPPSSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1207evtBenPrRP(SoftDeletionModel):
@@ -1273,9 +1296,6 @@ class s1207evtBenPrRP(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -1283,6 +1303,10 @@ class s1207evtBenPrRP(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1302,7 +1326,7 @@ class s1207evtBenPrRP(SoftDeletionModel):
         db_table = r's1207_evtbenprrp'
         managed = True  # s1207_evtbenprrp #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -1349,7 +1373,8 @@ class s1207evtBenPrRPSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1210evtPgtos(SoftDeletionModel):
@@ -1368,18 +1393,17 @@ class s1210evtPgtos(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    retornos_s5002 = models.ForeignKey('esocial.s5002evtIrrfBenef',
-        related_name='%(class)s_retornos_s5002', blank=True, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1399,7 +1423,7 @@ class s1210evtPgtos(SoftDeletionModel):
         db_table = r's1210_evtpgtos'
         managed = True  # s1210_evtpgtos #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -1446,7 +1470,8 @@ class s1210evtPgtosSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1250evtAqProd(SoftDeletionModel):
@@ -1466,9 +1491,6 @@ class s1250evtAqProd(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -1476,6 +1498,10 @@ class s1250evtAqProd(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1495,7 +1521,7 @@ class s1250evtAqProd(SoftDeletionModel):
         db_table = r's1250_evtaqprod'
         managed = True  # s1250_evtaqprod #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -1543,7 +1569,8 @@ class s1250evtAqProdSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1260evtComProd(SoftDeletionModel):
@@ -1562,9 +1589,6 @@ class s1260evtComProd(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -1572,6 +1596,10 @@ class s1260evtComProd(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1591,7 +1619,7 @@ class s1260evtComProd(SoftDeletionModel):
         db_table = r's1260_evtcomprod'
         managed = True  # s1260_evtcomprod #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -1638,7 +1666,8 @@ class s1260evtComProdSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1270evtContratAvNP(SoftDeletionModel):
@@ -1656,9 +1685,6 @@ class s1270evtContratAvNP(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -1666,6 +1692,10 @@ class s1270evtContratAvNP(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1685,7 +1715,7 @@ class s1270evtContratAvNP(SoftDeletionModel):
         db_table = r's1270_evtcontratavnp'
         managed = True  # s1270_evtcontratavnp #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -1731,7 +1761,8 @@ class s1270evtContratAvNPSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1280evtInfoComplPer(SoftDeletionModel):
@@ -1749,9 +1780,6 @@ class s1280evtInfoComplPer(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -1759,6 +1787,10 @@ class s1280evtInfoComplPer(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1778,7 +1810,7 @@ class s1280evtInfoComplPer(SoftDeletionModel):
         db_table = r's1280_evtinfocomplper'
         managed = True  # s1280_evtinfocomplper #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -1824,7 +1856,8 @@ class s1280evtInfoComplPerSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1295evtTotConting(SoftDeletionModel):
@@ -1840,22 +1873,17 @@ class s1295evtTotConting(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    retornos_s5011 = models.ForeignKey('esocial.s5011evtCS',
-        related_name='%(class)s_retornos_s5011', blank=True, null=True, )
-    retornos_s5012 = models.ForeignKey('esocial.s5012evtIrrf',
-        related_name='%(class)s_retornos_s5012', blank=True, null=True, )
-    retornos_s5013 = models.ForeignKey('esocial.s5013evtFGTS',
-        related_name='%(class)s_retornos_s5013', blank=True, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1875,7 +1903,7 @@ class s1295evtTotConting(SoftDeletionModel):
         db_table = r's1295_evttotconting'
         managed = True  # s1295_evttotconting #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -1920,7 +1948,8 @@ class s1295evtTotContingSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1298evtReabreEvPer(SoftDeletionModel):
@@ -1936,9 +1965,6 @@ class s1298evtReabreEvPer(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -1946,6 +1972,10 @@ class s1298evtReabreEvPer(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -1965,7 +1995,7 @@ class s1298evtReabreEvPer(SoftDeletionModel):
         db_table = r's1298_evtreabreevper'
         managed = True  # s1298_evtreabreevper #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -2010,7 +2040,8 @@ class s1298evtReabreEvPerSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1299evtFechaEvPer(SoftDeletionModel):
@@ -2033,22 +2064,17 @@ class s1299evtFechaEvPer(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    retornos_s5011 = models.ForeignKey('esocial.s5011evtCS',
-        related_name='%(class)s_retornos_s5011', blank=True, null=True, )
-    retornos_s5012 = models.ForeignKey('esocial.s5012evtIrrf',
-        related_name='%(class)s_retornos_s5012', blank=True, null=True, )
-    retornos_s5013 = models.ForeignKey('esocial.s5013evtFGTS',
-        related_name='%(class)s_retornos_s5013', blank=True, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2068,7 +2094,7 @@ class s1299evtFechaEvPer(SoftDeletionModel):
         db_table = r's1299_evtfechaevper'
         managed = True  # s1299_evtfechaevper #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -2119,7 +2145,8 @@ class s1299evtFechaEvPerSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s1300evtContrSindPatr(SoftDeletionModel):
@@ -2137,9 +2164,6 @@ class s1300evtContrSindPatr(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -2147,6 +2171,10 @@ class s1300evtContrSindPatr(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2166,7 +2194,7 @@ class s1300evtContrSindPatr(SoftDeletionModel):
         db_table = r's1300_evtcontrsindpatr'
         managed = True  # s1300_evtcontrsindpatr #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -2212,7 +2240,8 @@ class s1300evtContrSindPatrSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2190evtAdmPrelim(SoftDeletionModel):
@@ -2229,9 +2258,6 @@ class s2190evtAdmPrelim(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -2239,6 +2265,10 @@ class s2190evtAdmPrelim(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2258,7 +2288,7 @@ class s2190evtAdmPrelim(SoftDeletionModel):
         db_table = r's2190_evtadmprelim'
         managed = True  # s2190_evtadmprelim #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -2304,7 +2334,8 @@ class s2190evtAdmPrelimSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2200evtAdmissao(SoftDeletionModel):
@@ -2354,9 +2385,6 @@ class s2200evtAdmissao(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -2364,6 +2392,10 @@ class s2200evtAdmissao(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2383,7 +2415,7 @@ class s2200evtAdmissao(SoftDeletionModel):
         db_table = r's2200_evtadmissao'
         managed = True  # s2200_evtadmissao #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -2444,7 +2476,8 @@ class s2200evtAdmissaoSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2205evtAltCadastral(SoftDeletionModel):
@@ -2476,9 +2509,6 @@ class s2205evtAltCadastral(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -2486,6 +2516,10 @@ class s2205evtAltCadastral(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2505,7 +2539,7 @@ class s2205evtAltCadastral(SoftDeletionModel):
         db_table = r's2205_evtaltcadastral'
         managed = True  # s2205_evtaltcadastral #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -2558,7 +2592,8 @@ class s2205evtAltCadastralSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2206evtAltContratual(SoftDeletionModel):
@@ -2592,9 +2627,6 @@ class s2206evtAltContratual(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -2602,6 +2634,10 @@ class s2206evtAltContratual(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2621,7 +2657,7 @@ class s2206evtAltContratual(SoftDeletionModel):
         db_table = r's2206_evtaltcontratual'
         managed = True  # s2206_evtaltcontratual #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -2674,7 +2710,8 @@ class s2206evtAltContratualSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2210evtCAT(SoftDeletionModel):
@@ -2719,9 +2756,6 @@ class s2210evtCAT(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -2729,6 +2763,10 @@ class s2210evtCAT(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2748,7 +2786,7 @@ class s2210evtCAT(SoftDeletionModel):
         db_table = r's2210_evtcat'
         managed = True  # s2210_evtcat #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -2805,7 +2843,8 @@ class s2210evtCATSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2220evtMonit(SoftDeletionModel):
@@ -2841,9 +2880,6 @@ class s2220evtMonit(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -2851,6 +2887,10 @@ class s2220evtMonit(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2870,7 +2910,7 @@ class s2220evtMonit(SoftDeletionModel):
         db_table = r's2220_evtmonit'
         managed = True  # s2220_evtmonit #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -2927,7 +2967,8 @@ class s2220evtMonitSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2221evtToxic(SoftDeletionModel):
@@ -2954,9 +2995,6 @@ class s2221evtToxic(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -2964,6 +3002,10 @@ class s2221evtToxic(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -2983,7 +3025,7 @@ class s2221evtToxic(SoftDeletionModel):
         db_table = r's2221_evttoxic'
         managed = True  # s2221_evttoxic #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -3030,7 +3072,8 @@ class s2221evtToxicSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2230evtAfastTemp(SoftDeletionModel):
@@ -3050,9 +3093,6 @@ class s2230evtAfastTemp(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -3060,6 +3100,10 @@ class s2230evtAfastTemp(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3079,7 +3123,7 @@ class s2230evtAfastTemp(SoftDeletionModel):
         db_table = r's2230_evtafasttemp'
         managed = True  # s2230_evtafasttemp #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -3124,7 +3168,8 @@ class s2230evtAfastTempSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2231evtCessao(SoftDeletionModel):
@@ -3143,9 +3188,6 @@ class s2231evtCessao(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -3153,6 +3195,10 @@ class s2231evtCessao(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3172,7 +3218,7 @@ class s2231evtCessao(SoftDeletionModel):
         db_table = r's2231_evtcessao'
         managed = True  # s2231_evtcessao #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -3219,7 +3265,8 @@ class s2231evtCessaoSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2240evtExpRisco(SoftDeletionModel):
@@ -3241,9 +3288,6 @@ class s2240evtExpRisco(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -3251,6 +3295,10 @@ class s2240evtExpRisco(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3270,7 +3318,7 @@ class s2240evtExpRisco(SoftDeletionModel):
         db_table = r's2240_evtexprisco'
         managed = True  # s2240_evtexprisco #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -3317,7 +3365,8 @@ class s2240evtExpRiscoSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2241evtInsApo(SoftDeletionModel):
@@ -3336,9 +3385,6 @@ class s2241evtInsApo(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -3346,6 +3392,10 @@ class s2241evtInsApo(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3365,7 +3415,7 @@ class s2241evtInsApo(SoftDeletionModel):
         db_table = r's2241_evtinsapo'
         managed = True  # s2241_evtinsapo #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -3410,7 +3460,8 @@ class s2241evtInsApoSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2245evtTreiCap(SoftDeletionModel):
@@ -3438,9 +3489,6 @@ class s2245evtTreiCap(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -3448,6 +3496,10 @@ class s2245evtTreiCap(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3467,7 +3519,7 @@ class s2245evtTreiCap(SoftDeletionModel):
         db_table = r's2245_evttreicap'
         managed = True  # s2245_evttreicap #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -3515,7 +3567,8 @@ class s2245evtTreiCapSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2250evtAvPrevio(SoftDeletionModel):
@@ -3534,9 +3587,6 @@ class s2250evtAvPrevio(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -3544,6 +3594,10 @@ class s2250evtAvPrevio(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3563,7 +3617,7 @@ class s2250evtAvPrevio(SoftDeletionModel):
         db_table = r's2250_evtavprevio'
         managed = True  # s2250_evtavprevio #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -3610,7 +3664,8 @@ class s2250evtAvPrevioSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2260evtConvInterm(SoftDeletionModel):
@@ -3636,9 +3691,6 @@ class s2260evtConvInterm(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -3646,6 +3698,10 @@ class s2260evtConvInterm(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3665,7 +3721,7 @@ class s2260evtConvInterm(SoftDeletionModel):
         db_table = r's2260_evtconvinterm'
         managed = True  # s2260_evtconvinterm #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -3717,7 +3773,8 @@ class s2260evtConvIntermSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2298evtReintegr(SoftDeletionModel):
@@ -3742,9 +3799,6 @@ class s2298evtReintegr(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -3752,6 +3806,10 @@ class s2298evtReintegr(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3771,7 +3829,7 @@ class s2298evtReintegr(SoftDeletionModel):
         db_table = r's2298_evtreintegr'
         managed = True  # s2298_evtreintegr #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -3822,7 +3880,8 @@ class s2298evtReintegrSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2299evtDeslig(SoftDeletionModel):
@@ -3852,20 +3911,17 @@ class s2299evtDeslig(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    retornos_s5001 = models.ForeignKey('esocial.s5001evtBasesTrab',
-        related_name='%(class)s_retornos_s5001', blank=True, null=True, )
-    retornos_s5003 = models.ForeignKey('esocial.s5003evtBasesFGTS',
-        related_name='%(class)s_retornos_s5003', blank=True, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -3885,7 +3941,7 @@ class s2299evtDeslig(SoftDeletionModel):
         db_table = r's2299_evtdeslig'
         managed = True  # s2299_evtdeslig #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -3936,7 +3992,8 @@ class s2299evtDesligSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2300evtTSVInicio(SoftDeletionModel):
@@ -3971,9 +4028,6 @@ class s2300evtTSVInicio(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -3981,6 +4035,10 @@ class s2300evtTSVInicio(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4000,7 +4058,7 @@ class s2300evtTSVInicio(SoftDeletionModel):
         db_table = r's2300_evttsvinicio'
         managed = True  # s2300_evttsvinicio #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -4055,7 +4113,8 @@ class s2300evtTSVInicioSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2306evtTSVAltContr(SoftDeletionModel):
@@ -4076,9 +4135,6 @@ class s2306evtTSVAltContr(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -4086,6 +4142,10 @@ class s2306evtTSVAltContr(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4105,7 +4165,7 @@ class s2306evtTSVAltContr(SoftDeletionModel):
         db_table = r's2306_evttsvaltcontr'
         managed = True  # s2306_evttsvaltcontr #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -4152,7 +4212,8 @@ class s2306evtTSVAltContrSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2399evtTSVTermino(SoftDeletionModel):
@@ -4176,20 +4237,17 @@ class s2399evtTSVTermino(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    retornos_s5001 = models.ForeignKey('esocial.s5001evtBasesTrab',
-        related_name='%(class)s_retornos_s5001', blank=True, null=True, )
-    retornos_s5003 = models.ForeignKey('esocial.s5003evtBasesFGTS',
-        related_name='%(class)s_retornos_s5003', blank=True, null=True, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4209,7 +4267,7 @@ class s2399evtTSVTermino(SoftDeletionModel):
         db_table = r's2399_evttsvtermino'
         managed = True  # s2399_evttsvtermino #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -4256,7 +4314,8 @@ class s2399evtTSVTerminoSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2400evtCdBenefIn(SoftDeletionModel):
@@ -4288,9 +4347,6 @@ class s2400evtCdBenefIn(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -4298,6 +4354,10 @@ class s2400evtCdBenefIn(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4317,7 +4377,7 @@ class s2400evtCdBenefIn(SoftDeletionModel):
         db_table = r's2400_evtcdbenefin'
         managed = True  # s2400_evtcdbenefin #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -4369,7 +4429,8 @@ class s2400evtCdBenefInSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2405evtCdBenefAlt(SoftDeletionModel):
@@ -4397,9 +4458,6 @@ class s2405evtCdBenefAlt(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -4407,6 +4465,10 @@ class s2405evtCdBenefAlt(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4426,7 +4488,7 @@ class s2405evtCdBenefAlt(SoftDeletionModel):
         db_table = r's2405_evtcdbenefalt'
         managed = True  # s2405_evtcdbenefalt #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -4477,7 +4539,8 @@ class s2405evtCdBenefAltSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2410evtCdBenIn(SoftDeletionModel):
@@ -4505,9 +4568,6 @@ class s2410evtCdBenIn(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -4515,6 +4575,10 @@ class s2410evtCdBenIn(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4534,7 +4598,7 @@ class s2410evtCdBenIn(SoftDeletionModel):
         db_table = r's2410_evtcdbenin'
         managed = True  # s2410_evtcdbenin #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -4587,7 +4651,8 @@ class s2410evtCdBenInSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2416evtCdBenAlt(SoftDeletionModel):
@@ -4612,9 +4677,6 @@ class s2416evtCdBenAlt(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -4622,6 +4684,10 @@ class s2416evtCdBenAlt(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4641,7 +4707,7 @@ class s2416evtCdBenAlt(SoftDeletionModel):
         db_table = r's2416_evtcdbenalt'
         managed = True  # s2416_evtcdbenalt #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -4693,7 +4759,8 @@ class s2416evtCdBenAltSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s2420evtCdBenTerm(SoftDeletionModel):
@@ -4713,9 +4780,6 @@ class s2420evtCdBenTerm(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -4723,6 +4787,10 @@ class s2420evtCdBenTerm(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4742,7 +4810,7 @@ class s2420evtCdBenTerm(SoftDeletionModel):
         db_table = r's2420_evtcdbenterm'
         managed = True  # s2420_evtcdbenterm #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -4790,7 +4858,8 @@ class s2420evtCdBenTermSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s3000evtExclusao(SoftDeletionModel):
@@ -4806,9 +4875,6 @@ class s3000evtExclusao(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -4816,6 +4882,10 @@ class s3000evtExclusao(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4835,7 +4905,7 @@ class s3000evtExclusao(SoftDeletionModel):
         db_table = r's3000_evtexclusao'
         managed = True  # s3000_evtexclusao #
 
-        unique_together = ( )
+        unique_together = ()
 
         index_together = ()
 
@@ -4880,7 +4950,8 @@ class s3000evtExclusaoSerializer(ModelSerializer):
                             'arquivo_original', 'arquivo',
                             'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
+                            'desativado_em', 'desativado_por', 'ativo',
+                            'retorno_envio_json', 'retorno_consulta_json', 'evento_json')
 
 
 class s5001evtBasesTrab(SoftDeletionModel):
@@ -4895,7 +4966,6 @@ class s5001evtBasesTrab(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -4903,6 +4973,10 @@ class s5001evtBasesTrab(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -4952,7 +5026,6 @@ class s5002evtIrrfBenef(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -4960,6 +5033,10 @@ class s5002evtIrrfBenef(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -5010,7 +5087,6 @@ class s5003evtBasesFGTS(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -5018,6 +5094,10 @@ class s5003evtBasesFGTS(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -5068,7 +5148,6 @@ class s5011evtCS(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -5076,6 +5155,10 @@ class s5011evtCS(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -5126,7 +5209,6 @@ class s5012evtIrrf(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -5134,6 +5216,10 @@ class s5012evtIrrf(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)
@@ -5182,7 +5268,6 @@ class s5013evtFGTS(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
@@ -5190,6 +5275,10 @@ class s5013evtFGTS(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
     transmissor_lote_esocial_error = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial_error', blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.identidade)

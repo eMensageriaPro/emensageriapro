@@ -83,7 +83,7 @@ class form_s2240_altexprisco(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2240_altexprisco_epc(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_s2240_altexprisco_epc(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2240_altexprisco_epi(forms.ModelForm):
@@ -163,7 +163,7 @@ class form_s2240_altexprisco_epi(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2240_altexprisco_fatrisco(forms.ModelForm):
@@ -203,7 +203,7 @@ class form_s2240_altexprisco_fatrisco(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2240_altexprisco_infoamb(forms.ModelForm):
@@ -243,7 +243,7 @@ class form_s2240_altexprisco_infoamb(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2240_fimexprisco(forms.ModelForm):
@@ -283,7 +283,7 @@ class form_s2240_fimexprisco(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2240_fimexprisco_infoamb(forms.ModelForm):
@@ -323,7 +323,7 @@ class form_s2240_fimexprisco_infoamb(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2240_fimexprisco_respreg(forms.ModelForm):
@@ -363,7 +363,7 @@ class form_s2240_fimexprisco_respreg(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2240_iniexprisco_ativpericinsal(forms.ModelForm):
@@ -403,7 +403,7 @@ class form_s2240_iniexprisco_ativpericinsal(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2240_iniexprisco_epc(forms.ModelForm):
@@ -443,7 +443,7 @@ class form_s2240_iniexprisco_epc(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2240_iniexprisco_epi(forms.ModelForm):
@@ -483,7 +483,7 @@ class form_s2240_iniexprisco_epi(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2240_iniexprisco_fatrisco(forms.ModelForm):
@@ -525,7 +525,7 @@ class form_s2240_iniexprisco_fatrisco(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2240_iniexprisco_infoamb(forms.ModelForm):
@@ -565,7 +565,7 @@ class form_s2240_iniexprisco_infoamb(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2240_iniexprisco_obs(forms.ModelForm):
@@ -605,7 +605,7 @@ class form_s2240_iniexprisco_obs(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2240_iniexprisco_respreg(forms.ModelForm):
@@ -645,4 +645,4 @@ class form_s2240_iniexprisco_respreg(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

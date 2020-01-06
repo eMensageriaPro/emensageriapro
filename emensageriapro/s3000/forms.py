@@ -83,7 +83,7 @@ class form_s3000_idefolhapagto(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s3000_idetrabalhador(forms.ModelForm):
@@ -123,4 +123,4 @@ class form_s3000_idetrabalhador(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

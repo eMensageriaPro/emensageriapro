@@ -1,5 +1,6 @@
 # eMensageriaAI #
 #coding:utf-8
+from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
@@ -310,232 +311,6 @@ class RelatoriosSerializer(ModelSerializer):
                             'desativado_em', 'desativado_por', 'ativo')
 
 
-class RetornosEventos(SoftDeletionModel):
-
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', )
-    identidade = models.CharField(max_length=36, blank=True, null=True, )
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True, )
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True, )
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True, )
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True, )
-    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, null=True, )
-    processamento_descricao_resposta = models.TextField(blank=True, null=True, )
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True, )
-    processamento_data_hora = models.DateTimeField(blank=True, null=True, )
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True, )
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True, )
-    tpinsc = models.IntegerField(choices=CHOICES_TPINSC, blank=True, null=True, )
-    empregador_tpinsc = models.IntegerField(choices=CHOICES_TPINSC, blank=True, null=True, )
-    nrinsc = models.CharField(max_length=15, blank=True, null=True, )
-    empregador_nrinsc = models.CharField(max_length=15, blank=True, null=True, )
-    cpftrab = models.CharField(max_length=11, blank=True, null=True, )
-    nistrab = models.CharField(max_length=11, blank=True, null=True, )
-    nmtrab = models.CharField(max_length=70, blank=True, null=True, )
-    infocota = models.CharField(choices=CHOICES_INFOCOTA, max_length=50, blank=True, null=True, )
-    matricula = models.CharField(max_length=30, blank=True, null=True, )
-    dtadm = models.DateField(blank=True, null=True, )
-    tpregjor = models.IntegerField(choices=CHOICES_TPREGJOR, blank=True, null=True, )
-    dtbase = models.IntegerField(blank=True, null=True, )
-    cnpjsindcategprof = models.CharField(max_length=14, blank=True, null=True, )
-    dtposse = models.DateField(blank=True, null=True, )
-    dtexercicio = models.DateField(blank=True, null=True, )
-    codcargo = models.CharField(max_length=30, blank=True, null=True, )
-    nmcargo = models.CharField(max_length=100, blank=True, null=True, )
-    codcbocargo = models.CharField(max_length=6, blank=True, null=True, )
-    codfuncao = models.CharField(max_length=30, blank=True, null=True, )
-    dscfuncao = models.CharField(max_length=100, blank=True, null=True, )
-    codcbofuncao = models.CharField(max_length=6, blank=True, null=True, )
-    codcateg = models.IntegerField(blank=True, null=True, )
-    vrsalfx = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    undsalfixo = models.IntegerField(choices=CHOICES_UNDSALFIXO, blank=True, null=True, )
-    dscsalvar = models.CharField(max_length=255, blank=True, null=True, )
-    tpcontr = models.IntegerField(choices=CHOICES_TPCONTR, blank=True, null=True, )
-    dtterm = models.DateField(blank=True, null=True, )
-    clauasseg = models.CharField(max_length=50, blank=True, null=True, )
-    local_tpinsc = models.IntegerField(choices=CHOICES_TPINSC, blank=True, null=True, )
-    local_nrinsc = models.CharField(max_length=15, blank=True, null=True, )
-    local_cnae = models.IntegerField(blank=True, null=True, )
-    qtdhrssem = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    tpjornada = models.IntegerField(choices=CHOICES_TPJORNADA, blank=True, null=True, )
-    dsctpjorn = models.CharField(max_length=100, blank=True, null=True, )
-    tmpparc = models.IntegerField(choices=CHOICES_TMPPARC, blank=True, null=True, )
-
-    def __unicode__(self):
-        return unicode(self.transmissor_lote_esocial) + ' - ' + unicode(self.identidade)
-
-    class Meta:
-
-        verbose_name = u'Retornos dos Eventos'
-        verbose_name_plural = u'Retornos dos Eventos'
-        db_table = r'retornos_eventos'
-        managed = True # retornos_eventos #
-
-        unique_together = ( )
-
-        index_together = ()
-
-        permissions = (
-            ("can_see_list_RetornosEventos", u"Pode ver listagem do modelo RETORNOSEVENTOS"),
-            ("can_see_data_RetornosEventos", u"Pode visualizar o conteúdo do modelo RETORNOSEVENTOS"),
-            ("can_see_menu_RetornosEventos", u"Pode visualizar no menu o modelo RETORNOSEVENTOS"),
-            ("can_print_list_RetornosEventos", u"Pode imprimir listagem do modelo RETORNOSEVENTOS"),
-            ("can_print_data_RetornosEventos", u"Pode imprimir o conteúdo do modelo RETORNOSEVENTOS"), )
-
-        ordering = [
-            'transmissor_lote_esocial',
-            'identidade', ]
-
-
-
-class RetornosEventosSerializer(ModelSerializer):
-
-    class Meta:
-
-        model = RetornosEventos
-        fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por',
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
-
-
-class RetornosEventosHorarios(SoftDeletionModel):
-
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
-    dia = models.IntegerField(choices=CHOICES_DIA, blank=True, null=True, )
-    codhorcontrat = models.CharField(max_length=30, blank=True, null=True, )
-    hrentr = models.CharField(max_length=50, blank=True, null=True, )
-    hrsaida = models.CharField(max_length=50, blank=True, null=True, )
-    durjornada = models.IntegerField(blank=True, null=True, )
-    perhorflexivel = models.CharField(choices=CHOICES_PERHORFLEXIVEL, max_length=50, blank=True, null=True, )
-
-    def __unicode__(self):
-        return unicode(self.id)
-
-    class Meta:
-
-        verbose_name = u'Retornos dos Eventos - Horários'
-        verbose_name_plural = u'Retornos dos Eventos - Horários'
-        db_table = r'retornos_eventos_horarios'
-        managed = True # retornos_eventos_horarios #
-
-        unique_together = ( )
-
-        index_together = ()
-
-        permissions = (
-            ("can_see_list_RetornosEventosHorarios", u"Pode ver listagem do modelo RETORNOSEVENTOSHORARIOS"),
-            ("can_see_data_RetornosEventosHorarios", u"Pode visualizar o conteúdo do modelo RETORNOSEVENTOSHORARIOS"),
-            ("can_see_menu_RetornosEventosHorarios", u"Pode visualizar no menu o modelo RETORNOSEVENTOSHORARIOS"),
-            ("can_print_list_RetornosEventosHorarios", u"Pode imprimir listagem do modelo RETORNOSEVENTOSHORARIOS"),
-            ("can_print_data_RetornosEventosHorarios", u"Pode imprimir o conteúdo do modelo RETORNOSEVENTOSHORARIOS"), )
-
-        ordering = [ ]
-
-
-
-class RetornosEventosHorariosSerializer(ModelSerializer):
-
-    class Meta:
-
-        model = RetornosEventosHorarios
-        fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por',
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
-
-
-class RetornosEventosIntervalos(SoftDeletionModel):
-
-    retornos_eventos_horarios = models.ForeignKey('mensageiro.RetornosEventosHorarios',
-        related_name='%(class)s_retornos_eventos_horarios', blank=True, null=True, )
-    tpinterv = models.IntegerField(choices=CHOICES_TPINTERV, blank=True, null=True, )
-    durinterv = models.IntegerField(blank=True, null=True, )
-    iniinterv = models.CharField(max_length=50, blank=True, null=True, )
-    terminterv = models.CharField(max_length=50, blank=True, null=True, )
-
-    def __unicode__(self):
-        return unicode(self.id)
-
-    class Meta:
-
-        verbose_name = u'Retornos dos Eventos - Intervalos'
-        verbose_name_plural = u'Retornos dos Eventos - Intervalos'
-        db_table = r'retornos_eventos_intervalos'
-        managed = True # retornos_eventos_intervalos #
-
-        unique_together = ( )
-
-        index_together = ()
-
-        permissions = (
-            ("can_see_list_RetornosEventosIntervalos", u"Pode ver listagem do modelo RETORNOSEVENTOSINTERVALOS"),
-            ("can_see_data_RetornosEventosIntervalos", u"Pode visualizar o conteúdo do modelo RETORNOSEVENTOSINTERVALOS"),
-            ("can_see_menu_RetornosEventosIntervalos", u"Pode visualizar no menu o modelo RETORNOSEVENTOSINTERVALOS"),
-            ("can_print_list_RetornosEventosIntervalos", u"Pode imprimir listagem do modelo RETORNOSEVENTOSINTERVALOS"),
-            ("can_print_data_RetornosEventosIntervalos", u"Pode imprimir o conteúdo do modelo RETORNOSEVENTOSINTERVALOS"), )
-
-        ordering = [ ]
-
-
-
-class RetornosEventosIntervalosSerializer(ModelSerializer):
-
-    class Meta:
-
-        model = RetornosEventosIntervalos
-        fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por',
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
-
-
-class RetornosEventosOcorrencias(SoftDeletionModel):
-
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, )
-    tipo = models.IntegerField(choices=TIPO_OCORRENCIA, blank=True, )
-    codigo = models.IntegerField(blank=True, )
-    descricao = models.TextField(blank=True, )
-    localizacao = models.TextField(blank=True, null=True, )
-
-    def __unicode__(self):
-        return unicode(self.id)
-
-    class Meta:
-
-        verbose_name = u'Retornos dos Eventos - Ocorrencias'
-        verbose_name_plural = u'Retornos dos Eventos - Ocorrencias'
-        db_table = r'retornos_eventos_ocorrencias'
-        managed = True # retornos_eventos_ocorrencias #
-
-        unique_together = ( )
-
-        index_together = ()
-
-        permissions = (
-            ("can_see_list_RetornosEventosOcorrencias", u"Pode ver listagem do modelo RETORNOSEVENTOSOCORRENCIAS"),
-            ("can_see_data_RetornosEventosOcorrencias", u"Pode visualizar o conteúdo do modelo RETORNOSEVENTOSOCORRENCIAS"),
-            ("can_see_menu_RetornosEventosOcorrencias", u"Pode visualizar no menu o modelo RETORNOSEVENTOSOCORRENCIAS"),
-            ("can_print_list_RetornosEventosOcorrencias", u"Pode imprimir listagem do modelo RETORNOSEVENTOSOCORRENCIAS"),
-            ("can_print_data_RetornosEventosOcorrencias", u"Pode imprimir o conteúdo do modelo RETORNOSEVENTOSOCORRENCIAS"), )
-
-        ordering = [ ]
-
-
-
-class RetornosEventosOcorrenciasSerializer(ModelSerializer):
-
-    class Meta:
-
-        model = RetornosEventosOcorrencias
-        fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por',
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
-
-
 class TransmissorLote(SoftDeletionModel):
 
     transmissor_tpinsc = models.IntegerField(choices=TIPO_INSCRICAO, )
@@ -614,6 +389,9 @@ class TransmissorLoteEfdreinf(SoftDeletionModel):
     arquivo_response = models.CharField(max_length=200, blank=True, null=True, )
     data_hora_envio = models.DateTimeField(blank=True, null=True, )
     data_hora_consulta = models.DateTimeField(blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.transmissor) + ' - ' + unicode(self.contribuinte_tpinsc) + ' - ' + unicode(self.contribuinte_nrinsc) + ' - ' + unicode(self.identidade_transmissor) + ' - ' + unicode(self.codigo_status) + ' - ' + unicode(self.retorno_descricao)
@@ -651,51 +429,6 @@ class TransmissorLoteEfdreinfSerializer(ModelSerializer):
                             'desativado_em', 'desativado_por', 'ativo')
 
 
-class TransmissorLoteEfdreinfOcorrencias(SoftDeletionModel):
-
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', )
-    resposta_codigo = models.CharField(max_length=50, )
-    descricao = models.TextField()
-    tipo = models.IntegerField(choices=EVENTOS_OCORRENCIAS_TIPO_EFDREINF, )
-    localizacao = models.CharField(max_length=50, )
-
-    def __unicode__(self):
-        return unicode(self.id)
-
-    class Meta:
-
-        verbose_name = u'Ocorrências do Transmissor de Lote do EFD-Reinf'
-        verbose_name_plural = u'Ocorrências do Transmissor de Lote do EFD-Reinf'
-        db_table = r'transmissor_lote_efdreinf_ocorrencias'
-        managed = True # transmissor_lote_efdreinf_ocorrencias #
-
-        unique_together = ( )
-
-        index_together = ()
-
-        permissions = (
-            ("can_see_list_TransmissorLoteEfdreinfOcorrencias", u"Pode ver listagem do modelo TRANSMISSORLOTEEFDREINFOCORRENCIAS"),
-            ("can_see_data_TransmissorLoteEfdreinfOcorrencias", u"Pode visualizar o conteúdo do modelo TRANSMISSORLOTEEFDREINFOCORRENCIAS"),
-            ("can_see_menu_TransmissorLoteEfdreinfOcorrencias", u"Pode visualizar no menu o modelo TRANSMISSORLOTEEFDREINFOCORRENCIAS"),
-            ("can_print_list_TransmissorLoteEfdreinfOcorrencias", u"Pode imprimir listagem do modelo TRANSMISSORLOTEEFDREINFOCORRENCIAS"),
-            ("can_print_data_TransmissorLoteEfdreinfOcorrencias", u"Pode imprimir o conteúdo do modelo TRANSMISSORLOTEEFDREINFOCORRENCIAS"), )
-
-        ordering = [ ]
-
-
-
-class TransmissorLoteEfdreinfOcorrenciasSerializer(ModelSerializer):
-
-    class Meta:
-
-        model = TransmissorLoteEfdreinfOcorrencias
-        fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por',
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
-
-
 class TransmissorLoteEsocial(SoftDeletionModel):
 
     transmissor = models.ForeignKey('mensageiro.TransmissorLote',
@@ -716,6 +449,9 @@ class TransmissorLoteEsocial(SoftDeletionModel):
     arquivo_response = models.CharField(max_length=200, blank=True, null=True, )
     data_hora_envio = models.DateTimeField(blank=True, null=True, )
     data_hora_consulta = models.DateTimeField(blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.transmissor) + ' - ' + unicode(self.empregador_tpinsc) + ' - ' + unicode(self.empregador_nrinsc) + ' - ' + unicode(self.resposta_codigo) + ' - ' + unicode(self.resposta_descricao)
@@ -747,51 +483,6 @@ class TransmissorLoteEsocialSerializer(ModelSerializer):
     class Meta:
 
         model = TransmissorLoteEsocial
-        fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por',
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
-
-
-class TransmissorLoteEsocialOcorrencias(SoftDeletionModel):
-
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', )
-    resposta_codigo = models.CharField(max_length=50, )
-    descricao = models.TextField()
-    tipo = models.IntegerField(choices=EVENTOS_OCORRENCIAS_TIPO, )
-    localizacao = models.CharField(max_length=50, )
-
-    def __unicode__(self):
-        return unicode(self.id)
-
-    class Meta:
-
-        verbose_name = u'Ocorrências do Transmissor de Lote do eSocial'
-        verbose_name_plural = u'Ocorrências do Transmissor de Lote do eSocial'
-        db_table = r'transmissor_lote_esocial_ocorrencias'
-        managed = True # transmissor_lote_esocial_ocorrencias #
-
-        unique_together = ( )
-
-        index_together = ()
-
-        permissions = (
-            ("can_see_list_TransmissorLoteEsocialOcorrencias", u"Pode ver listagem do modelo TRANSMISSORLOTEESOCIALOCORRENCIAS"),
-            ("can_see_data_TransmissorLoteEsocialOcorrencias", u"Pode visualizar o conteúdo do modelo TRANSMISSORLOTEESOCIALOCORRENCIAS"),
-            ("can_see_menu_TransmissorLoteEsocialOcorrencias", u"Pode visualizar no menu o modelo TRANSMISSORLOTEESOCIALOCORRENCIAS"),
-            ("can_print_list_TransmissorLoteEsocialOcorrencias", u"Pode imprimir listagem do modelo TRANSMISSORLOTEESOCIALOCORRENCIAS"),
-            ("can_print_data_TransmissorLoteEsocialOcorrencias", u"Pode imprimir o conteúdo do modelo TRANSMISSORLOTEESOCIALOCORRENCIAS"), )
-
-        ordering = [ ]
-
-
-
-class TransmissorLoteEsocialOcorrenciasSerializer(ModelSerializer):
-
-    class Meta:
-
-        model = TransmissorLoteEsocialOcorrencias
         fields = '__all__'
         read_only_fields = ('id', 'criado_em', 'criado_por',
                             'modificado_em', 'modificado_por',
@@ -835,6 +526,10 @@ class TransmissorEventosEsocial(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     data_hora_envio = models.DateTimeField(blank=True, null=True, )
     data_hora_consulta = models.DateTimeField(blank=True, null=True, )
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def tabela_desvincular_evento(self):
         return self.tabela + '_desvincular_evento'
@@ -888,11 +583,10 @@ class TransmissorEventosEfdreinf(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     data_hora_envio = models.DateTimeField(blank=True, null=True, )
     data_hora_consulta = models.DateTimeField(blank=True, null=True, )
-
-    retornos_r5001 = models.ForeignKey('efdreinf.r5001evtTotal',
-        related_name='%(class)s_retornos_r5001', blank=True, null=True)
-    retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
-        related_name='%(class)s_retornos_r5011', blank=True, null=True)
+    retorno_envio_json = JSONField("retorno_envio_json", blank=True, null=True)
+    retorno_consulta_json = JSONField("retorno_consulta_json", blank=True, null=True)
+    evento_json = JSONField("evento_json", blank=True, null=True)
+    ocorrencias_json = JSONField("ocorrencias_json", blank=True, null=True)
 
     def tabela_desvincular_evento(self):
         return self.tabela + '_desvincular_evento'

@@ -68,15 +68,27 @@ REQUEST_RECEBER_LOTE_EVENTOS_EFDREINF = u"""
 
 CABECALHO_EVENTO = u"""<evento id="%(identidade_evento)s"><!--evento--></evento>"""
 
-REQUEST_CONSULTA_INFORMACOES_CONSOLIDADES_EFDREINF = u"""
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sped="http://sped.fazenda.gov.br/">
+# REQUEST_CONSULTA_INFORMACOES_CONSOLIDADES_EFDREINF = u"""
+# <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sped="http://sped.fazenda.gov.br/">
+#    <soapenv:Header/>
+#    <soapenv:Body>
+#       <sped:ConsultaInformacoesConsolidadas>
+#          <sped:tipoInscricaoContribuinte>%(contribuinte_tpinsc)s</sped:tipoInscricaoContribuinte>
+#          <sped:numeroInscricaoContribuinte>%(contribuinte_nrinsc)s</sped:numeroInscricaoContribuinte>
+#          <sped:numeroProtocoloFechamento>%(numero_protocolo_fechamento)s</sped:numeroProtocoloFechamento>
+#       </sped:ConsultaInformacoesConsolidadas>
+#    </soapenv:Body>
+# </soapenv:Envelope>"""
+
+REQUEST_CONSULTA_INFORMACOES_CONSOLIDADES_EFDREINF = u"""<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sped="http://sped.fazenda.gov.br/">
    <soapenv:Header/>
    <soapenv:Body>
-      <sped:ConsultaInformacoesConsolidadas>
-         <sped:tipoInscricaoContribuinte>%(contribuinte_tpinsc)s</sped:tipoInscricaoContribuinte>
-         <sped:numeroInscricaoContribuinte>%(contribuinte_nrinsc)s</sped:numeroInscricaoContribuinte>
-         <sped:numeroProtocoloFechamento>%(numero_protocolo_fechamento)s</sped:numeroProtocoloFechamento>
-      </sped:ConsultaInformacoesConsolidadas>
+      <sped:ConsultaReciboEvento1000>
+         <sped:tipoEvento>1000</sped:tipoEvento>
+         <sped:tpInsc>%(contribuinte_tpinsc)s</sped:tpInsc>
+         <!--Optional:-->
+         <sped:nrInsc>%(contribuinte_nrinsc)s</sped:nrInsc>
+      </sped:ConsultaReciboEvento1000>
    </soapenv:Body>
 </soapenv:Envelope>"""
 
@@ -207,7 +219,7 @@ def send_xml(request, transmissor_id, service):
         elif service == 'ConsultasReinf':
 
             URL = "https://preprodefdreinf.receita.fazenda.gov.br/WsReinfConsultas/ConsultasReinf.svc"
-            ACTION = "http://sped.fazenda.gov.br/ConsultasReinf/ConsultaInformacoesConsolidadas"
+            ACTION = "http://sped.fazenda.gov.br/ConsultasReinf/ConsultaReciboEvento1000"
 
     tra = TransmissorLoteEfdreinf.objects.\
             get(id=transmissor_id)
@@ -293,29 +305,17 @@ def send_xml(request, transmissor_id, service):
 
             elif service == 'RecepcaoLoteReinf':
 
-                from emensageriapro.mensageiro.functions.funcoes_efdreinf_comunicacao import read_envioLoteEventos, definir_status_evento
+                from emensageriapro.mensageiro.functions.funcoes_efdreinf_comunicacao import read_envioLoteEventos
 
                 retorno = read_envioLoteEventos(request, dados['response'], transmissor_id)
                 messages.success(request, 'Lote enviado com sucesso!')
 
-                TransmissorLoteEfdreinf.objects.\
-                    filter(id=transmissor_id).\
-                    update(status=retorno['status'],
-                           data_hora_envio=datetime.now())
-                definir_status_evento(transmissor_id)
-
             elif service == 'ConsultasReinf':
 
-                from emensageriapro.mensageiro.functions.funcoes_efdreinf_comunicacao import read_consultaLoteEventos, definir_status_evento
+                from emensageriapro.mensageiro.functions.funcoes_efdreinf_comunicacao import read_consultaLoteEventos
 
                 retorno = read_consultaLoteEventos(request, dados['response'], transmissor_id)
                 messages.success(request, 'Lote consultado com sucesso!')
-
-                TransmissorLoteEfdreinf.objects.\
-                    filter(id=transmissor_id).\
-                    update(status=retorno['status'],
-                           data_hora_consulta=datetime.now())
-                definir_status_evento(transmissor_id)
 
         elif quant_eventos < dados['efdreinf_lote_min'] and service == 'RecepcaoLoteReinf':
 

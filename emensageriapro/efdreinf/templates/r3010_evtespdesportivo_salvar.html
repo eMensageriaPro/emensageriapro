@@ -112,17 +112,11 @@
     {% endif %}
 
     {% if r3010_evtespdesportivo.id %}
-        {% if r3010_evtespdesportivo.ocorrencias %}
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="small-box bg-red">
-                        <div class="inner">
-                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-                            <p>{% autoescape off %}{{ r3010_evtespdesportivo.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+        {% if r3010_evtespdesportivo.ocorrencias_json %}
+            {% with ocorrencias_json=r3010_evtespdesportivo.ocorrencias_json|to_json %}
+                {% include 'ocorrencias_efdreinf.html' %}
+            {% endwith %}
         {% endif %}
 
         {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and r3010_evtespdesportivo.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}

@@ -83,7 +83,7 @@ class form_s1020_alteracao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1020_alteracao_infoemprparcial(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_s1020_alteracao_infoemprparcial(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1020_alteracao_infoprocjudterceiros(forms.ModelForm):
@@ -163,7 +163,7 @@ class form_s1020_alteracao_infoprocjudterceiros(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1020_alteracao_novavalidade(forms.ModelForm):
@@ -203,7 +203,7 @@ class form_s1020_alteracao_novavalidade(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1020_alteracao_procjudterceiro(forms.ModelForm):
@@ -243,7 +243,7 @@ class form_s1020_alteracao_procjudterceiro(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1020_exclusao(forms.ModelForm):
@@ -283,7 +283,7 @@ class form_s1020_exclusao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1020_inclusao(forms.ModelForm):
@@ -323,7 +323,7 @@ class form_s1020_inclusao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1020_inclusao_infoemprparcial(forms.ModelForm):
@@ -363,7 +363,7 @@ class form_s1020_inclusao_infoemprparcial(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1020_inclusao_infoprocjudterceiros(forms.ModelForm):
@@ -403,7 +403,7 @@ class form_s1020_inclusao_infoprocjudterceiros(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s1020_inclusao_procjudterceiro(forms.ModelForm):
@@ -443,4 +443,4 @@ class form_s1020_inclusao_procjudterceiro(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

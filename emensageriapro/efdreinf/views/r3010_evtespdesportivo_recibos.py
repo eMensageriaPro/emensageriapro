@@ -76,8 +76,6 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 def recibo(request, pk, output=None):
 
     from datetime import datetime
-    from emensageriapro.efdreinf.models import r5001evtTotal
-    from emensageriapro.efdreinf.models import r5011evtTotalContrib
 
     if request.user.has_perm('efdreinf.can_see_r3010evtEspDesportivo'):
 
@@ -85,23 +83,9 @@ def recibo(request, pk, output=None):
             r3010evtEspDesportivo,
             id=pk)
 
-        if r3010_evtespdesportivo.retornos_r5001_id:
-            r5001_evttotal = get_object_or_404(r5001evtTotal,
-                id=r3010_evtespdesportivo.retornos_r5001_id)
-        else:
-            r5001_evttotal = None
-
-        if r3010_evtespdesportivo.retornos_r5011_id:
-            r5011_evttotalcontrib = get_object_or_404(r5011evtTotalContrib,
-                id=r3010_evtespdesportivo.retornos_r5011_id)
-        else:
-            r5011_evttotalcontrib = None
-
         context = {
             'pk': pk,
-            'r3010_evtespdesportivo': r3010_evtespdesportivo,
-            'r5001_evttotal': r5001_evttotal,
-            'r5011_evttotalcontrib': r5011_evttotalcontrib,
+            'evento': r3010_evtespdesportivo,
             'data': datetime.now(),
             'output': output,
             'user': request.user,
@@ -109,7 +93,7 @@ def recibo(request, pk, output=None):
 
         if output == 'xls':
 
-            response =  render_to_response('r3010_evtespdesportivo_recibo_pdf.html', context)
+            response =  render_to_response('recibo_pdf_efdreinf.html', context)
             filename = "%s.xls" % r3010_evtespdesportivo.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
@@ -118,7 +102,7 @@ def recibo(request, pk, output=None):
 
         elif output == 'csv':
 
-            response =  render_to_response('r3010_evtespdesportivo_recibo_csv.html', context)
+            response =  render_to_response('recibo_csv_efdreinf.html', context)
             filename = "%s.csv" % r3010_evtespdesportivo.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
@@ -127,11 +111,11 @@ def recibo(request, pk, output=None):
 
         elif output == 'pdf':
 
-            return render_to_pdf('r3010_evtespdesportivo_recibo_pdf.html', context)
+            return render_to_pdf('recibo_pdf_efdreinf.html', context)
 
         else:
 
-            return render(request, 'r3010_evtespdesportivo_recibo_pdf.html', context)
+            return render(request, 'recibo_pdf_efdreinf.html', context)
 
     else:
 

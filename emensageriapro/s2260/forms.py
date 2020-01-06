@@ -83,4 +83,4 @@ class form_s2260_localtrabinterm(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

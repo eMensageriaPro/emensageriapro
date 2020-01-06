@@ -83,7 +83,7 @@ class form_s2306_ageintegracao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2306_cargofuncao(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_s2306_cargofuncao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2306_infocomplementares(forms.ModelForm):
@@ -163,7 +163,7 @@ class form_s2306_infocomplementares(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2306_infoestagiario(forms.ModelForm):
@@ -204,7 +204,7 @@ class form_s2306_infoestagiario(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2306_infotrabcedido(forms.ModelForm):
@@ -244,7 +244,7 @@ class form_s2306_infotrabcedido(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2306_remuneracao(forms.ModelForm):
@@ -285,7 +285,7 @@ class form_s2306_remuneracao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2306_supervisorestagio(forms.ModelForm):
@@ -325,4 +325,4 @@ class form_s2306_supervisorestagio(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

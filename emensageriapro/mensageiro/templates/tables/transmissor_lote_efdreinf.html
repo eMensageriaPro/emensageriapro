@@ -60,6 +60,15 @@
             {% if show_fields.show_data_hora_consulta or 0 %}
             <th>Data/Hora de Consulta</th>
             {% endif %}
+            {% if show_fields.show_retorno_envio_json or 0 %}
+            <th>JSON de Retorno do Envio</th>
+            {% endif %}
+            {% if show_fields.show_retorno_consulta_json or 0 %}
+            <th>JSON de Retorno da Consulta</th>
+            {% endif %}
+            {% if show_fields.show_ocorrencias_json or 0 %}
+            <th>JSON das Ocorrências</th>
+            {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
             <th width="170px">Ações</th>
@@ -125,6 +134,15 @@
             {% endif %}
             {% if show_fields.show_data_hora_consulta or 0 %}
             <td><span style="display:none">{{ a.data_hora_consulta|date:"Y-m-d H:i" }}</span>{{ a.data_hora_consulta|date:"d/m/Y H:i" }}</td>
+            {% endif %}
+            {% if show_fields.show_retorno_envio_json or 0 %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_retorno_consulta_json or 0 %}
+            <td></td>
+            {% endif %}
+            {% if show_fields.show_ocorrencias_json or 0 %}
+            <td></td>
             {% endif %}
 
             <!-- colunas especiais -->

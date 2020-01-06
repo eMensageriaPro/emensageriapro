@@ -1,4 +1,0 @@
-{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
-{% if show_fields.show_retornos_eventos_horarios or 1 %}"Retornos - Eventos - Horários";{% endif %}{% if show_fields.show_tpinterv or 1 %}"Tipo de intervalo da jornada";{% endif %}{% if show_fields.show_durinterv or 1 %}"Duração do intervalo (min)";{% endif %}{% if show_fields.show_iniinterv or 1 %}"Hora de início";{% endif %}{% if show_fields.show_terminterv or 1 %}"Hora de término";{% endif %}
-{% for c in campos_lista %}{% if show_fields.show_retornos_eventos_horarios or 1 %}"{{ c.retornos_eventos_horarios }}";{% endif %}{% if show_fields.show_tpinterv or 1 %}"{{ c.tpinterv }}";{% endif %}{% if show_fields.show_durinterv or 1 %}"{{ c.durinterv }}";{% endif %}{% if show_fields.show_iniinterv or 1 %}"{{ c.iniinterv }}";{% endif %}{% if show_fields.show_terminterv or 1 %}"{{ c.terminterv }}";{% endif %}
-{% endfor %}

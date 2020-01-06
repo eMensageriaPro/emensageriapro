@@ -83,7 +83,7 @@ class form_r1070_alteracao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r1070_alteracao_dadosprocjud(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_r1070_alteracao_dadosprocjud(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r1070_alteracao_infosusp(forms.ModelForm):
@@ -163,7 +163,7 @@ class form_r1070_alteracao_infosusp(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r1070_alteracao_novavalidade(forms.ModelForm):
@@ -203,7 +203,7 @@ class form_r1070_alteracao_novavalidade(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r1070_exclusao(forms.ModelForm):
@@ -243,7 +243,7 @@ class form_r1070_exclusao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r1070_inclusao(forms.ModelForm):
@@ -283,7 +283,7 @@ class form_r1070_inclusao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r1070_inclusao_dadosprocjud(forms.ModelForm):
@@ -323,7 +323,7 @@ class form_r1070_inclusao_dadosprocjud(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_r1070_inclusao_infosusp(forms.ModelForm):
@@ -363,4 +363,4 @@ class form_r1070_inclusao_infosusp(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]

@@ -83,7 +83,7 @@ class form_s2300_cnh(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_ctps(forms.ModelForm):
@@ -123,7 +123,7 @@ class form_s2300_ctps(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_oc(forms.ModelForm):
@@ -163,7 +163,7 @@ class form_s2300_oc(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_rg(forms.ModelForm):
@@ -203,7 +203,7 @@ class form_s2300_rg(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_ric(forms.ModelForm):
@@ -243,7 +243,7 @@ class form_s2300_ric(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_rne(forms.ModelForm):
@@ -283,7 +283,7 @@ class form_s2300_rne(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_afastamento(forms.ModelForm):
@@ -323,7 +323,7 @@ class form_s2300_afastamento(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_ageintegracao(forms.ModelForm):
@@ -363,7 +363,7 @@ class form_s2300_ageintegracao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_brasil(forms.ModelForm):
@@ -403,7 +403,7 @@ class form_s2300_brasil(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_cargofuncao(forms.ModelForm):
@@ -443,7 +443,7 @@ class form_s2300_cargofuncao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_contato(forms.ModelForm):
@@ -483,7 +483,7 @@ class form_s2300_contato(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_dependente(forms.ModelForm):
@@ -523,7 +523,7 @@ class form_s2300_dependente(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_documentos(forms.ModelForm):
@@ -563,7 +563,7 @@ class form_s2300_documentos(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_exterior(forms.ModelForm):
@@ -603,7 +603,7 @@ class form_s2300_exterior(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_fgts(forms.ModelForm):
@@ -643,7 +643,7 @@ class form_s2300_fgts(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_infocomplementares(forms.ModelForm):
@@ -683,7 +683,7 @@ class form_s2300_infocomplementares(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_infodeficiencia(forms.ModelForm):
@@ -723,7 +723,7 @@ class form_s2300_infodeficiencia(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_infodirigentesindical(forms.ModelForm):
@@ -763,7 +763,7 @@ class form_s2300_infodirigentesindical(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_infoestagiario(forms.ModelForm):
@@ -804,7 +804,7 @@ class form_s2300_infoestagiario(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_infotrabcedido(forms.ModelForm):
@@ -844,7 +844,7 @@ class form_s2300_infotrabcedido(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_mudancacpf(forms.ModelForm):
@@ -884,7 +884,7 @@ class form_s2300_mudancacpf(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_remuneracao(forms.ModelForm):
@@ -925,7 +925,7 @@ class form_s2300_remuneracao(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_supervisorestagio(forms.ModelForm):
@@ -965,7 +965,7 @@ class form_s2300_supervisorestagio(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_termino(forms.ModelForm):
@@ -1005,7 +1005,7 @@ class form_s2300_termino(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
 
 
 class form_s2300_trabestrangeiro(forms.ModelForm):
@@ -1045,4 +1045,4 @@ class form_s2300_trabestrangeiro(forms.ModelForm):
             'modificado_em',
             'modificado_por',
             'deativado_em',
-            'deativado_por', ]
+            'deativado_por',]
