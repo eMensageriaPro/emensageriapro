@@ -1,0 +1,114 @@
+<!-- eMensageriaAI -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s5001_detinfoperref__s5001_infoperref -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Detalhamento das informações de remuneração por período de referência. Deve ser preenchido com informações de {infoPerApur} e {infoPerAnt} do S-1200 e S-2299, e de {detVerbas} do S-2399, quando houver.</label>
+    <select name="s5001_infoperref" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in s5001_infoperref_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'s5001_infoperref' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s5001_detinfoperref__s5001_infoperref -->
+
+<!-- inicio__s5001_detinfoperref__ind13 -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Indicativo de 13º salário</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="ind13" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'ind13' %}selected="selected"{% endifequal %} >0 - Mensal</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'ind13' %}selected="selected"{% endifequal %} >1 - 13° salário - {codIncCP} = [12, 14, 16, 22, 26, 32, 92, 94].</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s5001_detinfoperref__ind13 -->
+
+<!-- inicio__s5001_detinfoperref__tpvalor -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Tipo de Valor</label>
+    <input type="text" id="txt_tpvalor" name="txt_tpvalor" class="form-control" value="{{ dict_fields|get_value_from_dict:'tpvalor' }}">
+    <input type="hidden" id="id_tpvalor" name="tpvalor" value="{{ dict_fields|get_value_from_dict:'tpvalor'|valor }}">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_tpvalor').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/560/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_tpvalor').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
+<!-- fim__s5001_detinfoperref__tpvalor -->
+
+<!-- inicio__s5001_detinfoperref__vrperref -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Valor da base de cálculo, dedução ou desconto da contribuição social, conforme definido no campo {tpValor}. </label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vrperref" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrperref' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s5001_detinfoperref__vrperref -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s5001_infoperref" value="1" {% if show_fields|get_value_from_dict:'show_s5001_infoperref' %}checked{% endif %} >Detalhamento das informações de remuneração por período de referência. Deve ser preenchido com informações de {infoPerApur} e {infoPerAnt} do S-1200 e S-2299, e de {detVerbas} do S-2399, quando houver.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_ind13" value="1" {% if show_fields|get_value_from_dict:'show_ind13' %}checked{% endif %} >Indicativo de 13º salário
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tpvalor" value="1" {% if show_fields|get_value_from_dict:'show_tpvalor' %}checked{% endif %} >Tipo de Valor
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vrperref" value="1" {% if show_fields|get_value_from_dict:'show_vrperref' %}checked{% endif %} >Valor da base de cálculo, dedução ou desconto da contribuição social, conforme definido no campo {tpValor}.
+    </div>
+</div>
+
+

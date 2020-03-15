@@ -1,0 +1,52 @@
+<!-- eMensageriaAI -->
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_s5001_infoperref or 1 %}
+            <th>Detalhamento das informações de remuneração por período de referência. Deve ser preenchido com informações de {infoPerApur} e {infoPerAnt} do S-1200 e S-2299, e de {detVerbas} do S-2399, quando houver.</th>
+            {% endif %}
+            {% if show_fields.show_ind13 or 1 %}
+            <th>Indicativo de 13º salário</th>
+            {% endif %}
+            {% if show_fields.show_tpvalor or 1 %}
+            <th>Tipo de Valor</th>
+            {% endif %}
+            {% if show_fields.show_vrperref or 0 %}
+            <th>Valor da base de cálculo, dedução ou desconto da contribuição social, conforme definido no campo {tpValor}. </th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not output %}
+            <th width="80px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in s5001_detinfoperref_lista %}
+        <tr>
+            {% if show_fields.show_s5001_infoperref or 1 %}
+            <td>{{ a.s5001_infoperref }}</td>
+            {% endif %}
+            {% if show_fields.show_ind13 or 1 %}
+            <td>{{ a.get_ind13_display }}</td>
+            {% endif %}
+            {% if show_fields.show_tpvalor or 1 %}
+            <td>{{ a.tpvalor|valor }}</td>
+            {% endif %}
+            {% if show_fields.show_vrperref or 0 %}
+            <td>{{ a.vrperref }}</td>
+            {% endif %}
+
+            <!-- colunas especiais -->
+            {% if not output %}
+            <td>
+                <div class="btn-group">
+                    <!-- botões especiais -->
+
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,147 @@
+<!-- eMensageriaAI -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s5001_detinfoperref__s5001_infoperref -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_s5001_infoperref').change(function(){
+       document.getElementById("s5001_detinfoperref__s5001_infoperref__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="s5001_detinfoperref__s5001_infoperref__div">
+  <div class="form-group">
+    <label id="s5001_detinfoperref__s5001_infoperref__label">Detalhamento das informações de remuneração por período de referência. Deve ser preenchido com informações de {infoPerApur} e {infoPerAnt} do S-1200 e S-2299, e de {detVerbas} do S-2399, quando houver.*<a data-toggle="tooltip" title="Detalhamento das informações de remuneração por período de referência. Deve ser preenchido com informações de {infoPerApur} e {infoPerAnt} do S-1200 e S-2299, e de {detVerbas} do S-2399, quando houver."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    {% if not for_print %}
+      {% if s5001_detinfoperref_form.s5001_infoperref.value %}
+        <a id="s5001_detinfoperref__s5001_infoperref__div_acessar" href="{% url 's5001_infoperref_salvar' pk=s5001_detinfoperref_form.s5001_infoperref.value %}">
+          [Acessar]
+        </a>
+      {% endif %}
+    {% endif %}
+    {% if s5001_detinfoperref_form.s5001_infoperref.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s5001_detinfoperref_form.s5001_infoperref.errors }}
+      </div>
+    {% endif %}
+    {% if s5001_detinfoperref_form.s5001_infoperref.field.widget.attrs.readonly %}
+      {% if s5001_detinfoperref_form.s5001_infoperref.field.widget.attrs.disabled %}
+        {{ s5001_detinfoperref_form.s5001_infoperref|addcss:'form-control' }}
+        <input id="id_s5001_infoperref" name="s5001_infoperref" type="hidden" value="{% if s5001_detinfoperref_form.s5001_infoperref.value or s5001_detinfoperref_form.s5001_infoperref.value == 0 %}{{ s5001_detinfoperref_form.s5001_infoperref.value|valor }}{% endif %}">
+      {% else %}
+        {{ s5001_detinfoperref_form.s5001_infoperref|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s5001_detinfoperref_form.s5001_infoperref|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s5001_detinfoperref__s5001_infoperref -->
+<!-- inicio__s5001_detinfoperref__ind13 -->
+<div class="col-md-3" id="s5001_detinfoperref__ind13__div">
+  <div class="form-group">
+    <label id="s5001_detinfoperref__ind13__label">Indicativo de 13º salário*<a data-toggle="tooltip" title="Indicativo de 13° salário: 0 - Mensal; 1 - 13° salário - {codIncCP} = [12, 14, 16, 22, 26, 32, 92, 94]. Validação: Se {indApuracao} = [2], preencher com [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    {% if s5001_detinfoperref_form.ind13.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s5001_detinfoperref_form.ind13.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s5001_detinfoperref_form.ind13.field.widget.attrs.readonly %}
+        {% if s5001_detinfoperref_form.ind13.field.widget.attrs.disabled %}
+          {{ s5001_detinfoperref_form.ind13|addcss:'form-control' }}
+          <input id="id_ind13" name="ind13" type="hidden" value="{% if s5001_detinfoperref_form.ind13.value or s5001_detinfoperref_form.ind13.value == 0 %}{{ s5001_detinfoperref_form.ind13.value|valor }}{% endif %}">
+        {% else %}
+          {{ s5001_detinfoperref_form.ind13|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s5001_detinfoperref_form.ind13|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s5001_detinfoperref__ind13 -->
+<!-- inicio__s5001_detinfoperref__tpvalor -->
+{% if perms..add_ or perms..change_ %}
+  <div class="col-md-3" id="s5001_detinfoperref__tpvalor__div">
+    <div class="form-group">
+      <label id="s5001_detinfoperref__tpvalor__label">Tipo de Valor*<a data-toggle="tooltip" title="Tipo de valor que influi na apuração da contribuição devida: 11 - Base de cálculo da Contribuição Previdenciária normal; 12 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição; 13 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição; 14 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição; 15 - Base de cálculo da contribuição previdenciária adicional normal - exclusiva do empregador; 16 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição - exclusiva do empregador; 17 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição - exclusiva do empregador; 18 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição - exclusiva do empregador; 19 - Base de cálculo da contribuição previdenciária exclusiva do empregado; 21 - Valor total descontado do trabalhador para recolhimento à Previdência Social; 22 - Valor descontado do trabalhador para recolhimento ao Sest; 23 - Valor descontado do trabalhador para recolhimento ao Senat; 31 - Valor pago ao trabalhador a título de salário-família; 32 - Valor pago ao trabalhador a título de salário-maternidade. Validação: O preenchimento deve ser feito de acordo com as instruções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
+        {% if s5001_detinfoperref_form.tpvalor.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s5001_detinfoperref_form.tpvalor.errors }}
+          </div>
+        {% endif %}
+        <input type="text"
+               id="txt_tpvalor"
+               name="txt_tpvalor" class="form-control"
+               value="{% if s5001_detinfoperref.tpvalor %}{{ s5001_detinfoperref.tpvalor|get_opcoes_titulo:560 }}{% endif %}"
+               {% if s5001_detinfoperref_form.tpvalor.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if s5001_detinfoperref_form.tpvalor.field.widget.attrs.required %} required="required"{% endif %}
+               {% if s5001_detinfoperref_form.tpvalor.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden"
+               id="id_tpvalor"
+               name="tpvalor"
+               value="{% if s5001_detinfoperref.tpvalor %}{{ s5001_detinfoperref_form.tpvalor.value|valor }}{% endif %}" >
+    </div>
+  </div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_tpvalor').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/560/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_tpvalor').val(ui.item.value);
+        return false;
+      }});
+    {% if s5001_detinfoperref_form.tpvalor.field.widget.attrs.required %}
+    $("#id_form_s5001_detinfoperref").submit(function(e) {
+      $('#txt_tpvalor').disabled = true;
+        if ($('#id_tpvalor').val() == "") {
+          $('#txt_tpvalor').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Tipo de Valor!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-3" id="s5001_detinfoperref__tpvalor__div">
+    <div class="form-group">
+      <label id="s5001_detinfoperref__tpvalor__label">Tipo de Valor*<a data-toggle="tooltip" title="Tipo de valor que influi na apuração da contribuição devida: 11 - Base de cálculo da Contribuição Previdenciária normal; 12 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição; 13 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição; 14 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição; 15 - Base de cálculo da contribuição previdenciária adicional normal - exclusiva do empregador; 16 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição - exclusiva do empregador; 17 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição - exclusiva do empregador; 18 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição - exclusiva do empregador; 19 - Base de cálculo da contribuição previdenciária exclusiva do empregado; 21 - Valor total descontado do trabalhador para recolhimento à Previdência Social; 22 - Valor descontado do trabalhador para recolhimento ao Sest; 23 - Valor descontado do trabalhador para recolhimento ao Senat; 31 - Valor pago ao trabalhador a título de salário-família; 32 - Valor pago ao trabalhador a título de salário-maternidade. Validação: O preenchimento deve ser feito de acordo com as instruções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
+        <input type="text" id="txt_tpvalor" name="txt_tpvalor" class="form-control" value="{% if s5001_detinfoperref.tpvalor %}{{ s5001_detinfoperref.tpvalor }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
+<!-- fim__s5001_detinfoperref__tpvalor -->
+<!-- inicio__s5001_detinfoperref__vrperref -->
+<div class="col-md-3" id="s5001_detinfoperref__vrperref__div">
+  <div class="form-group">
+    <label id="s5001_detinfoperref__vrperref__label">Valor da base de cálculo, dedução ou desconto da contribuição social, conforme definido no campo {tpValor}. *<a data-toggle="tooltip" title="Valor da base de cálculo, dedução ou desconto da contribuição social, conforme definido no campo {tpValor}. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {vrRubr} em S-1200 e S-2299, nos grupos {infoPerApur} e {infoPerAnt}, e também em S-2399, obedecendo ao que segue: a) Somar os valores das rubricas cujo {tpRubr} em S-1010 seja igual a [1,3] e subtrair os valores das rubricas cujo {tpRubr} em S-1010 seja igual a [2,4], observando a tabela de relacionamento abaixo: {tpValor} = 11*, {codIncCP} = [11,12,21,22] e (({grauExp} = 1) ou (sem informação em {grauExp})); {tpValor} = 12*, {codIncCP} = [11,12,21,22] e {grauExp} = 2; {tpValor} = 13*, {codIncCP} = [11,12,21,22] e {grauExp} = 3; {tpValor} = 14*, {codIncCP} = [11,12,21,22] e {grauExp} = 4; {tpValor} = 15**, {codIncCP}= [13,14,25,26] e (({grauExp} = 1) ou (sem informação em {grauExp})); {tpValor} = 16**, {codIncCP} = [13, 14] e {grauExp} = 2; {tpValor} = 17**, {codIncCP} = [13, 14] e {grauExp} = 3; {tpValor} = 18**, {codIncCP} = [13, 14] e {grauExp} = 4; {tpValor} = 19, {codIncCP} = [15, 16]; {tpValor} = 31, {codIncCP} = [51]; {tpValor} = 32, {codIncCP} = [21, 22]. b) Somar os valores das rubricas cujo {tpRubr} em S-1010 seja igual a [2,4] e subtrair os valores das rubricas cujo {tpRubr} em S-1010 seja igual a [1,3], observando a tabela de relacionamento abaixo: {tpValor} = 21, {codIncCP} = [31, 32]; {tpValor} = 22, {codIncCP} = [34]; {tpValor} = 23, {codIncCP} = [35]. * Caso {codIncCP} da rubrica em S-1010 seja igual a [91, 92, 93, 94] e {indSusp} do respectivo processo em S-1070 seja diferente de [90] (decisão definitiva), o valor também deverá ser computado na composição das bases do {tpValor} = [11, 12, 13, 14]. ** Caso {codindCP} da rubrica em S-1010 seja igual a [95, 96, 97, 98] e {indSusp} do respectivo processo em S-1070 seja diferente de [90] (decisão definitiva), o valor também deverá ser computado na composição das bases do {tpValor} = [15, 16, 17, 18]. *** Caso {indSusp} do respectivo processo em S-1070 seja igual a [90] (decisão definitiva), o valor não deve ser computado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    {% if s5001_detinfoperref_form.vrperref.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s5001_detinfoperref_form.vrperref.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ s5001_detinfoperref_form.vrperref|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s5001_detinfoperref__vrperref -->

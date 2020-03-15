@@ -241,6 +241,44 @@ def read_s5001_evtbasestrab_obj(request, doc, status, validar=False, arquivo=Fal
                                         pass
         
                                     s5001_calcterc = s5001calcTerc.objects.create(**s5001_calcterc_dados)
+        
+                            if 'infoPerRef' in dir(infoCategIncid):
+        
+                                for infoPerRef in infoCategIncid.infoPerRef:
+        
+                                    s5001_infoperref_dados = {}
+                                    s5001_infoperref_dados['s5001_infocategincid_id'] = s5001_infocategincid.id
+                
+                                    try:
+                                        s5001_infoperref_dados['perref'] = read_from_xml(infoPerRef.perRef.cdata, 'esocial', 'N', None)
+                                    except AttributeError:
+                                        pass
+        
+                                    s5001_infoperref = s5001infoPerRef.objects.create(**s5001_infoperref_dados)
+                
+                                    if 'detInfoPerRef' in dir(infoPerRef):
+                
+                                        for detInfoPerRef in infoPerRef.detInfoPerRef:
+                
+                                            s5001_detinfoperref_dados = {}
+                                            s5001_detinfoperref_dados['s5001_infoperref_id'] = s5001_infoperref.id
+                        
+                                            try:
+                                                s5001_detinfoperref_dados['ind13'] = read_from_xml(detInfoPerRef.ind13.cdata, 'esocial', 'N', None)
+                                            except AttributeError:
+                                                pass
+                        
+                                            try:
+                                                s5001_detinfoperref_dados['tpvalor'] = read_from_xml(detInfoPerRef.tpValor.cdata, 'esocial', 'N', None)
+                                            except AttributeError:
+                                                pass
+                        
+                                            try:
+                                                s5001_detinfoperref_dados['vrperref'] = read_from_xml(detInfoPerRef.vrPerRef.cdata, 'esocial', 'N', 2)
+                                            except AttributeError:
+                                                pass
+                
+                                            s5001_detinfoperref = s5001detInfoPerRef.objects.create(**s5001_detinfoperref_dados)
     s5001_evtbasestrab_dados['evento'] = 's5001'
     s5001_evtbasestrab_dados['id'] = s5001_evtbasestrab.id
     s5001_evtbasestrab_dados['identidade_evento'] = doc.eSocial.evtBasesTrab['Id']

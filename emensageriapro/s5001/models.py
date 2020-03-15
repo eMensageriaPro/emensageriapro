@@ -114,6 +114,53 @@ class s5001calcTercSerializer(ModelSerializer):
         fields = '__all__'
 
 
+class s5001detInfoPerRef(SoftDeletionModel):
+
+    s5001_infoperref = models.ForeignKey('s5001.s5001infoPerRef',
+        related_name='%(class)s_s5001_infoperref', )
+
+    def evento(self):
+        return self.s5001_infoperref.evento()
+    ind13 = models.IntegerField(choices=CHOICES_S5001_IND13, null=True, )
+    tpvalor = models.IntegerField(null=True, )
+    vrperref = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+
+    def __unicode__(self):
+        return unicode(self.s5001_infoperref) + ' - ' + unicode(self.ind13) + ' - ' + unicode(self.tpvalor) + ' - ' + unicode(self.vrperref)
+
+    class Meta:
+
+        # verbose_name = u'Detalhamento das informações de remuneração por período de referência. Deve ser preenchido com informações de {infoPerApur} e {infoPerAnt} do S-1200 e S-2299, e de {detVerbas} do S-2399, quando houver.'
+        db_table = r's5001_detinfoperref'
+        managed = True # s5001_detinfoperref #
+
+        unique_together = ( )
+
+        index_together = ()
+
+        permissions = (
+            ("can_see_list_s5001detInfoPerRef", u"Pode ver listagem do modelo S5001DETINFOPERREF"),
+            ("can_see_data_s5001detInfoPerRef", u"Pode visualizar o conteúdo do modelo S5001DETINFOPERREF"),
+            ("can_see_menu_s5001detInfoPerRef", u"Pode visualizar no menu o modelo S5001DETINFOPERREF"),
+            ("can_print_list_s5001detInfoPerRef", u"Pode imprimir listagem do modelo S5001DETINFOPERREF"),
+            ("can_print_data_s5001detInfoPerRef", u"Pode imprimir o conteúdo do modelo S5001DETINFOPERREF"), )
+
+        ordering = [
+            's5001_infoperref',
+            'ind13',
+            'tpvalor',
+            'vrperref',]
+
+
+
+class s5001detInfoPerRefSerializer(ModelSerializer):
+
+    class Meta:
+
+        model = s5001detInfoPerRef
+        fields = '__all__'
+
+
 class s5001ideEstabLot(SoftDeletionModel):
 
     s5001_infocp = models.ForeignKey('s5001.s5001infoCp',
@@ -338,6 +385,49 @@ class s5001infoCpCalcSerializer(ModelSerializer):
     class Meta:
 
         model = s5001infoCpCalc
+        fields = '__all__'
+
+
+class s5001infoPerRef(SoftDeletionModel):
+
+    s5001_infocategincid = models.ForeignKey('s5001.s5001infoCategIncid',
+        related_name='%(class)s_s5001_infocategincid', )
+
+    def evento(self):
+        return self.s5001_infocategincid.evento()
+    perref = models.IntegerField(null=True, )
+
+    def __unicode__(self):
+        return unicode(self.s5001_infocategincid) + ' - ' + unicode(self.perref)
+
+    class Meta:
+
+        # verbose_name = u'Informações de remuneração por período de referência.'
+        db_table = r's5001_infoperref'
+        managed = True # s5001_infoperref #
+
+        unique_together = ( )
+
+        index_together = ()
+
+        permissions = (
+            ("can_see_list_s5001infoPerRef", u"Pode ver listagem do modelo S5001INFOPERREF"),
+            ("can_see_data_s5001infoPerRef", u"Pode visualizar o conteúdo do modelo S5001INFOPERREF"),
+            ("can_see_menu_s5001infoPerRef", u"Pode visualizar no menu o modelo S5001INFOPERREF"),
+            ("can_print_list_s5001infoPerRef", u"Pode imprimir listagem do modelo S5001INFOPERREF"),
+            ("can_print_data_s5001infoPerRef", u"Pode imprimir o conteúdo do modelo S5001INFOPERREF"), )
+
+        ordering = [
+            's5001_infocategincid',
+            'perref',]
+
+
+
+class s5001infoPerRefSerializer(ModelSerializer):
+
+    class Meta:
+
+        model = s5001infoPerRef
         fields = '__all__'
 
 

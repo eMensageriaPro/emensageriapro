@@ -12,6 +12,8 @@ from emensageriapro.s5001.views import s5001_ideestablot_api as s5001_ideestablo
 from emensageriapro.s5001.views import s5001_infocategincid_api as s5001_infocategincid_api_views
 from emensageriapro.s5001.views import s5001_infobasecs_api as s5001_infobasecs_api_views
 from emensageriapro.s5001.views import s5001_calcterc_api as s5001_calcterc_api_views
+from emensageriapro.s5001.views import s5001_infoperref_api as s5001_infoperref_api_views
+from emensageriapro.s5001.views import s5001_detinfoperref_api as s5001_detinfoperref_api_views
 
 
 """
@@ -92,6 +94,18 @@ urlpatterns = [
 
     url(r'^s5001-calcterc/api/(?P<pk>[0-9]+)/$',
         s5001_calcterc_api_views.s5001calcTercDetail.as_view() ),
+
+    url(r'^s5001-infoperref/api/$',
+        s5001_infoperref_api_views.s5001infoPerRefList.as_view() ),
+
+    url(r'^s5001-infoperref/api/(?P<pk>[0-9]+)/$',
+        s5001_infoperref_api_views.s5001infoPerRefDetail.as_view() ),
+
+    url(r'^s5001-detinfoperref/api/$',
+        s5001_detinfoperref_api_views.s5001detInfoPerRefList.as_view() ),
+
+    url(r'^s5001-detinfoperref/api/(?P<pk>[0-9]+)/$',
+        s5001_detinfoperref_api_views.s5001detInfoPerRefDetail.as_view() ),
 
 
 ]

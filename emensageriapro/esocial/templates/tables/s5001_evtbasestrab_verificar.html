@@ -211,7 +211,7 @@
 
         <tr {% if s5001_infocpcalc.vrcpseg|validacoes_esocial_efdreinf:"s5001_infocpcalc.vrcpseg" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrCpSeg</td>
-            <td width="500px">Valor da contribuição do segurado, devida à Previdência Social, calculada segundo as regras da legislação em vigor, por CR. Validação: 1. Se {indMV} do S-1200/S-2299/S-2399 = [3], {vrCpSeg} = 0, portanto não há CR; 2. Se {indMV} do S-1200/S-2299/S-2399 = [1,2], efetuar o somatório das ocorrências do campo {vlrRemunOE} e o somatório de {valor} quando {tpValor} = [11,12,13,14,19] do grupo {infoBaseCS}, resultando em [TotalRemun]. Este procedimento visa a identificação da alíquota aplicável: 2.1. Se {indMV} do S-1200/S-2299/S-2399 = [1] aplicar a alíquota conforme a categoria do segurado sobre a remuneração paga pelo declarante (somatório de {valor} quando {tpValor} = [11,12,13,14,19], do grupo {infoBaseCS}), observando o limite máximo do salário de contribuição. 2.2. Se {indMV} do S-1200/S-2299/S-2399 = [2]: a) se [TotalRemun] ultrapassar o limite máximo do Salário de Contribuição, aplicar a alíquota conforme a categoria do segurado sobre a diferença entre o referido limite máximo e o somatório das ocorrências do campo {vlrRemunOE}; b) se [TotalRemun] for inferior ao limite máximo do Salário de Contribuição: b1) Para as categorias empregado/avulso/agente público: somar {vlrRemunOE} destas mesmas categorias com o somatório de {valor} quando {tpValor}=[11, 12, 13, 14, 19] do grupo {infoBaseCS} e aplicar a alíquota conforme a categoria do segurado sobre a remuneração paga pelo declarante. b2) Para categoria contribuinte individual: aplicar a alíquota referente a [TotalRemun], conforme a categoria do segurado, sobre a remuneração paga pelo declarante (somatório de {valor} quando {tpValor}=[11,12,13,14,19], do grupo {infoBaseCS}). 3. Se não informado o grupo {infoMV} do S-1200/S-2299/S-2399: a) se o trabalhador presta serviço para a empresa declarante em apenas uma categoria {codCateg}, efetuar o somatório de {valor} qdo {tpValor}=[11,12,13,14,19], do grupo {infoBaseCS} e aplicar a alíquota conforme a categoria. b) se o trabalhador presta serviço para a empresa declarante em mais de uma categoria {codCateg}: I. efetuar o somatório de {valor} qdo {tpValor}=[11,12,13,14,19], do grupo {infoBaseCS} para todas as categorias de segurado empregado/avulso/agente público e aplicar a alíquota correta conforme faixa salarial observado o limite máximo do salário de contribuição; II. Caso o somatório do item I não tenha atingido o limite máximo do salário de contribuição, efetuar o somatório de {valor} qdo {tpValor}=[11,12,13,14,19], do grupo {infoBaseCS} para todas as categorias diferentes de segurado empregado e aplicar a alíquota correta conforme a categoria, observado o limite máximo do salário de contribuição. OBS.: a) No caso de {indapur}=[1], o cálculo deve ser efetuado separadamente para {ind13}= [0] e {ind13}=[1]. A soma de ambos cálculos deve correspondente ao valor {vrCpSeg}. b) Aplica-se a alíquota de 20% para o cálculo da contribuição previdenciária a ser descontada de remuneração de trabalhador pertencente às categorias 731 ou 734, quando o Empregador for Cooperativa de Trabalho ({indCoop}=[1]), ou pertencente à categoria "Contribuinte Individual", quando o Empregador tiver classificação tributária ({classTrib}) = [70,80]. Caso o trabalhador receba remuneração da empresa em outra categoria de contribuinte individual (7XX), primeiro deve ser aplicado o desconto sobre essa categoria (7XX) e depois sobre a remuneração das categorias 731 ou 734, observando o teto do salário de contribuição. c) {vrCpSeg} deve ser igual a {vrDescSeg} nas seguintes situações: c1) se houver informações em {infoPerAnt} na composição de {infoBaseCS/valor}; c2) se houver informação de {procJudTrab} com {tpTrib} = [2] nos eventos que contenham informações de remuneração (S-1200, S-2299 e S-2399); c3) se houver processo do empregador informado em S-1010, contestando incidência de contribuição previdenciária em rubricas utilizadas na composição da remuneração do trabalhador; c4) se, no período de apuração mensal, houver remuneração referente a 13º salário ({codIncCP} = [12, 14, 16, 22, 26, 32, 92, 94]). Nesse caso, o campo {vrCpSeg} será igual ao valor calculado sobre a remuneração mensal acrescido do desconto sobre a remuneração relativa a 13° salário informado pelo empregador. d) No caso de trabalhador categoria = [102], utilizar somente a alíquota de 8%, observando o limite máximo do salário de contribuição; e) No caso de empregador com {classTrib} = [21,60], não calcular para a categoria contribuinte individual (grupo 700). O valor deve ser zerado; f) Não calcular quando a categoria do trabalhador for [741] (MEI). O valor deve ser zerado. g) Não calcular quando a lotação tributária for [91]. O valor deve ser zerado.</td>
+            <td width="500px">Valor da contribuição do segurado, devida à Previdência Social, calculada segundo as regras da legislação em vigor, por CR. Validação: 1. Se {indMV} do S-1200/S-2299/S-2399 = [3], {vrCpSeg} = 0, portanto não há CR; 2. Se {indMV} do S-1200/S-2299/S-2399 = [1,2], efetuar o somatório das ocorrências do campo {vlrRemunOE} e o somatório de {valor} quando {tpValor} = [11,12,13,14,19] do grupo {infoBaseCS}, resultando em [TotalRemun]. Este procedimento visa a identificação da(s) alíquota(s) aplicável(eis): 2.1. Se {indMV} do S-1200/S-2299/S-2399 = [1] aplicar a(s) alíquota(s) conforme a categoria do segurado sobre a remuneração paga pelo declarante (somatório de {valor} quando {tpValor} = [11,12,13,14,19], do grupo {infoBaseCS}), observando o limite máximo do salário de contribuição. 2.2. Se {indMV} do S-1200/S-2299/S-2399 = [2]: a) se [TotalRemun] ultrapassar o limite máximo do Salário de Contribuição, aplicar a(s) alíquota(s) conforme a categoria do segurado sobre a diferença entre o referido limite máximo e o somatório das ocorrências do campo {vlrRemunOE}; b) se [TotalRemun] for inferior ao limite máximo do Salário de Contribuição: b1) Para as categorias empregado/avulso/agente público: somar {vlrRemunOE} destas mesmas categorias com o somatório de {valor} quando {tpValor}=[11, 12, 13, 14, 19] do grupo {infoBaseCS} e aplicar a(s) alíquota(s) conforme a categoria do segurado sobre a remuneração paga pelo declarante. b2) Para categoria contribuinte individual: aplicar a alíquota referente a [TotalRemun], conforme a categoria do segurado, sobre a remuneração paga pelo declarante (somatório de {valor} quando {tpValor}=[11,12,13,14,19], do grupo {infoBaseCS}). 3. Se não informado o grupo {infoMV} do S-1200/S-2299/S-2399: a) se o trabalhador presta serviço para a empresa declarante em apenas uma categoria {codCateg}, efetuar o somatório de {valor} quando {tpValor}=[11,12,13,14,19], do grupo {infoBaseCS} e aplicar a(s) alíquota(s) conforme a categoria. b) se o trabalhador presta serviço para a empresa declarante em mais de uma categoria {codCateg}: I. efetuar o somatório de {valor} quando {tpValor}=[11,12,13,14,19], do grupo {infoBaseCS} para todas as categorias de segurado empregado/avulso/agente público e aplicar a(s) alíquota(s) correta(s) conforme faixa salarial observado o limite máximo do salário de contribuição; II. Caso o somatório do item I não tenha atingido o limite máximo do salário de contribuição, efetuar o somatório de {valor} quando {tpValor}=[11,12,13,14,19], do grupo {infoBaseCS} para todas as categorias diferentes de segurado empregado e aplicar a alíquota correta conforme a categoria, observado o limite máximo do salário de contribuição. OBS.: a) No caso de {indapur}=[1], o cálculo deve ser efetuado separadamente para {ind13}= [0] e {ind13}=[1]. A soma de ambos cálculos deve correspondente ao valor {vrCpSeg}. b) Aplica-se a alíquota de 20% para o cálculo da contribuição previdenciária a ser descontada de remuneração de trabalhador pertencente às categorias 731 ou 734, quando o Empregador for Cooperativa de Trabalho ({indCoop}=[1]), ou pertencente à categoria "Contribuinte Individual", quando o Empregador tiver classificação tributária ({classTrib}) = [70,80]. Caso o trabalhador receba remuneração da empresa em outra categoria de contribuinte individual (7XX), primeiro deve ser aplicado o desconto sobre essa categoria (7XX) e depois sobre a remuneração das categorias 731 ou 734, observando o teto do salário de contribuição. c) {vrCpSeg} deve ser igual a {vrDescSeg} nas seguintes situações: c1) se houver informações em {infoPerAnt} na composição de {infoBaseCS/valor}; c2) se houver informação de {procJudTrab} com {tpTrib} = [2] nos eventos que contenham informações de remuneração (S-1200, S-2299 e S-2399); c3) se houver processo do empregador informado em S-1010, contestando incidência de contribuição previdenciária em rubricas utilizadas na composição da remuneração do trabalhador; c4) se, no período de apuração mensal, houver remuneração referente a 13º salário ({codIncCP} = [12, 14, 16, 22, 26, 32, 92, 94]). Nesse caso, o campo {vrCpSeg} será igual ao valor calculado sobre a remuneração mensal acrescido do desconto sobre a remuneração relativa a 13° salário informado pelo empregador. d) No caso de trabalhador categoria = [102], utilizar somente a alíquota de 8%, observando o limite máximo do salário de contribuição; e) No caso de empregador com {classTrib} = [21,60], não calcular para a categoria contribuinte individual (grupo 700). O valor deve ser zerado; f) Não calcular quando a categoria do trabalhador for [741] (MEI). O valor deve ser zerado. g) Não calcular quando a lotação tributária for [91]. O valor deve ser zerado.</td>
             <td width="200px"><b>{% if s5001_infocpcalc.vrcpseg or s5001_infocpcalc.vrcpseg == 0 %}{{ s5001_infocpcalc.vrcpseg }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -504,6 +504,94 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}{% endifequal %}{% endfor %}
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoPerRef</td>
+            <td bgcolor="lightgray" colspan="3">Informações de remuneração por período de referência.</td>
+        </tr>
+    {% for s5001_infoperref in s5001_infoperref_lista %}
+    {% ifequal s5001_infoperref.s5001_infocategincid.id s5001_infocategincid.id %}
+        <tr {% if s5001_infoperref.perref|validacoes_esocial_efdreinf:"s5001_infoperref.perref" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">perRef</td>
+            <td width="500px">Informar o período ao qual se refere a remuneração, no formato AAAA-MM. Origem: {perRef} de {infoPerAnt} de S-1200/S-2299 e {perApur}.</td>
+            <td width="200px"><b>{% if s5001_infoperref.perref or s5001_infoperref.perref == 0 %}{{ s5001_infoperref.perref }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001infoPerRef or perms.esocial.can_see_s5001infoPerRef %}
+                <a href="{% url 's5001_infoperref_salvar' pk=s5001_infoperref.id %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">detInfoPerRef</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das informações de remuneração por período de referência. Deve ser preenchido com informações de {infoPerApur} e {infoPerAnt} do S-1200 e S-2299, e de {detVerbas} do S-2399, quando houver.</td>
+        </tr>
+    {% for s5001_detinfoperref in s5001_detinfoperref_lista %}
+    {% ifequal s5001_detinfoperref.s5001_infoperref.id s5001_infoperref.id %}
+        <tr {% if s5001_detinfoperref.ind13|validacoes_esocial_efdreinf:"s5001_detinfoperref.ind13" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ind13</td>
+            <td width="500px">Indicativo de 13° salário: 0 - Mensal; 1 - 13° salário - {codIncCP} = [12, 14, 16, 22, 26, 32, 92, 94]. Validação: Se {indApuracao} = [2], preencher com [1].</td>
+            <td width="200px"><b>{% if s5001_detinfoperref.ind13 or s5001_detinfoperref.ind13 == 0 %}{{ s5001_detinfoperref.ind13 }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001detInfoPerRef or perms.esocial.can_see_s5001detInfoPerRef %}
+                <a href="{% url 's5001_detinfoperref_salvar' pk=s5001_detinfoperref.id %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5001_detinfoperref.tpvalor|validacoes_esocial_efdreinf:"s5001_detinfoperref.tpvalor" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpValor</td>
+            <td width="500px">Tipo de valor que influi na apuração da contribuição devida: 11 - Base de cálculo da Contribuição Previdenciária normal; 12 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição; 13 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição; 14 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição; 15 - Base de cálculo da contribuição previdenciária adicional normal - exclusiva do empregador; 16 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição - exclusiva do empregador; 17 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição - exclusiva do empregador; 18 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição - exclusiva do empregador; 19 - Base de cálculo da contribuição previdenciária exclusiva do empregado; 21 - Valor total descontado do trabalhador para recolhimento à Previdência Social; 22 - Valor descontado do trabalhador para recolhimento ao Sest; 23 - Valor descontado do trabalhador para recolhimento ao Senat; 31 - Valor pago ao trabalhador a título de salário-família; 32 - Valor pago ao trabalhador a título de salário-maternidade. Validação: O preenchimento deve ser feito de acordo com as instruções acima.</td>
+            <td width="200px"><b>{% if s5001_detinfoperref.tpvalor or s5001_detinfoperref.tpvalor == 0 %}{{ s5001_detinfoperref.tpvalor }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001detInfoPerRef or perms.esocial.can_see_s5001detInfoPerRef %}
+                <a href="{% url 's5001_detinfoperref_salvar' pk=s5001_detinfoperref.id %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5001_detinfoperref.vrperref|validacoes_esocial_efdreinf:"s5001_detinfoperref.vrperref" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrPerRef</td>
+            <td width="500px">Valor da base de cálculo, dedução ou desconto da contribuição social, conforme definido no campo {tpValor}. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {vrRubr} em S-1200 e S-2299, nos grupos {infoPerApur} e {infoPerAnt}, e também em S-2399, obedecendo ao que segue: a) Somar os valores das rubricas cujo {tpRubr} em S-1010 seja igual a [1,3] e subtrair os valores das rubricas cujo {tpRubr} em S-1010 seja igual a [2,4], observando a tabela de relacionamento abaixo: {tpValor} = 11*, {codIncCP} = [11,12,21,22] e (({grauExp} = 1) ou (sem informação em {grauExp})); {tpValor} = 12*, {codIncCP} = [11,12,21,22] e {grauExp} = 2; {tpValor} = 13*, {codIncCP} = [11,12,21,22] e {grauExp} = 3; {tpValor} = 14*, {codIncCP} = [11,12,21,22] e {grauExp} = 4; {tpValor} = 15**, {codIncCP}= [13,14,25,26] e (({grauExp} = 1) ou (sem informação em {grauExp})); {tpValor} = 16**, {codIncCP} = [13, 14] e {grauExp} = 2; {tpValor} = 17**, {codIncCP} = [13, 14] e {grauExp} = 3; {tpValor} = 18**, {codIncCP} = [13, 14] e {grauExp} = 4; {tpValor} = 19, {codIncCP} = [15, 16]; {tpValor} = 31, {codIncCP} = [51]; {tpValor} = 32, {codIncCP} = [21, 22]. b) Somar os valores das rubricas cujo {tpRubr} em S-1010 seja igual a [2,4] e subtrair os valores das rubricas cujo {tpRubr} em S-1010 seja igual a [1,3], observando a tabela de relacionamento abaixo: {tpValor} = 21, {codIncCP} = [31, 32]; {tpValor} = 22, {codIncCP} = [34]; {tpValor} = 23, {codIncCP} = [35]. * Caso {codIncCP} da rubrica em S-1010 seja igual a [91, 92, 93, 94] e {indSusp} do respectivo processo em S-1070 seja diferente de [90] (decisão definitiva), o valor também deverá ser computado na composição das bases do {tpValor} = [11, 12, 13, 14]. ** Caso {codindCP} da rubrica em S-1010 seja igual a [95, 96, 97, 98] e {indSusp} do respectivo processo em S-1070 seja diferente de [90] (decisão definitiva), o valor também deverá ser computado na composição das bases do {tpValor} = [15, 16, 17, 18]. *** Caso {indSusp} do respectivo processo em S-1070 seja igual a [90] (decisão definitiva), o valor não deve ser computado.</td>
+            <td width="200px"><b>{% if s5001_detinfoperref.vrperref or s5001_detinfoperref.vrperref == 0 %}{{ s5001_detinfoperref.vrperref }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001detInfoPerRef or perms.esocial.can_see_s5001detInfoPerRef %}
+                <a href="{% url 's5001_detinfoperref_salvar' pk=s5001_detinfoperref.id %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}{% endifequal %}{% endfor %}
 
 </table>

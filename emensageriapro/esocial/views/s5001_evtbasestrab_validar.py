@@ -222,4 +222,34 @@ def validacoes_s5001_evtbasestrab(arquivo):
                                                                           'calcTerc.vrDescTerc',
                                                                           calcTerc.vrDescTerc.cdata,
                                                                           1, u'None')
+        
+                            if 'infoPerRef' in dir(infoCategIncid.infoPerRef):
+                                for infoPerRef in infoCategIncid.infoPerRef:
+                
+                                    if 'perRef' in dir(infoPerRef):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'infoPerRef.perRef',
+                                                                          infoPerRef.perRef.cdata,
+                                                                          1, u'None')
+                
+                                    if 'detInfoPerRef' in dir(infoPerRef.detInfoPerRef):
+                                        for detInfoPerRef in infoPerRef.detInfoPerRef:
+                        
+                                            if 'ind13' in dir(detInfoPerRef):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'detInfoPerRef.ind13',
+                                                                                  detInfoPerRef.ind13.cdata,
+                                                                                  1, u'0, 1')
+                        
+                                            if 'tpValor' in dir(detInfoPerRef):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'detInfoPerRef.tpValor',
+                                                                                  detInfoPerRef.tpValor.cdata,
+                                                                                  1, u'11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 31, 32')
+                        
+                                            if 'vrPerRef' in dir(detInfoPerRef):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'detInfoPerRef.vrPerRef',
+                                                                                  detInfoPerRef.vrPerRef.cdata,
+                                                                                  1, u'None')
     return validacoes_lista

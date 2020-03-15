@@ -240,7 +240,7 @@ USE_TZ = False
 
 # Configurações de Versão do Aplicativo
 
-VERSAO_EMENSAGERIA = '1.5'
+VERSAO_EMENSAGERIA = '1.6' # Implantação eSocial V2.5 (até NT17/2019)
 VERSAO_LAYOUT_ESOCIAL = 'v02_05_00'
 VERSAO_LAYOUT_EFDREINF = 'v1_04_00'
 

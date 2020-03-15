@@ -733,7 +733,7 @@
 
         <tr {% if s2299_infoperapur_detverbas.fatorrubr|validacoes_esocial_efdreinf:"s2299_infoperapur_detverbas.fatorrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fatorRubr</td>
-            <td width="500px">Informar o fator, percentual, etc, da rubrica, quando necessário. Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator = 11.</td>
+            <td width="500px">Informar o fator, percentual, etc, da rubrica, quando necessário. Ex: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50.</td>
             <td width="200px"><b>{% if s2299_infoperapur_detverbas.fatorrubr or s2299_infoperapur_detverbas.fatorrubr == 0 %}{{ s2299_infoperapur_detverbas.fatorrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1268,7 +1268,7 @@
 
         <tr {% if s2299_infoperant_detverbas.fatorrubr|validacoes_esocial_efdreinf:"s2299_infoperant_detverbas.fatorrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fatorRubr</td>
-            <td width="500px">Informar o fator, percentual, etc, da rubrica, quando necessário. Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator = 11.</td>
+            <td width="500px">Informar o fator, percentual, etc, da rubrica, quando necessário. Ex: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50.</td>
             <td width="200px"><b>{% if s2299_infoperant_detverbas.fatorrubr or s2299_infoperant_detverbas.fatorrubr == 0 %}{{ s2299_infoperant_detverbas.fatorrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -1469,7 +1469,7 @@
     {% ifequal s2299_infotrabinterm_infomv.s2299_verbasresc.id s2299_verbasresc.id %}
         <tr {% if s2299_infotrabinterm_infomv.indmv|validacoes_esocial_efdreinf:"s2299_infotrabinterm_infomv.indmv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indMV</td>
-            <td width="500px">Indicador de desconto da contribuição previdenciária do trabalhador, de acordo com as seguintes opções: 1 - O declarante aplica a alíquota de desconto do segurado sobre a remuneração por ele informada (o percentual da alíquota será obtido considerando a remuneração total do trabalhador); 2 - O declarante aplica a alíquota de desconto do segurado sobre a diferença entre o limite máximo do salário de contribuição e a remuneração de outra(s) empresa(s) para as quais o trabalhador informou que houve o desconto; 3 - O declarante não realiza desconto do segurado, uma vez que houve desconto sobre o limite máximo de salário de contribuição em outra(s) empresa(s). Valores Válidos: 1, 2, 3.</td>
+            <td width="500px">Indicador de desconto da contribuição previdenciária do trabalhador, de acordo com as seguintes opções: 1 - O declarante aplica a(s) alíquota(s) de desconto do segurado sobre a remuneração por ele informada (o percentual da(s) alíquota(s) será(ão) obtido(s) considerando a remuneração total do trabalhador); 2 - O declarante aplica a(s) alíquota(s) de desconto do segurado sobre a diferença entre o limite máximo do salário de contribuição e a remuneração de outra(s) empresa(s) para as quais o trabalhador informou que houve o desconto; 3 - O declarante não realiza desconto do segurado, uma vez que houve desconto sobre o limite máximo de salário de contribuição em outra(s) empresa(s). Valores Válidos: 1, 2, 3.</td>
             <td width="200px"><b>{% if s2299_infotrabinterm_infomv.indmv or s2299_infotrabinterm_infomv.indmv == 0 %}{{ s2299_infotrabinterm_infomv.indmv }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

@@ -1,0 +1,4 @@
+{% comment %}eMensageriaAI{% endcomment %}{% load templatetags %}{% load static %}
+{% if show_fields.show_s5001_infoperref or 1 %}"Detalhamento das informações de remuneração por período de referência. Deve ser preenchido com informações de {infoPerApur} e {infoPerAnt} do S-1200 e S-2299, e de {detVerbas} do S-2399, quando houver.";{% endif %}{% if show_fields.show_ind13 or 1 %}"Indicativo de 13º salário";{% endif %}{% if show_fields.show_tpvalor or 1 %}"Tipo de Valor";{% endif %}{% if show_fields.show_vrperref or 1 %}"Valor da base de cálculo, dedução ou desconto da contribuição social, conforme definido no campo {tpValor}. ";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s5001_infoperref or 1 %}"{{ c.s5001_infoperref }}";{% endif %}{% if show_fields.show_ind13 or 1 %}"{{ c.ind13 }}";{% endif %}{% if show_fields.show_tpvalor or 1 %}"{{ c.tpvalor }}";{% endif %}{% if show_fields.show_vrperref or 1 %}"{{ c.vrperref }}";{% endif %}
+{% endfor %}

@@ -34,3 +34,13 @@ UPDATE public.s5001_calcterc a
   FROM public.s5001_infocategincid b
  WHERE a.s5001_infocategincid_id = b.id AND b.ativo IS NULL AND a.ativo=True;
 
+UPDATE public.s5001_infoperref a
+   SET ativo=b.ativo, desativado_em=b.desativado_em, desativado_por_id=b.desativado_por_id
+  FROM public.s5001_infocategincid b
+ WHERE a.s5001_infocategincid_id = b.id AND b.ativo IS NULL AND a.ativo=True;
+
+UPDATE public.s5001_detinfoperref a
+   SET ativo=b.ativo, desativado_em=b.desativado_em, desativado_por_id=b.desativado_por_id
+  FROM public.s5001_infoperref b
+ WHERE a.s5001_infoperref_id = b.id AND b.ativo IS NULL AND a.ativo=True;
+

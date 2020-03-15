@@ -448,15 +448,6 @@ def percentage(fraction, population):
     except ValueError:
         return ''
 
-
-@register.filter(name='is_list')
-def is_list(obj):
-    if isinstance(obj, list):
-        return True
-    else:
-        return False
-
-
 @register.filter(name='finditem')
 def finditem(obj, key):
     if isinstance(obj, dict):
@@ -464,7 +455,10 @@ def finditem(obj, key):
             return obj[key]
         else:
             for k, v in obj.items():
-                finditem(v, key)
+                if isinstance(v, dict):
+                    item = finditem(v, key)
+                    if item is not None:
+                        return item
     elif isinstance(obj, list):
         for a in obj:
             finditem(a, key)
@@ -472,6 +466,5 @@ def finditem(obj, key):
 
 @register.filter(name='to_json')
 def to_json(string):
-    if string:
-        import json
-        return json.loads(string)
+    import json
+    return json.loads(string)

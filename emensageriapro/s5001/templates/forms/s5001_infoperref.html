@@ -1,0 +1,56 @@
+<!-- eMensageriaAI -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s5001_infoperref__s5001_infocategincid -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_s5001_infocategincid').change(function(){
+       document.getElementById("s5001_infoperref__s5001_infocategincid__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="s5001_infoperref__s5001_infocategincid__div">
+  <div class="form-group">
+    <label id="s5001_infoperref__s5001_infocategincid__label">Informações de remuneração por período de referência.*<a data-toggle="tooltip" title="Informações de remuneração por período de referência."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    {% if not for_print %}
+      {% if s5001_infoperref_form.s5001_infocategincid.value %}
+        <a id="s5001_infoperref__s5001_infocategincid__div_acessar" href="{% url 's5001_infocategincid_salvar' pk=s5001_infoperref_form.s5001_infocategincid.value %}">
+          [Acessar]
+        </a>
+      {% endif %}
+    {% endif %}
+    {% if s5001_infoperref_form.s5001_infocategincid.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s5001_infoperref_form.s5001_infocategincid.errors }}
+      </div>
+    {% endif %}
+    {% if s5001_infoperref_form.s5001_infocategincid.field.widget.attrs.readonly %}
+      {% if s5001_infoperref_form.s5001_infocategincid.field.widget.attrs.disabled %}
+        {{ s5001_infoperref_form.s5001_infocategincid|addcss:'form-control' }}
+        <input id="id_s5001_infocategincid" name="s5001_infocategincid" type="hidden" value="{% if s5001_infoperref_form.s5001_infocategincid.value or s5001_infoperref_form.s5001_infocategincid.value == 0 %}{{ s5001_infoperref_form.s5001_infocategincid.value|valor }}{% endif %}">
+      {% else %}
+        {{ s5001_infoperref_form.s5001_infocategincid|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s5001_infoperref_form.s5001_infocategincid|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s5001_infoperref__s5001_infocategincid -->
+<!-- inicio__s5001_infoperref__perref -->
+<div class="col-md-6" id="s5001_infoperref__perref__div">
+  <div class="form-group">
+    <label id="s5001_infoperref__perref__label">Período de Referência*<a data-toggle="tooltip" title="Informar o período ao qual se refere a remuneração, no formato AAAA-MM. Origem: {perRef} de {infoPerAnt} de S-1200/S-2299 e {perApur}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      {% if s5001_infoperref_form.perref.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s5001_infoperref_form.perref.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s5001_infoperref_form.perref|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s5001_infoperref__perref -->
