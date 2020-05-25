@@ -3317,7 +3317,7 @@
     {% ifequal s2200_transfdom.s2200_evtadmissao.id s2200_evtadmissao.id %}
         <tr {% if s2200_transfdom.cpfsubstituido|validacoes_esocial_efdreinf:"s2200_transfdom.cpfsubstituido" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cpfSubstituido</td>
-            <td width="500px">Preencher com o número do CPF do representante anterior da unidade familiar. Validação: O CPF informado deve ter registro de desligamento do mesmo {cpfTrab}, com campo {cpfSubstituto} preenchido com o CPF do declarante.</td>
+            <td width="500px">Preencher com o número do CPF do representante anterior da unidade familiar.</td>
             <td width="200px"><b>{% if s2200_transfdom.cpfsubstituido or s2200_transfdom.cpfsubstituido == 0 %}{{ s2200_transfdom.cpfsubstituido }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -3355,7 +3355,7 @@
 
         <tr {% if s2200_transfdom.dttransf|validacoes_esocial_efdreinf:"s2200_transfdom.dttransf" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtTransf</td>
-            <td width="500px">Data da transferência do vínculo ao novo representante da unidade familiar. Validação: Deve ser o dia imediatamente seguinte à data de desligamento no CPF substituído.</td>
+            <td width="500px">Data da transferência do vínculo ao novo representante da unidade familiar.</td>
             <td width="200px"><b>{% if s2200_transfdom.dttransf or s2200_transfdom.dttransf == 0 %}{{ s2200_transfdom.dttransf|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

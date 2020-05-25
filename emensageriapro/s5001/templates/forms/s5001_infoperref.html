@@ -13,7 +13,7 @@
 </script>
 <div class="col-md-12" id="s5001_infoperref__s5001_infocategincid__div">
   <div class="form-group">
-    <label id="s5001_infoperref__s5001_infocategincid__label">Informações de remuneração por período de referência.*<a data-toggle="tooltip" title="Informações de remuneração por período de referência."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5001_infoperref__s5001_infocategincid__label">Informações de remuneração por período de referência.*<a data-toggle="tooltip" title="Informações de remuneração por período de referência."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s5001_infoperref_form.s5001_infocategincid.value %}
         <a id="s5001_infoperref__s5001_infocategincid__div_acessar" href="{% url 's5001_infocategincid_salvar' pk=s5001_infoperref_form.s5001_infocategincid.value %}">
@@ -42,7 +42,7 @@
 <!-- inicio__s5001_infoperref__perref -->
 <div class="col-md-6" id="s5001_infoperref__perref__div">
   <div class="form-group">
-    <label id="s5001_infoperref__perref__label">Período de Referência*<a data-toggle="tooltip" title="Informar o período ao qual se refere a remuneração, no formato AAAA-MM. Origem: {perRef} de {infoPerAnt} de S-1200/S-2299 e {perApur}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5001_infoperref__perref__label">Período de Referência*<a data-toggle="tooltip" title="Informar o período ao qual se refere a remuneração. Origem: {perRef} de {infoPerAnt} de S-1200/S-2299 e {perApur}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s5001_infoperref_form.perref.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5001_infoperref_form.perref.errors }}

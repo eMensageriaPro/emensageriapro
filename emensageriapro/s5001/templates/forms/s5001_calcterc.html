@@ -42,7 +42,7 @@
 <!-- inicio__s5001_calcterc__tpcr -->
 <div class="col-md-3" id="s5001_calcterc__tpcr__div">
   <div class="form-group">
-    <label id="s5001_calcterc__tpcr__label">Código da Receita (CR)*<a data-toggle="tooltip" title="Código de Receita (CR) da contribuição descontada do trabalhador. Preencher de acordo com a seguinte tabela: 1218-02 - Contribuição ao SEST, descontada do transportador autônomo, à alíquota de 1,5%; 1221-02 - Contribuição ao SENAT, descontada do transportador autônomo, à alíquota de 1,0%. Validação: Deve ser um código indicado nas instruções de preenchimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5001_calcterc__tpcr__label">Código da Receita (CR)*<a data-toggle="tooltip" title="Código de Receita (CR) da contribuição descontada do trabalhador. Preencher de acordo com a seguinte tabela: 1218-02 - Contribuição ao SEST, descontada do transportador autônomo; 1221-02 - Contribuição ao SENAT, descontada do transportador autônomo. Validação: Deve ser um código indicado nas instruções de preenchimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5001_calcterc_form.tpcr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5001_calcterc_form.tpcr.errors }}
@@ -66,7 +66,7 @@
 <!-- inicio__s5001_calcterc__vrcssegterc -->
 <div class="col-md-3" id="s5001_calcterc__vrcssegterc__div">
   <div class="form-group">
-    <label id="s5001_calcterc__vrcssegterc__label">Valor da CS devida a outras entidades*<a data-toggle="tooltip" title="Valor da contribuição social devida a Outras Entidades ou Fundos, calculada segundo a legislação em vigor, por CR. Validação: 1218-02 - Somatório de {valor} qdo {tpValor}=[11,12,13,14], do grupo {infoBaseCS} multiplicado pela alíquota de 1,5%, se categoria {codCateg} = [711,712,734]-Transportador Autônomo; 1221-02. Somatório de {valor} qdo {tpValor}=[11,12,13,14], do grupo {infoBaseCS} multiplicado pela alíquota de 1,0% se categoria {codCateg} = [711,712,734]-Transportador Autônomo."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5001_calcterc__vrcssegterc__label">Valor da CS devida a outras entidades*<a data-toggle="tooltip" title="Valor da contribuição social devida a Outras Entidades ou Fundos, calculada segundo a legislação em vigor, por CR. Validação: 1218-02 - Somatório de {valor} qdo {tpValor}=[11,12,13,14], do grupo {infoBaseCS} multiplicado pela alíquota de 1,5%, se categoria {codCateg} = [711,712,734]-Transportador Autônomo; 1221-02. Somatório de {valor} qdo {tpValor}=[11,12,13,14], do grupo {infoBaseCS} multiplicado pela alíquota de 1,0% se categoria {codCateg} = [711,712,734]-Transportador Autônomo. OBS.: No período de 04/2020 a 06/2020, as alíquotas devem ser 0,75% para o SEST e 0,5% para o SENAT."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5001_calcterc_form.vrcssegterc.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5001_calcterc_form.vrcssegterc.errors }}

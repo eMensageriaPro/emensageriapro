@@ -1604,7 +1604,7 @@
 
         <tr {% if s5011_basesaquis.vrsenarcalc|validacoes_esocial_efdreinf:"s5011_basesaquis.vrsenarcalc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrSenarCalc</td>
-            <td width="500px">Valor calculado da contribuição devida pelo produtor rural ao Senar. Cálculo: a) Para {indAquis} = [1, 2, 4, 5]: {vlrAquis} x 0,2%; b) Para {indAquis} = [3, 6]: Zero.</td>
+            <td width="500px">Valor calculado da contribuição devida pelo produtor rural ao Senar. Cálculo: a) Para {indAquis} = [1, 2, 4, 5]: {vlrAquis} x 0,2%; b) Para {indAquis} = [3, 6]: Zero. OBS.: No período de 04/2020 a 06/2020, a alíquota deve ser 0,1%.</td>
             <td width="200px"><b>{% if s5011_basesaquis.vrsenarcalc or s5011_basesaquis.vrsenarcalc == 0 %}{{ s5011_basesaquis.vrsenarcalc }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

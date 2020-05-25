@@ -61,15 +61,15 @@ CHOICES_S5001_INDSIMPLES = [
 
 
 CHOICES_S5001_TPCR = [
-    ('1082-01', u'1082-01 - Contribuição previdenciária (CP) descontada do segurado empregado/avulso, alíquotas 8%, 9% ou 11%'),
-    ('1082-02', u'1082-02 - CP descontada do segurado empregado rural curto prazo, alíquota de 8%, lei 11718/2008'),
-    ('1082-03', u'1082-03 - CP descontada do segurado empregado doméstico ou segurado especial, alíquota de 8%, 9% ou 11%'),
-    ('1082-04', u'1082-04 - CP descontada do segurado especial curto prazo, alíquota de 8%, lei 11718/2008'),
-    ('1082-21', u'1082-21 - CP descontada do segurado empregado/avulso 13° salário, alíquotas 8%, 9% ou 11%. (codIncCP = [12, 16])'),
-    ('1082-22', u'1082-22 - CP descontada do segurado empregado rural curto prazo 13° salário, alíquota de 8%, lei 11718/2008 (codIncCP = [12, 16])'),
-    ('1082-23', u'1082-23 - CP descontada do segurado empregado doméstico ou segurado especial 13° salário, alíquota de 8%, 9% ou 11% (codIncCP = [12, 16])'),
-    ('1082-24', u'1082-24 - CP descontada do segurado especial curto prazo 13° salário, alíquota de 8%, lei 11718/2008 (codIncCP = [12, 16])'),
-    ('1099-01', u'1099-01 - CP descontada do contribuinte individual, alíquota de 11%'),
-    ('1099-02', u'1099-02 - CP descontada do contribuinte individual, alíquota de 20%.'),
+    ('1082-01', u'1082-01 - Contribuição Previdenciária (CP) descontada do segurado empregado/avulso'),
+    ('1082-02', u'1082-02 - CP descontada do segurado empregado rural curto prazo - Lei 11.718/2008'),
+    ('1082-03', u'1082-03 - CP descontada do segurado empregado doméstico ou segurado especial'),
+    ('1082-04', u'1082-04 - CP descontada do segurado especial curto prazo - Lei 11.718/2008'),
+    ('1082-21', u'1082-21 - CP descontada do segurado empregado/avulso 13° salário'),
+    ('1082-22', u'1082-22 - CP descontada do segurado empregado rural curto prazo 13° salário - Lei 11.718/2008'),
+    ('1082-23', u'1082-23 - CP descontada do segurado empregado doméstico ou segurado especial 13° salário'),
+    ('1082-24', u'1082-24 - CP descontada do segurado especial curto prazo 13° salário - Lei 11.718/2008'),
+    ('1099-01', u'1099-01 - CP descontada do contribuinte individual, alíquota de 11%'),
+    ('1099-02', u'1099-02 - CP descontada do contribuinte individual, alíquota de 20%. Validação: Se indApuracao = [2], tpCR = 1082-21, 1082,22, 1082-23, 1082- 24.'),
 ]
 

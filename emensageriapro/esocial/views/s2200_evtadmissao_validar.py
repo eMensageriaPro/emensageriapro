@@ -1208,7 +1208,7 @@ def validacoes_s2200_evtadmissao(arquivo):
                         validacoes_lista = validar_campo( validacoes_lista,
                                                           'afastamento.codMotAfast',
                                                           afastamento.codMotAfast.cdata,
-                                                          1, u'01, 03, 05, 06, 07, 08, 10, 11, 12, 13, 14, 15, 16, 17, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35')
+                                                          1, u'01, 03, 05, 06, 07, 08, 10, 11, 12, 13, 14, 15, 16, 17, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 37, 38')
 
             if 'desligamento' in dir(vinculo.desligamento):
                 for desligamento in vinculo.desligamento:

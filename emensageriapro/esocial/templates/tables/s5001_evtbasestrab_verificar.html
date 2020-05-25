@@ -192,7 +192,7 @@
     {% ifequal s5001_infocpcalc.s5001_evtbasestrab.id s5001_evtbasestrab.id %}
         <tr {% if s5001_infocpcalc.tpcr|validacoes_esocial_efdreinf:"s5001_infocpcalc.tpcr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpCR</td>
-            <td width="500px">Código de Receita (CR) da contribuição descontada do trabalhador. Preencher de acordo com a seguinte tabela: 1082-01 - Contribuição previdenciária (CP) descontada do segurado empregado/avulso, alíquotas 8%, 9% ou 11%; 1082-02 - CP descontada do segurado empregado rural curto prazo, alíquota de 8%, lei 11718/2008; 1082-03 - CP descontada do segurado empregado doméstico ou segurado especial, alíquota de 8%, 9% ou 11%; 1082-04 - CP descontada do segurado especial curto prazo, alíquota de 8%, lei 11718/2008; 1082-21 - CP descontada do segurado empregado/avulso 13° salário, alíquotas 8%, 9% ou 11%. (codIncCP = [12, 16]); 1082-22 - CP descontada do segurado empregado rural curto prazo 13° salário, alíquota de 8%, lei 11718/2008 (codIncCP = [12, 16]); 1082-23 - CP descontada do segurado empregado doméstico ou segurado especial 13° salário, alíquota de 8%, 9% ou 11% ;(codIncCP = [12, 16]); 1082-24 - CP descontada do segurado especial curto prazo 13° salário, alíquota de 8%, lei 11718/2008 (codIncCP = [12, 16]); 1099-01 - CP descontada do contribuinte individual, alíquota de 11%; 1099-02 - CP descontada do contribuinte individual, alíquota de 20%. Validação: Se indApuracao = [2], tpCR = 1082-21, 1082,22, 1082-23, 1082- 24.</td>
+            <td width="500px">Código de Receita (CR) da contribuição descontada do trabalhador. Preencher de acordo com a seguinte tabela: 1082-01 - Contribuição Previdenciária (CP) descontada do segurado empregado/avulso; 1082-02 - CP descontada do segurado empregado rural curto prazo - Lei 11.718/2008; 1082-03 - CP descontada do segurado empregado doméstico ou segurado especial; 1082-04 - CP descontada do segurado especial curto prazo - Lei 11.718/2008; 1082-21 - CP descontada do segurado empregado/avulso 13° salário; 1082-22 - CP descontada do segurado empregado rural curto prazo 13° salário - Lei 11.718/2008; 1082-23 - CP descontada do segurado empregado doméstico ou segurado especial 13° salário; 1082-24 - CP descontada do segurado especial curto prazo 13° salário - Lei 11.718/2008; 1099-01 - CP descontada do contribuinte individual, alíquota de 11%; 1099-02 - CP descontada do contribuinte individual, alíquota de 20%. Validação: Se indApuracao = [2], tpCR = 1082-21, 1082,22, 1082-23, 1082- 24.</td>
             <td width="200px"><b>{% if s5001_infocpcalc.tpcr or s5001_infocpcalc.tpcr == 0 %}{{ s5001_infocpcalc.tpcr }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -450,7 +450,7 @@
     {% ifequal s5001_calcterc.s5001_infocategincid.id s5001_infocategincid.id %}
         <tr {% if s5001_calcterc.tpcr|validacoes_esocial_efdreinf:"s5001_calcterc.tpcr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpCR</td>
-            <td width="500px">Código de Receita (CR) da contribuição descontada do trabalhador. Preencher de acordo com a seguinte tabela: 1218-02 - Contribuição ao SEST, descontada do transportador autônomo, à alíquota de 1,5%; 1221-02 - Contribuição ao SENAT, descontada do transportador autônomo, à alíquota de 1,0%. Validação: Deve ser um código indicado nas instruções de preenchimento.</td>
+            <td width="500px">Código de Receita (CR) da contribuição descontada do trabalhador. Preencher de acordo com a seguinte tabela: 1218-02 - Contribuição ao SEST, descontada do transportador autônomo; 1221-02 - Contribuição ao SENAT, descontada do transportador autônomo. Validação: Deve ser um código indicado nas instruções de preenchimento.</td>
             <td width="200px"><b>{% if s5001_calcterc.tpcr or s5001_calcterc.tpcr == 0 %}{{ s5001_calcterc.tpcr }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -469,7 +469,7 @@
 
         <tr {% if s5001_calcterc.vrcssegterc|validacoes_esocial_efdreinf:"s5001_calcterc.vrcssegterc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrCsSegTerc</td>
-            <td width="500px">Valor da contribuição social devida a Outras Entidades ou Fundos, calculada segundo a legislação em vigor, por CR. Validação: 1218-02 - Somatório de {valor} qdo {tpValor}=[11,12,13,14], do grupo {infoBaseCS} multiplicado pela alíquota de 1,5%, se categoria {codCateg} = [711,712,734]-Transportador Autônomo; 1221-02. Somatório de {valor} qdo {tpValor}=[11,12,13,14], do grupo {infoBaseCS} multiplicado pela alíquota de 1,0% se categoria {codCateg} = [711,712,734]-Transportador Autônomo.</td>
+            <td width="500px">Valor da contribuição social devida a Outras Entidades ou Fundos, calculada segundo a legislação em vigor, por CR. Validação: 1218-02 - Somatório de {valor} qdo {tpValor}=[11,12,13,14], do grupo {infoBaseCS} multiplicado pela alíquota de 1,5%, se categoria {codCateg} = [711,712,734]-Transportador Autônomo; 1221-02. Somatório de {valor} qdo {tpValor}=[11,12,13,14], do grupo {infoBaseCS} multiplicado pela alíquota de 1,0% se categoria {codCateg} = [711,712,734]-Transportador Autônomo. OBS.: No período de 04/2020 a 06/2020, as alíquotas devem ser 0,75% para o SEST e 0,5% para o SENAT.</td>
             <td width="200px"><b>{% if s5001_calcterc.vrcssegterc or s5001_calcterc.vrcssegterc == 0 %}{{ s5001_calcterc.vrcssegterc }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">
@@ -507,13 +507,13 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoPerRef</td>
-            <td bgcolor="lightgray" colspan="3">Informações de remuneração por período de referência.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de remuneração por período de referência.</td>
         </tr>
     {% for s5001_infoperref in s5001_infoperref_lista %}
     {% ifequal s5001_infoperref.s5001_infocategincid.id s5001_infocategincid.id %}
         <tr {% if s5001_infoperref.perref|validacoes_esocial_efdreinf:"s5001_infoperref.perref" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perRef</td>
-            <td width="500px">Informar o período ao qual se refere a remuneração, no formato AAAA-MM. Origem: {perRef} de {infoPerAnt} de S-1200/S-2299 e {perApur}.</td>
+            <td width="500px">Informar o período ao qual se refere a remuneração. Origem: {perRef} de {infoPerAnt} de S-1200/S-2299 e {perApur}.</td>
             <td width="200px"><b>{% if s5001_infoperref.perref or s5001_infoperref.perref == 0 %}{{ s5001_infoperref.perref }}{% else %}(vazio){% endif %}</b></td>
             {% if not output %}
             <td width="40px">

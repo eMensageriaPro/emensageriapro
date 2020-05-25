@@ -395,7 +395,7 @@ class s5001infoPerRef(SoftDeletionModel):
 
     def evento(self):
         return self.s5001_infocategincid.evento()
-    perref = models.IntegerField(null=True, )
+    perref = models.CharField(max_length=7, null=True, )
 
     def __unicode__(self):
         return unicode(self.s5001_infocategincid) + ' - ' + unicode(self.perref)

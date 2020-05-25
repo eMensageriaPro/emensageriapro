@@ -24,16 +24,16 @@
     <div class="input-group" style="width: 100%;">
       <select name="tpcr" class="form-control automate-select" style="width: 100%;">
         <option value="">-- selecione --</option>
-        <option value="1082-01" {% ifequal '1082-01' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1082-01 - Contribuição previdenciária (CP) descontada do segurado empregado/avulso, alíquotas 8%, 9% ou 11%</option>
-        <option value="1082-02" {% ifequal '1082-02' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1082-02 - CP descontada do segurado empregado rural curto prazo, alíquota de 8%, lei 11718/2008</option>
-        <option value="1082-03" {% ifequal '1082-03' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1082-03 - CP descontada do segurado empregado doméstico ou segurado especial, alíquota de 8%, 9% ou 11%</option>
-        <option value="1082-04" {% ifequal '1082-04' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1082-04 - CP descontada do segurado especial curto prazo, alíquota de 8%, lei 11718/2008</option>
-        <option value="1082-21" {% ifequal '1082-21' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1082-21 - CP descontada do segurado empregado/avulso 13° salário, alíquotas 8%, 9% ou 11%. (codIncCP = [12, 16])</option>
-        <option value="1082-22" {% ifequal '1082-22' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1082-22 - CP descontada do segurado empregado rural curto prazo 13° salário, alíquota de 8%, lei 11718/2008 (codIncCP = [12, 16])</option>
-        <option value="1082-23" {% ifequal '1082-23' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1082-23 - CP descontada do segurado empregado doméstico ou segurado especial 13° salário, alíquota de 8%, 9% ou 11% (codIncCP = [12, 16])</option>
-        <option value="1082-24" {% ifequal '1082-24' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1082-24 - CP descontada do segurado especial curto prazo 13° salário, alíquota de 8%, lei 11718/2008 (codIncCP = [12, 16])</option>
-        <option value="1099-01" {% ifequal '1099-01' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1099-01 - CP descontada do contribuinte individual, alíquota de 11%</option>
-        <option value="1099-02" {% ifequal '1099-02' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1099-02 - CP descontada do contribuinte individual, alíquota de 20%.</option>
+        <option value="1082-01" {% ifequal '1082-01' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1082-01 - Contribuição Previdenciária (CP) descontada do segurado empregado/avulso</option>
+        <option value="1082-02" {% ifequal '1082-02' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1082-02 - CP descontada do segurado empregado rural curto prazo - Lei 11.718/2008</option>
+        <option value="1082-03" {% ifequal '1082-03' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1082-03 - CP descontada do segurado empregado doméstico ou segurado especial</option>
+        <option value="1082-04" {% ifequal '1082-04' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1082-04 - CP descontada do segurado especial curto prazo - Lei 11.718/2008</option>
+        <option value="1082-21" {% ifequal '1082-21' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1082-21 - CP descontada do segurado empregado/avulso 13° salário</option>
+        <option value="1082-22" {% ifequal '1082-22' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1082-22 - CP descontada do segurado empregado rural curto prazo 13° salário - Lei 11.718/2008</option>
+        <option value="1082-23" {% ifequal '1082-23' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1082-23 - CP descontada do segurado empregado doméstico ou segurado especial 13° salário</option>
+        <option value="1082-24" {% ifequal '1082-24' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1082-24 - CP descontada do segurado especial curto prazo 13° salário - Lei 11.718/2008</option>
+        <option value="1099-01" {% ifequal '1099-01' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1099-01 - CP descontada do contribuinte individual, alíquota de 11%</option>
+        <option value="1099-02" {% ifequal '1099-02' dict_fields|get_value_from_dict:'tpcr' %}selected="selected"{% endifequal %} >1099-02 - CP descontada do contribuinte individual, alíquota de 20%. Validação: Se indApuracao = [2], tpCR = 1082-21, 1082,22, 1082-23, 1082- 24.</option>
       </select>
     </div>
   </div>

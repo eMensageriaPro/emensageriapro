@@ -250,7 +250,7 @@ def read_s5001_evtbasestrab_obj(request, doc, status, validar=False, arquivo=Fal
                                     s5001_infoperref_dados['s5001_infocategincid_id'] = s5001_infocategincid.id
                 
                                     try:
-                                        s5001_infoperref_dados['perref'] = read_from_xml(infoPerRef.perRef.cdata, 'esocial', 'N', None)
+                                        s5001_infoperref_dados['perref'] = read_from_xml(infoPerRef.perRef.cdata, 'esocial', 'C', None)
                                     except AttributeError:
                                         pass
         
