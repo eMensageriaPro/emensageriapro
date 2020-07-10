@@ -81,7 +81,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'rest_framework',
     'rest_framework.authtoken',
-    # 'django_celery_beat',
+    'wkhtmltopdf',
     'django_cron',
     'constance',
     'constance.backends.database',
@@ -194,11 +194,16 @@ CRON_CLASSES = [
     'emensageriapro.cron.ImportFiles',
 ]
 
+#WKHTMLTOPDF_CMD = '/path/to/my/wkhtmltopdf'
+WKHTMLTOPDF_CMD_OPTIONS = {
+    'quiet': False,
+    'disable-local-file-access': True,
+    'allow': BASE_DIR,
+}
 
 ROOT_URLCONF = 'emensageriapro.urls'
 
 WSGI_APPLICATION = 'emensageriapro.wsgi.application'
-
 
 TEMPLATES = [
   {
