@@ -43,11 +43,8 @@ from django.core.validators import EMPTY_VALUES
 from emensageriapro.padrao import *
 
 try:
-
     locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
-
 except:
-
     locale.setlocale(locale.LC_ALL, 'pt_BR.utf8')
 
 register = template.Library()
@@ -83,6 +80,13 @@ def to_xml(texto, esocial_efdreinf_tipo):
 @register.filter(name='multiply')
 def multiply(value, arg):
     return value*arg
+
+
+@register.filter(name='is_list')
+def is_list(value):
+    if type(value) is list:
+        return True
+    return False
 
 
 
