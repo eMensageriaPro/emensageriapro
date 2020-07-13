@@ -471,4 +471,7 @@ def finditem(obj, key):
 @register.filter(name='to_json')
 def to_json(string):
     import json
-    return json.loads(string)
+    try:
+        return json.loads(string)
+    except:
+        return ''
