@@ -10,9 +10,10 @@ requirements.txt /requirements/
 RUN yum -y install epel-release ; \
 yum -y install gcc python-devel postgresql-devel python-pip ; \
 pip install --upgrade pip ; \
-# Dependencias iniciais da aplicaca
+
+# Dependencias iniciais da aplicacao
 yum install -y fontconfig freetype libX11 libXext libXrender libjpeg libpng openssl xorg-x11-fonts-75dpi xorg-x11-fonts-Type1 
-RUN rpm -i https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox-0.12.5-1.centos7.x86_64.rpm
+RUN rpm -i https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox-0.12.5-1.centos7.x86_64.rpm
 
 # Ajustar timezone e locales
 RUN export TZ="America/Fortaleza" ; \
