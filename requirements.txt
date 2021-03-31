@@ -2,7 +2,7 @@ django==1.11.29
 untangle==1.1.1
 psycopg2==2.7.6.1
 pyOpenSSL==17.5.0
-lxml==3.7.3
+lxml==4.6.3
 signxml==2.5.2
 xhtml2pdf==0.2.2
 django-wkhtmltopdf==3.3.0
