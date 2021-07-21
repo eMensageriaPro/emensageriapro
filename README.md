@@ -1,6 +1,6 @@
 # eMensageriaPro
 
-# VERSÀO DESATUALIZADA ACESSE O REPOSITÓRIO: https://github.com/marcelomdevasconcellos/emensageria/
+# VERSÃO DESATUALIZADA ACESSE O REPOSITÓRIO: https://github.com/marcelomdevasconcellos/emensageria/
 
 eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
 
