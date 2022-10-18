@@ -10,7 +10,7 @@ goslate==1.5.1
 django-environ==0.4.5
 xmltodict==0.11.0
 googletrans==2.4.0
-djangorestframework==3.9.4
+djangorestframework==3.11.2
 markdown==2.6
 django-filter==2.0.0
 django-localflavor==1.6.1
