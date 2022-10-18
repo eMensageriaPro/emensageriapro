@@ -12,7 +12,7 @@ xmltodict==0.11.0
 googletrans==2.4.0
 djangorestframework==3.9.4
 markdown==2.6
-django-filter==2.0.0
+django-filter==2.4.0
 django-localflavor==1.6.1
 django-localflavor-br==1.0
 psycopg2-binary==2.7.6.1
